@@ -1,0 +1,126 @@
+<div class="space-y-4">
+    <!-- Filters & Search -->
+    <div
+        class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+        <div class="relative w-full md:w-96 group">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+            </span>
+            <input type="text" wire:model.live.debounce.300ms="search"
+                placeholder="{{ __('Search users by name or email...') }}"
+                class="block w-full pl-11 pr-4 h-11 bg-gray-50/50 border-transparent rounded-xl text-sm focus:ring-1 focus:ring-black focus:border-black focus:bg-white transition-all">
+        </div>
+
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] font-black uppercase text-gray-400 tracking-tighter">{{ $users->total() }}
+                {{ __('Registered Users') }}</span>
+        </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-gray-50/50">
+                    <th
+                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        {{ __('Name & Identity') }}
+                    </th>
+                    <th
+                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        {{ __('Security Role') }}
+                    </th>
+                    <th
+                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        {{ __('Directorate-General') }}
+                    </th>
+                    <th
+                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        {{ __('Status') }}
+                    </th>
+                    <th class="px-8 py-5 text-right border-b border-gray-50"></th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50">
+                @forelse($users as $user)
+                    <tr class="group hover:bg-gray-50/30 transition-colors">
+                        <td class="px-8 py-6">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-2xl bg-black text-white flex items-center justify-center font-black text-xs shadow-lg shadow-black/10">
+                                    {{ substr($user->name, 0, 2) }}
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-black text-gray-900 leading-tight">{{ $user->name }}</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5">{{ $user->email }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6">
+                            @php $role = $user->roles->first(); @endphp
+                            <span
+                                class="inline-flex items-center gap-1.5 px-3 py-1 transparent text-[10px] font-black uppercase tracking-widest border border-gray-200 rounded-lg text-gray-600">
+                                <span class="w-1 h-1 bg-indigo-500 rounded-full"></span>
+                                {{ $role?->display_name ? __($role->display_name) : ($role?->name ? __($role->name) : __('No Role')) }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-6 text-sm">
+                            <span
+                                class="font-bold text-gray-700 italic tracking-tight">{{ $user->directorate->code ?? __('National Authority') }}</span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <span
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-[10px] font-black uppercase tracking-widest rounded-lg border border-green-100">
+                                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                {{ __('Active') }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-6 text-right">
+                            <div class="flex justify-end items-center gap-2">
+                                <button wire:click="openModal({{ $user->id }})"
+                                    class="p-2 text-gray-400 hover:text-black hover:bg-gray-100 rounded-xl transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                                        <path d="m15 5 4 4" />
+                                    </svg>
+                                </button>
+                                @if($user->id !== auth()->id() && auth()->user()->isAdministrator())
+                                    <button wire:click="deleteUser({{ $user->id }})"
+                                        wire:confirm="{{ __('Are you sure you want to delete this user?') }}"
+                                        class="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M3 6h18" />
+                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                            <line x1="10" x2="10" y1="11" y2="17" />
+                                            <line x1="14" x2="14" y1="11" y2="17" />
+                                        </svg>
+                                    </button>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="px-8 py-12 text-center text-gray-400 italic text-sm">
+                            {{ __('No users found matching your criteria.') }}
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="px-8 py-4 bg-gray-50/30 border-t border-gray-50">
+            {{ $users->links() }}
+        </div>
+    </div>
+</div>

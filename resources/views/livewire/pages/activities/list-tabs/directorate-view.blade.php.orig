@@ -1,0 +1,171 @@
+<div class="space-y-6">
+    @php
+    $renderDirectorate = function ($data, $level = 0) use (&$renderDirectorate, $__env) {
+    $paddingClass = match ($level) {
+    1 => 'ml-8',
+    2 => 'ml-16',
+    3 => 'ml-24',
+    default => '',
+    };
+
+    $bgClass = match ($level) {
+    0 => 'bg-white',
+    1 => 'bg-slate-50/50',
+    2 => 'bg-slate-100/30',
+    default => 'bg-slate-200/20',
+    };
+
+    $titleSize = $level === 0 ? 'text-xl font-black' : 'text-sm font-bold';
+    $cardRadius = $level === 0 ? 'rounded-[2rem]' : 'rounded-2xl';
+    @endphp
+
+    <div x-data="{ expanded: false }"
+        class="{{ $paddingClass }} premium-card {{ $cardRadius }} overflow-hidden group/card shadow-indigo-500/5 hover:shadow-indigo-500/10 hover:border-indigo-100 transition-all duration-500 mb-4">
+
+        <div @click="expanded = !expanded"
+            class="p-6 cursor-pointer {{ $bgClass }} group-hover/card:bg-slate-50/30 flex justify-between items-center transition-colors duration-500">
+            <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="px-2 py-1 bg-slate-900 text-white text-[8px] font-black uppercase tracking-widest rounded shadow-lg shadow-black/10">{{
+                        $data['code'] }}</span>
+                    <h4
+                        class="{{ $titleSize }} text-slate-900 group-hover/card:text-indigo-600 transition-colors duration-500">
+                        {{ $data['name'] }}
+                    </h4>
+                    @if($data['type'])
+                    <span
+                        class="text-[8px] font-black text-slate-400 uppercase border border-slate-200 px-1.5 py-0.5 rounded">{{
+                        $data['type'] }}</span>
+                    @endif
+                </div>
+                <div class="flex gap-6 text-[8px] font-black uppercase tracking-widest text-slate-400">
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-1 h-1 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50"></div>
+                        <span>{{ $data['total_indicators'] }} {{ __('Goals') }}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <div class="w-1 h-1 rounded-full bg-indigo-500 shadow-sm shadow-indigo-500/50"></div>
+                        <span>{{ $data['total_rubricas'] }} {{ __('Finance Items') }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <div class="text-right border-r-2 border-indigo-600 pr-4">
+                    <p class="text-[8px] font-black text-indigo-400 uppercase tracking-widest leading-none mb-1">
+                        {{ __('Roll-up Total') }}
+                    </p>
+                    <p class="text-lg font-black text-indigo-600 leading-none tracking-tighter">
+                        $ {{ number_format($data['total_estimated'], 2) }}
+                    </p>
+                </div>
+                <div class="ml-2">
+                    <x-ui.button variant="secondary" size="icon"
+                        x-bind:class="expanded ? 'rotate-180 bg-indigo-50 border-indigo-100 text-indigo-600' : ''"
+                        class="!rounded-xl !h-8 !w-8 transition-all duration-500">
+                        <svg class="w-2.5 h-2.5 transition-colors" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </x-ui.button>
+                </div>
+            </div>
+        </div>
+
+        <div x-show="expanded" x-collapse>
+            <div class="px-6 pb-6 pt-2 border-t border-slate-50 bg-slate-50/10">
+                @if($data['activities']->isNotEmpty())
+                <div class="mb-4">
+                    <div class="mb-2 flex items-center justify-between px-1">
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ __('Direct
+                            Activities') }}</span>
+                    </div>
+                    <div class="rounded-xl border border-slate-100 bg-white overflow-hidden shadow-sm">
+                        <x-ui.table :headers="[__('Activity'), __('Requested'), __('Status')]">
+                            <x-slot name="actions"></x-slot>
+                            @foreach($data['activities'] as $activity)
+                            <tr class="hover:bg-slate-50/50 transition-colors group/row">
+                                <td class="px-6 py-4">
+                                    <p
+                                        class="text-xs font-bold text-slate-700 leading-tight group-hover/row:text-indigo-600 transition-colors">
+                                        {{ $activity->description }}
+                                    </p>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="text-xs font-black text-indigo-600 tracking-tighter">$
+                                        {{ number_format($activity->lineItems->sum('estimated_amount'), 2) }}</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    @php
+                                    $statusVariant = match ($activity->status) {
+                                    'Approved' => 'green',
+                                    'Submitted' => 'indigo',
+                                    'Reviewed' => 'amber',
+                                    'Rejected' => 'red',
+                                    default => 'blue',
+                                    };
+                                    @endphp
+                                    <x-ui.badge :variant="$statusVariant" class="!rounded-md !text-[9px]">{{
+                                        $activity->status }}</x-ui.badge>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <x-ui.button variant="ghost" size="icon"
+                                        href="{{ route('activities.show', $activity->id) }}" wire:navigate
+                                        class="!rounded-lg !h-6 !w-6">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </x-ui.button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </x-ui.table>
+                    </div>
+                </div>
+                @endif
+
+                @if($data['children']->isNotEmpty())
+                <div class="mt-4">
+                    <div class="mb-4 px-1">
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ __('Sub-Units')
+                            }}</span>
+                    </div>
+                    @foreach($data['children'] as $child)
+                    @php $renderDirectorate($child, $level + 1); @endphp
+                    @endforeach
+                </div>
+                @endif
+
+                @if($data['activities']->isEmpty() && $data['children']->isEmpty())
+                <div class="py-4 text-center">
+                    <p class="text-[10px] text-slate-400 italic">{{ __('Zero activity found for this unit') }}</p>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    @php
+    };
+
+    foreach ($this->directorateViewData as $root) {
+    $renderDirectorate($root);
+    }
+    @endphp
+
+    @if(empty($this->directorateViewData))
+    <div class="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+        </div>
+        <p class="text-gray-400 italic font-medium">{{ __('No activities grouped by directorate found.') }}</p>
+    </div>
+    @endif
+</div>
