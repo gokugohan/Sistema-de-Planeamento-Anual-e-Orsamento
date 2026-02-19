@@ -92,6 +92,7 @@ Route::view('profile', 'profile')
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'pt', 'tet'])) {
         session(['locale' => $locale]);
+        return redirect()->back()->withCookie(cookie()->forever('locale', $locale));
     }
     return redirect()->back();
 })->name('lang.switch');

@@ -108,29 +108,49 @@
         </div>
 
         <!-- ── Right Form Panel ──────────────────────────────── -->
-        <div class="flex-1 flex flex-col items-center justify-center bg-zinc-50 px-6 py-12">
+        <div class="flex-1 flex flex-col bg-zinc-50 px-6 py-6">
 
-            <!-- Mobile logo -->
-            <div class="lg:hidden flex items-center gap-3 mb-10">
-                <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2v20" /><path d="m17 5-5-3-5 3" /><path d="m17 19-5 3-5-3" />
-                        <path d="M2 12h20" /><path d="m5 7 3 5-3 5" /><path d="m19 7-3 5 3 5" />
-                    </svg>
+            <!-- Top bar: Language Switcher -->
+            <div class="flex justify-end">
+                <div class="flex items-center gap-0.5 p-1 bg-white rounded-lg border border-zinc-200/60 shadow-sm">
+                    @foreach(['en' => 'EN', 'pt' => 'PT', 'tet' => 'TET'] as $code => $label)
+                        <a href="{{ route('lang.switch', $code) }}"
+                            class="px-2.5 py-1 text-[11px] font-medium rounded-md transition-all
+                            {{ app()->getLocale() === $code
+                                ? 'bg-zinc-900 text-white shadow-sm'
+                                : 'text-zinc-500 hover:text-zinc-800' }}">
+                            {{ $label }}
+                        </a>
+                    @endforeach
                 </div>
-                <span class="text-base font-semibold text-zinc-900">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</span>
             </div>
 
-            <!-- Form card -->
-            <div class="w-full max-w-[400px]">
-                <div class="bg-white rounded-2xl ring-1 ring-zinc-950/5 shadow-sm p-8">
-                    {{ $slot }}
+            <!-- Centered content -->
+            <div class="flex-1 flex flex-col items-center justify-center py-6">
+
+                <!-- Mobile logo -->
+                <div class="lg:hidden flex items-center gap-3 mb-10">
+                    <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20" /><path d="m17 5-5-3-5 3" /><path d="m17 19-5 3-5-3" />
+                            <path d="M2 12h20" /><path d="m5 7 3 5-3 5" /><path d="m19 7-3 5 3 5" />
+                        </svg>
+                    </div>
+                    <span class="text-base font-semibold text-zinc-900">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</span>
                 </div>
 
-                <p class="text-center text-xs text-zinc-400 mt-5">
-                    {{ __('Secure government financial platform') }}
-                </p>
+                <!-- Form card -->
+                <div class="w-full max-w-[400px]">
+                    <div class="bg-white rounded-2xl ring-1 ring-zinc-950/5 shadow-sm p-8">
+                        {{ $slot }}
+                    </div>
+
+                    <p class="text-center text-xs text-zinc-400 mt-5">
+                        {{ __('Secure government financial platform') }}
+                    </p>
+                </div>
+
             </div>
         </div>
     </div>
