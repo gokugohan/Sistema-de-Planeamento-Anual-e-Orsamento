@@ -1,8 +1,8 @@
-@props(['padding' => 'p-6', 'header' => null, 'footer' => null])
+@props(['padding' => 'p-5', 'header' => null, 'footer' => null])
 
-<div {{ $attributes->merge(['class' => 'premium-card rounded-3xl overflow-hidden']) }}>
+<div {{ $attributes->merge(['class' => 'bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm overflow-hidden']) }}>
     @if(isset($header) && $header)
-        <div class="px-8 py-5 border-b border-slate-50 bg-slate-50/30">
+        <div class="px-5 py-4 border-b border-zinc-100">
             {{ $header }}
         </div>
     @endif
@@ -12,7 +12,7 @@
     </div>
 
     @if(isset($footer) && $footer)
-        <div class="px-8 py-4 border-t border-slate-50 bg-slate-50/10">
+        <div class="px-5 py-3 border-t border-zinc-100 bg-zinc-50/50">
             {{ $footer }}
         </div>
     @endif

@@ -170,7 +170,7 @@ new class extends Component {
     }
 }; ?>
 
-<div class="space-y-10 py-6 animate-in fade-in duration-1000" x-data="{
+<div class="space-y-8 animate-in fade-in duration-500" x-data="{
     chartInstances: {},
     primaryColor: '#6366f1',
     colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'],
@@ -316,49 +316,52 @@ new class extends Component {
     script.onload = () => init();
     document.head.appendChild(script);
 ">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+    <!-- Page Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
         <div>
-            <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none">{{ __('Dashboard') }}
-            </h1>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">
-                {{ __('Budget Planning & Performance Overview') }}
-            </p>
+            <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">{{ __('Dashboard') }}</h1>
+            <p class="text-sm text-zinc-400 mt-1">{{ __('Budget Planning & Performance Overview') }}</p>
         </div>
-        <div class="flex flex-col sm:flex-row flex-wrap gap-4 items-stretch sm:items-end w-full md:w-auto">
-            <div class="flex flex-col gap-1 w-full sm:w-auto">
-                <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-2">{{ __('Filter Directorate') }}</label>
+
+        <div class="flex flex-wrap items-end gap-3">
+            <!-- Directorate filter -->
+            <div class="flex flex-col gap-1">
+                <label class="text-xs font-medium text-zinc-500">{{ __('Directorate') }}</label>
                 <select wire:model.live="selectedDirectorate"
-                    class="bg-white border-none shadow-sm rounded-2xl text-xs font-black text-slate-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10 w-full">
-                    <option value="">{{ __('All Directorates') }}</option>
+                    class="flux-input py-2 pr-8 text-sm min-w-[160px]">
+                    <option value="">{{ __('All') }}</option>
                     @foreach(\App\Models\Directorate::orderBy('name')->get() as $dir)
                         <option value="{{ $dir->id }}">{{ $dir->name }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="flex flex-col gap-1 w-full sm:w-auto">
-                <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-2">{{ __('Filter Category') }}</label>
+
+            <!-- Category filter -->
+            <div class="flex flex-col gap-1">
+                <label class="text-xs font-medium text-zinc-500">{{ __('Category') }}</label>
                 <select wire:model.live="selectedCategory"
-                    class="bg-white border-none shadow-sm rounded-2xl text-xs font-black text-slate-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10 w-full">
-                    <option value="">{{ __('All Categories') }}</option>
+                    class="flux-input py-2 pr-8 text-sm min-w-[160px]">
+                    <option value="">{{ __('All') }}</option>
                     @foreach(\App\Models\EconomicClassification::orderBy('name')->get() as $cat)
                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="flex gap-3 w-full sm:w-auto mt-2 sm:mt-0">
-                <x-ui.button variant="secondary" size="md" href="{{ route('reports.paa') }}" wire:navigate
-                    class="flex-1 sm:flex-none">
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+                <x-ui.button variant="secondary" size="md" href="{{ route('reports.paa') }}" wire:navigate>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                    </svg>
                     {{ __('Export') }}
                 </x-ui.button>
-                <x-ui.button variant="black" shadow="lg" href="{{ route('activities.index') }}" wire:navigate
-                    class="flex-1 sm:flex-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                        class="mr-2">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
+                <x-ui.button variant="primary" size="md" href="{{ route('activities.index') }}" wire:navigate>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
+                        <path d="M5 12h14"/><path d="M12 5v14"/>
                     </svg>
                     {{ __('Planning') }}
                 </x-ui.button>
@@ -367,7 +370,7 @@ new class extends Component {
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <x-ui.stats-card label="{{ __('Fiscal Envelope') }} {{ $activeYear }}"
             value="$ {{ number_format($approvedTotal, 0) }}" description="{{ __('Authorized ceiling') }}"
             icon="envelope" />
@@ -385,166 +388,163 @@ new class extends Component {
             description="{{ __('Awaiting approval') }}" />
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <!-- Main Performance Card -->
-        <div class="lg:col-span-8 space-y-8">
-            <x-ui.card padding="p-0" class="overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Main Charts Column -->
+        <div class="lg:col-span-8 space-y-6">
+
+            <!-- Performance Chart -->
+            <x-ui.card padding="p-0">
                 <x-slot name="header">
-                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-50">
-                        <h3 class="text-[10px] md:text-sm font-black text-slate-900 uppercase tracking-widest">
-                            {{ __('Proposed vs Allocated') }}
-                        </h3>
-                        <x-ui.badge variant="emerald" pulse="true"
-                            class="text-[9px]">{{ __('Performance') }}</x-ui.badge>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Proposed vs Allocated') }}</h3>
+                        <x-ui.badge variant="emerald" pulse="true">{{ __('Performance') }}</x-ui.badge>
                     </div>
                 </x-slot>
-
-                <div class="p-4 md:p-8">
-                    <div class="h-[250px] md:h-[400px] w-full">
+                <div class="p-5">
+                    <div class="h-[260px] md:h-[360px] w-full">
                         <canvas id="performanceChart"></canvas>
                     </div>
                 </div>
             </x-ui.card>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <x-ui.card padding="p-6">
+            <!-- Program & Classification -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <x-ui.card padding="p-5">
                     <x-slot name="header">
-                        <h3 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">
-                            {{ __('Budget by Program') }}
-                        </h3>
+                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Budget by Program') }}</h3>
                     </x-slot>
-                    <div class="h-[250px] md:h-[300px] mt-4">
+                    <div class="h-[240px] md:h-[280px] mt-3">
                         <canvas id="programChart"></canvas>
                     </div>
                 </x-ui.card>
 
-                <x-ui.card padding="p-6">
+                <x-ui.card padding="p-5">
                     <x-slot name="header">
-                        <h3 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">
-                            {{ __('Economic Classification') }}
-                        </h3>
+                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Economic Classification') }}</h3>
                     </x-slot>
-                    <div class="h-[250px] md:h-[300px] mt-4">
+                    <div class="h-[240px] md:h-[280px] mt-3">
                         <canvas id="classificationChart"></canvas>
                     </div>
                 </x-ui.card>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <x-ui.card padding="p-6">
+            <!-- Distribution & Status -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <x-ui.card padding="p-5">
                     <x-slot name="header">
-                        <h3 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">
-                            {{ __('Budget Distribution') }}
-                        </h3>
+                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Budget Distribution') }}</h3>
                     </x-slot>
-                    <div class="h-[200px] md:h-[250px] mt-4">
+                    <div class="h-[200px] md:h-[240px] mt-3">
                         <canvas id="directorateChart"></canvas>
                     </div>
                 </x-ui.card>
 
-                <x-ui.card padding="p-6">
+                <x-ui.card padding="p-5">
                     <x-slot name="header">
-                        <h3 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">
-                            {{ __('Activity Status') }}
-                        </h3>
+                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Activity Status') }}</h3>
                     </x-slot>
-                    <div class="h-[200px] md:h-[250px] mt-4">
+                    <div class="h-[200px] md:h-[240px] mt-3">
                         <canvas id="statusChart"></canvas>
                     </div>
                 </x-ui.card>
             </div>
         </div>
 
-        <!-- Sidebar Widgets -->
-        <div class="lg:col-span-4 space-y-8">
-            <x-ui.card padding="p-8">
+        <!-- Right Sidebar Widgets -->
+        <div class="lg:col-span-4 space-y-6">
+
+            <!-- Quick Actions -->
+            <x-ui.card padding="p-5">
                 <x-slot name="header">
-                    <h3 class="text-[10px] font-black text-slate-900 uppercase tracking-[0.2em]">{{ __('Operations') }}
-                    </h3>
+                    <h3 class="text-sm font-semibold text-zinc-900">{{ __('Quick Actions') }}</h3>
                 </x-slot>
-                <div class="space-y-4">
-                    <x-ui.button variant="secondary" size="lg" class="w-full !justify-start !rounded-2xl !py-4"
-                        href="{{ route('activities.create') }}" wire:navigate>
-                        <div
-                            class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M5 12h14" />
-                                <path d="M12 5v14" />
+                <div class="space-y-2 mt-1">
+                    <a href="{{ route('activities.create') }}" wire:navigate
+                        class="flex items-center gap-3 px-3 py-3 rounded-lg border border-zinc-200/60 hover:border-indigo-200 hover:bg-indigo-50/50 transition-all group">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0 group-hover:bg-indigo-100 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"/><path d="M12 5v14"/>
                             </svg>
                         </div>
-                        <span class="text-xs font-black">{{ __('New Activity') }}</span>
-                    </x-ui.button>
-                    <x-ui.button variant="secondary" size="lg" class="w-full !justify-start !rounded-2xl !py-4"
-                        href="{{ route('reports.paa') }}" wire:navigate>
-                        <div
-                            class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-600 mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                <polyline points="14 2 14 8 20 8" />
-                                <line x1="16" x2="8" y1="13" y2="13" />
-                                <line x1="16" x2="8" y1="17" y2="17" />
-                                <line x1="10" x2="8" y1="9" y2="9" />
+                        <div>
+                            <p class="text-sm font-medium text-zinc-800">{{ __('New Activity') }}</p>
+                            <p class="text-xs text-zinc-400">{{ __('Create PAA activity') }}</p>
+                        </div>
+                    </a>
+                    <a href="{{ route('reports.paa') }}" wire:navigate
+                        class="flex items-center gap-3 px-3 py-3 rounded-lg border border-zinc-200/60 hover:border-zinc-300 hover:bg-zinc-50 transition-all group">
+                        <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-600 flex-shrink-0 group-hover:bg-zinc-200 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" x2="8" y1="13" y2="13"/>
+                                <line x1="16" x2="8" y1="17" y2="17"/>
                             </svg>
                         </div>
-                        <span class="text-xs font-black">{{ __('Report') }}</span>
-                    </x-ui.button>
+                        <div>
+                            <p class="text-sm font-medium text-zinc-800">{{ __('Export Report') }}</p>
+                            <p class="text-xs text-zinc-400">{{ __('Download PAA report') }}</p>
+                        </div>
+                    </a>
                 </div>
             </x-ui.card>
 
-            <div class="bg-slate-900 rounded-[2.5rem] p-6 md:p-10 text-white relative overflow-hidden">
-                <h4 class="text-[9px] font-black uppercase tracking-[0.25em] text-slate-500 mb-8">
-                    {{ __('PAA Execution') }}
-                </h4>
-                <div class="flex items-center gap-6 md:gap-8">
-                    <div class="relative shrink-0">
-                        <svg class="h-20 w-20 md:h-24 md:w-24 transform -rotate-90">
-                            <circle cx="48" cy="48" r="42" stroke="currentColor" stroke-width="6" fill="transparent"
-                                class="text-slate-800" />
-                            <circle cx="48" cy="48" r="42" stroke="currentColor" stroke-width="8" fill="transparent"
-                                stroke-dasharray="263.89"
-                                stroke-dashoffset="{{ 263.89 - (263.89 * ($paaExecutionRate / 100)) }}"
-                                class="text-indigo-500" stroke-linecap="round" />
-                        </svg>
-                        <div
-                            class="absolute inset-0 flex items-center justify-center font-black text-lg md:text-xl tracking-tighter">
-                            {{ $paaExecutionRate }}%
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-2xl md:text-3xl font-black leading-none">
-                            {{ $paaExecutionRate > 90 ? __('Optimal') : ($paaExecutionRate > 50 ? __('Moderate') : __('Initial')) }}
-                        </p>
-                        <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-2">
-                            {{ __('Envelope Utilization') }}
-                        </p>
-                    </div>
-                </div>
-                <div class="mt-8 pt-8 border-t border-slate-800/50 flex justify-between items-center">
-                    <div class="flex gap-1.5">
-                        <div
-                            class="w-1.5 h-1.5 rounded-full {{ $paaExecutionRate > 30 ? 'bg-emerald-500' : 'bg-slate-700' }}">
-                        </div>
-                        <div
-                            class="w-1.5 h-1.5 rounded-full {{ $paaExecutionRate > 60 ? 'bg-emerald-500' : 'bg-slate-700' }}">
-                        </div>
-                        <div
-                            class="w-1.5 h-1.5 rounded-full {{ $paaExecutionRate > 90 ? 'bg-emerald-500' : 'bg-slate-700' }}">
-                        </div>
-                    </div>
-                    <span
-                        class="text-[9px] font-black text-slate-500 tracking-widest uppercase">{{ __('Financial Adherence') }}</span>
-                </div>
+            <!-- PAA Execution Card -->
+            <div class="bg-zinc-900 rounded-2xl p-6 text-white ring-1 ring-white/5 overflow-hidden relative">
 
-                <div class="mt-6 md:mt-8">
-                    <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-4">
-                        {{ __('Quarterly Performance') }}
+                <!-- Subtle glow -->
+                <div class="absolute top-0 right-0 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+                <div class="relative">
+                    <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-5">
+                        {{ __('PAA Execution') }}
                     </p>
-                    <div class="h-20 md:h-24 w-full">
-                        <canvas id="quarterlyProgressChart"></canvas>
+
+                    <!-- Gauge + label -->
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <svg class="w-20 h-20 -rotate-90">
+                                <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="5"
+                                    fill="transparent" class="text-white/10" />
+                                <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="6"
+                                    fill="transparent"
+                                    stroke-dasharray="213.6"
+                                    stroke-dashoffset="{{ 213.6 - (213.6 * ($paaExecutionRate / 100)) }}"
+                                    class="text-indigo-500" stroke-linecap="round" />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center text-base font-semibold text-white">
+                                {{ $paaExecutionRate }}%
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold text-white leading-tight">
+                                {{ $paaExecutionRate > 90 ? __('Optimal') : ($paaExecutionRate > 50 ? __('Moderate') : __('Early Stage')) }}
+                            </p>
+                            <p class="text-xs text-zinc-500 mt-1">{{ __('Envelope Utilization') }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Progress milestones -->
+                    <div class="flex items-center gap-2 mb-5">
+                        @foreach([30, 60, 90] as $threshold)
+                            <div class="flex items-center gap-1.5">
+                                <div class="w-2 h-2 rounded-full {{ $paaExecutionRate >= $threshold ? 'bg-emerald-500' : 'bg-white/15' }}"></div>
+                                <span class="text-[10px] text-zinc-600">{{ $threshold }}%</span>
+                            </div>
+                        @endforeach
+                        <span class="text-[10px] text-zinc-600 ml-auto">{{ __('Financial Adherence') }}</span>
+                    </div>
+
+                    <!-- Quarterly chart -->
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-[10px] font-medium text-zinc-600 uppercase tracking-wider mb-3">
+                            {{ __('Quarterly Performance') }}
+                        </p>
+                        <div class="h-[72px] w-full">
+                            <canvas id="quarterlyProgressChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

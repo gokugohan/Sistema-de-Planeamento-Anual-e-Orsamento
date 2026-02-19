@@ -2,33 +2,34 @@
 
 @php
     $variants = [
-        'indigo' => 'bg-indigo-50 text-indigo-700 border-indigo-100/50',
-        'blue' => 'bg-blue-50 text-blue-700 border-blue-100/50',
-        'green' => 'bg-emerald-50 text-emerald-700 border-emerald-100/50',
-        'red' => 'bg-rose-50 text-rose-700 border-rose-100/50',
-        'yellow' => 'bg-amber-50 text-amber-700 border-amber-100/50',
-        'amber' => 'bg-amber-50 text-amber-700 border-amber-100/50',
-        'gray' => 'bg-slate-100 text-slate-600 border-slate-200/50',
-        'black' => 'bg-slate-900 text-white border-transparent',
+        'indigo'  => 'bg-indigo-50 text-indigo-700 ring-indigo-200/60',
+        'blue'    => 'bg-blue-50 text-blue-700 ring-blue-200/60',
+        'green'   => 'bg-emerald-50 text-emerald-700 ring-emerald-200/60',
+        'emerald' => 'bg-emerald-50 text-emerald-700 ring-emerald-200/60',
+        'red'     => 'bg-rose-50 text-rose-700 ring-rose-200/60',
+        'yellow'  => 'bg-amber-50 text-amber-700 ring-amber-200/60',
+        'amber'   => 'bg-amber-50 text-amber-700 ring-amber-200/60',
+        'gray'    => 'bg-zinc-100 text-zinc-600 ring-zinc-200/60',
+        'black'   => 'bg-zinc-900 text-white ring-transparent',
     ];
 
     $dotColors = [
-        'indigo' => 'bg-indigo-500',
-        'blue' => 'bg-blue-500',
-        'green' => 'bg-emerald-500',
-        'red' => 'bg-rose-500',
-        'yellow' => 'bg-amber-500',
-        'amber' => 'bg-amber-500',
-        'gray' => 'bg-slate-400',
-        'black' => 'bg-white',
+        'indigo'  => 'bg-indigo-500',
+        'blue'    => 'bg-blue-500',
+        'green'   => 'bg-emerald-500',
+        'emerald' => 'bg-emerald-500',
+        'red'     => 'bg-rose-500',
+        'yellow'  => 'bg-amber-500',
+        'amber'   => 'bg-amber-500',
+        'gray'    => 'bg-zinc-400',
+        'black'   => 'bg-white',
     ];
 @endphp
 
-<span {{ $attributes->merge(['class' => 'inline-flex items-center gap-1.5 px-3 py-1 text-[9px] font-black uppercase tracking-widest rounded-lg border shadow-sm/5 ' . ($variants[$variant] ?? $variants['indigo'])]) }}>
+<span {{ $attributes->merge(['class' => 'inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-medium rounded-full ring-1 ' . ($variants[$variant] ?? $variants['indigo'])]) }}>
     @if($pulse)
-        <span class="relative flex h-1.5 w-1.5">
-            <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full {{ $dotColors[$variant] ?? 'bg-current' }} opacity-75"></span>
+        <span class="relative flex h-1.5 w-1.5 flex-shrink-0">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ $dotColors[$variant] ?? 'bg-current' }} opacity-60"></span>
             <span class="relative inline-flex rounded-full h-1.5 w-1.5 {{ $dotColors[$variant] ?? 'bg-current' }}"></span>
         </span>
     @endif

@@ -7,81 +7,75 @@ new class extends Component {
 }; ?>
 
 <header
-    class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-40 flex items-center justify-between px-6 md:px-10 shadow-sm shadow-slate-200/20">
+    class="h-14 bg-white border-b border-zinc-200/60 sticky top-0 z-40 flex items-center gap-4 px-5 shadow-[0_1px_2px_0_rgba(0,0,0,0.03)]">
 
-    <!-- Mobile Hamburger Toggle -->
+    <!-- Mobile Menu Toggle -->
     <button @click="sidebarOpen = true"
-        class="p-2.5 text-slate-500 hover:bg-slate-50 rounded-xl md:hidden mr-4 border border-slate-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" x2="21" y1="12" y2="12" />
-            <line x1="3" x2="21" y1="6" y2="6" />
-            <line x1="3" x2="21" y1="18" y2="18" />
+        class="p-2 text-zinc-400 hover:text-zinc-600 hover:bg-zinc-50 rounded-lg transition-colors md:hidden flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" x2="21" y1="6" y2="6" /><line x1="3" x2="21" y1="12" y2="12" /><line x1="3" x2="21" y1="18" y2="18" />
         </svg>
     </button>
 
-    <!-- Left: Search placeholder or Page Context -->
-    <div class="flex-1 max-w-md hidden md:block">
-        <div class="relative group">
-            <span
-                class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-300 group-focus-within:text-indigo-500 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                </svg>
-            </span>
-            <input type="text" placeholder="{{ __('Search financial data, activities, reports...') }}"
-                class="w-full h-11 bg-slate-50/50 border-slate-100/50 rounded-2xl pl-12 text-[11px] font-bold text-slate-600 focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all placeholder:text-slate-300 placeholder:font-medium">
-        </div>
+    <!-- Search -->
+    <div class="hidden md:flex items-center gap-2 flex-1 max-w-sm h-9 px-3 bg-zinc-50 border border-zinc-200/60 rounded-lg
+        focus-within:bg-white focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-500/15 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="text-zinc-400 flex-shrink-0">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+        </svg>
+        <input type="text" placeholder="{{ __('Search activities, reports...') }}"
+            class="flex-1 bg-transparent text-sm text-zinc-700 placeholder:text-zinc-400 focus:outline-none min-w-0">
     </div>
 
-    <!-- Right: Notifications & User -->
-    <div class="flex items-center gap-8">
+    <!-- Right Side -->
+    <div class="ml-auto flex items-center gap-1">
+
         <!-- Language Switcher -->
-        <div class="bg-slate-100/50 p-1 rounded-xl flex items-center gap-1 border border-slate-100 shadow-sm">
-            <x-ui.button variant="{{ app()->getLocale() === 'en' ? 'secondary' : 'ghost' }}" size="xs"
-                href="{{ route('lang.switch', 'en') }}"
-                class="!text-[10px] py-1 px-2 h-7 bg-transparent border-none shadow-none">EN</x-ui.button>
-            <x-ui.button variant="{{ app()->getLocale() === 'pt' ? 'secondary' : 'ghost' }}" size="xs"
-                href="{{ route('lang.switch', 'pt') }}"
-                class="!text-[10px] py-1 px-2 h-7 bg-transparent border-none shadow-none">PT</x-ui.button>
-            <x-ui.button variant="{{ app()->getLocale() === 'tet' ? 'secondary' : 'ghost' }}" size="xs"
-                href="{{ route('lang.switch', 'tet') }}"
-                class="!text-[10px] py-1 px-2 h-7 bg-transparent border-none shadow-none">TET</x-ui.button>
+        <div class="flex items-center gap-0.5 p-1 bg-zinc-50 rounded-lg border border-zinc-200/60">
+            @foreach(['en' => 'EN', 'pt' => 'PT', 'tet' => 'TET'] as $code => $label)
+                <a href="{{ route('lang.switch', $code) }}"
+                    class="px-2.5 py-1 text-[11px] font-medium rounded-md transition-all
+                    {{ app()->getLocale() === $code
+                        ? 'bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-950/5'
+                        : 'text-zinc-500 hover:text-zinc-700' }}">
+                    {{ $label }}
+                </a>
+            @endforeach
         </div>
 
-        <div class="flex items-center gap-4">
-            <!-- Notification Center -->
-            <livewire:layout.notification-bell />
+        <!-- Spacer -->
+        <div class="w-px h-5 bg-zinc-200 mx-2"></div>
 
-            <!-- Settings icon -->
-            <button
-                class="p-2.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                    class="group-hover:rotate-90 transition-transform">
-                    <path
-                        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                    <circle cx="12" cy="12" r="3" />
-                </svg>
-            </button>
-        </div>
+        <!-- Notification Bell -->
+        <livewire:layout.notification-bell />
 
-        <div class="h-8 w-px bg-slate-100"></div>
+        <!-- Settings -->
+        <a href="{{ route('management.settings') }}"
+            class="p-2 text-zinc-400 hover:text-zinc-600 hover:bg-zinc-50 rounded-lg transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                <circle cx="12" cy="12" r="3" />
+            </svg>
+        </a>
+
+        <!-- Spacer -->
+        <div class="w-px h-5 bg-zinc-200 mx-1"></div>
 
         <!-- User Profile -->
         <a href="{{ route('profile') }}"
-            class="flex items-center gap-4 py-1.5 pl-1.5 pr-4 border border-transparent hover:border-slate-100 hover:bg-slate-50/50 rounded-2xl transition-all group">
+            class="flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-xl hover:bg-zinc-50 border border-transparent hover:border-zinc-200/60 transition-all group">
             <div
-                class="h-10 w-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-xs font-black shadow-lg shadow-indigo-600/30 ring-1 ring-white/20 group-hover:scale-105 transition-transform">
+                class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-semibold
+                       shadow-sm shadow-indigo-600/20 ring-1 ring-white/20 group-hover:shadow-md group-hover:shadow-indigo-600/25 transition-shadow flex-shrink-0">
                 {{ substr(auth()->user()->name, 0, 2) }}
             </div>
-            <div class="text-left hidden sm:block">
-                <p class="text-[11px] font-black text-slate-900 leading-none uppercase tracking-wider">
-                    {{ auth()->user()->name }}
-                </p>
-                <p class="text-[9px] text-slate-400 font-bold mt-1 uppercase tracking-widest">
+            <div class="hidden sm:block text-left">
+                <p class="text-[12px] font-semibold text-zinc-800 leading-none">{{ auth()->user()->name }}</p>
+                <p class="text-[10px] text-zinc-400 mt-0.5">
                     {{ __(auth()->user()->roles->first()?->display_name ?: 'System User') }}
                 </p>
             </div>
