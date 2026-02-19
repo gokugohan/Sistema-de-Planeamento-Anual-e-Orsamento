@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="{{ __('Testing Zone') }}">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-amber-800 leading-tight">
             {{ __('PAA Testing - Activities') }} 🧪

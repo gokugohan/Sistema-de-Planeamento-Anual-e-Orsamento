@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="{{ __('Profile') }}">
     <div class="max-w-3xl space-y-6">
 
         <!-- Page Header -->

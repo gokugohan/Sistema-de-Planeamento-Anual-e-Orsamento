@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="{{ __('Insights') }}">
     <div class="space-y-10">
         <!-- <div class="flex justify-between items-end">
             <div>

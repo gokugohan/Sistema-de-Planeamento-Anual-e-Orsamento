@@ -12,7 +12,7 @@
     $selectedYear = (int) request('year', App\Models\FiscalEnvelope::getEffectiveYear());
 @endphp
 
-<x-app-layout>
+<x-app-layout title="{{ __('Reporting') }}">
     <div class="space-y-10 py-6 animate-in fade-in duration-700">
         {{-- Analytic Header --}}
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-2 print:hidden">
