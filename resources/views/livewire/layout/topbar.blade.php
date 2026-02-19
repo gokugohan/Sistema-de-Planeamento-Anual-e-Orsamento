@@ -1,9 +1,14 @@
 <?php
 
+use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    //
+    public function logout(Logout $logout): void
+    {
+        $logout();
+        $this->redirect('/', navigate: true);
+    }
 }; ?>
 
 <header
@@ -66,19 +71,52 @@ new class extends Component {
         <div class="w-px h-5 bg-zinc-200 mx-1"></div>
 
         <!-- User Profile -->
-        <a href="{{ route('profile') }}"
-            class="flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-xl hover:bg-zinc-50 border border-transparent hover:border-zinc-200/60 transition-all group">
-            <div
-                class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-semibold
-                       shadow-sm shadow-indigo-600/20 ring-1 ring-white/20 group-hover:shadow-md group-hover:shadow-indigo-600/25 transition-shadow flex-shrink-0">
-                {{ substr(auth()->user()->name, 0, 2) }}
+        <div x-data="{ open: false }" class="relative">
+            <button @click="open = !open" @click.outside="open = false"
+                class="flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-xl hover:bg-zinc-50 border border-transparent hover:border-zinc-200/60 transition-all group">
+                <div
+                    class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-semibold
+                           shadow-sm shadow-indigo-600/20 ring-1 ring-white/20 group-hover:shadow-md group-hover:shadow-indigo-600/25 transition-shadow flex-shrink-0">
+                    {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
+                </div>
+                <div class="hidden sm:block text-left">
+                    <p class="text-[12px] font-semibold text-zinc-800 leading-none">{{ auth()->user()->name }}</p>
+                    <p class="text-[10px] text-zinc-400 mt-0.5">
+                        {{ __(auth()->user()->roles->first()?->display_name ?: 'System User') }}
+                    </p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="hidden sm:block text-zinc-400 transition-transform duration-200 ml-0.5" :class="open ? 'rotate-180' : ''">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+
+            <!-- Dropdown -->
+            <div x-show="open" x-transition x-cloak
+                class="absolute top-full mt-1.5 right-0 w-48 bg-white rounded-xl ring-1 ring-zinc-950/8 shadow-lg py-1 z-50">
+                <a href="{{ route('profile') }}"
+                    class="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-700 hover:text-zinc-900 hover:bg-zinc-50 transition-colors rounded-lg mx-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="flex-shrink-0 text-zinc-400">
+                        <circle cx="12" cy="8" r="5" /><path d="M20 21a8 8 0 1 0-16 0" />
+                    </svg>
+                    {{ __('Profile') }}
+                </a>
+                <div class="my-1 border-t border-zinc-100 mx-1"></div>
+                <button wire:click="logout"
+                    class="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-500 hover:text-rose-600 hover:bg-rose-50 transition-colors rounded-lg mx-1 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="flex-shrink-0 group-hover:translate-x-0.5 transition-transform">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    {{ __('Sign out') }}
+                </button>
             </div>
-            <div class="hidden sm:block text-left">
-                <p class="text-[12px] font-semibold text-zinc-800 leading-none">{{ auth()->user()->name }}</p>
-                <p class="text-[10px] text-zinc-400 mt-0.5">
-                    {{ __(auth()->user()->roles->first()?->display_name ?: 'System User') }}
-                </p>
-            </div>
-        </a>
+        </div>
     </div>
 </header>

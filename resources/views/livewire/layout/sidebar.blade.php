@@ -46,8 +46,8 @@ new class extends Component {
             </svg>
         </div>
         <div class="min-w-0">
-            <p class="text-sm font-semibold text-white leading-none">{{ __('Ministry') }}</p>
-            <p class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider mt-0.5">{{ __('Budget Hub') }}</p>
+            <p class="text-sm font-semibold text-white leading-none">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</p>
+            <p class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider mt-0.5">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</p>
         </div>
     </div>
 
@@ -186,17 +186,18 @@ new class extends Component {
             </div>
         @endif
 
-        <!-- Logout -->
-        <button wire:click="logout"
-            class="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors group">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="flex-shrink-0 group-hover:translate-x-0.5 transition-transform">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                <polyline points="16 17 21 12 16 7" />
-                <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
-            {{ __('Sign out') }}
-        </button>
+    </div>
+
+    <!-- Footer copyright -->
+    @php
+        $sOwner  = \App\Models\SystemSetting::get('system_owner', '');
+        $sImplBy = \App\Models\SystemSetting::get('implemented_by', '');
+    @endphp
+    <div class="px-5 pb-4 pt-2 border-t border-white/5">
+        <p class="text-[10px] text-white leading-relaxed">
+           &copy; {{ date('Y') }} {{ $sOwner }} &mdash; {{ __('All rights reserved') }}
+           <br>
+                    {{ $sImplBy ? 'Implemented by ' . $sImplBy : 'N/A' }}
+        </p>
     </div>
 </div>

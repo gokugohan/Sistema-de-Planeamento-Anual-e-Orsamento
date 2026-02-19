@@ -46,8 +46,8 @@
                         </svg>
                     </div>
                     <div>
-                        <span class="text-sm font-semibold text-white">{{ __('Ministry') }}</span>
-                        <span class="block text-[10px] text-zinc-500 font-medium uppercase tracking-wider">{{ __('Budget Hub') }}</span>
+                        <span class="text-sm font-semibold text-white">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</span>
+                        <span class="block text-[10px] text-zinc-500 font-medium uppercase tracking-wider">{{ \App\Models\SystemSetting::getLocalized('org_abbr', 'MOF') }}</span>
                     </div>
                 </div>
 
@@ -55,44 +55,54 @@
                 <div class="flex-1 flex flex-col justify-center py-12">
                     <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1.5 mb-8 w-fit">
                         <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
-                        <span class="text-[11px] font-medium text-indigo-300 uppercase tracking-wider">{{ __('Annual Planning System') }}</span>
+                        <span class="text-[11px] font-medium text-indigo-300 uppercase tracking-wider">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</span>
                     </div>
 
                     <h1 class="text-4xl xl:text-[2.75rem] font-semibold text-white leading-[1.2] tracking-tight mb-5">
-                        {{ __('Strategic Budget') }}<br>
-                        <span class="text-gradient">{{ __('Planning & Control') }}</span>
+                        {{ \App\Models\SystemSetting::getLocalized('app_name', 'Strategic Budget') }}<br>
+                        <span class="text-gradient">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</span>
                     </h1>
 
                     <p class="text-[15px] text-zinc-400 leading-relaxed max-w-xs">
-                        {{ __('Unified platform for annual activity planning, fiscal envelope management, and performance monitoring.') }}
+                        {{ \App\Models\SystemSetting::getLocalized('app_description', 'Unified platform for annual activity planning, fiscal envelope management, and performance monitoring.') }}
                     </p>
 
-                    <!-- Features -->
+                    <!-- Feature Items (from settings) -->
+                    @php
+                        $locale  = app()->getLocale();
+                        $rawItems = \App\Models\SystemSetting::get('app_items');
+                        $featureLabels = is_array($rawItems)
+                            ? array_values($rawItems[$locale] ?? $rawItems['en'] ?? [])
+                            : ['PAA Activity Management', 'Fiscal Envelope Control', 'Performance Monitoring'];
+                        $featureIcons = [
+                            'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 0 2-2h2a2 2 0 0 0 2 2',
+                            'M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z',
+                            'M22 12h-4l-3 9L9 3l-3 9H2',
+                        ];
+                    @endphp
                     <div class="mt-10 space-y-3.5">
-                        @foreach([
-                            ['d' => 'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 0 2-2h2a2 2 0 0 0 2 2',
-                              'label' => __('PAA Activity Management')],
-                            ['d' => 'M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z',
-                              'label' => __('Fiscal Envelope Control')],
-                            ['d' => 'M22 12h-4l-3 9L9 3l-3 9H2',
-                              'label' => __('Performance Monitoring')],
-                        ] as $f)
+                        @foreach($featureLabels as $idx => $label)
                             <div class="flex items-center gap-3">
                                 <div class="w-7 h-7 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center flex-shrink-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
                                         fill="none" stroke="rgb(165 180 252)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="{{ $f['d'] }}" />
+                                        <path d="{{ $featureIcons[$idx] ?? $featureIcons[0] }}" />
                                     </svg>
                                 </div>
-                                <span class="text-sm text-zinc-400">{{ $f['label'] }}</span>
+                                <span class="text-sm text-zinc-400">{{ $label }}</span>
                             </div>
                         @endforeach
                     </div>
                 </div>
 
-                <!-- Footer -->
-                <p class="text-[11px] text-zinc-600">
-                    &copy; {{ date('Y') }} {{ __('Ministry Budget Planning System') }}
+                <!-- Footer copyright -->
+                @php
+                    $owner     = \App\Models\SystemSetting::get('system_owner', '');
+                    $implBy    = \App\Models\SystemSetting::get('implemented_by', '');
+                @endphp
+                <p class="text-[11px] text-white">
+                    &copy; {{ date('Y') }} {{ $owner }} &mdash; {{ __('All rights reserved') }}.
+                    {{ $implBy ? ' · Implemented by ' . $implBy : '' }}
                 </p>
             </div>
         </div>
@@ -109,7 +119,7 @@
                         <path d="M2 12h20" /><path d="m5 7 3 5-3 5" /><path d="m19 7-3 5 3 5" />
                     </svg>
                 </div>
-                <span class="text-base font-semibold text-zinc-900">{{ __('Ministry') }}</span>
+                <span class="text-base font-semibold text-zinc-900">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</span>
             </div>
 
             <!-- Form card -->

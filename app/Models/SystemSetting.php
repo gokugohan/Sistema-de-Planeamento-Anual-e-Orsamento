@@ -29,6 +29,24 @@ class SystemSetting extends Model
         };
     }
 
+    /**
+     * Get a localized string from a JSON setting whose value is {"en":…,"pt":…,"tet":…}.
+     * Falls back to English, then to $default.
+     *
+     * Example key: 'app_brand_name'  →  stored value: {"en":"Ministry","pt":"Ministério","tet":"Ministériu"}
+     */
+    public static function getLocalized(string $key, $default = '', ?string $locale = null): string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $data = static::get($key);
+
+        if (is_array($data)) {
+            return (string) ($data[$locale] ?? $data['en'] ?? $default);
+        }
+
+        return (string) ($default ?? '');
+    }
+
     public static function set($key, $value, $type = 'string', $description = null)
     {
         $val = match ($type) {

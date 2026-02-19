@@ -6,8 +6,6 @@ use App\Models\FiscalEnvelope;
 
 new class extends Component {
     public $activeYear;
-    public $orgFullName;
-    public $orgShortName;
     public $organizationLogo;
     public $organizationFavicon;
     public $systemOwner;
@@ -15,48 +13,60 @@ new class extends Component {
     public $enableNextYearPlanning;
     public $showDraftInReports;
     public $enableTestMode;
+    public array $appTexts = [];
 
     public function mount()
     {
-        // Active year is now computed from fiscal envelopes
         $this->activeYear = FiscalEnvelope::getActiveFiscalYear() ?? date('Y');
 
-        $this->orgFullName = SystemSetting::get('organization_name_full', 'Ministério do Orçamento');
-        $this->orgShortName = SystemSetting::get('organization_name_short', 'MO');
-        $this->organizationLogo = SystemSetting::get('organization_logo');
+        $this->organizationLogo    = SystemSetting::get('organization_logo');
         $this->organizationFavicon = SystemSetting::get('organization_favicon');
-        $this->systemOwner = SystemSetting::get('system_owner', '');
-        $this->implementedBy = SystemSetting::get('implemented_by', '');
+        $this->systemOwner         = SystemSetting::get('system_owner', '');
+        $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->enableNextYearPlanning = SystemSetting::get('enable_next_year_planning', false);
-        $this->showDraftInReports = SystemSetting::get('show_draft_planning_in_reports', false);
-        $this->enableTestMode = SystemSetting::get('enable_paa_testing_mode', false);
+        $this->showDraftInReports     = SystemSetting::get('show_draft_planning_in_reports', false);
+        $this->enableTestMode         = SystemSetting::get('enable_paa_testing_mode', false);
+
+        $empty = ['en' => '', 'pt' => '', 'tet' => ''];
+
+        foreach (['org_name' => 'org_name', 'org_abbr' => 'org_abbr', 'name' => 'app_name', 'tagline' => 'app_tagline', 'description' => 'app_description'] as $field => $dbKey) {
+            $saved = SystemSetting::get($dbKey);
+            $this->appTexts[$field] = is_array($saved) ? $saved : $empty;
+        }
+
+        $savedItems = SystemSetting::get('app_items');
+        foreach (['en', 'pt', 'tet'] as $locale) {
+            $raw = (is_array($savedItems) && isset($savedItems[$locale])) ? $savedItems[$locale] : [];
+            $this->appTexts['items'][$locale] = array_values(array_slice(array_merge($raw, ['', '', '']), 0, 3));
+        }
     }
 
     public function saveSettings()
     {
         $this->validate([
-            'orgFullName' => 'required|string|max:255',
-            'orgShortName' => 'required|string|max:50',
-            'systemOwner' => 'nullable|string|max:255',
-            'implementedBy' => 'nullable|string|max:255',
+            'systemOwner'           => 'nullable|string|max:255',
+            'implementedBy'         => 'nullable|string|max:255',
             'enableNextYearPlanning' => 'boolean',
-            'showDraftInReports' => 'boolean',
-            'enableTestMode' => 'boolean',
+            'showDraftInReports'    => 'boolean',
+            'enableTestMode'        => 'boolean',
         ]);
 
-        // Note: activeYear is not saved here as it's computed from Fiscal Envelopes
-
-        SystemSetting::set('organization_name_full', $this->orgFullName, 'string', 'Full name of the Ministry/Entity');
-        SystemSetting::set('organization_name_short', $this->orgShortName, 'string', 'Short abbreviation of the organization');
-        SystemSetting::set('organization_logo', $this->organizationLogo, 'string');
+        SystemSetting::set('organization_logo',    $this->organizationLogo,    'string');
         SystemSetting::set('organization_favicon', $this->organizationFavicon, 'string');
-        SystemSetting::set('system_owner', $this->systemOwner, 'string');
-        SystemSetting::set('implemented_by', $this->implementedBy, 'string');
+        SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
+        SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
-        SystemSetting::set('enable_next_year_planning', (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
-        SystemSetting::set('show_draft_planning_in_reports', (bool) $this->showDraftInReports, 'boolean', 'Control visibility of draft data in reports');
-        SystemSetting::set('enable_paa_testing_mode', (bool) $this->enableTestMode, 'boolean', 'Enable testing mode for PAA planning');
+        SystemSetting::set('enable_next_year_planning',      (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
+        SystemSetting::set('show_draft_planning_in_reports', (bool) $this->showDraftInReports,     'boolean', 'Control visibility of draft data in reports');
+        SystemSetting::set('enable_paa_testing_mode',        (bool) $this->enableTestMode,         'boolean', 'Enable testing mode for PAA planning');
+
+        SystemSetting::set('org_name',        $this->appTexts['org_name'],     'json', 'Organization / institution name (localized)');
+        SystemSetting::set('org_abbr',        $this->appTexts['org_abbr'],     'json', 'Organization abbreviation (localized)');
+        SystemSetting::set('app_name',        $this->appTexts['name'],         'json', 'Application name (localized)');
+        SystemSetting::set('app_tagline',     $this->appTexts['tagline'],      'json', 'Application tagline / subtitle (localized)');
+        SystemSetting::set('app_description', $this->appTexts['description'],  'json', 'Application description (localized)');
+        SystemSetting::set('app_items',       $this->appTexts['items'],        'json', 'Feature highlight items – array of 3 per locale');
 
         session()->flash('success', __('System settings updated successfully.'));
     }
@@ -85,80 +95,134 @@ new class extends Component {
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <!-- Main Configuration Form -->
+        <!-- App Branding & Content (merged from Organisation Identity) -->
         <div class="lg:col-span-8 space-y-8">
             <x-ui.card padding="p-10">
                 <x-slot name="header">
-                    <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">
-                        {{ __('Organization Identity') }}
-                    </h3>
+                    <div>
+                        <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">{{ __('App Branding & Content') }}</h3>
+                        <p class="text-[10px] text-slate-400 font-medium mt-1">{{ __('Configure text shown on the Login page and Sidebar across Tetum, Portuguese and English') }}</p>
+                    </div>
                 </x-slot>
 
-                <div class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <x-input-label for="orgFullName" :value="__('Official Ministry Name (Legal)')"
-                                class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
-                            <x-text-input id="orgFullName" wire:model="orgFullName"
-                                class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all" />
-                            <x-input-error :messages="$errors->get('orgFullName')" />
-                        </div>
-
-                        <div class="space-y-2">
-                            <x-input-label for="orgShortName" :value="__('System Abbreviation (Identifier)')"
-                                class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
-                            <x-text-input id="orgShortName" wire:model="orgShortName"
-                                class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all" />
-                            <x-input-error :messages="$errors->get('orgShortName')" />
-                        </div>
-
-                        <div class="space-y-2">
-                            <x-input-label for="systemOwner" :value="__('System Owner')"
-                                class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
-                            <x-text-input id="systemOwner" wire:model="systemOwner"
-                                class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all" />
-                            <x-input-error :messages="$errors->get('systemOwner')" />
-                        </div>
-
-                        <div class="space-y-2">
-                            <x-input-label for="implementedBy" :value="__('Implemented By')"
-                                class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
-                            <x-text-input id="implementedBy" wire:model="implementedBy"
-                                class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all" />
-                            <x-input-error :messages="$errors->get('implementedBy')" />
-                        </div>
+                <div x-data="{ tab: 'tet' }">
+                    <!-- Language Tabs -->
+                    <div class="flex gap-2 mb-8">
+                        @foreach(['tet' => 'Tetum', 'pt' => 'Português', 'en' => 'English'] as $code => $label)
+                            <button type="button" @click="tab = '{{ $code }}'"
+                                :class="tab === '{{ $code }}' ? 'bg-indigo-600 text-white shadow-sm ring-1 ring-indigo-600' : 'bg-slate-100 text-slate-500 hover:bg-slate-200 ring-1 ring-slate-200'"
+                                class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                                {{ $label }}
+                            </button>
+                        @endforeach
                     </div>
 
-                    <!-- File Uploads (Placeholder for future implementation) -->
-                    <div
-                        class="p-6 bg-slate-50 rounded-[1.5rem] border border-slate-100 flex flex-col md:flex-row gap-6 items-center justify-between opacity-50">
-                        <div>
-                            <h4 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-1">
-                                {{ __('Branding Assets') }}
-                            </h4>
-                            <p class="text-[10px] text-slate-500 font-medium">
-                                {{ __('Logo and Favicon upload functionality coming soon.') }}
-                            </p>
+                    @foreach(['tet' => 'Tetum', 'pt' => 'Português', 'en' => 'English'] as $locale => $localeLabel)
+                    <div x-show="tab === '{{ $locale }}'" x-cloak>
+                        <div class="space-y-7">
+
+                            <!-- Organisation -->
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Organisation') }}
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div class="space-y-2">
+                                        <x-input-label :value="__('Institution Full Name')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-text-input wire:model="appTexts.org_name.{{ $locale }}"
+                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            placeholder="Ministry of Finance" />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <x-input-label :value="__('Abbreviation')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-text-input wire:model="appTexts.org_abbr.{{ $locale }}"
+                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            placeholder="MOF" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Application Name -->
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Application Name') }}
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div class="space-y-2">
+                                        <x-input-label :value="__('Title')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-text-input wire:model="appTexts.name.{{ $locale }}"
+                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            placeholder="Strategic Budget" />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <x-input-label :value="__('Tagline / Subtitle')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-text-input wire:model="appTexts.tagline.{{ $locale }}"
+                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            placeholder="Planning & Control" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Description') }}
+                                </p>
+                                <textarea wire:model="appTexts.description.{{ $locale }}" rows="3"
+                                    class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-100 text-sm font-bold text-slate-900 focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all resize-none outline-none"
+                                    placeholder="Unified platform for annual activity planning..."></textarea>
+                            </div>
+
+                            <!-- Feature Items -->
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Feature Items') }}
+                                    <span class="text-zinc-300 font-medium normal-case tracking-normal">{{ __('(login page)') }}</span>
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                    @foreach([0, 1, 2] as $idx)
+                                    <div class="space-y-2">
+                                        <x-input-label :value="__('Item') . ' ' . ($idx + 1)" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-text-input wire:model="appTexts.items.{{ $locale }}.{{ $idx }}"
+                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            placeholder="Feature {{ $idx + 1 }}" />
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="flex gap-4">
-                            <div
-                                class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="text-slate-300">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                    <polyline points="17 8 12 3 7 8" />
-                                    <line x1="12" x2="12" y1="3" y2="15" />
-                                </svg>
+                    </div>
+                    @endforeach
+
+                    <!-- Footer Credits (not localized) -->
+                    <div class="pt-8 mt-8 border-t border-slate-100">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
+                            <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Footer Credits') }}
+                            <span class="text-zinc-300 font-medium normal-case tracking-normal">{{ __('(shown in login page copyright)') }}</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <x-input-label for="systemOwner" :value="__('System Owner')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                <x-text-input id="systemOwner" wire:model="systemOwner"
+                                    class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                    placeholder="Ministry of Finance" />
+                                <x-input-error :messages="$errors->get('systemOwner')" />
+                            </div>
+                            <div class="space-y-2">
+                                <x-input-label for="implementedBy" :value="__('Implemented By')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                <x-text-input id="implementedBy" wire:model="implementedBy"
+                                    class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                    placeholder="Tech Partner" />
+                                <x-input-error :messages="$errors->get('implementedBy')" />
                             </div>
                         </div>
                     </div>
                 </div>
             </x-ui.card>
-
         </div>
 
-        <!-- Sidebar Info -->
+        <!-- Workflow & Reporting -->
         <div class="lg:col-span-4 space-y-8">
 
             <x-ui.card padding="p-10">
@@ -232,22 +296,5 @@ new class extends Component {
         </div>
     </div>
 
-    <x-ui.card padding="p-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">
-            {{ __('Infrastructure Nodes') }}
-        </h4>
-        <div class="space-y-4">
-            <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                <span class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Main Production
-                    Unit</span>
-            </div>
-            <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                <span class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Failover Mirror
-                    Sec-2</span>
-            </div>
-        </div>
-    </x-ui.card>
-
+    
 </div>
