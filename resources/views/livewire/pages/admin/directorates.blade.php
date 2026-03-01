@@ -29,7 +29,7 @@ new class extends Component {
 
         $this->reset(['name', 'code']);
         $this->directorates = Directorate::all();
-        session()->flash('message', __('Directorate-General created successfully.'));
+        $this->dispatch('toast', message: __('Directorate-General created successfully.'), type: 'success');
     }
 
     public function toggle($id): void

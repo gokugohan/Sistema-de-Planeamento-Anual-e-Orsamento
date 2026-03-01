@@ -80,7 +80,7 @@ new class extends Component {
         }
 
         $this->loadData();
-        session()->flash('message', __('Budget allocation confirmed by Directorate.'));
+        $this->dispatch('toast', message: __('Budget allocation confirmed by Directorate.'), type: 'success');
     }
 
     public function requestAdjustment()
@@ -104,7 +104,7 @@ new class extends Component {
         }
 
         $this->loadData();
-        session()->flash('message', __('Adjustment request sent to Minister.'));
+        $this->dispatch('toast', message: __('Adjustment request sent to Minister.'), type: 'success');
     }
 }; ?>
 

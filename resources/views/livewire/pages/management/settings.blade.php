@@ -17,6 +17,8 @@ new class extends Component {
 
     public function mount()
     {
+        abort_unless(auth()->user()?->isAdministrator(), 403);
+
         $this->activeYear = FiscalEnvelope::getActiveFiscalYear() ?? date('Y');
 
         $this->organizationLogo    = SystemSetting::get('organization_logo');
@@ -68,7 +70,7 @@ new class extends Component {
         SystemSetting::set('app_description', $this->appTexts['description'],  'json', 'Application description (localized)');
         SystemSetting::set('app_items',       $this->appTexts['items'],        'json', 'Feature highlight items – array of 3 per locale');
 
-        session()->flash('success', __('System settings updated successfully.'));
+        $this->dispatch('toast', message: __('System settings updated successfully.'), type: 'success');
     }
 }; ?>
 

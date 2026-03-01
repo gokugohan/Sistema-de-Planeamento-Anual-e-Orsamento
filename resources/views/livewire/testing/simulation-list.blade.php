@@ -92,7 +92,7 @@ new class extends Component {
     {
         $activity = Activity::testData()->findOrFail($id);
         if ($this->isYearLocked($activity->fiscal_year)) {
-            session()->flash('error', 'Cannot delete activities from a locked fiscal year.');
+            $this->dispatch('toast', message: 'Cannot delete activities from a locked fiscal year.', type: 'error');
             return;
         }
         $activity->delete();
@@ -114,7 +114,7 @@ new class extends Component {
         $activities = $query->get();
 
         if ($activities->isEmpty()) {
-            session()->flash('error', 'No draft simulations found to submit.');
+            $this->dispatch('toast', message: 'No draft simulations found to submit.', type: 'error');
             return;
         }
 
@@ -126,13 +126,13 @@ new class extends Component {
         }
 
         $this->submissionModal = false;
-        session()->flash('success', count($activities) . ' simulation activities submitted for approval.');
+        $this->dispatch('toast', message: count($activities) . ' simulation activities submitted for approval.', type: 'success');
     }
 
     public function approveBatch(): void
     {
         if (!auth()->user()->isMinister() && !auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
-            session()->flash('error', 'Only the Minister or Admins can approve simulation activities.');
+            $this->dispatch('toast', message: 'Only the Minister or Admins can approve simulation activities.', type: 'error');
             return;
         }
 
@@ -142,7 +142,7 @@ new class extends Component {
             ->get();
 
         if ($activities->isEmpty()) {
-            session()->flash('error', 'No submitted simulations found to approve.');
+            $this->dispatch('toast', message: 'No submitted simulations found to approve.', type: 'error');
             return;
         }
 
@@ -155,13 +155,13 @@ new class extends Component {
         }
 
         $this->approvalModal = false;
-        session()->flash('success', count($activities) . ' simulation activities approved.');
+        $this->dispatch('toast', message: count($activities) . ' simulation activities approved.', type: 'success');
     }
 
     public function rejectBatch(): void
     {
         if (!auth()->user()->isMinister() && !auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
-            session()->flash('error', 'Only the Minister or Admins can reject simulation activities.');
+            $this->dispatch('toast', message: 'Only the Minister or Admins can reject simulation activities.', type: 'error');
             return;
         }
 
@@ -171,7 +171,7 @@ new class extends Component {
             ->get();
 
         if ($activities->isEmpty()) {
-            session()->flash('error', 'No submitted simulations found to reject.');
+            $this->dispatch('toast', message: 'No submitted simulations found to reject.', type: 'error');
             return;
         }
 
@@ -182,13 +182,13 @@ new class extends Component {
         }
 
         $this->rejectionModal = false;
-        session()->flash('error', count($activities) . ' simulation activities rejected.');
+        $this->dispatch('toast', message: count($activities) . ' simulation activities rejected.', type: 'error');
     }
 
     public function approve($id): void
     {
         if (!auth()->user()->isMinister() && !auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
-            session()->flash('error', 'Only the Minister or Admins can approve simulation activities.');
+            $this->dispatch('toast', message: 'Only the Minister or Admins can approve simulation activities.', type: 'error');
             return;
         }
 
@@ -199,7 +199,7 @@ new class extends Component {
             'approved_by' => auth()->id(),
         ]);
 
-        session()->flash('success', 'Simulation approved successfully.');
+        $this->dispatch('toast', message: 'Simulation approved successfully.', type: 'success');
     }
 
     public function reject($id): void
@@ -209,7 +209,7 @@ new class extends Component {
             'status' => Activity::STATUS_REJECTED,
         ]);
 
-        session()->flash('error', 'Simulation rejected.');
+        $this->dispatch('toast', message: 'Simulation rejected.', type: 'error');
     }
 
     public function isYearLocked($year): bool

@@ -2,8 +2,8 @@
     {{-- Header --}}
     <div class="flex justify-between items-start">
         <div>
-            <h3 class="text-3xl font-black text-slate-900 italic tracking-tight leading-none">{{ __('Fiscal Envelope (OGE)') }}</h3>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">{{ __('Ministry budget allocation approved by Parliament') }}</p>
+            <h3 class="text-xl font-semibold text-zinc-900 tracking-tight leading-none">{{ __('Fiscal Envelope (OGE)') }}</h3>
+            <p class="text-zinc-400 font-medium uppercase tracking-wide text-[10px] mt-2">{{ __('Ministry budget allocation approved by Parliament') }}</p>
         </div>
         <div class="flex items-center gap-3">
             @if($activeEnvelope->status === App\Models\FiscalEnvelope::STATUS_APPROVED && (auth()->user()->isAdministrator() || auth()->user()->isMinister()))
@@ -40,18 +40,18 @@
                 @if(auth()->user()->isAdministrator())
                     {{-- Edit Button (Draft/Pending only or always for Admin?) --}}
                     @if($activeEnvelope->status == App\Models\FiscalEnvelope::STATUS_DRAFT)
-                        <button wire:click="openModal({{ $activeEnvelope->fiscal_year }})" 
-                                class="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2.5 text-[11px] font-black uppercase tracking-widest text-slate-700 shadow-sm border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                        <button wire:click="openModal({{ $activeEnvelope->fiscal_year }})"
+                                class="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs font-medium text-zinc-700 shadow-sm border border-zinc-200 hover:bg-zinc-50 hover:border-zinc-300 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
                             {{ __('Edit') }}
                         </button>
                     @endif
 
                     {{-- Submit for Approval (Draft only) --}}
                     @if($activeEnvelope->status === 'Draft')
-                        <button wire:click="submitForApproval({{ $activeEnvelope->id }})" 
-                                class="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-4 py-2.5 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                        <button wire:click="submitForApproval({{ $activeEnvelope->id }})"
+                                class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                             {{ __('Submit for Approval') }}
                         </button>
                     @endif
@@ -60,16 +60,16 @@
 
                 {{-- Minister Actions --}}
                 @if(auth()->user()->isMinister() && $activeEnvelope->status === App\Models\FiscalEnvelope::STATUS_PENDING)
-                    <button wire:click="approve({{ $activeEnvelope->id }})" 
+                    <button wire:click="approve({{ $activeEnvelope->id }})"
                             wire:confirm="{{ __('Are you sure you want to approve this fiscal envelope?') }}"
-                            class="inline-flex items-center gap-2 rounded-2xl bg-green-600 px-4 py-2.5 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-green-600/20 hover:bg-green-700 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                            class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-emerald-700 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                         {{ __('Approve') }}
                     </button>
-                    <button wire:click="reject({{ $activeEnvelope->id }})" 
+                    <button wire:click="reject({{ $activeEnvelope->id }})"
                             wire:confirm="{{ __('Are you sure you want to reject this fiscal envelope?') }}"
-                            class="inline-flex items-center gap-2 rounded-2xl bg-rose-600 px-4 py-2.5 text-[11px] font-black uppercase tracking-widest text-white shadow-lg shadow-rose-600/20 hover:bg-rose-700 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
+                            class="inline-flex items-center gap-2 rounded-lg bg-rose-600 px-3 py-2 text-xs font-medium text-white shadow-sm hover:bg-rose-700 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
                         {{ __('Reject') }}
                     </button>
                 @endif
@@ -78,42 +78,50 @@
     </div>
 
     @if($activeEnvelope->status === App\Models\FiscalEnvelope::STATUS_PENDING)
-        <div class="p-8 bg-rose-50 border border-rose-100 rounded-[2rem] text-rose-700">
-                <h3 class="text-xl font-black tracking-tight">Pending Approval</h3>
-                <p class="text-sm font-bold opacity-80 mt-1">
-                    Waiting for Minister Approval
-                </p>
+        <div class="flex items-start gap-3 px-4 py-3.5 rounded-xl bg-amber-50 border border-amber-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                class="flex-shrink-0 text-amber-600 mt-0.5">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                <path d="M12 9v4"/><path d="M12 17h.01"/>
+            </svg>
+            <div>
+                <p class="text-sm font-semibold text-amber-900">{{ __('Pending Ministerial Approval') }}</p>
+                <p class="text-xs text-amber-700 opacity-80 mt-0.5">{{ __('This envelope has been submitted and is awaiting the Minister\'s decision.') }}</p>
             </div>
+        </div>
     @endif
 
     {{-- Closed Fiscal Year Alert --}}
     @if($activeEnvelope->status === App\Models\FiscalEnvelope::STATUS_CLOSED)
-                    <div class="p-8 bg-slate-100 border border-slate-200 rounded-[2rem] text-slate-700">
-                        <div class="flex items-start gap-4">
-                            <div class="p-3 bg-slate-200 rounded-xl shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17V7h6"/><path d="M9 12h6"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-black tracking-tight">{{ __('Fiscal Year Closed') }}</h3>
-                                <p class="text-sm font-bold opacity-70 mt-1 max-w-2xl leading-relaxed">
-                                    {{ __('There is no active fiscal envelope for the current period (:from - :to). The selected fiscal year is closed for adjustments.', [
-            'from' => now()->startOfYear()->format('d F'),
-            'to' => now()->endOfYear()->format('d F Y'),
-        ]) }}
-                            </div>
-                        </div>
-                    </div>
+        <div class="flex items-start gap-3 px-4 py-3.5 rounded-xl bg-zinc-100 border border-zinc-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                class="flex-shrink-0 text-zinc-500 mt-0.5">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <div>
+                <p class="text-sm font-semibold text-zinc-700">{{ __('Fiscal Year Closed') }}</p>
+                <p class="text-xs text-zinc-500 mt-0.5">
+                    {{ __('This fiscal year (:from – :to) is closed for adjustments.', [
+                        'from' => now()->startOfYear()->format('d F'),
+                        'to'   => now()->endOfYear()->format('d F Y'),
+                    ]) }}
+                </p>
+            </div>
+        </div>
     @endif
     <!-- OGE Allocation Details Card -->
-    <div class="rounded-[2rem] border border-slate-100 bg-white shadow-sm overflow-hidden">
-        <div class="p-8 border-b border-slate-50 bg-gradient-to-r from-slate-50/50 to-white">
+    <div class="rounded-xl border border-zinc-100 bg-white shadow-sm overflow-hidden">
+        <div class="p-8 border-b border-zinc-50 bg-gradient-to-r from-zinc-50/50 to-white">
             <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-slate-100 rounded-xl text-slate-600">
+                <div class="p-2.5 bg-zinc-100 rounded-xl text-zinc-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/></svg>
                 </div>
                 <div>
-                    <h4 class="text-xs font-black uppercase tracking-[0.2em] text-slate-900">{{ __('OGE Allocation Details') }}</h4>
-                    <p class="text-[10px] text-slate-400 mt-0.5 font-bold uppercase tracking-widest">{{ __('Fiscal Year') }} {{ $activeEnvelope->fiscal_year }}</p>
+                    <h4 class="text-xs font-semibold uppercase tracking-wide text-zinc-900">{{ __('OGE Allocation Details') }}</h4>
+                    <p class="text-[10px] text-zinc-400 mt-0.5 font-medium uppercase tracking-wide">{{ __('Fiscal Year') }} {{ $activeEnvelope->fiscal_year }}</p>
                 </div>
             </div>
         </div>
@@ -122,28 +130,28 @@
                 <div>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('Ministry') }}</p>
-                            <p class="text-sm font-bold text-slate-900 mt-2">{{ __('Ministry of State Administration') }}</p>
+                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Ministry') }}</p>
+                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ __('Ministry of State Administration') }}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('Approval Date') }}</p>
-                            <p class="text-sm font-bold text-slate-900 mt-2">{{ $activeEnvelope->approved_date ? \Carbon\Carbon::parse($activeEnvelope->approved_date)->format('Y-m-d') : '-' }}</p>
+                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Approval Date') }}</p>
+                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ $activeEnvelope->approved_date ? \Carbon\Carbon::parse($activeEnvelope->approved_date)->format('Y-m-d') : '-' }}</p>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('Source Authority') }}</p>
-                            <p class="text-sm font-bold text-slate-900 mt-2">{{ $activeEnvelope->source_authority ?: __('Direcção Nacional do Orçamento (DNO)') }}</p>
+                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Source Authority') }}</p>
+                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ $activeEnvelope->source_authority ?: __('Direcção Nacional do Orçamento (DNO)') }}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('Reference Number') }}</p>
-                            <p class="text-sm font-mono font-bold text-slate-600 mt-2">{{ $activeEnvelope->reference_number ?? 'N/A' }}</p>
+                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Reference Number') }}</p>
+                            <p class="text-sm font-mono font-bold text-zinc-600 mt-2">{{ $activeEnvelope->reference_number ?? 'N/A' }}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('Validity Period') }}</p>
-                            <p class="text-sm font-bold text-slate-900 mt-2">
+                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Validity Period') }}</p>
+                            <p class="text-sm font-bold text-zinc-900 mt-2">
                                 {{ $activeEnvelope->start_date ? \Carbon\Carbon::parse($activeEnvelope->start_date)->format('M Y') : 'N/A' }} - 
                                 {{ $activeEnvelope->due_date ? \Carbon\Carbon::parse($activeEnvelope->due_date)->format('d M Y') : 'N/A' }}
                             </p>
@@ -155,18 +163,18 @@
                 </div>
             </div>
 
-            <div class="mt-8 pt-8 border-t border-slate-100">
-                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{{ __('Total Fiscal Envelope') }}</p>
-                 <p class="text-4xl font-black text-slate-900 leading-none tracking-tight">$ {{ number_format($activeEnvelope->total_amount, 2) }}</p>
+            <div class="mt-8 pt-8 border-t border-zinc-100">
+                 <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide mb-2">{{ __('Total Fiscal Envelope') }}</p>
+                 <p class="text-4xl font-semibold text-zinc-900 leading-none tracking-tight">$ {{ number_format($activeEnvelope->total_amount, 2) }}</p>
             </div>
         </div>
     </div>
 
     
     <!-- Tab Navigation -->
-    <div class="flex items-center gap-2 p-1.5 bg-slate-100/80 w-fit rounded-2xl border border-slate-200/50 backdrop-blur-sm shadow-sm">
+    <div class="flex items-center gap-2 p-1.5 bg-zinc-100/80 w-fit rounded-xl border border-zinc-200/50 backdrop-blur-sm shadow-sm">
         <button wire:click="$set('detailsTab', 'distribution')" 
-            class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $detailsTab === 'distribution' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
+            class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $detailsTab === 'distribution' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-zinc-200/50' : 'text-zinc-400 hover:text-zinc-600 hover:bg-white/50' }}">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
@@ -175,7 +183,7 @@
             </div>
         </button>
         <button wire:click="$set('detailsTab', 'categories')" 
-            class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $detailsTab === 'categories' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
+            class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $detailsTab === 'categories' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-zinc-200/50' : 'text-zinc-400 hover:text-zinc-600 hover:bg-white/50' }}">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/>
@@ -187,24 +195,24 @@
 
     @if($detailsTab === 'distribution')
         <!-- Distribution Summary Section -->
-        <div class="rounded-[2rem] border border-slate-100 bg-white shadow-sm overflow-hidden">
-            <div class="p-8 border-b border-slate-50 bg-gradient-to-r from-indigo-50/30 to-white">
+        <div class="rounded-xl border border-zinc-100 bg-white shadow-sm overflow-hidden">
+            <div class="p-8 border-b border-zinc-50 bg-gradient-to-r from-indigo-50/30 to-white">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-900 leading-none">{{ __('Distribution Summary') }}</h3>
-                        <p class="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-widest">{{ __('Fiscal envelope allocation vs. PAA planned amounts by economic category') }}</p>
+                        <h3 class="text-xs font-semibold uppercase tracking-wide text-zinc-900 leading-none">{{ __('Distribution Summary') }}</h3>
+                        <p class="text-[10px] text-zinc-400 mt-2 font-medium uppercase tracking-wide">{{ __('Fiscal envelope allocation vs. PAA planned amounts by economic category') }}</p>
                     </div>
-                    <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-zinc-100 shadow-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
                             <path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                         </svg>
-                        <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">{{ __('FY') }} {{ $activeEnvelope->fiscal_year }}</span>
+                        <span class="text-[10px] font-medium text-zinc-600 uppercase tracking-wide">{{ __('FY') }} {{ $activeEnvelope->fiscal_year }}</span>
                     </div>
                 </div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs border-collapse">
-                    <thead class="bg-slate-50/50 text-slate-400 font-black uppercase tracking-[0.2em] border-b border-slate-100">
+                    <thead class="bg-zinc-50/50 text-zinc-400 font-semibold uppercase tracking-wide border-b border-zinc-100">
                         <tr>
                             <th class="px-8 py-5">{{ __('Economic Category') }}</th>
                             <th class="px-8 py-5 text-right">{{ __('OGE Allocated') }}</th>
@@ -232,25 +240,25 @@
                                 $totalPAAPlanned += $paaPlanned;
                             @endphp
 
-                            <tr class="hover:bg-slate-50/50 transition-colors group">
+                            <tr class="hover:bg-zinc-50/50 transition-colors group">
                                 <td class="px-8 py-5">
                                     <div class="flex items-center gap-3">
                                         <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 font-black text-[11px] shadow-sm">
                                             {{ $cat->code }}
                                         </div>
                                         <div>
-                                            <div class="font-bold text-slate-900 leading-tight">{{ $cat->name }}</div>
-                                            <div class="text-[10px] text-slate-400 mt-0.5 leading-tight">{{ __($cat->description) }}</div>
+                                            <div class="font-bold text-zinc-900 leading-tight">{{ $cat->name }}</div>
+                                            <div class="text-[10px] text-zinc-400 mt-0.5 leading-tight">{{ __($cat->description) }}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-8 py-5 text-right">
-                                    <div class="font-black text-slate-900">$ {{ number_format($ogeAmount, 2) }}</div>
-                                    <div class="text-[9px] text-slate-400 mt-0.5 uppercase tracking-widest font-bold">{{ __('Envelope') }}</div>
+                                    <div class="font-semibold text-zinc-900">$ {{ number_format($ogeAmount, 2) }}</div>
+                                    <div class="text-[9px] text-zinc-400 mt-0.5 uppercase tracking-widest font-bold">{{ __('Envelope') }}</div>
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <div class="font-bold text-indigo-600">$ {{ number_format($paaPlanned, 2) }}</div>
-                                    <div class="text-[9px] text-slate-400 mt-0.5 uppercase tracking-widest font-bold">{{ __('Activities') }}</div>
+                                    <div class="text-[9px] text-zinc-400 mt-0.5 uppercase tracking-widest font-bold">{{ __('Activities') }}</div>
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <div class="font-bold {{ $variance >= 0 ? 'text-green-600' : 'text-rose-600' }}">
@@ -262,8 +270,8 @@
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <div class="flex flex-col items-end gap-2">
-                                        <span class="font-black text-slate-900">{{ number_format($allocationPercent, 1) }}%</span>
-                                        <div class="h-1.5 w-24 rounded-full bg-slate-100 overflow-hidden shadow-inner">
+                                        <span class="font-semibold text-zinc-900">{{ number_format($allocationPercent, 1) }}%</span>
+                                        <div class="h-1.5 w-24 rounded-full bg-zinc-100 overflow-hidden shadow-inner">
                                             <div class="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 transition-all duration-700" style="width: {{ min($allocationPercent, 100) }}%"></div>
                                         </div>
                                     </div>
@@ -372,7 +380,7 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs border-collapse">
-                    <thead class="bg-gray-50 text-gray-400 font-bold uppercase tracking-widest border-b border-gray-100">
+                    <thead class="bg-gray-50 text-gray-400 font-medium uppercase tracking-wide border-b border-gray-100">
                         <tr>
                             <th class="px-6 py-4">{{ __('Category') }}</th>
                             <th class="px-6 py-4 text-right">{{ __('Allocated') }}</th>

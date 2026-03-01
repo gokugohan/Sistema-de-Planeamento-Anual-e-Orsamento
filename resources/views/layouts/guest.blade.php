@@ -102,7 +102,7 @@
                 @endphp
                 <p class="text-[11px] text-white">
                     &copy; {{ date('Y') }} {{ $owner }} &mdash; {{ __('All rights reserved') }}.
-                    {{ $implBy ? ' · Implemented by ' . $implBy : '' }}
+                    {{ $implBy ? ' · ' . __('Implemented by') . ' ' . $implBy : '' }}
                 </p>
             </div>
         </div>

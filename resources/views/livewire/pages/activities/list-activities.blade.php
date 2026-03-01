@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\WithPagination;
 use App\Models\Activity;
 use App\Models\Program;
 use App\Models\Directorate;
@@ -9,6 +10,8 @@ use App\Models\FiscalEnvelope;
 use Livewire\Attributes\Url;
 
 new class extends Component {
+    use WithPagination;
+
     #[Url(as: 'year')]
     public $fiscalYear;
     public $activeYear;
@@ -21,6 +24,25 @@ new class extends Component {
     public $confirmingSubmission = false;
     public $submissionType = 'single'; // 'single' or 'bulk'
     public $activityToSubmit = null;
+
+    #[Url(as: 'status')]
+    public string $statusFilter = '';
+
+    #[Url(as: 'q')]
+    public string $search = '';
+
+    public int $perPage = 15;
+
+    public function paginationView(): string
+    {
+        return 'livewire.pagination';
+    }
+
+    public function updatingSearch(): void            { $this->resetPage(); }
+    public function updatingStatusFilter(): void      { $this->resetPage(); }
+    public function updatingFiscalYear(): void        { $this->resetPage(); }
+    public function updatingSelectedDirectorate(): void { $this->resetPage(); }
+    public function updatingPerPage(): void           { $this->resetPage(); }
 
     public function mount(): void
     {
@@ -57,14 +79,36 @@ new class extends Component {
             $query->whereIn('directorate_id', $ids);
         }
 
+        if ($this->statusFilter !== '') {
+            $query->where('status', $this->statusFilter);
+        }
+
+        if ($this->search !== '') {
+            $query->where('description', 'like', '%' . $this->search . '%');
+        }
+
         return [
-            'activities' => $query->get(),
+            'activities' => $query->paginate($this->perPage),
         ];
     }
 
     public function getProgramViewDataProperty()
     {
-        $activities = $this->with()['activities'];
+        $user = auth()->user();
+        $query = Activity::with(['program', 'directorate', 'indicators', 'lineItems.adjustedBudget'])
+            ->where('fiscal_year', $this->fiscalYear);
+
+        if (!$user->isAdministrator() && !$user->isMinister() && !$user->can('view_all_paa')) {
+            $directorate = Directorate::find($user->directorate_id);
+            $ids = $directorate ? $directorate->getSelfAndDescendantIds() : [$user->directorate_id];
+            $query->whereIn('directorate_id', $ids);
+        } elseif ($this->selectedDirectorate) {
+            $directorate = Directorate::find($this->selectedDirectorate);
+            $ids = $directorate ? $directorate->getSelfAndDescendantIds() : [$this->selectedDirectorate];
+            $query->whereIn('directorate_id', $ids);
+        }
+
+        $activities = $query->get();
         return $activities->groupBy('program_id')->map(function ($programActivities) {
             if ($programActivities->isEmpty())
                 return null;
@@ -102,58 +146,79 @@ new class extends Component {
         })->filter();
     }
 
-    public function getDirectorateViewDataProperty()
+    public function getDirectorateViewDataProperty(): \Illuminate\Support\Collection
     {
         $fiscalYear = $this->fiscalYear;
-        $user = auth()->user();
+        $user       = auth()->user();
 
-        // Determine which directorates to show at the root level
+        // ── Query 1: all active directorates for this year ────────────────
+        $allDirectorates = Directorate::activeInYear($fiscalYear)->get()->keyBy('id');
+
+        // ── Query 2: all activities with needed relations ─────────────────
+        $actQuery = Activity::with(['program', 'indicators', 'lineItems'])
+            ->where('fiscal_year', $fiscalYear);
+
         if (!$user->isAdministrator() && !$user->isMinister() && !$user->can('view_all_paa')) {
-            // Non-privileged users only see their own directorate as the root
-            $rootDirectorates = Directorate::where('id', $user->directorate_id)->get();
-        } else {
-            // Privileged users see top-level and independent ones
-            $topLevelDirectorates = Directorate::whereNull('parent_id')->activeInYear($fiscalYear)->get();
-            $independent = Directorate::where('type', 'Independent')->activeInYear($fiscalYear)->get();
-            $rootDirectorates = $topLevelDirectorates->merge($independent)->unique('id');
+            $dir = $allDirectorates->get($user->directorate_id);
+            $ids = $dir ? $dir->getSelfAndDescendantIds() : [$user->directorate_id];
+            $actQuery->whereIn('directorate_id', $ids);
+        } elseif ($this->selectedDirectorate) {
+            $dir = $allDirectorates->get($this->selectedDirectorate);
+            $ids = $dir ? $dir->getSelfAndDescendantIds() : [$this->selectedDirectorate];
+            $actQuery->whereIn('directorate_id', $ids);
         }
 
-        return $rootDirectorates->map(function ($dir) use ($fiscalYear) {
-            return $this->formatDirectorateData($dir, $fiscalYear);
-        })->filter();
-    }
+        $activitiesByDir = $actQuery->get()->groupBy('directorate_id');
 
-    protected function formatDirectorateData($directorate, $fiscalYear)
-    {
-        $activities = Activity::where('directorate_id', $directorate->id)
-            ->where('fiscal_year', $fiscalYear)
-            ->with(['program', 'indicators', 'lineItems.adjustedBudget'])
-            ->get();
+        // ── Determine root IDs ────────────────────────────────────────────
+        if (!$user->isAdministrator() && !$user->isMinister() && !$user->can('view_all_paa')) {
+            $rootIds = [$user->directorate_id];
+        } else {
+            $rootIds = $allDirectorates
+                ->filter(fn($d) => $d->parent_id === null || $d->type === 'Independent')
+                ->pluck('id')->unique()->values()->all();
+        }
 
-        $descendants = $directorate->children()->activeInYear($fiscalYear)->get();
-        $childData = $descendants->map(function ($child) use ($fiscalYear) {
-            return $this->formatDirectorateData($child, $fiscalYear);
-        });
+        // ── Build tree in memory (zero more DB queries) ───────────────────
+        $buildNode = function (int $dirId) use (&$buildNode, $allDirectorates, $activitiesByDir): ?array {
+            $dir = $allDirectorates->get($dirId);
+            if (!$dir) return null;
 
-        return [
-            'id' => $directorate->id,
-            'name' => $directorate->name,
-            'code' => $directorate->code,
-            'type' => $directorate->type,
-            'activities' => $activities,
-            'children' => $childData,
-            'total_indicators' => $activities->sum(fn($a) => $a->indicators->count()) + $childData->sum('total_indicators'),
-            'total_rubricas' => $activities->sum(fn($a) => $a->lineItems->count()) + $childData->sum('total_rubricas'),
-            'total_estimated' => $directorate->getTotalEstimatedRollup($fiscalYear),
-            'total_allocated' => $directorate->getTotalApprovedRollup($fiscalYear),
-        ];
+            $activities = $activitiesByDir->get($dirId, collect());
+            $children   = $allDirectorates
+                ->filter(fn($d) => (int) $d->parent_id === $dirId)
+                ->map(fn($child) => $buildNode($child->id))
+                ->filter()->values();
+
+            $selfEst  = $activities->sum(fn($a) => $a->lineItems->sum('estimated_amount'));
+            $childEst = $children->sum('total_estimated');
+
+            return [
+                'id'               => $dir->id,
+                'name'             => $dir->name,
+                'code'             => $dir->code,
+                'type'             => $dir->type,
+                'activities'       => $activities,
+                'children'         => $children,
+                'total_activities' => $activities->count() + $children->sum('total_activities'),
+                'total_indicators' => $activities->sum(fn($a) => $a->indicators->count()) + $children->sum('total_indicators'),
+                'total_estimated'  => $selfEst + $childEst,
+                'count_draft'      => $activities->where('status', Activity::STATUS_DRAFT)->count()            + $children->sum('count_draft'),
+                'count_review'     => $activities->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED])->count() + $children->sum('count_review'),
+                'count_waiting'    => $activities->where('status', Activity::STATUS_WAITING_APPROVAL)->count() + $children->sum('count_waiting'),
+                'count_approved'   => $activities->where('status', Activity::STATUS_APPROVED)->count()         + $children->sum('count_approved'),
+                'count_rejected'   => $activities->where('status', Activity::STATUS_REJECTED)->count()         + $children->sum('count_rejected'),
+            ];
+        };
+
+        return collect($rootIds)->map(fn($id) => $buildNode((int) $id))->filter()->values();
     }
 
 
     public function delete(Activity $activity): void
     {
         if ($this->isYearLocked($activity->fiscal_year)) {
-            session()->flash('error', 'Cannot delete activities from a locked fiscal year.');
+            $this->dispatch('toast', message: 'Cannot delete activities from a locked fiscal year.', type: 'error');
             return;
         }
         $activity->delete();
@@ -210,17 +275,17 @@ new class extends Component {
                 ->get()
                 ->filter(fn($a) => $this->isUserTurnToSubmit($user, $a));
         } else {
-            session()->flash('error', __('You do not have permission to submit activities.'));
+            $this->dispatch('toast', message: __('You do not have permission to submit activities.'), type: 'error');
             return;
         }
 
         if ($activities->isEmpty()) {
-            session()->flash('error', __('No activities found in the correct status to submit.'));
+            $this->dispatch('toast', message: __('No activities found in the correct status to submit.'), type: 'error');
             return;
         }
 
         $this->processSubmission($activities);
-        session()->flash('success', count($activities) . ' ' . __('activities updated.'));
+        $this->dispatch('toast', message: count($activities) . ' ' . __('activities updated.'), type: 'success');
     }
 
     protected function isUserTurnToSubmit($user, $activity): bool
@@ -271,12 +336,12 @@ new class extends Component {
         $user = auth()->user();
 
         if (!$this->isUserTurnToSubmit($user, $activity) && !$user->isAdministrator()) {
-            session()->flash('error', __('It is not your turn to submit this activity or you lack permission.'));
+            $this->dispatch('toast', message: __('It is not your turn to submit this activity or you lack permission.'), type: 'error');
             return;
         }
 
         $this->processSubmission(collect([$activity]));
-        session()->flash('success', __('Activity updated.'));
+        $this->dispatch('toast', message: __('Activity updated.'), type: 'success');
     }
 
     protected function processSubmission($activities): void
@@ -392,7 +457,7 @@ new class extends Component {
     {
         $user = auth()->user();
         if (!$user->isMinister() && !$user->isAdministrator()) {
-            session()->flash('error', __('Only the Minister or authorized administrators can approve activities.'));
+            $this->dispatch('toast', message: __('Only the Minister or authorized administrators can approve activities.'), type: 'error');
             return;
         }
 
@@ -417,7 +482,7 @@ new class extends Component {
             $notifiable->notify($notification);
         }
 
-        session()->flash('success', __('Activity approved successfully.'));
+        $this->dispatch('toast', message: __('Activity approved successfully.'), type: 'success');
     }
 
     public function reject(Activity $activity): void
@@ -426,14 +491,14 @@ new class extends Component {
             'status' => Activity::STATUS_REJECTED,
         ]);
 
-        session()->flash('error', 'Activity rejected.');
+        $this->dispatch('toast', message: 'Activity rejected.', type: 'error');
     }
 
     public function reopen(Activity $activity): void
     {
         $user = auth()->user();
         if (!$user->isMinister() && !$user->hasAnyRole(['Admin', 'Planning'])) {
-            session()->flash('error', 'Only the Minister or authorized administrators can reopen activities.');
+            $this->dispatch('toast', message: 'Only the Minister or authorized administrators can reopen activities.', type: 'error');
             return;
         }
 
@@ -444,7 +509,7 @@ new class extends Component {
             'submitted_at' => null, // Optional: Reset submission as well to allow a fresh flow
         ]);
 
-        session()->flash('success', 'Activity reopened and returned to draft.');
+        $this->dispatch('toast', message: 'Activity reopened and returned to draft.', type: 'success');
     }
 
     public function isYearLocked($year): bool
@@ -458,7 +523,7 @@ new class extends Component {
         $targetYear = date('Y') + 1;
 
         if (!$this->canCreateNewPAA) {
-            session()->flash('error', "The administration has disabled new planning cycles. Please contact the Planning Unit.");
+            $this->dispatch('toast', message: "The administration has disabled new planning cycles. Please contact the Planning Unit.", type: 'error');
             return;
         }
 
@@ -486,213 +551,308 @@ new class extends Component {
     }
 }; ?>
 
-<div class="space-y-10 py-6 animate-in fade-in duration-700">
+<div class="space-y-6 py-2 animate-in fade-in duration-700">
 
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-        <div>
-            <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none">
-                {{ __('Annual Activity Planning (PAA)') }} ({{ $fiscalYear }})
-            </h1>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">
-                {{ __('Strategic Planning & Budget Coordination') }}
-            </p>
-        </div>
-        <div class="flex flex-col sm:flex-row flex-wrap gap-4 items-stretch sm:items-end w-full md:w-auto">
-            @if(auth()->user()->isAdministrator() || auth()->user()->isMinister() || auth()->user()->can('view_all_paa'))
-                <div class="flex flex-col gap-1 w-full sm:w-auto">
-                    <label
-                        class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-2">{{ __('Filter Directorate') }}</label>
-                    <select wire:model.live="selectedDirectorate"
-                        class="bg-white border-none shadow-sm rounded-2xl text-xs font-black text-slate-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10 w-full">
-                        <option value="">{{ __('All Directorates') }}</option>
-                        @foreach(\App\Models\Directorate::activeInYear($this->fiscalYear)->orderByRaw('parent_id IS NOT NULL')->orderBy('parent_id')->orderBy('name')->get() as $dir)
-                            <option value="{{ $dir->id }}">{{ $dir->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            @endif
-
-            <div class="flex flex-col gap-1 w-full sm:w-auto">
-                <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-2">{{ __('Fiscal Year') }}</label>
-                <select wire:model.live="fiscalYear"
-                    class="bg-white border-none shadow-sm rounded-2xl text-xs font-black text-slate-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10 w-full">
-                    @php
-                        $availableYears = Activity::distinct()->pluck('fiscal_year')
-                            ->merge(FiscalEnvelope::when(!$this->showDrafts, fn($q) => $q->where('status', '!=', 'Draft'))->pluck('fiscal_year'))
-                            ->unique()
-                            ->sortDesc();
-
-                        if ($availableYears->isEmpty()) {
-                            $availableYears = collect([$this->activeYear]);
-                        }
-                    @endphp
-                    @foreach($availableYears as $year)
-                        <option value="{{ $year }}">{{ $year }} {{ $year == $activeYear ? '(' . __('Active') . ')' : '' }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-    </div>
     @php
         $user = auth()->user();
-        $hasDrafts = $activities->where('status', Activity::STATUS_DRAFT)
+
+        $allActivities = \App\Models\Activity::with(['lineItems'])
+            ->where('fiscal_year', $fiscalYear)
+            ->when(
+                !$user->isAdministrator() && !$user->isMinister() && !$user->can('view_all_paa'),
+                function ($q) use ($user) {
+                    $dir = \App\Models\Directorate::find($user->directorate_id);
+                    $ids = $dir ? $dir->getSelfAndDescendantIds() : [$user->directorate_id];
+                    $q->whereIn('directorate_id', $ids);
+                }
+            )
+            ->when($selectedDirectorate, function ($q) use ($selectedDirectorate) {
+                $dir = \App\Models\Directorate::find($selectedDirectorate);
+                $ids = $dir ? $dir->getSelfAndDescendantIds() : [$selectedDirectorate];
+                $q->whereIn('directorate_id', $ids);
+            })
+            ->get();
+
+        $statDraft     = $allActivities->where('status', \App\Models\Activity::STATUS_DRAFT)->count();
+        $statSubmitted = $allActivities->whereIn('status', [\App\Models\Activity::STATUS_SUBMITTED, \App\Models\Activity::STATUS_REVIEWED, \App\Models\Activity::STATUS_VALIDATED])->count();
+        $statWaiting   = $allActivities->where('status', \App\Models\Activity::STATUS_WAITING_APPROVAL)->count();
+        $statApproved  = $allActivities->where('status', \App\Models\Activity::STATUS_APPROVED)->count();
+        $totalBudget   = $allActivities->sum(fn($a) => $a->lineItems->sum('estimated_amount'));
+
+        $hasDrafts = $allActivities->where('status', \App\Models\Activity::STATUS_DRAFT)
             ->where('directorate_id', $user->directorate_id)
             ->isNotEmpty();
         $hasDraftsAndYearIsNotLocked = $hasDrafts && !$this->isYearLocked($fiscalYear);
+
+        $availableYears = \App\Models\Activity::distinct()->pluck('fiscal_year')
+            ->merge(\App\Models\FiscalEnvelope::when(!$this->showDrafts, fn($q) => $q->where('status', '!=', 'Draft'))->pluck('fiscal_year'))
+            ->unique()->sortDesc();
+        if ($availableYears->isEmpty()) {
+            $availableYears = collect([$this->activeYear]);
+        }
     @endphp
 
-    @if($hasDraftsAndYearIsNotLocked || $this->canCreateNewPAA)
-        <div class="flex justify-between items-start">
-
-            <div class="flex items-center gap-3">
-
-                @if($hasDraftsAndYearIsNotLocked)
-                    <x-ui.button wire:click="initiateBatchSubmission" variant="black" size="md">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                            class="mr-2">
-                            <path d="m22 2-7 20-4-9-9-4Z" />
-                            <path d="M22 2 11 13" />
-                        </svg>
-                        {{ __('Submit PAA for Approval') }}
-                    </x-ui.button>
+    {{-- ─── Page Header ──────────────────────────────────────── --}}
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">
+                {{ __('Annual Activity Planning (PAA)') }}
+            </h1>
+            <p class="text-sm text-zinc-500 mt-0.5">
+                {{ __('Fiscal Year') }} <span class="font-semibold text-indigo-600">{{ $fiscalYear }}</span>
+                @if($fiscalYear == $activeYear)
+                    <span class="ml-1.5 text-xs text-emerald-600 font-medium">&bull; {{ __('Active') }}</span>
                 @endif
-
-                @if($this->canCreateNewPAA)
-                    <x-ui.button wire:click="startNewPAA" variant="primary" size="md">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                            class="mr-2">
-                            <path d="M12 5v14" />
-                            <path d="M5 12h14" />
-                        </svg>
-                        {{ __('New Planning') }} ({{ date('Y') + 1 }})
-                    </x-ui.button>
-                @endif
-            </div>
+            </p>
         </div>
-    @endif
 
-    @if($creationAlert)
-        <div
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div class="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6 animate-in zoom-in-95 duration-200">
-                <h3 class="text-lg font-bold text-gray-900 mb-2 underline decoration-red-500">{{ __('Existing PAA') }}</h3>
-                <p class="text-sm text-gray-600">
-                    {{ __('The Annual Activity Plan for the year :year has already been started. Please use the year selection above to manage or update existing activities.', ['year' => date('Y') + 1]) }}
-                </p>
-                <div class="mt-6 flex justify-end">
-                    <button wire:click="$set('creationAlert', false)"
-                        class="bg-indigo-600 text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-indigo-700">{{ __('Understood') }}</button>
-                </div>
-            </div>
+        <div class="flex items-center gap-2 flex-wrap">
+            @if($hasDraftsAndYearIsNotLocked)
+                <x-ui.button wire:click="initiateBatchSubmission" variant="black" size="sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
+                        <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+                    </svg>
+                    {{ __('Submit PAA for Approval') }}
+                </x-ui.button>
+            @endif
+
+            @if($this->canCreateNewPAA)
+                <x-ui.button wire:click="startNewPAA" variant="primary" size="sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
+                        <path d="M12 5v14"/><path d="M5 12h14"/>
+                    </svg>
+                    {{ __('New Planning') }} ({{ date('Y') + 1 }})
+                </x-ui.button>
+            @endif
         </div>
-    @endif
-
-
-    @if($editAlert)
-        <div
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div class="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6 animate-in zoom-in-95 duration-200">
-                <h3 class="text-lg font-bold text-gray-900 mb-2 underline decoration-red-500">{{ __('Existing PAA') }}</h3>
-                <p class="text-sm text-gray-600">
-                    {{ __('The Annual Activity Plan for the year :year has already been started. Would you like to proceed with managing or updating the existing activities?') }}
-                </p>
-                <div class="mt-6 flex justify-end">
-                    <button wire:click="proceedToCreate"
-                        class="bg-indigo-600 text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-indigo-700">{{ __('Proceed') }}</button>
-                </div>
-            </div>
-        </div>
-    @endif
-
-    <div class="flex items-center gap-2 p-1.5 bg-slate-100/50 w-fitsss rounded-2xl border border-slate-200 shadow-sm">
-        <x-ui.button wire:click="$set('activeTab', 'program')"
-            variant="{{ $activeTab === 'program' ? 'secondary' : 'ghost' }}" size="md" class="!rounded-xl">
-            {{ __('Programmatic View') }}
-        </x-ui.button>
-        <x-ui.button wire:click="$set('activeTab', 'directorate')"
-            variant="{{ $activeTab === 'directorate' ? 'secondary' : 'ghost' }}" size="md" class="!rounded-xl">
-            {{ __('Directorate View') }}
-        </x-ui.button>
-        <x-ui.button wire:click="$set('activeTab', 'details')"
-            variant="{{ $activeTab === 'details' ? 'secondary' : 'ghost' }}" size="md" class="!rounded-xl">
-            {{ __('Tabular Details') }}
-        </x-ui.button>
     </div>
 
+    {{-- ─── Status Stats Bar ─────────────────────────────────── --}}
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+        <button wire:click="$set('statusFilter', 'Draft')"
+            class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
+                   {{ $statusFilter === 'Draft' ? 'bg-blue-600 ring-blue-600 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
+            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Draft' ? 'text-blue-200' : 'text-zinc-500' }}">{{ __('Draft') }}</span>
+            <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Draft' ? 'text-white' : 'text-zinc-900' }}">{{ $statDraft }}</span>
+        </button>
+        <button wire:click="$set('statusFilter', 'Submitted')"
+            class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
+                   {{ $statusFilter === 'Submitted' ? 'bg-indigo-600 ring-indigo-600 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
+            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Submitted' ? 'text-indigo-200' : 'text-zinc-500' }}">{{ __('In Review') }}</span>
+            <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Submitted' ? 'text-white' : 'text-zinc-900' }}">{{ $statSubmitted }}</span>
+        </button>
+        <button wire:click="$set('statusFilter', 'Waiting Approval')"
+            class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
+                   {{ $statusFilter === 'Waiting Approval' ? 'bg-amber-500 ring-amber-500 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
+            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Waiting Approval' ? 'text-amber-100' : 'text-zinc-500' }}">{{ __('Awaiting Approval') }}</span>
+            <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Waiting Approval' ? 'text-white' : 'text-zinc-900' }}">{{ $statWaiting }}</span>
+        </button>
+        <button wire:click="$set('statusFilter', 'Approved')"
+            class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
+                   {{ $statusFilter === 'Approved' ? 'bg-emerald-600 ring-emerald-600 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
+            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Approved' ? 'text-emerald-100' : 'text-zinc-500' }}">{{ __('Approved') }}</span>
+            <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Approved' ? 'text-white' : 'text-zinc-900' }}">{{ $statApproved }}</span>
+        </button>
+        <div class="hidden lg:flex flex-col items-start px-4 py-3 rounded-xl ring-1 ring-zinc-950/5 bg-zinc-50 shadow-sm sm:col-span-2 lg:col-span-1">
+            <span class="text-[10px] font-medium uppercase tracking-wider text-zinc-500">{{ __('Total Budget') }}</span>
+            <span class="text-lg font-semibold mt-0.5 text-zinc-900 tracking-tight">${{ number_format($totalBudget / 1000, 0) }}k</span>
+        </div>
+    </div>
+
+    {{-- ─── Filters Row ──────────────────────────────────────── --}}
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 flex-wrap">
+
+        {{-- Search --}}
+        <div class="flex items-center gap-2 flex-1 min-w-[180px] max-w-xs h-9 px-3 bg-white border border-zinc-200/60 rounded-lg
+            focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-500/15 transition-all shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="text-zinc-400 flex-shrink-0">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input type="text" wire:model.live.debounce.300ms="search"
+                placeholder="{{ __('Search activities...') }}"
+                class="flex-1 bg-transparent text-sm text-zinc-700 placeholder:text-zinc-400 focus:outline-none min-w-0">
+            @if($search)
+                <button wire:click="$set('search', '')" class="text-zinc-400 hover:text-zinc-600 transition-colors flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                    </svg>
+                </button>
+            @endif
+        </div>
+
+        {{-- Fiscal Year --}}
+        <select wire:model.live="fiscalYear"
+            class="flux-input h-9 py-0 text-sm w-auto min-w-[130px]">
+            @foreach($availableYears as $year)
+                <option value="{{ $year }}">{{ $year }} {{ $year == $activeYear ? '(' . __('Active') . ')' : '' }}</option>
+            @endforeach
+        </select>
+
+        {{-- Directorate (privileged) --}}
+        @if($user->isAdministrator() || $user->isMinister() || $user->can('view_all_paa'))
+            <select wire:model.live="selectedDirectorate"
+                class="flux-input h-9 py-0 text-sm w-auto min-w-[160px]">
+                <option value="">{{ __('All Directorates') }}</option>
+                @foreach(\App\Models\Directorate::activeInYear($this->fiscalYear)->orderByRaw('parent_id IS NOT NULL')->orderBy('parent_id')->orderBy('name')->get() as $dir)
+                    <option value="{{ $dir->id }}">{{ $dir->name }}</option>
+                @endforeach
+            </select>
+        @endif
+
+        {{-- Clear status filter pill --}}
+        @if($statusFilter)
+            <button wire:click="$set('statusFilter', '')"
+                class="flex items-center gap-1.5 px-3 h-9 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-lg ring-1 ring-indigo-200 hover:bg-indigo-100 transition-colors flex-shrink-0">
+                <span>{{ $statusFilter }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+            </button>
+        @endif
+    </div>
+
+    {{-- ─── Tabs ─────────────────────────────────────────────── --}}
+    <div class="flex items-center gap-1 p-1 bg-zinc-100/70 w-fit rounded-xl border border-zinc-200/60 shadow-sm">
+        <button wire:click="$set('activeTab', 'details')"
+            class="px-4 py-1.5 text-sm font-medium rounded-lg transition-all
+                   {{ $activeTab === 'details' ? 'bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-950/5' : 'text-zinc-500 hover:text-zinc-700' }}">
+            {{ __('Tabular') }}
+        </button>
+        <button wire:click="$set('activeTab', 'program')"
+            class="px-4 py-1.5 text-sm font-medium rounded-lg transition-all
+                   {{ $activeTab === 'program' ? 'bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-950/5' : 'text-zinc-500 hover:text-zinc-700' }}">
+            {{ __('By Program') }}
+        </button>
+        <button wire:click="$set('activeTab', 'directorate')"
+            class="px-4 py-1.5 text-sm font-medium rounded-lg transition-all
+                   {{ $activeTab === 'directorate' ? 'bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-950/5' : 'text-zinc-500 hover:text-zinc-700' }}">
+            {{ __('By Directorate') }}
+        </button>
+    </div>
+
+    {{-- ─── Tab Content ──────────────────────────────────────── --}}
     @if($activeTab === 'program')
         @include('livewire.pages.activities.list-tabs.program-view')
     @elseif($activeTab === 'directorate')
         @include('livewire.pages.activities.list-tabs.directorate-view')
     @else
         @if($activities->isEmpty())
-            <div class="text-center py-8 text-gray-500 italic">
-                {{ __('No activities registered so far.') }}
+            <div class="text-center py-16 bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm">
+                <div class="w-14 h-14 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-zinc-300">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                        <path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>
+                    </svg>
+                </div>
+                @if($search || $statusFilter)
+                    <p class="text-sm font-medium text-zinc-600">{{ __('No activities match your filters.') }}</p>
+                    <p class="text-xs text-zinc-400 mt-1">{{ __('Try clearing the search or status filter.') }}</p>
+                    <button wire:click="$set('search', ''); $set('statusFilter', '')"
+                        class="mt-4 text-sm text-indigo-600 hover:text-indigo-700 font-medium transition-colors">
+                        {{ __('Clear filters') }}
+                    </button>
+                @elseif($this->canCreateNewPAA)
+                    <p class="text-sm font-medium text-zinc-600">{{ __('No activities registered so far.') }}</p>
+                    <p class="text-xs text-zinc-400 mt-1">{{ __('Start planning by creating the first activity.') }}</p>
+                    <x-ui.button wire:click="startNewPAA" variant="primary" size="sm" class="mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
+                            <path d="M12 5v14"/><path d="M5 12h14"/>
+                        </svg>
+                        {{ __('Create First Activity') }}
+                    </x-ui.button>
+                @else
+                    <p class="text-sm font-medium text-zinc-600">{{ __('No activities registered so far.') }}</p>
+                    <p class="text-xs text-zinc-400 mt-1">{{ __('Activities will appear here once planning begins.') }}</p>
+                @endif
+            </div>
         @else
-                @include('livewire.pages.activities.list-tabs.details-view')
-            @endif
+            @include('livewire.pages.activities.list-tabs.details-view')
+        @endif
     @endif
 
-        @if($confirmingSubmission)
-            <div
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-                <div
-                    class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 animate-in zoom-in-95 duration-200">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="h-12 w-12 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m22 2-7 20-4-9-9-4Z" />
-                                <path d="M22 2 11 13" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-black text-slate-900 leading-tight">
-                                {{ $submissionType === 'bulk' ? __('Bulk Submission') : __('Submit Activity') }}
-                            </h3>
-                            <p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">
-                                {{ __('Confirmation Required') }}
-                            </p>
-                        </div>
-                    </div>
+    {{-- ─── Modals ───────────────────────────────────────────── --}}
 
-                    <div class="space-y-4">
-                        <p class="text-sm text-slate-600 leading-relaxed">
-                            @if($submissionType === 'bulk')
-                                {{ __('Are you sure you want to submit all draft activities for review? This will notify your superior and lock the activities for editing.') }}
-                            @else
-                                {{ __('Are you sure you want to submit this activity? This will lock it and notify your superior.') }}
-                            @endif
-                        </p>
-
-                        <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                                class="text-amber-500">
-                                <path
-                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                                <line x1="12" y1="9" x2="12" y2="13" />
-                                <line x1="12" y1="17" x2="12.01" y2="17" />
-                            </svg>
-                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                                {{ __('Activities will be locked after submission') }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 flex flex-col-reverse sm:flex-row justify-end gap-3">
-                        <x-ui.button wire:click="cancelSubmission" variant="ghost" class="w-full sm:w-auto">
-                            {{ __('Cancel') }}
-                        </x-ui.button>
-                        <x-ui.button wire:click="confirmSubmission" variant="black" class="w-full sm:w-auto">
-                            {{ __('Yes, Proceed') }}
-                        </x-ui.button>
-                    </div>
+    @if($creationAlert)
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+            <div class="relative w-full max-w-md bg-white rounded-xl shadow-xl p-6 animate-in zoom-in-95 duration-200">
+                <h3 class="text-base font-semibold text-zinc-900 mb-2">{{ __('Existing PAA') }}</h3>
+                <p class="text-sm text-zinc-600 leading-relaxed">
+                    {{ __('The Annual Activity Plan for the year :year has already been started. Please use the year selection above to manage or update existing activities.', ['year' => date('Y') + 1]) }}
+                </p>
+                <div class="mt-6 flex justify-end">
+                    <x-ui.button wire:click="$set('creationAlert', false)" variant="primary" size="sm">{{ __('Understood') }}</x-ui.button>
                 </div>
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+
+    @if($editAlert)
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+            <div class="relative w-full max-w-md bg-white rounded-xl shadow-xl p-6 animate-in zoom-in-95 duration-200">
+                <h3 class="text-base font-semibold text-zinc-900 mb-2">{{ __('Existing PAA') }}</h3>
+                <p class="text-sm text-zinc-600 leading-relaxed">
+                    {{ __('The Annual Activity Plan for the year :year has already been started. Would you like to proceed with managing or updating the existing activities?') }}
+                </p>
+                <div class="mt-6 flex justify-end gap-3">
+                    <x-ui.button wire:click="$set('editAlert', false)" variant="ghost" size="sm">{{ __('Cancel') }}</x-ui.button>
+                    <x-ui.button wire:click="proceedToCreate" variant="primary" size="sm">{{ __('Proceed') }}</x-ui.button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if($confirmingSubmission)
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+            <div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 animate-in zoom-in-95 duration-200">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-11 w-11 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-semibold text-zinc-900">
+                            {{ $submissionType === 'bulk' ? __('Bulk Submission') : __('Submit Activity') }}
+                        </h3>
+                        <p class="text-xs text-zinc-500 mt-0.5">{{ __('Confirmation Required') }}</p>
+                    </div>
+                </div>
+
+                <p class="text-sm text-zinc-600 leading-relaxed">
+                    @if($submissionType === 'bulk')
+                        {{ __('Are you sure you want to submit all draft activities for review? This will notify your superior and lock the activities for editing.') }}
+                    @else
+                        {{ __('Are you sure you want to submit this activity? This will lock it and notify your superior.') }}
+                    @endif
+                </p>
+
+                <div class="flex items-center gap-3 mt-4 p-3.5 bg-amber-50 rounded-lg ring-1 ring-amber-200/60">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="text-amber-500 flex-shrink-0">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <p class="text-xs text-amber-700">{{ __('Activities will be locked after submission') }}</p>
+                </div>
+
+                <div class="mt-6 flex justify-end gap-3">
+                    <x-ui.button wire:click="cancelSubmission" variant="ghost" size="sm">{{ __('Cancel') }}</x-ui.button>
+                    <x-ui.button wire:click="confirmSubmission" variant="black" size="sm">{{ __('Yes, Proceed') }}</x-ui.button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+</div>

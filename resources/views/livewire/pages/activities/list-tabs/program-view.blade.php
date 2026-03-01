@@ -92,16 +92,24 @@
                                     <td class="px-8 py-6">
                                         @php
                                             $statusVariant = match ($activity->status) {
-                                                'Aprovada' => 'green',
-                                                'Cortada' => 'red',
-                                                'Planeada' => 'indigo',
-                                                default => 'amber',
+                                                'Approved'         => 'green',
+                                                'Rejected'         => 'red',
+                                                'Waiting Approval' => 'amber',
+                                                'Validated'        => 'blue',
+                                                'Reviewed'         => 'amber',
+                                                'Submitted'        => 'indigo',
+                                                'Draft'            => 'zinc',
+                                                default            => 'zinc',
                                             };
                                             $statusLabel = match ($activity->status) {
-                                                'Aprovada' => __('Approved'),
-                                                'Cortada' => __('Cut'),
-                                                'Planeada' => __('Planned'),
-                                                default => __('Pending'),
+                                                'Approved'         => __('Approved'),
+                                                'Rejected'         => __('Rejected'),
+                                                'Waiting Approval' => __('Waiting Approval'),
+                                                'Validated'        => __('Validated'),
+                                                'Reviewed'         => __('Reviewed'),
+                                                'Submitted'        => __('Submitted'),
+                                                'Draft'            => __('Draft'),
+                                                default            => $activity->status,
                                             };
                                         @endphp
                                         <x-ui.badge :variant="$statusVariant"

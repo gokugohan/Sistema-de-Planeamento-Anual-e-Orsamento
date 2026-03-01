@@ -113,7 +113,7 @@ new class extends Component {
             }
         } else {
             if (!$this->canCreateNewEnvelope) {
-                session()->flash('error', __('New planning cycles are currently disabled by global policy.'));
+                $this->dispatch('toast', message: __('New planning cycles are currently disabled by global policy.'), type: 'error');
                 return;
             }
             $this->fiscalYear = Carbon::now()->addYear()->year;
@@ -175,7 +175,7 @@ new class extends Component {
         $envelope = FiscalEnvelope::find($this->activeEnvelope->id);
 
         if($envelope->status !== App\Models\FiscalEnvelope::STATUS_DRAFT) {
-            session()->flash('error', __('You cannot edit an envelope that is not in draft status.'));
+            $this->dispatch('toast', message: __('You cannot edit an envelope that is not in draft status.'), type: 'error');
             return;
         }
 
@@ -250,13 +250,13 @@ new class extends Component {
 
         $this->loadData();
         $this->activeEnvelope = $envelope->fresh();
-        session()->flash('success', __('Fiscal envelope submitted for approval.'));
+        $this->dispatch('toast', message: __('Fiscal envelope submitted for approval.'), type: 'success');
     }
 
     public function approve($id): void
     {
         if (!auth()->user()->isMinister()) {
-            session()->flash('error', __('Only the Minister can approve fiscal envelopes.'));
+            $this->dispatch('toast', message: __('Only the Minister can approve fiscal envelopes.'), type: 'error');
             return;
         }
 
@@ -274,13 +274,13 @@ new class extends Component {
 
         $this->loadData();
         $this->activeEnvelope = $envelope->fresh();
-        session()->flash('success', __('Fiscal envelope approved successfully.'));
+        $this->dispatch('toast', message: __('Fiscal envelope approved successfully.'), type: 'success');
     }
 
     public function reject($id): void
     {
         if (!auth()->user()->isMinister()) {
-            session()->flash('error', __('Only the Minister can reject fiscal envelopes.'));
+            $this->dispatch('toast', message: __('Only the Minister can reject fiscal envelopes.'), type: 'error');
             return;
         }
 
@@ -295,7 +295,7 @@ new class extends Component {
 
         $this->loadData();
         $this->activeEnvelope = $envelope->fresh();
-        session()->flash('error', __('Fiscal envelope rejected and returned to draft.'));
+        $this->dispatch('toast', message: __('Fiscal envelope rejected and returned to draft.'), type: 'error');
     }
 
 
@@ -358,7 +358,7 @@ new class extends Component {
     public function openRedistributionModal($envelopeId): void
     {
         if (!auth()->user()->isAdministrator() && !auth()->user()->isMinister()) {
-            session()->flash('error', __('Only Admin or Minister can redistribute budgets.'));
+            $this->dispatch('toast', message: __('Only Admin or Minister can redistribute budgets.'), type: 'error');
             return;
         }
 
@@ -413,7 +413,7 @@ new class extends Component {
     public function confirmRedistribution($envelopeId): void
     {
         if (!auth()->user()->isAdministrator() && !auth()->user()->isMinister()) {
-            session()->flash('error', __('Only Admin or Minister can redistribute budgets.'));
+            $this->dispatch('toast', message: __('Only Admin or Minister can redistribute budgets.'), type: 'error');
             return;
         }
 
@@ -428,7 +428,7 @@ new class extends Component {
         $this->redistributionModalOpen = false;
         $this->redistributionPreview = [];
 
-        session()->flash('success', __("Budget for :year redistributed successfully!", ['year' => $envelope->fiscal_year]));
+        $this->dispatch('toast', message: __("Budget for :year redistributed successfully!", ['year' => $envelope->fiscal_year]), type: 'success');
     }
 
     protected function adjustIndicators($activity, $ratio): void

@@ -1,5 +1,5 @@
 <x-ui.card padding="p-0">
-    <x-ui.table :headers="[__('Ref / Program'), __('Activity Analysis'), __('Priority'), __('Metrics'), __('Budgeting') . ' ($)', __('Legal Status')]">
+    <x-ui.table :headers="[__('Ref / Program'), __('Activity Analysis'), __('Priority'), __('Metrics'), __('Budgeting') . ' ($)', __('Status')]">
         <x-slot name="actions"></x-slot>
         @foreach($activities as $activity)
             <tr class="hover:bg-slate-50/50 transition-all duration-300 group">
@@ -237,4 +237,27 @@
             </tr>
         @endforeach
     </x-ui.table>
+
+    {{-- Pagination footer --}}
+    @if($activities->hasPages() || $activities->total() > 10)
+        <div class="flex items-center justify-between gap-4 px-6 py-4 border-t border-zinc-100">
+
+            {{-- Per-page selector --}}
+            <div class="flex items-center gap-2 text-sm text-zinc-500">
+                <span class="hidden sm:inline">{{ __('Show') }}</span>
+                <select wire:model.live="perPage"
+                    class="flux-input h-8 py-0 text-sm w-auto pl-2 pr-7 min-w-0">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span class="hidden sm:inline">{{ __('per page') }}</span>
+            </div>
+
+            {{-- Pagination links --}}
+            {{ $activities->links() }}
+        </div>
+    @endif
 </x-ui.card>

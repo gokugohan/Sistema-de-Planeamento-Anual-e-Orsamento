@@ -154,10 +154,10 @@ new class extends Component {
             }
 
             Directorate::findOrFail($this->directorateId)->update($data);
-            session()->flash('message', __('Directorate updated successfully!'));
+            $this->dispatch('toast', message: __('Directorate updated successfully!'), type: 'success');
         } else {
             Directorate::create($data);
-            session()->flash('message', __('Directorate created successfully!'));
+            $this->dispatch('toast', message: __('Directorate created successfully!'), type: 'success');
         }
 
         $this->modalOpen = false;
@@ -169,18 +169,18 @@ new class extends Component {
 
         // Prevent deletion if it has children
         if ($d->children()->count() > 0) {
-            session()->flash('error', __('Cannot delete directorate with sub-units. Delete children first.'));
+            $this->dispatch('toast', message: __('Cannot delete directorate with sub-units. Delete children first.'), type: 'error');
             return;
         }
 
         // Prevent deletion if it has activities
         if ($d->activities()->count() > 0) {
-            session()->flash('error', __('Cannot delete directorate with active activities.'));
+            $this->dispatch('toast', message: __('Cannot delete directorate with active activities.'), type: 'error');
             return;
         }
 
         $d->delete();
-        session()->flash('message', __('Directorate deleted successfully.'));
+        $this->dispatch('toast', message: __('Directorate deleted successfully.'), type: 'success');
     }
 
     public function updatingSearch()
@@ -235,10 +235,10 @@ new class extends Component {
 
         if ($this->isProgramEditing) {
             Program::findOrFail($this->programId)->update($data);
-            session()->flash('message', __('Program updated successfully!'));
+            $this->dispatch('toast', message: __('Program updated successfully!'), type: 'success');
         } else {
             Program::create($data);
-            session()->flash('message', __('Program created successfully!'));
+            $this->dispatch('toast', message: __('Program created successfully!'), type: 'success');
         }
 
         $this->programModalOpen = false;
@@ -250,12 +250,12 @@ new class extends Component {
 
         // Prevent deletion if it has activities
         if ($p->activities()->count() > 0) {
-            session()->flash('error', __('Cannot delete program with active activities.'));
+            $this->dispatch('toast', message: __('Cannot delete program with active activities.'), type: 'error');
             return;
         }
 
         $p->delete();
-        session()->flash('message', __('Program deleted successfully.'));
+        $this->dispatch('toast', message: __('Program deleted successfully.'), type: 'success');
     }
 
     // ========== ECONOMIC CLASSIFICATION CRUD METHODS ==========
@@ -300,10 +300,10 @@ new class extends Component {
 
         if ($this->isClassificationEditing) {
             EconomicClassification::findOrFail($this->classificationId)->update($data);
-            session()->flash('message', __('Economic classification updated successfully!'));
+            $this->dispatch('toast', message: __('Economic classification updated successfully!'), type: 'success');
         } else {
             EconomicClassification::create($data);
-            session()->flash('message', __('Economic classification created successfully!'));
+            $this->dispatch('toast', message: __('Economic classification created successfully!'), type: 'success');
         }
 
         $this->classificationModalOpen = false;
@@ -315,12 +315,12 @@ new class extends Component {
 
         // Prevent deletion if it has line items
         if ($c->lineItems()->count() > 0) {
-            session()->flash('error', __('Cannot delete category with active line items.'));
+            $this->dispatch('toast', message: __('Cannot delete category with active line items.'), type: 'error');
             return;
         }
 
         $c->delete();
-        session()->flash('message', __('Economic classification deleted successfully.'));
+        $this->dispatch('toast', message: __('Economic classification deleted successfully.'), type: 'success');
     }
 }; ?>
 

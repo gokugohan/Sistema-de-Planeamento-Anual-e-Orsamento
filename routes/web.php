@@ -69,9 +69,9 @@ Route::get('reports/paa', function () {
 
 Route::get('admin/entities', function () {
     return view('admin.entities');
-})->middleware(['auth', 'verified'])->name('admin.entities');
+})->middleware(['auth', 'verified', 'role:Admin'])->name('admin.entities');
 
-Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => ['auth', 'verified']], function () {
+Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => ['auth', 'verified', 'role:Admin']], function () {
     Route::get('/settings', function () {
         return view('management.settings');
     })->name('settings');

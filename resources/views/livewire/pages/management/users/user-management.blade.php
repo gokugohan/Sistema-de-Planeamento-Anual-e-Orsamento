@@ -88,7 +88,7 @@ new class extends Component {
                 'directorate_id' => $this->directorate_id ?: null,
             ]);
             $user->syncRoles([$this->selectedRole]);
-            session()->flash('message', __('User updated successfully!'));
+            $this->dispatch('toast', message: __('User updated successfully!'), type: 'success');
         } else {
             $user = User::create([
                 'name' => $this->name,
@@ -97,7 +97,7 @@ new class extends Component {
                 'directorate_id' => $this->directorate_id ?: null,
             ]);
             $user->assignRole($this->selectedRole);
-            session()->flash('message', __('User created successfully (Default password: password)'));
+            $this->dispatch('toast', message: __('User created successfully (Default password: password)'), type: 'success');
         }
 
         $this->modalOpen = false;
@@ -106,16 +106,16 @@ new class extends Component {
     public function deleteUser($id)
     {
         if (!auth()->user()->isAdministrator()) {
-            session()->flash('error', __('Only administrators can delete user accounts.'));
+            $this->dispatch('toast', message: __('Only administrators can delete user accounts.'), type: 'error');
             return;
         }
 
         if ($id === auth()->id()) {
-            session()->flash('error', __('You cannot delete your own account!'));
+            $this->dispatch('toast', message: __('You cannot delete your own account!'), type: 'error');
             return;
         }
         User::destroy($id);
-        session()->flash('message', __('User deleted successfully.'));
+        $this->dispatch('toast', message: __('User deleted successfully.'), type: 'success');
     }
 
     public function togglePermission($roleId, $permissionName)
@@ -128,7 +128,7 @@ new class extends Component {
             $role->givePermissionTo($permissionName);
         }
 
-        session()->flash('message', __('Permissions updated for role: ') . $role->name);
+        $this->dispatch('toast', message: __('Permissions updated for role: ') . $role->name, type: 'success');
     }
 }; ?>
 

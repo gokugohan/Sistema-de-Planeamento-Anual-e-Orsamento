@@ -85,7 +85,7 @@ new class extends Component {
 
         // Strict Protection: Prevents overriding Submitted or Verified data from the entry form
         if ($progress && !in_array($progress->status, ['Draft', 'Rejected'])) {
-            session()->flash('error', __('Cannot edit progress that is already :status.', ['status' => __($progress->status)]));
+            $this->dispatch('toast', message: __('Cannot edit progress that is already :status.', ['status' => __($progress->status)]), type: 'error');
             return;
         }
 
@@ -97,7 +97,7 @@ new class extends Component {
             ]
         );
 
-        session()->flash('message', __('Progress saved as Draft. It will reflect in charts once Verified by a Director.'));
+        $this->dispatch('toast', message: __('Progress saved as Draft. It will reflect in charts once Verified by a Director.'), type: 'success');
     }
 
     public function submitProgress(): void
@@ -115,13 +115,13 @@ new class extends Component {
             ]);
 
         $this->updatedSelectedActivityId();
-        session()->flash('message', __('Progress submitted for verification.'));
+        $this->dispatch('toast', message: __('Progress submitted for verification.'), type: 'success');
     }
 
     public function verifyProgress($indicatorId): void
     {
         if (!auth()->user()->hasRole('Director')) {
-            session()->flash('error', 'Only Directors can verify progress.');
+            $this->dispatch('toast', message: 'Only Directors can verify progress.', type: 'error');
             return;
         }
 
@@ -138,13 +138,13 @@ new class extends Component {
         }
 
         $this->updatedSelectedActivityId();
-        session()->flash('message', __('Progress verified successfully.'));
+        $this->dispatch('toast', message: __('Progress verified successfully.'), type: 'success');
     }
 
     public function rejectProgress($indicatorId): void
     {
         if (!auth()->user()->hasRole('Director')) {
-            session()->flash('error', 'Only Directors can reject progress.');
+            $this->dispatch('toast', message: 'Only Directors can reject progress.', type: 'error');
             return;
         }
 
@@ -157,7 +157,7 @@ new class extends Component {
         }
 
         $this->updatedSelectedActivityId();
-        session()->flash('message', __('Progress rejected and returned to draft.'));
+        $this->dispatch('toast', message: __('Progress rejected and returned to draft.'), type: 'success');
     }
 }; ?>
 

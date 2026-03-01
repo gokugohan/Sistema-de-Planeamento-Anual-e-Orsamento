@@ -112,7 +112,7 @@ new class extends Component {
         }
 
         $this->loadActivities();
-        session()->flash('success', __('Plan for Directorate approved successfully.'));
+        $this->dispatch('toast', message: __('Plan for Directorate approved successfully.'), type: 'success');
     }
 
     public function approve($id)
@@ -131,7 +131,7 @@ new class extends Component {
         }
 
         $this->loadActivities();
-        session()->flash('message', __('Activity approved successfully.'));
+        $this->dispatch('toast', message: __('Activity approved successfully.'), type: 'success');
     }
 
     public function review($id)
@@ -155,7 +155,7 @@ new class extends Component {
         ]);
 
         $this->loadActivities();
-        session()->flash('message', __('Activity updated to :status.', ['status' => __($newStatus)]));
+        $this->dispatch('toast', message: __('Activity updated to :status.', ['status' => __($newStatus)]), type: 'success');
     }
 
     public function reject($id)
@@ -174,7 +174,7 @@ new class extends Component {
         }
 
         $this->loadActivities();
-        session()->flash('message', __('Activity returned to department for correction.'));
+        $this->dispatch('toast', message: __('Activity returned to department for correction.'), type: 'success');
     }
 
     public function getBudgetImpactProperty()

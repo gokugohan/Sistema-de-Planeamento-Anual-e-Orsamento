@@ -30,7 +30,7 @@ new class extends Component {
         // Check if year is locked
         $status = FiscalEnvelope::where('fiscal_year', $this->activity->fiscal_year)->value('status');
         if (in_array($status, ['Active', 'Closed'])) {
-            session()->flash('error', 'This fiscal year is finalized and cannot be modified.');
+            $this->dispatch('toast', message: 'This fiscal year is finalized and cannot be modified.', type: 'error');
             // $this->redirect(route('activities.index'), navigate: true);
 
             $this->redirect(route('activities.show', $activity->id), navigate: true);

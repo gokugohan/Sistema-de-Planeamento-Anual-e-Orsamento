@@ -35,6 +35,25 @@ new class extends Component {
             class="flex-1 bg-transparent text-sm text-zinc-700 placeholder:text-zinc-400 focus:outline-none min-w-0">
     </div>
 
+    <!-- Page Breadcrumb -->
+    <div
+        x-data="{ pageTitle: '' }"
+        x-init="
+            function sync() {
+                const parts = document.title.split(' \u2014 ');
+                pageTitle = parts.length > 1 ? parts[0].trim() : '';
+            }
+            sync();
+            document.addEventListener('livewire:navigated', sync);
+        "
+        class="hidden md:flex items-center gap-2 text-sm"
+        x-show="pageTitle"
+        x-cloak
+    >
+        <span class="text-zinc-300">/</span>
+        <span x-text="pageTitle" class="font-medium text-zinc-700 truncate max-w-[200px]"></span>
+    </div>
+
     <!-- Right Side -->
     <div class="ml-auto flex items-center gap-1">
 

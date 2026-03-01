@@ -33,7 +33,7 @@ new class extends Component {
 
         $this->reset(['name', 'oge_code', 'objective']);
         $this->programs = Program::all();
-        session()->flash('message', __('Budget program created successfully.'));
+        $this->dispatch('toast', message: __('Budget program created successfully.'), type: 'success');
     }
 }; ?>
 

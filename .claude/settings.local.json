@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(REPO=\"D:/chebre/src/Sistema de Planeamento Anual e Orçamento\")",
+      "Bash(perl -i -pe:*)",
+      "Bash(BASE=\"$REPO/resources/views/livewire\")",
+      "Bash(__NEW_LINE_1937dd386d073a84__ perl -i -pe \"\n    s/session\\\\\\(\\\\\\)->flash\\\\\\(''success'',\\\\s*\\(.*\\)\\\\\\)/$this->dispatch\\(''toast'', message: $1, type: ''success''\\)/g;\n    s/session\\\\\\(\\\\\\)->flash\\\\\\(''error'',\\\\s*\\(.*\\)\\\\\\)/$this->dispatch\\(''toast'', message: $1, type: ''error''\\)/g;\n    s/session\\\\\\(\\\\\\)->flash\\\\\\(''message'',\\\\s*\\(.*\\)\\\\\\)/$this->dispatch\\(''toast'', message: $1\\)/g;\n\" \"$BASE/pages/management/entities.blade.php\" \"$BASE/pages/monitoring/quarterly-progress.blade.php\" \"$BASE/pages/budget/manage-envelopes.blade.php\" \"$BASE/testing/simulation-list.blade.php\" \"$BASE/pages/planning/paa-approval.blade.php\" \"$BASE/pages/planning/director-budget-review.blade.php\" \"$BASE/pages/activities/list-activities.blade.php\" \"$BASE/pages/budget/manage-budget.blade.php\" \"$BASE/pages/activities/manage-indicators.blade.php\" \"$BASE/pages/monitoring/indicator-approval.blade.php\" \"$BASE/pages/management/users/user-management.blade.php\" \"$BASE/pages/planning/fiscal-management.blade.php\" \"$BASE/pages/admin/directorates.blade.php\" \"$BASE/pages/admin/programs.blade.php\")",
+      "Bash(git restore:*)",
+      "Bash(/tmp/fix_flash.pl:*)",
+      "Bash(perl:*)",
+      "Bash(php -r \":*)",
+      "Bash(php fix_flash.php)"
+    ]
+  }
+}

@@ -50,11 +50,17 @@
     }
 
     .nav-item-active {
-        @apply bg-white/10 text-white;
+        @apply bg-indigo-500/20 text-white ring-1 ring-inset ring-indigo-500/25;
     }
 
     .nav-item-inactive {
         @apply text-zinc-400 hover:bg-white/5 hover:text-zinc-100;
+    }
+
+    /* ─── Loading States ─────────────────────────────────────── */
+    [wire\:loading]:not([wire\:loading\.remove]) {
+        opacity: 0.65;
+        cursor: wait;
     }
 
     /* ─── Form Controls ───────────────────────────────────── */

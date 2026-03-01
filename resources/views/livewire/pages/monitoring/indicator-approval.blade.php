@@ -59,7 +59,7 @@ new class extends Component {
             'verified_at' => now()
         ]);
         $this->loadPending();
-        session()->flash('message', __('Progress verified successfully.'));
+        $this->dispatch('toast', message: __('Progress verified successfully.'), type: 'success');
     }
 
     public function reject($id)
@@ -67,7 +67,7 @@ new class extends Component {
         $progress = IndicatorProgress::findOrFail($id);
         $progress->update(['status' => 'Rejected']);
         $this->loadPending();
-        session()->flash('message', __('Progress rejected.'));
+        $this->dispatch('toast', message: __('Progress rejected.'), type: 'success');
     }
 
     public function approveAll()
@@ -80,7 +80,7 @@ new class extends Component {
             ]);
         }
         $this->loadPending();
-        session()->flash('message', __('All pending progress verified.'));
+        $this->dispatch('toast', message: __('All pending progress verified.'), type: 'success');
     }
 }; ?>
 

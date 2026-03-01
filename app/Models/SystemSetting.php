@@ -11,22 +11,44 @@ class SystemSetting extends Model
 
     protected $fillable = ['key', 'value', 'type', 'description'];
 
+    /** In-memory cache for the current request */
+    private static array $cache = [];
+
+    /** Flush the cache (call after set()) */
+    public static function flushCache(): void
+    {
+        self::$cache = [];
+    }
+
     public static function get($key, $default = null)
     {
+        if (array_key_exists($key, self::$cache)) {
+            $value = self::$cache[$key];
+            return $value === null ? $default : $value;
+        }
+
         $setting = self::where('key', $key)->first();
-        if (!$setting)
+
+        if (!$setting) {
+            self::$cache[$key] = null;
             return $default;
+        }
 
         // If it looks like a boolean (1, 0, true, false as strings), treat it as such
         if ($setting->type === 'boolean' || in_array(strtolower((string) $setting->value), ['1', '0', 'true', 'false', 'on', 'off', 'yes', 'no'])) {
-            return filter_var($setting->value, FILTER_VALIDATE_BOOLEAN);
+            $result = filter_var($setting->value, FILTER_VALIDATE_BOOLEAN);
+            self::$cache[$key] = $result;
+            return $result;
         }
 
-        return match ($setting->type) {
+        $result = match ($setting->type) {
             'integer' => (int) $setting->value,
             'json' => json_decode($setting->value, true),
             default => $setting->value,
         };
+
+        self::$cache[$key] = $result;
+        return $result;
     }
 
     /**
@@ -55,9 +77,13 @@ class SystemSetting extends Model
             default => is_bool($value) ? ($value ? '1' : '0') : (string) $value,
         };
 
-        return self::updateOrCreate(
+        $result = self::updateOrCreate(
             ['key' => $key],
             ['value' => $val, 'type' => $type, 'description' => $description]
         );
+
+        unset(self::$cache[$key]);
+
+        return $result;
     }
 }

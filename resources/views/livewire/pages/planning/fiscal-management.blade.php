@@ -78,7 +78,7 @@ new class extends Component {
         $this->selectedEnvelopeId = $envelope->id;
         $this->loadAllocations();
         $this->showCreateModal = false;
-        session()->flash('message', __('Fiscal Envelope created.'));
+        $this->dispatch('toast', message: __('Fiscal Envelope created.'), type: 'success');
     }
 
     public function approveEnvelope()
@@ -87,7 +87,7 @@ new class extends Component {
             $envelope = FiscalEnvelope::findOrFail($this->selectedEnvelopeId);
             $envelope->update(['status' => FiscalEnvelope::STATUS_APPROVED, 'approved_date' => now()]);
             $this->loadEnvelopes();
-            session()->flash('success', __('Envelope officially approved and active.'));
+            $this->dispatch('toast', message: __('Envelope officially approved and active.'), type: 'success');
         }
     }
 }; ?>

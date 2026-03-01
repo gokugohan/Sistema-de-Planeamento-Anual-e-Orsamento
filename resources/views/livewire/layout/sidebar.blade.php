@@ -2,17 +2,26 @@
 
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
+use App\Models\Activity;
 use App\Models\FiscalEnvelope;
 use App\Models\SystemSetting;
 
 new class extends Component {
     public $activeEnvelope;
     public $activeYear;
+    public int $executionRate = 0;
 
     public function mount()
     {
         $this->activeYear = FiscalEnvelope::getEffectiveYear();
         $this->activeEnvelope = FiscalEnvelope::where('fiscal_year', $this->activeYear)->first();
+
+        if ($this->activeYear) {
+            $total    = Activity::where('fiscal_year', $this->activeYear)->count();
+            $approved = Activity::where('fiscal_year', $this->activeYear)
+                ->where('status', Activity::STATUS_APPROVED)->count();
+            $this->executionRate = $total > 0 ? (int) round($approved / $total * 100) : 0;
+        }
     }
 
     public function logout(Logout $logout): void
@@ -178,11 +187,10 @@ new class extends Component {
                     </span>
                 </div>
                 <div class="h-1 bg-white/10 rounded-full overflow-hidden">
-                    @php $pct = 58; @endphp
                     <div class="h-full bg-indigo-500 rounded-full transition-all duration-700"
-                        style="width: {{ $pct }}%"></div>
+                        style="width: {{ $executionRate }}%"></div>
                 </div>
-                <p class="text-[10px] text-zinc-600 mt-1.5">{{ $pct }}% {{ __('execution rate') }}</p>
+                <p class="text-[10px] text-zinc-500 mt-1.5">{{ $executionRate }}% {{ __('execution rate') }}</p>
             </div>
         @endif
 
@@ -194,10 +202,10 @@ new class extends Component {
         $sImplBy = \App\Models\SystemSetting::get('implemented_by', '');
     @endphp
     <div class="px-5 pb-4 pt-2 border-t border-white/5">
-        <p class="text-[10px] text-white leading-relaxed">
+        <p class="text-[10px] text-zinc-500 leading-relaxed">
            &copy; {{ date('Y') }} {{ $sOwner }} &mdash; {{ __('All rights reserved') }}
            <br>
-                    {{ $sImplBy ? 'Implemented by ' . $sImplBy : 'N/A' }}
+                    {{ $sImplBy ? __('Implemented by') . ' ' . $sImplBy : 'N/A' }}
         </p>
     </div>
 </div>
