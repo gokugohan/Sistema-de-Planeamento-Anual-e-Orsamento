@@ -13,6 +13,7 @@ use App\Models\AuditLog;
 use App\Models\LineItem;
 use App\Models\Activity;
 use Livewire\Attributes\On;
+use App\Services\EnvelopeDistributor;
 
 
 new class extends Component {
@@ -26,6 +27,8 @@ new class extends Component {
     public $approvedDate;
     public $referenceNumber;
     public $sourceAuthority;
+    public $budgetLawReference;
+    public $promulgationDate;
     public $startDate;
     public $dueDate;
     public $status = 'Draft';
@@ -91,8 +94,14 @@ new class extends Component {
         $this->dispatch('switch-budget-tab', tab: 'envelope');
     }
 
+    private function canManageEnvelopes(): bool
+    {
+        return auth()->user()->canAny(['create_fiscal_envelope', 'edit_fiscal_envelope']);
+    }
+
     public function openModal($year = null): void
     {
+        abort_unless($this->canManageEnvelopes(), 403);
         $this->resetForm();
 
         if ($year) {
@@ -105,6 +114,8 @@ new class extends Component {
             $this->dueDate = $envelope->due_date ? Carbon::parse($envelope->due_date)->format('Y-m-d') : null;
             $this->referenceNumber = $envelope->reference_number;
             $this->sourceAuthority = $envelope->source_authority;
+            $this->budgetLawReference = $envelope->budget_law_reference;
+            $this->promulgationDate = $envelope->promulgation_date?->format('Y-m-d');
             $this->status = $envelope->status;
 
             // Load allocations from relational table
@@ -154,6 +165,8 @@ new class extends Component {
         $this->dueDate = null;
         $this->referenceNumber = null;
         $this->sourceAuthority = null;
+        $this->budgetLawReference = null;
+        $this->promulgationDate = null;
         $this->status = 'Draft';
         $this->isEditing = false;
         $this->categoryAllocations = [];
@@ -162,23 +175,28 @@ new class extends Component {
 
     public function save(): void
     {
+        abort_unless($this->canManageEnvelopes(), 403);
+
         $this->validate([
-            'fiscalYear' => 'required|integer|min:2020|max:2030',
+            'fiscalYear' => 'required|integer|min:2020|max:2035',
             'totalAmount' => 'required|numeric|min:0',
             'approvedDate' => 'required|date',
             'startDate' => 'required|date',
             'dueDate' => 'required|date|after_or_equal:startDate',
-            'referenceNumber' => 'required|string',
-            'status' => 'required|in:Draft,Pending Approval,Approved,Closed',
+            'referenceNumber' => 'required|string|max:255',
+            'budgetLawReference' => 'nullable|string|max:255',
+            'promulgationDate' => 'nullable|date',
         ]);
 
-        $envelope = FiscalEnvelope::find($this->activeEnvelope->id);
-
-        if($envelope->status !== App\Models\FiscalEnvelope::STATUS_DRAFT) {
+        // The envelope being saved is the one for $fiscalYear, not the one on screen.
+        $existing = FiscalEnvelope::production()->where('fiscal_year', $this->fiscalYear)->first();
+        if ($existing && $existing->status !== FiscalEnvelope::STATUS_DRAFT) {
             $this->dispatch('toast', message: __('You cannot edit an envelope that is not in draft status.'), type: 'error');
             return;
         }
 
+        // Status is never taken from the form: new envelopes start as Draft and only
+        // move through submitForApproval() / approve() / reject().
         $envelope = FiscalEnvelope::updateOrCreate(
             ['fiscal_year' => $this->fiscalYear],
             [
@@ -188,10 +206,11 @@ new class extends Component {
                 'due_date' => $this->dueDate,
                 'reference_number' => $this->referenceNumber,
                 'source_authority' => $this->sourceAuthority,
-                'status' => $this->status,
+                'budget_law_reference' => $this->budgetLawReference ?: null,
+                'promulgation_date' => $this->promulgationDate ?: null,
+                'status' => $existing?->status ?? FiscalEnvelope::STATUS_DRAFT,
             ]
         );
-
 
         // Create/update category allocations with variance tracking
         foreach ($this->economicClassifications as $classification) {
@@ -213,7 +232,7 @@ new class extends Component {
             $allocation->calculateVariance();
         }
 
-        $this->distributeEnvelope($envelope);
+        // Distribution happens only from an Approved envelope, via confirmRedistribution().
 
         $this->loadData();
         // If we just saved the active envelope (or a new one which becomes active), refresh it
@@ -229,7 +248,20 @@ new class extends Component {
 
     public function submitForApproval($id): void
     {
+        abort_unless($this->canManageEnvelopes(), 403);
+
         $envelope = FiscalEnvelope::production()->findOrFail($id);
+
+        if ($envelope->status !== FiscalEnvelope::STATUS_DRAFT) {
+            $this->dispatch('toast', message: __('Only a draft envelope can be submitted.'), type: 'error');
+            return;
+        }
+
+        if (!$envelope->hasLegalBasis()) {
+            $this->dispatch('toast', message: __('Record the State Budget law reference and promulgation date before submitting.'), type: 'error');
+            return;
+        }
+
         $envelope->update(['status' => FiscalEnvelope::STATUS_PENDING]);
 
         AuditLog::create([
@@ -261,6 +293,12 @@ new class extends Component {
         }
 
         $envelope = FiscalEnvelope::production()->findOrFail($id);
+
+        if ($envelope->status !== FiscalEnvelope::STATUS_PENDING || !$envelope->hasLegalBasis()) {
+            $this->dispatch('toast', message: __('Only a pending envelope with a promulgated budget law can be approved.'), type: 'error');
+            return;
+        }
+
         $envelope->update([
             'status' => FiscalEnvelope::STATUS_APPROVED,
             'approved_date' => now(),
@@ -285,6 +323,12 @@ new class extends Component {
         }
 
         $envelope = FiscalEnvelope::production()->findOrFail($id);
+
+        if ($envelope->status !== FiscalEnvelope::STATUS_PENDING) {
+            $this->dispatch('toast', message: __('Only a pending envelope can be rejected.'), type: 'error');
+            return;
+        }
+
         $envelope->update(['status' => FiscalEnvelope::STATUS_DRAFT]);
 
         AuditLog::create([
@@ -299,62 +343,6 @@ new class extends Component {
     }
 
 
-    protected function distributeEnvelope($envelope): void
-    {
-
-        // dd($envelope);
-        // 1. Distribute by Economic Category proportionally to LineItems
-
-        foreach ($envelope->categoryAllocations as $allocation) {
-            $categoryAmount = (float) $allocation->allocated_amount;
-            $classificationId = $allocation->economic_classification_id;
-
-            // Get all proposals for this category in the same fiscal year
-            $proposals = LineItem::where('economic_classification_id', $classificationId)
-                ->whereHas('activity', function ($query) use ($envelope) {
-                    $query->where('fiscal_year', $envelope->fiscal_year);
-                })
-                ->get();
-
-            $totalRequested = $proposals->sum('estimated_amount');
-
-            if ($totalRequested > 0) {
-                // Calculate scaling ratio
-                $ratio = min($categoryAmount / $totalRequested, 1000.0); // Safety cap but usually <= 1.0
-
-                foreach ($proposals as $proposal) {
-                    AdjustedBudget::updateOrCreate(
-                        ['line_item_id' => $proposal->id],
-                        [
-                            'approved_amount' => (float) $proposal->estimated_amount * $ratio,
-                            'status' => Activity::STATUS_APPROVED
-                        ]
-                    );
-                }
-            } else {
-                // If no requests, maybe log or handle? For now skip.
-            }
-        }
-
-
-
-        // 3. Sync category metrics
-        foreach ($envelope->categoryAllocations as $allocation) {
-            $allocation->calculateVariance();
-        }
-
-
-        AuditLog::create([
-            'action' => 'envelope_distributed_proportional',
-            'user_id' => auth()->id(),
-            'description' => "Proportional OGE distribution executed for year {$envelope->fiscal_year}",
-            'metadata' => [
-                'fiscal_year' => $envelope->fiscal_year,
-                'total_amount' => $envelope->total_amount,
-            ],
-        ]);
-    }
-
     public function openRedistributionModal($envelopeId): void
     {
         if (!auth()->user()->isAdministrator() && !auth()->user()->isMinister()) {
@@ -362,50 +350,14 @@ new class extends Component {
             return;
         }
 
-        $envelope = FiscalEnvelope::production()->with('categoryAllocations.economicClassification')->findOrFail($envelopeId);
+        $envelope = FiscalEnvelope::production()->findOrFail($envelopeId);
 
-        // Calculate redistribution preview
-        $this->redistributionPreview = [];
-
-        foreach ($envelope->categoryAllocations as $allocation) {
-            $categoryAmount = (float) $allocation->allocated_amount;
-            $classificationId = $allocation->economic_classification_id;
-
-            $proposals = LineItem::where('economic_classification_id', $classificationId)
-                ->whereHas('activity', function ($query) use ($envelope) {
-                    $query->where('fiscal_year', $envelope->fiscal_year);
-                })
-                ->get();
-
-            $totalRequested = $proposals->sum('estimated_amount');
-            $ratio = $totalRequested > 0 ? min($categoryAmount / $totalRequested, 1000.0) : 0;
-
-            $affectedActivities = [];
-            foreach ($proposals as $proposal) {
-                $currentApproved = $proposal->adjustedBudget->approved_amount ?? 0;
-                $newApproved = (float) $proposal->estimated_amount * $ratio;
-
-                $affectedActivities[] = [
-                    'activity_id' => $proposal->activity_id,
-                    'activity_description' => $proposal->activity->description ?? 'N/A',
-                    'line_item_id' => $proposal->id,
-                    'line_item_description' => $proposal->description,
-                    'estimated' => $proposal->estimated_amount,
-                    'current_approved' => $currentApproved,
-                    'new_approved' => $newApproved,
-                    'change' => $newApproved - $currentApproved,
-                ];
-            }
-
-            $this->redistributionPreview[] = [
-                'category' => $allocation->economicClassification,
-                'allocated_amount' => $categoryAmount,
-                'total_requested' => $totalRequested,
-                'ratio' => $ratio,
-                'affected_count' => count($affectedActivities),
-                'activities' => $affectedActivities,
-            ];
+        if ($envelope->status !== FiscalEnvelope::STATUS_APPROVED) {
+            $this->dispatch('toast', message: __('Only an approved fiscal envelope can be distributed.'), type: 'error');
+            return;
         }
+
+        $this->redistributionPreview = app(EnvelopeDistributor::class)->preview($envelope);
 
         $this->redistributionModalOpen = true;
     }
@@ -417,8 +369,14 @@ new class extends Component {
             return;
         }
 
-        $envelope = FiscalEnvelope::production()->with('categoryAllocations')->findOrFail($envelopeId);
-        $this->distributeEnvelope($envelope);
+        $envelope = FiscalEnvelope::production()->findOrFail($envelopeId);
+
+        try {
+            $summary = app(EnvelopeDistributor::class)->distribute($envelope);
+        } catch (\DomainException $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+            return;
+        }
 
         $this->loadData();
         if ($this->activeEnvelope && $this->activeEnvelope->id == $envelopeId) {
@@ -428,15 +386,12 @@ new class extends Component {
         $this->redistributionModalOpen = false;
         $this->redistributionPreview = [];
 
-        $this->dispatch('toast', message: __("Budget for :year redistributed successfully!", ['year' => $envelope->fiscal_year]), type: 'success');
-    }
-
-    protected function adjustIndicators($activity, $ratio): void
-    {
-        $indicators = Indicator::where('activity_id', $activity->id)->get();
-        foreach ($indicators as $indicator) {
-            $indicator->update(['annual_target' => $indicator->annual_target * $ratio]);
-        }
+        $this->dispatch('toast', message: __('Budget for :year distributed: $ :d to :n approved budget lines, $ :u left unallocated.', [
+            'year' => $envelope->fiscal_year,
+            'd' => number_format($summary['distributed'], 2),
+            'n' => $summary['lines'],
+            'u' => number_format($summary['unallocated'], 2),
+        ]), type: 'success');
     }
 
     // Helper to calculate total allocated to categories in form
@@ -544,18 +499,22 @@ new class extends Component {
                             </div>
                         </div>
 
-                        <div class="space-y-2">
-                            <label
-                                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Status') }}
-                                *</label>
-                            <select wire:model="status"
-                                class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
-                                <option value="Draft">{{ __('Draft') }}</option>
-                                <option value="Pending Approval">{{ __('Pending Approval') }}</option>
-                                <option value="Approved">{{ __('Approved') }}</option>
-                                <option value="Closed">{{ __('Closed') }}</option>
-                            </select>
-                            @error('status') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                        <div class="rounded-md border border-zinc-200 bg-zinc-50 p-4 space-y-3">
+                            <p class="text-xs font-medium text-zinc-600">
+                                {{ __('Legal basis: the envelope exists only after Parliament approves the State Budget and the President promulgates it. Required before submitting.') }}
+                            </p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium leading-none">{{ __('State Budget law') }}</label>
+                                    <input type="text" wire:model="budgetLawReference" placeholder="Lei n.º __/2026" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                                    @error('budgetLawReference') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-sm font-medium leading-none">{{ __('Promulgation date') }}</label>
+                                    <input type="date" wire:model="promulgationDate" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                                    @error('promulgationDate') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -665,11 +624,11 @@ new class extends Component {
                                     <div class="flex items-center gap-3">
                                         <div
                                             class="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-black text-sm">
-                                            {{ $preview['category']->code }}
+                                            {{ $preview['category_code'] }}
                                         </div>
                                         <div>
-                                            <h3 class="text-sm font-black text-gray-900">{{ $preview['category']->name }}</h3>
-                                            <p class="text-xs text-gray-500">{{ __($preview['category']->description) }}</p>
+                                            <h3 class="text-sm font-black text-gray-900">{{ $preview['category_name'] }}</h3>
+                                            <p class="text-xs text-gray-500">{{ __($preview['category_description']) }}</p>
                                         </div>
                                     </div>
                                     <div class="text-right">
@@ -679,7 +638,7 @@ new class extends Component {
                                             {{ number_format($preview['ratio'] * 100, 1) }}%</p>
                                     </div>
                                 </div>
-                                <div class="mt-4 grid grid-cols-2 gap-4">
+                                <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
                                     <div>
                                         <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
                                             {{ __('OGE Allocated') }}</p>
@@ -692,22 +651,34 @@ new class extends Component {
                                         <p class="text-sm font-bold text-gray-900">$
                                             {{ number_format($preview['total_requested'], 2) }}</p>
                                     </div>
+                                    <div>
+                                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                                            {{ __('To distribute') }}</p>
+                                        <p class="text-sm font-bold text-gray-900">$
+                                            {{ number_format($preview['distributed'], 2) }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                                            {{ __('Unallocated') }}</p>
+                                        <p class="text-sm font-bold {{ $preview['unallocated'] > 0 ? 'text-amber-600' : 'text-gray-900' }}">$
+                                            {{ number_format($preview['unallocated'], 2) }}</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            @if(count($preview['activities']) > 0)
+                            @if(count($preview['lines']) > 0)
                                 <div class="p-4">
                                     <p class="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
-                                        {{ __('Affected Activities') }} ({{ $preview['affected_count'] }})</p>
+                                        {{ __('Approved budget lines') }} ({{ $preview['affected_count'] }})</p>
                                     <div class="space-y-2 max-h-60 overflow-y-auto">
-                                        @foreach($preview['activities'] as $activity)
+                                        @foreach($preview['lines'] as $activity)
                                             <div class="p-3 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
                                                 <div class="flex items-start justify-between gap-4">
                                                     <div class="flex-1 min-w-0">
                                                         <p class="text-xs font-bold text-gray-900 truncate">
                                                             {{ $activity['activity_description'] }}</p>
                                                         <p class="text-[10px] text-gray-500 mt-0.5">
-                                                            {{ $activity['line_item_description'] }}</p>
+                                                            {{ $activity['directorate'] }} · {{ $activity['line_code'] }} · {{ __('requested') }} $ {{ number_format($activity['estimated'], 2) }}</p>
                                                     </div>
                                                     <div class="flex items-center gap-4 shrink-0">
                                                         <div class="text-right">
@@ -746,7 +717,7 @@ new class extends Component {
                                 </div>
                             @else
                                 <div class="p-4 text-center text-sm text-gray-400 italic">
-                                    {{ __('No activities found for this category') }}
+                                    {{ __('No approved activities request this category') }}
                                 </div>
                             @endif
                         </div>

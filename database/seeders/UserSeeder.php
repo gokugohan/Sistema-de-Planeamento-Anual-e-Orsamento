@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         $minister = User::firstOrCreate(
             ['email' => 'ministro@goku.tl'],
             [
-                'name' => 'Ministro da Administração',
+                'name' => 'Ministro dos Transportes e Comunicações',
                 'password' => Hash::make('password'),
             ]
         );

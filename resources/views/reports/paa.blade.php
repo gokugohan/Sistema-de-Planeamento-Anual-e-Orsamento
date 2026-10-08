@@ -48,6 +48,9 @@
                     </svg>
                     {{ __('Export Data') }}
                 </x-ui.button>
+                <x-ui.button variant="primary" size="md" href="{{ route('reports.approved-plan', ['year' => $selectedYear]) }}" class="!rounded-xl">
+                    {{ __('Approved plan for CRO (PDF)') }}
+                </x-ui.button>
                 <x-ui.button variant="black" shadow="lg" onclick="window.print()" class="!rounded-xl px-8">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
@@ -69,7 +72,7 @@
                     <div class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-4">República
                         Democrática de Timor-Leste</div>
                     <h1 class="text-3xl font-black uppercase tracking-tighter text-slate-900 leading-none">
-                        {{ __('Ministry of State Administration') }}
+                        {{ \App\Models\SystemSetting::getLocalized('org_name', config('app.name')) }}
                     </h1>
                     <div
                         class="mt-8 px-6 py-2 bg-slate-900 text-white inline-block text-xs font-black uppercase tracking-[0.2em] italic">
@@ -556,7 +559,7 @@
                         <div class="border-t-2 border-slate-900 pt-4">
                             <div class="text-xs font-black uppercase">{{ __('Director General of Planning') }}</div>
                             <div class="text-[10px] font-bold text-slate-400 mt-1 uppercase">
-                                {{ __('Ministry of State Administration') }}</div>
+                                {{ \App\Models\SystemSetting::getLocalized('org_name', config('app.name')) }}</div>
                         </div>
                     </div>
                     <div class="text-center space-y-24">

@@ -1,0 +1,122 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Activity;
+use App\Models\EconomicClassification;
+use App\Models\SystemSetting;
+use Illuminate\Support\Collection;
+
+/**
+ * The ministry's approved Annual Activity Plan (PAA) and budget proposal for a
+ * fiscal year, as submitted to the Comité de Revisão Orçamental (CRO).
+ *
+ * Only activities with status Approved are included. Activities still in the
+ * internal workflow are counted separately so the reader can see whether the
+ * plan is complete.
+ */
+class ApprovedPlanReport
+{
+    public function build(int $year): array
+    {
+        $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name']);
+
+        $activities = Activity::query()
+            ->where('fiscal_year', $year)
+            ->where('status', Activity::STATUS_APPROVED)
+            ->with([
+                'directorate:id,code,name,type,parent_id',
+                'directorate.parent:id,code,name',
+                'program:id,oge_code,name',
+                'indicators:id,activity_id,name,type,unit,annual_target',
+                'lineItems:id,activity_id,economic_classification_id,estimated_amount',
+            ])
+            ->orderBy('directorate_id')
+            ->orderBy('id')
+            ->get();
+
+        $empty = fn () => array_fill_keys($classes->pluck('id')->all(), 0.0);
+
+        // Per-activity category amounts, computed once.
+        $rows = $activities->map(function (Activity $a) use ($empty) {
+            $byClass = $empty();
+            foreach ($a->lineItems as $li) {
+                $byClass[$li->economic_classification_id] = ($byClass[$li->economic_classification_id] ?? 0) + (float) $li->estimated_amount;
+            }
+
+            return ['activity' => $a, 'by_class' => $byClass, 'total' => array_sum($byClass)];
+        });
+
+        $sum = function (Collection $group) use ($empty) {
+            $byClass = $empty();
+            foreach ($group as $r) {
+                foreach ($r['by_class'] as $id => $v) {
+                    $byClass[$id] += $v;
+                }
+            }
+
+            return ['by_class' => $byClass, 'total' => array_sum($byClass), 'count' => $group->count()];
+        };
+
+        $byProgram = $rows
+            ->groupBy(fn ($r) => $r['activity']->program_id)
+            ->map(fn ($g) => ['code' => $g->first()['activity']->program->oge_code ?? '', 'name' => $g->first()['activity']->program->name ?? '—'] + $sum($g))
+            ->sortBy('code')
+            ->values();
+
+        // Group by the top of the hierarchy (Direção-Geral / Gabinete), then by unit.
+        $byUnit = $rows
+            ->groupBy(fn ($r) => $r['activity']->directorate->parent_id ?? $r['activity']->directorate_id)
+            ->map(function ($g) use ($sum) {
+                $d = $g->first()['activity']->directorate;
+                $root = $d->parent ?? $d;
+                $units = $g->groupBy(fn ($r) => $r['activity']->directorate_id)
+                    ->map(fn ($u) => [
+                        'code' => $u->first()['activity']->directorate->code,
+                        'name' => $u->first()['activity']->directorate->name,
+                        'rows' => $u->values(),
+                    ] + $sum($u))
+                    ->sortBy('code')
+                    ->values();
+
+                return ['code' => $root->code, 'name' => $root->name, 'units' => $units] + $sum($g);
+            })
+            ->sortBy('code')
+            ->values();
+
+        $pending = Activity::query()
+            ->where('fiscal_year', $year)
+            ->where('status', '!=', Activity::STATUS_APPROVED)
+            ->selectRaw('status, COUNT(*) as n')
+            ->groupBy('status')
+            ->pluck('n', 'status')
+            ->map(fn ($n) => (int) $n)
+            ->all();
+
+        $totals = $sum($rows);
+
+        $report = [
+            'year' => $year,
+            'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
+            'organization_abbr' => SystemSetting::getLocalized('org_abbr', ''),
+            'classes' => $classes,
+            'totals' => $totals,
+            'by_program' => $byProgram,
+            'by_unit' => $byUnit,
+            'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),
+            'pending' => $pending,
+            'generated_at' => now('Asia/Dili'), // Timor-Leste time (TLT, UTC+9)
+            'generated_by' => auth()->user()?->name,
+        ];
+
+        // Fingerprint of the plan content: identical plans give identical
+        // fingerprints, so a printed copy can be checked against the system.
+        $report['fingerprint'] = substr(hash('sha256', json_encode([
+            $year,
+            $rows->map(fn ($r) => [$r['activity']->id, $r['activity']->updated_at?->timestamp, $r['by_class']])->all(),
+        ])), 0, 16);
+        $report['reference'] = sprintf('PAA-%d-%s', $year, strtoupper($report['fingerprint']));
+
+        return $report;
+    }
+}

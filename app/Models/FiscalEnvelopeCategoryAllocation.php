@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FiscalEnvelopeCategoryAllocation extends Model
 {
+    use \App\Models\Concerns\Auditable;
     use HasFactory;
 
     protected $fillable = [
@@ -56,6 +57,11 @@ class FiscalEnvelopeCategoryAllocation extends Model
      */
     public function calculateVariance(): void
     {
+        // Re-read the approved plan so variance never uses a stale planned_amount.
+        $this->planned_amount = self::calculatePlannedAmount(
+            (int) $this->fiscalEnvelope->fiscal_year,
+            (int) $this->economic_classification_id
+        );
         $this->syncCommittedAmount();
 
         $this->variance_amount = (float) $this->allocated_amount - (float) $this->planned_amount;
@@ -92,16 +98,14 @@ class FiscalEnvelopeCategoryAllocation extends Model
     }
 
     /**
-     * Static helper: Calculate planned amount from budget proposals
-     * 
-     * @param int $fiscalYear
-     * @param int $economicClassificationId
-     * @return float
+     * Planned amount for a category = budget lines of APPROVED activities only.
+     * Drafts, submissions under review and rejected plans are not the plan.
      */
     public static function calculatePlannedAmount(int $fiscalYear, int $economicClassificationId): float
     {
-        return LineItem::whereHas('activity', function ($query) use ($fiscalYear) {
-            $query->where('fiscal_year', $fiscalYear);
+        return (float) LineItem::whereHas('activity', function ($query) use ($fiscalYear) {
+            $query->where('fiscal_year', $fiscalYear)
+                ->where('status', Activity::STATUS_APPROVED);
         })
             ->where('economic_classification_id', $economicClassificationId)
             ->sum('estimated_amount');

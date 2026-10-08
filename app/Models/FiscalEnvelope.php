@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FiscalEnvelope extends Model
 {
+    use \App\Models\Concerns\Auditable;
     use HasFactory;
 
     /**
@@ -15,7 +16,14 @@ class FiscalEnvelope extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new \App\Models\Scopes\ProductionScope);
+
+        $forget = fn () => self::$activeMemo = null;
+        static::saved($forget);
+        static::deleted($forget);
     }
+
+    /** Per-request memo: [0 => ?FiscalEnvelope] */
+    private static ?array $activeMemo = null;
 
     const STATUS_DRAFT = 'Draft';
     const STATUS_PENDING = 'Pending Approval';
@@ -32,6 +40,8 @@ class FiscalEnvelope extends Model
         'start_date',
         'due_date',
         'is_test_data',
+        'budget_law_reference',
+        'promulgation_date',
     ];
 
     public function isDraft(): bool
@@ -46,6 +56,12 @@ class FiscalEnvelope extends Model
     {
         return $this->status === self::STATUS_APPROVED;
     }
+    /** The OGE law has been approved and promulgated, so the envelope is legally real. */
+    public function hasLegalBasis(): bool
+    {
+        return filled($this->budget_law_reference) && $this->promulgation_date !== null;
+    }
+
     public function isClosed(): bool
     {
         return $this->status === self::STATUS_CLOSED;
@@ -57,6 +73,7 @@ class FiscalEnvelope extends Model
             'approved_date' => 'date',
             'start_date' => 'date',
             'due_date' => 'date',
+            'promulgation_date' => 'date',
             'is_test_data' => 'boolean',
         ];
     }
@@ -103,8 +120,7 @@ class FiscalEnvelope extends Model
      */
     public static function getActiveFiscalYear(): ?int
     {
-        $activeEnvelope = self::activeByDate()->first();
-        return $activeEnvelope ? $activeEnvelope->fiscal_year : null;
+        return self::getActiveEnvelope()?->fiscal_year;
     }
 
     /**
@@ -112,7 +128,7 @@ class FiscalEnvelope extends Model
      */
     public static function getActiveEnvelope(): ?self
     {
-        return self::activeByDate()->first();
+        return (self::$activeMemo ??= [self::activeByDate()->first()])[0];
     }
 
     /**
