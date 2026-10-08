@@ -1,11 +1,13 @@
 <?php
 
+use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public function getNotificationsProperty()
+    #[Computed]
+    public function notifications()
     {
-        return auth()->user()->unreadNotifications;
+        return auth()->user()->unreadNotifications()->latest()->limit(20)->get();
     }
 
     public function markAsRead($id)

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LineItem extends Model
 {
+    use \App\Models\Concerns\Auditable;
     use HasFactory;
 
     /**

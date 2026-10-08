@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Indicator extends Model
 {
+    use \App\Models\Concerns\Auditable;
     use HasFactory;
 
     protected $fillable = [

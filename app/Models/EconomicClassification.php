@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EconomicClassification extends Model
 {
+    use \App\Models\Concerns\Auditable;
     use HasFactory;
 
     protected $fillable = ['code', 'name', 'description', 'category_type'];

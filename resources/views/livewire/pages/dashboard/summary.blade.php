@@ -48,97 +48,97 @@ new class extends Component {
         $activeEnvelope = App\Models\FiscalEnvelope::where('fiscal_year', $this->activeYear)->activeByDate()->first();
         $this->approvedTotal = $activeEnvelope ? $activeEnvelope->total_amount : (FiscalEnvelope::where('fiscal_year', $this->activeYear)->value('total_amount') ?? 0);
 
-        $query = Activity::where('fiscal_year', $this->activeYear)
-            ->with(['directorate', 'lineItems.economicClassification', 'lineItems.adjustedBudget', 'program']);
+        $filtered = function () {
+            // Scope is qualified by hand: the global scope's bare is_test_data is ambiguous once line_items is joined
+            $q = Activity::withoutGlobalScopes()->where('activities.is_test_data', false)->where('activities.fiscal_year', $this->activeYear);
+            if ($this->selectedDirectorate) {
+                $q->where('activities.directorate_id', $this->selectedDirectorate);
+            }
+            if ($this->selectedCategory) {
+                $q->whereExists(fn($sub) => $sub->selectRaw('1')->from('line_items')
+                    ->whereColumn('line_items.activity_id', 'activities.id')
+                    ->where('line_items.is_test_data', false)
+                    ->where('line_items.economic_classification_id', $this->selectedCategory));
+            }
+            return $q;
+        };
 
-        if ($this->selectedDirectorate) {
-            $query->where('directorate_id', $this->selectedDirectorate);
-        }
-
-        if ($this->selectedCategory) {
-            $query->whereHas('lineItems', fn($q) => $q->where('economic_classification_id', $this->selectedCategory));
-        }
-
-        $activities = $query->get();
-        $this->requestedTotal = $activities->flatMap->lineItems->sum('estimated_amount');
-
-        $statuses = [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_APPROVED];
-        foreach ($statuses as $status) {
-            $count = $activities->where('status', $status)->count();
+        // Status counts (single grouped query)
+        $byStatus = $filtered()->selectRaw('activities.status, COUNT(*) as c')->groupBy('activities.status')->pluck('c', 'status');
+        foreach ([Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_APPROVED] as $status) {
+            $count = (int) ($byStatus[$status] ?? 0);
             $this->activityCounts[$status] = $count;
             if ($count > 0) {
                 $this->statusData[] = ['label' => __($status), 'value' => $count];
             }
         }
 
-        // Fetch Directorate Data
-        $dirTotals = [];
-        foreach ($activities as $activity) {
-            $name = $activity->directorate->name ?? __('Unknown');
-            $amount = $activity->lineItems->sum('estimated_amount');
-            $dirTotals[$name] = ($dirTotals[$name] ?? 0) + $amount;
+        // Money, grouped in the database by directorate / program / classification
+        $rows = $filtered()
+            ->leftJoin('line_items', fn($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
+            ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
+            ->leftJoin('directorates', 'directorates.id', '=', 'activities.directorate_id')
+            ->leftJoin('programs', 'programs.id', '=', 'activities.program_id')
+            ->leftJoin('economic_classifications', 'economic_classifications.id', '=', 'line_items.economic_classification_id')
+            ->groupBy('activities.directorate_id', 'activities.program_id', 'line_items.economic_classification_id',
+                'directorates.name', 'programs.name', 'economic_classifications.name')
+            ->selectRaw('directorates.name as dir_name, programs.name as prog_name, economic_classifications.name as class_name,
+                line_items.economic_classification_id as class_id,
+                COALESCE(SUM(line_items.estimated_amount), 0) as proposed,
+                COALESCE(SUM(adjusted_budgets.approved_amount), 0) as allocated')
+            ->get();
+
+        $dirTotals = $progTotals = $classTotals = $perfData = [];
+        $totalAllocated = 0;
+        $this->requestedTotal = 0;
+        foreach ($rows as $r) {
+            $dir = $r->dir_name ?? __('Unknown');
+            $prog = $r->prog_name ?? __('No Program');
+            $dirTotals[$dir] = ($dirTotals[$dir] ?? 0) + $r->proposed;
+            $progTotals[$prog] = ($progTotals[$prog] ?? 0) + $r->proposed;
+            $perfData[$dir]['proposed'] = ($perfData[$dir]['proposed'] ?? 0) + $r->proposed;
+            $perfData[$dir]['allocated'] = ($perfData[$dir]['allocated'] ?? 0) + $r->allocated;
+            $this->requestedTotal += $r->proposed;
+            $totalAllocated += $r->allocated;
+            if ($r->class_id !== null && (!$this->selectedCategory || $r->class_id == $this->selectedCategory)) {
+                $cls = $r->class_name ?? __('Uncategorized');
+                $classTotals[$cls] = ($classTotals[$cls] ?? 0) + $r->proposed;
+            }
         }
         foreach ($dirTotals as $label => $value) {
             $this->directorateData[] = ['label' => $label, 'value' => $value];
         }
-
-        // Fetch Classification Data
-        $classTotals = [];
-        foreach ($activities as $activity) {
-            foreach ($activity->lineItems as $item) {
-                if ($this->selectedCategory && $item->economic_classification_id != $this->selectedCategory)
-                    continue;
-                $name = $item->economicClassification->name ?? __('Uncategorized');
-                $classTotals[$name] = ($classTotals[$name] ?? 0) + $item->estimated_amount;
-            }
-        }
         foreach ($classTotals as $label => $value) {
             $this->classificationData[] = ['label' => $label, 'value' => $value];
         }
-
-        // Program Totals
-        $progTotals = [];
-        foreach ($activities as $activity) {
-            $name = $activity->program->name ?? __('No Program');
-            $amount = $activity->lineItems->sum('estimated_amount');
-            $progTotals[$name] = ($progTotals[$name] ?? 0) + $amount;
-        }
         foreach ($progTotals as $label => $value) {
             $this->programData[] = ['label' => $label, 'value' => $value];
-        }
-
-        // Performance Data (Proposed vs Allocated)
-        $perfData = [];
-        foreach ($activities as $activity) {
-            $dirName = $activity->directorate->name ?? __('Unknown');
-            if (!isset($perfData[$dirName]))
-                $perfData[$dirName] = ['proposed' => 0, 'allocated' => 0];
-            $perfData[$dirName]['proposed'] += $activity->lineItems->sum('estimated_amount');
-            $perfData[$dirName]['allocated'] += $activity->lineItems->sum(fn($i) => $i->adjustedBudget->approved_amount ?? 0);
         }
         foreach ($perfData as $dir => $v) {
             $this->performanceData[] = ['directorate' => $dir, 'proposed' => $v['proposed'], 'allocated' => $v['allocated']];
         }
 
-        // Indicator & Quarterly Performance
-        $indicators = App\Models\Indicator::whereHas('activity', function ($q) use ($activities) {
-            $q->whereIn('id', $activities->pluck('id'));
-        })->with(['progress' => fn($q) => $q->where('status', 'Verified')])->get();
+        // Indicator & quarterly performance: verified sums computed by the database
+        $verified = fn($q) => $q->where('status', 'Verified');
+        $indicators = App\Models\Indicator::whereIn('activity_id', $filtered()->select('activities.id'))
+            ->where('annual_target', '>', 0)
+            ->withSum(['progress as achieved' => $verified], 'achieved_value')
+            ->withSum(['progress as q1' => fn($q) => $verified($q)->where('quarter', 1)], 'achieved_value')
+            ->withSum(['progress as q2' => fn($q) => $verified($q)->where('quarter', 2)], 'achieved_value')
+            ->withSum(['progress as q3' => fn($q) => $verified($q)->where('quarter', 3)], 'achieved_value')
+            ->withSum(['progress as q4' => fn($q) => $verified($q)->where('quarter', 4)], 'achieved_value')
+            ->get(['id', 'annual_target']);
 
         $achTotal = 0;
         $count = 0;
         $qSums = [1 => 0, 2 => 0, 3 => 0, 4 => 0];
         $totalTargets = 0;
-
         foreach ($indicators as $indicator) {
-            if ($indicator->annual_target > 0) {
-                $totalTargets += $indicator->annual_target;
-                $achiedSubTotal = $indicator->progress->sum('achieved_value');
-                $achTotal += min(100, ($achiedSubTotal / $indicator->annual_target) * 100);
-                $count++;
-                foreach ([1, 2, 3, 4] as $q) {
-                    $qSums[$q] += $indicator->progress->where('quarter', $q)->sum('achieved_value');
-                }
+            $totalTargets += $indicator->annual_target;
+            $achTotal += min(100, ($indicator->achieved / $indicator->annual_target) * 100);
+            $count++;
+            foreach ([1, 2, 3, 4] as $q) {
+                $qSums[$q] += $indicator->{"q$q"};
             }
         }
         $this->indicatorData = $count > 0 ? round($achTotal / $count, 1) : 0;
@@ -154,7 +154,6 @@ new class extends Component {
         }
 
         // PAA Execution (Average of Financial and Physical)
-        $totalAllocated = $activities->flatMap->lineItems->sum(fn($i) => $i->adjustedBudget->approved_amount ?? 0);
         $budgetExecution = $this->approvedTotal > 0 ? ($totalAllocated / $this->approvedTotal) * 100 : 0;
         $this->paaExecutionRate = round(($budgetExecution + $this->indicatorData) / 2, 1);
 

@@ -71,6 +71,7 @@ new class extends Component {
 
     public function saveUser()
     {
+        abort_unless(auth()->user()->isAdministrator(), 403);
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $this->userId,
@@ -105,6 +106,7 @@ new class extends Component {
 
     public function deleteUser($id)
     {
+        abort_unless(auth()->user()->isAdministrator(), 403);
         if (!auth()->user()->isAdministrator()) {
             $this->dispatch('toast', message: __('Only administrators can delete user accounts.'), type: 'error');
             return;
@@ -120,6 +122,7 @@ new class extends Component {
 
     public function togglePermission($roleId, $permissionName)
     {
+        abort_unless(auth()->user()->isAdministrator(), 403);
         $role = Role::findOrFail($roleId);
         
         if ($role->hasPermissionTo($permissionName)) {

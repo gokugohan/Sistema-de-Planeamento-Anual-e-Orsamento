@@ -165,18 +165,18 @@
                             <span class="text-[10px] font-medium text-zinc-400 bg-zinc-100 px-1.5 py-0.5 rounded">
                                 {{ $activity->program->oge_code ?? '–' }}
                             </span>
-                            @if($activity->indicators->count() > 0)
+                            @if($activity->indicators_count > 0)
                                 <span class="text-[10px] font-medium text-zinc-400 flex items-center gap-0.5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2.5"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m12 14 4-4 4 4"/><path d="M3 3v18h18"/>
                                     </svg>
-                                    {{ $activity->indicators->count() }}
+                                    {{ $activity->indicators_count }}
                                 </span>
                             @endif
                             <span class="text-[10px] font-medium text-zinc-500">
-                                ${{ number_format($activity->lineItems->sum('estimated_amount') / 1000, 0) }}k
+                                ${{ number_format(($activity->line_items_sum_estimated_amount ?? 0) / 1000, 0) }}k
                             </span>
                         </span>
 

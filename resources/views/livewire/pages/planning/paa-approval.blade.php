@@ -85,6 +85,7 @@ new class extends Component {
 
     public function approveDirectoratePlan($rootDirectorateId)
     {
+        abort_unless(auth()->user()->can('approve_paa'), 403);
         $activitiesToApprove = $this->activities->filter(function($activity) use ($rootDirectorateId) {
             $root = $activity->directorate;
             while ($root->parent) {
@@ -117,6 +118,7 @@ new class extends Component {
 
     public function approve($id)
     {
+        abort_unless(auth()->user()->can('approve_paa'), 403);
         $activity = Activity::findOrFail($id);
         $activity->update(['status' => Activity::STATUS_APPROVED]);
         
@@ -136,6 +138,7 @@ new class extends Component {
 
     public function review($id)
     {
+        abort_unless(auth()->user()->can('approve_paa'), 403);
         $activity = Activity::findOrFail($id);
         
         $newStatus = Activity::STATUS_VALIDATED; // Default to final validation
@@ -160,6 +163,7 @@ new class extends Component {
 
     public function reject($id)
     {
+        abort_unless(auth()->user()->can('approve_paa'), 403);
         $activity = Activity::findOrFail($id);
         $activity->update(['status' => Activity::STATUS_DRAFT]); // Revert to Draft for correction
         

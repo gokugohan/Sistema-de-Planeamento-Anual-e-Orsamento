@@ -38,14 +38,14 @@
                 <td class="px-8 py-6 whitespace-nowrap">
                     <div class="flex items-center gap-2">
                         <x-ui.badge variant="blue" class="!bg-blue-50/50"
-                            title="Indicators">{{ $activity->indicators->count() }} I</x-ui.badge>
+                            title="Indicators">{{ $activity->indicators_count }} I</x-ui.badge>
                         <x-ui.badge variant="indigo" class="!bg-indigo-50/50"
-                            title="Budget Items">{{ $activity->lineItems->count() }} B</x-ui.badge>
+                            title="Budget Items">{{ $activity->line_items_count }} B</x-ui.badge>
                     </div>
                 </td>
                 <td class="px-8 py-6 whitespace-nowrap text-right">
                     <div class="font-black text-slate-900 tracking-tighter text-sm">
-                        $ {{ number_format($activity->lineItems->sum('estimated_amount'), 2) }}
+                        $ {{ number_format(($activity->line_items_sum_estimated_amount ?? 0), 2) }}
                     </div>
                 </td>
                 <td class="px-8 py-6 whitespace-nowrap">

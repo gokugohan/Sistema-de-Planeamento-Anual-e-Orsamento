@@ -63,7 +63,7 @@ new class extends Component {
     {
         $user = auth()->user();
 
-        $query = Activity::with(['program', 'directorate', 'indicators', 'lineItems.adjustedBudget'])
+        $query = Activity::with(['program', 'directorate'])->withCount(['indicators', 'lineItems'])->withSum('lineItems as line_items_sum_estimated_amount', 'estimated_amount')
             ->where('fiscal_year', $this->fiscalYear);
 
         // Enforcement of Directorate Isolation & Hierarchy Support
@@ -155,7 +155,7 @@ new class extends Component {
         $allDirectorates = Directorate::activeInYear($fiscalYear)->get()->keyBy('id');
 
         // ── Query 2: all activities with needed relations ─────────────────
-        $actQuery = Activity::with(['program', 'indicators', 'lineItems'])
+        $actQuery = Activity::with(['program'])->withCount(['indicators', 'lineItems'])->withSum('lineItems as line_items_sum_estimated_amount', 'estimated_amount')
             ->where('fiscal_year', $fiscalYear);
 
         if (!$user->isAdministrator() && !$user->isMinister() && !$user->can('view_all_paa')) {
@@ -190,7 +190,7 @@ new class extends Component {
                 ->map(fn($child) => $buildNode($child->id))
                 ->filter()->values();
 
-            $selfEst  = $activities->sum(fn($a) => $a->lineItems->sum('estimated_amount'));
+            $selfEst  = $activities->sum('line_items_sum_estimated_amount');
             $childEst = $children->sum('total_estimated');
 
             return [
@@ -201,7 +201,7 @@ new class extends Component {
                 'activities'       => $activities,
                 'children'         => $children,
                 'total_activities' => $activities->count() + $children->sum('total_activities'),
-                'total_indicators' => $activities->sum(fn($a) => $a->indicators->count()) + $children->sum('total_indicators'),
+                'total_indicators' => $activities->sum('indicators_count') + $children->sum('total_indicators'),
                 'total_estimated'  => $selfEst + $childEst,
                 'count_draft'      => $activities->where('status', Activity::STATUS_DRAFT)->count()            + $children->sum('count_draft'),
                 'count_review'     => $activities->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED])->count() + $children->sum('count_review'),
@@ -556,7 +556,8 @@ new class extends Component {
     @php
         $user = auth()->user();
 
-        $allActivities = \App\Models\Activity::with(['lineItems'])
+        $allActivities = \App\Models\Activity::select(['activities.id', 'activities.status', 'activities.directorate_id'])
+            ->withSum('lineItems as budget', 'estimated_amount')
             ->where('fiscal_year', $fiscalYear)
             ->when(
                 !$user->isAdministrator() && !$user->isMinister() && !$user->can('view_all_paa'),
@@ -577,7 +578,7 @@ new class extends Component {
         $statSubmitted = $allActivities->whereIn('status', [\App\Models\Activity::STATUS_SUBMITTED, \App\Models\Activity::STATUS_REVIEWED, \App\Models\Activity::STATUS_VALIDATED])->count();
         $statWaiting   = $allActivities->where('status', \App\Models\Activity::STATUS_WAITING_APPROVAL)->count();
         $statApproved  = $allActivities->where('status', \App\Models\Activity::STATUS_APPROVED)->count();
-        $totalBudget   = $allActivities->sum(fn($a) => $a->lineItems->sum('estimated_amount'));
+        $totalBudget   = $allActivities->sum('budget');
 
         $hasDrafts = $allActivities->where('status', \App\Models\Activity::STATUS_DRAFT)
             ->where('directorate_id', $user->directorate_id)

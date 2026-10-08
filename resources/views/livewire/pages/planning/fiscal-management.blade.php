@@ -57,6 +57,7 @@ new class extends Component {
 
     public function updateAllocation($id, $amount)
     {
+        abort_unless(auth()->user()->canAny(['create_fiscal_envelope', 'approve_fiscal_envelope']), 403);
         $allocation = FiscalEnvelopeCategoryAllocation::findOrFail($id);
         $allocation->update(['allocated_amount' => $amount]);
         $allocation->calculateVariance();
@@ -65,6 +66,7 @@ new class extends Component {
 
     public function createEnvelope()
     {
+        abort_unless(auth()->user()->canAny(['create_fiscal_envelope', 'approve_fiscal_envelope']), 403);
         $envelope = FiscalEnvelope::create([
             'fiscal_year' => $this->newYear,
             'reference_number' => $this->newTitle,
@@ -83,6 +85,7 @@ new class extends Component {
 
     public function approveEnvelope()
     {
+        abort_unless(auth()->user()->can('approve_fiscal_envelope'), 403);
         if ($this->selectedEnvelopeId) {
             $envelope = FiscalEnvelope::findOrFail($this->selectedEnvelopeId);
             $envelope->update(['status' => FiscalEnvelope::STATUS_APPROVED, 'approved_date' => now()]);

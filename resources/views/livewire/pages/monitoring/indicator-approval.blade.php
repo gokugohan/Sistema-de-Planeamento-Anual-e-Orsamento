@@ -52,6 +52,7 @@ new class extends Component {
 
     public function approve($id)
     {
+        abort_unless(auth()->user()->can('approve_progress_report'), 403);
         $progress = IndicatorProgress::findOrFail($id);
         $progress->update([
             'status' => 'Verified',
@@ -64,6 +65,7 @@ new class extends Component {
 
     public function reject($id)
     {
+        abort_unless(auth()->user()->can('approve_progress_report'), 403);
         $progress = IndicatorProgress::findOrFail($id);
         $progress->update(['status' => 'Rejected']);
         $this->loadPending();
@@ -72,6 +74,7 @@ new class extends Component {
 
     public function approveAll()
     {
+        abort_unless(auth()->user()->can('approve_progress_report'), 403);
         foreach ($this->pendingProgress as $progress) {
             $progress->update([
                 'status' => 'Verified',

@@ -7,17 +7,37 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SystemSetting extends Model
 {
+    use \App\Models\Concerns\Auditable;
     use HasFactory;
 
     protected $fillable = ['key', 'value', 'type', 'description'];
 
-    /** In-memory cache for the current request */
+    private const CACHE_KEY = 'system_settings.all';
+
+    /** Per-request memo of decoded values */
     private static array $cache = [];
 
-    /** Flush the cache (call after set()) */
+    /** Per-request memo of raw rows (key => [value, type]) */
+    private static ?array $rows = null;
+
+    /** Flush all caches (call after any write) */
     public static function flushCache(): void
     {
         self::$cache = [];
+        self::$rows = null;
+        \Illuminate\Support\Facades\Cache::forget(self::CACHE_KEY);
+    }
+
+    /** Load every setting with a single query, shared across requests. */
+    private static function rows(): array
+    {
+        return self::$rows ??= \Illuminate\Support\Facades\Cache::remember(
+            self::CACHE_KEY,
+            3600,
+            fn () => self::query()->get(['key', 'value', 'type'])
+                ->mapWithKeys(fn ($r) => [$r->key => ['value' => $r->value, 'type' => $r->type]])
+                ->all()
+        );
     }
 
     public static function get($key, $default = null)
@@ -27,28 +47,23 @@ class SystemSetting extends Model
             return $value === null ? $default : $value;
         }
 
-        $setting = self::where('key', $key)->first();
+        $row = self::rows()[$key] ?? null;
 
-        if (!$setting) {
+        if ($row === null) {
             self::$cache[$key] = null;
             return $default;
         }
 
         // If it looks like a boolean (1, 0, true, false as strings), treat it as such
-        if ($setting->type === 'boolean' || in_array(strtolower((string) $setting->value), ['1', '0', 'true', 'false', 'on', 'off', 'yes', 'no'])) {
-            $result = filter_var($setting->value, FILTER_VALIDATE_BOOLEAN);
-            self::$cache[$key] = $result;
-            return $result;
+        if ($row['type'] === 'boolean' || in_array(strtolower((string) $row['value']), ['1', '0', 'true', 'false', 'on', 'off', 'yes', 'no'])) {
+            return self::$cache[$key] = filter_var($row['value'], FILTER_VALIDATE_BOOLEAN);
         }
 
-        $result = match ($setting->type) {
-            'integer' => (int) $setting->value,
-            'json' => json_decode($setting->value, true),
-            default => $setting->value,
+        return self::$cache[$key] = match ($row['type']) {
+            'integer' => (int) $row['value'],
+            'json' => json_decode($row['value'], true),
+            default => $row['value'],
         };
-
-        self::$cache[$key] = $result;
-        return $result;
     }
 
     /**
@@ -82,7 +97,7 @@ class SystemSetting extends Model
             ['value' => $val, 'type' => $type, 'description' => $description]
         );
 
-        unset(self::$cache[$key]);
+        self::flushCache();
 
         return $result;
     }

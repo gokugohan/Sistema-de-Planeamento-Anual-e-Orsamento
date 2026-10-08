@@ -46,6 +46,7 @@ new class extends Component {
 
     public function saveSettings()
     {
+        abort_unless(auth()->user()->isAdministrator(), 403);
         $this->validate([
             'systemOwner'           => 'nullable|string|max:255',
             'implementedBy'         => 'nullable|string|max:255',
