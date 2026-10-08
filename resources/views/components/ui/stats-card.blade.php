@@ -7,15 +7,15 @@
     'icon'        => null,
 ])
 
-<div {{ $attributes->merge(['class' => 'bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-5']) }}>
+<div {{ $attributes->merge(['class' => 'bg-white rounded-lg border border-zinc-200 shadow-card px-6 py-5']) }}>
     <div class="flex items-start justify-between gap-3">
         <div class="min-w-0">
-            <p class="text-xs font-medium text-zinc-500 mb-2 truncate">{{ $label }}</p>
+            <p class="text-sm font-medium text-zinc-500 mb-2 truncate">{{ $label }}</p>
             <p class="text-2xl font-semibold text-zinc-900 tracking-tight">{{ $value }}</p>
         </div>
 
         @if(isset($icon))
-            <div class="w-9 h-9 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0 ring-1 ring-indigo-100/60">
+            <div class="w-11 h-11 rounded-full bg-zinc-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
                 @if($icon === 'envelope')
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -30,7 +30,7 @@
     </div>
 
     @if($description || $trend)
-        <div class="mt-4 pt-3 border-t border-zinc-100 flex items-center gap-2 flex-wrap">
+        <div class="mt-4 pt-3 border-t border-zinc-200 flex items-center gap-2 flex-wrap">
             @if($trend)
                 <span class="inline-flex items-center gap-1 text-xs font-medium
                     {{ $trend === 'up' ? 'text-emerald-600' : 'text-rose-500' }}">

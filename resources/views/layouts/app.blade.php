@@ -10,16 +10,16 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased bg-zinc-50 text-zinc-900" x-data="{ sidebarOpen: false }">
+<body class="font-sans antialiased bg-body text-zinc-600" x-data="{ sidebarOpen: false }">
 
     <!-- Livewire Request Progress Bar -->
-    <div id="lwbar" class="fixed top-0 left-0 z-[200] h-[2px] bg-indigo-500 pointer-events-none opacity-0 transition-[width,opacity] duration-300 ease-out" style="width:0%"></div>
+    <div id="lwbar" class="fixed top-0 left-0 z-[200] h-[2px] bg-indigo-600 pointer-events-none opacity-0 transition-[width,opacity] duration-300 ease-out" style="width:0%"></div>
     <script>
         document.addEventListener('livewire:init', () => {
             let bar = document.getElementById('lwbar'), t;
@@ -68,7 +68,7 @@
         ></div>
 
         <!-- Main Workspace -->
-        <div class="flex-1 flex flex-col md:ml-60 min-w-0">
+        <div class="flex-1 flex flex-col md:ml-64 min-w-0">
 
             <!-- Top Bar -->
             <livewire:layout.topbar />
@@ -77,7 +77,7 @@
             <div class="flex-1 overflow-y-auto">
 
                 <!-- Main Content Area -->
-                <main class="px-6 py-6 animate-in fade-in duration-300">
+                <main class="mx-auto w-full max-w-screen-2xl p-4 md:p-6 2xl:p-10 animate-in fade-in duration-300">
                     @if (isset($header))
                         <div class="mb-6">
                             {{ $header }}
@@ -121,7 +121,7 @@
                 x-transition:leave="transition ease-in duration-200"
                 x-transition:leave-start="opacity-100 translate-x-0"
                 x-transition:leave-end="opacity-0 translate-x-8"
-                class="flex items-start gap-3 px-4 py-3.5 bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-lg pointer-events-auto"
+                class="flex items-start gap-3 px-4 py-3.5 bg-white rounded-md border border-zinc-200 shadow-default pointer-events-auto"
             >
                 <!-- Icon -->
                 <div

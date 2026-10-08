@@ -12,7 +12,7 @@ new class extends Component {
 }; ?>
 
 <header
-    class="h-14 bg-white border-b border-zinc-200/60 sticky top-0 z-40 flex items-center gap-4 px-5 shadow-[0_1px_2px_0_rgba(0,0,0,0.03)]">
+    class="h-16 bg-white border-b border-zinc-200 sticky top-0 z-40 flex items-center gap-4 px-4 md:px-6 shadow-card">
 
     <!-- Mobile Menu Toggle -->
     <button @click="sidebarOpen = true"
@@ -24,8 +24,8 @@ new class extends Component {
     </button>
 
     <!-- Search -->
-    <div class="hidden md:flex items-center gap-2 flex-1 max-w-sm h-9 px-3 bg-zinc-50 border border-zinc-200/60 rounded-lg
-        focus-within:bg-white focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-500/15 transition-all">
+    <div class="hidden md:flex items-center gap-2 flex-1 max-w-sm h-10 px-3 bg-transparent border-b border-transparent
+        focus-within:border-indigo-600 transition-all">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="text-zinc-400 flex-shrink-0">
@@ -58,7 +58,7 @@ new class extends Component {
     <div class="ml-auto flex items-center gap-1">
 
         <!-- Language Switcher -->
-        <div class="flex items-center gap-0.5 p-1 bg-zinc-50 rounded-lg border border-zinc-200/60">
+        <div class="flex items-center gap-0.5 p-1 bg-zinc-100 rounded-md">
             @foreach(['en' => 'EN', 'pt' => 'PT', 'tet' => 'TET'] as $code => $label)
                 <a href="{{ route('lang.switch', $code) }}"
                     class="px-2.5 py-1 text-[11px] font-medium rounded-md transition-all
@@ -94,8 +94,7 @@ new class extends Component {
             <button @click="open = !open" @click.outside="open = false"
                 class="flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-xl hover:bg-zinc-50 border border-transparent hover:border-zinc-200/60 transition-all group">
                 <div
-                    class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-semibold
-                           shadow-sm shadow-indigo-600/20 ring-1 ring-white/20 group-hover:shadow-md group-hover:shadow-indigo-600/25 transition-shadow flex-shrink-0">
+                    class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
                     {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                 </div>
                 <div class="hidden sm:block text-left">
@@ -113,7 +112,7 @@ new class extends Component {
 
             <!-- Dropdown -->
             <div x-show="open" x-transition x-cloak
-                class="absolute top-full mt-1.5 right-0 w-48 bg-white rounded-xl ring-1 ring-zinc-950/8 shadow-lg py-1 z-50">
+                class="absolute top-full mt-2 right-0 w-56 bg-white rounded-md border border-zinc-200 shadow-default py-1 z-50">
                 <a href="{{ route('profile') }}"
                     class="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-700 hover:text-zinc-900 hover:bg-zinc-50 transition-colors rounded-lg mx-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"

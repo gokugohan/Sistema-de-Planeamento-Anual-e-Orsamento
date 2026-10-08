@@ -1,21 +1,21 @@
 @props(['headers' => []])
 
 <div class="overflow-x-auto">
-    <table {{ $attributes->merge(['class' => 'min-w-full divide-y divide-slate-100']) }}>
-        <thead class="bg-slate-50/50">
+    <table {{ $attributes->merge(['class' => 'min-w-full divide-y divide-zinc-200']) }}>
+        <thead class="bg-zinc-100">
             <tr>
                 @foreach($headers as $header)
                     <th
-                        class="px-8 py-5 text-left text-[10px] font-black text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                        class="px-6 py-4 text-left text-xs font-medium text-zinc-600 uppercase tracking-wide whitespace-nowrap">
                         {{ $header }}
                     </th>
                 @endforeach
                 @if(isset($actions))
-                    <th class="px-8 py-5 text-right"></th>
+                    <th class="px-6 py-4 text-right"></th>
                 @endif
             </tr>
         </thead>
-        <tbody class="divide-y divide-slate-50 bg-white">
+        <tbody class="divide-y divide-zinc-200 bg-white">
             {{ $slot }}
         </tbody>
     </table>
