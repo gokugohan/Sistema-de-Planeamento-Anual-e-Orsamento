@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['Admin', 'Minister', 'Director', 'Budget', 'Planning', 'Viewer'])->default('Viewer');
-            $table->foreignId('directorate_id')->nullable()->constrained()->onDelete('set null');
+            // FK added in the directorates migration (table does not exist yet; MySQL enforces this)
+            $table->unsignedBigInteger('directorate_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

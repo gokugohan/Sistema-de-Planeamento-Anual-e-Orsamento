@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             // Drop foreign key if it exists
-            // We use try-catch or check because SQLite handles this differently
+            // The FK may already be gone on some installs, so tolerate its absence
             try {
                 $table->dropForeign(['role_id']);
             } catch (\Exception $e) {

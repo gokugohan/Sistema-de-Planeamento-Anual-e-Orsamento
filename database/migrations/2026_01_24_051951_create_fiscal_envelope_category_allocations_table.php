@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('fiscal_envelope_category_allocations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('fiscal_envelope_id')->constrained()->onDelete('cascade');
-            $table->foreignId('economic_classification_id')->constrained()->onDelete('cascade');
+            $table->foreignId('economic_classification_id')->constrained(indexName: 'fe_cat_alloc_class_fk')->onDelete('cascade');
             $table->decimal('allocated_amount', 15, 2);
             $table->decimal('planned_amount', 15, 2)->default(0);
             $table->decimal('variance_amount', 15, 2)->default(0);
@@ -42,8 +42,8 @@ return new class extends Migration {
      */
     private function migrateExistingData(): void
     {
-        $envelopes = FiscalEnvelope::whereNotNull('category_allocations')->get();
-        $classifications = EconomicClassification::all()->keyBy('code');
+        $envelopes = FiscalEnvelope::withoutGlobalScopes()->whereNotNull('category_allocations')->get();
+        $classifications = EconomicClassification::withoutGlobalScopes()->get()->keyBy('code');
 
         // Mapping of old JSON keys to economic classification codes
         $mapping = [
@@ -122,7 +122,7 @@ return new class extends Migration {
                 ->get();
 
             $categoryData = [];
-            $classifications = EconomicClassification::all()->keyBy('id');
+            $classifications = EconomicClassification::withoutGlobalScopes()->get()->keyBy('id');
             $reverseMapping = ['10' => 'c1', '20' => 'c2', '30' => 'c3', '40' => 'c4', '50' => 'c5'];
 
             foreach ($allocations as $allocation) {

@@ -18,6 +18,10 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('directorate_id')->references('id')->on('directorates')->nullOnDelete();
+        });
     }
 
     /**
@@ -25,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', fn (Blueprint $t) => $t->dropForeign(['directorate_id']));
         Schema::dropIfExists('directorates');
     }
 };
