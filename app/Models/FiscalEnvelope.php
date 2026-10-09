@@ -137,7 +137,51 @@ class FiscalEnvelope extends Model
      */
     public static function getEffectiveYear(): int
     {
-        return self::getActiveFiscalYear() ?? (int) date('Y');
+        $chosen = (int) session('fiscal_year', 0);
+
+        return $chosen && in_array($chosen, self::availableYears(), true) ? $chosen : self::defaultYear();
+    }
+
+    /**
+     * The year to work in when the user has not picked one: the year of the active
+     * envelope; between budget cycles, the latest year that has an envelope or
+     * activities (never beyond next year); otherwise the calendar year. Without
+     * this the app shows the wrong, empty year during the planning window
+     * (e.g. October 2026, when everything belongs to 2027).
+     */
+    public static function defaultYear(): int
+    {
+        if ($active = self::getActiveFiscalYear()) {
+            return $active;
+        }
+
+        $current = (int) date('Y');
+        $planned = array_filter(self::availableYears(), fn ($y) => $y <= $current + 1 && self::yearHasData($y));
+
+        return $planned ? max($planned) : $current;
+    }
+
+    /** Years the user can switch to: every year with data, plus this year and next. */
+    public static function availableYears(): array
+    {
+        static $memo = null;
+        if ($memo !== null && !app()->runningUnitTests()) {
+            return $memo;
+        }
+
+        $current = (int) date('Y');
+        $years = Activity::query()->distinct()->pluck('fiscal_year')
+            ->merge(self::query()->pluck('fiscal_year'))
+            ->push($current, $current + 1)
+            ->map(fn ($y) => (int) $y)->unique()->sortDesc()->values()->all();
+
+        return $memo = $years;
+    }
+
+    private static function yearHasData(int $year): bool
+    {
+        return self::query()->where('fiscal_year', $year)->exists()
+            || Activity::query()->where('fiscal_year', $year)->exists();
     }
 
     /**

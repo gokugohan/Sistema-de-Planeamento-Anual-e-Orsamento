@@ -1,552 +1,439 @@
 <?php
 
-use Livewire\Volt\Component;
 use App\Models\Activity;
-use App\Models\LineItem;
+use App\Models\BudgetCycle;
+use App\Models\Directorate;
+use App\Models\EconomicClassification;
 use App\Models\FiscalEnvelope;
+use App\Models\Indicator;
+use App\Models\SystemSetting;
+use Livewire\Volt\Component;
 
+/**
+ * Executive dashboard for one fiscal year (the year chosen in the top bar).
+ * Every figure comes from grouped SQL, so cost does not grow with the number of activities.
+ */
 new class extends Component {
-    public $requestedTotal;
-    public $approvedTotal;
-    public $activityCounts = [];
-    public $activeYear;
-    public $directorateData = [];
-    public $classificationData = [];
-    public $statusData = [];
-    public $programData = [];
-    public $performanceData = [];
-    public $indicatorData = [];
-    public $paaExecutionRate = 0;
-    public $quarterlyExecution = [0, 0, 0, 0];
+    public $unit = '';      // top-level unit filter ('' = all)
+    public $category = '';  // economic category filter ('' = all)
 
-    public $selectedDirectorate = null;
-    public $selectedCategory = null;
-
-    public function mount()
+    public function clearFilters(): void
     {
-        $this->activeYear = App\Models\FiscalEnvelope::getEffectiveYear();
-        $this->loadData();
+        $this->unit = '';
+        $this->category = '';
     }
 
-    public function updatedSelectedDirectorate()
+    public function with(): array
     {
-        $this->loadData();
-    }
-    public function updatedSelectedCategory()
-    {
-        $this->loadData();
-    }
+        $year = FiscalEnvelope::getEffectiveYear();
+        $dirs = Directorate::get(['id', 'code', 'name', 'type', 'parent_id'])->keyBy('id');
+        $rootOf = fn ($id) => ($dirs[$id]->parent_id ?? null) ?: $id;
+        $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name'])->keyBy('id');
 
-    public function loadData()
-    {
-        $this->directorateData = [];
-        $this->classificationData = [];
-        $this->statusData = [];
-        $this->programData = [];
-        $this->performanceData = [];
+        $unitIds = $this->unit !== ''
+            ? $dirs->filter(fn ($d) => $d->id == $this->unit || $d->parent_id == $this->unit)->keys()->all()
+            : null;
+        $cat = $this->category !== '' ? (int) $this->category : null;
 
-        $activeEnvelope = App\Models\FiscalEnvelope::where('fiscal_year', $this->activeYear)->activeByDate()->first();
-        $this->approvedTotal = $activeEnvelope ? $activeEnvelope->total_amount : (FiscalEnvelope::where('fiscal_year', $this->activeYear)->value('total_amount') ?? 0);
+        $base = fn () => Activity::withoutGlobalScopes()
+            ->where('activities.is_test_data', false)
+            ->where('activities.fiscal_year', $year)
+            ->when($unitIds, fn ($q) => $q->whereIn('activities.directorate_id', $unitIds))
+            ->when($cat, fn ($q) => $q->whereExists(fn ($s) => $s->selectRaw('1')->from('line_items')
+                ->whereColumn('line_items.activity_id', 'activities.id')
+                ->where('line_items.is_test_data', false)
+                ->where('line_items.economic_classification_id', $cat)));
 
-        $filtered = function () {
-            // Scope is qualified by hand: the global scope's bare is_test_data is ambiguous once line_items is joined
-            $q = Activity::withoutGlobalScopes()->where('activities.is_test_data', false)->where('activities.fiscal_year', $this->activeYear);
-            if ($this->selectedDirectorate) {
-                $q->where('activities.directorate_id', $this->selectedDirectorate);
+        // ── counts: activities by unit and status ──
+        $statusOrder = [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL, Activity::STATUS_APPROVED];
+        $byStatus = array_fill_keys($statusOrder, 0);
+        $unitStats = [];
+        foreach ($base()->selectRaw('activities.directorate_id as d, activities.status as s, COUNT(*) as n')->groupBy('activities.directorate_id', 'activities.status')->get() as $r) {
+            $root = $rootOf($r->d);
+            $byStatus[$r->s] = ($byStatus[$r->s] ?? 0) + $r->n;
+            $unitStats[$root]['n'] = ($unitStats[$root]['n'] ?? 0) + $r->n;
+            if ($r->s === Activity::STATUS_APPROVED) {
+                $unitStats[$root]['approved'] = ($unitStats[$root]['approved'] ?? 0) + $r->n;
             }
-            if ($this->selectedCategory) {
-                $q->whereExists(fn($sub) => $sub->selectRaw('1')->from('line_items')
-                    ->whereColumn('line_items.activity_id', 'activities.id')
-                    ->where('line_items.is_test_data', false)
-                    ->where('line_items.economic_classification_id', $this->selectedCategory));
+        }
+        $totalActivities = array_sum($byStatus);
+
+        // ── money: by unit, status and category ──
+        $planAll = 0.0;
+        $plan = 0.0;
+        $allocated = 0.0;
+        $planByClass = $allocByClass = [];
+        foreach ($base()
+            ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
+            ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
+            ->when($cat, fn ($q) => $q->where('line_items.economic_classification_id', $cat))
+            ->groupBy('activities.directorate_id', 'activities.status', 'line_items.economic_classification_id')
+            ->selectRaw('activities.directorate_id as d, activities.status as s, line_items.economic_classification_id as c,
+                COALESCE(SUM(line_items.estimated_amount), 0) as req, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
+            ->get() as $r) {
+            $planAll += $r->req;
+            $allocated += $r->alloc;
+            if ($r->s === Activity::STATUS_APPROVED) {
+                $plan += $r->req;
+                $root = $rootOf($r->d);
+                $unitStats[$root]['plan'] = ($unitStats[$root]['plan'] ?? 0) + $r->req;
+                $unitStats[$root]['alloc'] = ($unitStats[$root]['alloc'] ?? 0) + $r->alloc;
+                if ($r->c) {
+                    $planByClass[$r->c] = ($planByClass[$r->c] ?? 0) + $r->req;
+                    $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
+                }
             }
-            return $q;
+        }
+
+        // ── the budget cycle for this year ──
+        $cycle = BudgetCycle::where('fiscal_year', $year)->first();
+        $env = FiscalEnvelope::where('fiscal_year', $year)->with('categoryAllocations')->first();
+        $envelope = $env ? (float) $env->total_amount : null;
+        $envApproved = $env && in_array($env->status, [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
+        $croTotal = $cycle?->cro_total !== null ? (float) $cycle->cro_total : null;
+        $ceiling = $cycle?->indicative_ceiling !== null ? (float) $cycle->indicative_ceiling : null;
+
+        $steps = [
+            ['label' => __('Indicative ceiling'), 'done' => $ceiling !== null, 'value' => $ceiling],
+            ['label' => __('Submitted to CRO'), 'done' => (bool) $cycle?->submitted_at, 'value' => $cycle?->submitted_total !== null ? (float) $cycle->submitted_total : null],
+            ['label' => __('CRO decision'), 'done' => $croTotal !== null, 'value' => $croTotal],
+            ['label' => __('Budget law'), 'done' => (bool) $env?->hasLegalBasis(), 'value' => null],
+            ['label' => __('Envelope approved'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
+            ['label' => __('Distributed'), 'done' => $envApproved && $allocated > 0, 'value' => $envApproved && $allocated > 0 ? $allocated : null],
+        ];
+        $currentStep = collect($steps)->search(fn ($s) => !$s['done']);
+
+        // The best available "money in hand" figure and its honest label
+        [$fundLabel, $fund] = match (true) {
+            $envelope !== null => [__('Fiscal envelope'), $envelope],
+            $croTotal !== null => [__('CRO decision'), $croTotal],
+            $ceiling !== null => [__('Indicative ceiling'), $ceiling],
+            default => [__('Fiscal envelope'), null],
         };
 
-        // Status counts (single grouped query)
-        $byStatus = $filtered()->selectRaw('activities.status, COUNT(*) as c')->groupBy('activities.status')->pluck('c', 'status');
-        foreach ([Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_APPROVED] as $status) {
-            $count = (int) ($byStatus[$status] ?? 0);
-            $this->activityCounts[$status] = $count;
-            if ($count > 0) {
-                $this->statusData[] = ['label' => __($status), 'value' => $count];
-            }
-        }
-
-        // Money, grouped in the database by directorate / program / classification
-        $rows = $filtered()
-            ->leftJoin('line_items', fn($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
-            ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
-            ->leftJoin('directorates', 'directorates.id', '=', 'activities.directorate_id')
-            ->leftJoin('programs', 'programs.id', '=', 'activities.program_id')
-            ->leftJoin('economic_classifications', 'economic_classifications.id', '=', 'line_items.economic_classification_id')
-            ->groupBy('activities.directorate_id', 'activities.program_id', 'line_items.economic_classification_id',
-                'directorates.name', 'programs.name', 'economic_classifications.name')
-            ->selectRaw('directorates.name as dir_name, programs.name as prog_name, economic_classifications.name as class_name,
-                line_items.economic_classification_id as class_id,
-                COALESCE(SUM(line_items.estimated_amount), 0) as proposed,
-                COALESCE(SUM(adjusted_budgets.approved_amount), 0) as allocated')
-            ->get();
-
-        $dirTotals = $progTotals = $classTotals = $perfData = [];
-        $totalAllocated = 0;
-        $this->requestedTotal = 0;
-        foreach ($rows as $r) {
-            $dir = $r->dir_name ?? __('Unknown');
-            $prog = $r->prog_name ?? __('No Program');
-            $dirTotals[$dir] = ($dirTotals[$dir] ?? 0) + $r->proposed;
-            $progTotals[$prog] = ($progTotals[$prog] ?? 0) + $r->proposed;
-            $perfData[$dir]['proposed'] = ($perfData[$dir]['proposed'] ?? 0) + $r->proposed;
-            $perfData[$dir]['allocated'] = ($perfData[$dir]['allocated'] ?? 0) + $r->allocated;
-            $this->requestedTotal += $r->proposed;
-            $totalAllocated += $r->allocated;
-            if ($r->class_id !== null && (!$this->selectedCategory || $r->class_id == $this->selectedCategory)) {
-                $cls = $r->class_name ?? __('Uncategorized');
-                $classTotals[$cls] = ($classTotals[$cls] ?? 0) + $r->proposed;
-            }
-        }
-        foreach ($dirTotals as $label => $value) {
-            $this->directorateData[] = ['label' => $label, 'value' => $value];
-        }
-        foreach ($classTotals as $label => $value) {
-            $this->classificationData[] = ['label' => $label, 'value' => $value];
-        }
-        foreach ($progTotals as $label => $value) {
-            $this->programData[] = ['label' => $label, 'value' => $value];
-        }
-        foreach ($perfData as $dir => $v) {
-            $this->performanceData[] = ['directorate' => $dir, 'proposed' => $v['proposed'], 'allocated' => $v['allocated']];
-        }
-
-        // Indicator & quarterly performance: verified sums computed by the database
-        $verified = fn($q) => $q->where('status', 'Verified');
-        $indicators = App\Models\Indicator::whereIn('activity_id', $filtered()->select('activities.id'))
+        // ── physical delivery: verified progress against annual targets ──
+        $verified = fn ($q) => $q->where('status', 'Verified');
+        $indicators = Indicator::whereIn('activity_id', $base()->select('activities.id'))
             ->where('annual_target', '>', 0)
             ->withSum(['progress as achieved' => $verified], 'achieved_value')
-            ->withSum(['progress as q1' => fn($q) => $verified($q)->where('quarter', 1)], 'achieved_value')
-            ->withSum(['progress as q2' => fn($q) => $verified($q)->where('quarter', 2)], 'achieved_value')
-            ->withSum(['progress as q3' => fn($q) => $verified($q)->where('quarter', 3)], 'achieved_value')
-            ->withSum(['progress as q4' => fn($q) => $verified($q)->where('quarter', 4)], 'achieved_value')
+            ->withSum(['progress as q1' => fn ($q) => $verified($q)->where('quarter', 1)], 'achieved_value')
+            ->withSum(['progress as q2' => fn ($q) => $verified($q)->where('quarter', 2)], 'achieved_value')
+            ->withSum(['progress as q3' => fn ($q) => $verified($q)->where('quarter', 3)], 'achieved_value')
+            ->withSum(['progress as q4' => fn ($q) => $verified($q)->where('quarter', 4)], 'achieved_value')
             ->get(['id', 'annual_target']);
-
-        $achTotal = 0;
-        $count = 0;
-        $qSums = [1 => 0, 2 => 0, 3 => 0, 4 => 0];
-        $totalTargets = 0;
-        foreach ($indicators as $indicator) {
-            $totalTargets += $indicator->annual_target;
-            $achTotal += min(100, ($indicator->achieved / $indicator->annual_target) * 100);
-            $count++;
-            foreach ([1, 2, 3, 4] as $q) {
-                $qSums[$q] += $indicator->{"q$q"};
-            }
-        }
-        $this->indicatorData = $count > 0 ? round($achTotal / $count, 1) : 0;
-
-        // Cumulative Quarterly Progress
-        $this->quarterlyExecution = [0, 0, 0, 0];
-        if ($totalTargets > 0) {
-            $cumulative = 0;
-            foreach ([1, 2, 3, 4] as $q) {
-                $cumulative += $qSums[$q];
-                $this->quarterlyExecution[$q - 1] = round(($cumulative / $totalTargets) * 100, 1);
-            }
+        $achievement = $indicators->isEmpty() ? null : round($indicators->avg(fn ($i) => min(100, ($i->achieved / $i->annual_target) * 100)), 1);
+        $targets = $indicators->sum('annual_target');
+        $cumulative = 0;
+        $quarterly = [];
+        foreach ([1, 2, 3, 4] as $q) {
+            $cumulative += $indicators->sum("q{$q}");
+            $quarterly[] = $targets > 0 ? round($cumulative / $targets * 100, 1) : 0;
         }
 
-        // PAA Execution (Average of Financial and Physical)
-        $budgetExecution = $this->approvedTotal > 0 ? ($totalAllocated / $this->approvedTotal) * 100 : 0;
-        $this->paaExecutionRate = round(($budgetExecution + $this->indicatorData) / 2, 1);
+        // ── units table, sorted by approved plan ──
+        $units = [];
+        foreach ($dirs->filter(fn ($d) => !$d->parent_id) as $d) {
+            if ($this->unit !== '' && $d->id != $this->unit) {
+                continue;
+            }
+            $s = $unitStats[$d->id] ?? [];
+            $units[] = [
+                'code' => $d->code, 'name' => $d->name, 'n' => $s['n'] ?? 0, 'approved' => $s['approved'] ?? 0,
+                'plan' => $s['plan'] ?? 0.0, 'alloc' => $s['alloc'] ?? 0.0,
+            ];
+        }
+        usort($units, fn ($a, $b) => [$b['plan'], $b['n']] <=> [$a['plan'], $a['n']]);
 
-        $this->dispatch('data-updated', [
-            'performance' => $this->performanceData,
-            'program' => $this->programData,
-            'directorate' => $this->directorateData,
-            'classification' => $this->classificationData,
-            'status' => $this->statusData,
-            'quarterly' => $this->quarterlyExecution,
-            'paaRate' => $this->paaExecutionRate,
-        ]);
+        // ── things worth a look ──
+        $watch = [];
+        if ($croTotal !== null && $plan > $croTotal) {
+            $watch[] = ['tone' => 'rose', 'text' => __('The approved plan exceeds the CRO decision by :a.', ['a' => '$ ' . number_format($plan - $croTotal)]), 'url' => route('planning.budget-cycle')];
+        }
+        if ($envApproved && $plan > 0 && $allocated == 0) {
+            $watch[] = ['tone' => 'amber', 'text' => __('The envelope is approved but has not been distributed yet.'), 'url' => route('budget.envelope.current')];
+        }
+        if ($envelope !== null && $allocated > 0 && $envelope - $allocated > 0.5) {
+            $watch[] = ['tone' => 'zinc', 'text' => __(':a of the envelope is unallocated.', ['a' => '$ ' . number_format($envelope - $allocated)]), 'url' => route('budget.allocation')];
+        }
+        $noLines = $base()->where('activities.status', Activity::STATUS_APPROVED)->doesntHave('lineItems')->count();
+        if ($noLines > 0) {
+            $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n approved activity has no budget lines|:n approved activities have no budget lines', $noLines, ['n' => $noLines]), 'url' => route('activities.index')];
+        }
+        if ($this->unit === '' && $totalActivities > 0) {
+            $silent = collect($units)->where('n', 0)->count();
+            if ($silent > 0) {
+                $watch[] = ['tone' => 'zinc', 'text' => trans_choice(':n unit has no activities for :year|:n units have no activities for :year', $silent, ['n' => $silent, 'year' => $year]), 'url' => route('activities.index')];
+            }
+        }
+
+        // ── series for the charts ──
+        $charts = [
+            'categories' => [
+                'labels' => $classes->map(fn ($c) => $c->code . ' ' . $c->name)->values()->all(),
+                'envelope' => $classes->map(fn ($c) => (float) ($env?->categoryAllocations->firstWhere('economic_classification_id', $c->id)?->allocated_amount ?? 0))->values()->all(),
+                'plan' => $classes->map(fn ($c) => (float) ($planByClass[$c->id] ?? 0))->values()->all(),
+                'alloc' => $classes->map(fn ($c) => (float) ($allocByClass[$c->id] ?? 0))->values()->all(),
+            ],
+            'status' => ['labels' => array_map(fn ($s) => __($s), $statusOrder), 'values' => array_values($byStatus)],
+            'units' => [
+                'labels' => collect($units)->where('plan', '>', 0)->take(8)->pluck('code')->values()->all(),
+                'plan' => collect($units)->where('plan', '>', 0)->take(8)->pluck('plan')->map(fn ($v) => (float) $v)->values()->all(),
+                'alloc' => collect($units)->where('plan', '>', 0)->take(8)->pluck('alloc')->map(fn ($v) => (float) $v)->values()->all(),
+            ],
+            'quarterly' => $quarterly,
+            'labels' => [__('Requested'), __('Approved plan'), __('Envelope'), __('Distributed'), __('Plan'), __('Cumulative progress')],
+        ];
+
+        return [
+            'year' => $year, 'org' => SystemSetting::getLocalized('org_abbr', ''),
+            'steps' => $steps, 'currentStep' => $currentStep,
+            'fundLabel' => $fundLabel, 'fund' => $fund, 'envelope' => $envelope,
+            'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
+            'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
+            'achievement' => $achievement, 'indicatorCount' => $indicators->count(),
+            'units' => $units, 'watch' => $watch, 'charts' => $charts,
+            'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
+            'classes' => $classes,
+        ];
     }
 }; ?>
 
-<div class="space-y-8 animate-in fade-in duration-500" x-data="{
-    chartInstances: {},
-    primaryColor: '#6366f1',
-    colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4'],
-
-    init() {
-        this.renderAll();
-        window.addEventListener('data-updated', (e) => {
-            this.renderAll(e.detail[0]);
-        });
-    },
-
-    destroyAll() {
-        Object.values(this.chartInstances).forEach(chart => chart.destroy());
-        this.chartInstances = {};
-    },
-
-    renderAll(data = null) {
-        this.destroyAll();
-        
-        const perf = data ? data.performance : @js($performanceData);
-        const prog = data ? data.program : @js($programData);
-        const dirs = data ? data.directorate : @js($directorateData);
-        const classes = data ? data.classification : @js($classificationData);
-        const stats = data ? data.status : @js($statusData);
-        const quart = data ? data.quarterly : @js($quarterlyExecution);
-
-        // 1. Performance Comparison
-        this.chartInstances.perf = new Chart(document.getElementById('performanceChart'), {
-            type: 'bar',
-            data: {
-                labels: perf.map(d => d.directorate),
-                datasets: [
-                    { label: '{{ __('Proposed ($)') }}', data: perf.map(d => d.proposed), backgroundColor: '#94a3b8', borderRadius: 6 },
-                    { label: '{{ __('Allocated ($)') }}', data: perf.map(d => d.allocated), backgroundColor: this.primaryColor, borderRadius: 6 }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10, weight: 'bold' } } },
-                    tooltip: { callbacks: { label: (c) => c.dataset.label + ': $' + new Intl.NumberFormat().format(c.parsed.y) } }
-                },
-                scales: {
-                    y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 }, callback: (v) => '$' + new Intl.NumberFormat().format(v) } },
-                    x: { grid: { display: false }, ticks: { font: { size: 10, weight: 'bold' } } }
-                }
-            }
-        });
-
-        // 2. Program Distribution
-        this.chartInstances.program = new Chart(document.getElementById('programChart'), {
-            type: 'polarArea',
-            data: {
-                labels: prog.map(d => d.label),
-                datasets: [{ data: prog.map(d => d.value), backgroundColor: this.colors.map(c => c + 'aa'), borderWidth: 0 }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { r: { ticks: { display: false }, grid: { color: '#f1f5f9' } } },
-                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9, weight: 'bold' }, padding: 15 } } }
-            }
-        });
-
-        // 3. Directorate Breakdown
-        this.chartInstances.dir = new Chart(document.getElementById('directorateChart'), {
-            type: 'bar',
-            data: {
-                labels: dirs.map(d => d.label),
-                datasets: [{ label: '{{ __('Budget ($)') }}', data: dirs.map(d => d.value), backgroundColor: this.primaryColor, borderRadius: 8 }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: { callbacks: { label: (c) => '$' + new Intl.NumberFormat().format(c.parsed.y) } }
-                },
-                scales: {
-                    y: { beginAtZero: true, grid: { display: false }, ticks: { callback: (v) => '$' + new Intl.NumberFormat().format(v) } },
-                    x: { grid: { display: false } }
-                }
-            }
-        });
-
-        // 4. Classification
-        this.chartInstances.class = new Chart(document.getElementById('classificationChart'), {
-            type: 'doughnut',
-            data: {
-                labels: classes.map(d => d.label),
-                datasets: [{ data: classes.map(d => d.value), backgroundColor: this.colors, borderWidth: 0, hoverOffset: 10 }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15, font: { size: 10, weight: 'bold' } } } },
-                cutout: '70%'
-            }
-        });
-
-        // 5. Status
-        this.chartInstances.status = new Chart(document.getElementById('statusChart'), {
-            type: 'pie',
-            data: {
-                labels: stats.map(d => d.label),
-                datasets: [{ data: stats.map(d => d.value), backgroundColor: this.colors.slice().reverse(), borderWidth: 0 }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15, font: { size: 10, weight: 'bold' } } } }
-            }
-        });
-
-        // 6. Quarterly Progress
-        this.chartInstances.quart = new Chart(document.getElementById('quarterlyProgressChart'), {
-            type: 'line',
-            data: {
-                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-                datasets: [{
-                    label: '{{ __('Target %') }}',
-                    data: quart,
-                    borderColor: '#fff',
-                    backgroundColor: 'rgba(255,255,255,0.1)',
-                    fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { display: false, min: 0, max: 100 },
-                    x: { ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 9, weight: 'bold' } }, grid: { display: false } }
-                }
-            }
-        });
-    }
-}" x-init="
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
-    script.onload = () => init();
-    document.head.appendChild(script);
-">
-    <!-- Page Header -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+<div class="space-y-6">
+    {{-- Header --}}
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
             <h1 class="page-title">{{ __('Dashboard') }}</h1>
-            <p class="text-sm text-zinc-400 mt-1">{{ __('Budget Planning & Performance Overview') }}</p>
+            <p class="page-subtitle">{{ $org ? $org . ' · ' : '' }}{{ __('Fiscal year') }} {{ $year }}</p>
         </div>
-
         <div class="flex flex-wrap items-end gap-3">
-            <!-- Directorate filter -->
-            <div class="flex flex-col gap-1">
-                <label class="text-xs font-medium text-zinc-500">{{ __('Directorate') }}</label>
-                <select wire:model.live="selectedDirectorate"
-                    class="flux-input py-2 pr-8 text-sm min-w-[160px]">
-                    <option value="">{{ __('All') }}</option>
-                    @foreach(\App\Models\Directorate::orderBy('name')->get() as $dir)
-                        <option value="{{ $dir->id }}">{{ $dir->name }}</option>
+            <div>
+                <label for="f-unit" class="block text-xs font-medium text-zinc-500 mb-1">{{ __('Unit') }}</label>
+                <select id="f-unit" wire:model.live="unit" class="flux-input !w-56 !py-2">
+                    <option value="">{{ __('All units') }}</option>
+                    @foreach($rootUnits as $d)
+                        <option value="{{ $d->id }}">{{ $d->code }} — {{ $d->name }}</option>
                     @endforeach
                 </select>
             </div>
-
-            <!-- Category filter -->
-            <div class="flex flex-col gap-1">
-                <label class="text-xs font-medium text-zinc-500">{{ __('Category') }}</label>
-                <select wire:model.live="selectedCategory"
-                    class="flux-input py-2 pr-8 text-sm min-w-[160px]">
-                    <option value="">{{ __('All') }}</option>
-                    @foreach(\App\Models\EconomicClassification::orderBy('name')->get() as $cat)
-                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+            <div>
+                <label for="f-cat" class="block text-xs font-medium text-zinc-500 mb-1">{{ __('Category') }}</label>
+                <select id="f-cat" wire:model.live="category" class="flux-input !w-48 !py-2">
+                    <option value="">{{ __('All categories') }}</option>
+                    @foreach($classes as $c)
+                        <option value="{{ $c->id }}">{{ $c->code }} {{ $c->name }}</option>
                     @endforeach
                 </select>
             </div>
-
-            <!-- Actions -->
-            <div class="flex items-center gap-2">
-                <x-ui.button variant="secondary" size="md" href="{{ route('reports.paa') }}" wire:navigate>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                    </svg>
-                    {{ __('Export') }}
-                </x-ui.button>
-                <x-ui.button variant="primary" size="md" href="{{ route('activities.index') }}" wire:navigate>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5">
-                        <path d="M5 12h14"/><path d="M12 5v14"/>
-                    </svg>
-                    {{ __('Planning') }}
-                </x-ui.button>
-            </div>
+            @if($unit !== '' || $category !== '')
+                <button wire:click="clearFilters" class="pb-2.5 text-sm font-medium text-indigo-600 hover:underline">{{ __('Clear filters') }}</button>
+            @endif
+            <x-ui.button variant="secondary" size="md" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Approved plan (PDF)') }}</x-ui.button>
         </div>
     </div>
 
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        <x-ui.stats-card label="{{ __('Fiscal Envelope') }} {{ $activeYear }}"
-            value="$ {{ number_format($approvedTotal, 0) }}" description="{{ __('Authorized ceiling') }}"
-            icon="envelope" />
-        <x-ui.stats-card label="{{ __('Budget Requested') }}" value="$ {{ number_format($requestedTotal, 0) }}"
-            description="{{ number_format(($approvedTotal > 0 ? ($requestedTotal / $approvedTotal) * 100 : 0), 1) }}% {{ __('utilization') }}"
-            trend="{{ $requestedTotal > $approvedTotal ? 'up' : 'down' }}"
-            trendValue="{{ number_format(($approvedTotal > 0 ? ($requestedTotal / $approvedTotal) * 100 : 0) - 100, 1) }}%"
-            class="{{ $requestedTotal > $approvedTotal ? 'ring-2 ring-rose-500/20' : '' }}" />
-        <x-ui.stats-card label="{{ __('Validated') }}" value="{{ $activityCounts[Activity::STATUS_APPROVED] ?? 0 }}"
-            description="{{ __('Ready to implement') }}" />
-        <x-ui.stats-card label="{{ __('Achievements') }}" value="{{ $indicatorData }}%"
-            description="{{ __('Targets met') }}" trend="{{ $indicatorData > 70 ? 'up' : 'down' }}" />
-        <x-ui.stats-card label="{{ __('Pending') }}"
-            value="{{ ($activityCounts[Activity::STATUS_SUBMITTED] ?? 0) + ($activityCounts[Activity::STATUS_REVIEWED] ?? 0) }}"
-            description="{{ __('Awaiting approval') }}" />
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Main Charts Column -->
-        <div class="lg:col-span-8 space-y-6">
-
-            <!-- Performance Chart -->
-            <x-ui.card padding="p-0">
-                <x-slot name="header">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Proposed vs Allocated') }}</h3>
-                        <x-ui.badge variant="emerald" pulse="true">{{ __('Performance') }}</x-ui.badge>
-                    </div>
-                </x-slot>
-                <div class="p-5">
-                    <div class="h-[260px] md:h-[360px] w-full">
-                        <canvas id="performanceChart"></canvas>
-                    </div>
-                </div>
-            </x-ui.card>
-
-            <!-- Program & Classification -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <x-ui.card padding="p-5">
-                    <x-slot name="header">
-                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Budget by Program') }}</h3>
-                    </x-slot>
-                    <div class="h-[240px] md:h-[280px] mt-3">
-                        <canvas id="programChart"></canvas>
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card padding="p-5">
-                    <x-slot name="header">
-                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Economic Classification') }}</h3>
-                    </x-slot>
-                    <div class="h-[240px] md:h-[280px] mt-3">
-                        <canvas id="classificationChart"></canvas>
-                    </div>
-                </x-ui.card>
-            </div>
-
-            <!-- Distribution & Status -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <x-ui.card padding="p-5">
-                    <x-slot name="header">
-                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Budget Distribution') }}</h3>
-                    </x-slot>
-                    <div class="h-[200px] md:h-[240px] mt-3">
-                        <canvas id="directorateChart"></canvas>
-                    </div>
-                </x-ui.card>
-
-                <x-ui.card padding="p-5">
-                    <x-slot name="header">
-                        <h3 class="text-sm font-semibold text-zinc-900">{{ __('Activity Status') }}</h3>
-                    </x-slot>
-                    <div class="h-[200px] md:h-[240px] mt-3">
-                        <canvas id="statusChart"></canvas>
-                    </div>
-                </x-ui.card>
-            </div>
+    {{-- Budget cycle: where is this year? --}}
+    <section aria-label="{{ __('Budget cycle') }}" class="bg-white rounded-lg border border-zinc-200 shadow-card px-5 py-4">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-sm font-semibold text-zinc-900">{{ __('Budget cycle') }} {{ $year }}</h2>
+            <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
         </div>
-
-        <!-- Right Sidebar Widgets -->
-        <div class="lg:col-span-4 space-y-6">
-
-            <!-- Quick Actions -->
-            <x-ui.card padding="p-5">
-                <x-slot name="header">
-                    <h3 class="text-sm font-semibold text-zinc-900">{{ __('Quick Actions') }}</h3>
-                </x-slot>
-                <div class="space-y-2 mt-1">
-                    <a href="{{ route('activities.create') }}" wire:navigate
-                        class="flex items-center gap-3 px-3 py-3 rounded-lg border border-zinc-200/60 hover:border-indigo-200 hover:bg-indigo-50/50 transition-all group">
-                        <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 flex-shrink-0 group-hover:bg-indigo-100 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14"/><path d="M12 5v14"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-zinc-800">{{ __('New Activity') }}</p>
-                            <p class="text-xs text-zinc-400">{{ __('Create PAA activity') }}</p>
-                        </div>
-                    </a>
-                    <a href="{{ route('reports.paa') }}" wire:navigate
-                        class="flex items-center gap-3 px-3 py-3 rounded-lg border border-zinc-200/60 hover:border-zinc-300 hover:bg-zinc-50 transition-all group">
-                        <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-600 flex-shrink-0 group-hover:bg-zinc-200 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" x2="8" y1="13" y2="13"/>
-                                <line x1="16" x2="8" y1="17" y2="17"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-zinc-800">{{ __('Export Report') }}</p>
-                            <p class="text-xs text-zinc-400">{{ __('Download PAA report') }}</p>
-                        </div>
-                    </a>
-                </div>
-            </x-ui.card>
-
-            <!-- PAA Execution Card -->
-            <div class="bg-zinc-900 rounded-2xl p-6 text-white ring-1 ring-white/5 overflow-hidden relative">
-
-                <!-- Subtle glow -->
-                <div class="absolute top-0 right-0 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-
-                <div class="relative">
-                    <p class="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-5">
-                        {{ __('PAA Execution') }}
+        <ol class="grid grid-cols-2 md:grid-cols-6 gap-4">
+            @foreach($steps as $i => $step)
+                @php $current = $currentStep === $i; @endphp
+                <li class="relative">
+                    <div class="flex items-center gap-2">
+                        <span class="w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-xs font-semibold
+                            {{ $step['done'] ? 'bg-emerald-600 text-white' : ($current ? 'bg-indigo-600 text-white ring-4 ring-indigo-100' : 'bg-zinc-100 text-zinc-500') }}">
+                            @if($step['done'])<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>@else{{ $i + 1 }}@endif
+                        </span>
+                        <span class="text-sm {{ $current ? 'font-semibold text-zinc-900' : ($step['done'] ? 'font-medium text-zinc-700' : 'text-zinc-500') }}">{{ $step['label'] }}</span>
+                    </div>
+                    <p class="mt-1 ml-8 text-xs tabular-nums {{ $step['value'] !== null ? 'text-zinc-600' : 'text-zinc-400' }}">
+                        {{ $step['value'] !== null ? '$ ' . number_format($step['value']) : ($current ? __('Next step') : '—') }}
                     </p>
+                </li>
+            @endforeach
+        </ol>
+    </section>
 
-                    <!-- Gauge + label -->
-                    <div class="flex items-center gap-5 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <svg class="w-20 h-20 -rotate-90">
-                                <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="5"
-                                    fill="transparent" class="text-white/10" />
-                                <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="6"
-                                    fill="transparent"
-                                    stroke-dasharray="213.6"
-                                    stroke-dashoffset="{{ 213.6 - (213.6 * ($paaExecutionRate / 100)) }}"
-                                    class="text-indigo-500" stroke-linecap="round" />
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center text-base font-semibold text-white">
-                                {{ $paaExecutionRate }}%
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold text-white leading-tight">
-                                {{ $paaExecutionRate > 90 ? __('Optimal') : ($paaExecutionRate > 50 ? __('Moderate') : __('Early Stage')) }}
-                            </p>
-                            <p class="text-xs text-zinc-500 mt-1">{{ __('Envelope Utilization') }}</p>
-                        </div>
-                    </div>
+    {{-- Key figures --}}
+    @php
+        $fundedPct = $envelope ? min(100, $allocated / max($envelope, 1) * 100) : null;
+        $approvedShare = $totalActivities > 0 ? ($byStatus[\App\Models\Activity::STATUS_APPROVED] / $totalActivities * 100) : 0;
+    @endphp
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        <x-ui.kpi :label="$fundLabel" :value="$fund !== null ? '$ ' . number_format($fund) : '—'"
+            :sub="$fund !== null ? ($envelope === null ? __('Not yet the final envelope') : __('Received for the year')) : __('Not registered yet')" tone="zinc"
+            href="{{ route('budget.envelope.current') }}" />
+        <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($plan)"
+            :sub="__('of $ :t requested in total', ['t' => number_format($planAll)])"
+            :progress="$fund ? min(100, $plan / max($fund, 1) * 100) : null" :tone="($fund && $plan > $fund) ? 'rose' : 'indigo'"
+            href="{{ route('activities.index') }}" />
+        <x-ui.kpi :label="__('Distributed')" :value="'$ ' . number_format($allocated)"
+            :sub="$envelope ? number_format($fundedPct, 1) . '% ' . __('of the envelope') : __('Needs an approved envelope')"
+            :progress="$fundedPct" tone="emerald" href="{{ route('budget.allocation') }}" />
+        <x-ui.kpi :label="__('Activities approved')" :value="$byStatus[\App\Models\Activity::STATUS_APPROVED] . ' / ' . $totalActivities"
+            :sub="number_format($approvedShare, 0) . '% ' . __('of the plan')" :progress="$approvedShare" tone="indigo"
+            href="{{ route('planning.paa-approval') }}" />
+        <x-ui.kpi :label="__('Delivery against targets')" :value="$achievement !== null ? number_format($achievement, 1) . '%' : '—'"
+            :sub="$achievement !== null ? trans_choice(':n indicator with a target|:n indicators with targets', $indicatorCount, ['n' => $indicatorCount]) : __('No verified progress yet')"
+            :progress="$achievement" tone="amber" href="{{ route('monitoring.index') }}" />
+    </div>
 
-                    <!-- Progress milestones -->
-                    <div class="flex items-center gap-2 mb-5">
-                        @foreach([30, 60, 90] as $threshold)
-                            <div class="flex items-center gap-1.5">
-                                <div class="w-2 h-2 rounded-full {{ $paaExecutionRate >= $threshold ? 'bg-emerald-500' : 'bg-white/15' }}"></div>
-                                <span class="text-[10px] text-zinc-600">{{ $threshold }}%</span>
-                            </div>
+    @if($totalActivities === 0)
+        <x-ui.card>
+            <div class="text-center py-10">
+                <h2 class="text-base font-semibold text-zinc-900">{{ __('No activities for :year yet', ['year' => $year]) }}</h2>
+                <p class="mt-1 text-sm text-zinc-500">{{ __('Plan the first activity, or switch the fiscal year in the top bar.') }}</p>
+                <x-ui.button variant="primary" class="mt-5" href="{{ route('activities.create') }}">{{ __('Create first activity') }}</x-ui.button>
+            </div>
+        </x-ui.card>
+    @endif
+
+    {{-- Attention + watch list | money by category --}}
+    <div class="grid gap-6 xl:grid-cols-12">
+        <div class="xl:col-span-5 space-y-6">
+            <x-next-actions />
+
+            @if(count($watch))
+                <section class="bg-white rounded-lg border border-zinc-200 shadow-card" aria-labelledby="watch-title">
+                    <div class="px-5 py-4 border-b border-zinc-200"><h2 id="watch-title" class="text-sm font-semibold text-zinc-900">{{ __('Worth a look') }}</h2></div>
+                    <ul class="divide-y divide-zinc-200">
+                        @foreach($watch as $w)
+                            <li>
+                                <a href="{{ $w['url'] }}" wire:navigate class="flex items-start gap-3 px-5 py-3 hover:bg-zinc-50">
+                                    <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full {{ ['rose' => 'bg-rose-500', 'amber' => 'bg-amber-500', 'zinc' => 'bg-zinc-400'][$w['tone']] ?? 'bg-zinc-400' }}"></span>
+                                    <span class="text-sm text-zinc-700">{{ $w['text'] }}</span>
+                                </a>
+                            </li>
                         @endforeach
-                        <span class="text-[10px] text-zinc-600 ml-auto">{{ __('Financial Adherence') }}</span>
-                    </div>
+                    </ul>
+                </section>
+            @endif
+        </div>
 
-                    <!-- Quarterly chart -->
-                    <div class="pt-4 border-t border-white/10">
-                        <p class="text-[10px] font-medium text-zinc-600 uppercase tracking-wider mb-3">
-                            {{ __('Quarterly Performance') }}
-                        </p>
-                        <div class="h-[72px] w-full">
-                            <canvas id="quarterlyProgressChart"></canvas>
-                        </div>
-                    </div>
+        <x-ui.card class="xl:col-span-7" padding="p-0">
+            <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Money by economic category') }}</h2></x-slot>
+            <div class="p-5">
+                <div wire:key="c-cat-{{ md5(json_encode($charts['categories'])) }}" x-data="dashChart('categories', @js($charts))" x-init="mount()" class="relative h-72">
+                    <canvas role="img" aria-label="{{ __('Envelope, approved plan and distributed amount for each economic category') }}"></canvas>
                 </div>
             </div>
-        </div>
+        </x-ui.card>
     </div>
+
+    {{-- Status | units --}}
+    <div class="grid gap-6 xl:grid-cols-12">
+        <x-ui.card class="xl:col-span-5" padding="p-0">
+            <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Where the activities stand') }}</h2></x-slot>
+            <div class="p-5 grid sm:grid-cols-2 gap-4 items-center">
+                <div wire:key="c-status-{{ md5(json_encode($charts['status'])) }}" x-data="dashChart('status', @js($charts))" x-init="mount()" class="relative h-52">
+                    <canvas role="img" aria-label="{{ __('Activities by workflow status') }}"></canvas>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    @foreach($statusOrder as $i => $st)
+                        <li class="flex items-center justify-between gap-3">
+                            <span class="flex items-center gap-2 text-zinc-600">
+                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#CBD5E1', '#80CAEE', '#6F80EE', '#3C50E0', '#F59E0B', '#10B981'][$i] }}"></span>{{ __($st) }}
+                            </span>
+                            <span class="font-semibold tabular-nums text-zinc-900">{{ $byStatus[$st] }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </x-ui.card>
+
+        <x-ui.card class="xl:col-span-7" padding="p-0">
+            <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Approved plan and distribution by unit') }}</h2></x-slot>
+            <div class="p-5">
+                @if(count($charts['units']['labels']))
+                    <div wire:key="c-units-{{ md5(json_encode($charts['units'])) }}" x-data="dashChart('units', @js($charts))" x-init="mount()" class="relative h-52">
+                        <canvas role="img" aria-label="{{ __('Approved plan and distributed amount for the largest units') }}"></canvas>
+                    </div>
+                @else
+                    <p class="text-sm text-zinc-500 py-10 text-center">{{ __('No approved activities with a budget yet.') }}</p>
+                @endif
+            </div>
+        </x-ui.card>
+    </div>
+
+    {{-- Units table: the numbers behind the charts --}}
+    <x-ui.card padding="p-0">
+        <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Units') }}</h2></x-slot>
+        <x-ui.table :headers="[__('Unit'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded')]">
+            @forelse($units as $u)
+                @php $pct = $u['plan'] > 0 ? min(100, $u['alloc'] / $u['plan'] * 100) : null; @endphp
+                <tr>
+                    <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $u['code'] }}</span> <span class="text-zinc-500">{{ $u['name'] }}</span></td>
+                    <td class="px-6 py-3 text-sm tabular-nums">
+                        @if($u['n'] > 0){{ $u['approved'] }}<span class="text-zinc-400"> / {{ $u['n'] }}</span>@else<span class="text-zinc-400">{{ __('None') }}</span>@endif
+                    </td>
+                    <td class="px-6 py-3 text-sm tabular-nums">{{ $u['plan'] > 0 ? '$ ' . number_format($u['plan']) : '—' }}</td>
+                    <td class="px-6 py-3 text-sm tabular-nums">{{ $u['alloc'] > 0 ? '$ ' . number_format($u['alloc']) : '—' }}</td>
+                    <td class="px-6 py-3 text-sm w-48">
+                        @if($pct !== null)
+                            <div class="flex items-center gap-2">
+                                <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
+                                <span class="text-xs tabular-nums text-zinc-600 w-10 text-right">{{ number_format($pct, 0) }}%</span>
+                            </div>
+                        @else
+                            <span class="text-zinc-400">—</span>
+                        @endif
+                    </td>
+                </tr>
+            @empty
+                <tr><td colspan="5" class="px-6 py-8 text-center text-sm text-zinc-500">{{ __('No units to show.') }}</td></tr>
+            @endforelse
+        </x-ui.table>
+    </x-ui.card>
+
+    {{-- Delivery over the year --}}
+    @if($achievement !== null)
+        <x-ui.card padding="p-0">
+            <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Cumulative progress against annual targets') }}</h2></x-slot>
+            <div class="p-5">
+                <div wire:key="c-q-{{ md5(json_encode($charts['quarterly'])) }}" x-data="dashChart('quarterly', @js($charts))" x-init="mount()" class="relative h-52">
+                    <canvas role="img" aria-label="{{ __('Verified cumulative progress after each quarter') }}"></canvas>
+                </div>
+            </div>
+        </x-ui.card>
+    @endif
+
+    @once
+        <script>
+            // Drawn with the bundled Chart.js. Each chart is rebuilt when its data changes (new wire:key).
+            window.dashChart = (kind, d) => ({
+                chart: null,
+                mount() { window.onChart(() => this.draw()); },
+                destroy() { this.chart && this.chart.destroy(); },
+                draw() {
+                    const el = this.$el.querySelector('canvas');
+                    if (!el || this.chart) return;
+                    const L = d.labels, usd = (v) => '$ ' + Math.round(v).toLocaleString();
+                    const grid = { color: '#E2E8F0' }, tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };
+                    const moneyAxis = { beginAtZero: true, grid, ticks: { ...tick, callback: (v) => v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v } };
+                    const base = { responsive: true, maintainAspectRatio: false, animation: { duration: 250 },
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: '#475569', font: { family: 'Inter', size: 11 } } },
+                                   tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + (kind === 'status' || kind === 'quarterly' ? c.parsed.y ?? c.parsed : usd(c.parsed.y ?? c.parsed.x)) } } } };
+                    const cfg = {
+                        categories: () => ({ type: 'bar', data: { labels: d.categories.labels.map(l => l.length > 22 ? l.slice(0, 21) + '…' : l), datasets: [
+                            { label: L[2], data: d.categories.envelope, backgroundColor: '#CBD5E1', borderRadius: 3 },
+                            { label: L[1], data: d.categories.plan, backgroundColor: '#3C50E0', borderRadius: 3 },
+                            { label: L[3], data: d.categories.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
+                            options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
+                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#CBD5E1', '#80CAEE', '#6F80EE', '#3C50E0', '#F59E0B', '#10B981'], borderWidth: 2, borderColor: '#fff' }] },
+                            options: { ...base, cutout: '68%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.label + ': ' + c.parsed } } } } }),
+                        units: () => ({ type: 'bar', data: { labels: d.units.labels, datasets: [
+                            { label: L[1], data: d.units.plan, backgroundColor: '#3C50E0', borderRadius: 3 },
+                            { label: L[3], data: d.units.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
+                            options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
+                        quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#3C50E0', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#3C50E0' }] },
+                            options: { ...base, plugins: { ...base.plugins, legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.parsed.y + '%' } } },
+                                scales: { y: { beginAtZero: true, max: 100, grid, ticks: { ...tick, callback: (v) => v + '%' } }, x: { grid: { display: false }, ticks: tick } } } }),
+                    }[kind]();
+                    this.chart = new window.Chart(el, cfg);
+                },
+            });
+        </script>
+    @endonce
 </div>

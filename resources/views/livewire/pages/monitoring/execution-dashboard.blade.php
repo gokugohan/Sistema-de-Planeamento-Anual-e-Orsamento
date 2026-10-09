@@ -130,15 +130,10 @@ new class extends Component {
             }
         });
     }
-}" x-init="
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
-    script.onload = () => {
-        initCharts();
-        window.addEventListener('stats-updated', (e) => initCharts(e.detail[0]));
-    };
-    document.head.appendChild(script);
-">
+}" x-init="onChart(() => {
+    initCharts();
+    window.addEventListener('stats-updated', (e) => initCharts(e.detail[0]));
+})">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
             <h1 class="page-title">{{ __('Execution Monitoring') }}

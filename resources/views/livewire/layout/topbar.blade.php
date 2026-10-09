@@ -45,7 +45,16 @@ new class extends Component {
     </nav>
 
     {{-- Quick jump: Ctrl/⌘+K or "/" opens a searchable list of the pages this user can open --}}
-    <div class="ml-auto md:ml-4" x-data="quickJump(@js(\App\Support\Navigation::quickLinks(auth()->user())))"
+    <div class="ml-auto md:ml-4" x-data="{
+            links: @js(\App\Support\Navigation::quickLinks(auth()->user())), open: false, query: '', active: 0,
+            get results() {
+                const q = this.query.trim().toLowerCase();
+                return q ? this.links.filter(l => (l.label + ' ' + l.group + ' ' + l.hint).toLowerCase().includes(q)) : this.links;
+            },
+            show() { this.open = true; this.query = ''; this.active = 0; this.$nextTick(() => this.$refs.input.focus()); },
+            move(d) { const n = this.results.length; if (n) this.active = (this.active + d + n) % n; },
+            go() { const l = this.results[this.active]; if (l) { this.open = false; window.location.href = l.url; } },
+        }"
         @keydown.window.ctrl.k.prevent="show()" @keydown.window.meta.k.prevent="show()"
         @keydown.window="if ($event.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable) { $event.preventDefault(); show() }">
         <button type="button" @click="show()"
@@ -80,27 +89,20 @@ new class extends Component {
             </div>
         </template>
     </div>
-
-    <script>
-        document.addEventListener('alpine:init', () => {
-            if (window.__quickJumpDefined) return;
-            window.__quickJumpDefined = true;
-            Alpine.data('quickJump', (links) => ({
-                links, open: false, query: '', active: 0,
-                get results() {
-                    const q = this.query.trim().toLowerCase();
-                    if (!q) return this.links;
-                    return this.links.filter(l => (l.label + ' ' + l.group + ' ' + l.hint).toLowerCase().includes(q));
-                },
-                show() { this.open = true; this.query = ''; this.active = 0; this.$nextTick(() => this.$refs.input.focus()); },
-                move(d) { const n = this.results.length; if (n) this.active = (this.active + d + n) % n; },
-                go() { const l = this.results[this.active]; if (l) { this.open = false; window.location.href = l.url; } },
-            }));
-        });
-    </script>
-
     <!-- Right Side -->
     <div class="ml-auto flex items-center gap-1">
+
+        <!-- Fiscal year: the year every page works in -->
+        <div x-data class="flex items-center gap-2 mr-2">
+            <label for="fiscal-year" class="hidden xl:block text-xs font-medium text-zinc-500">{{ __('Fiscal year') }}</label>
+            <select id="fiscal-year" @change="window.location.href = $event.target.value"
+                class="h-9 pl-3 pr-8 text-sm font-semibold text-zinc-900 bg-white border border-zinc-200 rounded-md focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600">
+                @php $fy = \App\Models\FiscalEnvelope::getEffectiveYear(); @endphp
+                @foreach(\App\Models\FiscalEnvelope::availableYears() as $year)
+                    <option value="{{ route('fiscal-year.switch', $year) }}" @selected($year === $fy)>{{ $year }}</option>
+                @endforeach
+            </select>
+        </div>
 
         <!-- Language Switcher -->
         <div class="flex items-center gap-0.5 p-1 bg-zinc-100 rounded-md">

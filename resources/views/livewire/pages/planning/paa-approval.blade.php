@@ -205,21 +205,9 @@ new class extends Component {
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
             <h1 class="page-title">{{ __('PAA Technical Review') }}</h1>
-            <div class="flex items-center gap-4 mt-3">
-                <p class="page-subtitle">
-                    {{ __('Phase 1: Requirement Planning for') }}
-                </p>
-                <select wire:model.live="activeYear" class="bg-slate-100 border-none rounded-lg text-[10px] font-black uppercase tracking-widest py-1 px-3 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer">
-                    @php 
-                        $baseYear = (int)App\Models\SystemSetting::get('planning_active_year', date('Y'));
-                    @endphp
-                    <option value="{{ $baseYear }}">{{ $baseYear }} ({{ __('Active') }})</option>
-                    <option value="{{ $baseYear + 1 }}">{{ $baseYear + 1 }} ({{ __('Planning') }})</option>
-                    <!-- <option value="{{ $baseYear + 2 }}">{{ $baseYear + 2 }}</option> -->
-                </select>
-            </div>
+            <p class="page-subtitle">{{ __('Review and approve the activities submitted for :year.', ['year' => $activeYear]) }}</p>
         </div>
-        
+
         <!-- Requirement Summary Widget -->
         <div class="flex gap-4 p-4 bg-slate-900 rounded-2xl text-white shadow-xl shadow-slate-900/20">
             <div class="px-4 border-r border-slate-800">
@@ -363,7 +351,7 @@ new class extends Component {
                         <div class="flex-1 p-6">
                             <div class="flex items-center gap-3 mb-4">
                                 <span
-                                    class="px-2 py-1 bg-slate-100 text-[9px] font-black text-slate-500 rounded uppercase tracking-widest">{{ $activity->program->code ?? 'N/A' }}</span>
+                                    class="px-2 py-1 bg-slate-100 text-[9px] font-black text-slate-500 rounded uppercase tracking-widest">{{ $activity->program->oge_code ?? '—' }}</span>
                                 <span
                                     class="text-[10px] font-black text-indigo-500 uppercase tracking-tighter">{{ $activity->directorate->name }}</span>
                                 <span class="ml-auto inline-flex items-center px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-widest border

@@ -76,9 +76,8 @@ Route::middleware(['auth', 'verified', 'permission:view_reports'])->group(functi
     Route::get('reports/approved-plan/pdf', [\App\Http\Controllers\ApprovedPlanReportController::class, 'pdf'])->name('reports.approved-plan.pdf');
 });
 
-Route::get('admin/entities', function () {
-    return view('admin.entities');
-})->middleware(['auth', 'verified', 'role:Admin'])->name('admin.entities');
+// The old "Entities Registry" was merged into Management > Entities; keep bookmarks working.
+Route::redirect('admin/entities', '/management/entities', 301);
 
 Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => ['auth', 'verified', 'role:Admin']], function () {
     Route::get('/settings', function () {
@@ -117,6 +116,15 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+// Global fiscal-year context: every page works in the year chosen here.
+Route::get('fiscal-year/{year}', function (int $year) {
+    if (in_array($year, \App\Models\FiscalEnvelope::availableYears(), true)) {
+        session(['fiscal_year' => $year]);
+    }
+
+    return redirect()->back();
+})->middleware(['auth'])->whereNumber('year')->name('fiscal-year.switch');
 
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'pt', 'tet'])) {

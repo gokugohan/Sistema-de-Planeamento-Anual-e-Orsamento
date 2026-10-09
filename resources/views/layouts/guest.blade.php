@@ -3,7 +3,11 @@
 
     $org = SystemSetting::getLocalized('org_name', 'Institution Name');
     $orgAbbr = SystemSetting::getLocalized('org_abbr', 'ORG');
-    $product = SystemSetting::getLocalized('app_name', config('app.name'));
+    // Never show the framework's default name ("Laravel") as the product name.
+    $product = SystemSetting::getLocalized('app_name', '');
+    if ($product === '' || strcasecmp($product, 'Laravel') === 0) {
+        $product = __('Annual Activity Plan & Budget');
+    }
     $tagline = SystemSetting::getLocalized('app_tagline', '');
     $description = SystemSetting::getLocalized('app_description', '');
     $owner = SystemSetting::get('system_owner', '');
@@ -32,9 +36,6 @@
     <meta name="robots" content="noindex, nofollow">
 
     <title>{{ __('Sign in') }} &mdash; {{ $product }}</title>
-
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -112,7 +113,7 @@
                         @if(file_exists(public_path('logo.png')))
                             <div class="flex items-center gap-2.5" title="{{ __('Implemented by') }} {{ $implementedBy }}">
                                 <span class="text-[11px] text-nav-muted text-right leading-tight">{{ __('Implemented by') }}<br><span class="text-zinc-300">{{ $implementedBy ?: 'G-Kakaroto' }}</span></span>
-                                <img src="{{ asset('logo.png') }}" alt="" width="36" height="36" loading="lazy" class="h-9 w-9 rounded-full">
+                                <img src="{{ asset('logo.png') }}" alt="" width="44" height="44" loading="lazy" class="h-11 w-11 shrink-0 object-contain">
                             </div>
                         @endif
                     </div>
@@ -149,9 +150,11 @@
                 </div>
             </main>
 
-            <footer class="px-6 sm:px-10 py-5 text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-2">
-                <span>{{ __('Authorised users only. Activity on this system is logged.') }}</span>
-                <span class="lg:hidden">&copy; {{ date('Y') }} {{ $owner ?: $org }}</span>
+            <footer class="px-6 sm:px-10 py-6">
+                <div class="mx-auto w-full max-w-[26rem] text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-2">
+                    <span>{{ __('Authorised users only. Activity on this system is logged.') }}</span>
+                    <span class="lg:hidden">&copy; {{ date('Y') }} {{ $owner ?: $org }}</span>
+                </div>
             </footer>
         </div>
     </div>

@@ -9,10 +9,14 @@
     <title>@if(!empty($title)){{ $title }} &mdash; @endif{{ \App\Models\SystemSetting::getLocalized('app_name', config('app.name')) }} &mdash; {{ \App\Models\SystemSetting::getLocalized('app_tagline', '') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
+    <script>
+        // Run cb once Chart.js is loaded, whether or not the (deferred) app bundle has executed yet.
+        window.onChart = (cb) => window.loadChart
+            ? window.loadChart().then(cb)
+            : window.addEventListener('app:ready', () => window.loadChart().then(cb), { once: true });
+    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

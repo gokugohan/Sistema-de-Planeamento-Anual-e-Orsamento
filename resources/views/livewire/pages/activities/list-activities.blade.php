@@ -588,9 +588,7 @@ new class extends Component {
         $availableYears = \App\Models\Activity::distinct()->pluck('fiscal_year')
             ->merge(\App\Models\FiscalEnvelope::when(!$this->showDrafts, fn($q) => $q->where('status', '!=', 'Draft'))->pluck('fiscal_year'))
             ->unique()->sortDesc();
-        if ($availableYears->isEmpty()) {
-            $availableYears = collect([$this->activeYear]);
-        }
+        $availableYears = $availableYears->push((int) $fiscalYear, (int) $this->activeYear)->unique()->sortDesc();
     @endphp
 
     {{-- ─── Page Header ──────────────────────────────────────── --}}

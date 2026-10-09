@@ -110,6 +110,36 @@ table thead th {
     @apply outline-2 outline-offset-2 outline-indigo-600;
 }
 
+/* ─── Older pages: readable sizes and calmer tone ─────────────
+   Many pages were written with 9–10px, wide-tracked, italic micro-labels.
+   Raise them to a readable size and quieten them so every screen shares one voice. */
+.text-\[9px\],
+.text-\[10px\] {
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.tracking-widest,
+.tracking-\[0\.15em\],
+.tracking-\[0\.2em\],
+.tracking-\[0\.3em\],
+.tracking-\[0\.4em\] {
+    letter-spacing: 0.05em;
+}
+
+main .italic {
+    font-style: normal;
+}
+
+/* Fields embedded in a styled wrapper (transparent background): no second border/ring on focus */
+input.bg-transparent:not(.flux-input),
+input.bg-transparent:not(.flux-input):focus,
+input.bg-transparent:not(.flux-input):focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
 /* ─── Custom Scrollbar ───────────────────────────────────── */
 ::-webkit-scrollbar {
     width: 4px;

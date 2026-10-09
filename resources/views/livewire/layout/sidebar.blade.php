@@ -48,7 +48,7 @@ new class extends Component {
     </div>
 
     <!-- Brand -->
-    <div class="flex items-center gap-3 px-6 h-16 shrink-0 border-b border-white/10">
+    <div class="flex items-center gap-3 px-6 min-h-16 py-3 shrink-0 border-b border-white/10">
         <div class="w-9 h-9 bg-indigo-600 rounded-md flex items-center justify-center flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -57,7 +57,7 @@ new class extends Component {
             </svg>
         </div>
         <div class="min-w-0">
-            <p class="text-sm font-semibold text-white leading-tight truncate">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name') }}</p>
+            <p class="text-sm font-semibold text-white leading-snug line-clamp-2">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name') }}</p>
             <p class="text-[10px] text-nav-muted font-medium uppercase tracking-wider mt-0.5 truncate">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</p>
         </div>
     </div>
@@ -139,7 +139,7 @@ new class extends Component {
         <p class="text-[10px] text-nav-muted leading-relaxed">
            &copy; {{ date('Y') }} {{ $sOwner }} &mdash; {{ __('All rights reserved') }}
            <br>
-                    {{ $sImplBy ? __('Implemented by') . ' ' . $sImplBy : 'N/A' }}
+                    @if($sImplBy){{ __('Implemented by') }} {{ $sImplBy }}@endif
         </p>
     </div>
 </div>
