@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
+use App\Models\Scopes\ProductionScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     /**
@@ -15,7 +17,7 @@ class Activity extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new \App\Models\Scopes\ProductionScope);
+        static::addGlobalScope(new ProductionScope);
 
         static::updating(function ($activity) {
             if ($activity->isLocked()) {
@@ -33,19 +35,25 @@ class Activity extends Model
     public function isLocked(): bool
     {
         $envelope = FiscalEnvelope::where('fiscal_year', $this->fiscal_year)->first();
+
         return $envelope && $envelope->status === FiscalEnvelope::STATUS_CLOSED;
     }
 
     const STATUS_DRAFT = 'Draft';
+
     const STATUS_SUBMITTED = 'Submitted';
+
     const STATUS_REVIEWED = 'Reviewed';
+
     const STATUS_VALIDATED = 'Validated';
+
     const STATUS_WAITING_APPROVAL = 'Waiting Approval';
+
     const STATUS_Approved = 'Approved'; // Keeping lowercase 'Approved' if used elsewhere or correcting case? The file has 'Approved'
+
     const STATUS_APPROVED = 'Approved';
+
     const STATUS_REJECTED = 'Rejected';
-
-
 
     protected $fillable = [
         'program_id',
@@ -112,7 +120,6 @@ class Activity extends Model
      */
     public function scopeTestData($query)
     {
-        return $query->withoutGlobalScope(\App\Models\Scopes\ProductionScope::class)->where('is_test_data', true);
+        return $query->withoutGlobalScope(ProductionScope::class)->where('is_test_data', true);
     }
-
 }

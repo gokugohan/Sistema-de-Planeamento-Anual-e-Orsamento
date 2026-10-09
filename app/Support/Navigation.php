@@ -5,6 +5,7 @@ namespace App\Support;
 use App\Models\SystemSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /**
  * Builds the sidebar, breadcrumbs and quick-jump list from config/navigation.php,
@@ -15,24 +16,24 @@ class Navigation
     /** @return array<int, array{label: string, items: array<int, array>}> */
     public static function groups(?User $user): array
     {
-        if (!$user) {
+        if (! $user) {
             return [];
         }
 
         $groups = [];
         foreach (config('navigation.groups') as $group) {
-            if (!self::allowed($user, $group)) {
+            if (! self::allowed($user, $group)) {
                 continue;
             }
 
             $items = [];
             foreach ($group['items'] as $item) {
-                if (!self::allowed($user, $item)) {
+                if (! self::allowed($user, $item)) {
                     continue;
                 }
                 if (isset($item['children'])) {
                     $item['children'] = array_values(array_filter($item['children'], fn ($c) => self::allowed($user, $c)));
-                    if (!$item['children']) {
+                    if (! $item['children']) {
                         continue;
                     }
                 }
@@ -72,7 +73,7 @@ class Navigation
         foreach (self::groups($user) as $group) {
             foreach ($group['items'] as $item) {
                 foreach ($item['children'] ?? [$item] as $leaf) {
-                    if (!isset($leaf['route'])) {
+                    if (! isset($leaf['route'])) {
                         continue;
                     }
                     $links[] = [
@@ -97,7 +98,7 @@ class Navigation
     public static function breadcrumbs(?User $user): array
     {
         $current = Route::currentRouteName();
-        if (!$current || $current === 'dashboard') {
+        if (! $current || $current === 'dashboard') {
             return [];
         }
 
@@ -142,7 +143,7 @@ class Navigation
                 foreach ($item['children'] ?? [$item] as $leaf) {
                     $patterns = $leaf['match'] ?? (isset($leaf['route']) ? [$leaf['route']] : []);
                     foreach ($patterns as $p) {
-                        if (\Illuminate\Support\Str::is($p, $routeName)) {
+                        if (Str::is($p, $routeName)) {
                             return [$group['label'], $item, $leaf];
                         }
                     }
@@ -155,13 +156,13 @@ class Navigation
 
     private static function allowed(User $user, array $node): bool
     {
-        if (isset($node['roles']) && !$user->hasAnyRole($node['roles'])) {
+        if (isset($node['roles']) && ! $user->hasAnyRole($node['roles'])) {
             return false;
         }
-        if (isset($node['permission']) && !$user->can($node['permission'])) {
+        if (isset($node['permission']) && ! $user->can($node['permission'])) {
             return false;
         }
-        if (($node['feature'] ?? null) === 'testing' && !SystemSetting::get('enable_paa_testing_mode', false)) {
+        if (($node['feature'] ?? null) === 'testing' && ! SystemSetting::get('enable_paa_testing_mode', false)) {
             return false;
         }
 

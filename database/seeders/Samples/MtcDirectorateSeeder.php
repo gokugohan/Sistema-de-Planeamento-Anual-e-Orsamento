@@ -26,6 +26,7 @@ class MtcDirectorateSeeder extends Seeder
     private SampleRegistry $registry;
 
     private const ORGANIC_LAW_YEAR = 2023; // DL 75/2023
+
     private const AMENDMENT_YEAR = 2026;   // DL 12/2026
 
     public function run(SampleRegistry $registry): void

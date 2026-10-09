@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class ApprovedPlanReportController extends Controller
 {
-    public function __construct(private ApprovedPlanReport $reports)
-    {
-    }
+    public function __construct(private ApprovedPlanReport $reports) {}
 
     /** Browser view of the document (print-ready, A4). */
     public function show(Request $request)
@@ -50,7 +48,7 @@ class ApprovedPlanReportController extends Controller
         $canvas->page_text(
             $canvas->get_width() - 90,
             $canvas->get_height() - 34,
-            __('Page') . ' {PAGE_NUM} / {PAGE_COUNT}',
+            __('Page').' {PAGE_NUM} / {PAGE_COUNT}',
             $dompdf->getFontMetrics()->getFont('DejaVu Sans'),
             7,
             [0.39, 0.45, 0.55]

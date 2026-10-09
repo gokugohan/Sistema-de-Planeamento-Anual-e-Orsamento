@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Tests\TestCase;
 
@@ -15,7 +16,7 @@ class RegistrationTest extends TestCase
         $this->assertFalse(config('auth.allow_registration'));
 
         $this->get('/register')->assertNotFound();
-        $this->assertFalse(\Illuminate\Support\Facades\Route::has('register'));
+        $this->assertFalse(Route::has('register'));
     }
 
     public function test_the_login_screen_does_not_offer_registration_when_it_is_off(): void

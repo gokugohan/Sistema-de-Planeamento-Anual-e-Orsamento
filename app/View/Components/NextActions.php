@@ -22,7 +22,7 @@ class NextActions extends Component
     public function __construct()
     {
         $user = auth()->user();
-        if (!$user) {
+        if (! $user) {
             return;
         }
 
@@ -30,7 +30,7 @@ class NextActions extends Component
         $seesAll = $approver || $user->can('view_all_paa');
 
         $scope = null; // null = every unit
-        if (!$seesAll) {
+        if (! $seesAll) {
             $unit = $user->directorate_id ? Directorate::find($user->directorate_id) : null;
             $scope = $unit ? $unit->getSelfAndDescendantIds() : [0];
         }
@@ -61,7 +61,7 @@ class NextActions extends Component
             $year = (int) date('Y') + 1;
             $approved = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->count();
             $submitted = BudgetCycle::where('fiscal_year', $year)->whereNotNull('submitted_at')->exists();
-            if ($approved > 0 && !$submitted) {
+            if ($approved > 0 && ! $submitted) {
                 $this->add($approved, __('approved activities for :year have not been recorded as submitted to the CRO', ['year' => $year]), route('planning.budget-cycle'), 'amber');
             }
         }

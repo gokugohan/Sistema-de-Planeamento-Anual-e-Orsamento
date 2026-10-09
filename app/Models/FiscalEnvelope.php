@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
+use App\Models\Scopes\ProductionScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class FiscalEnvelope extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     /**
@@ -15,7 +17,7 @@ class FiscalEnvelope extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new \App\Models\Scopes\ProductionScope);
+        static::addGlobalScope(new ProductionScope);
 
         $forget = fn () => self::$activeMemo = null;
         static::saved($forget);
@@ -26,8 +28,11 @@ class FiscalEnvelope extends Model
     private static ?array $activeMemo = null;
 
     const STATUS_DRAFT = 'Draft';
+
     const STATUS_PENDING = 'Pending Approval';
+
     const STATUS_APPROVED = 'Approved';
+
     const STATUS_CLOSED = 'Closed';
 
     protected $fillable = [
@@ -48,14 +53,17 @@ class FiscalEnvelope extends Model
     {
         return $this->status === self::STATUS_DRAFT;
     }
+
     public function isPending(): bool
     {
         return $this->status === self::STATUS_PENDING;
     }
+
     public function isApproved(): bool
     {
         return $this->status === self::STATUS_APPROVED;
     }
+
     /** The OGE law has been approved and promulgated, so the envelope is legally real. */
     public function hasLegalBasis(): bool
     {
@@ -78,7 +86,6 @@ class FiscalEnvelope extends Model
         ];
     }
 
-
     public function getExecutionRateAttribute()
     {
         // Placeholder: Needs actual implementation based on Expenditure Tracking
@@ -95,11 +102,12 @@ class FiscalEnvelope extends Model
             return false;
         }
 
-        if (!$this->start_date || !$this->due_date) {
+        if (! $this->start_date || ! $this->due_date) {
             return false;
         }
 
         $today = now();
+
         return $today->greaterThanOrEqualTo($this->start_date) &&
             $today->lessThanOrEqualTo($this->due_date);
     }
@@ -110,6 +118,7 @@ class FiscalEnvelope extends Model
     public function scopeActiveByDate($query)
     {
         $today = now();
+
         return $query->where('status', self::STATUS_APPROVED)
             ->whereDate('start_date', '<=', $today)
             ->whereDate('due_date', '>=', $today);
@@ -165,7 +174,7 @@ class FiscalEnvelope extends Model
     public static function availableYears(): array
     {
         static $memo = null;
-        if ($memo !== null && !app()->runningUnitTests()) {
+        if ($memo !== null && ! app()->runningUnitTests()) {
             return $memo;
         }
 
@@ -198,10 +207,8 @@ class FiscalEnvelope extends Model
      */
     public function scopeTestData($query)
     {
-        return $query->withoutGlobalScope(\App\Models\Scopes\ProductionScope::class)->where('is_test_data', true);
+        return $query->withoutGlobalScope(ProductionScope::class)->where('is_test_data', true);
     }
-
-
 
     /**
      * Relationship: Fiscal envelope has many category allocations
@@ -220,7 +227,6 @@ class FiscalEnvelope extends Model
             $query->where('fiscal_year', $this->fiscal_year);
         })->sum('estimated_amount');
     }
-
 
     /**
      * Get variance summary for this fiscal envelope

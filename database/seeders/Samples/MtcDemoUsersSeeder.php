@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Demo accounts for the sample dataset: one Minister, and a Planner and a
  * Director for every organic unit. All use the password "password" and the
+ *
  * @goku.tl domain, so they must never exist in production: purge them from
  * Management > Sample Data before going live.
  */
@@ -27,7 +28,7 @@ class MtcDemoUsersSeeder extends Seeder
         $this->assignRole($registry, $minister, 'Minister');
 
         foreach (Directorate::all() as $dir) {
-            if (!$registry->isRegistered($dir)) {
+            if (! $registry->isRegistered($dir)) {
                 continue; // only sample units get demo accounts
             }
             $code = strtolower($dir->code);

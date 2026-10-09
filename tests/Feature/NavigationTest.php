@@ -8,7 +8,9 @@ use App\Models\Program;
 use App\Models\User;
 use App\Support\Navigation;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Volt\Volt;
 use Tests\TestCase;
 
 class NavigationTest extends TestCase
@@ -142,7 +144,7 @@ class NavigationTest extends TestCase
 
     public function test_every_menu_entry_also_opens_with_data_in_the_system(): void
     {
-        $this->seed(\Database\Seeders\Samples\MtcSampleDataSeeder::class);
+        $this->seed(MtcSampleDataSeeder::class);
         $user = $this->as('Admin');
 
         foreach (Navigation::quickLinks($user) as $link) {
@@ -162,12 +164,12 @@ class NavigationTest extends TestCase
 
     public function test_the_entities_page_shows_funding_for_units_and_programmes(): void
     {
-        $this->seed(\Database\Seeders\Samples\MtcSampleDataSeeder::class);
+        $this->seed(MtcSampleDataSeeder::class);
         $this->as('Admin');
-        \App\Models\Activity::query()->update(['status' => 'Approved']);
+        Activity::query()->update(['status' => 'Approved']);
 
         $this->get(route('management.entities'))->assertOk()->assertSee('Approved plan')->assertSee('Funded')->assertSee('DGT');
         $this->get(route('management.entities', ['search' => 'Transportes']))->assertOk();
-        \Livewire\Volt\Volt::test('pages.management.entities')->set('activeTab', 'programs')->set('search', 'MTC-002')->assertSee('Transportes Terrestres');
+        Volt::test('pages.management.entities')->set('activeTab', 'programs')->set('search', 'MTC-002')->assertSee('Transportes Terrestres');
     }
 }

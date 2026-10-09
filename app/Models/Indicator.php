@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Indicator extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     protected $fillable = [
@@ -15,7 +16,7 @@ class Indicator extends Model
         'name',
         'type',
         'unit',
-        'annual_target'
+        'annual_target',
     ];
 
     public function activity()

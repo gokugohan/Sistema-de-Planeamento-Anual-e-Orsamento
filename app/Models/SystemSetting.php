@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class SystemSetting extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     protected $fillable = ['key', 'value', 'type', 'description'];
@@ -25,13 +27,13 @@ class SystemSetting extends Model
     {
         self::$cache = [];
         self::$rows = null;
-        \Illuminate\Support\Facades\Cache::forget(self::CACHE_KEY);
+        Cache::forget(self::CACHE_KEY);
     }
 
     /** Load every setting with a single query, shared across requests. */
     private static function rows(): array
     {
-        return self::$rows ??= \Illuminate\Support\Facades\Cache::remember(
+        return self::$rows ??= Cache::remember(
             self::CACHE_KEY,
             3600,
             fn () => self::query()->get(['key', 'value', 'type'])
@@ -44,6 +46,7 @@ class SystemSetting extends Model
     {
         if (array_key_exists($key, self::$cache)) {
             $value = self::$cache[$key];
+
             return $value === null ? $default : $value;
         }
 
@@ -51,6 +54,7 @@ class SystemSetting extends Model
 
         if ($row === null) {
             self::$cache[$key] = null;
+
             return $default;
         }
 

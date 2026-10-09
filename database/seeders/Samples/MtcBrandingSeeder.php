@@ -9,7 +9,9 @@ use Illuminate\Database\Seeder;
 class MtcBrandingSeeder extends Seeder
 {
     public const ORG_NAME = ['en' => 'Ministry of Transport and Communications', 'pt' => 'Ministério dos Transportes e Comunicações', 'tet' => 'Ministériu Transporte no Komunikasaun'];
+
     public const ORG_ABBR = ['en' => 'MTC', 'pt' => 'MTC', 'tet' => 'MTK'];
+
     public const FULL_NAME = 'Ministério dos Transportes e Comunicações';
 
     public function run(): void

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Model;
 
 class BudgetCycle extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
 
     protected $fillable = [
         'fiscal_year',

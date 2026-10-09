@@ -3,10 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Services\SampleRegistry;
+use Database\Seeders\Samples\MtcDemoUsersSeeder;
 use Database\Seeders\Samples\MtcDirectorateSeeder;
 use Database\Seeders\Samples\MtcProgramSeeder;
 use Database\Seeders\Samples\MtcSampleActivitiesSeeder;
-use Database\Seeders\Samples\MtcDemoUsersSeeder;
 use Illuminate\Console\Command;
 
 /**
@@ -26,7 +26,7 @@ class AdoptSampleData extends Command
         $this->warn('Only records IDENTICAL to the MTC sample (same code and name/description) are adopted. Review before confirming:');
         $this->line('  units · programmes · demo users (@goku.tl) · [EXEMPLO] activities');
 
-        if (!$this->option('force') && !$this->confirm('Adopt matching records as sample data (they become purgeable)?')) {
+        if (! $this->option('force') && ! $this->confirm('Adopt matching records as sample data (they become purgeable)?')) {
             return self::FAILURE;
         }
 
@@ -37,7 +37,7 @@ class AdoptSampleData extends Command
         }
 
         $counts = $registry->counts();
-        $this->info('Registered as sample: ' . collect($counts)->map(fn ($n, $k) => "$n $k")->implode(', ') . '.');
+        $this->info('Registered as sample: '.collect($counts)->map(fn ($n, $k) => "$n $k")->implode(', ').'.');
 
         return self::SUCCESS;
     }

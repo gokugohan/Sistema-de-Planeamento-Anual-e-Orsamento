@@ -47,11 +47,11 @@ trait Auditable
         $request = app()->runningInConsole() ? null : request();
 
         AuditLog::create([
-            'action' => strtolower(class_basename($model)) . '.' . $event,
+            'action' => strtolower(class_basename($model)).'.'.$event,
             'user_id' => auth()->id(),
             'auditable_type' => $model->getMorphClass(),
             'auditable_id' => $model->getKey(),
-            'description' => class_basename($model) . ' #' . $model->getKey() . ' ' . $event,
+            'description' => class_basename($model).' #'.$model->getKey().' '.$event,
             'old_values' => $old,
             'new_values' => $new,
             'ip_address' => $request?->ip(),

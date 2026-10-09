@@ -23,7 +23,9 @@ class BudgetCycleTest extends TestCase
     use RefreshDatabase;
 
     private EconomicClassification $goods;
+
     private Directorate $dir;
+
     private Program $program;
 
     protected function setUp(): void
@@ -39,7 +41,7 @@ class BudgetCycleTest extends TestCase
     {
         $a = Activity::create([
             'fiscal_year' => 2027, 'program_id' => $this->program->id, 'directorate_id' => $this->dir->id,
-            'description' => 'Atividade ' . uniqid(), 'quarter' => 1, 'priority' => 'Alta',
+            'description' => 'Atividade '.uniqid(), 'quarter' => 1, 'priority' => 'Alta',
             'planned_start' => '2027-01-01', 'planned_end' => '2027-03-31', 'status' => $status,
         ]);
         LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => $this->goods->id, 'estimated_amount' => $amount]);

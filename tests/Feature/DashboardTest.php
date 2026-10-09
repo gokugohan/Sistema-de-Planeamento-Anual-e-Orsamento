@@ -22,9 +22,13 @@ class DashboardTest extends TestCase
     use RefreshDatabase;
 
     private int $year;
+
     private Directorate $dg;
+
     private Directorate $dn;
+
     private Program $program;
+
     private EconomicClassification $goods;
 
     protected function setUp(): void
@@ -47,7 +51,7 @@ class DashboardTest extends TestCase
     {
         $a = Activity::create([
             'fiscal_year' => $this->year, 'program_id' => $this->program->id, 'directorate_id' => ($unit ?? $this->dn)->id,
-            'description' => "Activity {$status} " . uniqid(), 'quarter' => 1, 'priority' => 'Alta',
+            'description' => "Activity {$status} ".uniqid(), 'quarter' => 1, 'priority' => 'Alta',
             'planned_start' => "{$this->year}-01-01", 'planned_end' => "{$this->year}-03-31", 'status' => $status,
         ]);
         LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => $this->goods->id, 'estimated_amount' => $amount]);
@@ -88,14 +92,14 @@ class DashboardTest extends TestCase
         $env = FiscalEnvelope::create([
             'fiscal_year' => $this->year, 'total_amount' => 1200, 'status' => FiscalEnvelope::STATUS_APPROVED, 'reference_number' => 'OGE',
             'start_date' => "{$this->year}-01-01", 'due_date' => "{$this->year}-12-31",
-            'budget_law_reference' => 'Lei 1', 'promulgation_date' => ($this->year - 1) . '-12-20',
+            'budget_law_reference' => 'Lei 1', 'promulgation_date' => ($this->year - 1).'-12-20',
         ]);
         FiscalEnvelopeCategoryAllocation::create(['fiscal_envelope_id' => $env->id, 'economic_classification_id' => $this->goods->id, 'allocated_amount' => 1200]);
         app(EnvelopeDistributor::class)->distribute($env);
 
         $this->get(route('dashboard'))
             ->assertOk()
-            ->assertSee('Budget cycle ' . $this->year)
+            ->assertSee('Budget cycle '.$this->year)
             ->assertSee('$ 1,200')            // envelope
             ->assertSee('$ 1,500')            // approved plan (drafts excluded)
             ->assertSee('2 / 3')              // approved / all activities
@@ -123,7 +127,7 @@ class DashboardTest extends TestCase
         $this->get(route('fiscal-year.switch', $this->year));
 
         Volt::test('pages.dashboard.summary')
-            ->assertSee('No activities for ' . FiscalEnvelope::getEffectiveYear() . ' yet')
+            ->assertSee('No activities for '.FiscalEnvelope::getEffectiveYear().' yet')
             ->assertSee('Create first activity');
     }
 
@@ -149,15 +153,15 @@ class DashboardTest extends TestCase
     {
         $offenders = [];
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(resource_path('views'))) as $file) {
-            if (!str_ends_with($file->getFilename(), '.blade.php') || str_contains($file->getPathname(), DIRECTORY_SEPARATOR . 'testing' . DIRECTORY_SEPARATOR) || str_contains($file->getPathname(), 'simulation-')) {
+            if (! str_ends_with($file->getFilename(), '.blade.php') || str_contains($file->getPathname(), DIRECTORY_SEPARATOR.'testing'.DIRECTORY_SEPARATOR) || str_contains($file->getPathname(), 'simulation-')) {
                 continue;
             }
             $src = file_get_contents($file->getPathname());
             if (preg_match('/\brand\(|mt_rand\(|\/\/\s*Simulated|simulated usage|Placeholder until/i', $src)) {
-                $offenders[] = str_replace(resource_path('views') . DIRECTORY_SEPARATOR, '', $file->getPathname());
+                $offenders[] = str_replace(resource_path('views').DIRECTORY_SEPARATOR, '', $file->getPathname());
             }
         }
 
-        $this->assertSame([], $offenders, 'These views contain invented or random numbers: ' . implode(', ', $offenders));
+        $this->assertSame([], $offenders, 'These views contain invented or random numbers: '.implode(', ', $offenders));
     }
 }

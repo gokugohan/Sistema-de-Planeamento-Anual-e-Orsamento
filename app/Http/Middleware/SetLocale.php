@@ -11,7 +11,7 @@ class SetLocale
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -21,7 +21,7 @@ class SetLocale
             app()->setLocale($locale);
 
             // Sync cookie value back into the session if it came from the cookie
-            if (!session()->has('locale')) {
+            if (! session()->has('locale')) {
                 session(['locale' => $locale]);
             }
         }

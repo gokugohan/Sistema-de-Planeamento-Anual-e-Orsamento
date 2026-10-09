@@ -110,7 +110,7 @@ class ActivityCsvImportTest extends TestCase
         $this->assertStringContainsString('Missing required column', (new ActivityCsvImporter)->parse($bad, 2027)['errors'][0]['message']);
 
         $latin1 = tempnam(sys_get_temp_dir(), 'paa');
-        file_put_contents($latin1, mb_convert_encoding($this->header . "\nA1;DNTT;002;Revisão técnica;Alta;1;2027-01-01;2027-03-31;;;;;;;20;10", 'Windows-1252', 'UTF-8'));
+        file_put_contents($latin1, mb_convert_encoding($this->header."\nA1;DNTT;002;Revisão técnica;Alta;1;2027-01-01;2027-03-31;;;;;;;20;10", 'Windows-1252', 'UTF-8'));
         $parsed = (new ActivityCsvImporter)->parse($latin1, 2027);
         $this->assertSame([], $parsed['errors']);
         $this->assertSame('Revisão técnica', $parsed['activities'][0]['description']);
@@ -145,7 +145,7 @@ class ActivityCsvImportTest extends TestCase
         $admin->assignRole('Admin');
         $this->actingAs($admin);
 
-        $file = UploadedFile::fake()->createWithContent('plan.csv', $this->header . "\nA1;DNTT;002;Revisão do quadro regulamentar;Alta;2;2027-04-01;2027-06-30;;;;;;;20;250");
+        $file = UploadedFile::fake()->createWithContent('plan.csv', $this->header."\nA1;DNTT;002;Revisão do quadro regulamentar;Alta;2;2027-04-01;2027-06-30;;;;;;;20;250");
 
         Volt::test('pages.management.import-activities')
             ->set('fiscalYear', 2027)

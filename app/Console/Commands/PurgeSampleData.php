@@ -23,13 +23,13 @@ class PurgeSampleData extends Command
 
         $this->table(['Kind', 'Registered sample records'], collect($counts)->map(fn ($n, $k) => [$k, $n])->values()->all());
 
-        if (!$this->option('force') && !$this->confirm('Delete these sample records? Anything real data still depends on is kept.')) {
+        if (! $this->option('force') && ! $this->confirm('Delete these sample records? Anything real data still depends on is kept.')) {
             return self::FAILURE;
         }
 
         $report = $registry->purge('mtc');
 
-        $this->info('Deleted: ' . collect($report['deleted'])->map(fn ($n, $k) => "$n $k")->implode(', ') . '.');
+        $this->info('Deleted: '.collect($report['deleted'])->map(fn ($n, $k) => "$n $k")->implode(', ').'.');
         foreach ($report['kept'] as $line) {
             $this->warn("Kept: {$line}");
         }

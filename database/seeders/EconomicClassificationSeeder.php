@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\EconomicClassification;
+use Illuminate\Database\Seeder;
 
 class EconomicClassificationSeeder extends Seeder
 {

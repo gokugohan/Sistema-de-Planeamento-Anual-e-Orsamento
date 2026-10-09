@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class EconomicClassification extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     protected $fillable = ['code', 'name', 'description', 'category_type'];
@@ -16,7 +17,6 @@ class EconomicClassification extends Model
     {
         return $this->hasMany(LineItem::class);
     }
-
 
     /**
      * Relationship: Economic classification has many fiscal envelope allocations

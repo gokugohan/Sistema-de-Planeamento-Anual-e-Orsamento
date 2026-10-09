@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\DB;
  */
 class BudgetCycleService
 {
-    public function __construct(private ApprovedPlanReport $reports)
-    {
-    }
+    public function __construct(private ApprovedPlanReport $reports) {}
 
     public function forYear(int $year): BudgetCycle
     {
@@ -107,7 +105,7 @@ class BudgetCycleService
     {
         $cycle = $this->forYear($year);
 
-        if (!$cycle->isSubmitted()) {
+        if (! $cycle->isSubmitted()) {
             throw new DomainException(__('Record the submission to the CRO first.'));
         }
         if ($total < 0) {

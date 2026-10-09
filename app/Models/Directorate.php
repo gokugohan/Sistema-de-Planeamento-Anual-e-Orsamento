@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Directorate extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     protected $fillable = [
@@ -20,7 +21,7 @@ class Directorate extends Model
         'director_email',
         'active',
         'established_year',
-        'dissolved_year'
+        'dissolved_year',
     ];
 
     /**
@@ -65,6 +66,7 @@ class Directorate extends Model
             $ids[] = $child->id;
             $ids = array_merge($ids, $child->getAllDescendantIds());
         }
+
         return $ids;
     }
 
@@ -82,11 +84,12 @@ class Directorate extends Model
     public function getTotalEstimatedRollup(int $fiscalYear): float
     {
         $ids = $this->getSelfAndDescendantIds();
+
         return (float) Activity::whereIn('directorate_id', $ids)
             ->where('fiscal_year', $fiscalYear)
             ->with(['lineItems'])
             ->get()
-            ->sum(fn($activity) => $activity->lineItems->sum('estimated_amount'));
+            ->sum(fn ($activity) => $activity->lineItems->sum('estimated_amount'));
     }
 
     /**
@@ -95,11 +98,12 @@ class Directorate extends Model
     public function getTotalApprovedRollup(int $fiscalYear): float
     {
         $ids = $this->getSelfAndDescendantIds();
+
         return (float) Activity::whereIn('directorate_id', $ids)
             ->where('fiscal_year', $fiscalYear)
             ->with(['lineItems.adjustedBudget'])
             ->get()
-            ->sum(fn($activity) => $activity->lineItems->sum(fn($item) => $item->adjustedBudget->approved_amount ?? 0));
+            ->sum(fn ($activity) => $activity->lineItems->sum(fn ($item) => $item->adjustedBudget->approved_amount ?? 0));
     }
 
     public function activities()

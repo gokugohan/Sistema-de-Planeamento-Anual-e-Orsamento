@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
+use App\Models\Scopes\ProductionScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LineItem extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     /**
@@ -15,7 +17,7 @@ class LineItem extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new \App\Models\Scopes\ProductionScope);
+        static::addGlobalScope(new ProductionScope);
 
         static::updating(function ($item) {
             if ($item->isLocked()) {
@@ -73,6 +75,6 @@ class LineItem extends Model
      */
     public function scopeTestData($query)
     {
-        return $query->withoutGlobalScope(\App\Models\Scopes\ProductionScope::class)->where('is_test_data', true);
+        return $query->withoutGlobalScope(ProductionScope::class)->where('is_test_data', true);
     }
 }

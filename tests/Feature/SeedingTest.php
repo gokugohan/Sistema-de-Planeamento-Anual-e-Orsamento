@@ -10,6 +10,7 @@ use App\Models\SystemSetting;
 use App\Models\User;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -43,7 +44,7 @@ class SeedingTest extends TestCase
 
     public function test_admin_seeder_refuses_to_run_in_production_without_a_password(): void
     {
-        $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+        $this->seed(RolesAndPermissionsSeeder::class);
         $this->app['env'] = 'production';
         putenv('ADMIN_PASSWORD');
         unset($_ENV['ADMIN_PASSWORD'], $_SERVER['ADMIN_PASSWORD']);

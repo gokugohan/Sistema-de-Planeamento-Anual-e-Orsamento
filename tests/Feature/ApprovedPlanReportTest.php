@@ -21,9 +21,13 @@ class ApprovedPlanReportTest extends TestCase
     use RefreshDatabase;
 
     private EconomicClassification $goods;
+
     private EconomicClassification $capital;
+
     private Directorate $dg;
+
     private Directorate $dn;
+
     private Program $program;
 
     protected function setUp(): void
@@ -42,7 +46,7 @@ class ApprovedPlanReportTest extends TestCase
     {
         $a = Activity::create([
             'fiscal_year' => 2027, 'program_id' => $this->program->id, 'directorate_id' => $this->dn->id,
-            'description' => "Atividade {$status} " . uniqid(), 'quarter' => 2, 'priority' => 'Alta',
+            'description' => "Atividade {$status} ".uniqid(), 'quarter' => 2, 'priority' => 'Alta',
             'planned_start' => '2027-04-01', 'planned_end' => '2027-06-30', 'status' => $status,
         ]);
         foreach ($lines as [$class, $amount]) {

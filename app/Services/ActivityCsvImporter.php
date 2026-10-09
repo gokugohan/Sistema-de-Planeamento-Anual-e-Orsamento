@@ -60,10 +60,11 @@ class ActivityCsvImporter
             $ref = $r['ref'];
             if ($ref === '') {
                 $errors[] = $this->err($line, 'Column "ref" is empty; it groups rows into one activity.');
+
                 continue;
             }
 
-            if (!isset($activities[$ref])) {
+            if (! isset($activities[$ref])) {
                 $activities[$ref] = $this->buildActivity($line, $r, $fiscalYear, $directorates, $programs, $errors)
                     + ['indicators' => [], 'line_items' => []];
             }
@@ -119,7 +120,7 @@ class ActivityCsvImporter
                 }
 
                 foreach ($a['line_items'] as $n => $l) {
-                    LineItem::create($l + ['activity_id' => $activity->id, 'code' => 'L' . ($n + 1)]);
+                    LineItem::create($l + ['activity_id' => $activity->id, 'code' => 'L'.($n + 1)]);
                     $counts['line_items']++;
                     $counts['total'] += $l['estimated_amount'];
                 }
@@ -141,7 +142,7 @@ class ActivityCsvImporter
         $csv = stream_get_contents($out);
         fclose($out);
 
-        return "\xEF\xBB\xBF" . $csv; // BOM so Excel opens it as UTF-8
+        return "\xEF\xBB\xBF".$csv; // BOM so Excel opens it as UTF-8
     }
 
     // ── parsing helpers ──────────────────────────────────────────────────
@@ -157,7 +158,7 @@ class ActivityCsvImporter
         }
 
         $content = preg_replace('/^\xEF\xBB\xBF/', '', $content);
-        if (!mb_check_encoding($content, 'UTF-8')) {
+        if (! mb_check_encoding($content, 'UTF-8')) {
             $content = mb_convert_encoding($content, 'UTF-8', 'Windows-1252');
         }
 
@@ -174,7 +175,7 @@ class ActivityCsvImporter
 
         $missing = array_diff(['ref', 'directorate_code', 'program_code', 'description', 'quarter', 'planned_start', 'planned_end'], $header);
         if ($missing) {
-            $errors[] = $this->err(1, 'Missing required column(s): ' . implode(', ', $missing) . '. Download the template for the expected layout.');
+            $errors[] = $this->err(1, 'Missing required column(s): '.implode(', ', $missing).'. Download the template for the expected layout.');
 
             return [];
         }
@@ -187,7 +188,7 @@ class ActivityCsvImporter
                 continue;
             }
             if (count($rows) >= self::MAX_ROWS) {
-                $errors[] = $this->err($line, 'Too many rows; the limit is ' . self::MAX_ROWS . ' per file. Split the file.');
+                $errors[] = $this->err($line, 'Too many rows; the limit is '.self::MAX_ROWS.' per file. Split the file.');
                 break;
             }
             $data = [];
@@ -207,10 +208,10 @@ class ActivityCsvImporter
         $dir = $directorates->get(strtolower($r['directorate_code']));
         $prog = $programs->get(strtolower($r['program_code']));
 
-        if (!$dir) {
+        if (! $dir) {
             $errors[] = $this->err($line, "Unknown or inactive directorate_code \"{$r['directorate_code']}\".");
         }
-        if (!$prog) {
+        if (! $prog) {
             $errors[] = $this->err($line, "Unknown program_code \"{$r['program_code']}\".");
         }
         if (mb_strlen($r['description']) < 5) {
@@ -218,7 +219,7 @@ class ActivityCsvImporter
         }
 
         $priority = self::PRIORITIES[mb_strtolower($r['priority'] ?: 'media')] ?? null;
-        if (!$priority) {
+        if (! $priority) {
             $errors[] = $this->err($line, "priority \"{$r['priority']}\" is invalid; use Alta, Média or Baixa.");
         }
 
@@ -229,7 +230,7 @@ class ActivityCsvImporter
 
         $start = $this->date($r['planned_start']);
         $end = $this->date($r['planned_end']);
-        if (!$start || !$end) {
+        if (! $start || ! $end) {
             $errors[] = $this->err($line, 'planned_start and planned_end must be valid dates (YYYY-MM-DD).');
         } elseif ($end < $start) {
             $errors[] = $this->err($line, 'planned_end is before planned_start.');
@@ -262,7 +263,7 @@ class ActivityCsvImporter
         if ($r['indicator_name'] === '') {
             $problems[] = 'indicator_name is required';
         }
-        if (!in_array($type, ['Output', 'Outcome'], true)) {
+        if (! in_array($type, ['Output', 'Outcome'], true)) {
             $problems[] = 'indicator_type must be Output or Outcome';
         }
         if ($r['indicator_unit'] === '') {
@@ -273,7 +274,7 @@ class ActivityCsvImporter
         }
 
         if ($problems) {
-            $errors[] = $this->err($line, 'Indicator: ' . implode('; ', $problems) . '.');
+            $errors[] = $this->err($line, 'Indicator: '.implode('; ', $problems).'.');
 
             return null;
         }
@@ -287,7 +288,7 @@ class ActivityCsvImporter
         $amount = $this->number($r['amount']);
         $problems = [];
 
-        if (!$class) {
+        if (! $class) {
             $problems[] = "unknown class_code \"{$r['class_code']}\"";
         }
         if ($amount === null || $amount < 0) {
@@ -295,7 +296,7 @@ class ActivityCsvImporter
         }
 
         if ($problems) {
-            $errors[] = $this->err($line, 'Budget line: ' . implode('; ', $problems) . '.');
+            $errors[] = $this->err($line, 'Budget line: '.implode('; ', $problems).'.');
 
             return null;
         }
@@ -306,7 +307,7 @@ class ActivityCsvImporter
     private function rejectExisting(array $activities, int $year, array &$errors): void
     {
         foreach ($activities as $a) {
-            if (!$a['directorate_id']) {
+            if (! $a['directorate_id']) {
                 continue;
             }
             $exists = Activity::query()
@@ -315,7 +316,7 @@ class ActivityCsvImporter
                 ->where('description', $a['description'])
                 ->exists();
             if ($exists) {
-                $errors[] = $this->err($a['line'], 'An activity with this directorate and description already exists for ' . $year . '; skipped to avoid duplicates.');
+                $errors[] = $this->err($a['line'], 'An activity with this directorate and description already exists for '.$year.'; skipped to avoid duplicates.');
             }
         }
     }

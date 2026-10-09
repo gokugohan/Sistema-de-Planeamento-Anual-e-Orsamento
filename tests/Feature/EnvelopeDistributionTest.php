@@ -23,7 +23,9 @@ class EnvelopeDistributionTest extends TestCase
     use RefreshDatabase;
 
     private EconomicClassification $goods;
+
     private Directorate $dir;
+
     private Program $program;
 
     protected function setUp(): void
@@ -54,7 +56,7 @@ class EnvelopeDistributionTest extends TestCase
     {
         $activity = Activity::create([
             'fiscal_year' => 2027, 'program_id' => $this->program->id, 'directorate_id' => $this->dir->id,
-            'description' => "Activity {$status} {$amount} " . uniqid(), 'quarter' => 1, 'priority' => 'Alta',
+            'description' => "Activity {$status} {$amount} ".uniqid(), 'quarter' => 1, 'priority' => 'Alta',
             'planned_start' => '2027-01-01', 'planned_end' => '2027-03-31', 'status' => $status,
         ]);
 

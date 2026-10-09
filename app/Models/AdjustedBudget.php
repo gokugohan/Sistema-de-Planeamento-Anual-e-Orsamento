@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AdjustedBudget extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     /**
@@ -36,13 +37,11 @@ class AdjustedBudget extends Model
     protected $fillable = [
         'line_item_id',
         'approved_amount',
-        'status'
+        'status',
     ];
-
 
     public function lineItem()
     {
         return $this->belongsTo(LineItem::class);
     }
-
 }

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\DB;
 class MtcSampleActivitiesSeeder extends Seeder
 {
     public const CODE_PREFIX = 'SAMPLE-';
+
     public const DESCRIPTION_PREFIX = '[EXEMPLO] ';
 
     private const YEAR = 2027;
@@ -40,14 +41,15 @@ class MtcSampleActivitiesSeeder extends Seeder
             foreach ($this->samples() as $i => $s) {
                 [$dir, $prog, $desc, $quarter, $priority, $procurement, $indicators, $lines] = $s;
 
-                $prog = 'MTC-' . $prog;
+                $prog = 'MTC-'.$prog;
 
-                if (!isset($directorates[$dir], $programs[$prog])) {
+                if (! isset($directorates[$dir], $programs[$prog])) {
                     $this->command?->warn("Skipping sample for {$dir}: directorate or programme {$prog} missing.");
+
                     continue;
                 }
 
-                $code = self::CODE_PREFIX . $dir . '-' . str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT);
+                $code = self::CODE_PREFIX.$dir.'-'.str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT);
                 $start = sprintf('%d-%02d-01', self::YEAR, ($quarter - 1) * 3 + 1);
                 $end = date('Y-m-t', strtotime(sprintf('%d-%02d-01', self::YEAR, $quarter * 3)));
 
@@ -55,7 +57,7 @@ class MtcSampleActivitiesSeeder extends Seeder
                     'fiscal_year' => self::YEAR,
                     'program_id' => $programs[$prog],
                     'directorate_id' => $directorates[$dir],
-                    'description' => self::DESCRIPTION_PREFIX . $desc,
+                    'description' => self::DESCRIPTION_PREFIX.$desc,
                     'quarter' => $quarter,
                     'priority' => $priority,
                     'planned_start' => $start,
@@ -64,7 +66,7 @@ class MtcSampleActivitiesSeeder extends Seeder
                     'status' => Activity::STATUS_DRAFT,
                 ]);
 
-                if (!$registry->isRegistered($activity)) {
+                if (! $registry->isRegistered($activity)) {
                     continue; // a real activity with this code already exists: leave it alone
                 }
 
@@ -83,7 +85,7 @@ class MtcSampleActivitiesSeeder extends Seeder
                 foreach ($lines as $n => [$classCode, $amount]) {
                     LineItem::create([
                         'activity_id' => $activity->id,
-                        'code' => $code . '-L' . ($n + 1),
+                        'code' => $code.'-L'.($n + 1),
                         'economic_classification_id' => $classes[$classCode],
                         'estimated_amount' => $amount,
                     ]);

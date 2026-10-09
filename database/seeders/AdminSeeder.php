@@ -25,7 +25,7 @@ class AdminSeeder extends Seeder
 
         $password = env('ADMIN_PASSWORD');
 
-        if (!$password) {
+        if (! $password) {
             if (app()->isProduction()) {
                 throw new \RuntimeException('Set ADMIN_PASSWORD in .env before seeding in production.');
             }

@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -20,8 +22,8 @@ class ExampleTest extends TestCase
 
     public function test_a_signed_in_user_sees_the_dashboard(): void
     {
-        $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
-        $user = \App\Models\User::factory()->create();
+        $this->seed(RolesAndPermissionsSeeder::class);
+        $user = User::factory()->create();
         $user->assignRole('Viewer');
 
         $this->actingAs($user)->get('/')->assertOk();

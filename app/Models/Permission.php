@@ -13,7 +13,7 @@ class Permission extends Model
         'name',
         'module',
         'display_name',
-        'description'
+        'description',
     ];
 
     /**

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class FiscalEnvelopeCategoryAllocation extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     protected $fillable = [
@@ -21,7 +22,7 @@ class FiscalEnvelopeCategoryAllocation extends Model
         'variance_percentage',
         'variance_status',
         'approval_status',
-        'approval_notes'
+        'approval_notes',
     ];
 
     protected function casts(): array

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class IndicatorProgress extends Model
 {
-    use \App\Models\Concerns\Auditable;
+    use Auditable;
     use HasFactory;
 
     protected $fillable = [
@@ -18,7 +19,7 @@ class IndicatorProgress extends Model
         'submitted_by',
         'verified_by',
         'verified_at',
-        'rejection_notes'
+        'rejection_notes',
     ];
 
     public function indicator()

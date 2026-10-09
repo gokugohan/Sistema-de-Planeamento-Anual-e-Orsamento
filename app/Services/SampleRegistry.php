@@ -56,7 +56,7 @@ class SampleRegistry
                 return $existing;
             }
 
-            $this->skipped[] = class_basename($modelClass) . ' ' . json_encode($keys, JSON_UNESCAPED_UNICODE);
+            $this->skipped[] = class_basename($modelClass).' '.json_encode($keys, JSON_UNESCAPED_UNICODE);
 
             return $existing;
         }
@@ -140,7 +140,7 @@ class SampleRegistry
                     $inUse = Activity::withoutGlobalScopes()->where('directorate_id', $id)->exists()
                         || User::where('directorate_id', $id)->exists()
                         || Directorate::where('parent_id', $id)->exists();
-                    if (!$inUse) {
+                    if (! $inUse) {
                         $unit->delete();
                         $units->forget($id);
                         $deleted['directorates']++;

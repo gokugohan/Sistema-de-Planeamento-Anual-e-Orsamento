@@ -4,12 +4,12 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\Directorate;
-use App\Models\EconomicClassification;
 use App\Models\Program;
 use App\Models\SampleRecord;
 use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\SampleRegistry;
+use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -180,7 +180,7 @@ class SampleDataTest extends TestCase
     public function test_admin_page_loads_and_purges_sample_data(): void
     {
         $this->admin();
-        $this->seed(\Database\Seeders\EconomicClassificationSeeder::class);
+        $this->seed(EconomicClassificationSeeder::class);
 
         Volt::test('pages.management.sample-data')->call('load');
         $this->assertSame(28, Directorate::count());
