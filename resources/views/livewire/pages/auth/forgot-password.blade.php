@@ -37,9 +37,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
+    <x-auth-heading :title="__('Reset your password')" :subtitle="__('Enter your email address and we will send you a link to choose a new password.')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

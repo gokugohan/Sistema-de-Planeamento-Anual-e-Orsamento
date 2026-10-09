@@ -13,6 +13,13 @@ return [
     |
     */
 
+    /*
+    | Self-registration is OFF by default: accounts on a government planning system
+    | are created by an administrator (Management > System Users). Set
+    | ALLOW_REGISTRATION=true only for a controlled pilot.
+    */
+    'allow_registration' => env('ALLOW_REGISTRATION', false),
+
     'defaults' => [
         'guard' => env('AUTH_GUARD', 'web'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),

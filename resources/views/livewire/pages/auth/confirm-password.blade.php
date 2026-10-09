@@ -34,9 +34,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
+    <x-auth-heading :title="__('Confirm your password')" :subtitle="__('This is a secure area of the application. Please confirm your password before continuing.')" />
 
     <form wire:submit="confirmPassword">
         <!-- Password -->

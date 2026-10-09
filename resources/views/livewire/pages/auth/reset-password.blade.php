@@ -70,6 +70,8 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <x-auth-heading :title="__('Choose a new password')" :subtitle="__('Use a password you do not use anywhere else.')" />
+
     <form wire:submit="resetPassword">
         <!-- Email Address -->
         <div>

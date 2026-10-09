@@ -1,3 +1,27 @@
+@php
+    use App\Models\SystemSetting;
+
+    $org = SystemSetting::getLocalized('org_name', 'Institution Name');
+    $orgAbbr = SystemSetting::getLocalized('org_abbr', 'ORG');
+    $product = SystemSetting::getLocalized('app_name', config('app.name'));
+    $tagline = SystemSetting::getLocalized('app_tagline', '');
+    $description = SystemSetting::getLocalized('app_description', '');
+    $owner = SystemSetting::get('system_owner', '');
+    $implementedBy = SystemSetting::get('implemented_by', '');
+
+    // Institution logo (Settings), if one was provided: a full URL or a path inside /public.
+    $logo = SystemSetting::get('organization_logo');
+    $logoUrl = $logo ? (str_starts_with($logo, 'http') ? $logo : asset(ltrim($logo, '/'))) : null;
+
+    // The cycle the application supports, in the order users live it.
+    $steps = [
+        [__('Plan'), __('Units plan activities, indicators and budget lines')],
+        [__('Review & approve'), __('Internal review up to ministerial approval')],
+        [__('Budget review'), __('Submit the approved plan to the Budget Review Committee')],
+        [__('Distribute'), __('Register the envelope and share it over the approved plan')],
+        [__('Monitor'), __('Verify quarterly progress against targets')],
+    ];
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -5,153 +29,130 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
 
-    <title>{{ \App\Models\SystemSetting::getLocalized('app_name', config('app.name')) }} &mdash; {{ \App\Models\SystemSetting::getLocalized('app_tagline', '') }}</title>
+    <title>{{ __('Sign in') }} &mdash; {{ $product }}</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
-    <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen flex">
+<body class="font-sans antialiased bg-white text-zinc-600">
+    <a href="#auth-main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-indigo-700 focus:px-4 focus:py-2 focus:rounded-md focus:shadow-default">{{ __('Skip to content') }}</a>
 
-        <!-- ── Left Brand Panel ───────────────────────────────── -->
-        <div class="hidden lg:flex lg:w-[460px] xl:w-[520px] flex-col relative overflow-hidden bg-zinc-950 flex-shrink-0">
+    <div class="min-h-screen grid lg:grid-cols-[minmax(420px,5fr)_6fr]">
 
-            <!-- Gradient background -->
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-950 via-zinc-950 to-zinc-950"></div>
-            <div class="absolute top-0 left-0 w-[480px] h-[480px] bg-indigo-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 right-0 w-[360px] h-[360px] bg-violet-600/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+        {{-- ─────────── Pane 1: who and what ─────────── --}}
+        <aside class="hidden lg:flex flex-col relative overflow-hidden bg-zinc-900 text-zinc-300" aria-label="{{ __('About this system') }}">
+            {{-- quiet grid texture, no decoration that competes with the content --}}
+            <div class="absolute inset-0 opacity-[0.04] pointer-events-none"
+                style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"></div>
+            <div class="absolute inset-x-0 top-0 h-1 bg-indigo-600"></div>
 
-            <!-- Subtle grid -->
-            <div class="absolute inset-0 opacity-[0.025]"
-                style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
-                    background-size: 40px 40px;">
-            </div>
-
-            <div class="relative flex flex-col h-full px-10 py-10">
-
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30 ring-1 ring-white/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20" /><path d="m17 5-5-3-5 3" /><path d="m17 19-5 3-5-3" />
-                            <path d="M2 12h20" /><path d="m5 7 3 5-3 5" /><path d="m19 7-3 5 3 5" />
-                        </svg>
-                    </div>
-                    <div>
-                        <span class="text-sm font-semibold text-white">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</span>
-                        <span class="block text-[10px] text-zinc-500 font-medium uppercase tracking-wider">{{ \App\Models\SystemSetting::getLocalized('org_abbr', 'MOF') }}</span>
+            <div class="relative flex flex-col h-full px-12 xl:px-16 py-12">
+                {{-- Institution --}}
+                <div class="flex items-center gap-4">
+                    @if($logoUrl)
+                        <img src="{{ $logoUrl }}" alt="" class="h-12 w-12 object-contain rounded bg-white p-1">
+                    @else
+                        <div class="h-12 w-12 rounded-md bg-indigo-600 flex items-center justify-center" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21h18" /><path d="M5 21V9l7-5 7 5v12" /><path d="M9 21v-6h6v6" />
+                            </svg>
+                        </div>
+                    @endif
+                    <div class="min-w-0">
+                        <p class="text-[11px] font-medium uppercase tracking-[0.18em] text-nav-muted">República Democrática de Timor-Leste</p>
+                        <p class="text-base font-semibold text-white leading-snug truncate">{{ $org }}</p>
                     </div>
                 </div>
 
-                <!-- Hero copy -->
-                <div class="flex-1 flex flex-col justify-center py-12">
-                    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1.5 mb-8 w-fit">
-                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
-                        <span class="text-[11px] font-medium text-indigo-300 uppercase tracking-wider">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</span>
-                    </div>
+                {{-- Product and cycle --}}
+                <div class="flex-1 flex flex-col justify-center py-14 max-w-xl">
+                    <p class="text-sm font-medium text-indigo-300">{{ $product }}</p>
+                    <h2 class="mt-3 text-3xl xl:text-4xl font-bold text-white leading-tight tracking-tight">
+                        {{ $tagline !== '' ? $tagline : __('One place for the annual plan and its budget') }}
+                    </h2>
+                    @if($description !== '')
+                        <p class="mt-4 text-[15px] leading-relaxed text-zinc-400">{{ $description }}</p>
+                    @endif
 
-                    <h1 class="text-4xl xl:text-[2.75rem] font-semibold text-white leading-[1.2] tracking-tight mb-5">
-                        {{ \App\Models\SystemSetting::getLocalized('app_name', 'Strategic Budget') }}<br>
-                        <span class="text-gradient">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</span>
-                    </h1>
-
-                    <p class="text-[15px] text-zinc-400 leading-relaxed max-w-xs">
-                        {{ \App\Models\SystemSetting::getLocalized('app_description', 'Unified platform for annual activity planning, fiscal envelope management, and performance monitoring.') }}
-                    </p>
-
-                    <!-- Feature Items (from settings) -->
-                    @php
-                        $locale  = app()->getLocale();
-                        $rawItems = \App\Models\SystemSetting::get('app_items');
-                        $featureLabels = is_array($rawItems)
-                            ? array_values($rawItems[$locale] ?? $rawItems['en'] ?? [])
-                            : ['PAA Activity Management', 'Fiscal Envelope Control', 'Performance Monitoring'];
-                        $featureIcons = [
-                            'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 0 2-2h2a2 2 0 0 0 2 2',
-                            'M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z',
-                            'M22 12h-4l-3 9L9 3l-3 9H2',
-                        ];
-                    @endphp
-                    <div class="mt-10 space-y-3.5">
-                        @foreach($featureLabels as $idx => $label)
-                            <div class="flex items-center gap-3">
-                                <div class="w-7 h-7 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
-                                        fill="none" stroke="rgb(165 180 252)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="{{ $featureIcons[$idx] ?? $featureIcons[0] }}" />
-                                    </svg>
+                    <ol class="mt-10 space-y-5" aria-label="{{ __('The annual cycle') }}">
+                        @foreach($steps as $i => [$title, $text])
+                            <li class="flex gap-4">
+                                <span class="mt-0.5 h-7 w-7 shrink-0 rounded-full border border-white/20 text-xs font-semibold text-white flex items-center justify-center" aria-hidden="true">{{ $i + 1 }}</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">{{ $title }}</p>
+                                    <p class="text-sm text-zinc-400">{{ $text }}</p>
                                 </div>
-                                <span class="text-sm text-zinc-400">{{ $label }}</span>
-                            </div>
+                            </li>
                         @endforeach
-                    </div>
+                    </ol>
                 </div>
 
-                <!-- Footer copyright -->
-                @php
-                    $owner     = \App\Models\SystemSetting::get('system_owner', '');
-                    $implBy    = \App\Models\SystemSetting::get('implemented_by', '');
-                @endphp
-                <p class="text-[11px] text-white">
-                    &copy; {{ date('Y') }} {{ $owner }} &mdash; {{ __('All rights reserved') }}.
-                    {{ $implBy ? ' · ' . __('Implemented by') . ' ' . $implBy : '' }}
-                </p>
+                {{-- Assurance and credits --}}
+                <div class="space-y-5">
+                    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-zinc-400">
+                        <li class="flex items-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-300" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            {{ __('Role-based access') }}
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-300" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                            {{ __('Every change is audited') }}
+                        </li>
+                    </ul>
+
+                    <div class="flex items-center justify-between gap-6 border-t border-white/10 pt-5">
+                        <p class="text-[11px] leading-relaxed text-nav-muted">
+                            &copy; {{ date('Y') }} {{ $owner ?: $org }}<br>{{ __('All rights reserved') }}
+                        </p>
+                        @if(file_exists(public_path('logo.png')))
+                            <div class="flex items-center gap-2.5" title="{{ __('Implemented by') }} {{ $implementedBy }}">
+                                <span class="text-[11px] text-nav-muted text-right leading-tight">{{ __('Implemented by') }}<br><span class="text-zinc-300">{{ $implementedBy ?: 'G-Kakaroto' }}</span></span>
+                                <img src="{{ asset('logo.png') }}" alt="" width="36" height="36" loading="lazy" class="h-9 w-9 rounded-full">
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-        </div>
+        </aside>
 
-        <!-- ── Right Form Panel ──────────────────────────────── -->
-        <div class="flex-1 flex flex-col bg-zinc-50 px-6 py-6">
+        {{-- ─────────── Pane 2: the task ─────────── --}}
+        <div class="flex flex-col min-h-screen bg-white">
+            <header class="flex items-center justify-between px-6 sm:px-10 py-5">
+                {{-- compact identity when pane 1 is hidden --}}
+                <div class="lg:hidden flex items-center gap-3 min-w-0">
+                    @if($logoUrl)
+                        <img src="{{ $logoUrl }}" alt="" class="h-9 w-9 object-contain">
+                    @else
+                        <div class="h-9 w-9 rounded-md bg-indigo-600 flex items-center justify-center" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18" /><path d="M5 21V9l7-5 7 5v12" /><path d="M9 21v-6h6v6" /></svg>
+                        </div>
+                    @endif
+                    <span class="text-sm font-semibold text-zinc-900 truncate">{{ $orgAbbr ?: $org }}</span>
+                </div>
 
-            <!-- Top bar: Language Switcher -->
-            <div class="flex justify-end">
-                <div class="flex items-center gap-0.5 p-1 bg-white rounded-lg border border-zinc-200/60 shadow-sm">
+                <nav class="ml-auto flex items-center gap-0.5 p-1 bg-zinc-100 rounded-md" aria-label="{{ __('Language') }}">
                     @foreach(['en' => 'EN', 'pt' => 'PT', 'tet' => 'TET'] as $code => $label)
-                        <a href="{{ route('lang.switch', $code) }}"
-                            class="px-2.5 py-1 text-[11px] font-medium rounded-md transition-all
-                            {{ app()->getLocale() === $code
-                                ? 'bg-zinc-900 text-white shadow-sm'
-                                : 'text-zinc-500 hover:text-zinc-800' }}">
-                            {{ $label }}
-                        </a>
+                        <a href="{{ route('lang.switch', $code) }}" @if(app()->getLocale() === $code) aria-current="true" @endif
+                            class="px-2.5 py-1 text-xs font-medium rounded transition-colors {{ app()->getLocale() === $code ? 'bg-white text-zinc-900 shadow-sm' : 'text-zinc-500 hover:text-zinc-800' }}">{{ $label }}</a>
                     @endforeach
+                </nav>
+            </header>
+
+            <main id="auth-main" class="flex-1 flex items-center justify-center px-6 sm:px-10 py-8">
+                <div class="w-full max-w-[26rem]">
+                    {{ $slot }}
                 </div>
-            </div>
+            </main>
 
-            <!-- Centered content -->
-            <div class="flex-1 flex flex-col items-center justify-center py-6">
-
-                <!-- Mobile logo -->
-                <div class="lg:hidden flex items-center gap-3 mb-10">
-                    <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20" /><path d="m17 5-5-3-5 3" /><path d="m17 19-5 3-5-3" />
-                            <path d="M2 12h20" /><path d="m5 7 3 5-3 5" /><path d="m19 7-3 5 3 5" />
-                        </svg>
-                    </div>
-                    <span class="text-base font-semibold text-zinc-900">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</span>
-                </div>
-
-                <!-- Form card -->
-                <div class="w-full max-w-[400px]">
-                    <div class="bg-white rounded-2xl ring-1 ring-zinc-950/5 shadow-sm p-8">
-                        {{ $slot }}
-                    </div>
-
-                    <p class="text-center text-xs text-zinc-400 mt-5">
-                        {{ __('Secure government financial platform') }}
-                    </p>
-                </div>
-
-            </div>
+            <footer class="px-6 sm:px-10 py-5 text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-2">
+                <span>{{ __('Authorised users only. Activity on this system is logged.') }}</span>
+                <span class="lg:hidden">&copy; {{ date('Y') }} {{ $owner ?: $org }}</span>
+            </footer>
         </div>
     </div>
 </body>

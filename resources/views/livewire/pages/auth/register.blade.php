@@ -37,6 +37,8 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    <x-auth-heading :title="__('Create an account')" :subtitle="__('Your account will have no access until an administrator assigns a role.')" />
+
     <form wire:submit="register">
         <!-- Name -->
         <div>

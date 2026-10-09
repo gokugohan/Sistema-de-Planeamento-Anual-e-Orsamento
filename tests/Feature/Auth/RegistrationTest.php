@@ -10,16 +10,21 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_registration_screen_can_be_rendered(): void
+    public function test_self_registration_is_off_by_default(): void
     {
-        $response = $this->get('/register');
+        $this->assertFalse(config('auth.allow_registration'));
 
-        $response
-            ->assertOk()
-            ->assertSeeVolt('pages.auth.register');
+        $this->get('/register')->assertNotFound();
+        $this->assertFalse(\Illuminate\Support\Facades\Route::has('register'));
     }
 
-    public function test_new_users_can_register(): void
+    public function test_the_login_screen_does_not_offer_registration_when_it_is_off(): void
+    {
+        $this->get('/login')->assertOk()->assertDontSee('Create an account');
+    }
+
+    /** The component itself still works; it is only unreachable until an administrator opts in. */
+    public function test_registration_component_creates_an_account_without_any_access(): void
     {
         $component = Volt::test('pages.auth.register')
             ->set('name', 'Test User')
@@ -30,7 +35,7 @@ class RegistrationTest extends TestCase
         $component->call('register');
 
         $component->assertRedirect(route('dashboard', absolute: false));
-
         $this->assertAuthenticated();
+        $this->assertCount(0, auth()->user()->getRoleNames(), 'a self-registered user must start with no role');
     }
 }
