@@ -165,7 +165,7 @@ new class extends Component {
                         <tr class="hover:bg-slate-50/50 transition-colors group">
                             <td class="px-6 py-4">
                                 <div class="text-[9px] font-black text-indigo-500 uppercase tracking-tighter mb-1">
-                                    {{ $progress->indicator->activity->directorate->name ?? 'N/A' }}</div>
+                                    {{ $progress->indicator->activity->directorate->name ?? '—' }}</div>
                                 <div class="text-[11px] font-bold text-slate-700 leading-tight">
                                     {{ $progress->indicator->activity->description }}</div>
                             </td>

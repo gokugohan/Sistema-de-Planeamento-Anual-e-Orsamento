@@ -221,7 +221,7 @@ new class extends Component {
                     class="block w-full border-none bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-slate-700 transition-all">
                     <option value="">-- {{ __('Choose an activity to update progress') }} --</option>
                     @foreach($this->activities as $activity)
-                        <option value="{{ $activity->id }}">[{{ $activity->directorate->name ?? 'N/A' }}] {{ str($activity->description)->limit(120) }}</option>
+                        <option value="{{ $activity->id }}">[{{ $activity->directorate->name ?? '—' }}] {{ str($activity->description)->limit(120) }}</option>
                     @endforeach
                 </select>
             </div>

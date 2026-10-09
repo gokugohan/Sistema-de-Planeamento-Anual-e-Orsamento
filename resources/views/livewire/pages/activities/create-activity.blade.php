@@ -135,7 +135,7 @@ new class extends Component {
             return [
                 'id' => $directorate->id ?? 0,
                 'name' => $directorate->name ?? __('Unassigned'),
-                'code' => $directorate->code ?? 'N/A',
+                'code' => $directorate->code ?? '—',
                 'activities' => $dirActivities,
                 'directorate_allocation' => $totalAllocated,
                 'total_estimated' => $totalEstimated,

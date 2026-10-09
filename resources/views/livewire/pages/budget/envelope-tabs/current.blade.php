@@ -131,7 +131,7 @@
                     <div class="space-y-4">
                         <div>
                             <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Ministry') }}</p>
-                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ __('Ministry of State Administration') }}</p>
+                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ \App\Models\SystemSetting::getLocalized('org_name', '—') }}</p>
                         </div>
                         <div>
                             <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Approval Date') }}</p>
@@ -143,7 +143,7 @@
                     <div class="space-y-4">
                         <div>
                             <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Source Authority') }}</p>
-                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ $activeEnvelope->source_authority ?: __('Direcção Nacional do Orçamento (DNO)') }}</p>
+                            <p class="text-sm font-bold text-zinc-900 mt-2">{{ $activeEnvelope->source_authority ?: '—' }}</p>
                         </div>
                         <div>
                             <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Reference Number') }}</p>

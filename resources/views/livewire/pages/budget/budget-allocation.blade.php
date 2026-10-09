@@ -1,321 +1,188 @@
 <?php
 
-use Livewire\Volt\Component;
-use App\Models\FiscalEnvelope;
-use App\Models\Directorate;
-use App\Models\Program;
 use App\Models\Activity;
-use App\Models\LineItem;
-use Livewire\Attributes\On;
+use App\Models\Directorate;
+use App\Models\EconomicClassification;
+use App\Models\FiscalEnvelope;
+use App\Models\Program;
+use Livewire\Volt\Component;
 
+/**
+ * How the fiscal envelope was shared for the selected fiscal year.
+ *
+ * Only real figures: the approved plan (what units asked for and had approved) and
+ * the distributed amount (adjusted_budgets). This system does not track spending,
+ * so nothing here reports "used" or "remaining" money.
+ */
 new class extends Component {
-    public $fiscalYear;
-    public $activeEnvelope;
-    public $envelopes;
-    public $totalAllocated = 0;
-    public $remaining = 0;
-    public $activeTab = 'hierarchy'; // 'hierarchy', 'department', 'summary', 'economic', 'program'
-    public $selectedDirectorateId;
+    public string $tab = 'unit'; // unit | category | program
 
-    public function mount()
+    public function setTab(string $tab): void
     {
-        $this->fiscalYear = FiscalEnvelope::getEffectiveYear();
-        $this->envelopes = FiscalEnvelope::orderBy('fiscal_year', 'desc')->get();
-        $this->activeEnvelope = FiscalEnvelope::where('fiscal_year', $this->fiscalYear)->first() ?? $this->envelopes->first();
-        if ($this->activeEnvelope) {
-            $this->loadStats();
+        $this->tab = in_array($tab, ['unit', 'category', 'program'], true) ? $tab : 'unit';
+    }
+
+    public function with(): array
+    {
+        $year = FiscalEnvelope::getEffectiveYear();
+        $env = FiscalEnvelope::where('fiscal_year', $year)->with('categoryAllocations')->first();
+
+        // One grouped query: approved plan and distributed amount by unit, programme and category.
+        $rows = Activity::withoutGlobalScopes()
+            ->where('activities.is_test_data', false)
+            ->where('activities.fiscal_year', $year)
+            ->where('activities.status', Activity::STATUS_APPROVED)
+            ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
+            ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
+            ->groupBy('activities.directorate_id', 'activities.program_id', 'line_items.economic_classification_id')
+            ->selectRaw('activities.directorate_id as d, activities.program_id as p, line_items.economic_classification_id as c,
+                COUNT(DISTINCT activities.id) as n,
+                COALESCE(SUM(line_items.estimated_amount), 0) as plan, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
+            ->get();
+
+        $plan = (float) $rows->sum('plan');
+        $allocated = (float) $rows->sum('alloc');
+        $envelope = $env ? (float) $env->total_amount : null;
+
+        $dirs = Directorate::get(['id', 'code', 'name', 'parent_id'])->keyBy('id');
+        $acts = fn ($group) => Activity::withoutGlobalScopes()->where('is_test_data', false)->where('fiscal_year', $year)
+            ->where('status', Activity::STATUS_APPROVED)->selectRaw("$group as g, COUNT(*) as n")->groupBy($group)->pluck('n', 'g');
+
+        // by unit: top-level units, each with its own children underneath
+        $byDir = $rows->groupBy('d')->map(fn ($g) => ['plan' => (float) $g->sum('plan'), 'alloc' => (float) $g->sum('alloc')]);
+        $dirActs = $acts('directorate_id');
+        $units = [];
+        foreach ($dirs->filter(fn ($d) => !$d->parent_id)->sortBy('code') as $root) {
+            $children = $dirs->filter(fn ($d) => $d->parent_id == $root->id)->sortBy('code');
+            $line = fn ($d) => ['code' => $d->code, 'name' => $d->name, 'n' => (int) ($dirActs[$d->id] ?? 0),
+                'plan' => $byDir[$d->id]['plan'] ?? 0.0, 'alloc' => $byDir[$d->id]['alloc'] ?? 0.0];
+            $self = $line($root);
+            $kids = $children->map($line)->values()->all();
+            $total = ['plan' => $self['plan'] + array_sum(array_column($kids, 'plan')), 'alloc' => $self['alloc'] + array_sum(array_column($kids, 'alloc')),
+                'n' => $self['n'] + array_sum(array_column($kids, 'n'))];
+            if ($total['plan'] > 0 || $total['n'] > 0) {
+                $units[] = ['root' => $self + ['total' => $total], 'children' => array_values(array_filter($kids, fn ($k) => $k['n'] > 0 || $k['plan'] > 0))];
+            }
         }
+        usort($units, fn ($a, $b) => $b['root']['total']['plan'] <=> $a['root']['total']['plan']);
 
-        $firstDir = Directorate::first();
-        if ($firstDir) {
-            $this->selectedDirectorateId = $firstDir->id;
-        }
+        // by category
+        $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name']);
+        $byClass = $rows->groupBy('c')->map(fn ($g) => ['plan' => (float) $g->sum('plan'), 'alloc' => (float) $g->sum('alloc')]);
+        $categories = $classes->map(fn ($c) => [
+            'code' => $c->code, 'name' => $c->name,
+            'envelope' => (float) ($env?->categoryAllocations->firstWhere('economic_classification_id', $c->id)?->allocated_amount ?? 0),
+            'plan' => $byClass[$c->id]['plan'] ?? 0.0, 'alloc' => $byClass[$c->id]['alloc'] ?? 0.0,
+        ])->all();
+
+        // by programme
+        $progActs = $acts('program_id');
+        $byProg = $rows->groupBy('p')->map(fn ($g) => ['plan' => (float) $g->sum('plan'), 'alloc' => (float) $g->sum('alloc')]);
+        $programs = Program::orderBy('oge_code')->get(['id', 'oge_code', 'name'])->map(fn ($p) => [
+            'code' => $p->oge_code, 'name' => $p->name, 'n' => (int) ($progActs[$p->id] ?? 0),
+            'plan' => $byProg[$p->id]['plan'] ?? 0.0, 'alloc' => $byProg[$p->id]['alloc'] ?? 0.0,
+        ])->filter(fn ($p) => $p['n'] > 0 || $p['plan'] > 0)->sortByDesc('plan')->values()->all();
+
+        return compact('year', 'env', 'envelope', 'plan', 'allocated', 'units', 'categories', 'programs');
     }
-
-    public function updatedFiscalYear($year)
-    {
-        $this->activeEnvelope = FiscalEnvelope::where('fiscal_year', $year)->first();
-        $this->loadStats();
-    }
-
-    public function loadStats()
-    {
-        if (!$this->activeEnvelope)
-            return;
-
-        $this->totalAllocated = LineItem::whereHas('activity', fn($q) => $q->where('fiscal_year', $this->fiscalYear))
-            ->sum('estimated_amount');
-
-        $this->remaining = $this->activeEnvelope->total_amount - $this->totalAllocated;
-    }
-
-    public function selectDirectorate($id)
-    {
-        $this->selectedDirectorateId = $id;
-    }
-
-    public function getSummaryDataProperty()
-    {
-        return Directorate::with([
-            'activities' => function ($q) {
-                $q->where('fiscal_year', $this->fiscalYear)->with('lineItems');
-            }
-        ])->get()->map(function ($dir) {
-            $allocated = $dir->activities->flatMap->lineItems->sum('estimated_amount');
-            $used = $allocated * 0.48; // Simulated usage matching the image
-            $remaining = $allocated - $used;
-            $usage_pc = $allocated > 0 ? ($used / $allocated) * 100 : 0;
-
-            return [
-                'name' => $dir->name,
-                'allocated' => $allocated,
-                'used' => $used,
-                'remaining' => $remaining,
-                'usage_pc' => $usage_pc
-            ];
-        });
-    }
-
-    public function getEconomicDataProperty()
-    {
-        return App\Models\EconomicClassification::with([
-            'lineItems' => function ($q) {
-                $q->whereHas('activity', fn($aq) => $aq->where('fiscal_year', $this->fiscalYear));
-            }
-        ])->get()->map(function ($cat) {
-            $allocated = $cat->lineItems->sum('estimated_amount');
-            $used = $allocated * 0.42; // Simulated
-            $remaining = $allocated - $used;
-            $usage_pc = $allocated > 0 ? ($used / $allocated) * 100 : 0;
-
-            return [
-                'code' => $cat->code,
-                'name' => $cat->name,
-                'allocated' => $allocated,
-                'used' => $used,
-                'remaining' => $remaining,
-                'usage_pc' => $usage_pc
-            ];
-        });
-    }
-
-    public function getProgramDataProperty()
-    {
-        return Program::with([
-            'activities' => function ($q) {
-                $q->where('fiscal_year', $this->fiscalYear)->with('lineItems');
-            }
-        ])->get()->map(function ($prog) {
-            $allocated = $prog->activities->flatMap->lineItems->sum('estimated_amount');
-            $used = $allocated * 0.45; // Simulated
-            $remaining = $allocated - $used;
-            $usage_pc = $allocated > 0 ? ($used / $allocated) * 100 : 0;
-
-            return [
-                'code' => $prog->oge_code,
-                'name' => $prog->name,
-                'allocated' => $allocated,
-                'used' => $used,
-                'remaining' => $remaining,
-                'usage_pc' => $usage_pc
-            ];
-        });
-    }
-
-    public function getDirectoratesProperty()
-    {
-        return Directorate::with([
-            'activities' => function ($query) {
-                $query->where('fiscal_year', $this->fiscalYear)->with(['program', 'lineItems']);
-            }
-        ])->get()->map(function ($directorate) {
-            $directorate->total_allocated = $directorate->activities->flatMap->lineItems->sum('estimated_amount');
-            $directorate->budget_limit = 2500000; // Placeholder until we have directorate-level envelopes
-            return $directorate;
-        });
-    }
-
-    public function getSelectedDirectorateProperty()
-    {
-        if (!$this->selectedDirectorateId)
-            return null;
-
-        $dir = Directorate::with([
-            'activities' => function ($q) {
-                $q->where('fiscal_year', $this->fiscalYear)->with(['program', 'lineItems.adjustedBudget']);
-            }
-        ])->find($this->selectedDirectorateId);
-
-        if (!$dir)
-            return null;
-
-        // Group activities by program for the table display
-        $dir->grouped_data = $dir->activities->groupBy('program_id')->map(function ($activities) {
-            $program = $activities->first()->program;
-            $program->type = 'Program';
-            $program->allocated = $activities->flatMap->lineItems->sum('estimated_amount');
-            $program->used = $program->allocated * 0.45; // Simulated
-            $program->remaining = $program->allocated - $program->used;
-            $program->usage_pc = $program->allocated > 0 ? ($program->used / $program->allocated) * 100 : 0;
-
-            $program->projects = $activities->map(function ($act) {
-                $act->type = 'Project';
-                $act->allocated = $act->lineItems->sum('estimated_amount');
-                $act->used = $act->allocated * 0.42; // Simulated
-                $act->remaining = $act->allocated - $act->used;
-                $act->usage_pc = $act->allocated > 0 ? ($act->used / $act->allocated) * 100 : 0;
-                return $act;
-            });
-
-            return $program;
-        });
-
-        return $dir;
-    }
-
 }; ?>
 
-<div class="space-y-10 py-6 animate-in fade-in duration-700">
-    <!-- Header Section (Harmonized) -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-2">
-        <div>
-            <h1 class="page-title">
-                {{ __('Budget Allocation') }}</h1>
-            
-        </div>
-        <div class="flex gap-3">
-           {{-- 
-            <x-ui.button variant="primary" size="md" class="!rounded-xl px-8 shadow-lg shadow-indigo-600/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                    <line x1="12" x2="12" y1="5" y2="19" />
-                    <line x1="5" x2="19" y1="12" y2="12" />
-                </svg>
-                {{ __('Create Allocation') }}
-            </x-ui.button>
-             --}}
-             <div class="flex items-center gap-4 mt-4">
-                <p class="page-subtitle">
-                    {{ __('Redistribution Hub for') }}
-                </p>
-                <select wire:model.live="fiscalYear"
-                    class="bg-slate-100 border-none rounded-lg text-[10px] font-black uppercase tracking-widest py-1 px-3 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer">
-                    @foreach($envelopes as $env)
-                        <option value="{{ $env->fiscal_year }}">Fiscal Year {{ $env->fiscal_year }}</option>
+@php
+    $money = fn ($v) => $v > 0 ? '$ ' . number_format($v) : '—';
+    $bar = function ($alloc, $plan) {
+        if ($plan <= 0) return '<span class="text-zinc-400">—</span>';
+        $pct = min(100, $alloc / $plan * 100);
+        $color = $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500';
+        return '<div class="flex items-center gap-2"><div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full ' . $color . '" style="width:' . $pct . '%"></div></div><span class="w-10 text-right text-xs tabular-nums text-zinc-600">' . number_format($pct, 0) . '%</span></div>';
+    };
+    $unallocated = $envelope !== null ? $envelope - $allocated : null;
+@endphp
+
+<div class="space-y-6">
+    <div>
+        <h1 class="page-title">{{ __('Budget Allocation') }}</h1>
+        <p class="page-subtitle">{{ __('How the fiscal envelope was shared over the approved plan') }} · {{ __('Fiscal year') }} {{ $year }}</p>
+    </div>
+
+    @if(!$env)
+        <x-ui.card>
+            <div class="text-center py-10 max-w-lg mx-auto">
+                <h2 class="text-base font-semibold text-zinc-900">{{ __('No fiscal envelope registered for :year yet', ['year' => $year]) }}</h2>
+                <p class="mt-1 text-sm text-zinc-500">{{ __('The envelope is the amount received after the State Budget law is promulgated. Until it is registered and distributed, only the approved plan below is available.') }}</p>
+                <x-ui.button variant="primary" class="mt-5" href="{{ route('budget.envelope.current') }}">{{ __('Go to fiscal envelope') }}</x-ui.button>
+            </div>
+        </x-ui.card>
+    @endif
+
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <x-ui.kpi :label="__('Fiscal envelope')" :value="$envelope !== null ? '$ ' . number_format($envelope) : '—'" :sub="$env ? __($env->status) : __('Not registered yet')" tone="zinc" href="{{ route('budget.envelope.current') }}" />
+        <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($plan)" :sub="__('Budget lines of approved activities')" :progress="$envelope ? min(100, $plan / max($envelope, 1) * 100) : null" :tone="($envelope && $plan > $envelope) ? 'rose' : 'indigo'" />
+        <x-ui.kpi :label="__('Distributed')" :value="'$ ' . number_format($allocated)" :sub="$plan > 0 ? number_format(min(100, $allocated / $plan * 100), 1) . '% ' . __('of the approved plan') : '—'" :progress="$plan > 0 ? min(100, $allocated / $plan * 100) : null" tone="emerald" />
+        <x-ui.kpi :label="$unallocated !== null && $unallocated < 0 ? __('Over the envelope') : __('Unallocated')" :value="$unallocated !== null ? '$ ' . number_format(abs($unallocated)) : '—'"
+            :sub="$unallocated === null ? __('Needs an envelope') : ($unallocated < 0 ? __('The plan asks for more than the envelope') : __('Envelope not yet shared'))" :tone="$unallocated !== null && $unallocated < 0 ? 'rose' : 'zinc'" />
+    </div>
+
+    {{-- Tabs --}}
+    <div class="border-b border-zinc-200" role="tablist" aria-label="{{ __('View by') }}">
+        @foreach(['unit' => __('By unit'), 'category' => __('By economic category'), 'program' => __('By programme')] as $key => $label)
+            <button role="tab" aria-selected="{{ $tab === $key ? 'true' : 'false' }}" wire:click="setTab('{{ $key }}')"
+                class="px-4 py-2.5 text-sm font-medium -mb-px border-b-2 transition-colors {{ $tab === $key ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-zinc-500 hover:text-zinc-800' }}">{{ $label }}</button>
+        @endforeach
+    </div>
+
+    <x-ui.card padding="p-0">
+        @if($tab === 'unit')
+            <x-ui.table :headers="[__('Unit'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded')]">
+                @forelse($units as $u)
+                    @php $r = $u['root']; $t = $r['total']; @endphp
+                    <tr class="bg-zinc-50">
+                        <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $r['code'] }}</span> <span class="text-zinc-600">{{ $r['name'] }}</span></td>
+                        <td class="px-6 py-3 text-sm tabular-nums">{{ $t['n'] }}</td>
+                        <td class="px-6 py-3 text-sm font-semibold tabular-nums">{{ $money($t['plan']) }}</td>
+                        <td class="px-6 py-3 text-sm font-semibold tabular-nums">{{ $money($t['alloc']) }}</td>
+                        <td class="px-6 py-3 w-52">{!! $bar($t['alloc'], $t['plan']) !!}</td>
+                    </tr>
+                    @foreach($u['children'] as $k)
+                        <tr>
+                            <td class="pl-12 pr-6 py-2.5 text-sm"><span class="font-medium text-zinc-800">{{ $k['code'] }}</span> <span class="text-zinc-500">{{ $k['name'] }}</span></td>
+                            <td class="px-6 py-2.5 text-sm tabular-nums text-zinc-600">{{ $k['n'] }}</td>
+                            <td class="px-6 py-2.5 text-sm tabular-nums text-zinc-600">{{ $money($k['plan']) }}</td>
+                            <td class="px-6 py-2.5 text-sm tabular-nums text-zinc-600">{{ $money($k['alloc']) }}</td>
+                            <td class="px-6 py-2.5 w-52">{!! $bar($k['alloc'], $k['plan']) !!}</td>
+                        </tr>
                     @endforeach
-                </select>
-            </div>
-        </div>
-    </div>
+                @empty
+                    <tr><td colspan="5" class="px-6 py-10 text-center text-sm text-zinc-500">{{ __('No approved activities with a budget for :year yet.', ['year' => $year]) }}</td></tr>
+                @endforelse
+            </x-ui.table>
+        @elseif($tab === 'category')
+            <x-ui.table :headers="[__('Economic category'), __('Envelope'), __('Approved plan'), __('Distributed'), __('Funded')]">
+                @foreach($categories as $c)
+                    <tr>
+                        <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $c['code'] }}</span> <span class="text-zinc-600">{{ $c['name'] }}</span></td>
+                        <td class="px-6 py-3 text-sm tabular-nums">{{ $money($c['envelope']) }}</td>
+                        <td class="px-6 py-3 text-sm tabular-nums {{ $c['envelope'] > 0 && $c['plan'] > $c['envelope'] ? 'text-rose-600 font-medium' : '' }}">{{ $money($c['plan']) }}</td>
+                        <td class="px-6 py-3 text-sm tabular-nums">{{ $money($c['alloc']) }}</td>
+                        <td class="px-6 py-3 w-52">{!! $bar($c['alloc'], $c['plan']) !!}</td>
+                    </tr>
+                @endforeach
+            </x-ui.table>
+        @else
+            <x-ui.table :headers="[__('Programme'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded')]">
+                @forelse($programs as $p)
+                    <tr>
+                        <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $p['code'] }}</span> <span class="text-zinc-600">{{ $p['name'] }}</span></td>
+                        <td class="px-6 py-3 text-sm tabular-nums">{{ $p['n'] }}</td>
+                        <td class="px-6 py-3 text-sm tabular-nums">{{ $money($p['plan']) }}</td>
+                        <td class="px-6 py-3 text-sm tabular-nums">{{ $money($p['alloc']) }}</td>
+                        <td class="px-6 py-3 w-52">{!! $bar($p['alloc'], $p['plan']) !!}</td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5" class="px-6 py-10 text-center text-sm text-zinc-500">{{ __('No approved activities with a budget for :year yet.', ['year' => $year]) }}</td></tr>
+                @endforelse
+            </x-ui.table>
+        @endif
+    </x-ui.card>
 
-    <!-- Stats Grid (High-Impact Variants) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Total Envelope -->
-        <div
-            class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm shadow-indigo-500/5 group hover:shadow-indigo-500/10 transition-all duration-500">
-            <div class="flex justify-between items-start mb-6">
-                <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-                    {{ __('Fiscal Authority') }}</div>
-                <div class="p-2 bg-indigo-50 rounded-xl text-indigo-600"><svg xmlns="http://www.w3.org/2000/svg"
-                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2v20" />
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg></div>
-            </div>
-            <div class="text-3xl font-black text-slate-900 leading-none">$
-                {{ number_format($activeEnvelope->total_amount ?? 0, 0) }}</div>
-            <p class="text-[10px] font-bold text-slate-500 mt-4 italic uppercase tracking-tighter">
-                {{ __('Context Authority FY') }} {{ $fiscalYear }}</p>
-        </div>
-
-        <!-- Total Allocated -->
-        <div
-            class="bg-indigo-600 p-8 rounded-[2rem] shadow-xl shadow-indigo-600/20 text-white group hover:scale-[1.02] transition-all duration-500">
-            <div class="flex justify-between items-start mb-6">
-                <div class="text-[10px] font-black text-indigo-200 uppercase tracking-[0.2em]">
-                    {{ __('Distributed load') }}</div>
-                <div class="p-2 bg-white/10 rounded-xl text-white"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                        <polyline points="9 22 9 12 15 12 15 22" />
-                    </svg></div>
-            </div>
-            <div class="text-3xl font-black leading-none">$ {{ number_format($totalAllocated, 0) }}</div>
-            @php 
-                $allocatedPercent = ($activeEnvelope && $activeEnvelope->total_amount > 0) ? ($totalAllocated / $activeEnvelope->total_amount) * 100 : 0;
-            @endphp
-            <div class="mt-6 flex items-center gap-3">
-
-                                    <div class="flex-1 h-1.5 bg-white/20 rounded-full overflow-hidden">
-                    <div class="h-full bg-white transition-all duration-1000" style="width: {{ $allocatedPercent }}%"></div>
-                </div>
-                <span class="text-[10px] font-black">{{ number_format($allocatedPercent, 1) }}%</span>
-           </div>
-        </div>
- 
-        <!-- Remaining -->
-        <div class="bg-slate-900 p-8 rounded-[2rem] shadow-xl shadow-slate-900/20 text-white g
-                    roup">
-            <div class="flex justify-between items-start mb-6">
-
-                       
-                       
-                         
-                                    <div class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">{{ __('Liquidity / Space') }}</div>
-                <div class="p-2 bg-slate-800 rounded-xl text-emerald-400"><svg xmlns="http://www.w3.org/2000/svg" width
-               ="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            </div>
-           <div class
-                   ="text-3xl font-black leading-none {{ $remaining < 0 ? 'text-rose-400' : 'text-emerald-400' }}">$ {{ number_format($remaining, 0) }}</div>
-            <div class="mt-4 flex animate-pulse">
-                 <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[9px] font-black uppercase tracking-widest">{{ $remaining < 0 ? __('Over Budget') : __('Available Authority') }}</span>
-            </div>
-       </div>
-    </div>
- 
-    <!-- Main Content Tabs (Harmonized) -->
-    <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
-        <div class="p-6 border-b border-slate-50 bg-slate-50/30">
-            <div class="flex items-center gap-2 p-1.5 bg-slate-100/80 w-fit rounded-2xl border border-slate-200/50 backdrop-blur-sm">
-                <button wire:click="$set('activeTab', 'hierarchy')" 
-                    class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'hierarchy' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
-                    {{ __('Hierarchy') }}
-                </button>
-                <button wire:click="$set('activeTab', 'department')" 
-                    class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'department' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
-                    {{ __('Department') }}
-                </button>
-                <button wire:click="$set('activeTab', 'summary')" 
-                    class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'summary' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
-                    {{ __('Summary') }}
-                </button>
-                <button wire:click="$set('activeTab', 'economic')" 
-                    class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'economic' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
-                    {{ __('Categories') }}
-                </button>
-                <button wire:click="$set('activeTab', 'program')" 
-                    class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'program' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-200/50' : 'text-slate-400 hover:text-slate-600 hover:bg-white/50' }}">
-                    {{ __('Programs') }}
-                </button>
-            </div>
-        </div>
-
-        <div class="p-6">
-            @if($activeTab === 'hierarchy')
-                @include('livewire.pages.budget.allocation-tabs.hierarchy')
-            @elseif($activeTab === 'department')
-                @include('livewire.pages.budget.allocation-tabs.department')
-            @elseif($activeTab === 'summary')
-                @include('livewire.pages.budget.allocation-tabs.summary')
-            @elseif($activeTab === 'economic')
-                @include('livewire.pages.budget.allocation-tabs.economic')
-            @elseif($activeTab === 'program')
-                @include('livewire.pages.budget.allocation-tabs.program')
-            @endif
-        </div>
-
-
-    </div>
+    <p class="text-xs text-zinc-500">{{ __('Figures show planning and distribution. Spending is not tracked in this system, so no "used" or "remaining" amounts are shown.') }}</p>
 </div>

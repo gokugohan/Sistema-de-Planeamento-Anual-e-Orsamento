@@ -201,7 +201,7 @@ new class extends Component {
                         @forelse($items as $item)
                             <tr class="hover:bg-slate-50/50 transition-colors">
                                 <td class="px-6 py-4">
-                                    <div class="text-[10px] font-black text-indigo-500 uppercase mb-1">{{ $item->lineItem->activity->program->code ?? 'N/A' }}</div>
+                                    <div class="text-[10px] font-black text-indigo-500 uppercase mb-1">{{ $item->lineItem->activity->program->oge_code ?? '—' }}</div>
                                     <div class="text-xs font-bold text-slate-900 leading-tight max-w-sm">{{ $item->lineItem->activity->description }}</div>
                                 </td>
                                 <td class="px-6 py-4">
