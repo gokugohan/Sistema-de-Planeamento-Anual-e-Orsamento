@@ -31,8 +31,8 @@ new class extends Component {
         $query = Activity::where('fiscal_year', $this->activeYear)
             ->with(['directorate', 'lineItems.economicClassification']);
 
-        if (!$user->hasAnyRole(['Admin', 'Planning', 'Budget'])) {
-            $query->where('directorate_id', $user->directorate_id);
+        if (!$user->can('view_all_paa')) {
+            $query->whereIn('directorate_id', \App\Models\Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? [0]);
         } elseif ($this->selectedDirectorate) {
             $query->where('directorate_id', $this->selectedDirectorate);
         }
@@ -77,8 +77,21 @@ new class extends Component {
         $this->indicators = [];
     }
 
+    /** An indicator the user may report on: permission, and it belongs to their unit (or they see all units). */
+    private function mayReport($indicatorId): bool
+    {
+        $user = auth()->user();
+        if (! $user->can('update_indicator_progress') && ! $user->can('approve_progress_report')) {
+            return false;
+        }
+        $unitId = \App\Models\Indicator::with('activity:id,directorate_id')->find($indicatorId)?->activity?->directorate_id;
+
+        return $unitId && app(\App\Policies\ActivityPolicy::class)->inScope($user, $unitId);
+    }
+
     public function saveProgress($indicatorId, $value): void
     {
+        abort_unless($this->mayReport($indicatorId), 403);
         $progress = IndicatorProgress::where('indicator_id', $indicatorId)
             ->where('quarter', $this->quarter)
             ->first();
@@ -102,7 +115,7 @@ new class extends Component {
 
     public function submitProgress(): void
     {
-        $indicatorIds = collect($this->indicators)->pluck('id');
+        $indicatorIds = collect($this->indicators)->pluck('id')->filter(fn ($id) => $this->mayReport($id));
 
         IndicatorProgress::whereIn('indicator_id', $indicatorIds)
             ->where('quarter', $this->quarter)
@@ -120,6 +133,7 @@ new class extends Component {
 
     public function verifyProgress($indicatorId): void
     {
+        abort_unless($this->mayReport($indicatorId), 403);
         if (!auth()->user()->hasRole('Director')) {
             $this->dispatch('toast', message: 'Only Directors can verify progress.', type: 'error');
             return;
@@ -143,6 +157,7 @@ new class extends Component {
 
     public function rejectProgress($indicatorId): void
     {
+        abort_unless($this->mayReport($indicatorId), 403);
         if (!auth()->user()->hasRole('Director')) {
             $this->dispatch('toast', message: 'Only Directors can reject progress.', type: 'error');
             return;
@@ -190,7 +205,7 @@ new class extends Component {
                     </select>
                 </div>
 
-                @if(auth()->user()->hasAnyRole(['Admin', 'Planning', 'Budget']))
+                @if(auth()->user()->can('view_all_paa'))
                     <div>
                         <x-input-label for="directorate" :value="__('Filter by Directorate')" class="text-xs font-semibold text-zinc-400 mb-2" />
                         <select id="directorate" wire:model.live="selectedDirectorate"

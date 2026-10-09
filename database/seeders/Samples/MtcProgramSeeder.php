@@ -26,6 +26,7 @@ class MtcProgramSeeder extends Seeder
             ['oge_code' => 'MTC-005', 'name' => 'Meteorologia e Geofísica', 'objective' => 'Assegurar a vigilância meteorológica, climatológica e sismológica nacional.'],
             ['oge_code' => 'MTC-006', 'name' => 'Digitalização e Segurança Cibernética', 'objective' => 'Promover a transformação digital e a proteção cibernética.'],
             ['oge_code' => 'MTC-007', 'name' => 'Segurança e Investigação de Acidentes', 'objective' => 'Prevenir e investigar acidentes e incidentes aéreos, marítimos e terrestres.'],
+            ['oge_code' => 'MTC-008', 'name' => 'Aviação Civil e Aeroportos', 'objective' => 'Assegurar a supervisão da aviação civil e a gestão dos aeroportos e da navegação aérea.'],
         ];
 
         foreach ($programs as $prog) {

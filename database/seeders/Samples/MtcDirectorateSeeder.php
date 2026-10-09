@@ -16,6 +16,13 @@ use Illuminate\Database\Seeder;
  * created the Direção-Geral dos Transportes and the Direção-Geral das Comunicações,
  * plus two new gabinetes (GPIAIAMT and GDSC).
  *
+ * Indirect administration (art. 7): ANATL E.P., APORTIL I.P., AACTL I.P., ANC I.P. and TIC Timor I.P.
+ * are separate public bodies with administrative and financial autonomy and their own assets
+ * (art. 4(3)), each governed by its own statute. The Minister directs and supervises them
+ * (art. 4(2)) but they are NOT services of the ministry, so they are flagged `indirect`: their
+ * plans and budgets are their own. Their internal structure is set by their statutes, which the
+ * organic law does not reproduce, so no sub-units are invented for them.
+ *
  * The organic law stops at the direção nacional / unidade level; departments are
  * defined later by ministerial diploma and are intentionally NOT invented here.
  * Abbreviations are those given in the law; DNC (Cabotagem) and the unit codes
@@ -74,12 +81,22 @@ class MtcDirectorateSeeder extends Seeder
             ['DNRH', 'Direção Nacional dos Recursos Humanos', self::ORGANIC_LAW_YEAR],
         ]);
 
-        // ── Administração indireta do Estado (own legal personality/budget) ──
-        $this->independent('ANATL', 'Administração de Aeroportos e Navegação Aérea de Timor-Leste, E.P.', self::ORGANIC_LAW_YEAR);
-        $this->independent('APORTIL', 'Administração dos Portos de Timor-Leste, I.P.', self::ORGANIC_LAW_YEAR);
-        $this->independent('AACTL', 'Autoridade da Aviação Civil de Timor-Leste, I.P.', self::ORGANIC_LAW_YEAR);
-        $this->independent('ANC', 'Autoridade Nacional de Comunicações, I.P.', self::ORGANIC_LAW_YEAR);
-        $this->independent('TICTIMOR', 'Agência de Tecnologias de Informação e Comunicação, I.P. (TIC Timor)', self::ORGANIC_LAW_YEAR);
+        // ── Administração indireta do Estado (art. 7): autonomy of their own ──
+        $this->autonomous('ANATL', 'Administração de Aeroportos e Navegação Aérea de Timor-Leste, E.P.', 'E.P.', 'art. 25');
+        $this->autonomous('APORTIL', 'Administração dos Portos de Timor-Leste, I.P.', 'I.P.', 'art. 26');
+        $this->autonomous('AACTL', 'Autoridade da Aviação Civil de Timor-Leste, I.P.', 'I.P.', 'art. 27');
+        $this->autonomous('ANC', 'Autoridade Nacional de Comunicações, I.P.', 'I.P.', 'art. 28');
+        $this->autonomous('TICTIMOR', 'Agência de Tecnologias de Informação e Comunicação, I.P. (TIC Timor)', 'I.P.', 'art. 29');
+    }
+
+    /** A public body of the indirect administration: own legal personality, administrative and financial autonomy. */
+    private function autonomous(string $code, string $name, string $legalForm, string $article): Directorate
+    {
+        return $this->upsert($code, $name, 'Independent', null, self::ORGANIC_LAW_YEAR, [
+            'administration' => Directorate::INDIRECT,
+            'legal_form' => $legalForm,
+            'legal_basis' => "DL 75/2023, {$article}",
+        ]);
     }
 
     private function independent(string $code, string $name, int $since): Directorate
@@ -108,15 +125,18 @@ class MtcDirectorateSeeder extends Seeder
         }
     }
 
-    private function upsert(string $code, string $name, string $type, ?Directorate $parent, int $since): Directorate
+    private function upsert(string $code, string $name, string $type, ?Directorate $parent, int $since, array $extra = []): Directorate
     {
         /** @var Directorate */
-        return $this->registry->upsert('mtc', Directorate::class, ['code' => $code], [
+        return $this->registry->upsert('mtc', Directorate::class, ['code' => $code], array_merge([
             'name' => $name,
             'type' => $type,
             'parent_id' => $parent?->id,
             'established_year' => $since,
             'active' => true,
-        ]);
+            'administration' => Directorate::DIRECT,
+            'legal_form' => null,
+            'legal_basis' => null,
+        ], $extra));
     }
 }

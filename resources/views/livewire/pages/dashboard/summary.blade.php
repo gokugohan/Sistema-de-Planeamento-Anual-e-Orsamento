@@ -198,6 +198,8 @@ new class extends Component {
     }
 }; ?>
 
+@php $wide = auth()->user()->can('view_all_paa'); @endphp
+
 <div class="space-y-6">
     {{-- Header --}}
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
@@ -227,7 +229,9 @@ new class extends Component {
             @if($unit !== '' || $category !== '')
                 <button wire:click="clearFilters" class="pb-2.5 text-sm font-medium text-indigo-600 hover:underline">{{ __('Clear filters') }}</button>
             @endif
-            <x-ui.button variant="secondary" size="md" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Approved plan (PDF)') }}</x-ui.button>
+            @if($wide)
+                <x-ui.button variant="secondary" size="md" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Approved plan (PDF)') }}</x-ui.button>
+            @endif
         </div>
     </div>
 
@@ -235,7 +239,9 @@ new class extends Component {
     <section aria-label="{{ __('Budget cycle') }}" class="bg-white rounded-lg border border-zinc-200 shadow-card px-5 py-4">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-sm font-semibold text-zinc-900">{{ __('Budget cycle') }} {{ $year }}</h2>
-            <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
+            @if($wide)
+                <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
+            @endif
         </div>
         <ol class="grid grid-cols-2 md:grid-cols-6 gap-4">
             @foreach($steps as $i => $step)
@@ -264,14 +270,14 @@ new class extends Component {
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <x-ui.kpi :label="$fundLabel" :value="$fund !== null ? '$ ' . number_format($fund) : '—'"
             :sub="$fund !== null ? ($envelope === null ? __('Not yet the final envelope') : __('Received for the year')) : __('Not registered yet')" tone="zinc"
-            href="{{ route('budget.envelope.current') }}" />
+            :href="$wide ? route('budget.envelope.current') : null" />
         <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($plan)"
             :sub="__('of $ :t requested in total', ['t' => number_format($planAll)])"
             :progress="$fund ? min(100, $plan / max($fund, 1) * 100) : null" :tone="($fund && $plan > $fund) ? 'rose' : 'indigo'"
             href="{{ route('activities.index') }}" />
         <x-ui.kpi :label="__('Distributed')" :value="'$ ' . number_format($allocated)"
             :sub="$envelope ? number_format($fundedPct, 1) . '% ' . __('of the envelope') : __('Needs an approved envelope')"
-            :progress="$fundedPct" tone="emerald" href="{{ route('budget.allocation') }}" />
+            :progress="$fundedPct" tone="emerald" :href="$wide ? route('budget.allocation') : null" />
         <x-ui.kpi :label="__('Activities approved')" :value="$byStatus[\App\Models\Activity::STATUS_APPROVED] . ' / ' . $totalActivities"
             :sub="number_format($approvedShare, 0) . '% ' . __('of the plan')" :progress="$approvedShare" tone="indigo"
             href="{{ route('planning.paa-approval') }}" />

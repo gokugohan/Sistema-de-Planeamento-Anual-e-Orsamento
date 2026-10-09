@@ -158,20 +158,39 @@
         <th class="num">{{ __('Total') }}</th>
     </tr></thead>
     <tbody>
-    @foreach($report['by_unit'] as $root)
-        <tr class="root">
-            <td>{{ $root['code'] }} — {{ $root['name'] }}</td>
-            @foreach($classes as $c)<td class="num">{{ number_format($root['by_class'][$c->id] ?? 0, 0) }}</td>@endforeach
-            <td class="num">{{ number_format($root['total'], 2) }}</td>
-        </tr>
-        @if($root['units']->count() > 1 || $root['units']->first()['code'] !== $root['code'])
-            @foreach($root['units'] as $u)
-                <tr>
-                    <td style="padding-left:14px">{{ $u['code'] }} — {{ $u['name'] }}</td>
-                    @foreach($classes as $c)<td class="num">{{ number_format($u['by_class'][$c->id] ?? 0, 0) }}</td>@endforeach
-                    <td class="num">{{ number_format($u['total'], 2) }}</td>
-                </tr>
-            @endforeach
+    @php
+        $sections = [
+            ['label' => __('Ministry services'), 'roots' => $report['by_unit']->where('autonomous', false)],
+            ['label' => __('Transfers to autonomous bodies (indirect administration)'), 'roots' => $report['by_unit']->where('autonomous', true)],
+        ];
+    @endphp
+    @foreach($sections as $section)
+        @continue($section['roots']->isEmpty())
+        @if($report['autonomous']['count'] > 0)
+            <tr><td colspan="{{ $classes->count() + 2 }}" class="small muted" style="padding-top:8px"><strong>{{ $section['label'] }}</strong></td></tr>
+        @endif
+        @foreach($section['roots'] as $root)
+            <tr class="root">
+                <td>{{ $root['code'] }} — {{ $root['name'] }}@if($root['autonomous'] && $root['legal_form']) <span class="small muted">({{ $root['legal_form'] }})</span>@endif</td>
+                @foreach($classes as $c)<td class="num">{{ number_format($root['by_class'][$c->id] ?? 0, 0) }}</td>@endforeach
+                <td class="num">{{ number_format($root['total'], 2) }}</td>
+            </tr>
+            @if($root['units']->count() > 1 || $root['units']->first()['code'] !== $root['code'])
+                @foreach($root['units'] as $u)
+                    <tr>
+                        <td style="padding-left:14px">{{ $u['code'] }} — {{ $u['name'] }}</td>
+                        @foreach($classes as $c)<td class="num">{{ number_format($u['by_class'][$c->id] ?? 0, 0) }}</td>@endforeach
+                        <td class="num">{{ number_format($u['total'], 2) }}</td>
+                    </tr>
+                @endforeach
+            @endif
+        @endforeach
+        @if($report['autonomous']['count'] > 0)
+            <tr class="total">
+                <td>{{ __('Subtotal') }} — {{ $section['label'] }}</td>
+                @foreach($classes as $c)<td class="num">{{ number_format($section['roots']->sum(fn ($r) => $r['by_class'][$c->id] ?? 0), 0) }}</td>@endforeach
+                <td class="num">{{ number_format($section['roots']->sum('total'), 2) }}</td>
+            </tr>
         @endif
     @endforeach
     <tr class="total">
@@ -181,6 +200,11 @@
     </tr>
     </tbody>
 </table>
+@if($report['autonomous']['count'] > 0)
+    <p class="small muted" style="margin-top:6px">
+        {{ __('The total is one package for the ministry. The autonomous bodies are shown as a separate section because the ministry passes their share on once it has received its fiscal envelope.') }}
+    </p>
+@endif
 
 <div class="page-break"></div>
 <h2>4. {{ __('Approved activities by organic unit') }}</h2>

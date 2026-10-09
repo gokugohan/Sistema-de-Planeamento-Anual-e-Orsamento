@@ -48,7 +48,7 @@ class SampleDataTest extends TestCase
         $this->load();
 
         $counts = app(SampleRegistry::class)->counts();
-        $this->assertSame(['activities' => 19, 'users' => 57, 'directorates' => 28, 'programs' => 7], $counts);
+        $this->assertSame(['activities' => 24, 'users' => 57, 'directorates' => 28, 'programs' => 8], $counts);
         $this->assertSame(Activity::count(), $counts['activities']);
         $this->assertTrue((bool) SystemSetting::get(SampleRegistry::FLAG));
     }
@@ -60,7 +60,7 @@ class SampleDataTest extends TestCase
 
         $report = app(SampleRegistry::class)->purge('mtc');
 
-        $this->assertSame(['activities' => 19, 'users' => 57, 'directorates' => 28, 'programs' => 7], $report['deleted']);
+        $this->assertSame(['activities' => 24, 'users' => 57, 'directorates' => 28, 'programs' => 8], $report['deleted']);
         $this->assertSame([], $report['kept']);
         $this->assertSame(0, Activity::count() + Directorate::count() + Program::count() + User::count());
         $this->assertSame(0, SampleRecord::count());
@@ -147,8 +147,8 @@ class SampleDataTest extends TestCase
         $this->load();
 
         $this->assertSame(28, Directorate::count());
-        $this->assertSame(19, Activity::count());
-        $this->assertSame(['activities' => 19, 'users' => 57, 'directorates' => 28, 'programs' => 7], app(SampleRegistry::class)->counts());
+        $this->assertSame(24, Activity::count());
+        $this->assertSame(['activities' => 24, 'users' => 57, 'directorates' => 28, 'programs' => 8], app(SampleRegistry::class)->counts());
     }
 
     public function test_adopt_registers_matching_pre_existing_records_but_not_changed_ones(): void
@@ -163,7 +163,7 @@ class SampleDataTest extends TestCase
         $registry = app(SampleRegistry::class);
         $this->assertFalse($registry->isRegistered(Directorate::where('code', 'DNTT')->first()), 'a modified record must not be adopted');
         $this->assertTrue($registry->isRegistered(Directorate::where('code', 'DGT')->first()));
-        $this->assertSame(19, $registry->counts()['activities']);
+        $this->assertSame(24, $registry->counts()['activities']);
         $this->assertSame(27, $registry->counts()['directorates']);
     }
 

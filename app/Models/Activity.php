@@ -60,6 +60,11 @@ class Activity extends Model
         'code',
         'directorate_id',
         'description',
+        'objective',
+        'location',
+        'gender_responsive',
+        'execution_quarters',
+        'period_type',
         'manager_name',
         'quarter',
         'priority',
@@ -74,6 +79,14 @@ class Activity extends Model
         'reviewed_by',
         'approved_by',
         'is_test_data',
+    ];
+
+    protected $casts = [
+        'planned_start' => 'date',
+        'planned_end' => 'date',
+        'execution_quarters' => 'array',
+        'gender_responsive' => 'boolean',
+        'procurement_required' => 'boolean',
     ];
 
     public function program()

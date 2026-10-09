@@ -34,21 +34,21 @@ return [
             'items' => [
                 ['label' => 'PAA Activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list',
                     'hint' => 'Plan activities with indicators and budget lines'],
-                ['label' => 'Budget Cycle', 'route' => 'planning.budget-cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_budget',
+                ['label' => 'Budget Cycle', 'route' => 'planning.budget-cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_all_paa',
                     'hint' => 'Ceiling, CRO submission and decision, State Budget law'],
             ],
         ],
         [
             'label' => 'Budget',
             'items' => [
-                ['label' => 'Fiscal Envelope', 'icon' => 'wallet-cards', 'hint' => 'The amount received for the year',
+                ['label' => 'Fiscal Envelope', 'icon' => 'wallet-cards', 'permission' => 'view_all_paa', 'hint' => 'The amount received for the year',
                     'children' => [
                         ['label' => 'Current Envelope', 'route' => 'budget.envelope.current', 'icon' => 'circle',
                             'hint' => 'The envelope in force and its distribution'],
                         ['label' => 'Envelope List', 'route' => 'budget.envelope.list', 'icon' => 'list',
                             'hint' => 'All fiscal years'],
                     ]],
-                ['label' => 'Budget Allocation', 'route' => 'budget.allocation', 'icon' => 'layers',
+                ['label' => 'Budget Allocation', 'route' => 'budget.allocation', 'icon' => 'layers', 'permission' => 'view_all_paa',
                     'hint' => 'What each unit, programme and category received'],
             ],
         ],
@@ -69,7 +69,7 @@ return [
             'items' => [
                 ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'activity',
                     'hint' => 'Quarterly progress against indicator targets'],
-                ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart',
+                ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_all_paa',
                     'hint' => 'Reports and the approved plan for the CRO'],
             ],
         ],
@@ -98,6 +98,7 @@ return [
     // Screens that are not menu entries: route => [parent route, breadcrumb label]
     'pages' => [
         'activities.create' => ['activities.index', 'New activity'],
+        'activities.edit' => ['activities.index', 'Edit activity'],
         'activities.show' => ['activities.index', 'Activity details'],
         'activities.indicators' => ['activities.index', 'Indicators'],
         'activities.budget' => ['activities.index', 'Budget lines'],

@@ -142,7 +142,7 @@ class BudgetCycleTest extends TestCase
 
     public function test_viewing_a_year_does_not_create_records(): void
     {
-        $this->as('Viewer');
+        $this->as('Minister');
         $this->get(route('planning.budget-cycle'))->assertOk()->assertSee(__('Budget Cycle'));
 
         $this->assertSame(0, BudgetCycle::count());

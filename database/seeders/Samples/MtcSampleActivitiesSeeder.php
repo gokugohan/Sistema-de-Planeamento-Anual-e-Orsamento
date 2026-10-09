@@ -158,6 +158,23 @@ class MtcSampleActivitiesSeeder extends Seeder
             ['UDIG', '006', 'Digitalização de serviços prestados ao público', 3, 'Média', true,
                 [['Serviços digitalizados', 'Output', 'serviços', 3]],
                 [['50', 60000]]],
+            // ── Indirect administration: each body plans its own activities and funds them from
+            //    its own budget (art. 4(3) of the organic law); the amounts are placeholders.
+            ['ANATL', '008', 'Manutenção das infraestruturas e dos equipamentos de navegação aérea', 1, 'Alta', true,
+                [['Equipamentos de navegação em condições operacionais', 'Outcome', '%', 95]],
+                [['20', 80000], ['40', 40000]]],
+            ['APORTIL', '003', 'Conservação e segurança das instalações portuárias', 2, 'Alta', true,
+                [['Instalações portuárias intervencionadas', 'Output', 'instalações', 5]],
+                [['20', 60000], ['50', 200000]]],
+            ['AACTL', '008', 'Programa anual de supervisão e inspeção da segurança da aviação civil', 2, 'Alta', false,
+                [['Inspeções realizadas', 'Output', 'inspeções', 24]],
+                [['20', 25000], ['10', 15000]]],
+            ['ANC', '004', 'Monitorização do mercado das telecomunicações e gestão do espectro radioelétrico', 3, 'Média', true,
+                [['Relatórios de monitorização publicados', 'Output', 'relatórios', 4]],
+                [['20', 30000], ['40', 20000]]],
+            ['TICTIMOR', '006', 'Manutenção e expansão da rede informática do Governo', 1, 'Alta', true,
+                [['Instituições ligadas à rede do Governo', 'Output', 'instituições', 30]],
+                [['20', 70000], ['50', 90000]]],
         ];
     }
 }

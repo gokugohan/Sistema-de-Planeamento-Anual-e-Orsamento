@@ -64,7 +64,7 @@ new class extends Component {
         User::role(['Admin', 'Planning'])->get()->each(fn ($u) => $u->notify(new SystemNotification(
             $title,
             __($message, ['dir' => $unit->name, 'year' => $this->year()]),
-            route('planning.fiscal', absolute: false)
+            route('planning.director-review', absolute: false)
         )));
 
         $this->dispatch('toast', message: $toast, type: 'success');

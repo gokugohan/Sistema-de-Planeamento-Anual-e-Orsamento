@@ -22,13 +22,16 @@ Route::get('activities/create', function () {
     return view('activities.create');
 })->middleware(['auth', 'verified'])->name('activities.create');
 
-Route::get('activities/{activity}/indicators', function (Activity $activity) {
-    return view('activities.indicators', ['activity' => $activity]);
-})->middleware(['auth', 'verified'])->name('activities.indicators');
+Route::get('activities/{activity}/edit', function (Activity $activity) {
+    return view('activities.edit', ['activity' => $activity]);
+})->middleware(['auth', 'verified'])->name('activities.edit');
 
-Route::get('activities/{activity}/budget', function (Activity $activity) {
-    return view('activities.budget', ['activity' => $activity]);
-})->middleware(['auth', 'verified'])->name('activities.budget');
+// The former separate budget and indicator pages are now part of the activity form.
+Route::get('activities/{activity}/indicators', fn (Activity $activity) => redirect()->route('activities.edit', $activity))
+    ->middleware(['auth', 'verified'])->name('activities.indicators');
+
+Route::get('activities/{activity}/budget', fn (Activity $activity) => redirect()->route('activities.edit', $activity))
+    ->middleware(['auth', 'verified'])->name('activities.budget');
 
 Route::get('activities/{activity}', function (Activity $activity) {
     return view('activities.show', ['activity' => $activity]);
@@ -36,15 +39,15 @@ Route::get('activities/{activity}', function (Activity $activity) {
 
 Route::get('budget/envelope/current', function () {
     return view('budget.envelope-current');
-})->middleware(['auth', 'verified'])->name('budget.envelope.current');
+})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('budget.envelope.current');
 
 Route::get('budget/envelope/list', function () {
     return view('budget.envelope-list');
-})->middleware(['auth', 'verified'])->name('budget.envelope.list');
+})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('budget.envelope.list');
 
 Route::get('budget/allocation', function () {
     return view('budget.allocation');
-})->middleware(['auth', 'verified'])->name('budget.allocation');
+})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('budget.allocation');
 
 Route::get('monitoring', function () {
     return view('monitoring.index');
@@ -68,13 +71,13 @@ Route::get('planning/fiscal', function () {
 
 Route::get('planning/budget-cycle', function () {
     return view('planning.budget-cycle');
-})->middleware(['auth', 'verified', 'permission:view_budget'])->name('planning.budget-cycle');
+})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('planning.budget-cycle');
 
 Route::get('reports/paa', function () {
     return view('reports.paa');
-})->middleware(['auth', 'verified'])->name('reports.paa');
+})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');
 
-Route::middleware(['auth', 'verified', 'permission:view_reports'])->group(function () {
+Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');
     Route::get('reports/approved-plan/pdf', [ApprovedPlanReportController::class, 'pdf'])->name('reports.approved-plan.pdf');
 });

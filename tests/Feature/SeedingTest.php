@@ -58,18 +58,35 @@ class SeedingTest extends TestCase
         $this->seed(MtcSampleDataSeeder::class);
 
         $this->assertSame(28, Directorate::count());
-        $this->assertSame(7, Program::count());
-        $this->assertSame(19, Activity::count());
+        $this->assertSame(8, Program::count());
+        $this->assertSame(24, Activity::count());
         $this->assertSame('MTC', SystemSetting::getLocalized('org_abbr', '', 'en'));
         $this->assertTrue(User::where('email', 'ministro@goku.tl')->first()->isMinister());
         // Every sample activity is recognisably marked.
-        $this->assertSame(19, Activity::where('code', 'like', 'SAMPLE-%')->where('description', 'like', '[EXEMPLO]%')->count());
+        $this->assertSame(24, Activity::where('code', 'like', 'SAMPLE-%')->where('description', 'like', '[EXEMPLO]%')->count());
 
         $this->artisan('paa:purge-samples', ['--force' => true])->assertSuccessful();
 
         $this->assertSame(0, Activity::count());
         $this->assertSame(0, Directorate::count());
         $this->assertSame(0, Program::count());
+    }
+
+    /** DL 75/2023 art. 7: five public bodies with administrative and financial autonomy; everything else is a ministry service. */
+    public function test_mtc_autonomous_bodies_are_flagged_as_indirect_administration(): void
+    {
+        $this->seed(MtcSampleDataSeeder::class);
+
+        $autonomous = Directorate::where('administration', Directorate::INDIRECT)->orderBy('code')->pluck('legal_form', 'code')->all();
+        $this->assertSame(['AACTL' => 'I.P.', 'ANATL' => 'E.P.', 'ANC' => 'I.P.', 'APORTIL' => 'I.P.', 'TICTIMOR' => 'I.P.'], $autonomous);
+        $this->assertSame(23, Directorate::where('administration', Directorate::DIRECT)->count());
+        $this->assertStringContainsString('DL 75/2023', Directorate::where('code', 'ANC')->value('legal_basis'));
+
+        // Autonomous bodies are top-level and have no invented sub-units; they plan activities of their own.
+        $this->assertSame(0, Directorate::whereIn('parent_id', Directorate::where('administration', Directorate::INDIRECT)->pluck('id'))->count());
+        foreach (array_keys($autonomous) as $code) {
+            $this->assertGreaterThan(0, Activity::where('directorate_id', Directorate::where('code', $code)->value('id'))->count(), "$code has no sample activity");
+        }
     }
 
     public function test_mtc_sample_data_is_refused_in_production(): void

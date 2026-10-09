@@ -19,7 +19,7 @@ new class extends Component {
         $month = date('n');
         $this->quarter = ceil($month / 3);
 
-        if (!auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
+        if (!auth()->user()->can('view_all_paa')) {
             $this->selectedDirectorate = auth()->user()->directorate_id;
         }
 
@@ -106,7 +106,7 @@ new class extends Component {
                 <option value="4">{{ __('Q4 (Oct-Dec)') }}</option>
             </select>
 
-            @if(auth()->user()->hasAnyRole(['Admin', 'Planning']))
+            @if(auth()->user()->can('view_all_paa'))
                 <select wire:model.live="selectedDirectorate"
                     class="bg-white border-none shadow-sm rounded-xl text-xs font-semibold text-zinc-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
                     <option value="">{{ __('All Directorates') }}</option>

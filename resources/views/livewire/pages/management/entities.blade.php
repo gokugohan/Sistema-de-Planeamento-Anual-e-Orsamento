@@ -24,6 +24,9 @@ new class extends Component {
     public $director_name = '';
     public $director_email = '';
     public $active = true;
+    public $administration = 'direct';
+    public $legal_form = '';
+    public $legal_basis = '';
 
     public $modalOpen = false;
     public $isEditing = false;
@@ -151,10 +154,13 @@ new class extends Component {
             $this->director_name = $d->director_name;
             $this->director_email = $d->director_email;
             $this->active = $d->active;
+            $this->administration = $d->administration ?: 'direct';
+            $this->legal_form = (string) $d->legal_form;
+            $this->legal_basis = (string) $d->legal_basis;
         } else {
             $this->isEditing = false;
             $this->directorateId = null;
-            $this->reset(['name', 'code', 'parent_id', 'type', 'description', 'director_name', 'director_email', 'active']);
+            $this->reset(['name', 'code', 'parent_id', 'type', 'description', 'director_name', 'director_email', 'active', 'administration', 'legal_form', 'legal_basis']);
         }
         $this->modalOpen = true;
     }
@@ -168,6 +174,9 @@ new class extends Component {
             'parent_id' => 'nullable|exists:directorates,id',
             'director_name' => 'nullable|string|max:255',
             'director_email' => 'nullable|email|max:255',
+            'administration' => 'required|in:direct,indirect',
+            'legal_form' => 'nullable|string|max:20',
+            'legal_basis' => 'nullable|string|max:255',
         ];
 
         $this->validate($rules);
@@ -181,6 +190,9 @@ new class extends Component {
             'director_name' => $this->director_name,
             'director_email' => $this->director_email,
             'active' => $this->active,
+            'administration' => $this->administration,
+            'legal_form' => $this->administration === 'indirect' ? ($this->legal_form ?: null) : null,
+            'legal_basis' => $this->legal_basis ?: null,
         ];
 
         if ($this->isEditing) {

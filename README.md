@@ -57,6 +57,8 @@ Distribution rules (`app/Services/EnvelopeDistributor.php`):
 - Amounts are exact to the cent, and the whole operation is one transaction.
 - The preview you confirm is computed by the same code that writes the result.
 
+**Autonomous bodies.** Public bodies under the ministry that have their own legal personality and financial autonomy (units marked *Autonomous* in *Administration → Entities*) are part of the ministry's package: their approved plans are inside the totals sent to the CRO and are distributed from the same envelope once the ministry has received it. They are presented as a separate section, "Transfers to autonomous bodies", in the CRO report and in Budget Allocation, so the ministry's own services and the transfers can be read apart. If such a body runs its own planning system, its plan can be entered or imported here for its unit by ministry staff.
+
 ### Budget cycle and the CRO
 
 *Budget Planning → Budget Cycle* tracks one fiscal year through: indicative ceiling → submission to the CRO → CRO decision → budget law promulgated → envelope approved. It shows the differences between stages and warns when the approved plan is **above the CRO amount** (revise the plan before the budget goes to Parliament, otherwise the final distribution cuts every activity pro rata).
@@ -74,6 +76,18 @@ The submission is stored as a **frozen copy**. Later edits to activities never c
 | **Viewer** | Read-only | view PAA, budget, monitoring, reports |
 
 Permissions are enforced on the server (route middleware and checks inside every Livewire action), not just by hiding buttons. Users only see activities of their own unit and its sub-units, unless they hold `view_all_paa` (Admin, Minister).
+
+### Planning activities
+
+An activity follows the structure of a Timor-Leste annual action plan: **programme** and **responsible unit**, the activity and its **objective**, **municipality or region** (`config/paa.php` lists them; edit the list for your institution), **start/end dates inside the fiscal year** and the **quarters** it runs in, whether it needs **procurement**, a **gender-responsive budgeting** marker, the **budget by economic category** (the five OGE categories) and **indicators** (output or outcome, unit, annual target). One form (*PAA Activities → New activity*, or *Edit* on a draft) captures all of it; the code (`UNIT-YY-NNN`) is generated.
+
+- **Submitting.** A draft needs at least one budget line with an amount and one indicator before it can move on; the activity page lists what is missing. The chain is planner → unit director → (parent unit director) → top-level director → Minister (`ActivityWorkflow`).
+- **Editing is locked** once an activity is submitted, and again when the planning cycle is closed. Only the unit's own users (and administrators) can change a draft.
+- **The list** filters by status, unit, programme, location and text, groups by programme or unit, offers "Needs my action", moves several activities on at once, **exports CSV** (one amount column per category, opens in Excel) and, for a new year, **copies last year's plan** as drafts (once; duplicates are skipped).
+
+### Who sees what
+
+Visibility follows the unit tree. **Department users** (Director, Planner, Viewer) see and work on **their own unit and the units below it**, in activities, monitoring and allocation review. The **dashboard** is the one ministry-wide page they can open; ministry-wide pages (fiscal envelope, budget allocation, budget cycle, reporting and the CRO report) are for users with *view all PAA* (**Admin** and **Minister**), and are hidden from the menu and refused on the server for everyone else. This is enforced by `ActivityPolicy` and route permissions, not just by hiding links.
 
 ### Navigation and the interface
 
@@ -181,11 +195,11 @@ php artisan paa:purge-samples                                                  #
 
 | Seeder | Adds |
 |---|---|
-| `MtcDirectorateSeeder` | The 28 MTC entities from Decreto-Lei 75/2023 as amended by Decreto-Lei 12/2026: 3 general directorates (Transportes, Comunicações, Administração e Finanças), their 10 national directorates, 5 gabinetes, 5 units, and the 5 indirect-administration bodies. The law defines the structure only down to national directorates and units, so **no departments are invented**. |
-| `MtcProgramSeeder` | 7 working programmes with codes `MTC-001` … `MTC-007`. **These are placeholders, not official OGE codes**, and are prefixed so they can never collide with a real programme code. |
+| `MtcDirectorateSeeder` | The 28 MTC entities from Decreto-Lei 75/2023 as amended by Decreto-Lei 12/2026: 3 general directorates (Transportes, Comunicações, Administração e Finanças), their 10 national directorates, 5 gabinetes, 5 units, and the 5 **indirect-administration bodies** (art. 7: ANATL E.P., APORTIL I.P., AACTL I.P., ANC I.P., TIC Timor I.P.), flagged *Autonomous* because the law gives them their own legal personality, administrative and financial autonomy and assets (art. 4(3)); they are not services of the ministry, are top-level units, and get no invented sub-units because their internal structure is set by their own statutes. The law defines the structure only down to national directorates and units, so **no departments are invented**. |
+| `MtcProgramSeeder` | 8 working programmes with codes `MTC-001` … `MTC-008` (008 = civil aviation and airports). **These are placeholders, not official OGE codes**, and are prefixed so they can never collide with a real programme code. |
 | `MtcBrandingSeeder` | Sets the organisation name and abbreviation to MTC. |
 | `MtcDemoUsersSeeder` | `ministro@goku.tl` (Minister), plus `planner.<code>@goku.tl` and `director.<code>@goku.tl` for each unit (for example `planner.dntt@goku.tl`). Password for all: `password`. |
-| `MtcSampleActivitiesSeeder` | 19 illustrative activities for **2027**, with indicators and budget lines, status `Draft`. |
+| `MtcSampleActivitiesSeeder` | 24 illustrative activities for **2027**, with indicators and budget lines, status `Draft`: 19 for ministry services and 5 for the autonomous bodies (one each). |
 
 ### The sample activities are not real plans
 

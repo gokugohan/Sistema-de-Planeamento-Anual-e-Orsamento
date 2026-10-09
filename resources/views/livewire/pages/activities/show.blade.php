@@ -21,14 +21,26 @@ new class extends Component {
 
     public function with(): array
     {
+        $workflow = app(\App\Services\ActivityWorkflow::class);
+        $user = auth()->user();
+
         return [
             'activeYear'              => \App\Models\FiscalEnvelope::getEffectiveYear(),
             'economicClassifications' => EconomicClassification::orderBy('code')->get(),
+            'canEdit'                 => $user->can('update', $this->activity),
+            'canDelete'               => $user->can('delete', $this->activity),
+            'nextStatus'              => $workflow->next($user, $this->activity),
+            'canReturn'               => $workflow->canReturn($user, $this->activity),
+            'canApprove'              => $workflow->canApprove($user, $this->activity),
+            'canReopen'               => $workflow->canReopen($user, $this->activity),
+            'problems'                => $workflow->problems($this->activity),
         ];
     }
 
     public function mount(Activity $activity): void
     {
+        $this->authorize('view', $activity);
+
         $this->activity = $activity->load([
             'program', 'directorate', 'indicators',
             'lineItems.economicClassification', 'lineItems.adjustedBudget',
@@ -40,10 +52,11 @@ new class extends Component {
 
     public function addIndicator(): void
     {
+        $this->authorize('update', $this->activity);
         $this->validate([
-            'iName'   => 'required|string',
+            'iName'   => 'required|string|max:255',
             'iType'   => 'required|in:Output,Outcome',
-            'iUnit'   => 'required|string',
+            'iUnit'   => 'required|string|max:100',
             'iTarget' => 'required|numeric|min:0',
         ]);
 
@@ -62,9 +75,10 @@ new class extends Component {
         $this->dispatch('toast', message: __('Indicator added.'), type: 'success');
     }
 
-    public function deleteIndicator(Indicator $indicator): void
+    public function deleteIndicator($id): void
     {
-        $indicator->delete();
+        $this->authorize('update', $this->activity);
+        $this->activity->indicators()->findOrFail($id)->delete();
         $this->refresh();
     }
 
@@ -72,9 +86,10 @@ new class extends Component {
 
     public function addLineItem(): void
     {
+        $this->authorize('update', $this->activity);
         $this->validate([
             'bClassId' => 'required|exists:economic_classifications,id',
-            'bAmount'  => 'required|numeric|min:0',
+            'bAmount'  => 'required|numeric|min:0.01|max:999999999999',
         ]);
 
         $existing = LineItem::where('activity_id', $this->activity->id)
@@ -97,60 +112,44 @@ new class extends Component {
         $this->dispatch('toast', message: __('Budget item added.'), type: 'success');
     }
 
-    public function deleteLineItem(LineItem $item): void
+    public function deleteLineItem($id): void
     {
-        $item->delete();
+        $this->authorize('update', $this->activity);
+        $this->activity->lineItems()->findOrFail($id)->delete();
         $this->refresh();
     }
 
-    // ── Workflow actions ────────────────────────────────────────────────
+    // ── Workflow actions (rules live in ActivityWorkflow) ───────────────
 
     public function submit(): void
     {
-        $this->activity->update([
-            'status'       => Activity::STATUS_SUBMITTED,
-            'submitted_at' => now(),
-        ]);
+        try {
+            $to = app(\App\Services\ActivityWorkflow::class)->advance(auth()->user(), $this->activity);
+        } catch (\DomainException $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+            return;
+        }
         $this->refresh();
-        $this->dispatch('toast', message: __('Activity submitted for review.'), type: 'success');
-    }
-
-    public function review(): void
-    {
-        $this->activity->update([
-            'status'      => Activity::STATUS_REVIEWED,
-            'reviewed_at' => now(),
-            'reviewed_by' => auth()->id(),
-        ]);
-        $this->refresh();
-        $this->dispatch('toast', message: __('Activity marked as reviewed.'), type: 'success');
+        $this->dispatch('toast', message: __('Activity updated to :status.', ['status' => __($to)]), type: 'success');
     }
 
     public function approve(): void
     {
-        $this->activity->update([
-            'status'      => Activity::STATUS_APPROVED,
-            'approved_at' => now(),
-            'approved_by' => auth()->id(),
-        ]);
+        app(\App\Services\ActivityWorkflow::class)->approve(auth()->user(), $this->activity);
         $this->refresh();
         $this->dispatch('toast', message: __('Activity approved successfully.'), type: 'success');
     }
 
     public function reject(): void
     {
-        $this->activity->update(['status' => Activity::STATUS_REJECTED]);
+        app(\App\Services\ActivityWorkflow::class)->sendBack(auth()->user(), $this->activity);
         $this->refresh();
-        $this->dispatch('toast', message: __('Activity rejected.'), type: 'error');
+        $this->dispatch('toast', message: __('Activity returned to department for correction.'), type: 'success');
     }
 
     public function reopen(): void
     {
-        $this->activity->update([
-            'status'      => Activity::STATUS_DRAFT,
-            'approved_at' => null,
-            'approved_by' => null,
-        ]);
+        app(\App\Services\ActivityWorkflow::class)->reopen(auth()->user(), $this->activity);
         $this->refresh();
         $this->dispatch('toast', message: __('Activity returned to draft.'), type: 'success');
     }
@@ -166,10 +165,7 @@ new class extends Component {
 }; ?>
 
 @php
-    $isEditable = in_array($activity->status, [
-        App\Models\Activity::STATUS_DRAFT,
-        App\Models\Activity::STATUS_REJECTED,
-    ]);
+    $isEditable = $canEdit;
 
     $statusBadge = match($activity->status) {
         'Approved'  => 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200',
@@ -240,6 +236,16 @@ new class extends Component {
                 <h1 class="text-2xl font-bold text-zinc-900 leading-snug mb-3">
                     {{ $activity->description }}
                 </h1>
+
+                @if($activity->objective)
+                    <p class="text-sm text-zinc-600 mb-4">{{ $activity->objective }}</p>
+                @endif
+                <div class="flex flex-wrap gap-2 mb-4">
+                    @if($activity->location)<x-ui.badge variant="gray">{{ $activity->location === 'Nationwide' ? __('Nationwide') : $activity->location }}</x-ui.badge>@endif
+                    <x-ui.badge variant="gray">{{ collect($activity->execution_quarters ?: [$activity->quarter])->map(fn ($q) => 'Q'.$q)->implode(' ') }}</x-ui.badge>
+                    @if($activity->procurement_required)<x-ui.badge variant="gray">{{ __('Procurement') }}</x-ui.badge>@endif
+                    @if($activity->gender_responsive)<x-ui.badge variant="indigo">{{ __('Gender-responsive') }}</x-ui.badge>@endif
+                </div>
 
                 <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-zinc-500 mb-5">
                     @if($activity->directorate)
@@ -584,52 +590,39 @@ new class extends Component {
                 </div>
 
                 <div class="space-y-2">
-                    {{-- Planner: submit draft --}}
-                    @if($activity->status === App\Models\Activity::STATUS_DRAFT && auth()->user()->isPlanner())
-                        <button wire:click="submit"
-                            wire:confirm="{{ __('Submit this activity for directorate review?') }}"
-                            class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold tracking-wide rounded-lg transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-                            {{ __('Submit for Review') }}
-                        </button>
+                    @if($nextStatus)
+                        @if($nextStatus === App\Models\Activity::STATUS_SUBMITTED && $problems)
+                            <div class="rounded-lg bg-amber-50 ring-1 ring-amber-200 p-3 text-xs text-amber-800">
+                                <p class="font-semibold mb-1">{{ __('Not ready to submit') }}</p>
+                                <ul class="list-disc pl-4 space-y-0.5">@foreach($problems as $p)<li>{{ $p }}</li>@endforeach</ul>
+                            </div>
+                        @else
+                            <x-ui.button wire:click="submit" class="w-full"
+                                wire:confirm="{{ __('Move this activity to :status?', ['status' => __($nextStatus)]) }}">
+                                {{ match($nextStatus) {
+                                    App\Models\Activity::STATUS_SUBMITTED => __('Submit for Review'),
+                                    App\Models\Activity::STATUS_REVIEWED => __('Mark as Reviewed'),
+                                    App\Models\Activity::STATUS_VALIDATED => __('Validate'),
+                                    default => __('Send to the Minister'),
+                                } }}
+                            </x-ui.button>
+                        @endif
                     @endif
 
-                    {{-- Director: mark as reviewed --}}
-                    @if($activity->status === App\Models\Activity::STATUS_SUBMITTED && auth()->user()->isDirector())
-                        <button wire:click="review"
-                            wire:confirm="{{ __('Mark this activity as technically reviewed?') }}"
-                            class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold tracking-wide rounded-lg transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                            {{ __('Mark as Reviewed') }}
-                        </button>
+                    @if($canApprove)
+                        <x-ui.button wire:click="approve" class="w-full"
+                            wire:confirm="{{ __('Approve this activity for the annual plan?') }}">{{ __('Approve Activity') }}</x-ui.button>
                     @endif
-
-                    {{-- Minister / Admin: approve --}}
-                    @if(in_array($activity->status, [App\Models\Activity::STATUS_SUBMITTED, App\Models\Activity::STATUS_REVIEWED])
-                        && (auth()->user()->isMinister() || auth()->user()->isAdministrator()))
-                        <button wire:click="approve"
-                            wire:confirm="{{ __('Approve this activity for the annual plan?') }}"
-                            class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-wide rounded-lg transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                            {{ __('Approve Activity') }}
-                        </button>
-                        <button wire:click="reject"
-                            wire:confirm="{{ __('Are you sure you want to reject this activity?') }}"
-                            class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white hover:bg-rose-50 text-rose-600 text-xs font-bold tracking-wide rounded-lg ring-1 ring-rose-200 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            {{ __('Reject') }}
-                        </button>
+                    @if($canReturn)
+                        <x-ui.button variant="secondary" wire:click="reject" class="w-full"
+                            wire:confirm="{{ __('Return this activity to the department for corrections?') }}">{{ __('Return for correction') }}</x-ui.button>
                     @endif
-
-                    {{-- Minister / Admin: reopen approved --}}
-                    @if($activity->status === App\Models\Activity::STATUS_APPROVED
-                        && (auth()->user()->isMinister() || auth()->user()->isAdministrator()))
-                        <button wire:click="reopen"
-                            wire:confirm="{{ __('Return this activity to draft? This will allow editing again.') }}"
-                            class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white hover:bg-zinc-50 text-zinc-600 text-xs font-bold tracking-wide rounded-lg ring-1 ring-zinc-200 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                            {{ __('Reopen') }}
-                        </button>
+                    @if($canReopen)
+                        <x-ui.button variant="secondary" wire:click="reopen" class="w-full"
+                            wire:confirm="{{ __('Return this activity to draft? This will allow editing again.') }}">{{ __('Reopen') }}</x-ui.button>
+                    @endif
+                    @if($canEdit)
+                        <a href="{{ route('activities.edit', $activity) }}" wire:navigate class="block text-center text-sm font-medium text-indigo-600 hover:text-indigo-700 pt-1">{{ __('Edit details') }}</a>
                     @endif
 
                     {{-- Lock indicator --}}

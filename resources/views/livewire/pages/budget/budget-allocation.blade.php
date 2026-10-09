@@ -44,7 +44,7 @@ new class extends Component {
         $allocated = (float) $rows->sum('alloc');
         $envelope = $env ? (float) $env->total_amount : null;
 
-        $dirs = Directorate::get(['id', 'code', 'name', 'parent_id'])->keyBy('id');
+        $dirs = Directorate::get(['id', 'code', 'name', 'parent_id', 'administration', 'legal_form'])->keyBy('id');
         $acts = fn ($group) => Activity::withoutGlobalScopes()->where('is_test_data', false)->where('fiscal_year', $year)
             ->where('status', Activity::STATUS_APPROVED)->selectRaw("$group as g, COUNT(*) as n")->groupBy($group)->pluck('n', 'g');
 
@@ -61,7 +61,7 @@ new class extends Component {
             $total = ['plan' => $self['plan'] + array_sum(array_column($kids, 'plan')), 'alloc' => $self['alloc'] + array_sum(array_column($kids, 'alloc')),
                 'n' => $self['n'] + array_sum(array_column($kids, 'n'))];
             if ($total['plan'] > 0 || $total['n'] > 0) {
-                $units[] = ['root' => $self + ['total' => $total], 'children' => array_values(array_filter($kids, fn ($k) => $k['n'] > 0 || $k['plan'] > 0))];
+                $units[] = ['autonomous' => $root->isAutonomous(), 'legal_form' => $root->legal_form, 'root' => $self + ['total' => $total], 'children' => array_values(array_filter($kids, fn ($k) => $k['n'] > 0 || $k['plan'] > 0))];
             }
         }
         usort($units, fn ($a, $b) => $b['root']['total']['plan'] <=> $a['root']['total']['plan']);
@@ -133,10 +133,18 @@ new class extends Component {
     <x-ui.card padding="p-0">
         @if($tab === 'unit')
             <x-ui.table :headers="[__('Unit'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded')]">
-                @forelse($units as $u)
+                @php $sections = collect($units)->groupBy(fn ($u) => $u['autonomous'] ? 1 : 0)->sortKeys(); @endphp
+                @forelse($sections as $isAuto => $group)
+                    @if($sections->count() > 1)
+                        @php
+                            $sub = ['n' => collect($group)->sum('root.total.n'), 'plan' => collect($group)->sum('root.total.plan'), 'alloc' => collect($group)->sum('root.total.alloc')];
+                        @endphp
+                        <tr><td colspan="5" class="px-6 pt-5 pb-2 text-xs font-semibold text-zinc-500">{{ $isAuto ? __('Transfers to autonomous bodies (indirect administration)') : __('Ministry services') }}</td></tr>
+                    @endif
+                    @foreach($group as $u)
                     @php $r = $u['root']; $t = $r['total']; @endphp
                     <tr class="bg-zinc-50">
-                        <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $r['code'] }}</span> <span class="text-zinc-600">{{ $r['name'] }}</span></td>
+                        <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $r['code'] }}</span> <span class="text-zinc-600">{{ $r['name'] }}</span>@if($u['autonomous']) <x-ui.badge variant="indigo">{{ __('Autonomous') }}{{ $u['legal_form'] ? ' · '.$u['legal_form'] : '' }}</x-ui.badge>@endif</td>
                         <td class="px-6 py-3 text-sm tabular-nums">{{ $t['n'] }}</td>
                         <td class="px-6 py-3 text-sm font-semibold tabular-nums">{{ $money($t['plan']) }}</td>
                         <td class="px-6 py-3 text-sm font-semibold tabular-nums">{{ $money($t['alloc']) }}</td>
@@ -151,6 +159,16 @@ new class extends Component {
                             <td class="px-6 py-2.5 w-52">{!! $bar($k['alloc'], $k['plan']) !!}</td>
                         </tr>
                     @endforeach
+                    @endforeach
+                    @if($sections->count() > 1)
+                        <tr class="border-t border-zinc-200">
+                            <td class="px-6 py-3 text-sm font-semibold text-zinc-700">{{ __('Subtotal') }}</td>
+                            <td class="px-6 py-3 text-sm tabular-nums font-semibold">{{ $sub['n'] }}</td>
+                            <td class="px-6 py-3 text-sm tabular-nums font-semibold">{{ $money($sub['plan']) }}</td>
+                            <td class="px-6 py-3 text-sm tabular-nums font-semibold">{{ $money($sub['alloc']) }}</td>
+                            <td class="px-6 py-3"></td>
+                        </tr>
+                    @endif
                 @empty
                     <tr><td colspan="5" class="px-6 py-10 text-center text-sm text-zinc-500">{{ __('No approved activities with a budget for :year yet.', ['year' => $year]) }}</td></tr>
                 @endforelse

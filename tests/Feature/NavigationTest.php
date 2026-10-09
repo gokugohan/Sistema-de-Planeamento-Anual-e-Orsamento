@@ -57,8 +57,11 @@ class NavigationTest extends TestCase
             $this->assertNotContains('Audit Log', $this->labels($u));
             $this->assertNotContains('Settings', $this->labels($u));
         }
-        $this->assertNotContains('Budget Cycle', $this->labels($planner), 'planner has no view_budget');
-        $this->assertContains('Budget Cycle', $this->labels($viewer));
+        foreach (['Budget Cycle', 'Budget Allocation', 'Reporting', 'Current Envelope'] as $wide) {
+            $this->assertNotContains($wide, $this->labels($planner), "department users do not get $wide");
+            $this->assertNotContains($wide, $this->labels($viewer), "department users do not get $wide");
+            $this->assertContains($wide, $this->labels($minister));
+        }
     }
 
     public function test_every_menu_entry_opens_for_the_user_who_sees_it(): void
@@ -112,7 +115,8 @@ class NavigationTest extends TestCase
 
         $this->assertStringContainsString('Go to a page', $html);
         $this->assertStringNotContainsString(route('management.users'), $html);
-        $this->assertStringContainsString(route('reports.paa'), $html);
+        $this->assertStringNotContainsString(route('reports.paa'), $html, 'department users are not offered ministry-wide reports');
+        $this->assertStringContainsString(route('activities.index'), $html);
     }
 
     public function test_dashboard_tells_users_what_needs_their_attention(): void

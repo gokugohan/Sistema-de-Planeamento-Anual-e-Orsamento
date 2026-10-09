@@ -99,7 +99,7 @@ class ApprovedPlanReportTest extends TestCase
     public function test_print_view_and_pdf_download_work_and_pdf_is_audited(): void
     {
         $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
-        $this->actingAs($this->user('Viewer'));
+        $this->actingAs($this->user('Minister'));
 
         $this->get(route('reports.approved-plan', ['year' => 2027]))
             ->assertOk()
@@ -139,5 +139,33 @@ class ApprovedPlanReportTest extends TestCase
 
         $this->assertEquals(1000, $alloc->fresh()->planned_amount);
         $this->assertEquals(500, $alloc->fresh()->variance_amount);
+    }
+
+    /** Autonomous bodies stay inside the ministry's package (one total) but are shown as their own section. */
+    public function test_autonomous_bodies_are_in_the_total_and_shown_as_a_separate_section(): void
+    {
+        app()->setLocale('en');
+        $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
+
+        $body = Directorate::create(['code' => 'APORTIL', 'name' => 'Administração dos Portos', 'type' => 'Independent', 'administration' => 'indirect', 'legal_form' => 'I.P.', 'active' => true]);
+        $a = Activity::create([
+            'fiscal_year' => 2027, 'program_id' => $this->program->id, 'directorate_id' => $body->id,
+            'description' => 'Conservação portuária', 'quarter' => 2, 'priority' => 'Alta',
+            'planned_start' => '2027-04-01', 'planned_end' => '2027-06-30', 'status' => Activity::STATUS_APPROVED,
+        ]);
+        LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => $this->capital->id, 'estimated_amount' => 4000]);
+
+        $report = app(ApprovedPlanReport::class)->build(2027);
+        $this->assertEqualsWithDelta(5000.0, $report['totals']['total'], 0.001, 'the autonomous body is part of the package');
+        $this->assertEqualsWithDelta(4000.0, $report['autonomous']['total'], 0.001);
+        $this->assertSame(1, $report['autonomous']['count']);
+
+        $this->actingAs($this->user('Minister'))->get(route('reports.approved-plan', ['year' => 2027]))
+            ->assertOk()
+            ->assertSee('Transfers to autonomous bodies')
+            ->assertSee('Ministry services')
+            ->assertSee('APORTIL');
+
+        $this->get(route('budget.allocation'))->assertOk()->assertSee('Transfers to autonomous bodies')->assertSee('APORTIL');
     }
 }

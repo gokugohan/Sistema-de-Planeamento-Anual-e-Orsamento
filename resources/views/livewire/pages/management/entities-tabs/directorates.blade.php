@@ -48,6 +48,9 @@
                     </td>
                     <td class="px-8 py-5">
                         <x-ui.badge variant="gray" class="!text-xs ">{{ __($d->type) }}</x-ui.badge>
+                        @if($d->isAutonomous())
+                            <x-ui.badge variant="indigo" class="!text-xs mt-1" title="{{ $d->legal_basis }}">{{ __('Autonomous') }}{{ $d->legal_form ? ' · '.$d->legal_form : '' }}</x-ui.badge>
+                        @endif
                     </td>
                     <td class="px-8 py-5">
                         <div class="font-bold text-gray-900 leading-none text-xs">
@@ -204,6 +207,26 @@
                         </select>
                         <x-input-error :messages="$errors->get('parent_id')" />
                     </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Administration') }}</label>
+                        <select wire:model.live="administration" class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold">
+                            <option value="direct">{{ __('Direct (service of the ministry)') }}</option>
+                            <option value="indirect">{{ __('Indirect (autonomous public body)') }}</option>
+                        </select>
+                    </div>
+                    @if($administration === 'indirect')
+                        <div class="space-y-2">
+                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Legal form') }}</label>
+                            <input type="text" wire:model="legal_form" placeholder="I.P. / E.P." class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Legal basis') }}</label>
+                            <input type="text" wire:model="legal_basis" placeholder="{{ __('Decree-law and article') }}" class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold">
+                        </div>
+                    @endif
                 </div>
 
                 <div class="space-y-2">

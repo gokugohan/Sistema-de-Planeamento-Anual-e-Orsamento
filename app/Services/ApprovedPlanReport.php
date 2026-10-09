@@ -25,7 +25,7 @@ class ApprovedPlanReport
             ->where('fiscal_year', $year)
             ->where('status', Activity::STATUS_APPROVED)
             ->with([
-                'directorate:id,code,name,type,parent_id',
+                'directorate:id,code,name,type,parent_id,administration,legal_form',
                 'directorate.parent:id,code,name',
                 'program:id,oge_code,name',
                 'indicators:id,activity_id,name,type,unit,annual_target',
@@ -79,7 +79,7 @@ class ApprovedPlanReport
                     ->sortBy('code')
                     ->values();
 
-                return ['code' => $root->code, 'name' => $root->name, 'units' => $units] + $sum($g);
+                return ['code' => $root->code, 'name' => $root->name, 'autonomous' => $root->isAutonomous(), 'legal_form' => $root->legal_form, 'units' => $units] + $sum($g);
             })
             ->sortBy('code')
             ->values();
@@ -95,12 +95,18 @@ class ApprovedPlanReport
 
         $totals = $sum($rows);
 
+        // Autonomous bodies (indirect administration) are part of the ministry's package: their plans are
+        // inside the totals above and are shown as a subtotal, because the ministry passes their share on
+        // once it has received the envelope.
+        $autonomous = $sum($rows->filter(fn ($r) => $r['activity']->directorate->isAutonomous()));
+
         $report = [
             'year' => $year,
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
             'organization_abbr' => SystemSetting::getLocalized('org_abbr', ''),
             'classes' => $classes,
             'totals' => $totals,
+            'autonomous' => $autonomous,
             'by_program' => $byProgram,
             'by_unit' => $byUnit,
             'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),

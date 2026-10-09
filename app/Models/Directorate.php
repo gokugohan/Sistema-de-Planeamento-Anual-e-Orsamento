@@ -16,6 +16,9 @@ class Directorate extends Model
         'code',
         'parent_id',
         'type',
+        'administration',
+        'legal_form',
+        'legal_basis',
         'description',
         'director_name',
         'director_email',
@@ -44,6 +47,16 @@ class Directorate extends Model
         $dissolved = $this->dissolved_year ?? 9999;
 
         return $this->active && ($year >= $established) && ($year <= $dissolved);
+    }
+
+    public const DIRECT = 'direct';
+
+    public const INDIRECT = 'indirect';
+
+    /** A public body with its own legal personality and financial autonomy, supervised by the ministry. */
+    public function isAutonomous(): bool
+    {
+        return $this->administration === self::INDIRECT;
     }
 
     public function parent()
