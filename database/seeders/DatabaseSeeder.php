@@ -2,27 +2,27 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+/**
+ * Institution-neutral installation seed. Safe to run on any deployment and
+ * safe to run again: every seeder here only adds what is missing.
+ *
+ * It does NOT create directorates, programmes, activities or demo users. Those
+ * belong to your institution (enter them in the app or import them), or load
+ * the optional sample dataset:
+ *
+ *     php artisan db:seed --class="Database\Seeders\Samples\MtcSampleDataSeeder"
+ */
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         $this->call([
             RolesAndPermissionsSeeder::class,
-            DirectorateSeeder::class,
-            UserSeeder::class,
-            ProgramSeeder::class,
             EconomicClassificationSeeder::class,
-                // BudgetSeeder::class,
             SystemSettingsSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }

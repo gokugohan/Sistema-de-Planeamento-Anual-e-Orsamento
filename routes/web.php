@@ -97,6 +97,10 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
         return view('management.audit');
     })->name('audit');
 
+    Route::get('/sample-data', function () {
+        return view('management.sample-data');
+    })->name('sample-data');
+
     Route::get('/import', function () {
         return view('management.import');
     })->name('import');

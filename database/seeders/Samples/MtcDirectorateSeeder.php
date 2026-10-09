@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Samples;
 
 use App\Models\Directorate;
+use App\Services\SampleRegistry;
 use Illuminate\Database\Seeder;
 
 /**
@@ -20,13 +21,17 @@ use Illuminate\Database\Seeder;
  * Abbreviations are those given in the law; DNC (Cabotagem) and the unit codes
  * are working abbreviations because the law gives none.
  */
-class DirectorateSeeder extends Seeder
+class MtcDirectorateSeeder extends Seeder
 {
+    private SampleRegistry $registry;
+
     private const ORGANIC_LAW_YEAR = 2023; // DL 75/2023
     private const AMENDMENT_YEAR = 2026;   // DL 12/2026
 
-    public function run(): void
+    public function run(SampleRegistry $registry): void
     {
+        $this->registry = $registry;
+
         // ── Gabinetes (report directly to the Minister) ──────────────────
         $this->independent('GIGTC', 'Gabinete de Inspeção-Geral dos Transportes e Comunicações', self::ORGANIC_LAW_YEAR);
         $gppc = $this->independent('GPPC', 'Gabinete de Planeamento, Política e Cooperação', self::ORGANIC_LAW_YEAR);
@@ -104,7 +109,8 @@ class DirectorateSeeder extends Seeder
 
     private function upsert(string $code, string $name, string $type, ?Directorate $parent, int $since): Directorate
     {
-        return Directorate::updateOrCreate(['code' => $code], [
+        /** @var Directorate */
+        return $this->registry->upsert('mtc', Directorate::class, ['code' => $code], [
             'name' => $name,
             'type' => $type,
             'parent_id' => $parent?->id,

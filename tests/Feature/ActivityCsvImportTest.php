@@ -158,21 +158,4 @@ class ActivityCsvImportTest extends TestCase
 
         $this->assertSame(1, Activity::count());
     }
-    public function test_clear_samples_removes_only_sample_activities(): void
-    {
-        $dir = Directorate::first();
-        $prog = Program::first();
-        $base = ['fiscal_year' => 2027, 'program_id' => $prog->id, 'directorate_id' => $dir->id,
-            'quarter' => 1, 'priority' => 'Alta', 'planned_start' => '2027-01-01', 'planned_end' => '2027-03-31'];
-
-        Activity::create($base + ['code' => 'SAMPLE-X-01', 'description' => '[EXEMPLO] demo activity']);
-        Activity::create($base + ['code' => 'SAMPLE-X-02', 'description' => 'Real activity that merely has a sample-like code']);
-        Activity::create($base + ['code' => null, 'description' => 'Real planned activity']);
-
-        $this->artisan('paa:clear-samples', ['--force' => true])->assertSuccessful();
-
-        $this->assertSame(2, Activity::count());
-        $this->assertDatabaseMissing('activities', ['code' => 'SAMPLE-X-01']);
-        $this->assertDatabaseHas('activities', ['code' => 'SAMPLE-X-02']);
-    }
 }

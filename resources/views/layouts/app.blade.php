@@ -18,6 +18,8 @@
 
 <body class="font-sans antialiased bg-body text-zinc-600" x-data="{ sidebarOpen: false }">
 
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[300] focus:bg-white focus:text-indigo-700 focus:px-4 focus:py-2 focus:rounded-md focus:shadow-default">{{ __('Skip to content') }}</a>
+
     <!-- Livewire Request Progress Bar -->
     <div id="lwbar" class="fixed top-0 left-0 z-[200] h-[2px] bg-indigo-600 pointer-events-none opacity-0 transition-[width,opacity] duration-300 ease-out" style="width:0%"></div>
     <script>
@@ -77,7 +79,15 @@
             <div class="flex-1 overflow-y-auto">
 
                 <!-- Main Content Area -->
-                <main class="mx-auto w-full max-w-screen-2xl p-4 md:p-6 2xl:p-10 animate-in fade-in duration-300">
+                @if(app()->isProduction() && \App\Models\SystemSetting::get(\App\Services\SampleRegistry::FLAG, false) && auth()->user()?->isAdministrator())
+                    <div class="bg-rose-600 text-white text-sm px-6 py-2 flex flex-wrap items-center gap-3" role="alert">
+                        <strong>{{ __('Sample data is present in a production system.') }}</strong>
+                        <span>{{ __('It includes demo accounts with a known password.') }}</span>
+                        <a href="{{ route('management.sample-data') }}" class="ml-auto underline font-semibold">{{ __('Purge it') }}</a>
+                    </div>
+                @endif
+
+                <main id="main-content" tabindex="-1" class="mx-auto w-full max-w-screen-2xl p-4 md:p-6 2xl:p-10 animate-in fade-in duration-300">
                     @if (isset($header))
                         <div class="mb-6">
                             {{ $header }}

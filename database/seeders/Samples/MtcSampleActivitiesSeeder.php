@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Samples;
 
 use App\Models\Activity;
 use App\Models\Directorate;
@@ -8,6 +8,7 @@ use App\Models\EconomicClassification;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
+use App\Services\SampleRegistry;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\DB;
  * service; the amounts, targets and dates are invented placeholders.
  *
  * Every sample is recognisable (code starts with SAMPLE-, description starts
- * with "[EXEMPLO]") and can be removed with:  php artisan paa:clear-samples
+ * with "[EXEMPLO]"), and every record is registered so Management > Sample Data
+ * (or `php artisan paa:purge-samples`) removes exactly what was created.
  */
 class MtcSampleActivitiesSeeder extends Seeder
 {
@@ -28,15 +30,17 @@ class MtcSampleActivitiesSeeder extends Seeder
 
     private const YEAR = 2027;
 
-    public function run(): void
+    public function run(SampleRegistry $registry): void
     {
         $programs = Program::pluck('id', 'oge_code');
         $directorates = Directorate::pluck('id', 'code');
         $classes = EconomicClassification::pluck('id', 'code');
 
-        DB::transaction(function () use ($programs, $directorates, $classes) {
+        DB::transaction(function () use ($programs, $directorates, $classes, $registry) {
             foreach ($this->samples() as $i => $s) {
                 [$dir, $prog, $desc, $quarter, $priority, $procurement, $indicators, $lines] = $s;
+
+                $prog = 'MTC-' . $prog;
 
                 if (!isset($directorates[$dir], $programs[$prog])) {
                     $this->command?->warn("Skipping sample for {$dir}: directorate or programme {$prog} missing.");
@@ -47,7 +51,7 @@ class MtcSampleActivitiesSeeder extends Seeder
                 $start = sprintf('%d-%02d-01', self::YEAR, ($quarter - 1) * 3 + 1);
                 $end = date('Y-m-t', strtotime(sprintf('%d-%02d-01', self::YEAR, $quarter * 3)));
 
-                $activity = Activity::updateOrCreate(['code' => $code], [
+                $activity = $registry->upsert('mtc', Activity::class, ['code' => $code], [
                     'fiscal_year' => self::YEAR,
                     'program_id' => $programs[$prog],
                     'directorate_id' => $directorates[$dir],
@@ -59,6 +63,10 @@ class MtcSampleActivitiesSeeder extends Seeder
                     'procurement_required' => $procurement,
                     'status' => Activity::STATUS_DRAFT,
                 ]);
+
+                if (!$registry->isRegistered($activity)) {
+                    continue; // a real activity with this code already exists: leave it alone
+                }
 
                 $activity->indicators()->delete();
                 foreach ($indicators as [$name, $type, $unit, $target]) {

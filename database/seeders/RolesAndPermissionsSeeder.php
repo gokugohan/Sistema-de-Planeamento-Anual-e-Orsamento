@@ -136,6 +136,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $role->syncPermissions($permissionNames);
         }
 
-        $this->command->info('Roles and permissions (Spatie) seeded successfully!');
+        $this->command?->info('Roles and permissions (Spatie) seeded successfully!');
     }
 }

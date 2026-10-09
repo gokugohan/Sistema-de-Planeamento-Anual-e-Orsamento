@@ -12,7 +12,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // One instance per request so every sample seeder shares adopt mode and the skipped list.
+        $this->app->singleton(\App\Services\SampleRegistry::class);
     }
 
     /**
