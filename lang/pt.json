@@ -759,5 +759,16 @@
     "Units, programmes and economic categories: edit them and see their funding": "Unidades, programas e categorias económicas: edite-os e veja o seu financiamento",
     ":n activity|:n activities": ":n atividade|:n atividades",
     "Units, programmes and economic categories, with their funding for the selected fiscal year": "Unidades, programas e categorias económicas, com o seu financiamento no ano fiscal selecionado",
-    "Directorates, offices and units": "Direções, gabinetes e unidades"
+    "Directorates, offices and units": "Direções, gabinetes e unidades",
+    "Choose a new password before you continue.": "Escolha uma nova palavra-passe antes de continuar.",
+    "User created. Pass on the temporary password shown below.": "Utilizador criado. Entregue a palavra-passe temporária mostrada abaixo.",
+    "Change your own password from your profile.": "Altere a sua própria palavra-passe no seu perfil.",
+    "A new temporary password was issued.": "Foi emitida uma nova palavra-passe temporária.",
+    "Temporary password for :email": "Palavra-passe temporária para :email",
+    "Copy": "Copiar",
+    "Copied": "Copiado",
+    "It is shown only now and is not stored. The user must choose their own password the first time they sign in.": "É mostrada apenas agora e não fica guardada. O utilizador tem de escolher a sua própria palavra-passe no primeiro acesso.",
+    "I have noted it": "Já anotei",
+    "Issue a new temporary password for this user? Their current password stops working.": "Emitir uma nova palavra-passe temporária para este utilizador? A palavra-passe atual deixa de funcionar.",
+    "Reset password": "Redefinir palavra-passe"
 }

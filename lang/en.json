@@ -759,5 +759,16 @@
     "Units, programmes and economic categories: edit them and see their funding": "Units, programmes and economic categories: edit them and see their funding",
     ":n activity|:n activities": ":n activity|:n activities",
     "Units, programmes and economic categories, with their funding for the selected fiscal year": "Units, programmes and economic categories, with their funding for the selected fiscal year",
-    "Directorates, offices and units": "Directorates, offices and units"
+    "Directorates, offices and units": "Directorates, offices and units",
+    "Choose a new password before you continue.": "Choose a new password before you continue.",
+    "User created. Pass on the temporary password shown below.": "User created. Pass on the temporary password shown below.",
+    "Change your own password from your profile.": "Change your own password from your profile.",
+    "A new temporary password was issued.": "A new temporary password was issued.",
+    "Temporary password for :email": "Temporary password for :email",
+    "Copy": "Copy",
+    "Copied": "Copied",
+    "It is shown only now and is not stored. The user must choose their own password the first time they sign in.": "It is shown only now and is not stored. The user must choose their own password the first time they sign in.",
+    "I have noted it": "I have noted it",
+    "Issue a new temporary password for this user? Their current password stops working.": "Issue a new temporary password for this user? Their current password stops working.",
+    "Reset password": "Reset password"
 }

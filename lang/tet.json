@@ -759,5 +759,16 @@
     "Units, programmes and economic categories: edit them and see their funding": "Unidade, programa no kategoria ekonómika: edita no haree sira nia finansiamentu",
     ":n activity|:n activities": "Atividade :n|Atividade :n sira",
     "Units, programmes and economic categories, with their funding for the selected fiscal year": "Unidade, programa no kategoria ekonómika, ho sira nia finansiamentu iha tinan fiskál ne'ebé hili",
-    "Directorates, offices and units": "Diresaun, gabinete no unidade"
+    "Directorates, offices and units": "Diresaun, gabinete no unidade",
+    "Choose a new password before you continue.": "Hili liafuan-pase foun molok kontinua.",
+    "User created. Pass on the temporary password shown below.": "Uzuáriu kria ona. Fó liafuan-pase temporáriu ne'ebé hatudu iha kraik.",
+    "Change your own password from your profile.": "Troka ita nia liafuan-pase rasik iha perfil.",
+    "A new temporary password was issued.": "Liafuan-pase temporáriu foun fó ona.",
+    "Temporary password for :email": "Liafuan-pase temporáriu ba :email",
+    "Copy": "Kopia",
+    "Copied": "Kopia ona",
+    "It is shown only now and is not stored. The user must choose their own password the first time they sign in.": "Hatudu agora de'it no la rai. Uzuáriu tenke hili nia liafuan-pase rasik bainhira tama primeiru.",
+    "I have noted it": "Hau hakerek ona",
+    "Issue a new temporary password for this user? Their current password stops working.": "Fó liafuan-pase temporáriu foun ba uzuáriu ne'e? Liafuan-pase agora la funsiona tan.",
+    "Reset password": "Troka liafuan-pase"
 }

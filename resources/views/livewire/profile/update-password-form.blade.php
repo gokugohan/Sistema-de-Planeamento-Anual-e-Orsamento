@@ -28,13 +28,20 @@ new class extends Component
             throw $e;
         }
 
-        Auth::user()->update([
+        $wasForced = (bool) Auth::user()->must_change_password;
+
+        Auth::user()->forceFill([
             'password' => Hash::make($validated['password']),
-        ]);
+            'must_change_password' => false,
+        ])->save();
 
         $this->reset('current_password', 'password', 'password_confirmation');
 
         $this->dispatch('password-updated');
+
+        if ($wasForced) {
+            $this->redirectRoute('dashboard', navigate: true);
+        }
     }
 }; ?>
 

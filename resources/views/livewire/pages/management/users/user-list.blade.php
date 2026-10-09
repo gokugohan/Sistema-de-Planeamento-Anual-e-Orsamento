@@ -91,6 +91,12 @@
                                     </svg>
                                 </button>
                                 @if($user->id !== auth()->id() && auth()->user()->isAdministrator())
+                                    <button wire:click="resetPassword({{ $user->id }})"
+                                        wire:confirm="{{ __('Issue a new temporary password for this user? Their current password stops working.') }}"
+                                        class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
+                                        title="{{ __('Reset password') }}" aria-label="{{ __('Reset password') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+                                    </button>
                                     <button wire:click="deleteUser({{ $user->id }})"
                                         wire:confirm="{{ __('Are you sure you want to delete this user?') }}"
                                         class="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">

@@ -6,6 +6,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Directorate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
 use Livewire\WithPagination;
 
@@ -23,6 +24,10 @@ new class extends Component {
     public $directorate_id;
     public $modalOpen = false;
     public $isEditing = false;
+
+    // A temporary password is shown once, right after it is issued, and never stored in clear text.
+    public $issuedPassword = null;
+    public $issuedFor = null;
 
     public function setTab($tab)
     {
@@ -91,14 +96,18 @@ new class extends Component {
             $user->syncRoles([$this->selectedRole]);
             $this->dispatch('toast', message: __('User updated successfully!'), type: 'success');
         } else {
+            $temporary = Str::password(14, symbols: false);
             $user = User::create([
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => Hash::make('password'),
+                'password' => Hash::make($temporary),
+                'must_change_password' => true,
                 'directorate_id' => $this->directorate_id ?: null,
             ]);
             $user->assignRole($this->selectedRole);
-            $this->dispatch('toast', message: __('User created successfully (Default password: password)'), type: 'success');
+            $this->issuedPassword = $temporary;
+            $this->issuedFor = $user->email;
+            $this->dispatch('toast', message: __('User created. Pass on the temporary password shown below.'), type: 'success');
         }
 
         $this->modalOpen = false;
@@ -112,12 +121,36 @@ new class extends Component {
             return;
         }
 
-        if ($id === auth()->id()) {
+        if ((int) $id === auth()->id()) {
             $this->dispatch('toast', message: __('You cannot delete your own account!'), type: 'error');
             return;
         }
         User::destroy($id);
         $this->dispatch('toast', message: __('User deleted successfully.'), type: 'success');
+    }
+
+    public function resetPassword($id)
+    {
+        abort_unless(auth()->user()->isAdministrator(), 403);
+
+        $user = User::findOrFail($id);
+        if ($user->id === auth()->id()) {
+            $this->dispatch('toast', message: __('Change your own password from your profile.'), type: 'error');
+
+            return;
+        }
+
+        $temporary = Str::password(14, symbols: false);
+        $user->forceFill(['password' => Hash::make($temporary), 'must_change_password' => true])->save();
+        $this->issuedPassword = $temporary;
+        $this->issuedFor = $user->email;
+        $this->dispatch('toast', message: __('A new temporary password was issued.'), type: 'success');
+    }
+
+    public function dismissIssuedPassword()
+    {
+        $this->issuedPassword = null;
+        $this->issuedFor = null;
     }
 
     public function togglePermission($roleId, $permissionName)
@@ -136,6 +169,21 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-10 py-6 animate-in fade-in duration-700">
+    @if($issuedPassword)
+        <div class="alert alert-success !items-start" role="status">
+            <div class="flex-1">
+                <p class="font-semibold">{{ __('Temporary password for :email', ['email' => $issuedFor]) }}</p>
+                <p class="mt-2 inline-flex items-center gap-3">
+                    <code class="px-3 py-1.5 rounded bg-white border border-emerald-200 text-base font-mono tracking-wide select-all">{{ $issuedPassword }}</code>
+                    <button type="button" class="text-sm font-medium underline"
+                        x-data @click="navigator.clipboard.writeText(@js($issuedPassword)); $el.textContent = @js(__('Copied'))">{{ __('Copy') }}</button>
+                </p>
+                <p class="mt-2 text-xs font-normal">{{ __('It is shown only now and is not stored. The user must choose their own password the first time they sign in.') }}</p>
+            </div>
+            <button type="button" wire:click="dismissIssuedPassword" class="text-sm font-medium underline shrink-0">{{ __('I have noted it') }}</button>
+        </div>
+    @endif
+
     <!-- Header with Breadcrumbs & Action -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>

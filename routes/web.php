@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\ApprovedPlanReportController;
+use App\Http\Controllers\HealthController;
+use App\Models\Activity;
+use App\Models\FiscalEnvelope;
+use App\Models\SystemSetting;
+use App\Services\ActivityCsvImporter;
 use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
@@ -16,15 +22,15 @@ Route::get('activities/create', function () {
     return view('activities.create');
 })->middleware(['auth', 'verified'])->name('activities.create');
 
-Route::get('activities/{activity}/indicators', function (App\Models\Activity $activity) {
+Route::get('activities/{activity}/indicators', function (Activity $activity) {
     return view('activities.indicators', ['activity' => $activity]);
 })->middleware(['auth', 'verified'])->name('activities.indicators');
 
-Route::get('activities/{activity}/budget', function (App\Models\Activity $activity) {
+Route::get('activities/{activity}/budget', function (Activity $activity) {
     return view('activities.budget', ['activity' => $activity]);
 })->middleware(['auth', 'verified'])->name('activities.budget');
 
-Route::get('activities/{activity}', function (App\Models\Activity $activity) {
+Route::get('activities/{activity}', function (Activity $activity) {
     return view('activities.show', ['activity' => $activity]);
 })->middleware(['auth', 'verified'])->name('activities.show');
 
@@ -40,8 +46,6 @@ Route::get('budget/allocation', function () {
     return view('budget.allocation');
 })->middleware(['auth', 'verified'])->name('budget.allocation');
 
-
-
 Route::get('monitoring', function () {
     return view('monitoring.index');
 })->middleware(['auth', 'verified'])->name('monitoring.index');
@@ -53,7 +57,6 @@ Route::get('monitoring/approval', function () {
 Route::get('planning/paa-approval', function () {
     return view('planning.paa-approval');
 })->middleware(['auth', 'verified', 'permission:approve_paa'])->name('planning.paa-approval');
-
 
 Route::get('planning/director-review', function () {
     return view('planning.director-review');
@@ -72,8 +75,8 @@ Route::get('reports/paa', function () {
 })->middleware(['auth', 'verified'])->name('reports.paa');
 
 Route::middleware(['auth', 'verified', 'permission:view_reports'])->group(function () {
-    Route::get('reports/approved-plan', [\App\Http\Controllers\ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');
-    Route::get('reports/approved-plan/pdf', [\App\Http\Controllers\ApprovedPlanReportController::class, 'pdf'])->name('reports.approved-plan.pdf');
+    Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');
+    Route::get('reports/approved-plan/pdf', [ApprovedPlanReportController::class, 'pdf'])->name('reports.approved-plan.pdf');
 });
 
 // The old "Entities Registry" was merged into Management > Entities; keep bookmarks working.
@@ -106,7 +109,7 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
 
     Route::get('/import/template', function () {
         return response()->streamDownload(
-            fn () => print(\App\Services\ActivityCsvImporter::template()),
+            fn () => print (ActivityCsvImporter::template()),
             'paa-activities-template.csv',
             ['Content-Type' => 'text/csv; charset=UTF-8']
         );
@@ -117,9 +120,12 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+// Monitoring endpoint: database, cache, storage, queue, disk and backup status (no secrets).
+Route::get('health', HealthController::class)->middleware('throttle:60,1')->name('health');
+
 // Global fiscal-year context: every page works in the year chosen here.
 Route::get('fiscal-year/{year}', function (int $year) {
-    if (in_array($year, \App\Models\FiscalEnvelope::availableYears(), true)) {
+    if (in_array($year, FiscalEnvelope::availableYears(), true)) {
         session(['fiscal_year' => $year]);
     }
 
@@ -129,51 +135,59 @@ Route::get('fiscal-year/{year}', function (int $year) {
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'pt', 'tet'])) {
         session(['locale' => $locale]);
+
         return redirect()->back()->withCookie(cookie()->forever('locale', $locale));
     }
+
     return redirect()->back();
 })->name('lang.switch');
 
 Route::group(['prefix' => 'testing', 'as' => 'testing.', 'middleware' => ['auth', 'verified']], function () {
     Route::get('/', function () {
-        if (!\App\Models\SystemSetting::get('enable_paa_testing_mode', false)) {
+        if (! SystemSetting::get('enable_paa_testing_mode', false)) {
             abort(404);
         }
+
         return view('testing.index');
     })->name('index');
 
     Route::get('/activities', function () {
-        if (!\App\Models\SystemSetting::get('enable_paa_testing_mode', false)) {
+        if (! SystemSetting::get('enable_paa_testing_mode', false)) {
             abort(404);
         }
+
         return view('testing.activities');
     })->name('activities');
 
     Route::get('/activities/create', function () {
-        if (!\App\Models\SystemSetting::get('enable_paa_testing_mode', false)) {
+        if (! SystemSetting::get('enable_paa_testing_mode', false)) {
             abort(404);
         }
+
         return view('testing.activities.create');
     })->name('activities.create');
 
-    Route::get('/activities/{activity}', function (App\Models\Activity $activity) {
-        if (!\App\Models\SystemSetting::get('enable_paa_testing_mode', false) || !$activity->is_test_data) {
+    Route::get('/activities/{activity}', function (Activity $activity) {
+        if (! SystemSetting::get('enable_paa_testing_mode', false) || ! $activity->is_test_data) {
             abort(404);
         }
+
         return view('testing.activities.show', ['activity' => $activity]);
     })->name('activities.show');
 
-    Route::get('/activities/{activity}/indicators', function (App\Models\Activity $activity) {
-        if (!\App\Models\SystemSetting::get('enable_paa_testing_mode', false) || !$activity->is_test_data) {
+    Route::get('/activities/{activity}/indicators', function (Activity $activity) {
+        if (! SystemSetting::get('enable_paa_testing_mode', false) || ! $activity->is_test_data) {
             abort(404);
         }
+
         return view('testing.activities.indicators', ['activity' => $activity]);
     })->name('activities.indicators');
 
-    Route::get('/activities/{activity}/budget', function (App\Models\Activity $activity) {
-        if (!\App\Models\SystemSetting::get('enable_paa_testing_mode', false) || !$activity->is_test_data) {
+    Route::get('/activities/{activity}/budget', function (Activity $activity) {
+        if (! SystemSetting::get('enable_paa_testing_mode', false) || ! $activity->is_test_data) {
             abort(404);
         }
+
         return view('testing.activities.budget', ['activity' => $activity]);
     })->name('activities.budget');
 });
@@ -182,4 +196,4 @@ Route::get('notifications', function () {
     return view('notifications.index');
 })->middleware(['auth', 'verified'])->name('notifications.index');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

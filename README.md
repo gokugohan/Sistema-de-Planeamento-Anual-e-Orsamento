@@ -288,6 +288,9 @@ php artisan up
 - A dedicated MySQL user with rights on the app database only.
 - `.env` not readable by the web server's public directory; never commit it.
 - **Self-registration stays off** (`ALLOW_REGISTRATION=false`, the default): the `/register` route does not exist, and administrators create accounts in *Management → System Users*. Sign-in is rate-limited (5 attempts, then a lockout).
+- **No default passwords.** When an administrator creates a user or resets a password, the app generates a random temporary password, shows it **once** (it is never stored in clear text), and forces the user to choose their own at first sign-in; until then every page redirects to their profile. In production, passwords must be at least 12 characters with upper and lower case, a number and a symbol (`AppServiceProvider`).
+- **Browser protections.** Every response carries `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` and `Cross-Origin-Opener-Policy`; HSTS is added over HTTPS in production; signed-in pages are sent `no-store`, so the Back button after signing out shows nothing. A Content-Security-Policy is not set yet: Alpine.js and Livewire need relaxed script rules, so it must be designed and tested against the whole UI first.
+- **Sessions** expire after `SESSION_LIFETIME` minutes of inactivity (60 in `.env.example`); use `SESSION_SECURE_COOKIE=true` behind HTTPS.
 - Keep dependencies patched: `composer audit` should report nothing.
 - Review *Management → Audit Log* regularly.
 
@@ -299,17 +302,30 @@ The defaults (database sessions, cache and queue) work for a ministry-sized user
 
 ## Operations
 
-### Backups
+### Scheduler (required for backups)
 
-```bash
-mysqldump --single-transaction --routines -u<user> -p paa_orcamento | gzip > paa_$(date +%F).sql.gz
+Add one cron entry on the server; Laravel decides what runs when:
+
+```cron
+* * * * * cd /var/www/paa && php artisan schedule:run >> /dev/null 2>&1
 ```
 
-Schedule it daily and keep copies off the server. Restore with `gunzip -c file.sql.gz | mysql -u<user> -p paa_orcamento`. Test a restore periodically.
+It runs `paa:backup` at 02:00 and prunes failed jobs and expired password-reset tokens daily. On Windows use Task Scheduler to run `php artisan schedule:run` every minute.
+
+### Backups
+
+`php artisan paa:backup` writes a gzip-compressed `mysqldump` to `storage/app/backups/paa_YYYYMMDD_HHMMSS.sql.gz`.
+
+- The dump is streamed to a `.partial` file, **read back and checked for mysqldump's completion marker**, and only then renamed, so a failed or truncated run never looks like a good backup (and never replaces one).
+- The database password is passed to `mysqldump` through the environment, not on the command line.
+- Backups older than `BACKUP_KEEP_DAYS` (default 30) are deleted after each successful run (`--prune-only` just prunes). Every backup is recorded in the audit log.
+- If `mysqldump` is not on `PATH`, set `BACKUP_MYSQLDUMP` to its full path.
+- **Copy the files off the server** (another machine or object storage): a backup on the same disk is not a backup. Restore with `gunzip -c file.sql.gz | mysql -u<user> -p paa_orcamento`, and test a restore periodically.
 
 ### Health check
 
-`GET /up` returns 200 when the application boots. Point your monitor at it.
+- `GET /up` returns 200 when the application boots (Laravel's own check).
+- `GET /health` returns JSON with the status of the **database, cache, storage, queue, disk space and latest backup**, and no secrets. HTTP 200 with `"status": "ok"`; `"degraded"` when something needs attention (failed or stuck queue jobs, under 10% free disk, no backup within `BACKUP_MAX_AGE_HOURS`); HTTP **503** with `"down"` when the database or storage fails. Point your uptime monitor at it and alert on anything but `ok`.
 
 ### Common tasks
 
@@ -327,9 +343,11 @@ Schedule it daily and keep copies off the server. Restore with `gunzip -c file.s
 
 ```bash
 php artisan test                      # uses the paa_orcamento_test database
+composer lint                         # code style check (Laravel Pint); `composer lint:fix` repairs it
+composer check                        # style + tests, what CI runs
 ```
 
-The test database is wiped on each run by `RefreshDatabase`; never point `phpunit.xml` at the real database. Tests cover the distribution rules, budget cycle, CRO report, CSV import, audit trail, seeding, and the sample-data load/purge safety rules. The suite currently has **4 pre-existing failures** (a missing `profile` route in the authentication tests and the default `ExampleTest`); the rest pass.
+The test database is wiped on each run by `RefreshDatabase`; never point `phpunit.xml` at the real database. GitHub Actions (`.github/workflows/ci.yml`) runs style, tests (on MySQL) and `composer audit` for every push and pull request. Tests cover the distribution rules, budget cycle, CRO report, CSV import, audit trail, seeding, the sample-data load/purge safety rules, navigation, the dashboard, and the platform layer (security headers, password policy, temporary passwords, health endpoint, backups). The suite currently has **4 pre-existing failures** (a missing `profile` route in the authentication tests and the default `ExampleTest`); the rest pass.
 
 Conventions: business rules live in `app/Services`, not in Livewire components; every state-changing Livewire action checks permissions on the server; new user-facing strings go through `__()` and into all three `lang/*.json` files.
 
