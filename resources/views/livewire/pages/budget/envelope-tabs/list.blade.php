@@ -4,7 +4,7 @@
             <h3 class="text-xl font-semibold text-zinc-900 tracking-tight">
                 {{ __('Fiscal Envelopes (OGE)') }}
             </h3>
-            <p class="text-zinc-400 font-medium uppercase tracking-wide text-[10px] mt-1.5">
+            <p class="page-subtitle">
                 {{ __('Ministry budget allocations approved by Parliament') }}
             </p>
         </div>

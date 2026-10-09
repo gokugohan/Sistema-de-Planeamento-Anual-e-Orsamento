@@ -17,11 +17,11 @@
         {{-- Analytic Header --}}
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-2 print:hidden">
             <div>
-                <h1 class="text-3xl font-black text-slate-900 tracking-tight leading-none">
+                <h1 class="page-title">
                     {{ __('Annual Performance Report') }}
                 </h1>
                 <div class="flex items-center gap-4 mt-4">
-                    <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px]">
+                    <p class="page-subtitle">
                         {{ __('Analytical Audit for') }}
                     </p>
                     <form method="GET" action="{{ route('reports.paa') }}" class="flex items-center gap-2">
@@ -71,7 +71,7 @@
                 <div class="hidden print:block text-center mb-12 border-b-4 border-slate-900 pb-10">
                     <div class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-4">República
                         Democrática de Timor-Leste</div>
-                    <h1 class="text-3xl font-black uppercase tracking-tighter text-slate-900 leading-none">
+                    <h1 class="page-title">
                         {{ \App\Models\SystemSetting::getLocalized('org_name', config('app.name')) }}
                     </h1>
                     <div

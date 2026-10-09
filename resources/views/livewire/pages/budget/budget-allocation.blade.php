@@ -179,7 +179,7 @@ new class extends Component {
     <!-- Header Section (Harmonized) -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-2">
         <div>
-            <h1 class="text-4xl font-black text-slate-900 tracking-tight leading-none italic">
+            <h1 class="page-title">
                 {{ __('Budget Allocation') }}</h1>
             
         </div>
@@ -195,7 +195,7 @@ new class extends Component {
             </x-ui.button>
              --}}
              <div class="flex items-center gap-4 mt-4">
-                <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px]">
+                <p class="page-subtitle">
                     {{ __('Redistribution Hub for') }}
                 </p>
                 <select wire:model.live="fiscalYear"

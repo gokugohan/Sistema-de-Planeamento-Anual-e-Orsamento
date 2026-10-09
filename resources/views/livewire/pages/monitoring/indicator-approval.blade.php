@@ -90,9 +90,9 @@ new class extends Component {
 <div class="space-y-6">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-            <h1 class="text-3xl font-black text-slate-900 tracking-tight leading-none">{{ __('Progress Approval') }}
+            <h1 class="page-title">{{ __('Progress Approval') }}
             </h1>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">
+            <p class="page-subtitle">
                 {{ __('Review and verify physical execution submissions') }}
             </p>
         </div>

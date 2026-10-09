@@ -7,5 +7,8 @@
     </x-slot>
 
     --}}
-    <livewire:pages.dashboard.summary />
+    <div class="space-y-6">
+        <x-next-actions />
+        <livewire:pages.dashboard.summary />
+    </div>
 </x-app-layout>

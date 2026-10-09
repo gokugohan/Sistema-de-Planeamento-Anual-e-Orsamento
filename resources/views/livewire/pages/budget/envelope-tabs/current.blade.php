@@ -3,7 +3,7 @@
     <div class="flex justify-between items-start">
         <div>
             <h3 class="text-xl font-semibold text-zinc-900 tracking-tight leading-none">{{ __('Fiscal Envelope (OGE)') }}</h3>
-            <p class="text-zinc-400 font-medium uppercase tracking-wide text-[10px] mt-2">{{ __('Ministry budget allocation approved by Parliament') }}</p>
+            <p class="page-subtitle">{{ __('Ministry budget allocation approved by Parliament') }}</p>
         </div>
         <div class="flex items-center gap-3">
             @if($activeEnvelope->status === App\Models\FiscalEnvelope::STATUS_APPROVED && (auth()->user()->isAdministrator() || auth()->user()->isMinister()))

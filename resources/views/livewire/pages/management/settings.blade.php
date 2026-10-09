@@ -78,9 +78,9 @@ new class extends Component {
 <div class="space-y-10 py-6 animate-in fade-in duration-700">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-            <h1 class="text-4xl font-black text-slate-900 tracking-tight leading-none">{{ __('General Settings') }}
+            <h1 class="page-title">{{ __('General Settings') }}
             </h1>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">
+            <p class="page-subtitle">
                 {{ __('Control Center for Planning Cycles & Entity Configurations') }}
             </p>
         </div>
@@ -134,7 +134,7 @@ new class extends Component {
                                         <x-input-label :value="__('Institution Full Name')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
                                         <x-text-input wire:model="appTexts.org_name.{{ $locale }}"
                                             class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
-                                            placeholder="Ministry of Finance" />
+                                            placeholder="Institution Name" />
                                     </div>
                                     <div class="space-y-2">
                                         <x-input-label :value="__('Abbreviation')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
@@ -209,7 +209,7 @@ new class extends Component {
                                 <x-input-label for="systemOwner" :value="__('System Owner')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
                                 <x-text-input id="systemOwner" wire:model="systemOwner"
                                     class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
-                                    placeholder="Ministry of Finance" />
+                                    placeholder="Institution Name" />
                                 <x-input-error :messages="$errors->get('systemOwner')" />
                             </div>
                             <div class="space-y-2">

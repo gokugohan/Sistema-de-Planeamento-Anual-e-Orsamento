@@ -111,9 +111,9 @@ new class extends Component {
 <div class="space-y-6">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-            <h1 class="text-3xl font-black text-slate-900 tracking-tight leading-none">{{ __('Directorate Budget Review') }}</h1>
+            <h1 class="page-title">{{ __('Directorate Budget Review') }}</h1>
             <div class="flex items-center gap-4 mt-3">
-                <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px]">
+                <p class="page-subtitle">
                     {{ __('Review allocation for') }} <span class="text-indigo-600">{{ $directorate->name ?? 'N/A' }}</span>
                 </p>
                 <select wire:model.live="activeYear" class="bg-slate-100 border-none rounded-lg text-[10px] font-black uppercase tracking-widest py-1 px-3 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer">

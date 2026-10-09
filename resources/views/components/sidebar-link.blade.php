@@ -29,10 +29,10 @@
     };
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }} wire:navigate>
+<a {{ $attributes->merge(['class' => $classes]) }} wire:navigate @if($active ?? false) aria-current="page" @endif>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="flex-shrink-0 {{ ($active ?? false) ? 'opacity-100' : 'opacity-60' }}">
+        class="flex-shrink-0 {{ ($active ?? false) ? 'opacity-100' : 'opacity-60' }}" aria-hidden="true">
         {!! $iconSvg !!}
     </svg>
     <span class="truncate">{{ $slot }}</span>

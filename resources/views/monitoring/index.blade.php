@@ -2,7 +2,7 @@
     <div class="space-y-10">
         <!-- <div class="flex justify-between items-end">
             <div>
-                <h1 class="text-3xl font-black text-slate-900 tracking-tight">{{ __('Physical Execution Monitoring') }}
+                <h1 class="page-title">{{ __('Physical Execution Monitoring') }}
                 </h1>
                 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-2">
                     {{ __('Performance & Indicator Tracking') }}</p>

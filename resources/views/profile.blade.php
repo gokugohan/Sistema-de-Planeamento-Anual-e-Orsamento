@@ -8,7 +8,7 @@
                 {{ substr(auth()->user()->name, 0, 2) }}
             </div>
             <div>
-                <h1 class="text-xl font-semibold text-zinc-900">{{ auth()->user()->name }}</h1>
+                <h1 class="page-title">{{ auth()->user()->name }}</h1>
                 <p class="text-sm text-zinc-400 mt-0.5">
                     {{ __(auth()->user()->roles->first()?->display_name ?: 'System User') }}
                     &middot; {{ auth()->user()->email }}

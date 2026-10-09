@@ -23,36 +23,81 @@ new class extends Component {
         </svg>
     </button>
 
-    <!-- Search -->
-    <div class="hidden md:flex items-center gap-2 flex-1 max-w-sm h-10 px-3 bg-transparent border-b border-transparent
-        focus-within:border-indigo-600 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="text-zinc-400 flex-shrink-0">
-            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
-        </svg>
-        <input type="text" placeholder="{{ __('Search activities, reports...') }}"
-            class="flex-1 bg-transparent text-sm text-zinc-700 placeholder:text-zinc-400 focus:outline-none min-w-0">
+    {{-- Breadcrumbs: where am I? --}}
+    @php $crumbs = \App\Support\Navigation::breadcrumbs(auth()->user()); @endphp
+    <nav aria-label="{{ __('Breadcrumb') }}" class="hidden md:block min-w-0">
+        @if($crumbs)
+            <ol class="flex items-center gap-1.5 text-sm min-w-0">
+                @foreach($crumbs as $crumb)
+                    <li class="flex items-center gap-1.5 min-w-0">
+                        @if(!$loop->first)<span class="text-zinc-300" aria-hidden="true">/</span>@endif
+                        @if($crumb['url'] && !$loop->last)
+                            <a href="{{ $crumb['url'] }}" wire:navigate class="text-zinc-500 hover:text-indigo-600 truncate">{{ $crumb['label'] }}</a>
+                        @else
+                            <span class="{{ $loop->last ? 'font-medium text-zinc-900' : 'text-zinc-500' }} truncate" @if($loop->last) aria-current="page" @endif>{{ $crumb['label'] }}</span>
+                        @endif
+                    </li>
+                @endforeach
+            </ol>
+        @else
+            <span class="text-sm font-medium text-zinc-900">{{ __('Dashboard') }}</span>
+        @endif
+    </nav>
+
+    {{-- Quick jump: Ctrl/⌘+K or "/" opens a searchable list of the pages this user can open --}}
+    <div class="ml-auto md:ml-4" x-data="quickJump(@js(\App\Support\Navigation::quickLinks(auth()->user())))"
+        @keydown.window.ctrl.k.prevent="show()" @keydown.window.meta.k.prevent="show()"
+        @keydown.window="if ($event.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable) { $event.preventDefault(); show() }">
+        <button type="button" @click="show()"
+            class="flex items-center gap-2 h-9 pl-3 pr-2 rounded-md border border-zinc-200 text-sm text-zinc-500 hover:border-zinc-300 hover:text-zinc-700 transition-colors"
+            aria-label="{{ __('Go to a page') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+            <span class="hidden lg:inline">{{ __('Go to…') }}</span>
+            <kbd class="hidden lg:inline text-[10px] px-1.5 py-0.5 rounded border border-zinc-200 bg-zinc-50 text-zinc-500 font-sans">Ctrl K</kbd>
+        </button>
+
+        <template x-teleport="body">
+            <div x-show="open" x-cloak x-trap.noscroll="open" @keydown.escape.window="open = false"
+                class="fixed inset-0 z-[100] flex items-start justify-center p-4 pt-[12vh]" role="dialog" aria-modal="true" aria-label="{{ __('Go to a page') }}">
+                <div class="absolute inset-0 bg-zinc-950/40" @click="open = false"></div>
+                <div class="relative w-full max-w-lg bg-white rounded-lg border border-zinc-200 shadow-default overflow-hidden">
+                    <input x-ref="input" x-model="query" type="text" placeholder="{{ __('Type to find a page…') }}"
+                        @keydown.arrow-down.prevent="move(1)" @keydown.arrow-up.prevent="move(-1)" @keydown.enter.prevent="go()"
+                        class="w-full px-4 py-3 text-sm border-0 border-b border-zinc-200 focus:ring-0 focus:outline-none" autocomplete="off">
+                    <ul class="max-h-80 overflow-y-auto py-1" role="listbox">
+                        <template x-for="(link, i) in results" :key="link.url">
+                            <li role="option" :aria-selected="i === active">
+                                <a :href="link.url" @mouseenter="active = i" @click="open = false"
+                                    :class="i === active ? 'bg-indigo-50' : ''" class="flex flex-col px-4 py-2">
+                                    <span class="text-sm font-medium text-zinc-900" x-text="link.label"></span>
+                                    <span class="text-xs text-zinc-500"><span x-text="link.group"></span><span x-show="link.hint"> · </span><span x-text="link.hint"></span></span>
+                                </a>
+                            </li>
+                        </template>
+                        <li x-show="results.length === 0" class="px-4 py-6 text-sm text-center text-zinc-500">{{ __('No page matches.') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </template>
     </div>
 
-    <!-- Page Breadcrumb -->
-    <div
-        x-data="{ pageTitle: '' }"
-        x-init="
-            function sync() {
-                const parts = document.title.split(' \u2014 ');
-                pageTitle = parts.length > 1 ? parts[0].trim() : '';
-            }
-            sync();
-            document.addEventListener('livewire:navigated', sync);
-        "
-        class="hidden md:flex items-center gap-2 text-sm"
-        x-show="pageTitle"
-        x-cloak
-    >
-        <span class="text-zinc-300">/</span>
-        <span x-text="pageTitle" class="font-medium text-zinc-700 truncate max-w-[200px]"></span>
-    </div>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            if (window.__quickJumpDefined) return;
+            window.__quickJumpDefined = true;
+            Alpine.data('quickJump', (links) => ({
+                links, open: false, query: '', active: 0,
+                get results() {
+                    const q = this.query.trim().toLowerCase();
+                    if (!q) return this.links;
+                    return this.links.filter(l => (l.label + ' ' + l.group + ' ' + l.hint).toLowerCase().includes(q));
+                },
+                show() { this.open = true; this.query = ''; this.active = 0; this.$nextTick(() => this.$refs.input.focus()); },
+                move(d) { const n = this.results.length; if (n) this.active = (this.active + d + n) % n; },
+                go() { const l = this.results[this.active]; if (l) { this.open = false; window.location.href = l.url; } },
+            }));
+        });
+    </script>
 
     <!-- Right Side -->
     <div class="ml-auto flex items-center gap-1">

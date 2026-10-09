@@ -57,6 +57,15 @@
         @apply text-nav-text hover:bg-nav-hover hover:text-white;
     }
 
+    /* ─── Page header (one style for every page) ───────────── */
+    .page-title {
+        @apply text-2xl font-bold not-italic tracking-tight text-zinc-900 leading-tight;
+    }
+
+    .page-subtitle {
+        @apply mt-1 text-sm font-normal normal-case tracking-normal text-zinc-500;
+    }
+
     /* ─── Loading States ─────────────────────────────────────── */
     [wire\:loading]:not([wire\:loading\.remove]) {
         opacity: 0.65;

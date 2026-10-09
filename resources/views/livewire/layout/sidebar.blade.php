@@ -57,127 +57,51 @@ new class extends Component {
             </svg>
         </div>
         <div class="min-w-0">
-            <p class="text-sm font-semibold text-white leading-tight truncate">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Ministry of Finance') }}</p>
+            <p class="text-sm font-semibold text-white leading-tight truncate">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name') }}</p>
             <p class="text-[10px] text-nav-muted font-medium uppercase tracking-wider mt-0.5 truncate">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</p>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 px-4 py-5 space-y-6 overflow-y-auto">
-
-        <!-- Core -->
-        <div>
-            <p class="nav-section-label">{{ __('Core') }}</p>
-            <div class="space-y-0.5">
-                <x-sidebar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"
-                    icon="layout-dashboard">{{ __('Insights') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('admin.entities')" :active="request()->routeIs('admin.entities')"
-                    icon="building">{{ __('Entities Registry') }}</x-sidebar-link>
-            </div>
-        </div>
-
-        <!-- Budget Planning -->
-        <div>
-            <p class="nav-section-label">{{ __('Budget Planning') }}</p>
-            <div class="space-y-0.5">
-                <x-sidebar-link :href="route('activities.index')" :active="request()->routeIs('activities.*')"
-                    icon="clipboard-list">{{ __('PAA Activities') }}</x-sidebar-link>
-
-                <!-- Fiscal Envelope sub-menu -->
-                <div x-data="{ open: {{ request()->routeIs('budget.envelope.*') ? 'true' : 'false' }} }">
-                    <button @click="open = !open"
-                        class="nav-item w-full {{ request()->routeIs('budget.envelope.*') ? 'nav-item-active' : 'nav-item-inactive' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="flex-shrink-0 opacity-70">
-                            <rect width="20" height="12" x="2" y="6" rx="2" />
-                            <circle cx="12" cy="12" r="2" />
-                            <path d="M6 12h.01" /><path d="M18 12h.01" />
-                        </svg>
-                        <span class="flex-1 text-left">{{ __('Fiscal Envelope') }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                            class="transition-transform duration-200 opacity-50" :class="open ? 'rotate-180' : ''">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
-
-                    <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-white/10 space-y-0.5">
-                        <x-sidebar-link :href="route('budget.envelope.current')"
-                            :active="request()->routeIs('budget.envelope.current')"
-                            icon="circle">{{ __('Current Envelope') }}</x-sidebar-link>
-                        <x-sidebar-link :href="route('budget.envelope.list')"
-                            :active="request()->routeIs('budget.envelope.list')"
-                            icon="list">{{ __('Envelope List') }}</x-sidebar-link>
-                    </div>
-                </div>
-
-                @can('view_budget')
-                <x-sidebar-link :href="route('planning.budget-cycle')" :active="request()->routeIs('planning.budget-cycle')"
-                    icon="arrow-left-right">{{ __('Budget Cycle') }}</x-sidebar-link>
-                @endcan
-                <x-sidebar-link :href="route('budget.allocation')" :active="request()->routeIs('budget.allocation')"
-                    icon="layers">{{ __('Budget Allocation') }}</x-sidebar-link>
-            </div>
-        </div>
-
-        <!-- Governance (role-gated) -->
-        @if(auth()->user()->hasAnyRole(['Admin', 'Minister']))
+    <nav class="flex-1 px-4 py-5 space-y-6 overflow-y-auto" aria-label="{{ __('Main navigation') }}">
+        @foreach(\App\Support\Navigation::groups(auth()->user()) as $group)
             <div>
-                <p class="nav-section-label">{{ __('Governance') }}</p>
+                <p class="nav-section-label {{ $group['label'] === 'Testing Zone' ? '!text-amber-500/80' : '' }}">{{ __($group['label']) }}</p>
                 <div class="space-y-0.5">
-                    <x-sidebar-link :href="route('monitoring.approval')" :active="request()->routeIs('monitoring.approval')"
-                        icon="shield-check">{{ __('Verify Progress') }}</x-sidebar-link>
-                    <x-sidebar-link :href="route('planning.paa-approval')" :active="request()->routeIs('planning.paa-approval')"
-                        icon="check-square">{{ __('PAA Tech Review') }}</x-sidebar-link>
-                    <x-sidebar-link :href="route('planning.director-review')"
-                        :active="request()->routeIs('planning.director-review')"
-                        icon="user-check">{{ __('Allocation Review') }}</x-sidebar-link>
+                    @foreach($group['items'] as $item)
+                        @if(isset($item['children']))
+                            @php $open = \App\Support\Navigation::isActive($item); @endphp
+                            <div x-data="{ open: {{ $open ? 'true' : 'false' }} }">
+                                <button type="button" @click="open = !open" :aria-expanded="open.toString()"
+                                    class="nav-item w-full {{ $open ? 'nav-item-active' : 'nav-item-inactive' }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="flex-shrink-0 opacity-70" aria-hidden="true">
+                                        <rect width="20" height="12" x="2" y="6" rx="2" /><circle cx="12" cy="12" r="2" />
+                                        <path d="M6 12h.01" /><path d="M18 12h.01" />
+                                    </svg>
+                                    <span class="flex-1 text-left">{{ __($item['label']) }}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                        class="transition-transform duration-200 opacity-50" :class="open ? 'rotate-180' : ''" aria-hidden="true">
+                                        <path d="m6 9 6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-white/10 space-y-0.5">
+                                    @foreach($item['children'] as $child)
+                                        <x-sidebar-link :href="route($child['route'])" :active="\App\Support\Navigation::isActive($child)"
+                                            :icon="$child['icon'] ?? 'circle'">{{ __($child['label']) }}</x-sidebar-link>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            <x-sidebar-link :href="route($item['route'])" :active="\App\Support\Navigation::isActive($item)"
+                                :icon="$item['icon'] ?? 'circle'">{{ __($item['label']) }}</x-sidebar-link>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-        @endif
-
-        <!-- Monitoring -->
-        <div>
-            <p class="nav-section-label">{{ __('Monitoring') }}</p>
-            <div class="space-y-0.5">
-                <x-sidebar-link :href="route('monitoring.index')" :active="request()->routeIs('monitoring.index')"
-                    icon="activity">{{ __('Performance') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('reports.paa')" :active="request()->routeIs('reports.*')"
-                    icon="file-bar-chart">{{ __('Reporting') }}</x-sidebar-link>
-            </div>
-        </div>
-
-        <!-- Testing Zone -->
-        @if(\App\Models\SystemSetting::get('enable_paa_testing_mode', false))
-            <div>
-                <p class="text-xs font-medium text-amber-500/80 uppercase tracking-wide px-4 mb-3">
-                    {{ __('Testing Zone') }}
-                </p>
-                <div class="space-y-0.5">
-                    <x-sidebar-link :href="route('testing.index')" :active="request()->routeIs('testing.*')"
-                        icon="flask-conical"
-                        class="!text-amber-400 hover:!bg-amber-500/10 hover:!text-amber-300">{{ __('Simulator') }}</x-sidebar-link>
-                </div>
-            </div>
-        @endif
-
-        <!-- Management -->
-        <div class="pt-1 border-t border-white/10">
-            <p class="nav-section-label mt-4">{{ __('Management') }}</p>
-            <div class="space-y-0.5">
-                <x-sidebar-link :href="route('management.users')" :active="request()->routeIs('management.users')"
-                    icon="users">{{ __('System Users') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('management.settings')" :active="request()->routeIs('management.settings')"
-                    icon="settings">{{ __('Settings') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('management.entities')" :active="request()->routeIs('management.entities')"
-                    icon="database">{{ __('Manage Entities') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('management.audit')" :active="request()->routeIs('management.audit')"
-                    icon="shield-check">{{ __('Audit Log') }}</x-sidebar-link>
-                <x-sidebar-link :href="route('management.import')" :active="request()->routeIs('management.import')"
-                    icon="download">{{ __('Import Activities') }}</x-sidebar-link>
-            </div>
-        </div>
+        @endforeach
     </nav>
 
     <!-- Bottom Widgets -->

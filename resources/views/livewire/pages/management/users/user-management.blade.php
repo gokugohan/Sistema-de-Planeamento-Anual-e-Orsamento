@@ -139,8 +139,8 @@ new class extends Component {
     <!-- Header with Breadcrumbs & Action -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-            <h1 class="text-4xl font-black text-slate-900 tracking-tight leading-none">{{ __('Access Governance') }}</h1>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">
+            <h1 class="page-title">{{ __('Access Governance') }}</h1>
+            <p class="page-subtitle">
                 {{ __('Manage system access, roles, and security permissions') }}
             </p>
         </div>

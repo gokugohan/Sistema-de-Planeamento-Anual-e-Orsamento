@@ -406,6 +406,31 @@ new class extends Component {
     <div class="min-h-[500px]">
         @if($viewMode === 'list')
             @include('livewire.pages.budget.envelope-tabs.list')
+        @elseif(!$activeEnvelope)
+            {{-- Nothing registered yet: explain what an envelope is and what to do, instead of an empty or broken page --}}
+            <div class="max-w-xl mx-auto text-center py-16">
+                <div class="mx-auto w-14 h-14 rounded-full bg-zinc-100 text-indigo-600 flex items-center justify-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01"/><path d="M18 12h.01"/></svg>
+                </div>
+                <h2 class="mt-4 text-lg font-semibold text-zinc-900">{{ __('No fiscal envelope registered yet') }}</h2>
+                <p class="mt-2 text-sm text-zinc-500">
+                    {{ __('The fiscal envelope is the amount the institution receives for a year, after Parliament approves the State Budget and the President promulgates it. Register it here, then distribute it over the approved plan.') }}
+                </p>
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    @if(auth()->user()->canAny(['create_fiscal_envelope', 'edit_fiscal_envelope']))
+                        @if($canCreateNewEnvelope)
+                            <x-ui.button wire:click="openModal" variant="primary">{{ __('Register envelope') }}</x-ui.button>
+                        @else
+                            <p class="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-4 py-2">
+                                {{ __('New planning cycles are currently disabled. An administrator can enable next-year planning in Settings.') }}
+                            </p>
+                        @endif
+                    @else
+                        <p class="text-sm text-zinc-500">{{ __('An administrator registers the envelope once the budget law is promulgated.') }}</p>
+                    @endif
+                    <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-sm font-medium text-indigo-600 hover:underline self-center">{{ __('See where this year is in the budget cycle') }}</a>
+                </div>
+            </div>
         @else
             @include('livewire.pages.budget.envelope-tabs.current')
         @endif
@@ -475,7 +500,7 @@ new class extends Component {
                                     *</label>
                                 <input type="text" wire:model="referenceNumber"
                                     class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                                    placeholder="OGE/2026/DNO/MSA-001">
+                                    placeholder="OGE/2027/001">
                                 @error('referenceNumber') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                         </div>

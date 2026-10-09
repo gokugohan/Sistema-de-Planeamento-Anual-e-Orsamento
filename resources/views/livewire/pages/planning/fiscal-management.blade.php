@@ -98,8 +98,8 @@ new class extends Component {
 <div class="space-y-10 py-6 animate-in fade-in duration-700">
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-            <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none">{{ __('Fiscal Authority') }}</h1>
-            <p class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px] mt-3">
+            <h1 class="page-title">{{ __('Fiscal Authority') }}</h1>
+            <p class="page-subtitle">
                 {{ __('Macro-Budgetary Ceiling & Consolidation Hub') }}
             </p>
         </div>

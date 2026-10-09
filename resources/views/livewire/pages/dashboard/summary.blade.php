@@ -318,7 +318,7 @@ new class extends Component {
     <!-- Page Header -->
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
         <div>
-            <h1 class="text-2xl font-semibold text-zinc-900 tracking-tight">{{ __('Dashboard') }}</h1>
+            <h1 class="page-title">{{ __('Dashboard') }}</h1>
             <p class="text-sm text-zinc-400 mt-1">{{ __('Budget Planning & Performance Overview') }}</p>
         </div>
 
