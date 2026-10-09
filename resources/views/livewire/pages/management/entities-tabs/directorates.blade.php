@@ -3,10 +3,10 @@
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
                 <h2 class="text-sm font-black text-slate-900 uppercase tracking-widest">
-                    {{ __('Directorates Registry') }}
+                    {{ __('Organisational units') }}
                 </h2>
                 <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
-                    {{ __('Active Units in System') }}
+                    {{ __('Directorates, offices and units') }}
                 </p>
             </div>
             <div class="relative group">
@@ -26,13 +26,13 @@
     </x-slot>
 
     <div class="overflow-x-auto">
-        <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('Status'), __('Actions')]">
+        <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
             @forelse($directorates as $d)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
                     <td class="px-8 py-5 text-gray-900 font-black tracking-tighter uppercase font-mono">{{ $d->code }}
                     </td>
-                    <td class="px-8 py-5">
-                        <div class="font-bold text-gray-900">{{ $d->name }}</div>
+                    <td class="px-8 py-5 min-w-[18rem]">
+                        <div class="font-bold text-gray-900 {{ $d->parent ? 'pl-4 border-l-2 border-zinc-200' : '' }}">{{ $d->name }}</div>
                         @if($d->parent)
                             <div class="flex items-center gap-1.5 mt-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none"
@@ -51,9 +51,28 @@
                     </td>
                     <td class="px-8 py-5">
                         <div class="font-bold text-gray-900 leading-none text-xs">
-                            {{ $d->director_name ?: __('Not Assigned') }}
+                            {{ $d->director_name ?: '—' }}
                         </div>
-                        <div class="text-[9px] text-gray-400 mt-1 font-medium">{{ $d->director_email ?: 'N/A' }}</div>
+                        @if($d->director_email)<div class="text-[9px] text-gray-400 mt-1 font-medium">{{ $d->director_email }}</div>@endif
+                    </td>
+                    @php $f = $dirFunding[$d->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
+                    <td class="px-8 py-5 text-sm tabular-nums">
+                        @if($f['plan'] > 0)
+                            <div class="font-semibold text-zinc-900">$ {{ number_format($f['plan']) }}</div>
+                            <div class="text-xs text-zinc-500">{{ trans_choice(':n activity|:n activities', $f['n'], ['n' => $f['n']]) }}</div>
+                        @else
+                            <span class="text-zinc-400">—</span>
+                        @endif
+                    </td>
+                    <td class="px-8 py-5 w-40">
+                        @if($pct !== null)
+                            <div class="flex items-center gap-2">
+                                <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
+                                <span class="w-10 text-right text-xs tabular-nums text-zinc-600">{{ number_format($pct, 0) }}%</span>
+                            </div>
+                        @else
+                            <span class="text-zinc-400">—</span>
+                        @endif
                     </td>
                     <td class="px-8 py-5">
                         @if($d->active)

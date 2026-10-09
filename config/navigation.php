@@ -74,19 +74,11 @@ return [
             ],
         ],
         [
-            'label' => 'Organisation',
-            'roles' => ['Admin'],
-            'items' => [
-                ['label' => 'Entities Registry', 'route' => 'admin.entities', 'icon' => 'building',
-                    'hint' => 'Browse units, programmes and categories with their plans'],
-            ],
-        ],
-        [
             'label' => 'Administration',
             'roles' => ['Admin'],
             'items' => [
                 ['label' => 'System Users', 'route' => 'management.users', 'icon' => 'users', 'hint' => 'Accounts, roles and permissions'],
-                ['label' => 'Manage Entities', 'route' => 'management.entities', 'icon' => 'database', 'hint' => 'Create and edit units, programmes and categories'],
+                ['label' => 'Entities', 'route' => 'management.entities', 'icon' => 'building', 'hint' => 'Units, programmes and economic categories: edit them and see their funding'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
                 ['label' => 'Settings', 'route' => 'management.settings', 'icon' => 'settings', 'hint' => 'Organisation identity and planning options'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],

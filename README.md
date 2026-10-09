@@ -78,7 +78,10 @@ Permissions are enforced on the server (route middleware and checks inside every
 ### Navigation and the interface
 
 - **One menu definition** (`config/navigation.php`) drives the sidebar, the breadcrumbs and the **Go to…** quick-jump (press `Ctrl K`, or `/`). Each user sees only the pages their role can open. To add a page, add it there, and add a `pages` entry if it is a detail screen, so its breadcrumb reads correctly.
-- **Dashboard → "Needs your attention"** lists what the signed-in user can act on right now (drafts to submit, activities to review or approve, progress to verify, envelopes to approve), with counts and links.
+- **Fiscal year is global.** The year picker in the top bar sets the year every page works in. Between budget cycles the default is the year being planned (the latest year with an envelope or activities, never beyond next year), not an empty calendar year.
+- **Dashboard** (one fiscal year, filterable by unit and category): the budget-cycle tracker (ceiling → CRO → budget law → envelope → distributed); key figures (envelope, approved plan, distributed, activities approved, delivery against targets); "Needs your attention" (what the signed-in user can act on) and "Worth a look" (plan over the CRO decision, undistributed envelope, units with no activities, approved activities without budget lines); charts by category, status and unit; a units table. Charts are bundled (no CDN), so they work on restricted networks.
+- **Budget Allocation** shows how the envelope was shared: approved plan, distributed and funded % by unit (with sub-units), economic category and programme.
+- **Entities** (*Administration → Entities*) is the single page for units, programmes and economic categories: create, edit, delete, and see each one's approved plan and funded % for the selected year. (It replaces the former "Entities Registry"; `/admin/entities` redirects here.)
 - **Sign-in screen:** two panes. The left pane says who and what: the institution (name and optional logo from *Settings*), the product tagline and description, the five-step annual cycle, and an "Implemented by" credit (it shows `public/logo.png` if the file exists). The right pane is the task: email, password with show/hide and a Caps Lock warning, remember-me, forgot-password, and a note to contact the administrator. It is institution-neutral and takes everything it displays from *Management → Settings*.
 - Keyboard and screen-reader support: skip links, labelled landmarks, the current page marked in the menu and breadcrumb, visible focus.
 
@@ -334,7 +337,7 @@ Conventions: business rules live in `app/Services`, not in Livewire components; 
 
 ## Known limitations
 
-- **No expenditure tracking.** The app plans and distributes money; it does not record commitments or payments, so "execution rate" means allocation and physical progress, not spending.
+- **No expenditure tracking.** The app plans and distributes money; it does not record commitments or payments. Screens therefore never show "spent", "used" or "remaining" amounts, and a test fails the build if any view contains random or simulated figures.
 - **No link to the Ministry of Finance's budget system.** Programme and activity codes are entered by hand.
 - **CRO decisions are recorded at ministry-total level**, not per activity.
 - **No dark mode.**

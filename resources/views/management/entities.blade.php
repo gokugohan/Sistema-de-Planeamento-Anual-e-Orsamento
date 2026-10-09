@@ -1,4 +1,4 @@
-<x-app-layout title="{{ __('Manage Entities') }}">
+<x-app-layout title="{{ __('Entities') }}">
     <div class="py-2">
         <livewire:pages.management.entities />
     </div>

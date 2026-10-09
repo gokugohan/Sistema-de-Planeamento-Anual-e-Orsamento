@@ -4,6 +4,8 @@ use Livewire\Volt\Component;
 use App\Models\Directorate;
 use App\Models\Program;
 use App\Models\EconomicClassification;
+use App\Models\Activity;
+use App\Models\FiscalEnvelope;
 use Livewire\WithPagination;
 
 new class extends Component {
@@ -67,17 +69,52 @@ new class extends Component {
             return in_array($d->type, $allowedParentTypes);
         });
 
+        // Funding for the working year (approved activities only). Parent units include their sub-units.
+        $year = FiscalEnvelope::getEffectiveYear();
+        $rows = Activity::withoutGlobalScopes()
+            ->where('activities.is_test_data', false)->where('activities.fiscal_year', $year)->where('activities.status', Activity::STATUS_APPROVED)
+            ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
+            ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
+            ->groupBy('activities.directorate_id', 'activities.program_id')
+            ->selectRaw('activities.directorate_id as d, activities.program_id as p, COUNT(DISTINCT activities.id) as n,
+                COALESCE(SUM(line_items.estimated_amount), 0) as plan, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
+            ->get();
+
+        $own = [];
+        foreach ($rows as $r) {
+            foreach (['n', 'plan', 'alloc'] as $k) {
+                $own[$r->d][$k] = ($own[$r->d][$k] ?? 0) + $r->{$k};
+            }
+        }
+        $children = $allDirectorates->groupBy('parent_id');
+        $rollup = function ($id) use (&$rollup, $own, $children) {
+            $t = $own[$id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0];
+            foreach ($children->get($id, collect()) as $child) {
+                $c = $rollup($child->id);
+                foreach (['n', 'plan', 'alloc'] as $k) {
+                    $t[$k] += $c[$k];
+                }
+            }
+
+            return $t;
+        };
+        $dirFunding = $allDirectorates->mapWithKeys(fn ($d) => [$d->id => $rollup($d->id)])->all();
+        $progFunding = $rows->groupBy('p')->map(fn ($g) => ['n' => (int) $g->sum('n'), 'plan' => (float) $g->sum('plan'), 'alloc' => (float) $g->sum('alloc')])->all();
+
         return [
+            'fundingYear' => $year,
+            'dirFunding' => $dirFunding,
+            'progFunding' => $progFunding,
             'directorates' => Directorate::with('parent')
                 ->when($this->search, function ($q) {
                     $q->where('name', 'like', "%{$this->search}%")
                         ->orWhere('code', 'like', "%{$this->search}%");
                 })
-                ->orderBy('name')
-                ->paginate(10),
+                ->orderByRaw('COALESCE(parent_id, id), parent_id IS NOT NULL, name')
+                ->paginate(15),
             'programs' => Program::when($this->search, function ($q) {
                 $q->where('name', 'like', "%{$this->search}%")
-                    ->orWhere('code', 'like', "%{$this->search}%");
+                    ->orWhere('oge_code', 'like', "%{$this->search}%");
             })
                 ->orderBy('name')
                 ->paginate(10),
@@ -329,10 +366,10 @@ new class extends Component {
     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
             <h1 class="page-title">
-                {{ __('Resource Management') }}
+                {{ __('Entities') }}
             </h1>
             <p class="page-subtitle">
-                {{ __('Organizational Hierarchy & System Governance') }}
+                {{ __('Units, programmes and economic categories, with their funding for the selected fiscal year') }}
             </p>
         </div>
         <div class="flex gap-3">

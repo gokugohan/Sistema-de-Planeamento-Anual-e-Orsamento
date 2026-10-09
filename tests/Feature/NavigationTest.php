@@ -48,7 +48,7 @@ class NavigationTest extends TestCase
 
         $this->assertContains('PAA Tech Review', $this->labels($minister));
         $this->assertNotContains('System Users', $this->labels($minister));
-        $this->assertNotContains('Entities Registry', $this->labels($minister));
+        $this->assertNotContains('Entities', $this->labels($minister));
 
         foreach ([$planner, $viewer] as $u) {
             $this->assertNotContains('PAA Tech Review', $this->labels($u));
@@ -149,5 +149,25 @@ class NavigationTest extends TestCase
             $this->get($link['url'])->assertOk("{$link['url']} does not open with sample data loaded");
         }
         $this->get(route('activities.index', ['year' => 2027]))->assertOk();
+    }
+
+    public function test_the_old_registry_address_still_works_and_lands_on_the_merged_page(): void
+    {
+        $this->as('Admin');
+
+        $this->get('/admin/entities')->assertRedirect('/management/entities');
+        $this->assertContains('Entities', $this->labels(auth()->user()));
+        $this->assertNotContains('Entities Registry', $this->labels(auth()->user()));
+    }
+
+    public function test_the_entities_page_shows_funding_for_units_and_programmes(): void
+    {
+        $this->seed(\Database\Seeders\Samples\MtcSampleDataSeeder::class);
+        $this->as('Admin');
+        \App\Models\Activity::query()->update(['status' => 'Approved']);
+
+        $this->get(route('management.entities'))->assertOk()->assertSee('Approved plan')->assertSee('Funded')->assertSee('DGT');
+        $this->get(route('management.entities', ['search' => 'Transportes']))->assertOk();
+        \Livewire\Volt\Volt::test('pages.management.entities')->set('activeTab', 'programs')->set('search', 'MTC-002')->assertSee('Transportes Terrestres');
     }
 }
