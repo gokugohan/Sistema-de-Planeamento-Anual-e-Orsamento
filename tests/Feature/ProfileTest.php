@@ -21,7 +21,8 @@ class ProfileTest extends TestCase
             ->assertOk()
             ->assertSeeVolt('profile.update-profile-information-form')
             ->assertSeeVolt('profile.update-password-form')
-            ->assertSeeVolt('profile.delete-user-form');
+            ->assertSeeVolt('profile.two-factor-authentication-form')
+            ->assertDontSee('Delete Account');
     }
 
     public function test_profile_information_can_be_updated(): void
@@ -64,38 +65,11 @@ class ProfileTest extends TestCase
         $this->assertNotNull($user->refresh()->email_verified_at);
     }
 
-    public function test_user_can_delete_their_account(): void
+    /** Accounts are removed by an administrator, so the audit trail stays attributable. */
+    public function test_users_cannot_delete_their_own_account_from_the_profile(): void
     {
-        $user = User::factory()->create();
+        $this->assertFileDoesNotExist(resource_path('views/livewire/profile/delete-user-form.blade.php'));
 
-        $this->actingAs($user);
-
-        $component = Volt::test('profile.delete-user-form')
-            ->set('password', 'password')
-            ->call('deleteUser');
-
-        $component
-            ->assertHasNoErrors()
-            ->assertRedirect('/');
-
-        $this->assertGuest();
-        $this->assertNull($user->fresh());
-    }
-
-    public function test_correct_password_must_be_provided_to_delete_account(): void
-    {
-        $user = User::factory()->create();
-
-        $this->actingAs($user);
-
-        $component = Volt::test('profile.delete-user-form')
-            ->set('password', 'wrong-password')
-            ->call('deleteUser');
-
-        $component
-            ->assertHasErrors('password')
-            ->assertNoRedirect();
-
-        $this->assertNotNull($user->fresh());
+        $this->actingAs(User::factory()->create())->get('/profile')->assertOk()->assertDontSee('Permanently delete your account');
     }
 }

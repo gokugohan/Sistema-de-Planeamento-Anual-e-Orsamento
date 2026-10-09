@@ -147,6 +147,15 @@ new class extends Component {
         $this->dispatch('toast', message: __('A new temporary password was issued.'), type: 'success');
     }
 
+    public function resetTwoFactor($id)
+    {
+        abort_unless(auth()->user()->isAdministrator(), 403);
+
+        $user = User::findOrFail($id);
+        app(\App\Services\TwoFactor::class)->disable($user, auth()->user());
+        $this->dispatch('toast', message: __('Two-factor authentication was reset for :email. They can set it up again.', ['email' => $user->email]), type: 'success');
+    }
+
     public function dismissIssuedPassword()
     {
         $this->issuedPassword = null;

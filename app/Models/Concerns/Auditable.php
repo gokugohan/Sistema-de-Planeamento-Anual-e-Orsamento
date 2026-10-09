@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 trait Auditable
 {
     /** Attributes never written to the audit log. */
-    protected static array $auditExcluded = ['password', 'remember_token', 'updated_at', 'created_at'];
+    protected static array $auditExcluded = ['password', 'remember_token', 'two_factor_secret', 'two_factor_recovery_codes', 'two_factor_last_step', 'updated_at', 'created_at'];
 
     public static function bootAuditable(): void
     {

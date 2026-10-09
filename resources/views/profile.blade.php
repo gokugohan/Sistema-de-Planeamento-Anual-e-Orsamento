@@ -38,16 +38,18 @@
             <livewire:profile.update-password-form />
         </x-ui.card>
 
-        <!-- Delete Account -->
+        <!-- Two-factor authentication -->
         <x-ui.card>
             <x-slot name="header">
                 <div>
-                    <h2 class="text-sm font-semibold text-rose-600">{{ __('Delete Account') }}</h2>
-                    <p class="text-xs text-zinc-400 mt-0.5">{{ __('Permanently delete your account and all associated data.') }}</p>
+                    <h2 class="text-sm font-semibold text-zinc-900">{{ __('Two-factor authentication') }}</h2>
+                    <p class="text-xs text-zinc-400 mt-0.5">{{ __('A code from your phone as a second step when you sign in.') }}</p>
                 </div>
             </x-slot>
-            <livewire:profile.delete-user-form />
+            <livewire:profile.two-factor-authentication-form />
         </x-ui.card>
+
+        <p class="text-xs text-zinc-500">{{ __('Accounts are created, changed and removed by your system administrator; ask them if you need to leave the system.') }}</p>
 
     </div>
 </x-app-layout>

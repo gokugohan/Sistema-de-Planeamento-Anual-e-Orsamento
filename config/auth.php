@@ -22,6 +22,19 @@ return [
     */
     'allow_registration' => env('ALLOW_REGISTRATION', false),
 
+    /*
+    | Roles that MUST use two-factor authentication. Default: Admin and Minister in
+    | production (they approve budgets), nobody elsewhere so local work and tests stay
+    | simple. Override with TWO_FACTOR_REQUIRED_ROLES="Admin,Minister,Director".
+    | Anyone else may enable it voluntarily from their profile.
+    */
+    'two_factor' => [
+        'required_roles' => array_values(array_filter(array_map('trim', explode(',', (string) env(
+            'TWO_FACTOR_REQUIRED_ROLES',
+            env('APP_ENV') === 'production' ? 'Admin,Minister' : ''
+        ))))),
+    ],
+
     'defaults' => [
         'guard' => env('AUTH_GUARD', 'web'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),

@@ -91,6 +91,14 @@
                                     </svg>
                                 </button>
                                 @if($user->id !== auth()->id() && auth()->user()->isAdministrator())
+                                    @if($user->two_factor_confirmed_at)
+                                        <button wire:click="resetTwoFactor({{ $user->id }})"
+                                            wire:confirm="{{ __('Reset two-factor authentication for this user? Use this when they lost their phone.') }}"
+                                            class="p-2 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
+                                            title="{{ __('Reset two-factor') }}" aria-label="{{ __('Reset two-factor') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M9.5 9.5 14.5 14.5"/><path d="m14.5 9.5-5 5"/></svg>
+                                        </button>
+                                    @endif
                                     <button wire:click="resetPassword({{ $user->id }})"
                                         wire:confirm="{{ __('Issue a new temporary password for this user? Their current password stops working.') }}"
                                         class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
