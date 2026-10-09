@@ -219,9 +219,9 @@ new class extends Component {
     </div>
 
     <!-- Navigation Hub (Floating Pill Style) -->
-    <div class="flex items-center gap-2 p-1.5 bg-slate-100/50 border border-slate-200 rounded-2xl shadow-sm w-fit">
+    <div class="flex items-center gap-2 p-1.5 bg-zinc-100/50 border border-zinc-200 rounded-xl shadow-sm w-fit">
         <x-ui.button wire:click="setTab('users')"
-            variant="{{ $tab === 'users' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-[11px]">
+            variant="{{ $tab === 'users' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-xs">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -230,7 +230,7 @@ new class extends Component {
             {{ __('Personnel') }}
         </x-ui.button>
         <x-ui.button wire:click="setTab('roles')"
-            variant="{{ $tab === 'roles' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-[11px]">
+            variant="{{ $tab === 'roles' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-xs">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
@@ -239,7 +239,7 @@ new class extends Component {
             {{ __('Authorization') }}
         </x-ui.button>
         <x-ui.button wire:click="setTab('permissions')"
-            variant="{{ $tab === 'permissions' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-[11px]">
+            variant="{{ $tab === 'permissions' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-xs">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
@@ -264,13 +264,13 @@ new class extends Component {
     @if($modalOpen)
         <div
             class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-            <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+            <div class="bg-white w-full max-w-lg rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-300">
                 <div class="p-8 border-b border-gray-50">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-xl font-black text-gray-900">
+                            <h3 class="text-xl font-semibold text-gray-900">
                                 {{ $isEditing ? __('Edit User') : __('Create New User') }}</h3>
-                            <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">
+                            <p class="text-xs text-gray-500 mt-1 font-bold">
                                 {{ __('User Profile & Access') }}</p>
                         </div>
                         <button wire:click="$set('modalOpen', false)"
@@ -288,18 +288,18 @@ new class extends Component {
                     <div class="space-y-4">
                         <div class="space-y-2">
                             <x-input-label for="modal_name" :value="__('Full Name')"
-                                class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1" />
+                                class="text-xs font-semibold text-gray-400 ml-1" />
                             <x-text-input id="modal_name" wire:model="name"
-                                class="w-full !rounded-2xl !bg-gray-50/50 !border-gray-100 focus:!ring-black"
+                                class="w-full !rounded-xl !bg-gray-50/50 !border-gray-100 focus:!ring-black"
                                 placeholder="John Doe" />
                             <x-input-error :messages="$errors->get('name')" />
                         </div>
 
                         <div class="space-y-2">
                             <x-input-label for="modal_email" :value="__('Email Address')"
-                                class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1" />
+                                class="text-xs font-semibold text-gray-400 ml-1" />
                             <x-text-input id="modal_email" type="email" wire:model="email"
-                                class="w-full !rounded-2xl !bg-gray-50/50 !border-gray-100 focus:!ring-black"
+                                class="w-full !rounded-xl !bg-gray-50/50 !border-gray-100 focus:!ring-black"
                                 placeholder="john@msa.gov.tl" />
                             <x-input-error :messages="$errors->get('email')" />
                         </div>
@@ -307,9 +307,9 @@ new class extends Component {
                         <div class="grid grid-cols-2 gap-4">
                             <div class="space-y-2">
                                 <x-input-label for="modal_role" :value="__('Security Role')"
-                                    class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1" />
+                                    class="text-xs font-semibold text-gray-400 ml-1" />
                                 <select id="modal_role" wire:model.live="selectedRole"
-                                    class="w-full h-11 px-4 rounded-2xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
+                                    class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
                                     <option value="">{{ __('Select Role') }}</option>
                                     @foreach($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->display_name ?: $role->name }}</option>
@@ -320,9 +320,9 @@ new class extends Component {
 
                             <div class="space-y-2">
                                 <x-input-label for="modal_directorate" :value="__('Directorate')"
-                                    class="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1" />
+                                    class="text-xs font-semibold text-gray-400 ml-1" />
                                 <select id="modal_directorate" wire:model="directorate_id"
-                                    class="w-full h-11 px-4 rounded-2xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
+                                    class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
                                     <option value="">{{ __('National (All)') }}</option>
                                     @foreach($directorates as $dir)
                                         <option value="{{ $dir->id }}">{{ $dir->code }} {{ $dir->name }}</option>

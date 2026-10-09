@@ -156,7 +156,7 @@ new class extends Component {
                                 <p class="text-xs text-zinc-500">{{ __('No field-level detail recorded.') }}</p>
                             @endif
                             @if($log->user_agent)
-                                <p class="mt-3 text-[11px] text-zinc-400 break-all">{{ $log->user_agent }}</p>
+                                <p class="mt-3 text-xs text-zinc-400 break-all">{{ $log->user_agent }}</p>
                             @endif
                         </td>
                     </tr>

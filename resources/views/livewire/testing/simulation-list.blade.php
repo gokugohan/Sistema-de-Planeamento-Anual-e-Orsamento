@@ -250,13 +250,13 @@ new class extends Component {
     <div class="bg-amber-50 rounded-xl p-4 border border-amber-200 mb-6 shadow-sm">
         <p class="text-xs text-amber-900 font-medium">
             @if($simStatus === 'approved')
-                <span class="font-black">🧪 {{ __('SIMULATION ARCHIVE') }}</span>:
+                <span class="font-semibold">🧪 {{ __('SIMULATION ARCHIVE') }}</span>:
                 {{ __('This simulation has been approved. These records are locked for historical reference within the sandbox.') }}
             @elseif($simStatus === 'review')
-                <span class="font-black">🧪 {{ __('SIMULATION REVIEW') }}</span>:
+                <span class="font-semibold">🧪 {{ __('SIMULATION REVIEW') }}</span>:
                 {{ __('This simulation package has been submitted for approval. You are viewing the proposed simulation outcome.') }}
             @else
-                <span class="font-black">🧪 {{ __('SIMULATION ENVIRONMENT') }}</span>:
+                <span class="font-semibold">🧪 {{ __('SIMULATION ENVIRONMENT') }}</span>:
                 {{ __('You are viewing/editing simulation data. These records are isolated from production and will not affect official reports.') }}
             @endif
         </p>
@@ -264,14 +264,14 @@ new class extends Component {
 
     <div class="flex justify-between items-start">
         <div>
-            <h2 class="text-3xl font-black text-amber-900 tracking-tight">{{ __('PAA Simulation Environment') }} 🧪</h2>
-            <p class="text-amber-600 text-[10px] font-black uppercase tracking-widest mt-1">
+            <h2 class="text-3xl font-semibold text-amber-900 tracking-tight">{{ __('PAA Simulation Environment') }} 🧪</h2>
+            <p class="text-amber-600 text-xs font-semibold mt-1">
                 {{ __('Isolated Sandbox Data') }}
             </p>
         </div>
         <div class="flex items-center gap-4">
             <span
-                class="text-[10px] font-black text-amber-400 uppercase tracking-widest">{{ __('Simulation Period:') }}</span>
+                class="text-xs font-semibold text-amber-400 ">{{ __('Simulation Period:') }}</span>
             <select wire:model.live="fiscalYear"
                 class="rounded-xl border-amber-200 bg-amber-50 text-sm font-bold text-amber-900 focus:ring-amber-500 focus:border-amber-500 transition-all h-9 px-3 cursor-pointer shadow-sm">
                 @php
@@ -369,7 +369,7 @@ new class extends Component {
         <div
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
             <div
-                class="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6 animate-in zoom-in-95 duration-200 border-t-4 border-amber-600">
+                class="relative w-full max-w-md bg-white rounded-lg shadow-sm p-6 animate-in zoom-in-95 duration-200 border-t-4 border-amber-600">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -391,9 +391,9 @@ new class extends Component {
 
                 <div class="mt-8 flex justify-end gap-3">
                     <button wire:click="$set('submissionModal', false)"
-                        class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-700 transition-colors">{{ __('Cancel') }}</button>
+                        class="px-4 py-2 text-xs font-bold text-zinc-500 hover:text-zinc-700 transition-colors">{{ __('Cancel') }}</button>
                     <button wire:click="submitBatch"
-                        class="bg-amber-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-amber-700 shadow-lg shadow-amber-600/20 active:scale-95 transition-all">{{ __('Verify & Submit') }}</button>
+                        class="bg-amber-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-amber-700 shadow-sm active:scale-95 transition-all">{{ __('Verify & Submit') }}</button>
                 </div>
             </div>
         </div>
@@ -403,7 +403,7 @@ new class extends Component {
         <div
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
             <div
-                class="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6 animate-in zoom-in-95 duration-200 border-t-4 border-emerald-600">
+                class="relative w-full max-w-md bg-white rounded-lg shadow-sm p-6 animate-in zoom-in-95 duration-200 border-t-4 border-emerald-600">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -419,9 +419,9 @@ new class extends Component {
                 <p class="text-sm text-gray-600">
                     {{ __('You are performing a mass approval for all :year simulation activities currently in the "Submitted" stage.', ['year' => $this->fiscalYear]) }}
                 </p>
-                <div class="mt-4 p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+                <div class="mt-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
                     <div
-                        class="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-emerald-700">
+                        class="flex items-center justify-between text-xs font-semibold text-emerald-700">
                         <span>{{ __('Activities found') }}</span>
                         <span
                             class="bg-emerald-200 px-2 py-1 rounded-md">{{ $activities->where('status', Activity::STATUS_SUBMITTED)->count() }}</span>
@@ -430,9 +430,9 @@ new class extends Component {
 
                 <div class="mt-8 flex justify-end gap-3">
                     <button wire:click="$set('approvalModal', false)"
-                        class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-700 transition-colors">{{ __('Cancel') }}</button>
+                        class="px-4 py-2 text-xs font-bold text-zinc-500 hover:text-zinc-700 transition-colors">{{ __('Cancel') }}</button>
                     <button wire:click="approveBatch"
-                        class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-emerald-700 shadow-lg shadow-emerald-600/20 active:scale-95 transition-all">{{ __('Verify & Approve All') }}</button>
+                        class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 shadow-sm active:scale-95 transition-all">{{ __('Verify & Approve All') }}</button>
                 </div>
             </div>
         </div>
@@ -442,7 +442,7 @@ new class extends Component {
         <div
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
             <div
-                class="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6 animate-in zoom-in-95 duration-200 border-t-4 border-rose-600">
+                class="relative w-full max-w-md bg-white rounded-lg shadow-sm p-6 animate-in zoom-in-95 duration-200 border-t-4 border-rose-600">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -458,9 +458,9 @@ new class extends Component {
                 <p class="text-sm text-gray-600">
                     {{ __('You are about to REJECT all submitted simulation activities for :year. This will return them to the draft/rejected state.', ['year' => $this->fiscalYear]) }}
                 </p>
-                <div class="mt-4 p-4 bg-rose-50 rounded-2xl border border-rose-100">
+                <div class="mt-4 p-4 bg-rose-50 rounded-xl border border-rose-100">
                     <div
-                        class="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-rose-700">
+                        class="flex items-center justify-between text-xs font-semibold text-rose-700">
                         <span>{{ __('Activities found') }}</span>
                         <span
                             class="bg-rose-200 px-2 py-1 rounded-md">{{ $activities->where('status', Activity::STATUS_SUBMITTED)->count() }}</span>
@@ -469,9 +469,9 @@ new class extends Component {
 
                 <div class="mt-8 flex justify-end gap-3">
                     <button wire:click="$set('rejectionModal', false)"
-                        class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-700 transition-colors">{{ __('Cancel') }}</button>
+                        class="px-4 py-2 text-xs font-bold text-zinc-500 hover:text-zinc-700 transition-colors">{{ __('Cancel') }}</button>
                     <button wire:click="rejectBatch"
-                        class="bg-rose-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-rose-700 shadow-lg shadow-rose-600/20 active:scale-95 transition-all">{{ __('Confirm Rejection') }}</button>
+                        class="bg-rose-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-rose-700 shadow-sm active:scale-95 transition-all">{{ __('Confirm Rejection') }}</button>
                 </div>
             </div>
         </div>
@@ -481,7 +481,7 @@ new class extends Component {
         <div
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
             <div
-                class="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6 animate-in zoom-in-95 duration-200 border-t-4 border-amber-500">
+                class="relative w-full max-w-md bg-white rounded-lg shadow-sm p-6 animate-in zoom-in-95 duration-200 border-t-4 border-amber-500">
                 <h3 class="text-lg font-bold text-amber-900 mb-2 underline decoration-amber-500">
                     {{ __('Existing Simulation') }}
                 </h3>
@@ -490,13 +490,13 @@ new class extends Component {
                 </p>
                 <div class="mt-6 flex justify-end">
                     <button wire:click="$set('creationAlert', false)"
-                        class="bg-amber-600 text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-amber-700">{{ __('Understood') }}</button>
+                        class="bg-amber-600 text-white px-4 py-2 rounded text-xs font-bold hover:bg-amber-700">{{ __('Understood') }}</button>
                 </div>
             </div>
         </div>
     @endif
 
-    <div class="flex items-center gap-2 p-1.5 bg-amber-50/50 w-fit rounded-2xl border border-amber-200 shadow-sm">
+    <div class="flex items-center gap-2 p-1.5 bg-amber-50/50 w-fit rounded-xl border border-amber-200 shadow-sm">
         <x-ui.button wire:click="$set('activeTab', 'program')"
             variant="{{ $activeTab === 'program' ? 'secondary' : 'ghost' }}" size="md" class="!rounded-xl">
             {{ __('Programmatic View') }}

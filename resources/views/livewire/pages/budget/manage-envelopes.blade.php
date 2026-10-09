@@ -441,7 +441,7 @@ new class extends Component {
         <div
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
             <div
-                class="relative w-full max-w-2xl bg-white rounded-lg shadow-lg overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
+                class="relative w-full max-w-2xl bg-white rounded-lg shadow-sm overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
                 <!-- Header -->
                 <div class="flex flex-col gap-1 p-6 border-b text-center sm:text-left">
                     <h2 class="text-lg font-bold leading-none tracking-tight">
@@ -574,7 +574,7 @@ new class extends Component {
                                         wire:model.live="categoryAllocations.{{ $classification->id }}"
                                         class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                                         placeholder="0">
-                                    <p class="text-[10px] text-gray-400">{{ __($classification->description) }}</p>
+                                    <p class="text-xs text-gray-400">{{ __($classification->description) }}</p>
                                 </div>
                             @endforeach
                         </div>
@@ -608,7 +608,7 @@ new class extends Component {
                         {{ __('Cancel') }}
                     </button>
                     <button wire:click="save"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-black text-white shadow hover:bg-gray-800 h-9 px-4 py-2">
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-indigo-600 text-white shadow hover:bg-indigo-700 h-9 px-4 py-2">
                         {{ $isEditing ? __('Save Changes') : __('Create Fiscal Envelope') }}
                     </button>
                 </div>
@@ -621,11 +621,11 @@ new class extends Component {
         <div
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
             <div
-                class="relative w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
+                class="relative w-full max-w-5xl bg-white rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
                 <!-- Header -->
                 <div class="flex items-center justify-between p-6 border-b bg-gradient-to-r from-indigo-50 to-white">
                     <div>
-                        <h2 class="text-xl font-black text-gray-900 leading-none tracking-tight">
+                        <h2 class="text-xl font-semibold text-gray-900 leading-none tracking-tight">
                             {{ __('Confirm OGE Redistribution') }}</h2>
                         <p class="text-sm text-gray-500 mt-2">
                             {{ __('Review the redistribution calculations before applying') }}</p>
@@ -648,42 +648,42 @@ new class extends Component {
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-black text-sm">
+                                            class="h-10 w-10 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold text-sm">
                                             {{ $preview['category_code'] }}
                                         </div>
                                         <div>
-                                            <h3 class="text-sm font-black text-gray-900">{{ $preview['category_name'] }}</h3>
+                                            <h3 class="text-sm font-semibold text-gray-900">{{ $preview['category_name'] }}</h3>
                                             <p class="text-xs text-gray-500">{{ __($preview['category_description']) }}</p>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-xs text-gray-400 uppercase tracking-wider font-bold">
+                                        <p class="text-xs text-gray-400 font-bold">
                                             {{ __('Allocation Ratio') }}</p>
-                                        <p class="text-lg font-black text-indigo-600">
+                                        <p class="text-lg font-semibold text-indigo-600">
                                             {{ number_format($preview['ratio'] * 100, 1) }}%</p>
                                     </div>
                                 </div>
                                 <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
                                     <div>
-                                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                                        <p class="text-xs font-semibold text-gray-400 ">
                                             {{ __('OGE Allocated') }}</p>
                                         <p class="text-sm font-bold text-gray-900">$
                                             {{ number_format($preview['allocated_amount'], 2) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                                        <p class="text-xs font-semibold text-gray-400 ">
                                             {{ __('Total Requested') }}</p>
                                         <p class="text-sm font-bold text-gray-900">$
                                             {{ number_format($preview['total_requested'], 2) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                                        <p class="text-xs font-semibold text-gray-400 ">
                                             {{ __('To distribute') }}</p>
                                         <p class="text-sm font-bold text-gray-900">$
                                             {{ number_format($preview['distributed'], 2) }}</p>
                                     </div>
                                     <div>
-                                        <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">
+                                        <p class="text-xs font-semibold text-gray-400 ">
                                             {{ __('Unallocated') }}</p>
                                         <p class="text-sm font-bold {{ $preview['unallocated'] > 0 ? 'text-amber-600' : 'text-gray-900' }}">$
                                             {{ number_format($preview['unallocated'], 2) }}</p>
@@ -693,7 +693,7 @@ new class extends Component {
 
                             @if(count($preview['lines']) > 0)
                                 <div class="p-4">
-                                    <p class="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">
+                                    <p class="text-xs font-bold text-gray-600 mb-3">
                                         {{ __('Approved budget lines') }} ({{ $preview['affected_count'] }})</p>
                                     <div class="space-y-2 max-h-60 overflow-y-auto">
                                         @foreach($preview['lines'] as $activity)
@@ -702,12 +702,12 @@ new class extends Component {
                                                     <div class="flex-1 min-w-0">
                                                         <p class="text-xs font-bold text-gray-900 truncate">
                                                             {{ $activity['activity_description'] }}</p>
-                                                        <p class="text-[10px] text-gray-500 mt-0.5">
+                                                        <p class="text-xs text-gray-500 mt-0.5">
                                                             {{ $activity['directorate'] }} · {{ $activity['line_code'] }} · {{ __('requested') }} $ {{ number_format($activity['estimated'], 2) }}</p>
                                                     </div>
                                                     <div class="flex items-center gap-4 shrink-0">
                                                         <div class="text-right">
-                                                            <p class="text-[9px] text-gray-400 uppercase tracking-wider font-bold">
+                                                            <p class="text-xs text-gray-400 font-bold">
                                                                 {{ __('Current') }}</p>
                                                             <p class="text-xs font-bold text-gray-600">$
                                                                 {{ number_format($activity['current_approved'], 2) }}</p>
@@ -719,17 +719,17 @@ new class extends Component {
                                                             <path d="m12 5 7 7-7 7" />
                                                         </svg>
                                                         <div class="text-right">
-                                                            <p class="text-[9px] text-gray-400 uppercase tracking-wider font-bold">
+                                                            <p class="text-xs text-gray-400 font-bold">
                                                                 {{ __('New') }}</p>
                                                             <p
-                                                                class="text-xs font-black {{ $activity['change'] >= 0 ? 'text-green-600' : 'text-rose-600' }}">
+                                                                class="text-xs font-semibold {{ $activity['change'] >= 0 ? 'text-green-600' : 'text-rose-600' }}">
                                                                 $ {{ number_format($activity['new_approved'], 2) }}</p>
                                                         </div>
                                                         <div class="text-right min-w-[80px]">
-                                                            <p class="text-[9px] text-gray-400 uppercase tracking-wider font-bold">
+                                                            <p class="text-xs text-gray-400 font-bold">
                                                                 {{ __('Change') }}</p>
                                                             <p
-                                                                class="text-xs font-black {{ $activity['change'] >= 0 ? 'text-green-600' : 'text-rose-600' }}">
+                                                                class="text-xs font-semibold {{ $activity['change'] >= 0 ? 'text-green-600' : 'text-rose-600' }}">
                                                                 {{ $activity['change'] >= 0 ? '+' : '' }}$
                                                                 {{ number_format($activity['change'], 2) }}
                                                             </p>
@@ -768,7 +768,7 @@ new class extends Component {
                             {{ __('Cancel') }}
                         </button>
                         <button wire:click="confirmRedistribution({{ $activeEnvelope->id }})" wire:loading.attr="disabled"
-                            class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/20 disabled:opacity-50">
+                            class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm disabled:opacity-50">
                             <span wire:loading.remove>{{ __('Confirm Redistribution') }}</span>
                             <span wire:loading>{{ __('Processing...') }}</span>
                         </button>

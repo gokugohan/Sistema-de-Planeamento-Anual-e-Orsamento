@@ -145,7 +145,7 @@ new class extends Component {
         </div>
         @if($activeYear)
             <div class="flex gap-3">
-                <x-ui.badge variant="indigo" pulse="true" class="px-4 py-2 text-xs font-black uppercase tracking-widest">
+                <x-ui.badge variant="indigo" pulse="true" class="px-4 py-2 text-xs font-semibold ">
                     {{ __('Active Fiscal Year') }}: {{ $activeYear }}
                 </x-ui.badge>
             </div>
@@ -153,7 +153,7 @@ new class extends Component {
     </div>
 
     @if(!$activeYear)
-        <div class="bg-amber-50 border-2 border-dashed border-amber-200 rounded-[2rem] p-12 text-center">
+        <div class="bg-amber-50 border-2 border-dashed border-amber-200 rounded-xl p-12 text-center">
             <div class="h-20 w-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-600" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -161,18 +161,18 @@ new class extends Component {
                         d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
             </div>
-            <h2 class="text-md font-black text-slate-900 uppercase tracking-tight mb-4">
+            <h2 class="text-md font-semibold text-zinc-900 tracking-tight mb-4">
                 {{ __('Monitoring Suspended: No Active Fiscal Year') }}
             </h2>
-            <p class="text-slate-500 text-sm font-medium max-w-lg mx-auto leading-relaxed">
+            <p class="text-zinc-500 text-sm font-medium max-w-lg mx-auto leading-relaxed">
                 {{ __('Real-time monitoring is only available when a Fiscal Envelope for the current period has been') }}
-                <b class="text-slate-900">{{ __('Approved') }}</b> {{ __('and is within its') }} <b
-                    class="text-slate-900">{{ __('Active Validity Dates') }}</b>.
+                <b class="text-zinc-900">{{ __('Approved') }}</b> {{ __('and is within its') }} <b
+                    class="text-zinc-900">{{ __('Active Validity Dates') }}</b>.
                 {{ __('As of today, no active budget authority has been found.') }}
             </p>
             <div class="mt-8 flex justify-center gap-4">
                 <a href="{{ route('budget.envelope.list') }}"
-                    class="px-6 py-3 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-slate-800 transition-all">
+                    class="px-6 py-3 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 transition-all">
                     {{ __('Manage Fiscal Envelopes') }}
                 </a>
             </div>
@@ -201,7 +201,7 @@ new class extends Component {
                 <x-ui.card padding="p-0" class="overflow-hidden">
                     <x-slot name="header">
                         <div class="flex items-center justify-between px-6 py-4">
-                            <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">
+                            <h3 class="text-sm font-semibold text-zinc-900 ">
                                 {{ __('Programmatic Performance Comparison') }}
                             </h3>
                         </div>
@@ -217,7 +217,7 @@ new class extends Component {
             <div class="lg:col-span-4">
                 <x-ui.card class="h-full">
                     <x-slot name="header">
-                        <h3 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">
+                        <h3 class="text-xs font-semibold text-zinc-900 ">
                             {{ __('Achievement Details') }}
                         </h3>
                     </x-slot>
@@ -227,13 +227,13 @@ new class extends Component {
                                 <div class="flex justify-between items-end mb-2">
                                     <div class="flex flex-col">
                                         <span
-                                            class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">{{ $prog['code'] }}</span>
-                                        <span class="text-xs font-bold text-slate-700 leading-tight">{{ $prog['name'] }}</span>
+                                            class="text-xs font-semibold text-zinc-400 ">{{ $prog['code'] }}</span>
+                                        <span class="text-xs font-bold text-zinc-700 leading-tight">{{ $prog['name'] }}</span>
                                     </div>
                                     <span
-                                        class="text-xs font-black text-indigo-600">{{ number_format($prog['physical'], 0) }}%</span>
+                                        class="text-xs font-semibold text-indigo-600">{{ number_format($prog['physical'], 0) }}%</span>
                                 </div>
-                                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                <div class="w-full bg-zinc-100 rounded-full h-1.5 overflow-hidden">
                                     <div class="bg-indigo-500 h-full transition-all duration-1000 group-hover:bg-indigo-600"
                                         style="width: {{ $prog['physical'] }}%"></div>
                                 </div>

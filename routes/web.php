@@ -60,7 +60,7 @@ Route::get('planning/paa-approval', function () {
 
 Route::get('planning/director-review', function () {
     return view('planning.director-review');
-})->middleware(['auth', 'verified', 'role:Admin|Minister'])->name('planning.director-review');
+})->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning'])->name('planning.director-review');
 
 Route::get('planning/fiscal', function () {
     return view('planning.fiscal');

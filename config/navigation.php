@@ -54,13 +54,13 @@ return [
         ],
         [
             'label' => 'Review & Approval',
-            'roles' => ['Admin', 'Minister'],
+            'roles' => ['Admin', 'Minister', 'Director', 'Planning'],
             'items' => [
-                ['label' => 'PAA Tech Review', 'route' => 'planning.paa-approval', 'icon' => 'check-square',
+                ['label' => 'PAA Tech Review', 'route' => 'planning.paa-approval', 'icon' => 'check-square', 'roles' => ['Admin', 'Minister'],
                     'hint' => 'Review and approve submitted activities'],
                 ['label' => 'Allocation Review', 'route' => 'planning.director-review', 'icon' => 'user-check',
                     'hint' => 'Review how the envelope was allocated'],
-                ['label' => 'Verify Progress', 'route' => 'monitoring.approval', 'icon' => 'shield-check',
+                ['label' => 'Verify Progress', 'route' => 'monitoring.approval', 'icon' => 'shield-check', 'roles' => ['Admin', 'Minister'],
                     'hint' => 'Verify quarterly indicator progress'],
             ],
         ],

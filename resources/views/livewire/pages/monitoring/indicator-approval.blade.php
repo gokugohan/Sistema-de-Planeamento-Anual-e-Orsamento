@@ -99,7 +99,7 @@ new class extends Component {
 
         <div class="flex gap-4 items-center">
             <select wire:model.live="quarter"
-                class="bg-white border-none shadow-sm rounded-xl text-xs font-black text-slate-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
+                class="bg-white border-none shadow-sm rounded-xl text-xs font-semibold text-zinc-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
                 <option value="1">{{ __('Q1 (Jan-Mar)') }}</option>
                 <option value="2">{{ __('Q2 (Apr-Jun)') }}</option>
                 <option value="3">{{ __('Q3 (Jul-Sep)') }}</option>
@@ -108,7 +108,7 @@ new class extends Component {
 
             @if(auth()->user()->hasAnyRole(['Admin', 'Planning']))
                 <select wire:model.live="selectedDirectorate"
-                    class="bg-white border-none shadow-sm rounded-xl text-xs font-black text-slate-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
+                    class="bg-white border-none shadow-sm rounded-xl text-xs font-semibold text-zinc-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
                     <option value="">{{ __('All Directorates') }}</option>
                     @foreach(\App\Models\Directorate::all() as $dir)
                         <option value="{{ $dir->id }}">{{ $dir->name }}</option>
@@ -128,13 +128,13 @@ new class extends Component {
     <x-ui.card padding="p-0" class="overflow-hidden">
         <x-slot name="header">
             <div class="flex items-center justify-between px-6 py-4">
-                <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">
+                <h3 class="text-sm font-semibold text-zinc-900 ">
                     {{ __('Pending Verifications') }} ({{ count($pendingProgress) }})
                 </h3>
                 @if(count($pendingProgress) > 0)
                     <button wire:click="approveAll"
                         wire:confirm="{{ __('Are you sure you want to verify all pending records?') }}"
-                        class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-emerald-600/20">
+                        class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl transition-all shadow-sm ">
                         {{ __('Verify All') }}
                     </button>
                 @endif
@@ -142,44 +142,44 @@ new class extends Component {
         </x-slot>
 
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-slate-100">
-                <thead class="bg-slate-50/50">
+            <table class="min-w-full divide-y divide-zinc-100">
+                <thead class="bg-zinc-50/50">
                     <tr>
-                        <th class="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-400">
                             {{ __('Directorate / Activity') }}</th>
-                        <th class="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-400">
                             {{ __('Indicator') }}</th>
                         <th
-                            class="px-6 py-4 text-right text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            class="px-6 py-4 text-right text-xs font-semibold text-zinc-400">
                             {{ __('Target') }}</th>
                         <th
-                            class="px-6 py-4 text-right text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            class="px-6 py-4 text-right text-xs font-semibold text-zinc-400">
                             {{ __('Submitted Value') }}</th>
                         <th
-                            class="px-6 py-4 text-right text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            class="px-6 py-4 text-right text-xs font-semibold text-zinc-400">
                             {{ __('Actions') }}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50">
+                <tbody class="divide-y divide-zinc-50">
                     @forelse($pendingProgress as $progress)
-                        <tr class="hover:bg-slate-50/50 transition-colors group">
+                        <tr class="hover:bg-zinc-50/50 transition-colors group">
                             <td class="px-6 py-4">
-                                <div class="text-[9px] font-black text-indigo-500 uppercase tracking-tighter mb-1">
+                                <div class="text-xs font-semibold text-indigo-500 mb-1">
                                     {{ $progress->indicator->activity->directorate->name ?? '—' }}</div>
-                                <div class="text-[11px] font-bold text-slate-700 leading-tight">
+                                <div class="text-xs font-bold text-zinc-700 leading-tight">
                                     {{ $progress->indicator->activity->description }}</div>
                             </td>
                             <td class="px-6 py-4">
-                                <div class="text-xs font-bold text-slate-900">{{ $progress->indicator->name }}</div>
-                                <div class="text-[9px] font-medium text-slate-400 uppercase">
+                                <div class="text-xs font-bold text-zinc-900">{{ $progress->indicator->name }}</div>
+                                <div class="text-xs font-medium text-zinc-400 ">
                                     {{ $progress->indicator->unit }}</div>
                             </td>
-                            <td class="px-6 py-4 text-right text-xs font-black text-slate-900">
+                            <td class="px-6 py-4 text-right text-xs font-semibold text-zinc-900">
                                 {{ number_format($progress->indicator->annual_target, 2) }}
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <span
-                                    class="inline-flex px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-black rounded-lg border border-indigo-100">
+                                    class="inline-flex px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-lg border border-indigo-100">
                                     {{ number_format($progress->achieved_value, 2) }}
                                 </span>
                             </td>
@@ -211,12 +211,12 @@ new class extends Component {
                         <tr>
                             <td colspan="5" class="px-6 py-12 text-center">
                                 <div class="flex flex-col items-center">
-                                    <svg class="h-12 w-12 text-slate-200 mb-4" fill="none" viewBox="0 0 24 24"
+                                    <svg class="h-12 w-12 text-zinc-200 mb-4" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p class="text-slate-400 italic text-sm font-medium">
+                                    <p class="text-zinc-400 italic text-sm font-medium">
                                         {{ __('No pending progress submissions found.') }}</p>
                                 </div>
                             </td>

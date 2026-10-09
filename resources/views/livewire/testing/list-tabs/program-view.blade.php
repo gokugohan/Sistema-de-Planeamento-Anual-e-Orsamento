@@ -1,25 +1,25 @@
 <div class="space-y-6">
     @forelse($this->programViewData as $data)
         <div x-data="{ expanded: false }"
-            class="premium-card rounded-[2rem] overflow-hidden group/card shadow-amber-500/5 hover:shadow-amber-500/10 border-amber-100/50 hover:border-amber-200 transition-all duration-500 border bg-white">
+            class="premium-card rounded-xl overflow-hidden group/card hover:border-amber-100/50 hover:border-amber-200 transition-all duration-500 border bg-white">
             <div @click="expanded = !expanded"
                 class="p-8 cursor-pointer bg-white group-hover/card:bg-amber-50/10 flex justify-between items-center transition-colors duration-500">
                 <div class="space-y-3">
                     <div class="flex items-center gap-4">
                         <span
-                            class="px-3 py-1.5 bg-amber-600 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg shadow-xl shadow-amber-600/10 transition-transform group-hover/card:scale-105 duration-500">{{ $data['code'] }}</span>
+                            class="px-3 py-1.5 bg-amber-600 text-white text-xs font-semibold rounded-lg shadow-sm transition-transform group-hover/card:scale-105 duration-500">{{ $data['code'] }}</span>
                         <h4
-                            class="text-2xl font-black text-amber-900 group-hover/card:text-amber-700 transition-colors duration-500">
+                            class="text-2xl font-semibold text-amber-900 group-hover/card:text-amber-700 transition-colors duration-500">
                             {{ $data['name'] }}
                         </h4>
                     </div>
-                    <div class="flex gap-10 text-[9px] font-black uppercase tracking-widest text-amber-400">
+                    <div class="flex gap-10 text-xs font-semibold text-amber-400">
                         <div class="flex items-center gap-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-sm "></div>
                             <span>{{ $data['total_indicators'] }} {{ __('Goal Simulations') }}</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-amber-600 shadow-sm shadow-amber-600/50"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-amber-600 shadow-sm "></div>
                             <span>{{ $data['total_rubricas'] }} {{ __('Finance Simulations') }}</span>
                         </div>
                     </div>
@@ -27,26 +27,26 @@
 
                 <div class="flex items-center gap-12">
                     <div class="text-right hidden sm:block">
-                        <p class="text-[9px] font-black text-amber-400 uppercase tracking-widest leading-none mb-2">
+                        <p class="text-xs font-semibold text-amber-400 leading-none mb-2">
                             {{ __('Simulated Ceiling') }}
                         </p>
-                        <p class="text-xl font-black text-amber-900 leading-none tracking-tight">
+                        <p class="text-xl font-semibold text-amber-900 leading-none tracking-tight">
                             $ {{ number_format($data['program_allocation'], 2) }}
                         </p>
                     </div>
                     <div class="h-10 w-px bg-amber-100 hidden sm:block opacity-50"></div>
                     <div class="text-right border-r-4 border-amber-600 pr-4">
-                        <p class="text-[9px] font-black text-amber-400 uppercase tracking-widest leading-none mb-2">
+                        <p class="text-xs font-semibold text-amber-400 leading-none mb-2">
                             {{ __('Distributed') }}
                         </p>
-                        <p class="text-2xl font-black text-amber-600 leading-none tracking-tighter">
+                        <p class="text-2xl font-semibold text-amber-600 leading-none ">
                             $ {{ number_format($data['total_allocated'], 2) }}
                         </p>
                     </div>
                     <div class="ml-4">
                         <x-ui.button variant="secondary" size="icon"
                             x-bind:class="expanded ? 'rotate-180 bg-amber-50 border-amber-100 text-amber-600' : ''"
-                            class="!rounded-2xl transition-all duration-500 !bg-amber-50/50 !text-amber-600">
+                            class="!rounded-xl transition-all duration-500 !bg-amber-50/50 !text-amber-600">
                             <svg class="w-5 h-5 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                             </svg>
@@ -59,21 +59,21 @@
                 <div class="px-8 pb-10 pt-4 border-t border-amber-50 bg-amber-50/10">
                     <div class="mb-4 flex items-center justify-between px-2">
                         <span
-                            class="text-[10px] font-black text-amber-400 uppercase tracking-[0.2em]">{{ __('Simulated Activities Breakdown') }}</span>
-                        <span class="text-[10px] font-bold text-amber-400 italic">{{ count($data['activities']) }}
+                            class="text-xs font-semibold text-amber-400 ">{{ __('Simulated Activities Breakdown') }}</span>
+                        <span class="text-xs font-bold text-amber-400 italic">{{ count($data['activities']) }}
                             {{ __('simulations found') }}</span>
                     </div>
-                    <div class="rounded-3xl border border-amber-100 bg-white overflow-hidden shadow-sm shadow-amber-500/5">
+                    <div class="rounded-xl border border-amber-100 bg-white overflow-hidden shadow-sm ">
                         <x-ui.table :headers="[__('Activity / Directorate'), __('Goals'), __('Requested'), __('Approved'), __('Status')]">
                             <x-slot name="actions"></x-slot>
                             @foreach($data['activities'] as $activity)
                                 <tr class="hover:bg-amber-50/50 transition-colors group/row">
                                     <td class="px-8 py-6">
                                         <p
-                                            class="font-black text-amber-900 leading-tight group-hover/row:text-amber-700 transition-colors">
+                                            class="font-semibold text-amber-900 leading-tight group-hover/row:text-amber-700 transition-colors">
                                             {{ $activity->description }}
                                         </p>
-                                        <p class="text-[9px] font-bold text-amber-400 uppercase mt-1.5 tracking-widest">
+                                        <p class="text-xs font-bold text-amber-400 mt-1.5 ">
                                             {{ $activity->directorate->name }}
                                         </p>
                                     </td>
@@ -86,7 +86,7 @@
                                             {{ number_format($activity->lineItems->sum('estimated_amount'), 2) }}</span>
                                     </td>
                                     <td class="px-8 py-6">
-                                        <span class="text-sm font-black text-amber-600 tracking-tighter">$
+                                        <span class="text-sm font-semibold text-amber-600 ">$
                                             {{ number_format($activity->lineItems->sum(fn($item) => $item->adjustedBudget->approved_amount ?? 0), 2) }}</span>
                                     </td>
                                     <td class="px-8 py-6">
@@ -133,7 +133,7 @@
             </div>
         </div>
     @empty
-        <div class="text-center py-20 bg-amber-50/30 rounded-3xl border-2 border-dashed border-amber-200">
+        <div class="text-center py-20 bg-amber-50/30 rounded-xl border-2 border-dashed border-amber-200">
             <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

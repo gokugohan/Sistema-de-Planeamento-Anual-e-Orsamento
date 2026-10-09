@@ -178,44 +178,44 @@ new class extends Component {
         </div>
     </div>
 
-    <div class="bg-indigo-50/50 backdrop-blur-sm p-8 rounded-[2.5rem] border border-indigo-100 shadow-sm">
+    <div class="bg-indigo-50/50 backdrop-blur-sm p-8 rounded-xl border border-indigo-100 shadow-sm">
         <div class="flex items-center gap-4 mb-3">
             <div
-                class="w-10 h-10 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-black text-sm">
+                class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
                 FY</div>
             <div>
-                <p class="text-[9px] font-black text-indigo-400 uppercase tracking-widest">
+                <p class="text-xs font-semibold text-indigo-400 ">
                     {{ __('Fiscal Year of Planning') }}
                 </p>
-                <div class="text-3xl font-black text-indigo-700 tracking-tighter leading-none mt-1">
+                <div class="text-3xl font-semibold text-indigo-700 leading-none mt-1">
                     {{ $this->fiscalYear }}
                 </div>
             </div>
         </div>
-        <p class="text-[10px] text-indigo-600 font-bold tracking-wide mt-4">
+        <p class="text-xs text-indigo-600 font-bold tracking-wide mt-4">
             {{ __('This PAA is being planned for the next fiscal cycle.') }}
         </p>
     </div>
 
-    <div class="flex items-center gap-2 p-1.5 bg-slate-100/50 w-fit rounded-2xl border border-slate-200 shadow-sm">
+    <div class="flex items-center gap-2 p-1.5 bg-zinc-100/50 w-fit rounded-xl border border-zinc-200 shadow-sm">
         <x-ui.button wire:click="$set('activeTab', 'form')"
             variant="{{ $activeTab === 'form' ? 'secondary' : 'ghost' }}" size="md"
-            class="!rounded-xl !text-xs !font-black">
+            class="!rounded-xl !text-xs !font-semibold">
             {{ __('Form') }}
         </x-ui.button>
         <x-ui.button wire:click="$set('activeTab', 'program')"
             variant="{{ $activeTab === 'program' ? 'secondary' : 'ghost' }}" size="md"
-            class="!rounded-xl !text-xs !font-black">
+            class="!rounded-xl !text-xs !font-semibold">
             {{ __('Programmatic View') }}
         </x-ui.button>
         <x-ui.button wire:click="$set('activeTab', 'directorate')"
             variant="{{ $activeTab === 'directorate' ? 'secondary' : 'ghost' }}" size="md"
-            class="!rounded-xl !text-xs !font-black">
+            class="!rounded-xl !text-xs !font-semibold">
             {{ __('Directorate View') }}
         </x-ui.button>
         <x-ui.button wire:click="$set('activeTab', 'details')"
             variant="{{ $activeTab === 'details' ? 'secondary' : 'ghost' }}" size="md"
-            class="!rounded-xl !text-xs !font-black">
+            class="!rounded-xl !text-xs !font-semibold">
             {{ __('Tabular Details') }}
         </x-ui.button>
     </div>

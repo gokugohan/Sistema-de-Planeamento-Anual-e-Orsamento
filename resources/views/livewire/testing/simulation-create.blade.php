@@ -61,23 +61,23 @@ new class extends Component {
 
 <div>
     <div class="mb-6 flex items-center gap-3">
-        <h3 class="text-xl font-black text-amber-900 border-b-2 border-amber-500 pb-2">
+        <h3 class="text-xl font-semibold text-amber-900 border-b-2 border-amber-500 pb-2">
             {{ __('New Simulation Activity') }}</h3>
         <span
-            class="bg-amber-100 text-amber-700 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-widest">{{ __('Simulator') }}</span>
+            class="bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-0.5 rounded ">{{ __('Simulator') }}</span>
     </div>
 
     <form wire:submit="save" class="space-y-6">
 
-        <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100">
+        <div class="bg-amber-50 p-6 rounded-xl border border-amber-100">
             <x-input-label for="fiscal_year" :value="__('Target Simulation Year')" class="text-amber-900 font-bold" />
             <select wire:model.live="fiscal_year"
-                class="mt-2 block w-full border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl shadow-sm text-amber-700 font-black text-lg">
+                class="mt-2 block w-full border-amber-200 focus:border-amber-500 focus:ring-amber-500 rounded-xl shadow-sm text-amber-700 font-semibold text-lg">
                 @for($y = date('Y'); $y <= date('Y') + 10; $y++)
                     <option value="{{ $y }}">{{ $y }}</option>
                 @endfor
             </select>
-            <p class="text-[10px] text-amber-500 uppercase font-black tracking-widest mt-2 flex items-center gap-1">
+            <p class="text-xs text-amber-500 font-semibold mt-2 flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
                     class="text-amber-400">
@@ -138,11 +138,11 @@ new class extends Component {
             </div>
         </div>
 
-        <div class="flex items-center justify-end mt-8 pt-6 border-t border-slate-100">
+        <div class="flex items-center justify-end mt-8 pt-6 border-t border-zinc-100">
             <a href="{{ route('testing.activities') }}" wire:navigate
-                class="mr-6 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-colors">{{ __('Discard Simulation') }}</a>
+                class="mr-6 text-xs font-semibold text-zinc-400 hover:text-zinc-600 transition-colors">{{ __('Discard Simulation') }}</a>
             <x-ui.button variant="black"
-                class="!bg-amber-600 hover:!bg-amber-700 !border-amber-600 !rounded-xl shadow-lg shadow-amber-500/20">
+                class="!bg-amber-600 hover:!bg-amber-700 !border-amber-600 !rounded-xl shadow-sm ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
                     class="mr-2">

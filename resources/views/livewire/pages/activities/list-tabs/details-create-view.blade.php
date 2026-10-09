@@ -2,19 +2,19 @@
     <x-ui.table :headers="[__('Ref / Program'), __('Activity Analysis'), __('Priority'), __('Metrics'), __('Budgeting') . ' ($)', __('Legal Status')]">
         <x-slot name="actions"></x-slot>
         @foreach($activities as $activity)
-            <tr class="hover:bg-slate-50/50 transition-all duration-300 group">
+            <tr class="hover:bg-zinc-50/50 transition-all duration-300 group">
                 <td class="px-8 py-6">
-                    <div class="font-black text-slate-900 tracking-tight">{{ $activity->program->oge_code }}</div>
-                    <div class="text-[9px] text-slate-400 mt-1 uppercase font-bold tracking-widest leading-none">
+                    <div class="font-semibold text-zinc-900 tracking-tight">{{ $activity->program->oge_code }}</div>
+                    <div class="text-xs text-zinc-400 mt-1 font-bold leading-none">
                         {{ $activity->program->name }}
                     </div>
                 </td>
                 <td class="px-8 py-6">
-                    <div class="font-bold text-slate-700 leading-tight group-hover:text-indigo-600 transition-colors">
+                    <div class="font-bold text-zinc-700 leading-tight group-hover:text-indigo-600 transition-colors">
                         {{ $activity->description }}
                     </div>
                     @if($activity->directorate)
-                        <div class="text-[9px] text-slate-400 mt-1 uppercase font-medium italic opacity-60">
+                        <div class="text-xs text-zinc-400 mt-1 font-medium italic opacity-60">
                             {{ $activity->directorate->name }}
                         </div>
                     @endif
@@ -44,7 +44,7 @@
                     </div>
                 </td>
                 <td class="px-8 py-6 whitespace-nowrap text-right">
-                    <div class="font-black text-slate-900 tracking-tighter text-sm">
+                    <div class="font-semibold text-zinc-900 text-sm">
                         $ {{ number_format($activity->lineItems->sum('estimated_amount'), 2) }}
                     </div>
                 </td>
@@ -74,16 +74,16 @@
                         </x-ui.badge>
 
                         @if($activity->status === App\Models\Activity::STATUS_APPROVED && $activity->approved_at)
-                            <div class="text-[9px] text-emerald-600 font-bold mt-1 leading-none uppercase tracking-tighter">
+                            <div class="text-xs text-emerald-600 font-bold mt-1 leading-none ">
                                 {{ __('Approved') }}: {{ \Carbon\Carbon::parse($activity->approved_at)->format('d/m/Y') }}
                             </div>
                             @if($activity->approvedBy)
-                                <div class="text-[8px] text-slate-400 font-medium italic mt-0.5">
+                                <div class="text-xs text-zinc-400 font-medium italic mt-0.5">
                                     {{ __('by') }} {{ $activity->approvedBy->name }}
                                 </div>
                             @endif
                         @elseif($activity->status === App\Models\Activity::STATUS_SUBMITTED && $activity->submitted_at)
-                            <div class="text-[9px] text-indigo-600 font-bold mt-1 leading-none uppercase tracking-tighter">
+                            <div class="text-xs text-indigo-600 font-bold mt-1 leading-none ">
                                 {{ __('Submitted') }}: {{ \Carbon\Carbon::parse($activity->submitted_at)->format('d/m/Y') }}
                             </div>
                         @endif

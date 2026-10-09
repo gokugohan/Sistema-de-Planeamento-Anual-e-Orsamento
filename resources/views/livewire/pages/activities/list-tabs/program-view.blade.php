@@ -1,25 +1,25 @@
 <div class="space-y-6">
     @forelse($this->programViewData as $data)
         <div x-data="{ expanded: false }"
-            class="premium-card rounded-[2rem] overflow-hidden group/card shadow-indigo-500/5 hover:shadow-indigo-500/10 hover:border-indigo-100 transition-all duration-500">
+            class="premium-card rounded-xl overflow-hidden group/card hover:hover:border-indigo-100 transition-all duration-500">
             <div @click="expanded = !expanded"
-                class="p-8 cursor-pointer bg-white group-hover/card:bg-slate-50/30 flex justify-between items-center transition-colors duration-500">
+                class="p-8 cursor-pointer bg-white group-hover/card:bg-zinc-50/30 flex justify-between items-center transition-colors duration-500">
                 <div class="space-y-3">
                     <div class="flex items-center gap-4">
                         <span
-                            class="px-3 py-1.5 bg-slate-900 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg shadow-xl shadow-black/10 transition-transform group-hover/card:scale-105 duration-500">{{ $data['code'] }}</span>
+                            class="px-3 py-1.5 bg-zinc-900 text-white text-xs font-semibold rounded-lg shadow-sm shadow-black/10 transition-transform group-hover/card:scale-105 duration-500">{{ $data['code'] }}</span>
                         <h4
-                            class="text-2xlss font-black text-slate-900 group-hover/card:text-indigo-600 transition-colors duration-500">
+                            class="text-2xlss font-semibold text-zinc-900 group-hover/card:text-indigo-600 transition-colors duration-500">
                             {{ $data['name'] }}
                         </h4>
                     </div>
-                    <div class="flex gap-10 text-[9px] font-black uppercase tracking-widest text-slate-400">
+                    <div class="flex gap-10 text-xs font-semibold text-zinc-400">
                         <div class="flex items-center gap-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-sm "></div>
                             <span>{{ $data['total_indicators'] }} {{ __('Goals') }}</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-sm shadow-indigo-500/50"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-sm "></div>
                             <span>{{ $data['total_rubricas'] }} {{ __('Finance Items') }}</span>
                         </div>
                     </div>
@@ -27,26 +27,26 @@
 
                 <div class="flex items-center gap-12">
                     <div class="text-right hidden sm:block">
-                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-none mb-2">
+                        <p class="text-xs font-semibold text-zinc-400 leading-none mb-2">
                             {{ __('Programmatic Ceiling') }}
                         </p>
-                        <p class="text-xlss font-black text-slate-900 leading-none tracking-tight">
+                        <p class="text-xlss font-semibold text-zinc-900 leading-none tracking-tight">
                             $ {{ number_format($data['program_allocation'], 2) }}
                         </p>
                     </div>
-                    <div class="h-3 w-px bg-slate-100 hidden sm:block opacity-50"></div>
+                    <div class="h-3 w-px bg-zinc-100 hidden sm:block opacity-50"></div>
                     <div class="text-right border-r-4 border-indigo-600 pr-4">
-                        <p class="text-[9px] font-black text-indigo-400 uppercase tracking-widest leading-none mb-2">
+                        <p class="text-xs font-semibold text-indigo-400 leading-none mb-2">
                             {{ __('Distributed') }}
                         </p>
-                        <p class="text-2xlsss font-black text-indigo-600 leading-none tracking-tighter">
+                        <p class="text-2xlsss font-semibold text-indigo-600 leading-none ">
                             $ {{ number_format($data['total_allocated'], 2) }}
                         </p>
                     </div>
                     <div class="ml-4">
                         <x-ui.button variant="secondary" size="icon"
                             x-bind:class="expanded ? 'rotate-180 bg-indigo-50 border-indigo-100 text-indigo-600' : ''"
-                            class="!rounded-2xl transition-all duration-500">
+                            class="!rounded-xl transition-all duration-500">
                             <svg class="w-3 h-3 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                             </svg>
@@ -56,24 +56,24 @@
             </div>
 
             <div x-show="expanded" x-collapse>
-                <div class="px-8 pb-10 pt-4 border-t border-slate-50 bg-slate-50/10">
+                <div class="px-8 pb-10 pt-4 border-t border-zinc-50 bg-zinc-50/10">
                     <div class="mb-4 flex items-center justify-between px-2">
                         <span
-                            class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('Consolidated Activities Breakdown') }}</span>
-                        <span class="text-[10px] font-bold text-slate-400 italic">{{ count($data['activities']) }}
+                            class="text-xs font-semibold text-zinc-400 ">{{ __('Consolidated Activities Breakdown') }}</span>
+                        <span class="text-xs font-bold text-zinc-400 italic">{{ count($data['activities']) }}
                             {{ __('entries found') }}</span>
                     </div>
-                    <div class="rounded-3xl border border-slate-100 bg-white overflow-hidden shadow-sm shadow-indigo-500/5">
+                    <div class="rounded-xl border border-zinc-100 bg-white overflow-hidden shadow-sm ">
                         <x-ui.table :headers="[__('Activity / Directorate'), __('Goals'), __('Requested'), __('Approved'), __('Status')]">
                             <x-slot name="actions"></x-slot>
                             @foreach($data['activities'] as $activity)
-                                <tr class="hover:bg-slate-50/50 transition-colors group/row">
+                                <tr class="hover:bg-zinc-50/50 transition-colors group/row">
                                     <td class="px-8 py-6">
                                         <p
-                                            class="font-black text-slate-700 leading-tight group-hover/row:text-indigo-600 transition-colors">
+                                            class="font-semibold text-zinc-700 leading-tight group-hover/row:text-indigo-600 transition-colors">
                                             {{ $activity->description }}
                                         </p>
-                                        <p class="text-[9px] font-bold text-slate-400 uppercase mt-1.5 tracking-widest">
+                                        <p class="text-xs font-bold text-zinc-400 mt-1.5 ">
                                             {{ $activity->directorate->name }}
                                         </p>
                                     </td>
@@ -82,11 +82,11 @@
                                             class="!bg-blue-50/50">{{ $activity->indicators->count() }}</x-ui.badge>
                                     </td>
                                     <td class="px-8 py-6">
-                                        <span class="text-xs font-bold text-slate-500 tracking-tight">$
+                                        <span class="text-xs font-bold text-zinc-500 tracking-tight">$
                                             {{ number_format($activity->lineItems->sum('estimated_amount'), 2) }}</span>
                                     </td>
                                     <td class="px-8 py-6">
-                                        <span class="text-sm font-black text-indigo-600 tracking-tighter">$
+                                        <span class="text-sm font-semibold text-indigo-600 ">$
                                             {{ number_format($activity->lineItems->sum(fn($item) => $item->adjustedBudget->approved_amount ?? 0), 2) }}</span>
                                     </td>
                                     <td class="px-8 py-6">
@@ -131,7 +131,7 @@
                                             @if((auth()->user()->isMinister() || auth()->user()->hasAnyRole(['Admin', 'Planning'])) && $activity->status === 'Aprovada')
                                                 <x-ui.button variant="ghost" size="icon" wire:click="reopen({{ $activity->id }})"
                                                     wire:confirm="{{ __('Are you sure you want to reopen this activity? This will return it to draft status and allow editing.') }}"
-                                                    class="!rounded-xl border border-slate-100 hover:bg-white hover:shadow-sm text-slate-500 hover:text-indigo-600"
+                                                    class="!rounded-xl border border-zinc-100 hover:bg-white hover:shadow-sm text-zinc-500 hover:text-indigo-600"
                                                     title="Reopen Activity">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
@@ -151,7 +151,7 @@
             </div>
         </div>
     @empty
-        <div class="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+        <div class="text-center py-20 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
             <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

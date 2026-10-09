@@ -31,28 +31,28 @@
 
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm px-5 py-4">
-            <p class="text-xs font-medium text-zinc-500 uppercase tracking-wide">{{ __('Total Envelopes') }}</p>
+            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Total Envelopes') }}</p>
             <p class="text-2xl font-semibold text-zinc-900 mt-1.5">{{ $envelopes->count() }}</p>
-            <p class="text-[10px] text-zinc-400 mt-1 uppercase tracking-wide">{{ __('Across all years') }}</p>
+            <p class="text-xs text-zinc-400 mt-1 tracking-wide">{{ __('Across all years') }}</p>
         </div>
 
         <div class="bg-indigo-50 rounded-xl ring-1 ring-indigo-200/60 shadow-sm px-5 py-4">
-            <p class="text-xs font-medium text-indigo-600 uppercase tracking-wide">{{ __('Active Envelope') }}</p>
+            <p class="text-xs font-medium text-indigo-600 tracking-wide">{{ __('Active Envelope') }}</p>
             <p class="text-2xl font-semibold text-indigo-900 mt-1.5">{{ $envelopes->filter(fn($e) => $e->isActiveByDate())->count() }}</p>
-            <p class="text-[10px] text-indigo-400 mt-1 uppercase tracking-wide">{{ __('Currently active') }}</p>
+            <p class="text-xs text-indigo-400 mt-1 tracking-wide">{{ __('Currently active') }}</p>
         </div>
 
         <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm px-5 py-4">
-            <p class="text-xs font-medium text-zinc-500 uppercase tracking-wide">{{ __('Approved') }}</p>
+            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Approved') }}</p>
             <p class="text-2xl font-semibold text-zinc-900 mt-1.5">{{ $envelopes->where('status', 'Approved')->count() }}</p>
-            <p class="text-[10px] text-zinc-400 mt-1 uppercase tracking-wide">{{ __('Ready to activate') }}</p>
+            <p class="text-xs text-zinc-400 mt-1 tracking-wide">{{ __('Ready to activate') }}</p>
         </div>
 
         <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm px-5 py-4">
-            <p class="text-xs font-medium text-zinc-500 uppercase tracking-wide">{{ __('Current Year') }}</p>
+            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Current Year') }}</p>
             @php $currentYearEnv = $envelopes->where('fiscal_year', date('Y'))->first(); @endphp
             <p class="text-lg font-semibold text-zinc-900 mt-1.5">$ {{ number_format($currentYearEnv->total_amount ?? 0, 0) }}</p>
-            <p class="text-[10px] text-zinc-400 mt-1 uppercase tracking-wide">{{ __('Active envelope') }}</p>
+            <p class="text-xs text-zinc-400 mt-1 tracking-wide">{{ __('Active envelope') }}</p>
         </div>
     </div>
 
@@ -71,10 +71,10 @@
                     </svg>
                 </div>
                 <div>
-                    <h4 class="text-xs font-semibold uppercase tracking-wide text-zinc-900">
+                    <h4 class="text-xs font-semibold tracking-wide text-zinc-900">
                         {{ __('All Fiscal Envelopes') }}
                     </h4>
-                    <p class="text-[10px] text-zinc-400 mt-0.5 font-medium uppercase tracking-wide">
+                    <p class="text-xs text-zinc-400 mt-0.5 font-medium tracking-wide">
                         {{ __('View and manage fiscal envelopes across different years') }}
                     </p>
                 </div>
@@ -83,7 +83,7 @@
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs border-collapse">
                 <thead
-                    class="bg-zinc-50/50 text-zinc-400 font-semibold uppercase tracking-wide border-b border-zinc-100">
+                    class="bg-zinc-50/50 text-zinc-400 font-semibold tracking-wide border-b border-zinc-100">
                     <tr>
                         <th class="px-8 py-5">{{ __('Fiscal Year') }}</th>
                         <th class="px-8 py-5">{{ __('Total Envelope') }}</th>
@@ -116,11 +116,11 @@
                             <td class="px-8 py-5">
                                 <div class="font-bold text-zinc-700">$ {{ number_format($envelope->total_amount, 2) }}
                                 </div>
-                                <div class="text-[10px] text-zinc-400 uppercase font-medium tracking-wide">{{ __('100.0% allocated') }}</div>
+                                <div class="text-xs text-zinc-400 font-medium tracking-wide">{{ __('100.0% allocated') }}</div>
                             </td>
                             <td class="px-8 py-5 text-zinc-600">
                                 <div class="font-bold">$ 0.00</div>
-                                <div class="text-[10px] text-zinc-400 uppercase font-medium tracking-wide">{{ __('0.0% of allocated') }}</div>
+                                <div class="text-xs text-zinc-400 font-medium tracking-wide">{{ __('0.0% of allocated') }}</div>
                             </td>
                             <td class="px-8 py-5">
                                 <div class="flex items-center gap-2">
@@ -142,21 +142,21 @@
                                 <div class="flex flex-wrap gap-2">
                                     @if($envelope->isActiveByDate())
                                         <span
-                                            class="inline-flex items-center rounded-full bg-emerald-600 px-2.5 py-1 text-[9px] font-medium text-white leading-tight">{{ __('Active Now') }}</span>
+                                            class="inline-flex items-center rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-medium text-white leading-tight">{{ __('Active Now') }}</span>
                                     @endif
 
                                     @if($envelope->status === 'Approved')
                                         <span
-                                            class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[9px] font-medium text-blue-700 leading-tight ring-1 ring-blue-200">{{ __('Approved') }}</span>
+                                            class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700 leading-tight ring-1 ring-blue-200">{{ __('Approved') }}</span>
                                     @elseif($envelope->status === 'Pending Approval')
                                         <span
-                                            class="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-[9px] font-medium text-amber-700 leading-tight ring-1 ring-amber-200">{{ __('Pending') }}</span>
+                                            class="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-700 leading-tight ring-1 ring-amber-200">{{ __('Pending') }}</span>
                                     @elseif($envelope->status === 'Closed')
                                         <span
-                                            class="inline-flex items-center rounded-full bg-rose-50 px-2.5 py-1 text-[9px] font-medium text-rose-700 leading-tight ring-1 ring-rose-200">{{ __('Closed') }}</span>
+                                            class="inline-flex items-center rounded-full bg-rose-50 px-2.5 py-1 text-xs font-medium text-rose-700 leading-tight ring-1 ring-rose-200">{{ __('Closed') }}</span>
                                     @else
                                         <span
-                                            class="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-1 text-[9px] font-medium text-zinc-500 leading-tight ring-1 ring-zinc-200">{{ __('Draft') }}</span>
+                                            class="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-500 leading-tight ring-1 ring-zinc-200">{{ __('Draft') }}</span>
                                     @endif
                                 </div>
                             </td>
@@ -169,7 +169,7 @@
                                         <circle cx="12" cy="12" r="3" />
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                                     </svg>
-                                    <span class="font-medium uppercase text-[10px] tracking-wide">{{ __('View') }}</span>
+                                    <span class="font-medium text-xs tracking-wide">{{ __('View') }}</span>
                                 </button>
                                 @if($envelope->status === App\Models\FiscalEnvelope::STATUS_DRAFT)
                                     <button wire:click="openModal({{ $envelope->fiscal_year }})"
@@ -180,7 +180,7 @@
                                             <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
                                             <path d="m15 5 4 4" />
                                         </svg>
-                                        <span class="font-medium uppercase text-[10px] tracking-wide">{{ __('Edit') }}</span>
+                                        <span class="font-medium text-xs tracking-wide">{{ __('Edit') }}</span>
                                     </button>
                                 @endif
                             </td>

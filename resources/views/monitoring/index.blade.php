@@ -4,7 +4,7 @@
             <div>
                 <h1 class="page-title">{{ __('Physical Execution Monitoring') }}
                 </h1>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-2">
+                <p class="text-xs font-bold text-zinc-400 mt-2">
                     {{ __('Performance & Indicator Tracking') }}</p>
             </div>
         </div> -->
@@ -14,7 +14,7 @@
         <x-ui.card padding="p-0">
             <x-slot name="header">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">
+                    <h3 class="text-sm font-semibold text-zinc-900 ">
                         {{ __('Quarterly Progress Entry') }}
                     </h3>
                 </div>

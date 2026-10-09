@@ -115,11 +115,11 @@ new class extends Component {
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ __('Item') }}</th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 ">{{ __('Item') }}</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 ">
                         {{ __('Partial Value') }}
                     </th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">{{ __('Actions') }}
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 ">{{ __('Actions') }}
                     </th>
                 </tr>
             </thead>
@@ -149,7 +149,7 @@ new class extends Component {
             </tbody>
             <tfoot class="bg-indigo-50">
                 <tr>
-                    <td class="px-6 py-4 text-sm font-bold text-indigo-900 uppercase">{{ __('Total Estimated') }}</td>
+                    <td class="px-6 py-4 text-sm font-bold text-indigo-900 ">{{ __('Total Estimated') }}</td>
                     <td class="px-6 py-4 text-sm text-right font-extrabold text-indigo-900 font-mono">
                         $ {{ number_format($this->total, 2) }}
                     </td>

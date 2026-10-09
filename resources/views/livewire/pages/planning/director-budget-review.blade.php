@@ -1,240 +1,193 @@
 <?php
 
-use Livewire\Volt\Component;
 use App\Models\Activity;
-use App\Models\LineItem;
 use App\Models\AdjustedBudget;
+use App\Models\Directorate;
 use App\Models\FiscalEnvelope;
+use App\Models\LineItem;
+use App\Models\User;
+use App\Notifications\SystemNotification;
+use Livewire\Volt\Component;
 
+/**
+ * A unit reviews what it was allocated against what its approved plan asked for, then accepts
+ * it or asks for an adjustment. Administrators and ministers can look at any unit.
+ */
 new class extends Component {
-    public $activeYear;
-    public $directorate;
-    public $items = [];
-    public $stats = [];
+    public $unitId = '';
 
-    public function mount()
+    public function mount(): void
     {
-        $currentActiveYear = FiscalEnvelope::getEffectiveYear();
-        $this->activeYear = (int)$currentActiveYear + 1;
-        $this->directorate = auth()->user()->directorate;
-        
-        $this->loadData();
+        $this->unitId = (string) (auth()->user()->directorate_id ?? '');
     }
 
-    public function updatedActiveYear()
+    private function year(): int
     {
-        $this->loadData();
+        return FiscalEnvelope::getEffectiveYear();
     }
 
-    public function loadData()
+    private function canAct(): bool
     {
-        if (!$this->directorate) return;
+        $user = auth()->user();
 
-        $this->items = AdjustedBudget::whereHas('lineItem.activity', function($q) {
-            $q->where('directorate_id', $this->directorate->id)
-              ->where('fiscal_year', $this->activeYear);
-        })->with(['lineItem.activity.program', 'lineItem.economicClassification'])->get();
-
-        $this->calculateStats();
+        return $user->hasRole('Admin') || ($user->directorate_id && (int) $user->directorate_id === (int) $this->unitId);
     }
 
-    public function calculateStats()
+    private function unit(): ?Directorate
     {
-        $requested = Activity::where('directorate_id', $this->directorate->id ?? 0)
-            ->where('fiscal_year', $this->activeYear)
-            ->where('status', Activity::STATUS_APPROVED)
-            ->get()->flatMap->lineItems->sum('estimated_amount');
+        return $this->unitId === '' ? null : Directorate::find((int) $this->unitId);
+    }
 
-        $items = collect($this->items);
-        $allocated = $items->sum('approved_amount');
-        
-        $envelope = FiscalEnvelope::where('fiscal_year', $this->activeYear)->first();
+    private function items()
+    {
+        $unit = $this->unit();
+        if (! $unit) {
+            return collect();
+        }
 
-        $this->stats = [
+        return AdjustedBudget::whereHas('lineItem.activity', fn ($q) => $q
+            ->whereIn('directorate_id', $unit->getSelfAndDescendantIds())
+            ->where('fiscal_year', $this->year()))
+            ->with(['lineItem.activity.program', 'lineItem.economicClassification'])
+            ->get();
+    }
+
+    private function respond(string $status, string $title, string $message, string $toast): void
+    {
+        abort_unless($this->canAct(), 403);
+        $unit = $this->unit();
+        abort_unless($unit, 422);
+        abort_if(FiscalEnvelope::where('fiscal_year', $this->year())->value('status') === FiscalEnvelope::STATUS_CLOSED, 422);
+
+        $this->items()->each(fn ($item) => $item->update(['status' => $status]));
+
+        User::role(['Admin', 'Planning'])->get()->each(fn ($u) => $u->notify(new SystemNotification(
+            $title,
+            __($message, ['dir' => $unit->name, 'year' => $this->year()]),
+            route('planning.fiscal', absolute: false)
+        )));
+
+        $this->dispatch('toast', message: $toast, type: 'success');
+    }
+
+    public function confirmAllocation(): void
+    {
+        $this->respond('Approved', __('Allocation Accepted'),
+            'The Directorate of :dir has accepted their allocation for :year.', __('Budget allocation confirmed by Directorate.'));
+    }
+
+    public function requestAdjustment(): void
+    {
+        $this->respond('Partial', __('Adjustment Requested'),
+            'The Directorate of :dir is requesting a budget adjustment for :year.', __('Adjustment request sent to Minister.'));
+    }
+
+    public function with(): array
+    {
+        $year = $this->year();
+        $unit = $this->unit();
+        $items = $this->items();
+
+        $requested = $unit
+            ? (float) LineItem::whereIn('activity_id', Activity::whereIn('directorate_id', $unit->getSelfAndDescendantIds())
+                ->where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->select('id'))->sum('estimated_amount')
+            : 0.0;
+        $allocated = (float) $items->sum('approved_amount');
+
+        $envelope = FiscalEnvelope::where('fiscal_year', $year)->first();
+
+        return [
+            'year' => $year,
+            'unit' => $unit,
+            'items' => $items,
             'requested' => $requested,
             'allocated' => $allocated,
             'variance' => $allocated - $requested,
-            'status' => $items->first()->status ?? 'N/A',
-            'envelope_status' => $envelope->status ?? 'Draft'
+            'status' => $items->pluck('status')->unique()->count() === 1 ? $items->first()->status : ($items->isEmpty() ? null : 'Mixed'),
+            'closed' => $envelope && $envelope->status === FiscalEnvelope::STATUS_CLOSED,
+            'canAct' => $this->canAct(),
+            'units' => Directorate::whereNull('parent_id')->orderBy('code')->get(['id', 'code', 'name']),
+            'pickUnit' => auth()->user()->hasAnyRole(['Admin', 'Minister']) || ! auth()->user()->directorate_id,
         ];
-    }
-
-    public function confirmAllocation()
-    {
-        foreach ($this->items as $item) {
-            if ($item instanceof AdjustedBudget) {
-                $item->update(['status' => 'Aprovado']);
-            } else {
-                AdjustedBudget::find($item['id'])->update(['status' => 'Aprovado']);
-            }
-        }
-
-        // Notify Planning/Minister
-        $admins = \App\Models\User::role(['Admin', 'Planning'])->get();
-        foreach ($admins as $admin) {
-            $admin->notify(new \App\Notifications\SystemNotification(
-                __('Allocation Accepted'),
-                __('The Directorate of :dir has accepted their allocation for :year.', ['dir' => $this->directorate->name, 'year' => $this->activeYear]),
-                route('planning.fiscal', absolute: false)
-            ));
-        }
-
-        $this->loadData();
-        $this->dispatch('toast', message: __('Budget allocation confirmed by Directorate.'), type: 'success');
-    }
-
-    public function requestAdjustment()
-    {
-        foreach ($this->items as $item) {
-            if ($item instanceof AdjustedBudget) {
-                $item->update(['status' => 'Parcial']);
-            } else {
-                AdjustedBudget::find($item['id'])->update(['status' => 'Parcial']);
-            }
-        }
-
-        // Notify Planning/Minister
-        $admins = \App\Models\User::role(['Admin', 'Planning'])->get();
-        foreach ($admins as $admin) {
-            $admin->notify(new \App\Notifications\SystemNotification(
-                __('Adjustment Requested'),
-                __('The Directorate of :dir is requesting a budget adjustment for :year.', ['dir' => $this->directorate->name, 'year' => $this->activeYear]),
-                route('planning.fiscal', absolute: false)
-            ));
-        }
-
-        $this->loadData();
-        $this->dispatch('toast', message: __('Adjustment request sent to Minister.'), type: 'success');
     }
 }; ?>
 
 <div class="space-y-6">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
-            <h1 class="page-title">{{ __('Directorate Budget Review') }}</h1>
-            <div class="flex items-center gap-4 mt-3">
-                <p class="page-subtitle">
-                    {{ __('Review allocation for') }} <span class="text-indigo-600">{{ $directorate->name ?? 'N/A' }}</span>
-                </p>
-                <select wire:model.live="activeYear" class="bg-slate-100 border-none rounded-lg text-[10px] font-black uppercase tracking-widest py-1 px-3 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer">
-                    @php 
-                        $baseYear = (int)App\Models\SystemSetting::get('planning_active_year', date('Y'));
-                    @endphp
-                    <option value="{{ $baseYear }}">{{ $baseYear }}</option>
-                    <option value="{{ $baseYear + 1 }}">{{ $baseYear + 1 }}</option>
-                </select>
-            </div>
+            <h1 class="page-title">{{ __('Allocation Review') }}</h1>
+            <p class="page-subtitle">{{ __('Compare what was allocated with what the approved plan asked for in :year.', ['year' => $year]) }}</p>
         </div>
 
-        <div class="flex gap-3">
-            @if(count($this->items) > 0 && $this->stats['envelope_status'] !== App\Models\FiscalEnvelope::STATUS_CLOSED)
-                <button wire:click="requestAdjustment" 
-                    class="px-6 py-3 border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-slate-50 transition-all shadow-sm">
-                    {{ __('Request Adjustment') }}
-                </button>
-                <button wire:click="confirmAllocation" 
-                    class="px-6 py-3 bg-emerald-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/20">
-                    {{ __('Confirm & Accept') }}
-                </button>
+        <div class="flex flex-wrap items-end gap-3">
+            @if($pickUnit)
+                <div>
+                    <label for="unitId" class="block text-xs font-medium text-zinc-500 mb-1">{{ __('Unit') }}</label>
+                    <select id="unitId" wire:model.live="unitId" class="flux-input !w-72 !py-2">
+                        <option value="">{{ __('Select a unit') }}</option>
+                        @foreach($units as $d)
+                            <option value="{{ $d->id }}">{{ $d->code }} — {{ $d->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+            @if($canAct && $items->isNotEmpty() && ! $closed)
+                <x-ui.button variant="secondary" wire:click="requestAdjustment"
+                    wire:confirm="{{ __('Ask for an adjustment of this allocation?') }}">{{ __('Request Adjustment') }}</x-ui.button>
+                <x-ui.button variant="primary" wire:click="confirmAllocation"
+                    wire:confirm="{{ __('Accept this allocation?') }}">{{ __('Confirm & Accept') }}</x-ui.button>
             @endif
         </div>
     </div>
 
-    @if(!$directorate)
-        <div class="p-8 bg-rose-50 border border-rose-100 rounded-[2rem] text-rose-700">
-            <h3 class="text-xl font-black tracking-tight">{{ __('Directorate Not Assigned') }}</h3>
-            <p class="text-sm font-bold opacity-80 mt-1">
-                {{ __('Your user account is not associated with a Directorate. Please contact the administrator.') }}
+    @if(! $unit)
+        <x-ui.card>
+            <p class="text-sm font-medium text-zinc-900">{{ __('No unit selected') }}</p>
+            <p class="mt-1 text-sm text-zinc-500">
+                {{ $pickUnit ? __('Choose a unit above to review its allocation.') : __('Your user account is not associated with a unit. Please contact the administrator.') }}
             </p>
-        </div>
+        </x-ui.card>
     @else
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
-                <div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('PAA Requested') }}</div>
-                    <div class="text-2xl font-black text-slate-900 leading-none">$ {{ number_format($stats['requested'], 0) }}</div>
-                </div>
-                <div class="h-10 w-1 pt-1 bg-slate-100 rounded-full"></div>
-                <div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('OGE Allocated') }}</div>
-                    <div class="text-2xl font-black text-indigo-600 leading-none">$ {{ number_format($stats['allocated'], 0) }}</div>
-                </div>
-            </div>
-
-            <div class="p-6 rounded-3xl shadow-sm border {{ ($stats['variance'] < 0) ? 'bg-rose-50 border-rose-100' : 'bg-emerald-50 border-emerald-100' }} flex items-center justify-between">
-                <div>
-                    <div class="text-[10px] font-black uppercase tracking-widest mb-1 {{ ($stats['variance'] < 0) ? 'text-rose-400' : 'text-emerald-400' }}">
-                        {{ ($stats['variance'] < 0) ? __('Budget Cut') : __('Additional Funding') }}
-                    </div>
-                    <div class="text-2xl font-black leading-none {{ ($stats['variance'] < 0) ? 'text-rose-700' : 'text-emerald-700' }}">
-                        $ {{ number_format(abs($stats['variance']), 0) }}
-                    </div>
-                </div>
-                <div class="text-right">
-                    <div class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">{{ __('Status') }}</div>
-                    <span class="px-3 py-1 bg-white rounded-lg text-[10px] font-black uppercase tracking-tighter border shadow-sm">
-                        {{ $stats['status'] }}
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        @if (session()->has('message'))
-            <div class="bg-emerald-50 border border-emerald-100 text-emerald-700 px-4 py-3 rounded-xl relative animate-in fade-in" role="alert">
-                <span class="block sm:inline font-bold">{{ session('message') }}</span>
-            </div>
+        @if($closed)
+            <div class="alert alert-success">{{ __('The planning cycle for :year is closed; allocations can no longer be changed.', ['year' => $year]) }}</div>
         @endif
 
-        <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-slate-50/50">
-                            <th class="px-6 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ __('Activity') }}</th>
-                            <th class="px-6 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest">{{ __('Classification') }}</th>
-                            <th class="px-6 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest text-right">{{ __('Requested') }}</th>
-                            <th class="px-6 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest text-right">{{ __('Allocated') }}</th>
-                            <th class="px-6 py-4 text-[9px] font-black text-slate-400 uppercase tracking-widest text-center">{{ __('Impact') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-50">
-                        @forelse($items as $item)
-                            <tr class="hover:bg-slate-50/50 transition-colors">
-                                <td class="px-6 py-4">
-                                    <div class="text-[10px] font-black text-indigo-500 uppercase mb-1">{{ $item->lineItem->activity->program->oge_code ?? '—' }}</div>
-                                    <div class="text-xs font-bold text-slate-900 leading-tight max-w-sm">{{ $item->lineItem->activity->description }}</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-xs font-bold text-slate-600">{{ $item->lineItem->economicClassification->name }}</div>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <div class="text-xs font-bold text-slate-500">$ {{ number_format($item->lineItem->estimated_amount, 0) }}</div>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <div class="text-xs font-black text-slate-900">$ {{ number_format($item->approved_amount, 0) }}</div>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    @php
-                                        $diff = $item->approved_amount - $item->lineItem->estimated_amount;
-                                        $percent = $item->lineItem->estimated_amount > 0 ? ($item->approved_amount / $item->lineItem->estimated_amount) * 100 : 0;
-                                    @endphp
-                                    <div class="flex flex-col items-center">
-                                        <span class="text-[10px] font-black {{ $diff < 0 ? 'text-rose-600' : ($diff > 0 ? 'text-emerald-600' : 'text-slate-400') }}">
-                                            {{ $diff < 0 ? '-' : ($diff > 0 ? '+' : '') }}{{ number_format($percent, 0) }}%
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="p-12 text-center text-slate-400 italic text-sm">
-                                    {{ __('No budget items found for this period. Syncing might be pending.') }}
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($requested)" :sub="$unit->code" tone="indigo" />
+            <x-ui.kpi :label="__('Allocated')" :value="'$ ' . number_format($allocated)" :sub="__('From the fiscal envelope')" tone="emerald" />
+            <x-ui.kpi :label="$variance < 0 ? __('Shortfall') : __('Additional funding')" :value="'$ ' . number_format(abs($variance))" :sub="$variance < 0 ? __('Allocated below the plan') : __('Allocated at or above the plan')" :tone="$variance < 0 ? 'rose' : 'zinc'" />
+            <x-ui.kpi :label="__('Response')" :value="$status ? __($status) : '—'" :sub="__('Unit decision')" tone="amber" />
         </div>
+
+        <x-ui.card padding="p-0">
+            <x-ui.table :headers="[__('Activity'), __('Classification'), __('Requested'), __('Allocated'), __('Change')]">
+                @forelse($items as $item)
+                    @php
+                        $asked = (float) $item->lineItem->estimated_amount;
+                        $diff = (float) $item->approved_amount - $asked;
+                        $pct = $asked > 0 ? ($item->approved_amount / $asked) * 100 : 0;
+                    @endphp
+                    <tr wire:key="item-{{ $item->id }}">
+                        <td class="px-6 py-4 min-w-[22rem]">
+                            <p class="text-sm font-medium text-zinc-900">{{ $item->lineItem->activity->description }}</p>
+                            <p class="mt-1 text-xs text-zinc-500">{{ $item->lineItem->activity->program->oge_code ?? '—' }}</p>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-zinc-600">{{ $item->lineItem->economicClassification->name ?? '—' }}</td>
+                        <td class="px-6 py-4 text-sm tabular-nums text-right text-zinc-600">$ {{ number_format($asked) }}</td>
+                        <td class="px-6 py-4 text-sm tabular-nums text-right font-semibold text-zinc-900">$ {{ number_format($item->approved_amount) }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <x-ui.badge :variant="$diff < 0 ? 'red' : ($diff > 0 ? 'emerald' : 'gray')">{{ $diff > 0 ? '+' : '' }}{{ number_format($pct - 100, 0) }}%</x-ui.badge>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="px-6 py-14 text-center">
+                            <p class="text-sm font-medium text-zinc-900">{{ __('Nothing allocated yet') }}</p>
+                            <p class="mt-1 text-sm text-zinc-500">{{ __('Allocations appear here once the fiscal envelope has been distributed to this unit.') }}</p>
+                        </td>
+                    </tr>
+                @endforelse
+            </x-ui.table>
+        </x-ui.card>
     @endif
 </div>

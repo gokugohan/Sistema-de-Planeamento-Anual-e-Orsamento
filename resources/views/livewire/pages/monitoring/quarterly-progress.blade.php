@@ -163,26 +163,26 @@ new class extends Component {
 
 <div class="space-y-6">
     @if(!$activeYear)
-        <div class="bg-amber-50 border-2 border-dashed border-amber-200 rounded-[2rem] p-12 text-center">
+        <div class="bg-amber-50 border-2 border-dashed border-amber-200 rounded-xl p-12 text-center">
             <div class="h-16 w-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
             </div>
-            <h3 class="text-md font-black text-slate-900 uppercase tracking-tight mb-2">
+            <h3 class="text-md font-semibold text-zinc-900 tracking-tight mb-2">
                 {{ __('Data Entry Disabled') }}
             </h3>
-            <p class="text-slate-500 font-medium text-sm">
+            <p class="text-zinc-500 font-medium text-sm">
                 {{ __('Progress reporting is only permitted for periods with an active budget authority.') }}
             </p>
         </div>
     @else
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 pb-6 border-b border-slate-50">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-zinc-100">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 pb-6 border-b border-zinc-50">
                 <div>
-                    <x-input-label for="quarter" :value="__('Select Trimestre')" class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2" />
+                    <x-input-label for="quarter" :value="__('Select Trimestre')" class="text-xs font-semibold text-zinc-400 mb-2" />
                     <select id="quarter" wire:model.live="quarter"
-                        class="block w-full border-none bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-slate-700 transition-all">
+                        class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
                         <option value="1">{{ __('1st Quarter (Jan-Mar)') }}</option>
                         <option value="2">{{ __('2nd Quarter (Apr-Jun)') }}</option>
                         <option value="3">{{ __('3rd Quarter (Jul-Sep)') }}</option>
@@ -192,9 +192,9 @@ new class extends Component {
 
                 @if(auth()->user()->hasAnyRole(['Admin', 'Planning', 'Budget']))
                     <div>
-                        <x-input-label for="directorate" :value="__('Filter by Directorate')" class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2" />
+                        <x-input-label for="directorate" :value="__('Filter by Directorate')" class="text-xs font-semibold text-zinc-400 mb-2" />
                         <select id="directorate" wire:model.live="selectedDirectorate"
-                            class="block w-full border-none bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-slate-700 transition-all">
+                            class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
                             <option value="">{{ __('All Directorates') }}</option>
                             @foreach(\App\Models\Directorate::orderBy('name')->get() as $dir)
                                 <option value="{{ $dir->id }}">{{ $dir->name }}</option>
@@ -204,9 +204,9 @@ new class extends Component {
                 @endif
 
                 <div>
-                    <x-input-label for="category" :value="__('Filter by Category')" class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2" />
+                    <x-input-label for="category" :value="__('Filter by Category')" class="text-xs font-semibold text-zinc-400 mb-2" />
                     <select id="category" wire:model.live="selectedCategory"
-                        class="block w-full border-none bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-slate-700 transition-all">
+                        class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
                         <option value="">{{ __('All Categories') }}</option>
                         @foreach(\App\Models\EconomicClassification::orderBy('name')->get() as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -216,9 +216,9 @@ new class extends Component {
             </div>
 
             <div>
-                <x-input-label for="activity" :value="__('Select Activity for Entry')" class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2" />
+                <x-input-label for="activity" :value="__('Select Activity for Entry')" class="text-xs font-semibold text-zinc-400 mb-2" />
                 <select id="activity" wire:model.live="selectedActivityId"
-                    class="block w-full border-none bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-slate-700 transition-all">
+                    class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
                     <option value="">-- {{ __('Choose an activity to update progress') }} --</option>
                     @foreach($this->activities as $activity)
                         <option value="{{ $activity->id }}">[{{ $activity->directorate->name ?? '—' }}] {{ str($activity->description)->limit(120) }}</option>
@@ -242,7 +242,7 @@ new class extends Component {
         @if($selectedActivityId)
             <div class="bg-white shadow rounded-lg overflow-hidden border">
                 <div class="px-6 py-4 border-b bg-gray-50 flex justify-between items-center">
-                    <h3 class="text-sm font-black uppercase tracking-widest text-gray-800">{{ __('Activity Indicators') }}</h3>
+                    <h3 class="text-sm font-semibold text-gray-800">{{ __('Activity Indicators') }}</h3>
 
                     @php
                         $anyDrafts = collect($indicators)->some(function ($i) {
@@ -252,7 +252,7 @@ new class extends Component {
                     @endphp
 
                     @if($anyDrafts)
-                        <button wire:click="submitProgress" class="inline-flex items-center gap-2 px-4 py-2 bg-black hover:bg-gray-800 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-black/10">
+                        <button wire:click="submitProgress" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-xl transition-all shadow-sm shadow-black/10">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                             {{ __('Submit for Verification') }}
                         </button>
@@ -261,12 +261,12 @@ new class extends Component {
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="px-6 py-4 text-left text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('Indicator') }}</th>
-                            <th class="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('Unit') }}</th>
-                            <th class="px-6 py-4 text-right text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('Annual Target (Adj.)') }}</th>
-                            <th class="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('Achieved Value') }} (Q{{ $quarter }})</th>
-                            <th class="px-6 py-4 text-center text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('Status') }}</th>
-                            <th class="px-6 py-4 text-right text-[10px] font-black uppercase tracking-widest text-gray-500">{{ __('Actions') }}</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500">{{ __('Indicator') }}</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500">{{ __('Unit') }}</th>
+                            <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500">{{ __('Annual Target (Adj.)') }}</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500">{{ __('Achieved Value') }} (Q{{ $quarter }})</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500">{{ __('Status') }}</th>
+                            <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -280,21 +280,21 @@ new class extends Component {
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-6 py-4">
                                     <div class="text-sm font-bold text-gray-900 leading-tight">{{ $indicator->name }}</div>
-                                    <div class="text-[10px] font-medium text-gray-400 uppercase mt-0.5 tracking-tighter">{{ $indicator->type }}</div>
+                                    <div class="text-xs font-medium text-gray-400 mt-0.5 ">{{ $indicator->type }}</div>
                                 </td>
                                 <td class="px-6 py-4 text-center text-xs font-bold text-gray-500">{{ $indicator->unit }}</td>
-                                <td class="px-6 py-4 text-right text-sm font-black text-gray-900 italic">
+                                <td class="px-6 py-4 text-right text-sm font-semibold text-gray-900 italic">
                                     {{ number_format($indicator->annual_target, 2) }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center">
                                         <input type="number" step="0.01" value="{{ $currentValue }}"
                                             {{ $canEdit ? '' : 'disabled' }}
                                             x-on:blur="$wire.saveProgress({{ $indicator->id }}, $event.target.value)"
-                                            class="w-32 !rounded-xl !bg-gray-50/50 !border-gray-100 text-sm font-black text-center focus:!ring-black focus:!bg-white disabled:opacity-50 transition-all">
+                                            class="w-32 !rounded-xl !bg-gray-50/50 !border-gray-100 text-sm font-semibold text-center focus:!ring-black focus:!bg-white disabled:opacity-50 transition-all">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold border
                                         @if($status === 'Verified') bg-green-50 text-green-700 border-green-100
                                         @elseif($status === 'Submitted') bg-indigo-50 text-indigo-700 border-indigo-100 animate-pulse
                                         @elseif($status === 'Rejected') bg-red-50 text-red-700 border-red-100

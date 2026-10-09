@@ -1,7 +1,7 @@
 <div class="space-y-4">
     <!-- Filters & Search -->
     <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+        class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
         <div class="relative w-full md:w-96 group">
             <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -16,30 +16,30 @@
         </div>
 
         <div class="flex items-center gap-2">
-            <span class="text-[10px] font-black uppercase text-gray-400 tracking-tighter">{{ $users->total() }}
+            <span class="text-xs font-semibold text-gray-400 ">{{ $users->total() }}
                 {{ __('Registered Users') }}</span>
         </div>
     </div>
 
     <!-- Users Table -->
-    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+    <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
         <table class="w-full text-left border-collapse">
             <thead>
                 <tr class="bg-gray-50/50">
                     <th
-                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
                         {{ __('Name & Identity') }}
                     </th>
                     <th
-                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
                         {{ __('Security Role') }}
                     </th>
                     <th
-                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
                         {{ __('Directorate-General') }}
                     </th>
                     <th
-                        class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-gray-400 border-b border-gray-50">
+                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
                         {{ __('Status') }}
                     </th>
                     <th class="px-8 py-5 text-right border-b border-gray-50"></th>
@@ -51,11 +51,11 @@
                         <td class="px-8 py-6">
                             <div class="flex items-center gap-4">
                                 <div
-                                    class="w-10 h-10 rounded-2xl bg-black text-white flex items-center justify-center font-black text-xs shadow-lg shadow-black/10">
+                                    class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-semibold text-xs shadow-sm shadow-black/10">
                                     {{ substr($user->name, 0, 2) }}
                                 </div>
                                 <div>
-                                    <h4 class="text-sm font-black text-gray-900 leading-tight">{{ $user->name }}</h4>
+                                    <h4 class="text-sm font-semibold text-gray-900 leading-tight">{{ $user->name }}</h4>
                                     <p class="text-xs text-gray-400 mt-0.5">{{ $user->email }}</p>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                         <td class="px-8 py-6">
                             @php $role = $user->roles->first(); @endphp
                             <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 transparent text-[10px] font-black uppercase tracking-widest border border-gray-200 rounded-lg text-gray-600">
+                                class="inline-flex items-center gap-1.5 px-3 py-1 transparent text-xs font-semibold border border-gray-200 rounded-lg text-gray-600">
                                 <span class="w-1 h-1 bg-indigo-500 rounded-full"></span>
                                 {{ $role?->display_name ? __($role->display_name) : ($role?->name ? __($role->name) : __('No Role')) }}
                             </span>
@@ -74,7 +74,7 @@
                         </td>
                         <td class="px-8 py-6">
                             <span
-                                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-[10px] font-black uppercase tracking-widest rounded-lg border border-green-100">
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-lg border border-green-100">
                                 <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                                 {{ __('Active') }}
                             </span>

@@ -103,8 +103,8 @@ new class extends Component {
             <x-ui.card padding="p-10">
                 <x-slot name="header">
                     <div>
-                        <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">{{ __('App Branding & Content') }}</h3>
-                        <p class="text-[10px] text-slate-400 font-medium mt-1">{{ __('Configure text shown on the Login page and Sidebar across Tetum, Portuguese and English') }}</p>
+                        <h3 class="text-sm font-semibold text-zinc-900 ">{{ __('App Branding & Content') }}</h3>
+                        <p class="text-xs text-zinc-400 font-medium mt-1">{{ __('Configure text shown on the Login page and Sidebar across Tetum, Portuguese and English') }}</p>
                     </div>
                 </x-slot>
 
@@ -113,8 +113,8 @@ new class extends Component {
                     <div class="flex gap-2 mb-8">
                         @foreach(['tet' => 'Tetum', 'pt' => 'Português', 'en' => 'English'] as $code => $label)
                             <button type="button" @click="tab = '{{ $code }}'"
-                                :class="tab === '{{ $code }}' ? 'bg-indigo-600 text-white shadow-sm ring-1 ring-indigo-600' : 'bg-slate-100 text-slate-500 hover:bg-slate-200 ring-1 ring-slate-200'"
-                                class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all">
+                                :class="tab === '{{ $code }}' ? 'bg-indigo-600 text-white shadow-sm ring-1 ring-indigo-600' : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200 ring-1 ring-zinc-200'"
+                                class="px-5 py-2 rounded-xl text-xs font-bold transition-all">
                                 {{ $label }}
                             </button>
                         @endforeach
@@ -126,20 +126,20 @@ new class extends Component {
 
                             <!-- Organisation -->
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Organisation') }}
+                                <p class="text-xs font-semibold text-zinc-400 mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Organisation') }}
                                 </p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Institution Full Name')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-input-label :value="__('Institution Full Name')" class="text-xs font-semibold text-zinc-400 ml-1" />
                                         <x-text-input wire:model="appTexts.org_name.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                             placeholder="Institution Name" />
                                     </div>
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Abbreviation')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-input-label :value="__('Abbreviation')" class="text-xs font-semibold text-zinc-400 ml-1" />
                                         <x-text-input wire:model="appTexts.org_abbr.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                             placeholder="MOF" />
                                     </div>
                                 </div>
@@ -147,20 +147,20 @@ new class extends Component {
 
                             <!-- Application Name -->
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Application Name') }}
+                                <p class="text-xs font-semibold text-zinc-400 mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Application Name') }}
                                 </p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Title')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-input-label :value="__('Title')" class="text-xs font-semibold text-zinc-400 ml-1" />
                                         <x-text-input wire:model="appTexts.name.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                             placeholder="Strategic Budget" />
                                     </div>
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Tagline / Subtitle')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-input-label :value="__('Tagline / Subtitle')" class="text-xs font-semibold text-zinc-400 ml-1" />
                                         <x-text-input wire:model="appTexts.tagline.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                             placeholder="Planning & Control" />
                                     </div>
                                 </div>
@@ -168,26 +168,26 @@ new class extends Component {
 
                             <!-- Description -->
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Description') }}
+                                <p class="text-xs font-semibold text-zinc-400 mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Description') }}
                                 </p>
                                 <textarea wire:model="appTexts.description.{{ $locale }}" rows="3"
-                                    class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-100 text-sm font-bold text-slate-900 focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all resize-none outline-none"
+                                    class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-100 text-sm font-bold text-zinc-900 focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all resize-none outline-none"
                                     placeholder="Unified platform for annual activity planning..."></textarea>
                             </div>
 
                             <!-- Feature Items -->
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
-                                    <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Feature Items') }}
+                                <p class="text-xs font-semibold text-zinc-400 mb-4 flex items-center gap-2">
+                                    <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Feature Items') }}
                                     <span class="text-zinc-300 font-medium normal-case tracking-normal">{{ __('(login page)') }}</span>
                                 </p>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                                     @foreach([0, 1, 2] as $idx)
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Item') . ' ' . ($idx + 1)" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                        <x-input-label :value="__('Item') . ' ' . ($idx + 1)" class="text-xs font-semibold text-zinc-400 ml-1" />
                                         <x-text-input wire:model="appTexts.items.{{ $locale }}.{{ $idx }}"
-                                            class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                             placeholder="Feature {{ $idx + 1 }}" />
                                     </div>
                                     @endforeach
@@ -199,23 +199,23 @@ new class extends Component {
                     @endforeach
 
                     <!-- Footer Credits (not localized) -->
-                    <div class="pt-8 mt-8 border-t border-slate-100">
-                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] mb-5 flex items-center gap-2">
-                            <span class="w-5 h-px bg-slate-200 block"></span>{{ __('Footer Credits') }}
+                    <div class="pt-8 mt-8 border-t border-zinc-100">
+                        <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
+                            <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Footer Credits') }}
                             <span class="text-zinc-300 font-medium normal-case tracking-normal">{{ __('(shown in login page copyright)') }}</span>
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="space-y-2">
-                                <x-input-label for="systemOwner" :value="__('System Owner')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                <x-input-label for="systemOwner" :value="__('System Owner')" class="text-xs font-semibold text-zinc-400 ml-1" />
                                 <x-text-input id="systemOwner" wire:model="systemOwner"
-                                    class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                    class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                     placeholder="Institution Name" />
                                 <x-input-error :messages="$errors->get('systemOwner')" />
                             </div>
                             <div class="space-y-2">
-                                <x-input-label for="implementedBy" :value="__('Implemented By')" class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1" />
+                                <x-input-label for="implementedBy" :value="__('Implemented By')" class="text-xs font-semibold text-zinc-400 ml-1" />
                                 <x-text-input id="implementedBy" wire:model="implementedBy"
-                                    class="w-full h-12 px-4 !rounded-2xl !bg-slate-50 !border-slate-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                    class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
                                     placeholder="Tech Partner" />
                                 <x-input-error :messages="$errors->get('implementedBy')" />
                             </div>
@@ -230,19 +230,19 @@ new class extends Component {
 
             <x-ui.card padding="p-10">
                 <x-slot name="header">
-                    <h3 class="text-sm font-black text-slate-900 uppercase tracking-widest">
+                    <h3 class="text-sm font-semibold text-zinc-900 ">
                         {{ __('Workflow & Reporting Constraints') }}
                     </h3>
                 </x-slot>
 
                 <div class="space-y-8">
                     <div
-                        class="flex items-center justify-between p-6 bg-slate-50/50 rounded-[1.5rem] border border-slate-100">
+                        class="flex items-center justify-between p-6 bg-zinc-50/50 rounded-xl border border-zinc-100">
                         <div class="max-w-md">
-                            <h4 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-1">
+                            <h4 class="text-xs font-semibold text-zinc-900 mb-1">
                                 {{ __('Enable Next Year Planning') }}
                             </h4>
-                            <p class="text-[10px] text-slate-500 font-medium leading-relaxed">
+                            <p class="text-xs text-zinc-500 font-medium leading-relaxed">
                                 {{ __('Allow users to create PAA activities for the next fiscal year.') }}
                             </p>
                         </div>
@@ -255,12 +255,12 @@ new class extends Component {
                     </div>
 
                     <div
-                        class="flex items-center justify-between p-6 bg-slate-50/50 rounded-[1.5rem] border border-slate-100">
+                        class="flex items-center justify-between p-6 bg-zinc-50/50 rounded-xl border border-zinc-100">
                         <div class="max-w-md">
-                            <h4 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-1">
+                            <h4 class="text-xs font-semibold text-zinc-900 mb-1">
                                 {{ __('Report Draft Transparency') }}
                             </h4>
-                            <p class="text-[10px] text-slate-500 font-medium leading-relaxed">
+                            <p class="text-xs text-zinc-500 font-medium leading-relaxed">
                                 {{ __('Control visibility of draft data in consolidated reports and search dropdowns across the system.') }}
                             </p>
                         </div>
@@ -273,16 +273,16 @@ new class extends Component {
                     </div>
 
                     <div
-                        class="flex items-center justify-between p-6 bg-amber-50 rounded-[1.5rem] border border-amber-100">
+                        class="flex items-center justify-between p-6 bg-amber-50 rounded-xl border border-amber-100">
                         <div class="max-w-md">
                             <div class="flex items-center gap-2 mb-1">
                                 <span
-                                    class="bg-amber-100 text-amber-700 text-[10px] px-2 py-0.5 rounded-full font-bold">BETA</span>
-                                <h4 class="text-xs font-black text-amber-900 uppercase tracking-widest">
+                                    class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold">BETA</span>
+                                <h4 class="text-xs font-semibold text-amber-900 ">
                                     {{ __('Enable PAA Testing Mode') }}
                                 </h4>
                             </div>
-                            <p class="text-[10px] text-amber-700/80 font-medium leading-relaxed">
+                            <p class="text-xs text-amber-700/80 font-medium leading-relaxed">
                                 {{ __('Enable a separate testing environment for PAA planning (adds 🧪 Testing Mode menu). Test data is excluded from all production reports and calculations.') }}
                             </p>
                         </div>

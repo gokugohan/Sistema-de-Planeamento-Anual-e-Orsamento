@@ -98,22 +98,22 @@ new class extends Component {
     </div>
 
     <!-- Form to add new indicator -->
-    <div class="bg-slate-50/50 backdrop-blur-sm p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-        <h4 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-6">{{ __('New Indicator') }}</h4>
+    <div class="bg-zinc-50/50 backdrop-blur-sm p-8 rounded-xl border border-zinc-100 shadow-sm">
+        <h4 class="text-xs font-semibold text-zinc-900 mb-6">{{ __('New Indicator') }}</h4>
         <form wire:submit="addIndicator" class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
             <div class="md:col-span-2">
                 <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-1 mb-2 block">{{ __('Indicator Name') }}</label>
+                    class="text-xs font-semibold text-zinc-400 px-1 mb-2 block">{{ __('Indicator Name') }}</label>
                 <input type="text" id="name" wire:model="name"
-                    class="w-full bg-white border-transparent rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-slate-900 px-4 py-3 transition-all shadow-sm"
+                    class="w-full bg-white border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-zinc-900 px-4 py-3 transition-all shadow-sm"
                     placeholder="Ex: Km de estrada reabilitada" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
             <div>
                 <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-1 mb-2 block">{{ __('Type') }}</label>
+                    class="text-xs font-semibold text-zinc-400 px-1 mb-2 block">{{ __('Type') }}</label>
                 <select id="type" wire:model="type"
-                    class="w-full bg-white border-transparent rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-slate-900 px-4 py-3 transition-all shadow-sm">
+                    class="w-full bg-white border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-zinc-900 px-4 py-3 transition-all shadow-sm">
                     <option value="Output">Output</option>
                     <option value="Outcome">Outcome</option>
                 </select>
@@ -121,17 +121,17 @@ new class extends Component {
             </div>
             <div>
                 <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-1 mb-2 block">{{ __('Unit') }}</label>
+                    class="text-xs font-semibold text-zinc-400 px-1 mb-2 block">{{ __('Unit') }}</label>
                 <input type="text" id="unit" wire:model="unit"
-                    class="w-full bg-white border-transparent rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-slate-900 px-4 py-3 transition-all shadow-sm"
+                    class="w-full bg-white border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-zinc-900 px-4 py-3 transition-all shadow-sm"
                     placeholder="Ex: Km, Unid., %" />
                 <x-input-error :messages="$errors->get('unit')" class="mt-2" />
             </div>
             <div>
                 <label
-                    class="text-[9px] font-black uppercase text-slate-400 tracking-widest px-1 mb-2 block">{{ __('Annual Target') }}</label>
+                    class="text-xs font-semibold text-zinc-400 px-1 mb-2 block">{{ __('Annual Target') }}</label>
                 <input type="number" id="annual_target" step="0.01" wire:model="annual_target"
-                    class="w-full bg-white border-transparent rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-slate-900 px-4 py-3 transition-all shadow-sm" />
+                    class="w-full bg-white border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold text-zinc-900 px-4 py-3 transition-all shadow-sm" />
                 <x-input-error :messages="$errors->get('annual_target')" class="mt-2" />
             </div>
             <div class="md:col-span-4 flex justify-end">
@@ -149,41 +149,41 @@ new class extends Component {
     </div>
 
     <!-- List of existing indicators -->
-    <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
-        <div class="px-10 py-6 border-b border-slate-50 bg-slate-50/30">
-            <h3 class="text-xs font-black text-slate-900 uppercase tracking-widest">{{ __('Registered Indicators') }}
+    <div class="bg-white rounded-xl shadow-sm border border-zinc-100 overflow-hidden">
+        <div class="px-10 py-6 border-b border-zinc-50 bg-zinc-50/30">
+            <h3 class="text-xs font-semibold text-zinc-900 ">{{ __('Registered Indicators') }}
             </h3>
         </div>
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-slate-100">
+            <table class="min-w-full divide-y divide-zinc-100">
                 <thead class="bg-white">
                     <tr>
-                        <th class="px-10 py-6 text-left text-[9px] font-black uppercase tracking-widest text-slate-400">
+                        <th class="px-10 py-6 text-left text-xs font-semibold text-zinc-400">
                             {{ __('Indicator') }}
                         </th>
-                        <th class="px-10 py-6 text-left text-[9px] font-black uppercase tracking-widest text-slate-400">
+                        <th class="px-10 py-6 text-left text-xs font-semibold text-zinc-400">
                             {{ __('Type') }}
                         </th>
-                        <th class="px-10 py-6 text-left text-[9px] font-black uppercase tracking-widest text-slate-400">
+                        <th class="px-10 py-6 text-left text-xs font-semibold text-zinc-400">
                             {{ __('Unit') }}
                         </th>
                         <th
-                            class="px-10 py-6 text-right text-[9px] font-black uppercase tracking-widest text-slate-400">
+                            class="px-10 py-6 text-right text-xs font-semibold text-zinc-400">
                             {{ __('Annual Target') }}
                         </th>
                         <th
-                            class="px-10 py-6 text-right text-[9px] font-black uppercase tracking-widest text-slate-400">
+                            class="px-10 py-6 text-right text-xs font-semibold text-zinc-400">
                             {{ __('Actions') }}
                         </th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50 bg-white">
+                <tbody class="divide-y divide-zinc-50 bg-white">
                     @forelse($activity->indicators as $indicator)
-                        <tr class="hover:bg-slate-50/50 transition-all duration-300 group">
-                            <td class="px-10 py-6 text-xs font-bold text-slate-900">{{ $indicator->name }}</td>
-                            <td class="px-10 py-6 text-xs text-slate-500">{{ $indicator->type }}</td>
-                            <td class="px-10 py-6 text-xs text-slate-500">{{ $indicator->unit }}</td>
-                            <td class="px-10 py-6 text-xs text-slate-900 text-right font-black">
+                        <tr class="hover:bg-zinc-50/50 transition-all duration-300 group">
+                            <td class="px-10 py-6 text-xs font-bold text-zinc-900">{{ $indicator->name }}</td>
+                            <td class="px-10 py-6 text-xs text-zinc-500">{{ $indicator->type }}</td>
+                            <td class="px-10 py-6 text-xs text-zinc-500">{{ $indicator->unit }}</td>
+                            <td class="px-10 py-6 text-xs text-zinc-900 text-right font-semibold">
                                 {{ number_format($indicator->annual_target, 2) }}
                             </td>
                             <td class="px-10 py-6 text-right text-xs font-medium">
@@ -194,7 +194,7 @@ new class extends Component {
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-10 py-12 text-center text-sm text-slate-400 italic">
+                            <td colspan="5" class="px-10 py-12 text-center text-sm text-zinc-400 italic">
                                 {{ __('This activity does not have indicators defined yet.') }}
                             </td>
                         </tr>

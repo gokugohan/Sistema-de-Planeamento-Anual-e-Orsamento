@@ -3,8 +3,8 @@
 
         <!-- Page Header -->
         <div class="flex items-center gap-4 mb-2">
-            <div class="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-xl font-semibold
-                        shadow-lg shadow-indigo-600/20 ring-1 ring-white/20 flex-shrink-0">
+            <div class="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-xl font-semibold
+                        shadow-sm ring-1 ring-white/20 flex-shrink-0">
                 {{ substr(auth()->user()->name, 0, 2) }}
             </div>
             <div>

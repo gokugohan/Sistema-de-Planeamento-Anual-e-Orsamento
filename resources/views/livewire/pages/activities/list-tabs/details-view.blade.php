@@ -2,19 +2,19 @@
     <x-ui.table :headers="[__('Ref / Program'), __('Activity Analysis'), __('Priority'), __('Metrics'), __('Budgeting') . ' ($)', __('Status')]">
         <x-slot name="actions"></x-slot>
         @foreach($activities as $activity)
-            <tr class="hover:bg-slate-50/50 transition-all duration-300 group">
+            <tr class="hover:bg-zinc-50/50 transition-all duration-300 group">
                 <td class="px-6 py-4">
-                    <div class="font-black text-slate-900 tracking-tight">{{ $activity->program->oge_code }}</div>
-                    <div class="text-[9px] text-slate-400 mt-1 uppercase font-bold tracking-widest leading-none">
+                    <div class="font-semibold text-zinc-900 tracking-tight">{{ $activity->program->oge_code }}</div>
+                    <div class="text-xs text-zinc-400 mt-1 font-bold leading-none">
                         {{ $activity->program->name }}
                     </div>
                 </td>
                 <td class="px-6 py-4 w-full min-w-[20rem]">
-                    <div class="font-bold text-slate-700 leading-tight group-hover:text-indigo-600 transition-colors">
+                    <div class="font-bold text-zinc-700 leading-tight group-hover:text-indigo-600 transition-colors">
                         {{ $activity->description }}
                     </div>
                     @if($activity->directorate)
-                        <div class="text-[9px] text-slate-400 mt-1 uppercase font-medium italic opacity-60">
+                        <div class="text-xs text-zinc-400 mt-1 font-medium italic opacity-60">
                             {{ $activity->directorate->name }}
                         </div>
                     @endif
@@ -44,7 +44,7 @@
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right">
-                    <div class="font-black text-slate-900 tracking-tighter text-sm">
+                    <div class="font-semibold text-zinc-900 text-sm">
                         $ {{ number_format(($activity->line_items_sum_estimated_amount ?? 0), 2) }}
                     </div>
                 </td>
@@ -76,17 +76,17 @@
                         </x-ui.badge>
 
                         @if($activity->status === App\Models\Activity::STATUS_APPROVED && $activity->approved_at)
-                            <div class="text-[9px] text-emerald-600 font-bold mt-1 leading-none uppercase tracking-tighter">
+                            <div class="text-xs text-emerald-600 font-bold mt-1 leading-none ">
                                 {{ __('Approved') }}: {{ \Carbon\Carbon::parse($activity->approved_at)->format('d/m/Y') }}
                             </div>
                             @if($activity->approvedBy)
-                                <div class="text-[8px] text-slate-400 font-medium italic mt-0.5">
+                                <div class="text-xs text-zinc-400 font-medium italic mt-0.5">
                                     {{ __('by') }} {{ $activity->approvedBy->name }}
                                 </div>
                             @endif
                         @elseif($activity->status === App\Models\Activity::STATUS_SUBMITTED)
                             <div
-                                class="text-[9px] text-indigo-500 font-black mt-1 leading-none uppercase tracking-tighter flex items-center gap-1">
+                                class="text-xs text-indigo-500 font-semibold mt-1 leading-none flex items-center gap-1">
                                 <span class="relative flex h-1.5 w-1.5">
                                     <span
                                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
@@ -94,12 +94,12 @@
                                 </span>
                                 {{ __('Pending Review') }}
                             </div>
-                            <div class="text-[8px] text-slate-400 font-bold uppercase mt-1 opacity-70">
+                            <div class="text-xs text-zinc-400 font-bold mt-1 opacity-70">
                                 {{ __('Submitted to Directorate') }}
                             </div>
                         @elseif($activity->status === App\Models\Activity::STATUS_REVIEWED)
                             <div
-                                class="text-[9px] text-amber-600 font-black mt-1 leading-none uppercase tracking-tighter flex items-center gap-1">
+                                class="text-xs text-amber-600 font-semibold mt-1 leading-none flex items-center gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
@@ -107,12 +107,12 @@
                                 </svg>
                                 {{ __('Technically Reviewed') }}
                             </div>
-                            <div class="text-[8px] text-slate-400 font-bold uppercase mt-1 opacity-70">
+                            <div class="text-xs text-zinc-400 font-bold mt-1 opacity-70">
                                 {{ __('Pending General Directorate') }}
                             </div>
                         @elseif($activity->status === App\Models\Activity::STATUS_VALIDATED)
                             <div
-                                class="text-[9px] text-indigo-600 font-black mt-1 leading-none uppercase tracking-tighter flex items-center gap-1">
+                                class="text-xs text-indigo-600 font-semibold mt-1 leading-none flex items-center gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -120,7 +120,7 @@
                                 </svg>
                                 {{ __('Validated') }}
                             </div>
-                            <div class="text-[8px] text-slate-400 font-bold uppercase mt-1 opacity-70">
+                            <div class="text-xs text-zinc-400 font-bold mt-1 opacity-70">
                                 {{ __('Final Ministry Queue') }}
                             </div>
                         @endif
@@ -176,7 +176,7 @@
                                 </x-ui.button>
                             @else
                                 {{-- Show disabled view buttons if already submitted to prevent edits --}}
-                                <x-ui.button variant="ghost" size="icon" class="text-slate-300 cursor-not-allowed !rounded-lg"
+                                <x-ui.button variant="ghost" size="icon" class="text-zinc-300 cursor-not-allowed !rounded-lg"
                                     title="{{ __('Locked for Review') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="3" stroke-linecap="round"
@@ -221,7 +221,7 @@
                             @if($activity->status === App\Models\Activity::STATUS_APPROVED && (auth()->user()->isMinister() || auth()->user()->isAdministrator()))
                                 <x-ui.button variant="ghost" size="xs" wire:click="reopen({{ $activity->id }})"
                                     wire:confirm="{{ __('Are you sure you want to reopen this activity? This will return it to draft status and allow editing.') }}"
-                                    class="!rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-600">
+                                    class="!rounded-lg border border-zinc-200 hover:bg-zinc-50 text-zinc-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
                                         class="mr-1">

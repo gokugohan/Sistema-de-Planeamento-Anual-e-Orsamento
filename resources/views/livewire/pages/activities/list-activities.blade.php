@@ -633,29 +633,29 @@ new class extends Component {
         <button wire:click="$set('statusFilter', 'Draft')"
             class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
                    {{ $statusFilter === 'Draft' ? 'bg-blue-600 ring-blue-600 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
-            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Draft' ? 'text-blue-200' : 'text-zinc-500' }}">{{ __('Draft') }}</span>
+            <span class="text-xs font-medium {{ $statusFilter === 'Draft' ? 'text-blue-200' : 'text-zinc-500' }}">{{ __('Draft') }}</span>
             <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Draft' ? 'text-white' : 'text-zinc-900' }}">{{ $statDraft }}</span>
         </button>
         <button wire:click="$set('statusFilter', 'Submitted')"
             class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
                    {{ $statusFilter === 'Submitted' ? 'bg-indigo-600 ring-indigo-600 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
-            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Submitted' ? 'text-indigo-200' : 'text-zinc-500' }}">{{ __('In Review') }}</span>
+            <span class="text-xs font-medium {{ $statusFilter === 'Submitted' ? 'text-indigo-200' : 'text-zinc-500' }}">{{ __('In Review') }}</span>
             <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Submitted' ? 'text-white' : 'text-zinc-900' }}">{{ $statSubmitted }}</span>
         </button>
         <button wire:click="$set('statusFilter', 'Waiting Approval')"
             class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
                    {{ $statusFilter === 'Waiting Approval' ? 'bg-amber-500 ring-amber-500 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
-            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Waiting Approval' ? 'text-amber-100' : 'text-zinc-500' }}">{{ __('Awaiting Approval') }}</span>
+            <span class="text-xs font-medium {{ $statusFilter === 'Waiting Approval' ? 'text-amber-100' : 'text-zinc-500' }}">{{ __('Awaiting Approval') }}</span>
             <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Waiting Approval' ? 'text-white' : 'text-zinc-900' }}">{{ $statWaiting }}</span>
         </button>
         <button wire:click="$set('statusFilter', 'Approved')"
             class="flex flex-col items-start px-4 py-3 rounded-xl ring-1 transition-all text-left
                    {{ $statusFilter === 'Approved' ? 'bg-emerald-600 ring-emerald-600 text-white' : 'bg-white ring-zinc-950/5 shadow-sm hover:ring-zinc-950/10' }}">
-            <span class="text-[10px] font-medium uppercase tracking-wider {{ $statusFilter === 'Approved' ? 'text-emerald-100' : 'text-zinc-500' }}">{{ __('Approved') }}</span>
+            <span class="text-xs font-medium {{ $statusFilter === 'Approved' ? 'text-emerald-100' : 'text-zinc-500' }}">{{ __('Approved') }}</span>
             <span class="text-2xl font-semibold mt-0.5 {{ $statusFilter === 'Approved' ? 'text-white' : 'text-zinc-900' }}">{{ $statApproved }}</span>
         </button>
         <div class="hidden lg:flex flex-col items-start px-4 py-3 rounded-xl ring-1 ring-zinc-950/5 bg-zinc-50 shadow-sm sm:col-span-2 lg:col-span-1">
-            <span class="text-[10px] font-medium uppercase tracking-wider text-zinc-500">{{ __('Total Budget') }}</span>
+            <span class="text-xs font-medium text-zinc-500">{{ __('Total Budget') }}</span>
             <span class="text-lg font-semibold mt-0.5 text-zinc-900 tracking-tight">${{ number_format($totalBudget / 1000, 0) }}k</span>
         </div>
     </div>
@@ -783,7 +783,7 @@ new class extends Component {
 
     @if($creationAlert)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div class="relative w-full max-w-md bg-white rounded-xl shadow-xl p-6 animate-in zoom-in-95 duration-200">
+            <div class="relative w-full max-w-md bg-white rounded-xl shadow-sm p-6 animate-in zoom-in-95 duration-200">
                 <h3 class="text-base font-semibold text-zinc-900 mb-2">{{ __('Existing PAA') }}</h3>
                 <p class="text-sm text-zinc-600 leading-relaxed">
                     {{ __('The Annual Activity Plan for the year :year has already been started. Please use the year selection above to manage or update existing activities.', ['year' => date('Y') + 1]) }}
@@ -797,7 +797,7 @@ new class extends Component {
 
     @if($editAlert)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div class="relative w-full max-w-md bg-white rounded-xl shadow-xl p-6 animate-in zoom-in-95 duration-200">
+            <div class="relative w-full max-w-md bg-white rounded-xl shadow-sm p-6 animate-in zoom-in-95 duration-200">
                 <h3 class="text-base font-semibold text-zinc-900 mb-2">{{ __('Existing PAA') }}</h3>
                 <p class="text-sm text-zinc-600 leading-relaxed">
                     {{ __('The Annual Activity Plan for the year :year has already been started. Would you like to proceed with managing or updating the existing activities?') }}
@@ -812,7 +812,7 @@ new class extends Component {
 
     @if($confirmingSubmission)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 animate-in zoom-in-95 duration-200">
+            <div class="relative w-full max-w-md bg-white rounded-xl shadow-sm p-8 animate-in zoom-in-95 duration-200">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="h-11 w-11 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"

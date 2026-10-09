@@ -2,16 +2,16 @@
     <x-slot name="header">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
-                <h2 class="text-sm font-black text-slate-900 uppercase tracking-widest">
+                <h2 class="text-sm font-semibold text-zinc-900 ">
                     {{ __('Organisational units') }}
                 </h2>
-                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
+                <p class="text-xs text-zinc-400 font-bold mt-1">
                     {{ __('Directorates, offices and units') }}
                 </p>
             </div>
             <div class="relative group">
                 <span
-                    class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-300 group-focus-within:text-indigo-500 transition-colors">
+                    class="absolute inset-y-0 left-0 pl-4 flex items-center text-zinc-300 group-focus-within:text-indigo-500 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8" />
@@ -20,7 +20,7 @@
                 </span>
                 <input type="text" wire:model.live.debounce.300ms="search"
                     placeholder="{{ __('Search by code or name...') }}"
-                    class="pl-12 h-11 w-72 bg-slate-50 border-slate-100 rounded-2xl text-[11px] font-bold text-slate-600 focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 focus:bg-white transition-all placeholder:text-slate-300">
+                    class="pl-12 h-11 w-72 bg-zinc-50 border-zinc-100 rounded-xl text-xs font-bold text-zinc-600 focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 focus:bg-white transition-all placeholder:text-zinc-300">
             </div>
         </div>
     </x-slot>
@@ -29,7 +29,7 @@
         <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
             @forelse($directorates as $d)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
-                    <td class="px-8 py-5 text-gray-900 font-black tracking-tighter uppercase font-mono">{{ $d->code }}
+                    <td class="px-8 py-5 text-gray-900 font-semibold font-mono">{{ $d->code }}
                     </td>
                     <td class="px-8 py-5 min-w-[18rem]">
                         <div class="font-bold text-gray-900 {{ $d->parent ? 'pl-4 border-l-2 border-zinc-200' : '' }}">{{ $d->name }}</div>
@@ -42,18 +42,18 @@
                                     <path d="M3 6V15C3 16.6569 4.34315 18 6 18H21" />
                                 </svg>
                                 <span
-                                    class="text-[9px] text-indigo-400 font-black uppercase tracking-widest">{{ $d->parent->code }}</span>
+                                    class="text-xs text-indigo-400 font-semibold ">{{ $d->parent->code }}</span>
                             </div>
                         @endif
                     </td>
                     <td class="px-8 py-5">
-                        <x-ui.badge variant="gray" class="!text-[9px] uppercase">{{ __($d->type) }}</x-ui.badge>
+                        <x-ui.badge variant="gray" class="!text-xs ">{{ __($d->type) }}</x-ui.badge>
                     </td>
                     <td class="px-8 py-5">
                         <div class="font-bold text-gray-900 leading-none text-xs">
                             {{ $d->director_name ?: '—' }}
                         </div>
-                        @if($d->director_email)<div class="text-[9px] text-gray-400 mt-1 font-medium">{{ $d->director_email }}</div>@endif
+                        @if($d->director_email)<div class="text-xs text-gray-400 mt-1 font-medium">{{ $d->director_email }}</div>@endif
                     </td>
                     @php $f = $dirFunding[$d->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
                     <td class="px-8 py-5 text-sm tabular-nums">
@@ -84,7 +84,7 @@
                     <td class="px-8 py-5 text-right">
                         <div class="flex justify-end items-center gap-2">
                             <button wire:click="openModal({{ $d->id }})"
-                                class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
+                                class="p-2 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
                                 title="{{ __('Edit') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -95,7 +95,7 @@
                             </button>
                             <button wire:click="deleteDirectorate({{ $d->id }})"
                                 wire:confirm="{{ __('Confirm deletion? This will remove the node permanently.') }}"
-                                class="p-2 text-slate-300 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"
+                                class="p-2 text-zinc-300 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"
                                 title="{{ __('Delete') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -128,20 +128,20 @@
 <!-- CRUD Modal -->
 @if($modalOpen)
     <div
-        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-sm animate-in fade-in duration-300">
         <div
-            class="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-            <div class="p-8 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+            class="bg-white w-full max-w-2xl rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-300">
+            <div class="p-8 border-b border-zinc-50 flex justify-between items-center bg-zinc-50/30">
                 <div>
-                    <h3 class="text-xl font-black text-slate-900 italic tracking-tight">
+                    <h3 class="text-xl font-semibold text-zinc-900 italic tracking-tight">
                         {{ $isEditing ? __('Update Structural Unit') : __('Create Structural Unit') }}
                     </h3>
-                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-1">
+                    <p class="text-xs text-zinc-400 font-bold mt-1">
                         {{ __('Core Infrastructure Node Definition') }}
                     </p>
                 </div>
                 <button wire:click="$set('modalOpen', false)"
-                    class="p-2 hover:bg-slate-200/50 rounded-full transition-colors text-slate-400 hover:text-slate-900">
+                    class="p-2 hover:bg-zinc-200/50 rounded-full transition-colors text-zinc-400 hover:text-zinc-900">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -154,17 +154,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-2">
                         <label
-                            class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">{{ __('Unit Code') }}</label>
+                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Unit Code') }}</label>
                         <input type="text" wire:model="code"
-                            class="w-full h-12 px-5 rounded-2xl bg-slate-50 border-transparent text-sm font-black focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all uppercase tracking-tighter"
+                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-semibold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all "
                             placeholder="e.g. DGPL">
                         <x-input-error :messages="$errors->get('code')" />
                     </div>
                     <div class="space-y-2">
                         <label
-                            class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">{{ __('Unit Name') }}</label>
+                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Unit Name') }}</label>
                         <input type="text" wire:model="name"
-                            class="w-full h-12 px-5 rounded-2xl bg-slate-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
                             placeholder="e.g. Planning Directorate">
                         <x-input-error :messages="$errors->get('name')" />
                     </div>
@@ -173,9 +173,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-2">
                         <label
-                            class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">{{ __('Classification') }}</label>
+                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Classification') }}</label>
                         <select wire:model.live="type"
-                            class="w-full h-12 px-5 rounded-2xl bg-slate-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
+                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
                             <option value="Directorate General">{{ __('Directorate General') }}</option>
                             <option value="National Directorate">{{ __('National Directorate') }}</option>
                             <option value="Department">{{ __('Department') }}</option>
@@ -186,14 +186,14 @@
                         <x-input-error :messages="$errors->get('type')" />
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">
+                        <label class="text-xs font-semibold text-zinc-400 ml-1 ">
                             {{ __('Parent Authority') }}
                             @if($type === 'National Directorate') (DG Only)
                             @elseif($type === 'Department') (ND/DG Only)
                             @endif
                         </label>
                         <select wire:model="parent_id"
-                            class="w-full h-12 px-5 rounded-2xl bg-slate-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
+                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
                             <option value="">{{ __('Top Level (Independent)') }}</option>
                             @foreach($filteredParents as $parent)
                                 @if($parent->id != $directorateId)
@@ -208,35 +208,35 @@
 
                 <div class="space-y-2">
                     <label
-                        class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">{{ __('Function Description') }}</label>
+                        class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Function Description') }}</label>
                     <textarea wire:model="description" rows="3"
-                        class="w-full p-5 rounded-[1.5rem] bg-slate-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                        class="w-full p-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
                         placeholder="Primary role and responsibilities of this node..."></textarea>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-2">
                         <label
-                            class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">{{ __('Manager / Director') }}</label>
+                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Manager / Director') }}</label>
                         <input type="text" wire:model="director_name"
-                            class="w-full h-12 px-5 rounded-2xl bg-slate-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
                             placeholder="Full name">
                     </div>
                     <div class="space-y-2">
                         <label
-                            class="text-[10px] font-black uppercase text-slate-400 ml-1 tracking-widest">{{ __('Officer Email') }}</label>
+                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Officer Email') }}</label>
                         <input type="email" wire:model="director_email"
-                            class="w-full h-12 px-5 rounded-2xl bg-slate-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
                             placeholder="e.g. officer@msa.gov.tl">
                     </div>
                 </div>
 
                 <div class="flex items-center justify-between">
-                    <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">
+                    <label class="text-xs font-semibold text-zinc-400 ">
                         {{ __('Operational Status') }}
                     </label>
                     <button type="button" wire:click="$toggle('active')"
-                        class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none {{ $active ? 'bg-emerald-500' : 'bg-slate-200' }}">
+                        class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none {{ $active ? 'bg-emerald-500' : 'bg-zinc-200' }}">
                         <span
                             class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {{ $active ? 'translate-x-6' : 'translate-x-1' }}"></span>
                     </button>
@@ -244,9 +244,9 @@
 
                 <div class="flex items-center gap-4 pt-4">
                     <x-ui.button type="button" wire:click="$set('modalOpen', false)" variant="secondary"
-                        class="flex-1 !py-4 !rounded-2xl border border-slate-200">{{ __('Go Back') }}</x-ui.button>
+                        class="flex-1 !py-4 !rounded-xl border border-zinc-200">{{ __('Go Back') }}</x-ui.button>
                     <x-ui.button type="submit" variant="black" shadow="xl"
-                        class="flex-1 !py-4 !rounded-2xl">{{ $isEditing ? __('Sync Changes') : __('Deploy Unit') }}</x-ui.button>
+                        class="flex-1 !py-4 !rounded-xl">{{ $isEditing ? __('Sync Changes') : __('Deploy Unit') }}</x-ui.button>
                 </div>
             </form>
         </div>

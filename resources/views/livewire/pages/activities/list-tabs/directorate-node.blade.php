@@ -59,7 +59,7 @@
             </span>
 
             {{-- Code badge --}}
-            <span class="flex-shrink-0 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md {{ $typePill }}">
+            <span class="flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded-md {{ $typePill }}">
                 {{ $node['code'] ?? '–' }}
             </span>
 
@@ -72,27 +72,27 @@
             {{-- Status micro-breakdown (hidden on small screens) --}}
             <span class="hidden lg:flex items-center gap-2 flex-shrink-0 mr-2">
                 @if($node['count_draft'] > 0)
-                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-blue-600">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-600">
                         <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>{{ $node['count_draft'] }}
                     </span>
                 @endif
                 @if($node['count_review'] > 0)
-                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-indigo-600">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium text-indigo-600">
                         <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>{{ $node['count_review'] }}
                     </span>
                 @endif
                 @if($node['count_waiting'] > 0)
-                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-amber-600">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium text-amber-600">
                         <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>{{ $node['count_waiting'] }}
                     </span>
                 @endif
                 @if($node['count_approved'] > 0)
-                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-emerald-600">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium text-emerald-600">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>{{ $node['count_approved'] }}
                     </span>
                 @endif
                 @if($node['count_rejected'] > 0)
-                    <span class="inline-flex items-center gap-1 text-[10px] font-medium text-rose-500">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium text-rose-500">
                         <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>{{ $node['count_rejected'] }}
                     </span>
                 @endif
@@ -162,11 +162,11 @@
 
                         {{-- Meta chips --}}
                         <span class="hidden md:flex items-center gap-2 flex-shrink-0">
-                            <span class="text-[10px] font-medium text-zinc-400 bg-zinc-100 px-1.5 py-0.5 rounded">
+                            <span class="text-xs font-medium text-zinc-400 bg-zinc-100 px-1.5 py-0.5 rounded">
                                 {{ $activity->program->oge_code ?? '–' }}
                             </span>
                             @if($activity->indicators_count > 0)
-                                <span class="text-[10px] font-medium text-zinc-400 flex items-center gap-0.5">
+                                <span class="text-xs font-medium text-zinc-400 flex items-center gap-0.5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2.5"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -175,13 +175,13 @@
                                     {{ $activity->indicators_count }}
                                 </span>
                             @endif
-                            <span class="text-[10px] font-medium text-zinc-500">
+                            <span class="text-xs font-medium text-zinc-500">
                                 ${{ number_format(($activity->line_items_sum_estimated_amount ?? 0) / 1000, 0) }}k
                             </span>
                         </span>
 
                         {{-- Status badge --}}
-                        <span class="flex-shrink-0 text-[10px] font-medium px-2 py-0.5 rounded-full ring-1 {{ $statusColor }}">
+                        <span class="flex-shrink-0 text-xs font-medium px-2 py-0.5 rounded-full ring-1 {{ $statusColor }}">
                             {{ $statusLabel }}
                         </span>
 

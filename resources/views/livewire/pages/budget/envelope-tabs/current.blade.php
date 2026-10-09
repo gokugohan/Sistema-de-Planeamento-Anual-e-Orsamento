@@ -120,8 +120,8 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/></svg>
                 </div>
                 <div>
-                    <h4 class="text-xs font-semibold uppercase tracking-wide text-zinc-900">{{ __('OGE Allocation Details') }}</h4>
-                    <p class="text-[10px] text-zinc-400 mt-0.5 font-medium uppercase tracking-wide">{{ __('Fiscal Year') }} {{ $activeEnvelope->fiscal_year }}</p>
+                    <h4 class="text-xs font-semibold tracking-wide text-zinc-900">{{ __('OGE Allocation Details') }}</h4>
+                    <p class="text-xs text-zinc-400 mt-0.5 font-medium tracking-wide">{{ __('Fiscal Year') }} {{ $activeEnvelope->fiscal_year }}</p>
                 </div>
             </div>
         </div>
@@ -130,11 +130,11 @@
                 <div>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Ministry') }}</p>
+                            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Ministry') }}</p>
                             <p class="text-sm font-bold text-zinc-900 mt-2">{{ \App\Models\SystemSetting::getLocalized('org_name', '—') }}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Approval Date') }}</p>
+                            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Approval Date') }}</p>
                             <p class="text-sm font-bold text-zinc-900 mt-2">{{ $activeEnvelope->approved_date ? \Carbon\Carbon::parse($activeEnvelope->approved_date)->format('Y-m-d') : '-' }}</p>
                         </div>
                     </div>
@@ -142,15 +142,15 @@
                 <div>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Source Authority') }}</p>
+                            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Source Authority') }}</p>
                             <p class="text-sm font-bold text-zinc-900 mt-2">{{ $activeEnvelope->source_authority ?: '—' }}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Reference Number') }}</p>
+                            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Reference Number') }}</p>
                             <p class="text-sm font-mono font-bold text-zinc-600 mt-2">{{ $activeEnvelope->reference_number ?? 'N/A' }}</p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide">{{ __('Validity Period') }}</p>
+                            <p class="text-xs font-medium text-zinc-500 tracking-wide">{{ __('Validity Period') }}</p>
                             <p class="text-sm font-bold text-zinc-900 mt-2">
                                 {{ $activeEnvelope->start_date ? \Carbon\Carbon::parse($activeEnvelope->start_date)->format('M Y') : 'N/A' }} - 
                                 {{ $activeEnvelope->due_date ? \Carbon\Carbon::parse($activeEnvelope->due_date)->format('d M Y') : 'N/A' }}
@@ -164,7 +164,7 @@
             </div>
 
             <div class="mt-8 pt-8 border-t border-zinc-100">
-                 <p class="text-[10px] font-medium text-zinc-500 uppercase tracking-wide mb-2">{{ __('Total Fiscal Envelope') }}</p>
+                 <p class="text-xs font-medium text-zinc-500 tracking-wide mb-2">{{ __('Total Fiscal Envelope') }}</p>
                  <p class="text-4xl font-semibold text-zinc-900 leading-none tracking-tight">$ {{ number_format($activeEnvelope->total_amount, 2) }}</p>
             </div>
         </div>
@@ -174,7 +174,7 @@
     <!-- Tab Navigation -->
     <div class="flex items-center gap-2 p-1.5 bg-zinc-100/80 w-fit rounded-xl border border-zinc-200/50 backdrop-blur-sm shadow-sm">
         <button wire:click="$set('detailsTab', 'distribution')" 
-            class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $detailsTab === 'distribution' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-zinc-200/50' : 'text-zinc-400 hover:text-zinc-600 hover:bg-white/50' }}">
+            class="px-6 py-2.5 rounded-xl text-xs font-semibold transition-all {{ $detailsTab === 'distribution' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-zinc-200/50' : 'text-zinc-400 hover:text-zinc-600 hover:bg-white/50' }}">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
@@ -183,7 +183,7 @@
             </div>
         </button>
         <button wire:click="$set('detailsTab', 'categories')" 
-            class="px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all {{ $detailsTab === 'categories' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-zinc-200/50' : 'text-zinc-400 hover:text-zinc-600 hover:bg-white/50' }}">
+            class="px-6 py-2.5 rounded-xl text-xs font-semibold transition-all {{ $detailsTab === 'categories' ? 'bg-white text-indigo-600 shadow-md ring-1 ring-zinc-200/50' : 'text-zinc-400 hover:text-zinc-600 hover:bg-white/50' }}">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/>
@@ -199,20 +199,20 @@
             <div class="p-8 border-b border-zinc-50 bg-gradient-to-r from-indigo-50/30 to-white">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h3 class="text-xs font-semibold uppercase tracking-wide text-zinc-900 leading-none">{{ __('Distribution Summary') }}</h3>
-                        <p class="text-[10px] text-zinc-400 mt-2 font-medium uppercase tracking-wide">{{ __('Fiscal envelope allocation vs. PAA planned amounts by economic category') }}</p>
+                        <h3 class="text-xs font-semibold tracking-wide text-zinc-900 leading-none">{{ __('Distribution Summary') }}</h3>
+                        <p class="text-xs text-zinc-400 mt-2 font-medium tracking-wide">{{ __('Fiscal envelope allocation vs. PAA planned amounts by economic category') }}</p>
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-zinc-100 shadow-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
                             <path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                         </svg>
-                        <span class="text-[10px] font-medium text-zinc-600 uppercase tracking-wide">{{ __('FY') }} {{ $activeEnvelope->fiscal_year }}</span>
+                        <span class="text-xs font-medium text-zinc-600 tracking-wide">{{ __('FY') }} {{ $activeEnvelope->fiscal_year }}</span>
                     </div>
                 </div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs border-collapse">
-                    <thead class="bg-zinc-50/50 text-zinc-400 font-semibold uppercase tracking-wide border-b border-zinc-100">
+                    <thead class="bg-zinc-50/50 text-zinc-400 font-semibold tracking-wide border-b border-zinc-100">
                         <tr>
                             <th class="px-8 py-5">{{ __('Economic Category') }}</th>
                             <th class="px-8 py-5 text-right">{{ __('OGE Allocated') }}</th>
@@ -243,28 +243,28 @@
                             <tr class="hover:bg-zinc-50/50 transition-colors group">
                                 <td class="px-8 py-5">
                                     <div class="flex items-center gap-3">
-                                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 font-black text-[11px] shadow-sm">
+                                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 font-semibold text-xs shadow-sm">
                                             {{ $cat->code }}
                                         </div>
                                         <div>
                                             <div class="font-bold text-zinc-900 leading-tight">{{ $cat->name }}</div>
-                                            <div class="text-[10px] text-zinc-400 mt-0.5 leading-tight">{{ __($cat->description) }}</div>
+                                            <div class="text-xs text-zinc-400 mt-0.5 leading-tight">{{ __($cat->description) }}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <div class="font-semibold text-zinc-900">$ {{ number_format($ogeAmount, 2) }}</div>
-                                    <div class="text-[9px] text-zinc-400 mt-0.5 uppercase tracking-widest font-bold">{{ __('Envelope') }}</div>
+                                    <div class="text-xs text-zinc-400 mt-0.5 font-bold">{{ __('Envelope') }}</div>
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <div class="font-bold text-indigo-600">$ {{ number_format($paaPlanned, 2) }}</div>
-                                    <div class="text-[9px] text-zinc-400 mt-0.5 uppercase tracking-widest font-bold">{{ __('Activities') }}</div>
+                                    <div class="text-xs text-zinc-400 mt-0.5 font-bold">{{ __('Activities') }}</div>
                                 </td>
                                 <td class="px-8 py-5 text-right">
                                     <div class="font-bold {{ $variance >= 0 ? 'text-green-600' : 'text-rose-600' }}">
                                         {{ $variance >= 0 ? '+' : '' }}$ {{ number_format($variance, 2) }}
                                     </div>
-                                    <div class="text-[9px] {{ $variance >= 0 ? 'text-green-500' : 'text-rose-500' }} mt-0.5 uppercase tracking-widest font-bold">
+                                    <div class="text-xs {{ $variance >= 0 ? 'text-green-500' : 'text-rose-500' }} mt-0.5 font-bold">
                                         {{ $variance >= 0 ? __('Surplus') : __('Deficit') }}
                                     </div>
                                 </td>
@@ -278,17 +278,17 @@
                                 </td>
                                 <td class="px-8 py-5 text-center">
                                     @if(abs($variance) < 0.01)
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-green-50 text-green-700 text-[9px] font-black uppercase tracking-[0.15em] border border-green-100">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-green-50 text-green-700 text-xs font-semibold border border-green-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                                             {{ __('Balanced') }}
                                         </span>
                                     @elseif($variance > 0)
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 text-[9px] font-black uppercase tracking-[0.15em] border border-blue-100">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
                                             {{ __('Over') }}
                                         </span>
                                     @else
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 text-amber-700 text-[9px] font-black uppercase tracking-[0.15em] border border-amber-100">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 text-amber-700 text-xs font-semibold border border-amber-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m12 5 0 14"/><path d="m19 12-7 7-7-7"/></svg>
                                             {{ __('Under') }}
                                         </span>
@@ -298,13 +298,13 @@
                         @endforeach
 
                         <!-- Totals Row -->
-                        <tr class="bg-gradient-to-r from-gray-50 to-white border-t-2 border-gray-200 font-black">
+                        <tr class="bg-gradient-to-r from-gray-50 to-white border-t-2 border-gray-200 font-semibold">
                             <td class="px-6 py-5">
                                 <div class="flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
                                         <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
                                     </svg>
-                                    <span class="text-gray-900 uppercase tracking-wider">{{ __('Total') }}</span>
+                                    <span class="text-gray-900 ">{{ __('Total') }}</span>
                                 </div>
                             </td>
                             <td class="px-6 py-5 text-right">
@@ -338,8 +338,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('Total OGE Allocated') }}</p>
-                            <p class="text-lg font-black text-gray-900 leading-none mt-1">$ {{ number_format($totalOGEAllocated, 2) }}</p>
+                            <p class="text-xs font-semibold text-gray-400 ">{{ __('Total OGE Allocated') }}</p>
+                            <p class="text-lg font-semibold text-gray-900 leading-none mt-1">$ {{ number_format($totalOGEAllocated, 2) }}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
@@ -349,8 +349,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('Total PAA Planned') }}</p>
-                            <p class="text-lg font-black text-blue-600 leading-none mt-1">$ {{ number_format($totalPAAPlanned, 2) }}</p>
+                            <p class="text-xs font-semibold text-gray-400 ">{{ __('Total PAA Planned') }}</p>
+                            <p class="text-lg font-semibold text-blue-600 leading-none mt-1">$ {{ number_format($totalPAAPlanned, 2) }}</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
@@ -360,8 +360,8 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">{{ __('Net Variance') }}</p>
-                            <p class="text-lg font-black {{ $totalVariance >= 0 ? 'text-green-600' : 'text-rose-600' }} leading-none mt-1">
+                            <p class="text-xs font-semibold text-gray-400 ">{{ __('Net Variance') }}</p>
+                            <p class="text-lg font-semibold {{ $totalVariance >= 0 ? 'text-green-600' : 'text-rose-600' }} leading-none mt-1">
                                 {{ $totalVariance >= 0 ? '+' : '' }}$ {{ number_format($totalVariance, 2) }}
                             </p>
                         </div>
@@ -375,12 +375,12 @@
         <!-- Economic Categories Allocation Table -->
         <div class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
             <div class="p-6 border-b border-gray-100">
-                <h3 class="text-sm font-bold uppercase tracking-wider text-gray-800 leading-none">{{ __('Economic Categories Allocation') }}</h3>
+                <h3 class="text-sm font-bold text-gray-800 leading-none">{{ __('Economic Categories Allocation') }}</h3>
                 <p class="text-xs text-gray-500 mt-2">{{ __('Budget breakdown by economic classification (C1-C5)') }}</p>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs border-collapse">
-                    <thead class="bg-gray-50 text-gray-400 font-medium uppercase tracking-wide border-b border-gray-100">
+                    <thead class="bg-gray-50 text-gray-400 font-medium tracking-wide border-b border-gray-100">
                         <tr>
                             <th class="px-6 py-4">{{ __('Category') }}</th>
                             <th class="px-6 py-4 text-right">{{ __('Allocated') }}</th>
@@ -401,10 +401,10 @@
                                 <td colspan="7" class="px-6 py-2">
                                     <div class="flex items-center gap-2">
                                         <span class="inline-flex h-2 w-2 rounded-full {{ $type === 'Current' ? 'bg-blue-500' : 'bg-orange-500' }}"></span>
-                                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-gray-600">
+                                        <span class="text-xs font-extrabold text-gray-600">
                                             {{ $type === 'Current' ? __('Current Expenditure') : __('Capital Expenditure') }}
                                         </span>
-                                        <span class="text-[10px] text-gray-400 font-medium lowercase">
+                                        <span class="text-xs text-gray-400 font-medium lowercase">
                                             ({{ $type === 'Current' ? __('Salaries, Goods and Services and Transfers') : __('Minor Investment and Infrastructure') }})
                                         </span>
                                     </div>
@@ -431,15 +431,15 @@
                                         <div>
                                             <div class="font-bold text-gray-900 leading-tight">
                                                 {{ $cat->code }} - {{ $cat->name }}
-                                                @if($cat->code == '40') <span class="ml-2 text-[8px] bg-gray-100 px-1 py-0.5 rounded text-gray-500 uppercase">{{ __('Small Investment') }}</span>
-                                                @elseif($cat->code == '50') <span class="ml-2 text-[8px] bg-gray-900 px-1 py-0.5 rounded text-white uppercase">{{ __('Structural Investment') }}</span> @endif
+                                                @if($cat->code == '40') <span class="ml-2 text-xs bg-gray-100 px-1 py-0.5 rounded text-gray-500 ">{{ __('Small Investment') }}</span>
+                                                @elseif($cat->code == '50') <span class="ml-2 text-xs bg-gray-900 px-1 py-0.5 rounded text-white ">{{ __('Structural Investment') }}</span> @endif
                                             </div>
-                                            <div class="text-[10px] text-gray-400 mt-0.5 leading-tight">{{ __($cat->description) }}</div>
+                                            <div class="text-xs text-gray-400 mt-0.5 leading-tight">{{ __($cat->description) }}</div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 text-right font-bold text-gray-900">$ {{ number_format($amount, 2) }}</td>
-                                    <td class="px-6 py-4 text-right text-gray-400">$ {{ number_format($committed, 2) }}<br><span class="text-[9px]">{{ $amount > 0 ? number_format(($committed / $amount) * 100, 1) : 0 }}% {{ __('of total') }}</span></td>
-                                    <td class="px-6 py-4 text-right text-gray-400">$ {{ number_format($spent, 2) }}<br><span class="text-[9px]">{{ $executionRate > 0 ? number_format($executionRate, 1) : 0 }}% {{ __('of total') }}</span></td>
+                                    <td class="px-6 py-4 text-right text-gray-400">$ {{ number_format($committed, 2) }}<br><span class="text-xs">{{ $amount > 0 ? number_format(($committed / $amount) * 100, 1) : 0 }}% {{ __('of total') }}</span></td>
+                                    <td class="px-6 py-4 text-right text-gray-400">$ {{ number_format($spent, 2) }}<br><span class="text-xs">{{ $executionRate > 0 ? number_format($executionRate, 1) : 0 }}% {{ __('of total') }}</span></td>
                                     <td class="px-6 py-4 text-right {{ $available < 0 ? 'text-red-700' : 'text-green-700' }} font-bold whitespace-nowrap">$ {{ number_format($available, 2) }}</td>
                                     <td class="px-6 py-4 text-right">
                                         <div class="flex flex-col items-end gap-1">
@@ -467,7 +467,7 @@
         <!-- Allocation Status Section -->
         <div class="rounded-xl border border-gray-200 bg-white shadow-sm font-sans">
             <div class="p-6">
-                <h3 class="text-sm font-bold uppercase tracking-wider text-gray-800 mb-6">{{ __('Allocation Status') }}</h3>
+                <h3 class="text-sm font-bold text-gray-800 mb-6">{{ __('Allocation Status') }}</h3>
 
                 <div class="space-y-4 ml-auto">
                     <div class="flex justify-between items-center">
