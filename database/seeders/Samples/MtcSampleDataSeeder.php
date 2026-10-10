@@ -16,7 +16,9 @@ use Illuminate\Database\Seeder;
  *     php artisan db:seed --class="Database\Seeders\Samples\MtcSampleDataSeeder"
  *
  * Adds: the MTC organic structure, working programmes (MTC-001 …), branding,
- * demo accounts and ~24 illustrative 2027 activities (marked [EXEMPLO]).
+ * demo accounts, and the real annual plans of 2025, 2026 and 2027 (activities, indicators,
+ * budget lines, the 2025 and 2026 fiscal envelopes and their distribution, and the 2027 budget
+ * cycle, whose bill is still in Parliament).
  *
  * Every record it creates is registered, so it can be purged again with
  * Management > Sample Data or `php artisan paa:purge-samples`. Records that
@@ -39,7 +41,7 @@ class MtcSampleDataSeeder extends Seeder
             MtcDirectorateSeeder::class,
             MtcProgramSeeder::class,
             MtcDemoUsersSeeder::class,
-            MtcSampleActivitiesSeeder::class,
+            MtcBudgetSeeder::class,
         ]);
     }
 }

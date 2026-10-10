@@ -180,7 +180,7 @@ new class extends Component {
         $query = match ($this->group) {
             'program' => $query->orderBy('program_id'),
             'unit' => $query->orderBy('directorate_id'),
-            default => $query,
+            default => $query->orderBy('directorate_id'),
         };
         $activities = $query->orderBy('code')->orderBy('id')->paginate(20);
 

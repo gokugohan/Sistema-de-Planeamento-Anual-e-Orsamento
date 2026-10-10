@@ -174,6 +174,6 @@ class NavigationTest extends TestCase
 
         $this->get(route('management.entities'))->assertOk()->assertSee('Approved plan')->assertSee('Funded')->assertSee('DGT');
         $this->get(route('management.entities', ['search' => 'Transportes']))->assertOk();
-        Volt::test('pages.management.entities')->set('activeTab', 'programs')->set('search', 'MTC-002')->assertSee('Transportes Terrestres');
+        Volt::test('pages.management.entities')->set('activeTab', 'programs')->set('search', '502')->assertSee('Transportes');
     }
 }

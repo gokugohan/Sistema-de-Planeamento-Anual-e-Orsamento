@@ -195,15 +195,30 @@ php artisan paa:purge-samples                                                  #
 
 | Seeder | Adds |
 |---|---|
-| `MtcDirectorateSeeder` | The 28 MTC entities from Decreto-Lei 75/2023 as amended by Decreto-Lei 12/2026: 3 general directorates (Transportes, Comunicações, Administração e Finanças), their 10 national directorates, 5 gabinetes, 5 units, and the 5 **indirect-administration bodies** (art. 7: ANATL E.P., APORTIL I.P., AACTL I.P., ANC I.P., TIC Timor I.P.), flagged *Autonomous* because the law gives them their own legal personality, administrative and financial autonomy and assets (art. 4(3)); they are not services of the ministry, are top-level units, and get no invented sub-units because their internal structure is set by their own statutes. The law defines the structure only down to national directorates and units, so **no departments are invented**. |
-| `MtcProgramSeeder` | 8 working programmes with codes `MTC-001` … `MTC-008` (008 = civil aviation and airports). **These are placeholders, not official OGE codes**, and are prefixed so they can never collide with a real programme code. |
+| `MtcDirectorateSeeder` | The MTC structure from Decreto-Lei 75/2023 as amended by Decreto-Lei 12/2026 (3 general directorates, their national directorates, gabinetes and units), the 5 **indirect-administration bodies** of art. 7 (ANATL E.P., APORTIL I.P., AACTL I.P., ANC I.P., TIC Timor I.P.) flagged *Autonomous*, and the **divisions the State Budget itself prints** (the Minister's office, 11 municipal directorates, AACTL's 8 directorates, APORTIL's ferry operations). Each carries its budget division code in its description. |
+| `MtcProgramSeeder` | The 6 programmes of the State Budget the ministry uses, with their **official OGE codes**: 502 Transportes, 510 Funcionamento e Desenvolvimento Institucional, 558 Serviços Postais, 980 Inclusão Social, A08 Tecnologia de Informação e Comunicação, A38 Meteorologia e Geofísica. A programme with the same code that already exists (510 is shared by every ministry) is left as it is. |
 | `MtcBrandingSeeder` | Sets the organisation name and abbreviation to MTC. |
-| `MtcDemoUsersSeeder` | `ministro@goku.tl` (Minister), plus `planner.<code>@goku.tl` and `director.<code>@goku.tl` for each unit (for example `planner.dntt@goku.tl`). Password for all: `password`. |
-| `MtcSampleActivitiesSeeder` | 24 illustrative activities for **2027**, with indicators and budget lines, status `Draft`: 19 for ministry services and 5 for the autonomous bodies (one each). |
+| `MtcDemoUsersSeeder` | `ministro@goku.tl` (Minister), plus `planner.<code>@goku.tl` and `director.<code>@goku.tl` for each ministry unit (for example `planner.dntt@goku.tl`). Password for all: `password`. |
+| `MtcBudgetSeeder` | The **real annual plans of 2025, 2026 and 2027**: about 270 activities with their official codes, programme and sub-programme, owning division, indicator (starting point and target as printed) and the amount in each economic category; the **2025 and 2026 fiscal envelopes**, distributed over the plan; and the **2027 budget cycle**. |
 
-### The sample activities are not real plans
+### The sample budget data is real
 
-Their descriptions start with **`[EXEMPLO]`** and their codes with **`SAMPLE-`**. Each is loosely based on the mandate the organic law gives its unit, but **every amount, target and date is invented**. Never present them as MTC's actual plan.
+The activities and amounts are those printed in the State Budget books (*Livro Orçamental*, Volume II, "Planos Anuais dos Serviços e Entidades do Setor Público Administrativo", Anexo K), read from the published PDFs and checked against the budget tables: every programme and category total matches. Sources and method are in `database/seeders/Samples/data/README.md`.
+
+| Year | Status | Ministry (entity 025) | Package with the autonomous bodies |
+|---|---|---|---|
+| 2025 | Lei n.º 8/2024, de 26 de novembro. Year over: envelope **closed** | 13 353 528 USD | 22 339 646 USD |
+| 2026 | Lei n.º 8/2025, de 27 de novembro, **amended** by Lei n.º 8/2026, de 8 de junho. Envelope approved and distributed | 12 800 471 → **12 674 262** USD | 21 372 171 plan; **21 245 962** envelope |
+| 2027 | **Proposta de Lei** delivered to Parliament on 1 October 2026 and **still being debated**: the plan is approved internally and the CRO decision is recorded, but there is no budget law and **no envelope** | 14 620 942 USD | 24 427 884 USD |
+
+Things to know when reading the data:
+
+- **The ministry's package.** The OGE lists APORTIL, TIC Timor, AACTL and ANC as entities with a budget of their own. Here they are part of one MTC package, as the ministry plans with them and passes their share on once it has received its envelope. ANATL, a public enterprise, has no appropriation in the OGE and therefore no activities.
+- **The 2026 amendment** cut the ministry's *Bens e Serviços* by 126 209 USD. The law does not say which activities, so the application's own distribution applies the cut pro rata: the 2026 plan is 21 372 171 and the envelope 21 245 962.
+- **Activities printed without an amount** in the plan (for example four construction activities in 2026) are not loaded.
+- **What the plans do not say** is not invented: every activity is an annual one (Q1–Q4) with the default priority.
+- The 2025 and 2026 figures are **plans and appropriations, not execution**: no spending or progress is loaded.
+- **Not for a real MTC system.** It is a dataset to demonstrate and train with; the codes of units that only exist as budget divisions are working abbreviations.
 
 ### How purging stays safe
 
@@ -215,7 +230,7 @@ Every record the sample creates is written to a registry table (`sample_records`
 - **Branding is reset only if you did not change it.** If you edited the organisation name after loading, your version stays.
 - The purge runs in one transaction: it either completes or changes nothing. It is written to the audit log.
 
-If the sample was loaded **before** tracking existed (an older database), register it once with `php artisan paa:adopt-samples`. It adopts only records identical to the sample (same code and same name or description); anything you changed is treated as real and left alone. It prints what it registered. Demo accounts whose name no longer matches (for example a `ministro@goku.tl` created long ago under another name) are not adopted; delete or rename them by hand.
+If units, programmes or accounts of the sample were loaded **before** tracking existed (an older database), register them once with `php artisan paa:adopt-samples`. It adopts only records identical to the sample (same code and same name or description); anything you changed is treated as real and left alone. The budget data is not adopted: purge and load again instead. It prints what it registered. Demo accounts whose name no longer matches (for example a `ministro@goku.tl` created long ago under another name) are not adopted; delete or rename them by hand.
 
 ### Using a different institution as the sample
 

@@ -48,7 +48,7 @@ class SampleDataTest extends TestCase
         $this->load();
 
         $counts = app(SampleRegistry::class)->counts();
-        $this->assertSame(['activities' => 24, 'users' => 57, 'directorates' => 28, 'programs' => 8], $counts);
+        $this->assertSame(['activities' => 274, 'users' => 59, 'directorates' => 49, 'programs' => 6, 'envelopes' => 2], $counts);
         $this->assertSame(Activity::count(), $counts['activities']);
         $this->assertTrue((bool) SystemSetting::get(SampleRegistry::FLAG));
     }
@@ -60,7 +60,7 @@ class SampleDataTest extends TestCase
 
         $report = app(SampleRegistry::class)->purge('mtc');
 
-        $this->assertSame(['activities' => 24, 'users' => 57, 'directorates' => 28, 'programs' => 8], $report['deleted']);
+        $this->assertSame(['activities' => 274, 'users' => 59, 'directorates' => 49, 'programs' => 6, 'envelopes' => 2], $report['deleted']);
         $this->assertSame([], $report['kept']);
         $this->assertSame(0, Activity::count() + Directorate::count() + Program::count() + User::count());
         $this->assertSame(0, SampleRecord::count());
@@ -104,7 +104,7 @@ class SampleDataTest extends TestCase
     {
         $this->load();
         $unit = Directorate::where('code', 'DNTT')->first();
-        $program = Program::where('oge_code', 'MTC-002')->first();
+        $program = Program::where('oge_code', '502')->first();
         $real = $this->realActivityIn($unit, $program, 'Real work done by DNTT');
 
         $report = app(SampleRegistry::class)->purge('mtc');
@@ -146,9 +146,9 @@ class SampleDataTest extends TestCase
         $this->load();
         $this->load();
 
-        $this->assertSame(28, Directorate::count());
-        $this->assertSame(24, Activity::count());
-        $this->assertSame(['activities' => 24, 'users' => 57, 'directorates' => 28, 'programs' => 8], app(SampleRegistry::class)->counts());
+        $this->assertSame(49, Directorate::count());
+        $this->assertSame(274, Activity::count());
+        $this->assertSame(['activities' => 274, 'users' => 59, 'directorates' => 49, 'programs' => 6, 'envelopes' => 2], app(SampleRegistry::class)->counts());
     }
 
     public function test_adopt_registers_matching_pre_existing_records_but_not_changed_ones(): void
@@ -163,8 +163,8 @@ class SampleDataTest extends TestCase
         $registry = app(SampleRegistry::class);
         $this->assertFalse($registry->isRegistered(Directorate::where('code', 'DNTT')->first()), 'a modified record must not be adopted');
         $this->assertTrue($registry->isRegistered(Directorate::where('code', 'DGT')->first()));
-        $this->assertSame(24, $registry->counts()['activities']);
-        $this->assertSame(27, $registry->counts()['directorates']);
+        $this->assertSame(0, $registry->counts()['activities'], 'activities are never adopted: the plans are loaded with their own budget records');
+        $this->assertSame(48, $registry->counts()['directorates']);
     }
 
     public function test_purge_command_removes_everything(): void
@@ -183,7 +183,7 @@ class SampleDataTest extends TestCase
         $this->seed(EconomicClassificationSeeder::class);
 
         Volt::test('pages.management.sample-data')->call('load');
-        $this->assertSame(28, Directorate::count());
+        $this->assertSame(49, Directorate::count());
         $this->assertTrue(app(SampleRegistry::class)->hasSamples());
 
         Volt::test('pages.management.sample-data')->call('purge')->assertSet('report.action', 'purged');

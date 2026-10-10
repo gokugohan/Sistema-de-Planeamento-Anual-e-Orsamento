@@ -228,7 +228,7 @@
                         {{ $a->description }}
                         <div class="small muted">{{ $a->program->oge_code ?? '' }} {{ $a->program->name ?? '' }} · {{ __('Priority') }}: {{ $a->priority }}@if($a->procurement_required) · {{ __('Procurement') }}@endif</div>
                     </td>
-                    <td class="small">T{{ $a->quarter }}<br>{{ \Illuminate\Support\Carbon::parse($a->planned_start)->format('d/m') }}–{{ \Illuminate\Support\Carbon::parse($a->planned_end)->format('d/m') }}</td>
+                    <td class="small">{{ collect($a->execution_quarters ?: [$a->quarter])->map(fn ($q) => 'T'.$q)->implode(' ') }}<br>{{ \Illuminate\Support\Carbon::parse($a->planned_start)->format('d/m') }}–{{ \Illuminate\Support\Carbon::parse($a->planned_end)->format('d/m') }}</td>
                     <td class="small">
                         @if($a->indicators->isEmpty())
                             <span class="muted">—</span>

@@ -17,6 +17,8 @@ class Indicator extends Model
         'type',
         'unit',
         'annual_target',
+        'baseline',
+        'target_text',
     ];
 
     public function activity()

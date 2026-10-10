@@ -1,0 +1,1742 @@
+{
+ "year": 2026,
+ "source": {
+  "label": "Orçamento Geral do Estado para 2026",
+  "law": "Lei n.º 8/2025, de 27 de novembro (Jornal da República, Série I, N.º 48 B), alterada pela Lei n.º 8/2026, de 8 de junho (Série I, N.º 22 B)",
+  "book": "Livro Orçamental 2026, Volume II — Planos Anuais dos Serviços e Entidades do Setor Público Administrativo (Anexo K)",
+  "status": "approved"
+ },
+ "entities": {
+  "059": {
+   "name": "TECNOLOGIAS DE INFORMAÇÃO E COMUNICAÇÃO I.P.",
+   "pages": [
+    12,
+    20
+   ],
+   "volume": "paa26b.pdf",
+   "units": {
+    "0590101": "TIC Timor I.P"
+   },
+   "programmes": {
+    "510": "Funcionamento e Desenvolvimento Institucional",
+    "A08": "Tecnologia de Informação e Comunicação"
+   },
+   "activities": [
+    {
+     "code": "5100108",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Planeamento, desenvolvimento estratégico e orientação política atualizasaun ba planu estratéjiku. 2.Polítika interna sira husi TIC TIMOR - Numeru diresaun ho polítika interna ne'ebé dokumentadu no aprova ona. - Persentajen polítika sira ne'ebé implementa ona tuir diresaun. - Taxa konformidade ho prosedimentu polítika interna. 3.TIC TIMOR I.P. nia prosedimentu - Numeru prosedimentu operasionál padraun (SOP) dokumentadu no uza. - Persentajen unidade sira ne'ebé opera ho prosedimentu atualizadu. - Nivel konsiénsia ba funsionáriu ka formasaun kona-ba prosedimentu xave sira. 4.Dezenvolvimentu polítika TIK Nasional \"ICT Policy\": - Ekipa elaborasaun polítika estabelesidu - Konsultasaun ho parte interesada sira hala'o - Esbosu Dokumentu Politika TIK kompleta - Semináriu validasaun polítika TIK hala'o - Polítika finál TIK nian hetan aprovasaun husi Konsellu Ministru 5.Revizaun planu estratéjiku programa Timor- Dijitál 2022 – 2032: - Komisaun/taskforce estabelesidu - Kompleta avaliasaun diagnóstiku ba estratéjia atuál - Konsultsaun ho parte interresada sira hala'o ona - Ezbosu Estratejia dijitál Timor nian ne'ebé halo revizaun remata ona - Estratéjia reve husi peritu nasionál no internasionál sira - Dokumentu finál kona-ba estratéjia ne'ebé aprova husi Konsellu Ministrus Anexo K ‐ Página 643 de 1248.",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1.Planu Estratejiku TIC TIMOR I.P - Iha dokumentu Planu Estratejiku ida-ne'ebé aprova no publika ona. - Numeru objetivu estratéjiku sira ne'ebé define ho klaru iha planu. - Frekuénsia husi revizaun ka",
+     "baseline": "Programa IX Governu Dekretu-Lei TIC TIMOR ninian Planu Estratejia Timor Dijital",
+     "target": "1. Planu Estrateziku TIC TIMOR I.P. dezenvolvidu. Politika Interna Diresaun TIC TIMOR I.P. implementa haktuir ba kompetensia diresaun ida-idak nian. 3. Prosedimentu sira TIC",
+     "amounts": {
+      "20": 8000.0
+     },
+     "page": 12
+    },
+    {
+     "code": "5100202",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão Financeira, Administração e Logística",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "Kontinua implementa orsamentu ho efikás, liu husi mekanismu internal, ne'ebe bele asegura ezekusaun orsamentu, tuir siklus aprovisionamentu ne'ebe kumpri nafatin LEO, RJA no determina timeline ezekusaun ne'ebe klaru.",
+     "baseline": "Ezekuta Planu Orsamentu bazeia ba programa IX governu konstitusional",
+     "target": "Ezekuta PAA 2026 ho forma transparante, resposibilidade, efikas no efetiva.",
+     "amounts": {
+      "20": 170500.0
+     },
+     "page": 14
+    },
+    {
+     "code": "5100206",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão de recursos humanos",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Nivel satisfasaun funsionariu aumenta; 2. Asegura Ben-estar; 3. Rekrutamentu ba pesoal IT espesializadu tuir TIC TIMOR I.P. nia misaun no nesesidade; 4. Ambiente servisu ne'ebe seguru; 5. Atualiza mata dalan rekursu umanus.",
+     "baseline": "1. Existi Funsionárius 127 pessoal iha nível Nasional to'o Munisipiu; 2. Pesoal IT seidauk adekuadu atu responde ba servisu dijitalizasaun no apoiu to'o iha nível postu administrativu no regras hodi asegura funsionamentu servisu Ajénsia TIC TIMOR I.P; 3. Sei rekruta tan forsa traballudor ba pesoal téknika ho total 25 pessoas iha Diresaun teknika",
+     "target": "1. Programa atinjidu ho rekursu umanus ne'ebe adekuadu; 2. Implementa sistema rekursu umanu online.",
+     "amounts": {
+      "10": 869667.0
+     },
+     "page": 14
+    },
+    {
+     "code": "5100207",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Formação e capacitação de recursos humanos",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "Efikasia jestaun servisu no eleva produtividade hodi garante kualidade servisu.",
+     "baseline": "1. Identifika kapasidade funsionariu sira nian, liu husi avaliasaun de dezempeñu anual. 2. Identifika workshop, seminariu haktuir ba konvite husi parseiru sira iha nivel ASEAN no Internasionais;",
+     "target": "1. Identifika formadores ho kualifikadu, funsionariu sira kapasitadu ona iha area jestaun administrativu hodi apoiu funsionamentu ajénsia TIC TIMOR I.P. 2. Funsionariu sira hetan informasaun aktual iha area teknika no non-teknika liu husi workhsop no seminariu sira;",
+     "amounts": {
+      "20": 140000.0
+     },
+     "page": 14
+    },
+    {
+     "code": "A080202",
+     "programme": "A08",
+     "subprogramme": "A0802",
+     "subprogramme_name": "Cíclo do Desenvolvimento de Sistemas e Aplicações",
+     "name": "Serviços de Desenvolvimento dos Aplicações e Hospedagem (Hosting Service)",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "Tinan 2026 TIC TIMOR kontinua dijitaliza sistema informasaun ba Instituisaun no Ajência Estadu nian, husi Nasional to'o nivel suku.",
+     "baseline": "1. Husi total Instituisaun governu 81(65%) husi 139, ne'ebe digitaliza ona sira nian sistema; 2. TIC TIMOR I.P. desenvolve ona sistema informasaun (Dijitalizasaun) ba Instituisaun no Ajência Estadu nian, hamutuk 81 husi Instituisaun 139.",
+     "target": "1. TIC TIMOR I.P. dijitaliza sistema informasaun (Web Portal no Web Aplikasaun) hamutuk 158 husi Intituisaun no Ajência Estadu nian, hamutuk 90; 2. TIC TIMOR I.P. fornese ona formasaun instituisaun no Ajência estadu nian, hamutuk 68.",
+     "amounts": {
+      "20": 50000.0
+     },
+     "page": 15
+    },
+    {
+     "code": "A080205",
+     "programme": "A08",
+     "subprogramme": "A0802",
+     "subprogramme_name": "Cíclo do Desenvolvimento de Sistemas e Aplicações",
+     "name": "Capacitação nas áreas de Tecnologia da informação e Comunicação para Instituições do Estado e entidades públicos",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Tinan 2026 TIC TIMOR I.P. halo kapasitasaun ba líderes, administradores, diretores e funcionários públicos para",
+     "baseline": "1. Formação para os formadores; 2. Developer iha ona konesimentu intermediu iha linguajen programsaun",
+     "target": "1. Iha kapasidade ne'ebe sufsiente ba Implementasaun governu eletroniku; 2. Habilita dezenvolvimentu no",
+     "amounts": {
+      "20": 20000.0
+     },
+     "page": 15
+    },
+    {
+     "code": "A080501",
+     "programme": "A08",
+     "subprogramme": "A0805",
+     "subprogramme_name": "Apoio à Iniciativa da TIC Nacional",
+     "name": "Garantir o acesso do público aos serviços de Governo Eletrônico",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "Tinan 2026, TIC TIMOR I.P. kontinua mantem númeru IP Públic 1024 hodi responde servisu governu eletroniku, setor privadu inklui sosiedade sivil.",
+     "baseline": "Iha ona IP públic ho total 1024 IP Public ne'ebe TIC TIMOR I.P. jere rasik hodi fornese servisu governu eletroniku hanesan tuir mai: 1. Hospedajen dominu (Hosting Domain) 2. email ofisial (mail official) 3. kolokasaun Server (server colocation) 4. Fornese VPS (provide VPS) 5. Makina Virtual, (Virtual Machine) 6. Web Portal, 7. Web Aplikasaun",
+     "target": "Garantia disponibilidade, konfiabilidade no continua mantem IP públiku hodi servisu governu eletroniku ne'ebe hospendajem iha TIC TIMOR I.P. ho alvu atu hasa'e kapasidade, utilizasaun no seguransa servisu to'o 2026.",
+     "amounts": {
+      "20": 23500.0
+     },
+     "page": 16
+    },
+    {
+     "code": "A080604",
+     "programme": "A08",
+     "subprogramme": "A0806",
+     "subprogramme_name": "Infraestrutura da Rede do Governo",
+     "name": "Distribuição da Rede Governamental para apoiar a conectividade a todas as instituições governamentais (pluri anual)",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "Ponto distribuisaun Infraestrutura fibra otika 5 ne'ebe própriu ba Instituisaun no Ajência Estadu sira nian hotu iha Dili.",
+     "baseline": "1. Instituisaun no Ajência Estadu 57 iha Dili ne'ebe hetan koneksaun direta mai iha Sentru Dadus Governu Elektroniku sei aumenta haktuir ba pedidu husi 2025 ne'ebe maka seidauk realiza; 2. Sei halo melloramentu ba ekipamentu rede iha tinan 2026 husi Nasional to'o Munisipiu.",
+     "target": "Fasilita Instituisaun no Ajência Estadu nian hodi asesu ba servisu dijital, ne'ebé mak sentraliza iha sentru dadus Governu Eletróniku liu husi pontu distribuisaun fibra ne'ebé estabelese ona.",
+     "amounts": {
+      "20": 10000.0
+     },
+     "page": 17
+    },
+    {
+     "code": "A080605",
+     "programme": "A08",
+     "subprogramme": "A0806",
+     "subprogramme_name": "Infraestrutura da Rede do Governo",
+     "name": "Manutenção e garantia de serviços de conectividade de rede governamental",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Tinan 2026, TIC TIMOR I.P. halo manutensaun no moderniza ekipamentus rede backbone iha trritório, inklui upgrade lisensa ba Network Management System; 2. Sei moderniza Backbone ne'ebe existe, ho kapasidade ne'ebe bo'ot, bainhira husi parte CTL E.P. husu apoiu. Backbone ida ne'e mos bele integra ho backbone ne'ebe iha Munisipiu, nune'e servisu konetividade fornese husi TIC TIMOR I.P. ba instituisaun no ajensia Estadu bele liga husi pontu ida ba pontu seluk (point to point) husi Minisipiu to'o mai Nasional;",
+     "baseline": "1. Ekipamentus rede backbone iha teritóriu ne'ebe apoiu servisu teknikal kaduka ka remata ona (End of Support) iha tinan 2024, nune'e mos software sira ba monitorizasaun rede, tenki hetan atualizasaun. 2. Moderniza ekipamentu rede konetividade backbone iha nivel Nasional to'o Munisipiu husi kapasidade ne'ebe iha Nasional 10Gbps upgrade ba 100Gbps no ba Munisipiu husi 10Gbps upgrade ba iha 40Gbps.",
+     "target": "1. Tinan 2026, TIC TIMOR I.P. sei troka ekipamentus Backbone iha teritóriu ne'ebe mak ninia apoiu servisu kaduka ka remata ona, nomos upgrade lisensa ba Network Management System; 2. Kapasidade Backbone sei upgrade ba parte 2: a. Nasional 10Gbps upgrade 100Gbps b. Munisipiu husi 10Gbps upgrade ba iha 40Gbps.",
+     "amounts": {
+      "40": 229255.0
+     },
+     "page": 17
+    },
+    {
+     "code": "A081501",
+     "programme": "A08",
+     "subprogramme": "A0815",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Realiza verifikasaun vulnerabilidade e teste penetrasaun ba redes, sistema, base de dados no aplikasaun sira nebee ezisti ona no ida nebee sei dezenvolve iha tinan 2024",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Sistema kritiku evaluadu no teste, espetativa, hodi asegura sistema kritiku sira seguru no protezidu husi ameasa sibernetiku; 2. Asegura teknolojia hodi suporta atividade avaliasaun vulnerabilidade no teste penetrasaun disponivel hodi realiza atividade refere; 3. Sei fo formasaun ba pesoal ne’ebe halo atividade avaliasaun vulnerabilidade no teste penetrasaun ekipadu ho konesimentu tekniku espesializadu.",
+     "baseline": "1. Tinan 2025, atividade avaliasaun vulnerabilidade no teste penetrasaun inisia ona no alvu ba avaliasaun no teste ba sistema kritiku hodi teste kualidade seguransa sistema kritiku sira; 2. Atualment ekipa siberseguransa utiliza teknolojia ne'ebe ezisti hodi halao atividade avaliasaun vulnerabilidade no teste penedtrasaun; 3. Ekipa atual iha konesimentu dezenvolvimentu ICT jeral no presiza aumenta kapasidade tekniku espesialidade ba area refere.",
+     "target": "1. Maioria sistema kritiku hetan avaliasaun vulnerabilidade no teste antes loke ba asesu publiku ka integra ba ambienti produsaun; 2. Ekipa ne’ebe halo atividade avaliasaun vulnerabilidade no teste penetrasaun treinadu iha area espesializadu.",
+     "amounts": {
+      "20": 57000.0
+     },
+     "page": 18
+    },
+    {
+     "code": "A081502",
+     "programme": "A08",
+     "subprogramme": "A0815",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Implementa teknologia protesaun email e Firewall Analizer",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Asegura Sistema kritiku protezidu ho software antivirus, ba servidor no workstation iha tinan 2026; 2. Asegura sistema kritiku sira integra no implementa ona sistema MFA (Multi-Factor Authentication) iha tinan 2026.",
+     "baseline": "1. Implementasaun inisiu atinji ona 33% ba iha 130 servidor husi total servidor 450 no workstations (laptops & desktops) atinji ona 47% ba iha 70 husi 150 aparelu fisiku; 2. Implementasaun MFA (Multi- Factor Authentication) hanesan atividade ne'ebe proteje asesu kredensial no asegura asesu ba sistema kritiku konfirmadu husi pesoa autorizadu.",
+     "target": "1. Asegura sistema servidor kritiku no workstation protezidu husi ameasa siberntiku, spesifikamentu malware, virus, trojan, phishing, DDOS attack no nsst; 2. Iha tinan 2026, kualker asesu sistema kritiku sira presiza authentikasaun adisional liuhusi implementasaun MFA no asegura informasaun detailu asesu ba sistema (access logs) hotu guarda ho seguru ba objetivu investigasaun forensik bainhira presiza haktuir ba rekomendasaun ISO27001- 002.",
+     "amounts": {
+      "20": 55000.0
+     },
+     "page": 18
+    },
+    {
+     "code": "A081503",
+     "programme": "A08",
+     "subprogramme": "A0815",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Gradualmente dezenvolve matadalan(guidelines), procedimento, realiza conscientizasaun segurança Cibernetiku inklui mos quadros jurídicos",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Estandarizasaun sistema seguransa TIC TIMOR ne'ebe",
+     "baseline": "1. Iha Marsu 2025 TIC TIMOR ofisialmente adopta",
+     "target": "1. Asegura estandarizasaun siberseguransa TIC TIMOR",
+     "amounts": {
+      "20": 58000.0
+     },
+     "page": 18
+    },
+    {
+     "code": "A081600",
+     "programme": "A08",
+     "subprogramme": "A0816",
+     "subprogramme_name": "Infraestrutura para Centro de Dados Nacional do Governo Eletrónico",
+     "name": "Desenvolvimento do Centro de Dados",
+     "div": [
+      "0590101"
+     ],
+     "indicator": "1. Atualizasaun ba dispozitivu FortiMail no hametin infraestrutura Mail Gateway hó konseitu Clustering; 2. Implementasaun ba solusaun backup modernu no eskalavel ba dadus/arkivu importante sira; 3. Aumenta konfiabilidade fornesimentu enerjia (UPS, jeradór, sistema backup) hodi suporta operasaun 24/7; 4. Fornesimentu no jestaun ba estoke (stok) ekipamentu krítiku sira ba emerjénsia (UPS, armazenamentu, switch, módulu SFP); 5. Akizisaun no renovasaun lisensa anuál ba WAF firewall,",
+     "baseline": "1. FortiMail atual suporta de'it domíniu ±80, ho laiha konseitu Clustering; 2. Sistema backup uza nafatin QNAP ho kapasidade limitadu; 3. Interrupsaun enerjia ne'ebé akontese beibeik, UPS no jeradór sira la kobre dispozitivu importante hotu-hotu; 4. Laiha dispozitivu backup ne'ebé disponivel atu suporta servisu krítiku sira bainhira akontese interupsaun ba sistema kritiku sira hodi responde emergensia; 5. Prosesu jestaun lisensa software prinsipal besik atu remata (expire)",
+     "target": "1. Hasa'e kapasidade FortiMail nian hodi suporta domíniu ≥100 ho arkitetura Clustering high availability; 2. Fornese sistema backup automátiku, ajendadu, no eskalável ho integrasaun iha sistema rekuperasaun; 3. Asegura katak eletrisidade sentru dadus nian estavel no konfiável kobertura UPS no jeradór ba ekipamentu krítiku hotu- hotu; 4. Fornese ekipamentu backup hodi asegura kontinuidade servisu no resposta lalais ba emergensia. ka interupsaun sira; 5. Asegura katak software prinsipál hotu-",
+     "amounts": {
+      "20": 68356.0,
+      "40": 220745.0
+     },
+     "page": 19
+    }
+   ]
+  },
+  "025": {
+   "name": "MINISTÉRIO DOS TRANSPORTES E COMUNICAÇÕES",
+   "pages": [
+    307,
+    313
+   ],
+   "volume": "paa26a.pdf",
+   "units": {
+    "0250101": "Gabinete do Ministro dos Transportes e Comunicações",
+    "0250103": "Gabinete Inspeção e Auditoria",
+    "0250104": "Gabinete Jurídico",
+    "0250105": "Gabinete de Planeamento, Política e Cooperação",
+    "0250106": "Unidade de Política e Cooperação",
+    "0250201": "Gabinete do Director Geral dos Transportes e Comunicações",
+    "0250202": "Direção Nacional do Transporte Marítimo",
+    "0250203": "Direção de Meteorologia e Geofísica",
+    "0250204": "Direção Nacional de Infrastruturas de Comunicação",
+    "0250205": "Direção Nacional de Transportes Terrestres",
+    "0250206": "Direção Nacional dos Servisos Postais",
+    "0250207": "Direção Municipais dos Transportes e Comunicações-AILEU",
+    "0250208": "Direção Municipais dos Transportes e Comunicações-AINARO",
+    "0250209": "Direção Municipais dos Transportes e Comunicações-BAUCAU",
+    "0250210": "Direção Municipais dos Transportes e Comunicações-BOBONARO",
+    "0250211": "Direção Municipais dos Transportes e Comunicações-COVALIMA",
+    "0250212": "Direção Municipais dos Transportes e Comunicações-ERMERA",
+    "0250213": "Direção Municipais dos Transportes e Comunicações-LAUTEM",
+    "0250214": "Direção Municipais dos Transportes e Comunicações-LIQUICA",
+    "0250215": "Direção Municipais dos Transportes e Comunicações-MANATUTO",
+    "0250216": "Direção Municipais dos Transportes e Comunicações-MANUFAHI",
+    "0250217": "Direção Municipais dos Transportes e Comunicações-VIQUEQUE",
+    "0250301": "Gabinete Director Geral da Administração e Finanças",
+    "0250302": "Direção Nacional de Aprovisionamento",
+    "0250303": "Direção Nacional de Administração, Logística e Patrimonio",
+    "0250304": "Direção Nacional de Orçamento, Gestão e Financeira",
+    "0250305": "Direção Nacional de Recursos Humanos",
+    "0250401": "Unidade de Planeamento, Monitorização e Avaliação",
+    "0250500": "Direção-Geral das Comunicações",
+    "0250600": "Gabinete de Prevenção e Investigação de Acidentes e Incidentes com Aeronaves",
+    "0250700": "Gabinete de Digitalização e Segurança Cibernética",
+    "0250701": "Unidade para o Digital",
+    "0250702": "Unidade de Segurança Cibernética"
+   },
+   "programmes": {
+    "502": "Transportes",
+    "510": "Funcionamento e Desenvolvimento Institucional",
+    "558": "Serviços Postais",
+    "980": "Inclusão Social",
+    "A08": "Tecnologia de Informação e Comunicação",
+    "A38": "Meteorologia e Geofísica"
+   },
+   "activities": [
+    {
+     "code": "5020201",
+     "programme": "502",
+     "subprogramme": "50202",
+     "subprogramme_name": "Gerir a integração da Segurança e Desenvolvimento Regional do Transporte Terrestres",
+     "name": "Melhorar a segurança rodoviária",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "Número de melhoramento a facilidades de segurança rodoviaria.",
+     "baseline": "Manutenção de 9 sinais semáforos em Capital Dili.",
+     "target": "4 (Socialização de segurança rodoviaria nas escolas em Capital Dili).",
+     "amounts": {
+      "10": 640113.0,
+      "20": 423621.0
+     },
+     "page": 307
+    },
+    {
+     "code": "5020202",
+     "programme": "502",
+     "subprogramme": "50202",
+     "subprogramme_name": "Gerir a integração da Segurança e Desenvolvimento Regional do Transporte Terrestres",
+     "name": "Manter e gerir o sistema nacional Inspeção do Veículos",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "Número de veículos inspecionados (Carro e Mota).",
+     "baseline": "a) Carro =41,729; b) Mota = 65,906.",
+     "target": "a) Carro =45,902; b) Mota = 72,497.",
+     "amounts": {
+      "20": 111727.0
+     },
+     "page": 307
+    },
+    {
+     "code": "5020204",
+     "programme": "502",
+     "subprogramme": "50202",
+     "subprogramme_name": "Gerir a integração da Segurança e Desenvolvimento Regional do Transporte Terrestres",
+     "name": "Manter e gerir o sistema nacional de carta de condução",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "a) Número de novo carta condução emitida; b) Numero de carta condução renovado.",
+     "baseline": "a) 21,383 novas cartas condução emitida; b) 19,752 carta condução renovado.",
+     "target": "a) 21,385; b) 21,727",
+     "amounts": {
+      "20": 150000.0
+     },
+     "page": 307
+    },
+    {
+     "code": "5020321",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Construir muro de inspeção dos veículos em Comoro",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "% progresso de construção",
+     "baseline": "90%",
+     "target": "10%",
+     "amounts": {},
+     "page": 307
+    },
+    {
+     "code": "5020323",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Construir os sinais de sonoros em Capital Dili",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "progresso de construção",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "50": 100500.0
+     },
+     "page": 307
+    },
+    {
+     "code": "5020324",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Construir Halte Bus em Capital Díli",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "% progresso de construção",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "50": 100000.0
+     },
+     "page": 307
+    },
+    {
+     "code": "5020327",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Rehabilitasaun terminál Camea - Becora.",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "% progresso de rehabilitacao",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {},
+     "page": 307
+    },
+    {
+     "code": "5020328",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Reabilitação dos abrigos de ônibus existentes (16) na Capital Díli",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "1) % progresso de retencao 2) % de progreso de intalacao",
+     "baseline": "1) 90% 2) 0%",
+     "target": "1) 10% 2) 100% (Sede CCF e Foho Osan Mean)",
+     "amounts": {},
+     "page": 307
+    },
+    {
+     "code": "5020330",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Projetu pilotu ba semaforos-3 iha area Lider, Aitarak-laran, no Colmera iha Kapital Dili",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "% progresso de rehabilitacao",
+     "baseline": "90%",
+     "target": "10%",
+     "amounts": {},
+     "page": 307
+    },
+    {
+     "code": "5020356",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Reabilitação do terminal de passageiros regional em Baucau, Bobonaro, Covalima, Manufahi e Lautém",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "% progresso de rehabilitacao",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "50": 50000.0
+     },
+     "page": 307
+    },
+    {
+     "code": "5020357",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Obras edifisiu DMTC Bobonaro",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "",
+     "baseline": "",
+     "target": "",
+     "amounts": {
+      "50": 45000.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020358",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Reabilitasaun postu kontrolo transporte publico iha terminal Tunu Bibi (Maliana)",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "",
+     "baseline": "",
+     "target": "",
+     "amounts": {
+      "50": 26256.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020359",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Konstrusaun foun moru no valeta edifisiu sentral MTC",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "",
+     "baseline": "",
+     "target": "",
+     "amounts": {
+      "50": 100000.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020360",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Reabilitasaun edifisiu central DNTT Balide",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "",
+     "baseline": "",
+     "target": "",
+     "amounts": {
+      "50": 20000.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020361",
+     "programme": "502",
+     "subprogramme": "50203",
+     "subprogramme_name": "Infraestruturas de Transportes Terrestres",
+     "name": "Reabilitasaun edifisiu inspesaun veikulu iha Comoro",
+     "div": [
+      "0250205"
+     ],
+     "indicator": "",
+     "baseline": "",
+     "target": "",
+     "amounts": {
+      "50": 40000.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020801",
+     "programme": "502",
+     "subprogramme": "50208",
+     "subprogramme_name": "Gerir os serviços de atendimento público em municípios",
+     "name": "Melhorar o atendimento públicos nas Direções Municipais dos Transpontes e Comunicações",
+     "div": [
+      "0250207",
+      "0250208",
+      "0250209",
+      "0250210",
+      "0250211",
+      "0250212",
+      "0250213",
+      "0250214",
+      "0250215",
+      "0250216",
+      "0250217"
+     ],
+     "indicator": "% de atendimento publico",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 528231.0,
+      "20": 242850.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020401",
+     "programme": "502",
+     "subprogramme": "50204",
+     "subprogramme_name": "Transporte marítimo",
+     "name": "Manter e desenvolver o sistema de capacitação e certificação de marítima",
+     "div": [
+      "0250202"
+     ],
+     "indicator": "Número de capacitação e certificação",
+     "baseline": "24 (M = 18 e F = 6)0",
+     "target": "20",
+     "amounts": {
+      "10": 215393.0,
+      "20": 62704.0
+     },
+     "page": 308
+    },
+    {
+     "code": "5020403",
+     "programme": "502",
+     "subprogramme": "50204",
+     "subprogramme_name": "Transporte marítimo",
+     "name": "Controlar os tráfegos dos navios de transportes marítimos",
+     "div": [
+      "0250202"
+     ],
+     "indicator": "Número de Navios.",
+     "baseline": "181",
+     "target": "250",
+     "amounts": {
+      "20": 67390.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5020404",
+     "programme": "502",
+     "subprogramme": "50204",
+     "subprogramme_name": "Transporte marítimo",
+     "name": "Registar e implementar os regulamentos dos transportes marítimos",
+     "div": [
+      "0250202"
+     ],
+     "indicator": "Número de licenciamento.",
+     "baseline": "22",
+     "target": "25",
+     "amounts": {
+      "20": 55144.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5100103",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Coordenar e gerir transportes e comunicações",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "% de funcionamento do Gabinete da Direção Geral de Transportes e Comunicações",
+     "baseline": "Operacional sem impedimentos",
+     "target": "100%",
+     "amounts": {
+      "10": 223064.0,
+      "20": 51628.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5100108",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Planeamento, desenvolvimento estratégico e orientação política",
+     "div": [
+      "0250101"
+     ],
+     "indicator": "% de funcionamento e operação do Gabinete do Ministro",
+     "baseline": "n/a",
+     "target": "100%",
+     "amounts": {
+      "10": 874541.0,
+      "20": 730881.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5100109",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Inspeção, fiscalização e auditoria",
+     "div": [
+      "0250103"
+     ],
+     "indicator": "% de serviços de inspeção, fiscalização e auditoria conduzidas",
+     "baseline": "n/a",
+     "target": "100%",
+     "amounts": {
+      "10": 61983.0,
+      "20": 41381.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5100110",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Coordenar e gerir serviços corporativos",
+     "div": [
+      "0250301"
+     ],
+     "indicator": "Todo o Ministério em funcionamento, sem distúrbios",
+     "baseline": "Operacional sem impedimentos",
+     "target": "100%",
+     "amounts": {
+      "10": 116150.0,
+      "20": 58468.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5100111",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Abordagem integrada do género",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "Número dos funcionarios formados de varios áreas",
+     "baseline": "69 formados: 1) Aileu: 31 (M = 17 e F = 14) 2) Manatuto: 38 (M = 26 e F = 12)",
+     "target": "45",
+     "amounts": {
+      "20": 30000.0
+     },
+     "page": 309
+    },
+    {
+     "code": "5100112",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Apoio Jurídico",
+     "div": [
+      "0250104"
+     ],
+     "indicator": "% de melhoramento de condições e prestação de serviço jurídico",
+     "baseline": "100% em condições de prestação de serviços juridicos",
+     "target": "100%",
+     "amounts": {
+      "10": 167910.0,
+      "20": 21230.0
+     },
+     "page": 309
+    },
+    {
+     "code": "510011Z",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Coordenar, elaborar e avaliar a execução do plano estratégico do Transportes e Telecommunicação",
+     "div": [
+      "0250105"
+     ],
+     "indicator": "% de implementação dos planos estratégico concluido",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 30992.0,
+      "20": 48388.0
+     },
+     "page": 309
+    },
+    {
+     "code": "510014L",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Coordenar e gerir os serviços de comunicações",
+     "div": [
+      "0250500"
+     ],
+     "indicator": "% de funcionamento do Gabinete da Direção Geral de Comunicações.",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 60669.0
+     },
+     "page": 309
+    },
+    {
+     "code": "510014M",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Planear, coordenar e executar as políticas estratégicas para a transformação digital e proteção cibernética",
+     "div": [
+      "0250700"
+     ],
+     "indicator": "% de e proteção cibernética.",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 18636.0
+     },
+     "page": 309
+    },
+    {
+     "code": "510014N",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Promover a digitalização de processo, a inovação tecnológica e a doação de soluções digitais",
+     "div": [
+      "0250701"
+     ],
+     "indicator": "% de a inovação tecnológica e a doação de soluções digitais.",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 349764.0
+     },
+     "page": 310
+    },
+    {
+     "code": "510014O",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Garantir a segurança da informação e prestação contra ameaças cibernéticas",
+     "div": [
+      "0250702"
+     ],
+     "indicator": "% de segurança da informação e prestação contra ameaças cibernéticas.",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 345302.0
+     },
+     "page": 310
+    },
+    {
+     "code": "510014P",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Investigar e gerir de acidentes e incedentes com aeronaves",
+     "div": [
+      "0250600"
+     ],
+     "indicator": "% de acidentes e incedentes.",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 67984.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5100205",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Planeamento, monitorização e estatísticas",
+     "div": [
+      "0250401"
+     ],
+     "indicator": "% de melhoramento de condições e prestação de serviços",
+     "baseline": "0%",
+     "target": "100%",
+     "amounts": {
+      "10": 74025.0,
+      "20": 39760.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5100206",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão de recursos humanos",
+     "div": [
+      "0250305"
+     ],
+     "indicator": "% de melhoramento de gestao dos recursos humanos",
+     "baseline": "100%",
+     "target": "100%",
+     "amounts": {
+      "10": 376175.0,
+      "20": 55196.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5100211",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Aprovisionamento e gestão de contratos",
+     "div": [
+      "0250302"
+     ],
+     "indicator": "% de plano aprovisionamento e contratos concluídos",
+     "baseline": "100% em contratos concluídos.",
+     "target": "100%",
+     "amounts": {
+      "10": 107096.0,
+      "20": 51568.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5100221",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão financeira",
+     "div": [
+      "0250304"
+     ],
+     "indicator": "% de melhoramento de condições e Prestação de Serviços",
+     "baseline": "100% em condições de prestação de serviços;",
+     "target": "100%",
+     "amounts": {
+      "10": 162522.0,
+      "20": 321317.0,
+      "30": 1800000.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5100223",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão do património e logística",
+     "div": [
+      "0250303"
+     ],
+     "indicator": "% de elevar a eficiência e eficácia de administração e apoio Logístico",
+     "baseline": "100% em condições de prestação de serviços",
+     "target": "100%",
+     "amounts": {
+      "10": 141299.0,
+      "20": 222368.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5100301",
+     "programme": "510",
+     "subprogramme": "51003",
+     "subprogramme_name": "Parcerias",
+     "name": "Cooperação e parcerias",
+     "div": [
+      "0250106"
+     ],
+     "indicator": "Número de acordo de cooperação e parceria com outro país",
+     "baseline": "0",
+     "target": "5",
+     "amounts": {
+      "10": 50222.0,
+      "20": 13951.0
+     },
+     "page": 310
+    },
+    {
+     "code": "5580101",
+     "programme": "558",
+     "subprogramme": "55801",
+     "subprogramme_name": "Gestão da Integração de Estruturas e Redes dos Serviços Postais",
+     "name": "Criar, operar e manter os serviços postais",
+     "div": [
+      "0250206"
+     ],
+     "indicator": "Número de toneladas de bens em (cartas, encomendas, etc).",
+     "baseline": "91 Toneladas",
+     "target": "105 toneladas",
+     "amounts": {
+      "10": 233285.0,
+      "20": 102161.0
+     },
+     "page": 311
+    },
+    {
+     "code": "5580103",
+     "programme": "558",
+     "subprogramme": "55801",
+     "subprogramme_name": "Gestão da Integração de Estruturas e Redes dos Serviços Postais",
+     "name": "Proceder ao atendimento público dos sistemas de serviços postais,",
+     "div": [
+      "0250206"
+     ],
+     "indicator": "Número de funcionamento do sistema de controlo",
+     "baseline": "9.456",
+     "target": "10.874 de funcionamento do sistema controlo.",
+     "amounts": {
+      "20": 71420.0
+     },
+     "page": 311
+    },
+    {
+     "code": "5580104",
+     "programme": "558",
+     "subprogramme": "55801",
+     "subprogramme_name": "Gestão da Integração de Estruturas e Redes dos Serviços Postais",
+     "name": "Monitorizar e desenvolver o desempenho dos serviços postais.",
+     "div": [
+      "0250206"
+     ],
+     "indicator": "Número de monitorização e desenvolvimento do desempenho serviços postais.",
+     "baseline": "30.414",
+     "target": "34.976 o correio distribuição ao 13 municípios",
+     "amounts": {
+      "20": 56340.0
+     },
+     "page": 311
+    },
+    {
+     "code": "9803004",
+     "programme": "980",
+     "subprogramme": "98030",
+     "subprogramme_name": "Declaração de Maubisse",
+     "name": "Promover as mulheres rurais no acesso a ICT e elevar as suas capacidades habilidades no desenvolvimento do IT para suportar o acesso à informaçãcao e facilidades na agricultura e tecnologia do mercado",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "Número de mulheres rurais participam e capacitados na utilizacao TIC",
+     "baseline": "25",
+     "target": "30",
+     "amounts": {
+      "20": 8000.0
+     },
+     "page": 311
+    },
+    {
+     "code": "9803005",
+     "programme": "980",
+     "subprogramme": "98030",
+     "subprogramme_name": "Declaração de Maubisse",
+     "name": "Assegurar a estação público seguro para as mulheres, crianças meninas e para as pessoas deficientes, incluindo facilidades adequadas como electricidade, água limpa e saneamneto.",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "Número da socialização em Posto Administrativo implementados.",
+     "baseline": "13 Municipios",
+     "target": "4 (Posto Administrativo Luro, Atabae, Laleia e Railaco)",
+     "amounts": {
+      "20": 8000.0
+     },
+     "page": 311
+    },
+    {
+     "code": "9803015",
+     "programme": "980",
+     "subprogramme": "98030",
+     "subprogramme_name": "Declaração de Maubisse",
+     "name": "Assegurar o transportes públicos seguro para o deficientes, como zebra crossing, sinais de trânsito sonoro, pontes de passeio e usar desenho para acesibilidade.",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "Número da socialização em Posto Administrativo implementados.",
+     "baseline": "13 Municipios",
+     "target": "4 (Posto Administrativo Luro, Atabae, Laleia e Railaco)",
+     "amounts": {
+      "20": 8000.0
+     },
+     "page": 311
+    },
+    {
+     "code": "9803016",
+     "programme": "980",
+     "subprogramme": "98030",
+     "subprogramme_name": "Declaração de Maubisse",
+     "name": "Promover a capacidade de cargos de cefias para desenvolver a inisiativa sobre a comunicaçõo e tecnologia (ICT) ao mulheres rurais e criancas meninas e asegurar o investimento sustentevilidade do necesidade mulheres de rurais",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "% de melhorar dados",
+     "baseline": "100%",
+     "target": "100%",
+     "amounts": {
+      "20": 8000.0
+     },
+     "page": 311
+    },
+    {
+     "code": "9803019",
+     "programme": "980",
+     "subprogramme": "98030",
+     "subprogramme_name": "Declaração de Maubisse",
+     "name": "Melhorar a capacidade do Ministério dos Transportes e Comunicações ao dados dezagregados bazeando do sexo e categoria como masculino, femenino, EhD, áreas de geografícas (urbana e rural)",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "Número de capacitados e certifidos.",
+     "baseline": "0",
+     "target": "25",
+     "amounts": {
+      "20": 4000.0
+     },
+     "page": 312
+    },
+    {
+     "code": "9803021",
+     "programme": "980",
+     "subprogramme": "98030",
+     "subprogramme_name": "Declaração de Maubisse",
+     "name": "Desenvolver políticas integradas para prevenir violência no espaço público relativamente na utilização dos meios eletrónicos via “Online” no domínio dos transportes públicos",
+     "div": [
+      "0250201"
+     ],
+     "indicator": "1) % de política integrada para prevenir violência no espaço público e vias online; 2) Número de motorista e empresas motorista formados e capacitados.",
+     "baseline": "0%",
+     "target": "1) 100%; 2) 25%",
+     "amounts": {
+      "20": 4000.0
+     },
+     "page": 312
+    },
+    {
+     "code": "A080701",
+     "programme": "A08",
+     "subprogramme": "A0807",
+     "subprogramme_name": "Fornecimento de Comunicações Eficientes, Fiáveis, Seguras e Acessíveis ao Governo com uma Capacidade Suficiente",
+     "name": "Prestar apoio técnico ao sistema de tecnologia da informação",
+     "div": [
+      "0250204"
+     ],
+     "indicator": "Número de acesso internet ao instituicao Governo conectadas.",
+     "baseline": "606",
+     "target": "1000",
+     "amounts": {
+      "10": 443800.0,
+      "20": 1346495.0
+     },
+     "page": 312
+    },
+    {
+     "code": "A080702",
+     "programme": "A08",
+     "subprogramme": "A0807",
+     "subprogramme_name": "Fornecimento de Comunicações Eficientes, Fiáveis, Seguras e Acessíveis ao Governo com uma Capacidade Suficiente",
+     "name": "Preparar e desenvolver equipamentos e infra- estrutura de TI",
+     "div": [
+      "0250204"
+     ],
+     "indicator": "% de atingir a qualidade e segurança da rede internet do Governo",
+     "baseline": "100% de 606 instituições conectadas.",
+     "target": "100%",
+     "amounts": {
+      "20": 98748.0
+     },
+     "page": 312
+    },
+    {
+     "code": "A080703",
+     "programme": "A08",
+     "subprogramme": "A0807",
+     "subprogramme_name": "Fornecimento de Comunicações Eficientes, Fiáveis, Seguras e Acessíveis ao Governo com uma Capacidade Suficiente",
+     "name": "Manter a rede do Governo (Upgrade Networks Support Systems (Hardware, software, Software License, UPS, Fiber. Optics)",
+     "div": [
+      "0250204"
+     ],
+     "indicator": "% de Atingir qualidade de segurança da rede internet do Governo no centro de DNIC",
+     "baseline": "100% de qualidade de segurança da internet",
+     "target": "100%",
+     "amounts": {
+      "20": 87704.0
+     },
+     "page": 312
+    },
+    {
+     "code": "A380101",
+     "programme": "A38",
+     "subprogramme": "A3801",
+     "subprogramme_name": "Gestão da Qualidade da Informação de Serviços Meteorológicos",
+     "name": "Desenvolver, gerir e operar os sistemas de vigilância meteorológica, e climatologia.",
+     "div": [
+      "0250203"
+     ],
+     "indicator": "Número da previsão do tempo e atualizacao mensal de 365 dados da climatólogia.",
+     "baseline": "365 por dia e mantida de 12 vezes por ano.",
+     "target": "",
+     "amounts": {
+      "10": 227519.0,
+      "20": 369600.0
+     },
+     "page": 313
+    },
+    {
+     "code": "A380104",
+     "programme": "A38",
+     "subprogramme": "A3801",
+     "subprogramme_name": "Gestão da Qualidade da Informação de Serviços Meteorológicos",
+     "name": "Calibração do Instrumento observação de meteorológia.",
+     "div": [
+      "0250203"
+     ],
+     "indicator": "Número de calibração 0 implementado.",
+     "baseline": "3 (Covalima, Dili, e Oecusse)",
+     "target": "",
+     "amounts": {
+      "20": 30000.0
+     },
+     "page": 313
+    }
+   ]
+  },
+  "056": {
+   "name": "ADMINISTRAÇÃO DOS PORTOS DE TIMOR-LESTE",
+   "pages": [
+    633,
+    635
+   ],
+   "volume": "paa26a.pdf",
+   "units": {
+    "0560101": "Autoridade Portuária de Timor Leste",
+    "0560201": "Operações do Berlin - Nakroma"
+   },
+   "programmes": {
+    "502": "Transportes",
+    "510": "Funcionamento e Desenvolvimento Institucional"
+   },
+   "activities": [
+    {
+     "code": "5020701",
+     "programme": "502",
+     "subprogramme": "50207",
+     "subprogramme_name": "Operação dos Navios de Passageiros e de Cargas",
+     "name": "Combústivel para os navios de passageiros",
+     "div": [
+      "0560201"
+     ],
+     "indicator": "Volume de combustivel consumido pelos 2 dois navios de passageiros",
+     "baseline": "Em 2026 garante combustivel sufisiente para fasilitar os operacoes de navios de Berlin Ramelau e Berlin Nakroma durante 1 ano",
+     "target": "100% Garantir de forma sustentável o estoque de combustivel para as operações de transportes de passageiros domésticos e cargas",
+     "amounts": {
+      "20": 30000.0
+     },
+     "page": 633
+    },
+    {
+     "code": "5020702",
+     "programme": "502",
+     "subprogramme": "50207",
+     "subprogramme_name": "Operação dos Navios de Passageiros e de Cargas",
+     "name": "Operar os navios de passageiros",
+     "div": [
+      "0560201"
+     ],
+     "indicator": "Tripulação do Navio Berlin- Nakroma e do Berlin Ramelau, Reficoes, Material Limpeza, Bilhete passageiro BN&BR e manutensaun utina e annual durante 1 ano.",
+     "baseline": "35 tripulantes para operar o navio Berlin-Nakroma e do berlin ramelau navio Berlin-Nakroma.",
+     "target": "Em 2026 os navios de Berlin Nakroma e de Berlin Ramelau sao operados por 35 tripulantes em boas kondicoes dos 2 dois navios atraves de manutensaun rutina e annual",
+     "amounts": {
+      "10": 433303.0,
+      "20": 2350000.0
+     },
+     "page": 633
+    },
+    {
+     "code": "5100202",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão Financeira, Administração e Logística",
+     "div": [
+      "0560101"
+     ],
+     "indicator": "Execução de Orçamento",
+     "baseline": "Com o orsamento planeado para apoiar a gestao administrativa no ano findo todos as atividades administrativa foram realizado/implementadas execusaun 90%",
+     "target": "Como alokacao de osamento para as atividades administrativa produsem resultadus satisfacao no desempenho das atividades e para que as atividades administrativas resultem satisfacao no desempenho das atividades",
+     "amounts": {
+      "20": 472119.0
+     },
+     "page": 633
+    },
+    {
+     "code": "5100206",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão de recursos humanos",
+     "div": [
+      "0560101"
+     ],
+     "indicator": "Participarão em formações de capacitação incluindo tripulantes do Berlin Nakroma e Direto salario para todos",
+     "baseline": "22 Funcionarios (H:8 e M:13) participaram em formações e capacitação sobre Em 2026 funsionario 24 Funcionarios",
+     "target": "Em 2026 havera formasaun de BST e continuasaun de pagamento de salario para todos funsionario",
+     "amounts": {
+      "10": 1147086.0,
+      "20": 50000.0
+     },
+     "page": 633
+    }
+   ]
+  },
+  "063": {
+   "name": "AUTORIDADE AVIAÇÃO CIVIL DE TIMOR-LESTE",
+   "pages": [
+    28,
+    30
+   ],
+   "volume": "paa26b.pdf",
+   "units": {
+    "0630101": "Gabinete Apoio ao Conselho da Administração",
+    "0630102": "Direção Navegação Aerea",
+    "0630103": "Direção Infraestrutura Aeroportuaria",
+    "0630104": "Direção de Seguranca Operacional",
+    "0630105": "Direção de Fasilitação e Segurança",
+    "0630106": "Direção de Licenciamento e Acesso ao Mercado",
+    "0630107": "Direção de Administração Finanças",
+    "0630108": "Serviços de Aprovisionamento"
+   },
+   "programmes": {
+    "502": "Transportes",
+    "510": "Funcionamento e Desenvolvimento Institucional"
+   },
+   "activities": [
+    {
+     "code": "5020101",
+     "programme": "502",
+     "subprogramme": "50201",
+     "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+     "name": "Certificar os Aeroportos, Vigiar, Auditar, Fiscalizar e aprovar as Infraestruturas Aeroportuariar no teritorio de Timor- Leste",
+     "div": [
+      "0630103"
+     ],
+     "indicator": "1) Numero Certificação, 2). % vizilancia e inspecção, 3) Numero de auditoria aeroporto, 4) Numero fiscaliza e aprova as infraestrutura aeroportuaria 5) Numeru de Regulamentos. 6) Socialização Instrumento de Serviço as infraestrutura aeroportuaria 7) % participação e proativo em conferência e encontro Assembleia Geral -ICAO",
+     "baseline": "1). 0; 2). 35% vizilancia ao aeroporto Baucau e Dili; 3).1 inicial auditoria ao PNLIA; 4).2 aprovações sinais aeroportuaria e Bombeiros categoria VI PNLIA; 5) 0; 6) 0; 7) 100% Virtual Online",
+     "target": "1).3 Certificação do aeroporto; 2). 100% vizilancia; 3). auditoria para aeroportuaria; 4).3 aprovacao ao infraestruturas aeroportuaria; 5). 1 Regulamentos para infraestruturas aeroportuaria; 6) Socialização Direita; 7) 100%",
+     "amounts": {
+      "20": 4000.0
+     },
+     "page": 28
+    },
+    {
+     "code": "5020102",
+     "programme": "502",
+     "subprogramme": "50201",
+     "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+     "name": "Certificar, Auditar, Vigiar e Fiscalizar os Serviços de Trafego Aéreo, Navegação e Sistema e Facilidade de Navegação no Teritorio Timor-leste",
+     "div": [
+      "0630102"
+     ],
+     "indicator": "1). Numero de aprovação Sistema Naveagação; 2) Numero de Emição e Validação Licença do Contoloador Trafego Aereo; 3. % Visilancia ao 3 Aeroportos (Dili, Oecusse e Suai); 4. Numero de Regulamentos, 5) % participação e proativo em conferência e encontro Assembleia Geral -ICAO",
+     "baseline": "1. Uma (1) Aprovação Sistema de Navegação PBN (Performance Based Navigation) 2).Certifica e Valida Licencas do Contoloador Trafego Aero 3). Visilancia Regular aos 3 aeroportos (Dili, Oecusse e Suai); 4) ….. 5) 100%",
+     "target": "1. Uma (1) Aprovação Sistema de Navegação PBN (Performance Based Navigation) 2).Certifica e Valida Licencas do Contoloador Trafego Aero 3). Visilancia Regular aos 3 aeroportos (Dili, Oecusse e Suai); 4) ….. 5) 100%",
+     "amounts": {
+      "20": 4000.0
+     },
+     "page": 28
+    },
+    {
+     "code": "5020103",
+     "programme": "502",
+     "subprogramme": "50201",
+     "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+     "name": "Operacionalizar a segurança de Opreçoens de Voo, Pessoal de Auranâutica e Aeronavegabilidade, e Assistência em Escala",
+     "div": [
+      "0630104"
+     ],
+     "indicator": "1) % aprovação de voo e Aeronave Piloto; 2) Numero Validacao Lisenca Pessoal Aeroneutica, 3) Emite Sertificado Aeronavegabilidade, 4) Emite",
+     "baseline": "1). 100%, 2.) 25 Validação Lisenca Pessoal Aeroneutica, 1 Sertificado Aeronavegabilidade (Aero Dili), 2 Sertificado assistencia em eskala (Bollore, STAT), 6)",
+     "target": "1). 100%, 2.) 25 Validação Lisenca Pessoal Aeroneutica, 1 Sertificado Aeronavegabilidade (Aero Dili), 2 Sertificado assistencia em eskala (Bollore, STAT), 6)",
+     "amounts": {
+      "20": 4000.0,
+      "30": 25000.0
+     },
+     "page": 28
+    },
+    {
+     "code": "5020104",
+     "programme": "502",
+     "subprogramme": "50201",
+     "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+     "name": "Implementar, Aprovacao, Vigilância e Dezenvolvimento de Facilitação e Seguranca de Transportes Aéros",
+     "div": [
+      "0630105"
+     ],
+     "indicator": "1. Numero de aprovação Programa Segurança Operadores Aviação, 2. Numero de Visilancia Operadores Aviacao, 3. Implementacao Facilitacao e Segurança; Numero de Aprovação dos Regulamentos Operacionais. 4) % participação e proativo em conferência e encontro Assembleia Geral -ICAO",
+     "baseline": "1. Aprovação parcial Programa Seguranca Aeroportu PNLIA; 2. 25% visilancia no Aeroporto Dili e Baucau; 3. Mantida Socialização Implementação Facilitação e Segurança; 4) 100% Virtual Online",
+     "target": "3 Aprovação do Programa Segurança Operadores de Aviacao; 100% visilancia Operadores de Aviacao; Uma (1) Implementação de Facilitacao e Segurança; Duas(2) aprovacoes dos Regulamentos Operacionais, 4). 100%",
+     "amounts": {
+      "20": 4000.0,
+      "30": 20000.0
+     },
+     "page": 29
+    },
+    {
+     "code": "5020105",
+     "programme": "502",
+     "subprogramme": "50201",
+     "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+     "name": "Recolha Receitas e Verifica os requisitos Operadores, Supervisionado de Empresas Licenciadas de Transporte Aero",
+     "div": [
+      "0630106"
+     ],
+     "indicator": "1). % de Receitas, 2). Avaliar e dar recomendações para empresas registada em SERVE, 3). Numeru regulamento Taxas/Receitas 4)% participação e proativo em conferência e encontro Assembleia Geral -ICAO",
+     "baseline": "1). 100% Receitas; 2). Registrado na Sistema SERVE; 3) 2 regulamentos administrativos de receitas e Multa (Penalty) 4) 100%",
+     "target": "1). 100% Receitas; 2). Registrado na Sistema SERVE; 3) 2 regulamentos administrativos de receitas e Multa (Penalty) 4) 100%",
+     "amounts": {
+      "20": 2831.0
+     },
+     "page": 29
+    },
+    {
+     "code": "5020109",
+     "programme": "502",
+     "subprogramme": "50201",
+     "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+     "name": "Negociar o regulamento de serviço aéreo em paises regional",
+     "div": [
+      "0630106"
+     ],
+     "indicator": "Números Acordos Assinados (ASA)",
+     "baseline": "7 Asinados de Acordos dos paises regional concluído e 3 ratificados",
+     "target": "7 Asinados de Acordos dos paises regional concluído e 3 ratificados.",
+     "amounts": {
+      "20": 46854.0
+     },
+     "page": 29
+    },
+    {
+     "code": "5100165",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Planeamento, desenvolvimento estratégico e orientação das actividades juridicao AACTL",
+     "div": [
+      "0630101"
+     ],
+     "indicator": "% de orientação da política.",
+     "baseline": "100%",
+     "target": "100%",
+     "amounts": {
+      "20": 36870.0
+     },
+     "page": 29
+    },
+    {
+     "code": "5100202",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão Financeira, Administração e Logística",
+     "div": [
+      "0630107"
+     ],
+     "indicator": "% Melhoramento de condições e Prestação de Serviços",
+     "baseline": "0% em condições de prestação de serviços;",
+     "target": "100%",
+     "amounts": {
+      "10": 645658.0,
+      "20": 75000.0,
+      "40": 6000.0,
+      "50": 80000.0
+     },
+     "page": 30
+    },
+    {
+     "code": "5100211",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Aprovisionamento e gestão de contratos",
+     "div": [
+      "0630108"
+     ],
+     "indicator": "% de plano aprovisionamento e contratos concluídos",
+     "baseline": "100%",
+     "target": "90% em contratos concluídos.",
+     "amounts": {
+      "20": 2000.0
+     },
+     "page": 30
+    }
+   ]
+  },
+  "066": {
+   "name": "AUTORIDADE NACIONAL DE COMUNICAÇÕES",
+   "pages": [
+    40,
+    41
+   ],
+   "volume": "paa26b.pdf",
+   "units": {
+    "0660101": "Autoridade Nacional de Comunicações"
+   },
+   "programmes": {
+    "510": "Funcionamento e Desenvolvimento Institucional",
+    "A08": "Tecnologia de Informação e Comunicação"
+   },
+   "activities": [
+    {
+     "code": "5100111",
+     "programme": "510",
+     "subprogramme": "51001",
+     "subprogramme_name": "Funcionamento Institucional",
+     "name": "Abordagem integrada do género",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "ANC officers (women and men) have training on gender issue",
+     "baseline": "0",
+     "target": "15",
+     "amounts": {
+      "20": 7500.0
+     },
+     "page": 40
+    },
+    {
+     "code": "5100202",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão Financeira, Administração e Logística",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "80% of payments processed within 30 days",
+     "baseline": "80%",
+     "target": "80%",
+     "amounts": {
+      "20": 63700.0
+     },
+     "page": 40
+    },
+    {
+     "code": "5100206",
+     "programme": "510",
+     "subprogramme": "51002",
+     "subprogramme_name": "Desenvolvimento Institucional",
+     "name": "Gestão de recursos humanos",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "Monthly payroll information delivered to MF on time",
+     "baseline": "100%",
+     "target": "100%",
+     "amounts": {
+      "10": 164140.0,
+      "20": 37000.0
+     },
+     "page": 40
+    },
+    {
+     "code": "A080901",
+     "programme": "A08",
+     "subprogramme": "A0809",
+     "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+     "name": "Regulação do sector das comunicações",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "Regulations and guidelines approved",
+     "baseline": "25",
+     "target": "35",
+     "amounts": {
+      "10": 189153.0,
+      "20": 18500.0
+     },
+     "page": 40
+    },
+    {
+     "code": "A080902",
+     "programme": "A08",
+     "subprogramme": "A0809",
+     "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+     "name": "Licenciar e supervisionar os provedores de serviços",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "A Framework in place for the registration/licencing of Internet Service Providers (ISPs)",
+     "baseline": "35%",
+     "target": "35%",
+     "amounts": {
+      "20": 10000.0
+     },
+     "page": 40
+    },
+    {
+     "code": "A080903",
+     "programme": "A08",
+     "subprogramme": "A0809",
+     "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+     "name": "Gerir um Mercado de Telecomunicações Competitivos",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "2 semestral surveys completed on markets competition indicators",
+     "baseline": "25%",
+     "target": "25%",
+     "amounts": {
+      "10": 20042.0,
+      "20": 12500.0
+     },
+     "page": 40
+    },
+    {
+     "code": "A080904",
+     "programme": "A08",
+     "subprogramme": "A0809",
+     "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+     "name": "Gerir Proteção dos Consumidores de Serviços Telecomunicações",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "A Framework in place for handling consumer complaints",
+     "baseline": "50%",
+     "target": "100%",
+     "amounts": {
+      "10": 16042.0,
+      "20": 20294.0
+     },
+     "page": 40
+    },
+    {
+     "code": "A080905",
+     "programme": "A08",
+     "subprogramme": "A0809",
+     "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+     "name": "Gerenciar recursos de telecomunicações",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "A numbering plan for IoTs prepared; Increased.TL domain name by 5000; Grow IP numbers by 2048",
+     "baseline": "25%",
+     "target": "100%",
+     "amounts": {
+      "20": 107006.0
+     },
+     "page": 40
+    },
+    {
+     "code": "A081001",
+     "programme": "A08",
+     "subprogramme": "A0810",
+     "subprogramme_name": "Gerir o Setor de Comunicações para Melhorar a Economia Digital e Melhorar os Avanços e Mudanças Tecnológicas no Cenário do Mercado",
+     "name": "Modernização do quadro normativo do seitor de Comunicações considerando a convergência de tecnologias",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "A draft proposal of Decree Law on the impact of technological convergence on the telecom sector completed",
+     "baseline": "25%",
+     "target": "100%",
+     "amounts": {
+      "10": 70864.0
+     },
+     "page": 41
+    },
+    {
+     "code": "A081101",
+     "programme": "A08",
+     "subprogramme": "A0811",
+     "subprogramme_name": "Acceso Universal",
+     "name": "Assegurar uma Cobertura de Telemóvel Fiável, Segura e Acessível a todos os Timorenses, Incluindo nas Áreas rurais",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "2 semestral driving tests completed on mobile services coverage",
+     "baseline": "25%",
+     "target": "100%",
+     "amounts": {
+      "10": 93710.0,
+      "20": 47713.0,
+      "40": 20000.0
+     },
+     "page": 41
+    },
+    {
+     "code": "A081201",
+     "programme": "A08",
+     "subprogramme": "A0812",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Implementar o Plano Nacional de Segurança Sibernética",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "Milestone for year 2019 of the relevant plan implemented",
+     "baseline": "25%",
+     "target": "100%",
+     "amounts": {
+      "10": 215792.0
+     },
+     "page": 41
+    },
+    {
+     "code": "A081202",
+     "programme": "A08",
+     "subprogramme": "A0812",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Gerenciar o domínio de topo de código de país.TL ccTLD",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "Established a secure DNS service for.TL ccTLD",
+     "baseline": "5%",
+     "target": "25%",
+     "amounts": {
+      "20": 23000.0
+     },
+     "page": 41
+    },
+    {
+     "code": "A081203",
+     "programme": "A08",
+     "subprogramme": "A0812",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Fortalecer a Capacidade de Equipas de Resposta a Incendentes de Segurança em Computadores (TL-CSIRT) para Garantir o Acesso a uma garantir o Acesso a uma Internet Segura, Acessível em todo o Território Nacional",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "A TL-CSIRT incident handling service started and two cyber security training for government agencies conducted",
+     "baseline": "25%",
+     "target": "100%",
+     "amounts": {
+      "20": 6000.0
+     },
+     "page": 41
+    },
+    {
+     "code": "A081205",
+     "programme": "A08",
+     "subprogramme": "A0812",
+     "subprogramme_name": "Segurança Cibernética",
+     "name": "Promover o desenvolvimento de uma instalação neutra de Ponto de Troca de Tráfego na Internet (IXP)",
+     "div": [
+      "0660101"
+     ],
+     "indicator": "Um Ponto de Troca de Tráfego Internet (IXP) neutro para o operador estabelecido",
+     "baseline": "Ponto de Intercâmbio de Tráfego Internet (IXP)",
+     "target": "Ponto de Intercâmbio de Tráfego Internet (IXP)",
+     "amounts": {
+      "20": 10000.0
+     },
+     "page": 41
+    }
+   ]
+  }
+ },
+ "envelope": {
+  "reference": "OGE-2026",
+  "law": "Lei n.º 8/2025, de 27 de novembro, alterada pela Lei n.º 8/2026, de 8 de junho",
+  "date": "2025-11-27",
+  "status": "Approved"
+ },
+ "amendments": {
+  "025": {
+   "amounts": {
+    "10": 5516675,
+    "20": 4875831,
+    "30": 1800000,
+    "40": 0,
+    "50": 481756
+   },
+   "law": "Lei n.º 8/2026, de 8 de junho (Jornal da República, Série I, N.º 22 B)",
+   "date": "2026-06-08",
+   "note": "A primeira alteração ao OGE 2026 reduziu Bens e Serviços do MTC em 126.209 USD; o detalhe por atividade não foi publicado."
+  }
+ }
+}

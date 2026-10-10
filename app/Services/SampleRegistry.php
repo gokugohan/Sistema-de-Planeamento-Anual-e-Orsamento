@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\AuditLog;
+use App\Models\BudgetCycle;
 use App\Models\Directorate;
+use App\Models\FiscalEnvelope;
 use App\Models\Program;
 use App\Models\SampleRecord;
 use App\Models\SystemSetting;
@@ -30,6 +32,8 @@ class SampleRegistry
 
     /** Adopt-mode: register existing records that are identical to the sample (loaded before the registry existed). */
     public bool $adopt = false;
+
+    private bool $flagged = false;
 
     /** @var array<int, string> records the seeding left alone because they already exist as real data */
     public array $skipped = [];
@@ -73,7 +77,10 @@ class SampleRegistry
             ['model_type' => $model->getMorphClass(), 'model_id' => $model->getKey()],
             ['dataset' => $dataset]
         );
-        SystemSetting::set(self::FLAG, true, 'boolean', 'A sample dataset is loaded');
+        if (! $this->flagged) {
+            SystemSetting::set(self::FLAG, true, 'boolean', 'A sample dataset is loaded');
+            $this->flagged = true;
+        }
     }
 
     public function isRegistered(Model $model): bool
@@ -86,7 +93,7 @@ class SampleRegistry
         return SampleRecord::exists();
     }
 
-    /** @return array{activities: int, users: int, directorates: int, programs: int} */
+    /** @return array{activities: int, users: int, directorates: int, programs: int, envelopes: int} */
     public function counts(?string $dataset = null): array
     {
         $q = fn (string $class) => SampleRecord::query()
@@ -99,6 +106,7 @@ class SampleRegistry
             'users' => $q(User::class),
             'directorates' => $q(Directorate::class),
             'programs' => $q(Program::class),
+            'envelopes' => $q(FiscalEnvelope::class),
         ];
     }
 
@@ -108,12 +116,19 @@ class SampleRegistry
     public function purge(string $dataset): array
     {
         $report = DB::transaction(function () use ($dataset) {
-            $deleted = ['activities' => 0, 'users' => 0, 'directorates' => 0, 'programs' => 0];
+            $deleted = ['activities' => 0, 'users' => 0, 'directorates' => 0, 'programs' => 0, 'envelopes' => 0];
             $kept = [];
 
             $ids = fn (string $class) => SampleRecord::where('dataset', $dataset)
                 ->where('model_type', (new $class)->getMorphClass())
                 ->pluck('model_id');
+
+            // 0. Sample budget cycles and envelopes first: a closed year locks its activities against deletion.
+            BudgetCycle::whereIn('id', $ids(BudgetCycle::class))->get()->each->delete();
+            FiscalEnvelope::withoutGlobalScopes()->whereIn('id', $ids(FiscalEnvelope::class))->get()->each(function ($e) use (&$deleted) {
+                $e->delete();
+                $deleted['envelopes']++;
+            });
 
             // 1. Sample activities (indicators and budget lines go with them).
             Activity::withoutGlobalScopes()->whereIn('id', $ids(Activity::class))->get()->each(function ($a) use (&$deleted) {

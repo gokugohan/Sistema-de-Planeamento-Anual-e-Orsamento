@@ -129,7 +129,7 @@ new class extends Component {
             @if($report['action'] === 'purged')
                 <p class="text-sm font-semibold text-zinc-900">{{ __('Purged') }}</p>
                 <p class="text-sm text-zinc-600 mt-1">
-                    {{ __(':a activities, :u accounts, :d units and :p programmes deleted.', ['a' => $report['deleted']['activities'], 'u' => $report['deleted']['users'], 'd' => $report['deleted']['directorates'], 'p' => $report['deleted']['programs']]) }}
+                    {{ __(':a activities, :u accounts, :d units, :p programmes and :e envelopes deleted.', ['a' => $report['deleted']['activities'], 'u' => $report['deleted']['users'], 'd' => $report['deleted']['directorates'], 'p' => $report['deleted']['programs'], 'e' => $report['deleted']['envelopes']]) }}
                 </p>
                 @if(count($report['kept']))
                     <p class="text-sm font-medium text-amber-700 mt-3">{{ __('Kept because real data uses them (they are now ordinary records):') }}</p>
@@ -148,10 +148,11 @@ new class extends Component {
     <x-ui.card>
         <h2 class="text-sm font-semibold text-zinc-900 mb-2">{{ __('What it contains') }}</h2>
         <ul class="list-disc pl-5 text-sm text-zinc-600 space-y-1">
-            <li>{{ __('The 28 MTC entities from Decreto-Lei 75/2023 as amended by 12/2026 (no departments are invented).') }}</li>
-            <li>{{ __('7 working programmes with placeholder codes MTC-001 to MTC-007, not official OGE codes.') }}</li>
+            <li>{{ __('The MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
+            <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38).') }}</li>
             <li>{{ __('Demo accounts (@goku.tl, password "password"): a Minister, and a Planner and a Director per unit.') }}</li>
-            <li>{{ __('19 illustrative 2027 activities marked [EXEMPLO]. Every amount, target and date is invented.') }}</li>
+            <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 approved activities with their official codes, indicators and amounts by economic category.') }}</li>
+            <li>{{ __('The 2025 (closed) and 2026 fiscal envelopes with their distribution, and the 2027 budget cycle, whose bill is still being debated in Parliament (no envelope yet).') }}</li>
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>

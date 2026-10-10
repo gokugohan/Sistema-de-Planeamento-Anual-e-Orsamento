@@ -6,7 +6,6 @@ use App\Services\SampleRegistry;
 use Database\Seeders\Samples\MtcDemoUsersSeeder;
 use Database\Seeders\Samples\MtcDirectorateSeeder;
 use Database\Seeders\Samples\MtcProgramSeeder;
-use Database\Seeders\Samples\MtcSampleActivitiesSeeder;
 use Illuminate\Console\Command;
 
 /**
@@ -24,7 +23,7 @@ class AdoptSampleData extends Command
     public function handle(SampleRegistry $registry): int
     {
         $this->warn('Only records IDENTICAL to the MTC sample (same code and name/description) are adopted. Review before confirming:');
-        $this->line('  units · programmes · demo users (@goku.tl) · [EXEMPLO] activities');
+        $this->line('  units · programmes · demo users (@goku.tl)');
 
         if (! $this->option('force') && ! $this->confirm('Adopt matching records as sample data (they become purgeable)?')) {
             return self::FAILURE;
@@ -32,7 +31,7 @@ class AdoptSampleData extends Command
 
         $registry->adopt = true;
 
-        foreach ([MtcDirectorateSeeder::class, MtcProgramSeeder::class, MtcDemoUsersSeeder::class, MtcSampleActivitiesSeeder::class] as $seeder) {
+        foreach ([MtcDirectorateSeeder::class, MtcProgramSeeder::class, MtcDemoUsersSeeder::class] as $seeder) {
             app($seeder)->setCommand($this)->run($registry);
         }
 

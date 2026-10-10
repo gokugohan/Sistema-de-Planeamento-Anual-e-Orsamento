@@ -510,7 +510,15 @@ new class extends Component {
                                 <tbody class="divide-y divide-zinc-50">
                                     @foreach($activity->indicators as $indicator)
                                         <tr class="hover:bg-zinc-50/50 transition-colors group">
-                                            <td class="px-6 py-4 text-sm font-medium text-zinc-900">{{ $indicator->name }}</td>
+                                            <td class="px-6 py-4 text-sm font-medium text-zinc-900">{{ $indicator->name }}
+                                                @if($indicator->baseline || $indicator->target_text)
+                                                    <p class="mt-1 text-xs font-normal text-zinc-500">
+                                                        @if($indicator->baseline){{ __('Starting point') }}: {{ $indicator->baseline }}@endif
+                                                        @if($indicator->baseline && $indicator->target_text) · @endif
+                                                        @if($indicator->target_text){{ __('Target') }}: {{ $indicator->target_text }}@endif
+                                                    </p>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4">
                                                 <span class="text-xs font-bold tracking-wide px-2 py-1 rounded-full ring-1
                                                     {{ $indicator->type === 'Output' ? 'bg-blue-50 text-blue-700 ring-blue-200' : 'bg-purple-50 text-purple-700 ring-purple-200' }}">
@@ -668,7 +676,7 @@ new class extends Component {
                             <div class="w-7 h-7 rounded-full bg-indigo-800 text-indigo-200 text-xs font-bold flex items-center justify-center flex-shrink-0">3</div>
                             <div>
                                 <p class="text-xs font-semibold text-indigo-400">{{ __('Quarter') }}</p>
-                                <p class="text-sm font-semibold text-white mt-0.5">Q{{ $activity->quarter }}</p>
+                                <p class="text-sm font-semibold text-white mt-0.5">{{ collect($activity->execution_quarters ?: [$activity->quarter])->map(fn ($q) => 'Q'.$q)->implode(' ') }}</p>
                             </div>
                         </div>
                     @endif

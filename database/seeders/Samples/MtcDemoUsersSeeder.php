@@ -31,6 +31,9 @@ class MtcDemoUsersSeeder extends Seeder
             if (! $registry->isRegistered($dir)) {
                 continue; // only sample units get demo accounts
             }
+            if (preg_match('/^(DMTC|AACTL|APORTIL)-/', $dir->code)) {
+                continue; // municipal directorates and divisions of the autonomous bodies have no demo accounts
+            }
             $code = strtolower($dir->code);
 
             foreach (['planner' => ['Planning', 'Planner'], 'director' => ['Director', 'Director']] as $prefix => [$role, $label]) {

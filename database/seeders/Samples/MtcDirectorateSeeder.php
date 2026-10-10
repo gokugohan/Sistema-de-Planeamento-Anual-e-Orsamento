@@ -21,7 +21,11 @@ use Illuminate\Database\Seeder;
  * (art. 4(3)), each governed by its own statute. The Minister directs and supervises them
  * (art. 4(2)) but they are NOT services of the ministry, so they are flagged `indirect`: their
  * plans and budgets are their own. Their internal structure is set by their statutes, which the
- * organic law does not reproduce, so no sub-units are invented for them.
+ * organic law does not reproduce; the only divisions loaded for them are those the State Budget
+ * itself prints (APORTIL's ferry operations and AACTL's directorates).
+ *
+ * Besides the organic units, the divisions printed in the annual plans of the State Budget
+ * (see MtcCostCentres) are loaded as units so every real activity has its real owner.
  *
  * The organic law stops at the direção nacional / unidade level; departments are
  * defined later by ministerial diploma and are intentionally NOT invented here.
@@ -41,6 +45,7 @@ class MtcDirectorateSeeder extends Seeder
         $this->registry = $registry;
 
         // ── Gabinetes (report directly to the Minister) ──────────────────
+        $this->independent('GM', 'Gabinete do Ministro dos Transportes e Comunicações', self::ORGANIC_LAW_YEAR);
         $this->independent('GIGTC', 'Gabinete de Inspeção-Geral dos Transportes e Comunicações', self::ORGANIC_LAW_YEAR);
         $gppc = $this->independent('GPPC', 'Gabinete de Planeamento, Política e Cooperação', self::ORGANIC_LAW_YEAR);
         $this->independent('GJ', 'Gabinete Jurídico', self::ORGANIC_LAW_YEAR);
@@ -83,10 +88,21 @@ class MtcDirectorateSeeder extends Seeder
 
         // ── Administração indireta do Estado (art. 7): autonomy of their own ──
         $this->autonomous('ANATL', 'Administração de Aeroportos e Navegação Aérea de Timor-Leste, E.P.', 'E.P.', 'art. 25');
-        $this->autonomous('APORTIL', 'Administração dos Portos de Timor-Leste, I.P.', 'I.P.', 'art. 26');
-        $this->autonomous('AACTL', 'Autoridade da Aviação Civil de Timor-Leste, I.P.', 'I.P.', 'art. 27');
+        $aportil = $this->autonomous('APORTIL', 'Administração dos Portos de Timor-Leste, I.P.', 'I.P.', 'art. 26');
+        $aactl = $this->autonomous('AACTL', 'Autoridade da Aviação Civil de Timor-Leste, I.P.', 'I.P.', 'art. 27');
         $this->autonomous('ANC', 'Autoridade Nacional de Comunicações, I.P.', 'I.P.', 'art. 28');
         $this->autonomous('TICTIMOR', 'Agência de Tecnologias de Informação e Comunicação, I.P. (TIC Timor)', 'I.P.', 'art. 29');
+
+        // ── Divisions that exist in the budget (Livro Orçamental, Anexo K) but not in the organic law ──
+        // Municipal directorates: territorial delegations of the ministry, supervised by the DG dos Transportes.
+        foreach (MtcCostCentres::MUNICIPAL as $div => [$code, $municipality]) {
+            $this->upsert($code, "Direção Municipal dos Transportes e Comunicações de {$municipality}", 'Unit', $dgt, self::ORGANIC_LAW_YEAR, ['description' => "Código orçamental {$div}"]);
+        }
+        // APORTIL runs the Berlin Nakroma ferry as a budget division of its own.
+        $this->upsert('APORTIL-BN', 'Operações do Berlin Nakroma', 'Unit', $aportil, self::ORGANIC_LAW_YEAR, ['description' => 'Código orçamental 0560201', 'administration' => Directorate::INDIRECT]);
+        foreach (MtcCostCentres::AACTL as $div => [$code, $name]) {
+            $this->upsert($code, $name, 'Unit', $aactl, self::ORGANIC_LAW_YEAR, ['description' => "Código orçamental {$div}", 'administration' => Directorate::INDIRECT]);
+        }
     }
 
     /** A public body of the indirect administration: own legal personality, administrative and financial autonomy. */
