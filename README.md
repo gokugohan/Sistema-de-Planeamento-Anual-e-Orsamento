@@ -125,7 +125,7 @@ Bulk query-builder writes do not fire model events and are therefore not audited
 
 ## Quick start (local development)
 
-**Requirements:** PHP 8.2+ with `pdo_mysql`, `mbstring`, `intl`, `gd`, `zip`, `fileinfo`; Composer 2; Node 20+; MySQL 5.7+ (8.0 recommended). [Laragon](https://laragon.org) on Windows has all of it.
+**Requirements:** PHP 8.3+ with `pdo_mysql`, `mbstring`, `intl`, `gd`, `zip`, `fileinfo`; Composer 2; Node 20+; MySQL 5.7+ (8.0 recommended). [Laragon](https://laragon.org) on Windows has all of it.
 
 ```bash
 # 1. Create two empty databases (app and tests)
@@ -242,7 +242,37 @@ Copy `database/seeders/Samples/` to a new folder, replace the structure and prog
 
 ### Server requirements
 
-PHP 8.2+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`, a web server (Nginx or Apache) serving **`public/`** as the document root, HTTPS, and a process manager (systemd or Supervisor) for the queue worker. Redis is optional and recommended for large deployments.
+PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`, a web server (Nginx or Apache) serving **`public/`** as the document root, HTTPS, and a process manager (systemd or Supervisor) for the queue worker. Redis is optional and recommended for large deployments.
+
+### Deploying on Railway
+
+1. Push this repository to GitHub. In Railway, create a project from the repository and add a **MySQL** service. Railway should detect the Laravel app from `composer.json`.
+2. In the app service's **Variables**, set the following. Replace `MySQL` in the references if you named the database service differently. Generate `APP_KEY` locally with `php artisan key:generate --show` and paste the result; do not commit it.
+
+   ```ini
+   APP_ENV=production
+   APP_DEBUG=false
+   APP_KEY=<generated key>
+   APP_URL=https://<your Railway domain>
+   DB_CONNECTION=mysql
+   DB_HOST=${{ MySQL.MYSQLHOST }}
+   DB_PORT=${{ MySQL.MYSQLPORT }}
+   DB_DATABASE=${{ MySQL.MYSQLDATABASE }}
+   DB_USERNAME=${{ MySQL.MYSQLUSER }}
+   DB_PASSWORD=${{ MySQL.MYSQLPASSWORD }}
+   SESSION_SECURE_COOKIE=true
+   ADMIN_NAME=System Administrator
+   ADMIN_EMAIL=<your administrator email>
+   ADMIN_PASSWORD=<strong unique password>
+   ```
+
+   Keep `QUEUE_CONNECTION=database`, `SESSION_DRIVER=database` and `CACHE_STORE=database` (the application defaults). Configure SMTP variables if the app needs to send email; `MAIL_MAILER=log` does not deliver it.
+3. In the app service's **Build** settings, set the build command to `composer install --no-dev --optimize-autoloader --no-interaction && npm ci && npm run build`. Set the **Start Command** to `php artisan serve --host 0.0.0.0 --port $PORT` so Laravel listens on Railway's assigned port. Railpack installs Composer development dependencies while building, so this project requires PHP 8.3+; do not override its PHP version with 8.2. The `--no-dev` flag still keeps production-only dependencies in the final deployment.
+4. Set the service's **Pre-deploy Command** to `php artisan migrate --force`. This runs schema migrations before each release. Deploy, then generate a Railway domain in the service's **Networking** settings and update `APP_URL` to that HTTPS URL.
+5. In the app service's Railway shell, run `php artisan db:seed --force` once to create the base records and first administrator. Do not run this as a deploy command, and do not load the optional sample dataset in production. Sign in with the administrator credentials you set above.
+6. Add a second service from the same repository for the queue worker. Give it the same database and application variables, use the same build command, and set its **Start Command** to `php artisan queue:work --sleep=3 --tries=3 --max-time=3600`. Notifications will remain queued if this worker is not running.
+
+Railway's container filesystem is ephemeral. If you store uploaded files locally, attach a Railway Volume at the Laravel storage path or use persistent object storage; keep database backups outside the app container. Railway's managed MySQL backups are preferable to the local `paa:backup` command unless `mysqldump` and persistent backup storage have also been configured. Check `/health` after deployment.
 
 ### First deployment
 
