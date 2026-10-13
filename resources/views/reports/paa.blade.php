@@ -10,6 +10,11 @@
     }
 
     $selectedYear = (int) request('year', App\Models\FiscalEnvelope::getEffectiveYear());
+
+    // Every figure on this page is added up by the database (see PlanBreakdown), never in loops over records.
+    $breakdown = app(App\Services\PlanBreakdown::class);
+    $unitTotals = $breakdown->unitTotals($selectedYear);
+    $programmes = $breakdown->programmes($selectedYear);
 @endphp
 
 <x-app-layout title="{{ __('Reporting') }}">
@@ -133,10 +138,7 @@
                                             </div>
 
                     @php
-                        $allProposals = App\Models\LineItem::whereHas('activity', fn($q) => $q->where('fiscal_year', $selectedYear))
-                            ->with(['economicClassification', 'adjustedBudget'])
-                            ->get();
-                        $totalDistributed = $allProposals->sum(fn($p) => optional($p->adjustedBudget)->approved_amount ?? 0);
+                        $totalDistributed = $breakdown->approvedTotal($selectedYear);
                     @endphp
 
                                             <div
@@ -214,10 +216,10 @@
                                     $byParent = App\Models\Directorate::all()->groupBy(fn ($d) => $d->parent_id ?? 0);
                                     $byParent->flatten()->each(fn ($d) => $d->setRelation('children', $byParent->get($d->id, collect())));
                                     $rootDirectorates = $byParent->get(0, collect());
+                                    $emptyTotal = ['planned' => 0.0, 'approved' => 0.0];
 
-                                    $renderDirectorate = function ($dir, $depth = 0, $parentId = null) use (&$renderDirectorate, $selectedYear) {
-                                        $planned = $dir->getTotalEstimatedRollup($selectedYear);
-                                        $approved = $dir->getTotalApprovedRollup($selectedYear);
+                                    $renderDirectorate = function ($dir, $depth = 0, $parentId = null) use (&$renderDirectorate, $unitTotals, $emptyTotal) {
+                                        ['planned' => $planned, 'approved' => $approved] = $unitTotals[$dir->id] ?? $emptyTotal;
 
                                         if ($planned <= 0 && $approved <= 0)
                                             return '';
@@ -291,8 +293,8 @@
 
                                 @foreach($rootDirectorates as $root)
                                     @php
-                                        $globalPlanned += $root->getTotalEstimatedRollup($selectedYear);
-                                        $globalApproved += $root->getTotalApprovedRollup($selectedYear);
+                                        $globalPlanned += ($unitTotals[$root->id] ?? $emptyTotal)['planned'];
+                                        $globalApproved += ($unitTotals[$root->id] ?? $emptyTotal)['approved'];
                                     @endphp
                                     {!! $renderDirectorate($root) !!}
                                 @endforeach
@@ -367,26 +369,13 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-zinc-50 bg-white">
-                                @php
-                                    $activeYear = $selectedYear;
-                                    $programs = App\Models\Program::with([
-                                        'activities' => function ($q) use ($activeYear) {
-                                            $q->where('fiscal_year', $activeYear)->with(['directorate:id,code,name', 'indicators', 'lineItems.economicClassification', 'lineItems.adjustedBudget']);
-                                        }
-                                    ])->get();
-                                @endphp
-
-                                @foreach($programs as $program)
-                                    @if($program->activities->isEmpty()) @continue @endif
-
+                                @foreach($programmes as $programRow)
                                     @php
-                                        $progPlanned = $program->activities->flatMap->lineItems->sum('estimated_amount');
-                                        $progApproved = $program->activities->flatMap->lineItems->map->adjustedBudget->sum('approved_amount');
+                                        $program = $programRow['program'];
+                                        $progPlanned = $programRow['planned'];
+                                        $progApproved = $programRow['approved'];
                                         $progDiff = $progPlanned - $progApproved;
                                         $progRowId = 'prog-' . $program->id;
-
-                                        // Group all line items in this program by classification
-                                        $itemsByClass = $program->activities->flatMap->lineItems->groupBy('economic_classification_id');
                                     @endphp
 
                                     {{-- Level 1: Program (Matches Root Unit style) --}}
@@ -438,17 +427,13 @@
                                         </td>
                                     </tr>
 
-                                    @foreach($itemsByClass as $classId => $lineItems)
+                                    @foreach($programRow['classes'] as $classId => $classRow)
                                         @php
-                                            $classification = $lineItems->first()->economicClassification;
-                                            $classPlanned = $lineItems->sum('estimated_amount');
-                                            $classApproved = $lineItems->map->adjustedBudget->sum('approved_amount');
+                                            $classification = $classRow['classification'];
+                                            $classPlanned = $classRow['planned'];
+                                            $classApproved = $classRow['approved'];
                                             $classDiff = $classPlanned - $classApproved;
                                             $classRowId = $progRowId . '-class-' . $classId;
-
-                                            // Activities that have items in this classification
-                                            $actIdsInClass = $lineItems->pluck('activity_id')->unique();
-                                            $activitiesInClass = $program->activities->whereIn('id', $actIdsInClass);
                                         @endphp
 
                                         {{-- Level 2: Economic Classification (Matches Level 2 Unit style) --}}
@@ -492,12 +477,11 @@
                                                 {{ number_format($classDiff, 2) }}</td>
                                         </tr>
 
-                                        @foreach($activitiesInClass as $activity)
+                                        @foreach($classRow['activities'] as $activityRow)
                                             @php
-                                                // Sum only the line items of THIS activity that match THIS classification
-                                                $actItemsInClass = $lineItems->where('activity_id', $activity->id);
-                                                $actPlanned = $actItemsInClass->sum('estimated_amount');
-                                                $actApproved = $actItemsInClass->map->adjustedBudget->sum('approved_amount');
+                                                $activity = $activityRow['activity'];
+                                                $actPlanned = $activityRow['planned'];
+                                                $actApproved = $activityRow['approved'];
                                                 $actDiff = $actPlanned - $actApproved;
                                             @endphp
 
@@ -528,7 +512,7 @@
                                                 </td>
                                                 <td class="px-8 py-4 text-xs text-zinc-500 border-none">
                                                     <ul class="space-y-1.5 list-none">
-                                                        @foreach($activity->indicators as $indicator)
+                                                        @foreach($activityRow['indicators'] as $indicator)
                                                             <li class="flex items-start gap-2">
                                                                 <div class="w-1 h-1 bg-indigo-300 rounded-full mt-1.5 shrink-0"></div>
                                                                 <span>{{ $indicator->name }}: <b

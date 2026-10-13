@@ -1,0 +1,65 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\AdjustedBudget;
+use App\Models\Directorate;
+use App\Models\LineItem;
+use App\Services\PlanBreakdown;
+use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class PlanBreakdownTest extends TestCase
+{
+    use RefreshDatabase;
+
+    private function plannedIn(int $year): float
+    {
+        return (float) LineItem::whereHas('activity', fn ($q) => $q->where('fiscal_year', $year))->sum('estimated_amount');
+    }
+
+    private function approvedIn(int $year): float
+    {
+        return (float) AdjustedBudget::whereHas('lineItem.activity', fn ($q) => $q->where('fiscal_year', $year))->sum('approved_amount');
+    }
+
+    public function test_the_totals_match_the_raw_budget_lines(): void
+    {
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+        $breakdown = app(PlanBreakdown::class);
+
+        foreach ([2026, 2027] as $year) {
+            $root = Directorate::where('code', 'GDSC')->firstOrFail();
+            $totals = $breakdown->unitTotals($year);
+
+            $this->assertEqualsWithDelta($this->plannedIn($year), $totals[$root->id]['planned'], 0.005, "planned {$year}");
+            $this->assertEqualsWithDelta($this->approvedIn($year), $totals[$root->id]['approved'], 0.005, "approved {$year}");
+            $this->assertEqualsWithDelta($this->approvedIn($year), $breakdown->approvedTotal($year), 0.005);
+
+            $programmes = $breakdown->programmes($year);
+            $this->assertEqualsWithDelta($this->plannedIn($year), $programmes->sum('planned'), 0.005);
+            $this->assertEqualsWithDelta($this->approvedIn($year), $programmes->sum('approved'), 0.005);
+        }
+    }
+
+    public function test_a_unit_includes_the_units_below_it(): void
+    {
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+        $totals = app(PlanBreakdown::class)->unitTotals(2026);
+
+        $gdsc = Directorate::where('code', 'GDSC')->value('id');
+        $parts = Directorate::whereIn('code', ['UDIG', 'USC'])->pluck('id')->sum(fn ($id) => $totals[$id]['planned']);
+
+        $this->assertGreaterThan($parts, $totals[$gdsc]['planned'], 'the Gabinete also has its own activities');
+        $this->assertGreaterThan(0, $totals[Directorate::where('code', 'UDIG')->value('id')]['planned']);
+    }
+
+    public function test_a_year_without_a_plan_is_empty(): void
+    {
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+
+        $this->assertCount(0, app(PlanBreakdown::class)->programmes(2019));
+        $this->assertSame(0.0, app(PlanBreakdown::class)->approvedTotal(2019));
+    }
+}

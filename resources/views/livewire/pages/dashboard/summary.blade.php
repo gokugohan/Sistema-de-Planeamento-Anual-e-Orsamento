@@ -7,6 +7,7 @@ use App\Models\EconomicClassification;
 use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\SystemSetting;
+use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Component;
 
 /**
@@ -112,21 +113,28 @@ new class extends Component {
         };
 
         // ── physical delivery: verified progress against annual targets ──
-        $verified = fn ($q) => $q->where('status', 'Verified');
-        $indicators = Indicator::whereIn('activity_id', $base()->select('activities.id'))
-            ->where('annual_target', '>', 0)
-            ->withSum(['progress as achieved' => $verified], 'achieved_value')
-            ->withSum(['progress as q1' => fn ($q) => $verified($q)->where('quarter', 1)], 'achieved_value')
-            ->withSum(['progress as q2' => fn ($q) => $verified($q)->where('quarter', 2)], 'achieved_value')
-            ->withSum(['progress as q3' => fn ($q) => $verified($q)->where('quarter', 3)], 'achieved_value')
-            ->withSum(['progress as q4' => fn ($q) => $verified($q)->where('quarter', 4)], 'achieved_value')
-            ->get(['id', 'annual_target']);
-        $achievement = $indicators->isEmpty() ? null : round($indicators->avg(fn ($i) => min(100, ($i->achieved / $i->annual_target) * 100)), 1);
-        $targets = $indicators->sum('annual_target');
+        // One grouped query: per indicator its verified progress (total and by quarter), then averaged in SQL.
+        $perIndicator = DB::table('indicators as i')
+            ->leftJoin('indicator_progress as p', 'p.indicator_id', '=', 'i.id')
+            ->whereIn('i.activity_id', $base()->select('activities.id'))
+            ->where('i.annual_target', '>', 0)
+            ->groupBy('i.id', 'i.annual_target')
+            ->selectRaw("i.annual_target,
+                SUM(CASE WHEN p.status = 'Verified' THEN p.achieved_value ELSE 0 END) AS achieved,
+                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 1 THEN p.achieved_value ELSE 0 END) AS q1,
+                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 2 THEN p.achieved_value ELSE 0 END) AS q2,
+                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 3 THEN p.achieved_value ELSE 0 END) AS q3,
+                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 4 THEN p.achieved_value ELSE 0 END) AS q4");
+        $delivery = DB::query()->fromSub($perIndicator, 't')->selectRaw(
+            'COUNT(*) AS n, AVG(LEAST(100, achieved / annual_target * 100)) AS achievement, SUM(annual_target) AS targets,
+             SUM(q1) AS q1, SUM(q2) AS q2, SUM(q3) AS q3, SUM(q4) AS q4'
+        )->first();
+        $achievement = $delivery->n ? round((float) $delivery->achievement, 1) : null;
+        $targets = (float) $delivery->targets;
         $cumulative = 0;
         $quarterly = [];
         foreach ([1, 2, 3, 4] as $q) {
-            $cumulative += $indicators->sum("q{$q}");
+            $cumulative += (float) $delivery->{"q{$q}"};
             $quarterly[] = $targets > 0 ? round($cumulative / $targets * 100, 1) : 0;
         }
 
@@ -190,7 +198,7 @@ new class extends Component {
             'fundLabel' => $fundLabel, 'fund' => $fund, 'envelope' => $envelope,
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
-            'achievement' => $achievement, 'indicatorCount' => $indicators->count(),
+            'achievement' => $achievement, 'indicatorCount' => (int) $delivery->n,
             'units' => $units, 'watch' => $watch, 'charts' => $charts,
             'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
             'classes' => $classes,
