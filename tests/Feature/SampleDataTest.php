@@ -182,7 +182,7 @@ class SampleDataTest extends TestCase
         $this->admin();
         $this->seed(EconomicClassificationSeeder::class);
 
-        Volt::test('pages.management.sample-data')->call('load');
+        Volt::test('pages.management.sample-data')->set('scope', 'ministry')->call('load');
         $this->assertSame(49, Directorate::count());
         $this->assertTrue(app(SampleRegistry::class)->hasSamples());
 
