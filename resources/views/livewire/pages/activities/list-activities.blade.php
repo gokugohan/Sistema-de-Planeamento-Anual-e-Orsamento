@@ -229,7 +229,8 @@ new class extends Component {
     $lastGroup = null;
 @endphp
 
-<div class="space-y-6">
+{{-- The ticked rows live in the browser (a deferred entangle) and travel with the next action, so ticking a box does not re-render the list. --}}
+<div class="space-y-6" x-data="{ selected: $wire.$entangle('selected') }">
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
             <h1 class="page-title">{{ __('PAA Activities') }}</h1>
@@ -295,12 +296,10 @@ new class extends Component {
                 @endif
             </button>
         @endforeach
-        @if(count($selected))
-            <div class="ml-auto pb-1.5 flex items-center gap-2">
-                <span class="text-xs text-zinc-500">{{ trans_choice(':n selected|:n selected', count($selected), ['n' => count($selected)]) }}</span>
-                <x-ui.button size="sm" wire:click="advanceSelected" wire:confirm="{{ __('Move the selected activities on to the next step?') }}">{{ __('Move on') }}</x-ui.button>
-            </div>
-        @endif
+        <div class="ml-auto pb-1.5 flex items-center gap-2" x-show="selected.length" x-cloak>
+            <span class="text-xs text-zinc-500" x-text="@js(__(':n selected')).replace(':n', selected.length)"></span>
+            <x-ui.button size="sm" wire:click="advanceSelected" wire:confirm="{{ __('Move the selected activities on to the next step?') }}">{{ __('Move on') }}</x-ui.button>
+        </div>
     </div>
 
     <x-ui.card padding="p-0">
@@ -318,7 +317,7 @@ new class extends Component {
                 <tr wire:key="act-{{ $a->id }}" class="hover:bg-zinc-50/60">
                     <td class="pl-6 pr-0 py-4 w-8">
                         @if($f['next'])
-                            <input type="checkbox" value="{{ $a->id }}" wire:model.live="selected" class="rounded border-zinc-300 text-indigo-600" aria-label="{{ __('Select') }}">
+                            <input type="checkbox" value="{{ $a->id }}" x-model="selected" class="rounded border-zinc-300 text-indigo-600" aria-label="{{ __('Select') }}">
                         @endif
                     </td>
                     <td class="px-6 py-4 min-w-[22rem]">
