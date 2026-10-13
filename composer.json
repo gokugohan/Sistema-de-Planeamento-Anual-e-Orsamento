@@ -14,7 +14,7 @@
         "livewire/livewire": "^3.6.4",
         "livewire/volt": "^1.7.0",
         "pragmarx/google2fa": "^9.1",
-        "predis/predis": "*",
+        "predis/predis": "^3.7",
         "spatie/laravel-permission": "^6.24"
     },
     "require-dev": {
