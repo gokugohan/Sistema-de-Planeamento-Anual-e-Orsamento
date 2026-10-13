@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\EnforceTwoFactor;
 use App\Http\Middleware\ForcePasswordChange;
+use App\Http\Middleware\LogSlowRequests;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
@@ -22,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
             ForcePasswordChange::class,
             EnforceTwoFactor::class,
             SecurityHeaders::class,
+            LogSlowRequests::class,
         ]);
         $middleware->alias([
             'role' => RoleMiddleware::class,

@@ -252,7 +252,7 @@ class FiscalEnvelope extends Model
      */
     public function categoryAllocations()
     {
-        return $this->hasMany(FiscalEnvelopeCategoryAllocation::class);
+        return $this->hasMany(FiscalEnvelopeCategoryAllocation::class)->chaperone('fiscalEnvelope');
     }
 
     /**

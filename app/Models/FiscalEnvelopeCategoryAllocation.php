@@ -58,6 +58,8 @@ class FiscalEnvelopeCategoryAllocation extends Model
      */
     public function calculateVariance(): void
     {
+        $this->loadMissing('fiscalEnvelope'); // already set when loaded through the envelope
+
         // Re-read the approved plan so variance never uses a stale planned_amount.
         $this->planned_amount = self::calculatePlannedAmount(
             (int) $this->fiscalEnvelope->fiscal_year,

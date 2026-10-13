@@ -134,7 +134,7 @@ new class extends Component {
         $done = 0;
         $notReady = 0;
 
-        foreach ($this->visible()->whereIn('id', $this->selected)->get() as $activity) {
+        foreach ($this->visible()->with('directorate')->whereIn('id', $this->selected)->get() as $activity) {
             try {
                 $workflow->advance($user, $activity);
                 $done++;

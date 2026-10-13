@@ -210,7 +210,10 @@
                             </thead>
                             <tbody class="divide-y divide-zinc-50 bg-white">
                                 @php
-                                    $rootDirectorates = App\Models\Directorate::whereNull('parent_id')->get();
+                                    // One query for the whole tree; each unit's children are attached in memory.
+                                    $byParent = App\Models\Directorate::all()->groupBy(fn ($d) => $d->parent_id ?? 0);
+                                    $byParent->flatten()->each(fn ($d) => $d->setRelation('children', $byParent->get($d->id, collect())));
+                                    $rootDirectorates = $byParent->get(0, collect());
 
                                     $renderDirectorate = function ($dir, $depth = 0, $parentId = null) use (&$renderDirectorate, $selectedYear) {
                                         $planned = $dir->getTotalEstimatedRollup($selectedYear);
@@ -368,7 +371,7 @@
                                     $activeYear = $selectedYear;
                                     $programs = App\Models\Program::with([
                                         'activities' => function ($q) use ($activeYear) {
-                                            $q->where('fiscal_year', $activeYear)->with(['indicators', 'lineItems.economicClassification', 'lineItems.adjustedBudget']);
+                                            $q->where('fiscal_year', $activeYear)->with(['directorate:id,code,name', 'indicators', 'lineItems.economicClassification', 'lineItems.adjustedBudget']);
                                         }
                                     ])->get();
                                 @endphp
