@@ -28,6 +28,18 @@
     <div id="lwbar" class="fixed top-0 left-0 z-[200] h-[2px] bg-indigo-600 pointer-events-none opacity-0 transition-[width,opacity] duration-300 ease-out" style="width:0%"></div>
     <script>
         document.addEventListener('livewire:init', () => {
+            // Livewire swaps in whichever page response arrives, with no ordering: click A (slow), then B,
+            // and A's late response replaces B. Only the latest navigation may finish; abort the older fetch.
+            let navigation = null;
+            Livewire.hook('navigate.request', ({ options }) => {
+                navigation?.abort();
+                navigation = new AbortController();
+                options.signal = navigation.signal;
+            });
+            window.addEventListener('unhandledrejection', (e) => {
+                if (e.reason?.name === 'AbortError') e.preventDefault(); // the superseded navigation, expected
+            });
+
             let bar = document.getElementById('lwbar'), t;
             Livewire.hook('commit', ({ succeed, fail }) => {
                 clearTimeout(t);
