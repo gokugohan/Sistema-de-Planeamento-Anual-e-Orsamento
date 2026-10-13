@@ -107,15 +107,13 @@ new class extends Component {
             </div>
             <div class="flex gap-3 items-end">
                 @if(!$loaded && !$production)
-                    <x-ui.button wire:click="load" wire:loading.attr="disabled" variant="primary"
-                        wire:confirm="{{ $scope === 'ministry' ? __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.') : __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office]) }}">
+                    <x-ui.button x-on:click="$dispatch('open-modal', 'confirm-load')" wire:loading.attr="disabled" variant="primary">
                         <span wire:loading.remove wire:target="load">{{ __('Load sample data') }}</span>
                         <span wire:loading wire:target="load">{{ __('Loading…') }}</span>
                     </x-ui.button>
                 @endif
                 @if($loaded)
-                    <x-ui.button wire:click="purge" wire:loading.attr="disabled" variant="danger"
-                        wire:confirm="{{ __('Purge all sample data? Demo accounts, sample units, programmes and activities will be deleted. Real data is never touched.') }}">
+                    <x-ui.button x-on:click="$dispatch('open-modal', 'confirm-purge')" wire:loading.attr="disabled" variant="danger">
                         <span wire:loading.remove wire:target="purge">{{ __('Purge sample data') }}</span>
                         <span wire:loading wire:target="purge">{{ __('Purging…') }}</span>
                     </x-ui.button>
@@ -198,4 +196,11 @@ new class extends Component {
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>
+    <x-confirm-dialog name="confirm-load" :title="__('Load sample data')" :confirm="__('Load sample data')" wire:click="load"
+        :message="$scope === 'ministry'
+            ? __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.')
+            : __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office])" />
+
+    <x-confirm-dialog name="confirm-purge" :title="__('Purge sample data')" :confirm="__('Purge sample data')" variant="danger" wire:click="purge"
+        :message="__('Purge all sample data? Demo accounts, sample units, programmes and activities will be deleted. Real data is never touched.')" />
 </div>

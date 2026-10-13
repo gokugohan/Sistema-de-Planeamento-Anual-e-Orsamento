@@ -134,4 +134,17 @@ class OfficeSampleDataTest extends TestCase
         $this->assertTrue(Directorate::where('code', 'GPPC')->exists());
         $this->assertFalse(Directorate::where('code', 'GDSC')->exists());
     }
+
+    public function test_the_buttons_open_a_modal_instead_of_the_browser_confirm(): void
+    {
+        $this->seed(RolesAndPermissionsSeeder::class);
+        $admin = User::factory()->create();
+        $admin->assignRole('Admin');
+        $this->actingAs($admin);
+
+        Volt::test('pages.management.sample-data')
+            ->assertSeeHtml("open-modal', 'confirm-load'")
+            ->assertSeeHtml('role="alertdialog"')
+            ->assertDontSeeHtml('wire:confirm');
+    }
 }
