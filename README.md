@@ -179,6 +179,7 @@ The repository ships an optional sample dataset based on the **Ministério dos T
 
 Sign in as an administrator and open **Management → Sample Data**.
 
+- **What to load**: *One directorate or office* (the default is the **Gabinete de Digitalização e Segurança Cibernética** with its units UDIG and USC; any other gabinete, direção-geral or autonomous body can be chosen) or *The whole ministry*. They are alternatives: load one, purge it, then load the other. An office gets only its own units, programmes, demo accounts (a head of office, plus a Planner and a Director per unit) and the activities the State Budget plans for it, and the app is branded as that office. The budget books give the Gabinete only one activity per unit, so it also gets an **illustrative** plan (`data/gdsc_illustrative.json`, not from any published document) with 2027 activities at every step of the approval workflow. Command line: `php artisan db:seed --class="Database\Seeders\Samples\MtcOfficeSampleDataSeeder"` (GDSC).
 - **Load sample data** adds the dataset below. It is **disabled when `APP_ENV=production`**, because it creates demo accounts with a known password.
 - **Purge sample data** deletes exactly what the sample created and nothing else. It works in every environment, and it is the step to run **before you go live**.
 

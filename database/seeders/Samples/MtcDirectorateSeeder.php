@@ -40,9 +40,72 @@ class MtcDirectorateSeeder extends Seeder
 
     private const AMENDMENT_YEAR = 2026;   // DL 12/2026
 
-    public function run(SampleRegistry $registry): void
+    /** @var array<string, array{0: ?string, 1: string}>|null dry run: unit code => [parent code, name] */
+    private ?array $tree = null;
+
+    /** @var array<int, string>|null when set, only these unit codes are created (one office and everything under it) */
+    private ?array $keep = null;
+
+    /**
+     * @param  ?string  $office  code of one top-level unit (GDSC, GPPC, DGT …): load only that office and its sub-units
+     */
+    public function run(SampleRegistry $registry, ?string $office = null): void
     {
         $this->registry = $registry;
+
+        if ($office !== null) {
+            $this->keep = self::subtree($office);
+            if (! $this->keep) {
+                throw new \InvalidArgumentException("Unknown office '{$office}'.");
+            }
+        }
+
+        $this->define();
+    }
+
+    /** Top-level units of the structure that can be loaded on their own: code => name. */
+    public static function offices(): array
+    {
+        $roots = [];
+        foreach (self::dryRun() as $code => [$parent, $name]) {
+            if ($parent === null) {
+                $roots[$code] = $name;
+            }
+        }
+
+        return $roots;
+    }
+
+    /** The unit with this code and every unit under it, in definition order (empty if unknown). */
+    public static function subtree(string $code): array
+    {
+        $tree = self::dryRun();
+        if (! isset($tree[$code])) {
+            return [];
+        }
+
+        $codes = [$code];
+        foreach ($tree as $c => [$parent]) {
+            if ($parent !== null && in_array($parent, $codes, true) && ! in_array($c, $codes, true)) {
+                $codes[] = $c;
+            }
+        }
+
+        return $codes;
+    }
+
+    /** Runs the definitions without touching the database, to learn the shape of the tree. */
+    private static function dryRun(): array
+    {
+        $seeder = new self;
+        $seeder->tree = [];
+        $seeder->define();
+
+        return $seeder->tree;
+    }
+
+    private function define(): void
+    {
 
         // ── Gabinetes (report directly to the Minister) ──────────────────
         $this->independent('GM', 'Gabinete do Ministro dos Transportes e Comunicações', self::ORGANIC_LAW_YEAR);
@@ -143,6 +206,19 @@ class MtcDirectorateSeeder extends Seeder
 
     private function upsert(string $code, string $name, string $type, ?Directorate $parent, int $since, array $extra = []): Directorate
     {
+        if ($this->tree !== null) {
+            $this->tree[$code] = [$parent?->code, $name];
+
+            return new Directorate(['code' => $code, 'name' => $name]);
+        }
+        if ($this->keep !== null && ! in_array($code, $this->keep, true)) {
+            return new Directorate(['code' => $code, 'name' => $name]); // outside the chosen office: not created
+        }
+        // Inside a single office, its top unit stands alone, whatever it sat under in the ministry.
+        if ($this->keep !== null && $code === $this->keep[0]) {
+            $parent = null;
+        }
+
         /** @var Directorate */
         return $this->registry->upsert('mtc', Directorate::class, ['code' => $code], array_merge([
             'name' => $name,

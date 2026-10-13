@@ -1,0 +1,378 @@
+{
+ "2026": [
+  {
+   "code": "DEMO-GDSC-01",
+   "programme": "510",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Funcionamento do gabinete",
+   "div": [
+    "0250700"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 86000.0,
+    "20": 22000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-GDSC-02",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Coordenação da Estratégia Nacional de Digitalização",
+   "div": [
+    "0250700"
+   ],
+   "indicator": "Relatórios de coordenação publicados",
+   "baseline": "0",
+   "target": "4",
+   "amounts": {
+    "20": 20000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-01",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Plataforma única de serviços digitais do Governo",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Serviços públicos disponíveis online",
+   "baseline": "4",
+   "target": "12",
+   "amounts": {
+    "20": 76000.0,
+    "50": 144000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-02",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Digitalização de arquivos e processos administrativos",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Processos digitalizados",
+   "baseline": "0",
+   "target": "15000",
+   "amounts": {
+    "20": 38000.0,
+    "40": 25000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-03",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Formação em competências digitais para funcionários públicos",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Funcionários formados",
+   "baseline": "0",
+   "target": "600",
+   "amounts": {
+    "20": 32000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-04",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Interoperabilidade entre sistemas do Estado",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Sistemas do Estado interligados",
+   "baseline": "2",
+   "target": "8",
+   "amounts": {
+    "20": 27000.0,
+    "50": 68000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-01",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Centro de monitorização e resposta a incidentes cibernéticos",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Tempo médio de deteção de incidentes (horas)",
+   "baseline": "72",
+   "target": "24",
+   "amounts": {
+    "20": 54000.0,
+    "40": 40000.0,
+    "50": 108000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-02",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Auditorias de segurança às instituições públicas",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Auditorias de segurança realizadas",
+   "baseline": "3",
+   "target": "20",
+   "amounts": {
+    "20": 34000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-03",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Campanha nacional de sensibilização para a cibersegurança",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Pessoas alcançadas pela campanha",
+   "baseline": "0",
+   "target": "5000",
+   "amounts": {
+    "20": 22000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-04",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Exercícios de simulação de incidentes cibernéticos",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Exercícios realizados",
+   "baseline": "1",
+   "target": "4",
+   "amounts": {
+    "20": 16000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  }
+ ],
+ "2027": [
+  {
+   "code": "DEMO-GDSC-01",
+   "programme": "510",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Funcionamento do gabinete",
+   "div": [
+    "0250700"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 106000.0,
+    "20": 26000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-GDSC-02",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Coordenação da Estratégia Nacional de Digitalização",
+   "div": [
+    "0250700"
+   ],
+   "indicator": "Relatórios de coordenação publicados",
+   "baseline": "0",
+   "target": "4",
+   "amounts": {
+    "20": 24000.0
+   },
+   "status": "Approved",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-01",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Plataforma única de serviços digitais do Governo",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Serviços públicos disponíveis online",
+   "baseline": "4",
+   "target": "12",
+   "amounts": {
+    "20": 94000.0,
+    "50": 176000.0
+   },
+   "status": "Waiting Approval",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-02",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Digitalização de arquivos e processos administrativos",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Processos digitalizados",
+   "baseline": "0",
+   "target": "15000",
+   "amounts": {
+    "20": 46000.0,
+    "40": 31000.0
+   },
+   "status": "Waiting Approval",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-03",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Formação em competências digitais para funcionários públicos",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Funcionários formados",
+   "baseline": "0",
+   "target": "600",
+   "amounts": {
+    "20": 40000.0
+   },
+   "status": "Validated",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-UDIG-04",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Interoperabilidade entre sistemas do Estado",
+   "div": [
+    "0250701"
+   ],
+   "indicator": "Sistemas do Estado interligados",
+   "baseline": "2",
+   "target": "8",
+   "amounts": {
+    "20": 33000.0,
+    "50": 82000.0
+   },
+   "status": "Reviewed",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-01",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Centro de monitorização e resposta a incidentes cibernéticos",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Tempo médio de deteção de incidentes (horas)",
+   "baseline": "72",
+   "target": "24",
+   "amounts": {
+    "20": 66000.0,
+    "40": 50000.0,
+    "50": 132000.0
+   },
+   "status": "Submitted",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-02",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Auditorias de segurança às instituições públicas",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Auditorias de segurança realizadas",
+   "baseline": "3",
+   "target": "20",
+   "amounts": {
+    "20": 42000.0
+   },
+   "status": "Submitted",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-03",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Campanha nacional de sensibilização para a cibersegurança",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Pessoas alcançadas pela campanha",
+   "baseline": "0",
+   "target": "5000",
+   "amounts": {
+    "20": 28000.0
+   },
+   "status": "Draft",
+   "illustrative": true
+  },
+  {
+   "code": "DEMO-USC-04",
+   "programme": "A08",
+   "subprogramme": "",
+   "subprogramme_name": "",
+   "name": "Exercícios de simulação de incidentes cibernéticos",
+   "div": [
+    "0250702"
+   ],
+   "indicator": "Exercícios realizados",
+   "baseline": "1",
+   "target": "4",
+   "amounts": {
+    "20": 20000.0
+   },
+   "status": "Draft",
+   "illustrative": true
+  }
+ ]
+}

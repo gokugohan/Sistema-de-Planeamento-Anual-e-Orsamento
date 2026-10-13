@@ -45,10 +45,18 @@ class MtcBudgetSeeder extends Seeder
 
     private const CATEGORY = ['10' => 'SV', '20' => 'BS', '30' => 'TP', '40' => 'CM', '50' => 'CD'];
 
-    public function run(SampleRegistry $registry): void
+    /**
+     * @param  array<int, string>|null  $units  unit codes: load only the activities these units own (one office), null for the whole ministry
+     * @param  bool  $illustrative  also load the illustrative plan of the Gabinete de Digitalização e Segurança Cibernética
+     */
+    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false): void
     {
         foreach (self::YEARS as $year) {
-            $data = json_decode(file_get_contents(__DIR__."/data/mtc_oge_{$year}.json"), true, 512, JSON_THROW_ON_ERROR);
+            $data = self::data($year, $units, $illustrative);
+
+            if ($units !== null && ! $data['entities']) {
+                continue; // the office has no activities this year
+            }
 
             if ($this->alreadyLoaded($registry, $year, $data)) {
                 continue; // a closed year cannot be edited; purge the sample to load it again
@@ -59,6 +67,48 @@ class MtcBudgetSeeder extends Seeder
                 $this->registerBudget($registry, $year, $data, $totals);
             });
         }
+    }
+
+    /**
+     * The year's plan, narrowed to the activities owned by $units when given. Illustrative activities
+     * (data/gdsc_illustrative.json) are written in the same shape and are marked "illustrative".
+     */
+    public static function data(int $year, ?array $units = null, bool $illustrative = false): array
+    {
+        $data = json_decode(file_get_contents(__DIR__."/data/mtc_oge_{$year}.json"), true, 512, JSON_THROW_ON_ERROR);
+
+        if ($illustrative) {
+            $extra = json_decode(file_get_contents(__DIR__.'/data/gdsc_illustrative.json'), true, 512, JSON_THROW_ON_ERROR)[(string) $year] ?? [];
+            $data['entities']['025']['activities'] = array_merge($data['entities']['025']['activities'], $extra);
+        }
+
+        if ($units !== null) {
+            foreach ($data['entities'] as $entity => $e) {
+                $data['entities'][$entity]['activities'] = array_values(array_filter(
+                    $e['activities'],
+                    fn ($a) => $a['amounts'] && in_array(MtcCostCentres::ownerUnit($entity, $a['div']), $units, true)
+                ));
+            }
+            $data['entities'] = array_filter($data['entities'], fn ($e) => $e['activities']);
+            $data['amendments'] = []; // ministry-wide amendments do not apply to one office
+        }
+
+        return $data;
+    }
+
+    /** OGE codes of the programmes the given units' activities use. */
+    public static function programmeCodes(array $units, bool $illustrative = false): array
+    {
+        $codes = [];
+        foreach (self::YEARS as $year) {
+            foreach (self::data($year, $units, $illustrative)['entities'] as $e) {
+                foreach ($e['activities'] as $a) {
+                    $codes[$a['programme']] = true;
+                }
+            }
+        }
+
+        return array_map('strval', array_keys($codes)); // numeric codes such as 510 become integer keys
     }
 
     /** @return array<string, array<string, float>> category totals of the plan, per entity */
@@ -86,7 +136,9 @@ class MtcBudgetSeeder extends Seeder
                     ['fiscal_year' => $year, 'code' => $a['code'], 'directorate_id' => $units[$unit]], [
                         'program_id' => $programs[$a['programme']],
                         'description' => Str::limit($a['name'], 990, ''),
-                        'objective' => $a['subprogramme_name'] ? Str::limit("Subprograma {$a['subprogramme']}: {$a['subprogramme_name']}", 1900, '') : null,
+                        'objective' => ($a['illustrative'] ?? false)
+                            ? 'Atividade ilustrativa do exemplo; os valores não provêm de nenhum plano ou lei orçamental publicados.'
+                            : ($a['subprogramme_name'] ? Str::limit("Subprograma {$a['subprogramme']}: {$a['subprogramme_name']}", 1900, '') : null),
                         'priority' => 'Média',
                         'quarter' => 1,
                         'execution_quarters' => [1, 2, 3, 4],
@@ -95,9 +147,9 @@ class MtcBudgetSeeder extends Seeder
                         'planned_end' => "{$year}-12-31",
                         'procurement_required' => false,
                         'gender_responsive' => false,
-                        'status' => Activity::STATUS_APPROVED,
+                        'status' => $a['status'] ?? Activity::STATUS_APPROVED,
                         'is_test_data' => false,
-                    ]);
+                    ] + $this->workflowDates($year, $a['status'] ?? null));
 
                 if (! $registry->isRegistered($activity)) {
                     continue; // a real activity with this code already exists: leave it alone
@@ -184,6 +236,20 @@ class MtcBudgetSeeder extends Seeder
             $cycle->update(['submitted_at' => $meta['date'].' 00:00:00']);
             $registry->register('mtc', $cycle);
         }
+    }
+
+    /** Timestamps matching a workflow step, for the illustrative activities that sit mid-workflow. */
+    private function workflowDates(int $year, ?string $status): array
+    {
+        if ($status === null) {
+            return [];
+        }
+
+        return [
+            'submitted_at' => $status === Activity::STATUS_DRAFT ? null : "{$year}-01-15 09:00:00",
+            'reviewed_at' => in_array($status, [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED], true) ? null : "{$year}-01-22 09:00:00",
+            'approved_at' => $status === Activity::STATUS_APPROVED ? "{$year}-02-05 09:00:00" : null,
+        ];
     }
 
     /** A year already loaded (and possibly closed, hence not editable) is left as it is. */

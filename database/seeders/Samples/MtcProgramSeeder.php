@@ -17,7 +17,8 @@ use Illuminate\Database\Seeder;
  */
 class MtcProgramSeeder extends Seeder
 {
-    public function run(SampleRegistry $registry): void
+    /** @param  array<int, string>|null  $only  OGE codes to load (null: all six) */
+    public function run(SampleRegistry $registry, ?array $only = null): void
     {
         $programs = [
             ['oge_code' => '502', 'name' => 'Transportes', 'objective' => 'Sistema de transporte terrestre em bom funcionamento que contribui a ligar as comunidades, apoiar o desenvolvimento rural, a indústria e o turismo e fornecer acesso ao mercado e apoiar os serviços públicos de fornecimento.'],
@@ -29,6 +30,9 @@ class MtcProgramSeeder extends Seeder
         ];
 
         foreach ($programs as $prog) {
+            if ($only !== null && ! in_array($prog['oge_code'], $only, true)) {
+                continue;
+            }
             $registry->upsert('mtc', Program::class, ['oge_code' => $prog['oge_code']], $prog);
         }
     }

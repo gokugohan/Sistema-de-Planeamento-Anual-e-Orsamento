@@ -12,6 +12,7 @@ use App\Models\SampleRecord;
 use App\Models\SystemSetting;
 use App\Models\User;
 use Database\Seeders\Samples\MtcBrandingSeeder;
+use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -183,6 +184,7 @@ class SampleRegistry
 
             if ($dataset === 'mtc') {
                 MtcBrandingSeeder::resetIfUnchanged();
+                MtcOfficeSampleDataSeeder::resetBrandingIfUnchanged();
             }
             SystemSetting::set(self::FLAG, false, 'boolean', 'A sample dataset is loaded');
 

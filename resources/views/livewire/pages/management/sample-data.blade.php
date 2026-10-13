@@ -1,11 +1,18 @@
 <?php
 
 use App\Services\SampleRegistry;
+use Database\Seeders\Samples\MtcDirectorateSeeder;
+use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Livewire\Volt\Component;
 
 new class extends Component {
     public ?array $report = null;
+
+    /** 'office' (one directorate/office, the default) or 'ministry' (the whole MTC) */
+    public string $scope = 'office';
+
+    public string $office = MtcOfficeSampleDataSeeder::DEFAULT_OFFICE;
 
     public function mount(): void
     {
@@ -23,7 +30,12 @@ new class extends Component {
 
         try {
             // Seeders need the container to inject the registry into their run() methods.
-            app(MtcSampleDataSeeder::class)->setContainer(app())->run();
+            if ($this->scope === 'ministry') {
+                app(MtcSampleDataSeeder::class)->setContainer(app())->run();
+            } else {
+                abort_unless(array_key_exists($this->office, MtcDirectorateSeeder::offices()), 422);
+                app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($this->office);
+            }
         } catch (\Throwable $e) {
             report($e);
             $this->dispatch('toast', message: __('Loading the sample data failed: :m', ['m' => $e->getMessage()]), type: 'error');
@@ -59,6 +71,7 @@ new class extends Component {
             'counts' => $registry->counts(),
             'loaded' => $registry->hasSamples(),
             'production' => app()->isProduction(),
+            'offices' => MtcDirectorateSeeder::offices(),
         ];
     }
 }; ?>
@@ -67,7 +80,7 @@ new class extends Component {
     <div>
         <h1 class="page-title">{{ __('Sample Data') }}</h1>
         <p class="text-sm text-zinc-500 mt-1">
-            {{ __('An optional demo dataset based on the Ministry of Transport and Communications (MTC) of Timor-Leste. The application itself works for any institution; load this only to explore or train, and purge it before going live.') }}
+            {{ __('An optional demo dataset based on the Ministry of Transport and Communications (MTC) of Timor-Leste, for the whole ministry or for a single directorate or office (by default the Gabinete de Digitalização e Segurança Cibernética). The application itself works for any institution; load this only to explore or train, and purge it before going live.') }}
         </p>
     </div>
 
@@ -92,10 +105,10 @@ new class extends Component {
                     @endif
                 </div>
             </div>
-            <div class="flex gap-3">
+            <div class="flex gap-3 items-end">
                 @if(!$loaded && !$production)
                     <x-ui.button wire:click="load" wire:loading.attr="disabled" variant="primary"
-                        wire:confirm="{{ __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.') }}">
+                        wire:confirm="{{ $scope === 'ministry' ? __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.') : __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office]) }}">
                         <span wire:loading.remove wire:target="load">{{ __('Load sample data') }}</span>
                         <span wire:loading wire:target="load">{{ __('Loading…') }}</span>
                     </x-ui.button>
@@ -109,6 +122,34 @@ new class extends Component {
                 @endif
             </div>
         </div>
+
+        @if(!$loaded && !$production)
+            <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
+                <legend class="text-sm font-medium text-zinc-900">{{ __('What to load') }}</legend>
+                <label class="flex items-start gap-3 text-sm text-zinc-700">
+                    <input type="radio" wire:model.live="scope" value="office" class="mt-1">
+                    <span>
+                        <span class="font-medium text-zinc-900">{{ __('One directorate or office') }}</span>
+                        <span class="block text-xs text-zinc-500">{{ __('Only that unit and the units under it, with their own plans, accounts and envelope.') }}</span>
+                    </span>
+                </label>
+                @if($scope === 'office')
+                    <select wire:model="office" aria-label="{{ __('Directorate or office') }}"
+                        class="ml-7 w-full max-w-md rounded-md border-zinc-300 text-sm">
+                        @foreach($offices as $code => $name)
+                            <option value="{{ $code }}">{{ $code }} — {{ $name }}</option>
+                        @endforeach
+                    </select>
+                @endif
+                <label class="flex items-start gap-3 text-sm text-zinc-700">
+                    <input type="radio" wire:model.live="scope" value="ministry" class="mt-1">
+                    <span>
+                        <span class="font-medium text-zinc-900">{{ __('The whole ministry (MTC)') }}</span>
+                        <span class="block text-xs text-zinc-500">{{ __('Every unit and autonomous body, with the full annual plans.') }}</span>
+                    </span>
+                </label>
+            </fieldset>
+        @endif
 
         @if($production && !$loaded)
             <p class="text-xs text-zinc-500 mt-4">{{ __('Loading sample data is disabled in production.') }}</p>
@@ -148,7 +189,8 @@ new class extends Component {
     <x-ui.card>
         <h2 class="text-sm font-semibold text-zinc-900 mb-2">{{ __('What it contains') }}</h2>
         <ul class="list-disc pl-5 text-sm text-zinc-600 space-y-1">
-            <li>{{ __('The MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
+            <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document), with 2027 activities at every step of the approval workflow.') }}</li>
+            <li>{{ __('For the whole ministry: the MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
             <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38).') }}</li>
             <li>{{ __('Demo accounts (@goku.tl, password "password"): a Minister, and a Planner and a Director per unit.') }}</li>
             <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 approved activities with their official codes, indicators and amounts by economic category.') }}</li>
