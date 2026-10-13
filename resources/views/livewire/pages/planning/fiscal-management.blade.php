@@ -38,10 +38,14 @@ new class extends Component {
             // Sync planned from activities
             foreach (EconomicClassification::all() as $cat) {
                 $planned = FiscalEnvelopeCategoryAllocation::calculatePlannedAmount($envelope->fiscal_year, $cat->id);
-                FiscalEnvelopeCategoryAllocation::updateOrCreate(
-                    ['fiscal_envelope_id' => $envelope->id, 'economic_classification_id' => $cat->id],
-                    ['planned_amount' => $planned]
+                $row = FiscalEnvelopeCategoryAllocation::firstOrNew(
+                    ['fiscal_envelope_id' => $envelope->id, 'economic_classification_id' => $cat->id]
                 );
+                if (! $row->exists) {
+                    $row->allocated_amount = 0; // the column has no database default
+                }
+                $row->planned_amount = $planned;
+                $row->save();
             }
 
             $this->allocations = FiscalEnvelopeCategoryAllocation::where('fiscal_envelope_id', $this->selectedEnvelopeId)

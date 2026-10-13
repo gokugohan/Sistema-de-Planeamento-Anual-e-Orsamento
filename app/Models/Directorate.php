@@ -74,10 +74,24 @@ class Directorate extends Model
      */
     public function getAllDescendantIds(): array
     {
+        // The whole tree is read once per request (it is small), not once per unit.
+        static $children = null;
+        if ($children === null || app()->runningUnitTests()) {
+            $children = [];
+            foreach (self::query()->get(['id', 'parent_id']) as $d) {
+                $children[$d->parent_id][] = $d->id;
+            }
+        }
+
         $ids = [];
-        foreach ($this->children as $child) {
-            $ids[] = $child->id;
-            $ids = array_merge($ids, $child->getAllDescendantIds());
+        $queue = [$this->id];
+        while ($queue) {
+            foreach ($children[array_shift($queue)] ?? [] as $childId) {
+                if ($childId !== $this->id && ! in_array($childId, $ids, true)) {
+                    $ids[] = $childId;
+                    $queue[] = $childId;
+                }
+            }
         }
 
         return $ids;
@@ -96,13 +110,10 @@ class Directorate extends Model
      */
     public function getTotalEstimatedRollup(int $fiscalYear): float
     {
-        $ids = $this->getSelfAndDescendantIds();
-
-        return (float) Activity::whereIn('directorate_id', $ids)
-            ->where('fiscal_year', $fiscalYear)
-            ->with(['lineItems'])
-            ->get()
-            ->sum(fn ($activity) => $activity->lineItems->sum('estimated_amount'));
+        return (float) LineItem::whereHas('activity', fn ($q) => $q
+            ->whereIn('directorate_id', $this->getSelfAndDescendantIds())
+            ->where('fiscal_year', $fiscalYear))
+            ->sum('estimated_amount');
     }
 
     /**
@@ -110,13 +121,10 @@ class Directorate extends Model
      */
     public function getTotalApprovedRollup(int $fiscalYear): float
     {
-        $ids = $this->getSelfAndDescendantIds();
-
-        return (float) Activity::whereIn('directorate_id', $ids)
-            ->where('fiscal_year', $fiscalYear)
-            ->with(['lineItems.adjustedBudget'])
-            ->get()
-            ->sum(fn ($activity) => $activity->lineItems->sum(fn ($item) => $item->adjustedBudget->approved_amount ?? 0));
+        return (float) AdjustedBudget::whereHas('lineItem.activity', fn ($q) => $q
+            ->whereIn('directorate_id', $this->getSelfAndDescendantIds())
+            ->where('fiscal_year', $fiscalYear))
+            ->sum('approved_amount');
     }
 
     public function activities()

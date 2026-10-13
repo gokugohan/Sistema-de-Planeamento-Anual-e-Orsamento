@@ -252,6 +252,7 @@ PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`
    ```ini
    APP_ENV=production
    APP_DEBUG=false
+   LOG_LEVEL=warning
    APP_KEY=<generated key>
    APP_URL=https://<your Railway domain>
    DB_CONNECTION=mysql
@@ -266,8 +267,8 @@ PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`
    ADMIN_PASSWORD=<strong unique password>
    ```
 
-   Keep `QUEUE_CONNECTION=database`, `SESSION_DRIVER=database` and `CACHE_STORE=database` (the application defaults). Configure SMTP variables if the app needs to send email; `MAIL_MAILER=log` does not deliver it.
-3. In the app service's **Build** settings, set the build command to `composer install --no-dev --optimize-autoloader --no-interaction && npm ci && npm run build`. Set the **Start Command** to `php artisan serve --host 0.0.0.0 --port $PORT` so Laravel listens on Railway's assigned port. Railpack installs Composer development dependencies while building, so this project requires PHP 8.3+; do not override its PHP version with 8.2. The `--no-dev` flag still keeps production-only dependencies in the final deployment.
+   Keep `QUEUE_CONNECTION=database`. For speed, add a Railway **Redis** service and also set `SESSION_DRIVER=redis`, `CACHE_STORE=redis`, `REDIS_HOST=${{ Redis.REDISHOST }}`, `REDIS_PORT=${{ Redis.REDISPORT }}` and `REDIS_PASSWORD=${{ Redis.REDISPASSWORD }}`; with the database drivers every request makes extra round-trips to the separate MySQL service. Deploy the services in the Railway region closest to your users. Configure SMTP variables if the app needs to send email; `MAIL_MAILER=log` does not deliver it.
+3. In the app service's **Build** settings, set the build command to `composer install --no-dev --optimize-autoloader --no-interaction && npm ci && npm run build`. **Leave the web service's Start Command empty** so Railpack runs Laravel on FrankenPHP (a multi-worker production server that listens on Railway's port). Never use `php artisan serve`: it is PHP's single-request development server and makes the application feel slow. Add `&& php artisan optimize` to the build command if your Railway build does not already cache config, routes and views. Railpack installs Composer development dependencies while building, so this project requires PHP 8.3+; do not override its PHP version with 8.2. The `--no-dev` flag still keeps production-only dependencies in the final deployment.
 4. Set the service's **Pre-deploy Command** to `php artisan migrate --force`. This runs schema migrations before each release. Deploy, then generate a Railway domain in the service's **Networking** settings and update `APP_URL` to that HTTPS URL.
 5. In the app service's Railway shell, run `php artisan db:seed --force` once to create the base records and first administrator. Do not run this as a deploy command, and do not load the optional sample dataset in production. Sign in with the administrator credentials you set above.
 6. Add a second service from the same repository for the queue worker. Give it the same database and application variables, use the same build command, and set its **Start Command** to `php artisan queue:work --sleep=3 --tries=3 --max-time=3600`. Notifications will remain queued if this worker is not running.

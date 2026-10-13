@@ -19,13 +19,41 @@ class FiscalEnvelope extends Model
     {
         static::addGlobalScope(new ProductionScope);
 
-        $forget = fn () => self::$activeMemo = null;
+        $forget = fn () => self::forgetMemos();
         static::saved($forget);
         static::deleted($forget);
     }
 
+    /** Drop the per-request memos (called when envelopes or activities change). */
+    public static function forgetMemos(): void
+    {
+        self::$activeMemo = null;
+        self::$defaultYearMemo = null;
+        self::$closedMemo = [];
+    }
+
+    /** Whether the envelope for this year is closed (memoised: asked once per activity row). */
+    public static function isYearClosed(int $year): bool
+    {
+        if (app()->runningUnitTests()) {
+            return self::closedStatus($year);
+        }
+
+        return self::$closedMemo[$year] ??= self::closedStatus($year);
+    }
+
+    private static function closedStatus(int $year): bool
+    {
+        return self::where('fiscal_year', $year)->value('status') === self::STATUS_CLOSED;
+    }
+
     /** Per-request memo: [0 => ?FiscalEnvelope] */
     private static ?array $activeMemo = null;
+
+    private static ?int $defaultYearMemo = null;
+
+    /** @var array<int, bool> */
+    private static array $closedMemo = [];
 
     const STATUS_DRAFT = 'Draft';
 
@@ -159,6 +187,15 @@ class FiscalEnvelope extends Model
      * (e.g. October 2026, when everything belongs to 2027).
      */
     public static function defaultYear(): int
+    {
+        if (self::$defaultYearMemo !== null && ! app()->runningUnitTests()) {
+            return self::$defaultYearMemo;
+        }
+
+        return self::$defaultYearMemo = self::resolveDefaultYear();
+    }
+
+    private static function resolveDefaultYear(): int
     {
         if ($active = self::getActiveFiscalYear()) {
             return $active;

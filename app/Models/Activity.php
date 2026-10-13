@@ -19,6 +19,9 @@ class Activity extends Model
     {
         static::addGlobalScope(new ProductionScope);
 
+        static::saved(fn () => FiscalEnvelope::forgetMemos());
+        static::deleted(fn () => FiscalEnvelope::forgetMemos());
+
         static::updating(function ($activity) {
             if ($activity->isLocked()) {
                 throw new \Exception(__('This activity is locked because the planning cycle is finalized.'));
@@ -34,9 +37,7 @@ class Activity extends Model
 
     public function isLocked(): bool
     {
-        $envelope = FiscalEnvelope::where('fiscal_year', $this->fiscal_year)->first();
-
-        return $envelope && $envelope->status === FiscalEnvelope::STATUS_CLOSED;
+        return FiscalEnvelope::isYearClosed((int) $this->fiscal_year);
     }
 
     const STATUS_DRAFT = 'Draft';
