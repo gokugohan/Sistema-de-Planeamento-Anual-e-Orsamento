@@ -15,7 +15,7 @@
 @props(['close', 'maxWidth' => '2xl'])
 
 @php
-    $width = ['md' => 'max-w-md', 'lg' => 'max-w-lg', 'xl' => 'max-w-xl', '2xl' => 'max-w-2xl', '3xl' => 'max-w-3xl'][$maxWidth] ?? 'max-w-2xl';
+    $width = ['md' => 'max-w-md', 'lg' => 'max-w-lg', 'xl' => 'max-w-xl', '2xl' => 'max-w-2xl', '3xl' => 'max-w-3xl', '4xl' => 'max-w-4xl', '5xl' => 'max-w-5xl'][$maxWidth] ?? 'max-w-2xl';
 @endphp
 
 <div class="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-zinc-900/50 p-4 sm:items-center"

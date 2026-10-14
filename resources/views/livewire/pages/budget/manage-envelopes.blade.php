@@ -593,30 +593,11 @@ new class extends Component {
 
     <!-- Redistribution Confirmation Modal -->
     @if($redistributionModalOpen)
-        <div
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div
-                class="relative w-full max-w-5xl bg-white rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
-                <!-- Header -->
-                <div class="flex items-center justify-between p-6 border-b bg-gradient-to-r from-indigo-50 to-white">
-                    <div>
-                        <h2 class="text-xl font-semibold text-gray-900 leading-none tracking-tight">
-                            {{ __('Confirm OGE Redistribution') }}</h2>
-                        <p class="text-sm text-gray-500 mt-2">
-                            {{ __('Review the redistribution calculations before applying') }}</p>
-                    </div>
-                    <button wire:click="$set('redistributionModalOpen', false)"
-                        class="p-2 text-gray-400 hover:text-black transition-colors rounded-lg hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" x2="6" y1="6" y2="18" />
-                            <line x1="6" x2="18" y1="6" y2="18" />
-                        </svg>
-                    </button>
-                </div>
+        <x-dialog max-width="5xl" close="$set('redistributionModalOpen', false)">
+            <x-slot:title>{{ __('Confirm OGE Redistribution') }}</x-slot:title>
+            <x-slot:subtitle>{{ __('Review the redistribution calculations before applying') }}</x-slot:subtitle>
 
-                <!-- Scrollable Content -->
-                <div class="p-6 space-y-6 overflow-y-auto">
+                <div class="p-6 space-y-6">
                     @foreach($redistributionPreview as $preview)
                         <div class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
                             <div class="p-4 bg-gradient-to-r from-indigo-50/50 to-white border-b border-gray-100">
@@ -724,32 +705,16 @@ new class extends Component {
                     @endforeach
                 </div>
 
-                <!-- Footer -->
-                <div class="flex items-center justify-between gap-4 p-6 border-t bg-gray-50">
-                    <div
-                        class="flex items-center gap-2 text-amber-700 bg-amber-50 px-4 py-2 rounded-lg border border-amber-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                            <path d="M12 9v4" />
-                            <path d="M12 17h.01" />
-                        </svg>
-                        <span
-                            class="text-xs font-bold">{{ __('This action will update all affected activity budgets') }}</span>
-                    </div>
+                <div class="flex flex-col gap-3 border-t border-zinc-200 bg-zinc-50 p-6 sm:flex-row sm:items-center sm:justify-between">
+                    <p class="flex items-center gap-2 rounded-md border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-800">{{ __('This action will update all affected activity budgets') }}</p>
                     <div class="flex gap-3">
-                        <button wire:click="$set('redistributionModalOpen', false)"
-                            class="px-6 py-2.5 rounded-xl text-sm font-bold text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition-colors">
-                            {{ __('Cancel') }}
-                        </button>
-                        <button wire:click="confirmRedistribution({{ $activeEnvelope->id }})" wire:loading.attr="disabled"
-                            class="px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm disabled:opacity-50">
+                        <x-ui.button type="button" variant="secondary" wire:click="$set('redistributionModalOpen', false)">{{ __('Cancel') }}</x-ui.button>
+                        <x-ui.button wire:click="confirmRedistribution({{ $activeEnvelope->id }})" wire:loading.attr="disabled">
                             <span wire:loading.remove>{{ __('Confirm Redistribution') }}</span>
                             <span wire:loading>{{ __('Processing...') }}</span>
-                        </button>
+                        </x-ui.button>
                     </div>
                 </div>
-            </div>
-        </div>
+        </x-dialog>
     @endif
 </div>
