@@ -54,6 +54,10 @@ Route::get('monitoring', function () {
     return view('monitoring.index');
 })->middleware(['auth', 'verified'])->name('monitoring.index');
 
+Route::get('monitoring/execution', function () {
+    return view('monitoring.execution');
+})->middleware(['auth', 'verified', 'permission:view_monitoring'])->name('monitoring.execution');
+
 Route::get('monitoring/approval', function () {
     return view('monitoring.approval');
 })->middleware(['auth', 'verified', 'permission:approve_progress_report'])->name('monitoring.approval');

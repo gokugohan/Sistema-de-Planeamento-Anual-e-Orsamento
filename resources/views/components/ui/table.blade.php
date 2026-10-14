@@ -2,7 +2,7 @@
      numbers that line up (give a header ending in "num" to a column to right-align it). --}}
 @props(['headers' => [], 'right' => []])
 
-<div class="overflow-x-auto" tabindex="0">
+<div class="relative overflow-x-auto" tabindex="0">
     <table {{ $attributes->merge(['class' => 'min-w-full']) }}>
         <thead class="bg-zinc-50 border-b border-zinc-200">
             <tr>

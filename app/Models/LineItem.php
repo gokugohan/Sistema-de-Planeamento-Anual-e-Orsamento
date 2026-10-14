@@ -56,6 +56,11 @@ class LineItem extends Model
         return $this->belongsTo(EconomicClassification::class);
     }
 
+    public function executions()
+    {
+        return $this->hasMany(BudgetExecution::class);
+    }
+
     public function adjustedBudget()
     {
         return $this->hasOne(AdjustedBudget::class);

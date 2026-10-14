@@ -1,247 +1,152 @@
 <?php
 
-use Livewire\Volt\Component;
-use App\Models\Activity;
-use App\Models\Program;
-use App\Models\Indicator;
-use App\Models\LineItem;
-use App\Models\AdjustedBudget;
 use App\Models\FiscalEnvelope;
+use App\Models\Program;
+use App\Services\ExecutionReport;
+use Illuminate\Support\Facades\DB;
+use Livewire\Volt\Component;
 
+/**
+ * Execution of the active fiscal year: what has been paid and committed against the approved budget
+ * (read against how far the year has gone), and the delivery of indicator targets, by programme and by quarter.
+ * Only verified figures count.
+ */
 new class extends Component {
-    public $stats = [];
-    public $programExecution = [];
     public $activeYear;
 
     public function mount(): void
     {
-        $activeEnvelope = FiscalEnvelope::getActiveEnvelope();
-        $this->activeYear = $activeEnvelope?->fiscal_year;
-
-        if ($this->activeYear) {
-            $this->loadStats();
-        }
+        $this->activeYear = FiscalEnvelope::getActiveEnvelope()?->fiscal_year;
     }
 
-    public function loadStats(): void
+    /** Average verified achievement of the indicators of each programme, 0-100, from one grouped query. */
+    private function physicalByProgramme(int $year): array
     {
-        $activities = Activity::where('fiscal_year', $this->activeYear)->get();
-        $activityIds = $activities->pluck('id');
+        $perIndicator = DB::table('indicators as i')
+            ->join('activities as a', 'a.id', '=', 'i.activity_id')
+            ->leftJoin('indicator_progress as p', fn ($j) => $j->on('p.indicator_id', '=', 'i.id')->where('p.status', 'Verified'))
+            ->where('a.fiscal_year', $year)->where('i.annual_target', '>', 0)
+            ->groupBy('i.id', 'i.annual_target', 'a.program_id')
+            ->selectRaw('a.program_id, i.annual_target, COALESCE(SUM(p.achieved_value), 0) AS achieved');
 
-        $requested = LineItem::whereIn('activity_id', $activityIds)->sum('estimated_amount');
-        $approved = AdjustedBudget::whereHas('lineItem', function ($q) use ($activityIds) {
-            $q->whereIn('activity_id', $activityIds);
-        })->sum('approved_amount');
+        return DB::query()->fromSub($perIndicator, 't')->groupBy('program_id')
+            ->selectRaw('program_id, AVG(LEAST(100, achieved / annual_target * 100)) AS physical, COUNT(*) AS n')
+            ->get()->keyBy('program_id')->map(fn ($r) => (float) $r->physical)->all();
+    }
 
-        // Physical Progress: Only count data that has been Verified by a Director
-        $indicators = Indicator::whereIn('activity_id', $activityIds)
-            ->with(['progress' => fn($q) => $q->where('status', 'Verified')])
-            ->get();
-        $totalProgress = 0;
-        $count = $indicators->count();
-
-        foreach ($indicators as $indicator) {
-            if ($indicator->annual_target > 0) {
-                $achieved = $indicator->progress->sum('achieved_value');
-                $totalProgress += min(($achieved / $indicator->annual_target) * 100, 100);
-            }
+    public function with(): array
+    {
+        if (! $this->activeYear) {
+            return ['has' => false];
         }
 
-        $avgPhysical = $count > 0 ? $totalProgress / $count : 0;
+        $report = app(ExecutionReport::class);
+        $data = $report->load((int) $this->activeYear);
+        $summary = $report->summary($data);
+        $physical = $this->physicalByProgramme((int) $this->activeYear);
+        $programmes = Program::whereIn('id', array_keys($report->grouped($data, 'program_id')))->get(['id', 'name', 'oge_code'])->keyBy('id');
 
-        $this->stats = [
-            'requested' => $requested,
-            'approved' => $approved,
-            'financial_ratio' => $requested > 0 ? ($approved / $requested) * 100 : 0,
-            'physical_progress' => $avgPhysical,
-        ];
-
-        // Per Program Stats
-        $this->programExecution = Program::all()->map(function ($program) {
-            $pActivities = Activity::where('program_id', $program->id)
-                ->where('fiscal_year', $this->activeYear)
-                ->get();
-            $pActivityIds = $pActivities->pluck('id');
-
-            $pRequested = LineItem::whereIn('activity_id', $pActivityIds)->sum('estimated_amount');
-            $pApproved = AdjustedBudget::whereHas('lineItem', fn($q) => $q->whereIn('activity_id', $pActivityIds))->sum('approved_amount');
-
-            $pIndicators = Indicator::whereIn('activity_id', $pActivityIds)
-                ->with(['progress' => fn($q) => $q->where('status', 'Verified')])
-                ->get();
-            $pTotalPhys = 0;
-            $pCount = $pIndicators->count();
-            foreach ($pIndicators as $ind) {
-                if ($ind->annual_target > 0)
-                    $pTotalPhys += min(($ind->progress->sum('achieved_value') / $ind->annual_target) * 100, 100);
-            }
-            $pAvgPhys = $pCount > 0 ? $pTotalPhys / $pCount : 0;
-
-            return [
-                'name' => $program->name,
-                'code' => $program->oge_code,
-                'financial' => $pRequested > 0 ? ($pApproved / $pRequested) * 100 : 0,
-                'physical' => $pAvgPhys,
+        $rows = [];
+        foreach ($report->grouped($data, 'program_id') as $id => $g) {
+            $rows[] = [
+                'code' => $programmes[$id]->oge_code ?? '', 'name' => $programmes[$id]->name ?? '',
+                'approved' => $g['approved'], 'paid' => $g['paid'], 'committed' => $g['committed'],
+                'paid_pct' => $g['approved'] > 0 ? $g['paid'] / $g['approved'] * 100 : 0.0,
+                'due_pct' => $g['approved'] > 0 ? $g['planned_to_date'] / $g['approved'] * 100 : 0.0,
+                'physical' => $physical[$id] ?? null,
             ];
-        });
+        }
+        usort($rows, fn ($a, $b) => strcmp($a['code'], $b['code']));
 
-        $this->dispatch('stats-updated', [
-            'programs' => $this->programExecution
-        ]);
+        $physicalAll = $physical ? array_sum($physical) / count($physical) : null;
+
+        return ['has' => true, 'summary' => $summary, 'rows' => $rows, 'physical' => $physicalAll];
     }
 }; ?>
 
-<div class="space-y-10 py-6 animate-in fade-in duration-1000" x-data="{
-    chart: null,
-    initCharts(data) {
-        if (this.chart) this.chart.destroy();
-        const programs = data ? data.programs : @js($programExecution);
-        
-        this.chart = new Chart(document.getElementById('programExecutionChart'), {
-            type: 'bar',
-            data: {
-                labels: programs.map(p => p.code),
-                datasets: [
-                    {
-                        label: '{{ __('Financial Execution %') }}',
-                        data: programs.map(p => p.financial),
-                        backgroundColor: '#2152C4',
-                        borderRadius: 6
-                    },
-                    {
-                        label: '{{ __('Physical Progress %') }}',
-                        data: programs.map(p => p.physical),
-                        backgroundColor: '#10b981',
-                        borderRadius: 6
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { weight: 'bold', size: 10 } } },
-                    tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' } }
-                },
-                scales: {
-                    y: { beginAtZero: true, max: 100, grid: { color: '#f1f5f9' }, ticks: { callback: (v) => v + '%' } },
-                    x: { grid: { display: false } }
-                }
-            }
-        });
-    }
-}" x-init="onChart(() => {
-    initCharts();
-    window.addEventListener('stats-updated', (e) => initCharts(e.detail[0]));
-})">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-            <h1 class="page-title">{{ __('Execution Monitoring') }}
-            </h1>
-            <p class="page-subtitle">
-                {{ __('Real-time physical and financial performance tracking') }} @if($activeYear) {{ __('for') }}
-                {{ $activeYear }} @endif
-            </p>
-        </div>
+<div class="space-y-6">
+    <x-ui.page-header :title="__('Execution Monitoring')"
+        :subtitle="__('Paid and committed against the approved budget, and delivery of targets').($activeYear ? ' · '.$activeYear : '')">
         @if($activeYear)
-            <div class="flex gap-3">
-                <x-ui.badge variant="indigo" pulse="true" class="px-4 py-2 text-xs font-semibold ">
-                    {{ __('Active Fiscal Year') }}: {{ $activeYear }}
-                </x-ui.badge>
-            </div>
+            <a href="{{ route('monitoring.execution') }}" wire:navigate class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">{{ __('Report execution') }}</a>
         @endif
-    </div>
+    </x-ui.page-header>
 
-    @if(!$activeYear)
-        <div class="bg-amber-50 border-2 border-dashed border-amber-200 rounded-xl p-12 text-center">
-            <div class="h-20 w-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-600" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-            </div>
-            <h2 class="text-md font-semibold text-zinc-900 tracking-tight mb-4">
-                {{ __('Monitoring Suspended: No Active Fiscal Year') }}
-            </h2>
-            <p class="text-zinc-500 text-sm font-medium max-w-lg mx-auto leading-relaxed">
-                {{ __('Real-time monitoring is only available when a Fiscal Envelope for the current period has been') }}
-                <b class="text-zinc-900">{{ __('Approved') }}</b> {{ __('and is within its') }} <b
-                    class="text-zinc-900">{{ __('Active Validity Dates') }}</b>.
-                {{ __('As of today, no active budget authority has been found.') }}
-            </p>
-            <div class="mt-8 flex justify-center gap-4">
-                <a href="{{ route('budget.envelope.list') }}"
-                    class="px-6 py-3 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 transition-all">
-                    {{ __('Manage Fiscal Envelopes') }}
-                </a>
-            </div>
-        </div>
+    @if(! $has)
+        <x-ui.card padding="p-0">
+            <x-ui.empty-state :title="__('Monitoring Suspended: No Active Fiscal Year')"
+                :text="__('Execution is monitored once the fiscal envelope for the period has been approved and is within its validity dates.')">
+                <x-ui.button variant="primary" href="{{ route('budget.envelope.list') }}">{{ __('Manage Fiscal Envelopes') }}</x-ui.button>
+            </x-ui.empty-state>
+        </x-ui.card>
     @else
+        @php
+            $s = $summary;
+            $behindSchedule = $s['paid_rate'] !== null && $s['planned_rate'] !== null && $s['paid_rate'] < $s['planned_rate'] - 5;
+        @endphp
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <x-ui.stats-card label="{{ __('Budget Requested') }}" value="$ {{ number_format($stats['requested'], 0) }}"
-                description="{{ __('Total initial estimates') }}" icon="banknotes" />
-
-            <x-ui.stats-card label="{{ __('Budget Approved') }}" value="$ {{ number_format($stats['approved'], 0) }}"
-                description="{{ __('Total adjusted allocations') }}" icon="check-badge" />
-
-            <x-ui.stats-card label="{{ __('Financial Rate') }}" value="{{ number_format($stats['financial_ratio'], 1) }}%"
-                description="{{ __('Approved vs Requested ratio') }}"
-                trend="{{ $stats['financial_ratio'] > 80 ? 'up' : 'down' }}" />
-
-            <x-ui.stats-card label="{{ __('Physical Progress') }}"
-                value="{{ number_format($stats['physical_progress'], 1) }}%"
-                description="{{ __('PAA target achievement') }}"
-                trend="{{ $stats['physical_progress'] > 50 ? 'up' : 'down' }}" />
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <x-ui.kpi :label="__('Approved budget')" :value="'$ '.number_format($s['approved'])" :sub="__('Distributed to the activities')" tone="zinc" />
+            <x-ui.kpi :label="__('Committed')" :value="'$ '.number_format($s['committed'])"
+                :sub="number_format($s['committed_rate'] ?? 0, 1).'% '.__('of the approved budget')" :progress="$s['committed_rate']" tone="emerald" />
+            <x-ui.kpi :label="__('Paid')" :value="'$ '.number_format($s['paid'])"
+                :sub="number_format($s['paid_rate'] ?? 0, 1).'% '.__('paid').' · '.number_format($s['elapsed'], 0).'% '.__('of the year has passed')"
+                :progress="$s['paid_rate']" :tone="$behindSchedule ? 'amber' : 'indigo'" />
+            <x-ui.kpi :label="__('Delivery against targets')" :value="$physical !== null ? number_format($physical, 1).'%' : '—'"
+                :sub="$physical !== null ? __('Verified progress, all programmes') : __('No verified progress yet')" :progress="$physical" tone="amber" />
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div class="lg:col-span-8">
-                <x-ui.card padding="p-0" class="overflow-hidden">
-                    <x-slot name="header">
-                        <div class="flex items-center justify-between px-6 py-4">
-                            <h3 class="text-sm font-semibold text-zinc-900 ">
-                                {{ __('Programmatic Performance Comparison') }}
-                            </h3>
-                        </div>
-                    </x-slot>
-                    <div class="p-8">
-                        <div class="h-[400px] w-full">
-                            <canvas id="programExecutionChart"></canvas>
-                        </div>
-                    </div>
-                </x-ui.card>
-            </div>
+        <div class="grid gap-6 lg:grid-cols-12">
+            <x-ui.card :title="__('Execution by quarter')" :description="__('Cumulative at the end of each quarter')" class="min-w-0 lg:col-span-7">
+                <div wire:key="q-{{ md5(json_encode($s['quarters'])) }}" class="relative h-72"
+                    x-data
+                    x-init="onChart(() => { const q = @js($s['quarters']); const usd = v => '$ ' + Math.round(v).toLocaleString();
+                        const tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };
+                        new Chart($refs.c, { type: 'bar', data: { labels: ['Q1','Q2','Q3','Q4'], datasets: [
+                            { type: 'bar', label: @js(__('Paid')), data: q.map(x => x.paid), backgroundColor: '#2152C4', borderRadius: 3, order: 2 },
+                            { type: 'line', label: @js(__('Committed')), data: q.map(x => x.committed), borderColor: '#10B981', backgroundColor: '#10B981', tension: .25, order: 1 },
+                            { type: 'line', label: @js(__('Planned (cumulative)')), data: q.map(x => x.planned), borderColor: '#94A3B8', borderDash: [5,4], backgroundColor: '#94A3B8', tension: .25, order: 0 } ] },
+                            options: { responsive: true, maintainAspectRatio: false, animation: false,
+                                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, font: { family: 'Inter', size: 11 } } }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + usd(c.parsed.y) } } },
+                                scales: { y: { beginAtZero: true, grid: { color: '#E2E8F0' }, ticks: { ...tick, callback: v => v >= 1e6 ? '$' + +(v/1e6).toFixed(1) + 'M' : (v >= 1e3 ? '$' + (v/1e3) + 'k' : '$' + v) } }, x: { grid: { display: false }, ticks: tick } } } }); })">
+                    <canvas x-ref="c" role="img" aria-label="{{ __('Cumulative planned, committed and paid amounts after each quarter') }}"></canvas>
+                </div>
+            </x-ui.card>
 
-            <div class="lg:col-span-4">
-                <x-ui.card class="h-full">
-                    <x-slot name="header">
-                        <h3 class="text-xs font-semibold text-zinc-900 ">
-                            {{ __('Achievement Details') }}
-                        </h3>
-                    </x-slot>
-                    <div class="space-y-6 mt-4">
-                        @foreach($programExecution as $prog)
-                            <div class="group">
-                                <div class="flex justify-between items-end mb-2">
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="text-xs font-semibold text-zinc-400 ">{{ $prog['code'] }}</span>
-                                        <span class="text-xs font-bold text-zinc-700 leading-tight">{{ $prog['name'] }}</span>
-                                    </div>
-                                    <span
-                                        class="text-xs font-semibold text-indigo-600">{{ number_format($prog['physical'], 0) }}%</span>
-                                </div>
-                                <div class="w-full bg-zinc-100 rounded-full h-1.5 overflow-hidden">
-                                    <div class="bg-indigo-500 h-full transition-all duration-1000 group-hover:bg-indigo-600"
-                                        style="width: {{ $prog['physical'] }}%"></div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </x-ui.card>
-            </div>
+            <x-ui.card :title="__('Paid and delivered, by programme')" :description="__('Percent of the approved budget paid, and of the targets delivered')" class="min-w-0 lg:col-span-5">
+                <div wire:key="p-{{ md5(json_encode($rows)) }}" class="relative h-72"
+                    x-data
+                    x-init="onChart(() => { const r = @js($rows); const tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };
+                        new Chart($refs.c, { type: 'bar', data: { labels: r.map(x => x.code), datasets: [
+                            { label: @js(__('Paid')) + ' %', data: r.map(x => x.paid_pct), backgroundColor: '#2152C4', borderRadius: 3 },
+                            { label: @js(__('Delivered')) + ' %', data: r.map(x => x.physical), backgroundColor: '#10B981', borderRadius: 3 } ] },
+                            options: { responsive: true, maintainAspectRatio: false, animation: false,
+                                plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, font: { family: 'Inter', size: 11 } } }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + (c.parsed.y ?? 0).toFixed(1) + '%' } } },
+                                scales: { y: { beginAtZero: true, max: 100, grid: { color: '#E2E8F0' }, ticks: { ...tick, callback: v => v + '%' } }, x: { grid: { display: false }, ticks: tick } } } }); })">
+                    <canvas x-ref="c" role="img" aria-label="{{ __('Percent paid and percent of targets delivered for each programme') }}"></canvas>
+                </div>
+            </x-ui.card>
         </div>
+
+        <x-ui.card :title="__('By programme')" :description="__('Read paid against what the schedule calls for by now')" padding="p-0">
+            @if(count($rows) === 0)
+                <x-ui.empty-state :title="__('Nothing to report yet')" />
+            @else
+                <x-ui.table :headers="[__('Programme'), __('Approved'), __('Committed'), __('Paid'), __('Paid %'), __('Due by now %'), __('Delivered %')]" :right="[1, 2, 3, 4, 5, 6]" class="text-sm">
+                    @foreach($rows as $r)
+                        @php $late = $r['paid_pct'] < $r['due_pct'] - 5; @endphp
+                        <tr>
+                            <td class="px-5 py-3"><div class="font-medium text-zinc-900">{{ $r['code'] }}</div><div class="text-xs text-zinc-500">{{ $r['name'] }}</div></td>
+                            <td class="px-5 py-3 num">$ {{ number_format($r['approved']) }}</td>
+                            <td class="px-5 py-3 num">$ {{ number_format($r['committed']) }}</td>
+                            <td class="px-5 py-3 num">$ {{ number_format($r['paid']) }}</td>
+                            <td class="px-5 py-3 num font-medium {{ $late ? 'text-amber-800' : 'text-zinc-900' }}">{{ number_format($r['paid_pct'], 1) }}%@if($late) <span class="sr-only">({{ __('behind schedule') }})</span>@endif</td>
+                            <td class="px-5 py-3 num text-zinc-600">{{ number_format($r['due_pct'], 1) }}%</td>
+                            <td class="px-5 py-3 num">{{ $r['physical'] !== null ? number_format($r['physical'], 1).'%' : '—' }}</td>
+                        </tr>
+                    @endforeach
+                </x-ui.table>
+            @endif
+        </x-ui.card>
     @endif
 </div>

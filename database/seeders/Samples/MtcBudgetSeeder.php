@@ -43,6 +43,9 @@ class MtcBudgetSeeder extends Seeder
 {
     public const YEARS = [2025, 2026, 2027];
 
+    /** @var array<int, array<int, int>> ids of the activities this run planted, by year (their execution is sampled afterwards) */
+    private array $planted = [];
+
     private const CATEGORY = ['10' => 'SV', '20' => 'BS', '30' => 'TP', '40' => 'CM', '50' => 'CD'];
 
     /**
@@ -72,6 +75,10 @@ class MtcBudgetSeeder extends Seeder
             DB::transaction(function () use ($registry, $year, $data) {
                 $totals = $this->loadActivities($registry, $year, $data);
                 $this->registerBudget($registry, $year, $data, $totals);
+                // Spending and progress up to today, only where the budget law has been applied
+                if (isset($data['envelope'])) {
+                    (new MtcExecutionSampler)->seed($year, $this->planted[$year] ?? []);
+                }
             });
         }
     }
@@ -162,6 +169,7 @@ class MtcBudgetSeeder extends Seeder
                     continue; // a real activity with this code already exists: leave it alone
                 }
 
+                $this->planted[$year][] = $activity->id;
                 $activity->lineItems()->delete();
                 foreach ($a['amounts'] as $category => $amount) {
                     LineItem::create([

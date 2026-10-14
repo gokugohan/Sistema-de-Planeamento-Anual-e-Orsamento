@@ -59,6 +59,12 @@ Distribution rules (`app/Services/EnvelopeDistributor.php`):
 
 **Autonomous bodies.** Public bodies under the ministry that have their own legal personality and financial autonomy (units marked *Autonomous* in *Administration → Entities*) are part of the ministry's package: their approved plans are inside the totals sent to the CRO and are distributed from the same envelope once the ministry has received it. They are presented as a separate section, "Transfers to autonomous bodies", in the CRO report and in Budget Allocation, so the ministry's own services and the transfers can be read apart. If such a body runs its own planning system, its plan can be entered or imported here for its unit by ministry staff.
 
+### Budget execution
+
+Once a plan is approved and the envelope distributed, execution is reported per **budget line and quarter** at *Monitoring > Budget Execution*: what was **committed** (compromisso) and what was **paid** (pagamento). The unit reports it (Draft, then Submitted); a different person verifies it (or returns it), and **only verified figures count**. The headline rate is paid ÷ approved budget, read against how much of the year has passed; the schedule is the approved amount spread over the quarters the activity runs in. The dashboard and *Monitoring > Performance* show it by quarter, by programme and the activities furthest behind schedule (`App\Services\ExecutionReport`). Editing an approved activity is not possible without reopening it (which leaves a reason in the approval trail).
+
+The sample data is aware of today's date: a finished year is executed to the end, the running year has its finished quarters verified and the current quarter part-way (some of it still waiting for verification), and a future year has nothing. The figures are illustrative, not taken from any execution report.
+
 ### Budget cycle and the CRO
 
 *Budget Planning → Budget Cycle* tracks one fiscal year through: indicative ceiling → submission to the CRO → CRO decision → budget law promulgated → envelope approved. It shows the differences between stages and warns when the approved plan is **above the CRO amount** (revise the plan before the budget goes to Parliament, otherwise the final distribution cuts every activity pro rata).

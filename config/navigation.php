@@ -69,6 +69,8 @@ return [
             'items' => [
                 ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'activity',
                     'hint' => 'Quarterly progress against indicator targets'],
+                ['label' => 'Budget Execution', 'route' => 'monitoring.execution', 'icon' => 'banknote', 'permission' => 'view_monitoring',
+                    'hint' => 'Report what each budget line committed and paid'],
                 ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_all_paa',
                     'hint' => 'Reports and the approved plan for the CRO'],
             ],

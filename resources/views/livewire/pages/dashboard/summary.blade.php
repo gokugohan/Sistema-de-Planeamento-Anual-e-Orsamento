@@ -150,6 +150,12 @@ new class extends Component {
             $quarterly[] = $targets > 0 ? round($cumulative / $targets * 100, 1) : 0;
         }
 
+        // ── execution: committed and paid against the approved budget, and against the calendar ──
+        $execReport = app(\App\Services\ExecutionReport::class);
+        $execData = $execReport->load($year, $unitIds, $cat);
+        $exec = $execReport->summary($execData);
+        $behind = array_map(fn ($a) => $a + ['unit' => $dirs[$a['unit_id']]->code ?? ''], $execReport->behind($execData, 5));
+
         // ── units table, sorted by approved plan ──
         $units = [];
         foreach ($dirs->filter(fn ($d) => !$d->parent_id) as $d) {
@@ -201,7 +207,12 @@ new class extends Component {
                 'alloc' => collect($units)->where('plan', '>', 0)->take(8)->pluck('alloc')->map(fn ($v) => (float) $v)->values()->all(),
             ],
             'quarterly' => $quarterly,
-            'labels' => [__('Requested'), __('Approved plan'), __('Envelope'), __('Distributed'), __('Plan'), __('Cumulative progress')],
+            'execution' => [
+                'planned' => array_column($exec['quarters'], 'planned'),
+                'committed' => array_column($exec['quarters'], 'committed'),
+                'paid' => array_column($exec['quarters'], 'paid'),
+            ],
+            'labels' => [__('Requested'), __('Approved plan'), __('Envelope'), __('Distributed'), __('Plan'), __('Cumulative progress'), __('Planned (cumulative)'), __('Committed'), __('Paid')],
         ];
 
         return [
@@ -211,7 +222,7 @@ new class extends Component {
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
             'achievement' => $achievement, 'indicatorCount' => (int) $delivery->n,
-            'units' => $units, 'watch' => $watch, 'charts' => $charts,
+            'units' => $units, 'watch' => $watch, 'charts' => $charts, 'exec' => $exec, 'behind' => $behind,
             'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
             'classes' => $classes,
         ];
@@ -301,6 +312,71 @@ new class extends Component {
             :sub="$achievement !== null ? trans_choice(':n indicator with a target|:n indicators with targets', $indicatorCount, ['n' => $indicatorCount]) : __('No verified progress yet')"
             :progress="$achievement" tone="amber" href="{{ route('monitoring.index') }}" />
     </div>
+
+    {{-- Budget execution: what has been committed and paid, read against how much of the year has passed --}}
+    @if($exec['has_data'])
+        @php
+            $gap = $exec['paid_rate'] !== null && $exec['planned_rate'] !== null ? $exec['paid_rate'] - $exec['planned_rate'] : null;
+            [$paceLabel, $paceTone] = match (true) {
+                ! $exec['has_actuals'] => [__('Nothing reported yet'), 'bg-zinc-100 text-zinc-700'],
+                $gap >= 5 => [__('Ahead of schedule'), 'bg-emerald-50 text-emerald-800'],
+                $gap >= -5 => [__('On schedule'), 'bg-indigo-50 text-indigo-800'],
+                default => [__('Behind schedule'), 'bg-amber-50 text-amber-800'],
+            };
+        @endphp
+        <x-ui.card :title="__('Budget execution')" :description="__('Paid and committed against the approved budget, by quarter')" padding="p-0">
+            <x-slot:actions>
+                @if($exec['quarter'] > 0)
+                    <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium {{ $paceTone }}">{{ $paceLabel }}</span>
+                @endif
+            </x-slot:actions>
+            <div class="grid gap-0 lg:grid-cols-12">
+                <div class="min-w-0 p-5 lg:col-span-7">
+                    <div wire:key="c-x-{{ md5(json_encode($charts['execution'])) }}" x-data="dashChart('execution', @js($charts))" x-init="mount()" class="relative h-80">
+                        <canvas role="img" aria-label="{{ __('Cumulative planned, committed and paid amounts after each quarter') }}"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-5 border-t border-zinc-200 p-5 lg:col-span-5 lg:border-l lg:border-t-0">
+                    <dl class="grid grid-cols-3 gap-3">
+                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Approved budget') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['approved']) }}</dd></div>
+                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Committed') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['committed']) }}</dd></div>
+                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Paid') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-indigo-700">$ {{ number_format($exec['paid']) }}</dd></div>
+                    </dl>
+
+                    <div>
+                        <div class="flex items-baseline justify-between text-sm">
+                            <span class="font-medium text-zinc-700">{{ __('Paid of the approved budget') }}</span>
+                            <span class="font-semibold tabular-nums text-zinc-900">{{ number_format($exec['paid_rate'] ?? 0, 1) }}%</span>
+                        </div>
+                        {{-- the bar is the paid share; the tick is where the year stands --}}
+                        <div class="relative mt-2 h-2 rounded-full bg-zinc-100" role="img"
+                            aria-label="{{ __(':paid% paid, :elapsed% of the year has passed', ['paid' => number_format($exec['paid_rate'] ?? 0, 1), 'elapsed' => number_format($exec['elapsed'], 0)]) }}">
+                            <div class="h-full rounded-full bg-indigo-600" style="width: {{ min(100, $exec['paid_rate'] ?? 0) }}%"></div>
+                            <div class="absolute -top-1 h-4 w-0.5 bg-zinc-900" style="left: {{ min(100, $exec['elapsed']) }}%"></div>
+                        </div>
+                        <p class="mt-2 text-xs text-zinc-500">{{ __(':elapsed% of the year has passed; the schedule calls for :planned% paid by now.', ['elapsed' => number_format($exec['elapsed'], 0), 'planned' => number_format($exec['planned_rate'] ?? 0, 0)]) }}</p>
+                    </div>
+
+                    @if(count($behind))
+                        <div>
+                            <h3 class="text-sm font-semibold text-zinc-900">{{ __('Furthest behind schedule') }}</h3>
+                            <ul class="mt-2 divide-y divide-zinc-100">
+                                @foreach($behind as $b)
+                                    <li class="flex items-start justify-between gap-3 py-2">
+                                        <a href="{{ route('activities.show', $b['id']) }}" wire:navigate class="min-w-0 text-sm text-zinc-700 hover:text-indigo-700">
+                                            <span class="line-clamp-1">{{ $b['name'] }}</span>
+                                            <span class="text-xs text-zinc-500">{{ $b['unit'] }}</span>
+                                        </a>
+                                        <span class="shrink-0 text-right text-xs tabular-nums text-amber-800">{{ __('short by') }} $ {{ number_format($b['gap']) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </x-ui.card>
+    @endif
 
     @if($totalActivities === 0)
         <x-ui.card>
@@ -434,7 +510,7 @@ new class extends Component {
                     const L = d.labels, usd = (v) => '$ ' + Math.round(v).toLocaleString();
                     const grid = { color: '#E2E8F0' }, tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };
                     const moneyAxis = { beginAtZero: true, grid, ticks: { ...tick, callback: (v) => v >= 1000000 ? '$' + +(v / 1000000).toFixed(1) + 'M' : (v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v) } };
-                    const base = { responsive: true, maintainAspectRatio: false, animation: { duration: 250 },
+                    const base = { responsive: true, maintainAspectRatio: false, animation: false,
                         plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: '#475569', font: { family: 'Inter', size: 11 } } },
                                    tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + (kind === 'status' || kind === 'quarterly' ? c.parsed.y ?? c.parsed : usd(c.parsed.y ?? c.parsed.x)) } } } };
                     const cfg = {
@@ -448,6 +524,11 @@ new class extends Component {
                         units: () => ({ type: 'bar', data: { labels: d.units.labels, datasets: [
                             { label: L[1], data: d.units.plan, backgroundColor: '#2152C4', borderRadius: 3 },
                             { label: L[3], data: d.units.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
+                            options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
+                        execution: () => ({ type: 'bar', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [
+                            { type: 'bar', label: L[8], data: d.execution.paid, backgroundColor: '#2152C4', borderRadius: 3, order: 2 },
+                            { type: 'line', label: L[7], data: d.execution.committed, borderColor: '#10B981', backgroundColor: '#10B981', tension: .25, pointRadius: 3, spanGaps: false, order: 1 },
+                            { type: 'line', label: L[6], data: d.execution.planned, borderColor: '#94A3B8', borderDash: [5, 4], backgroundColor: '#94A3B8', tension: .25, pointRadius: 2, order: 0 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
                         quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#2152C4', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#2152C4' }] },
                             options: { ...base, plugins: { ...base.plugins, legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.parsed.y + '%' } } },
