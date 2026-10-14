@@ -50,6 +50,8 @@
         /* dompdf renders with media "screen", so browser-only rules hang off body.screen instead of @media */
         body.screen { background: #F1F5F9; }
         body.screen .footer { position: static; margin-top: 16px; }
+        /* On a phone the fixed A4 sheet scrolls sideways instead of widening the page. */
+        @media screen and (max-width: 700px) { .sheet { overflow-x: auto; padding: 8mm; } }
         @media print { .toolbar { display: none; } .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; } body { background: #fff; } }
     </style>
 </head>
