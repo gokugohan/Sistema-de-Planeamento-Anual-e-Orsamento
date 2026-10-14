@@ -526,16 +526,18 @@ new class extends Component {
 
                         <div class="rounded-md border border-zinc-200 bg-zinc-50 p-4 space-y-3">
                             <p class="text-xs font-medium text-zinc-600">
-                                {{ __('Legal basis: the envelope exists only after Parliament approves the State Budget and the President promulgates it. Required before submitting.') }}
+                                {{ \App\Support\Institution::isMinistry()
+                                    ? __('Legal basis: the envelope exists only after Parliament approves the State Budget and the President promulgates it. Required before submitting.')
+                                    : __('The envelope is the allocation the ministry gives you. Note the reference of its decision or letter (optional).') }}
                             </p>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">{{ __('State Budget law') }}</label>
+                                    <label class="text-sm font-medium leading-none">{{ \App\Support\Institution::isMinistry() ? __('State Budget law') : __('Reference of the ministry\'s decision') }}</label>
                                     <input type="text" wire:model="budgetLawReference" placeholder="Lei n.º __/2026" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
                                     @error('budgetLawReference') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">{{ __('Promulgation date') }}</label>
+                                    <label class="text-sm font-medium leading-none">{{ \App\Support\Institution::isMinistry() ? __('Promulgation date') : __('Date of the decision') }}</label>
                                     <input type="date" wire:model="promulgationDate" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
                                     @error('promulgationDate') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>

@@ -19,6 +19,11 @@ final class Institution
 
     public const SUBORDINATE = 'subordinate';
 
+    /** Texts that name steps of a ministry's cycle, and what an office says instead. */
+    private const OFFICE_TEXT = [
+        'Ceiling, CRO submission and decision, State Budget law' => 'Ceiling, sending the plan to the ministry, allocation received',
+    ];
+
     public static function level(): string
     {
         return SystemSetting::get('institution_level') === self::SUBORDINATE ? self::SUBORDINATE : self::MINISTRY;
@@ -44,10 +49,12 @@ final class Institution
      */
     public static function label(string $key, array $replace = []): string
     {
-        $text = __($key, $replace);
         if (self::isMinistry()) {
-            return $text;
+            return __($key, $replace);
         }
+
+        // Some texts describe steps an office does not have at all, so they are replaced, not reworded.
+        $text = __(self::OFFICE_TEXT[$key] ?? $key, $replace);
 
         return preg_replace('/\bCRO\b/', self::ministryWord(), $text);
     }

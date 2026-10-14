@@ -94,20 +94,32 @@ new class extends Component {
         $croTotal = $cycle?->cro_total !== null ? (float) $cycle->cro_total : null;
         $ceiling = $cycle?->indicative_ceiling !== null ? (float) $cycle->indicative_ceiling : null;
 
-        $steps = [
+        // A ministry runs the whole cycle. A directorate or gabinete does not control the CRO or the State
+        // Budget law, so its cycle is only what it does and what it receives from the ministry.
+        $isMinistry = \App\Support\Institution::isMinistry();
+        $planApproved = $totalActivities > 0 && $byStatus[Activity::STATUS_APPROVED] === $totalActivities;
+        $submittedStep = ['label' => $isMinistry ? \App\Support\Institution::label('Submitted to CRO') : __('Sent to the ministry'), 'done' => (bool) $cycle?->submitted_at, 'value' => $cycle?->submitted_total !== null ? (float) $cycle->submitted_total : null];
+        $distributedStep = ['label' => __('Distributed'), 'done' => $envApproved && $allocated > 0, 'value' => $envApproved && $allocated > 0 ? $allocated : null];
+        $steps = $isMinistry ? [
             ['label' => __('Indicative ceiling'), 'done' => $ceiling !== null, 'value' => $ceiling],
-            ['label' => \App\Support\Institution::label('Submitted to CRO'), 'done' => (bool) $cycle?->submitted_at, 'value' => $cycle?->submitted_total !== null ? (float) $cycle->submitted_total : null],
+            $submittedStep,
             ['label' => \App\Support\Institution::label('CRO decision'), 'done' => $croTotal !== null, 'value' => $croTotal],
             ['label' => __('Budget law'), 'done' => (bool) $env?->hasLegalBasis(), 'value' => null],
             ['label' => __('Envelope approved'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
-            ['label' => __('Distributed'), 'done' => $envApproved && $allocated > 0, 'value' => $envApproved && $allocated > 0 ? $allocated : null],
+            $distributedStep,
+        ] : [
+            ['label' => __('Ceiling from the ministry'), 'done' => $ceiling !== null, 'value' => $ceiling],
+            ['label' => __('Plan approved'), 'done' => $planApproved, 'value' => $planApproved ? $plan : null],
+            $submittedStep,
+            ['label' => __('Allocation received'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
+            $distributedStep,
         ];
         $currentStep = collect($steps)->search(fn ($s) => !$s['done']);
 
         // The best available "money in hand" figure and its honest label
         [$fundLabel, $fund] = match (true) {
             $envelope !== null => [__('Fiscal envelope'), $envelope],
-            $croTotal !== null => [\App\Support\Institution::label('CRO decision'), $croTotal],
+            $croTotal !== null && $isMinistry => [\App\Support\Institution::label('CRO decision'), $croTotal],
             $ceiling !== null => [__('Indicative ceiling'), $ceiling],
             default => [__('Fiscal envelope'), null],
         };
@@ -154,7 +166,7 @@ new class extends Component {
 
         // ── things worth a look ──
         $watch = [];
-        if ($croTotal !== null && $plan > $croTotal) {
+        if ($isMinistry && $croTotal !== null && $plan > $croTotal) {
             $watch[] = ['tone' => 'rose', 'text' => \App\Support\Institution::label('The approved plan exceeds the CRO decision by :a.', ['a' => '$ ' . number_format($plan - $croTotal)]), 'url' => route('planning.budget-cycle')];
         }
         if ($envApproved && $plan > 0 && $allocated == 0) {
@@ -247,7 +259,7 @@ new class extends Component {
                 <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
             @endif
         </div>
-        <ol class="grid grid-cols-2 md:grid-cols-6 gap-4">
+        <ol class="grid grid-cols-2 gap-4 {{ count($steps) === 6 ? 'md:grid-cols-6' : 'md:grid-cols-5' }}">
             @foreach($steps as $i => $step)
                 @php $current = $currentStep === $i; @endphp
                 <li class="relative">

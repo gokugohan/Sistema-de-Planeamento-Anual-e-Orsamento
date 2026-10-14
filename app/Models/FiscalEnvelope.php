@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Auditable;
 use App\Models\Scopes\ProductionScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Support\Institution;
 use Illuminate\Database\Eloquent\Model;
 
 class FiscalEnvelope extends Model
@@ -92,9 +93,17 @@ class FiscalEnvelope extends Model
         return $this->status === self::STATUS_APPROVED;
     }
 
-    /** The OGE law has been approved and promulgated, so the envelope is legally real. */
+    /**
+     * A ministry's envelope is real once the OGE law is approved and promulgated. For a directorate or
+     * gabinete the envelope is the allocation its ministry gives it: there is no law of its own to wait
+     * for, so the reference of the ministry's decision is optional.
+     */
     public function hasLegalBasis(): bool
     {
+        if (! Institution::isMinistry()) {
+            return true;
+        }
+
         return filled($this->budget_law_reference) && $this->promulgation_date !== null;
     }
 

@@ -830,5 +830,21 @@
     "Changing these rules applies from now on; activities already in the chain continue under the new rules.": "Changing these rules applies from now on; activities already in the chain continue under the new rules.",
     "Page navigation": "Page navigation",
     "Previous": "Previous",
-    "Next": "Next"
+    "Next": "Next",
+    "Ceiling from the ministry": "Ceiling from the ministry",
+    "Plan approved": "Plan approved",
+    "Sent to the ministry": "Sent to the ministry",
+    "Allocation received": "Allocation received",
+    "Ceiling from the ministry → plan approved → sent to the ministry → allocation received → distribution.": "Ceiling from the ministry → plan approved → sent to the ministry → allocation received → distribution.",
+    "Allocation from the ministry": "Allocation from the ministry",
+    "When the ministry gives you your allocation, register it as the fiscal envelope and distribute it over the approved plan.": "When the ministry gives you your allocation, register it as the fiscal envelope and distribute it over the approved plan.",
+    "The maximum the ministry set for this office (optional).": "The maximum the ministry set for this office (optional).",
+    "The approved plan exceeds the ministry ceiling by :a.": "The approved plan exceeds the ministry ceiling by :a.",
+    "Revise the activities (reduce or defer) so the plan fits the ceiling before sending it to the ministry.": "Revise the activities (reduce or defer) so the plan fits the ceiling before sending it to the ministry.",
+    "No allocation registered for :year yet.": "No allocation registered for :year yet.",
+    "The envelope is the allocation the ministry gives you. Note the reference of its decision or letter (optional).": "The envelope is the allocation the ministry gives you. Note the reference of its decision or letter (optional).",
+    "Reference of the ministry's decision": "Reference of the ministry's decision",
+    "Date of the decision": "Date of the decision",
+    "vs sent": "vs sent",
+    "Ceiling, sending the plan to the ministry, allocation received": "Ceiling, sending the plan to the ministry, allocation received"
 }

@@ -103,12 +103,21 @@ new class extends Component {
         $pct = $base ? ' (' . ($v >= 0 ? '+' : '') . number_format($v / $base * 100, 1) . '%)' : '';
         return ($v >= 0 ? '+' : '−') . ltrim($money(abs($v)), ' ') . $pct;
     };
-    $steps = [
+    // A ministry runs the whole cycle. A directorate or gabinete does not control the CRO or the State
+    // Budget law: it plans, sends the plan to its ministry and registers the allocation it receives.
+    $isMinistry = \App\Support\Institution::isMinistry();
+    $envApproved = in_array($env?->status, [\App\Models\FiscalEnvelope::STATUS_APPROVED, \App\Models\FiscalEnvelope::STATUS_CLOSED], true);
+    $steps = $isMinistry ? [
         ['label' => __('Indicative ceiling'), 'done' => $s['ceiling'] !== null],
         ['label' => \App\Support\Institution::label('Submitted to CRO'), 'done' => $c->isSubmitted()],
         ['label' => \App\Support\Institution::label('CRO decision'), 'done' => $c->hasCroDecision()],
         ['label' => __('Budget law promulgated'), 'done' => (bool) $env?->hasLegalBasis()],
-        ['label' => __('Envelope approved'), 'done' => in_array($env?->status, [\App\Models\FiscalEnvelope::STATUS_APPROVED, \App\Models\FiscalEnvelope::STATUS_CLOSED], true)],
+        ['label' => __('Envelope approved'), 'done' => $envApproved],
+    ] : [
+        ['label' => __('Ceiling from the ministry'), 'done' => $s['ceiling'] !== null],
+        ['label' => __('Plan approved'), 'done' => $summary['approved_now'] > 0],
+        ['label' => __('Sent to the ministry'), 'done' => $c->isSubmitted()],
+        ['label' => __('Allocation received'), 'done' => $envApproved],
     ];
 @endphp
 
@@ -116,7 +125,7 @@ new class extends Component {
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
             <h1 class="page-title">{{ __('Budget Cycle') }}</h1>
-            <p class="text-sm text-zinc-500 mt-1">{{ \App\Support\Institution::label('Indicative ceiling → submission to the CRO → CRO decision → State Budget law → fiscal envelope.') }}</p>
+            <p class="text-sm text-zinc-500 mt-1">{{ $isMinistry ? \App\Support\Institution::label('Indicative ceiling → submission to the CRO → CRO decision → State Budget law → fiscal envelope.') : __('Ceiling from the ministry → plan approved → sent to the ministry → allocation received → distribution.') }}</p>
         </div>
         <div class="flex items-center gap-2">
             <label for="year" class="text-sm text-zinc-500">{{ __('Fiscal year') }}</label>
@@ -126,7 +135,7 @@ new class extends Component {
 
     {{-- Stepper --}}
     <x-ui.card padding="p-4">
-        <ol class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+        <ol class="grid grid-cols-1 gap-3 {{ count($steps) === 5 ? 'sm:grid-cols-5' : 'sm:grid-cols-4' }}">
             @foreach($steps as $i => $step)
                 <li class="flex items-center gap-3">
                     <span class="w-8 h-8 shrink-0 rounded-full flex items-center justify-center text-sm font-semibold {{ $step['done'] ? 'bg-emerald-600 text-white' : 'bg-zinc-100 text-zinc-500' }}">
@@ -142,6 +151,7 @@ new class extends Component {
         </ol>
     </x-ui.card>
 
+    @if($isMinistry)
     {{-- Fit check: the plan must be within the CRO amount before it goes to Parliament --}}
     @if($summary['fit_gap'] !== null)
         @if($summary['fit_gap'] > 0)
@@ -158,9 +168,19 @@ new class extends Component {
         @endif
     @endif
 
+    @elseif($s['ceiling'] !== null && $summary['approved_now'] > $s['ceiling'])
+        <div class="alert alert-error !items-start">
+            <div>
+                <p class="font-semibold">{{ __('The approved plan exceeds the ministry ceiling by :a.', ['a' => $money($summary['approved_now'] - $s['ceiling'])]) }}</p>
+                <p class="text-xs font-normal mt-1">{{ __('Revise the activities (reduce or defer) so the plan fits the ceiling before sending it to the ministry.') }}</p>
+            </div>
+        </div>
+    @endif
+
     {{-- Comparison --}}
     <x-ui.card padding="p-0">
         <x-ui.table :headers="[__('Stage'), __('Amount'), __('Difference')]">
+            @if($isMinistry)
             <tr><td class="px-6 py-3 text-sm">{{ __('Indicative ceiling') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['ceiling']) }}</td><td class="px-6 py-3 text-sm text-zinc-400">—</td></tr>
             <tr><td class="px-6 py-3 text-sm">{{ \App\Support\Institution::label('Submitted to CRO') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['submitted']) }}</td>
                 <td class="px-6 py-3 text-sm {{ ($s['submitted_vs_ceiling'] ?? 0) > 0 ? 'text-amber-600' : 'text-zinc-500' }}">
@@ -174,14 +194,26 @@ new class extends Component {
                 <td class="px-6 py-3 text-sm {{ ($s['final_vs_cro'] ?? 0) < 0 ? 'text-rose-600' : 'text-zinc-500' }}">
                     @if($s['final_vs_cro'] !== null){{ $delta($s['final_vs_cro'], $s['cro']) }} {{ \App\Support\Institution::label('vs CRO') }}@else — @endif
                 </td></tr>
+            @else
+                <tr><td class="px-6 py-3 text-sm">{{ __('Ceiling from the ministry') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['ceiling']) }}</td><td class="px-6 py-3 text-sm text-zinc-500">—</td></tr>
+                <tr><td class="px-6 py-3 text-sm">{{ __('Sent to the ministry') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['submitted']) }}</td>
+                    <td class="px-6 py-3 text-sm {{ ($s['submitted_vs_ceiling'] ?? 0) > 0 ? 'text-amber-700' : 'text-zinc-500' }}">
+                        @if($s['submitted_vs_ceiling'] !== null){{ $delta($s['submitted_vs_ceiling'], $s['ceiling']) }} {{ __('vs ceiling') }}@else — @endif
+                    </td></tr>
+                <tr><td class="px-6 py-3 text-sm">{{ __('Allocation received') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['final']) }}</td>
+                    @php $allocVsSent = ($s['final'] !== null && $s['submitted'] !== null) ? $s['final'] - $s['submitted'] : null; @endphp
+                    <td class="px-6 py-3 text-sm {{ ($allocVsSent ?? 0) < 0 ? 'text-rose-700' : 'text-zinc-500' }}">
+                        @if($allocVsSent !== null){{ $delta($allocVsSent, $s['submitted']) }} {{ __('vs sent') }}@else — @endif
+                    </td></tr>
+            @endif
         </x-ui.table>
     </x-ui.card>
 
     <div class="grid gap-6 lg:grid-cols-2">
         {{-- 1. Ceiling --}}
         <x-ui.card>
-            <h2 class="text-sm font-semibold text-zinc-900">1. {{ __('Indicative ceiling') }}</h2>
-            <p class="text-xs text-zinc-500 mt-1 mb-4">{{ __('The maximum the Council of Ministers set for the ministry (teto indicativo / limite máximo de despesa).') }}</p>
+            <h2 class="text-sm font-semibold text-zinc-900">1. {{ $isMinistry ? __('Indicative ceiling') : __('Ceiling from the ministry') }}</h2>
+            <p class="text-xs text-zinc-500 mt-1 mb-4">{{ $isMinistry ? __('The maximum the Council of Ministers set for the ministry (teto indicativo / limite máximo de despesa).') : __('The maximum the ministry set for this office (optional).') }}</p>
             @if($canManage)
                 <form wire:submit="saveCeiling" class="grid gap-3 sm:grid-cols-3">
                     <div><input type="number" step="0.01" wire:model="ceilingAmount" placeholder="{{ __('Amount') }}" class="flux-input">@error('ceilingAmount')<p class="text-xs text-rose-600 mt-1">{{ $message }}</p>@enderror</div>
@@ -196,7 +228,7 @@ new class extends Component {
 
         {{-- 2. Submission --}}
         <x-ui.card>
-            <h2 class="text-sm font-semibold text-zinc-900">2. {{ \App\Support\Institution::label('Submission to the CRO') }}</h2>
+            <h2 class="text-sm font-semibold text-zinc-900">2. {{ $isMinistry ? \App\Support\Institution::label('Submission to the CRO') : __('Sent to the ministry') }}</h2>
             <p class="text-xs text-zinc-500 mt-1 mb-4">{{ __('Freezes the approved plan exactly as sent. Later edits to activities do not change it.') }}</p>
 
             @if($c->isSubmitted())
@@ -225,7 +257,8 @@ new class extends Component {
             </div>
         </x-ui.card>
 
-        {{-- 3. CRO decision --}}
+        {{-- 3. CRO decision (a ministry's step: a directorate or gabinete does not control it) --}}
+        @if($isMinistry)
         <x-ui.card>
             <h2 class="text-sm font-semibold text-zinc-900">3. {{ \App\Support\Institution::label('CRO decision') }}</h2>
             <p class="text-xs text-zinc-500 mt-1 mb-4">{{ __('The ministry total agreed by the Comité de Revisão.') }}</p>
@@ -245,18 +278,20 @@ new class extends Component {
             @endif
         </x-ui.card>
 
+        @endif
+
         {{-- 4. Final --}}
         <x-ui.card>
-            <h2 class="text-sm font-semibold text-zinc-900">4. {{ __('State Budget law and envelope') }}</h2>
-            <p class="text-xs text-zinc-500 mt-1 mb-4">{{ __('After Parliament approves and the President promulgates, register the envelope and distribute it.') }}</p>
+            <h2 class="text-sm font-semibold text-zinc-900">{{ $isMinistry ? '4.' : '3.' }} {{ $isMinistry ? __('State Budget law and envelope') : __('Allocation from the ministry') }}</h2>
+            <p class="text-xs text-zinc-500 mt-1 mb-4">{{ $isMinistry ? __('After Parliament approves and the President promulgates, register the envelope and distribute it.') : __('When the ministry gives you your allocation, register it as the fiscal envelope and distribute it over the approved plan.') }}</p>
             @if($env)
                 <dl class="grid grid-cols-2 gap-2 text-sm">
                     <dt class="text-zinc-500">{{ __('Envelope') }}</dt><dd>{{ $money($env->total_amount) }} · {{ __($env->status) }}</dd>
-                    <dt class="text-zinc-500">{{ __('State Budget law') }}</dt><dd>{{ $env->budget_law_reference ?? '—' }}</dd>
-                    <dt class="text-zinc-500">{{ __('Promulgation date') }}</dt><dd>{{ $env->promulgation_date?->format('Y-m-d') ?? '—' }}</dd>
+                    <dt class="text-zinc-500">{{ $isMinistry ? __('State Budget law') : __('Reference of the ministry\'s decision') }}</dt><dd>{{ $env->budget_law_reference ?? '—' }}</dd>
+                    <dt class="text-zinc-500">{{ $isMinistry ? __('Promulgation date') : __('Date of the decision') }}</dt><dd>{{ $env->promulgation_date?->format('Y-m-d') ?? '—' }}</dd>
                 </dl>
             @else
-                <p class="text-sm text-zinc-500">{{ __('No envelope registered for :year yet.', ['year' => $year]) }}</p>
+                <p class="text-sm text-zinc-500">{{ $isMinistry ? __('No envelope registered for :year yet.', ['year' => $year]) : __('No allocation registered for :year yet.', ['year' => $year]) }}</p>
             @endif
             <a href="{{ route('budget.envelope.current') }}" wire:navigate class="inline-block mt-4 text-sm font-medium text-indigo-600 hover:underline">{{ __('Go to fiscal envelope') }}</a>
         </x-ui.card>
@@ -267,7 +302,7 @@ new class extends Component {
         @php $codes = collect(array_keys($summary['submitted_by_class']))->merge(array_keys($summary['final_by_class']))->unique()->sort()->values(); @endphp
         <x-ui.card padding="p-0">
             <div class="px-6 pt-5 pb-2"><h2 class="text-sm font-semibold text-zinc-900">{{ __('By economic category: submitted vs final envelope') }}</h2></div>
-            <x-ui.table :headers="[__('Category'), \App\Support\Institution::label('Submitted to CRO'), __('Final envelope'), __('Difference')]">
+            <x-ui.table :headers="[__('Category'), $isMinistry ? \App\Support\Institution::label('Submitted to CRO') : __('Sent to the ministry'), $isMinistry ? __('Final envelope') : __('Allocation received'), __('Difference')]">
                 @foreach($codes as $code)
                     @php $sub = $summary['submitted_by_class'][$code] ?? 0; $fin = $summary['final_by_class'][$code] ?? null; @endphp
                     <tr>
