@@ -821,5 +821,11 @@
     "A directorate or gabinete inside a ministry": "Diresaun ka gabinete iha ministériu laran",
     "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.": "Diretór ka Xefe Gabinete fó aprovasaun final no planu bá ba ministériu.",
     "Plan is sent to": "Planu haruka ba",
-    "The ministry or the team there that prepares the budget": "Ministériu ka ekipa iha neba ne'ebé prepara orsamentu"
+    "The ministry or the team there that prepares the budget": "Ministériu ka ekipa iha neba ne'ebé prepara orsamentu",
+    "Approval chain": "Kadeia aprovasaun",
+    "Final approval by": "Aprovasaun final husi",
+    "The Minister": "Ministru",
+    "The head of the top-level unit (Director / Chefe do Gabinete)": "Xefe unidade tutun (Diretór / Xefe Gabinete)",
+    "The parent director validates sub-units first": "Diretór unidade leten validadu uluk subunidade sira",
+    "Changing these rules applies from now on; activities already in the chain continue under the new rules.": "Troka regra sira ne'e aplika husi agora; atividade ne'ebé iha kadeia ona tuir regra foun."
 }

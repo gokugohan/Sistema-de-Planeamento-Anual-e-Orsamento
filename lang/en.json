@@ -821,5 +821,11 @@
     "A directorate or gabinete inside a ministry": "A directorate or gabinete inside a ministry",
     "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.": "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.",
     "Plan is sent to": "Plan is sent to",
-    "The ministry or the team there that prepares the budget": "The ministry or the team there that prepares the budget"
+    "The ministry or the team there that prepares the budget": "The ministry or the team there that prepares the budget",
+    "Approval chain": "Approval chain",
+    "Final approval by": "Final approval by",
+    "The Minister": "The Minister",
+    "The head of the top-level unit (Director / Chefe do Gabinete)": "The head of the top-level unit (Director / Chefe do Gabinete)",
+    "The parent director validates sub-units first": "The parent director validates sub-units first",
+    "Changing these rules applies from now on; activities already in the chain continue under the new rules.": "Changing these rules applies from now on; activities already in the chain continue under the new rules."
 }

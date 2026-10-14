@@ -21,6 +21,10 @@ class MtcBrandingSeeder extends Seeder
         SystemSetting::set('system_owner', self::FULL_NAME, 'string', 'System owner organization');
         SystemSetting::set('org_name', self::ORG_NAME, 'json', 'Localized organization name');
         SystemSetting::set('org_abbr', self::ORG_ABBR, 'json', 'Localized organization abbreviation');
+
+        // The whole ministry: the Minister approves and the plan goes to the CRO.
+        SystemSetting::set('institution_level', 'ministry', 'string');
+        SystemSetting::set('report_recipient', '', 'string');
     }
 
     /**

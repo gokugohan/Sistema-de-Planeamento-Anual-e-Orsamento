@@ -11,6 +11,8 @@ new class extends Component {
     public $systemOwner;
     public string $institutionLevel = 'ministry';
     public string $reportRecipient = '';
+    public string $finalApprover = 'minister';
+    public bool $parentValidation = true;
     public $implementedBy;
     public $enableNextYearPlanning;
     public $showDraftInReports;
@@ -28,6 +30,9 @@ new class extends Component {
         $this->systemOwner         = SystemSetting::get('system_owner', '');
         $this->institutionLevel    = \App\Support\Institution::level();
         $this->reportRecipient     = (string) SystemSetting::get('report_recipient', '');
+        $rules                     = \App\Support\ApprovalRules::current();
+        $this->finalApprover       = $rules->finalApprover;
+        $this->parentValidation    = $rules->parentValidation;
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->enableNextYearPlanning = SystemSetting::get('enable_next_year_planning', false);
@@ -48,6 +53,14 @@ new class extends Component {
         }
     }
 
+    /** Choosing a level starts from that level's preset; the two rules below it can then be adjusted. */
+    public function updatedInstitutionLevel($level): void
+    {
+        $preset = \App\Support\ApprovalRules::preset($level);
+        $this->finalApprover    = $preset->finalApprover;
+        $this->parentValidation = $preset->parentValidation;
+    }
+
     public function saveSettings()
     {
         abort_unless(auth()->user()->isAdministrator(), 403);
@@ -55,6 +68,8 @@ new class extends Component {
             'systemOwner'           => 'nullable|string|max:255',
             'institutionLevel'      => 'required|in:ministry,subordinate',
             'reportRecipient'       => 'nullable|string|max:255',
+            'finalApprover'         => 'required|in:minister,head',
+            'parentValidation'      => 'boolean',
             'implementedBy'         => 'nullable|string|max:255',
             'enableNextYearPlanning' => 'boolean',
             'showDraftInReports'    => 'boolean',
@@ -66,6 +81,7 @@ new class extends Component {
         SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
         SystemSetting::set('institution_level',    $this->institutionLevel,    'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
         SystemSetting::set('report_recipient',     trim($this->reportRecipient), 'string', 'Who receives the approved plan when the institution is not a ministry');
+        (new \App\Support\ApprovalRules($this->finalApprover, (bool) $this->parentValidation))->save($this->institutionLevel);
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
         SystemSetting::set('enable_next_year_planning',      (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
@@ -235,6 +251,28 @@ new class extends Component {
                                     <x-input-error :messages="$errors->get('reportRecipient')" />
                                 </div>
                             @endif
+                        </div>
+                    </div>
+
+                    <!-- Approval chain: starts from the preset of the level, adjustable -->
+                    <div class="pt-8 mt-8 border-t border-zinc-100">
+                        <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
+                            <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Approval chain') }}
+                        </p>
+                        <div class="space-y-4">
+                            <div class="space-y-2">
+                                <x-input-label for="finalApprover" :value="__('Final approval by')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                <select id="finalApprover" wire:model="finalApprover" class="flux-input w-full max-w-md">
+                                    <option value="minister">{{ __('The Minister') }}</option>
+                                    <option value="head">{{ __('The head of the top-level unit (Director / Chefe do Gabinete)') }}</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('finalApprover')" />
+                            </div>
+                            <label class="flex items-center gap-3 text-sm text-zinc-700">
+                                <input type="checkbox" wire:model="parentValidation" class="rounded border-zinc-300 text-indigo-600">
+                                {{ __('The parent director validates sub-units first') }}
+                            </label>
+                            <p class="text-xs text-zinc-500">{{ __('Changing these rules applies from now on; activities already in the chain continue under the new rules.') }}</p>
                         </div>
                     </div>
 

@@ -821,5 +821,11 @@
     "A directorate or gabinete inside a ministry": "Uma direção ou gabinete dentro de um ministério",
     "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.": "O Diretor ou Chefe do Gabinete dá a aprovação final e o plano segue para o ministério.",
     "Plan is sent to": "O plano é enviado para",
-    "The ministry or the team there that prepares the budget": "O ministério ou a equipa que prepara o orçamento"
+    "The ministry or the team there that prepares the budget": "O ministério ou a equipa que prepara o orçamento",
+    "Approval chain": "Cadeia de aprovação",
+    "Final approval by": "Aprovação final por",
+    "The Minister": "O Ministro",
+    "The head of the top-level unit (Director / Chefe do Gabinete)": "O chefe da unidade de topo (Diretor / Chefe do Gabinete)",
+    "The parent director validates sub-units first": "O diretor da unidade superior valida primeiro as subunidades",
+    "Changing these rules applies from now on; activities already in the chain continue under the new rules.": "Alterar estas regras aplica-se daqui em diante; as atividades já na cadeia seguem as novas regras."
 }

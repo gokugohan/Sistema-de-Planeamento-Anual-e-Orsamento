@@ -6,7 +6,7 @@ use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\User;
 use App\Notifications\SystemNotification;
-use App\Support\Institution;
+use App\Support\ApprovalRules;
 use DomainException;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Gate;
  * The planner submits; the director of the unit reviews; where the unit sits under another one
  * (a department under a directorate-general) the parent's director validates. Then, in a ministry,
  * the top-level director sends the validated plan to the Minister, who approves. In an institution
- * that is only a directorate or gabinete (Institution::SUBORDINATE) there is no Minister to ask:
- * the head of the top-level unit (Director / Chefe do Gabinete) gives the final approval.
+ * that is only a directorate or gabinete there is no Minister to ask: the head of the top-level unit
+ * (Director / Chefe do Gabinete) gives the final approval. Which of the two applies, and whether a
+ * parent director validates sub-units first, is an institution setting (ApprovalRules).
  * Every method re-checks who is asking, so the screens only decide what to show.
  */
 class ActivityWorkflow
@@ -70,7 +71,7 @@ class ActivityWorkflow
                 }
                 $parent = $admin ? $unit?->parent : $mine?->parent;
 
-                return $parent ? Activity::STATUS_REVIEWED : Activity::STATUS_VALIDATED;
+                return ($parent && ApprovalRules::current()->parentValidation) ? Activity::STATUS_REVIEWED : Activity::STATUS_VALIDATED;
 
             case Activity::STATUS_REVIEWED:
                 return ($admin || ($user->isDirector() && $mine && $mine->id !== $unit?->id && $this->directsUnit($user, $unit)))
@@ -81,7 +82,7 @@ class ActivityWorkflow
                     return null;
                 }
 
-                return Institution::isMinistry() ? Activity::STATUS_WAITING_APPROVAL : Activity::STATUS_APPROVED;
+                return ApprovalRules::current()->headApproves() ? Activity::STATUS_APPROVED : Activity::STATUS_WAITING_APPROVAL;
         }
 
         return null;
@@ -172,12 +173,12 @@ class ActivityWorkflow
     }
 
     /**
-     * In a directorate or gabinete (not a ministry) the head of the top-level unit approves, but only
-     * the plans of their own unit and the units below it.
+     * When the rules say the head gives the final approval (the default for a directorate or gabinete),
+     * the head of the top-level unit approves, but only the plans of their own unit and the units below it.
      */
     private function headApproves(User $user, Activity $activity): bool
     {
-        return ! Institution::isMinistry() && $this->isHeadOf($user, $activity->directorate);
+        return ApprovalRules::current()->headApproves() && $this->isHeadOf($user, $activity->directorate);
     }
 
     /** The director of a top-level unit, for that unit and everything below it. */
