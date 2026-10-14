@@ -3,12 +3,15 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\User;
 use App\Notifications\SystemNotification;
 use App\Support\ApprovalRules;
 use DomainException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 
 /**
  * The approval chain of an activity, in one place.
@@ -88,8 +91,11 @@ class ActivityWorkflow
         return null;
     }
 
-    /** Move the activity one step up the chain on behalf of $user. */
-    public function advance(User $user, Activity $activity): string
+    /** The most activities one bulk approval may include. */
+    public const BULK_LIMIT = 200;
+
+    /** Move the activity one step up the chain on behalf of $user, with an optional note for the trail. */
+    public function advance(User $user, Activity $activity, ?string $note = null): string
     {
         $to = $this->next($user, $activity);
         if (! $to) {
@@ -105,6 +111,7 @@ class ActivityWorkflow
             Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED => ['reviewed_at' => now(), 'reviewed_by' => $user->id],
             default => [],
         };
+        $activity->auditMetadata = $this->trailMeta($user, $note);
         $activity->update(['status' => $to] + $stamps);
 
         [$title, $message, $roles, $unitId] = match ($to) {
@@ -128,14 +135,21 @@ class ActivityWorkflow
         return $user->can('approve_paa') || $this->headApproves($user, $activity) || $this->next($user, $activity) !== null;
     }
 
-    public function sendBack(User $user, Activity $activity): void
+    /** Return the activity to its unit. The reason is required: the unit must know what to correct. */
+    public function sendBack(User $user, Activity $activity, string $reason): void
     {
         abort_unless($this->canReturn($user, $activity), 403);
 
+        $reason = trim($reason);
+        if ($reason === '') {
+            throw new DomainException(__('Say why the activity is returned, so the unit knows what to correct.'));
+        }
+
+        $activity->auditMetadata = ['by' => $user->id, 'reason' => $reason];
         $activity->update(['status' => Activity::STATUS_REJECTED]);
         $this->notify(['Director', 'Planning'], $activity->directorate_id, new SystemNotification(
             __('Activity Returned for Correction'),
-            __('Activity ":desc" requires corrections for :year.', ['desc' => str($activity->description)->limit(30), 'year' => $activity->fiscal_year]),
+            __('Activity ":desc" requires corrections for :year.', ['desc' => str($activity->description)->limit(30), 'year' => $activity->fiscal_year]).' '.__('Reason: :reason', ['reason' => $reason]),
             route('activities.show', ['activity' => $activity->id], false)
         ));
     }
@@ -147,16 +161,112 @@ class ActivityWorkflow
             && ($user->can('approve_paa') || $this->headApproves($user, $activity));
     }
 
-    public function approve(User $user, Activity $activity): void
+    public function approve(User $user, Activity $activity, ?string $note = null): void
     {
         abort_unless($this->canApprove($user, $activity), 403);
 
-        $activity->update(['status' => Activity::STATUS_APPROVED, 'approved_at' => now(), 'approved_by' => $user->id]);
+        $this->markApproved($user, $activity, $this->trailMeta($user, $note));
         $this->notify(['Director', 'Planning'], $activity->directorate_id, new SystemNotification(
             __('PAA Activity Approved'),
             __('Activity ":desc" has been approved.', ['desc' => str($activity->description)->limit(30)]),
             route('activities.show', ['activity' => $activity->id], false)
         ));
+    }
+
+    /**
+     * Approve many activities at once. Each one is checked again, on its own, right before it is written:
+     * a stale selection cannot approve something twice or something that has since been returned, and one
+     * that cannot be approved does not stop the others. Every approval is audited with the batch it belonged
+     * to, and the units are told once, not once per activity.
+     *
+     * @param  iterable<int|string>  $ids
+     * @return array{batch: string, approved: array<int, int>, skipped: array<int, array{id: int, description: ?string, reason: string}>}
+     */
+    public function approveMany(User $user, iterable $ids, ?string $note = null): array
+    {
+        $ids = collect($ids)->map(fn ($id) => (int) $id)->filter()->unique()->values();
+        if ($ids->count() > self::BULK_LIMIT) {
+            throw new DomainException(__('Select at most :n activities at a time.', ['n' => self::BULK_LIMIT]));
+        }
+
+        $batch = (string) Str::uuid();
+        $approved = [];
+        $skipped = [];
+        $byUnit = [];
+
+        foreach ($ids as $id) {
+            try {
+                $activity = DB::transaction(function () use ($user, $id, $note, $batch) {
+                    $fresh = Activity::query()->with('directorate')->lockForUpdate()->find($id);
+                    if (! $fresh) {
+                        throw new DomainException(__('Not found.'));
+                    }
+                    if (! $this->canApprove($user, $fresh)) {
+                        throw new DomainException(__('Cannot be approved now (status: :status).', ['status' => __($fresh->status)]));
+                    }
+                    $this->markApproved($user, $fresh, $this->trailMeta($user, $note) + ['batch' => $batch]);
+
+                    return $fresh;
+                });
+                $approved[] = $id;
+                $byUnit[$activity->directorate_id] = ($byUnit[$activity->directorate_id] ?? 0) + 1;
+            } catch (DomainException $e) {
+                $skipped[] = ['id' => $id, 'description' => Activity::query()->whereKey($id)->value('description'), 'reason' => $e->getMessage()];
+            }
+        }
+
+        foreach ($byUnit as $unitId => $count) {
+            $unit = Directorate::find($unitId);
+            $this->notify(['Director', 'Planning'], $unitId, new SystemNotification(
+                __('PAA Activity Approved'),
+                trans_choice(':n activity of :dir was approved.|:n activities of :dir were approved.', $count, ['n' => $count, 'dir' => $unit?->name]),
+                route('activities.index', absolute: false)
+            ));
+        }
+
+        if ($approved) {
+            AuditLog::create([
+                'action' => 'activity.bulk_approved',
+                'user_id' => $user->id,
+                'description' => count($approved).' activities approved in one batch',
+                'metadata' => ['batch' => $batch, 'activity_ids' => $approved, 'skipped' => count($skipped), 'note' => $this->trailNote($note)['note'] ?? null],
+            ]);
+        }
+
+        return ['batch' => $batch, 'approved' => $approved, 'skipped' => $skipped];
+    }
+
+    private function markApproved(User $user, Activity $activity, array $metadata): void
+    {
+        $activity->auditMetadata = $metadata;
+        $activity->update(['status' => Activity::STATUS_APPROVED, 'approved_at' => now(), 'approved_by' => $user->id]);
+    }
+
+    /** Who acted (the trail must not depend on who happens to be signed in) and the note, if any. */
+    private function trailMeta(User $user, ?string $note): array
+    {
+        return ['by' => $user->id] + $this->trailNote($note);
+    }
+
+    /** @return array<string, string> the note for the audit row, or nothing */
+    private function trailNote(?string $note): array
+    {
+        $note = trim((string) $note);
+
+        return $note === '' ? [] : ['note' => mb_substr($note, 0, 1000)];
+    }
+
+    /** Who has to act next on this activity, in words (null once it is approved). */
+    public function awaiting(Activity $activity): ?string
+    {
+        return match ($activity->status) {
+            Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => __('The unit to complete and submit it'),
+            Activity::STATUS_SUBMITTED => __('The director of the unit to review it'),
+            Activity::STATUS_REVIEWED => __('The director of the unit above to validate it'),
+            Activity::STATUS_VALIDATED => ApprovalRules::current()->headApproves() ? __('The head of the office to approve it') : __('The top director to send it up for approval'),
+            Activity::STATUS_WAITING_APPROVAL => __('The Minister to approve it'),
+            default => null,
+        };
     }
 
     public function canReopen(User $user, Activity $activity): bool
@@ -165,10 +275,11 @@ class ActivityWorkflow
             && ($user->can('approve_paa') || $this->headApproves($user, $activity));
     }
 
-    public function reopen(User $user, Activity $activity): void
+    public function reopen(User $user, Activity $activity, ?string $note = null): void
     {
         abort_unless($this->canReopen($user, $activity), 403);
 
+        $activity->auditMetadata = $this->trailMeta($user, $note);
         $activity->update(['status' => Activity::STATUS_DRAFT, 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null]);
     }
 

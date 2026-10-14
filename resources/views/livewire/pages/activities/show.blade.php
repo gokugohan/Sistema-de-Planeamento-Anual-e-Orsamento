@@ -19,6 +19,10 @@ new class extends Component {
     public $bClassId = '';
     public $bAmount  = '';
 
+    // Workflow dialogs: the note an approver or reopener may leave, and the reason a return must give
+    public string $note   = '';
+    public string $reason = '';
+
     public function with(): array
     {
         $workflow = app(\App\Services\ActivityWorkflow::class);
@@ -34,6 +38,9 @@ new class extends Component {
             'canApprove'              => $workflow->canApprove($user, $this->activity),
             'canReopen'               => $workflow->canReopen($user, $this->activity),
             'problems'                => $workflow->problems($this->activity),
+            'trail'                   => app(\App\Services\ApprovalTrail::class)->for($this->activity),
+            'approval'                => app(\App\Services\ApprovalTrail::class)->approval($this->activity),
+            'awaiting'                => $workflow->awaiting($this->activity),
         ];
     }
 
@@ -135,21 +142,30 @@ new class extends Component {
 
     public function approve(): void
     {
-        app(\App\Services\ActivityWorkflow::class)->approve(auth()->user(), $this->activity);
+        app(\App\Services\ActivityWorkflow::class)->approve(auth()->user(), $this->activity, $this->note);
+        $this->reset('note');
         $this->refresh();
         $this->dispatch('toast', message: __('Activity approved successfully.'), type: 'success');
     }
 
     public function reject(): void
     {
-        app(\App\Services\ActivityWorkflow::class)->sendBack(auth()->user(), $this->activity);
+        try {
+            app(\App\Services\ActivityWorkflow::class)->sendBack(auth()->user(), $this->activity, $this->reason);
+        } catch (\DomainException $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+
+            return;
+        }
+        $this->reset('reason');
         $this->refresh();
         $this->dispatch('toast', message: __('Activity returned to department for correction.'), type: 'success');
     }
 
     public function reopen(): void
     {
-        app(\App\Services\ActivityWorkflow::class)->reopen(auth()->user(), $this->activity);
+        app(\App\Services\ActivityWorkflow::class)->reopen(auth()->user(), $this->activity, $this->note);
+        $this->reset('note');
         $this->refresh();
         $this->dispatch('toast', message: __('Activity returned to draft.'), type: 'success');
     }
@@ -176,12 +192,6 @@ new class extends Component {
     $totalEstimated = $activity->lineItems->sum('estimated_amount');
     $totalApproved  = $activity->lineItems->sum(fn($i) => $i->adjustedBudget->approved_amount ?? 0);
 
-    // Build workflow timeline
-    $timeline = [];
-    $timeline[] = ['label' => __('Created'),   'date' => $activity->created_at,   'user' => null,                         'done' => true];
-    $timeline[] = ['label' => __('Submitted'),  'date' => $activity->submitted_at, 'user' => null,                         'done' => !!$activity->submitted_at];
-    $timeline[] = ['label' => __('Reviewed'),   'date' => $activity->reviewed_at,  'user' => $activity->reviewedBy?->name, 'done' => !!$activity->reviewed_at];
-    $timeline[] = ['label' => __('Approved'),   'date' => $activity->approved_at,  'user' => $activity->approvedBy?->name, 'done' => !!$activity->approved_at];
 @endphp
 
 <div
@@ -531,39 +541,52 @@ new class extends Component {
 
                 {{-- ── HISTORY TAB ────────────────────────────────────── --}}
                 <div x-show="tab === 'history'" x-transition>
-                    <div class="px-6 py-6 space-y-0">
-                        @foreach($timeline as $i => $step)
-                            <div class="flex gap-4 {{ !$loop->last ? 'pb-6' : '' }}">
-                                {{-- Line + dot --}}
-                                <div class="flex flex-col items-center flex-shrink-0">
-                                    <div class="w-7 h-7 rounded-full flex items-center justify-center ring-2 flex-shrink-0
-                                        {{ $step['done'] ? 'bg-indigo-600 ring-indigo-600 text-white' : 'bg-white ring-zinc-200 text-zinc-300' }}">
-                                        @if($step['done'])
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                                        @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/></svg>
+                    <div class="px-6 py-6">
+                        <ol class="space-y-0" aria-label="{{ __('Approval trail') }}">
+                            @foreach($trail as $step)
+                                @php
+                                    $tone = match ($step['kind']) {
+                                        'returned' => 'bg-rose-600 ring-rose-600',
+                                        'reopened' => 'bg-amber-600 ring-amber-600',
+                                        'created'  => 'bg-zinc-500 ring-zinc-500',
+                                        default    => $step['status'] === \App\Models\Activity::STATUS_APPROVED ? 'bg-emerald-700 ring-emerald-700' : 'bg-indigo-600 ring-indigo-600',
+                                    };
+                                @endphp
+                                <li class="flex gap-4 pb-6">
+                                    <div class="flex flex-col items-center flex-shrink-0">
+                                        <span class="flex h-7 w-7 items-center justify-center rounded-full text-white ring-2 {{ $tone }}" aria-hidden="true">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                @if($step['kind'] === 'returned')<path d="M9 14 4 9l5-5"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/>@else<path d="M20 6 9 17l-5-5"/>@endif
+                                            </svg>
+                                        </span>
+                                        <span class="mt-1 w-px flex-1 bg-zinc-200"></span>
+                                    </div>
+                                    <div class="min-w-0 pb-1">
+                                        <p class="text-sm font-semibold text-zinc-900">{{ $step['label'] }}
+                                            @if($step['bulk'])<span class="ml-1 rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-zinc-600">{{ __('Approved in a batch') }}</span>@endif
+                                        </p>
+                                        <p class="mt-0.5 text-xs text-zinc-500">
+                                            @if($step['at']){{ \Carbon\Carbon::parse($step['at'])->timezone('Asia/Dili')->format('d M Y, H:i') }} TLT @endif
+                                            @if($step['by'])· <span class="font-medium text-zinc-700">{{ $step['by'] }}</span>@endif
+                                        </p>
+                                        @if($step['note'])
+                                            <p class="mt-2 rounded-md px-3 py-2 text-sm {{ $step['is_reason'] ? 'bg-rose-50 text-rose-900' : 'bg-zinc-50 text-zinc-700' }}">
+                                                <span class="font-medium">{{ $step['is_reason'] ? __('Reason') : __('Note') }}:</span> {{ $step['note'] }}
+                                            </p>
                                         @endif
                                     </div>
-                                    @if(!$loop->last)
-                                        <div class="w-px flex-1 mt-1 {{ $step['done'] ? 'bg-indigo-200' : 'bg-zinc-100' }}"></div>
-                                    @endif
-                                </div>
-                                {{-- Content --}}
-                                <div class="pb-1">
-                                    <p class="text-sm font-semibold {{ $step['done'] ? 'text-zinc-900' : 'text-zinc-400' }}">{{ $step['label'] }}</p>
-                                    @if($step['date'])
-                                        <p class="text-xs text-zinc-400 mt-0.5">
-                                            {{ \Carbon\Carbon::parse($step['date'])->format('d M Y, H:i') }}
-                                            @if($step['user'])
-                                                · <span class="font-medium text-zinc-500">{{ $step['user'] }}</span>
-                                            @endif
-                                        </p>
-                                    @else
-                                        <p class="text-xs text-zinc-300 mt-0.5">{{ __('Pending') }}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
+                                </li>
+                            @endforeach
+                            @if($awaiting)
+                                <li class="flex gap-4">
+                                    <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-zinc-300 bg-white" aria-hidden="true"></span>
+                                    <div>
+                                        <p class="text-sm font-semibold text-zinc-700">{{ __('Waiting for') }}</p>
+                                        <p class="mt-0.5 text-sm text-zinc-600">{{ $awaiting }}</p>
+                                    </div>
+                                </li>
+                            @endif
+                        </ol>
                     </div>
                 </div>
 
@@ -572,6 +595,28 @@ new class extends Component {
 
         {{-- ── RIGHT COLUMN ────────────────────────────────────────────── --}}
         <div class="space-y-4">
+
+            {{-- Approval: where it stands, and why it came back if it did --}}
+            <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-5">
+                <p class="text-xs font-bold text-zinc-500 mb-3">{{ __('Approval') }}</p>
+                <x-ui.status :status="$activity->status" />
+                @if($approval)
+                    <p class="mt-3 text-sm text-zinc-700">
+                        {{ __('Approved by :name', ['name' => $approval['by'] ?? '—']) }}
+                        <span class="block text-xs text-zinc-500">{{ $approval['at'] ? \Carbon\Carbon::parse($approval['at'])->timezone('Asia/Dili')->format('d M Y, H:i') . ' TLT' : '' }}</span>
+                    </p>
+                    @if($approval['note'])<p class="mt-2 rounded-md bg-zinc-50 px-3 py-2 text-sm text-zinc-700">{{ $approval['note'] }}</p>@endif
+                @elseif($awaiting)
+                    <p class="mt-3 text-sm text-zinc-600"><span class="font-medium text-zinc-800">{{ __('Waiting for') }}:</span> {{ $awaiting }}</p>
+                @endif
+                @php $lastReturn = $activity->status === \App\Models\Activity::STATUS_REJECTED ? collect($trail)->last(fn ($s) => $s['kind'] === 'returned') : null; @endphp
+                @if($lastReturn && $lastReturn['note'])
+                    <p class="mt-3 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-900">
+                        <span class="font-medium">{{ __('Reason') }}:</span> {{ $lastReturn['note'] }}
+                        @if($lastReturn['by'])<span class="block text-xs text-rose-800">— {{ $lastReturn['by'] }}</span>@endif
+                    </p>
+                @endif
+            </div>
 
             {{-- Governance Actions --}}
             <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-5">
@@ -601,16 +646,20 @@ new class extends Component {
                     @endif
 
                     @if($canApprove)
-                        <x-ui.button wire:click="approve" class="w-full"
-                            wire:confirm="{{ __('Approve this activity for the annual plan?') }}">{{ __('Approve Activity') }}</x-ui.button>
+                        <x-ui.button class="w-full" x-on:click="$dispatch('open-modal', 'approve-activity')">{{ __('Approve Activity') }}</x-ui.button>
+                        <x-note-dialog name="approve-activity" property="note" action="approve" :title="__('Approve this activity for the annual plan?')"
+                            :label="__('Note for the record')" :confirm="__('Approve Activity')" />
                     @endif
                     @if($canReturn)
-                        <x-ui.button variant="secondary" wire:click="reject" class="w-full"
-                            wire:confirm="{{ __('Return this activity to the department for corrections?') }}">{{ __('Return for correction') }}</x-ui.button>
+                        <x-ui.button variant="secondary" class="w-full" x-on:click="$dispatch('open-modal', 'return-activity')">{{ __('Return for correction') }}</x-ui.button>
+                        <x-note-dialog name="return-activity" property="reason" action="reject" :title="__('Return this activity to the department for corrections?')"
+                            :message="__('The unit will see your reason, so say what should be corrected.')"
+                            :label="__('What should be corrected?')" :confirm="__('Return for correction')" :required="true" />
                     @endif
                     @if($canReopen)
-                        <x-ui.button variant="secondary" wire:click="reopen" class="w-full"
-                            wire:confirm="{{ __('Return this activity to draft? This will allow editing again.') }}">{{ __('Reopen') }}</x-ui.button>
+                        <x-ui.button variant="secondary" class="w-full" x-on:click="$dispatch('open-modal', 'reopen-activity')">{{ __('Reopen') }}</x-ui.button>
+                        <x-note-dialog name="reopen-activity" property="note" action="reopen" :title="__('Return this activity to draft? This will allow editing again.')"
+                            :label="__('Why is it reopened?')" :confirm="__('Reopen')" />
                     @endif
                     @if($canEdit)
                         <a href="{{ route('activities.edit', $activity) }}" wire:navigate class="block text-center text-sm font-medium text-indigo-600 hover:text-indigo-700 pt-1">{{ __('Edit details') }}</a>

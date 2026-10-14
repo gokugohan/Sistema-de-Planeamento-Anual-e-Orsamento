@@ -17,6 +17,9 @@ trait Auditable
     /** Attributes never written to the audit log. */
     protected static array $auditExcluded = ['password', 'remember_token', 'two_factor_secret', 'two_factor_recovery_codes', 'two_factor_last_step', 'updated_at', 'created_at'];
 
+    /** Extra facts for the next audit row of this model (a note, a batch id); cleared once written. */
+    public ?array $auditMetadata = null;
+
     public static function bootAuditable(): void
     {
         static::created(fn (Model $m) => static::writeAudit($m, 'created', null, $m->getAttributes()));
@@ -52,10 +55,12 @@ trait Auditable
             'auditable_type' => $model->getMorphClass(),
             'auditable_id' => $model->getKey(),
             'description' => class_basename($model).' #'.$model->getKey().' '.$event,
+            'metadata' => $model->auditMetadata ?: null,
             'old_values' => $old,
             'new_values' => $new,
             'ip_address' => $request?->ip(),
             'user_agent' => $request ? mb_substr((string) $request->userAgent(), 0, 255) : null,
         ]);
+        $model->auditMetadata = null;
     }
 }
