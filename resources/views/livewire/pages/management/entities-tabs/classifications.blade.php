@@ -25,7 +25,7 @@
         </div>
     </x-slot>
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto" tabindex="0">
         <x-ui.table :headers="[__('Code'), __('Category Name'), __('Description'), __('Type'), __('Actions')]">
             @forelse($economicCategories as $c)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">

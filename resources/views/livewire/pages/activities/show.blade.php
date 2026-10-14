@@ -368,7 +368,7 @@ new class extends Component {
                             <p class="text-sm text-zinc-400">{{ __('No budget items defined yet.') }}</p>
                         </div>
                     @else
-                        <div class="overflow-x-auto">
+                        <div class="overflow-x-auto" tabindex="0">
                             <table class="w-full">
                                 <thead>
                                     <tr class="border-t border-zinc-100">
@@ -494,7 +494,7 @@ new class extends Component {
                             <p class="text-sm text-zinc-400">{{ __('No indicators defined yet.') }}</p>
                         </div>
                     @else
-                        <div class="overflow-x-auto">
+                        <div class="overflow-x-auto" tabindex="0">
                             <table class="w-full">
                                 <thead>
                                     <tr class="border-t border-zinc-100">

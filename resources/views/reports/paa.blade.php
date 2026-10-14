@@ -31,7 +31,7 @@
                         {{ __('Analytical Audit for') }}
                     </p>
                     <form method="GET" action="{{ route('reports.paa') }}" class="flex items-center gap-2">
-                        <select name="year" onchange="this.form.submit()"
+                        <select name="year" aria-label="{{ __('Fiscal year') }}" onchange="this.form.submit()"
                             class="bg-zinc-100 border-none rounded-lg text-xs font-semibold py-1 px-3 focus:ring-2 focus:ring-indigo-500/20 cursor-pointer">
                             @foreach($reportYears as $yr)
                                 <option value="{{ $yr }}" {{ (string) $selectedYear === (string) $yr ? 'selected' : '' }}>
@@ -189,7 +189,7 @@
                             {{ __('Tree View') }}
                         </div>
                     </div>
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto" tabindex="0">
                         <table class="min-w-full divide-y-2 divide-zinc-100 text-sm">
                             <thead>
                                 <tr class="bg-white border-b border-zinc-100">
@@ -240,7 +240,7 @@
 
                                         // Toggle Button (Chevron)
                                         if ($hasChildren) {
-                                            $html .= '<button onclick="toggleTree(\'' . $rowId . '\')" class="p-1 hover:bg-zinc-200 rounded-md transition-all tree-toggle-btn">';
+                                            $html .= '<button type="button" aria-label="' . e(__('Expand or collapse')) . '" onclick="toggleTree(\'' . $rowId . '\')" class="p-1 hover:bg-zinc-200 rounded-md transition-all tree-toggle-btn">';
                                             $html .= '<svg class="transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
                                             $html .= '</button>';
                                         } else {
@@ -347,7 +347,7 @@
                             class="px-3 py-1 bg-zinc-900 text-white text-xs font-semibold rounded ">
                             {{ __('Tree View') }}</div>
                     </div>
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto" tabindex="0">
                         <table class="min-w-full divide-y-2 divide-zinc-100 text-sm">
                             <thead>
                                 <tr class="bg-white border-b border-zinc-100">
@@ -384,7 +384,7 @@
                                         class="tree-row hover:bg-zinc-50/50 transition-colors border-l-4 border-l-indigo-500 bg-zinc-50/20">
                                         <td class="px-8 py-4 font-semibold text-zinc-900 border-none">
                                             <div class="flex items-center gap-3">
-                                                <button onclick="toggleTree('{{ $progRowId }}')"
+                                                <button type="button" aria-label="{{ __('Expand or collapse') }}" onclick="toggleTree('{{ $progRowId }}')"
                                                     class="p-1 hover:bg-zinc-200 rounded-md transition-all tree-toggle-btn">
                                                     <svg class="transition-transform duration-200"
                                                         xmlns="http://www.w3.org/2000/svg" width="12" height="12"
@@ -443,7 +443,7 @@
                                             class="tree-row hover:bg-zinc-50/50 transition-colors border-l-4 border-l-transparent hidden print:table-row">
                                             <td class="px-8 py-3 font-bold text-zinc-700" style="padding-left: 4.5rem;">
                                                 <div class="flex items-center gap-3">
-                                                    <button onclick="toggleTree('{{ $classRowId }}')"
+                                                    <button type="button" aria-label="{{ __('Expand or collapse') }}" onclick="toggleTree('{{ $classRowId }}')"
                                                         class="p-1 hover:bg-zinc-200 rounded-md transition-all tree-toggle-btn">
                                                         <svg class="transition-transform duration-200"
                                                             xmlns="http://www.w3.org/2000/svg" width="10" height="10"

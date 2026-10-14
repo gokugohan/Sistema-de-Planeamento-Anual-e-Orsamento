@@ -81,7 +81,7 @@
                         </td>
                         <td class="px-8 py-6 text-right">
                             <div class="flex justify-end items-center gap-2">
-                                <button wire:click="openModal({{ $user->id }})"
+                                <button wire:click="openModal({{ $user->id }})" title="{{ __('Edit') }}" aria-label="{{ __('Edit') }}"
                                     class="p-2 text-gray-400 hover:text-black hover:bg-gray-100 rounded-xl transition-all">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -105,7 +105,7 @@
                                         title="{{ __('Reset password') }}" aria-label="{{ __('Reset password') }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
                                     </button>
-                                    <button wire:click="deleteUser({{ $user->id }})"
+                                    <button wire:click="deleteUser({{ $user->id }})" title="{{ __('Delete') }}" aria-label="{{ __('Delete') }}"
                                         wire:confirm="{{ __('Are you sure you want to delete this user?') }}"
                                         class="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"

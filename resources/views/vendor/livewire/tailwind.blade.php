@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav class="flex items-center justify-between gap-4" aria-label="Pagination">
+    <nav class="flex items-center justify-between gap-4" aria-label="{{ __('Page navigation') }}">
 
         {{-- Left: result count --}}
         <p class="text-sm text-zinc-500 flex-shrink-0">
@@ -16,14 +16,14 @@
 
             {{-- Previous --}}
             @if ($paginator->onFirstPage())
-                <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-300 cursor-not-allowed" aria-disabled="true">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-300 cursor-not-allowed" role="link" aria-disabled="true" aria-label="{{ __('Previous') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m15 18-6-6 6-6"/>
                     </svg>
                 </span>
             @else
-                <button wire:click="previousPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled"
+                <button wire:click="previousPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled" aria-label="{{ __('Previous') }}"
                     class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -75,7 +75,7 @@
 
             {{-- Next --}}
             @if ($paginator->hasMorePages())
-                <button wire:click="nextPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled"
+                <button wire:click="nextPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled" aria-label="{{ __('Next') }}"
                     class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -83,7 +83,7 @@
                     </svg>
                 </button>
             @else
-                <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-300 cursor-not-allowed" aria-disabled="true">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-zinc-300 cursor-not-allowed" role="link" aria-disabled="true" aria-label="{{ __('Next') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m9 18 6-6-6-6"/>

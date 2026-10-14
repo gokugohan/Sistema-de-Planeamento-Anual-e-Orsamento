@@ -827,5 +827,8 @@
     "The Minister": "O Ministro",
     "The head of the top-level unit (Director / Chefe do Gabinete)": "O chefe da unidade de topo (Diretor / Chefe do Gabinete)",
     "The parent director validates sub-units first": "O diretor da unidade superior valida primeiro as subunidades",
-    "Changing these rules applies from now on; activities already in the chain continue under the new rules.": "Alterar estas regras aplica-se daqui em diante; as atividades já na cadeia seguem as novas regras."
+    "Changing these rules applies from now on; activities already in the chain continue under the new rules.": "Alterar estas regras aplica-se daqui em diante; as atividades já na cadeia seguem as novas regras.",
+    "Page navigation": "Navegação de páginas",
+    "Previous": "Anterior",
+    "Next": "Seguinte"
 }

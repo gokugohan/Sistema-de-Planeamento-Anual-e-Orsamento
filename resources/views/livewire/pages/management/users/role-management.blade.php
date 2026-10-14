@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto" tabindex="0">
             <table class="min-w-full divide-y divide-zinc-100">
                 <thead>
                     <tr class="bg-white">

@@ -25,7 +25,7 @@
         </div>
     </x-slot>
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto" tabindex="0">
         <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
             @forelse($directorates as $d)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">

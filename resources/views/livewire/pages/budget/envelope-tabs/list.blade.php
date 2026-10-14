@@ -39,7 +39,7 @@
         <div class="bg-indigo-50 rounded-xl ring-1 ring-indigo-200/60 shadow-sm px-5 py-4">
             <p class="text-xs font-medium text-indigo-600 tracking-wide">{{ __('Active Envelope') }}</p>
             <p class="text-2xl font-semibold text-indigo-900 mt-1.5">{{ $envelopes->filter(fn($e) => $e->isActiveByDate())->count() }}</p>
-            <p class="text-xs text-indigo-400 mt-1 tracking-wide">{{ __('Currently active') }}</p>
+            <p class="text-xs text-indigo-700 mt-1 tracking-wide">{{ __('Currently active') }}</p>
         </div>
 
         <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm px-5 py-4">
@@ -80,7 +80,7 @@
                 </div>
             </div>
         </div>
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto" tabindex="0">
             <table class="w-full text-left text-xs border-collapse">
                 <thead
                     class="bg-zinc-50/50 text-zinc-400 font-semibold tracking-wide border-b border-zinc-100">
@@ -142,7 +142,7 @@
                                 <div class="flex flex-wrap gap-2">
                                     @if($envelope->isActiveByDate())
                                         <span
-                                            class="inline-flex items-center rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-medium text-white leading-tight">{{ __('Active Now') }}</span>
+                                            class="inline-flex items-center rounded-full bg-emerald-700 px-2.5 py-1 text-xs font-medium text-white leading-tight">{{ __('Active Now') }}</span>
                                     @endif
 
                                     @if($envelope->status === 'Approved')

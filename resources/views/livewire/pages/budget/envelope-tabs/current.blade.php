@@ -210,7 +210,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" tabindex="0">
                 <table class="w-full text-left text-xs border-collapse">
                     <thead class="bg-zinc-50/50 text-zinc-400 font-semibold tracking-wide border-b border-zinc-100">
                         <tr>
@@ -378,7 +378,7 @@
                 <h3 class="text-sm font-bold text-gray-800 leading-none">{{ __('Economic Categories Allocation') }}</h3>
                 <p class="text-xs text-gray-500 mt-2">{{ __('Budget breakdown by economic classification (C1-C5)') }}</p>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" tabindex="0">
                 <table class="w-full text-left text-xs border-collapse">
                     <thead class="bg-gray-50 text-gray-400 font-medium tracking-wide border-b border-gray-100">
                         <tr>

@@ -87,13 +87,13 @@ new class extends Component {
         <div class="grid gap-3 md:grid-cols-6">
             <input type="search" wire:model.live.debounce.400ms="search" placeholder="{{ __('Search description, ID or IP') }}"
                 class="flux-input md:col-span-2">
-            <select wire:model.live="action" class="flux-input">
+            <select wire:model.live="action" class="flux-input" aria-label="{{ __('All actions') }}">
                 <option value="">{{ __('All actions') }}</option>
                 @foreach($actions as $a)
                     <option value="{{ $a }}">{{ $a }}</option>
                 @endforeach
             </select>
-            <select wire:model.live="userId" class="flux-input">
+            <select wire:model.live="userId" class="flux-input" aria-label="{{ __('All users') }}">
                 <option value="">{{ __('All users') }}</option>
                 @foreach($users as $u)
                     <option value="{{ $u->id }}">{{ $u->name }}</option>

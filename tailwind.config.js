@@ -12,6 +12,21 @@ import forms from '@tailwindcss/forms';
  *  - primary actions use indigo-600 (7:1 on white) and a visible 2px focus ring;
  *  - semantic colours (emerald, amber, rose) are used for status only, never for decoration.
  */
+/** The one neutral scale (cool slate). zinc, gray and slate all point here so no page can be lighter than the rest. */
+const neutral = {
+    50: '#F8FAFC',
+    100: '#F1F5F9',
+    200: '#E2E8F0',
+    300: '#CBD5E1',
+    400: '#5F6E83', // 5:1 on white, 4.6:1 on the tinted page backgrounds: safe for text as well as icons
+    500: '#4E5C70',
+    600: '#475569',
+    700: '#334155',
+    800: '#1E293B',
+    900: '#0F172A',
+    950: '#020617',
+};
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -31,7 +46,7 @@ export default {
                     100: '#DCE8FF',
                     200: '#BED3FF',
                     300: '#93B3FB',
-                    400: '#5F8BF0',
+                    400: '#3F6FE3',
                     500: '#3A68E0',
                     600: '#2152C4',
                     700: '#1B429F',
@@ -39,19 +54,13 @@ export default {
                     900: '#1A3166',
                     950: '#111F44',
                 },
-                zinc: {
-                    50: '#F8FAFC',
-                    100: '#F1F5F9',
-                    200: '#E2E8F0',
-                    300: '#CBD5E1',
-                    400: '#6B7A90',
-                    500: '#5B6B82',
-                    600: '#475569',
-                    700: '#334155',
-                    800: '#1E293B',
-                    900: '#0F172A',
-                    950: '#020617',
-                },
+                emerald: { 600: '#047857', 700: '#065F46' },
+                green: { 500: '#15803D', 600: '#15803D', 700: '#166534' },
+                amber: { 600: '#B45309' },
+                rose: { 500: '#E11D48' },
+                zinc: neutral,
+                gray: neutral,
+                slate: neutral,
                 body: '#F5F7FB',
                 'nav-hover': '#1E293B',
                 'nav-text': '#D5DDE8',

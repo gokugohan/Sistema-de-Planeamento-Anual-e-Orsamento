@@ -148,7 +148,7 @@ new class extends Component {
                                     <div class="text-2xl font-semibold leading-none italic {{ $selectedEnvelopeId == $env->id ? 'text-white' : 'text-zinc-900 group-hover:text-indigo-600' }} transition-colors">
                                         {{ $env->fiscal_year }}
                                     </div>
-                                    <div class="text-xs font-semibold {{ $selectedEnvelopeId == $env->id ? 'text-indigo-400' : 'text-zinc-400' }}">
+                                    <div class="text-xs font-semibold {{ $selectedEnvelopeId == $env->id ? 'text-indigo-300' : 'text-zinc-400' }}">
                                         {{ str($env->reference_number)->limit(20) }}
                                     </div>
                                 </div>
@@ -243,7 +243,7 @@ new class extends Component {
 
                             <div class="bg-white p-8 rounded-xl border border-zinc-100 shadow-sm md:col-span-2 flex items-center justify-between">
                                 <div class="space-y-4 flex-1 pr-10 border-r border-zinc-100">
-                                    <p class="text-xs font-semibold text-indigo-400 ">{{ __('Utilization Strategy') }}</p>
+                                    <p class="text-xs font-semibold text-indigo-700 ">{{ __('Utilization Strategy') }}</p>
                                     @php
                                         $totalAlloc = collect($allocations)->sum('allocated_amount');
                                         $utilRate = $env->total_amount > 0 ? ($totalAlloc / $env->total_amount) * 100 : 0;
@@ -282,7 +282,7 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-auto" tabindex="0">
                         <table class="min-w-full divide-y divide-zinc-100">
                             <thead>
                                 <tr class="bg-white">
@@ -310,7 +310,7 @@ new class extends Component {
                                         <td class="px-10 py-6 text-right">
                                             <div class="inline-flex items-center relative group/input">
                                                 <span class="absolute left-4 text-zinc-300 font-bold text-xs">$</span>
-                                                <input type="number" 
+                                                <input type="number" aria-label="{{ __('Allocated amount') }} {{ $alloc->economicClassification->code ?? '' }}"
                                                     value="{{ (float) $alloc->allocated_amount }}"
                                                     wire:blur="updateAllocation({{ $alloc->id }}, $event.target.value)"
                                                     class="pl-8 pr-4 py-3 w-44 bg-zinc-50 border-transparent focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/5 text-right text-xs font-semibold text-zinc-900 rounded-xl transition-all shadow-inner"
@@ -324,7 +324,7 @@ new class extends Component {
                                                     <div class="text-xs font-semibold {{ $isOver ? 'text-rose-600' : 'text-emerald-600' }}">
                                                         {{ $isOver ? '-' : '+' }} $ {{ number_format(abs($alloc->variance_amount), 2) }}
                                                     </div>
-                                                    <div class="text-xs font-semibold opacity-40">{{ $isOver ? __('Over Budget') : __('Under Ceiling') }}</div>
+                                                    <div class="text-xs font-semibold text-zinc-500">{{ $isOver ? __('Over Budget') : __('Under Ceiling') }}</div>
                                                 </div>
                                                 <div class="w-1.5 h-1.5 rounded-full {{ $isOver ? 'bg-rose-500 ' : 'bg-emerald-500' }}"></div>
                                             </div>

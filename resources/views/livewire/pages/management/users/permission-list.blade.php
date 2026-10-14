@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto" tabindex="0">
         <table class="w-full text-left border-collapse">
             <thead>
                 <tr>

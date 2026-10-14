@@ -204,7 +204,7 @@ new class extends Component {
                             <div>
                                 <p class="text-xs font-semibold text-zinc-400 mb-4 flex items-center gap-2">
                                     <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Feature Items') }}
-                                    <span class="text-zinc-300 font-medium normal-case tracking-normal">{{ __('(login page)') }}</span>
+                                    <span class="text-zinc-500 font-medium normal-case tracking-normal">{{ __('(login page)') }}</span>
                                 </p>
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                                     @foreach([0, 1, 2] as $idx)
@@ -280,7 +280,7 @@ new class extends Component {
                     <div class="pt-8 mt-8 border-t border-zinc-100">
                         <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
                             <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Footer Credits') }}
-                            <span class="text-zinc-300 font-medium normal-case tracking-normal">{{ __('(shown in login page copyright)') }}</span>
+                            <span class="text-zinc-500 font-medium normal-case tracking-normal">{{ __('(shown in login page copyright)') }}</span>
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="space-y-2">
@@ -325,7 +325,7 @@ new class extends Component {
                             </p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" wire:model.live="enableNextYearPlanning" class="sr-only peer">
+                            <input type="checkbox" wire:model.live="enableNextYearPlanning" class="sr-only peer" aria-label="{{ __('Allow planning for the next fiscal year') }}">
                             <div
                                 class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
                             </div>
@@ -343,7 +343,7 @@ new class extends Component {
                             </p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" wire:model.live="showDraftInReports" class="sr-only peer">
+                            <input type="checkbox" wire:model.live="showDraftInReports" class="sr-only peer" aria-label="{{ __('Show draft plans in reports') }}">
                             <div
                                 class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
                             </div>
@@ -360,12 +360,12 @@ new class extends Component {
                                     {{ __('Enable PAA Testing Mode') }}
                                 </h4>
                             </div>
-                            <p class="text-xs text-amber-700/80 font-medium leading-relaxed">
+                            <p class="text-xs text-amber-800 font-medium leading-relaxed">
                                 {{ __('Enable a separate testing environment for PAA planning (adds 🧪 Testing Mode menu). Test data is excluded from all production reports and calculations.') }}
                             </p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" wire:model.live="enableTestMode" class="sr-only peer">
+                            <input type="checkbox" wire:model.live="enableTestMode" class="sr-only peer" aria-label="{{ __('Testing mode') }}">
                             <div
                                 class="w-11 h-6 bg-amber-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-amber-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
                             </div>
