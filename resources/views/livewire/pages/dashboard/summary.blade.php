@@ -108,13 +108,13 @@ new class extends Component {
             ['label' => __('Envelope approved'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
             $distributedStep,
         ] : [
-            ['label' => __('Ceiling from the ministry'), 'done' => $ceiling !== null, 'value' => $ceiling],
+            ['label' => __('Ceiling from the ministry'), 'done' => $ceiling !== null, 'value' => $ceiling, 'optional' => true],
             ['label' => __('Plan approved'), 'done' => $planApproved, 'value' => $planApproved ? $plan : null],
             $submittedStep,
             ['label' => __('Allocation received'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
             $distributedStep,
         ];
-        $currentStep = collect($steps)->search(fn ($s) => !$s['done']);
+        $currentStep = collect($steps)->search(fn ($s) => !$s['done'] && empty($s['optional']));
 
         // The best available "money in hand" figure and its honest label
         [$fundLabel, $fund] = match (true) {
@@ -271,7 +271,7 @@ new class extends Component {
                         <span class="text-sm {{ $current ? 'font-semibold text-zinc-900' : ($step['done'] ? 'font-medium text-zinc-700' : 'text-zinc-500') }}">{{ $step['label'] }}</span>
                     </div>
                     <p class="mt-1 ml-8 text-xs tabular-nums {{ $step['value'] !== null ? 'text-zinc-600' : 'text-zinc-400' }}">
-                        {{ $step['value'] !== null ? '$ ' . number_format($step['value']) : ($current ? __('Next step') : '—') }}
+                        {{ $step['value'] !== null ? '$ ' . number_format($step['value']) : ($current ? __('Next step') : (! empty($step['optional']) ? __('optional') : '—')) }}
                     </p>
                 </li>
             @endforeach
