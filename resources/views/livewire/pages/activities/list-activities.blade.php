@@ -231,22 +231,16 @@ new class extends Component {
 
 {{-- The ticked rows live in the browser (a deferred entangle) and travel with the next action, so ticking a box does not re-render the list. --}}
 <div class="space-y-6" x-data="{ selected: $wire.$entangle('selected') }">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-        <div>
-            <h1 class="page-title">{{ __('PAA Activities') }}</h1>
-            <p class="page-subtitle">{{ __('Annual Activity Plan :year', ['year' => $year]) }}</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-2">
-            <x-ui.button variant="secondary" wire:click="export">{{ __('Export CSV') }}</x-ui.button>
-            @if($canRoll && ! $locked)
-                <x-ui.button variant="secondary" wire:click="rollForward"
-                    wire:confirm="{{ __('Copy the :from plan into :to as drafts?', ['from' => $year - 1, 'to' => $year]) }}">{{ __('Copy from :year', ['year' => $year - 1]) }}</x-ui.button>
-            @endif
-            @if($canCreate && ! $locked)
-                <x-ui.button href="{{ route('activities.create') }}" wire:navigate>+ {{ __('New activity') }}</x-ui.button>
-            @endif
-        </div>
-    </div>
+    <x-ui.page-header :title="__('PAA Activities')" :subtitle="__('Annual Activity Plan :year', ['year' => $year])">
+        <x-ui.button variant="secondary" wire:click="export">{{ __('Export CSV') }}</x-ui.button>
+        @if($canRoll && ! $locked)
+            <x-ui.button variant="secondary" wire:click="rollForward"
+                wire:confirm="{{ __('Copy the :from plan into :to as drafts?', ['from' => $year - 1, 'to' => $year]) }}">{{ __('Copy from :year', ['year' => $year - 1]) }}</x-ui.button>
+        @endif
+        @if($canCreate && ! $locked)
+            <x-ui.button href="{{ route('activities.create') }}" wire:navigate>+ {{ __('New activity') }}</x-ui.button>
+        @endif
+    </x-ui.page-header>
 
     @if($locked)
         <div class="alert alert-success">{{ __('The planning cycle for :year is closed; activities can no longer be changed.', ['year' => $year]) }}</div>
@@ -303,42 +297,41 @@ new class extends Component {
     </div>
 
     <x-ui.card padding="p-0">
-        <x-ui.table :headers="['', __('Activity'), __('Where / when'), __('Budget'), __('Status'), __('Actions')]">
+        <x-ui.table :headers="['', __('Activity'), __('Budget'), __('Status'), __('Actions')]" :right="[2]">
             @forelse($activities as $a)
                 @php $f = $flags[$a->id]; $key = $group === 'program' ? $a->program_id : ($group === 'unit' ? $a->directorate_id : null); @endphp
                 @if($group && $key !== $lastGroup)
                     @php $lastGroup = $key; @endphp
                     <tr class="bg-zinc-50">
-                        <td colspan="6" class="px-6 py-2 text-xs font-semibold text-zinc-600">
+                        <td colspan="5" class="px-5 py-2 text-xs font-semibold text-zinc-600">
                             {{ $group === 'program' ? ($a->program->oge_code.' — '.$a->program->name) : ($a->directorate->code.' — '.$a->directorate->name) }}
                         </td>
                     </tr>
                 @endif
                 <tr wire:key="act-{{ $a->id }}" class="hover:bg-zinc-50/60">
-                    <td class="pl-6 pr-0 py-4 w-8">
+                    <td class="pl-5 pr-0 py-3 w-8 align-top">
                         @if($f['next'])
-                            <input type="checkbox" value="{{ $a->id }}" x-model="selected" class="rounded border-zinc-300 text-indigo-600" aria-label="{{ __('Select') }}">
+                            <input type="checkbox" value="{{ $a->id }}" x-model="selected" class="mt-0.5 rounded border-zinc-300 text-indigo-600" aria-label="{{ __('Select') }}">
                         @endif
                     </td>
-                    <td class="px-6 py-4 min-w-[22rem]">
-                        <a href="{{ route('activities.show', $a) }}" wire:navigate class="text-sm font-semibold text-zinc-900 hover:text-indigo-600">{{ $a->description }}</a>
-                        <p class="mt-1 text-xs text-zinc-500">
-                            <span class="font-medium text-zinc-600">{{ $a->code ?? '—' }}</span>
-                            · {{ $a->directorate->parent?->code ? $a->directorate->parent->code.' › ' : '' }}{{ $a->directorate->code }}
-                            · {{ $a->program->oge_code ?? '—' }}
-                            · {{ $priority($a->priority) }}
+                    <td class="px-5 py-3 min-w-[24rem] max-w-xl">
+                        <a href="{{ route('activities.show', $a) }}" wire:navigate class="text-sm font-medium text-zinc-900 hover:text-indigo-700 line-clamp-2">{{ $a->description }}</a>
+                        <p class="mt-0.5 text-xs text-zinc-500">
+                            <span class="font-medium text-zinc-700">{{ $a->code ?? '—' }}</span>
+                            <span aria-hidden="true">·</span> {{ $a->directorate->parent?->code ? $a->directorate->parent->code.' › ' : '' }}{{ $a->directorate->code }}
+                            <span aria-hidden="true">·</span> {{ $a->program->oge_code ?? '—' }}
+                            @php $quarters = collect($a->execution_quarters ?: [$a->quarter]); @endphp
+                            @if($a->location)<span aria-hidden="true">·</span> {{ $a->location }}@endif
+                            <span aria-hidden="true">·</span> {{ $quarters->count() === 4 ? 'Q1–Q4' : $quarters->map(fn ($q) => "Q$q")->implode(' ') }}
+                            @if($a->priority && ! in_array($a->priority, ['Média', 'Medium'], true))<span aria-hidden="true">·</span> {{ $priority($a->priority) }}@endif
                         </p>
                     </td>
-                    <td class="px-6 py-4 text-xs text-zinc-600 whitespace-nowrap">
-                        <p>{{ $a->location ?: '—' }}</p>
-                        <p class="mt-1 text-zinc-400">{{ collect($a->execution_quarters ?: [$a->quarter])->map(fn ($q) => "Q$q")->implode(' ') }}</p>
-                    </td>
-                    <td class="px-6 py-4 text-sm tabular-nums whitespace-nowrap">
+                    <td class="px-5 py-3 whitespace-nowrap text-sm num align-top">
                         <span class="font-semibold text-zinc-900">$ {{ number_format($a->total ?? 0) }}</span>
-                        @if(! $a->total)<p class="text-xs text-amber-600">{{ __('No budget lines') }}</p>@endif
+                        @if(! $a->total)<p class="text-xs text-amber-700">{{ __('No budget lines') }}</p>@endif
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap"><x-ui.badge :variant="$badge($a->status)">{{ __($a->status) }}</x-ui.badge></td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                    <td class="px-5 py-3 whitespace-nowrap align-top"><x-ui.status :status="$a->status" /></td>
+                    <td class="px-5 py-3 whitespace-nowrap text-right align-top">
                         <div class="inline-flex items-center gap-3 text-sm">
                             @if($f['next'])
                                 <a href="{{ route('activities.show', $a) }}" wire:navigate class="font-medium text-indigo-600 hover:text-indigo-700">{{ $actionLabel($f['next']) }}</a>
@@ -354,15 +347,12 @@ new class extends Component {
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="px-6 py-14 text-center">
+                    <td colspan="5">
                         @if($filtersActive || $tab !== 'all')
-                            <p class="text-sm font-medium text-zinc-900">{{ __('No activities match.') }}</p>
-                            <p class="mt-1 text-sm text-zinc-500">{{ __('Clear the filters or choose another tab.') }}</p>
+                            <x-ui.empty-state :title="__('No activities match.')" :text="__('Clear the filters or choose another tab.')" />
                         @else
-                            <p class="text-sm font-medium text-zinc-900">{{ __('No activities planned for :year yet.', ['year' => $year]) }}</p>
-                            <p class="mt-1 text-sm text-zinc-500">
-                                {{ $canRoll ? __('Start from last year\'s plan with "Copy from :year", or add a new activity.', ['year' => $year - 1]) : __('Add the first activity, or import a CSV file from Administration.') }}
-                            </p>
+                            <x-ui.empty-state :title="__('No activities planned for :year yet.', ['year' => $year])"
+                                :text="$canRoll ? __('Start from last year\'s plan with "Copy from :year", or add a new activity.', ['year' => $year - 1]) : __('Add the first activity, or import a CSV file from Administration.')" />
                         @endif
                     </td>
                 </tr>

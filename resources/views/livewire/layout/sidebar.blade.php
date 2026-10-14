@@ -9,7 +9,8 @@ use App\Models\SystemSetting;
 new class extends Component {
     public $activeEnvelope;
     public $activeYear;
-    public int $executionRate = 0;
+    public int $approvedCount = 0;
+    public int $activityCount = 0;
 
     public function mount()
     {
@@ -20,9 +21,8 @@ new class extends Component {
             $stats = Activity::where('fiscal_year', $this->activeYear)
                 ->selectRaw('COUNT(*) as total, COALESCE(SUM(status = ?), 0) as approved', [Activity::STATUS_APPROVED])
                 ->first();
-            $total    = (int) $stats->total;
-            $approved = (int) $stats->approved;
-            $this->executionRate = $total > 0 ? (int) round($approved / $total * 100) : 0;
+            $this->activityCount = (int) $stats->total;
+            $this->approvedCount = (int) $stats->approved;
         }
     }
 
@@ -48,19 +48,17 @@ new class extends Component {
     </div>
 
     <!-- Brand -->
-    <div class="flex items-center gap-3 px-6 min-h-16 py-3 shrink-0 border-b border-white/10">
-        <div class="w-9 h-9 bg-indigo-600 rounded-md flex items-center justify-center flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v20" /><path d="m17 5-5-3-5 3" /><path d="m17 19-5 3-5-3" />
-                <path d="M2 12h20" /><path d="m5 7 3 5-3 5" /><path d="m19 7-3 5 3 5" />
-            </svg>
-        </div>
-        <div class="min-w-0">
-            <p class="text-sm font-semibold text-white leading-snug line-clamp-2">{{ \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name') }}</p>
-            <p class="text-[10px] text-nav-muted font-medium uppercase tracking-wider mt-0.5 truncate">{{ \App\Models\SystemSetting::getLocalized('app_tagline', 'Planning & Control') }}</p>
-        </div>
-    </div>
+    @php
+        $orgName = \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name');
+        $orgAbbr = \App\Models\SystemSetting::getLocalized('org_abbr', 'ORG');
+    @endphp
+    <a href="{{ route('dashboard') }}" wire:navigate title="{{ $orgName }}"
+        class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-white/10 hover:bg-white/5 transition-colors">
+        <span class="flex h-10 min-w-10 items-center justify-center rounded-md bg-indigo-600 px-1.5 text-[11px] font-bold tracking-wide text-white" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
+        <span class="min-w-0">
+            <span class="block text-[13px] font-semibold leading-snug text-white line-clamp-3">{{ $orgName }}</span>
+        </span>
+    </a>
 
     <!-- Navigation -->
     <nav class="flex-1 px-4 py-5 space-y-6 overflow-y-auto" aria-label="{{ __('Main navigation') }}">
@@ -107,39 +105,32 @@ new class extends Component {
     <!-- Bottom Widgets -->
     <div class="px-4 py-4 border-t border-white/10 space-y-3">
 
-        <!-- Active Fiscal Year Widget -->
-        @if($activeEnvelope)
-            <div class="bg-nav-hover/60 rounded-md p-4 border border-white/5">
-                <div class="flex items-center justify-between mb-3">
-                    <p class="text-[10px] font-medium text-nav-muted uppercase tracking-wider">{{ __('Active Year') }}</p>
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <!-- Working year and how much of its plan is approved -->
+        @if($activeEnvelope || $activityCount > 0)
+            <div class="rounded-md border border-white/10 bg-white/5 p-3.5">
+                <div class="flex items-baseline justify-between">
+                    <p class="text-[11px] font-semibold uppercase tracking-wider text-nav-muted">{{ __('Fiscal year') }}</p>
+                    <p class="text-lg font-semibold text-white tabular-nums">{{ $activeYear }}</p>
                 </div>
-                <div class="flex items-baseline gap-2 mb-3">
-                    <span class="text-xl font-semibold text-white">{{ $activeEnvelope->fiscal_year }}</span>
-                    <span class="text-[11px] text-indigo-300 font-medium">
-                        ${{ number_format($activeEnvelope->total_amount / 1000000, 1) }}M
-                    </span>
+                @if($activeEnvelope)
+                    <p class="mt-0.5 text-xs text-nav-text tabular-nums">{{ __('Fiscal envelope') }} ${{ number_format($activeEnvelope->total_amount / 1000000, 1) }}M</p>
+                @endif
+                <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuemin="0" aria-valuemax="{{ $activityCount }}" aria-valuenow="{{ $approvedCount }}" aria-label="{{ __('Approved') }}">
+                    <div class="h-full rounded-full bg-emerald-400 transition-all duration-500" style="width: {{ $activityCount > 0 ? round($approvedCount / $activityCount * 100) : 0 }}%"></div>
                 </div>
-                <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                    <div class="h-full bg-indigo-500 rounded-full transition-all duration-700"
-                        style="width: {{ $executionRate }}%"></div>
-                </div>
-                <p class="text-[10px] text-nav-muted mt-1.5">{{ $executionRate }}% {{ __('execution rate') }}</p>
+                <p class="mt-1.5 text-xs text-nav-text tabular-nums">{{ $approvedCount }} / {{ $activityCount }} {{ __('Approved') }}</p>
             </div>
         @endif
 
     </div>
 
-    <!-- Footer copyright -->
+    <!-- Footer -->
     @php
         $sOwner  = \App\Models\SystemSetting::get('system_owner', '');
         $sImplBy = \App\Models\SystemSetting::get('implemented_by', '');
     @endphp
-    <div class="px-6 pb-4 pt-3 border-t border-white/10">
-        <p class="text-[10px] text-nav-muted leading-relaxed">
-           &copy; {{ date('Y') }} {{ $sOwner }} &mdash; {{ __('All rights reserved') }}
-           <br>
-                    @if($sImplBy){{ __('Implemented by') }} {{ $sImplBy }}@endif
-        </p>
+    <div class="px-5 pb-4 pt-3 border-t border-white/10 text-[11px] leading-relaxed text-nav-muted">
+        <p>&copy; {{ date('Y') }} {{ $sOwner }}</p>
+        @if($sImplBy)<p>{{ __('Implemented by') }} {{ $sImplBy }}</p>@endif
     </div>
 </div>

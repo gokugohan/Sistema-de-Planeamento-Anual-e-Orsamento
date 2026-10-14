@@ -43,7 +43,7 @@
         ul.ind { margin: 0; padding-left: 12px; }
         /* Browser-only toolbar */
         .toolbar { position: sticky; top: 0; background: #1C2434; color: #fff; padding: 10px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-family: Inter, Arial, sans-serif; font-size: 13px; z-index: 10; }
-        .toolbar a, .toolbar button { background: #3C50E0; color: #fff; border: 0; border-radius: 4px; padding: 7px 12px; text-decoration: none; cursor: pointer; font-size: 13px; }
+        .toolbar a, .toolbar button { background: #2152C4; color: #fff; border: 0; border-radius: 4px; padding: 7px 12px; text-decoration: none; cursor: pointer; font-size: 13px; }
         .toolbar a.secondary { background: transparent; border: 1px solid #475569; }
         .toolbar select { padding: 6px; border-radius: 4px; }
         .sheet { max-width: 210mm; margin: 16px auto; background: #fff; padding: 14mm; box-shadow: 0 1px 3px rgba(0,0,0,.12); }

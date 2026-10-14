@@ -2,10 +2,15 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /**
- * TailAdmin-style design tokens.
- * `indigo` is remapped to the TailAdmin primary (#3C50E0) and `zinc` to the
- * TailAdmin neutral scale (#1C2434 ink / #E2E8F0 stroke), so every existing
- * utility class in the app picks up the new look without per-page edits.
+ * Design tokens (design system v2: calm, high-contrast, institutional).
+ *
+ * `indigo` is the brand colour, remapped to a deep civic blue, and `zinc` is the neutral scale,
+ * remapped to cool slate, so every existing utility class in the app picks up the system without
+ * per-page edits. Rules the scales keep:
+ *  - body text zinc-600 or darker, muted text zinc-500 (4.7:1 on white); zinc-400 is for icons and
+ *    placeholders and is already dark enough to read (4.5:1);
+ *  - primary actions use indigo-600 (7:1 on white) and a visible 2px focus ring;
+ *  - semantic colours (emerald, amber, rose) are used for status only, never for decoration.
  */
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -22,51 +27,50 @@ export default {
             },
             colors: {
                 indigo: {
-                    50: '#EFF2FE',
-                    100: '#E1E6FC',
-                    200: '#C6CEFA',
-                    300: '#9EAAF5',
-                    400: '#6F80EE',
-                    500: '#5468E8',
-                    600: '#3C50E0',
-                    700: '#3040C0',
-                    800: '#2A369A',
-                    900: '#263078',
-                    950: '#181D4A',
+                    50: '#EEF4FF',
+                    100: '#DCE8FF',
+                    200: '#BED3FF',
+                    300: '#93B3FB',
+                    400: '#5F8BF0',
+                    500: '#3A68E0',
+                    600: '#2152C4',
+                    700: '#1B429F',
+                    800: '#193880',
+                    900: '#1A3166',
+                    950: '#111F44',
                 },
                 zinc: {
-                    50: '#F7F9FC',
-                    100: '#EFF4FB',
+                    50: '#F8FAFC',
+                    100: '#F1F5F9',
                     200: '#E2E8F0',
                     300: '#CBD5E1',
-                    400: '#94A3B8',
-                    500: '#64748B',
+                    400: '#6B7A90',
+                    500: '#5B6B82',
                     600: '#475569',
-                    700: '#333A48',
-                    800: '#24303F',
-                    900: '#1C2434',
-                    950: '#10151F',
+                    700: '#334155',
+                    800: '#1E293B',
+                    900: '#0F172A',
+                    950: '#020617',
                 },
-                body: '#F1F5F9',
-                'nav-hover': '#333A48',
-                'nav-text': '#DEE4EE',
-                'nav-muted': '#8A99AF',
+                body: '#F5F7FB',
+                'nav-hover': '#1E293B',
+                'nav-text': '#D5DDE8',
+                'nav-muted': '#93A3B8',
             },
             borderRadius: {
-                // TailAdmin favours crisp, low-radius surfaces.
-                lg: '0.375rem',
-                xl: '0.375rem',
-                '2xl': '0.5rem',
-                '3xl': '0.5rem',
+                lg: '0.5rem',
+                xl: '0.75rem',
+                '2xl': '1rem',
+                '3xl': '1.25rem',
             },
             fontWeight: {
                 black: '700',
                 extrabold: '700',
             },
             boxShadow: {
-                default: '0px 8px 13px -3px rgba(0, 0, 0, 0.07)',
-                card: '0px 1px 3px rgba(0, 0, 0, 0.12)',
-                'card-lg': '0px 1px 3px rgba(0, 0, 0, 0.08), 0px 8px 13px -3px rgba(0, 0, 0, 0.07)',
+                default: '0 10px 24px -8px rgba(15, 23, 42, 0.12)',
+                card: '0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04)',
+                'card-lg': '0 2px 4px rgba(15, 23, 42, 0.05), 0 8px 20px -6px rgba(15, 23, 42, 0.10)',
             },
             spacing: {
                 68: '17rem',

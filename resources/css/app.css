@@ -5,9 +5,13 @@
 @layer base {
     :root {
         --sidebar-width: 256px;
-        --header-height: 64px;
-        --color-primary: 60 80 224;
-        --radius-card: 0.375rem;
+        --header-height: 60px;
+        --color-primary: 33 82 196;
+        --radius-card: 0.5rem;
+    }
+
+    html {
+        scroll-behavior: smooth;
     }
 
     body {
@@ -16,41 +20,43 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
+    ::selection {
+        @apply bg-indigo-100 text-indigo-900;
+    }
 }
 
 @layer components {
 
-    /* ─── Card System ─────────────────────────────────────── */
+    /* ─── Surfaces ────────────────────────────────────────── */
     .premium-card {
-        @apply bg-white rounded-lg border border-zinc-200 shadow-card transition-shadow duration-200;
+        @apply bg-white rounded-lg border border-zinc-200 shadow-card;
     }
 
     .premium-card:hover {
         @apply shadow-card-lg;
     }
 
-    /* ─── Glassmorphism ───────────────────────────────────── */
     .glass {
-        @apply bg-white/80 backdrop-blur-xl border border-white/20;
+        @apply bg-white/90 backdrop-blur-xl border border-zinc-200;
     }
 
-    /* ─── Text Gradient ───────────────────────────────────── */
     .text-gradient {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-500;
+        @apply text-indigo-700;
     }
 
-    /* ─── Sidebar Navigation ──────────────────────────────── */
+    /* ─── Sidebar navigation ──────────────────────────────── */
     .nav-section-label {
-        @apply text-xs font-medium text-nav-muted uppercase tracking-wide px-4 mb-3;
+        @apply text-[11px] font-semibold text-nav-muted uppercase tracking-wider px-3 mb-2;
     }
 
     .nav-item {
-        @apply relative flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-md
+        @apply relative flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md
                transition-colors duration-150 cursor-pointer;
     }
 
     .nav-item-active {
-        @apply bg-nav-hover text-white;
+        @apply bg-white/10 text-white;
     }
 
     .nav-item-inactive {
@@ -59,50 +65,65 @@
 
     /* ─── Page header (one style for every page) ───────────── */
     .page-title {
-        @apply text-2xl font-bold not-italic tracking-tight text-zinc-900 leading-tight;
+        @apply text-[1.625rem] font-semibold not-italic tracking-tight text-zinc-900 leading-tight;
     }
 
     .page-subtitle {
         @apply mt-1 text-sm font-normal normal-case tracking-normal text-zinc-500;
     }
 
-    /* ─── Loading States ─────────────────────────────────────── */
+    /* A titled block inside a page: use it for every section heading */
+    .section-title {
+        @apply text-sm font-semibold text-zinc-900;
+    }
+
+    .field-label {
+        @apply block text-xs font-medium text-zinc-600 mb-1.5;
+    }
+
+    /* Right-aligned figures line up by their digits */
+    .num {
+        @apply text-right tabular-nums;
+    }
+
+    /* ─── Loading states ──────────────────────────────────── */
     [wire\:loading]:not([wire\:loading\.remove]) {
         opacity: 0.65;
         cursor: wait;
     }
 
-    /* ─── Form Controls ───────────────────────────────────── */
+    /* ─── Form controls ───────────────────────────────────── */
     .flux-input {
-        @apply block w-full rounded-md border border-zinc-200 bg-transparent px-4 py-2.5 text-sm
+        @apply block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm
                text-zinc-900 placeholder:text-zinc-400
-               focus:outline-none focus:ring-1 focus:ring-indigo-600 focus:border-indigo-600
+               hover:border-zinc-400
+               focus:outline-none focus:ring-2 focus:ring-indigo-600/25 focus:border-indigo-600
+               disabled:bg-zinc-100 disabled:text-zinc-500 disabled:cursor-not-allowed
                transition duration-150;
     }
 
-    /* ─── Alert / Flash Messages ──────────────────────────── */
+    /* ─── Alerts / flash messages ─────────────────────────── */
     .alert {
         @apply flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium;
     }
 
     .alert-success {
-        @apply bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/60;
+        @apply bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200;
     }
 
     .alert-error {
-        @apply bg-red-50 text-red-700 ring-1 ring-red-200/60;
+        @apply bg-red-50 text-red-800 ring-1 ring-red-200;
     }
-}
-
-/* ─── Active nav indicator (TailAdmin) ─────────────────── */
-.nav-item-active::before {
-    content: '';
-    @apply absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r bg-indigo-500;
 }
 
 /* ─── Tables ─────────────────────────────────────────────── */
 table thead th {
-    @apply text-xs font-medium uppercase tracking-wide text-zinc-500;
+    @apply text-[11px] font-semibold uppercase tracking-wide text-zinc-500;
+}
+
+table td,
+table th {
+    font-variant-numeric: tabular-nums;
 }
 
 /* ─── Keyboard focus visibility (a11y) ───────────────────── */
@@ -140,10 +161,10 @@ input.bg-transparent:not(.flux-input):focus-visible {
     border-color: transparent;
 }
 
-/* ─── Custom Scrollbar ───────────────────────────────────── */
+/* ─── Custom scrollbar ───────────────────────────────────── */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -152,4 +173,25 @@ input.bg-transparent:not(.flux-input):focus-visible {
 
 ::-webkit-scrollbar-thumb {
     @apply bg-zinc-300 rounded-full hover:bg-zinc-400 transition-colors;
+}
+
+/* ─── Respect the "reduce motion" setting ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ─── Print: no chrome ───────────────────────────────────── */
+@media print {
+    aside,
+    header[class*="sticky"],
+    #lwbar {
+        display: none !important;
+    }
 }

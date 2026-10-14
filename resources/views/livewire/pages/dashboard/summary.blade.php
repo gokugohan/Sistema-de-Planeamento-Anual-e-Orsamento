@@ -210,15 +210,11 @@ new class extends Component {
 
 <div class="space-y-6">
     {{-- Header --}}
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-        <div>
-            <h1 class="page-title">{{ __('Dashboard') }}</h1>
-            <p class="page-subtitle">{{ $org ? $org . ' · ' : '' }}{{ __('Fiscal year') }} {{ $year }}</p>
-        </div>
+    <x-ui.page-header :title="__('Dashboard')" :subtitle="($org ? $org . ' · ' : '') . __('Fiscal year') . ' ' . $year">
         <div class="flex flex-wrap items-end gap-3">
             <div>
-                <label for="f-unit" class="block text-xs font-medium text-zinc-500 mb-1">{{ __('Unit') }}</label>
-                <select id="f-unit" wire:model.live="unit" class="flux-input !w-56 !py-2">
+                <label for="f-unit" class="field-label">{{ __('Unit') }}</label>
+                <select id="f-unit" wire:model.live="unit" class="flux-input !w-56">
                     <option value="">{{ __('All units') }}</option>
                     @foreach($rootUnits as $d)
                         <option value="{{ $d->id }}">{{ $d->code }} — {{ $d->name }}</option>
@@ -226,8 +222,8 @@ new class extends Component {
                 </select>
             </div>
             <div>
-                <label for="f-cat" class="block text-xs font-medium text-zinc-500 mb-1">{{ __('Category') }}</label>
-                <select id="f-cat" wire:model.live="category" class="flux-input !w-48 !py-2">
+                <label for="f-cat" class="field-label">{{ __('Category') }}</label>
+                <select id="f-cat" wire:model.live="category" class="flux-input !w-48">
                     <option value="">{{ __('All categories') }}</option>
                     @foreach($classes as $c)
                         <option value="{{ $c->id }}">{{ $c->code }} {{ $c->name }}</option>
@@ -235,13 +231,13 @@ new class extends Component {
                 </select>
             </div>
             @if($unit !== '' || $category !== '')
-                <button wire:click="clearFilters" class="pb-2.5 text-sm font-medium text-indigo-600 hover:underline">{{ __('Clear filters') }}</button>
+                <button wire:click="clearFilters" class="pb-2 text-sm font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
             @endif
             @if($wide)
                 <x-ui.button variant="secondary" size="md" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Approved plan (PDF)') }}</x-ui.button>
             @endif
         </div>
-    </div>
+    </x-ui.page-header>
 
     {{-- Budget cycle: where is this year? --}}
     <section aria-label="{{ __('Budget cycle') }}" class="bg-white rounded-lg border border-zinc-200 shadow-card px-5 py-4">
@@ -348,7 +344,7 @@ new class extends Component {
                     @foreach($statusOrder as $i => $st)
                         <li class="flex items-center justify-between gap-3">
                             <span class="flex items-center gap-2 text-zinc-600">
-                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#CBD5E1', '#80CAEE', '#6F80EE', '#3C50E0', '#F59E0B', '#10B981'][$i] }}"></span>{{ __($st) }}
+                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#94A3B8', '#0EA5E9', '#5F8BF0', '#2152C4', '#F59E0B', '#10B981'][$i] }}"></span>{{ __($st) }}
                             </span>
                             <span class="font-semibold tabular-nums text-zinc-900">{{ $byStatus[$st] }}</span>
                         </li>
@@ -432,16 +428,16 @@ new class extends Component {
                     const cfg = {
                         categories: () => ({ type: 'bar', data: { labels: d.categories.labels.map(l => l.length > 22 ? l.slice(0, 21) + '…' : l), datasets: [
                             { label: L[2], data: d.categories.envelope, backgroundColor: '#CBD5E1', borderRadius: 3 },
-                            { label: L[1], data: d.categories.plan, backgroundColor: '#3C50E0', borderRadius: 3 },
+                            { label: L[1], data: d.categories.plan, backgroundColor: '#2152C4', borderRadius: 3 },
                             { label: L[3], data: d.categories.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
-                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#CBD5E1', '#80CAEE', '#6F80EE', '#3C50E0', '#F59E0B', '#10B981'], borderWidth: 2, borderColor: '#fff' }] },
+                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#94A3B8', '#0EA5E9', '#5F8BF0', '#2152C4', '#F59E0B', '#10B981'], borderWidth: 2, borderColor: '#fff' }] },
                             options: { ...base, cutout: '68%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.label + ': ' + c.parsed } } } } }),
                         units: () => ({ type: 'bar', data: { labels: d.units.labels, datasets: [
-                            { label: L[1], data: d.units.plan, backgroundColor: '#3C50E0', borderRadius: 3 },
+                            { label: L[1], data: d.units.plan, backgroundColor: '#2152C4', borderRadius: 3 },
                             { label: L[3], data: d.units.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
-                        quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#3C50E0', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#3C50E0' }] },
+                        quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#2152C4', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#2152C4' }] },
                             options: { ...base, plugins: { ...base.plugins, legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.parsed.y + '%' } } },
                                 scales: { y: { beginAtZero: true, max: 100, grid, ticks: { ...tick, callback: (v) => v + '%' } }, x: { grid: { display: false }, ticks: tick } } } }),
                     }[kind]();

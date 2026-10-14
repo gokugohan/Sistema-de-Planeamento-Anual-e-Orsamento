@@ -105,7 +105,7 @@ new class extends Component {
                     {
                         label: '{{ __('Financial Execution %') }}',
                         data: programs.map(p => p.financial),
-                        backgroundColor: '#6366f1',
+                        backgroundColor: '#2152C4',
                         borderRadius: 6
                     },
                     {
