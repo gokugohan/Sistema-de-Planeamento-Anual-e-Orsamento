@@ -62,6 +62,13 @@ class MtcBudgetSeeder extends Seeder
                 continue; // a closed year cannot be edited; purge the sample to load it again
             }
 
+            // A year that already has a real envelope belongs to real data: never plan or distribute over it.
+            if ($this->hasRealEnvelope($registry, $year)) {
+                $registry->skipped[] = "Fiscal year {$year}: a real fiscal envelope already exists, so no sample plan was loaded for it";
+
+                continue;
+            }
+
             DB::transaction(function () use ($registry, $year, $data) {
                 $totals = $this->loadActivities($registry, $year, $data);
                 $this->registerBudget($registry, $year, $data, $totals);
@@ -250,6 +257,14 @@ class MtcBudgetSeeder extends Seeder
             'reviewed_at' => in_array($status, [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED], true) ? null : "{$year}-01-22 09:00:00",
             'approved_at' => $status === Activity::STATUS_APPROVED ? "{$year}-02-05 09:00:00" : null,
         ];
+    }
+
+    /** Is there a fiscal envelope for the year that the sample did not create? */
+    private function hasRealEnvelope(SampleRegistry $registry, int $year): bool
+    {
+        $envelope = FiscalEnvelope::withoutGlobalScopes()->where('fiscal_year', $year)->first();
+
+        return $envelope !== null && ! $registry->isRegistered($envelope);
     }
 
     /** A year already loaded (and possibly closed, hence not editable) is left as it is. */

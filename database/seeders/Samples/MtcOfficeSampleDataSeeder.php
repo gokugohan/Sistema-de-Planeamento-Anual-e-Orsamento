@@ -8,6 +8,7 @@ use App\Support\Institution;
 use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * The same sample data as the whole-ministry dataset, but for ONE office of the Ministério dos
@@ -49,12 +50,15 @@ class MtcOfficeSampleDataSeeder extends Seeder
         }
         $illustrative = $office === self::DEFAULT_OFFICE;
 
-        $this->call([RolesAndPermissionsSeeder::class, EconomicClassificationSeeder::class]);
-        $this->call(MtcDirectorateSeeder::class, true, ['office' => $office]);
-        $this->call(MtcProgramSeeder::class, true, ['only' => MtcBudgetSeeder::programmeCodes($units, $illustrative)]);
-        $this->branding($office);
-        $this->call(MtcDemoUsersSeeder::class, true, ['office' => $office]);
-        $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'illustrative' => $illustrative]);
+        // All or nothing: a failure part-way must not leave units and accounts without their plans.
+        DB::transaction(function () use ($office, $units, $illustrative) {
+            $this->call([RolesAndPermissionsSeeder::class, EconomicClassificationSeeder::class]);
+            $this->call(MtcDirectorateSeeder::class, true, ['office' => $office]);
+            $this->call(MtcProgramSeeder::class, true, ['only' => MtcBudgetSeeder::programmeCodes($units, $illustrative)]);
+            $this->branding($office);
+            $this->call(MtcDemoUsersSeeder::class, true, ['office' => $office]);
+            $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'illustrative' => $illustrative]);
+        });
     }
 
     /** Shows the office, not the ministry, as the institution. */

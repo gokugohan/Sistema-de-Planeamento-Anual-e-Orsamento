@@ -5,6 +5,7 @@ namespace Database\Seeders\Samples;
 use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Optional sample dataset based on the Ministério dos Transportes e Comunicações
@@ -34,7 +35,8 @@ class MtcSampleDataSeeder extends Seeder
             throw new \RuntimeException('The sample dataset creates demo accounts with a known password and must not be loaded in production.');
         }
 
-        $this->call([
+        // All or nothing: a failure part-way must not leave units and accounts without their plans.
+        DB::transaction(fn () => $this->call([
             RolesAndPermissionsSeeder::class,
             EconomicClassificationSeeder::class,
             MtcBrandingSeeder::class,
@@ -42,6 +44,6 @@ class MtcSampleDataSeeder extends Seeder
             MtcProgramSeeder::class,
             MtcDemoUsersSeeder::class,
             MtcBudgetSeeder::class,
-        ]);
+        ]));
     }
 }
