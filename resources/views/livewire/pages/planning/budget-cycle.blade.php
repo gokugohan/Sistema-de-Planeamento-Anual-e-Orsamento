@@ -70,7 +70,7 @@ new class extends Component {
 
     public function recordSubmission(): void
     {
-        $this->attempt(fn($s) => $s->recordSubmission($this->year), __('Submission to the CRO recorded and frozen.'));
+        $this->attempt(fn($s) => $s->recordSubmission($this->year), \App\Support\Institution::label('Submission to the CRO recorded and frozen.'));
     }
 
     public function saveCroDecision(): void
@@ -81,7 +81,7 @@ new class extends Component {
             'croReference' => 'nullable|string|max:255',
             'croNotes' => 'nullable|string|max:2000',
         ]);
-        $this->attempt(fn($s) => $s->recordCroDecision($this->year, (float) $this->croTotal, $this->croDate, $this->croReference, $this->croNotes), __('CRO decision recorded.'));
+        $this->attempt(fn($s) => $s->recordCroDecision($this->year, (float) $this->croTotal, $this->croDate, $this->croReference, $this->croNotes), \App\Support\Institution::label('CRO decision recorded.'));
     }
 
     public function with(): array
@@ -105,8 +105,8 @@ new class extends Component {
     };
     $steps = [
         ['label' => __('Indicative ceiling'), 'done' => $s['ceiling'] !== null],
-        ['label' => __('Submitted to CRO'), 'done' => $c->isSubmitted()],
-        ['label' => __('CRO decision'), 'done' => $c->hasCroDecision()],
+        ['label' => \App\Support\Institution::label('Submitted to CRO'), 'done' => $c->isSubmitted()],
+        ['label' => \App\Support\Institution::label('CRO decision'), 'done' => $c->hasCroDecision()],
         ['label' => __('Budget law promulgated'), 'done' => (bool) $env?->hasLegalBasis()],
         ['label' => __('Envelope approved'), 'done' => in_array($env?->status, [\App\Models\FiscalEnvelope::STATUS_APPROVED, \App\Models\FiscalEnvelope::STATUS_CLOSED], true)],
     ];
@@ -116,7 +116,7 @@ new class extends Component {
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
             <h1 class="page-title">{{ __('Budget Cycle') }}</h1>
-            <p class="text-sm text-zinc-500 mt-1">{{ __('Indicative ceiling → submission to the CRO → CRO decision → State Budget law → fiscal envelope.') }}</p>
+            <p class="text-sm text-zinc-500 mt-1">{{ \App\Support\Institution::label('Indicative ceiling → submission to the CRO → CRO decision → State Budget law → fiscal envelope.') }}</p>
         </div>
         <div class="flex items-center gap-2">
             <label for="year" class="text-sm text-zinc-500">{{ __('Fiscal year') }}</label>
@@ -147,13 +147,13 @@ new class extends Component {
         @if($summary['fit_gap'] > 0)
             <div class="alert alert-error !items-start">
                 <div>
-                    <p class="font-semibold">{{ __('The approved plan exceeds the CRO decision by :a.', ['a' => $money($summary['fit_gap'])]) }}</p>
-                    <p class="text-xs font-normal mt-1">{{ __('Revise the activities (reduce or defer) so the plan fits the CRO amount before the budget goes to Parliament. Otherwise the envelope will be distributed pro rata and every activity is cut.') }}</p>
+                    <p class="font-semibold">{{ \App\Support\Institution::label('The approved plan exceeds the CRO decision by :a.', ['a' => $money($summary['fit_gap'])]) }}</p>
+                    <p class="text-xs font-normal mt-1">{{ \App\Support\Institution::label('Revise the activities (reduce or defer) so the plan fits the CRO amount before the budget goes to Parliament. Otherwise the envelope will be distributed pro rata and every activity is cut.') }}</p>
                 </div>
             </div>
         @else
             <div class="alert alert-success">
-                {{ $summary['fit_gap'] == 0 ? __('The approved plan matches the CRO decision exactly.') : __('The approved plan is within the CRO decision (:a below it).', ['a' => $money(abs($summary['fit_gap']))]) }}
+                {{ $summary['fit_gap'] == 0 ? \App\Support\Institution::label('The approved plan matches the CRO decision exactly.') : \App\Support\Institution::label('The approved plan is within the CRO decision (:a below it).', ['a' => $money(abs($summary['fit_gap']))]) }}
             </div>
         @endif
     @endif
@@ -162,17 +162,17 @@ new class extends Component {
     <x-ui.card padding="p-0">
         <x-ui.table :headers="[__('Stage'), __('Amount'), __('Difference')]">
             <tr><td class="px-6 py-3 text-sm">{{ __('Indicative ceiling') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['ceiling']) }}</td><td class="px-6 py-3 text-sm text-zinc-400">—</td></tr>
-            <tr><td class="px-6 py-3 text-sm">{{ __('Submitted to CRO') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['submitted']) }}</td>
+            <tr><td class="px-6 py-3 text-sm">{{ \App\Support\Institution::label('Submitted to CRO') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['submitted']) }}</td>
                 <td class="px-6 py-3 text-sm {{ ($s['submitted_vs_ceiling'] ?? 0) > 0 ? 'text-amber-600' : 'text-zinc-500' }}">
                     @if($s['submitted_vs_ceiling'] !== null){{ $delta($s['submitted_vs_ceiling'], $s['ceiling']) }} {{ __('vs ceiling') }}@else — @endif
                 </td></tr>
-            <tr><td class="px-6 py-3 text-sm">{{ __('CRO decision') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['cro']) }}</td>
+            <tr><td class="px-6 py-3 text-sm">{{ \App\Support\Institution::label('CRO decision') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['cro']) }}</td>
                 <td class="px-6 py-3 text-sm {{ ($s['cro_vs_submitted'] ?? 0) < 0 ? 'text-rose-600' : 'text-zinc-500' }}">
                     @if($s['cro_vs_submitted'] !== null){{ $delta($s['cro_vs_submitted'], $s['submitted']) }} {{ __('vs submitted') }}@else — @endif
                 </td></tr>
             <tr><td class="px-6 py-3 text-sm">{{ __('Final envelope (OGE law)') }}</td><td class="px-6 py-3 text-sm font-medium">{{ $money($s['final']) }}</td>
                 <td class="px-6 py-3 text-sm {{ ($s['final_vs_cro'] ?? 0) < 0 ? 'text-rose-600' : 'text-zinc-500' }}">
-                    @if($s['final_vs_cro'] !== null){{ $delta($s['final_vs_cro'], $s['cro']) }} {{ __('vs CRO') }}@else — @endif
+                    @if($s['final_vs_cro'] !== null){{ $delta($s['final_vs_cro'], $s['cro']) }} {{ \App\Support\Institution::label('vs CRO') }}@else — @endif
                 </td></tr>
         </x-ui.table>
     </x-ui.card>
@@ -196,7 +196,7 @@ new class extends Component {
 
         {{-- 2. Submission --}}
         <x-ui.card>
-            <h2 class="text-sm font-semibold text-zinc-900">2. {{ __('Submission to the CRO') }}</h2>
+            <h2 class="text-sm font-semibold text-zinc-900">2. {{ \App\Support\Institution::label('Submission to the CRO') }}</h2>
             <p class="text-xs text-zinc-500 mt-1 mb-4">{{ __('Freezes the approved plan exactly as sent. Later edits to activities do not change it.') }}</p>
 
             @if($c->isSubmitted())
@@ -207,7 +207,7 @@ new class extends Component {
                 </dl>
                 @if($summary['plan_changed_since_submission'])
                     <div class="alert alert-error mt-4 !items-start text-xs">
-                        {{ __('The approved plan has changed since it was submitted (now :t). The CRO has the earlier version.', ['t' => $money($summary['approved_now'])]) }}
+                        {{ \App\Support\Institution::label('The approved plan has changed since it was submitted (now :t). The CRO has the earlier version.', ['t' => $money($summary['approved_now'])]) }}
                     </div>
                 @endif
             @else
@@ -217,7 +217,7 @@ new class extends Component {
             <div class="mt-4 flex flex-wrap gap-3 items-center">
                 @if($canManage && !$c->hasCroDecision())
                     <x-ui.button wire:click="recordSubmission" variant="primary"
-                        wire:confirm="{{ $c->isSubmitted() ? __('Replace the recorded submission with the current approved plan?') : __('Record the current approved plan as submitted to the CRO?') }}">
+                        wire:confirm="{{ $c->isSubmitted() ? __('Replace the recorded submission with the current approved plan?') : \App\Support\Institution::label('Record the current approved plan as submitted to the CRO?') }}">
                         {{ $c->isSubmitted() ? __('Replace submission') : __('Record submission') }}
                     </x-ui.button>
                 @endif
@@ -227,7 +227,7 @@ new class extends Component {
 
         {{-- 3. CRO decision --}}
         <x-ui.card>
-            <h2 class="text-sm font-semibold text-zinc-900">3. {{ __('CRO decision') }}</h2>
+            <h2 class="text-sm font-semibold text-zinc-900">3. {{ \App\Support\Institution::label('CRO decision') }}</h2>
             <p class="text-xs text-zinc-500 mt-1 mb-4">{{ __('The ministry total agreed by the Comité de Revisão.') }}</p>
             @if($canManage && $c->isSubmitted())
                 <form wire:submit="saveCroDecision" class="grid gap-3 sm:grid-cols-2">
@@ -235,7 +235,7 @@ new class extends Component {
                     <div><input type="date" wire:model="croDate" class="flux-input" aria-label="{{ __('Decision date') }}">@error('croDate')<p class="text-xs text-rose-600 mt-1">{{ $message }}</p>@enderror</div>
                     <div class="sm:col-span-2"><input type="text" wire:model="croReference" placeholder="{{ __('Reference (minute / letter)') }}" class="flux-input"></div>
                     <div class="sm:col-span-2"><textarea wire:model="croNotes" rows="2" placeholder="{{ __('Notes') }}" class="flux-input"></textarea></div>
-                    <div class="sm:col-span-2"><x-ui.button type="submit" variant="secondary">{{ __('Save CRO decision') }}</x-ui.button></div>
+                    <div class="sm:col-span-2"><x-ui.button type="submit" variant="secondary">{{ \App\Support\Institution::label('Save CRO decision') }}</x-ui.button></div>
                 </form>
             @elseif(!$c->isSubmitted())
                 <p class="text-sm text-zinc-500">{{ __('Available after the submission is recorded.') }}</p>
@@ -267,7 +267,7 @@ new class extends Component {
         @php $codes = collect(array_keys($summary['submitted_by_class']))->merge(array_keys($summary['final_by_class']))->unique()->sort()->values(); @endphp
         <x-ui.card padding="p-0">
             <div class="px-6 pt-5 pb-2"><h2 class="text-sm font-semibold text-zinc-900">{{ __('By economic category: submitted vs final envelope') }}</h2></div>
-            <x-ui.table :headers="[__('Category'), __('Submitted to CRO'), __('Final envelope'), __('Difference')]">
+            <x-ui.table :headers="[__('Category'), \App\Support\Institution::label('Submitted to CRO'), __('Final envelope'), __('Difference')]">
                 @foreach($codes as $code)
                     @php $sub = $summary['submitted_by_class'][$code] ?? 0; $fin = $summary['final_by_class'][$code] ?? null; @endphp
                     <tr>

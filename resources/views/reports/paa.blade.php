@@ -55,7 +55,7 @@
                     {{ __('Export Data') }}
                 </x-ui.button>
                 <x-ui.button variant="primary" size="md" href="{{ route('reports.approved-plan', ['year' => $selectedYear]) }}" class="!rounded-xl">
-                    {{ __('Approved plan for CRO (PDF)') }}
+                    {{ \App\Support\Institution::label('Approved plan for CRO (PDF)') }}
                 </x-ui.button>
                 <x-ui.button variant="black" shadow="lg" onclick="withFullReport('print')" class="!rounded-xl px-8">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"

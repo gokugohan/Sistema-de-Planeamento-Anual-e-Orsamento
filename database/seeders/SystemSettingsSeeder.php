@@ -18,6 +18,10 @@ class SystemSettingsSeeder extends Seeder
         $this->defaultSetting('show_draft_planning_in_reports', false, 'boolean', 'Control visibility of draft data in reports');
         $this->defaultSetting('enable_paa_testing_mode', false, 'boolean', 'Enable testing mode for PAA planning (adds Testing Mode menu)');
 
+        // Who the plan goes to and who approves it: a ministry, or only a directorate / gabinete inside one
+        $this->defaultSetting('institution_level', 'ministry', 'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
+        $this->defaultSetting('report_recipient', '', 'string', 'Who receives the approved plan when the institution is not a ministry');
+
         // Organization identity: replace in Management → Settings
         $this->defaultSetting('organization_name_full', 'Institution Name', 'string', 'Full name of the Ministry/Entity');
         $this->defaultSetting('organization_name_short', 'ORG', 'string', 'Short abbreviation of the organization');

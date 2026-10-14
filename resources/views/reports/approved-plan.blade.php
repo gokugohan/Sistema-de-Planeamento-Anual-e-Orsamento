@@ -83,7 +83,7 @@
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
     <div class="title">{{ __('Annual Activity Plan and Budget Proposal') }} {{ $report['year'] }}</div>
-    <div class="muted" style="margin-top:6px">{{ __('Submission to the Budget Review Committee (CRO)') }}</div>
+    <div class="muted" style="margin-top:6px">{{ \App\Support\Institution::coverLine() }}</div>
 </div>
 
 <table class="meta">

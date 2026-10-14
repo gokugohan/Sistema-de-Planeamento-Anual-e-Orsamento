@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Hash;
  */
 class MtcDemoUsersSeeder extends Seeder
 {
-    /** @param  ?string  $office  code of the single office being loaded: its head replaces the Minister */
+    /**
+     * @param  ?string  $office  code of the single office being loaded. There is no Minister then: the
+     *                           head of the office (a Director, "Chefe") gives the final approval.
+     */
     public function run(SampleRegistry $registry, ?string $office = null): void
     {
         $hash = Hash::make('password'); // hashed once; the same demo password for every account
@@ -35,7 +38,7 @@ class MtcDemoUsersSeeder extends Seeder
                 'directorate_id' => $unit->id,
             ]);
         }
-        $this->assignRole($registry, $head, 'Minister'); // the top approver of the institution being demonstrated
+        $this->assignRole($registry, $head, $office === null ? 'Minister' : 'Director');
 
         foreach (Directorate::all() as $dir) {
             if (! $registry->isRegistered($dir)) {
@@ -47,6 +50,9 @@ class MtcDemoUsersSeeder extends Seeder
             $code = strtolower($dir->code);
 
             foreach (['planner' => ['Planning', 'Planner'], 'director' => ['Director', 'Director']] as $prefix => [$role, $label]) {
+                if ($prefix === 'director' && $office !== null && $dir->code === $office) {
+                    continue; // the head of the office is the account created above
+                }
                 $user = $registry->upsert('mtc', User::class, ['email' => "{$prefix}.{$code}@goku.tl"], [
                     'name' => "{$label} {$dir->code}",
                     'password' => $hash,

@@ -4,6 +4,7 @@ namespace Database\Seeders\Samples;
 
 use App\Models\Directorate;
 use App\Models\SystemSetting;
+use App\Support\Institution;
 use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,9 @@ class MtcOfficeSampleDataSeeder extends Seeder
 
     /** Setting that remembers the branding this dataset applied, so a purge can undo exactly that. */
     public const BRANDING_SETTING = 'sample_office_branding';
+
+    /** Where an office of the sample ministry sends its approved plan (a working value; change it in Settings). */
+    public const SAMPLE_RECIPIENT = 'Ministério dos Transportes e Comunicações — Direção Nacional do Orçamento e Gestão Financeira (DNOGF)';
 
     public function run(?string $office = null): void
     {
@@ -63,6 +67,9 @@ class MtcOfficeSampleDataSeeder extends Seeder
         SystemSetting::set('system_owner', $name, 'string', 'System owner organization');
         SystemSetting::set('org_name', ['en' => $name, 'pt' => $name, 'tet' => $name], 'json', 'Localized organization name');
         SystemSetting::set('org_abbr', ['en' => $office, 'pt' => $office, 'tet' => $office], 'json', 'Localized organization abbreviation');
+        // An office is not the ministry: its head approves, and its plan goes to the ministry's budget team.
+        SystemSetting::set('institution_level', Institution::SUBORDINATE, 'string');
+        SystemSetting::set('report_recipient', self::SAMPLE_RECIPIENT, 'string');
         SystemSetting::set(self::BRANDING_SETTING, ['name' => $name, 'abbr' => $office], 'json', 'Branding applied by the office sample dataset');
     }
 
@@ -88,6 +95,12 @@ class MtcOfficeSampleDataSeeder extends Seeder
         }
         if (SystemSetting::get('system_owner') === $name) {
             SystemSetting::set('system_owner', 'Institution Name', 'string');
+        }
+        if (SystemSetting::get('institution_level') === Institution::SUBORDINATE) {
+            SystemSetting::set('institution_level', Institution::MINISTRY, 'string');
+        }
+        if (SystemSetting::get('report_recipient') === self::SAMPLE_RECIPIENT) {
+            SystemSetting::set('report_recipient', '', 'string');
         }
         SystemSetting::where('key', self::BRANDING_SETTING)->delete();
         SystemSetting::flushCache();

@@ -9,6 +9,8 @@ new class extends Component {
     public $organizationLogo;
     public $organizationFavicon;
     public $systemOwner;
+    public string $institutionLevel = 'ministry';
+    public string $reportRecipient = '';
     public $implementedBy;
     public $enableNextYearPlanning;
     public $showDraftInReports;
@@ -24,6 +26,8 @@ new class extends Component {
         $this->organizationLogo    = SystemSetting::get('organization_logo');
         $this->organizationFavicon = SystemSetting::get('organization_favicon');
         $this->systemOwner         = SystemSetting::get('system_owner', '');
+        $this->institutionLevel    = \App\Support\Institution::level();
+        $this->reportRecipient     = (string) SystemSetting::get('report_recipient', '');
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->enableNextYearPlanning = SystemSetting::get('enable_next_year_planning', false);
@@ -49,6 +53,8 @@ new class extends Component {
         abort_unless(auth()->user()->isAdministrator(), 403);
         $this->validate([
             'systemOwner'           => 'nullable|string|max:255',
+            'institutionLevel'      => 'required|in:ministry,subordinate',
+            'reportRecipient'       => 'nullable|string|max:255',
             'implementedBy'         => 'nullable|string|max:255',
             'enableNextYearPlanning' => 'boolean',
             'showDraftInReports'    => 'boolean',
@@ -58,6 +64,8 @@ new class extends Component {
         SystemSetting::set('organization_logo',    $this->organizationLogo,    'string');
         SystemSetting::set('organization_favicon', $this->organizationFavicon, 'string');
         SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
+        SystemSetting::set('institution_level',    $this->institutionLevel,    'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
+        SystemSetting::set('report_recipient',     trim($this->reportRecipient), 'string', 'Who receives the approved plan when the institution is not a ministry');
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
         SystemSetting::set('enable_next_year_planning',      (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
@@ -197,6 +205,38 @@ new class extends Component {
                         </div>
                     </div>
                     @endforeach
+
+                    <!-- Institution level: decides who approves and who receives the plan -->
+                    <div class="pt-8 mt-8 border-t border-zinc-100">
+                        <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
+                            <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Institution level') }}
+                        </p>
+                        <div class="space-y-4">
+                            <label class="flex items-start gap-3 text-sm text-zinc-700">
+                                <input type="radio" wire:model.live="institutionLevel" value="ministry" class="mt-1">
+                                <span>
+                                    <span class="font-medium text-zinc-900">{{ __('A ministry') }}</span>
+                                    <span class="block text-xs text-zinc-500">{{ __('The Minister gives the final approval and the plan is submitted to the CRO.') }}</span>
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-3 text-sm text-zinc-700">
+                                <input type="radio" wire:model.live="institutionLevel" value="subordinate" class="mt-1">
+                                <span>
+                                    <span class="font-medium text-zinc-900">{{ __('A directorate or gabinete inside a ministry') }}</span>
+                                    <span class="block text-xs text-zinc-500">{{ __('The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.') }}</span>
+                                </span>
+                            </label>
+                            @if($institutionLevel === 'subordinate')
+                                <div class="space-y-2 pl-7">
+                                    <x-input-label for="reportRecipient" :value="__('Plan is sent to')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                    <x-text-input id="reportRecipient" wire:model="reportRecipient"
+                                        class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                        placeholder="{{ __('The ministry or the team there that prepares the budget') }}" />
+                                    <x-input-error :messages="$errors->get('reportRecipient')" />
+                                </div>
+                            @endif
+                        </div>
+                    </div>
 
                     <!-- Footer Credits (not localized) -->
                     <div class="pt-8 mt-8 border-t border-zinc-100">

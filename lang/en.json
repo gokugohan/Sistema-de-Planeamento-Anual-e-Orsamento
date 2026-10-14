@@ -812,5 +812,14 @@
     "Accounts are created, changed and removed by your system administrator; ask them if you need to leave the system.": "Accounts are created, changed and removed by your system administrator; ask them if you need to leave the system.",
     "Two-factor authentication was reset for :email. They can set it up again.": "Two-factor authentication was reset for :email. They can set it up again.",
     "Reset two-factor authentication for this user? Use this when they lost their phone.": "Reset two-factor authentication for this user? Use this when they lost their phone.",
-    "Reset two-factor": "Reset two-factor"
+    "Reset two-factor": "Reset two-factor",
+    "Submitted to: :recipient": "Submitted to: :recipient",
+    "the Ministry's budget preparation team": "the Ministry's budget preparation team",
+    "Institution level": "Institution level",
+    "A ministry": "A ministry",
+    "The Minister gives the final approval and the plan is submitted to the CRO.": "The Minister gives the final approval and the plan is submitted to the CRO.",
+    "A directorate or gabinete inside a ministry": "A directorate or gabinete inside a ministry",
+    "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.": "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.",
+    "Plan is sent to": "Plan is sent to",
+    "The ministry or the team there that prepares the budget": "The ministry or the team there that prepares the budget"
 }

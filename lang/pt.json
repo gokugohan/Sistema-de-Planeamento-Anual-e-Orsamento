@@ -812,5 +812,14 @@
     "Accounts are created, changed and removed by your system administrator; ask them if you need to leave the system.": "As contas são criadas, alteradas e removidas pelo administrador do sistema; peça-lhe se precisar de sair do sistema.",
     "Two-factor authentication was reset for :email. They can set it up again.": "A autenticação de dois fatores foi redefinida para :email. Pode configurá-la de novo.",
     "Reset two-factor authentication for this user? Use this when they lost their phone.": "Redefinir a autenticação de dois fatores deste utilizador? Use quando perdeu o telemóvel.",
-    "Reset two-factor": "Redefinir dois fatores"
+    "Reset two-factor": "Redefinir dois fatores",
+    "Submitted to: :recipient": "Submetido a: :recipient",
+    "the Ministry's budget preparation team": "a equipa de preparação do orçamento do Ministério",
+    "Institution level": "Nível da instituição",
+    "A ministry": "Um ministério",
+    "The Minister gives the final approval and the plan is submitted to the CRO.": "O Ministro dá a aprovação final e o plano é submetido ao CRO.",
+    "A directorate or gabinete inside a ministry": "Uma direção ou gabinete dentro de um ministério",
+    "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.": "O Diretor ou Chefe do Gabinete dá a aprovação final e o plano segue para o ministério.",
+    "Plan is sent to": "O plano é enviado para",
+    "The ministry or the team there that prepares the budget": "O ministério ou a equipa que prepara o orçamento"
 }

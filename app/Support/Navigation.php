@@ -77,10 +77,10 @@ class Navigation
                         continue;
                     }
                     $links[] = [
-                        'label' => __($leaf['label']),
+                        'label' => Institution::label($leaf['label']),
                         'group' => __($group['label']),
                         'url' => route($leaf['route']),
-                        'hint' => __($leaf['hint'] ?? $item['hint'] ?? ''),
+                        'hint' => Institution::label($leaf['hint'] ?? $item['hint'] ?? ''),
                     ];
                 }
             }
@@ -120,16 +120,16 @@ class Navigation
         if ($page) {
             if ($leaf && $parentRoute) {
                 if ($item && isset($item['children'])) {
-                    $crumbs[] = ['label' => __($item['label']), 'url' => null];
+                    $crumbs[] = ['label' => Institution::label($item['label']), 'url' => null];
                 }
-                $crumbs[] = ['label' => __($leaf['label']), 'url' => route($leaf['route'])];
+                $crumbs[] = ['label' => Institution::label($leaf['label']), 'url' => route($leaf['route'])];
             }
-            $crumbs[] = ['label' => __($page[1]), 'url' => null];
+            $crumbs[] = ['label' => Institution::label($page[1]), 'url' => null];
         } elseif ($leaf) {
             if ($item && isset($item['children'])) {
-                $crumbs[] = ['label' => __($item['label']), 'url' => null];
+                $crumbs[] = ['label' => Institution::label($item['label']), 'url' => null];
             }
-            $crumbs[] = ['label' => __($leaf['label']), 'url' => null];
+            $crumbs[] = ['label' => Institution::label($leaf['label']), 'url' => null];
         }
 
         return $crumbs;

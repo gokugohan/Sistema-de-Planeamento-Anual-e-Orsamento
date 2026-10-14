@@ -96,8 +96,8 @@ new class extends Component {
 
         $steps = [
             ['label' => __('Indicative ceiling'), 'done' => $ceiling !== null, 'value' => $ceiling],
-            ['label' => __('Submitted to CRO'), 'done' => (bool) $cycle?->submitted_at, 'value' => $cycle?->submitted_total !== null ? (float) $cycle->submitted_total : null],
-            ['label' => __('CRO decision'), 'done' => $croTotal !== null, 'value' => $croTotal],
+            ['label' => \App\Support\Institution::label('Submitted to CRO'), 'done' => (bool) $cycle?->submitted_at, 'value' => $cycle?->submitted_total !== null ? (float) $cycle->submitted_total : null],
+            ['label' => \App\Support\Institution::label('CRO decision'), 'done' => $croTotal !== null, 'value' => $croTotal],
             ['label' => __('Budget law'), 'done' => (bool) $env?->hasLegalBasis(), 'value' => null],
             ['label' => __('Envelope approved'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
             ['label' => __('Distributed'), 'done' => $envApproved && $allocated > 0, 'value' => $envApproved && $allocated > 0 ? $allocated : null],
@@ -107,7 +107,7 @@ new class extends Component {
         // The best available "money in hand" figure and its honest label
         [$fundLabel, $fund] = match (true) {
             $envelope !== null => [__('Fiscal envelope'), $envelope],
-            $croTotal !== null => [__('CRO decision'), $croTotal],
+            $croTotal !== null => [\App\Support\Institution::label('CRO decision'), $croTotal],
             $ceiling !== null => [__('Indicative ceiling'), $ceiling],
             default => [__('Fiscal envelope'), null],
         };
@@ -155,7 +155,7 @@ new class extends Component {
         // ── things worth a look ──
         $watch = [];
         if ($croTotal !== null && $plan > $croTotal) {
-            $watch[] = ['tone' => 'rose', 'text' => __('The approved plan exceeds the CRO decision by :a.', ['a' => '$ ' . number_format($plan - $croTotal)]), 'url' => route('planning.budget-cycle')];
+            $watch[] = ['tone' => 'rose', 'text' => \App\Support\Institution::label('The approved plan exceeds the CRO decision by :a.', ['a' => '$ ' . number_format($plan - $croTotal)]), 'url' => route('planning.budget-cycle')];
         }
         if ($envApproved && $plan > 0 && $allocated == 0) {
             $watch[] = ['tone' => 'amber', 'text' => __('The envelope is approved but has not been distributed yet.'), 'url' => route('budget.envelope.current')];

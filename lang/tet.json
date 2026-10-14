@@ -812,5 +812,14 @@
     "Accounts are created, changed and removed by your system administrator; ask them if you need to leave the system.": "Konta kria, muda no hasai husi administradór sistema; husu nia se presiza sai husi sistema.",
     "Two-factor authentication was reset for :email. They can set it up again.": "Autentikasaun faktór rua troka ona ba :email. Nia bele konfigura fali.",
     "Reset two-factor authentication for this user? Use this when they lost their phone.": "Troka autentikasaun faktór rua uzuáriu ne'e nian? Uza bainhira nia lakon telemovel.",
-    "Reset two-factor": "Troka faktór rua"
+    "Reset two-factor": "Troka faktór rua",
+    "Submitted to: :recipient": "Submete ba: :recipient",
+    "the Ministry's budget preparation team": "ekipa prepara orsamentu Ministériu nian",
+    "Institution level": "Nivel instituisaun",
+    "A ministry": "Ministériu",
+    "The Minister gives the final approval and the plan is submitted to the CRO.": "Ministru fó aprovasaun final no planu submete ba CRO.",
+    "A directorate or gabinete inside a ministry": "Diresaun ka gabinete iha ministériu laran",
+    "The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.": "Diretór ka Xefe Gabinete fó aprovasaun final no planu bá ba ministériu.",
+    "Plan is sent to": "Planu haruka ba",
+    "The ministry or the team there that prepares the budget": "Ministériu ka ekipa iha neba ne'ebé prepara orsamentu"
 }

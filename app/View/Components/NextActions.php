@@ -62,7 +62,7 @@ class NextActions extends Component
             $approved = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->count();
             $submitted = BudgetCycle::where('fiscal_year', $year)->whereNotNull('submitted_at')->exists();
             if ($approved > 0 && ! $submitted) {
-                $this->add($approved, __('approved activities for :year have not been recorded as submitted to the CRO', ['year' => $year]), route('planning.budget-cycle'), 'amber');
+                $this->add($approved, \App\Support\Institution::label('approved activities for :year have not been recorded as submitted to the CRO', ['year' => $year]), route('planning.budget-cycle'), 'amber');
             }
         }
     }
