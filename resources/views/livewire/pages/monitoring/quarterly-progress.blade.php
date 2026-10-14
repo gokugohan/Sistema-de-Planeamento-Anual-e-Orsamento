@@ -10,7 +10,11 @@ new class extends Component {
     public $selectedActivityId = null;
     public $selectedDirectorate = null;
     public $selectedCategory = null;
+    public string $search = '';
     public $indicators = [];
+
+    /** The activity picker shows at most this many entries; the search narrows it. */
+    private const PICKER_LIMIT = 100;
     public $quarter = 1;
     public $activeYear;
 
@@ -28,8 +32,10 @@ new class extends Component {
         if (!$this->activeYear) return collect();
 
         $user = auth()->user();
+        // Only what the picker prints: a plan can hold thousands of activities.
         $query = Activity::where('fiscal_year', $this->activeYear)
-            ->with(['directorate', 'lineItems.economicClassification']);
+            ->select(['id', 'description', 'directorate_id'])
+            ->with('directorate:id,name');
 
         if (!$user->can('view_all_paa')) {
             $query->whereIn('directorate_id', \App\Models\Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? [0]);
@@ -41,7 +47,19 @@ new class extends Component {
             $query->whereHas('lineItems', fn($q) => $q->where('economic_classification_id', $this->selectedCategory));
         }
 
-        return $query->get();
+        if ($this->search !== '') {
+            $term = '%'.str_replace(['%', '_'], ['\\%', '\\_'], $this->search).'%';
+            $query->where(fn ($w) => $w->where('description', 'like', $term)->orWhere('code', 'like', $term));
+        }
+
+        // One more than the limit tells the page whether the list was cut.
+        return $query->orderBy('directorate_id')->orderBy('id')->limit(self::PICKER_LIMIT + 1)->get();
+    }
+
+    public function updatedSearch(): void
+    {
+        $this->selectedActivityId = null;
+        $this->indicators = [];
     }
 
     public function updatedSelectedActivityId(): void
@@ -230,15 +248,31 @@ new class extends Component {
                 </div>
             </div>
 
+            @php
+                $pickable = $this->activities;
+                $cut = $pickable->count() > 100;
+                $pickable = $pickable->take(100);
+            @endphp
             <div>
                 <x-input-label for="activity" :value="__('Select Activity for Entry')" class="text-xs font-semibold text-zinc-400 mb-2" />
+                <input type="search" wire:model.live.debounce.300ms="search" aria-label="{{ __('Search') }}" placeholder="{{ __('Search by code or description') }}"
+                    class="mb-2 block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm text-zinc-700">
                 <select id="activity" wire:model.live="selectedActivityId"
                     class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
                     <option value="">-- {{ __('Choose an activity to update progress') }} --</option>
-                    @foreach($this->activities as $activity)
+                    @if($selectedActivityId && ! $pickable->contains('id', (int) $selectedActivityId))
+                        @php $current = $this->activities->firstWhere('id', (int) $selectedActivityId) ?? \App\Models\Activity::select(['id', 'description', 'directorate_id'])->with('directorate:id,name')->find($selectedActivityId); @endphp
+                        @if($current)
+                            <option value="{{ $current->id }}">[{{ $current->directorate->name ?? '—' }}] {{ str($current->description)->limit(120) }}</option>
+                        @endif
+                    @endif
+                    @foreach($pickable as $activity)
                         <option value="{{ $activity->id }}">[{{ $activity->directorate->name ?? '—' }}] {{ str($activity->description)->limit(120) }}</option>
                     @endforeach
                 </select>
+                @if($cut)
+                    <p class="mt-2 text-xs text-zinc-500">{{ __('Showing the first :n activities. Use the search to find others.', ['n' => 100]) }}</p>
+                @endif
             </div>
         </div>
 

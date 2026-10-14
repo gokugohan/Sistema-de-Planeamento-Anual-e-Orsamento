@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApprovedPlanReportController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\PlanBreakdownController;
 use App\Models\Activity;
 use App\Models\FiscalEnvelope;
 use App\Models\SystemSetting;
@@ -76,6 +77,10 @@ Route::get('planning/budget-cycle', function () {
 Route::get('reports/paa', function () {
     return view('reports.paa');
 })->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');
+
+// The activities of one programme and category, fetched when that row is expanded.
+Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activities'])
+    ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa.activities');
 
 Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');

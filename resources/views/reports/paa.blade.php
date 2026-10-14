@@ -14,7 +14,8 @@
     // Every figure on this page is added up by the database (see PlanBreakdown), never in loops over records.
     $breakdown = app(App\Services\PlanBreakdown::class);
     $unitTotals = $breakdown->unitTotals($selectedYear);
-    $programmes = $breakdown->programmes($selectedYear);
+    $full = request()->boolean('full');
+    $programmes = $breakdown->programmes($selectedYear, withActivities: $full);
 @endphp
 
 <x-app-layout title="{{ __('Reporting') }}">
@@ -42,7 +43,7 @@
                 </div>
             </div>
             <div class="flex gap-3">
-                <x-ui.button variant="secondary" size="md" onclick="exportToCSV()"
+                <x-ui.button variant="secondary" size="md" onclick="withFullReport('export')"
                     class="!rounded-xl border border-zinc-200">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
@@ -56,7 +57,7 @@
                 <x-ui.button variant="primary" size="md" href="{{ route('reports.approved-plan', ['year' => $selectedYear]) }}" class="!rounded-xl">
                     {{ __('Approved plan for CRO (PDF)') }}
                 </x-ui.button>
-                <x-ui.button variant="black" shadow="lg" onclick="window.print()" class="!rounded-xl px-8">
+                <x-ui.button variant="black" shadow="lg" onclick="withFullReport('print')" class="!rounded-xl px-8">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
                         class="mr-2">
@@ -438,6 +439,7 @@
 
                                         {{-- Level 2: Economic Classification (Matches Level 2 Unit style) --}}
                                         <tr id="{{ $classRowId }}" data-parent="{{ $progRowId }}"
+                                            @unless($full) data-activities-url="{{ route('reports.paa.activities', ['year' => $selectedYear, 'program' => $program->id, 'class' => $classId, 'parent' => $classRowId]) }}" @endunless
                                             class="tree-row hover:bg-zinc-50/50 transition-colors border-l-4 border-l-transparent hidden print:table-row">
                                             <td class="px-8 py-3 font-bold text-zinc-700" style="padding-left: 4.5rem;">
                                                 <div class="flex items-center gap-3">
@@ -477,60 +479,9 @@
                                                 {{ number_format($classDiff, 2) }}</td>
                                         </tr>
 
-                                        @foreach($classRow['activities'] as $activityRow)
-                                            @php
-                                                $activity = $activityRow['activity'];
-                                                $actPlanned = $activityRow['planned'];
-                                                $actApproved = $activityRow['approved'];
-                                                $actDiff = $actPlanned - $actApproved;
-                                            @endphp
-
-                                            {{-- Level 3: Activity (Matches Level 3 Unit style) --}}
-                                            <tr data-parent="{{ $classRowId }}"
-                                                class="tree-row hover:bg-zinc-50/30 transition-colors hidden print:table-row border-l-4 border-l-transparent">
-                                                <td class="px-8 py-4 border-none" style="padding-left: 7.5rem;">
-                                                    <div class="flex items-start gap-3">
-                                                        <div class="mt-1 text-zinc-200">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"
-                                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                                                <line x1="12" y1="5" x2="12" y2="19" />
-                                                                <line x1="5" y1="12" x2="19" y2="12" />
-                                                            </svg>
-                                                        </div>
-                                                        <div>
-                                                            <div class="font-bold text-zinc-800 leading-tight text-xs">
-                                                                {{ $activity->description }}</div>
-                                                            <div
-                                                                class="text-xs font-semibold text-zinc-400 mt-1">
-                                                                <span
-                                                                    class="text-indigo-500">{{ $activity->directorate->code ?? 'N/A' }}</span>
-                                                                • {{ __('Priority') }}: {{ __($activity->priority) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-8 py-4 text-xs text-zinc-500 border-none">
-                                                    <ul class="space-y-1.5 list-none">
-                                                        @foreach($activityRow['indicators'] as $indicator)
-                                                            <li class="flex items-start gap-2">
-                                                                <div class="w-1 h-1 bg-indigo-300 rounded-full mt-1.5 shrink-0"></div>
-                                                                <span>{{ $indicator->name }}: <b
-                                                                        class="text-zinc-700">{{ number_format($indicator->annual_target, 0) }}
-                                                                        {{ $indicator->unit }}</b></span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </td>
-                                                <td class="px-8 py-4 text-right font-medium text-zinc-500 border-none">$
-                                                    {{ number_format($actPlanned, 2) }}</td>
-                                                <td class="px-8 py-4 text-right font-bold text-emerald-600 border-none">$
-                                                    {{ number_format($actApproved, 2) }}</td>
-                                                <td
-                                                    class="px-8 py-4 text-right font-bold border-none {{ $actDiff > 0 ? 'text-rose-600' : 'text-zinc-400' }}">
-                                                    $ {{ number_format($actDiff, 2) }}</td>
-                                            </tr>
-                                        @endforeach
+                                        @if($full)
+                                            @include('reports.partials.paa-activity-rows', ['rows' => $classRow['activities'], 'classRowId' => $classRowId])
+                                        @endif
                                     @endforeach
                                 @endforeach
                             </tbody>
@@ -564,10 +515,41 @@
     </div>
 
     <script>
-        function toggleTree(rowId) {
+        const fullReport = @json($full);
+
+        // Export and print need every activity on the page: reopen the report in full mode and do it there.
+        function withFullReport(action) {
+            if (fullReport) return action === 'print' ? window.print() : exportToCSV();
+            const url = new URL(window.location.href);
+            url.searchParams.set('full', '1');
+            url.searchParams.set('do', action);
+            window.location.href = url.toString();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const action = new URLSearchParams(window.location.search).get('do');
+            if (fullReport && action) setTimeout(() => action === 'print' ? window.print() : exportToCSV(), 300);
+        });
+
+        // A category's activities are fetched the first time it is expanded.
+        async function loadActivities(row) {
+            if (!row.dataset.activitiesUrl || row.dataset.loaded) return;
+            row.dataset.loaded = 'loading';
+            try {
+                const response = await fetch(row.dataset.activitiesUrl, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+                if (!response.ok) throw new Error(response.status);
+                row.insertAdjacentHTML('afterend', await response.text());
+                row.dataset.loaded = '1';
+            } catch (e) {
+                delete row.dataset.loaded;
+            }
+        }
+
+        async function toggleTree(rowId) {
             const row = document.getElementById(rowId);
             const button = row.querySelector('.tree-toggle-btn svg');
             const isExpanded = button.classList.contains('rotate-90');
+            if (!isExpanded) await loadActivities(row);
 
             // Toggle chevron rotation
             button.classList.toggle('rotate-90');

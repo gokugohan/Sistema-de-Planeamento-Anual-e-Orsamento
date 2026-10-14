@@ -4,7 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\AdjustedBudget;
 use App\Models\Directorate;
+use App\Models\EconomicClassification;
 use App\Models\LineItem;
+use App\Models\Program;
+use App\Models\User;
 use App\Services\PlanBreakdown;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -61,5 +64,38 @@ class PlanBreakdownTest extends TestCase
 
         $this->assertCount(0, app(PlanBreakdown::class)->programmes(2019));
         $this->assertSame(0.0, app(PlanBreakdown::class)->approvedTotal(2019));
+    }
+
+    private function adminWithSample(): User
+    {
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+        $admin = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $admin->assignRole('Admin');
+        $this->actingAs($admin);
+
+        return $admin;
+    }
+
+    public function test_the_report_only_prints_activities_when_asked_to(): void
+    {
+        $this->adminWithSample();
+        $name = 'Plataforma única de serviços digitais do Governo';
+
+        $this->get('/reports/paa?year=2026')->assertOk()->assertDontSee($name)->assertSee('data-activities-url', false);
+        $this->get('/reports/paa?year=2026&full=1')->assertOk()->assertSee($name);
+    }
+
+    public function test_the_activities_of_a_category_load_on_demand(): void
+    {
+        $this->adminWithSample();
+        $program = Program::where('oge_code', 'A08')->firstOrFail();
+        $class = EconomicClassification::where('code', '20')->firstOrFail();
+
+        $this->get('/reports/paa/activities?'.http_build_query(['year' => 2026, 'program' => $program->id, 'class' => $class->id, 'parent' => 'prog-1-class-1']))
+            ->assertOk()
+            ->assertSee('Plataforma única de serviços digitais do Governo')
+            ->assertSee('data-parent="prog-1-class-1"', false);
+
+        $this->get('/reports/paa/activities?year=2026&program=1&class=1&parent='.urlencode('"><script>'))->assertSessionHasErrors('parent');
     }
 }
