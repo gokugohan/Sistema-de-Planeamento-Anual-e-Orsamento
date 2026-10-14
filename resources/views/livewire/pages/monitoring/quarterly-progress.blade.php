@@ -215,7 +215,7 @@ new class extends Component {
                 <div>
                     <x-input-label for="quarter" :value="__('Select Trimestre')" class="text-xs font-semibold text-zinc-400 mb-2" />
                     <select id="quarter" wire:model.live="quarter"
-                        class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
+                        class="flux-input">
                         <option value="1">{{ __('1st Quarter (Jan-Mar)') }}</option>
                         <option value="2">{{ __('2nd Quarter (Apr-Jun)') }}</option>
                         <option value="3">{{ __('3rd Quarter (Jul-Sep)') }}</option>
@@ -227,7 +227,7 @@ new class extends Component {
                     <div>
                         <x-input-label for="directorate" :value="__('Filter by Directorate')" class="text-xs font-semibold text-zinc-400 mb-2" />
                         <select id="directorate" wire:model.live="selectedDirectorate"
-                            class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
+                            class="flux-input">
                             <option value="">{{ __('All Directorates') }}</option>
                             @foreach(\App\Models\Directorate::orderBy('name')->get() as $dir)
                                 <option value="{{ $dir->id }}">{{ $dir->name }}</option>
@@ -239,7 +239,7 @@ new class extends Component {
                 <div>
                     <x-input-label for="category" :value="__('Filter by Category')" class="text-xs font-semibold text-zinc-400 mb-2" />
                     <select id="category" wire:model.live="selectedCategory"
-                        class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
+                        class="flux-input">
                         <option value="">{{ __('All Categories') }}</option>
                         @foreach(\App\Models\EconomicClassification::orderBy('name')->get() as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -258,7 +258,7 @@ new class extends Component {
                 <input type="search" wire:model.live.debounce.300ms="search" aria-label="{{ __('Search') }}" placeholder="{{ __('Search by code or description') }}"
                     class="mb-2 block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm text-zinc-700">
                 <select id="activity" wire:model.live="selectedActivityId"
-                    class="block w-full border-none bg-zinc-50 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 rounded-xl text-sm font-bold text-zinc-700 transition-all">
+                    class="flux-input">
                     <option value="">-- {{ __('Choose an activity to update progress') }} --</option>
                     @if($selectedActivityId && ! $pickable->contains('id', (int) $selectedActivityId))
                         @php $current = $this->activities->firstWhere('id', (int) $selectedActivityId) ?? \App\Models\Activity::select(['id', 'description', 'directorate_id'])->with('directorate:id,name')->find($selectedActivityId); @endphp

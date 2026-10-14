@@ -438,30 +438,10 @@ new class extends Component {
 
     <!-- Modal Form -->
     @if($modalOpen)
-        <div
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div
-                class="relative w-full max-w-2xl bg-white rounded-lg shadow-sm overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
-                <!-- Header -->
-                <div class="flex flex-col gap-1 p-6 border-b text-center sm:text-left">
-                    <h2 class="text-lg font-bold leading-none tracking-tight">
-                        {{ $isEditing ? __('Edit Fiscal Envelope :year', ['year' => $fiscalYear]) : __('Create New Fiscal Envelope') }}
-                    </h2>
-                    <p class="text-sm text-gray-500">
-                        {{ $isEditing ? __('Update the details for the fiscal year OGE allocation') : __('Enter the details for the new fiscal year OGE allocation') }}
-                    </p>
-                    <button wire:click="$set('modalOpen', false)"
-                        class="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" x2="6" y1="6" y2="18" />
-                            <line x1="6" x2="18" y1="6" y2="18" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Scrollable Content -->
-                <div class="p-6 space-y-6 overflow-y-auto">
+        <x-dialog max-width="2xl" close="$set('modalOpen', false)">
+<x-slot:title>{{ $isEditing ? __('Edit Fiscal Envelope :year', ['year' => $fiscalYear]) : __('Create New Fiscal Envelope') }}</x-slot:title>
+<x-slot:subtitle>{{ $isEditing ? __('Update the details for the fiscal year OGE allocation') : __('Enter the details for the new fiscal year OGE allocation') }}</x-slot:subtitle>
+<div class="p-6 space-y-6">
                     {{-- Basic Information --}}
                     <div class="space-y-4">
                         <h3 class="font-semibold text-gray-900 border-b pb-2">{{ __('Basic Information') }}</h3>
@@ -471,7 +451,7 @@ new class extends Component {
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Fiscal Year') }}
                                     *</label>
                                 <input type="number" wire:model="fiscalYear" {{ $isEditing ? 'disabled' : '' }}
-                                    class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                    class="flux-input"
                                     placeholder="2026">
                                 @error('fiscalYear') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
@@ -480,7 +460,7 @@ new class extends Component {
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Total Envelope Amount') }}
                                     *</label>
                                 <input type="number" step="0.01" wire:model.live="totalAmount"
-                                    class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                    class="flux-input"
                                     placeholder="50000000">
                                 @error('totalAmount') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
@@ -491,7 +471,7 @@ new class extends Component {
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Approval Date') }}
                                     *</label>
                                 <input type="date" wire:model="approvedDate"
-                                    class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
+                                    class="flux-input">
                                 @error('approvedDate') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                             <div class="space-y-2">
@@ -499,7 +479,7 @@ new class extends Component {
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Approval Reference') }}
                                     *</label>
                                 <input type="text" wire:model="referenceNumber"
-                                    class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                    class="flux-input"
                                     placeholder="OGE/2027/001">
                                 @error('referenceNumber') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
@@ -511,7 +491,7 @@ new class extends Component {
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Start Date') }}
                                     *</label>
                                 <input type="date" wire:model="startDate"
-                                    class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
+                                    class="flux-input">
                                 @error('startDate') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                             <div class="space-y-2">
@@ -519,7 +499,7 @@ new class extends Component {
                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{{ __('Due Date') }}
                                     *</label>
                                 <input type="date" wire:model="dueDate"
-                                    class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
+                                    class="flux-input">
                                 @error('dueDate') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -532,13 +512,13 @@ new class extends Component {
                             </p>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">{{ \App\Support\Institution::isMinistry() ? __('State Budget law') : __('Reference of the ministry\'s decision') }}</label>
-                                    <input type="text" wire:model="budgetLawReference" placeholder="Lei n.º __/2026" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                                    <label class="field-label" for="f-budgetLawReference">{{ \App\Support\Institution::isMinistry() ? __('State Budget law') : __('Reference of the ministry\'s decision') }}</label>
+<input id="f-budgetLawReference" type="text" wire:model="budgetLawReference" placeholder="Lei n.º __/2026" class="flux-input">
                                     @error('budgetLawReference') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="space-y-2">
-                                    <label class="text-sm font-medium leading-none">{{ \App\Support\Institution::isMinistry() ? __('Promulgation date') : __('Date of the decision') }}</label>
-                                    <input type="date" wire:model="promulgationDate" class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+                                    <label class="field-label" for="f-promulgationDate">{{ \App\Support\Institution::isMinistry() ? __('Promulgation date') : __('Date of the decision') }}</label>
+<input id="f-promulgationDate" type="date" wire:model="promulgationDate" class="flux-input">
                                     @error('promulgationDate') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -574,7 +554,7 @@ new class extends Component {
                                     </label>
                                     <input type="number" step="0.01"
                                         wire:model.live="categoryAllocations.{{ $classification->id }}"
-                                        class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                        class="flux-input"
                                         placeholder="0">
                                     <p class="text-xs text-gray-400">{{ __($classification->description) }}</p>
                                 </div>
@@ -604,19 +584,12 @@ new class extends Component {
 
                 </div>
 
-                <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end p-6 border-t bg-gray-50">
-                    <button wire:click="$set('modalOpen', false)"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-white text-gray-900 shadow-sm hover:bg-gray-100 h-9 px-4 py-2">
-                        {{ __('Cancel') }}
-                    </button>
-                    <button wire:click="save"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-indigo-600 text-white shadow hover:bg-indigo-700 h-9 px-4 py-2">
-                        {{ $isEditing ? __('Save Changes') : __('Create Fiscal Envelope') }}
-                    </button>
-                </div>
-            </div>
-        </div>
-    @endif
+                <div class="flex flex-col-reverse gap-2 border-t border-zinc-200 bg-zinc-50 p-6 sm:flex-row sm:justify-end">
+<x-ui.button type="button" variant="secondary" wire:click="$set('modalOpen', false)">{{ __('Cancel') }}</x-ui.button>
+<x-ui.button wire:click="save">{{ $isEditing ? __('Save Changes') : __('Create Fiscal Envelope') }}</x-ui.button>
+</div>
+</x-dialog>
+@endif
 
     <!-- Redistribution Confirmation Modal -->
     @if($redistributionModalOpen)

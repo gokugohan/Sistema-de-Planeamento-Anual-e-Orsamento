@@ -108,93 +108,67 @@
 
 {{-- Program Modal --}}
 @if($programModalOpen)
-    <div
-        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-        <div
-            class="bg-white w-full max-w-2xl rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-300">
-            <div class="p-8 border-b border-zinc-50 flex justify-between items-center bg-zinc-50/30">
-                <div>
-                    <h3 class="text-xl font-semibold text-zinc-900 italic tracking-tight">
-                        {{ $isProgramEditing ? __('Update Program') : __('Create Program') }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 font-bold mt-1">
-                        {{ __('Program Registry Management') }}
-                    </p>
-                </div>
-                <button wire:click="$set('programModalOpen', false)"
-                    class="p-2 hover:bg-zinc-200/50 rounded-full transition-colors text-zinc-400 hover:text-zinc-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
+    <x-dialog max-width="2xl" close="$set('programModalOpen', false)">
+<x-slot:title>{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-slot:title>
+<x-slot:subtitle>{{ __('Program Registry Management') }}</x-slot:subtitle>
 
-            <form wire:submit="saveProgram" class="p-8 space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Program Code') }}</label>
-                        <input type="text" wire:model="programCode"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-semibold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all "
+            <form wire:submit="saveProgram" class="p-6 space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="field-label" for="f-programCode">{{ __('Program Code') }}</label>
+<input id="f-programCode" type="text" wire:model="programCode"
+                            class="flux-input"
                             placeholder="e.g. PROG01">
                         <x-input-error :messages="$errors->get('programCode')" />
                     </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Program Name') }}</label>
-                        <input type="text" wire:model="programName"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                    <div>
+                        <label class="field-label" for="f-programName">{{ __('Program Name') }}</label>
+<input id="f-programName" type="text" wire:model="programName"
+                            class="flux-input"
                             placeholder="e.g. Education Development">
                         <x-input-error :messages="$errors->get('programName')" />
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('OGE Code') }}</label>
-                        <input type="text" wire:model="ogeCode"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="field-label" for="f-ogeCode">{{ __('OGE Code') }}</label>
+<input id="f-ogeCode" type="text" wire:model="ogeCode"
+                            class="flux-input"
                             placeholder="Optional">
                         <x-input-error :messages="$errors->get('ogeCode')" />
                     </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Program Manager') }}</label>
-                        <input type="text" wire:model="managerName"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                    <div>
+                        <label class="field-label" for="f-managerName">{{ __('Program Manager') }}</label>
+<input id="f-managerName" type="text" wire:model="managerName"
+                            class="flux-input"
                             placeholder="Full name">
                         <x-input-error :messages="$errors->get('managerName')" />
                     </div>
                 </div>
 
-                <div class="space-y-2">
-                    <label
-                        class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Objective') }}</label>
-                    <textarea wire:model="objective" rows="3"
-                        class="w-full p-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                <div>
+                    <label class="field-label" for="f-objective">{{ __('Objective') }}</label>
+<textarea id="f-objective" wire:model="objective" rows="3"
+                        class="flux-input"
                         placeholder="Program objectives and goals..."></textarea>
                     <x-input-error :messages="$errors->get('objective')" />
                 </div>
 
-                <div class="space-y-2">
-                    <label
-                        class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Key Performance Indicators') }}</label>
-                    <textarea wire:model="kpis" rows="2"
-                        class="w-full p-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                <div>
+                    <label class="field-label" for="f-kpis">{{ __('Key Performance Indicators') }}</label>
+<textarea id="f-kpis" wire:model="kpis" rows="2"
+                        class="flux-input"
                         placeholder="KPIs for measuring success..."></textarea>
                     <x-input-error :messages="$errors->get('kpis')" />
                 </div>
 
                 <div class="flex items-center gap-4 pt-4">
                     <x-ui.button type="button" wire:click="$set('programModalOpen', false)" variant="secondary"
-                        class="flex-1 !py-4 !rounded-xl border border-zinc-200">{{ __('Go Back') }}</x-ui.button>
-                    <x-ui.button type="submit" variant="black" shadow="xl"
-                        class="flex-1 !py-4 !rounded-xl">{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-ui.button>
+                        class="flex-1">{{ __('Go Back') }}</x-ui.button>
+                    <x-ui.button type="submit" variant="primary"
+                        class="flex-1">{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-ui.button>
                 </div>
             </form>
-        </div>
-    </div>
+</x-dialog>
 @endif

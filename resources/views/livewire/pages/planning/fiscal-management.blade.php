@@ -370,70 +370,43 @@ new class extends Component {
 
     <!-- Create Context Modal -->
     @if($showCreateModal)
-        <div class="fixed inset-0 z-[100] flex items-center justify-center p-6 sm:p-24 bg-zinc-900/60 backdrop-blur-sm animate-in fade-in transition-all">
-            <div class="bg-white rounded-xl shadow-sm w-full max-w-2xl overflow-hidden border border-white/20 relative">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-[80px] -mr-32 -mt-32"></div>
-                
-                <div class="px-12 py-10 border-b border-zinc-50 flex justify-between items-center relative z-10">
+        <x-dialog max-width="xl" close="$set('showCreateModal', false)">
+            <x-slot:title>{{ __('Establish Context') }}</x-slot:title>
+            <x-slot:subtitle>{{ __('Seeding new fiscal authority cycle') }}</x-slot:subtitle>
+
+            <form wire:submit="createEnvelope" class="p-6 space-y-5">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                        <h3 class="text-3xl font-semibold text-zinc-900 italic ">{{ __('Establish Context') }}</h3>
-                        <p class="text-xs font-semibold text-zinc-400 mt-2">
-                            {{ __('Seeding new fiscal authority cycle') }}</p>
+                        <label class="field-label" for="f-newYear">{{ __('Fiscal Year') }}</label>
+                        <input id="f-newYear" type="number" wire:model="newYear" class="flux-input">
                     </div>
-                    <button wire:click="$set('showCreateModal', false)"
-                        class="w-12 h-12 flex items-center justify-center bg-zinc-50 hover:bg-zinc-100 rounded-full text-zinc-400 transition-all group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:rotate-90 transition-transform duration-500">
-                            <path d="M18 6 6 18" />
-                            <path d="m6 6 12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="p-12 space-y-10 relative z-10">
-                    <div class="grid grid-cols-2 gap-10">
-                        <div class="space-y-3">
-                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Fiscal Year') }}</label>
-                            <input type="number" wire:model="newYear"
-                                class="w-full bg-zinc-50 border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-semibold text-zinc-900 p-4 transition-all shadow-inner">
-                        </div>
-                        <div class="space-y-3">
-                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Global Ceiling ($)') }}</label>
-                            <input type="number" wire:model="newAmount"
-                                class="w-full bg-zinc-50 border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-semibold text-zinc-900 p-4 transition-all shadow-inner">
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Operational Reference') }}</label>
-                        <input type="text" wire:model="newTitle"
-                            class="w-full bg-zinc-50 border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-semibold text-zinc-900 p-4 transition-all shadow-inner"
-                            placeholder="e.g. OGE 2026 Phase A">
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-10 pt-6">
-                        <div class="space-y-3">
-                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Cycle Start') }}</label>
-                            <input type="date" wire:model="newStart"
-                                class="w-full bg-zinc-50 border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold p-4 shadow-inner">
-                        </div>
-                        <div class="space-y-3">
-                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Final Submission Due') }}</label>
-                            <input type="date" wire:model="newDue"
-                                class="w-full bg-zinc-50 border-transparent rounded-xl focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-500 font-bold p-4 shadow-inner">
-                        </div>
+                    <div>
+                        <label class="field-label" for="f-newAmount">{{ __('Global Ceiling ($)') }}</label>
+                        <input id="f-newAmount" type="number" wire:model="newAmount" class="flux-input">
                     </div>
                 </div>
 
-                <div class="px-12 py-8 bg-zinc-50/50 flex justify-end gap-6 border-t border-zinc-50 relative z-10">
-                    <button wire:click="$set('showCreateModal', false)"
-                        class="px-8 py-4 text-xs font-semibold text-zinc-400 hover:text-zinc-900 transition-colors">{{ __('Cancel') }}</button>
-                    <button wire:click="createEnvelope"
-                        class="px-12 py-4 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 transition-all shadow-sm hover:">
-                        {{ __('Initialize Cycle') }}
-                    </button>
+                <div>
+                    <label class="field-label" for="f-newTitle">{{ __('Operational Reference') }}</label>
+                    <input id="f-newTitle" type="text" wire:model="newTitle" class="flux-input" placeholder="e.g. OGE 2026 Phase A">
                 </div>
-            </div>
-        </div>
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                        <label class="field-label" for="f-newStart">{{ __('Cycle Start') }}</label>
+                        <input id="f-newStart" type="date" wire:model="newStart" class="flux-input">
+                    </div>
+                    <div>
+                        <label class="field-label" for="f-newDue">{{ __('Final Submission Due') }}</label>
+                        <input id="f-newDue" type="date" wire:model="newDue" class="flux-input">
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 border-t border-zinc-200 pt-5">
+                    <x-ui.button type="button" variant="secondary" wire:click="$set('showCreateModal', false)">{{ __('Cancel') }}</x-ui.button>
+                    <x-ui.button type="submit">{{ __('Initialize Cycle') }}</x-ui.button>
+                </div>
+            </form>
+        </x-dialog>
     @endif
 </div>

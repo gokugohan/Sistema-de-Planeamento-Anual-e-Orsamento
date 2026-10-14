@@ -99,7 +99,7 @@ new class extends Component {
 
         <div class="flex gap-4 items-center">
             <select wire:model.live="quarter" aria-label="{{ __('Select Trimestre') }}"
-                class="bg-white border-none shadow-sm rounded-xl text-xs font-semibold text-zinc-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
+                class="flux-input !w-auto">
                 <option value="1">{{ __('Q1 (Jan-Mar)') }}</option>
                 <option value="2">{{ __('Q2 (Apr-Jun)') }}</option>
                 <option value="3">{{ __('Q3 (Jul-Sep)') }}</option>
@@ -108,7 +108,7 @@ new class extends Component {
 
             @if(auth()->user()->can('view_all_paa'))
                 <select wire:model.live="selectedDirectorate" aria-label="{{ __('Filter by Directorate') }}"
-                    class="bg-white border-none shadow-sm rounded-xl text-xs font-semibold text-zinc-900 focus:ring-2 focus:ring-indigo-600/20 py-2.5 pl-4 pr-10">
+                    class="flux-input !w-auto">
                     <option value="">{{ __('All Directorates') }}</option>
                     @foreach(\App\Models\Directorate::all() as $dir)
                         <option value="{{ $dir->id }}">{{ $dir->name }}</option>

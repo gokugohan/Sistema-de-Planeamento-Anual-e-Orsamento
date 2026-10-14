@@ -89,76 +89,52 @@
 
 {{-- Classification Modal --}}
 @if($classificationModalOpen)
-    <div
-        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-        <div
-            class="bg-white w-full max-w-2xl rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-300">
-            <div class="p-8 border-b border-zinc-50 flex justify-between items-center bg-zinc-50/30">
-                <div>
-                    <h3 class="text-xl font-semibold text-zinc-900 italic tracking-tight">
-                        {{ $isClassificationEditing ? __('Update Economic Classification') : __('Create Economic Classification') }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 font-bold mt-1">
-                        {{ __('Economic Classification Management') }}
-                    </p>
-                </div>
-                <button wire:click="$set('classificationModalOpen', false)"
-                    class="p-2 hover:bg-zinc-200/50 rounded-full transition-colors text-zinc-400 hover:text-zinc-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
+    <x-dialog max-width="2xl" close="$set('classificationModalOpen', false)">
+<x-slot:title>{{ $isClassificationEditing ? __('Update Economic Classification') : __('Create Economic Classification') }}</x-slot:title>
+<x-slot:subtitle>{{ __('Economic Classification Management') }}</x-slot:subtitle>
 
-            <form wire:submit="saveClassification" class="p-8 space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Classification Code') }}</label>
-                        <input type="text" wire:model="classificationCode"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-semibold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all "
+            <form wire:submit="saveClassification" class="p-6 space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="field-label" for="f-classificationCode">{{ __('Classification Code') }}</label>
+<input id="f-classificationCode" type="text" wire:model="classificationCode"
+                            class="flux-input"
                             placeholder="e.g. 2.1.1">
                         <x-input-error :messages="$errors->get('classificationCode')" />
                     </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Classification Name') }}</label>
-                        <input type="text" wire:model="classificationName"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                    <div>
+                        <label class="field-label" for="f-classificationName">{{ __('Classification Name') }}</label>
+<input id="f-classificationName" type="text" wire:model="classificationName"
+                            class="flux-input"
                             placeholder="e.g. Personnel Expenses">
                         <x-input-error :messages="$errors->get('classificationName')" />
                     </div>
                 </div>
 
-                <div class="space-y-2">
-                    <label
-                        class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Classification Type') }}</label>
-                    <select wire:model="classificationType"
-                        class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
+                <div>
+                    <label class="field-label" for="f-classificationType">{{ __('Classification Type') }}</label>
+<select id="f-classificationType" wire:model="classificationType"
+                        class="flux-input">
                         <option value="Expense">{{ __('Expense') }}</option>
                         <option value="Revenue">{{ __('Revenue') }}</option>
                     </select>
                     <x-input-error :messages="$errors->get('classificationType')" />
                 </div>
 
-                <div class="space-y-2">
-                    <label
-                        class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Description') }}</label>
-                    <textarea wire:model="classificationDescription" rows="4"
-                        class="w-full p-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                <div>
+                    <label class="field-label" for="f-classificationDescription">{{ __('Description') }}</label>
+<textarea id="f-classificationDescription" wire:model="classificationDescription" rows="4"
+                        class="flux-input"
                         placeholder="Classification description and usage guidelines..."></textarea>
                     <x-input-error :messages="$errors->get('classificationDescription')" />
                 </div>
 
                 <div class="flex items-center gap-4 pt-4">
                     <x-ui.button type="button" wire:click="$set('classificationModalOpen', false)" variant="secondary"
-                        class="flex-1 !py-4 !rounded-xl border border-zinc-200">{{ __('Go Back') }}</x-ui.button>
-                    <x-ui.button type="submit" variant="black" shadow="xl"
-                        class="flex-1 !py-4 !rounded-xl">{{ $isClassificationEditing ? __('Update Classification') : __('Create Classification') }}</x-ui.button>
+                        class="flex-1">{{ __('Go Back') }}</x-ui.button>
+                    <x-ui.button type="submit" variant="primary"
+                        class="flex-1">{{ $isClassificationEditing ? __('Update Classification') : __('Create Classification') }}</x-ui.button>
                 </div>
             </form>
-        </div>
-    </div>
+</x-dialog>
 @endif

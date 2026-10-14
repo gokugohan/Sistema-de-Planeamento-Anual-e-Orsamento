@@ -204,7 +204,7 @@ new class extends Component {
 
         <div class="flex items-center gap-3">
             @if($tab === 'users')
-                <x-ui.button wire:click="openModal()" variant="black" shadow="lg">
+                <x-ui.button wire:click="openModal()" variant="primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -262,29 +262,11 @@ new class extends Component {
 
     <!-- User Form Modal -->
     @if($modalOpen)
-        <div
-            class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-            <div class="bg-white w-full max-w-lg rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-300">
-                <div class="p-8 border-b border-gray-50">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-900">
-                                {{ $isEditing ? __('Edit User') : __('Create New User') }}</h3>
-                            <p class="text-xs text-gray-500 mt-1 font-bold">
-                                {{ __('User Profile & Access') }}</p>
-                        </div>
-                        <button wire:click="$set('modalOpen', false)"
-                            class="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-black">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18" />
-                                <line x1="6" y1="6" x2="18" y2="18" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+        <x-dialog max-width="lg" close="$set('modalOpen', false)">
+<x-slot:title>{{ $isEditing ? __('Edit User') : __('Create New User') }}</x-slot:title>
+<x-slot:subtitle>{{ __('User Profile & Access') }}</x-slot:subtitle>
 
-                <form wire:submit="saveUser" class="p-8 space-y-6">
+                <form wire:submit="saveUser" class="p-6 space-y-5">
                     <div class="space-y-4">
                         <div class="space-y-2">
                             <x-input-label for="modal_name" :value="__('Full Name')"
@@ -337,12 +319,11 @@ new class extends Component {
                         <x-ui.button type="button" wire:click="$set('modalOpen', false)" variant="ghost">
                             {{ __('Cancel') }}
                         </x-ui.button>
-                        <x-ui.button type="submit" variant="black" shadow="lg">
+                        <x-ui.button type="submit" variant="primary">
                             {{ $isEditing ? __('Confirm Changes') : __('Onboard Personnel') }}
                         </x-ui.button>
                     </div>
                 </form>
-            </div>
-        </div>
-    @endif
+</x-dialog>
+@endif
 </div>

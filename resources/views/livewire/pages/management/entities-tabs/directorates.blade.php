@@ -128,55 +128,33 @@
 
 <!-- CRUD Modal -->
 @if($modalOpen)
-    <div
-        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-        <div
-            class="bg-white w-full max-w-2xl rounded-xl shadow-sm overflow-hidden animate-in zoom-in-95 duration-300">
-            <div class="p-8 border-b border-zinc-50 flex justify-between items-center bg-zinc-50/30">
-                <div>
-                    <h3 class="text-xl font-semibold text-zinc-900 italic tracking-tight">
-                        {{ $isEditing ? __('Update Structural Unit') : __('Create Structural Unit') }}
-                    </h3>
-                    <p class="text-xs text-zinc-400 font-bold mt-1">
-                        {{ __('Core Infrastructure Node Definition') }}
-                    </p>
-                </div>
-                <button wire:click="$set('modalOpen', false)"
-                    class="p-2 hover:bg-zinc-200/50 rounded-full transition-colors text-zinc-400 hover:text-zinc-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
+    <x-dialog max-width="2xl" close="$set('modalOpen', false)">
+<x-slot:title>{{ $isEditing ? __('Update Structural Unit') : __('Create Structural Unit') }}</x-slot:title>
+<x-slot:subtitle>{{ __('Core Infrastructure Node Definition') }}</x-slot:subtitle>
 
-            <form wire:submit="saveDirectorate" class="p-8 space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Unit Code') }}</label>
-                        <input type="text" wire:model="code"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-semibold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all "
+            <form wire:submit="saveDirectorate" class="p-6 space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="field-label" for="f-code">{{ __('Unit Code') }}</label>
+<input id="f-code" type="text" wire:model="code"
+                            class="flux-input"
                             placeholder="e.g. DGPL">
                         <x-input-error :messages="$errors->get('code')" />
                     </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Unit Name') }}</label>
-                        <input type="text" wire:model="name"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                    <div>
+                        <label class="field-label" for="f-name">{{ __('Unit Name') }}</label>
+<input id="f-name" type="text" wire:model="name"
+                            class="flux-input"
                             placeholder="e.g. Planning Directorate">
                         <x-input-error :messages="$errors->get('name')" />
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Classification') }}</label>
-                        <select wire:model.live="type"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="field-label" for="f-type">{{ __('Classification') }}</label>
+<select id="f-type" wire:model.live="type"
+                            class="flux-input">
                             <option value="Directorate General">{{ __('Directorate General') }}</option>
                             <option value="National Directorate">{{ __('National Directorate') }}</option>
                             <option value="Department">{{ __('Department') }}</option>
@@ -186,15 +164,13 @@
                         </select>
                         <x-input-error :messages="$errors->get('type')" />
                     </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-zinc-400 ml-1 ">
-                            {{ __('Parent Authority') }}
+                    <div>
+                        <label class="field-label" for="f-parent_id">{{ __('Parent Authority') }}
                             @if($type === 'National Directorate') (DG Only)
                             @elseif($type === 'Department') (ND/DG Only)
-                            @endif
-                        </label>
-                        <select wire:model="parent_id"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all">
+                            @endif</label>
+<select id="f-parent_id" wire:model="parent_id"
+                            class="flux-input">
                             <option value="">{{ __('Top Level (Independent)') }}</option>
                             @foreach($filteredParents as $parent)
                                 @if($parent->id != $directorateId)
@@ -208,46 +184,43 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Administration') }}</label>
-                        <select wire:model.live="administration" class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold">
+                    <div>
+                        <label class="field-label" for="f-administration">{{ __('Administration') }}</label>
+<select id="f-administration" wire:model.live="administration" class="flux-input">
                             <option value="direct">{{ __('Direct (service of the ministry)') }}</option>
                             <option value="indirect">{{ __('Indirect (autonomous public body)') }}</option>
                         </select>
                     </div>
                     @if($administration === 'indirect')
-                        <div class="space-y-2">
-                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Legal form') }}</label>
-                            <input type="text" wire:model="legal_form" placeholder="I.P. / E.P." class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold">
+                        <div>
+                            <label class="field-label" for="f-legal_form">{{ __('Legal form') }}</label>
+<input id="f-legal_form" type="text" wire:model="legal_form" placeholder="I.P. / E.P." class="flux-input">
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-semibold text-zinc-400 ml-1">{{ __('Legal basis') }}</label>
-                            <input type="text" wire:model="legal_basis" placeholder="{{ __('Decree-law and article') }}" class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold">
+                        <div>
+                            <label class="field-label" for="f-legal_basis">{{ __('Legal basis') }}</label>
+<input id="f-legal_basis" type="text" wire:model="legal_basis" placeholder="{{ __('Decree-law and article') }}" class="flux-input">
                         </div>
                     @endif
                 </div>
 
-                <div class="space-y-2">
-                    <label
-                        class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Function Description') }}</label>
-                    <textarea wire:model="description" rows="3"
-                        class="w-full p-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                <div>
+                    <label class="field-label" for="f-description">{{ __('Function Description') }}</label>
+<textarea id="f-description" wire:model="description" rows="3"
+                        class="flux-input"
                         placeholder="Primary role and responsibilities of this node..."></textarea>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Manager / Director') }}</label>
-                        <input type="text" wire:model="director_name"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="field-label" for="f-director_name">{{ __('Manager / Director') }}</label>
+<input id="f-director_name" type="text" wire:model="director_name"
+                            class="flux-input"
                             placeholder="Full name">
                     </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-semibold text-zinc-400 ml-1 ">{{ __('Officer Email') }}</label>
-                        <input type="email" wire:model="director_email"
-                            class="w-full h-12 px-5 rounded-xl bg-zinc-50 border-transparent text-sm font-bold focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 transition-all"
+                    <div>
+                        <label class="field-label" for="f-director_email">{{ __('Officer Email') }}</label>
+<input id="f-director_email" type="email" wire:model="director_email"
+                            class="flux-input"
                             placeholder="e.g. officer@msa.gov.tl">
                     </div>
                 </div>
@@ -265,11 +238,10 @@
 
                 <div class="flex items-center gap-4 pt-4">
                     <x-ui.button type="button" wire:click="$set('modalOpen', false)" variant="secondary"
-                        class="flex-1 !py-4 !rounded-xl border border-zinc-200">{{ __('Go Back') }}</x-ui.button>
-                    <x-ui.button type="submit" variant="black" shadow="xl"
-                        class="flex-1 !py-4 !rounded-xl">{{ $isEditing ? __('Sync Changes') : __('Deploy Unit') }}</x-ui.button>
+                        class="flex-1">{{ __('Go Back') }}</x-ui.button>
+                    <x-ui.button type="submit" variant="primary"
+                        class="flex-1">{{ $isEditing ? __('Sync Changes') : __('Deploy Unit') }}</x-ui.button>
                 </div>
             </form>
-        </div>
-    </div>
+</x-dialog>
 @endif

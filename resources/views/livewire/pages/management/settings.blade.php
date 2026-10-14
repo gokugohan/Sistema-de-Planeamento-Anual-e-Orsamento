@@ -155,15 +155,15 @@ new class extends Component {
                                 </p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Institution Full Name')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                        <x-input-label :value="__('Institution Full Name')" class="field-label" />
                                         <x-text-input wire:model="appTexts.org_name.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full"
                                             placeholder="Institution Name" />
                                     </div>
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Abbreviation')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                        <x-input-label :value="__('Abbreviation')" class="field-label" />
                                         <x-text-input wire:model="appTexts.org_abbr.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full"
                                             placeholder="MOF" />
                                     </div>
                                 </div>
@@ -176,15 +176,15 @@ new class extends Component {
                                 </p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Title')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                        <x-input-label :value="__('Title')" class="field-label" />
                                         <x-text-input wire:model="appTexts.name.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full"
                                             placeholder="Strategic Budget" />
                                     </div>
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Tagline / Subtitle')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                        <x-input-label :value="__('Tagline / Subtitle')" class="field-label" />
                                         <x-text-input wire:model="appTexts.tagline.{{ $locale }}"
-                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full"
                                             placeholder="Planning & Control" />
                                     </div>
                                 </div>
@@ -209,9 +209,9 @@ new class extends Component {
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                                     @foreach([0, 1, 2] as $idx)
                                     <div class="space-y-2">
-                                        <x-input-label :value="__('Item') . ' ' . ($idx + 1)" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                        <x-input-label :value="__('Item') . ' ' . ($idx + 1)" class="field-label" />
                                         <x-text-input wire:model="appTexts.items.{{ $locale }}.{{ $idx }}"
-                                            class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                            class="w-full"
                                             placeholder="Feature {{ $idx + 1 }}" />
                                     </div>
                                     @endforeach
@@ -244,9 +244,9 @@ new class extends Component {
                             </label>
                             @if($institutionLevel === 'subordinate')
                                 <div class="space-y-2 pl-7">
-                                    <x-input-label for="reportRecipient" :value="__('Plan is sent to')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                    <x-input-label for="reportRecipient" :value="__('Plan is sent to')" class="field-label" />
                                     <x-text-input id="reportRecipient" wire:model="reportRecipient"
-                                        class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                        class="w-full"
                                         placeholder="{{ __('The ministry or the team there that prepares the budget') }}" />
                                     <x-input-error :messages="$errors->get('reportRecipient')" />
                                 </div>
@@ -261,7 +261,7 @@ new class extends Component {
                         </p>
                         <div class="space-y-4">
                             <div class="space-y-2">
-                                <x-input-label for="finalApprover" :value="__('Final approval by')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                <x-input-label for="finalApprover" :value="__('Final approval by')" class="field-label" />
                                 <select id="finalApprover" wire:model="finalApprover" class="flux-input w-full max-w-md">
                                     <option value="minister">{{ __('The Minister') }}</option>
                                     <option value="head">{{ __('The head of the top-level unit (Director / Chefe do Gabinete)') }}</option>
@@ -284,16 +284,16 @@ new class extends Component {
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="space-y-2">
-                                <x-input-label for="systemOwner" :value="__('System Owner')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                <x-input-label for="systemOwner" :value="__('System Owner')" class="field-label" />
                                 <x-text-input id="systemOwner" wire:model="systemOwner"
-                                    class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                    class="w-full"
                                     placeholder="Institution Name" />
                                 <x-input-error :messages="$errors->get('systemOwner')" />
                             </div>
                             <div class="space-y-2">
-                                <x-input-label for="implementedBy" :value="__('Implemented By')" class="text-xs font-semibold text-zinc-400 ml-1" />
+                                <x-input-label for="implementedBy" :value="__('Implemented By')" class="field-label" />
                                 <x-text-input id="implementedBy" wire:model="implementedBy"
-                                    class="w-full h-12 px-4 !rounded-xl !bg-zinc-50 !border-zinc-100 !text-sm font-bold focus:!ring-4 focus:!ring-indigo-500/5 focus:!border-indigo-500 transition-all"
+                                    class="w-full"
                                     placeholder="Tech Partner" />
                                 <x-input-error :messages="$errors->get('implementedBy')" />
                             </div>
