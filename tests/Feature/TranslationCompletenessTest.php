@@ -32,6 +32,21 @@ class TranslationCompletenessTest extends TestCase
         return array_values(array_unique($keys));
     }
 
+    /** @return array<int, string> texts the code picks at run time, e.g. __($activity->status) */
+    private function runtimeKeys(): array
+    {
+        $keys = ['Independent', 'General Directorate', 'National Directorate', 'Department', 'Unit', 'Cabinet', 'Regional Office'];
+        foreach ([\App\Models\Activity::class, \App\Models\FiscalEnvelope::class] as $class) {
+            foreach ((new \ReflectionClass($class))->getConstants() as $name => $value) {
+                if (str_starts_with($name, 'STATUS_') && is_string($value)) {
+                    $keys[] = $value;
+                }
+            }
+        }
+
+        return array_values(array_unique($keys));
+    }
+
     private function table(string $locale): array
     {
         return json_decode(File::get(base_path("lang/{$locale}.json")), true, 512, JSON_THROW_ON_ERROR);
@@ -43,7 +58,7 @@ class TranslationCompletenessTest extends TestCase
         $tet = $this->table('tet');
 
         $missing = [];
-        foreach ($this->usedKeys() as $key) {
+        foreach (array_merge($this->usedKeys(), $this->runtimeKeys()) as $key) {
             if (preg_match('/^[a-z_]+\.[a-z_.]+$/', $key)) {
                 continue; // a key of a PHP language group (validation.*, auth.*), not interface text
             }

@@ -433,7 +433,7 @@ new class extends Component {
                     if (!el || this.chart) return;
                     const L = d.labels, usd = (v) => '$ ' + Math.round(v).toLocaleString();
                     const grid = { color: '#E2E8F0' }, tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };
-                    const moneyAxis = { beginAtZero: true, grid, ticks: { ...tick, callback: (v) => v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v } };
+                    const moneyAxis = { beginAtZero: true, grid, ticks: { ...tick, callback: (v) => v >= 1000000 ? '$' + +(v / 1000000).toFixed(1) + 'M' : (v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v) } };
                     const base = { responsive: true, maintainAspectRatio: false, animation: { duration: 250 },
                         plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: '#475569', font: { family: 'Inter', size: 11 } } },
                                    tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + (kind === 'status' || kind === 'quarterly' ? c.parsed.y ?? c.parsed : usd(c.parsed.y ?? c.parsed.x)) } } } };

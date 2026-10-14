@@ -122,8 +122,7 @@
                                                 @endif
                                                 @if($activeEnvelope->isActiveByDate())
                                                     <span
-                                                        class="px-4 py-1.5 bg-indigo-600 text-white text-xs font-semibold rounded-xl shadow-sm ">Active
-                                                        Authority</span>
+                                                        class="px-4 py-1.5 bg-indigo-600 text-white text-xs font-semibold rounded-xl shadow-sm ">{{ __('Active Authority') }}</span>
                                                 @endif
                                             </div>
                                         </div>
