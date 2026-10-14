@@ -134,7 +134,7 @@ new class extends Component {
     initCharts();
     window.addEventListener('stats-updated', (e) => initCharts(e.detail[0]));
 })">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('Execution Monitoring') }}
             </h1>

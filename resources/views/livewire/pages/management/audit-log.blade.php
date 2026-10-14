@@ -75,10 +75,10 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('Audit Log') }}</h1>
-            <p class="text-sm text-zinc-500 mt-1">{{ __('Who changed what, and when. Records cannot be edited from the application.') }}</p>
+            <p class="page-subtitle">{{ __('Who changed what, and when. Records cannot be edited from the application.') }}</p>
         </div>
         <span class="text-sm text-zinc-500">{{ number_format($logs->total()) }} {{ __('records') }}</span>
     </div>
@@ -163,7 +163,7 @@ new class extends Component {
                 @endif
             @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-12 text-center text-sm text-zinc-500">{{ __('No audit records match the current filters.') }}</td>
+                    <td colspan="5"><x-ui.empty-state :title="__('No audit records match the current filters.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>

@@ -177,7 +177,7 @@ new class extends Component {
     }
 }; ?>
 
-<div class="space-y-10 py-6 animate-in fade-in duration-700">
+<div class="space-y-6">
     @if($issuedPassword)
         <div class="alert alert-success !items-start" role="status">
             <div class="flex-1">
@@ -194,7 +194,7 @@ new class extends Component {
     @endif
 
     <!-- Header with Breadcrumbs & Action -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('Access Governance') }}</h1>
             <p class="page-subtitle">

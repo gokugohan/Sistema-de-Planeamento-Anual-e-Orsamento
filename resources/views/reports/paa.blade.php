@@ -19,9 +19,9 @@
 @endphp
 
 <x-app-layout title="{{ __('Reporting') }}">
-    <div class="space-y-10 py-6 animate-in fade-in duration-700">
+    <div class="space-y-6">
         {{-- Analytic Header --}}
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-2 print:hidden">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
                 <h1 class="page-title">
                     {{ __('Annual Performance Report') }}

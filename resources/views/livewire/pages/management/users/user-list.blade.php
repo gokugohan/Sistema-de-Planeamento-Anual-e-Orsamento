@@ -124,9 +124,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-8 py-12 text-center text-gray-400 italic text-sm">
-                            {{ __('No users found matching your criteria.') }}
-                        </td>
+                        <td colspan="5"><x-ui.empty-state :title="__('No users found matching your criteria.')" /></td>
                     </tr>
                 @endforelse
             </tbody>

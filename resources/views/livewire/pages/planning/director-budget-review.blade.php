@@ -113,7 +113,7 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('Allocation Review') }}</h1>
             <p class="page-subtitle">{{ __('Compare what was allocated with what the approved plan asked for in :year.', ['year' => $year]) }}</p>
@@ -181,10 +181,7 @@ new class extends Component {
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-14 text-center">
-                            <p class="text-sm font-medium text-zinc-900">{{ __('Nothing allocated yet') }}</p>
-                            <p class="mt-1 text-sm text-zinc-500">{{ __('Allocations appear here once the fiscal envelope has been distributed to this unit.') }}</p>
-                        </td>
+                        <td colspan="5"><x-ui.empty-state :title="__('Nothing allocated yet')" :text="__('Allocations appear here once the fiscal envelope has been distributed to this unit.')" /></td>
                     </tr>
                 @endforelse
             </x-ui.table>

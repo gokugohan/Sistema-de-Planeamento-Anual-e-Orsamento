@@ -95,9 +95,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="p-12 text-center text-sm text-gray-500 italic">
-                        {{ __('No programs found.') }}
-                    </td>
+                    <td colspan="7"><x-ui.empty-state :title="__('No programs found.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>

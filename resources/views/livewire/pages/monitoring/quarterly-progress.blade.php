@@ -370,9 +370,7 @@ new class extends Component {
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-12 text-center text-gray-400 italic text-sm font-medium">
-                                    {{ __('No indicators found matching your criteria.') }}
-                                </td>
+                                <td colspan="6"><x-ui.empty-state :title="__('No indicators found matching your criteria.')" /></td>
                             </tr>
                         @endforelse
                     </tbody>

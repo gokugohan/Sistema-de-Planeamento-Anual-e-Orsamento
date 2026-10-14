@@ -170,7 +170,7 @@ new class extends Component {
                         </tr>
                     @endif
                 @empty
-                    <tr><td colspan="5" class="px-6 py-10 text-center text-sm text-zinc-500">{{ __('No approved activities with a budget for :year yet.', ['year' => $year]) }}</td></tr>
+                    <tr><td colspan="5"><x-ui.empty-state :title="__('No approved activities with a budget for :year yet.', ['year' => $year])" /></td></tr>
                 @endforelse
             </x-ui.table>
         @elseif($tab === 'category')
@@ -196,7 +196,7 @@ new class extends Component {
                         <td class="px-6 py-3 w-52">{!! $bar($p['alloc'], $p['plan']) !!}</td>
                     </tr>
                 @empty
-                    <tr><td colspan="5" class="px-6 py-10 text-center text-sm text-zinc-500">{{ __('No approved activities with a budget for :year yet.', ['year' => $year]) }}</td></tr>
+                    <tr><td colspan="5"><x-ui.empty-state :title="__('No approved activities with a budget for :year yet.', ['year' => $year])" /></td></tr>
                 @endforelse
             </x-ui.table>
         @endif

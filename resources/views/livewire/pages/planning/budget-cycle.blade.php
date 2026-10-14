@@ -122,10 +122,10 @@ new class extends Component {
 @endphp
 
 <div class="space-y-6">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('Budget Cycle') }}</h1>
-            <p class="text-sm text-zinc-500 mt-1">{{ $isMinistry ? \App\Support\Institution::label('Indicative ceiling → submission to the CRO → CRO decision → State Budget law → fiscal envelope.') : __('Ceiling from the ministry → plan approved → sent to the ministry → allocation received → distribution.') }}</p>
+            <p class="page-subtitle">{{ $isMinistry ? \App\Support\Institution::label('Indicative ceiling → submission to the CRO → CRO decision → State Budget law → fiscal envelope.') : __('Ceiling from the ministry → plan approved → sent to the ministry → allocation received → distribution.') }}</p>
         </div>
         <div class="flex items-center gap-2">
             <label for="year" class="text-sm text-zinc-500">{{ __('Fiscal year') }}</label>

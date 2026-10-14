@@ -76,9 +76,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="p-12 text-center text-sm text-gray-500 italic">
-                        {{ __('No economic categories found.') }}
-                    </td>
+                    <td colspan="5"><x-ui.empty-state :title="__('No economic categories found.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>

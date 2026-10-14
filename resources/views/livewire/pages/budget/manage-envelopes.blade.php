@@ -401,7 +401,7 @@ new class extends Component {
     }
 }; ?>
 
-<div class="space-y-10 py-6 animate-in fade-in duration-700">
+<div class="space-y-6">
     {{-- Content Area --}}
     <div class="min-h-[500px]">
         @if($viewMode === 'list')

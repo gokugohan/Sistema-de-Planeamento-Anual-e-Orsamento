@@ -170,18 +170,8 @@ new class extends Component {
     }
 }; ?>
 
-@php
-    $badge = fn ($s) => match ($s) {
-        Activity::STATUS_APPROVED => 'emerald',
-        Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => 'indigo',
-        Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED => 'amber',
-        Activity::STATUS_REJECTED => 'red',
-        default => 'gray',
-    };
-@endphp
-
 <div class="space-y-6">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('PAA Technical Review') }}</h1>
             <p class="page-subtitle">{{ __('Review and approve the activities submitted for :year.', ['year' => $year]) }}</p>
@@ -239,7 +229,7 @@ new class extends Component {
                         <span class="font-semibold text-zinc-900">$ {{ number_format($a->total ?? 0) }}</span>
                         <p class="text-xs text-zinc-500">{{ trans_choice(':n budget line|:n budget lines', $a->lineItems->count(), ['n' => $a->lineItems->count()]) }}</p>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap"><x-ui.badge :variant="$badge($a->status)">{{ __($a->status) }}</x-ui.badge></td>
+                    <td class="px-6 py-4 whitespace-nowrap"><x-ui.status :status="$a->status" /></td>
                     <td class="px-6 py-4 whitespace-nowrap text-right">
                         @if($canApprove)
                             <div class="inline-flex items-center gap-2">
@@ -259,10 +249,7 @@ new class extends Component {
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="px-6 py-14 text-center">
-                        <p class="text-sm font-medium text-zinc-900">{{ __('Nothing in this queue.') }}</p>
-                        <p class="mt-1 text-sm text-zinc-500">{{ __('Activities appear here when a unit submits them. Change the queue or the fiscal year to see others.') }}</p>
-                    </td>
+                    <td colspan="4"><x-ui.empty-state :title="__('Nothing in this queue.')" :text="__('Activities appear here when a unit submits them. Change the queue or the fiscal year to see others.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>

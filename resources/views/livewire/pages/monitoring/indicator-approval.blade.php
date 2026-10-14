@@ -88,7 +88,7 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('Progress Approval') }}
             </h1>

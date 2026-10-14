@@ -86,7 +86,7 @@ new class extends Component {
 <div class="space-y-6 max-w-4xl">
     <div>
         <h1 class="page-title">{{ __('Import Activities') }}</h1>
-        <p class="text-sm text-zinc-500 mt-1">
+        <p class="page-subtitle">
             {{ __('Load planned activities, indicators and budget lines from a CSV file. Everything is imported as Draft and nothing is saved until the file passes validation.') }}
         </p>
     </div>

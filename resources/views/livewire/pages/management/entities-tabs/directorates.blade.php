@@ -115,9 +115,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="p-12 text-center text-sm text-gray-500 italic">
-                        {{ __('No directorates found.') }}
-                    </td>
+                    <td colspan="6"><x-ui.empty-state :title="__('No directorates found.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>

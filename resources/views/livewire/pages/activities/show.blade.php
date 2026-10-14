@@ -167,21 +167,6 @@ new class extends Component {
 @php
     $isEditable = $canEdit;
 
-    $statusBadge = match($activity->status) {
-        'Approved'  => 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200',
-        'Submitted', 'Reviewed', 'Validated' => 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200',
-        'Rejected'  => 'bg-rose-50 text-rose-700 ring-1 ring-rose-200',
-        default     => 'bg-zinc-100 text-zinc-600 ring-1 ring-zinc-200',
-    };
-    $statusLabel = match($activity->status) {
-        'Approved'  => __('Approved'),
-        'Submitted' => __('Submitted'),
-        'Reviewed'  => __('Reviewed'),
-        'Validated' => __('Validated'),
-        'Rejected'  => __('Rejected'),
-        default     => __('Draft'),
-    };
-
     $priorityLabel = match ($activity->priority) {
         'Alta', 'High'    => __('High'),
         'Média', 'Medium' => __('Medium'),
@@ -278,9 +263,7 @@ new class extends Component {
                         </div>
                     @endif
                     <div class="ml-auto">
-                        <span class="text-xs font-semibold px-3 py-1.5 rounded-full tracking-wide {{ $statusBadge }}">
-                            {{ $statusLabel }}
-                        </span>
+                        <x-ui.status :status="$activity->status" />
                     </div>
                 </div>
             </div>
