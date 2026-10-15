@@ -1587,5 +1587,12 @@
     "Registered for fiscal year :year": "Registado para o ano fiscal :year",
     "Programs from other years": "Programas de outros anos",
     "Already registered in another year: pick one to fill in the form.": "Já registado noutro ano: escolha um para preencher o formulário.",
-    "No programs are registered for :year yet. An administrator can register them at Management > Entities.": "Ainda não há programas registados para :year. Um administrador pode registá-los em Gestão > Entidades."
+    "No programs are registered for :year yet. An administrator can register them at Management > Entities.": "Ainda não há programas registados para :year. Um administrador pode registá-los em Gestão > Entidades.",
+    "Planning for :year has ended": "O planeamento de :year terminou",
+    "The planning cycle for :year is closed, so activities can no longer be added.": "O ciclo de planeamento de :year está encerrado, por isso já não é possível adicionar atividades.",
+    "The budget for :year is approved, so its plan is final and activities can no longer be added. To change an approved activity, reopen it with a reason.": "O orçamento de :year está aprovado, por isso o plano é final e já não é possível adicionar atividades. Para alterar uma atividade aprovada, reabra-a com um motivo.",
+    "Plan for :year": "Planear :year",
+    "Back to activities": "Voltar às atividades",
+    "The budget for :year is approved, so its plan is final: new activities cannot be added.": "O orçamento de :year está aprovado, por isso o plano é final: não é possível adicionar novas atividades.",
+    "Planning for :year has ended (its budget is approved or the year is closed), so activities cannot be copied into it.": "O planeamento de :year terminou (o orçamento está aprovado ou o ano está encerrado), por isso não é possível copiar atividades para ele."
 }

@@ -206,7 +206,8 @@ new class extends Component {
             'locations' => config('paa.locations'),
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,
-            'locked' => FiscalEnvelope::where('fiscal_year', $year)->value('status') === FiscalEnvelope::STATUS_CLOSED,
+            'locked' => FiscalEnvelope::planningEndedBy($year),
+            'nextYear' => FiscalEnvelope::nextPlanningYear(),
             'tabs' => ['all' => __('All'), 'draft' => __('Drafts & returned'), 'review' => __('In review'), 'approved' => __('Approved'), 'mine' => __('Needs my action')],
             'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->location !== '' || $this->search !== '',
         ];
@@ -243,7 +244,14 @@ new class extends Component {
     </x-ui.page-header>
 
     @if($locked)
-        <div class="alert alert-success">{{ __('The planning cycle for :year is closed; activities can no longer be changed.', ['year' => $year]) }}</div>
+        <div class="alert bg-indigo-50 text-indigo-900 ring-1 ring-indigo-200 justify-between">
+            <span>{{ $locked === 'Closed'
+                ? __('The planning cycle for :year is closed; activities can no longer be changed.', ['year' => $year])
+                : __('The budget for :year is approved, so its plan is final: new activities cannot be added.', ['year' => $year]) }}</span>
+            @if($canCreate)
+                <a href="{{ route('fiscal-year.switch', $nextYear) }}" class="shrink-0 font-semibold underline">{{ __('Plan for :year', ['year' => $nextYear]) }}</a>
+            @endif
+        </div>
     @endif
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

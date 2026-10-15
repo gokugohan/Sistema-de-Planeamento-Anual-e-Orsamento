@@ -28,8 +28,8 @@ class ActivityRollForward
         if ($toYear <= $fromYear) {
             throw new \DomainException(__('The target year must be after the source year.'));
         }
-        if (FiscalEnvelope::where('fiscal_year', $toYear)->value('status') === FiscalEnvelope::STATUS_CLOSED) {
-            throw new \DomainException(__('The planning cycle for :year is closed.', ['year' => $toYear]));
+        if (! FiscalEnvelope::planningOpen($toYear)) {
+            throw new \DomainException(__('Planning for :year has ended (its budget is approved or the year is closed), so activities cannot be copied into it.', ['year' => $toYear]));
         }
 
         $copied = $skipped = 0;

@@ -139,6 +139,9 @@ new class extends Component {
 
     public function save()
     {
+        // First of all: a year whose plan has ended takes no new activity, whatever was typed.
+        abort_if(! $this->activity && ! FiscalEnvelope::planningOpen($this->year), 422);
+
         $this->validate($this->planRules(), [], [
             'lines.*.class_id' => __('economic category'), 'lines.*.amount' => __('amount'),
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
@@ -207,6 +210,8 @@ new class extends Component {
             'total' => $total,
             'locations' => config('paa.locations'),
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
+            'endedBy' => $this->activity ? null : FiscalEnvelope::planningEndedBy($this->year),
+            'nextYear' => FiscalEnvelope::nextPlanningYear(),
         ];
     }
 }; ?>
@@ -220,6 +225,22 @@ new class extends Component {
         </p>
     </div>
 
+    @if($endedBy)
+        <x-ui.card>
+            <div class="flex flex-col items-start gap-3">
+                <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</h2>
+                <p class="max-w-2xl text-sm text-zinc-600">
+                    {{ $endedBy === 'Closed'
+                        ? __('The planning cycle for :year is closed, so activities can no longer be added.', ['year' => $year])
+                        : __('The budget for :year is approved, so its plan is final and activities can no longer be added. To change an approved activity, reopen it with a reason.', ['year' => $year]) }}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>
+                    <x-ui.button variant="secondary" shadow="none" href="{{ route('activities.index') }}" wire:navigate>{{ __('Back to activities') }}</x-ui.button>
+                </div>
+            </div>
+        </x-ui.card>
+    @else
     <form wire:submit="save" class="space-y-6">
         {{-- 1. What and why --}}
         <x-ui.card>
@@ -376,4 +397,5 @@ new class extends Component {
             <x-ui.button type="submit" wire:loading.attr="disabled">{{ __('Save draft') }}</x-ui.button>
         </div>
     </form>
+    @endif
 </div>

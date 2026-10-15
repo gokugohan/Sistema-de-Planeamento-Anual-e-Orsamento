@@ -1587,5 +1587,12 @@
     "Registered for fiscal year :year": "Registu ba tinan fiskál :year",
     "Programs from other years": "Programa husi tinan seluk",
     "Already registered in another year: pick one to fill in the form.": "Registu ona iha tinan seluk: hili ida atu hatama iha formuláriu.",
-    "No programs are registered for :year yet. An administrator can register them at Management > Entities.": "Seidauk iha programa registu ba :year. Administradór bele registu iha Jestaun > Entidade."
+    "No programs are registered for :year yet. An administrator can register them at Management > Entities.": "Seidauk iha programa registu ba :year. Administradór bele registu iha Jestaun > Entidade.",
+    "Planning for :year has ended": "Planeamentu ba :year remata ona",
+    "The planning cycle for :year is closed, so activities can no longer be added.": "Siklu planeamentu ba :year taka ona, tanba ne'e la bele aumenta atividade tan.",
+    "The budget for :year is approved, so its plan is final and activities can no longer be added. To change an approved activity, reopen it with a reason.": "Orsamentu ba :year aprova ona, tanba ne'e planu ne'e final no la bele aumenta atividade tan. Atu muda atividade ne'ebé aprova ona, loke fali ho motivu.",
+    "Plan for :year": "Halo planu ba :year",
+    "Back to activities": "Fila ba atividade sira",
+    "The budget for :year is approved, so its plan is final: new activities cannot be added.": "Orsamentu ba :year aprova ona, tanba ne'e planu ne'e final: la bele aumenta atividade foun.",
+    "Planning for :year has ended (its budget is approved or the year is closed), so activities cannot be copied into it.": "Planeamentu ba :year remata ona (orsamentu aprova ona ka tinan taka ona), tanba ne'e la bele kopia atividade ba nia."
 }

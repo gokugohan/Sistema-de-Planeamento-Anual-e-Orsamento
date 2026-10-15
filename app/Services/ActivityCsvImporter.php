@@ -323,9 +323,8 @@ class ActivityCsvImporter
 
     private function rejectClosedYear(int $year, array &$errors): void
     {
-        $status = FiscalEnvelope::where('fiscal_year', $year)->value('status');
-        if ($status === FiscalEnvelope::STATUS_CLOSED) {
-            $errors[] = $this->err(0, "The {$year} planning cycle is closed; activities cannot be imported.");
+        if (! FiscalEnvelope::planningOpen($year)) {
+            $errors[] = $this->err(0, "Planning for {$year} has ended (its budget is approved or the year is closed); activities cannot be imported into it.");
         }
     }
 

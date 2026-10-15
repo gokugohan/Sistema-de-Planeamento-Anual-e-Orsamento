@@ -216,6 +216,43 @@ class FiscalEnvelope extends Model
         return $planned ? max($planned) : $current;
     }
 
+    /**
+     * Can new activities still be planned for this year? Planning ends when the budget law is applied
+     * (the envelope is approved) and stays ended when the year is closed. Until then (no envelope yet,
+     * or one still in draft or pending) the plan is open.
+     */
+    public static function planningOpen(int $year): bool
+    {
+        return ! in_array(self::where('fiscal_year', $year)->value('status'), [self::STATUS_APPROVED, self::STATUS_CLOSED], true);
+    }
+
+    /** 'Approved' or 'Closed' for a year whose planning has ended, null while it is open. */
+    public static function planningEndedBy(int $year): ?string
+    {
+        $status = self::where('fiscal_year', $year)->value('status');
+
+        return in_array($status, [self::STATUS_APPROVED, self::STATUS_CLOSED], true) ? $status : null;
+    }
+
+    /** The first year from this one on whose plan is still open: where new activities go. */
+    public static function nextPlanningYear(): int
+    {
+        $current = (int) date('Y');
+        foreach ([$current, $current + 1, $current + 2] as $year) {
+            if (self::planningOpen($year)) {
+                return $year;
+            }
+        }
+
+        return $current + 3;
+    }
+
+    /** @return array<int, string> status of the envelope of each year that has one, for labelling the year switcher */
+    public static function yearStatuses(): array
+    {
+        return self::query()->pluck('status', 'fiscal_year')->mapWithKeys(fn ($s, $y) => [(int) $y => $s])->all();
+    }
+
     /** Years the user can switch to: every year with data, plus this year and next. */
     public static function availableYears(): array
     {
