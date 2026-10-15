@@ -23,7 +23,7 @@
         [__('Review & approve'), __('Internal review up to ministerial approval')],
         [__('Budget review'), __('Submit the approved plan to the Budget Review Committee')],
         [__('Distribute'), __('Register the envelope and share it over the approved plan')],
-        [__('Monitor'), __('Verify quarterly progress against targets')],
+        [__('Monitor'), __('Verify spending and progress against targets')],
     ];
 @endphp
 <!DOCTYPE html>

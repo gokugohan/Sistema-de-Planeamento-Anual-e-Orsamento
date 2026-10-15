@@ -687,7 +687,6 @@
     "Distribute": "Distribuir",
     "Register the envelope and share it over the approved plan": "Registar o envelope e distribuí-lo pelo plano aprovado",
     "Monitor": "Monitorizar",
-    "Verify quarterly progress against targets": "Verificar o progresso trimestral face às metas",
     "Role-based access": "Acesso por perfis",
     "Every change is audited": "Todas as alterações são auditadas",
     "Language": "Idioma",
@@ -1850,5 +1849,6 @@
     "Paid / approved": "Pago / aprovado",
     ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n valor de despesa aguarda verificação e ainda não é contado.|[2,*] :n valores de despesa aguardam verificação e ainda não são contados.",
     "No verified spending yet.": "Ainda sem despesa verificada.",
-    "Latest reports": "Últimos relatórios"
+    "Latest reports": "Últimos relatórios",
+    "Verify spending and progress against targets": "Verificar a despesa e o progresso face às metas"
 }

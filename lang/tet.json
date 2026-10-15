@@ -687,7 +687,6 @@
     "Distribute": "Distribui",
     "Register the envelope and share it over the approved plan": "Rejista envelope no distribui ba planu aprovadu",
     "Monitor": "Monitoriza",
-    "Verify quarterly progress against targets": "Verifika progresu trimestrál kompara ho meta",
     "Role-based access": "Asesu tuir papél",
     "Every change is audited": "Mudansa hotu audita",
     "Language": "Lian",
@@ -1850,5 +1849,6 @@
     "Paid / approved": "Selu / aprovadu",
     ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} Valór despeza :n hein verifikasaun no seidauk konta.|[2,*] Valór despeza :n hein verifikasaun no seidauk konta.",
     "No verified spending yet.": "Seidauk iha despeza verifika ona.",
-    "Latest reports": "Relatóriu ikus sira"
+    "Latest reports": "Relatóriu ikus sira",
+    "Verify spending and progress against targets": "Verifika despeza no progresu kompara ho meta"
 }

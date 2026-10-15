@@ -687,7 +687,6 @@
     "Distribute": "Distribute",
     "Register the envelope and share it over the approved plan": "Register the envelope and share it over the approved plan",
     "Monitor": "Monitor",
-    "Verify quarterly progress against targets": "Verify quarterly progress against targets",
     "Role-based access": "Role-based access",
     "Every change is audited": "Every change is audited",
     "Language": "Language",
@@ -892,5 +891,6 @@
     ":n activity returned for correction|:n activities returned for correction": ":n activity returned for correction|:n activities returned for correction",
     ":n figure verified.|:n figures verified.": "{1} :n figure verified.|[2,*] :n figures verified.",
     "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)",
-    ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n spending figure is waiting for verification and is not counted yet.|[2,*] :n spending figures are waiting for verification and are not counted yet."
+    ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n spending figure is waiting for verification and is not counted yet.|[2,*] :n spending figures are waiting for verification and are not counted yet.",
+    "Verify spending and progress against targets": "Verify spending and progress against targets"
 }
