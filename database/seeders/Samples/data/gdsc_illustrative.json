@@ -35,7 +35,9 @@
     "20": 20000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatórios de coordenação publicados no portal do Governo",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-UDIG-01",
@@ -54,7 +56,10 @@
     "50": 144000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "measure": "level",
+   "means": "Registo da plataforma única de serviços digitais",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-UDIG-02",
@@ -73,7 +78,9 @@
     "40": 25000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatório de digitalização assinado pelo chefe da unidade",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-UDIG-03",
@@ -91,7 +98,9 @@
     "20": 32000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Listas de presença e certificados de formação",
+   "funding": "Parceiro de desenvolvimento"
   },
   {
    "code": "DEMO-UDIG-04",
@@ -110,7 +119,13 @@
     "50": 68000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "measure": "level",
+   "means": "Inventário de interligações entre sistemas",
+   "quarters": [
+    2,
+    4
+   ]
   },
   {
    "code": "DEMO-USC-01",
@@ -130,7 +145,10 @@
     "50": 108000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "measure": "level",
+   "means": "Registos do centro de monitorização de incidentes",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-USC-02",
@@ -148,7 +166,9 @@
     "20": 34000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatórios de auditoria de segurança",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-USC-03",
@@ -166,7 +186,12 @@
     "20": 22000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatório da campanha com o alcance medido",
+   "quarters": [
+    2,
+    3
+   ]
   },
   {
    "code": "DEMO-USC-04",
@@ -184,7 +209,12 @@
     "20": 16000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatórios dos exercícios de simulação",
+   "quarters": [
+    2,
+    4
+   ]
   }
  ],
  "2027": [
@@ -223,7 +253,9 @@
     "20": 24000.0
    },
    "status": "Approved",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatórios de coordenação publicados no portal do Governo",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-UDIG-01",
@@ -242,7 +274,10 @@
     "50": 176000.0
    },
    "status": "Waiting Approval",
-   "illustrative": true
+   "illustrative": true,
+   "measure": "level",
+   "means": "Registo da plataforma única de serviços digitais",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-UDIG-02",
@@ -261,7 +296,9 @@
     "40": 31000.0
    },
    "status": "Waiting Approval",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatório de digitalização assinado pelo chefe da unidade",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-UDIG-03",
@@ -279,7 +316,9 @@
     "20": 40000.0
    },
    "status": "Validated",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Listas de presença e certificados de formação",
+   "funding": "Parceiro de desenvolvimento"
   },
   {
    "code": "DEMO-UDIG-04",
@@ -298,7 +337,13 @@
     "50": 82000.0
    },
    "status": "Reviewed",
-   "illustrative": true
+   "illustrative": true,
+   "measure": "level",
+   "means": "Inventário de interligações entre sistemas",
+   "quarters": [
+    2,
+    4
+   ]
   },
   {
    "code": "DEMO-USC-01",
@@ -318,7 +363,10 @@
     "50": 132000.0
    },
    "status": "Submitted",
-   "illustrative": true
+   "illustrative": true,
+   "measure": "level",
+   "means": "Registos do centro de monitorização de incidentes",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-USC-02",
@@ -336,7 +384,9 @@
     "20": 42000.0
    },
    "status": "Submitted",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatórios de auditoria de segurança",
+   "funding": "Orçamento do Estado"
   },
   {
    "code": "DEMO-USC-03",
@@ -354,7 +404,12 @@
     "20": 28000.0
    },
    "status": "Draft",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatório da campanha com o alcance medido",
+   "quarters": [
+    2,
+    3
+   ]
   },
   {
    "code": "DEMO-USC-04",
@@ -372,7 +427,12 @@
     "20": 20000.0
    },
    "status": "Draft",
-   "illustrative": true
+   "illustrative": true,
+   "means": "Relatórios dos exercícios de simulação",
+   "quarters": [
+    2,
+    4
+   ]
   }
  ]
 }

@@ -14,6 +14,14 @@ class Subprogram extends Model
 
     protected $fillable = ['program_id', 'code', 'name', 'objective'];
 
+    protected static function booted(): void
+    {
+        static::deleting(function (Subprogram $subprogram) {
+            $subprogram->alignments()->delete();
+            $subprogram->resultIndicators()->delete();
+        });
+    }
+
     public function program()
     {
         return $this->belongsTo(Program::class);
@@ -22,5 +30,15 @@ class Subprogram extends Model
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function resultIndicators()
+    {
+        return $this->morphMany(ResultIndicator::class, 'indicatable');
+    }
+
+    public function alignments()
+    {
+        return $this->morphMany(Alignment::class, 'alignable');
     }
 }

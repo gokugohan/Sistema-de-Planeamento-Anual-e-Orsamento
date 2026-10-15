@@ -62,7 +62,11 @@ new class extends Component {
             $this->procurement_required = (bool) $activity->procurement_required;
             $this->gender_responsive = (bool) $activity->gender_responsive;
             $this->lines = $activity->lineItems->map(fn ($l) => ['class_id' => (string) $l->economic_classification_id, 'amount' => (string) (float) $l->estimated_amount])->all();
-            $this->indicators = $activity->indicators->map(fn ($i) => ['name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target])->all();
+            $this->indicators = $activity->indicators->map(fn ($i) => [
+                'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target,
+                'baseline' => (string) $i->baseline, 'means' => (string) $i->means_of_verification, 'funding' => (string) $i->funding_source,
+                'quarters' => array_map('strval', $i->dueQuarters()),
+            ])->all();
         } else {
             $this->authorize('create', Activity::class);
             $this->year = FiscalEnvelope::getEffectiveYear();
@@ -74,7 +78,7 @@ new class extends Component {
         }
 
         $this->lines = $this->lines ?: [['class_id' => '', 'amount' => '']];
-        $this->indicators = $this->indicators ?: [['name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '']];
+        $this->indicators = $this->indicators ?: [$this->blankIndicator()];
     }
 
     public function addLine(): void { $this->lines[] = ['class_id' => '', 'amount' => '']; }
@@ -101,12 +105,18 @@ new class extends Component {
         }
     }
 
-    public function addIndicator(): void { $this->indicators[] = ['name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '']; }
+    /** An empty indicator row: reported every quarter until said otherwise. */
+    private function blankIndicator(): array
+    {
+        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'funding' => '', 'quarters' => ['1', '2', '3', '4']];
+    }
+
+    public function addIndicator(): void { $this->indicators[] = $this->blankIndicator(); }
 
     public function removeIndicator(int $i): void
     {
         unset($this->indicators[$i]);
-        $this->indicators = array_values($this->indicators) ?: [['name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '']];
+        $this->indicators = array_values($this->indicators) ?: [$this->blankIndicator()];
     }
 
     /** Units the user may plan for: their own and everything below it; everything for administrators and ministers. */
@@ -148,6 +158,11 @@ new class extends Component {
             'indicators.*.unit' => ['required', 'string', 'max:100'],
             'indicators.*.measure' => ['nullable', 'in:cumulative,level'],
             'indicators.*.target' => ['required', 'numeric', 'min:0'],
+            'indicators.*.baseline' => ['nullable', 'string', 'max:500'],
+            'indicators.*.means' => ['nullable', 'string', 'max:1000'],
+            'indicators.*.funding' => ['nullable', 'string', 'max:100'],
+            'indicators.*.quarters' => ['nullable', 'array'],
+            'indicators.*.quarters.*' => ['in:1,2,3,4'],
         ];
     }
 
@@ -216,10 +231,25 @@ new class extends Component {
             foreach ($this->lines as $l) {
                 LineItem::create(['activity_id' => $activity->id, 'economic_classification_id' => $l['class_id'], 'estimated_amount' => round((float) $l['amount'], 2), 'is_test_data' => false]);
             }
-            $activity->indicators()->delete();
+            $keep = [];
             foreach ($this->indicators as $i) {
-                Indicator::create(['activity_id' => $activity->id, 'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']), 'annual_target' => $i['target']]);
+                $quarters = collect($i['quarters'] ?? [])->map(fn ($q) => (int) $q)->unique()->sort()->values()->all();
+                $attrs = [
+                    'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
+                    'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
+                    'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null, 'funding_source' => trim((string) ($i['funding'] ?? '')) ?: null,
+                    // every quarter is the default: store nothing for it
+                    'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
+                ];
+                $existing = ! empty($i['id']) ? $activity->indicators()->find($i['id']) : null;
+                if ($existing) {
+                    $existing->update($attrs); // updated in place, so its quarterly progress is kept
+                    $keep[] = $existing->id;
+                } else {
+                    $keep[] = Indicator::create($attrs + ['activity_id' => $activity->id])->id;
+                }
             }
+            $activity->indicators()->whereNotIn('id', $keep)->delete();
 
             return $activity;
         });
@@ -433,8 +463,45 @@ new class extends Component {
                             @error("indicators.$i.target")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                         </div>
                         <button type="button" wire:click="removeIndicator({{ $i }})" class="mt-2 p-1 text-zinc-400 hover:text-rose-600" aria-label="{{ __('Remove') }}">✕</button>
+
+                        <div class="sm:col-span-full" x-data="{ open: false }">
+                            <button type="button" x-on:click="open = ! open" x-bind:aria-expanded="open" class="text-xs font-medium text-indigo-700 hover:underline">
+                                <span x-show="! open">{{ __('More details: baseline, how it is verified, funding, reporting quarters') }}</span>
+                                <span x-show="open" x-cloak>{{ __('Hide details') }}</span>
+                            </button>
+                            <div x-show="open" x-cloak class="mt-2 grid gap-3 rounded-md border border-zinc-200 bg-zinc-50 p-3 sm:grid-cols-2">
+                                <div>
+                                    <label for="ind-{{ $i }}-baseline" class="field-label">{{ __('Baseline') }}</label>
+                                    <input id="ind-{{ $i }}-baseline" type="text" wire:model="indicators.{{ $i }}.baseline" class="flux-input" placeholder="{{ __('Where it stands today, e.g. 4 or 0%') }}">
+                                    @error("indicators.$i.baseline")<p class="field-error">{{ $message }}</p>@enderror
+                                </div>
+                                <div>
+                                    <label for="ind-{{ $i }}-funding" class="field-label">{{ __('Funding source') }}</label>
+                                    <input id="ind-{{ $i }}-funding" type="text" list="funding-sources" wire:model="indicators.{{ $i }}.funding" class="flux-input" placeholder="{{ __('e.g. State Budget, a partner') }}">
+                                    @error("indicators.$i.funding")<p class="field-error">{{ $message }}</p>@enderror
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="ind-{{ $i }}-means" class="field-label">{{ __('Means of verification') }}</label>
+                                    <textarea id="ind-{{ $i }}-means" rows="2" wire:model="indicators.{{ $i }}.means" class="flux-input" placeholder="{{ __('What proves it, e.g. signed reports, system logs') }}"></textarea>
+                                    @error("indicators.$i.means")<p class="field-error">{{ $message }}</p>@enderror
+                                </div>
+                                <fieldset class="sm:col-span-2">
+                                    <legend class="field-label">{{ __('Reported in quarters') }}</legend>
+                                    <div class="flex flex-wrap gap-2">
+                                        @foreach([1, 2, 3, 4] as $q)
+                                            <label class="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-700">
+                                                <input type="checkbox" value="{{ $q }}" wire:model="indicators.{{ $i }}.quarters" class="rounded border-zinc-300 text-indigo-600"> Q{{ $q }}
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
+                <datalist id="funding-sources">
+                    <option value="{{ __('State Budget') }}"><option value="{{ __('Development partner') }}"><option value="{{ __('Own revenue') }}">
+                </datalist>
             </div>
             <x-ui.button type="button" variant="secondary" size="sm" class="mt-3" wire:click="addIndicator">+ {{ __('Add indicator') }}</x-ui.button>
         </x-ui.card>

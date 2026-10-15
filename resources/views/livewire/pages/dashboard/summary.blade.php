@@ -218,6 +218,13 @@ new class extends Component {
         if ($noLines > 0) {
             $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n approved activity has no budget lines|:n approved activities have no budget lines', $noLines, ['n' => $noLines]), 'url' => route('activities.index')];
         }
+        // indicators that should have been reported this quarter and have no verified figure yet (current year only)
+        if ($year === (int) date('Y') && $exec['quarter'] >= 1 && $exec['quarter'] <= 4) {
+            $due = app(\App\Services\DeliveryReport::class)->dueWithoutFigure($base()->select('activities.id')->toBase(), $exec['quarter']);
+            if ($due > 0) {
+                $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n indicator is due in Q:q with no verified figure yet|:n indicators are due in Q:q with no verified figure yet', $due, ['n' => $due, 'q' => $exec['quarter']]), 'url' => route('monitoring.index')];
+            }
+        }
         if ($this->unit === '' && $totalActivities > 0) {
             $silent = collect($units)->where('n', 0)->count();
             if ($silent > 0) {

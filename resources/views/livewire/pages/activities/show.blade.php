@@ -49,7 +49,7 @@ new class extends Component {
         $this->authorize('view', $activity);
 
         $this->activity = $activity->load([
-            'program', 'subprogram', 'directorate', 'indicators',
+            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators',
             'lineItems.economicClassification', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -173,7 +173,7 @@ new class extends Component {
     private function refresh(): void
     {
         $this->activity = $this->activity->fresh([
-            'program', 'subprogram', 'directorate', 'indicators',
+            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators',
             'lineItems.economicClassification', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -511,6 +511,14 @@ new class extends Component {
                                                         @if($indicator->target_text){{ __('Target') }}: {{ $indicator->target_text }}@endif
                                                     </p>
                                                 @endif
+                                                <p class="mt-1 text-xs font-normal text-zinc-500">
+                                                    {{ $indicator->isLevel() ? __('Level') : __('Adds up') }}
+                                                    @if($indicator->funding_source) · {{ __('Funding') }}: {{ $indicator->funding_source }}@endif
+                                                    @if($indicator->due_quarters) · {{ __('Reported in') }} {{ collect($indicator->dueQuarters())->map(fn ($q) => 'Q'.$q)->implode(', ') }}@endif
+                                                </p>
+                                                @if($indicator->means_of_verification)
+                                                    <p class="mt-0.5 text-xs font-normal text-zinc-500">{{ __('Means of verification') }}: {{ $indicator->means_of_verification }}</p>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4">
                                                 <span class="text-xs font-bold tracking-wide px-2 py-1 rounded-full ring-1
@@ -686,21 +694,30 @@ new class extends Component {
                 <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-indigo-900/60 pointer-events-none"></div>
                 <div class="absolute -right-2 -top-6 w-20 h-20 rounded-full bg-indigo-900/30 pointer-events-none"></div>
 
-                <p class="text-xs font-bold text-indigo-400 mb-5 relative">{{ __('Programmatic Logic') }}</p>
+                <p class="text-xs font-bold text-indigo-200 mb-5 relative">{{ __('Programmatic Logic') }}</p>
 
                 <div class="space-y-5 relative">
                     <div class="flex items-start gap-3">
                         <div class="w-7 h-7 rounded-full bg-indigo-800 text-indigo-200 text-xs font-bold flex items-center justify-center flex-shrink-0">1</div>
                         <div>
-                            <p class="text-xs font-semibold text-indigo-400">{{ __('OGE Program') }}</p>
+                            <p class="text-xs font-semibold text-indigo-200">{{ __('OGE Program') }}</p>
                             <p class="text-sm font-semibold text-white mt-0.5 leading-snug">{{ $activity->program->name }}</p>
                             @if($activity->subprogram)<p class="text-xs text-indigo-200 mt-1">{{ __('Subprogram') }} {{ $activity->subprogram->code }} · {{ $activity->subprogram->name }}</p>@endif
+                            @php $aligned = $activity->program->alignments->concat($activity->subprogram?->alignments ?? collect()); @endphp
+                            @if($aligned->isNotEmpty())
+                                <p class="mt-2 text-xs font-semibold text-indigo-300">{{ __('Contributes to') }}</p>
+                                <ul class="mt-1 space-y-0.5">
+                                    @foreach($aligned as $al)
+                                        <li class="text-xs text-indigo-100"><span class="font-semibold">{{ $al->reference }}</span>@if($al->description) · {{ $al->description }}@endif</li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <div class="w-7 h-7 rounded-full bg-indigo-800 text-indigo-200 text-xs font-bold flex items-center justify-center flex-shrink-0">2</div>
                         <div>
-                            <p class="text-xs font-semibold text-indigo-400">{{ __('Executing Entity') }}</p>
+                            <p class="text-xs font-semibold text-indigo-200">{{ __('Executing Entity') }}</p>
                             <p class="text-sm font-semibold text-white mt-0.5 leading-snug">{{ $activity->directorate->name ?? __('N/A') }}</p>
                         </div>
                     </div>
@@ -708,7 +725,7 @@ new class extends Component {
                         <div class="flex items-start gap-3">
                             <div class="w-7 h-7 rounded-full bg-indigo-800 text-indigo-200 text-xs font-bold flex items-center justify-center flex-shrink-0">3</div>
                             <div>
-                                <p class="text-xs font-semibold text-indigo-400">{{ __('Quarter') }}</p>
+                                <p class="text-xs font-semibold text-indigo-200">{{ __('Quarter') }}</p>
                                 <p class="text-sm font-semibold text-white mt-0.5">{{ collect($activity->execution_quarters ?: [$activity->quarter])->map(fn ($q) => 'Q'.$q)->implode(' ') }}</p>
                             </div>
                         </div>

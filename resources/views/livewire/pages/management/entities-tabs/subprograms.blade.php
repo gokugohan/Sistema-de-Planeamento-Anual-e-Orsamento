@@ -32,6 +32,7 @@
                 <td class="px-6 py-3 text-xs text-zinc-600">{{ $s->objective ? \Illuminate\Support\Str::limit($s->objective, 60) : '—' }}</td>
                 <td class="px-6 py-3 tabular-nums">{{ $s->activities_count }}</td>
                 <td class="px-6 py-3 text-right whitespace-nowrap">
+                    <button type="button" wire:click="openDetails('subprogram', {{ $s->id }})" class="px-2 py-1 text-xs font-medium text-indigo-700 hover:underline" aria-label="{{ __('Objectives and result indicators') }}: {{ $s->code }}">{{ __('Details') }}@if($s->alignments_count + $s->result_indicators_count)<span class="ml-1 text-zinc-500">({{ $s->alignments_count + $s->result_indicators_count }})</span>@endif</button>
                     <button type="button" wire:click="openSubprogramModal({{ $s->id }})" class="p-2 text-zinc-500 hover:text-indigo-700 hover:bg-indigo-50 rounded-md" aria-label="{{ __('Edit') }} {{ $s->code }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path d="m15 5 4 4" /></svg>
                     </button>

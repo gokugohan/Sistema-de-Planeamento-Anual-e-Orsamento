@@ -17,6 +17,19 @@ use Illuminate\Database\Seeder;
  */
 class MtcProgramSeeder extends Seeder
 {
+    /**
+     * The national objectives each programme contributes to. ILLUSTRATIVE: a mapping by topic, not taken from
+     * the budget books. [framework, reference, description].
+     */
+    private const ALIGNMENTS = [
+        '502' => [['SDG', 'SDG 9', 'Indústria, inovação e infraestruturas'], ['PED', 'PED 2011-2030', 'Desenvolvimento de infraestruturas']],
+        '510' => [['SDG', 'SDG 16', 'Instituições eficazes, responsáveis e inclusivas'], ['PED', 'PED 2011-2030', 'Enquadramento institucional']],
+        '558' => [['SDG', 'SDG 9', 'Indústria, inovação e infraestruturas']],
+        '980' => [['SDG', 'SDG 10', 'Reduzir as desigualdades']],
+        'A08' => [['SDG', 'SDG 9', 'Acesso universal e acessível às tecnologias de informação e comunicação'], ['PED', 'PED 2011-2030', 'Desenvolvimento de infraestruturas']],
+        'A38' => [['SDG', 'SDG 13', 'Ação climática']],
+    ];
+
     /** @param  array<int, string>|null  $only  OGE codes to load (null: all six) */
     public function run(SampleRegistry $registry, ?array $only = null): void
     {
@@ -35,7 +48,12 @@ class MtcProgramSeeder extends Seeder
                 if ($only !== null && ! in_array($prog['oge_code'], $only, true)) {
                     continue;
                 }
-                $registry->upsert('mtc', Program::class, ['fiscal_year' => $year, 'oge_code' => $prog['oge_code']], $prog);
+                $program = $registry->upsert('mtc', Program::class, ['fiscal_year' => $year, 'oge_code' => $prog['oge_code']], $prog);
+                if ($registry->isRegistered($program) && $program->alignments()->doesntExist()) {
+                    foreach (self::ALIGNMENTS[$prog['oge_code']] ?? [] as [$framework, $reference, $description]) {
+                        $program->alignments()->create(['framework' => $framework, 'reference' => $reference, 'description' => $description]);
+                    }
+                }
             }
         }
     }

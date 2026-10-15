@@ -81,6 +81,7 @@
                     </td>
                     <td class="px-8 py-5 text-right">
                         <div class="flex justify-end items-center gap-2">
+                            <button type="button" wire:click="openDetails('program', {{ $p->id }})" class="px-2 py-1 text-xs font-medium text-indigo-700 hover:underline" aria-label="{{ __('Objectives and result indicators') }}: {{ $p->oge_code }}">{{ __('Details') }}@if($p->alignments_count + $p->result_indicators_count)<span class="ml-1 text-zinc-500">({{ $p->alignments_count + $p->result_indicators_count }})</span>@endif</button>
                             <button wire:click="openProgramModal({{ $p->id }})"
                                 class="p-2 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
                                 title="{{ __('Edit') }}">

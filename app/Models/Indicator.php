@@ -27,7 +27,12 @@ class Indicator extends Model
         'annual_target',
         'baseline',
         'target_text',
+        'means_of_verification',
+        'funding_source',
+        'due_quarters',
     ];
+
+    protected $casts = ['due_quarters' => 'array'];
 
     public function activity()
     {
@@ -43,6 +48,19 @@ class Indicator extends Model
     public static function defaultMeasure(?string $unit): string
     {
         return trim((string) $unit) === '%' ? self::LEVEL : self::CUMULATIVE;
+    }
+
+    /** The quarters in which progress is reported: every quarter unless the indicator says otherwise. @return array<int, int> */
+    public function dueQuarters(): array
+    {
+        $q = array_values(array_filter(array_map('intval', (array) $this->due_quarters), fn ($n) => $n >= 1 && $n <= 4));
+
+        return $q ?: [1, 2, 3, 4];
+    }
+
+    public function isDueIn(int $quarter): bool
+    {
+        return in_array($quarter, $this->dueQuarters(), true);
     }
 
     public function isLevel(): bool

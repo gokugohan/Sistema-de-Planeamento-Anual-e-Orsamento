@@ -57,6 +57,7 @@ class ProgramYears
                 $target = Program::create(['fiscal_year' => $toYear] + $p->only(['oge_code', 'name', 'manager_name', 'objective', 'kpis']));
                 $copied++;
             }
+            $this->copyDetails($p, $target);
             $subs += $this->copySubprograms($p, $target);
         }
 
@@ -70,7 +71,8 @@ class ProgramYears
         $added = 0;
         foreach ($source->subprograms as $s) {
             if (! in_array((string) $s->code, $have, true)) {
-                $target->subprograms()->create($s->only(['code', 'name', 'objective']));
+                $created = $target->subprograms()->create($s->only(['code', 'name', 'objective']));
+                $this->copyDetails($s, $created);
                 $added++;
             }
         }
@@ -78,11 +80,27 @@ class ProgramYears
         return $added;
     }
 
+    /** Bring over the objectives and result indicators of a programme or subprogramme, unless the target already has its own. */
+    private function copyDetails(Program|Subprogram $source, Program|Subprogram $target): void
+    {
+        $source->loadMissing(['alignments', 'resultIndicators']);
+        if ($target->alignments()->doesntExist()) {
+            foreach ($source->alignments as $a) {
+                $target->alignments()->create($a->only(['framework', 'reference', 'description']));
+            }
+        }
+        if ($target->resultIndicators()->doesntExist()) {
+            foreach ($source->resultIndicators as $r) {
+                $target->resultIndicators()->create($r->only(['name', 'baseline', 'target', 'means_of_verification']));
+            }
+        }
+    }
+
     /** The subprogramme of $target (a programme of another year) that matches $sub by code, registered now if it is missing. */
     public function subprogramFor(Subprogram $sub, Program $target): Subprogram
     {
         return $target->subprograms()->where('code', $sub->code)->first()
-            ?? $target->subprograms()->create($sub->only(['code', 'name', 'objective']));
+            ?? tap($target->subprograms()->create($sub->only(['code', 'name', 'objective'])), fn ($created) => $this->copyDetails($sub, $created));
     }
 
     /** The programme of $year with the same OGE code as $program, registered now if the year does not have it. */
@@ -94,6 +112,7 @@ class ProgramYears
 
         $target = Program::forYear($year)->where('oge_code', $program->oge_code)->first()
             ?? Program::create(['fiscal_year' => $year] + $program->only(['oge_code', 'name', 'manager_name', 'objective', 'kpis']));
+        $this->copyDetails($program, $target);
         $this->copySubprograms($program->loadMissing('subprograms'), $target);
 
         return $target;

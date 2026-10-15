@@ -24,6 +24,12 @@ class Program extends Model
         static::creating(function (Program $program) {
             $program->fiscal_year ??= FiscalEnvelope::getEffectiveYear();
         });
+
+        static::deleting(function (Program $program) {
+            $program->subprograms()->get()->each->delete(); // through the model, so what hangs off them goes too
+            $program->alignments()->delete();
+            $program->resultIndicators()->delete();
+        });
     }
 
     public function activities()
@@ -34,6 +40,16 @@ class Program extends Model
     public function subprograms()
     {
         return $this->hasMany(Subprogram::class);
+    }
+
+    public function resultIndicators()
+    {
+        return $this->morphMany(ResultIndicator::class, 'indicatable');
+    }
+
+    public function alignments()
+    {
+        return $this->morphMany(Alignment::class, 'alignable');
     }
 
     public function scopeForYear(Builder $query, int $year): Builder

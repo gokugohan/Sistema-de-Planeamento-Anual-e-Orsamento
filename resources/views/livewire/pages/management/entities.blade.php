@@ -47,6 +47,9 @@ new class extends Component {
     public bool $suggestionsHidden = false;
     public $copyFromYear = '';
 
+    /** The programme or subprogramme whose objectives and result indicators are open in the dialog. */
+    public ?array $detailsFor = null;
+
     // Subprogram Form State
     public $subprogramId = null;
     public $subProgramId = '';
@@ -130,7 +133,7 @@ new class extends Component {
                 })
                 ->orderByRaw('COALESCE(parent_id, id), parent_id IS NOT NULL, name')
                 ->paginate(15),
-            'programs' => Program::forYear($year)->when($this->search, function ($q) {
+            'programs' => Program::forYear($year)->withCount(['alignments', 'resultIndicators'])->when($this->search, function ($q) {
                 $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")
                     ->orWhere('oge_code', 'like', "%{$this->search}%"));
             })
@@ -141,7 +144,7 @@ new class extends Component {
                 ? app(ProgramYears::class)->suggestions($year, trim((string) $this->ogeCode) !== '' ? (string) $this->ogeCode : (string) $this->programName)
                 : collect(),
             'subprograms' => Subprogram::query()
-                ->with('program:id,oge_code,name,fiscal_year')->withCount('activities')
+                ->with('program:id,oge_code,name,fiscal_year')->withCount(['activities', 'alignments', 'resultIndicators'])
                 ->whereHas('program', fn ($q) => $q->where('fiscal_year', $year))
                 ->when($this->subprogramFilter !== '', fn ($q) => $q->where('program_id', (int) $this->subprogramFilter))
                 ->when($this->search, fn ($q) => $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")->orWhere('code', 'like', "%{$this->search}%")))
@@ -387,6 +390,22 @@ new class extends Component {
         $this->dispatch('toast', message: __('Program deleted successfully.'), type: 'success');
     }
 
+    public function openDetails(string $type, int $id): void
+    {
+        $this->guardPrograms();
+        $model = $type === 'subprogram' ? Subprogram::findOrFail($id) : Program::findOrFail($id);
+        $this->detailsFor = [
+            'type' => $type === 'subprogram' ? 'subprogram' : 'program',
+            'id' => $model->id,
+            'title' => $type === 'subprogram' ? $model->code.' · '.$model->name : $model->oge_code.' · '.$model->name,
+        ];
+    }
+
+    public function closeDetails(): void
+    {
+        $this->detailsFor = null;
+    }
+
     // ========== SUBPROGRAM CRUD METHODS ==========
 
     public function openSubprogramModal($id = null)
@@ -614,4 +633,11 @@ new class extends Component {
         @include('livewire.pages.management.entities-tabs.classifications')
     @endif
 
+    @if($detailsFor)
+        <x-dialog max-width="3xl" close="closeDetails()">
+            <x-slot:title>{{ $detailsFor['title'] }}</x-slot:title>
+            <x-slot:subtitle>{{ __('Objectives and result indicators') }}</x-slot:subtitle>
+            <livewire:pages.management.structure-details :type="$detailsFor['type']" :id="$detailsFor['id']" :key="'details-'.$detailsFor['type'].'-'.$detailsFor['id']" />
+        </x-dialog>
+    @endif
 </div>

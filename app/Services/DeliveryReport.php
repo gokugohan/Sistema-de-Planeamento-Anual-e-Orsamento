@@ -35,6 +35,24 @@ class DeliveryReport
         ];
     }
 
+    /**
+     * Indicators of approved activities that are due in $quarter (every quarter unless they say otherwise)
+     * and have no verified figure for it yet.
+     *
+     * @param  Builder  $activityIds  a query selecting the ids of the activities to include
+     */
+    public function dueWithoutFigure(Builder $activityIds, int $quarter): int
+    {
+        return DB::table('indicators as i')
+            ->join('activities as a', 'a.id', '=', 'i.activity_id')
+            ->whereIn('i.activity_id', $activityIds)
+            ->where('a.status', 'Approved')
+            ->where(fn ($q) => $q->whereNull('i.due_quarters')->orWhereRaw('JSON_CONTAINS(i.due_quarters, ?)', [(string) $quarter]))
+            ->whereNotExists(fn ($q) => $q->selectRaw('1')->from('indicator_progress as p')
+                ->whereColumn('p.indicator_id', 'i.id')->where('p.quarter', $quarter)->where('p.status', 'Verified'))
+            ->count();
+    }
+
     /** Average achievement of each programme's indicators for a year. @return array<int, float> keyed by programme id */
     public function byProgramme(int $year): array
     {

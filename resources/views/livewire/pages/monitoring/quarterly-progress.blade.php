@@ -363,6 +363,9 @@ new class extends Component {
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-6 py-4">
                                     <div class="text-sm font-bold text-gray-900 leading-tight">{{ $indicator->name }}</div>
+                                    @unless($indicator->isDueIn((int) $quarter))
+                                        <div class="mt-0.5 inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-700">{{ __('Not due this quarter') }}</div>
+                                    @endunless
                                     <div class="text-xs font-medium text-gray-500 mt-0.5 ">{{ __($indicator->type) }} · {{ $indicator->isLevel() ? __('Level: enter where it stands at the end of the quarter') : __('Adds up: enter what was achieved in this quarter') }}</div>
                                     <div class="text-xs text-gray-500 mt-0.5">{{ __('Verified so far') }}: <span class="font-semibold tabular-nums text-gray-700">{{ number_format($standing, 2) }}</span> {{ $indicator->unit }}@if($standingPct !== null) ({{ number_format($standingPct, 0) }}%)@endif</div>
                                 </td>
