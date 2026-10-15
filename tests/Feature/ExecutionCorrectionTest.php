@@ -63,7 +63,7 @@ class ExecutionCorrectionTest extends TestCase
 
     private function moneyPage(User $user, int $activityId)
     {
-        return Volt::actingAs($user)->test('pages.monitoring.budget-execution')->set('activityId', $activityId)->set('quarter', 4);
+        return Volt::actingAs($user)->test('pages.monitoring.execution-spending')->set('activityId', $activityId)->set('quarter', 4);
     }
 
     public function test_the_final_approver_reopens_a_verified_line_with_a_remark_and_it_is_recorded(): void
@@ -106,7 +106,7 @@ class ExecutionCorrectionTest extends TestCase
     {
         $activityId = $p->indicator->activity_id;
 
-        return Volt::actingAs($user)->test('pages.monitoring.quarterly-progress')->set('quarter', 4)->set('selectedActivityId', $activityId);
+        return Volt::actingAs($user)->test('pages.monitoring.execution-progress')->set('quarter', 4)->set('activityId', $activityId);
     }
 
     public function test_progress_cannot_be_verified_by_the_person_who_reported_it(): void

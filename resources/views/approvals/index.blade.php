@@ -13,8 +13,7 @@
     $places = array_values(array_filter([
         $user->can('approve_paa') ? ['PAA Tech Review', route('planning.paa-approval'), __('Review and approve submitted activities, in bulk')] : null,
         $user->can('approve_progress_report') ? ['Verify Progress', route('monitoring.approval'), __('Verify quarterly indicator progress')] : null,
-        $user->can('view_monitoring') ? ['Budget Execution', route('monitoring.execution'), __('Report and verify what each budget line committed and paid')] : null,
-        $user->can('view_monitoring') ? ['Report progress', route('monitoring.progress'), __('Report and verify progress against indicators')] : null,
+        $user->can('view_monitoring') ? ['Report execution', route('monitoring.report'), __('Report and verify what an activity spent and achieved in a quarter')] : null,
         ['Allocation Review', route('planning.director-review'), __('Review how the envelope was allocated')],
     ]));
 @endphp

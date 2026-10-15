@@ -1721,5 +1721,18 @@
     "Units, programmes, subprogrammes and economic categories, with their funding": "Unidades, programas, subprogramas e categorias económicas, com o seu financiamento",
     ":n activity in your units waiting for a decision|:n activities in your units waiting for a decision": ":n atividade nas suas unidades aguarda decisão|:n atividades nas suas unidades aguardam decisão",
     ":n spending figure to verify|:n spending figures to verify": ":n valor de despesa a verificar|:n valores de despesa a verificar",
-    ":n activity returned for correction|:n activities returned for correction": ":n atividade devolvida para correção|:n atividades devolvidas para correção"
+    ":n activity returned for correction|:n activities returned for correction": ":n atividade devolvida para correção|:n atividades devolvidas para correção",
+    "For one approved activity and one quarter: what it spent and what it achieved. Figures count once someone else has verified them.": "Para uma atividade aprovada e um trimestre: o que gastou e o que alcançou. Os valores só contam depois de verificados por outra pessoa.",
+    "Only approved activities with a distributed budget or indicators can report execution.": "Só as atividades aprovadas com orçamento distribuído ou indicadores podem reportar execução.",
+    "Open the activity": "Abrir a atividade",
+    "Spending": "Despesa",
+    "verified": "verificados",
+    "waiting for verification": "a aguardar verificação",
+    "Done for this quarter? Send the spending and the indicator figures for verification together.": "Terminou este trimestre? Envie a despesa e os valores dos indicadores para verificação em conjunto.",
+    "Submit everything for verification": "Submeter tudo para verificação",
+    "What each budget line committed and paid in Q:q": "O que cada linha orçamental comprometeu e pagou no T:q",
+    "What the activity achieved in Q:q": "O que a atividade alcançou no T:q",
+    "This activity has no indicators.": "Esta atividade não tem indicadores.",
+    "Report and verify what an activity spent and achieved in a quarter": "Reportar e verificar o que uma atividade gastou e alcançou num trimestre",
+    "Report what an activity spent and achieved in a quarter": "Reportar o que uma atividade gastou e alcançou num trimestre"
 }

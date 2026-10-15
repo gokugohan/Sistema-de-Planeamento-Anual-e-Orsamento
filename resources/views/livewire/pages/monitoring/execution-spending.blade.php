@@ -5,27 +5,30 @@ use App\Models\BudgetExecution;
 use App\Models\FiscalEnvelope;
 use App\Models\LineItem;
 use App\Policies\ActivityPolicy;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 /**
- * Reporting what an approved activity committed and paid in a quarter, line by line.
- * The unit reports it (Draft, then Submitted); someone else verifies it, and only verified figures count
- * in the execution reports. A verified quarter is not edited.
+ * The spending half of "Report execution": what an approved activity committed and paid in a quarter,
+ * line by line. The activity and the quarter come from the page that holds it. The unit reports it
+ * (Draft, then Submitted); someone else verifies it, and only verified figures count in the reports.
+ * A verified figure is changed only by reopening it.
  */
 new class extends Component {
     public int $year;
     public int $quarter = 1;
     public ?int $activityId = null;
-    public string $search = '';
     /** @var array<int, array{committed: mixed, paid: mixed}> keyed by budget line */
     public array $form = [];
 
-    private const PICKER_LIMIT = 100;
-
-    public function mount(): void
+    public function mount(?int $activityId = null, ?int $quarter = null): void
     {
         $this->year = FiscalEnvelope::getEffectiveYear();
-        $this->quarter = $this->latestQuarter();
+        $this->quarter = max(1, min($quarter ?? $this->latestQuarter(), $this->latestQuarter()));
+        $this->activityId = $activityId;
+        if ($activityId) {
+            $this->fillForm();
+        }
     }
 
     /** The newest quarter that has started: reporting on a quarter that has not begun makes no sense. */
@@ -54,26 +57,6 @@ new class extends Component {
         return ($user->can('approve_progress_report') || $user->hasRole('Director'))
             && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
             && ! $activity->isLocked();
-    }
-
-    public function getActivitiesProperty()
-    {
-        $user = auth()->user();
-        $query = Activity::where('fiscal_year', $this->year)
-            ->where('status', Activity::STATUS_APPROVED)
-            ->whereHas('lineItems.adjustedBudget')
-            ->select(['id', 'code', 'description', 'directorate_id'])
-            ->with('directorate:id,code');
-
-        if (! $user->can('view_all_paa') && ! $user->isAdministrator()) {
-            $query->whereIn('directorate_id', \App\Models\Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? [0]);
-        }
-        if ($this->search !== '') {
-            $term = '%'.str_replace(['%', '_'], ['\\%', '\\_'], $this->search).'%';
-            $query->where(fn ($w) => $w->where('description', 'like', $term)->orWhere('code', 'like', $term));
-        }
-
-        return $query->orderBy('directorate_id')->orderBy('id')->limit(self::PICKER_LIMIT + 1)->get();
     }
 
     public function getActivityProperty(): ?Activity
@@ -116,12 +99,6 @@ new class extends Component {
         $this->quarter = max(1, min($this->quarter, $this->latestQuarter()));
         $this->resetErrorBag();
         $this->fillForm();
-    }
-
-    public function updatedSearch(): void
-    {
-        $this->activityId = null;
-        $this->form = [];
     }
 
     private function fillForm(): void
@@ -177,6 +154,7 @@ new class extends Component {
             $this->dispatch('toast', message: __('Some lines were not saved: check the amounts.'), type: 'error');
         } elseif ($saved) {
             $this->dispatch('toast', message: $submit ? __('Submitted for verification.') : __('Saved as a draft.'), type: 'success');
+            $this->dispatch('execution-changed');
         }
         $this->fillForm();
     }
@@ -214,6 +192,7 @@ new class extends Component {
         $entry->update(['status' => BudgetExecution::DRAFT, 'verified_by' => null, 'verified_at' => null, 'notes' => $remark]);
 
         $this->dispatch('toast', message: __('Reopened for correction.'), type: 'success');
+        $this->dispatch('execution-changed');
         $this->fillForm();
     }
 
@@ -238,7 +217,18 @@ new class extends Component {
             ? ['status' => BudgetExecution::VERIFIED, 'verified_by' => auth()->id(), 'verified_at' => now()]
             : ['status' => BudgetExecution::REJECTED, 'verified_by' => null, 'verified_at' => null]);
         $this->dispatch('toast', message: $approve ? __('Verified.') : __('Returned for correction.'), type: 'success');
+        $this->dispatch('execution-changed');
         $this->fillForm();
+    }
+
+    /** The page's "submit everything" button: this panel's drafts go for verification too. */
+    #[On('submit-execution')]
+    public function submitEverything(): void
+    {
+        $activity = $this->activity;
+        if ($activity && $this->mayReport($activity)) {
+            $this->save(true);
+        }
     }
 
     public function with(): array
@@ -249,53 +239,16 @@ new class extends Component {
             'canReport' => $activity ? $this->mayReport($activity) : false,
             'canVerify' => $activity ? $this->mayVerify($activity) : false,
             'canCorrect' => $activity ? $this->mayCorrect($activity) : false,
-            'maxQuarter' => $this->latestQuarter(),
         ];
     }
 }; ?>
 
-<div class="space-y-6">
-    <x-ui.page-header :title="__('Budget execution')" :subtitle="__('Report what each approved budget line committed and paid in a quarter. Figures count once they are verified.')">
-        <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-800">{{ __('Fiscal year') }} {{ $year }}</span>
-    </x-ui.page-header>
-
-    <x-ui.card padding="p-5">
-        <div class="grid gap-4 md:grid-cols-12">
-            <div class="md:col-span-3">
-                <label for="be-q" class="field-label">{{ __('Quarter') }}</label>
-                <select id="be-q" wire:model.live="quarter" class="flux-input">
-                    @foreach(range(1, $maxQuarter) as $q)
-                        <option value="{{ $q }}">Q{{ $q }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="md:col-span-3">
-                <label for="be-s" class="field-label">{{ __('Search activities') }}</label>
-                <input id="be-s" type="search" wire:model.live.debounce.300ms="search" class="flux-input" placeholder="{{ __('Code or description') }}">
-            </div>
-            <div class="md:col-span-6">
-                <label for="be-a" class="field-label">{{ __('Activity') }}</label>
-                @php $activities = $this->activities; @endphp
-                <select id="be-a" wire:model.live="activityId" class="flux-input">
-                    <option value="">{{ __('Select an approved activity') }}</option>
-                    @foreach($activities->take(100) as $a)
-                        <option value="{{ $a->id }}">{{ $a->directorate?->code }} — {{ $a->code ? $a->code.' · ' : '' }}{{ \Illuminate\Support\Str::limit($a->description, 90) }}</option>
-                    @endforeach
-                </select>
-                @if($activities->count() > 100)
-                    <p class="field-hint">{{ __('Showing the first 100: search to narrow the list.') }}</p>
-                @endif
-            </div>
-        </div>
-    </x-ui.card>
-
+<div>
     @if(! $activityId)
-        <x-ui.card padding="p-0">
-            <x-ui.empty-state :title="__('Choose an activity')" :text="__('Only approved activities with a distributed budget can report execution.')" />
-        </x-ui.card>
+        <x-ui.card :title="__('Spending')" padding="p-0"><x-ui.empty-state :title="__('Choose an activity')" /></x-ui.card>
     @else
         @php $lines = $this->lines; @endphp
-        <x-ui.card :title="\Illuminate\Support\Str::limit($this->activity->description, 120)" :description="$this->activity->directorate?->name.' · Q'.$quarter" padding="p-0">
+        <x-ui.card :title="__('Spending')" :description="__('What each budget line committed and paid in Q:q', ['q' => $quarter])" padding="p-0">
             @if($lines->isEmpty())
                 <x-ui.empty-state :title="__('This activity has no distributed budget lines.')" />
             @else

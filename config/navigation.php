@@ -65,10 +65,8 @@ return [
         [
             'label' => 'Execute',
             'items' => [
-                ['label' => 'Budget Execution', 'route' => 'monitoring.execution', 'icon' => 'banknote', 'permission' => 'view_monitoring',
-                    'hint' => 'Report what each budget line committed and paid'],
-                ['label' => 'Report progress', 'route' => 'monitoring.progress', 'icon' => 'activity', 'permission' => 'view_monitoring',
-                    'hint' => 'Report what each activity achieved against its indicators'],
+                ['label' => 'Report execution', 'route' => 'monitoring.report', 'icon' => 'banknote', 'permission' => 'view_monitoring',
+                    'hint' => 'Report what an activity spent and achieved in a quarter'],
             ],
         ],
         [

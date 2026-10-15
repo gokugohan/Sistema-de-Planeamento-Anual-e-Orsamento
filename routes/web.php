@@ -58,13 +58,13 @@ Route::get('approvals', function () {
     return view('approvals.index');
 })->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning'])->name('approvals.index');
 
-Route::get('monitoring/progress', function () {
-    return view('monitoring.progress');
-})->middleware(['auth', 'verified', 'permission:view_monitoring'])->name('monitoring.progress');
+Route::get('monitoring/report', function () {
+    return view('monitoring.report');
+})->middleware(['auth', 'verified', 'permission:view_monitoring'])->name('monitoring.report');
 
-Route::get('monitoring/execution', function () {
-    return view('monitoring.execution');
-})->middleware(['auth', 'verified', 'permission:view_monitoring'])->name('monitoring.execution');
+// Spending and progress used to be two pages; they are one now.
+Route::redirect('monitoring/execution', '/monitoring/report')->name('monitoring.execution');
+Route::redirect('monitoring/progress', '/monitoring/report')->name('monitoring.progress');
 
 Route::get('monitoring/approval', function () {
     return view('monitoring.approval');

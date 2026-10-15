@@ -49,7 +49,7 @@ class BudgetExecutionEntryTest extends TestCase
 
     private function page(User $user)
     {
-        return Volt::actingAs($user)->test('pages.monitoring.budget-execution')
+        return Volt::actingAs($user)->test('pages.monitoring.execution-spending')
             ->set('activityId', $this->activity->id)->set('quarter', 4);
     }
 
@@ -133,7 +133,7 @@ class BudgetExecutionEntryTest extends TestCase
     {
         Carbon::setTestNow('2026-05-10 10:00:00'); // second quarter
 
-        $page = Volt::actingAs($this->user('director.udig@goku.tl'))->test('pages.monitoring.budget-execution')
+        $page = Volt::actingAs($this->user('director.udig@goku.tl'))->test('pages.monitoring.execution-spending')
             ->set('activityId', $this->activity->id)->set('quarter', 4);
 
         $page->assertSet('quarter', 2);

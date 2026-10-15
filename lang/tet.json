@@ -1721,5 +1721,18 @@
     "Units, programmes, subprogrammes and economic categories, with their funding": "Unidade, programa, subprograma no kategoria ekonómika, ho sira nia finansiamentu",
     ":n activity in your units waiting for a decision|:n activities in your units waiting for a decision": "Atividade :n iha ita-nia unidade hein desizaun|Atividade :n iha ita-nia unidade hein desizaun",
     ":n spending figure to verify|:n spending figures to verify": "Valór despeza :n atu verifika|Valór despeza :n atu verifika",
-    ":n activity returned for correction|:n activities returned for correction": "Atividade :n fó fila atu korrije|Atividade :n fó fila atu korrije"
+    ":n activity returned for correction|:n activities returned for correction": "Atividade :n fó fila atu korrije|Atividade :n fó fila atu korrije",
+    "For one approved activity and one quarter: what it spent and what it achieved. Figures count once someone else has verified them.": "Ba atividade aprova ida no trimestre ida: saida mak gasta no saida mak alkansa. Valór sira konta de'it kuandu ema seluk verifika ona.",
+    "Only approved activities with a distributed budget or indicators can report execution.": "Atividade aprova ne'ebé iha orsamentu distribui ka indikadór de'it mak bele relata ezekusaun.",
+    "Open the activity": "Loke atividade",
+    "Spending": "Despeza",
+    "verified": "verifika ona",
+    "waiting for verification": "hein verifikasaun",
+    "Done for this quarter? Send the spending and the indicator figures for verification together.": "Remata ona trimestre ida-ne'e? Haruka despeza no valór indikadór ba verifikasaun hamutuk.",
+    "Submit everything for verification": "Haruka buat hotu ba verifikasaun",
+    "What each budget line committed and paid in Q:q": "Saida mak liña orsamentál ida-idak kompromete no selu iha T:q",
+    "What the activity achieved in Q:q": "Saida mak atividade alkansa iha T:q",
+    "This activity has no indicators.": "Atividade ne'e la iha indikadór.",
+    "Report and verify what an activity spent and achieved in a quarter": "Relata no verifika saida mak atividade ida gasta no alkansa iha trimestre ida",
+    "Report what an activity spent and achieved in a quarter": "Relata saida mak atividade ida gasta no alkansa iha trimestre ida"
 }
