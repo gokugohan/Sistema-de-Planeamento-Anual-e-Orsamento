@@ -58,6 +58,7 @@ class Activity extends Model
 
     protected $fillable = [
         'program_id',
+        'subprogram_id',
         'code',
         'directorate_id',
         'description',
@@ -93,6 +94,11 @@ class Activity extends Model
     public function program()
     {
         return $this->belongsTo(Program::class);
+    }
+
+    public function subprogram()
+    {
+        return $this->belongsTo(Subprogram::class);
     }
 
     public function directorate()

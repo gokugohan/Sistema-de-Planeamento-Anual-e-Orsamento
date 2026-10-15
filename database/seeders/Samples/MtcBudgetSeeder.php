@@ -10,6 +10,7 @@ use App\Models\FiscalEnvelopeCategoryAllocation;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
+use App\Models\Subprogram;
 use App\Services\BudgetCycleService;
 use App\Services\EnvelopeDistributor;
 use App\Services\SampleRegistry;
@@ -130,6 +131,7 @@ class MtcBudgetSeeder extends Seeder
     {
         $classes = EconomicClassification::pluck('id', 'code');
         $programs = Program::forYear($year)->pluck('id', 'oge_code');
+        $subprogrammes = [];
         $units = Directorate::pluck('id', 'code');
         $totals = [];
 
@@ -146,9 +148,20 @@ class MtcBudgetSeeder extends Seeder
                     continue;
                 }
 
+                // the subprogramme the budget book files the activity under (the programme's, once per code)
+                $subprogramId = null;
+                if (($a['subprogramme'] ?? '') !== '') {
+                    $key = $programs[$a['programme']].'|'.$a['subprogramme'];
+                    $subprogrammes[$key] ??= $registry->upsert('mtc', Subprogram::class,
+                        ['program_id' => $programs[$a['programme']], 'code' => (string) $a['subprogramme']],
+                        ['name' => Str::limit(($a['subprogramme_name'] ?? '') !== '' ? $a['subprogramme_name'] : (string) $a['subprogramme'], 250, '')])->id;
+                    $subprogramId = $subprogrammes[$key];
+                }
+
                 $activity = $registry->upsert('mtc', Activity::class,
                     ['fiscal_year' => $year, 'code' => $a['code'], 'directorate_id' => $units[$unit]], [
                         'program_id' => $programs[$a['programme']],
+                        'subprogram_id' => $subprogramId,
                         'description' => Str::limit($a['name'], 990, ''),
                         'objective' => ($a['illustrative'] ?? false)
                             ? 'Atividade ilustrativa do exemplo; os valores não provêm de nenhum plano ou lei orçamental publicados.'

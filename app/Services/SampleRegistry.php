@@ -8,6 +8,7 @@ use App\Models\BudgetCycle;
 use App\Models\Directorate;
 use App\Models\FiscalEnvelope;
 use App\Models\Program;
+use App\Models\Subprogram;
 use App\Models\SampleRecord;
 use App\Models\SystemSetting;
 use App\Models\User;
@@ -167,6 +168,13 @@ class SampleRegistry
             foreach ($units as $unit) {
                 $kept[] = "Directorate {$unit->code} (in use)";
             }
+
+            // 4a. Sample subprogrammes that no remaining activity uses (the ones under a deleted programme go with it).
+            Subprogram::whereIn('id', $ids(Subprogram::class))->get()->each(function ($s) {
+                if (! Activity::withoutGlobalScopes()->where('subprogram_id', $s->id)->exists()) {
+                    $s->delete();
+                }
+            });
 
             // 4. Sample programmes that no remaining activity uses.
             Program::whereIn('id', $ids(Program::class))->get()->each(function ($p) use (&$deleted, &$kept) {

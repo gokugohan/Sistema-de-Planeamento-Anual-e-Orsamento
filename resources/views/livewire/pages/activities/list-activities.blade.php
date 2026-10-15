@@ -4,6 +4,7 @@ use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\FiscalEnvelope;
 use App\Models\Program;
+use App\Models\Subprogram;
 use App\Policies\ActivityPolicy;
 use App\Services\ActivityExporter;
 use App\Services\ActivityRollForward;
@@ -28,6 +29,8 @@ new class extends Component {
     public $unit = '';
     #[Url(as: 'programme')]
     public $program = '';
+    #[Url(as: 'subprogramme')]
+    public $subprogram = '';
     #[Url(as: 'where')]
     public string $location = '';
     #[Url(as: 'group')]
@@ -44,7 +47,10 @@ new class extends Component {
 
     public function updated($name): void
     {
-        if (in_array($name, ['tab', 'search', 'unit', 'program', 'location', 'group'], true)) {
+        if ($name === 'program') {
+            $this->subprogram = ''; // another programme has other subprogrammes
+        }
+        if (in_array($name, ['tab', 'search', 'unit', 'program', 'subprogram', 'location', 'group'], true)) {
             $this->resetPage();
             $this->selected = [];
         }
@@ -84,6 +90,9 @@ new class extends Component {
         $q = $this->visible();
         if ($this->unit !== '' && $root = Directorate::find((int) $this->unit)) {
             $q->whereIn('directorate_id', $root->getSelfAndDescendantIds());
+        }
+        if ($this->subprogram !== '') {
+            $q->where('subprogram_id', (int) $this->subprogram);
         }
         if ($this->program !== '') {
             $q->where('program_id', (int) $this->program);
@@ -169,7 +178,7 @@ new class extends Component {
         $tabCounts = collect(self::GROUPS)->map(fn ($s) => (int) collect($s)->sum(fn ($x) => $counts[$x] ?? 0))->all();
         $tabCounts['all'] = (int) $counts->sum();
 
-        $query = $this->filtered()->with(['directorate:id,code,name,parent_id', 'directorate.parent:id,parent_id,code', 'program:id,oge_code,name'])
+        $query = $this->filtered()->with(['directorate:id,code,name,parent_id', 'directorate.parent:id,parent_id,code', 'program:id,oge_code,name', 'subprogram:id,code,name'])
             ->withSum('lineItems as total', 'estimated_amount')->withCount(['indicators']);
 
         // "Needs my action" is decided by the workflow rules, so it is filtered after the query.
@@ -210,12 +219,16 @@ new class extends Component {
             'totalApproved' => $money(self::GROUPS['approved']),
             'units' => Directorate::whereNull('parent_id')->orderBy('code')->get(['id', 'code', 'name', 'administration']),
             'programs' => Program::forYear($this->year())->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
+            'subprograms' => Subprogram::query()
+                ->whereHas('program', fn ($q) => $q->where('fiscal_year', $this->year()))
+                ->when($this->program !== '', fn ($q) => $q->where('program_id', (int) $this->program))
+                ->orderBy('code')->get(['id', 'program_id', 'code', 'name']),
             'locations' => config('paa.locations'),
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,
             'locked' => FiscalEnvelope::planningEndedBy($year),
             'tabs' => ['all' => __('All'), 'draft' => __('Drafts & returned'), 'review' => __('In review'), 'approved' => __('Approved'), 'mine' => __('Needs my action')],
-            'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->location !== '' || $this->search !== '',
+            'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->subprogram !== '' || $this->location !== '' || $this->search !== '',
         ];
     }
 }; ?>
@@ -259,7 +272,7 @@ new class extends Component {
     </div>
 
     {{-- Filters --}}
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_12rem_14rem_11rem_9rem]">
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_12rem_14rem_14rem_11rem_9rem]">
         <input type="search" wire:model.live.debounce.300ms="search" class="flux-input" placeholder="{{ __('Search by code or description') }}" aria-label="{{ __('Search') }}">
         <select wire:model.live="unit" class="flux-input" aria-label="{{ __('Unit') }}">
             <option value="">{{ __('All units') }}</option>
@@ -272,6 +285,10 @@ new class extends Component {
         <select wire:model.live="program" class="flux-input" aria-label="{{ __('Programme') }}">
             <option value="">{{ __('All programmes') }}</option>
             @foreach($programs as $p)<option value="{{ $p->id }}">{{ $p->oge_code }} — {{ $p->name }}</option>@endforeach
+        </select>
+        <select wire:model.live="subprogram" class="flux-input" aria-label="{{ __('Subprogram') }}">
+            <option value="">{{ __('All subprograms') }}</option>
+            @foreach($subprograms as $s)<option value="{{ $s->id }}">{{ $s->code }} — {{ \Illuminate\Support\Str::limit($s->name, 40) }}</option>@endforeach
         </select>
         <select wire:model.live="location" class="flux-input" aria-label="{{ __('Location') }}">
             <option value="">{{ __('Everywhere') }}</option>
@@ -324,7 +341,7 @@ new class extends Component {
                         <p class="mt-0.5 text-xs text-zinc-500">
                             <span class="font-medium text-zinc-700">{{ $a->code ?? '—' }}</span>
                             <span aria-hidden="true">·</span> {{ $a->directorate->parent?->code ? $a->directorate->parent->code.' › ' : '' }}{{ $a->directorate->code }}
-                            <span aria-hidden="true">·</span> {{ $a->program->oge_code ?? '—' }}
+                            <span aria-hidden="true">·</span> {{ $a->program->oge_code ?? '—' }}@if($a->subprogram)<span class="text-zinc-400">/</span>{{ $a->subprogram->code }}@endif
                             @php $quarters = collect($a->execution_quarters ?: [$a->quarter]); @endphp
                             @if($a->location)<span aria-hidden="true">·</span> {{ $a->location }}@endif
                             <span aria-hidden="true">·</span> {{ $quarters->count() === 4 ? 'Q1–Q4' : $quarters->map(fn ($q) => "Q$q")->implode(' ') }}

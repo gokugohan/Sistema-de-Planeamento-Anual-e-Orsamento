@@ -3,6 +3,7 @@
 use Livewire\Volt\Component;
 use App\Models\Directorate;
 use App\Models\Program;
+use App\Models\Subprogram;
 use App\Models\EconomicClassification;
 use App\Models\Activity;
 use App\Models\FiscalEnvelope;
@@ -45,6 +46,16 @@ new class extends Component {
     /** Suggestions from other years stop showing once one was picked, until the user types again. */
     public bool $suggestionsHidden = false;
     public $copyFromYear = '';
+
+    // Subprogram Form State
+    public $subprogramId = null;
+    public $subProgramId = '';
+    public $subCode = '';
+    public $subName = '';
+    public $subObjective = '';
+    public $subprogramFilter = '';
+    public $subprogramModalOpen = false;
+    public $isSubprogramEditing = false;
 
     // Economic Classification Form State
     public $classificationId = null;
@@ -129,6 +140,14 @@ new class extends Component {
             'programSuggestions' => ($this->programModalOpen && ! $this->isProgramEditing && ! $this->suggestionsHidden)
                 ? app(ProgramYears::class)->suggestions($year, trim((string) $this->ogeCode) !== '' ? (string) $this->ogeCode : (string) $this->programName)
                 : collect(),
+            'subprograms' => Subprogram::query()
+                ->with('program:id,oge_code,name,fiscal_year')->withCount('activities')
+                ->whereHas('program', fn ($q) => $q->where('fiscal_year', $year))
+                ->when($this->subprogramFilter !== '', fn ($q) => $q->where('program_id', (int) $this->subprogramFilter))
+                ->when($this->search, fn ($q) => $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")->orWhere('code', 'like', "%{$this->search}%")))
+                ->orderBy(Program::select('oge_code')->whereColumn('programs.id', 'subprograms.program_id'))->orderBy('code')
+                ->paginate(10),
+            'yearPrograms' => Program::forYear($year)->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'copySources' => app(ProgramYears::class)->years()->reject(fn ($y) => $y === $year)->values(),
             'economicCategories' => EconomicClassification::when($this->search, function ($q) {
                 $q->where('name', 'like', "%{$this->search}%")
@@ -291,9 +310,9 @@ new class extends Component {
         $r = app(ProgramYears::class)->copy($from, $year);
         $this->copyFromYear = '';
         $this->resetPage();
-        $this->dispatch('toast', message: $r['copied']
-            ? __(':n programmes copied from :from to :year (:s already there).', ['n' => $r['copied'], 'from' => $from, 'year' => $year, 's' => $r['skipped']])
-            : __('Nothing to copy: :year already has the programmes of :from.', ['year' => $year, 'from' => $from]), type: $r['copied'] ? 'success' : 'info');
+        $this->dispatch('toast', message: ($r['copied'] || $r['subprograms'])
+            ? __(':n programs and :m subprograms copied from :from to :year.', ['n' => $r['copied'], 'm' => $r['subprograms'], 'from' => $from, 'year' => $year])
+            : __('Nothing to copy: :year already has the programmes of :from.', ['year' => $year, 'from' => $from]), type: ($r['copied'] || $r['subprograms']) ? 'success' : 'info');
     }
 
     public function openProgramModal($id = null)
@@ -366,6 +385,76 @@ new class extends Component {
 
         $p->delete();
         $this->dispatch('toast', message: __('Program deleted successfully.'), type: 'success');
+    }
+
+    // ========== SUBPROGRAM CRUD METHODS ==========
+
+    public function openSubprogramModal($id = null)
+    {
+        $this->guardPrograms();
+        $this->resetValidation();
+        if ($id) {
+            $s = Subprogram::findOrFail($id);
+            $this->isSubprogramEditing = true;
+            $this->subprogramId = $s->id;
+            $this->subProgramId = (string) $s->program_id;
+            $this->subCode = (string) $s->code;
+            $this->subName = $s->name;
+            $this->subObjective = $s->objective ?? '';
+        } else {
+            $this->isSubprogramEditing = false;
+            $this->subprogramId = null;
+            $this->reset(['subCode', 'subName', 'subObjective']);
+            $this->subProgramId = (string) $this->subprogramFilter;
+        }
+        $this->subprogramModalOpen = true;
+    }
+
+    public function saveSubprogram()
+    {
+        $this->guardPrograms();
+        $year = FiscalEnvelope::getEffectiveYear();
+
+        $this->validate([
+            // a subprogramme belongs to a programme of the working year
+            'subProgramId' => ['required', Rule::exists('programs', 'id')->where('fiscal_year', $year)],
+            // one code per programme
+            'subCode' => ['required', 'string', 'max:50', Rule::unique('subprograms', 'code')->where('program_id', $this->subProgramId)->ignore($this->subprogramId)],
+            'subName' => ['required', 'string', 'max:255'],
+            'subObjective' => ['nullable', 'string'],
+        ]);
+
+        $data = ['program_id' => (int) $this->subProgramId, 'code' => trim($this->subCode), 'name' => $this->subName, 'objective' => $this->subObjective ?: null];
+
+        if ($this->isSubprogramEditing) {
+            Subprogram::findOrFail($this->subprogramId)->update($data);
+            $this->dispatch('toast', message: __('Subprogram updated successfully!'), type: 'success');
+        } else {
+            Subprogram::create($data);
+            $this->dispatch('toast', message: __('Subprogram created successfully!'), type: 'success');
+        }
+
+        $this->subprogramModalOpen = false;
+    }
+
+    public function deleteSubprogram($id)
+    {
+        $this->guardPrograms();
+        $s = Subprogram::findOrFail($id);
+
+        if ($s->activities()->exists()) {
+            $this->dispatch('toast', message: __('Cannot delete a subprogram that has activities.'), type: 'error');
+
+            return;
+        }
+
+        $s->delete();
+        $this->dispatch('toast', message: __('Subprogram deleted successfully.'), type: 'success');
+    }
+
+    public function updatedSubprogramFilter(): void
+    {
+        $this->resetPage();
     }
 
     // ========== ECONOMIC CLASSIFICATION CRUD METHODS ==========
@@ -442,7 +531,7 @@ new class extends Component {
                 {{ __('Entities') }}
             </h1>
             <p class="page-subtitle">
-                {{ __('Units, programmes and economic categories, with their funding for the selected fiscal year') }}
+                {{ __('Units, programmes, subprogrammes and economic categories, with their funding for the selected fiscal year') }}
             </p>
         </div>
         <div class="flex gap-3">
@@ -463,6 +552,15 @@ new class extends Component {
                         <path d="M12 5v14" />
                     </svg>
                     {{ __('Add New Program') }}
+                </x-ui.button>
+            @elseif($activeTab === 'subprograms')
+                <x-ui.button wire:click="openSubprogramModal()" variant="black" shadow="lg" class="!rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                    </svg>
+                    {{ __('Add New Subprogram') }}
                 </x-ui.button>
             @elseif($activeTab === 'classifications')
                 <x-ui.button wire:click="openClassificationModal()" variant="black" shadow="lg" class="!rounded-xl">
@@ -487,6 +585,10 @@ new class extends Component {
             class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'programs' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
             {{ __('Programs') }}
         </button>
+        <button wire:click="switchTab('subprograms')"
+            class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'subprograms' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
+            {{ __('Subprograms') }}
+        </button>
         <button wire:click="switchTab('classifications')"
             class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'classifications' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
             {{ __('Economic Classifications') }}
@@ -499,6 +601,10 @@ new class extends Component {
     @endif
 
     {{-- Programs Tab Content --}}
+    @if($activeTab === 'subprograms')
+        @include('livewire.pages.management.entities-tabs.subprograms')
+    @endif
+
     @if($activeTab === 'programs')
         @include('livewire.pages.management.entities-tabs.programs')
     @endif

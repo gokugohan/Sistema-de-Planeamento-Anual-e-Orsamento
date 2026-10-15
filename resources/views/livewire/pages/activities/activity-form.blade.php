@@ -7,6 +7,7 @@ use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
+use App\Models\Subprogram;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Component;
 
@@ -21,6 +22,7 @@ new class extends Component {
     public int $year;
     public $directorate_id = '';
     public $program_id = '';
+    public $subprogram_id = '';
     public string $description = '';
     public string $objective = '';
     public string $manager_name = '';
@@ -48,6 +50,7 @@ new class extends Component {
             $this->year = (int) $activity->fiscal_year;
             $this->directorate_id = (string) $activity->directorate_id;
             $this->program_id = (string) $activity->program_id;
+            $this->subprogram_id = (string) ($activity->subprogram_id ?? '');
             $this->description = $activity->description;
             $this->objective = (string) $activity->objective;
             $this->manager_name = (string) $activity->manager_name;
@@ -80,6 +83,13 @@ new class extends Component {
     {
         unset($this->lines[$i]);
         $this->lines = array_values($this->lines) ?: [['class_id' => '', 'amount' => '']];
+    }
+
+    /** Another programme has other subprogrammes: the choice starts again. */
+    public function updatedProgramId(): void
+    {
+        $this->subprogram_id = '';
+        $this->resetErrorBag('subprogram_id');
     }
 
     /** A percentage is a level, not something that adds up over the quarters. */
@@ -118,6 +128,8 @@ new class extends Component {
         return [
             'directorate_id' => ['required', 'exists:directorates,id'],
             'program_id' => ['required', 'exists:programs,id,fiscal_year,'.$this->year],
+            // the subprogramme must belong to the chosen programme
+            'subprogram_id' => ['nullable', \Illuminate\Validation\Rule::exists('subprograms', 'id')->where('program_id', (int) $this->program_id)],
             'description' => ['required', 'string', 'min:5', 'max:1000'],
             'objective' => ['nullable', 'string', 'max:2000'],
             'manager_name' => ['nullable', 'string', 'max:255'],
@@ -157,6 +169,13 @@ new class extends Component {
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
         ]);
 
+        // A programme that is divided into subprogrammes needs one chosen.
+        if (blank($this->subprogram_id) && Subprogram::where('program_id', (int) $this->program_id)->exists()) {
+            $this->addError('subprogram_id', __('Choose the subprogram this activity belongs to.'));
+
+            return;
+        }
+
         $unit = Directorate::findOrFail($this->directorate_id);
         abort_unless(app(\App\Policies\ActivityPolicy::class)->inScope(auth()->user(), $unit->id), 403);
         if ($this->activity) {
@@ -167,6 +186,7 @@ new class extends Component {
         $q = collect($this->quarters)->map(fn ($n) => (int) $n)->sort()->values();
         $data = [
             'program_id' => $this->program_id,
+            'subprogram_id' => $this->subprogram_id ?: null,
             'directorate_id' => $unit->id,
             'description' => trim($this->description),
             'objective' => trim($this->objective) ?: null,
@@ -216,6 +236,7 @@ new class extends Component {
         return [
             'units' => $this->units(),
             'programs' => Program::forYear($this->year)->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
+            'subprograms' => $this->program_id ? Subprogram::where('program_id', (int) $this->program_id)->orderBy('code')->get(['id', 'code', 'name']) : collect(),
             'classes' => EconomicClassification::orderBy('code')->get(['id', 'code', 'name']),
             'total' => $total,
             'locations' => config('paa.locations'),
@@ -270,12 +291,20 @@ new class extends Component {
                 </div>
                 <div>
                     <label for="program_id" class="block text-sm font-medium text-zinc-700 mb-1">{{ __('Programme') }}</label>
-                    <select id="program_id" wire:model="program_id" class="flux-input">
+                    <select id="program_id" wire:model.live="program_id" class="flux-input">
                         <option value="">{{ __('Select a programme') }}</option>
                         @foreach($programs as $p)<option value="{{ $p->id }}">{{ $p->oge_code }} — {{ $p->name }}</option>@endforeach
                     </select>
                     @if($programs->isEmpty())<p class="mt-1 text-xs text-amber-700">{{ __('No programs are registered for :year yet. An administrator can register them at Management > Entities.', ['year' => $year]) }}</p>@endif
                     @error('program_id')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                    @if($subprograms->isNotEmpty())
+                        <label for="subprogram_id" class="mt-3 block text-sm font-medium text-zinc-700 mb-1">{{ __('Subprogram') }}</label>
+                        <select id="subprogram_id" wire:model="subprogram_id" class="flux-input">
+                            <option value="">{{ __('Select a subprogram') }}</option>
+                            @foreach($subprograms as $s)<option value="{{ $s->id }}">{{ $s->code }} — {{ $s->name }}</option>@endforeach
+                        </select>
+                        @error('subprogram_id')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                    @endif
                 </div>
                 <div class="sm:col-span-2">
                     <label for="description" class="block text-sm font-medium text-zinc-700 mb-1">{{ __('Activity') }}</label>

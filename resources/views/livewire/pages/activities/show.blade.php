@@ -49,7 +49,7 @@ new class extends Component {
         $this->authorize('view', $activity);
 
         $this->activity = $activity->load([
-            'program', 'directorate', 'indicators',
+            'program', 'subprogram', 'directorate', 'indicators',
             'lineItems.economicClassification', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -173,7 +173,7 @@ new class extends Component {
     private function refresh(): void
     {
         $this->activity = $this->activity->fresh([
-            'program', 'directorate', 'indicators',
+            'program', 'subprogram', 'directorate', 'indicators',
             'lineItems.economicClassification', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -221,7 +221,7 @@ new class extends Component {
             <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-6">
                 <div class="flex items-center justify-between mb-4">
                     <span class="inline-flex items-center text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md ring-1 ring-indigo-200">
-                        {{ $activity->program->oge_code }}
+                        {{ $activity->program->oge_code }}@if($activity->subprogram)<span class="opacity-60">/</span>{{ $activity->subprogram->code }}@endif
                     </span>
                     <span class="text-xs font-semibold text-zinc-400">
                         {{ __('Fiscal Year') }} {{ $activity->fiscal_year }}
@@ -694,6 +694,7 @@ new class extends Component {
                         <div>
                             <p class="text-xs font-semibold text-indigo-400">{{ __('OGE Program') }}</p>
                             <p class="text-sm font-semibold text-white mt-0.5 leading-snug">{{ $activity->program->name }}</p>
+                            @if($activity->subprogram)<p class="text-xs text-indigo-200 mt-1">{{ __('Subprogram') }} {{ $activity->subprogram->code }} · {{ $activity->subprogram->name }}</p>@endif
                         </div>
                     </div>
                     <div class="flex items-start gap-3">

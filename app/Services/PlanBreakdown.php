@@ -7,6 +7,7 @@ use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Indicator;
 use App\Models\Program;
+use App\Models\Subprogram;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -138,6 +139,26 @@ class PlanBreakdown
     }
 
     /** Production activities of the year joined to their budget lines and the amounts distributed to them. */
+    /**
+     * Planned and approved amount of each subprogramme, grouped under its programme (one grouped query).
+     * Activities filed straight under a programme (no subprogramme) are not listed here.
+     *
+     * @return array<int, array<int, array{code: string, name: string, planned: float, approved: float}>> keyed by programme id
+     */
+    public function subprogrammes(int $year): array
+    {
+        $rows = $this->amounts($year)->whereNotNull('a.subprogram_id')
+            ->groupBy('a.program_id', 'a.subprogram_id')
+            ->selectRaw('a.program_id, a.subprogram_id, SUM(li.estimated_amount) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
+            ->get();
+        $subs = Subprogram::whereIn('id', $rows->pluck('subprogram_id'))->get(['id', 'code', 'name'])->keyBy('id');
+
+        return $rows->groupBy('program_id')->map(fn ($g) => $g
+            ->map(fn ($r) => ['code' => (string) $subs[$r->subprogram_id]->code, 'name' => $subs[$r->subprogram_id]->name, 'planned' => (float) $r->planned, 'approved' => (float) $r->approved])
+            ->sortBy('code')->values()->all()
+        )->all();
+    }
+
     private function amounts(int $year)
     {
         return DB::table('activities as a')

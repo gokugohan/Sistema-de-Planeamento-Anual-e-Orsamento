@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Program;
+use App\Models\Subprogram;
 use Illuminate\Support\Collection;
 
 /**
@@ -41,24 +42,47 @@ class ProgramYears
      * Register in $toYear the programmes of $fromYear that it does not have yet (all of them, or only the given codes).
      *
      * @param  array<int, string>|null  $codes
-     * @return array{copied: int, skipped: int}
+     * @return array{copied: int, skipped: int, subprograms: int} subprograms = how many subprogrammes were added (also under programmes the year already had)
      */
     public function copy(int $fromYear, int $toYear, ?array $codes = null): array
     {
-        $copied = $skipped = 0;
-        $have = Program::forYear($toYear)->pluck('oge_code')->map('strval')->all();
+        $copied = $skipped = $subs = 0;
+        $have = Program::forYear($toYear)->get()->keyBy(fn ($p) => (string) $p->oge_code);
 
-        foreach (Program::forYear($fromYear)->when($codes !== null, fn ($q) => $q->whereIn('oge_code', $codes))->orderBy('oge_code')->get() as $p) {
-            if (in_array((string) $p->oge_code, $have, true)) {
+        foreach (Program::forYear($fromYear)->when($codes !== null, fn ($q) => $q->whereIn('oge_code', $codes))->with('subprograms')->orderBy('oge_code')->get() as $p) {
+            $target = $have->get((string) $p->oge_code);
+            if ($target) {
                 $skipped++;
-
-                continue;
+            } else {
+                $target = Program::create(['fiscal_year' => $toYear] + $p->only(['oge_code', 'name', 'manager_name', 'objective', 'kpis']));
+                $copied++;
             }
-            Program::create(['fiscal_year' => $toYear] + $p->only(['oge_code', 'name', 'manager_name', 'objective', 'kpis']));
-            $copied++;
+            $subs += $this->copySubprograms($p, $target);
         }
 
-        return ['copied' => $copied, 'skipped' => $skipped];
+        return ['copied' => $copied, 'skipped' => $skipped, 'subprograms' => $subs];
+    }
+
+    /** Add to $target the subprogrammes of $source it does not have (by code). Returns how many were added. */
+    private function copySubprograms(Program $source, Program $target): int
+    {
+        $have = $target->subprograms()->pluck('code')->map('strval')->all();
+        $added = 0;
+        foreach ($source->subprograms as $s) {
+            if (! in_array((string) $s->code, $have, true)) {
+                $target->subprograms()->create($s->only(['code', 'name', 'objective']));
+                $added++;
+            }
+        }
+
+        return $added;
+    }
+
+    /** The subprogramme of $target (a programme of another year) that matches $sub by code, registered now if it is missing. */
+    public function subprogramFor(Subprogram $sub, Program $target): Subprogram
+    {
+        return $target->subprograms()->where('code', $sub->code)->first()
+            ?? $target->subprograms()->create($sub->only(['code', 'name', 'objective']));
     }
 
     /** The programme of $year with the same OGE code as $program, registered now if the year does not have it. */
@@ -68,8 +92,11 @@ class ProgramYears
             return $program;
         }
 
-        return Program::forYear($year)->where('oge_code', $program->oge_code)->first()
+        $target = Program::forYear($year)->where('oge_code', $program->oge_code)->first()
             ?? Program::create(['fiscal_year' => $year] + $program->only(['oge_code', 'name', 'manager_name', 'objective', 'kpis']));
+        $this->copySubprograms($program->loadMissing('subprograms'), $target);
+
+        return $target;
     }
 
     /** Years that have programmes registered, newest first. */

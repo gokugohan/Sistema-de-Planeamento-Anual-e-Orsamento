@@ -56,11 +56,18 @@ new class extends Component {
         $byStatus = array_fill_keys($statusOrder, 0);
         $unitStats = [];
         $progStats = [];
-        foreach ($base()->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.status as s, COUNT(*) as n')->groupBy('activities.directorate_id', 'activities.program_id', 'activities.status')->get() as $r) {
+        $subStats = [];
+        foreach ($base()->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.subprogram_id as sp, activities.status as s, COUNT(*) as n')->groupBy('activities.directorate_id', 'activities.program_id', 'activities.subprogram_id', 'activities.status')->get() as $r) {
             $root = $rootOf($r->d);
             $progStats[$r->p]['n'] = ($progStats[$r->p]['n'] ?? 0) + $r->n;
+            if ($r->sp) {
+                $subStats[$r->sp]['n'] = ($subStats[$r->sp]['n'] ?? 0) + $r->n;
+            }
             if ($r->s === Activity::STATUS_APPROVED) {
                 $progStats[$r->p]['approved'] = ($progStats[$r->p]['approved'] ?? 0) + $r->n;
+                if ($r->sp) {
+                    $subStats[$r->sp]['approved'] = ($subStats[$r->sp]['approved'] ?? 0) + $r->n;
+                }
             }
             $byStatus[$r->s] = ($byStatus[$r->s] ?? 0) + $r->n;
             $unitStats[$root]['n'] = ($unitStats[$root]['n'] ?? 0) + $r->n;
@@ -79,8 +86,8 @@ new class extends Component {
             ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
             ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
             ->when($cat, fn ($q) => $q->where('line_items.economic_classification_id', $cat))
-            ->groupBy('activities.directorate_id', 'activities.program_id', 'activities.status', 'line_items.economic_classification_id')
-            ->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.status as s, line_items.economic_classification_id as c,
+            ->groupBy('activities.directorate_id', 'activities.program_id', 'activities.subprogram_id', 'activities.status', 'line_items.economic_classification_id')
+            ->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.subprogram_id as sp, activities.status as s, line_items.economic_classification_id as c,
                 COALESCE(SUM(line_items.estimated_amount), 0) as req, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
             ->get() as $r) {
             $planAll += $r->req;
@@ -92,6 +99,10 @@ new class extends Component {
                 $unitStats[$root]['alloc'] = ($unitStats[$root]['alloc'] ?? 0) + $r->alloc;
                 $progStats[$r->p]['plan'] = ($progStats[$r->p]['plan'] ?? 0) + $r->req;
                 $progStats[$r->p]['alloc'] = ($progStats[$r->p]['alloc'] ?? 0) + $r->alloc;
+                if ($r->sp) {
+                    $subStats[$r->sp]['plan'] = ($subStats[$r->sp]['plan'] ?? 0) + $r->req;
+                    $subStats[$r->sp]['alloc'] = ($subStats[$r->sp]['alloc'] ?? 0) + $r->alloc;
+                }
                 if ($r->c) {
                     $planByClass[$r->c] = ($planByClass[$r->c] ?? 0) + $r->req;
                     $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
@@ -150,6 +161,8 @@ new class extends Component {
 
         // ── programmes: what each one plans, receives and has paid ──
         $execByProg = $execReport->grouped($execData, 'program_id');
+        $execBySub = $execReport->grouped($execData, 'subprogram_id');
+        $subsByProg = \App\Models\Subprogram::whereIn('id', array_keys($subStats))->orderBy('code')->get(['id', 'program_id', 'code', 'name'])->groupBy('program_id');
         $progRows = [];
         foreach ($programs as $id => $p) {
             $s = $progStats[$id] ?? [];
@@ -162,6 +175,16 @@ new class extends Component {
                 'plan' => (float) ($s['plan'] ?? 0), 'alloc' => (float) ($s['alloc'] ?? 0),
                 'paid_pct' => $e && $e['approved'] > 0 ? $e['paid'] / $e['approved'] * 100 : null,
                 'due_pct' => $e && $e['approved'] > 0 ? $e['planned_to_date'] / $e['approved'] * 100 : null,
+                'subs' => $subsByProg->get($id, collect())->map(function ($sub) use ($subStats, $execBySub) {
+                    $s = $subStats[$sub->id] ?? [];
+                    $x = $execBySub[$sub->id] ?? null;
+
+                    return [
+                        'code' => $sub->code, 'name' => $sub->name, 'n' => $s['n'] ?? 0, 'approved' => $s['approved'] ?? 0,
+                        'plan' => (float) ($s['plan'] ?? 0), 'alloc' => (float) ($s['alloc'] ?? 0),
+                        'paid_pct' => $x && $x['approved'] > 0 ? $x['paid'] / $x['approved'] * 100 : null,
+                    ];
+                })->all(),
             ];
         }
         usort($progRows, fn ($a, $b) => [$b['plan'], $b['n']] <=> [$a['plan'], $a['n']]);
@@ -533,6 +556,17 @@ new class extends Component {
                         @if($r['paid_pct'] !== null){{ number_format($r['paid_pct'], 0) }}%@if($late)<span class="sr-only"> ({{ __('behind schedule') }})</span>@endif @else — @endif
                     </td>
                 </tr>
+                @foreach($r['subs'] as $sub)
+                    @php $spct = $sub['plan'] > 0 ? min(100, $sub['alloc'] / $sub['plan'] * 100) : null; @endphp
+                    <tr class="bg-zinc-50/60">
+                        <td class="py-2 pr-6 pl-12 text-xs text-zinc-700"><span class="font-mono font-semibold">{{ $sub['code'] }}</span> {{ $sub['name'] }}</td>
+                        <td class="px-6 py-2 text-xs tabular-nums text-zinc-600">{{ $sub['approved'] }}<span class="text-zinc-400"> / {{ $sub['n'] }}</span></td>
+                        <td class="px-6 py-2 num text-xs text-zinc-700">{{ $sub['plan'] > 0 ? '$ ' . number_format($sub['plan']) : '—' }}</td>
+                        <td class="px-6 py-2 num text-xs text-zinc-700">{{ $sub['alloc'] > 0 ? '$ ' . number_format($sub['alloc']) : '—' }}</td>
+                        <td class="px-6 py-2 text-xs tabular-nums text-zinc-600">{{ $spct !== null ? number_format($spct, 0) . '%' : '—' }}</td>
+                        <td class="px-6 py-2 text-xs tabular-nums text-zinc-600">{{ $sub['paid_pct'] !== null ? number_format($sub['paid_pct'], 0) . '%' : '—' }}</td>
+                    </tr>
+                @endforeach
             @empty
                 <tr><td colspan="6"><x-ui.empty-state :title="__('No programs to show.')" :text="__('Programs are registered for each fiscal year at Management > Entities.')" /></td></tr>
             @endforelse

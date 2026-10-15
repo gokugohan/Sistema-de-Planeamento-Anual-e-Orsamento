@@ -31,6 +31,11 @@ class Program extends Model
         return $this->hasMany(Activity::class);
     }
 
+    public function subprograms()
+    {
+        return $this->hasMany(Subprogram::class);
+    }
+
     public function scopeForYear(Builder $query, int $year): Builder
     {
         return $query->where('programs.fiscal_year', $year);

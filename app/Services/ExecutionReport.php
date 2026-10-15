@@ -44,8 +44,8 @@ class ExecutionReport
             ->join('line_items as li', 'li.activity_id', '=', 'a.id')
             ->join('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
             ->tap($scope)
-            ->groupBy('a.id', 'a.program_id', 'a.directorate_id', 'a.description', 'a.execution_quarters')
-            ->selectRaw('a.id, a.program_id, a.directorate_id, a.description, a.execution_quarters, SUM(ab.approved_amount) AS approved')
+            ->groupBy('a.id', 'a.program_id', 'a.subprogram_id', 'a.directorate_id', 'a.description', 'a.execution_quarters')
+            ->selectRaw('a.id, a.program_id, a.subprogram_id, a.directorate_id, a.description, a.execution_quarters, SUM(ab.approved_amount) AS approved')
             ->get();
 
         $activities = [];
@@ -57,7 +57,7 @@ class ExecutionReport
                 $planned[$q] = $approved / count($quarters);
             }
             $activities[$r->id] = [
-                'id' => (int) $r->id, 'name' => $r->description, 'program_id' => (int) $r->program_id, 'unit_id' => (int) $r->directorate_id,
+                'id' => (int) $r->id, 'name' => $r->description, 'program_id' => (int) $r->program_id, 'subprogram_id' => (int) ($r->subprogram_id ?? 0), 'unit_id' => (int) $r->directorate_id,
                 'approved' => $approved, 'planned' => $planned,
                 'committed' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'paid' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0],
             ];
@@ -163,7 +163,7 @@ class ExecutionReport
     /**
      * Paid against approved, by programme or by unit.
      *
-     * @param  'program_id'|'unit_id'  $by
+     * @param  'program_id'|'subprogram_id'|'unit_id'  $by
      * @return array<int, array{id: int, approved: float, paid: float, committed: float, planned_to_date: float}> keyed by id
      */
     public function grouped(array $data, string $by): array

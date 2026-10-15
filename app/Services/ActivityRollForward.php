@@ -42,12 +42,14 @@ class ActivityRollForward
         DB::transaction(function () use ($fromYear, $toYear, $unitIds, $shift, $units, $programs, &$programMap, &$copied, &$skipped, &$next) {
             Activity::where('fiscal_year', $fromYear)
                 ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds))
-                ->with(['lineItems', 'indicators', 'program'])
+                ->with(['lineItems', 'indicators', 'program', 'subprogram'])
                 ->orderBy('id')
                 ->chunkById(100, function ($activities) use ($toYear, $shift, $units, $programs, &$programMap, &$copied, &$skipped, &$next) {
                     foreach ($activities as $a) {
                         // the programme of the new year with the same code (registered now if it is missing)
-                        $programId = $programMap[$a->program_id] ??= $programs->forYearOf($a->program, $toYear)->id;
+                        $program = $programMap[$a->program_id] ??= $programs->forYearOf($a->program, $toYear);
+                        $programId = $program->id;
+                        $subprogramId = $a->subprogram ? $programs->subprogramFor($a->subprogram, $program)->id : null;
                         $exists = Activity::where('fiscal_year', $toYear)->where('directorate_id', $a->directorate_id)
                             ->where('program_id', $programId)->where('description', $a->description)->exists();
                         if ($exists) {
@@ -66,6 +68,7 @@ class ActivityRollForward
                             'code' => $code,
                             'is_test_data' => $a->is_test_data,
                             'program_id' => $programId,
+                            'subprogram_id' => $subprogramId,
                             'directorate_id' => $a->directorate_id,
                             'description' => $a->description,
                             'objective' => $a->objective,

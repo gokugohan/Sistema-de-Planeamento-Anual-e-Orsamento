@@ -16,6 +16,7 @@
     $unitTotals = $breakdown->unitTotals($selectedYear);
     $full = request()->boolean('full');
     $programmes = $breakdown->programmes($selectedYear, withActivities: $full);
+    $subprogrammes = $breakdown->subprogrammes($selectedYear);
 @endphp
 
 <x-app-layout title="{{ __('Reporting') }}">
@@ -176,6 +177,20 @@
                             <td class="px-5 py-3 num text-sm font-semibold text-zinc-900">$ {{ number_format($programRow['approved'], 2) }}</td>
                             <td class="px-5 py-3 num text-sm font-semibold {{ $progDiff > 0 ? 'text-rose-700' : 'text-zinc-900' }}">$ {{ number_format($progDiff, 2) }}</td>
                         </tr>
+
+                        {{-- the programme's subprogrammes: a summary of how its total is divided --}}
+                        @foreach($subprogrammes[$program->id] ?? [] as $sub)
+                            <tr data-parent="{{ $progRowId }}" class="tree-row hidden bg-zinc-50/30 hover:bg-zinc-50 print:table-row">
+                                <td class="py-2 pr-5" style="padding-left: 3rem;">
+                                    <div class="text-sm text-zinc-800"><span class="font-mono font-semibold">{{ $sub['code'] }}</span> · {{ $sub['name'] }}</div>
+                                    <div class="text-xs text-zinc-500">{{ __('Subprogram') }}</div>
+                                </td>
+                                <td class="px-5 py-2 text-xs text-zinc-500">{{ __('Subprogram Total') }}</td>
+                                <td class="px-5 py-2 num text-sm text-zinc-700">$ {{ number_format($sub['planned'], 2) }}</td>
+                                <td class="px-5 py-2 num text-sm text-zinc-900">$ {{ number_format($sub['approved'], 2) }}</td>
+                                <td class="px-5 py-2 num text-sm {{ $sub['planned'] - $sub['approved'] > 0 ? 'text-rose-700' : 'text-zinc-700' }}">$ {{ number_format($sub['planned'] - $sub['approved'], 2) }}</td>
+                            </tr>
+                        @endforeach
 
                         @foreach($programRow['classes'] as $classId => $classRow)
                             @php
