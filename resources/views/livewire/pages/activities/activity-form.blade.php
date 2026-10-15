@@ -230,9 +230,13 @@ new class extends Component {
             <div class="flex flex-col items-start gap-3">
                 <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</h2>
                 <p class="max-w-2xl text-sm text-zinc-600">
-                    {{ $endedBy === 'Closed'
-                        ? __('The planning cycle for :year is closed, so activities can no longer be added.', ['year' => $year])
-                        : __('The budget for :year is approved, so its plan is final and activities can no longer be added. To change an approved activity, reopen it with a reason.', ['year' => $year]) }}
+                    @if($endedBy === 'Closed')
+                        {{ __('The planning cycle for :year is closed, so activities can no longer be added.', ['year' => $year]) }}
+                    @elseif($endedBy === 'Approved')
+                        {{ __('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]) }}
+                    @else
+                        {{ __('The plan for :year has been finalized, so activities can no longer be added. Only the final approver or an administrator can reopen planning, with a remark.', ['year' => $year]) }}
+                    @endif
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>

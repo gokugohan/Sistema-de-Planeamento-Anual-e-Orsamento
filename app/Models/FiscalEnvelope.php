@@ -217,34 +217,24 @@ class FiscalEnvelope extends Model
     }
 
     /**
-     * Can new activities still be planned for this year? Planning ends when the budget law is applied
-     * (the envelope is approved) and stays ended when the year is closed. Until then (no envelope yet,
-     * or one still in draft or pending) the plan is open.
+     * Can new activities still be planned for this year? Planning ends with the final approval of the
+     * plan (see PlanningWindow), and for good once the budget envelope is received or the year closed.
      */
     public static function planningOpen(int $year): bool
     {
-        return ! in_array(self::where('fiscal_year', $year)->value('status'), [self::STATUS_APPROVED, self::STATUS_CLOSED], true);
+        return app(\App\Services\PlanningWindow::class)->isOpen($year);
     }
 
-    /** 'Approved' or 'Closed' for a year whose planning has ended, null while it is open. */
+    /** 'Finalized', 'Approved' (envelope received) or 'Closed' for a year whose planning has ended, null while it is open. */
     public static function planningEndedBy(int $year): ?string
     {
-        $status = self::where('fiscal_year', $year)->value('status');
-
-        return in_array($status, [self::STATUS_APPROVED, self::STATUS_CLOSED], true) ? $status : null;
+        return app(\App\Services\PlanningWindow::class)->endedBy($year);
     }
 
     /** The first year from this one on whose plan is still open: where new activities go. */
     public static function nextPlanningYear(): int
     {
-        $current = (int) date('Y');
-        foreach ([$current, $current + 1, $current + 2] as $year) {
-            if (self::planningOpen($year)) {
-                return $year;
-            }
-        }
-
-        return $current + 3;
+        return app(\App\Services\PlanningWindow::class)->nextOpenYear();
     }
 
     /** @return array<int, string> status of the envelope of each year that has one, for labelling the year switcher */

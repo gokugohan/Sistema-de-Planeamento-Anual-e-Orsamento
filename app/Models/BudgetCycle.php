@@ -11,6 +11,7 @@ class BudgetCycle extends Model
 
     protected $fillable = [
         'fiscal_year',
+        'planning_state', 'planning_by', 'planning_at', 'planning_remark',
         'indicative_ceiling', 'ceiling_reference', 'ceiling_date',
         'submission_reference', 'submission_fingerprint', 'submitted_total', 'submitted_activities',
         'submitted_at', 'submitted_by',
@@ -26,6 +27,7 @@ class BudgetCycle extends Model
             'ceiling_date' => 'date',
             'cro_decision_date' => 'date',
             'submitted_at' => 'datetime',
+            'planning_at' => 'datetime',
         ];
     }
 

@@ -6,6 +6,7 @@ use App\Models\FiscalEnvelope;
 use App\Models\LineItem;
 use App\Models\User;
 use App\Notifications\SystemNotification;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 use Livewire\WithPagination;
 
@@ -17,6 +18,12 @@ use Livewire\WithPagination;
  */
 new class extends Component {
     use WithPagination;
+
+    /** Planning was finalized or reopened (by the planning-window card): refresh. */
+    #[On('planning-changed')]
+    public function planningChanged(): void
+    {
+    }
 
     public string $queue = 'review';  // review | approval | approved | returned | all
     public $unit = '';                // top-level unit filter ('' = all)
@@ -245,6 +252,8 @@ new class extends Component {
             </select>
         </div>
     </div>
+
+    <livewire:pages.planning.planning-window :year="$year" :key="'planning-'.$year" />
 
     @if($locked)
         <div class="alert alert-success !items-start">

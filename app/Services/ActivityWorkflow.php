@@ -272,6 +272,7 @@ class ActivityWorkflow
     public function canReopen(User $user, Activity $activity): bool
     {
         return $activity->status === Activity::STATUS_APPROVED && ! $activity->isLocked()
+            && ! app(PlanningWindow::class)->envelopeReceived((int) $activity->fiscal_year) // after the envelope only its distribution changes
             && ($user->can('approve_paa') || $this->headApproves($user, $activity));
     }
 

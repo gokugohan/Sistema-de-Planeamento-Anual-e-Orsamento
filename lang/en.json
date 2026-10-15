@@ -884,5 +884,6 @@
     "Waiting for": "Waiting for",
     "What should be corrected?": "What should be corrected?",
     "Why is it reopened?": "Why is it reopened?",
-    "selected": "selected"
+    "selected": "selected",
+    ":n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan.": ":n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan."
 }

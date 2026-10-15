@@ -8,6 +8,7 @@ use App\Policies\ActivityPolicy;
 use App\Services\ActivityExporter;
 use App\Services\ActivityRollForward;
 use App\Services\ActivityWorkflow;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Volt\Component;
 use Livewire\WithPagination;
@@ -53,6 +54,12 @@ new class extends Component {
     {
         $this->tab = $tab;
         $this->updated('tab');
+    }
+
+    /** Planning was finalized or reopened (by the planning-window card): show the new state and buttons. */
+    #[On('planning-changed')]
+    public function planningChanged(): void
+    {
     }
 
     private function year(): int
@@ -207,7 +214,6 @@ new class extends Component {
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,
             'locked' => FiscalEnvelope::planningEndedBy($year),
-            'nextYear' => FiscalEnvelope::nextPlanningYear(),
             'tabs' => ['all' => __('All'), 'draft' => __('Drafts & returned'), 'review' => __('In review'), 'approved' => __('Approved'), 'mine' => __('Needs my action')],
             'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->location !== '' || $this->search !== '',
         ];
@@ -243,16 +249,7 @@ new class extends Component {
         @endif
     </x-ui.page-header>
 
-    @if($locked)
-        <div class="alert bg-indigo-50 text-indigo-900 ring-1 ring-indigo-200 justify-between">
-            <span>{{ $locked === 'Closed'
-                ? __('The planning cycle for :year is closed; activities can no longer be changed.', ['year' => $year])
-                : __('The budget for :year is approved, so its plan is final: new activities cannot be added.', ['year' => $year]) }}</span>
-            @if($canCreate)
-                <a href="{{ route('fiscal-year.switch', $nextYear) }}" class="shrink-0 font-semibold underline">{{ __('Plan for :year', ['year' => $nextYear]) }}</a>
-            @endif
-        </div>
-    @endif
+    <livewire:pages.planning.planning-window :year="$year" :key="'planning-'.$year" />
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <x-ui.kpi :label="__('Activities')" :value="number_format($tabCounts['all'])" :sub="__(':n in draft', ['n' => $tabCounts['draft']])" tone="zinc" />
