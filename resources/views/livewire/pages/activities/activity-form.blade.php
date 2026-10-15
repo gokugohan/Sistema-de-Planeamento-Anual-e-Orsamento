@@ -61,10 +61,10 @@ new class extends Component {
             $this->quarters = array_map('strval', $activity->execution_quarters ?: [$activity->quarter]);
             $this->procurement_required = (bool) $activity->procurement_required;
             $this->gender_responsive = (bool) $activity->gender_responsive;
-            $this->lines = $activity->lineItems->map(fn ($l) => ['class_id' => (string) $l->economic_classification_id, 'amount' => (string) (float) $l->estimated_amount])->all();
+            $this->lines = $activity->lineItems->map(fn ($l) => ['class_id' => (string) $l->economic_classification_id, 'source_id' => (string) $l->funding_source_id, 'amount' => (string) (float) $l->estimated_amount])->all();
             $this->indicators = $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target,
-                'baseline' => (string) $i->baseline, 'means' => (string) $i->means_of_verification, 'funding' => (string) $i->funding_source,
+                'baseline' => (string) $i->baseline, 'means' => (string) $i->means_of_verification,
                 'quarters' => array_map('strval', $i->dueQuarters()),
             ])->all();
         } else {
@@ -77,16 +77,21 @@ new class extends Component {
             $this->manager_name = '';
         }
 
-        $this->lines = $this->lines ?: [['class_id' => '', 'amount' => '']];
+        $this->lines = $this->lines ?: [$this->blankLine()];
         $this->indicators = $this->indicators ?: [$this->blankIndicator()];
     }
 
-    public function addLine(): void { $this->lines[] = ['class_id' => '', 'amount' => '']; }
+    public function addLine(): void { $this->lines[] = $this->blankLine(); }
+
+    private function blankLine(): array
+    {
+        return ['class_id' => '', 'source_id' => (string) \App\Models\FundingSource::defaultId(), 'amount' => ''];
+    }
 
     public function removeLine(int $i): void
     {
         unset($this->lines[$i]);
-        $this->lines = array_values($this->lines) ?: [['class_id' => '', 'amount' => '']];
+        $this->lines = array_values($this->lines) ?: [$this->blankLine()];
     }
 
     /** Another programme has other subprogrammes: the choice starts again. */
@@ -108,7 +113,7 @@ new class extends Component {
     /** An empty indicator row: reported every quarter until said otherwise. */
     private function blankIndicator(): array
     {
-        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'funding' => '', 'quarters' => ['1', '2', '3', '4']];
+        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4']];
     }
 
     public function addIndicator(): void { $this->indicators[] = $this->blankIndicator(); }
@@ -150,7 +155,8 @@ new class extends Component {
             'quarters' => ['required', 'array', 'min:1'],
             'quarters.*' => ['in:1,2,3,4'],
             'lines' => ['required', 'array', 'min:1'],
-            'lines.*.class_id' => ['required', 'exists:economic_classifications,id', 'distinct'],
+            'lines.*.class_id' => ['required', 'exists:economic_classifications,id'],
+            'lines.*.source_id' => ['nullable', 'exists:funding_sources,id'],
             'lines.*.amount' => ['required', 'numeric', 'min:0.01', 'max:999999999999'],
             'indicators' => ['required', 'array', 'min:1'],
             'indicators.*.name' => ['required', 'string', 'max:255'],
@@ -160,7 +166,6 @@ new class extends Component {
             'indicators.*.target' => ['required', 'numeric', 'min:0'],
             'indicators.*.baseline' => ['nullable', 'string', 'max:500'],
             'indicators.*.means' => ['nullable', 'string', 'max:1000'],
-            'indicators.*.funding' => ['nullable', 'string', 'max:100'],
             'indicators.*.quarters' => ['nullable', 'array'],
             'indicators.*.quarters.*' => ['in:1,2,3,4'],
         ];
@@ -180,9 +185,17 @@ new class extends Component {
         abort_if(! $this->activity && ! FiscalEnvelope::planningOpen($this->year), 422);
 
         $this->validate($this->planRules(), [], [
-            'lines.*.class_id' => __('economic category'), 'lines.*.amount' => __('amount'),
+            'lines.*.class_id' => __('economic category'), 'lines.*.source_id' => __('funding source'), 'lines.*.amount' => __('amount'),
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
         ]);
+
+        // A category may be paid from two sources, but not twice from the same one.
+        $pairs = collect($this->lines)->map(fn ($l) => $l['class_id'].'-'.(($l['source_id'] ?? '') ?: \App\Models\FundingSource::defaultId()));
+        if ($pairs->count() !== $pairs->unique()->count()) {
+            $this->addError('lines', __('A category appears twice with the same funding source: join them in one line.'));
+
+            return;
+        }
 
         // A programme that is divided into subprogrammes needs one chosen.
         if (blank($this->subprogram_id) && Subprogram::where('program_id', (int) $this->program_id)->exists()) {
@@ -229,7 +242,7 @@ new class extends Component {
 
             $activity->lineItems()->delete();
             foreach ($this->lines as $l) {
-                LineItem::create(['activity_id' => $activity->id, 'economic_classification_id' => $l['class_id'], 'estimated_amount' => round((float) $l['amount'], 2), 'is_test_data' => false]);
+                LineItem::create(['activity_id' => $activity->id, 'economic_classification_id' => $l['class_id'], 'funding_source_id' => ($l['source_id'] ?? '') ?: null, 'estimated_amount' => round((float) $l['amount'], 2), 'is_test_data' => false]);
             }
             $keep = [];
             foreach ($this->indicators as $i) {
@@ -237,7 +250,7 @@ new class extends Component {
                 $attrs = [
                     'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
                     'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
-                    'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null, 'funding_source' => trim((string) ($i['funding'] ?? '')) ?: null,
+                    'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null,
                     // every quarter is the default: store nothing for it
                     'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
                 ];
@@ -268,6 +281,7 @@ new class extends Component {
             'programs' => Program::forYear($this->year)->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'subprograms' => $this->program_id ? Subprogram::where('program_id', (int) $this->program_id)->orderBy('code')->get(['id', 'code', 'name']) : collect(),
             'classes' => EconomicClassification::orderBy('code')->get(['id', 'code', 'name']),
+            'sources' => \App\Models\FundingSource::where('active', true)->orWhereIn('id', collect($this->lines)->pluck('source_id')->filter())->orderByDesc('is_default')->orderBy('name')->get(['id', 'name']),
             'total' => $total,
             'locations' => config('paa.locations'),
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
@@ -423,6 +437,12 @@ new class extends Component {
                             </select>
                             @error("lines.$i.class_id")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                         </div>
+                        <div class="w-48">
+                            <select wire:model="lines.{{ $i }}.source_id" class="flux-input" aria-label="{{ __('Funding source') }}">
+                                @foreach($sources as $s)<option value="{{ $s->id }}">{{ __($s->name) }}</option>@endforeach
+                            </select>
+                            @error("lines.$i.source_id")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                        </div>
                         <div class="w-44">
                             <input type="number" step="0.01" min="0" wire:model.live.debounce.400ms="lines.{{ $i }}.amount" class="flux-input text-right tabular-nums" placeholder="0.00" aria-label="{{ __('Amount') }}">
                             @error("lines.$i.amount")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
@@ -466,7 +486,7 @@ new class extends Component {
 
                         <div class="sm:col-span-full" x-data="{ open: false }">
                             <button type="button" x-on:click="open = ! open" x-bind:aria-expanded="open" class="text-xs font-medium text-indigo-700 hover:underline">
-                                <span x-show="! open">{{ __('More details: baseline, how it is verified, funding, reporting quarters') }}</span>
+                                <span x-show="! open">{{ __('More details: baseline, how it is verified, reporting quarters') }}</span>
                                 <span x-show="open" x-cloak>{{ __('Hide details') }}</span>
                             </button>
                             <div x-show="open" x-cloak class="mt-2 grid gap-3 rounded-md border border-zinc-200 bg-zinc-50 p-3 sm:grid-cols-2">
@@ -474,11 +494,6 @@ new class extends Component {
                                     <label for="ind-{{ $i }}-baseline" class="field-label">{{ __('Baseline') }}</label>
                                     <input id="ind-{{ $i }}-baseline" type="text" wire:model="indicators.{{ $i }}.baseline" class="flux-input" placeholder="{{ __('Where it stands today, e.g. 4 or 0%') }}">
                                     @error("indicators.$i.baseline")<p class="field-error">{{ $message }}</p>@enderror
-                                </div>
-                                <div>
-                                    <label for="ind-{{ $i }}-funding" class="field-label">{{ __('Funding source') }}</label>
-                                    <input id="ind-{{ $i }}-funding" type="text" list="funding-sources" wire:model="indicators.{{ $i }}.funding" class="flux-input" placeholder="{{ __('e.g. State Budget, a partner') }}">
-                                    @error("indicators.$i.funding")<p class="field-error">{{ $message }}</p>@enderror
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="ind-{{ $i }}-means" class="field-label">{{ __('Means of verification') }}</label>
@@ -499,9 +514,6 @@ new class extends Component {
                         </div>
                     </div>
                 @endforeach
-                <datalist id="funding-sources">
-                    <option value="{{ __('State Budget') }}"><option value="{{ __('Development partner') }}"><option value="{{ __('Own revenue') }}">
-                </datalist>
             </div>
             <x-ui.button type="button" variant="secondary" size="sm" class="mt-3" wire:click="addIndicator">+ {{ __('Add indicator') }}</x-ui.button>
         </x-ui.card>

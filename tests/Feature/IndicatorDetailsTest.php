@@ -8,6 +8,7 @@ use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
+use App\Models\LineItem;
 use App\Models\IndicatorProgress;
 use App\Models\Program;
 use App\Models\ResultIndicator;
@@ -93,14 +94,14 @@ class IndicatorDetailsTest extends TestCase
             ->set('program_id', (string) $program->id)->set('description', 'Inspect ports')->set('quarters', ['1'])
             ->set('lines', [['class_id' => (string) $class->id, 'amount' => '100']])
             ->set('indicators', [
-                ['name' => 'Inspections', 'type' => 'Output', 'unit' => 'ports', 'measure' => 'cumulative', 'target' => '6', 'baseline' => '2', 'means' => 'Signed reports', 'funding' => 'State Budget', 'quarters' => ['2', '4']],
+                ['name' => 'Inspections', 'type' => 'Output', 'unit' => 'ports', 'measure' => 'cumulative', 'target' => '6', 'baseline' => '2', 'means' => 'Signed reports', 'quarters' => ['2', '4']],
                 ['name' => 'Reports', 'type' => 'Output', 'unit' => 'reports', 'measure' => 'cumulative', 'target' => '4', 'quarters' => ['1', '2', '3', '4']],
             ])->call('save')->assertHasNoErrors();
 
         $a = Indicator::where('name', 'Inspections')->firstOrFail();
         $this->assertSame('2', $a->baseline);
         $this->assertSame('Signed reports', $a->means_of_verification);
-        $this->assertSame('State Budget', $a->funding_source);
+        $this->assertSame('State Budget', LineItem::where('activity_id', $a->activity_id)->first()->fundingSource->name, 'a line without a chosen source takes the default');
         $this->assertSame([2, 4], $a->due_quarters);
         $this->assertNull(Indicator::where('name', 'Reports')->value('due_quarters'), 'every quarter is the default: nothing is stored');
     }
@@ -218,7 +219,7 @@ class IndicatorDetailsTest extends TestCase
         Volt::test('pages.activities.show', ['activity' => $activity])->assertSee('Contributes to')->assertSee('SDG 9');
 
         $indicator = Indicator::whereNotNull('means_of_verification')->firstOrFail();
-        $this->assertNotNull($indicator->funding_source ?? $indicator->means_of_verification);
+        $this->assertNotNull($indicator->means_of_verification);
         Carbon::setTestNow();
     }
 }

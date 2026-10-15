@@ -18,6 +18,7 @@ new class extends Component {
     // Budget form fields
     public $bClassId = '';
     public $bAmount  = '';
+    public $bSourceId = '';
 
     // Workflow dialogs: the note an approver or reopener may leave, and the reason a return must give
     public string $note   = '';
@@ -50,7 +51,7 @@ new class extends Component {
 
         $this->activity = $activity->load([
             'program.alignments', 'subprogram.alignments', 'directorate', 'indicators',
-            'lineItems.economicClassification', 'lineItems.adjustedBudget',
+            'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
     }
@@ -96,11 +97,14 @@ new class extends Component {
         $this->authorize('update', $this->activity);
         $this->validate([
             'bClassId' => 'required|exists:economic_classifications,id',
+            'bSourceId' => 'nullable|exists:funding_sources,id',
             'bAmount'  => 'required|numeric|min:0.01|max:999999999999',
         ]);
+        $sourceId = $this->bSourceId ?: \App\Models\FundingSource::defaultId();
 
         $existing = LineItem::where('activity_id', $this->activity->id)
             ->where('economic_classification_id', $this->bClassId)
+            ->where('funding_source_id', $sourceId)
             ->first();
 
         if ($existing) {
@@ -109,11 +113,12 @@ new class extends Component {
             LineItem::create([
                 'activity_id'                => $this->activity->id,
                 'economic_classification_id' => $this->bClassId,
+                'funding_source_id'          => $sourceId,
                 'estimated_amount'           => $this->bAmount,
             ]);
         }
 
-        $this->reset(['bClassId', 'bAmount']);
+        $this->reset(['bClassId', 'bAmount', 'bSourceId']);
         $this->refresh();
         $this->dispatch('lineitem-added');
         $this->dispatch('toast', message: __('Budget item added.'), type: 'success');
@@ -174,7 +179,7 @@ new class extends Component {
     {
         $this->activity = $this->activity->fresh([
             'program.alignments', 'subprogram.alignments', 'directorate', 'indicators',
-            'lineItems.economicClassification', 'lineItems.adjustedBudget',
+            'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
     }
@@ -330,7 +335,7 @@ new class extends Component {
                     @if($isEditable)
                         <div x-show="addingBudget" x-transition class="overflow-hidden">
                             <form wire:submit="addLineItem"
-                                class="px-6 pb-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3 items-end">
+                                class="px-6 pb-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_auto] gap-3 items-end">
                                 <div>
                                     <label class="block text-xs font-semibold text-zinc-400 mb-1">{{ __('Economic Classification') }}</label>
                                     <select wire:model="bClassId" class="flux-input w-full text-sm">
@@ -340,6 +345,12 @@ new class extends Component {
                                         @endforeach
                                     </select>
                                     @error('bClassId') <p class="text-xs text-rose-600 mt-1">{{ $message }}</p> @enderror
+                                </div>
+                                <div class="sm:w-48">
+                                    <label class="block text-xs font-semibold text-zinc-400 mb-1">{{ __('Funding source') }}</label>
+                                    <select wire:model="bSourceId" class="flux-input w-full text-sm">
+                                        @foreach(\App\Models\FundingSource::choices() as $fs)<option value="{{ $fs->id }}">{{ __($fs->name) }}</option>@endforeach
+                                    </select>
                                 </div>
                                 <div class="sm:w-44">
                                     <label class="block text-xs font-semibold text-zinc-400 mb-1">{{ __('Amount ($)') }}</label>
@@ -378,7 +389,7 @@ new class extends Component {
                                         <tr class="hover:bg-zinc-50/50 transition-colors group">
                                             <td class="px-6 py-4">
                                                 <p class="text-sm font-semibold text-zinc-900">{{ $item->economicClassification->name }}</p>
-                                                <p class="text-xs text-zinc-400 mt-0.5">{{ __('Account') }}: {{ $item->economicClassification->code }}</p>
+                                                <p class="text-xs text-zinc-400 mt-0.5">{{ __('Account') }}: {{ $item->economicClassification->code }}@if($item->fundingSource) · {{ __('Funding') }}: {{ __($item->fundingSource->name) }}@endif</p>
                                             </td>
                                             <td class="px-6 py-4 text-right font-mono text-sm font-semibold text-zinc-700">
                                                 {{ number_format($item->estimated_amount, 2) }}
@@ -513,7 +524,6 @@ new class extends Component {
                                                 @endif
                                                 <p class="mt-1 text-xs font-normal text-zinc-500">
                                                     {{ $indicator->isLevel() ? __('Level') : __('Adds up') }}
-                                                    @if($indicator->funding_source) · {{ __('Funding') }}: {{ $indicator->funding_source }}@endif
                                                     @if($indicator->due_quarters) · {{ __('Reported in') }} {{ collect($indicator->dueQuarters())->map(fn ($q) => 'Q'.$q)->implode(', ') }}@endif
                                                 </p>
                                                 @if($indicator->means_of_verification)

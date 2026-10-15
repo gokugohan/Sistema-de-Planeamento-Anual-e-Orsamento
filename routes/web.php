@@ -129,6 +129,10 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
         return view('management.sample-data');
     })->name('sample-data');
 
+    Route::get('/funding-sources', function () {
+        return view('management.funding-sources');
+    })->name('funding-sources');
+
     Route::get('/reporting-windows', function () {
         return view('management.reporting-windows');
     })->name('reporting-windows');

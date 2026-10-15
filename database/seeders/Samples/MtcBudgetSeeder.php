@@ -189,6 +189,7 @@ class MtcBudgetSeeder extends Seeder
                         'activity_id' => $activity->id,
                         'code' => $a['code'].'-'.$category,
                         'economic_classification_id' => $classes[$category],
+                        'funding_source_id' => $this->fundingSourceId($a['funding'] ?? null),
                         'account_code' => $category,
                         'estimated_amount' => $amount,
                         'is_test_data' => false,
@@ -206,7 +207,6 @@ class MtcBudgetSeeder extends Seeder
                         'unit' => str_contains($text, '%') ? '%' : 'unidades',
                         'measure' => $a['measure'] ?? (str_contains($text, '%') ? Indicator::LEVEL : Indicator::CUMULATIVE),
                         'means_of_verification' => $a['means'] ?? null,
-                        'funding_source' => $a['funding'] ?? null,
                         'due_quarters' => $a['quarters'] ?? null,
                         'annual_target' => $this->number($a['target']),
                         'baseline' => $a['baseline'] !== '' ? Str::limit($a['baseline'], 495, '') : null,
@@ -312,5 +312,14 @@ class MtcBudgetSeeder extends Seeder
         return preg_match('/^\d{1,3}([.,]\d{3})+$/', $n)
             ? (float) str_replace([',', '.'], '', $n)
             : (float) str_replace(',', '.', $n);
+    }
+
+    /** The funding source a sample line takes from the wording of the illustrative data. */
+    private function fundingSourceId(?string $text): ?int
+    {
+        $text = mb_strtolower((string) $text);
+        $code = str_contains($text, 'parceiro') || str_contains($text, 'partner') ? 'PARTNER' : (str_contains($text, 'própri') ? 'OWN' : null);
+
+        return ($code ? \App\Models\FundingSource::where('code', $code)->value('id') : null) ?? \App\Models\FundingSource::defaultId();
     }
 }

@@ -153,6 +153,32 @@ class ActivityPlanningTest extends TestCase
         $this->assertSame(1, $a->indicators()->count());
     }
 
+    public function test_each_budget_line_carries_its_funding_source_and_a_pair_is_not_repeated(): void
+    {
+        $this->as('Planning', $this->dn);
+        $class = EconomicClassification::first();
+        $partner = \App\Models\FundingSource::where('code', 'PARTNER')->firstOrFail();
+        $state = \App\Models\FundingSource::where('code', 'OGE')->firstOrFail();
+        $base = fn () => Volt::test('pages.activities.activity-form')
+            ->set('program_id', (string) $this->program->id)->set('description', 'Two sources')->set('quarters', ['1'])
+            ->set('indicators', [['name' => 'Reports', 'type' => 'Output', 'unit' => 'reports', 'target' => '4']]);
+
+        // the same category from two sources is fine
+        $base()->set('lines', [
+            ['class_id' => (string) $class->id, 'source_id' => (string) $state->id, 'amount' => '100'],
+            ['class_id' => (string) $class->id, 'source_id' => (string) $partner->id, 'amount' => '50'],
+        ])->call('save')->assertHasNoErrors();
+        $a = Activity::where('description', 'Two sources')->firstOrFail();
+        $this->assertEqualsCanonicalizing([$state->id, $partner->id], $a->lineItems()->pluck('funding_source_id')->all());
+
+        // twice from the same one is not
+        $base()->set('description', 'Repeated')->set('lines', [
+            ['class_id' => (string) $class->id, 'source_id' => (string) $partner->id, 'amount' => '100'],
+            ['class_id' => (string) $class->id, 'source_id' => (string) $partner->id, 'amount' => '50'],
+        ])->call('save')->assertHasErrors('lines');
+        $this->assertNull(Activity::where('description', 'Repeated')->first());
+    }
+
     public function test_the_form_validates_and_stays_in_the_users_unit(): void
     {
         $this->as('Planning', $this->dn);
@@ -165,7 +191,7 @@ class ActivityPlanningTest extends TestCase
             ->set('lines', [['class_id' => (string) $class->id, 'amount' => '10'], ['class_id' => (string) $class->id, 'amount' => '5']])
             ->set('indicators', [['name' => '', 'type' => 'Output', 'unit' => '', 'target' => '']])
             ->call('save')
-            ->assertHasErrors(['planned_start', 'lines.0.class_id', 'indicators.0.name']);
+            ->assertHasErrors(['planned_start', 'indicators.0.name']);
 
         Volt::test('pages.activities.activity-form')
             ->set('directorate_id', (string) $this->other->id)

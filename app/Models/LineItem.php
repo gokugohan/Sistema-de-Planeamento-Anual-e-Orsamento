@@ -19,6 +19,11 @@ class LineItem extends Model
     {
         static::addGlobalScope(new ProductionScope);
 
+        // every line has a source: the default one (State Budget) unless another is chosen
+        static::creating(function ($item) {
+            $item->funding_source_id ??= FundingSource::defaultId();
+        });
+
         static::updating(function ($item) {
             if ($item->isLocked()) {
                 throw new \Exception(__('This line item is locked because the planning cycle is finalized.'));
@@ -41,6 +46,7 @@ class LineItem extends Model
         'activity_id',
         'code',
         'economic_classification_id',
+        'funding_source_id',
         'account_code',
         'estimated_amount',
         'is_test_data',
@@ -49,6 +55,11 @@ class LineItem extends Model
     public function activity()
     {
         return $this->belongsTo(Activity::class);
+    }
+
+    public function fundingSource()
+    {
+        return $this->belongsTo(FundingSource::class);
     }
 
     public function economicClassification()

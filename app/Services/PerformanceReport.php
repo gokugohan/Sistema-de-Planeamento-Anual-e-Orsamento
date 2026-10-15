@@ -40,6 +40,11 @@ class PerformanceReport
             ->with(['directorate:id,code,name'])->orderBy('directorate_id')->orderBy('id')
             ->get(['id', 'code', 'description', 'directorate_id', 'program_id', 'subprogram_id']);
 
+        // where the money comes from: per activity, each source with the amount it funds
+        $funding = \DB::table('line_items as li')->join('funding_sources as fs', 'fs.id', '=', 'li.funding_source_id')
+            ->whereIn('li.activity_id', $activities->pluck('id'))->groupBy('li.activity_id', 'fs.id', 'fs.name')
+            ->selectRaw('li.activity_id, fs.name, SUM(li.estimated_amount) AS amount')->orderBy('fs.id')->get()->groupBy('activity_id');
+
         $indicators = Indicator::whereIn('activity_id', $activities->pluck('id'))->with('progress')->orderBy('id')->get()->groupBy('activity_id');
         $notes = ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')
             ->where('period_type', $type)->where('period', $period)->get()->keyBy('activity_id');
@@ -48,7 +53,7 @@ class PerformanceReport
             ? ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')->where('period_type', 'quarter')->where('period', $quarter)->get()->keyBy('activity_id')
             : collect();
 
-        $rows = $activities->map(function (Activity $a) use ($money, $months, $lastMonth, $indicators, $notes, $quarterNotes, $quarter) {
+        $rows = $activities->map(function (Activity $a) use ($money, $months, $lastMonth, $indicators, $notes, $quarterNotes, $quarter, $funding) {
             $m = $money[$a->id];
             $paid = array_sum(array_map(fn ($i) => $m['paid_m'][$i], $months));
             $note = $notes[$a->id] ?? null;
@@ -60,7 +65,7 @@ class PerformanceReport
                 'paid' => $paid,
                 'committed' => array_sum(array_map(fn ($i) => $m['committed_m'][$i], $months)),
                 'pct' => $m['approved'] > 0 ? $paid / $m['approved'] * 100 : null,
-                'funding' => $inds->pluck('funding_source')->filter()->unique()->implode(', '),
+                'funding' => ($funding[$a->id] ?? collect())->map(fn ($f) => __($f->name))->all(),
                 'means' => $inds->pluck('means_of_verification')->filter()->unique()->implode('; '),
                 'indicators' => $inds->map(function (Indicator $i) use ($quarter) {
                     $verified = $i->progress->where('status', 'Verified');
