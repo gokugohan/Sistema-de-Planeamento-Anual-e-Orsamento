@@ -82,11 +82,48 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if user is a director
+     * Does this user act as a director: by role, or because they stand in for one right now?
      */
     public function isDirector(): bool
     {
-        return $this->hasRole('Director');
+        return $this->hasRole('Director') || $this->seats()->isNotEmpty();
+    }
+
+    /** @var \Illuminate\Support\Collection<int, Directorate>|null */
+    private ?\Illuminate\Support\Collection $seatCache = null;
+
+    /**
+     * The units this user directs: their own when they hold the Director role, and the units they stand in
+     * for today (an interim appointment). Each seat gives authority over the unit and the units below it.
+     */
+    public function seats(): \Illuminate\Support\Collection
+    {
+        return $this->seatCache ??= Directorate::whereIn('id', array_filter([
+            $this->hasRole('Director') ? $this->directorate_id : null,
+            ...ApprovalDelegation::active()->where('user_id', $this->id)->pluck('directorate_id')->all(),
+        ]))->get();
+    }
+
+    /** The unit ids this user directs: their seats and everything below them. */
+    public function directedUnitIds(): array
+    {
+        return $this->seats()->flatMap(fn (Directorate $d) => $d->getSelfAndDescendantIds())->unique()->values()->all();
+    }
+
+    /** The seat that directs this unit most closely (the deepest one that contains it), if any. */
+    public function seatFor(?Directorate $unit): ?Directorate
+    {
+        if (! $unit) {
+            return null;
+        }
+
+        return $this->seats()->filter(fn (Directorate $d) => in_array($unit->id, $d->getSelfAndDescendantIds(), true))
+            ->sortBy(fn (Directorate $d) => count($d->getSelfAndDescendantIds()))->first();
+    }
+
+    public function forgetSeats(): void
+    {
+        $this->seatCache = null;
     }
 
     /**

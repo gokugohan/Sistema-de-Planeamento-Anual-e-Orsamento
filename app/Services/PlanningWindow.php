@@ -92,7 +92,7 @@ class PlanningWindow
             return true;
         }
 
-        return ApprovalRules::current()->headApproves() && $user->isDirector() && $user->directorate && ! $user->directorate->parent_id;
+        return ApprovalRules::current()->headApproves() && $user->seats()->contains(fn ($d) => ! $d->parent_id);
     }
 
     public function pending(int $year): int

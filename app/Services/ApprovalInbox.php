@@ -53,7 +53,7 @@ class ApprovalInbox
         }
 
         // ── execution figures to verify (never your own reports)
-        $mayVerifyProgress = $user->can('approve_progress_report') || $user->hasRole('Director');
+        $mayVerifyProgress = $user->can('approve_progress_report') || $user->isDirector();
         if ($mayVerifyProgress || $user->can('verify_spending')) {
             $activityIds = $activities()->select('id');
             $money = BudgetExecution::where('status', BudgetExecution::SUBMITTED)->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))

@@ -23,7 +23,14 @@ class ActivityPolicy
         if ($user->can('view_all_paa') || $user->isAdministrator()) {
             return true;
         }
-        if (! $user->directorate_id || ! $unitId) {
+        if (! $unitId) {
+            return false;
+        }
+        // an interim appointment widens what the user sees to the unit they stand in for
+        if ($user->seats()->isNotEmpty() && in_array($unitId, $user->directedUnitIds(), true)) {
+            return true;
+        }
+        if (! $user->directorate_id) {
             return false;
         }
 

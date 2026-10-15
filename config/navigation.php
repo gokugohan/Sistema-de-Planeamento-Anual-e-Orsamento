@@ -42,6 +42,8 @@ return [
             'items' => [
                 ['label' => 'Approvals', 'route' => 'approvals.index', 'match' => ['approvals.*', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
                     'hint' => 'Everything waiting for you: activities to decide, figures to verify, the plan to finalize'],
+                ['label' => 'Interim approvers', 'route' => 'approvals.delegations', 'icon' => 'user-check', 'roles' => ['Admin', 'Director'],
+                    'hint' => 'Someone stands in for a director while they are away'],
             ],
         ],
         [

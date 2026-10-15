@@ -138,7 +138,7 @@ new class extends Component {
     private function decide($indicatorId, bool $approve): void
     {
         abort_unless($this->mayReport($indicatorId), 403);
-        if (! auth()->user()->hasRole('Director')) {
+        if (! auth()->user()->isDirector()) {
             $this->dispatch('toast', message: __('Only Directors can verify progress.'), type: 'error');
 
             return;
@@ -221,7 +221,7 @@ new class extends Component {
                                     <button type="button" x-on:click="$wire.reopenId = {{ $indicator->id }}; $dispatch('open-modal', 'reopen-progress')" class="mt-1 text-xs font-medium text-indigo-700 hover:underline">{{ __('Reopen') }}</button>
                                 @endif
                             @endif
-                            @if($status === 'Submitted' && auth()->user()->hasRole('Director'))
+                            @if($status === 'Submitted' && auth()->user()->isDirector())
                                 <div class="mt-2 flex gap-3">
                                     <button type="button" wire:click="verifyProgress({{ $indicator->id }})" class="text-xs font-medium text-indigo-700 hover:underline">{{ __('Verify') }}</button>
                                     <button type="button" wire:click="rejectProgress({{ $indicator->id }})" class="text-xs font-medium text-rose-700 hover:underline">{{ __('Return') }}</button>

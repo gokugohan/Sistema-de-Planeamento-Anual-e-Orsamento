@@ -55,7 +55,7 @@ new class extends Component {
     {
         $user = auth()->user();
 
-        return ($user->can('verify_spending') || $user->can('approve_progress_report') || $user->hasRole('Director'))
+        return ($user->can('verify_spending') || $user->can('approve_progress_report') || $user->isDirector())
             && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
             && ! $activity->isLocked();
     }

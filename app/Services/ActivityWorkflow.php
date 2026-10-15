@@ -72,12 +72,12 @@ class ActivityWorkflow
                 if (! $this->directsUnit($user, $unit)) {
                     return null;
                 }
-                $parent = $admin ? $unit?->parent : $mine?->parent;
+                $parent = $admin ? $unit?->parent : $user->seatFor($unit)?->parent;
 
                 return ($parent && ApprovalRules::current()->parentValidation) ? Activity::STATUS_REVIEWED : Activity::STATUS_VALIDATED;
 
             case Activity::STATUS_REVIEWED:
-                return ($admin || ($user->isDirector() && $mine && $mine->id !== $unit?->id && $this->directsUnit($user, $unit)))
+                return ($admin || ($user->isDirector() && ($seat = $user->seatFor($unit)) && $seat->id !== $unit?->id))
                     ? Activity::STATUS_VALIDATED : null;
 
             case Activity::STATUS_VALIDATED:
@@ -296,7 +296,9 @@ class ActivityWorkflow
     /** The director of a top-level unit, for that unit and everything below it. */
     private function isHeadOf(User $user, ?Directorate $unit): bool
     {
-        return $user->isDirector() && $user->directorate && ! $user->directorate->parent_id && $this->directsUnit($user, $unit);
+        $seat = $user->seatFor($unit);
+
+        return $seat && ! $seat->parent_id;
     }
 
     /** Is the user's own unit the activity's unit or one above it? Admins direct every unit. */
@@ -305,11 +307,11 @@ class ActivityWorkflow
         if ($user->isAdministrator()) {
             return true;
         }
-        if (! $unit || ! $user->isDirector() || ! $user->directorate_id) {
+        if (! $unit) {
             return false;
         }
 
-        return in_array($unit->id, Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? [], true);
+        return in_array($unit->id, $user->directedUnitIds(), true);
     }
 
     private function notify(array $roles, ?int $unitId, SystemNotification $notification): void
