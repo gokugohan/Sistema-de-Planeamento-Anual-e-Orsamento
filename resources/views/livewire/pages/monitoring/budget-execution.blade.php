@@ -90,7 +90,7 @@ new class extends Component {
 
         return LineItem::where('activity_id', $this->activityId)
             ->whereHas('adjustedBudget')
-            ->with(['economicClassification:id,code,name', 'adjustedBudget:id,line_item_id,approved_amount', 'executions'])
+            ->with(['economicClassification:id,code,name', 'adjustedBudget:id,line_item_id,approved_amount', 'executions.verifiedBy:id,name'])
             ->orderBy('id')->get()
             ->map(function ($line) {
                 $this_q = $line->executions->firstWhere('quarter', $this->quarter);
@@ -181,6 +181,42 @@ new class extends Component {
         $this->fillForm();
     }
 
+    public ?int $reopenId = null;
+    public string $remark = '';
+
+    /** Reopen a verified line for correction: the final approver or an administrator, in scope, before the year is closed. */
+    private function mayCorrect(Activity $activity): bool
+    {
+        $user = auth()->user();
+
+        return app(\App\Services\PlanningWindow::class)->canDecide($user)
+            && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
+            && ! $activity->isLocked();
+    }
+
+    public function reopen(): void
+    {
+        $activity = $this->activity;
+        $id = $this->reopenId;
+        $remark = trim($this->remark);
+        $this->reopenId = null;
+        $this->remark = '';
+        abort_unless($activity && $id && $this->mayCorrect($activity), 403);
+        if (mb_strlen($remark) < 3) {
+            $this->dispatch('toast', message: __('Say why the figure is being reopened.'), type: 'error');
+
+            return;
+        }
+
+        $entry = BudgetExecution::where('line_item_id', $id)->where('quarter', $this->quarter)->where('status', BudgetExecution::VERIFIED)
+            ->whereHas('lineItem', fn ($q) => $q->where('activity_id', $activity->id))->firstOrFail();
+        $entry->auditMetadata = ['correction' => 'reopened', 'remark' => $remark, 'by' => auth()->id()];
+        $entry->update(['status' => BudgetExecution::DRAFT, 'verified_by' => null, 'verified_at' => null, 'notes' => $remark]);
+
+        $this->dispatch('toast', message: __('Reopened for correction.'), type: 'success');
+        $this->fillForm();
+    }
+
     public function verify(int $lineId, bool $approve = true): void
     {
         $activity = $this->activity;
@@ -212,6 +248,7 @@ new class extends Component {
         return [
             'canReport' => $activity ? $this->mayReport($activity) : false,
             'canVerify' => $activity ? $this->mayVerify($activity) : false,
+            'canCorrect' => $activity ? $this->mayCorrect($activity) : false,
             'maxQuarter' => $this->latestQuarter(),
         ];
     }
@@ -293,6 +330,12 @@ new class extends Component {
                                 <td class="px-5 py-3 align-top">
                                     @if($line->entry)
                                         <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium {{ ['Verified' => 'bg-emerald-50 text-emerald-800', 'Submitted' => 'bg-sky-50 text-sky-800', 'Rejected' => 'bg-rose-50 text-rose-800'][$line->entry->status] ?? 'bg-zinc-100 text-zinc-700' }}">{{ __($line->entry->status) }}</span>
+                                        @if($line->entry->status === 'Verified' && $line->entry->verified_at)
+                                            <div class="mt-1 text-xs text-zinc-500">{{ $line->entry->verifiedBy?->name ?? '—' }} · {{ $line->entry->verified_at->format('d/m/Y') }}</div>
+                                            @if($canCorrect)
+                                                <button type="button" x-on:click="$wire.reopenId = {{ $line->id }}; $dispatch('open-modal', 'reopen-line')" class="mt-1 text-xs font-medium text-indigo-700 hover:underline">{{ __('Reopen') }}</button>
+                                            @endif
+                                        @endif
                                         @if($line->entry->status === 'Submitted' && $canVerify)
                                             <div class="mt-2 flex gap-2">
                                                 <button type="button" wire:click="verify({{ $line->id }})" class="text-xs font-medium text-indigo-700 hover:underline">{{ __('Verify') }}</button>
@@ -307,7 +350,8 @@ new class extends Component {
                         @endforeach
                     </x-ui.table>
 
-                    @if($canReport)
+                    @php $anyEditable = $lines->contains(fn ($l) => ! $l->entry || $l->entry->isEditable()); @endphp
+                    @if($canReport && $anyEditable)
                         <div class="flex flex-col-reverse gap-2 border-t border-zinc-200 bg-zinc-50 px-5 py-4 sm:flex-row sm:justify-end">
                             <x-ui.button type="submit" variant="secondary" shadow="none">{{ __('Save draft') }}</x-ui.button>
                             <x-ui.button type="button" wire:click="save(true)">{{ __('Submit for verification') }}</x-ui.button>
@@ -316,5 +360,12 @@ new class extends Component {
                 </form>
             @endif
         </x-ui.card>
+    @endif
+
+    @if($canCorrect)
+        <x-note-dialog name="reopen-line" property="remark" action="reopen" :required="true"
+            :title="__('Reopen this verified figure?')"
+            :message="__('It goes back to a draft so it can be corrected and verified again. This is recorded with your remark.')"
+            :label="__('Why is it being reopened?')" :confirm="__('Reopen')" />
     @endif
 </div>

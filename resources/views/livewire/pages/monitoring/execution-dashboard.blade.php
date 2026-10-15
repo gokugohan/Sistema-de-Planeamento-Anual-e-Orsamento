@@ -19,21 +19,6 @@ new class extends Component {
         $this->activeYear = FiscalEnvelope::getActiveEnvelope()?->fiscal_year;
     }
 
-    /** Average verified achievement of the indicators of each programme, 0-100, from one grouped query. */
-    private function physicalByProgramme(int $year): array
-    {
-        $perIndicator = DB::table('indicators as i')
-            ->join('activities as a', 'a.id', '=', 'i.activity_id')
-            ->leftJoin('indicator_progress as p', fn ($j) => $j->on('p.indicator_id', '=', 'i.id')->where('p.status', 'Verified'))
-            ->where('a.fiscal_year', $year)->where('i.annual_target', '>', 0)
-            ->groupBy('i.id', 'i.annual_target', 'a.program_id')
-            ->selectRaw('a.program_id, i.annual_target, COALESCE(SUM(p.achieved_value), 0) AS achieved');
-
-        return DB::query()->fromSub($perIndicator, 't')->groupBy('program_id')
-            ->selectRaw('program_id, AVG(LEAST(100, achieved / annual_target * 100)) AS physical, COUNT(*) AS n')
-            ->get()->keyBy('program_id')->map(fn ($r) => (float) $r->physical)->all();
-    }
-
     public function with(): array
     {
         if (! $this->activeYear) {
@@ -43,7 +28,7 @@ new class extends Component {
         $report = app(ExecutionReport::class);
         $data = $report->load((int) $this->activeYear);
         $summary = $report->summary($data);
-        $physical = $this->physicalByProgramme((int) $this->activeYear);
+        $physical = app(\App\Services\DeliveryReport::class)->byProgramme((int) $this->activeYear);
         $programmes = Program::whereIn('id', array_keys($report->grouped($data, 'program_id')))->get(['id', 'name', 'oge_code'])->keyBy('id');
 
         $rows = [];

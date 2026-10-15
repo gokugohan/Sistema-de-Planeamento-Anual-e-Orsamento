@@ -9,7 +9,6 @@ use Livewire\Attributes\Validate;
 new class extends Component {
     public $selectedActivityId = null;
     public $selectedDirectorate = null;
-    public $selectedCategory = null;
     public string $search = '';
     public $indicators = [];
 
@@ -43,10 +42,6 @@ new class extends Component {
             $query->where('directorate_id', $this->selectedDirectorate);
         }
 
-        if ($this->selectedCategory) {
-            $query->whereHas('lineItems', fn($q) => $q->where('economic_classification_id', $this->selectedCategory));
-        }
-
         if ($this->search !== '') {
             $term = '%'.str_replace(['%', '_'], ['\\%', '\\_'], $this->search).'%';
             $query->where(fn ($w) => $w->where('description', 'like', $term)->orWhere('code', 'like', $term));
@@ -66,11 +61,7 @@ new class extends Component {
     {
         if ($this->selectedActivityId) {
             $this->indicators = Indicator::where('activity_id', $this->selectedActivityId)
-                ->with([
-                    'progress' => function ($query) {
-                        $query->where('quarter', $this->quarter);
-                    }
-                ])
+                ->with('progress')
                 ->get();
         } else {
             $this->indicators = [];
@@ -89,12 +80,6 @@ new class extends Component {
         $this->indicators = [];
     }
 
-    public function updatedSelectedCategory(): void
-    {
-        $this->selectedActivityId = null;
-        $this->indicators = [];
-    }
-
     /** An indicator the user may report on: permission, and it belongs to their unit (or they see all units). */
     private function mayReport($indicatorId): bool
     {
@@ -105,6 +90,49 @@ new class extends Component {
         $unitId = \App\Models\Indicator::with('activity:id,directorate_id')->find($indicatorId)?->activity?->directorate_id;
 
         return $unitId && app(\App\Policies\ActivityPolicy::class)->inScope($user, $unitId);
+    }
+
+    /** Who may reopen a verified figure: the final approver or an administrator, for their own scope, before the year is closed. */
+    /** For the page: can this user reopen verified figures at all? (each reopening is checked again on its own) */
+    public function getCanCorrectProperty(): bool
+    {
+        return app(\App\Services\PlanningWindow::class)->canDecide(auth()->user());
+    }
+
+    private function mayCorrect($indicatorId): bool
+    {
+        $indicator = Indicator::with('activity:id,directorate_id,fiscal_year')->find($indicatorId);
+        $user = auth()->user();
+
+        return $indicator?->activity
+            && app(\App\Services\PlanningWindow::class)->canDecide($user)
+            && app(\App\Policies\ActivityPolicy::class)->inScope($user, $indicator->activity->directorate_id)
+            && ! $indicator->activity->isLocked();
+    }
+
+    public ?int $reopenId = null;
+    public string $remark = '';
+
+    public function reopenProgress(): void
+    {
+        $id = $this->reopenId;
+        abort_unless($id && $this->mayCorrect($id), 403);
+        $remark = trim($this->remark);
+        $this->remark = '';
+        $this->reopenId = null;
+        if (mb_strlen($remark) < 3) {
+            $this->dispatch('toast', message: __('Say why the figure is being reopened.'), type: 'error');
+
+            return;
+        }
+
+        $progress = IndicatorProgress::where('indicator_id', $id)->where('quarter', $this->quarter)->where('status', 'Verified')->first();
+        if ($progress) {
+            $progress->auditMetadata = ['correction' => 'reopened', 'remark' => $remark, 'by' => auth()->id()];
+            $progress->update(['status' => 'Draft', 'verified_by' => null, 'verified_at' => null, 'rejection_notes' => $remark]);
+            $this->updatedSelectedActivityId();
+            $this->dispatch('toast', message: __('Reopened for correction.'), type: 'success');
+        }
     }
 
     public function saveProgress($indicatorId, $value): void
@@ -161,6 +189,12 @@ new class extends Component {
             ->where('quarter', $this->quarter)
             ->first();
 
+        if ($progress && $progress->submitted_by === auth()->id()) {
+            $this->dispatch('toast', message: __('Someone other than the person who reported it must verify it.'), type: 'error');
+
+            return;
+        }
+
         if ($progress) {
             $progress->update([
                 'status' => 'Verified',
@@ -184,6 +218,12 @@ new class extends Component {
         $progress = IndicatorProgress::where('indicator_id', $indicatorId)
             ->where('quarter', $this->quarter)
             ->first();
+
+        if ($progress && $progress->submitted_by === auth()->id()) {
+            $this->dispatch('toast', message: __('Someone other than the person who reported it must verify it.'), type: 'error');
+
+            return;
+        }
 
         if ($progress) {
             $progress->update(['status' => 'Rejected']);
@@ -213,7 +253,7 @@ new class extends Component {
         <div class="bg-white p-6 rounded-xl shadow-sm border border-zinc-100">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 pb-6 border-b border-zinc-50">
                 <div>
-                    <x-input-label for="quarter" :value="__('Select Trimestre')" class="text-xs font-semibold text-zinc-400 mb-2" />
+                    <x-input-label for="quarter" :value="__('Select quarter')" class="text-xs font-semibold text-zinc-400 mb-2" />
                     <select id="quarter" wire:model.live="quarter"
                         class="flux-input">
                         <option value="1">{{ __('1st Quarter (Jan-Mar)') }}</option>
@@ -236,16 +276,6 @@ new class extends Component {
                     </div>
                 @endif
 
-                <div>
-                    <x-input-label for="category" :value="__('Filter by Category')" class="text-xs font-semibold text-zinc-400 mb-2" />
-                    <select id="category" wire:model.live="selectedCategory"
-                        class="flux-input">
-                        <option value="">{{ __('All Categories') }}</option>
-                        @foreach(\App\Models\EconomicClassification::orderBy('name')->get() as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
             </div>
 
             @php
@@ -295,7 +325,7 @@ new class extends Component {
 
                     @php
                         $anyDrafts = collect($indicators)->some(function ($i) {
-                            $p = $i->progress->first();
+                            $p = $i->progress->firstWhere('quarter', (int) $this->quarter);
                             return $p && ($p->status === 'Draft' || $p->status === 'Rejected');
                         });
                     @endphp
@@ -312,16 +342,20 @@ new class extends Component {
                         <tr>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500">{{ __('Indicator') }}</th>
                             <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500">{{ __('Unit') }}</th>
-                            <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500">{{ __('Annual Target (Adj.)') }}</th>
+                            <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500">{{ __('Annual target') }}</th>
                             <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500">{{ __('Achieved Value') }} (Q{{ $quarter }})</th>
                             <th class="px-6 py-4 text-center text-xs font-semibold text-gray-500">{{ __('Status') }}</th>
                             <th class="px-6 py-4 text-right text-xs font-semibold text-gray-500">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
+                        @php $verifierNames = \App\Models\User::whereIn('id', collect($indicators)->flatMap(fn ($i) => $i->progress->pluck('verified_by'))->filter()->unique())->pluck('name', 'id'); @endphp
                         @forelse($indicators as $indicator)
                             @php
-                                $progress = $indicator->progress->first();
+                                $progress = $indicator->progress->firstWhere('quarter', (int) $this->quarter);
+                                $verified = $indicator->progress->where('status', 'Verified')->pluck('achieved_value', 'quarter');
+                                $standing = $indicator->standing($verified);
+                                $standingPct = $indicator->annual_target > 0 ? min(100, $standing / $indicator->annual_target * 100) : null;
                                 $status = $progress?->status ?? 'Draft';
                                 $currentValue = $progress ? $progress->achieved_value : 0;
                                 $canEdit = $status === 'Draft' || $status === 'Rejected';
@@ -329,14 +363,15 @@ new class extends Component {
                             <tr class="hover:bg-gray-50/50 transition-colors">
                                 <td class="px-6 py-4">
                                     <div class="text-sm font-bold text-gray-900 leading-tight">{{ $indicator->name }}</div>
-                                    <div class="text-xs font-medium text-gray-400 mt-0.5 ">{{ $indicator->type }}</div>
+                                    <div class="text-xs font-medium text-gray-500 mt-0.5 ">{{ __($indicator->type) }} · {{ $indicator->isLevel() ? __('Level: enter where it stands at the end of the quarter') : __('Adds up: enter what was achieved in this quarter') }}</div>
+                                    <div class="text-xs text-gray-500 mt-0.5">{{ __('Verified so far') }}: <span class="font-semibold tabular-nums text-gray-700">{{ number_format($standing, 2) }}</span> {{ $indicator->unit }}@if($standingPct !== null) ({{ number_format($standingPct, 0) }}%)@endif</div>
                                 </td>
                                 <td class="px-6 py-4 text-center text-xs font-bold text-gray-500">{{ $indicator->unit }}</td>
                                 <td class="px-6 py-4 text-right text-sm font-semibold text-gray-900 italic">
                                     {{ number_format($indicator->annual_target, 2) }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center">
-                                        <input type="number" step="0.01" value="{{ $currentValue }}"
+                                        <input type="number" step="0.01" value="{{ $currentValue }}" aria-label="{{ __('Achieved Value') }} (Q{{ $quarter }}): {{ $indicator->name }}"
                                             {{ $canEdit ? '' : 'disabled' }}
                                             x-on:blur="$wire.saveProgress({{ $indicator->id }}, $event.target.value)"
                                             class="w-32 !rounded-xl !bg-gray-50/50 !border-gray-100 text-sm font-semibold text-center focus:!ring-black focus:!bg-white disabled:opacity-50 transition-all">
@@ -350,6 +385,9 @@ new class extends Component {
                                         @else bg-gray-50 text-gray-600 border-gray-100 @endif">
                                         {{ __($status) }}
                                     </span>
+                                    @if($status === 'Verified' && $progress?->verified_at)
+                                        <div class="mt-1 text-xs text-gray-500">{{ $verifierNames[$progress->verified_by] ?? '—' }} · {{ $progress->verified_at->format('d/m/Y') }}</div>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex justify-end gap-2">
@@ -361,6 +399,9 @@ new class extends Component {
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m18 6-12 12"/><path d="m6 6 12 12"/></svg>
                                             </button>
                                         @elseif($status === 'Verified')
+                                            @if($this->canCorrect)
+                                                <button type="button" x-on:click="$wire.reopenId = {{ $indicator->id }}; $dispatch('open-modal', 'reopen-progress')" class="text-xs font-medium text-indigo-700 hover:underline">{{ __('Reopen') }}</button>
+                                            @endif
                                             <span class="p-2 text-green-500">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
                                             </span>
@@ -386,5 +427,12 @@ new class extends Component {
                 <p class="mt-1 text-sm text-gray-500">{{ __('Select an activity to start recording physical execution.') }}</p>
             </div>
         @endif
+    @endif
+
+    @if($this->canCorrect)
+        <x-note-dialog name="reopen-progress" property="remark" action="reopenProgress" :required="true"
+            :title="__('Reopen this verified figure?')"
+            :message="__('It goes back to a draft so it can be corrected and verified again. This is recorded with your remark.')"
+            :label="__('Why is it being reopened?')" :confirm="__('Reopen')" />
     @endif
 </div>

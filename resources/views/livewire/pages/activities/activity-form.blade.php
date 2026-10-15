@@ -59,7 +59,7 @@ new class extends Component {
             $this->procurement_required = (bool) $activity->procurement_required;
             $this->gender_responsive = (bool) $activity->gender_responsive;
             $this->lines = $activity->lineItems->map(fn ($l) => ['class_id' => (string) $l->economic_classification_id, 'amount' => (string) (float) $l->estimated_amount])->all();
-            $this->indicators = $activity->indicators->map(fn ($i) => ['name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'target' => (string) (float) $i->annual_target])->all();
+            $this->indicators = $activity->indicators->map(fn ($i) => ['name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target])->all();
         } else {
             $this->authorize('create', Activity::class);
             $this->year = FiscalEnvelope::getEffectiveYear();
@@ -71,7 +71,7 @@ new class extends Component {
         }
 
         $this->lines = $this->lines ?: [['class_id' => '', 'amount' => '']];
-        $this->indicators = $this->indicators ?: [['name' => '', 'type' => 'Output', 'unit' => '', 'target' => '']];
+        $this->indicators = $this->indicators ?: [['name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '']];
     }
 
     public function addLine(): void { $this->lines[] = ['class_id' => '', 'amount' => '']; }
@@ -82,12 +82,21 @@ new class extends Component {
         $this->lines = array_values($this->lines) ?: [['class_id' => '', 'amount' => '']];
     }
 
-    public function addIndicator(): void { $this->indicators[] = ['name' => '', 'type' => 'Output', 'unit' => '', 'target' => '']; }
+    /** A percentage is a level, not something that adds up over the quarters. */
+    public function updatedIndicators($value, $key): void
+    {
+        [$i, $field] = array_pad(explode('.', (string) $key, 2), 2, null);
+        if ($field === 'unit' && isset($this->indicators[(int) $i]) && trim((string) $value) === '%') {
+            $this->indicators[(int) $i]['measure'] = 'level';
+        }
+    }
+
+    public function addIndicator(): void { $this->indicators[] = ['name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '']; }
 
     public function removeIndicator(int $i): void
     {
         unset($this->indicators[$i]);
-        $this->indicators = array_values($this->indicators) ?: [['name' => '', 'type' => 'Output', 'unit' => '', 'target' => '']];
+        $this->indicators = array_values($this->indicators) ?: [['name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '']];
     }
 
     /** Units the user may plan for: their own and everything below it; everything for administrators and ministers. */
@@ -125,6 +134,7 @@ new class extends Component {
             'indicators.*.name' => ['required', 'string', 'max:255'],
             'indicators.*.type' => ['required', 'in:Output,Outcome'],
             'indicators.*.unit' => ['required', 'string', 'max:100'],
+            'indicators.*.measure' => ['nullable', 'in:cumulative,level'],
             'indicators.*.target' => ['required', 'numeric', 'min:0'],
         ];
     }
@@ -188,7 +198,7 @@ new class extends Component {
             }
             $activity->indicators()->delete();
             foreach ($this->indicators as $i) {
-                Indicator::create(['activity_id' => $activity->id, 'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'annual_target' => $i['target']]);
+                Indicator::create(['activity_id' => $activity->id, 'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']), 'annual_target' => $i['target']]);
             }
 
             return $activity;
@@ -372,7 +382,7 @@ new class extends Component {
             <p class="text-sm text-zinc-500 mt-1">{{ __('An output is what the activity delivers (e.g. 12 inspections); an outcome is the change it brings.') }}</p>
             <div class="mt-4 space-y-3">
                 @foreach($indicators as $i => $ind)
-                    <div class="grid gap-2 sm:grid-cols-[1fr_7rem_8rem_7rem_auto] items-start" wire:key="ind-{{ $i }}">
+                    <div class="grid gap-2 sm:grid-cols-[1fr_7rem_8rem_9rem_7rem_auto] items-start" wire:key="ind-{{ $i }}">
                         <div>
                             <input type="text" wire:model="indicators.{{ $i }}.name" class="flux-input" placeholder="{{ __('Indicator, e.g. Inspections completed') }}" aria-label="{{ __('Indicator name') }}">
                             @error("indicators.$i.name")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
@@ -382,9 +392,13 @@ new class extends Component {
                             <option value="Outcome">{{ __('Outcome') }}</option>
                         </select>
                         <div>
-                            <input type="text" wire:model="indicators.{{ $i }}.unit" class="flux-input" placeholder="{{ __('Unit, e.g. reports') }}" aria-label="{{ __('Unit of measure') }}">
+                            <input type="text" wire:model.blur="indicators.{{ $i }}.unit" class="flux-input" placeholder="{{ __('Unit, e.g. reports') }}" aria-label="{{ __('Unit of measure') }}">
                             @error("indicators.$i.unit")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                         </div>
+                        <select wire:model="indicators.{{ $i }}.measure" class="flux-input" aria-label="{{ __('How it is measured') }}" title="{{ __('Adds up: each quarter adds to the total. Level: the latest quarter is where it stands (for rates such as %).') }}">
+                            <option value="cumulative">{{ __('Adds up') }}</option>
+                            <option value="level">{{ __('Level') }}</option>
+                        </select>
                         <div>
                             <input type="number" step="any" min="0" wire:model="indicators.{{ $i }}.target" class="flux-input text-right" placeholder="{{ __('Target') }}" aria-label="{{ __('Annual target') }}">
                             @error("indicators.$i.target")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror

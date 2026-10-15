@@ -50,10 +50,28 @@ new class extends Component {
         $this->loadPending();
     }
 
+    /** In the user's scope, and not something they reported themselves. @return string|null why it cannot be decided, null if it can */
+    private function whyNot(IndicatorProgress $progress): ?string
+    {
+        $progress->loadMissing('indicator.activity');
+        if (! app(\App\Policies\ActivityPolicy::class)->inScope(auth()->user(), $progress->indicator?->activity?->directorate_id)) {
+            return 'scope';
+        }
+
+        return $progress->submitted_by === auth()->id() ? 'own' : null;
+    }
+
     public function approve($id)
     {
         abort_unless(auth()->user()->can('approve_progress_report'), 403);
         $progress = IndicatorProgress::findOrFail($id);
+        $why = $this->whyNot($progress);
+        abort_if($why === 'scope', 403);
+        if ($why === 'own') {
+            $this->dispatch('toast', message: __('Someone other than the person who reported it must verify it.'), type: 'error');
+
+            return;
+        }
         $progress->update([
             'status' => 'Verified',
             'verified_by' => auth()->id(),
@@ -67,6 +85,13 @@ new class extends Component {
     {
         abort_unless(auth()->user()->can('approve_progress_report'), 403);
         $progress = IndicatorProgress::findOrFail($id);
+        $why = $this->whyNot($progress);
+        abort_if($why === 'scope', 403);
+        if ($why === 'own') {
+            $this->dispatch('toast', message: __('Someone other than the person who reported it must verify it.'), type: 'error');
+
+            return;
+        }
         $progress->update(['status' => 'Rejected']);
         $this->loadPending();
         $this->dispatch('toast', message: __('Progress rejected.'), type: 'success');
@@ -75,15 +100,24 @@ new class extends Component {
     public function approveAll()
     {
         abort_unless(auth()->user()->can('approve_progress_report'), 403);
+        $done = $left = 0;
         foreach ($this->pendingProgress as $progress) {
+            if ($this->whyNot($progress) !== null) {
+                $left++; // their own reports, or outside their scope, wait for someone else
+
+                continue;
+            }
             $progress->update([
                 'status' => 'Verified',
                 'verified_by' => auth()->id(),
                 'verified_at' => now()
             ]);
+            $done++;
         }
         $this->loadPending();
-        $this->dispatch('toast', message: __('All pending progress verified.'), type: 'success');
+        $this->dispatch('toast', message: $left
+            ? __(':done verified; :left left for someone else (your own reports cannot be verified by you).', ['done' => $done, 'left' => $left])
+            : __('All pending progress verified.'), type: $left ? 'info' : 'success');
     }
 }; ?>
 

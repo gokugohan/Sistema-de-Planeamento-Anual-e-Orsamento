@@ -137,31 +137,10 @@ new class extends Component {
             default => [__('Fiscal envelope'), null],
         };
 
-        // ── physical delivery: verified progress against annual targets ──
-        // One grouped query: per indicator its verified progress (total and by quarter), then averaged in SQL.
-        $perIndicator = DB::table('indicators as i')
-            ->leftJoin('indicator_progress as p', 'p.indicator_id', '=', 'i.id')
-            ->whereIn('i.activity_id', $base()->select('activities.id'))
-            ->where('i.annual_target', '>', 0)
-            ->groupBy('i.id', 'i.annual_target')
-            ->selectRaw("i.annual_target,
-                SUM(CASE WHEN p.status = 'Verified' THEN p.achieved_value ELSE 0 END) AS achieved,
-                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 1 THEN p.achieved_value ELSE 0 END) AS q1,
-                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 2 THEN p.achieved_value ELSE 0 END) AS q2,
-                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 3 THEN p.achieved_value ELSE 0 END) AS q3,
-                SUM(CASE WHEN p.status = 'Verified' AND p.quarter = 4 THEN p.achieved_value ELSE 0 END) AS q4");
-        $delivery = DB::query()->fromSub($perIndicator, 't')->selectRaw(
-            'COUNT(*) AS n, AVG(LEAST(100, achieved / annual_target * 100)) AS achievement, SUM(annual_target) AS targets,
-             SUM(q1) AS q1, SUM(q2) AS q2, SUM(q3) AS q3, SUM(q4) AS q4'
-        )->first();
-        $achievement = $delivery->n ? round((float) $delivery->achievement, 1) : null;
-        $targets = (float) $delivery->targets;
-        $cumulative = 0;
-        $quarterly = [];
-        foreach ([1, 2, 3, 4] as $q) {
-            $cumulative += (float) $delivery->{"q{$q}"};
-            $quarterly[] = $targets > 0 ? round($cumulative / $targets * 100, 1) : 0;
-        }
+        // ── physical delivery: verified progress against annual targets (cumulative or level, see DeliveryReport) ──
+        $delivery = app(\App\Services\DeliveryReport::class)->summary($base()->select('activities.id')->toBase());
+        $achievement = $delivery['achievement'];
+        $quarterly = $delivery['quarters'];
 
         // ── execution: committed and paid against the approved budget, and against the calendar ──
         $execReport = app(\App\Services\ExecutionReport::class);
@@ -252,7 +231,7 @@ new class extends Component {
             'fundLabel' => $fundLabel, 'fund' => $fund, 'envelope' => $envelope,
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
-            'achievement' => $achievement, 'indicatorCount' => (int) $delivery->n,
+            'achievement' => $achievement, 'indicatorCount' => $delivery['n'],
             'units' => $units, 'watch' => $watch, 'charts' => $charts, 'exec' => $exec, 'behind' => $behind, 'programs' => $programs, 'progRows' => $progRows,
             'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
             'classes' => $classes,

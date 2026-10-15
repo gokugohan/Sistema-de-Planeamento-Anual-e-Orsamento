@@ -22,6 +22,8 @@ class IndicatorProgress extends Model
         'rejection_notes',
     ];
 
+    protected $casts = ['verified_at' => 'datetime'];
+
     public function indicator()
     {
         return $this->belongsTo(Indicator::class);

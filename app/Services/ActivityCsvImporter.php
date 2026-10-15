@@ -279,7 +279,7 @@ class ActivityCsvImporter
             return null;
         }
 
-        return ['name' => $r['indicator_name'], 'type' => $type, 'unit' => $r['indicator_unit'], 'annual_target' => $target];
+        return ['name' => $r['indicator_name'], 'type' => $type, 'unit' => $r['indicator_unit'], 'measure' => \App\Models\Indicator::defaultMeasure($r['indicator_unit']), 'annual_target' => $target];
     }
 
     private function buildLineItem(int $line, array $r, $classes, array &$errors): ?array

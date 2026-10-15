@@ -191,6 +191,7 @@ class MtcBudgetSeeder extends Seeder
                         'name' => Str::limit($a['indicator'], 250, ''),
                         'type' => 'Output',
                         'unit' => str_contains($text, '%') ? '%' : 'unidades',
+                        'measure' => str_contains($text, '%') ? Indicator::LEVEL : Indicator::CUMULATIVE,
                         'annual_target' => $this->number($a['target']),
                         'baseline' => $a['baseline'] !== '' ? Str::limit($a['baseline'], 495, '') : null,
                         'target_text' => $a['target'] !== '' ? Str::limit($a['target'], 995, '') : null,

@@ -84,7 +84,7 @@ class ActivityRollForward
                             LineItem::create(['activity_id' => $copy->id, 'economic_classification_id' => $l->economic_classification_id, 'account_code' => $l->account_code, 'estimated_amount' => $l->estimated_amount, 'is_test_data' => $l->is_test_data]);
                         }
                         foreach ($a->indicators as $i) {
-                            Indicator::create(['activity_id' => $copy->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'annual_target' => $i->annual_target]);
+                            Indicator::create(['activity_id' => $copy->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'annual_target' => $i->annual_target]);
                         }
                         $copied++;
                     }

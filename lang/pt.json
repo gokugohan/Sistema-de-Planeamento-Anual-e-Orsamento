@@ -1615,5 +1615,19 @@
     "There is no approved activity to finalize.": "Não há nenhuma atividade aprovada para finalizar.",
     "Planning for :year is already open.": "O planeamento de :year já está aberto.",
     "Say why planning is being reopened.": "Diga porque é que o planeamento é reaberto.",
-    ":n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan.": ":n atividade ainda aguarda decisão. Decida sobre ela antes de finalizar o plano.|:n atividades ainda aguardam decisão. Decida sobre elas antes de finalizar o plano."
+    ":n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan.": ":n atividade ainda aguarda decisão. Decida sobre ela antes de finalizar o plano.|:n atividades ainda aguardam decisão. Decida sobre elas antes de finalizar o plano.",
+    "How it is measured": "Como é medido",
+    "Adds up: each quarter adds to the total. Level: the latest quarter is where it stands (for rates such as %).": "Soma: cada trimestre acrescenta ao total. Nível: o último trimestre indica onde está (para taxas como %).",
+    "Adds up": "Soma",
+    "Level": "Nível",
+    "Say why the figure is being reopened.": "Diga porque é que o valor é reaberto.",
+    "Reopened for correction.": "Reaberto para correção.",
+    "Select quarter": "Selecione o trimestre",
+    "Level: enter where it stands at the end of the quarter": "Nível: indique onde está no fim do trimestre",
+    "Adds up: enter what was achieved in this quarter": "Soma: indique o que foi alcançado neste trimestre",
+    "Verified so far": "Verificado até agora",
+    "Reopen this verified figure?": "Reabrir este valor verificado?",
+    "It goes back to a draft so it can be corrected and verified again. This is recorded with your remark.": "Volta a rascunho para poder ser corrigido e verificado de novo. Fica registado com a sua observação.",
+    "Why is it being reopened?": "Porque é reaberto?",
+    ":done verified; :left left for someone else (your own reports cannot be verified by you).": ":done verificados; :left ficam para outra pessoa (os seus próprios relatórios não podem ser verificados por si)."
 }

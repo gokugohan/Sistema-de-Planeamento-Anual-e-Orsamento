@@ -1615,5 +1615,19 @@
     "There is no approved activity to finalize.": "La iha atividade aprova atu finaliza.",
     "Planning for :year is already open.": "Planeamentu ba :year loke ona.",
     "Say why planning is being reopened.": "Hatete tanba sá mak planeamentu loke fali.",
-    ":n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan.": "Atividade :n seidauk iha desizaun. Hakarak desizaun molok finaliza planu.|Atividade :n seidauk iha desizaun. Hakarak desizaun molok finaliza planu."
+    ":n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan.": "Atividade :n seidauk iha desizaun. Hakarak desizaun molok finaliza planu.|Atividade :n seidauk iha desizaun. Hakarak desizaun molok finaliza planu.",
+    "How it is measured": "Oinsá mak mede",
+    "Adds up: each quarter adds to the total. Level: the latest quarter is where it stands (for rates such as %).": "Soma: trimestre ida-idak aumenta ba total. Nivel: trimestre ikus mak hatudu nia pozisaun (ba taxa hanesan %).",
+    "Adds up": "Soma",
+    "Level": "Nivel",
+    "Say why the figure is being reopened.": "Hatete tanba sá mak valór loke fali.",
+    "Reopened for correction.": "Loke fali atu korrije.",
+    "Select quarter": "Hili trimestre",
+    "Level: enter where it stands at the end of the quarter": "Nivel: hatudu iha ne'ebé iha trimestre nia rohan",
+    "Adds up: enter what was achieved in this quarter": "Soma: hatudu saida mak alkansa iha trimestre ida-ne'e",
+    "Verified so far": "Verifika to'o agora",
+    "Reopen this verified figure?": "Loke fali valór verifika ida-ne'e?",
+    "It goes back to a draft so it can be corrected and verified again. This is recorded with your remark.": "Fila ba rascunhu atu bele korrije no verifika fali. Ida-ne'e rejistu ho ita-nia observasaun.",
+    "Why is it being reopened?": "Tanba sá mak loke fali?",
+    ":done verified; :left left for someone else (your own reports cannot be verified by you).": ":done verifika ona; :left husik ba ema seluk (ita-nia relatóriu rasik la bele verifika ba ita)."
 }

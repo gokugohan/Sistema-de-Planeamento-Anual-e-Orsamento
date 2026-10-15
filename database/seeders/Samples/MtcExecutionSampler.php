@@ -41,6 +41,7 @@ class MtcExecutionSampler
             ->get();
 
         $stamp = now();
+        [$reporter, $verifier] = $this->people();
         $rows = [];
         foreach ($lines as $line) {
             $approved = (float) $line->approved_amount;
@@ -69,35 +70,54 @@ class MtcExecutionSampler
                     'line_item_id' => $line->id, 'quarter' => $q,
                     'committed' => round($committedQ, 2), 'paid' => round($paidQ, 2),
                     'status' => $verified ? BudgetExecution::VERIFIED : BudgetExecution::SUBMITTED,
+                    'submitted_by' => $reporter, 'verified_by' => $verified ? $verifier : null,
                     'verified_at' => $verified ? $stamp : null,
                     'created_at' => $stamp, 'updated_at' => $stamp,
                 ];
             }
         }
         foreach (array_chunk($rows, 500) as $chunk) {
-            DB::table('budget_executions')->upsert($chunk, ['line_item_id', 'quarter'], ['committed', 'paid', 'status', 'verified_at', 'updated_at']);
+            DB::table('budget_executions')->upsert($chunk, ['line_item_id', 'quarter'], ['committed', 'paid', 'status', 'submitted_by', 'verified_by', 'verified_at', 'updated_at']);
         }
 
         $this->physicalProgress($activityIds, $current, $fractionOfCurrent, $finished, $stamp);
     }
 
+    /** A unit director who reports and the head of the office who verifies, when the sample has them (null otherwise). @return array{0: ?int, 1: ?int} */
+    private function people(): array
+    {
+        return [
+            DB::table('users')->where('email', 'like', 'director.%')->orderBy('id')->value('id'),
+            DB::table('users')->where('email', 'like', 'chefe.%')->orderBy('id')->value('id'),
+        ];
+    }
+
     /** Verified progress against the annual targets, following the same pace as the money. */
     private function physicalProgress(array $activityIds, int $current, float $fraction, bool $finished, $stamp): void
     {
-        $indicators = DB::table('indicators')->whereIn('activity_id', $activityIds)->where('annual_target', '>', 0)->get(['id', 'activity_id', 'annual_target']);
+        [$reporter, $verifier] = $this->people();
+        $indicators = DB::table('indicators')->whereIn('activity_id', $activityIds)->where('annual_target', '>', 0)->get(['id', 'activity_id', 'annual_target', 'measure']);
         $rows = [];
         foreach ($indicators as $i) {
             $pace = $this->pace($i->activity_id, $finished);
             $done = 0.0;
             for ($q = 1; $q <= $current; $q++) {
                 $inProgress = ! $finished && $q === $current;
-                $share = (0.25 * $pace * self::SEASON[$q]) * ($inProgress ? $fraction : 1.0);
-                $value = min($i->annual_target * $share, $i->annual_target * 1.05 - $done);
-                $done += $value;
+                if ($i->measure === 'level') {
+                    // a level is where it stands at the end of the quarter, rising towards the target
+                    $reached = ($q - 1 + ($inProgress ? $fraction : 1.0)) / 4 * $pace * (0.85 + self::SEASON[$q] * 0.15);
+                    $value = min($i->annual_target * $reached, $i->annual_target * 1.0);
+                    $done = $value;
+                } else {
+                    $share = (0.25 * $pace * self::SEASON[$q]) * ($inProgress ? $fraction : 1.0);
+                    $value = min($i->annual_target * $share, $i->annual_target * 1.05 - $done);
+                    $done += $value;
+                }
                 $verified = ! $inProgress || $i->activity_id % 3 !== 0;
                 $rows[] = [
                     'indicator_id' => $i->id, 'quarter' => $q, 'achieved_value' => round(max($value, 0), 2),
-                    'status' => $verified ? 'Verified' : 'Submitted', 'verified_at' => $verified ? $stamp : null,
+                    'status' => $verified ? 'Verified' : 'Submitted', 'submitted_by' => $reporter, 'verified_by' => $verified ? $verifier : null,
+                    'verified_at' => $verified ? $stamp : null,
                     'created_at' => $stamp, 'updated_at' => $stamp,
                 ];
             }
