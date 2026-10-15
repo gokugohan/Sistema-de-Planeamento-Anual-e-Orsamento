@@ -1745,5 +1745,21 @@
     "Verify all submitted": "Verificar tudo o que foi submetido",
     "For one approved activity: what it spent in a month and what it achieved in the quarter. Figures count once someone else has verified them.": "Para uma atividade aprovada: o que gastou num mês e o que alcançou no trimestre. Os valores contam depois de verificados por outra pessoa.",
     "Month": "Mês",
-    "Done? Send the month's spending and the quarter's indicator figures for verification together.": "Concluído? Envie para verificação, em conjunto, a despesa do mês e os valores dos indicadores do trimestre."
+    "Done? Send the month's spending and the quarter's indicator figures for verification together.": "Concluído? Envie para verificação, em conjunto, a despesa do mês e os valores dos indicadores do trimestre.",
+    "Narrative": "Narrativa",
+    "The words that go with the numbers": "As palavras que acompanham os números",
+    "Monthly report": "Relatório mensal",
+    "Quarterly report": "Relatório trimestral",
+    "Not written": "Não escrito",
+    "What was done": "O que foi feito",
+    "Constraints": "Constrangimentos",
+    "Why targets were not met": "Porque não se atingiram as metas",
+    "Corrective measures": "Medidas corretivas",
+    "Rating": "Avaliação",
+    "On track": "Em linha",
+    "Partly": "Parcialmente",
+    "Off track": "Fora de linha",
+    "Saved as Draft.": "Guardado como rascunho.",
+    "Report verified.": "Relatório verificado.",
+    "Report returned for correction.": "Relatório devolvido para correção."
 }

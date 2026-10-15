@@ -191,6 +191,7 @@ new class extends Component {
         <div class="grid gap-6 xl:grid-cols-1">
             <livewire:pages.monitoring.execution-spending :activity-id="$activityId" :month="$month" :key="'spending-'.$activityId.'-'.$month" />
             <livewire:pages.monitoring.execution-progress :activity-id="$activityId" :quarter="$this->quarter" :key="'progress-'.$activityId.'-'.$this->quarter" />
+            <livewire:pages.monitoring.execution-narrative :activity-id="$activityId" :month="$month" :key="'narrative-'.$activityId.'-'.$month" />
         </div>
 
         @if($canReport)
