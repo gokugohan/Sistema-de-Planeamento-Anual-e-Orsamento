@@ -46,14 +46,17 @@ class NavigationTest extends TestCase
         $viewer = $this->as('Viewer');
 
         $this->assertContains('Audit Log', $this->labels($admin));
-        $this->assertContains('PAA Tech Review', $this->labels($admin));
+        $this->assertContains('Approvals', $this->labels($admin));
 
-        $this->assertContains('PAA Tech Review', $this->labels($minister));
+        $this->assertContains('Approvals', $this->labels($minister));
         $this->assertNotContains('System Users', $this->labels($minister));
-        $this->assertNotContains('Entities', $this->labels($minister));
+        $this->assertNotContains('Structure', $this->labels($minister));
+
+        $this->assertContains('Approvals', $this->labels($planner), 'a planner sees what was returned to them');
+        $this->assertNotContains('Approvals', $this->labels($viewer));
+        $this->assertNotContains('PAA Tech Review', $this->labels($admin), 'it is reached from Approvals now, not from the menu');
 
         foreach ([$planner, $viewer] as $u) {
-            $this->assertNotContains('PAA Tech Review', $this->labels($u));
             $this->assertNotContains('Audit Log', $this->labels($u));
             $this->assertNotContains('Settings', $this->labels($u));
         }
@@ -79,7 +82,7 @@ class NavigationTest extends TestCase
     {
         $this->as('Admin');
 
-        foreach (['notifications.index', 'profile', 'activities.create', 'planning.fiscal', 'reports.approved-plan'] as $route) {
+        foreach (['notifications.index', 'profile', 'activities.create', 'planning.fiscal', 'reports.approved-plan', 'planning.paa-approval', 'monitoring.approval'] as $route) {
             $this->get(route($route))->assertOk("{$route} does not open");
         }
     }
@@ -92,7 +95,7 @@ class NavigationTest extends TestCase
             ->assertSee('aria-label="Breadcrumb"', false)
             ->assertSeeInOrder(['Dashboard', 'Administration', 'Audit Log']);
 
-        $this->get(route('activities.create'))->assertSeeInOrder(['Planning', 'PAA Activities', 'New activity']);
+        $this->get(route('activities.create'))->assertSeeInOrder(['Plan', 'PAA Activities', 'New activity']);
         $this->get(route('budget.envelope.list'))->assertSeeInOrder(['Budget', 'Fiscal Envelope', 'Envelope List']);
     }
 
@@ -162,7 +165,7 @@ class NavigationTest extends TestCase
         $this->as('Admin');
 
         $this->get('/admin/entities')->assertRedirect('/management/entities');
-        $this->assertContains('Entities', $this->labels(auth()->user()));
+        $this->assertContains('Structure', $this->labels(auth()->user()));
         $this->assertNotContains('Entities Registry', $this->labels(auth()->user()));
     }
 

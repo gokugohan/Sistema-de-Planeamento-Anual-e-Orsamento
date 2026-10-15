@@ -30,17 +30,25 @@ return [
             ],
         ],
         [
-            'label' => 'Planning',
+            'label' => 'Plan',
             'items' => [
                 ['label' => 'PAA Activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list',
                     'hint' => 'Plan activities with indicators and budget lines'],
-                ['label' => 'Budget Cycle', 'route' => 'planning.budget-cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_all_paa',
-                    'hint' => 'Ceiling, CRO submission and decision, State Budget law'],
+            ],
+        ],
+        [
+            'label' => 'Approvals',
+            'roles' => ['Admin', 'Minister', 'Director', 'Planning'],
+            'items' => [
+                ['label' => 'Approvals', 'route' => 'approvals.index', 'match' => ['approvals.*', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
+                    'hint' => 'Everything waiting for you: activities to decide, figures to verify, the plan to finalize'],
             ],
         ],
         [
             'label' => 'Budget',
             'items' => [
+                ['label' => 'Budget Cycle', 'route' => 'planning.budget-cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_all_paa',
+                    'hint' => 'Ceiling, CRO submission and decision, State Budget law'],
                 ['label' => 'Fiscal Envelope', 'icon' => 'wallet-cards', 'permission' => 'view_all_paa', 'hint' => 'The amount received for the year',
                     'children' => [
                         ['label' => 'Current Envelope', 'route' => 'budget.envelope.current', 'icon' => 'circle',
@@ -50,27 +58,24 @@ return [
                     ]],
                 ['label' => 'Budget Allocation', 'route' => 'budget.allocation', 'icon' => 'layers', 'permission' => 'view_all_paa',
                     'hint' => 'What each unit, programme and category received'],
-            ],
-        ],
-        [
-            'label' => 'Review & Approval',
-            'roles' => ['Admin', 'Minister', 'Director', 'Planning'],
-            'items' => [
-                ['label' => 'PAA Tech Review', 'route' => 'planning.paa-approval', 'icon' => 'check-square', 'roles' => ['Admin', 'Minister'],
-                    'hint' => 'Review and approve submitted activities'],
-                ['label' => 'Allocation Review', 'route' => 'planning.director-review', 'icon' => 'user-check',
+                ['label' => 'Allocation Review', 'route' => 'planning.director-review', 'icon' => 'user-check', 'roles' => ['Admin', 'Minister', 'Director', 'Planning'],
                     'hint' => 'Review how the envelope was allocated'],
-                ['label' => 'Verify Progress', 'route' => 'monitoring.approval', 'icon' => 'shield-check', 'roles' => ['Admin', 'Minister'],
-                    'hint' => 'Verify quarterly indicator progress'],
             ],
         ],
         [
-            'label' => 'Monitoring & Reports',
+            'label' => 'Execute',
             'items' => [
-                ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'activity',
-                    'hint' => 'Quarterly progress against indicator targets'],
                 ['label' => 'Budget Execution', 'route' => 'monitoring.execution', 'icon' => 'banknote', 'permission' => 'view_monitoring',
                     'hint' => 'Report what each budget line committed and paid'],
+                ['label' => 'Report progress', 'route' => 'monitoring.progress', 'icon' => 'activity', 'permission' => 'view_monitoring',
+                    'hint' => 'Report what each activity achieved against its indicators'],
+            ],
+        ],
+        [
+            'label' => 'Insights',
+            'items' => [
+                ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart',
+                    'hint' => 'Paid and delivered against the plan, by quarter and programme'],
                 ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_all_paa',
                     'hint' => 'Reports and the approved plan for the CRO'],
             ],
@@ -80,7 +85,7 @@ return [
             'roles' => ['Admin'],
             'items' => [
                 ['label' => 'System Users', 'route' => 'management.users', 'icon' => 'users', 'hint' => 'Accounts, roles and permissions'],
-                ['label' => 'Entities', 'route' => 'management.entities', 'icon' => 'building', 'hint' => 'Units, programmes and economic categories: edit them and see their funding'],
+                ['label' => 'Structure', 'route' => 'management.entities', 'icon' => 'building', 'hint' => 'Units, programmes, subprogrammes and economic categories, with their funding'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
                 ['label' => 'Settings', 'route' => 'management.settings', 'icon' => 'settings', 'hint' => 'Organisation identity and planning options'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
@@ -105,6 +110,8 @@ return [
         'activities.indicators' => ['activities.index', 'Indicators'],
         'activities.budget' => ['activities.index', 'Budget lines'],
         'reports.approved-plan' => ['reports.paa', 'Approved plan for CRO'],
+        'planning.paa-approval' => ['approvals.index', 'Activities to decide'],
+        'monitoring.approval' => ['approvals.index', 'Verify progress'],
         'planning.fiscal' => ['budget.envelope.current', 'Fiscal authority'],
         'notifications.index' => [null, 'Notifications', 'Overview'],
         'profile' => [null, 'Profile', 'Overview'],

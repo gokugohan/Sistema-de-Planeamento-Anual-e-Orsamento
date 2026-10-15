@@ -54,6 +54,14 @@ Route::get('monitoring', function () {
     return view('monitoring.index');
 })->middleware(['auth', 'verified'])->name('monitoring.index');
 
+Route::get('approvals', function () {
+    return view('approvals.index');
+})->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning'])->name('approvals.index');
+
+Route::get('monitoring/progress', function () {
+    return view('monitoring.progress');
+})->middleware(['auth', 'verified', 'permission:view_monitoring'])->name('monitoring.progress');
+
 Route::get('monitoring/execution', function () {
     return view('monitoring.execution');
 })->middleware(['auth', 'verified', 'permission:view_monitoring'])->name('monitoring.execution');

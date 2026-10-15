@@ -10,7 +10,7 @@
         <ul class="divide-y divide-zinc-200">
             @foreach($items as $item)
                 @php
-                    $tone = ['amber' => 'bg-amber-50 text-amber-700', 'indigo' => 'bg-indigo-50 text-indigo-700', 'rose' => 'bg-rose-50 text-rose-700'][$item['tone']] ?? 'bg-zinc-100 text-zinc-700';
+                    $tone = ['amber' => 'bg-amber-50 text-amber-700', 'indigo' => 'bg-indigo-50 text-indigo-700', 'rose' => 'bg-rose-50 text-rose-700', 'emerald' => 'bg-emerald-50 text-emerald-700'][$item['tone']] ?? 'bg-zinc-100 text-zinc-700';
                 @endphp
                 <li>
                     <a href="{{ $item['url'] }}" wire:navigate class="flex items-center gap-4 px-5 py-3 hover:bg-zinc-50 transition-colors group">

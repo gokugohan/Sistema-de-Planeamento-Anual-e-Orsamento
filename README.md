@@ -127,6 +127,8 @@ Visibility follows the unit tree. **Department users** (Director, Planner, Viewe
 - **One visual language.** All screens use the same design system (sentence-case headings, indigo primary actions, the shared card, table, badge and KPI components); the legacy "black button" style is gone.
 - Keyboard and screen-reader support: skip links, labelled landmarks, the current page marked in the menu and breadcrumb, visible focus.
 
+**The menu follows the annual cycle:** *Plan* (activities), *Approvals*, *Budget* (cycle, envelope, allocation), *Execute* (spending and progress), *Insights* (performance, reports) and *Administration*. **Approvals** is one inbox, a plain server-rendered page (`App\Services\ApprovalInbox`): activities to decide, execution figures to verify (never your own), the plan ready to be finalized, budget steps, and your own drafts and returned work, each with a count and a link, plus the places where approving and verifying happen. The dashboard's "Needs your attention" is the same list.
+
 ### Audit trail
 
 Every create, update and delete on the core records (activities, line items, budgets, envelopes, indicators, users, units, programmes, settings) is written to the audit log with the old and new values, the user and the IP address. Admins browse it at *Management → Audit Log*. PDF exports of the CRO document are logged too. Passwords are never recorded.

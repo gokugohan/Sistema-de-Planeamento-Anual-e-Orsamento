@@ -53,7 +53,8 @@ new class extends Component {
     <x-ui.page-header :title="__('Execution Monitoring')"
         :subtitle="__('Paid and committed against the approved budget, and delivery of targets').($activeYear ? ' · '.$activeYear : '')">
         @if($activeYear)
-            <a href="{{ route('monitoring.execution') }}" wire:navigate class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">{{ __('Report execution') }}</a>
+            <x-ui.button variant="secondary" shadow="none" href="{{ route('monitoring.progress') }}" wire:navigate>{{ __('Report progress') }}</x-ui.button>
+            <x-ui.button variant="primary" href="{{ route('monitoring.execution') }}" wire:navigate>{{ __('Report spending') }}</x-ui.button>
         @endif
     </x-ui.page-header>
 

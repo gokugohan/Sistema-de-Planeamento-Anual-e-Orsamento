@@ -132,6 +132,9 @@ class Navigation
             $crumbs[] = ['label' => Institution::label($leaf['label']), 'url' => null];
         }
 
+        // A group with a single entry of the same name (Approvals › Approvals) says it once.
+        $crumbs = array_values(array_filter($crumbs, fn ($c, $i) => ! ($i > 0 && isset($crumbs[$i + 1]) && $c['url'] === null && $c['label'] === $crumbs[$i + 1]['label']), ARRAY_FILTER_USE_BOTH));
+
         return $crumbs;
     }
 
