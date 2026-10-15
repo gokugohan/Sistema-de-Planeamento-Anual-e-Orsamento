@@ -6,14 +6,18 @@ use App\Models\Activity;
 use App\Models\ActivityReport;
 use App\Models\Directorate;
 use App\Models\Indicator;
+use App\Models\Program;
+use App\Models\Subprogram;
 use App\Models\SystemSetting;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 /**
- * The monthly or quarterly performance report of one fiscal year, compiled by unit: for each approved
- * activity what was committed and paid in the period and so far against the approved budget, how the
- * indicators stand, and the narrative the unit wrote. Verified figures and verified narrative only, and
- * only the units the reader may see.
+ * The monthly or quarterly performance report of one fiscal year, laid out the way the ministry's report
+ * is printed: one wide table, programme by programme and subprogramme by subprogramme, with each activity's
+ * indicators beside the budget, the execution of the period, the results achieved and the constraints.
+ * Verified figures and verified narrative only, and only the units the reader may see.
  */
 class PerformanceReport
 {
@@ -31,67 +35,85 @@ class PerformanceReport
             : (Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? []);
 
         $money = app(ExecutionReport::class)->load($year, $unitIds)['activities'];
-        $activityIds = array_keys($money);
 
-        $activities = Activity::whereIn('id', $activityIds)->where('status', Activity::STATUS_APPROVED)
-            ->with(['directorate:id,code,name', 'program:id,oge_code,name'])->orderBy('directorate_id')->orderBy('id')
-            ->get(['id', 'code', 'description', 'directorate_id', 'program_id']);
+        $activities = Activity::whereIn('id', array_keys($money))->where('status', Activity::STATUS_APPROVED)
+            ->with(['directorate:id,code,name'])->orderBy('directorate_id')->orderBy('id')
+            ->get(['id', 'code', 'description', 'directorate_id', 'program_id', 'subprogram_id']);
 
         $indicators = Indicator::whereIn('activity_id', $activities->pluck('id'))->with('progress')->orderBy('id')->get()->groupBy('activity_id');
-        $narratives = ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')
-            ->where(fn ($q) => $q->where(fn ($w) => $w->where('period_type', 'month')->where('period', $period))->orWhere(fn ($w) => $w->where('period_type', 'quarter')->where('period', $quarter)))
-            ->get()->groupBy('activity_id');
+        $notes = ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')
+            ->where('period_type', $type)->where('period', $period)->get()->keyBy('activity_id');
+        // a month report also shows the quarter's rating and measures when that quarter is already written up
+        $quarterNotes = $type === 'month'
+            ? ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')->where('period_type', 'quarter')->where('period', $quarter)->get()->keyBy('activity_id')
+            : collect();
 
-        $rows = $activities->map(function (Activity $a) use ($money, $months, $lastMonth, $indicators, $narratives, $type, $quarter) {
+        $rows = $activities->map(function (Activity $a) use ($money, $months, $lastMonth, $indicators, $notes, $quarterNotes, $quarter) {
             $m = $money[$a->id];
-            $paidSoFar = array_sum(array_slice($m['paid_m'], 0, $lastMonth));
-            $committedSoFar = array_sum(array_slice($m['committed_m'], 0, $lastMonth));
+            $paid = array_sum(array_map(fn ($i) => $m['paid_m'][$i], $months));
+            $note = $notes[$a->id] ?? null;
+            $inds = ($indicators[$a->id] ?? collect());
 
             return [
                 'activity' => $a,
                 'approved' => $m['approved'],
+                'paid' => $paid,
                 'committed' => array_sum(array_map(fn ($i) => $m['committed_m'][$i], $months)),
-                'paid' => array_sum(array_map(fn ($i) => $m['paid_m'][$i], $months)),
-                'committed_so_far' => $committedSoFar,
-                'paid_so_far' => $paidSoFar,
-                'rate' => $m['approved'] > 0 ? $paidSoFar / $m['approved'] * 100 : null,
-                'indicators' => ($indicators[$a->id] ?? collect())->map(function (Indicator $i) use ($quarter) {
+                'pct' => $m['approved'] > 0 ? $paid / $m['approved'] * 100 : null,
+                'funding' => $inds->pluck('funding_source')->filter()->unique()->implode(', '),
+                'means' => $inds->pluck('means_of_verification')->filter()->unique()->implode('; '),
+                'indicators' => $inds->map(function (Indicator $i) use ($quarter) {
                     $verified = $i->progress->where('status', 'Verified');
                     $standing = $i->standing($verified->where('quarter', '<=', $quarter)->pluck('achieved_value', 'quarter'));
 
                     return [
-                        'name' => $i->name, 'unit' => $i->unit, 'target' => (float) $i->annual_target,
+                        'name' => $i->name, 'unit' => $i->unit, 'baseline' => $i->baseline,
+                        'target' => $i->target_text ?: number_format((float) $i->annual_target, 2).' '.$i->unit,
                         'in_quarter' => $verified->firstWhere('quarter', $quarter)?->achieved_value,
                         'standing' => $standing,
-                        'pct' => $i->annual_target > 0 ? min(100, $standing / $i->annual_target * 100) : null,
                     ];
                 })->all(),
-                'month_note' => ($narratives[$a->id] ?? collect())->firstWhere('period_type', 'month'),
-                'quarter_note' => ($narratives[$a->id] ?? collect())->firstWhere('period_type', 'quarter'),
+                'results' => $note?->results,
+                'constraints' => $note?->constraints,
+                'reasons_not_met' => $note?->reasons_not_met ?? ($quarterNotes[$a->id] ?? null)?->reasons_not_met,
+                'corrective_measures' => $note?->corrective_measures ?? ($quarterNotes[$a->id] ?? null)?->corrective_measures,
+                'rating' => $note?->rating ?? ($quarterNotes[$a->id] ?? null)?->rating,
             ];
         });
 
-        $units = $rows->groupBy(fn ($r) => $r['activity']->directorate_id)->map(function ($group) {
-            $sum = fn (string $k) => $group->sum($k);
+        $tally = fn (Collection $rs) => [
+            'approved' => $rs->sum('approved'), 'paid' => $rs->sum('paid'),
+            'pct' => $rs->sum('approved') > 0 ? $rs->sum('paid') / $rs->sum('approved') * 100 : null,
+        ];
+
+        $programs = Program::whereIn('id', $rows->pluck('activity.program_id')->unique())
+            ->with(['alignments', 'resultIndicators'])->orderBy('oge_code')->get();
+        $subprograms = Subprogram::whereIn('id', $rows->pluck('activity.subprogram_id')->filter()->unique())
+            ->with(['alignments', 'resultIndicators'])->orderBy('code')->get()->groupBy('program_id');
+
+        $tree = $programs->map(function (Program $p) use ($rows, $subprograms, $tally) {
+            $inProgram = $rows->filter(fn ($r) => $r['activity']->program_id === $p->id);
+            $subs = ($subprograms[$p->id] ?? collect())->map(function (Subprogram $s) use ($inProgram, $tally) {
+                $own = $inProgram->filter(fn ($r) => $r['activity']->subprogram_id === $s->id)->values();
+
+                return ['subprogram' => $s, 'rows' => $own] + $tally($own);
+            });
 
             return [
-                'unit' => $group->first()['activity']->directorate,
-                'rows' => $group,
-                'approved' => $sum('approved'), 'committed' => $sum('committed'), 'paid' => $sum('paid'), 'paid_so_far' => $sum('paid_so_far'),
-            ];
+                'program' => $p, 'subprograms' => $subs,
+                'loose' => $inProgram->filter(fn ($r) => ! $r['activity']->subprogram_id)->values(), // no subprogramme
+            ] + $tally($inProgram);
         })->values();
 
-        $approved = $rows->sum('approved');
+        $all = $tally($rows);
 
         return [
             'year' => $year, 'type' => $type, 'period' => $period, 'quarter' => $quarter,
-            'label' => $type === 'quarter' ? 'Q'.$period : \Carbon\Carbon::create($year, $period, 1)->translatedFormat('F'),
+            'label' => $type === 'quarter' ? 'Q'.$period : Carbon::create($year, $period, 1)->translatedFormat('F'),
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
-            'units' => $units,
-            'totals' => [
-                'activities' => $rows->count(), 'approved' => $approved, 'committed' => $rows->sum('committed'), 'paid' => $rows->sum('paid'),
-                'paid_so_far' => $rows->sum('paid_so_far'), 'rate' => $approved > 0 ? $rows->sum('paid_so_far') / $approved * 100 : null,
-            ],
+            'tree' => $tree,
+            'totals' => $all + ['activities' => $rows->count(), 'committed' => $rows->sum('committed')],
+            'reference' => sprintf('PERF-%d-%s%02d', $year, $type === 'quarter' ? 'Q' : 'M', $period),
             'generated_at' => now(), 'generated_by' => $user->name,
         ];
     }

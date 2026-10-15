@@ -1793,5 +1793,15 @@
     "Finance Officer": "Responsável financeiro",
     "Verify Spending": "Verificar despesa",
     "Verifies the spending (committed and paid) that units report": "Verifica a despesa (comprometida e paga) reportada pelas unidades",
-    "Verify the committed and paid figures reported by the units": "Verificar os valores comprometidos e pagos reportados pelas unidades"
+    "Verify the committed and paid figures reported by the units": "Verificar os valores comprometidos e pagos reportados pelas unidades",
+    "Achieved in Q:q": "Alcançado no T:q",
+    "so far": "até agora",
+    "SDG / PED / Programme / Subprogramme / Activity": "ODS / PED / Programa / Subprograma / Atividade",
+    "Performance indicators": "Indicadores de desempenho",
+    "FF": "FF",
+    "Execution :p": "Execução :p",
+    "Results achieved": "Resultados alcançados",
+    "Implementation constraints": "Constrangimentos da implementação",
+    "Subprogramme": "Subprograma",
+    "TOTAL EXECUTION": "EXECUÇÃO TOTAL"
 }

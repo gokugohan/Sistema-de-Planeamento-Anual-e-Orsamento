@@ -97,6 +97,8 @@ Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activitie
 // Monthly / quarterly performance report: each reader gets the units they may see
 Route::get('reports/performance', [\App\Http\Controllers\PerformanceReportController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance');
+Route::get('reports/performance/pdf', [\App\Http\Controllers\PerformanceReportController::class, 'pdf'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance.pdf');
 
 Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');

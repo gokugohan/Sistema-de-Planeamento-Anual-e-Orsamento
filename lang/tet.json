@@ -1793,5 +1793,15 @@
     "Finance Officer": "Ofisiál finanseiru",
     "Verify Spending": "Verifika despeza",
     "Verifies the spending (committed and paid) that units report": "Verifika despeza (kompromete no selu) ne'ebé unidade sira relata",
-    "Verify the committed and paid figures reported by the units": "Verifika valór kompromete no selu ne'ebé unidade sira relata"
+    "Verify the committed and paid figures reported by the units": "Verifika valór kompromete no selu ne'ebé unidade sira relata",
+    "Achieved in Q:q": "Alkansa iha T:q",
+    "so far": "to'o agora",
+    "SDG / PED / Programme / Subprogramme / Activity": "ODS / PED / Programa / Subprograma / Atividade",
+    "Performance indicators": "Indikadór desempeñu",
+    "FF": "FF",
+    "Execution :p": "Ezekusaun :p",
+    "Results achieved": "Rezultadu ne'ebé alkansa",
+    "Implementation constraints": "Limitasaun implementasaun nian",
+    "Subprogramme": "Subprograma",
+    "TOTAL EXECUTION": "EZEKUSAUN TOTAL"
 }
