@@ -53,13 +53,14 @@ class ApprovalInbox
         }
 
         // ── execution figures to verify (never your own reports)
-        $mayVerify = $user->can('approve_progress_report') || $user->hasRole('Director');
-        if ($mayVerify) {
+        $mayVerifyProgress = $user->can('approve_progress_report') || $user->hasRole('Director');
+        if ($mayVerifyProgress || $user->can('verify_spending')) {
             $activityIds = $activities()->select('id');
             $money = BudgetExecution::where('status', BudgetExecution::SUBMITTED)->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('line_item_id', LineItem::whereIn('activity_id', $activityIds)->select('id'))->count();
             $add('verify', $money, trans_choice(':n spending figure to verify|:n spending figures to verify', $money, ['n' => $money]), route('monitoring.report'), 'indigo');
-
+        }
+        if ($mayVerifyProgress) {
             $progress = IndicatorProgress::where('status', 'Submitted')->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('indicator_id', Indicator::whereIn('activity_id', $activities()->select('id'))->select('id'))->count();
             $add('verify', $progress, trans_choice(':n progress report to verify|:n progress reports to verify', $progress, ['n' => $progress]),

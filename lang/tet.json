@@ -1778,5 +1778,20 @@
     "Reporting for this period closed on :d.": "Relatóriu ba periodu ida-ne'e taka iha :d.",
     "Spending and monthly report": "Despeza no relatóriu mensal",
     "Indicators and quarterly report": "Indikadór no relatóriu trimestral",
-    "Save": "Rai"
+    "Save": "Rai",
+    "Performance report": "Relatóriu desempeñu",
+    "Monthly performance report": "Relatóriu mensal desempeñu nian",
+    "Quarterly performance report": "Relatóriu trimestral desempeñu nian",
+    "Verified figures and reports only": "Valór no relatóriu verifika ona deit",
+    "Committed in :p": "Kompromete iha :p",
+    "Paid in :p": "Selu iha :p",
+    "Paid so far / approved": "Selu to'o agora / aprovadu",
+    "Paid so far": "Selu to'o agora",
+    "Rate": "Taxa",
+    "Indicators (Q:q)": "Indikadór (T:q)",
+    "No approved activities with a distributed budget to report on.": "La iha atividade aprovadu ho orsamentu distribui ona atu relata.",
+    "Finance Officer": "Ofisiál finanseiru",
+    "Verify Spending": "Verifika despeza",
+    "Verifies the spending (committed and paid) that units report": "Verifika despeza (kompromete no selu) ne'ebé unidade sira relata",
+    "Verify the committed and paid figures reported by the units": "Verifika valór kompromete no selu ne'ebé unidade sira relata"
 }

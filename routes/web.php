@@ -56,7 +56,7 @@ Route::get('monitoring', function () {
 
 Route::get('approvals', function () {
     return view('approvals.index');
-})->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning'])->name('approvals.index');
+})->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning|Finance'])->name('approvals.index');
 
 Route::get('monitoring/report', function () {
     return view('monitoring.report');
@@ -93,6 +93,10 @@ Route::get('reports/paa', function () {
 // The activities of one programme and category, fetched when that row is expanded.
 Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activities'])
     ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa.activities');
+
+// Monthly / quarterly performance report: each reader gets the units they may see
+Route::get('reports/performance', [\App\Http\Controllers\PerformanceReportController::class, 'show'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance');
 
 Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');

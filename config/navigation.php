@@ -38,7 +38,7 @@ return [
         ],
         [
             'label' => 'Approvals',
-            'roles' => ['Admin', 'Minister', 'Director', 'Planning'],
+            'roles' => ['Admin', 'Minister', 'Director', 'Planning', 'Finance'],
             'items' => [
                 ['label' => 'Approvals', 'route' => 'approvals.index', 'match' => ['approvals.*', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
                     'hint' => 'Everything waiting for you: activities to decide, figures to verify, the plan to finalize'],

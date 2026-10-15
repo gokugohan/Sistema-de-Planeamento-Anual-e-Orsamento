@@ -134,6 +134,9 @@ new class extends Component {
 <div class="space-y-6">
     <x-ui.page-header :title="__('Report execution')" :subtitle="__('For one approved activity: what it spent in a month and what it achieved in the quarter. Figures count once someone else has verified them.')">
         <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-800">{{ __('Fiscal year') }} {{ $year }}</span>
+        @can('view_reports')
+            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.performance', ['year' => $year, 'type' => 'month', 'period' => $month]) }}">{{ __('Performance report') }}</x-ui.button>
+        @endcan
     </x-ui.page-header>
 
     <x-ui.card padding="p-5">

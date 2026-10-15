@@ -1778,5 +1778,20 @@
     "Reporting for this period closed on :d.": "O reporte deste período fechou em :d.",
     "Spending and monthly report": "Despesa e relatório mensal",
     "Indicators and quarterly report": "Indicadores e relatório trimestral",
-    "Save": "Guardar"
+    "Save": "Guardar",
+    "Performance report": "Relatório de desempenho",
+    "Monthly performance report": "Relatório mensal de desempenho",
+    "Quarterly performance report": "Relatório trimestral de desempenho",
+    "Verified figures and reports only": "Apenas valores e relatórios verificados",
+    "Committed in :p": "Comprometido em :p",
+    "Paid in :p": "Pago em :p",
+    "Paid so far / approved": "Pago até agora / aprovado",
+    "Paid so far": "Pago até agora",
+    "Rate": "Taxa",
+    "Indicators (Q:q)": "Indicadores (T:q)",
+    "No approved activities with a distributed budget to report on.": "Sem atividades aprovadas com orçamento distribuído para reportar.",
+    "Finance Officer": "Responsável financeiro",
+    "Verify Spending": "Verificar despesa",
+    "Verifies the spending (committed and paid) that units report": "Verifica a despesa (comprometida e paga) reportada pelas unidades",
+    "Verify the committed and paid figures reported by the units": "Verificar os valores comprometidos e pagos reportados pelas unidades"
 }
