@@ -914,7 +914,6 @@
     "An optional demo dataset based on the Ministry of Transport and Communications (MTC) of Timor-Leste, for the whole ministry or for a single directorate or office (by default the Gabinete de Digitalização e Segurança Cibernética). The application itself works for any institution; load this only to explore or train, and purge it before going live.": "Dados de demonstração opcionais, baseados no Ministério dos Transportes e Comunicações (MTC) de Timor-Leste, para o ministério todo ou para uma só direção ou gabinete (por defeito, o Gabinete de Digitalização e Segurança Cibernética). A aplicação funciona para qualquer instituição; carregue-os apenas para explorar ou formar, e elimine-os antes de entrar em produção.",
     "An output is what the activity delivers (e.g. 12 inspections); an outcome is the change it brings.": "Um produto é o que a atividade entrega (p. ex., 12 inspeções); um resultado é a mudança que provoca.",
     "Analytical Audit for": "Auditoria analítica de",
-    "Annual Activity Plan & Budget": "Plano de atividades anual e orçamento",
     "Annual Activity Plan :year": "Plano de atividades anual :year",
     "Annual Activity Plan Report (PAA)": "Relatório do plano de atividades anual (PAA)",
     "Annual Performance Report": "Relatório de desempenho anual",
@@ -1761,5 +1760,6 @@
     "Off track": "Fora de linha",
     "Saved as Draft.": "Guardado como rascunho.",
     "Report verified.": "Relatório verificado.",
-    "Report returned for correction.": "Relatório devolvido para correção."
+    "Report returned for correction.": "Relatório devolvido para correção.",
+    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)"
 }

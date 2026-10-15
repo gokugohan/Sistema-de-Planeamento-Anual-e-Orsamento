@@ -6,7 +6,7 @@
     // Never show the framework's default name ("Laravel") as the product name.
     $product = SystemSetting::getLocalized('app_name', '');
     if ($product === '' || strcasecmp($product, 'Laravel') === 0) {
-        $product = __('Annual Activity Plan & Budget');
+        $product = __('Annual Action Plan System');
     }
     $tagline = SystemSetting::getLocalized('app_tagline', '');
     $description = SystemSetting::getLocalized('app_description', '');

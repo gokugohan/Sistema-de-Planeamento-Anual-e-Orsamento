@@ -1,4 +1,4 @@
-# Annual Activity Plan & Budget System (PAA)
+# Sistema de Planeamento de Ação Anual (PAA)
 
 A web application for public institutions to **plan their annual activities, build the budget proposal behind them, follow it through the State Budget cycle, and distribute the approved envelope** across their organisational units.
 

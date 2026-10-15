@@ -914,7 +914,6 @@
     "An optional demo dataset based on the Ministry of Transport and Communications (MTC) of Timor-Leste, for the whole ministry or for a single directorate or office (by default the Gabinete de Digitalização e Segurança Cibernética). The application itself works for any institution; load this only to explore or train, and purge it before going live.": "Dadus demonstrasaun opsionál bazeia ba Ministériu Transporte no Komunikasaun (MTK) Timor-Leste nian, ba ministériu tomak ka ba diresaun ka gabinete ida deit (la'ós hili, Gabinete de Digitalização e Segurança Cibernética). Aplikasaun ne'e serve ba instituisaun hotu-hotu; karrega de'it atu esplora ka hanorin, no hamoos molok uza loloos.",
     "An output is what the activity delivers (e.g. 12 inspections); an outcome is the change it brings.": "Produtu mak saida mak atividade entrega (ez.: inspesaun 12); rezultadu mak mudansa ne'ebé nia lori.",
     "Analytical Audit for": "Auditoria analítika ba",
-    "Annual Activity Plan & Budget": "Planu atividade anuál no orsamentu",
     "Annual Activity Plan :year": "Planu atividade anuál :year",
     "Annual Activity Plan Report (PAA)": "Relatóriu planu atividade anuál (PAA)",
     "Annual Performance Report": "Relatóriu dezempeñu anuál",
@@ -1761,5 +1760,6 @@
     "Off track": "Sai husi dalan",
     "Saved as Draft.": "Rai ona nu'udar rascunhu.",
     "Report verified.": "Relatóriu verifika ona.",
-    "Report returned for correction.": "Relatóriu fó fila ba korresaun."
+    "Report returned for correction.": "Relatóriu fó fila ba korresaun.",
+    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)"
 }
