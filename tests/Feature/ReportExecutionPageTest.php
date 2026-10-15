@@ -31,7 +31,7 @@ class ReportExecutionPageTest extends TestCase
 
         // an activity of the unit director's unit, with a distributed line and an indicator, cleared for the quarter
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('indicators')->whereHas('lineItems.adjustedBudget')->firstOrFail();
-        BudgetExecution::whereIn('line_item_id', $this->activity->lineItems()->pluck('id'))->where('quarter', 4)->delete();
+        BudgetExecution::whereIn('line_item_id', $this->activity->lineItems()->pluck('id'))->where('month', 10)->delete();
         IndicatorProgress::whereIn('indicator_id', $this->activity->indicators()->pluck('id'))->where('quarter', 4)->delete();
     }
 
@@ -58,7 +58,7 @@ class ReportExecutionPageTest extends TestCase
     public function test_choosing_an_activity_shows_spending_and_indicators_together_with_a_summary(): void
     {
         $page = Volt::actingAs($this->finalApprover())->test('pages.monitoring.report-execution')
-            ->set('quarter', 4)->set('activityId', $this->activity->id);
+            ->set('month', 10)->set('activityId', $this->activity->id);
 
         $page->assertSee($this->activity->description)->assertSee('Spending')->assertSee('Indicators')->assertSee('Submit everything for verification');
         $summary = $page->viewData('summary');
@@ -73,7 +73,7 @@ class ReportExecutionPageTest extends TestCase
         $outsider->assignRole('Director'); // a director without a unit sees nothing
         $this->actingAs($outsider);
 
-        Volt::test('pages.monitoring.report-execution')->set('quarter', 4)->set('activityId', $this->activity->id)->assertForbidden();
+        Volt::test('pages.monitoring.report-execution')->set('month', 10)->set('activityId', $this->activity->id)->assertForbidden();
     }
 
     public function test_submit_everything_tells_both_panels_and_each_sends_its_drafts_for_verification(): void
@@ -84,13 +84,13 @@ class ReportExecutionPageTest extends TestCase
             ->whereHas('indicators')->whereHas('lineItems.adjustedBudget')->firstOrFail();
         $line = LineItem::where('activity_id', $this->activity->id)->whereHas('adjustedBudget')->firstOrFail();
         $indicator = Indicator::where('activity_id', $this->activity->id)->firstOrFail();
-        BudgetExecution::where('line_item_id', $line->id)->where('quarter', 4)->delete();
+        BudgetExecution::where('line_item_id', $line->id)->where('month', 10)->delete();
         IndicatorProgress::where('indicator_id', $indicator->id)->where('quarter', 4)->delete();
 
-        Volt::actingAs($director)->test('pages.monitoring.report-execution')->set('quarter', 4)->set('activityId', $this->activity->id)
+        Volt::actingAs($director)->test('pages.monitoring.report-execution')->set('month', 10)->set('activityId', $this->activity->id)
             ->call('submitAll')->assertDispatched('submit-execution');
 
-        $spending = Volt::actingAs($director)->test('pages.monitoring.execution-spending', ['activityId' => $this->activity->id, 'quarter' => 4])
+        $spending = Volt::actingAs($director)->test('pages.monitoring.execution-spending', ['activityId' => $this->activity->id, 'month' => 10])
             ->set("form.{$line->id}.committed", 100)->set("form.{$line->id}.paid", 50);
         $progress = Volt::actingAs($director)->test('pages.monitoring.execution-progress', ['activityId' => $this->activity->id, 'quarter' => 4]);
         $progress->call('saveProgress', $indicator->id, 5);
@@ -99,7 +99,7 @@ class ReportExecutionPageTest extends TestCase
         $spending->call('submitEverything');
         $progress->call('submitEverything');
 
-        $this->assertSame(BudgetExecution::SUBMITTED, BudgetExecution::where('line_item_id', $line->id)->where('quarter', 4)->value('status'));
+        $this->assertSame(BudgetExecution::SUBMITTED, BudgetExecution::where('line_item_id', $line->id)->where('month', 10)->value('status'));
         $this->assertSame('Submitted', IndicatorProgress::where('indicator_id', $indicator->id)->where('quarter', 4)->value('status'));
     }
 
@@ -107,6 +107,6 @@ class ReportExecutionPageTest extends TestCase
     {
         Carbon::setTestNow('2026-05-10 10:00:00');
 
-        Volt::actingAs($this->finalApprover())->test('pages.monitoring.report-execution')->set('quarter', 4)->assertSet('quarter', 2);
+        Volt::actingAs($this->finalApprover())->test('pages.monitoring.report-execution')->set('month', 10)->assertSet('month', 5);
     }
 }

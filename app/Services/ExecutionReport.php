@@ -20,7 +20,7 @@ class ExecutionReport
 {
     /**
      * @param  array<int, int>|null  $unitIds  limit to these units (already including the units below them)
-     * @return array{year: int, today: CarbonInterface, quarter: int, fraction: float, activities: array<int, array>}
+     * @return array{year: int, today: CarbonInterface, quarter: int, month: int, fraction: float, activities: array<int, array>}
      */
     public function load(int $year, ?array $unitIds = null, ?int $classId = null, ?CarbonInterface $today = null, ?int $programId = null): array
     {
@@ -60,6 +60,7 @@ class ExecutionReport
                 'id' => (int) $r->id, 'name' => $r->description, 'program_id' => (int) $r->program_id, 'subprogram_id' => (int) ($r->subprogram_id ?? 0), 'unit_id' => (int) $r->directorate_id,
                 'approved' => $approved, 'planned' => $planned,
                 'committed' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'paid' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0],
+                'committed_m' => array_fill(1, 12, 0.0), 'paid_m' => array_fill(1, 12, 0.0),
             ];
         }
 
@@ -69,18 +70,24 @@ class ExecutionReport
                 ->join('activities as a', 'a.id', '=', 'li.activity_id')
                 ->where('be.status', BudgetExecution::VERIFIED)
                 ->tap($scope)
-                ->groupBy('a.id', 'be.quarter')
-                ->selectRaw('a.id, be.quarter, SUM(be.committed) AS committed, SUM(be.paid) AS paid')
+                ->groupBy('a.id', 'be.month')
+                ->selectRaw('a.id, be.month, SUM(be.committed) AS committed, SUM(be.paid) AS paid')
                 ->get()
                 ->each(function ($r) use (&$activities) {
-                    if (isset($activities[$r->id]) && $r->quarter >= 1 && $r->quarter <= 4) {
-                        $activities[$r->id]['committed'][(int) $r->quarter] = (float) $r->committed;
-                        $activities[$r->id]['paid'][(int) $r->quarter] = (float) $r->paid;
+                    if (isset($activities[$r->id]) && $r->month >= 1 && $r->month <= 12) {
+                        $m = (int) $r->month;
+                        $q = (int) ceil($m / 3);
+                        $activities[$r->id]['committed_m'][$m] = (float) $r->committed;
+                        $activities[$r->id]['paid_m'][$m] = (float) $r->paid;
+                        $activities[$r->id]['committed'][$q] += (float) $r->committed;
+                        $activities[$r->id]['paid'][$q] += (float) $r->paid;
                     }
                 });
         }
 
-        return ['year' => $year, 'today' => $today, 'quarter' => $quarter, 'fraction' => $fractionOfQuarter, 'activities' => $activities];
+        $month = $today->year < $year ? 0 : ($today->year > $year ? 12 : $today->month);
+
+        return ['year' => $year, 'today' => $today, 'quarter' => $quarter, 'month' => $month, 'fraction' => $fractionOfQuarter, 'activities' => $activities];
     }
 
     /**

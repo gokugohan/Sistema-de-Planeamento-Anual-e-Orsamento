@@ -32,8 +32,8 @@ class BudgetExecutionEntryTest extends TestCase
         $unit = Directorate::where('code', 'UDIG')->value('id');
         $this->activity = Activity::where('fiscal_year', 2026)->where('directorate_id', $unit)->where('status', Activity::STATUS_APPROVED)->firstOrFail();
         $this->line = $this->activity->lineItems()->whereHas('adjustedBudget')->firstOrFail();
-        // start from a clean quarter 4 for this line
-        BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->delete();
+        // start from a clean October for this line
+        BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->delete();
     }
 
     protected function tearDown(): void
@@ -50,7 +50,7 @@ class BudgetExecutionEntryTest extends TestCase
     private function page(User $user)
     {
         return Volt::actingAs($user)->test('pages.monitoring.execution-spending')
-            ->set('activityId', $this->activity->id)->set('quarter', 4);
+            ->set('activityId', $this->activity->id)->set('month', 10);
     }
 
     private function fill($page, float $committed, float $paid)
@@ -64,7 +64,7 @@ class BudgetExecutionEntryTest extends TestCase
         $before = $report->summary($report->load(2026))['paid'];
 
         $this->fill($this->page($this->user('director.udig@goku.tl')), 1000, 800)->call('save', true)->assertHasNoErrors();
-        $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->firstOrFail();
+        $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->firstOrFail();
         $this->assertSame(BudgetExecution::SUBMITTED, $entry->status);
         $this->assertSame($before, $report->summary($report->load(2026))['paid'], 'a submitted figure does not count yet');
 
@@ -85,7 +85,7 @@ class BudgetExecutionEntryTest extends TestCase
 
         $this->fill($this->page($this->user('director.udig@goku.tl')), 1, 1)->call('save', false);
 
-        $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->first();
+        $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->first();
         $this->assertEquals(1000, $entry->committed);
         $this->assertSame(BudgetExecution::VERIFIED, $entry->status);
     }
@@ -94,10 +94,10 @@ class BudgetExecutionEntryTest extends TestCase
     {
         $this->fill($this->page($this->user('director.udig@goku.tl')), 500, 500)->call('save', true);
         $this->page($this->user('chefe.gdsc@goku.tl'))->call('verify', $this->line->id, false);
-        $this->assertSame(BudgetExecution::REJECTED, BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->value('status'));
+        $this->assertSame(BudgetExecution::REJECTED, BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->value('status'));
 
         $this->fill($this->page($this->user('director.udig@goku.tl')), 600, 500)->call('save', true);
-        $this->assertSame(BudgetExecution::SUBMITTED, BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->value('status'));
+        $this->assertSame(BudgetExecution::SUBMITTED, BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->value('status'));
     }
 
     public function test_amounts_are_checked_against_the_approved_budget_and_against_each_other(): void
@@ -107,15 +107,15 @@ class BudgetExecutionEntryTest extends TestCase
         $this->fill($this->page($this->user('director.udig@goku.tl')), $approved * 5, 0)->call('save')
             ->assertHasErrors(["form.{$this->line->id}.committed"]);
 
-        // paid is capped by everything committed so far, including the other quarters
-        $slack = (float) $this->line->executions()->where('quarter', '!=', 4)->sum('committed') - (float) $this->line->executions()->where('quarter', '!=', 4)->sum('paid');
+        // paid is capped by everything committed so far, including the other months
+        $slack = (float) $this->line->executions()->where('month', '!=', 10)->sum('committed') - (float) $this->line->executions()->where('month', '!=', 10)->sum('paid');
         $this->fill($this->page($this->user('director.udig@goku.tl')), 100, $slack + 100 + 50)->call('save')
             ->assertHasErrors(["form.{$this->line->id}.paid"]);
 
         $this->fill($this->page($this->user('director.udig@goku.tl')), -5, 0)->call('save')
             ->assertHasErrors(["form.{$this->line->id}.committed"]);
 
-        $this->assertNull(BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->first(), 'nothing invalid was saved');
+        $this->assertNull(BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->first(), 'nothing invalid was saved');
     }
 
     public function test_someone_without_the_permission_or_outside_the_unit_cannot_report(): void
@@ -126,16 +126,16 @@ class BudgetExecutionEntryTest extends TestCase
         $other->assignRole('Director');
         $this->fill($this->page($other), 10, 10)->call('save')->assertForbidden();
 
-        $this->assertNull(BudgetExecution::where('line_item_id', $this->line->id)->where('quarter', 4)->first());
+        $this->assertNull(BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->first());
     }
 
-    public function test_a_quarter_that_has_not_started_cannot_be_reported(): void
+    public function test_a_month_that_has_not_started_cannot_be_reported(): void
     {
-        Carbon::setTestNow('2026-05-10 10:00:00'); // second quarter
+        Carbon::setTestNow('2026-05-10 10:00:00'); // May
 
         $page = Volt::actingAs($this->user('director.udig@goku.tl'))->test('pages.monitoring.execution-spending')
-            ->set('activityId', $this->activity->id)->set('quarter', 4);
+            ->set('activityId', $this->activity->id)->set('month', 10);
 
-        $page->assertSet('quarter', 2);
+        $page->assertSet('month', 5);
     }
 }

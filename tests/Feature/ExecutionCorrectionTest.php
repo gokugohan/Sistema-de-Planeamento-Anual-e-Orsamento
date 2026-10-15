@@ -55,7 +55,7 @@ class ExecutionCorrectionTest extends TestCase
 
     private function verifiedLine(): array
     {
-        $entry = BudgetExecution::where('quarter', 4)->where('status', BudgetExecution::VERIFIED)->firstOrFail();
+        $entry = BudgetExecution::where('month', 10)->where('status', BudgetExecution::VERIFIED)->firstOrFail();
         $line = LineItem::findOrFail($entry->line_item_id);
 
         return [$entry, $line->activity_id, $line->id];
@@ -63,7 +63,7 @@ class ExecutionCorrectionTest extends TestCase
 
     private function moneyPage(User $user, int $activityId)
     {
-        return Volt::actingAs($user)->test('pages.monitoring.execution-spending')->set('activityId', $activityId)->set('quarter', 4);
+        return Volt::actingAs($user)->test('pages.monitoring.execution-spending')->set('activityId', $activityId)->set('month', 10);
     }
 
     public function test_the_final_approver_reopens_a_verified_line_with_a_remark_and_it_is_recorded(): void

@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Execution figures for the sample plans, aware of today's date: a year that is over was executed to
- * the end (verified, all four quarters), the running year has its finished quarters verified and the
- * current quarter part-way (some of it still waiting for verification), and a year still to come has none.
+ * the end (verified, all twelve months), the running year has its finished months verified and the
+ * current month part-way (some of it still waiting for verification), and a year still to come has none.
+ * Spending is monthly; indicator progress is quarterly.
  *
  * Every activity has its own pace, so the reports show a spread: units on schedule, units ahead and
  * units behind. The figures are derived from the activity id, so the same plan always gets the same
@@ -33,6 +34,8 @@ class MtcExecutionSampler
         $current = $year < $today->year ? 4 : (int) ceil($today->month / 3);
         $finished = $year < $today->year;
         $fractionOfCurrent = $finished ? 1.0 : $this->fractionOfQuarter($today, $current);
+        $currentMonth = $finished ? 12 : $today->month;
+        $fractionOfMonth = $finished ? 1.0 : max(0.05, $today->day / $today->daysInMonth);
 
         $lines = DB::table('line_items as li')
             ->join('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
@@ -51,24 +54,25 @@ class MtcExecutionSampler
             $pace = $this->pace($line->activity_id, $finished);
             $committed = $paid = 0.0;
 
-            for ($q = 1; $q <= $current; $q++) {
-                $inProgress = ! $finished && $q === $current;
-                $share = $inProgress ? $fractionOfCurrent : 1.0;
-                $jitter = 0.9 + (crc32("{$line->id}:{$q}") % 21) / 100; // 0.90 - 1.10
+            for ($m = 1; $m <= $currentMonth; $m++) {
+                $q = (int) ceil($m / 3);
+                $inProgress = ! $finished && $m === $currentMonth;
+                $share = $inProgress ? $fractionOfMonth : 1.0;
+                $jitter = 0.85 + (crc32("{$line->id}:{$m}") % 31) / 100; // 0.85 - 1.15
 
-                $planned = $approved / 4;
-                $paidQ = min($planned * $pace * self::SEASON[$q] * $jitter * $share, $approved - $paid);
-                $committedQ = min($paidQ * (1.1 + (crc32("c{$line->id}{$q}") % 15) / 100), $approved - $committed);
-                $committedQ = max($committedQ, $paidQ);
+                $planned = $approved / 12;
+                $paidM = min($planned * $pace * self::SEASON[$q] * $jitter * $share, $approved - $paid);
+                $committedM = min($paidM * (1.1 + (crc32("c{$line->id}{$m}") % 15) / 100), $approved - $committed);
+                $committedM = max($committedM, $paidM);
 
-                $committed += $committedQ;
-                $paid += $paidQ;
+                $committed += $committedM;
+                $paid += $paidM;
 
-                // The running quarter is reported month by month: two thirds of it is verified, the rest waits.
+                // The running month is still being reported: two thirds of it is verified, the rest waits.
                 $verified = ! $inProgress || $line->activity_id % 3 !== 0;
                 $rows[] = [
-                    'line_item_id' => $line->id, 'quarter' => $q,
-                    'committed' => round($committedQ, 2), 'paid' => round($paidQ, 2),
+                    'line_item_id' => $line->id, 'month' => $m, 'quarter' => $q,
+                    'committed' => round($committedM, 2), 'paid' => round($paidM, 2),
                     'status' => $verified ? BudgetExecution::VERIFIED : BudgetExecution::SUBMITTED,
                     'submitted_by' => $reporter, 'verified_by' => $verified ? $verifier : null,
                     'verified_at' => $verified ? $stamp : null,
@@ -77,7 +81,7 @@ class MtcExecutionSampler
             }
         }
         foreach (array_chunk($rows, 500) as $chunk) {
-            DB::table('budget_executions')->upsert($chunk, ['line_item_id', 'quarter'], ['committed', 'paid', 'status', 'submitted_by', 'verified_by', 'verified_at', 'updated_at']);
+            DB::table('budget_executions')->upsert($chunk, ['line_item_id', 'month'], ['quarter', 'committed', 'paid', 'status', 'submitted_by', 'verified_by', 'verified_at', 'updated_at']);
         }
 
         $this->physicalProgress($activityIds, $current, $fractionOfCurrent, $finished, $stamp);

@@ -117,7 +117,7 @@ class ExecutionReportTest extends TestCase
 
         $this->assertSame($executions, BudgetExecution::count());
         $this->assertSame($progress, IndicatorProgress::count());
-        $this->assertSame(0, DB::table('budget_executions')->selectRaw('line_item_id, quarter, COUNT(*) n')->groupBy('line_item_id', 'quarter')->having('n', '>', 1)->count());
+        $this->assertSame(0, DB::table('budget_executions')->selectRaw('line_item_id, month, COUNT(*) n')->groupBy('line_item_id', 'month')->having('n', '>', 1)->count());
     }
 
     public function test_the_current_quarter_is_a_fraction_of_the_way_through(): void

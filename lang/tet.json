@@ -1734,5 +1734,16 @@
     "What the activity achieved in Q:q": "Saida mak atividade alkansa iha T:q",
     "This activity has no indicators.": "Atividade ne'e la iha indikadór.",
     "Report and verify what an activity spent and achieved in a quarter": "Relata no verifika saida mak atividade ida gasta no alkansa iha trimestre ida",
-    "Report what an activity spent and achieved in a quarter": "Relata saida mak atividade ida gasta no alkansa iha trimestre ida"
+    "Report what an activity spent and achieved in a quarter": "Relata saida mak atividade ida gasta no alkansa iha trimestre ida",
+    ":n figure verified.|:n figures verified.": "{1} Figura :n verifika ona.|[2,*] Figura :n verifika ona.",
+    "Nothing to verify: your own reports are left for someone else.": "La iha buat atu verifika: relatóriu rasik husi ita-nia aan sei verifika husi ema seluk.",
+    "What each budget line committed and paid in :month": "Saida mak linha orsamentál ida-idak kompromete no selu iha :month",
+    "Reported in other months": "Relatadu iha fulan seluk",
+    "Committed this month": "Kompromete fulan ida-ne'e",
+    "Paid this month": "Selu fulan ida-ne'e",
+    "Month by month": "Fulan-fulan",
+    "Verify all submitted": "Verifika buat hotu ne'ebé submete ona",
+    "For one approved activity: what it spent in a month and what it achieved in the quarter. Figures count once someone else has verified them.": "Ba atividade aprovadu ida: saida mak gasta iha fulan ida no saida mak alkansa iha trimestre. Valór sei konta bainhira ema seluk verifika ona.",
+    "Month": "Fulan",
+    "Done? Send the month's spending and the quarter's indicator figures for verification together.": "Remata ona? Haruka hamutuk ba verifikasaun despeza fulan nian no valór indikadór trimestre nian."
 }

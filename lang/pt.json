@@ -1734,5 +1734,16 @@
     "What the activity achieved in Q:q": "O que a atividade alcançou no T:q",
     "This activity has no indicators.": "Esta atividade não tem indicadores.",
     "Report and verify what an activity spent and achieved in a quarter": "Reportar e verificar o que uma atividade gastou e alcançou num trimestre",
-    "Report what an activity spent and achieved in a quarter": "Reportar o que uma atividade gastou e alcançou num trimestre"
+    "Report what an activity spent and achieved in a quarter": "Reportar o que uma atividade gastou e alcançou num trimestre",
+    ":n figure verified.|:n figures verified.": "{1} :n figura verificada.|[2,*] :n figuras verificadas.",
+    "Nothing to verify: your own reports are left for someone else.": "Nada para verificar: os seus próprios relatórios ficam para outra pessoa.",
+    "What each budget line committed and paid in :month": "O que cada rubrica orçamental comprometeu e pagou em :month",
+    "Reported in other months": "Reportado noutros meses",
+    "Committed this month": "Comprometido este mês",
+    "Paid this month": "Pago este mês",
+    "Month by month": "Mês a mês",
+    "Verify all submitted": "Verificar tudo o que foi submetido",
+    "For one approved activity: what it spent in a month and what it achieved in the quarter. Figures count once someone else has verified them.": "Para uma atividade aprovada: o que gastou num mês e o que alcançou no trimestre. Os valores contam depois de verificados por outra pessoa.",
+    "Month": "Mês",
+    "Done? Send the month's spending and the quarter's indicator figures for verification together.": "Concluído? Envie para verificação, em conjunto, a despesa do mês e os valores dos indicadores do trimestre."
 }

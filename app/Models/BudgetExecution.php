@@ -6,7 +6,7 @@ use App\Models\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/** What one approved budget line committed and paid in one quarter. Counts once Verified. */
+/** What one approved budget line committed and paid in one month. Counts once Verified. */
 class BudgetExecution extends Model
 {
     use Auditable;
@@ -21,11 +21,21 @@ class BudgetExecution extends Model
     public const REJECTED = 'Rejected';
 
     protected $fillable = [
-        'line_item_id', 'quarter', 'committed', 'paid', 'status', 'notes',
+        'line_item_id', 'month', 'quarter', 'committed', 'paid', 'status', 'notes',
         'submitted_by', 'verified_by', 'verified_at',
     ];
 
     protected $casts = ['verified_at' => 'datetime'];
+
+    protected static function booted(): void
+    {
+        // the quarter is always the month's: reports and indexes work by quarter
+        static::saving(function (BudgetExecution $e) {
+            if ($e->month) {
+                $e->quarter = (int) ceil($e->month / 3);
+            }
+        });
+    }
 
     public function lineItem()
     {

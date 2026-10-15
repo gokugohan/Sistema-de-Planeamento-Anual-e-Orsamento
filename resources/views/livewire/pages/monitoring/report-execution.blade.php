@@ -11,14 +11,15 @@ use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 /**
- * Report execution: for one approved activity and one quarter, what it spent and what it achieved, together.
- * This page holds the choice of activity and quarter and the one action that concerns both ("submit
- * everything"); the spending and the indicators are two panels that follow the same rules: the unit
- * reports, someone else verifies, only verified figures count.
+ * Report execution: for one approved activity and one month, what it spent (monthly) and what it achieved
+ * (indicators are reported once a quarter, so the month's quarter is shown). This page holds the choice of
+ * activity and month and the one action that concerns both ("submit everything"); the spending and the
+ * indicators are two panels that follow the same rules: the unit reports, someone else verifies, only
+ * verified figures count.
  */
 new class extends Component {
     public int $year;
-    public int $quarter = 1;
+    public int $month = 1;
     public ?int $activityId = null;
     public string $search = '';
 
@@ -27,22 +28,28 @@ new class extends Component {
     public function mount(): void
     {
         $this->year = FiscalEnvelope::getEffectiveYear();
-        $this->quarter = $this->latestQuarter();
+        $this->month = $this->latestMonth();
     }
 
-    /** The newest quarter that has started: reporting on a quarter that has not begun makes no sense. */
-    private function latestQuarter(): int
+    /** The newest month that has started: reporting on a month that has not begun makes no sense. */
+    private function latestMonth(): int
     {
         return match (true) {
             now()->year < $this->year => 1,
-            now()->year > $this->year => 4,
-            default => (int) ceil(now()->month / 3),
+            now()->year > $this->year => 12,
+            default => now()->month,
         };
     }
 
-    public function updatedQuarter(): void
+    public function updatedMonth(): void
     {
-        $this->quarter = max(1, min((int) $this->quarter, $this->latestQuarter()));
+        $this->month = max(1, min((int) $this->month, $this->latestMonth()));
+    }
+
+    /** Indicators are reported once a quarter: the month's quarter. */
+    public function getQuarterProperty(): int
+    {
+        return (int) ceil($this->month / 3);
     }
 
     public function updatedSearch(): void
@@ -93,11 +100,11 @@ new class extends Component {
     {
     }
 
-    /** @return array{spending: array<string, int>, progress: array<string, int>} how many lines/indicators are in each state for this quarter */
+    /** @return array{spending: array<string, int>, progress: array<string, int>} how many lines (this month) and indicators (this quarter) are in each state */
     private function summary(Activity $activity): array
     {
         $lines = DB::table('line_items as li')->join('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')->where('li.activity_id', $activity->id)->pluck('li.id');
-        $spending = BudgetExecution::whereIn('line_item_id', $lines)->where('quarter', $this->quarter)->selectRaw('status, COUNT(*) AS n')->groupBy('status')->pluck('n', 'status')->all();
+        $spending = BudgetExecution::whereIn('line_item_id', $lines)->where('month', $this->month)->selectRaw('status, COUNT(*) AS n')->groupBy('status')->pluck('n', 'status')->all();
         $spending['total'] = $lines->count();
 
         $indicators = $activity->indicators()->pluck('id');
@@ -113,23 +120,23 @@ new class extends Component {
 
         return [
             'summary' => $activity ? $this->summary($activity) : null,
-            'maxQuarter' => $this->latestQuarter(),
+            'maxMonth' => $this->latestMonth(),
             'canReport' => auth()->user()->can('update_indicator_progress') || auth()->user()->can('approve_progress_report'),
         ];
     }
 }; ?>
 
 <div class="space-y-6">
-    <x-ui.page-header :title="__('Report execution')" :subtitle="__('For one approved activity and one quarter: what it spent and what it achieved. Figures count once someone else has verified them.')">
+    <x-ui.page-header :title="__('Report execution')" :subtitle="__('For one approved activity: what it spent in a month and what it achieved in the quarter. Figures count once someone else has verified them.')">
         <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-800">{{ __('Fiscal year') }} {{ $year }}</span>
     </x-ui.page-header>
 
     <x-ui.card padding="p-5">
         <div class="grid gap-4 md:grid-cols-12">
             <div class="md:col-span-2">
-                <label for="re-q" class="field-label">{{ __('Quarter') }}</label>
-                <select id="re-q" wire:model.live="quarter" class="flux-input">
-                    @foreach(range(1, $maxQuarter) as $q)<option value="{{ $q }}">Q{{ $q }}</option>@endforeach
+                <label for="re-m" class="field-label">{{ __('Month') }}</label>
+                <select id="re-m" wire:model.live="month" class="flux-input">
+                    @foreach(range(1, $maxMonth) as $m)<option value="{{ $m }}">{{ \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F') }}</option>@endforeach
                 </select>
             </div>
             <div class="md:col-span-3">
@@ -169,7 +176,7 @@ new class extends Component {
                     @foreach(['spending' => __('Spending'), 'progress' => __('Indicators')] as $key => $label)
                         @php $c = $summary[$key]; @endphp
                         <div>
-                            <dt class="text-xs font-medium text-zinc-500">{{ $label }} · Q{{ $quarter }}</dt>
+                            <dt class="text-xs font-medium text-zinc-500">{{ $label }} · {{ $key === 'spending' ? \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F') : 'Q'.$this->quarter }}</dt>
                             <dd class="mt-0.5 tabular-nums text-zinc-900">
                                 <span class="font-semibold">{{ $c['Verified'] ?? 0 }}</span> {{ __('verified') }}
                                 <span class="text-zinc-400">/ {{ $c['total'] }}</span>
@@ -182,13 +189,13 @@ new class extends Component {
         </x-ui.card>
 
         <div class="grid gap-6 xl:grid-cols-1">
-            <livewire:pages.monitoring.execution-spending :activity-id="$activityId" :quarter="$quarter" :key="'spending-'.$activityId.'-'.$quarter" />
-            <livewire:pages.monitoring.execution-progress :activity-id="$activityId" :quarter="$quarter" :key="'progress-'.$activityId.'-'.$quarter" />
+            <livewire:pages.monitoring.execution-spending :activity-id="$activityId" :month="$month" :key="'spending-'.$activityId.'-'.$month" />
+            <livewire:pages.monitoring.execution-progress :activity-id="$activityId" :quarter="$this->quarter" :key="'progress-'.$activityId.'-'.$this->quarter" />
         </div>
 
         @if($canReport)
             <div class="flex flex-col items-start justify-between gap-3 rounded-lg border border-zinc-200 bg-white px-5 py-4 shadow-card sm:flex-row sm:items-center">
-                <p class="text-sm text-zinc-600">{{ __('Done for this quarter? Send the spending and the indicator figures for verification together.') }}</p>
+                <p class="text-sm text-zinc-600">{{ __('Done? Send the month\'s spending and the quarter\'s indicator figures for verification together.') }}</p>
                 <x-ui.button type="button" wire:click="submitAll">{{ __('Submit everything for verification') }}</x-ui.button>
             </div>
         @endif
