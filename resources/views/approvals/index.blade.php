@@ -7,6 +7,7 @@
         'verify' => [__('Execution to verify'), __('Figures reported by others, spending and progress. You cannot verify your own.')],
         'plan' => [__('The plan'), __('Ending planning for the year is the final approval of the plan.')],
         'budget' => [__('Budget steps'), __('Steps of the budget cycle waiting for you.')],
+        'report' => [__('Reporting due'), __('Spending to report for the month that has just ended, and reporting windows about to close.')],
         'mine' => [__('Your own work'), __('Drafts to finish and work returned to you.')],
     ];
     $tones = ['amber' => 'bg-amber-50 text-amber-800', 'indigo' => 'bg-indigo-50 text-indigo-800', 'rose' => 'bg-rose-50 text-rose-800', 'emerald' => 'bg-emerald-50 text-emerald-800'];

@@ -1850,5 +1850,9 @@
     ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} Valór despeza :n hein verifikasaun no seidauk konta.|[2,*] Valór despeza :n hein verifikasaun no seidauk konta.",
     "No verified spending yet.": "Seidauk iha despeza verifika ona.",
     "Latest reports": "Relatóriu ikus sira",
-    "Verify spending and progress against targets": "Verifika despeza no progresu kompara ho meta"
+    "Verify spending and progress against targets": "Verifika despeza no progresu kompara ho meta",
+    "Reporting due": "Relatóriu hein",
+    "Spending to report for the month that has just ended, and reporting windows about to close.": "Despeza atu relata ba fulan ne'ebé foin remata, no periodu relatóriu ne'ebé besik taka.",
+    ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} Atividade aprovadu :n la iha despeza relata ba :month|[2,*] Atividade aprovadu :n la iha despeza relata ba :month",
+    "Reporting for :month closes on :d.": "Relatóriu ba :month taka iha :d."
 }

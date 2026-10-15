@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ReportingWindow;
+use Carbon\Carbon;
 use App\Models\BudgetCycle;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
@@ -88,6 +90,22 @@ class ApprovalInbox
             $submitted = BudgetCycle::where('fiscal_year', $next)->whereNotNull('submitted_at')->exists();
             if ($approved > 0 && ! $submitted) {
                 $add('budget', $approved, \App\Support\Institution::label('approved activities for :year have not been recorded as submitted to the CRO', ['year' => $next]), route('planning.budget-cycle'), 'amber');
+            }
+        }
+
+        // ── reporting due: the units' monthly duty, in the running year
+        if ($year === (int) now()->year && $user->can('update_indicator_progress')) {
+            $month = (int) now()->month;
+            $last = $month - 1; // the month that has just ended is the one to have reported
+            if ($last >= 1) {
+                $due = $activities()->where('status', Activity::STATUS_APPROVED)->whereHas('lineItems.adjustedBudget')
+                    ->whereDoesntHave('lineItems.executions', fn ($q) => $q->where('month', $last))->count();
+                $name = Carbon::create($year, $last, 1)->translatedFormat('F');
+                $add('report', $due, trans_choice(':n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month', $due, ['n' => $due, 'month' => $name]), route('monitoring.report'), 'amber');
+            }
+            foreach (ReportingWindow::where('fiscal_year', $year)->where('period_type', 'month')->whereIn('period', array_filter([$month, $last]))
+                ->whereDate('closes_on', '>=', now()->toDateString())->whereDate('closes_on', '<=', now()->addDays(7)->toDateString())->get() as $w) {
+                $add('report', 1, __('Reporting for :month closes on :d.', ['month' => Carbon::create($year, $w->period, 1)->translatedFormat('F'), 'd' => $w->closes_on->format('d/m/Y')]), route('monitoring.report'), 'rose');
             }
         }
 

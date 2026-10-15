@@ -1850,5 +1850,9 @@
     ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n valor de despesa aguarda verificação e ainda não é contado.|[2,*] :n valores de despesa aguardam verificação e ainda não são contados.",
     "No verified spending yet.": "Ainda sem despesa verificada.",
     "Latest reports": "Últimos relatórios",
-    "Verify spending and progress against targets": "Verificar a despesa e o progresso face às metas"
+    "Verify spending and progress against targets": "Verificar a despesa e o progresso face às metas",
+    "Reporting due": "Reporte em falta",
+    "Spending to report for the month that has just ended, and reporting windows about to close.": "Despesa a reportar do mês que acabou de terminar e períodos de reporte prestes a fechar.",
+    ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} :n atividade aprovada sem despesa reportada para :month|[2,*] :n atividades aprovadas sem despesa reportada para :month",
+    "Reporting for :month closes on :d.": "O reporte de :month fecha em :d."
 }
