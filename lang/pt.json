@@ -1761,5 +1761,22 @@
     "Saved as Draft.": "Guardado como rascunho.",
     "Report verified.": "Relatório verificado.",
     "Report returned for correction.": "Relatório devolvido para correção.",
-    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)"
+    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)",
+    "Reporting windows": "Períodos de reporte",
+    "When each month and quarter may be reported": "Quando cada mês e trimestre pode ser reportado",
+    "Set the dates between which a month or a quarter may be reported. A period with no window is open. Administrators can always report.": "Defina as datas entre as quais um mês ou trimestre pode ser reportado. Um período sem janela está aberto. Os administradores podem sempre reportar.",
+    "Open a period": "Abrir um período",
+    "Monthly": "Mensal",
+    "Quarterly": "Trimestral",
+    "Opens on": "Abre em",
+    "Closes on": "Fecha em",
+    "Reporting window saved.": "Período de reporte guardado.",
+    "Reporting window removed.": "Período de reporte removido.",
+    "No reporting windows": "Sem períodos de reporte",
+    "Every month and quarter is open for reporting.": "Todos os meses e trimestres estão abertos para reporte.",
+    "Reporting for this period opens on :d.": "O reporte deste período abre em :d.",
+    "Reporting for this period closed on :d.": "O reporte deste período fechou em :d.",
+    "Spending and monthly report": "Despesa e relatório mensal",
+    "Indicators and quarterly report": "Indicadores e relatório trimestral",
+    "Save": "Guardar"
 }

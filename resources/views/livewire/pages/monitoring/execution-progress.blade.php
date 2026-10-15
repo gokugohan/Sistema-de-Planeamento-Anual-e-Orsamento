@@ -39,9 +39,10 @@ new class extends Component {
         if (! $user->can('update_indicator_progress') && ! $user->can('approve_progress_report')) {
             return false;
         }
-        $unitId = Indicator::with('activity:id,directorate_id')->find($indicatorId)?->activity?->directorate_id;
+        $activity = Indicator::with('activity:id,directorate_id,fiscal_year')->find($indicatorId)?->activity;
 
-        return $unitId && app(ActivityPolicy::class)->inScope($user, $unitId);
+        return $activity && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
+            && app(\App\Services\ReportingWindows::class)->allows($user, $activity->fiscal_year, 'quarter', $this->quarter);
     }
 
     /** For the view: can this user reopen verified figures at all? (each reopening is checked again on its own) */

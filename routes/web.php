@@ -123,6 +123,10 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
         return view('management.sample-data');
     })->name('sample-data');
 
+    Route::get('/reporting-windows', function () {
+        return view('management.reporting-windows');
+    })->name('reporting-windows');
+
     Route::get('/import', function () {
         return view('management.import');
     })->name('import');

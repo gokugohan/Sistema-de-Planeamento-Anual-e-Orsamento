@@ -6,6 +6,7 @@ use App\Models\Directorate;
 use App\Models\FiscalEnvelope;
 use App\Models\IndicatorProgress;
 use App\Policies\ActivityPolicy;
+use App\Services\ReportingWindows;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
@@ -121,6 +122,10 @@ new class extends Component {
         return [
             'summary' => $activity ? $this->summary($activity) : null,
             'maxMonth' => $this->latestMonth(),
+            'closed' => array_filter([
+                __('Spending and monthly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month),
+                __('Indicators and quarterly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'quarter', $this->quarter),
+            ]),
             'canReport' => auth()->user()->can('update_indicator_progress') || auth()->user()->can('approve_progress_report'),
         ];
     }
@@ -187,6 +192,10 @@ new class extends Component {
                 </dl>
             </div>
         </x-ui.card>
+
+        @foreach($closed as $what => $reason)
+            <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900"><span class="font-medium">{{ $what }}:</span> {{ $reason }}</div>
+        @endforeach
 
         <div class="grid gap-6 xl:grid-cols-1">
             <livewire:pages.monitoring.execution-spending :activity-id="$activityId" :month="$month" :key="'spending-'.$activityId.'-'.$month" />

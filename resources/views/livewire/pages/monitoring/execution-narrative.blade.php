@@ -53,13 +53,19 @@ new class extends Component {
         }
     }
 
-    private function mayReport(): bool
+    private function mayReport(?string $type = null): bool
     {
         $user = auth()->user();
         $a = $this->activity;
+        if (! $a || ! ($user->can('update_indicator_progress') || $user->can('approve_progress_report'))
+            || ! app(ActivityPolicy::class)->inScope($user, $a->directorate_id) || $a->isLocked()) {
+            return false;
+        }
+        $windows = app(\App\Services\ReportingWindows::class);
 
-        return $a && ($user->can('update_indicator_progress') || $user->can('approve_progress_report'))
-            && app(ActivityPolicy::class)->inScope($user, $a->directorate_id) && ! $a->isLocked();
+        return $type
+            ? $windows->allows($user, $a->fiscal_year, $type, $this->period($type))
+            : ($windows->allows($user, $a->fiscal_year, 'month', $this->month) || $windows->allows($user, $a->fiscal_year, 'quarter', $this->quarter));
     }
 
     private function mayVerify(): bool
@@ -78,7 +84,7 @@ new class extends Component {
 
     public function save(string $type): void
     {
-        abort_unless(in_array($type, ['month', 'quarter'], true) && $this->mayReport(), 403);
+        abort_unless(in_array($type, ['month', 'quarter'], true) && $this->mayReport($type), 403);
         $data = $this->validate([
             "form.$type.results" => 'nullable|string|max:3000',
             "form.$type.constraints" => 'nullable|string|max:3000',
@@ -105,6 +111,9 @@ new class extends Component {
         abort_unless($this->mayReport(), 403);
         $n = 0;
         foreach (['month', 'quarter'] as $type) {
+            if (! $this->mayReport($type)) {
+                continue;
+            }
             $n += ActivityReport::where(['activity_id' => $this->activityId, 'period_type' => $type, 'period' => $this->period($type)])
                 ->whereIn('status', ['Draft', 'Rejected'])->update(['status' => 'Submitted', 'submitted_by' => auth()->id()]);
         }
@@ -140,7 +149,7 @@ new class extends Component {
 
     public function with(): array
     {
-        return ['reports' => $this->reports(), 'canReport' => $this->mayReport(), 'canVerify' => $this->mayVerify(), 'year' => $this->activity?->fiscal_year ?? now()->year];
+        return ['reports' => $this->reports(), 'canReport' => $this->mayReport(), 'mayType' => ['month' => $this->mayReport('month'), 'quarter' => $this->mayReport('quarter')], 'canVerify' => $this->mayVerify(), 'year' => $this->activity?->fiscal_year ?? now()->year];
     }
 }; ?>
 
@@ -151,7 +160,7 @@ new class extends Component {
                 @php
                     $r = $reports[$type];
                     $status = $r?->status ?? 'Draft';
-                    $editable = $canReport && (! $r || $r->isEditable());
+                    $editable = $mayType[$type] && (! $r || $r->isEditable());
                 @endphp
                 <section wire:key="narr-{{ $type }}-{{ $type === 'month' ? $month : $this->quarter }}" aria-labelledby="narr-{{ $type }}">
                     <div class="mb-3 flex items-center justify-between gap-3">

@@ -1761,5 +1761,22 @@
     "Saved as Draft.": "Rai ona nu'udar rascunhu.",
     "Report verified.": "Relatóriu verifika ona.",
     "Report returned for correction.": "Relatóriu fó fila ba korresaun.",
-    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)"
+    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)",
+    "Reporting windows": "Periodu relatóriu",
+    "When each month and quarter may be reported": "Bainhira fulan no trimestre ida-idak bele relata",
+    "Set the dates between which a month or a quarter may be reported. A period with no window is open. Administrators can always report.": "Define data entre ne'ebé fulan ka trimestre ida bele relata. Periodu ne'ebé la iha janela loke. Administradór bele relata ba beibeik.",
+    "Open a period": "Loke periodu ida",
+    "Monthly": "Fulan-fulan",
+    "Quarterly": "Trimestral",
+    "Opens on": "Loke iha",
+    "Closes on": "Taka iha",
+    "Reporting window saved.": "Periodu relatóriu rai ona.",
+    "Reporting window removed.": "Periodu relatóriu hasai ona.",
+    "No reporting windows": "La iha periodu relatóriu",
+    "Every month and quarter is open for reporting.": "Fulan no trimestre hotu loke ba relatóriu.",
+    "Reporting for this period opens on :d.": "Relatóriu ba periodu ida-ne'e loke iha :d.",
+    "Reporting for this period closed on :d.": "Relatóriu ba periodu ida-ne'e taka iha :d.",
+    "Spending and monthly report": "Despeza no relatóriu mensal",
+    "Indicators and quarterly report": "Indikadór no relatóriu trimestral",
+    "Save": "Rai"
 }

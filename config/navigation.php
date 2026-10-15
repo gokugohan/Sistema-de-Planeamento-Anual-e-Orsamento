@@ -85,6 +85,7 @@ return [
                 ['label' => 'System Users', 'route' => 'management.users', 'icon' => 'users', 'hint' => 'Accounts, roles and permissions'],
                 ['label' => 'Structure', 'route' => 'management.entities', 'icon' => 'building', 'hint' => 'Units, programmes, subprogrammes and economic categories, with their funding'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
+                ['label' => 'Reporting windows', 'route' => 'management.reporting-windows', 'icon' => 'calendar', 'hint' => 'When each month and quarter may be reported'],
                 ['label' => 'Settings', 'route' => 'management.settings', 'icon' => 'settings', 'hint' => 'Organisation identity and planning options'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
                 ['label' => 'Sample Data', 'route' => 'management.sample-data', 'icon' => 'flask-conical', 'hint' => 'Load or purge the demo dataset'],
