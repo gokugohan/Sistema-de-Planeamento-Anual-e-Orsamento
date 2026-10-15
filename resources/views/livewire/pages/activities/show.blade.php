@@ -42,6 +42,8 @@ new class extends Component {
             'trail'                   => app(\App\Services\ApprovalTrail::class)->for($this->activity),
             'approval'                => app(\App\Services\ApprovalTrail::class)->approval($this->activity),
             'awaiting'                => $workflow->awaiting($this->activity),
+            // once approved, how the activity is doing: verified spending, indicators, the latest words
+            'execution'               => $this->activity->status === Activity::STATUS_APPROVED ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
         ];
     }
 
@@ -200,7 +202,7 @@ new class extends Component {
 @endphp
 
 <div
-    x-data="{ tab: 'budget', addingBudget: false, addingIndicator: false }"
+    x-data="{ tab: '{{ $execution ? 'execution' : 'budget' }}', addingBudget: false, addingIndicator: false }"
     @indicator-added.window="addingIndicator = false"
     @lineitem-added.window="addingBudget = false"
     class="space-y-4"
@@ -304,6 +306,13 @@ new class extends Component {
                             <span class="ml-1.5 text-xs font-bold bg-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded-full">{{ $activity->indicators->count() }}</span>
                         @endif
                     </button>
+                    @if($execution)
+                        <button @click="tab = 'execution'"
+                            class="flex-shrink-0 px-6 py-4 text-xs font-semibold tracking-wide border-b-2 transition-colors"
+                            :class="tab === 'execution' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-zinc-400 hover:text-zinc-700'">
+                            {{ __('Execution') }}
+                        </button>
+                    @endif
                     <button @click="tab = 'history'"
                         class="flex-shrink-0 px-6 py-4 text-xs font-semibold tracking-wide border-b-2 transition-colors"
                         :class="tab === 'history' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-zinc-400 hover:text-zinc-700'">
@@ -556,6 +565,86 @@ new class extends Component {
                         </div>
                     @endif
                 </div>
+
+                {{-- ── EXECUTION TAB ──────────────────────────────────── --}}
+                @if($execution)
+                    <div x-show="tab === 'execution'" x-transition class="px-6 py-5 space-y-6">
+                        <div class="grid gap-4 sm:grid-cols-4">
+                            @foreach([[__('Approved'), $execution['approved']], [__('Committed'), $execution['committed']], [__('Paid'), $execution['paid']]] as [$label, $value])
+                                <div><p class="text-xs font-semibold text-zinc-400">{{ $label }}</p><p class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($value, 2) }}</p></div>
+                            @endforeach
+                            <div><p class="text-xs font-semibold text-zinc-400">{{ __('Paid / approved') }}</p><p class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">{{ $execution['rate'] === null ? '—' : number_format($execution['rate'], 1).'%' }}</p></div>
+                        </div>
+                        @if($execution['waiting'] > 0)
+                            <p class="rounded-md bg-sky-50 px-3 py-2 text-sm text-sky-900">{{ trans_choice(':n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.', $execution['waiting'], ['n' => $execution['waiting']]) }}</p>
+                        @endif
+
+                        <div class="overflow-x-auto" tabindex="0">
+                            <table class="w-full text-sm">
+                                <caption class="sr-only">{{ __('Month by month') }}</caption>
+                                <thead><tr class="border-b border-zinc-100 text-xs font-semibold text-zinc-400">
+                                    <th scope="col" class="py-2 pr-4 text-left">{{ __('Month') }}</th>
+                                    <th scope="col" class="py-2 px-4 text-right">{{ __('Committed') }}</th>
+                                    <th scope="col" class="py-2 px-4 text-right">{{ __('Paid') }}</th>
+                                    <th scope="col" class="py-2 pl-4 text-right">{{ __('Paid so far') }}</th>
+                                </tr></thead>
+                                <tbody class="divide-y divide-zinc-50">
+                                    @foreach($execution['months'] as $m => $row)
+                                        @if($row['reported'])
+                                            <tr>
+                                                <td class="py-2 pr-4 text-zinc-700">{{ \Carbon\Carbon::create($activity->fiscal_year, $m, 1)->translatedFormat('F') }}</td>
+                                                <td class="py-2 px-4 text-right tabular-nums">{{ number_format($row['committed'], 2) }}</td>
+                                                <td class="py-2 px-4 text-right tabular-nums">{{ number_format($row['paid'], 2) }}</td>
+                                                <td class="py-2 pl-4 text-right tabular-nums font-medium text-zinc-900">{{ number_format($row['cumulative'], 2) }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    @if(! collect($execution['months'])->contains('reported', true))
+                                        <tr><td colspan="4" class="py-6 text-center text-sm text-zinc-400">{{ __('No verified spending yet.') }}</td></tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @if($execution['indicators'])
+                            <div>
+                                <p class="mb-2 text-sm font-semibold text-zinc-900">{{ __('Indicators') }}</p>
+                                <ul class="space-y-3">
+                                    @foreach($execution['indicators'] as $i)
+                                        <li>
+                                            <div class="flex items-baseline justify-between gap-3 text-sm">
+                                                <span class="min-w-0 text-zinc-700">{{ $i['name'] }}</span>
+                                                <span class="flex-shrink-0 tabular-nums text-zinc-500"><span class="font-semibold text-zinc-900">{{ number_format($i['standing'], 2) }}</span> / {{ number_format($i['target'], 2) }} {{ $i['unit'] }}@if($i['pct'] !== null) · {{ number_format($i['pct'], 0) }}%@endif</span>
+                                            </div>
+                                            @if($i['pct'] !== null)
+                                                <div class="mt-1 h-1.5 overflow-hidden rounded-full bg-zinc-100" role="progressbar" aria-valuenow="{{ round($i['pct']) }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ $i['name'] }}"><div class="h-full rounded-full bg-indigo-600" style="width: {{ $i['pct'] }}%"></div></div>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        @if($execution['notes']->isNotEmpty())
+                            <div>
+                                <p class="mb-2 text-sm font-semibold text-zinc-900">{{ __('Latest reports') }}</p>
+                                <ul class="space-y-2">
+                                    @foreach($execution['notes'] as $n)
+                                        <li class="rounded-md bg-zinc-50 px-3 py-2 text-sm text-zinc-700">
+                                            <span class="font-medium text-zinc-900">{{ $n->period_type === 'month' ? \Carbon\Carbon::create($activity->fiscal_year, $n->period, 1)->translatedFormat('F') : 'Q'.$n->period }}</span>
+                                            @if($n->rating) · {{ __($n->rating) }}@endif
+                                            — {{ $n->results }}@if($n->constraints) <span class="text-zinc-500">({{ __('Constraints') }}: {{ $n->constraints }})</span>@endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        @can('view_monitoring')
+                            <a href="{{ route('monitoring.report') }}" wire:navigate class="inline-flex text-sm font-medium text-indigo-700 hover:underline">{{ __('Report execution') }} →</a>
+                        @endcan
+                    </div>
+                @endif
 
                 {{-- ── HISTORY TAB ────────────────────────────────────── --}}
                 <div x-show="tab === 'history'" x-transition>

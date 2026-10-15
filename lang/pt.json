@@ -1845,5 +1845,10 @@
     "You stand in for the director of :unit from :from to :to.": "Substitui o diretor de :unit de :from a :to.",
     "You cannot appoint yourself.": "Não se pode nomear a si próprio.",
     "Interim approver appointed.": "Aprovador interino nomeado.",
-    "Appointment revoked.": "Nomeação revogada."
+    "Appointment revoked.": "Nomeação revogada.",
+    "Execution": "Execução",
+    "Paid / approved": "Pago / aprovado",
+    ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n valor de despesa aguarda verificação e ainda não é contado.|[2,*] :n valores de despesa aguardam verificação e ainda não são contados.",
+    "No verified spending yet.": "Ainda sem despesa verificada.",
+    "Latest reports": "Últimos relatórios"
 }

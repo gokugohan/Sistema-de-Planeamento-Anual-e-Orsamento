@@ -1845,5 +1845,10 @@
     "You stand in for the director of :unit from :from to :to.": "Ita substitui diretór :unit husi :from to'o :to.",
     "You cannot appoint yourself.": "La bele hili an rasik.",
     "Interim approver appointed.": "Aprovadór interinu hili ona.",
-    "Appointment revoked.": "Nomeasaun revoga ona."
+    "Appointment revoked.": "Nomeasaun revoga ona.",
+    "Execution": "Ezekusaun",
+    "Paid / approved": "Selu / aprovadu",
+    ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} Valór despeza :n hein verifikasaun no seidauk konta.|[2,*] Valór despeza :n hein verifikasaun no seidauk konta.",
+    "No verified spending yet.": "Seidauk iha despeza verifika ona.",
+    "Latest reports": "Relatóriu ikus sira"
 }
