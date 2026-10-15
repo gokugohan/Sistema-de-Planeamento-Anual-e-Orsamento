@@ -22,13 +22,16 @@ class ExecutionReport
      * @param  array<int, int>|null  $unitIds  limit to these units (already including the units below them)
      * @return array{year: int, today: CarbonInterface, quarter: int, fraction: float, activities: array<int, array>}
      */
-    public function load(int $year, ?array $unitIds = null, ?int $classId = null, ?CarbonInterface $today = null): array
+    public function load(int $year, ?array $unitIds = null, ?int $classId = null, ?CarbonInterface $today = null, ?int $programId = null): array
     {
         $today ??= now();
         [$quarter, $fractionOfQuarter] = $this->position($year, $today);
 
-        $scope = function ($q) use ($year, $unitIds, $classId) {
+        $scope = function ($q) use ($year, $unitIds, $classId, $programId) {
             $q->where('a.fiscal_year', $year);
+            if ($programId) {
+                $q->where('a.program_id', $programId);
+            }
             if ($unitIds !== null) {
                 $q->whereIn('a.directorate_id', $unitIds ?: [0]);
             }

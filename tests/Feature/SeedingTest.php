@@ -62,7 +62,7 @@ class SeedingTest extends TestCase
         $this->seed(MtcSampleDataSeeder::class);
 
         $this->assertSame(49, Directorate::count());
-        $this->assertSame(6, Program::count());
+        $this->assertSame(18, Program::count());
         $this->assertSame(274, Activity::count());
         $this->assertSame('MTC', SystemSetting::getLocalized('org_abbr', '', 'en'));
         $this->assertTrue(User::where('email', 'ministro@goku.tl')->first()->isMinister());

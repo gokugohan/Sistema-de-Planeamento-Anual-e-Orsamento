@@ -51,7 +51,7 @@ class ActivityCsvImporter
         }
 
         $directorates = Directorate::query()->where('active', true)->get()->keyBy(fn ($d) => strtolower($d->code));
-        $programs = Program::all()->keyBy(fn ($p) => strtolower((string) $p->oge_code));
+        $programs = Program::forYear($fiscalYear)->get()->keyBy(fn ($p) => strtolower((string) $p->oge_code));
         $classes = EconomicClassification::all()->keyBy(fn ($c) => strtolower((string) $c->code));
 
         $activities = [];
@@ -212,7 +212,7 @@ class ActivityCsvImporter
             $errors[] = $this->err($line, "Unknown or inactive directorate_code \"{$r['directorate_code']}\".");
         }
         if (! $prog) {
-            $errors[] = $this->err($line, "Unknown program_code \"{$r['program_code']}\".");
+            $errors[] = $this->err($line, "Unknown program_code \"{$r['program_code']}\" for {$year}: register the programme for that year first.");
         }
         if (mb_strlen($r['description']) < 5) {
             $errors[] = $this->err($line, 'description must have at least 5 characters.');

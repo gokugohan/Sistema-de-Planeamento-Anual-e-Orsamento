@@ -36,16 +36,20 @@ class ActivityRollForward
         $shift = $toYear - $fromYear;
         $units = Directorate::pluck('code', 'id');
         $next = [];
+        $programs = app(ProgramYears::class);
+        $programMap = [];
 
-        DB::transaction(function () use ($fromYear, $toYear, $unitIds, $shift, $units, &$copied, &$skipped, &$next) {
+        DB::transaction(function () use ($fromYear, $toYear, $unitIds, $shift, $units, $programs, &$programMap, &$copied, &$skipped, &$next) {
             Activity::where('fiscal_year', $fromYear)
                 ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds))
-                ->with(['lineItems', 'indicators'])
+                ->with(['lineItems', 'indicators', 'program'])
                 ->orderBy('id')
-                ->chunkById(100, function ($activities) use ($toYear, $shift, $units, &$copied, &$skipped, &$next) {
+                ->chunkById(100, function ($activities) use ($toYear, $shift, $units, $programs, &$programMap, &$copied, &$skipped, &$next) {
                     foreach ($activities as $a) {
+                        // the programme of the new year with the same code (registered now if it is missing)
+                        $programId = $programMap[$a->program_id] ??= $programs->forYearOf($a->program, $toYear)->id;
                         $exists = Activity::where('fiscal_year', $toYear)->where('directorate_id', $a->directorate_id)
-                            ->where('program_id', $a->program_id)->where('description', $a->description)->exists();
+                            ->where('program_id', $programId)->where('description', $a->description)->exists();
                         if ($exists) {
                             $skipped++;
 
@@ -61,7 +65,7 @@ class ActivityRollForward
                             'status' => Activity::STATUS_DRAFT,
                             'code' => $code,
                             'is_test_data' => $a->is_test_data,
-                            'program_id' => $a->program_id,
+                            'program_id' => $programId,
                             'directorate_id' => $a->directorate_id,
                             'description' => $a->description,
                             'objective' => $a->objective,

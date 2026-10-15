@@ -29,11 +29,14 @@ class MtcProgramSeeder extends Seeder
             ['oge_code' => 'A38', 'name' => 'Meteorologia e Geofísica', 'objective' => 'Cidadãos de Timor-Leste informados sobre o clima e o estado do tempo, disponível para todos os cidadãos.'],
         ];
 
-        foreach ($programs as $prog) {
-            if ($only !== null && ! in_array($prog['oge_code'], $only, true)) {
-                continue;
+        // Programmes belong to a fiscal year, so each one is registered for every year of the sample.
+        foreach (MtcBudgetSeeder::YEARS as $year) {
+            foreach ($programs as $prog) {
+                if ($only !== null && ! in_array($prog['oge_code'], $only, true)) {
+                    continue;
+                }
+                $registry->upsert('mtc', Program::class, ['fiscal_year' => $year, 'oge_code' => $prog['oge_code']], $prog);
             }
-            $registry->upsert('mtc', Program::class, ['oge_code' => $prog['oge_code']], $prog);
         }
     }
 }

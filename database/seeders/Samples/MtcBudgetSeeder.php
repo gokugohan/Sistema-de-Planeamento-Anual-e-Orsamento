@@ -129,7 +129,7 @@ class MtcBudgetSeeder extends Seeder
     private function loadActivities(SampleRegistry $registry, int $year, array $data): array
     {
         $classes = EconomicClassification::pluck('id', 'code');
-        $programs = Program::pluck('id', 'oge_code');
+        $programs = Program::forYear($year)->pluck('id', 'oge_code');
         $units = Directorate::pluck('id', 'code');
         $totals = [];
 

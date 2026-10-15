@@ -78,7 +78,7 @@ new class extends Component {
         // by programme
         $progActs = $acts('program_id');
         $byProg = $rows->groupBy('p')->map(fn ($g) => ['plan' => (float) $g->sum('plan'), 'alloc' => (float) $g->sum('alloc')]);
-        $programs = Program::orderBy('oge_code')->get(['id', 'oge_code', 'name'])->map(fn ($p) => [
+        $programs = Program::forYear($year)->orderBy('oge_code')->get(['id', 'oge_code', 'name'])->map(fn ($p) => [
             'code' => $p->oge_code, 'name' => $p->name, 'n' => (int) ($progActs[$p->id] ?? 0),
             'plan' => $byProg[$p->id]['plan'] ?? 0.0, 'alloc' => $byProg[$p->id]['alloc'] ?? 0.0,
         ])->filter(fn ($p) => $p['n'] > 0 || $p['plan'] > 0)->sortByDesc('plan')->values()->all();

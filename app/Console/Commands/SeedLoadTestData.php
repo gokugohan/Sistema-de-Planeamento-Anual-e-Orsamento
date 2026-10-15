@@ -50,10 +50,10 @@ class SeedLoadTestData extends Command
             return self::FAILURE;
         }
 
-        [$programIds, $unitIds] = DB::transaction(function () use ($unitCount) {
+        [$programIds, $unitIds] = DB::transaction(function () use ($unitCount, $year) {
             $now = now();
-            $programId = DB::table('programs')->where('oge_code', 'LOAD')->value('id')
-                ?? DB::table('programs')->insertGetId(['oge_code' => 'LOAD', 'name' => 'Load test programme', 'created_at' => $now, 'updated_at' => $now]);
+            $programId = DB::table('programs')->where('oge_code', 'LOAD')->where('fiscal_year', $year)->value('id')
+                ?? DB::table('programs')->insertGetId(['fiscal_year' => $year, 'oge_code' => 'LOAD', 'name' => 'Load test programme', 'created_at' => $now, 'updated_at' => $now]);
 
             $rootId = DB::table('directorates')->where('code', 'LOAD')->value('id')
                 ?? DB::table('directorates')->insertGetId([

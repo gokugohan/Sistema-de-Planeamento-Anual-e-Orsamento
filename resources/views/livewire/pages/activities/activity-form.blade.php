@@ -108,7 +108,7 @@ new class extends Component {
 
         return [
             'directorate_id' => ['required', 'exists:directorates,id'],
-            'program_id' => ['required', 'exists:programs,id'],
+            'program_id' => ['required', 'exists:programs,id,fiscal_year,'.$this->year],
             'description' => ['required', 'string', 'min:5', 'max:1000'],
             'objective' => ['nullable', 'string', 'max:2000'],
             'manager_name' => ['nullable', 'string', 'max:255'],
@@ -202,7 +202,7 @@ new class extends Component {
 
         return [
             'units' => $this->units(),
-            'programs' => Program::orderBy('oge_code')->get(['id', 'oge_code', 'name']),
+            'programs' => Program::forYear($this->year)->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'classes' => EconomicClassification::orderBy('code')->get(['id', 'code', 'name']),
             'total' => $total,
             'locations' => config('paa.locations'),
@@ -239,6 +239,7 @@ new class extends Component {
                         <option value="">{{ __('Select a programme') }}</option>
                         @foreach($programs as $p)<option value="{{ $p->id }}">{{ $p->oge_code }} — {{ $p->name }}</option>@endforeach
                     </select>
+                    @if($programs->isEmpty())<p class="mt-1 text-xs text-amber-700">{{ __('No programs are registered for :year yet. An administrator can register them at Management > Entities.', ['year' => $year]) }}</p>@endif
                     @error('program_id')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                 </div>
                 <div class="sm:col-span-2">

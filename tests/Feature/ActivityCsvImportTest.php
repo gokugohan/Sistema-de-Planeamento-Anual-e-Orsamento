@@ -25,7 +25,7 @@ class ActivityCsvImportTest extends TestCase
         parent::setUp();
 
         Directorate::create(['code' => 'DNTT', 'name' => 'Direção Nacional dos Transportes Terrestres', 'type' => 'National Directorate', 'active' => true]);
-        Program::create(['oge_code' => '002', 'name' => 'Transportes Terrestres']);
+        Program::create(['fiscal_year' => 2027, 'oge_code' => '002', 'name' => 'Transportes Terrestres']);
         EconomicClassification::create(['code' => '10', 'name' => 'Salários e Vencimentos']);
         EconomicClassification::create(['code' => '20', 'name' => 'Bens e Serviços']);
     }

@@ -202,7 +202,7 @@ new class extends Component {
             'totalPlanned' => $all,
             'totalApproved' => $money(self::GROUPS['approved']),
             'units' => Directorate::whereNull('parent_id')->orderBy('code')->get(['id', 'code', 'name', 'administration']),
-            'programs' => Program::orderBy('oge_code')->get(['id', 'oge_code', 'name']),
+            'programs' => Program::forYear($this->year())->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'locations' => config('paa.locations'),
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,

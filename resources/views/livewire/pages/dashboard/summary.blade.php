@@ -6,6 +6,7 @@ use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
+use App\Models\Program;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Component;
@@ -17,11 +18,13 @@ use Livewire\Volt\Component;
 new class extends Component {
     public $unit = '';      // top-level unit filter ('' = all)
     public $category = '';  // economic category filter ('' = all)
+    public $program = '';   // programme filter ('' = all)
 
     public function clearFilters(): void
     {
         $this->unit = '';
         $this->category = '';
+        $this->program = '';
     }
 
     public function with(): array
@@ -35,11 +38,14 @@ new class extends Component {
             ? $dirs->filter(fn ($d) => $d->id == $this->unit || $d->parent_id == $this->unit)->keys()->all()
             : null;
         $cat = $this->category !== '' ? (int) $this->category : null;
+        $prog = $this->program !== '' ? (int) $this->program : null;
+        $programs = Program::forYear($year)->orderBy('oge_code')->get(['id', 'oge_code', 'name'])->keyBy('id');
 
         $base = fn () => Activity::withoutGlobalScopes()
             ->where('activities.is_test_data', false)
             ->where('activities.fiscal_year', $year)
             ->when($unitIds, fn ($q) => $q->whereIn('activities.directorate_id', $unitIds))
+            ->when($prog, fn ($q) => $q->where('activities.program_id', $prog))
             ->when($cat, fn ($q) => $q->whereExists(fn ($s) => $s->selectRaw('1')->from('line_items')
                 ->whereColumn('line_items.activity_id', 'activities.id')
                 ->where('line_items.is_test_data', false)
@@ -49,8 +55,13 @@ new class extends Component {
         $statusOrder = [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL, Activity::STATUS_APPROVED];
         $byStatus = array_fill_keys($statusOrder, 0);
         $unitStats = [];
-        foreach ($base()->selectRaw('activities.directorate_id as d, activities.status as s, COUNT(*) as n')->groupBy('activities.directorate_id', 'activities.status')->get() as $r) {
+        $progStats = [];
+        foreach ($base()->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.status as s, COUNT(*) as n')->groupBy('activities.directorate_id', 'activities.program_id', 'activities.status')->get() as $r) {
             $root = $rootOf($r->d);
+            $progStats[$r->p]['n'] = ($progStats[$r->p]['n'] ?? 0) + $r->n;
+            if ($r->s === Activity::STATUS_APPROVED) {
+                $progStats[$r->p]['approved'] = ($progStats[$r->p]['approved'] ?? 0) + $r->n;
+            }
             $byStatus[$r->s] = ($byStatus[$r->s] ?? 0) + $r->n;
             $unitStats[$root]['n'] = ($unitStats[$root]['n'] ?? 0) + $r->n;
             if ($r->s === Activity::STATUS_APPROVED) {
@@ -68,8 +79,8 @@ new class extends Component {
             ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
             ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
             ->when($cat, fn ($q) => $q->where('line_items.economic_classification_id', $cat))
-            ->groupBy('activities.directorate_id', 'activities.status', 'line_items.economic_classification_id')
-            ->selectRaw('activities.directorate_id as d, activities.status as s, line_items.economic_classification_id as c,
+            ->groupBy('activities.directorate_id', 'activities.program_id', 'activities.status', 'line_items.economic_classification_id')
+            ->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.status as s, line_items.economic_classification_id as c,
                 COALESCE(SUM(line_items.estimated_amount), 0) as req, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
             ->get() as $r) {
             $planAll += $r->req;
@@ -79,6 +90,8 @@ new class extends Component {
                 $root = $rootOf($r->d);
                 $unitStats[$root]['plan'] = ($unitStats[$root]['plan'] ?? 0) + $r->req;
                 $unitStats[$root]['alloc'] = ($unitStats[$root]['alloc'] ?? 0) + $r->alloc;
+                $progStats[$r->p]['plan'] = ($progStats[$r->p]['plan'] ?? 0) + $r->req;
+                $progStats[$r->p]['alloc'] = ($progStats[$r->p]['alloc'] ?? 0) + $r->alloc;
                 if ($r->c) {
                     $planByClass[$r->c] = ($planByClass[$r->c] ?? 0) + $r->req;
                     $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
@@ -152,9 +165,27 @@ new class extends Component {
 
         // ── execution: committed and paid against the approved budget, and against the calendar ──
         $execReport = app(\App\Services\ExecutionReport::class);
-        $execData = $execReport->load($year, $unitIds, $cat);
+        $execData = $execReport->load($year, $unitIds, $cat, null, $prog);
         $exec = $execReport->summary($execData);
         $behind = array_map(fn ($a) => $a + ['unit' => $dirs[$a['unit_id']]->code ?? ''], $execReport->behind($execData, 5));
+
+        // ── programmes: what each one plans, receives and has paid ──
+        $execByProg = $execReport->grouped($execData, 'program_id');
+        $progRows = [];
+        foreach ($programs as $id => $p) {
+            $s = $progStats[$id] ?? [];
+            if (($s['n'] ?? 0) === 0) {
+                continue; // no activity in the year (or outside the filters)
+            }
+            $e = $execByProg[$id] ?? null;
+            $progRows[] = [
+                'id' => $id, 'code' => $p->oge_code, 'name' => $p->name, 'n' => $s['n'], 'approved' => $s['approved'] ?? 0,
+                'plan' => (float) ($s['plan'] ?? 0), 'alloc' => (float) ($s['alloc'] ?? 0),
+                'paid_pct' => $e && $e['approved'] > 0 ? $e['paid'] / $e['approved'] * 100 : null,
+                'due_pct' => $e && $e['approved'] > 0 ? $e['planned_to_date'] / $e['approved'] * 100 : null,
+            ];
+        }
+        usort($progRows, fn ($a, $b) => [$b['plan'], $b['n']] <=> [$a['plan'], $a['n']]);
 
         // ── units table, sorted by approved plan ──
         $units = [];
@@ -222,7 +253,7 @@ new class extends Component {
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
             'achievement' => $achievement, 'indicatorCount' => (int) $delivery->n,
-            'units' => $units, 'watch' => $watch, 'charts' => $charts, 'exec' => $exec, 'behind' => $behind,
+            'units' => $units, 'watch' => $watch, 'charts' => $charts, 'exec' => $exec, 'behind' => $behind, 'programs' => $programs, 'progRows' => $progRows,
             'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
             'classes' => $classes,
         ];
@@ -245,6 +276,15 @@ new class extends Component {
                 </select>
             </div>
             <div>
+                <label for="f-prog" class="field-label">{{ __('Program') }}</label>
+                <select id="f-prog" wire:model.live="program" class="flux-input !w-56">
+                    <option value="">{{ __('All programs') }}</option>
+                    @foreach($programs as $p)
+                        <option value="{{ $p->id }}">{{ $p->oge_code }} — {{ $p->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
                 <label for="f-cat" class="field-label">{{ __('Category') }}</label>
                 <select id="f-cat" wire:model.live="category" class="flux-input !w-48">
                     <option value="">{{ __('All categories') }}</option>
@@ -253,7 +293,7 @@ new class extends Component {
                     @endforeach
                 </select>
             </div>
-            @if($unit !== '' || $category !== '')
+            @if($unit !== '' || $category !== '' || $program !== '')
                 <button wire:click="clearFilters" class="pb-2 text-sm font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
             @endif
             @if($wide)
@@ -481,6 +521,41 @@ new class extends Component {
                 </tr>
             @empty
                 <tr><td colspan="5"><x-ui.empty-state :title="__('No units to show.')" /></td></tr>
+            @endforelse
+        </x-ui.table>
+    </x-ui.card>
+
+    {{-- Programmes: the same plan seen by programme --}}
+    <x-ui.card padding="p-0">
+        <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Programs') }}</h2></x-slot>
+        <x-ui.table :headers="[__('Program'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded'), __('Paid')]" :right="[2, 3]">
+            @forelse($progRows as $r)
+                @php $pct = $r['plan'] > 0 ? min(100, $r['alloc'] / $r['plan'] * 100) : null; $late = $r['paid_pct'] !== null && $r['due_pct'] !== null && $r['paid_pct'] < $r['due_pct'] - 5; @endphp
+                <tr>
+                    <td class="px-6 py-3 text-sm">
+                        <button type="button" wire:click="$set('program', '{{ $r['id'] }}')" class="text-left hover:text-indigo-700" title="{{ __('Show only this program') }}">
+                            <span class="font-semibold text-zinc-900">{{ $r['code'] }}</span> <span class="text-zinc-500">{{ $r['name'] }}</span>
+                        </button>
+                    </td>
+                    <td class="px-6 py-3 text-sm tabular-nums">{{ $r['approved'] }}<span class="text-zinc-400"> / {{ $r['n'] }}</span></td>
+                    <td class="px-6 py-3 num text-sm">{{ $r['plan'] > 0 ? '$ ' . number_format($r['plan']) : '—' }}</td>
+                    <td class="px-6 py-3 num text-sm">{{ $r['alloc'] > 0 ? '$ ' . number_format($r['alloc']) : '—' }}</td>
+                    <td class="px-6 py-3 text-sm w-44">
+                        @if($pct !== null)
+                            <div class="flex items-center gap-2">
+                                <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
+                                <span class="text-xs tabular-nums text-zinc-600 w-10 text-right">{{ number_format($pct, 0) }}%</span>
+                            </div>
+                        @else
+                            <span class="text-zinc-400">—</span>
+                        @endif
+                    </td>
+                    <td class="px-6 py-3 text-sm tabular-nums {{ $late ? 'text-amber-800 font-medium' : 'text-zinc-700' }}">
+                        @if($r['paid_pct'] !== null){{ number_format($r['paid_pct'], 0) }}%@if($late)<span class="sr-only"> ({{ __('behind schedule') }})</span>@endif @else — @endif
+                    </td>
+                </tr>
+            @empty
+                <tr><td colspan="6"><x-ui.empty-state :title="__('No programs to show.')" :text="__('Programs are registered for each fiscal year at Management > Entities.')" /></td></tr>
             @endforelse
         </x-ui.table>
     </x-ui.card>

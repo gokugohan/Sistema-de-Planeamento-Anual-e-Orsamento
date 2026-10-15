@@ -88,7 +88,7 @@ class PlanBreakdownTest extends TestCase
     public function test_the_activities_of_a_category_load_on_demand(): void
     {
         $this->adminWithSample();
-        $program = Program::where('oge_code', 'A08')->firstOrFail();
+        $program = Program::forYear(2026)->where('oge_code', 'A08')->firstOrFail();
         $class = EconomicClassification::where('code', '20')->firstOrFail();
 
         $this->get('/reports/paa/activities?'.http_build_query(['year' => 2026, 'program' => $program->id, 'class' => $class->id, 'parent' => 'prog-1-class-1']))

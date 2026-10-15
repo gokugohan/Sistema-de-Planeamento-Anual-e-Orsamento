@@ -6,7 +6,7 @@
                     {{ __('Programs Registry') }}
                 </h2>
                 <p class="text-xs text-zinc-400 font-bold mt-1">
-                    {{ __('Active Programs in System') }}
+                    {{ __('Programs registered for :year', ['year' => $fundingYear]) }}
                 </p>
             </div>
             <div class="relative group">
@@ -24,6 +24,21 @@
             </div>
         </div>
     </x-slot>
+
+    @if($copySources->isNotEmpty())
+        <div class="flex flex-wrap items-end gap-3 border-b border-zinc-200 bg-zinc-50 px-5 py-3">
+            <div>
+                <label for="f-copyFromYear" class="field-label">{{ __('Copy programs from another year') }}</label>
+                <select id="f-copyFromYear" wire:model="copyFromYear" class="flux-input !w-40">
+                    <option value="">{{ __('Choose a year') }}</option>
+                    @foreach($copySources as $y)<option value="{{ $y }}">{{ $y }}</option>@endforeach
+                </select>
+            </div>
+            <x-ui.button type="button" variant="secondary" shadow="none" wire:click="copyPrograms">{{ __('Copy to :year', ['year' => $fundingYear]) }}</x-ui.button>
+            <p class="pb-2 text-xs text-zinc-500">{{ __('Only the programs this year does not have yet are added.') }}</p>
+            <x-input-error :messages="$errors->get('copyFromYear')" />
+        </div>
+    @endif
 
     <div class="overflow-x-auto" tabindex="0">
         <x-ui.table :headers="[__('OGE Code'), __('Program Name'), __('Manager'), __('Objective'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Actions')]">
@@ -95,7 +110,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7"><x-ui.empty-state :title="__('No programs found.')" /></td>
+                    <td colspan="7"><x-ui.empty-state :title="__('No programs registered for :year.', ['year' => $fundingYear])" :text="__('Register one, or copy them from another year.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>
@@ -109,66 +124,62 @@
 {{-- Program Modal --}}
 @if($programModalOpen)
     <x-dialog max-width="2xl" close="$set('programModalOpen', false)">
-<x-slot:title>{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-slot:title>
-<x-slot:subtitle>{{ __('Program Registry Management') }}</x-slot:subtitle>
+        <x-slot:title>{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-slot:title>
+        <x-slot:subtitle>{{ __('Registered for fiscal year :year', ['year' => $fundingYear]) }}</x-slot:subtitle>
 
-            <form wire:submit="saveProgram" class="p-6 space-y-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="field-label" for="f-programCode">{{ __('Program Code') }}</label>
-<input id="f-programCode" type="text" wire:model="programCode"
-                            class="flux-input"
-                            placeholder="e.g. PROG01">
-                        <x-input-error :messages="$errors->get('programCode')" />
-                    </div>
-                    <div>
-                        <label class="field-label" for="f-programName">{{ __('Program Name') }}</label>
-<input id="f-programName" type="text" wire:model="programName"
-                            class="flux-input"
-                            placeholder="e.g. Education Development">
-                        <x-input-error :messages="$errors->get('programName')" />
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="field-label" for="f-ogeCode">{{ __('OGE Code') }}</label>
-<input id="f-ogeCode" type="text" wire:model="ogeCode"
-                            class="flux-input"
-                            placeholder="Optional">
-                        <x-input-error :messages="$errors->get('ogeCode')" />
-                    </div>
-                    <div>
-                        <label class="field-label" for="f-managerName">{{ __('Program Manager') }}</label>
-<input id="f-managerName" type="text" wire:model="managerName"
-                            class="flux-input"
-                            placeholder="Full name">
-                        <x-input-error :messages="$errors->get('managerName')" />
-                    </div>
-                </div>
-
+        <form wire:submit="saveProgram" class="p-6 space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="field-label" for="f-objective">{{ __('Objective') }}</label>
-<textarea id="f-objective" wire:model="objective" rows="3"
-                        class="flux-input"
-                        placeholder="Program objectives and goals..."></textarea>
-                    <x-input-error :messages="$errors->get('objective')" />
+                    <label class="field-label" for="f-ogeCode">{{ __('Program Code') }}</label>
+                    <input id="f-ogeCode" type="text" wire:model.live.debounce.300ms="ogeCode" class="flux-input" placeholder="e.g. 510" autocomplete="off">
+                    <x-input-error :messages="$errors->get('ogeCode')" />
                 </div>
-
                 <div>
-                    <label class="field-label" for="f-kpis">{{ __('Key Performance Indicators') }}</label>
-<textarea id="f-kpis" wire:model="kpis" rows="2"
-                        class="flux-input"
-                        placeholder="KPIs for measuring success..."></textarea>
-                    <x-input-error :messages="$errors->get('kpis')" />
+                    <label class="field-label" for="f-programName">{{ __('Program Name') }}</label>
+                    <input id="f-programName" type="text" wire:model.live.debounce.300ms="programName" class="flux-input" placeholder="e.g. Education Development" autocomplete="off">
+                    <x-input-error :messages="$errors->get('programName')" />
                 </div>
+            </div>
 
-                <div class="flex items-center gap-4 pt-4">
-                    <x-ui.button type="button" wire:click="$set('programModalOpen', false)" variant="secondary"
-                        class="flex-1">{{ __('Go Back') }}</x-ui.button>
-                    <x-ui.button type="submit" variant="primary"
-                        class="flex-1">{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-ui.button>
+            @if($programSuggestions->isNotEmpty())
+                <div role="region" aria-label="{{ __('Programs from other years') }}" class="rounded-md border border-indigo-200 bg-indigo-50/60">
+                    <p class="px-4 pt-3 text-xs font-medium text-zinc-700">{{ __('Already registered in another year: pick one to fill in the form.') }}</p>
+                    <ul class="p-1">
+                        @foreach($programSuggestions as $s)
+                            <li>
+                                <button type="button" wire:click="pickProgram({{ $s->id }})" wire:key="sug-{{ $s->id }}"
+                                    class="flex w-full items-start justify-between gap-3 rounded px-3 py-2 text-left hover:bg-white">
+                                    <span class="min-w-0 text-sm text-zinc-900"><span class="font-mono font-semibold">{{ $s->oge_code }}</span> · {{ $s->name }}</span>
+                                    <span class="shrink-0 text-xs text-zinc-500">{{ $s->fiscal_year }}</span>
+                                </button>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-            </form>
-</x-dialog>
+            @endif
+
+            <div>
+                <label class="field-label" for="f-managerName">{{ __('Program Manager') }}</label>
+                <input id="f-managerName" type="text" wire:model="managerName" class="flux-input" placeholder="Full name">
+                <x-input-error :messages="$errors->get('managerName')" />
+            </div>
+
+            <div>
+                <label class="field-label" for="f-objective">{{ __('Objective') }}</label>
+                <textarea id="f-objective" wire:model="objective" rows="3" class="flux-input" placeholder="Program objectives and goals..."></textarea>
+                <x-input-error :messages="$errors->get('objective')" />
+            </div>
+
+            <div>
+                <label class="field-label" for="f-kpis">{{ __('Key Performance Indicators') }}</label>
+                <textarea id="f-kpis" wire:model="kpis" rows="2" class="flux-input" placeholder="KPIs for measuring success..."></textarea>
+                <x-input-error :messages="$errors->get('kpis')" />
+            </div>
+
+            <div class="flex items-center gap-4 pt-4">
+                <x-ui.button type="button" wire:click="$set('programModalOpen', false)" variant="secondary" class="flex-1">{{ __('Go Back') }}</x-ui.button>
+                <x-ui.button type="submit" variant="primary" class="flex-1">{{ $isProgramEditing ? __('Update Program') : __('Create Program') }}</x-ui.button>
+            </div>
+        </form>
+    </x-dialog>
 @endif

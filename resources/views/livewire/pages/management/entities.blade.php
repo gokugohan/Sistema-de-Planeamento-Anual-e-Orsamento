@@ -6,6 +6,8 @@ use App\Models\Program;
 use App\Models\EconomicClassification;
 use App\Models\Activity;
 use App\Models\FiscalEnvelope;
+use App\Services\ProgramYears;
+use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 
 new class extends Component {
@@ -34,13 +36,15 @@ new class extends Component {
     // Program Form State
     public $programId = null;
     public $programName = '';
-    public $programCode = '';
     public $ogeCode = '';
     public $objective = '';
     public $managerName = '';
     public $kpis = '';
     public $programModalOpen = false;
     public $isProgramEditing = false;
+    /** Suggestions from other years stop showing once one was picked, until the user types again. */
+    public bool $suggestionsHidden = false;
+    public $copyFromYear = '';
 
     // Economic Classification Form State
     public $classificationId = null;
@@ -115,12 +119,17 @@ new class extends Component {
                 })
                 ->orderByRaw('COALESCE(parent_id, id), parent_id IS NOT NULL, name')
                 ->paginate(15),
-            'programs' => Program::when($this->search, function ($q) {
-                $q->where('name', 'like', "%{$this->search}%")
-                    ->orWhere('oge_code', 'like', "%{$this->search}%");
+            'programs' => Program::forYear($year)->when($this->search, function ($q) {
+                $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")
+                    ->orWhere('oge_code', 'like', "%{$this->search}%"));
             })
-                ->orderBy('name')
+                ->orderBy('oge_code')
                 ->paginate(10),
+            // Auto-complete while registering: programmes of other years that this year does not have yet.
+            'programSuggestions' => ($this->programModalOpen && ! $this->isProgramEditing && ! $this->suggestionsHidden)
+                ? app(ProgramYears::class)->suggestions($year, trim((string) $this->ogeCode) !== '' ? (string) $this->ogeCode : (string) $this->programName)
+                : collect(),
+            'copySources' => app(ProgramYears::class)->years()->reject(fn ($y) => $y === $year)->values(),
             'economicCategories' => EconomicClassification::when($this->search, function ($q) {
                 $q->where('name', 'like', "%{$this->search}%")
                     ->orWhere('code', 'like', "%{$this->search}%");
@@ -239,15 +248,64 @@ new class extends Component {
 
     // ========== PROGRAM CRUD METHODS ==========
 
+    private function guardPrograms(): void
+    {
+        abort_unless(auth()->user()?->isAdministrator(), 403);
+    }
+
+    public function updatedOgeCode(): void
+    {
+        $this->suggestionsHidden = false;
+    }
+
+    public function updatedProgramName(): void
+    {
+        $this->suggestionsHidden = false;
+    }
+
+    /** Fill the form from a programme of another year; saving registers it for the working year. */
+    public function pickProgram($id): void
+    {
+        $this->guardPrograms();
+        $p = Program::findOrFail($id);
+        $this->ogeCode = (string) $p->oge_code;
+        $this->programName = $p->name;
+        $this->managerName = $p->manager_name ?? '';
+        $this->objective = $p->objective ?? '';
+        $this->kpis = $p->kpis ?? '';
+        $this->suggestionsHidden = true;
+    }
+
+    /** Register in the working year the programmes another year has and this one does not. */
+    public function copyPrograms(): void
+    {
+        $this->guardPrograms();
+        $year = FiscalEnvelope::getEffectiveYear();
+        $from = (int) $this->copyFromYear;
+        if (! in_array($from, app(ProgramYears::class)->years()->all(), true) || $from === $year) {
+            $this->addError('copyFromYear', __('Choose the year to copy from.'));
+
+            return;
+        }
+
+        $r = app(ProgramYears::class)->copy($from, $year);
+        $this->copyFromYear = '';
+        $this->resetPage();
+        $this->dispatch('toast', message: $r['copied']
+            ? __(':n programmes copied from :from to :year (:s already there).', ['n' => $r['copied'], 'from' => $from, 'year' => $year, 's' => $r['skipped']])
+            : __('Nothing to copy: :year already has the programmes of :from.', ['year' => $year, 'from' => $from]), type: $r['copied'] ? 'success' : 'info');
+    }
+
     public function openProgramModal($id = null)
     {
+        $this->guardPrograms();
         $this->resetValidation();
+        $this->suggestionsHidden = false;
         if ($id) {
             $this->isProgramEditing = true;
             $this->programId = $id;
             $p = Program::findOrFail($id);
             $this->programName = $p->name;
-            $this->programCode = $p->code;
             $this->ogeCode = $p->oge_code ?? '';
             $this->objective = $p->objective ?? '';
             $this->managerName = $p->manager_name ?? '';
@@ -255,17 +313,20 @@ new class extends Component {
         } else {
             $this->isProgramEditing = false;
             $this->programId = null;
-            $this->reset(['programName', 'programCode', 'ogeCode', 'objective', 'managerName', 'kpis']);
+            $this->reset(['programName', 'ogeCode', 'objective', 'managerName', 'kpis']);
         }
         $this->programModalOpen = true;
     }
 
     public function saveProgram()
     {
+        $this->guardPrograms();
+        $year = $this->isProgramEditing ? (int) Program::findOrFail($this->programId)->fiscal_year : FiscalEnvelope::getEffectiveYear();
+
         $rules = [
             'programName' => 'required|string|max:255',
-            'programCode' => 'required|string|max:50|unique:programs,code,' . $this->programId,
-            'ogeCode' => 'nullable|string|max:50',
+            // one code per year: the same code is fine in another year
+            'ogeCode' => ['required', 'string', 'max:50', Rule::unique('programs', 'oge_code')->where('fiscal_year', $year)->ignore($this->programId)],
             'objective' => 'nullable|string',
             'managerName' => 'nullable|string|max:255',
             'kpis' => 'nullable|string',
@@ -275,8 +336,7 @@ new class extends Component {
 
         $data = [
             'name' => $this->programName,
-            'code' => $this->programCode,
-            'oge_code' => $this->ogeCode,
+            'oge_code' => trim($this->ogeCode),
             'objective' => $this->objective,
             'manager_name' => $this->managerName,
             'kpis' => $this->kpis,
@@ -286,7 +346,7 @@ new class extends Component {
             Program::findOrFail($this->programId)->update($data);
             $this->dispatch('toast', message: __('Program updated successfully!'), type: 'success');
         } else {
-            Program::create($data);
+            Program::create($data + ['fiscal_year' => $year]);
             $this->dispatch('toast', message: __('Program created successfully!'), type: 'success');
         }
 
@@ -295,6 +355,7 @@ new class extends Component {
 
     public function deleteProgram($id)
     {
+        $this->guardPrograms();
         $p = Program::findOrFail($id);
 
         // Prevent deletion if it has activities

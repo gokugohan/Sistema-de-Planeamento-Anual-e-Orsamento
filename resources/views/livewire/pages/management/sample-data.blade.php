@@ -189,7 +189,7 @@ new class extends Component {
         <ul class="list-disc pl-5 text-sm text-zinc-600 space-y-1">
             <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document), with 2027 activities at every step of the approval workflow.') }}</li>
             <li>{{ __('For the whole ministry: the MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
-            <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38).') }}</li>
+            <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
             <li>{{ __('Demo accounts (@goku.tl, password "password"): a Minister, and a Planner and a Director per unit.') }}</li>
             <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 approved activities with their official codes, indicators and amounts by economic category.') }}</li>
             <li>{{ __('The 2025 (closed) and 2026 fiscal envelopes with their distribution, and the 2027 budget cycle, whose bill is still being debated in Parliament (no envelope yet).') }}</li>
