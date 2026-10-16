@@ -13,6 +13,7 @@ use App\Models\Indicator;
 use App\Models\IndicatorProgress;
 use App\Models\LineItem;
 use App\Models\User;
+use App\Support\ApprovalRules;
 
 /**
  * What is waiting for one person, gathered in one place: activities to decide, execution figures to verify,
@@ -52,6 +53,14 @@ class ApprovalInbox
         } elseif ($user->isDirector()) {
             $own = $activities()->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])->count();
             $add('decide', $own, trans_choice(':n activity in your units waiting for a decision|:n activities in your units waiting for a decision', $own, ['n' => $own]), route('activities.index', ['tab' => 'review']), 'amber');
+        }
+
+        // ── finance: submitted activities whose budget is waiting for confirmation (where the institution asks for it)
+        if (ApprovalRules::current()->budgetConfirmation && ($user->isAdministrator() || $user->can('confirm_budget'))) {
+            $policy = app(\App\Policies\ActivityPolicy::class);
+            $n = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')
+                ->limit(300)->get(['id', 'directorate_id'])->filter(fn ($a) => $policy->inScope($user, $a->directorate_id))->count();
+            $add('decide', $n, trans_choice(':n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed', $n, ['n' => $n]), route('approvals.budget'), 'amber');
         }
 
         // ── named in an approval list: what is waiting at the step they were named for

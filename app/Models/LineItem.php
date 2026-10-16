@@ -24,6 +24,12 @@ class LineItem extends Model
             $item->funding_source_id ??= FundingSource::defaultId();
         });
 
+        // the confirmation was of these lines: changing them asks for it again
+        $reset = fn ($item) => Activity::whereKey($item->activity_id)->whereNotNull('budget_confirmed_at')
+            ->update(['budget_confirmed_at' => null, 'budget_confirmed_by' => null]);
+        static::saved($reset);
+        static::deleted($reset);
+
         static::updating(function ($item) {
             if ($item->isLocked()) {
                 throw new \Exception(__('This line item is locked because the planning cycle is finalized.'));

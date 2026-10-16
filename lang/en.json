@@ -907,5 +907,6 @@
     "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.",
     ":n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q": "{1} :n approved activity has no compiled text for Q:q|[2,*] :n approved activities have no compiled text for Q:q",
     "Spending to report for the month that has just ended, and reporting windows about to close.": "Spending to report for the month that has just ended, quarterly text to compile, and reporting windows about to close.",
-    ":n activity waiting for your decision|:n activities waiting for your decision": "{1} :n activity waiting for your decision|[2,*] :n activities waiting for your decision"
+    ":n activity waiting for your decision|:n activities waiting for your decision": "{1} :n activity waiting for your decision|[2,*] :n activities waiting for your decision",
+    ":n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed": "{1} :n activity waiting for its budget to be confirmed|[2,*] :n activities waiting for their budget to be confirmed"
 }

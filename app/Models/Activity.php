@@ -80,6 +80,9 @@ class Activity extends Model
         'approved_at',
         'reviewed_by',
         'approved_by',
+        'budget_confirmed_at',
+        'budget_confirmed_by',
+        'budget_justification',
         'is_test_data',
     ];
 
@@ -89,6 +92,7 @@ class Activity extends Model
         'execution_quarters' => 'array',
         'gender_responsive' => 'boolean',
         'procurement_required' => 'boolean',
+        'budget_confirmed_at' => 'datetime',
     ];
 
     public function program()

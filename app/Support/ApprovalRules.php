@@ -11,7 +11,8 @@ use App\Models\SystemSetting;
  * and whether a parent director validates sub-units first.
  *
  * The defaults follow the institution level (see Institution): a ministry is approved by the Minister,
- * a directorate or gabinete by its own head. An administrator can change either rule in Settings; only
+ * a directorate or gabinete by its own head. An administrator can change the rules in Settings (a third, off by default,
+ * asks a finance officer to confirm an activity's budget before it is certified); only
  * a difference from the level's preset is stored, so a level without custom rules always follows its preset.
  */
 final class ApprovalRules
@@ -25,6 +26,7 @@ final class ApprovalRules
     public function __construct(
         public readonly string $finalApprover,
         public readonly bool $parentValidation,
+        public readonly bool $budgetConfirmation = false,
     ) {}
 
     /** The rules a level starts with. */
@@ -45,6 +47,7 @@ final class ApprovalRules
         return new self(
             in_array($stored['final_approver'] ?? null, [self::MINISTER, self::HEAD], true) ? $stored['final_approver'] : $preset->finalApprover,
             array_key_exists('parent_validation', $stored) ? (bool) $stored['parent_validation'] : $preset->parentValidation,
+            (bool) ($stored['budget_confirmation'] ?? false),
         );
     }
 
@@ -55,7 +58,7 @@ final class ApprovalRules
 
     public function equals(self $other): bool
     {
-        return $this->finalApprover === $other->finalApprover && $this->parentValidation === $other->parentValidation;
+        return $this->finalApprover === $other->finalApprover && $this->parentValidation === $other->parentValidation && $this->budgetConfirmation === $other->budgetConfirmation;
     }
 
     /** Store these rules, or forget the stored ones when they are exactly the level's preset. */
@@ -69,6 +72,6 @@ final class ApprovalRules
             return;
         }
 
-        SystemSetting::set('approval_rules', ['final_approver' => $this->finalApprover, 'parent_validation' => $this->parentValidation], 'json', 'Approval chain rules that differ from the preset of the institution level');
+        SystemSetting::set('approval_rules', ['final_approver' => $this->finalApprover, 'parent_validation' => $this->parentValidation, 'budget_confirmation' => $this->budgetConfirmation], 'json', 'Approval chain rules that differ from the preset of the institution level');
     }
 }

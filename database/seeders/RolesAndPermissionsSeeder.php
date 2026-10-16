@@ -40,6 +40,7 @@ class RolesAndPermissionsSeeder extends Seeder
             ['name' => 'edit_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Edit Fiscal Envelope', 'description' => 'Edit fiscal envelopes'],
             ['name' => 'approve_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Approve Fiscal Envelope', 'description' => 'Approve or reject fiscal envelopes'],
             ['name' => 'activate_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Activate Fiscal Envelope', 'description' => 'Activate approved fiscal envelopes'],
+            ['name' => 'confirm_budget', 'module' => 'budget', 'display_name' => 'Confirm Activity Budget', 'description' => 'Confirm the budget lines of an activity (the resource plan) before it is certified'],
             ['name' => 'view_budget', 'module' => 'budget', 'display_name' => 'View Budget', 'description' => 'View budget consolidation'],
 
             // Module 4.4: Monitorização da Execução Física
@@ -118,6 +119,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'description' => 'Verifies the spending (committed and paid) that units report',
                 'permissions' => [
                     'verify_spending',
+                    'confirm_budget',
                     'view_paa',
                     'view_budget',
                     'view_monitoring',

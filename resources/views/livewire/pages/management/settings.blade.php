@@ -13,6 +13,7 @@ new class extends Component {
     public string $reportRecipient = '';
     public string $finalApprover = 'minister';
     public bool $parentValidation = true;
+    public bool $budgetConfirmation = false;
     public $implementedBy;
     public $enableNextYearPlanning;
     public $showDraftInReports;
@@ -33,6 +34,7 @@ new class extends Component {
         $rules                     = \App\Support\ApprovalRules::current();
         $this->finalApprover       = $rules->finalApprover;
         $this->parentValidation    = $rules->parentValidation;
+        $this->budgetConfirmation  = $rules->budgetConfirmation;
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->enableNextYearPlanning = SystemSetting::get('enable_next_year_planning', false);
@@ -59,6 +61,7 @@ new class extends Component {
         $preset = \App\Support\ApprovalRules::preset($level);
         $this->finalApprover    = $preset->finalApprover;
         $this->parentValidation = $preset->parentValidation;
+        $this->budgetConfirmation = $preset->budgetConfirmation;
     }
 
     public function saveSettings()
@@ -70,6 +73,7 @@ new class extends Component {
             'reportRecipient'       => 'nullable|string|max:255',
             'finalApprover'         => 'required|in:minister,head',
             'parentValidation'      => 'boolean',
+            'budgetConfirmation'    => 'boolean',
             'implementedBy'         => 'nullable|string|max:255',
             'enableNextYearPlanning' => 'boolean',
             'showDraftInReports'    => 'boolean',
@@ -81,7 +85,7 @@ new class extends Component {
         SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
         SystemSetting::set('institution_level',    $this->institutionLevel,    'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
         SystemSetting::set('report_recipient',     trim($this->reportRecipient), 'string', 'Who receives the approved plan when the institution is not a ministry');
-        (new \App\Support\ApprovalRules($this->finalApprover, (bool) $this->parentValidation))->save($this->institutionLevel);
+        (new \App\Support\ApprovalRules($this->finalApprover, (bool) $this->parentValidation, (bool) $this->budgetConfirmation))->save($this->institutionLevel);
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
         SystemSetting::set('enable_next_year_planning',      (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
@@ -271,6 +275,10 @@ new class extends Component {
                             <label class="flex items-center gap-3 text-sm text-zinc-700">
                                 <input type="checkbox" wire:model="parentValidation" class="rounded border-zinc-300 text-indigo-600">
                                 {{ __('The parent director validates sub-units first') }}
+                            </label>
+                            <label class="flex items-center gap-3 text-sm text-zinc-700">
+                                <input type="checkbox" wire:model="budgetConfirmation" class="rounded border-zinc-300 text-indigo-600">
+                                {{ __('A finance officer confirms the budget of an activity before it is certified') }}
                             </label>
                             <p class="text-xs text-zinc-500">{{ __('Changing these rules applies from now on; activities already in the chain continue under the new rules.') }}</p>
                         </div>

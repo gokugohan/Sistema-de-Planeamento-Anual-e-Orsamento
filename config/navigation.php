@@ -42,6 +42,8 @@ return [
             'items' => [
                 ['label' => 'Approvals', 'route' => 'approvals.index', 'match' => ['approvals.*', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
                     'hint' => 'Everything waiting for you: activities to decide, figures to verify, the plan to finalize'],
+                ['label' => 'Budget review', 'route' => 'approvals.budget', 'icon' => 'banknote', 'permission' => 'confirm_budget',
+                    'hint' => 'Confirm the budget lines of submitted activities'],
                 ['label' => 'Approval lists', 'route' => 'approvals.lists', 'icon' => 'users', 'roles' => ['Admin', 'Director'],
                     'hint' => 'Name who prepares, certifies and approves the activities of a unit'],
                 ['label' => 'Interim approvers', 'route' => 'approvals.delegations', 'icon' => 'user-check', 'roles' => ['Admin', 'Director'],

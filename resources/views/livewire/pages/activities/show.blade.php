@@ -42,6 +42,9 @@ new class extends Component {
             'trail'                   => app(\App\Services\ApprovalTrail::class)->for($this->activity),
             'approval'                => app(\App\Services\ApprovalTrail::class)->approval($this->activity),
             'awaiting'                => $workflow->awaiting($this->activity),
+            // the resource plan: where the institution asks for the budget to be confirmed, say whether it has been
+            'budgetRule'              => \App\Support\ApprovalRules::current()->budgetConfirmation,
+            'budgetBy'                => $this->activity->budget_confirmed_by ? \App\Models\User::whereKey($this->activity->budget_confirmed_by)->value('name') : null,
             // once approved, how the activity is doing: verified spending, indicators, the latest words
             'execution'               => $this->activity->status === Activity::STATUS_APPROVED ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
         ];
@@ -715,6 +718,18 @@ new class extends Component {
                     @if($approval['note'])<p class="mt-2 rounded-md bg-zinc-50 px-3 py-2 text-sm text-zinc-700">{{ $approval['note'] }}</p>@endif
                 @elseif($awaiting)
                     <p class="mt-3 text-sm text-zinc-600"><span class="font-medium text-zinc-800">{{ __('Waiting for') }}:</span> {{ $awaiting }}</p>
+                @endif
+                @if($budgetRule && $activity->status !== \App\Models\Activity::STATUS_DRAFT)
+                    <p class="mt-3 text-sm {{ $activity->budget_confirmed_at ? 'text-emerald-800' : 'text-zinc-600' }}">
+                        <span class="font-medium">{{ __('Budget') }}:</span>
+                        @if($activity->budget_confirmed_at)
+                            {{ __('confirmed by :name', ['name' => $budgetBy ?? '—']) }}
+                            <span class="block text-xs text-zinc-500">{{ $activity->budget_confirmed_at->timezone('Asia/Dili')->format('d M Y, H:i') }} TLT</span>
+                            @if($activity->budget_justification)<span class="mt-1 block rounded-md bg-zinc-50 px-3 py-2 text-sm text-zinc-700">{{ $activity->budget_justification }}</span>@endif
+                        @else
+                            {{ __('not confirmed yet') }}
+                        @endif
+                    </p>
                 @endif
                 @php $lastReturn = $activity->status === \App\Models\Activity::STATUS_REJECTED ? collect($trail)->last(fn ($s) => $s['kind'] === 'returned') : null; @endphp
                 @if($lastReturn && $lastReturn['note'])

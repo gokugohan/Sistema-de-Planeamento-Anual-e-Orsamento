@@ -76,6 +76,10 @@ class ActivityWorkflow
                 };
 
             case Activity::STATUS_SUBMITTED:
+                // where the institution asks for it, the budget is confirmed by finance before anyone certifies
+                if (! $this->budgetConfirmed($activity)) {
+                    return null;
+                }
                 $listed = $lists->designated($user, $activity->directorate_id, ApproverAssignment::CERTIFY);
                 if ($listed === false && ! $admin) {
                     return null;
@@ -107,6 +111,34 @@ class ActivityWorkflow
         }
 
         return null;
+    }
+
+    /** Has the budget of this activity been confirmed, where the institution asks for that? (always true where it does not) */
+    public function budgetConfirmed(Activity $activity): bool
+    {
+        return ! ApprovalRules::current()->budgetConfirmation || $activity->budget_confirmed_at !== null;
+    }
+
+    /** May this user confirm the budget of the activity now? A finance officer of the unit (or an administrator), while it waits for certification. */
+    public function canConfirmBudget(User $user, Activity $activity): bool
+    {
+        return ApprovalRules::current()->budgetConfirmation
+            && $activity->status === Activity::STATUS_SUBMITTED
+            && ! $activity->isLocked()
+            && ($user->isAdministrator() || $user->can('confirm_budget'))
+            && app(\App\Policies\ActivityPolicy::class)->inScope($user, $activity->directorate_id);
+    }
+
+    /** The finance officer confirms the budget lines as they stand, with a short justification of the resource plan. */
+    public function confirmBudget(User $user, Activity $activity, ?string $justification = null): void
+    {
+        abort_unless($this->canConfirmBudget($user, $activity), 403);
+        if ($activity->lineItems()->doesntExist()) {
+            throw new DomainException(__('There is no budget line to confirm.'));
+        }
+
+        $activity->auditMetadata = ['by' => $user->id, 'budget' => 'confirmed'] + $this->trailNote($justification);
+        $activity->update(['budget_confirmed_at' => now(), 'budget_confirmed_by' => $user->id, 'budget_justification' => trim((string) $justification) ?: null]);
     }
 
     /** The most activities one bulk approval may include. */
@@ -150,7 +182,7 @@ class ActivityWorkflow
             return false;
         }
 
-        return $user->can('approve_paa') || $this->headApproves($user, $activity) || $this->isListedApprover($user, $activity) || $this->next($user, $activity) !== null;
+        return $user->can('approve_paa') || $this->headApproves($user, $activity) || $this->isListedApprover($user, $activity) || $this->canConfirmBudget($user, $activity) || $this->next($user, $activity) !== null;
     }
 
     /** Return the activity to its unit. The reason is required: the unit must know what to correct. */
@@ -290,6 +322,9 @@ class ActivityWorkflow
     /** Who has to act next on this activity, in words (null once it is approved). */
     public function awaiting(Activity $activity): ?string
     {
+        if ($activity->status === Activity::STATUS_SUBMITTED && ! $this->budgetConfirmed($activity)) {
+            return __('The finance officer to confirm the budget');
+        }
         $named = fn (string $step) => app(ApproverLists::class)->names($activity, $step);
         $who = match ($activity->status) {
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => $named(ApproverAssignment::PREPARE),

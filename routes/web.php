@@ -58,6 +58,10 @@ Route::get('reports/compile', function () {
     return view('reports.compile');
 })->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.compile');
 
+Route::get('approvals/budget', function () {
+    return view('approvals.budget');
+})->middleware(['auth', 'verified', 'permission:confirm_budget'])->name('approvals.budget');
+
 Route::get('approvals/lists', function () {
     return view('approvals.lists');
 })->middleware(['auth', 'verified', 'role:Admin|Director'])->name('approvals.lists');
