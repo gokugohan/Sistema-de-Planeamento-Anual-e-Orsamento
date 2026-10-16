@@ -11,6 +11,7 @@
         @if($i)
             <td>
                 {{ $loop->iteration }}). {{ $i['name'] }}
+                @if($i['planned'])<div class="small muted">{{ __('Planned') }}: {{ $i['planned'] }}</div>@endif
                 @if($i['in_quarter'] !== null || $i['standing'] > 0)
                     <div class="small muted">{{ __('Achieved in Q:q', ['q' => $quarter]) }}: {{ $i['in_quarter'] !== null ? number_format($i['in_quarter'], 2) : '—' }} {{ $i['unit'] }} · {{ __('so far') }}: {{ number_format($i['standing'], 2) }}</div>
                 @endif

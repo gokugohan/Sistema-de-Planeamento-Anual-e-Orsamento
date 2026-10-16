@@ -66,6 +66,7 @@ new class extends Component {
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target,
                 'baseline' => (string) $i->baseline, 'means' => (string) $i->means_of_verification,
                 'quarters' => array_map('strval', $i->dueQuarters()),
+                'implementation' => (string) $i->implementation, 'months' => array_map('strval', (array) $i->plan_months),
             ])->all();
         } else {
             $this->authorize('create', Activity::class);
@@ -113,7 +114,7 @@ new class extends Component {
     /** An empty indicator row: reported every quarter until said otherwise. */
     private function blankIndicator(): array
     {
-        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4']];
+        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4'], 'implementation' => '', 'months' => []];
     }
 
     public function addIndicator(): void { $this->indicators[] = $this->blankIndicator(); }
@@ -166,6 +167,9 @@ new class extends Component {
             'indicators.*.target' => ['required', 'numeric', 'min:0'],
             'indicators.*.baseline' => ['nullable', 'string', 'max:500'],
             'indicators.*.means' => ['nullable', 'string', 'max:1000'],
+            'indicators.*.implementation' => ['nullable', 'string', 'max:1000'],
+            'indicators.*.months' => ['nullable', 'array'],
+            'indicators.*.months.*' => ['integer', 'between:1,12'],
             'indicators.*.quarters' => ['nullable', 'array'],
             'indicators.*.quarters.*' => ['in:1,2,3,4'],
         ];
@@ -188,6 +192,18 @@ new class extends Component {
             'lines.*.class_id' => __('economic category'), 'lines.*.source_id' => __('funding source'), 'lines.*.amount' => __('amount'),
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
         ]);
+
+        // the months of an indicator must fall in the quarters the activity runs in
+        $activityQuarters = collect($this->quarters)->map(fn ($n) => (int) $n);
+        foreach ($this->indicators as $n => $ind) {
+            foreach ((array) ($ind['months'] ?? []) as $month) {
+                if (! $activityQuarters->contains((int) ceil((int) $month / 3))) {
+                    $this->addError("indicators.$n.months", __('A month must fall in a quarter the activity runs in.'));
+
+                    return;
+                }
+            }
+        }
 
         // A category may be paid from two sources, but not twice from the same one.
         $pairs = collect($this->lines)->map(fn ($l) => $l['class_id'].'-'.(($l['source_id'] ?? '') ?: \App\Models\FundingSource::defaultId()));
@@ -246,11 +262,17 @@ new class extends Component {
             }
             $keep = [];
             foreach ($this->indicators as $i) {
-                $quarters = collect($i['quarters'] ?? [])->map(fn ($q) => (int) $q)->unique()->sort()->values()->all();
+                $months = collect($i['months'] ?? [])->map(fn ($m) => (int) $m)->unique()->sort()->values()->all();
+                // the quarters of an indicator follow from its months when it has them
+                $quarters = $months
+                    ? collect($months)->map(fn ($m) => (int) ceil($m / 3))->unique()->sort()->values()->all()
+                    : collect($i['quarters'] ?? [])->map(fn ($q) => (int) $q)->unique()->sort()->values()->all();
                 $attrs = [
                     'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
                     'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
                     'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null,
+                    'implementation' => trim((string) ($i['implementation'] ?? '')) ?: null,
+                    'plan_months' => $months ?: null,
                     // every quarter is the default: store nothing for it
                     'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
                 ];
@@ -500,6 +522,23 @@ new class extends Component {
                                     <textarea id="ind-{{ $i }}-means" rows="2" wire:model="indicators.{{ $i }}.means" class="flux-input" placeholder="{{ __('What proves it, e.g. signed reports, system logs') }}"></textarea>
                                     @error("indicators.$i.means")<p class="field-error">{{ $message }}</p>@enderror
                                 </div>
+                                <div class="sm:col-span-2">
+                                    <label for="ind-{{ $i }}-impl" class="field-label">{{ __('What will be implemented') }}</label>
+                                    <textarea id="ind-{{ $i }}-impl" rows="2" wire:model="indicators.{{ $i }}.implementation" class="flux-input" placeholder="{{ __('The work planned for this indicator') }}"></textarea>
+                                    @error("indicators.$i.implementation")<p class="field-error">{{ $message }}</p>@enderror
+                                </div>
+                                <fieldset class="sm:col-span-2">
+                                    <legend class="field-label">{{ __('Months of implementation') }}</legend>
+                                    <div class="flex flex-wrap gap-2">
+                                        @foreach(range(1, 12) as $mo)
+                                            <label class="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-white px-2.5 py-1 text-sm text-zinc-700">
+                                                <input type="checkbox" value="{{ $mo }}" wire:model="indicators.{{ $i }}.months" class="rounded border-zinc-300 text-indigo-600"> {{ \Carbon\Carbon::create(2000, $mo, 1)->translatedFormat('M') }}
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                    <p class="field-hint">{{ __('Optional. When months are chosen, the quarters it is reported in follow from them.') }}</p>
+                                    @error("indicators.$i.months")<p class="field-error">{{ $message }}</p>@enderror
+                                </fieldset>
                                 <fieldset class="sm:col-span-2">
                                     <legend class="field-label">{{ __('Reported in quarters') }}</legend>
                                     <div class="flex flex-wrap gap-2">

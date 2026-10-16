@@ -30,9 +30,11 @@ class Indicator extends Model
         'means_of_verification',
         'funding_source',
         'due_quarters',
+        'implementation',
+        'plan_months',
     ];
 
-    protected $casts = ['due_quarters' => 'array'];
+    protected $casts = ['due_quarters' => 'array', 'plan_months' => 'array'];
 
     public function activity()
     {
@@ -56,6 +58,23 @@ class Indicator extends Model
         $q = array_values(array_filter(array_map('intval', (array) $this->due_quarters), fn ($n) => $n >= 1 && $n <= 4));
 
         return $q ?: [1, 2, 3, 4];
+    }
+
+    /** The months in which it is planned to be implemented: the ones given, otherwise every month of the quarters it is due in. @return array<int, int> */
+    public function plannedMonths(): array
+    {
+        $given = array_values(array_unique(array_filter(array_map('intval', (array) $this->plan_months), fn ($n) => $n >= 1 && $n <= 12)));
+        sort($given);
+        if ($given) {
+            return $given;
+        }
+
+        return collect($this->dueQuarters())->flatMap(fn ($q) => range($q * 3 - 2, $q * 3))->all();
+    }
+
+    public function hasMonthPlan(): bool
+    {
+        return ! empty($this->plan_months);
     }
 
     public function isDueIn(int $quarter): bool

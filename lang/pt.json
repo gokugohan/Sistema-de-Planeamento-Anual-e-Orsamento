@@ -1902,5 +1902,12 @@
     "A finance officer confirms the budget of an activity before it is certified": "Um responsável financeiro confirma o orçamento de uma atividade antes de ser certificada",
     "There is no budget line to confirm.": "Não há rubrica orçamental para confirmar.",
     "The finance officer to confirm the budget": "O responsável financeiro a confirmar o orçamento",
-    ":n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed": "{1} :n atividade aguarda a confirmação do orçamento|[2,*] :n atividades aguardam a confirmação do orçamento"
+    ":n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed": "{1} :n atividade aguarda a confirmação do orçamento|[2,*] :n atividades aguardam a confirmação do orçamento",
+    "A month must fall in a quarter the activity runs in.": "Um mês tem de cair num trimestre em que a atividade decorre.",
+    "What will be implemented": "O que será implementado",
+    "The work planned for this indicator": "O trabalho planeado para este indicador",
+    "Months of implementation": "Meses de implementação",
+    "Optional. When months are chosen, the quarters it is reported in follow from them.": "Opcional. Quando se escolhem meses, os trimestres em que é reportado decorrem deles.",
+    "Months": "Meses",
+    "Planned for Q:q": "Planeado para T:q"
 }

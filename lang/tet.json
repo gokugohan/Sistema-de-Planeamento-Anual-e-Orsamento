@@ -1902,5 +1902,12 @@
     "A finance officer confirms the budget of an activity before it is certified": "Ofisiál finanseiru konfirma orsamentu atividade nian molok sertifika",
     "There is no budget line to confirm.": "La iha linha orsamentu atu konfirma.",
     "The finance officer to confirm the budget": "Ofisiál finanseiru atu konfirma orsamentu",
-    ":n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed": "{1} Atividade :n hein konfirmasaun orsamentu|[2,*] Atividade :n hein konfirmasaun orsamentu"
+    ":n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed": "{1} Atividade :n hein konfirmasaun orsamentu|[2,*] Atividade :n hein konfirmasaun orsamentu",
+    "A month must fall in a quarter the activity runs in.": "Fulan tenke monu iha trimestre ne'ebé atividade halao.",
+    "What will be implemented": "Saida mak sei implementa",
+    "The work planned for this indicator": "Servisu planeadu ba indikadór ida-ne'e",
+    "Months of implementation": "Fulan implementasaun nian",
+    "Optional. When months are chosen, the quarters it is reported in follow from them.": "Opsionál. Bainhira hili fulan, trimestre ne'ebé relata sei tuir fulan sira.",
+    "Months": "Fulan sira",
+    "Planned for Q:q": "Planeadu ba T:q"
 }

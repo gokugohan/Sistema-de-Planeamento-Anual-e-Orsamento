@@ -76,7 +76,7 @@ class PerformanceReport
                     $standing = $i->standing($verified->where('quarter', '<=', $quarter)->pluck('achieved_value', 'quarter'));
 
                     return [
-                        'name' => $i->name, 'unit' => $i->unit, 'baseline' => $i->baseline,
+                        'name' => $i->name, 'unit' => $i->unit, 'baseline' => $i->baseline, 'planned' => $i->implementation,
                         'target' => $i->target_text ?: number_format((float) $i->annual_target, 2).' '.$i->unit,
                         'in_quarter' => $verified->firstWhere('quarter', $quarter)?->achieved_value,
                         'standing' => $standing,

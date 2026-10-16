@@ -31,7 +31,7 @@ class ApprovedPlanReport
                 'program.alignments', 'program.resultIndicators',
                 'subprogram:id,program_id,code,name,objective',
                 'subprogram.alignments', 'subprogram.resultIndicators',
-                'indicators:id,activity_id,name,type,unit,annual_target,baseline,target_text,means_of_verification',
+                'indicators:id,activity_id,name,type,unit,annual_target,baseline,target_text,means_of_verification,due_quarters,implementation,plan_months',
                 'lineItems:id,activity_id,economic_classification_id,funding_source_id,estimated_amount',
                 'lineItems.fundingSource:id,name',
             ])

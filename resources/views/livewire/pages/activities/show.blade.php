@@ -537,9 +537,13 @@ new class extends Component {
                                                 <p class="mt-1 text-xs font-normal text-zinc-500">
                                                     {{ $indicator->isLevel() ? __('Level') : __('Adds up') }}
                                                     @if($indicator->due_quarters) · {{ __('Reported in') }} {{ collect($indicator->dueQuarters())->map(fn ($q) => 'Q'.$q)->implode(', ') }}@endif
+                                                    @if($indicator->hasMonthPlan()) · {{ __('Months') }}: {{ collect($indicator->plannedMonths())->map(fn ($m) => \Carbon\Carbon::create(2000, $m, 1)->translatedFormat('M'))->implode(', ') }}@endif
                                                 </p>
                                                 @if($indicator->means_of_verification)
                                                     <p class="mt-0.5 text-xs font-normal text-zinc-500">{{ __('Means of verification') }}: {{ $indicator->means_of_verification }}</p>
+                                                @endif
+                                                @if($indicator->implementation)
+                                                    <p class="mt-0.5 text-xs font-normal text-zinc-500">{{ __('Planned') }}: {{ $indicator->implementation }}</p>
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4">
