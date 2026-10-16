@@ -114,7 +114,7 @@ new class extends Component {
         $envelope = $env ? (float) $env->total_amount : null;
         $envApproved = $env && in_array($env->status, [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
         $planCycle = app(\App\Services\PlanCycle::class);
-        $ended = app(\App\Services\PlanningWindow::class)->verdict($env?->status, \App\Models\BudgetCycle::where('fiscal_year', $year)->value('planning_state'));
+        $ended = app(\App\Services\PlanningWindow::class)->endedBy($year);
         $steps = $planCycle->steps([
             'planWindow' => $planCycle->windowState($year, 'plan', 1), 'ended' => $ended, 'total' => $totalActivities, 'approved' => $byStatus[Activity::STATUS_APPROVED] ?? 0,
             'pending' => ($byStatus[Activity::STATUS_SUBMITTED] ?? 0) + ($byStatus[Activity::STATUS_REVIEWED] ?? 0) + ($byStatus[Activity::STATUS_VALIDATED] ?? 0) + ($byStatus[Activity::STATUS_WAITING_APPROVAL] ?? 0),

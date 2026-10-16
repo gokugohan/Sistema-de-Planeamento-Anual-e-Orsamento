@@ -151,7 +151,7 @@ class PlanningWindowTest extends TestCase
         } finally {
             $this->window->reopen($this->user('Admin'), self::YEAR, 'A new programme was agreed with the ministry.');
             $this->assertTrue($this->window->isOpen(self::YEAR));
-            $log = AuditLog::where('action', 'budgetcycle.updated')->latest('id')->first();
+            $log = AuditLog::where('action', 'unitplanning.deleted')->latest('id')->first();
             $this->assertSame('A new programme was agreed with the ministry.', $log->metadata['remark']);
             $this->assertSame('reopened', $log->metadata['planning']);
         }
@@ -205,7 +205,7 @@ class PlanningWindowTest extends TestCase
         $this->actingAs($this->user('Planning', $this->unit));
 
         Volt::test('pages.planning.planning-window', ['year' => self::YEAR])
-            ->assertSee('has ended')->assertSee('Only the final approver or an administrator can reopen planning')->assertDontSee('Reopen planning');
+            ->assertSee('has ended')->assertSee('Finalized by')->assertDontSee('Reopen planning');
     }
 
     public function test_at_an_office_the_head_gives_the_final_approval_of_the_plan(): void
@@ -223,7 +223,7 @@ class PlanningWindowTest extends TestCase
         $this->assertSame('Finalized', $this->window->endedBy(2027));
     }
 
-    public function test_where_several_directorates_plan_one_head_cannot_end_the_year_for_all(): void
+    public function test_each_directorate_finalizes_its_own_plan_and_the_year_ends_when_all_have(): void
     {
         $this->activity(Activity::STATUS_APPROVED);
         $other = Directorate::create(['name' => 'Other', 'code' => 'OTH', 'type' => 'General Directorate', 'active' => true]);
@@ -232,8 +232,23 @@ class PlanningWindowTest extends TestCase
             'planned_start' => self::YEAR.'-02-01', 'planned_end' => self::YEAR.'-06-30', 'quarter' => 1, 'status' => Activity::STATUS_APPROVED, 'is_test_data' => false,
         ]);
         $head = $this->user('Director', $this->unit);
+        $otherHead = $this->user('Director', $other);
 
-        $this->assertFalse($this->window->canDecide($head, self::YEAR), 'the plan of another directorate is not theirs to freeze');
-        $this->assertTrue($this->window->canDecide($this->user('Admin'), self::YEAR));
+        $this->assertTrue($this->window->canDecide($head, self::YEAR, $this->unit->id));
+        $this->assertFalse($this->window->canDecide($head, self::YEAR, $other->id), 'the plan of another directorate is not theirs to freeze');
+
+        $this->window->finalize($head, self::YEAR);
+        $this->assertNull($this->window->endedBy(self::YEAR), 'the other directorate is still planning');
+        $this->assertFalse($this->window->isOpenFor(self::YEAR, $this->unit->id));
+        $this->assertTrue($this->window->isOpenFor(self::YEAR, $other->id));
+        $this->assertFalse(FiscalEnvelope::planningOpenFor(self::YEAR, $this->unit->id));
+        $this->assertTrue(FiscalEnvelope::planningOpenFor(self::YEAR, $other->id));
+
+        $this->window->finalize($otherHead, self::YEAR);
+        $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));
+
+        $this->window->reopen($this->user('Admin'), self::YEAR, 'Reopen one', $other->id);
+        $this->assertNull($this->window->endedBy(self::YEAR));
+        $this->assertFalse($this->window->isOpenFor(self::YEAR, $this->unit->id));
     }
 }

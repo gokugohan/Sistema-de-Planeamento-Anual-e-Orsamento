@@ -226,7 +226,7 @@ new class extends Component {
             'locations' => config('paa.locations'),
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,
-            'locked' => FiscalEnvelope::planningEndedBy($year),
+            'locked' => FiscalEnvelope::planningEndedByFor($year, $user->isAdministrator() ? null : $user->directorate_id),
             'tabs' => ['all' => __('All'), 'draft' => __('Drafts & returned'), 'review' => __('In review'), 'approved' => __('Approved'), 'mine' => __('Needs my action')],
             'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->subprogram !== '' || $this->location !== '' || $this->search !== '',
         ];

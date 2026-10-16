@@ -27,6 +27,13 @@ class Directorate extends Model
         'dissolved_year',
     ];
 
+    protected static function booted(): void
+    {
+        // the planning window keeps the unit tree in memory
+        static::saved(fn () => \App\Services\PlanningWindow::forgetTree());
+        static::deleted(fn () => \App\Services\PlanningWindow::forgetTree());
+    }
+
     /**
      * Scope a query to only include directorates that were operational in a given year.
      */

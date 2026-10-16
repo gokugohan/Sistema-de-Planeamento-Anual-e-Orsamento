@@ -48,7 +48,7 @@ new class extends Component {
     /** For the view: can this user reopen verified figures at all? (each reopening is checked again on its own) */
     public function getCanCorrectProperty(): bool
     {
-        return app(PlanningWindow::class)->canDecide(auth()->user());
+        return app(PlanningWindow::class)->canDecide(auth()->user()); // the unit is checked again on each reopening
     }
 
     private function mayCorrect($indicatorId): bool
@@ -57,7 +57,7 @@ new class extends Component {
         $user = auth()->user();
 
         return $indicator?->activity
-            && app(PlanningWindow::class)->canDecide($user)
+            && app(PlanningWindow::class)->canDecide($user, null, $indicator->activity->directorate_id)
             && app(ActivityPolicy::class)->inScope($user, $indicator->activity->directorate_id)
             && ! $indicator->activity->isLocked();
     }

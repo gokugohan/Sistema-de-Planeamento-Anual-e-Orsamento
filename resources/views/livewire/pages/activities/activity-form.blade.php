@@ -208,7 +208,7 @@ new class extends Component {
     public function save()
     {
         // First of all: a year whose plan has ended takes no new activity, whatever was typed.
-        abort_if(! $this->activity && ! FiscalEnvelope::planningOpen($this->year), 422);
+        abort_if(! $this->activity && ! FiscalEnvelope::planningOpenFor($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null), 422);
 
         // and outside the submission window of the annual plan nobody but an administrator creates, edits or submits
         if ($reason = app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year)) {
@@ -358,9 +358,9 @@ new class extends Component {
             'total' => $total,
             'locations' => config('paa.locations'),
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
-            'endedBy' => $this->activity ? null : FiscalEnvelope::planningEndedBy($this->year),
+            'endedBy' => $this->activity ? null : FiscalEnvelope::planningEndedByFor($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null),
             'windowReason' => app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year),
-            'nextYear' => FiscalEnvelope::nextPlanningYear(),
+            'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : FiscalEnvelope::nextPlanningYear(),
         ];
     }
 }; ?>

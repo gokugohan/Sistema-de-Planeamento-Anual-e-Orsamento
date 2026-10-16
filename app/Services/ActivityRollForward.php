@@ -28,7 +28,7 @@ class ActivityRollForward
         if ($toYear <= $fromYear) {
             throw new \DomainException(__('The target year must be after the source year.'));
         }
-        if (! FiscalEnvelope::planningOpen($toYear)) {
+        if (app(PlanningWindow::class)->envelopeReceived($toYear)) {
             throw new \DomainException(__('Planning for :year has ended (its budget is approved or the year is closed), so activities cannot be copied into it.', ['year' => $toYear]));
         }
 
@@ -54,6 +54,11 @@ class ActivityRollForward
                         $program = $programMap[$a->program_id] ??= $programs->forYearOf($a->program, $toYear);
                         $programId = $program->id;
                         $subprogramId = $a->subprogram ? $programs->subprogramFor($a->subprogram, $program)->id : null;
+                        if (! app(PlanningWindow::class)->isOpenFor($toYear, $a->directorate_id)) {
+                            $skipped++; // the directorate has finalized its plan for that year
+
+                            continue;
+                        }
                         $exists = Activity::where('fiscal_year', $toYear)->where('directorate_id', $a->directorate_id)
                             ->where('program_id', $programId)->where('description', $a->description)->exists();
                         if ($exists) {

@@ -1997,5 +1997,10 @@
     "Leaves": "Sai",
     "Takes over": "Foti fatin",
     "Replace this person in every list of your units?": "Troka ema ida-ne'e iha lista hotu husi ita-nia unidade sira?",
-    "Replace": "Troka"
+    "Replace": "Troka",
+    "Each directorate finalizes its own plan once everything in it has been decided; no new activities can be added to it afterwards.": "Direksaun ida-idak finaliza ninia planu rasik bainhira buat hotu iha nia laran dekidi ona; depois ne'e la bele aumenta atividade foun.",
+    "Finalized by :by on :date": "Finaliza husi :by iha :date",
+    "Every activity of :unit for :year has been decided: the plan is ready to be finalized.": "Atividade hotu husi :unit ba :year dekidi ona: planu prontu atu finaliza.",
+    ":n of :total directorates finalized": ":n husi :total direksaun finaliza ona",
+    "This is the final approval of the plan. No new activities can be added afterwards; only the head of the directorate or an administrator can reopen planning, with a remark.": "Ne'e aprovasaun final husi planu. Depois ne'e la bele aumenta atividade; xefe direksaun ka administrador deit bele loke fali planeamentu, ho observasaun."
 }

@@ -14,5 +14,6 @@ abstract class TestCase extends BaseTestCase
         // SystemSetting keeps settings in static memory for the life of the PHP process.
         // A real request starts clean; the test runner does not, so reset it per test.
         SystemSetting::flushCache();
+        \App\Services\PlanningWindow::forgetTree();
     }
 }

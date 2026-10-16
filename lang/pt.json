@@ -1997,5 +1997,10 @@
     "Leaves": "Sai",
     "Takes over": "Assume",
     "Replace this person in every list of your units?": "Substituir esta pessoa em todas as listas das suas unidades?",
-    "Replace": "Substituir"
+    "Replace": "Substituir",
+    "Each directorate finalizes its own plan once everything in it has been decided; no new activities can be added to it afterwards.": "Cada direção finaliza o seu próprio plano depois de tudo nela estar decidido; depois disso não se podem acrescentar novas atividades.",
+    "Finalized by :by on :date": "Finalizado por :by em :date",
+    "Every activity of :unit for :year has been decided: the plan is ready to be finalized.": "Todas as atividades de :unit para :year foram decididas: o plano está pronto para ser finalizado.",
+    ":n of :total directorates finalized": ":n de :total direções finalizadas",
+    "This is the final approval of the plan. No new activities can be added afterwards; only the head of the directorate or an administrator can reopen planning, with a remark.": "Esta é a aprovação final do plano. Depois não se podem acrescentar atividades; só o chefe da direção ou um administrador pode reabrir o planeamento, com uma observação."
 }

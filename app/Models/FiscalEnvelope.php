@@ -31,6 +31,7 @@ class FiscalEnvelope extends Model
         self::$activeMemo = null;
         self::$defaultYearMemo = null;
         self::$closedMemo = [];
+        \App\Services\PlanningWindow::forgetTree();
     }
 
     /** Whether the envelope for this year is closed (memoised: asked once per activity row). */
@@ -223,6 +224,18 @@ class FiscalEnvelope extends Model
     public static function planningOpen(int $year): bool
     {
         return app(\App\Services\PlanningWindow::class)->isOpen($year);
+    }
+
+    /** Can new activities still be planned for this unit (through its directorate) in this year? */
+    public static function planningOpenFor(int $year, ?int $unitId): bool
+    {
+        return $unitId === null ? self::planningOpen($year) : app(\App\Services\PlanningWindow::class)->isOpenFor($year, $unitId);
+    }
+
+    /** The same verdict as planningEndedBy, for the directorate of a unit. */
+    public static function planningEndedByFor(int $year, ?int $unitId): ?string
+    {
+        return $unitId === null ? self::planningEndedBy($year) : app(\App\Services\PlanningWindow::class)->unitEndedBy($year, $unitId);
     }
 
     /** 'Finalized', 'Approved' (envelope received) or 'Closed' for a year whose planning has ended, null while it is open. */

@@ -89,7 +89,7 @@ class PlanCycle
                 default => __('Closed on :d', ['d' => $f['planWindow']['closes_on']->format('d/m/Y')]),
             },
             'approval' => $f['total'] === 0 ? __('No activity yet') : __(':approved of :total activities approved', ['approved' => $f['approved'], 'total' => $f['total']]),
-            'finalized' => $f['ended'] ? __('Planning has ended') : ($f['pending'] > 0 ? trans_choice(':n activity still waiting for a decision|:n activities still waiting for a decision', $f['pending'], ['n' => $f['pending']]) : __('Ready to be finalized once everything is decided')),
+            'finalized' => $f['ended'] ? __('Planning has ended') : (($u = $f['planning']['units'] ?? []) && count($u) > 1 ? __(':n of :total directorates finalized', ['n' => count(array_filter($u, fn ($x) => $x['closed'])), 'total' => count($u)]) : ($f['pending'] > 0 ? trans_choice(':n activity still waiting for a decision|:n activities still waiting for a decision', $f['pending'], ['n' => $f['pending']]) : __('Ready to be finalized once everything is decided'))),
             'budget' => $received ? __('Received') : ($f['envelopeStatus'] ? __($f['envelopeStatus']) : __('Not registered yet')),
             'distribution' => ($received && $f['distributed']) ? __('Distributed over the approved plan') : __('Not distributed yet'),
             'reporting' => $f['envelopeStatus'] === FiscalEnvelope::STATUS_CLOSED ? __('The year is closed') : __('Monthly spending and quarterly indicators'),

@@ -31,7 +31,7 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 |---|---|---|---|
 | 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *Administration → Reporting windows* | Planner / Director |
 | 2 | **Approval**: each activity moves through the chain of its unit (prepare, certify, approve; named lists and interim approvers where set; finance confirmation of the budget where asked for) until Approved | *Approvals* | Reviewers, final approver |
-| 3 | **Plan finalized**: planning ends when the final approver finalizes the plan; only they can reopen it, with a remark | *PAA Activities*, *Approvals* | Final approver / Admin |
+| 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has, or the envelope is received); only they or an administrator can reopen it, with a remark | *PAA Activities*, *Approvals* | Final approver / Admin |
 | 4 | **Budget received**: the envelope the institution received is registered, split by economic category | *Fiscal Envelope* | Admin → Minister approves |
 | 5 | **Distribution**: the envelope is distributed over the approved plan | *Fiscal Envelope → Redistribute* | Admin / Minister |
 | 6 | **Reporting**: spending every month and indicators every quarter, inside their windows; verified by someone else; the director compiles the quarter; the performance and final plan reports are printed | *Execute*, *Reporting* | Units, verifiers, directors |

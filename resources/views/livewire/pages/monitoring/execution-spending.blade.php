@@ -169,7 +169,7 @@ new class extends Component {
     {
         $user = auth()->user();
 
-        return app(\App\Services\PlanningWindow::class)->canDecide($user)
+        return app(\App\Services\PlanningWindow::class)->canDecide($user, null, $activity->directorate_id)
             && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
             && ! $activity->isLocked();
     }

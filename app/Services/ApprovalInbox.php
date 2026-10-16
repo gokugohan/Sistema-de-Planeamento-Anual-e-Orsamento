@@ -91,13 +91,15 @@ class ApprovalInbox
                 $user->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report'), 'indigo');
         }
 
-        // ── the plan: ready to be finalized by whoever gives the final approval
+        // ── the plan: each directorate that is ready to be finalized, for whoever gives its final approval
         $window = app(PlanningWindow::class);
-        if ($window->canDecide($user, $year) && $window->isOpen($year)) {
-            $pending = $window->pending($year);
-            $approved = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->count();
-            if ($pending === 0 && $approved > 0) {
-                $add('plan', 1, __('Every activity for :year has been decided: the plan is ready to be finalized.', ['year' => $year]), route('activities.index'), 'emerald');
+        if (! $window->envelopeReceived($year)) {
+            $units = $window->state($year)['units'];
+            foreach ($window->decidesFor($user, $year) as $rootId) {
+                $u = collect($units)->firstWhere('id', $rootId);
+                if ($u && ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0) {
+                    $add('plan', 1, __('Every activity of :unit for :year has been decided: the plan is ready to be finalized.', ['unit' => $u['code'], 'year' => $year]), route('activities.index'), 'emerald');
+                }
             }
         }
 

@@ -310,6 +310,9 @@ class ActivityCsvImporter
             if (! $a['directorate_id']) {
                 continue;
             }
+            if (! FiscalEnvelope::planningOpenFor($year, (int) $a['directorate_id'])) {
+                $errors[] = $this->err($a['line'], 'Planning for the directorate of this activity has been finalized for '.$year.'; it cannot take new activities.');
+            }
             $exists = Activity::query()
                 ->where('fiscal_year', $year)
                 ->where('directorate_id', $a['directorate_id'])
@@ -323,7 +326,7 @@ class ActivityCsvImporter
 
     private function rejectClosedYear(int $year, array &$errors): void
     {
-        if (! FiscalEnvelope::planningOpen($year)) {
+        if (app(PlanningWindow::class)->envelopeReceived($year)) {
             $errors[] = $this->err(0, "Planning for {$year} has ended (its budget is approved or the year is closed); activities cannot be imported into it.");
         } elseif ($reason = app(ReportingWindows::class)->planClosedReason(auth()->user(), $year)) {
             $errors[] = $this->err(0, $reason);
