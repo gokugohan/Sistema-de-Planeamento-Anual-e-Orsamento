@@ -32,6 +32,8 @@ return [
         [
             'label' => 'Plan',
             'items' => [
+                ['label' => 'Plan cycle', 'route' => 'planning.cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_paa',
+                    'hint' => 'Submission windows, approval, budget and reporting of the annual plan'],
                 ['label' => 'PAA Activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list',
                     'hint' => 'Plan activities with indicators and budget lines'],
             ],
@@ -53,8 +55,6 @@ return [
         [
             'label' => 'Budget',
             'items' => [
-                ['label' => 'Budget Cycle', 'route' => 'planning.budget-cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_all_paa',
-                    'hint' => 'Ceiling, CRO submission and decision, State Budget law'],
                 ['label' => 'Fiscal Envelope', 'icon' => 'wallet-cards', 'permission' => 'view_all_paa', 'hint' => 'The amount received for the year',
                     'children' => [
                         ['label' => 'Current Envelope', 'route' => 'budget.envelope.current', 'icon' => 'circle',

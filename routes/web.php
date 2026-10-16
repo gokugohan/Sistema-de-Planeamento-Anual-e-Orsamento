@@ -97,9 +97,11 @@ Route::get('planning/director-review', function () {
 // The fiscal ceiling screen was a second way to do what the envelope pages do (and skipped their checks): one place now.
 Route::redirect('planning/fiscal', '/budget/envelope/current', 301);
 
-Route::get('planning/budget-cycle', function () {
-    return view('planning.budget-cycle');
-})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('planning.budget-cycle');
+// The cycle of the annual action plan: windows, approval, end of planning, budget and reporting.
+Route::get('planning/cycle', function () {
+    return view('planning.cycle');
+})->middleware(['auth', 'verified', 'permission:view_paa'])->name('planning.cycle');
+Route::redirect('planning/budget-cycle', '/planning/cycle', 301);
 
 Route::get('reports/paa', function () {
     return view('reports.paa');

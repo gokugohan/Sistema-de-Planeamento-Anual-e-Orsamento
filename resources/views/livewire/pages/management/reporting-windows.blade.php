@@ -19,12 +19,17 @@ new class extends Component {
         $this->year = FiscalEnvelope::getEffectiveYear();
     }
 
+    public function updatedPeriodType(): void
+    {
+        $this->period = 1;
+    }
+
     public function save(): void
     {
         abort_unless(auth()->user()?->isAdministrator(), 403);
-        $max = $this->periodType === 'month' ? 12 : 4;
+        $max = match ($this->periodType) { 'month' => 12, 'quarter' => 4, default => 1 };
         $this->validate([
-            'periodType' => 'required|in:month,quarter',
+            'periodType' => 'required|in:plan,month,quarter',
             'period' => "required|integer|min:1|max:$max",
             'opensOn' => 'required|date',
             'closesOn' => 'required|date|after_or_equal:opensOn',
@@ -53,7 +58,7 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <x-ui.page-header :title="__('Reporting windows')" :subtitle="__('Set the dates between which a month or a quarter may be reported. A period with no window is open. Administrators can always report.')">
+    <x-ui.page-header :title="__('Reporting windows')" :subtitle="__('Set the dates between which the annual plan may be submitted, and a month or a quarter reported. A period with no window is open. Administrators can always act.')">
         <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-800">{{ __('Fiscal year') }} {{ $year }}</span>
     </x-ui.page-header>
 
@@ -62,11 +67,12 @@ new class extends Component {
             <div class="md:col-span-2">
                 <label for="rw-t" class="field-label">{{ __('Reports') }}</label>
                 <select id="rw-t" wire:model.live="periodType" class="flux-input">
+                    <option value="plan">{{ __('Annual plan') }}</option>
                     <option value="month">{{ __('Monthly') }}</option>
                     <option value="quarter">{{ __('Quarterly') }}</option>
                 </select>
             </div>
-            <div class="md:col-span-2">
+            <div class="md:col-span-2 @if($periodType === 'plan') hidden @endif">
                 <label for="rw-p" class="field-label">{{ $periodType === 'month' ? __('Month') : __('Quarter') }}</label>
                 <select id="rw-p" wire:model="period" class="flux-input">
                     @foreach(range(1, $periodType === 'month' ? 12 : 4) as $p)
@@ -101,7 +107,7 @@ new class extends Component {
             <x-ui.table :headers="[__('Period'), __('Opens on'), __('Closes on'), __('Note'), '']" class="text-sm">
                 @foreach($windows as $w)
                     <tr wire:key="rw-{{ $w->id }}">
-                        <td class="px-5 py-3 font-medium text-zinc-900">{{ $w->period_type === 'month' ? \Carbon\Carbon::create($year, $w->period, 1)->translatedFormat('F') : 'Q'.$w->period }}</td>
+                        <td class="px-5 py-3 font-medium text-zinc-900">{{ match ($w->period_type) { 'plan' => __('Annual plan').' · '.__('submission'), 'month' => \Carbon\Carbon::create($year, $w->period, 1)->translatedFormat('F'), default => 'Q'.$w->period } }}</td>
                         <td class="px-5 py-3 tabular-nums">{{ $w->opens_on->format('d/m/Y') }}</td>
                         <td class="px-5 py-3 tabular-nums">{{ $w->closes_on->format('d/m/Y') }}</td>
                         <td class="px-5 py-3 text-zinc-600">{{ $w->note }}</td>

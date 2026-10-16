@@ -428,7 +428,7 @@ new class extends Component {
                     @else
                         <p class="text-sm text-zinc-500">{{ __('An administrator registers the envelope once the budget law is promulgated.') }}</p>
                     @endif
-                    <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-sm font-medium text-indigo-600 hover:underline self-center">{{ __('See where this year is in the budget cycle') }}</a>
+                    <a href="{{ route('planning.cycle') }}" wire:navigate class="text-sm font-medium text-indigo-600 hover:underline self-center">{{ __('See where this year\'s plan stands') }}</a>
                 </div>
             </div>
         @else

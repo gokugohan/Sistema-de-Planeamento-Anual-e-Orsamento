@@ -11,8 +11,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * A ministry runs the whole cycle (ceiling, CRO, State Budget law, envelope). A directorate or gabinete
- * does not control the CRO or the law: its cycle is what it does and what the ministry gives it.
+ * A ministry still needs the budget law behind its envelope; an office takes the ministry's allocation as the
+ * basis. The cycle shown on the dashboard is the cycle of the annual plan for both.
  */
 class CycleByLevelTest extends TestCase
 {
@@ -41,48 +41,15 @@ class CycleByLevelTest extends TestCase
         $this->assertTrue($envelope->hasLegalBasis());
     }
 
-    public function test_the_office_dashboard_shows_only_the_steps_it_controls(): void
+    public function test_every_level_sees_the_cycle_of_the_annual_plan_and_no_committee(): void
     {
         $this->signedIn();
 
-        $this->get('/')->assertOk()
-            ->assertSee('Ceiling from the ministry')
-            ->assertSee('Sent to the ministry')
-            ->assertSee('Allocation received')
-            ->assertDontSee('CRO decision')
-            ->assertDontSee('Budget law');
-    }
-
-    public function test_the_ministry_dashboard_keeps_the_cro_and_the_budget_law(): void
-    {
-        $this->signedIn();
-        SystemSetting::set('institution_level', Institution::MINISTRY, 'string');
-
-        $this->get('/')->assertOk()
-            ->assertSee('CRO decision')
-            ->assertSee('Budget law')
-            ->assertDontSee('Allocation received');
-    }
-
-    public function test_the_office_cycle_page_has_no_cro_decision(): void
-    {
-        $this->signedIn();
-
-        $this->get('/planning/budget-cycle')->assertOk()
-            ->assertSee('Allocation from the ministry')
-            ->assertSee('Ceiling from the ministry')
-            ->assertDontSee('CRO decision')
-            ->assertDontSee('State Budget law and envelope');
-    }
-
-    public function test_the_ministry_cycle_page_keeps_every_step(): void
-    {
-        $this->signedIn();
-        SystemSetting::set('institution_level', Institution::MINISTRY, 'string');
-
-        $this->get('/planning/budget-cycle')->assertOk()
-            ->assertSee('CRO decision')
-            ->assertSee('State Budget law and envelope')
-            ->assertDontSee('Allocation from the ministry');
+        foreach ([Institution::SUBORDINATE, Institution::MINISTRY] as $level) {
+            SystemSetting::set('institution_level', $level, 'string');
+            $html = $this->get('/')->assertOk()->assertSee('Plan cycle')->assertSee('Plan submission')->assertSee('Distribution')->getContent();
+            $this->assertStringNotContainsString('CRO', $html);
+            $this->assertStringNotContainsString('Ceiling from the ministry', $html);
+        }
     }
 }

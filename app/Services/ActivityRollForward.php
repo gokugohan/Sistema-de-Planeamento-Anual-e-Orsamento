@@ -32,6 +32,10 @@ class ActivityRollForward
             throw new \DomainException(__('Planning for :year has ended (its budget is approved or the year is closed), so activities cannot be copied into it.', ['year' => $toYear]));
         }
 
+        if ($reason = app(ReportingWindows::class)->planClosedReason(auth()->user(), $toYear)) {
+            throw new \DomainException($reason);
+        }
+
         $copied = $skipped = 0;
         $shift = $toYear - $fromYear;
         $units = Directorate::pluck('code', 'id');

@@ -106,14 +106,6 @@ class ApprovalInbox
             $pending = FiscalEnvelope::where('status', FiscalEnvelope::STATUS_PENDING)->count();
             $add('budget', $pending, trans_choice(':n fiscal envelope waiting for approval|:n fiscal envelopes waiting for approval', $pending, ['n' => $pending]), route('budget.envelope.current'), 'indigo');
         }
-        if ($approver && $user->can('view_budget')) {
-            $next = (int) date('Y') + 1;
-            $approved = Activity::where('fiscal_year', $next)->where('status', Activity::STATUS_APPROVED)->count();
-            $submitted = BudgetCycle::where('fiscal_year', $next)->whereNotNull('submitted_at')->exists();
-            if ($approved > 0 && ! $submitted) {
-                $add('budget', $approved, \App\Support\Institution::label('approved activities for :year have not been recorded as submitted to the CRO', ['year' => $next]), route('planning.budget-cycle'), 'amber');
-            }
-        }
 
         // ── reporting due: the units' monthly duty, in the running year
         if ($year === (int) now()->year && $user->can('update_indicator_progress')) {

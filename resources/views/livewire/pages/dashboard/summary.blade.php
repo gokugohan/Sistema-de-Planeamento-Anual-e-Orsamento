@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Activity;
-use App\Models\BudgetCycle;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\FiscalEnvelope;
@@ -110,43 +109,22 @@ new class extends Component {
             }
         }
 
-        // ── the budget cycle for this year ──
-        $cycle = BudgetCycle::where('fiscal_year', $year)->first();
+        // ── the cycle of the annual plan for this year ──
         $env = FiscalEnvelope::where('fiscal_year', $year)->with('categoryAllocations')->first();
         $envelope = $env ? (float) $env->total_amount : null;
         $envApproved = $env && in_array($env->status, [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
-        $croTotal = $cycle?->cro_total !== null ? (float) $cycle->cro_total : null;
-        $ceiling = $cycle?->indicative_ceiling !== null ? (float) $cycle->indicative_ceiling : null;
-
-        // A ministry runs the whole cycle. A directorate or gabinete does not control the CRO or the State
-        // Budget law, so its cycle is only what it does and what it receives from the ministry.
-        $isMinistry = \App\Support\Institution::isMinistry();
-        $planApproved = $totalActivities > 0 && $byStatus[Activity::STATUS_APPROVED] === $totalActivities;
-        $submittedStep = ['label' => $isMinistry ? \App\Support\Institution::label('Submitted to CRO') : __('Sent to the ministry'), 'done' => (bool) $cycle?->submitted_at, 'value' => $cycle?->submitted_total !== null ? (float) $cycle->submitted_total : null];
-        $distributedStep = ['label' => __('Distributed'), 'done' => $envApproved && $allocated > 0, 'value' => $envApproved && $allocated > 0 ? $allocated : null];
-        $steps = $isMinistry ? [
-            ['label' => __('Indicative ceiling'), 'done' => $ceiling !== null, 'value' => $ceiling],
-            $submittedStep,
-            ['label' => \App\Support\Institution::label('CRO decision'), 'done' => $croTotal !== null, 'value' => $croTotal],
-            ['label' => __('Budget law'), 'done' => (bool) $env?->hasLegalBasis(), 'value' => null],
-            ['label' => __('Envelope approved'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
-            $distributedStep,
-        ] : [
-            ['label' => __('Ceiling from the ministry'), 'done' => $ceiling !== null, 'value' => $ceiling, 'optional' => true],
-            ['label' => __('Plan approved'), 'done' => $planApproved, 'value' => $planApproved ? $plan : null],
-            $submittedStep,
-            ['label' => __('Allocation received'), 'done' => $envApproved, 'value' => $envApproved ? $envelope : null],
-            $distributedStep,
-        ];
-        $currentStep = collect($steps)->search(fn ($s) => !$s['done'] && empty($s['optional']));
+        $planCycle = app(\App\Services\PlanCycle::class);
+        $ended = app(\App\Services\PlanningWindow::class)->verdict($env?->status, \App\Models\BudgetCycle::where('fiscal_year', $year)->value('planning_state'));
+        $steps = $planCycle->steps([
+            'planWindow' => $planCycle->windowState($year, 'plan', 1), 'ended' => $ended, 'total' => $totalActivities, 'approved' => $byStatus[Activity::STATUS_APPROVED] ?? 0,
+            'pending' => ($byStatus[Activity::STATUS_SUBMITTED] ?? 0) + ($byStatus[Activity::STATUS_REVIEWED] ?? 0) + ($byStatus[Activity::STATUS_VALIDATED] ?? 0) + ($byStatus[Activity::STATUS_WAITING_APPROVAL] ?? 0),
+            'drafts' => ($byStatus[Activity::STATUS_DRAFT] ?? 0) + ($byStatus[Activity::STATUS_REJECTED] ?? 0),
+            'envelopeStatus' => $env?->status, 'distributed' => $allocated > 0,
+        ]);
+        $currentStep = collect($steps)->search(fn ($s) => $s['state'] === 'current');
 
         // The best available "money in hand" figure and its honest label
-        [$fundLabel, $fund] = match (true) {
-            $envelope !== null => [__('Fiscal envelope'), $envelope],
-            $croTotal !== null && $isMinistry => [\App\Support\Institution::label('CRO decision'), $croTotal],
-            $ceiling !== null => [__('Indicative ceiling'), $ceiling],
-            default => [__('Fiscal envelope'), null],
-        };
+        [$fundLabel, $fund] = [__('Fiscal envelope'), $envelope];
 
         // ── physical delivery: verified progress against annual targets (cumulative or level, see DeliveryReport) ──
         $delivery = app(\App\Services\DeliveryReport::class)->summary($base()->select('activities.id')->toBase());
@@ -205,9 +183,6 @@ new class extends Component {
 
         // ── things worth a look ──
         $watch = [];
-        if ($isMinistry && $croTotal !== null && $plan > $croTotal) {
-            $watch[] = ['tone' => 'rose', 'text' => \App\Support\Institution::label('The approved plan exceeds the CRO decision by :a.', ['a' => '$ ' . number_format($plan - $croTotal)]), 'url' => route('planning.budget-cycle')];
-        }
         if ($envApproved && $plan > 0 && $allocated == 0) {
             $watch[] = ['tone' => 'amber', 'text' => __('The envelope is approved but has not been distributed yet.'), 'url' => route('budget.envelope.current')];
         }
@@ -311,28 +286,24 @@ new class extends Component {
         </div>
     </x-ui.page-header>
 
-    {{-- Budget cycle: where is this year? --}}
-    <section aria-label="{{ __('Budget cycle') }}" class="bg-white rounded-lg border border-zinc-200 shadow-card px-5 py-4">
+    {{-- The annual plan cycle: where is this year? --}}
+    <section aria-label="{{ __('Plan cycle') }}" class="bg-white rounded-lg border border-zinc-200 shadow-card px-5 py-4">
         <div class="flex items-center justify-between mb-4">
-            <h2 class="text-sm font-semibold text-zinc-900">{{ __('Budget cycle') }} {{ $year }}</h2>
-            @if($wide)
-                <a href="{{ route('planning.budget-cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
-            @endif
+            <h2 class="text-sm font-semibold text-zinc-900">{{ __('Plan cycle') }} {{ $year }}</h2>
+            <a href="{{ route('planning.cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
         </div>
-        <ol class="grid grid-cols-2 gap-4 {{ count($steps) === 6 ? 'md:grid-cols-6' : 'md:grid-cols-5' }}">
+        <ol class="grid grid-cols-2 gap-4 md:grid-cols-6">
             @foreach($steps as $i => $step)
-                @php $current = $currentStep === $i; @endphp
+                @php $done = $step['state'] === 'done'; $current = $step['state'] === 'current'; @endphp
                 <li class="relative">
                     <div class="flex items-center gap-2">
                         <span class="w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-xs font-semibold
-                            {{ $step['done'] ? 'bg-emerald-600 text-white' : ($current ? 'bg-indigo-600 text-white ring-4 ring-indigo-100' : 'bg-zinc-100 text-zinc-500') }}">
-                            @if($step['done'])<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>@else{{ $i + 1 }}@endif
+                            {{ $done ? 'bg-emerald-600 text-white' : ($current ? 'bg-indigo-600 text-white ring-4 ring-indigo-100' : 'bg-zinc-100 text-zinc-500') }}">
+                            @if($done)<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>@else{{ $i + 1 }}@endif
                         </span>
-                        <span class="text-sm {{ $current ? 'font-semibold text-zinc-900' : ($step['done'] ? 'font-medium text-zinc-700' : 'text-zinc-500') }}">{{ $step['label'] }}</span>
+                        <span class="text-sm {{ $current ? 'font-semibold text-zinc-900' : ($done ? 'font-medium text-zinc-700' : 'text-zinc-500') }}">{{ $step['label'] }}</span>
                     </div>
-                    <p class="mt-1 ml-8 text-xs tabular-nums {{ $step['value'] !== null ? 'text-zinc-600' : 'text-zinc-400' }}">
-                        {{ $step['value'] !== null ? '$ ' . number_format($step['value']) : ($current ? __('Next step') : (! empty($step['optional']) ? __('optional') : '—')) }}
-                    </p>
+                    <p class="mt-1 ml-8 text-xs {{ $done || $current ? 'text-zinc-600' : 'text-zinc-400' }}">{{ $step['detail'] }}</p>
                 </li>
             @endforeach
         </ol>

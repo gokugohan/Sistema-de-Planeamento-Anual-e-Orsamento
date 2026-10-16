@@ -45,7 +45,7 @@ class PlanningWindow
         );
     }
 
-    private function verdict(?string $envelopeStatus, ?string $planningState): ?string
+    public function verdict(?string $envelopeStatus, ?string $planningState): ?string
     {
         if ($envelopeStatus === FiscalEnvelope::STATUS_CLOSED) {
             return 'Closed';

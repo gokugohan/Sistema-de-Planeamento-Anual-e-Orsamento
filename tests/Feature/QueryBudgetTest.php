@@ -26,7 +26,7 @@ class QueryBudgetTest extends TestCase
         '/activities/create' => 25,
         '/planning/paa-approval' => 30,
         '/planning/director-review' => 25,
-        '/planning/budget-cycle' => 40,
+        '/planning/cycle' => 40,
         '/budget/envelope/current' => 25,
         '/budget/envelope/list' => 25,
         '/budget/allocation' => 30,

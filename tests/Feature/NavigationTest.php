@@ -60,7 +60,7 @@ class NavigationTest extends TestCase
             $this->assertNotContains('Audit Log', $this->labels($u));
             $this->assertNotContains('Settings', $this->labels($u));
         }
-        foreach (['Budget Cycle', 'Budget Allocation', 'Reporting', 'Current Envelope'] as $wide) {
+        foreach (['Budget Allocation', 'Reporting', 'Current Envelope'] as $wide) {
             $this->assertNotContains($wide, $this->labels($planner), "department users do not get $wide");
             $this->assertNotContains($wide, $this->labels($viewer), "department users do not get $wide");
             $this->assertContains($wide, $this->labels($minister));

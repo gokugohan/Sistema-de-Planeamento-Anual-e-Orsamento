@@ -10,7 +10,6 @@ use App\Models\FiscalEnvelopeCategoryAllocation;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
-use App\Services\BudgetCycleService;
 use App\Services\EnvelopeDistributor;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -84,11 +83,6 @@ class DashboardTest extends TestCase
         $this->activity(Activity::STATUS_APPROVED, 500);
         $this->activity(Activity::STATUS_DRAFT, 9999);
 
-        $svc = app(BudgetCycleService::class);
-        $svc->recordCeiling($this->year, 2000, 'CoM', null);
-        $svc->recordSubmission($this->year);
-        $svc->recordCroDecision($this->year, 1200, "{$this->year}-08-20", null, null);
-
         $env = FiscalEnvelope::create([
             'fiscal_year' => $this->year, 'total_amount' => 1200, 'status' => FiscalEnvelope::STATUS_APPROVED, 'reference_number' => 'OGE',
             'start_date' => "{$this->year}-01-01", 'due_date' => "{$this->year}-12-31",
@@ -99,11 +93,10 @@ class DashboardTest extends TestCase
 
         $this->get(route('dashboard'))
             ->assertOk()
-            ->assertSee('Budget cycle '.$this->year)
+            ->assertSee('Plan cycle '.$this->year)
             ->assertSee('$ 1,200')            // envelope
             ->assertSee('$ 1,500')            // approved plan (drafts excluded)
             ->assertSee('2 / 3')              // approved / all activities
-            ->assertSee('The approved plan exceeds the CRO decision by $ 300.')
             ->assertSee('Needs your attention');
     }
 

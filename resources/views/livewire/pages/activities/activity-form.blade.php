@@ -188,6 +188,13 @@ new class extends Component {
         // First of all: a year whose plan has ended takes no new activity, whatever was typed.
         abort_if(! $this->activity && ! FiscalEnvelope::planningOpen($this->year), 422);
 
+        // and outside the submission window of the annual plan nobody but an administrator creates, edits or submits
+        if ($reason = app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year)) {
+            $this->dispatch('toast', message: $reason, type: 'error');
+
+            return;
+        }
+
         $this->validate($this->planRules(), [], [
             'lines.*.class_id' => __('economic category'), 'lines.*.source_id' => __('funding source'), 'lines.*.amount' => __('amount'),
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
@@ -308,6 +315,7 @@ new class extends Component {
             'locations' => config('paa.locations'),
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
             'endedBy' => $this->activity ? null : FiscalEnvelope::planningEndedBy($this->year),
+            'windowReason' => app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year),
             'nextYear' => FiscalEnvelope::nextPlanningYear(),
         ];
     }
@@ -342,6 +350,9 @@ new class extends Component {
             </div>
         </x-ui.card>
     @else
+    @if($windowReason)
+        <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">{{ $windowReason }} {{ __('You can look at the activity but not save changes.') }}</div>
+    @endif
     <form wire:submit="save" class="space-y-6">
         {{-- 1. What and why --}}
         <x-ui.card>

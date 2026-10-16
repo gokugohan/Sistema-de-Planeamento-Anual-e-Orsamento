@@ -325,6 +325,8 @@ class ActivityCsvImporter
     {
         if (! FiscalEnvelope::planningOpen($year)) {
             $errors[] = $this->err(0, "Planning for {$year} has ended (its budget is approved or the year is closed); activities cannot be imported into it.");
+        } elseif ($reason = app(ReportingWindows::class)->planClosedReason(auth()->user(), $year)) {
+            $errors[] = $this->err(0, $reason);
         }
     }
 

@@ -149,11 +149,8 @@ class SeedingTest extends TestCase
         $this->assertEqualsWithDelta(22339646, $distributed(2025), 0.01, 'the 2025 envelope covers the whole plan');
         $this->assertEqualsWithDelta(21245962, $distributed(2026), 0.01, 'the amended 2026 envelope is fully distributed, pro rata');
 
-        // 2027: the bill is in Parliament, so there is a CRO decision but no budget law and no envelope.
+        // 2027: the budget is not decided yet, so there is no envelope and the plan is simply open.
         $this->assertNull(FiscalEnvelope::where('fiscal_year', 2027)->first());
-        $cycle = BudgetCycle::where('fiscal_year', 2027)->firstOrFail();
-        $this->assertEqualsWithDelta(24427884, (float) $cycle->cro_total, 0.01);
-        $this->assertStringContainsString('ainda em apreciação', $cycle->cro_notes);
         $this->assertSame(Activity::STATUS_APPROVED, Activity::where('fiscal_year', 2027)->value('status'));
     }
 

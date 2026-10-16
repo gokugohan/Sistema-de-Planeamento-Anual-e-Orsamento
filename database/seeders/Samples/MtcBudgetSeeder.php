@@ -11,7 +11,6 @@ use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\Subprogram;
-use App\Services\BudgetCycleService;
 use App\Services\EnvelopeDistributor;
 use App\Services\SampleRegistry;
 use Illuminate\Database\Seeder;
@@ -260,14 +259,8 @@ class MtcBudgetSeeder extends Seeder
             if (($meta['status'] ?? null) === FiscalEnvelope::STATUS_CLOSED) {
                 $envelope->update(['status' => FiscalEnvelope::STATUS_CLOSED]);
             }
-        } elseif (isset($data['cycle'])) {
-            $meta = $data['cycle'];
-            $service = app(BudgetCycleService::class);
-            $service->recordSubmission($year);
-            $cycle = $service->recordCroDecision($year, array_sum($package), $meta['date'], $meta['reference'], $meta['notes']);
-            $cycle->update(['submitted_at' => $meta['date'].' 00:00:00']);
-            $registry->register('mtc', $cycle);
         }
+        // a year whose budget is not decided yet has no envelope: its plan is simply open
     }
 
     /** Timestamps matching a workflow step, for the illustrative activities that sit mid-workflow. */

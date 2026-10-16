@@ -31,11 +31,6 @@ class BudgetCycle extends Model
         ];
     }
 
-    public function submissionLines()
-    {
-        return $this->hasMany(BudgetCycleSubmissionLine::class);
-    }
-
     public function submitter()
     {
         return $this->belongsTo(User::class, 'submitted_by');
