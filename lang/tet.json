@@ -1962,5 +1962,22 @@
     "Monthly spending and quarterly indicators": "Despeza mensal no indikadór trimestrál",
     "Plan finalized": "Planu finaliza ona",
     "Budget received": "Orsamentu simu ona",
-    "Distribution": "Distribuisaun"
+    "Distribution": "Distribuisaun",
+    "action": "asaun",
+    "Choose one of the indicators of this activity.": "Hili indikadór ida husi atividade ida-ne'e nian.",
+    "A category appears twice with the same funding source (and indicator): join them in one line.": "Kategoria ida mosu dala rua ho fonte finansiamentu (no indikadór) hanesan: hamutuk iha liña ida.",
+    "For which indicator": "Ba indikadór ida-ne'ebé",
+    "Whole activity": "Atividade tomak",
+    "Implementation plan": "Planu implementasaun",
+    "The actions that carry out this indicator, each with the months it takes place in. When months are chosen, the quarters it is reported in follow from them.": "Asaun sira ne'ebé halo indikadór ida-ne'e, ida-idak ho fulan ne'ebé halao. Bainhira hili fulan, trimestre ne'ebé relata sei tuir fulan sira.",
+    "What will be done": "Saida mak sei halo",
+    "Add action": "Aumenta asaun",
+    "For": "Ba",
+    "Implementation plan of activities by quarter": "Planu implementasaun atividade tuir trimestre",
+    "Include activities not yet approved": "Inklui atividade sira ne'ebé seidauk aprova",
+    "Performance indicators and target": "Indikadór desempeñu no meta",
+    "Implementation of the activities": "Implementasaun atividade sira",
+    "Budget allocated": "Orsamentu aloka",
+    "No activities to show for this unit and year.": "La iha atividade atu hatudu ba unidade no tinan ida-ne'e.",
+    "Dili": "Díli"
 }

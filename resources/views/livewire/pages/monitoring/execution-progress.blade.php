@@ -29,7 +29,7 @@ new class extends Component {
     /** The indicators of the activity, with every quarter's progress (one query each, nothing lazy). */
     public function getIndicatorsProperty()
     {
-        return $this->activityId ? Indicator::where('activity_id', $this->activityId)->with('progress')->orderBy('id')->get() : collect();
+        return $this->activityId ? Indicator::where('activity_id', $this->activityId)->with(['progress', 'actions'])->orderBy('id')->get() : collect();
     }
 
     /** An indicator the user may report on: permission, and it belongs to their unit (or they see all units). */
@@ -203,9 +203,9 @@ new class extends Component {
                                 <span class="mt-0.5 inline-flex rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-700">{{ __('Not due this quarter') }}</span>
                             @endunless
                             <div class="mt-0.5 text-xs text-zinc-500">{{ __($indicator->type) }} · {{ $indicator->isLevel() ? __('Level: enter where it stands at the end of the quarter') : __('Adds up: enter what was achieved in this quarter') }}</div>
-                            @if($indicator->implementation || $indicator->hasMonthPlan())
+                            @if($indicator->actions->isNotEmpty())
                                 @php $inQuarter = collect($indicator->plannedMonths())->filter(fn ($m) => (int) ceil($m / 3) === (int) $quarter)->map(fn ($m) => \Carbon\Carbon::create(2000, $m, 1)->translatedFormat('M'))->implode(', '); @endphp
-                                <div class="text-xs text-indigo-800">{{ __('Planned for Q:q', ['q' => $quarter]) }}@if($inQuarter) ({{ $inQuarter }})@endif: {{ $indicator->implementation ?: '—' }}</div>
+                                <div class="text-xs text-indigo-800">{{ __('Planned for Q:q', ['q' => $quarter]) }}@if($inQuarter) ({{ $inQuarter }})@endif: {{ $indicator->implementationText() ?: '—' }}</div>
                             @endif
                             <div class="text-xs text-zinc-500">{{ __('Verified so far') }}: <span class="font-semibold tabular-nums text-zinc-700">{{ number_format($standing, 2) }}</span> {{ $indicator->unit }}@if($standingPct !== null) ({{ number_format($standingPct, 0) }}%)@endif</div>
                         </td>

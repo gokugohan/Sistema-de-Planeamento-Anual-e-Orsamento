@@ -46,7 +46,7 @@ new class extends Component {
 
         if ($activity && $activity->exists) {
             $this->authorize('update', $activity);
-            $this->activity = $activity->load(['lineItems', 'indicators']);
+            $this->activity = $activity->load(['lineItems', 'indicators.actions']);
             $this->year = (int) $activity->fiscal_year;
             $this->directorate_id = (string) $activity->directorate_id;
             $this->program_id = (string) $activity->program_id;
@@ -61,12 +61,16 @@ new class extends Component {
             $this->quarters = array_map('strval', $activity->execution_quarters ?: [$activity->quarter]);
             $this->procurement_required = (bool) $activity->procurement_required;
             $this->gender_responsive = (bool) $activity->gender_responsive;
-            $this->lines = $activity->lineItems->map(fn ($l) => ['class_id' => (string) $l->economic_classification_id, 'source_id' => (string) $l->funding_source_id, 'amount' => (string) (float) $l->estimated_amount])->all();
+            $indicatorIds = $activity->indicators->pluck('id')->values();
+            $this->lines = $activity->lineItems->map(fn ($l) => [
+                'class_id' => (string) $l->economic_classification_id, 'source_id' => (string) $l->funding_source_id, 'amount' => (string) (float) $l->estimated_amount,
+                'indicator' => ($k = $indicatorIds->search($l->indicator_id)) !== false ? (string) $k : '',
+            ])->all();
             $this->indicators = $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target,
                 'baseline' => (string) $i->baseline, 'means' => (string) $i->means_of_verification,
                 'quarters' => array_map('strval', $i->dueQuarters()),
-                'implementation' => (string) $i->implementation, 'months' => array_map('strval', (array) $i->plan_months),
+                'actions' => $i->actions->map(fn ($a) => ['text' => $a->text, 'months' => array_map('strval', $a->monthList())])->all(),
             ])->all();
         } else {
             $this->authorize('create', Activity::class);
@@ -86,7 +90,7 @@ new class extends Component {
 
     private function blankLine(): array
     {
-        return ['class_id' => '', 'source_id' => (string) \App\Models\FundingSource::defaultId(), 'amount' => ''];
+        return ['class_id' => '', 'source_id' => (string) \App\Models\FundingSource::defaultId(), 'amount' => '', 'indicator' => ''];
     }
 
     public function removeLine(int $i): void
@@ -114,7 +118,7 @@ new class extends Component {
     /** An empty indicator row: reported every quarter until said otherwise. */
     private function blankIndicator(): array
     {
-        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4'], 'implementation' => '', 'months' => []];
+        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4'], 'actions' => []];
     }
 
     public function addIndicator(): void { $this->indicators[] = $this->blankIndicator(); }
@@ -123,6 +127,22 @@ new class extends Component {
     {
         unset($this->indicators[$i]);
         $this->indicators = array_values($this->indicators) ?: [$this->blankIndicator()];
+        // budget lines tied to it go back to the whole activity; those tied to later ones move up
+        foreach ($this->lines as $n => $l) {
+            $k = ($l['indicator'] ?? '') === '' ? null : (int) $l['indicator'];
+            $this->lines[$n]['indicator'] = $k === null || $k === $i ? '' : (string) ($k > $i ? $k - 1 : $k);
+        }
+    }
+
+    public function addAction(int $i): void
+    {
+        $this->indicators[$i]['actions'][] = ['text' => '', 'months' => []];
+    }
+
+    public function removeAction(int $i, int $a): void
+    {
+        unset($this->indicators[$i]['actions'][$a]);
+        $this->indicators[$i]['actions'] = array_values($this->indicators[$i]['actions'] ?? []);
     }
 
     /** Units the user may plan for: their own and everything below it; everything for administrators and ministers. */
@@ -158,6 +178,7 @@ new class extends Component {
             'lines' => ['required', 'array', 'min:1'],
             'lines.*.class_id' => ['required', 'exists:economic_classifications,id'],
             'lines.*.source_id' => ['nullable', 'exists:funding_sources,id'],
+            'lines.*.indicator' => ['nullable', 'integer', 'min:0'],
             'lines.*.amount' => ['required', 'numeric', 'min:0.01', 'max:999999999999'],
             'indicators' => ['required', 'array', 'min:1'],
             'indicators.*.name' => ['required', 'string', 'max:255'],
@@ -167,9 +188,10 @@ new class extends Component {
             'indicators.*.target' => ['required', 'numeric', 'min:0'],
             'indicators.*.baseline' => ['nullable', 'string', 'max:500'],
             'indicators.*.means' => ['nullable', 'string', 'max:1000'],
-            'indicators.*.implementation' => ['nullable', 'string', 'max:1000'],
-            'indicators.*.months' => ['nullable', 'array'],
-            'indicators.*.months.*' => ['integer', 'between:1,12'],
+            'indicators.*.actions' => ['nullable', 'array', 'max:20'],
+            'indicators.*.actions.*.text' => ['required', 'string', 'max:1000'],
+            'indicators.*.actions.*.months' => ['nullable', 'array'],
+            'indicators.*.actions.*.months.*' => ['integer', 'between:1,12'],
             'indicators.*.quarters' => ['nullable', 'array'],
             'indicators.*.quarters.*' => ['in:1,2,3,4'],
         ];
@@ -198,24 +220,37 @@ new class extends Component {
         $this->validate($this->planRules(), [], [
             'lines.*.class_id' => __('economic category'), 'lines.*.source_id' => __('funding source'), 'lines.*.amount' => __('amount'),
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
+            'indicators.*.actions.*.text' => __('action'),
         ]);
 
         // the months of an indicator must fall in the quarters the activity runs in
         $activityQuarters = collect($this->quarters)->map(fn ($n) => (int) $n);
         foreach ($this->indicators as $n => $ind) {
-            foreach ((array) ($ind['months'] ?? []) as $month) {
-                if (! $activityQuarters->contains((int) ceil((int) $month / 3))) {
-                    $this->addError("indicators.$n.months", __('A month must fall in a quarter the activity runs in.'));
+            foreach ((array) ($ind['actions'] ?? []) as $k => $action) {
+                foreach ((array) ($action['months'] ?? []) as $month) {
+                    if (! $activityQuarters->contains((int) ceil((int) $month / 3))) {
+                        $this->addError("indicators.$n.actions.$k.months", __('A month must fall in a quarter the activity runs in.'));
 
-                    return;
+                        return;
+                    }
                 }
+            }
+            if (isset($ind['actions']) === false) {
+                continue;
+            }
+        }
+        foreach ($this->lines as $n => $l) {
+            if (($l['indicator'] ?? '') !== '' && ! isset($this->indicators[(int) $l['indicator']])) {
+                $this->addError("lines.$n.indicator", __('Choose one of the indicators of this activity.'));
+
+                return;
             }
         }
 
         // A category may be paid from two sources, but not twice from the same one.
-        $pairs = collect($this->lines)->map(fn ($l) => $l['class_id'].'-'.(($l['source_id'] ?? '') ?: \App\Models\FundingSource::defaultId()));
+        $pairs = collect($this->lines)->map(fn ($l) => $l['class_id'].'-'.(($l['source_id'] ?? '') ?: \App\Models\FundingSource::defaultId()).'-'.($l['indicator'] ?? ''));
         if ($pairs->count() !== $pairs->unique()->count()) {
-            $this->addError('lines', __('A category appears twice with the same funding source: join them in one line.'));
+            $this->addError('lines', __('A category appears twice with the same funding source (and indicator): join them in one line.'));
 
             return;
         }
@@ -263,14 +298,11 @@ new class extends Component {
                 ? tap($this->activity)->update($data)
                 : Activity::create($data + ['fiscal_year' => $this->year, 'status' => Activity::STATUS_DRAFT, 'code' => $this->nextCode($unit), 'is_test_data' => false]);
 
-            $activity->lineItems()->delete();
-            foreach ($this->lines as $l) {
-                LineItem::create(['activity_id' => $activity->id, 'economic_classification_id' => $l['class_id'], 'funding_source_id' => ($l['source_id'] ?? '') ?: null, 'estimated_amount' => round((float) $l['amount'], 2), 'is_test_data' => false]);
-            }
             $keep = [];
             foreach ($this->indicators as $i) {
-                $months = collect($i['months'] ?? [])->map(fn ($m) => (int) $m)->unique()->sort()->values()->all();
-                // the quarters of an indicator follow from its months when it has them
+                $actions = collect($i['actions'] ?? [])->map(fn ($a) => ['text' => trim((string) ($a['text'] ?? '')), 'months' => collect($a['months'] ?? [])->map(fn ($m) => (int) $m)->unique()->sort()->values()->all()])->filter(fn ($a) => $a['text'] !== '')->values();
+                $months = $actions->flatMap(fn ($a) => $a['months'])->unique()->sort()->values()->all();
+                // the quarters of an indicator follow from the months of its actions when they have any
                 $quarters = $months
                     ? collect($months)->map(fn ($m) => (int) ceil($m / 3))->unique()->sort()->values()->all()
                     : collect($i['quarters'] ?? [])->map(fn ($q) => (int) $q)->unique()->sort()->values()->all();
@@ -278,20 +310,32 @@ new class extends Component {
                     'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
                     'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
                     'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null,
-                    'implementation' => trim((string) ($i['implementation'] ?? '')) ?: null,
-                    'plan_months' => $months ?: null,
                     // every quarter is the default: store nothing for it
                     'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
                 ];
                 $existing = ! empty($i['id']) ? $activity->indicators()->find($i['id']) : null;
                 if ($existing) {
                     $existing->update($attrs); // updated in place, so its quarterly progress is kept
-                    $keep[] = $existing->id;
+                    $indicator = $existing;
                 } else {
-                    $keep[] = Indicator::create($attrs + ['activity_id' => $activity->id])->id;
+                    $indicator = Indicator::create($attrs + ['activity_id' => $activity->id]);
+                }
+                $keep[] = $indicator->id;
+                $indicator->actions()->delete();
+                foreach ($actions as $pos => $a) {
+                    $indicator->actions()->create(['position' => $pos + 1, 'text' => $a['text'], 'months' => $a['months'] ?: null]);
                 }
             }
             $activity->indicators()->whereNotIn('id', $keep)->delete();
+
+            $activity->lineItems()->delete();
+            foreach ($this->lines as $l) {
+                LineItem::create([
+                    'activity_id' => $activity->id, 'economic_classification_id' => $l['class_id'], 'funding_source_id' => ($l['source_id'] ?? '') ?: null,
+                    'indicator_id' => ($l['indicator'] ?? '') !== '' ? ($keep[(int) $l['indicator']] ?? null) : null,
+                    'estimated_amount' => round((float) $l['amount'], 2), 'is_test_data' => false,
+                ]);
+            }
 
             return $activity;
         });
@@ -476,6 +520,13 @@ new class extends Component {
                             </select>
                             @error("lines.$i.source_id")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                         </div>
+                        <div class="w-48">
+                            <select wire:model="lines.{{ $i }}.indicator" class="flux-input" aria-label="{{ __('For which indicator') }}">
+                                <option value="">{{ __('Whole activity') }}</option>
+                                @foreach($indicators as $n => $ind)<option value="{{ $n }}">{{ $n + 1 }}. {{ \Illuminate\Support\Str::limit($ind['name'] ?: __('Indicator'), 28) }}</option>@endforeach
+                            </select>
+                            @error("lines.$i.indicator")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                        </div>
                         <div class="w-44">
                             <input type="number" step="0.01" min="0" wire:model.live.debounce.400ms="lines.{{ $i }}.amount" class="flux-input text-right tabular-nums" placeholder="0.00" aria-label="{{ __('Amount') }}">
                             @error("lines.$i.amount")<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
@@ -534,22 +585,30 @@ new class extends Component {
                                     @error("indicators.$i.means")<p class="field-error">{{ $message }}</p>@enderror
                                 </div>
                                 <div class="sm:col-span-2">
-                                    <label for="ind-{{ $i }}-impl" class="field-label">{{ __('What will be implemented') }}</label>
-                                    <textarea id="ind-{{ $i }}-impl" rows="2" wire:model="indicators.{{ $i }}.implementation" class="flux-input" placeholder="{{ __('The work planned for this indicator') }}"></textarea>
-                                    @error("indicators.$i.implementation")<p class="field-error">{{ $message }}</p>@enderror
-                                </div>
-                                <fieldset class="sm:col-span-2">
-                                    <legend class="field-label">{{ __('Months of implementation') }}</legend>
-                                    <div class="flex flex-wrap gap-2">
-                                        @foreach(range(1, 12) as $mo)
-                                            <label class="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-white px-2.5 py-1 text-sm text-zinc-700">
-                                                <input type="checkbox" value="{{ $mo }}" wire:model="indicators.{{ $i }}.months" class="rounded border-zinc-300 text-indigo-600"> {{ \Carbon\Carbon::create(2000, $mo, 1)->translatedFormat('M') }}
-                                            </label>
+                                    <p class="field-label">{{ __('Implementation plan') }}</p>
+                                    <p class="field-hint">{{ __('The actions that carry out this indicator, each with the months it takes place in. When months are chosen, the quarters it is reported in follow from them.') }}</p>
+                                    <div class="mt-2 space-y-3">
+                                        @foreach($ind['actions'] ?? [] as $k => $action)
+                                            <div class="rounded-md border border-zinc-200 bg-white p-3" wire:key="ind-{{ $i }}-act-{{ $k }}">
+                                                <div class="flex items-start gap-2">
+                                                    <span class="mt-2 w-5 text-sm tabular-nums text-zinc-400">{{ $k + 1 }}.</span>
+                                                    <textarea rows="2" wire:model="indicators.{{ $i }}.actions.{{ $k }}.text" class="flux-input flex-1" aria-label="{{ __('Action') }} {{ $k + 1 }}" placeholder="{{ __('What will be done') }}"></textarea>
+                                                    <button type="button" wire:click="removeAction({{ $i }}, {{ $k }})" class="mt-2 p-1 text-zinc-400 hover:text-rose-600" aria-label="{{ __('Remove') }}">✕</button>
+                                                </div>
+                                                @error("indicators.$i.actions.$k.text")<p class="field-error">{{ $message }}</p>@enderror
+                                                <div class="mt-2 flex flex-wrap gap-1.5 pl-7">
+                                                    @foreach(range(1, 12) as $mo)
+                                                        <label class="inline-flex items-center gap-1 rounded border border-zinc-300 bg-white px-2 py-0.5 text-xs text-zinc-700">
+                                                            <input type="checkbox" value="{{ $mo }}" wire:model="indicators.{{ $i }}.actions.{{ $k }}.months" class="rounded border-zinc-300 text-indigo-600"> {{ \Carbon\Carbon::create(2000, $mo, 1)->translatedFormat('M') }}
+                                                        </label>
+                                                    @endforeach
+                                                </div>
+                                                @error("indicators.$i.actions.$k.months")<p class="field-error pl-7">{{ $message }}</p>@enderror
+                                            </div>
                                         @endforeach
                                     </div>
-                                    <p class="field-hint">{{ __('Optional. When months are chosen, the quarters it is reported in follow from them.') }}</p>
-                                    @error("indicators.$i.months")<p class="field-error">{{ $message }}</p>@enderror
-                                </fieldset>
+                                    <x-ui.button type="button" variant="secondary" size="sm" class="mt-2" wire:click="addAction({{ $i }})">+ {{ __('Add action') }}</x-ui.button>
+                                </div>
                                 <fieldset class="sm:col-span-2">
                                     <legend class="field-label">{{ __('Reported in quarters') }}</legend>
                                     <div class="flex flex-wrap gap-2">

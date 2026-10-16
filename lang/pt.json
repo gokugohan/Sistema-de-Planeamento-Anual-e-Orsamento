@@ -1962,5 +1962,22 @@
     "Monthly spending and quarterly indicators": "Despesa mensal e indicadores trimestrais",
     "Plan finalized": "Plano finalizado",
     "Budget received": "Orçamento recebido",
-    "Distribution": "Distribuição"
+    "Distribution": "Distribuição",
+    "action": "ação",
+    "Choose one of the indicators of this activity.": "Escolha um dos indicadores desta atividade.",
+    "A category appears twice with the same funding source (and indicator): join them in one line.": "Uma categoria aparece duas vezes com a mesma fonte de financiamento (e indicador): junte-as numa só linha.",
+    "For which indicator": "Para que indicador",
+    "Whole activity": "Toda a atividade",
+    "Implementation plan": "Plano de implementação",
+    "The actions that carry out this indicator, each with the months it takes place in. When months are chosen, the quarters it is reported in follow from them.": "As ações que realizam este indicador, cada uma com os meses em que decorre. Quando se escolhem meses, os trimestres em que é reportado decorrem deles.",
+    "What will be done": "O que será feito",
+    "Add action": "Adicionar ação",
+    "For": "Para",
+    "Implementation plan of activities by quarter": "Plano de implementação de atividades por trimestre",
+    "Include activities not yet approved": "Incluir atividades ainda não aprovadas",
+    "Performance indicators and target": "Indicadores de desempenho e meta",
+    "Implementation of the activities": "Implementação das atividades",
+    "Budget allocated": "Orçamento alocado",
+    "No activities to show for this unit and year.": "Sem atividades para mostrar nesta unidade e ano.",
+    "Dili": "Díli"
 }

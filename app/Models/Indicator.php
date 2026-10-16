@@ -30,11 +30,9 @@ class Indicator extends Model
         'means_of_verification',
         'funding_source',
         'due_quarters',
-        'implementation',
-        'plan_months',
     ];
 
-    protected $casts = ['due_quarters' => 'array', 'plan_months' => 'array'];
+    protected $casts = ['due_quarters' => 'array'];
 
     public function activity()
     {
@@ -60,21 +58,29 @@ class Indicator extends Model
         return $q ?: [1, 2, 3, 4];
     }
 
-    /** The months in which it is planned to be implemented: the ones given, otherwise every month of the quarters it is due in. @return array<int, int> */
+    /** The numbered actions of its implementation plan, each with its months. */
+    public function actions()
+    {
+        return $this->hasMany(IndicatorAction::class)->orderBy('position')->orderBy('id');
+    }
+
+    /** The months in which it is planned to be implemented: those of its actions, otherwise every month of the quarters it is due in. @return array<int, int> */
     public function plannedMonths(): array
     {
-        $given = array_values(array_unique(array_filter(array_map('intval', (array) $this->plan_months), fn ($n) => $n >= 1 && $n <= 12)));
-        sort($given);
-        if ($given) {
-            return $given;
-        }
+        $given = $this->actions->flatMap(fn (IndicatorAction $a) => $a->monthList())->unique()->sort()->values()->all();
 
-        return collect($this->dueQuarters())->flatMap(fn ($q) => range($q * 3 - 2, $q * 3))->all();
+        return $given ?: collect($this->dueQuarters())->flatMap(fn ($q) => range($q * 3 - 2, $q * 3))->all();
     }
 
     public function hasMonthPlan(): bool
     {
-        return ! empty($this->plan_months);
+        return $this->actions->contains(fn (IndicatorAction $a) => $a->monthList() !== []);
+    }
+
+    /** What is planned, in one line (its actions, in order). */
+    public function implementationText(): string
+    {
+        return $this->actions->pluck('text')->filter()->implode('; ');
     }
 
     public function isDueIn(int $quarter): bool

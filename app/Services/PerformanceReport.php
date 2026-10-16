@@ -45,7 +45,7 @@ class PerformanceReport
             ->whereIn('li.activity_id', $activities->pluck('id'))->groupBy('li.activity_id', 'fs.id', 'fs.name')
             ->selectRaw('li.activity_id, fs.name, SUM(li.estimated_amount) AS amount')->orderBy('fs.id')->get()->groupBy('activity_id');
 
-        $indicators = Indicator::whereIn('activity_id', $activities->pluck('id'))->with('progress')->orderBy('id')->get()->groupBy('activity_id');
+        $indicators = Indicator::whereIn('activity_id', $activities->pluck('id'))->with(['progress', 'actions'])->orderBy('id')->get()->groupBy('activity_id');
         // a quarter's text is the director's compiled text once there is one, otherwise what the unit wrote and had verified
         $notes = ActivityReport::whereIn('activity_id', $activities->pluck('id'))
             ->where('period_type', $type)->where('period', $period)
@@ -76,7 +76,7 @@ class PerformanceReport
                     $standing = $i->standing($verified->where('quarter', '<=', $quarter)->pluck('achieved_value', 'quarter'));
 
                     return [
-                        'name' => $i->name, 'unit' => $i->unit, 'baseline' => $i->baseline, 'planned' => $i->implementation,
+                        'name' => $i->name, 'unit' => $i->unit, 'baseline' => $i->baseline, 'planned' => $i->implementationText(),
                         'target' => $i->target_text ?: number_format((float) $i->annual_target, 2).' '.$i->unit,
                         'in_quarter' => $verified->firstWhere('quarter', $quarter)?->achieved_value,
                         'standing' => $standing,

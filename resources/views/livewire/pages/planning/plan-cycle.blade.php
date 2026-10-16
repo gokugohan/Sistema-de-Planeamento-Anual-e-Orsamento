@@ -159,6 +159,7 @@ new class extends Component {
             <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('monitoring.report') }}" wire:navigate>{{ __('Report execution') }}</x-ui.button>
             @can('view_reports')
                 <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.compile') }}" wire:navigate>{{ __('Compile the quarter') }}</x-ui.button>
+                <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.implementation-plan', ['year' => $year]) }}">{{ __('Implementation plan') }}</x-ui.button>
                 <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.performance', ['year' => $year]) }}">{{ __('Performance report') }}</x-ui.button>
                 @can('view_all_paa')
                     <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Final plan report') }}</x-ui.button>

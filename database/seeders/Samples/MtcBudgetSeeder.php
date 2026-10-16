@@ -199,7 +199,7 @@ class MtcBudgetSeeder extends Seeder
                 $activity->indicators()->delete();
                 if ($a['indicator'] !== '') {
                     $text = $a['indicator'].' '.$a['target'];
-                    Indicator::create([
+                    $indicator = Indicator::create([
                         'activity_id' => $activity->id,
                         'name' => Str::limit($a['indicator'], 250, ''),
                         'type' => 'Output',
@@ -211,6 +211,8 @@ class MtcBudgetSeeder extends Seeder
                         'baseline' => $a['baseline'] !== '' ? Str::limit($a['baseline'], 495, '') : null,
                         'target_text' => $a['target'] !== '' ? Str::limit($a['target'], 995, '') : null,
                     ]);
+                    $this->planImplementation($indicator, $a['quarters'] ?? [1, 2, 3, 4]);
+                    $activity->lineItems()->update(['indicator_id' => $indicator->id]); // the one indicator carries the whole budget
                 }
             }
         }
@@ -305,6 +307,23 @@ class MtcBudgetSeeder extends Seeder
         return preg_match('/^\d{1,3}([.,]\d{3})+$/', $n)
             ? (float) str_replace([',', '.'], '', $n)
             : (float) str_replace(',', '.', $n);
+    }
+
+    /**
+     * An illustrative implementation plan for the sample indicator: three numbered actions with their months, inside the
+     * quarters it is reported in. Not taken from any plan: it shows how the form reads.
+     */
+    private function planImplementation(Indicator $indicator, array $quarters): void
+    {
+        $months = collect($quarters)->flatMap(fn ($q) => range($q * 3 - 2, $q * 3))->values();
+        $actions = [
+            ['Preparar e planear o trabalho', $months->take(min(2, $months->count()))->all()],
+            ['Executar as ações previstas', $months->all()],
+            ['Rever e reportar os resultados', collect($quarters)->map(fn ($q) => $q * 3)->all()],
+        ];
+        foreach ($actions as $n => [$text, $m]) {
+            $indicator->actions()->create(['position' => $n + 1, 'text' => $text, 'months' => $m]);
+        }
     }
 
     /** The funding source a sample line takes from the wording of the illustrative data. */

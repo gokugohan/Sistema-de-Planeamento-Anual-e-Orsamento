@@ -24,7 +24,7 @@ class PlanCycle
     /** @return array<string, mixed> */
     public function build(User $user, int $year, bool $lite = false): array
     {
-        $scope = $this->unitIds($user);
+        $scope = $this->scopeFor($user);
         $activities = fn () => Activity::query()->where('fiscal_year', $year)->when($scope !== null, fn ($q) => $q->whereIn('directorate_id', $scope ?: [0]));
 
         $byStatus = $activities()->selectRaw('status, COUNT(*) AS n')->groupBy('status')->pluck('n', 'status')->map(fn ($n) => (int) $n)->all();
@@ -113,7 +113,7 @@ class PlanCycle
     }
 
     /** The unit ids the user's numbers cover, or null for every unit. @return array<int, int>|null */
-    private function unitIds(User $user): ?array
+    public function scopeFor(User $user): ?array
     {
         if ($user->isAdministrator() || $user->can('view_all_paa')) {
             return null;

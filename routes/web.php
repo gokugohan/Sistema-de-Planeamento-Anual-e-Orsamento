@@ -111,6 +111,12 @@ Route::get('reports/paa', function () {
 Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activities'])
     ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa.activities');
 
+// The implementation plan of a unit in the ministry's form
+Route::get('reports/implementation-plan', [\App\Http\Controllers\ImplementationPlanController::class, 'show'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan');
+Route::get('reports/implementation-plan/pdf', [\App\Http\Controllers\ImplementationPlanController::class, 'pdf'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan.pdf');
+
 // Monthly / quarterly performance report: each reader gets the units they may see
 Route::get('reports/performance', [\App\Http\Controllers\PerformanceReportController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance');

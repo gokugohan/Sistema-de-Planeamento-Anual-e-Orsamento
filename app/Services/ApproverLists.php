@@ -80,6 +80,12 @@ class ApproverLists
         return $this->namesOf($this->listFor($activity->directorate_id, $step));
     }
 
+    /** The names on the list that applies to this unit and step (null: no list). */
+    public function namesFor(int $unitId, string $step): ?string
+    {
+        return $this->namesOf($this->listFor($unitId, $step));
+    }
+
     public function namesAbove(Activity $activity, string $step): ?string
     {
         return $this->namesOf($this->listAbove($activity->directorate_id, $step));

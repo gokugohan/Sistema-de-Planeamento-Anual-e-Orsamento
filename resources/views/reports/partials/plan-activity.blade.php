@@ -12,7 +12,7 @@
             <td rowspan="{{ $n }}"><b>{{ $a->code }}</b> {{ $a->description }}</td>
         @endif
         @if($i)
-            <td>{{ $loop->iteration }}). {{ $i->name }}@if($i->implementation)<div style="font-style:italic">{{ $i->implementation }}@if($i->hasMonthPlan()) ({{ collect($i->plannedMonths())->map(fn ($m) => \Carbon\Carbon::create(2000, $m, 1)->translatedFormat('M'))->implode(', ') }})@endif</div>@endif</td>
+            <td>{{ $loop->iteration }}). {{ $i->name }}@if($i->actions->isNotEmpty())<div style="font-style:italic">{{ $i->implementationText() }}@if($i->hasMonthPlan()) ({{ collect($i->plannedMonths())->map(fn ($m) => \Carbon\Carbon::create(2000, $m, 1)->translatedFormat('M'))->implode(', ') }})@endif</div>@endif</td>
             <td>{{ $i->baseline }}</td>
             <td>{{ $i->target_text ?: rtrim(rtrim(number_format((float) $i->annual_target, 2), '0'), '.').' '.$i->unit }}</td>
         @else

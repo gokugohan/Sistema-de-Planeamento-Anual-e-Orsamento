@@ -19,6 +19,7 @@ new class extends Component {
     public $bClassId = '';
     public $bAmount  = '';
     public $bSourceId = '';
+    public $bIndicatorId = '';
 
     // Workflow dialogs: the note an approver or reopener may leave, and the reason a return must give
     public string $note   = '';
@@ -55,7 +56,7 @@ new class extends Component {
         $this->authorize('view', $activity);
 
         $this->activity = $activity->load([
-            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators',
+            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators.actions',
             'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -103,13 +104,16 @@ new class extends Component {
         $this->validate([
             'bClassId' => 'required|exists:economic_classifications,id',
             'bSourceId' => 'nullable|exists:funding_sources,id',
+            'bIndicatorId' => 'nullable|integer',
             'bAmount'  => 'required|numeric|min:0.01|max:999999999999',
         ]);
         $sourceId = $this->bSourceId ?: \App\Models\FundingSource::defaultId();
+        $indicatorId = $this->bIndicatorId ? $this->activity->indicators()->whereKey((int) $this->bIndicatorId)->value('id') : null; // an indicator of this activity, or the whole activity
 
         $existing = LineItem::where('activity_id', $this->activity->id)
             ->where('economic_classification_id', $this->bClassId)
             ->where('funding_source_id', $sourceId)
+            ->where('indicator_id', $indicatorId)
             ->first();
 
         if ($existing) {
@@ -119,11 +123,12 @@ new class extends Component {
                 'activity_id'                => $this->activity->id,
                 'economic_classification_id' => $this->bClassId,
                 'funding_source_id'          => $sourceId,
+                'indicator_id'               => $indicatorId,
                 'estimated_amount'           => $this->bAmount,
             ]);
         }
 
-        $this->reset(['bClassId', 'bAmount', 'bSourceId']);
+        $this->reset(['bClassId', 'bAmount', 'bSourceId', 'bIndicatorId']);
         $this->refresh();
         $this->dispatch('lineitem-added');
         $this->dispatch('toast', message: __('Budget item added.'), type: 'success');
@@ -183,7 +188,7 @@ new class extends Component {
     private function refresh(): void
     {
         $this->activity = $this->activity->fresh([
-            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators',
+            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators.actions',
             'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -347,7 +352,7 @@ new class extends Component {
                     @if($isEditable)
                         <div x-show="addingBudget" x-transition class="overflow-hidden">
                             <form wire:submit="addLineItem"
-                                class="px-6 pb-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_auto] gap-3 items-end">
+                                class="px-6 pb-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_auto_auto] gap-3 items-end">
                                 <div>
                                     <label class="block text-xs font-semibold text-zinc-400 mb-1">{{ __('Economic Classification') }}</label>
                                     <select wire:model="bClassId" class="flux-input w-full text-sm">
@@ -362,6 +367,13 @@ new class extends Component {
                                     <label class="block text-xs font-semibold text-zinc-400 mb-1">{{ __('Funding source') }}</label>
                                     <select wire:model="bSourceId" class="flux-input w-full text-sm">
                                         @foreach(\App\Models\FundingSource::choices() as $fs)<option value="{{ $fs->id }}">{{ __($fs->name) }}</option>@endforeach
+                                    </select>
+                                </div>
+                                <div class="sm:w-48">
+                                    <label class="block text-xs font-semibold text-zinc-400 mb-1">{{ __('For which indicator') }}</label>
+                                    <select wire:model="bIndicatorId" class="flux-input w-full text-sm">
+                                        <option value="">{{ __('Whole activity') }}</option>
+                                        @foreach($activity->indicators as $n => $ind)<option value="{{ $ind->id }}">{{ $n + 1 }}. {{ \Illuminate\Support\Str::limit($ind->name, 28) }}</option>@endforeach
                                     </select>
                                 </div>
                                 <div class="sm:w-44">
@@ -401,7 +413,7 @@ new class extends Component {
                                         <tr class="hover:bg-zinc-50/50 transition-colors group">
                                             <td class="px-6 py-4">
                                                 <p class="text-sm font-semibold text-zinc-900">{{ $item->economicClassification->name }}</p>
-                                                <p class="text-xs text-zinc-400 mt-0.5">{{ __('Account') }}: {{ $item->economicClassification->code }}@if($item->fundingSource) · {{ __('Funding') }}: {{ __($item->fundingSource->name) }}@endif</p>
+                                                <p class="text-xs text-zinc-400 mt-0.5">{{ __('Account') }}: {{ $item->economicClassification->code }}@if($item->fundingSource) · {{ __('Funding') }}: {{ __($item->fundingSource->name) }}@endif @if($item->indicator_id) · {{ __('For') }}: {{ \Illuminate\Support\Str::limit($activity->indicators->firstWhere('id', $item->indicator_id)?->name, 40) }}@endif</p>
                                             </td>
                                             <td class="px-6 py-4 text-right font-mono text-sm font-semibold text-zinc-700">
                                                 {{ number_format($item->estimated_amount, 2) }}
@@ -542,8 +554,10 @@ new class extends Component {
                                                 @if($indicator->means_of_verification)
                                                     <p class="mt-0.5 text-xs font-normal text-zinc-500">{{ __('Means of verification') }}: {{ $indicator->means_of_verification }}</p>
                                                 @endif
-                                                @if($indicator->implementation)
-                                                    <p class="mt-0.5 text-xs font-normal text-zinc-500">{{ __('Planned') }}: {{ $indicator->implementation }}</p>
+                                                @if($indicator->actions->isNotEmpty())
+                                                    <ol class="mt-0.5 list-decimal space-y-0.5 pl-4 text-xs font-normal text-zinc-500">
+                                                        @foreach($indicator->actions as $action)<li>{{ $action->text }}@if($action->monthList()) <span class="text-zinc-400">({{ collect($action->monthList())->map(fn ($m) => \Carbon\Carbon::create(2000, $m, 1)->translatedFormat('M'))->implode(', ') }})</span>@endif</li>@endforeach
+                                                    </ol>
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4">

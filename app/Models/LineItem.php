@@ -50,6 +50,7 @@ class LineItem extends Model
 
     protected $fillable = [
         'activity_id',
+        'indicator_id',
         'code',
         'economic_classification_id',
         'funding_source_id',
@@ -61,6 +62,12 @@ class LineItem extends Model
     public function activity()
     {
         return $this->belongsTo(Activity::class);
+    }
+
+    /** The indicator this line pays for, when the budget is allocated per indicator (otherwise it belongs to the whole activity). */
+    public function indicator()
+    {
+        return $this->belongsTo(Indicator::class);
     }
 
     public function fundingSource()
