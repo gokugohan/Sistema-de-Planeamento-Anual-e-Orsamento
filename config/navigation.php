@@ -83,7 +83,7 @@ return [
                 ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart',
                     'hint' => 'Paid and delivered against the plan, by quarter and programme'],
                 ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_all_paa',
-                    'hint' => 'Reports and the approved plan for the CRO'],
+                    'hint' => 'Reports and the final plan report'],
             ],
         ],
         [
@@ -117,7 +117,7 @@ return [
         'activities.show' => ['activities.index', 'Activity details'],
         'activities.indicators' => ['activities.index', 'Indicators'],
         'activities.budget' => ['activities.index', 'Budget lines'],
-        'reports.approved-plan' => ['reports.paa', 'Approved plan for CRO'],
+        'reports.approved-plan' => ['reports.paa', 'Final plan report'],
         'planning.paa-approval' => ['approvals.index', 'Activities to decide'],
         'monitoring.approval' => ['approvals.index', 'Verify progress'],
         'notifications.index' => [null, 'Notifications', 'Overview'],

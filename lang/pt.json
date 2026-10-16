@@ -1909,5 +1909,10 @@
     "Months of implementation": "Meses de implementação",
     "Optional. When months are chosen, the quarters it is reported in follow from them.": "Opcional. Quando se escolhem meses, os trimestres em que é reportado decorrem deles.",
     "Months": "Meses",
-    "Planned for Q:q": "Planeado para T:q"
+    "Planned for Q:q": "Planeado para T:q",
+    "Final plan report": "Relatório final do plano",
+    "Complete report": "Relatório completo",
+    "Summary report": "Relatório resumido",
+    "Report": "Relatório",
+    "Reports and the final plan report": "Relatórios e o relatório final do plano"
 }

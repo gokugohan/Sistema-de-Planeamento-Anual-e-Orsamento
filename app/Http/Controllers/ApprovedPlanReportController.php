@@ -16,20 +16,22 @@ class ApprovedPlanReportController extends Controller
     {
         $report = $this->reports->build($this->year($request));
 
-        return view('reports.approved-plan', ['report' => $report, 'pdf' => false]);
+        return view('reports.approved-plan', ['report' => $report, 'pdf' => false, 'mode' => $this->mode($request)]);
     }
 
-    /** Server-generated PDF for submission to the CRO. */
+    /** The same report as a PDF: the summary, or the complete report with the plan table. */
     public function pdf(Request $request)
     {
         $report = $this->reports->build($this->year($request));
+        $mode = $this->mode($request);
 
         AuditLog::create([
             'action' => 'report.approved_plan_pdf',
             'user_id' => auth()->id(),
-            'description' => "Approved PAA {$report['year']} exported as PDF ({$report['reference']})",
+            'description' => "Final plan report {$report['year']} ({$mode}) exported as PDF ({$report['reference']})",
             'metadata' => [
                 'fiscal_year' => $report['year'],
+                'mode' => $mode,
                 'reference' => $report['reference'],
                 'activities' => $report['totals']['count'],
                 'total' => $report['totals']['total'],
@@ -38,7 +40,7 @@ class ApprovedPlanReportController extends Controller
             'user_agent' => mb_substr((string) $request->userAgent(), 0, 255),
         ]);
 
-        $pdf = Pdf::loadView('reports.approved-plan', ['report' => $report, 'pdf' => true])
+        $pdf = Pdf::loadView('reports.approved-plan', ['report' => $report, 'pdf' => true, 'mode' => $mode])
             ->setPaper('a4', 'landscape');
 
         // "Page X / Y" on every page (CSS page counters are not supported by dompdf).
@@ -54,7 +56,13 @@ class ApprovedPlanReportController extends Controller
             [0.39, 0.45, 0.55]
         );
 
-        return $pdf->download("{$report['reference']}.pdf");
+        return $pdf->download("{$report['reference']}-{$mode}.pdf");
+    }
+
+    /** 'complete' (the plan table and the summaries) or 'summary' (the summaries only). */
+    private function mode(Request $request): string
+    {
+        return $request->query('mode') === 'summary' ? 'summary' : 'complete';
     }
 
     private function year(Request $request): int

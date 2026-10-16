@@ -114,6 +114,38 @@ class ApprovedPlanReportTest extends TestCase
         $this->assertSame(2027, AuditLog::where('action', 'report.approved_plan_pdf')->first()->metadata['fiscal_year']);
     }
 
+    public function test_the_final_report_is_complete_or_summary_and_names_no_committee(): void
+    {
+        $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
+        $this->actingAs($this->user('Minister'));
+        app()->setLocale('en');
+
+        $complete = $this->get(route('reports.approved-plan', ['year' => 2027]))->assertOk()->getContent();
+        $summary = $this->get(route('reports.approved-plan', ['year' => 2027, 'mode' => 'summary']))->assertOk()->getContent();
+
+        $this->assertStringContainsString('Complete report', $complete);
+        $this->assertStringContainsString('Plan of approved activities', $complete);
+        $this->assertStringContainsString('1. Plan of approved activities', $complete);
+        $this->assertStringContainsString('2. Summary by economic category', $complete);
+
+        $this->assertStringNotContainsString('Plan of approved activities', $summary, 'the summary has no plan table');
+        $this->assertStringContainsString('1. Summary by economic category', $summary);
+        $this->assertStringContainsString('3. Summary by organic unit', $summary);
+        $this->assertStringNotContainsString('CRO', $complete.$summary);
+        $this->assertStringNotContainsString('Budget Review Committee', $complete.$summary);
+    }
+
+    public function test_the_pdf_follows_the_mode_and_the_audit_says_which(): void
+    {
+        $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
+        $this->actingAs($this->user('Minister'));
+
+        $response = $this->get(route('reports.approved-plan.pdf', ['year' => 2027, 'mode' => 'summary']))->assertOk();
+
+        $this->assertStringContainsString('-summary.pdf', $response->headers->get('content-disposition'));
+        $this->assertSame('summary', AuditLog::where('action', 'report.approved_plan_pdf')->latest('id')->first()->metadata['mode']);
+    }
+
     public function test_users_without_report_permission_are_refused(): void
     {
         $this->actingAs(User::factory()->create()); // no role

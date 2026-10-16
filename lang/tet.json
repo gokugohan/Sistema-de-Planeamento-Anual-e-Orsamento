@@ -1909,5 +1909,10 @@
     "Months of implementation": "Fulan implementasaun nian",
     "Optional. When months are chosen, the quarters it is reported in follow from them.": "Opsionál. Bainhira hili fulan, trimestre ne'ebé relata sei tuir fulan sira.",
     "Months": "Fulan sira",
-    "Planned for Q:q": "Planeadu ba T:q"
+    "Planned for Q:q": "Planeadu ba T:q",
+    "Final plan report": "Relatóriu finál planu nian",
+    "Complete report": "Relatóriu kompletu",
+    "Summary report": "Relatóriu rezumu",
+    "Report": "Relatóriu",
+    "Reports and the final plan report": "Relatóriu sira no relatóriu finál planu nian"
 }

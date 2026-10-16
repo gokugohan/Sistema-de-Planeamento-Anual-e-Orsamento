@@ -306,7 +306,7 @@ new class extends Component {
                 <button wire:click="clearFilters" class="pb-2 text-sm font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
             @endif
             @if($wide)
-                <x-ui.button variant="secondary" size="md" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Approved plan (PDF)') }}</x-ui.button>
+                <x-ui.button variant="secondary" size="md" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Final plan report') }}</x-ui.button>
             @endif
         </div>
     </x-ui.page-header>

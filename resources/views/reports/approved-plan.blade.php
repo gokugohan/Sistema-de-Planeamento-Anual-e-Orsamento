@@ -1,4 +1,7 @@
 @php
+    $mode = $mode ?? 'complete';
+    $complete = $mode === 'complete';
+    $n = 0; // running section number
     $money = fn ($v) => '$ ' . number_format((float) $v, 2);
     $classes = $report['classes'];
     $grand = $report['totals']['total'];
@@ -65,10 +68,14 @@
                     <option value="{{ $y }}" @selected($y === $report['year'])>{{ $y }}</option>
                 @endforeach
             </select>
+            <select name="mode" onchange="this.form.submit()" aria-label="{{ __('Report') }}">
+                <option value="complete" @selected($complete)>{{ __('Complete report') }}</option>
+                <option value="summary" @selected(! $complete)>{{ __('Summary report') }}</option>
+            </select>
         </form>
         <span style="margin-left:auto"></span>
         <button type="button" onclick="window.print()">{{ __('Print') }}</button>
-        <a href="{{ route('reports.approved-plan.pdf', ['year' => $report['year']]) }}">{{ __('Download PDF') }}</a>
+        <a href="{{ route('reports.approved-plan.pdf', ['year' => $report['year'], 'mode' => $mode]) }}">{{ __('Download PDF') }}</a>
     </div>
     <div class="sheet">
 @endunless
@@ -85,7 +92,7 @@
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
     <div class="title">{{ __('Annual Activity Plan and Budget Proposal') }} {{ $report['year'] }}</div>
-    <div class="muted" style="margin-top:6px">{{ \App\Support\Institution::coverLine() }}</div>
+    <div class="muted" style="margin-top:6px">{{ $complete ? __('Complete report') : __('Summary report') }}</div>
 </div>
 
 <table class="meta">
@@ -116,12 +123,14 @@
 @else
 
 <div class="page-break"></div>
-<h2>1. {{ __('Plan of approved activities') }}</h2>
+@if($complete)
+<h2>{{ ++$n }}. {{ __('Plan of approved activities') }}</h2>
 @include('reports.partials.plan-table', ['tree' => $report['tree'], 'classes' => $classes, 'totals' => $report['totals']])
 
 
-<div class="page-break"></div>
-<h2>2. {{ __('Summary by economic category') }}</h2>
+@endif
+@if($complete)<div class="page-break"></div>@endif
+<h2>{{ ++$n }}. {{ __('Summary by economic category') }}</h2>
 <table>
     <thead><tr><th style="width:12%">{{ __('Code') }}</th><th>{{ __('Category') }}</th><th class="num">{{ __('Amount') }}</th><th class="num" style="width:12%">%</th></tr></thead>
     <tbody>
@@ -133,7 +142,7 @@
     </tbody>
 </table>
 
-<h2>3. {{ __('Summary by programme and economic category') }}</h2>
+<h2>{{ ++$n }}. {{ __('Summary by programme and economic category') }}</h2>
 <table>
     <thead><tr>
         <th>{{ __('Programme') }}</th>
@@ -158,7 +167,7 @@
 <p class="small muted">{{ __('Category columns') }}: {{ $classes->map(fn ($c) => $c->code . ' ' . $c->name)->implode(' · ') }}. {{ __('Amounts in USD.') }}</p>
 
 <div class="page-break"></div>
-<h2>4. {{ __('Summary by organic unit and economic category') }}</h2>
+<h2>{{ ++$n }}. {{ __('Summary by organic unit and economic category') }}</h2>
 <table>
     <thead><tr>
         <th>{{ __('Organic unit') }}</th>

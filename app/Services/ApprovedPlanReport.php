@@ -8,8 +8,8 @@ use App\Models\SystemSetting;
 use Illuminate\Support\Collection;
 
 /**
- * The ministry's approved Annual Activity Plan (PAA) and budget proposal for a
- * fiscal year, as submitted to the Comité de Revisão Orçamental (CRO).
+ * The final report of the approved Annual Activity Plan (PAA) and budget proposal for a
+ * fiscal year, as a summary or as the complete report with the plan table.
  *
  * Only activities with status Approved are included. Activities still in the
  * internal workflow are counted separately so the reader can see whether the

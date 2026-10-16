@@ -32,7 +32,7 @@
             </form>
             <x-ui.button variant="secondary" size="md" shadow="none" onclick="withFullReport('export')">{{ __('Export Data') }}</x-ui.button>
             <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', ['year' => $selectedYear]) }}">
-                {{ \App\Support\Institution::label('Approved plan for CRO (PDF)') }}
+                {{ __('Final plan report') }}
             </x-ui.button>
             <x-ui.button variant="primary" size="md" onclick="withFullReport('print')">{{ __('Print Report') }}</x-ui.button>
         </x-ui.page-header>
