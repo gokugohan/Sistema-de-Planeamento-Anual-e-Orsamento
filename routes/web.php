@@ -82,9 +82,8 @@ Route::get('planning/director-review', function () {
     return view('planning.director-review');
 })->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning'])->name('planning.director-review');
 
-Route::get('planning/fiscal', function () {
-    return view('planning.fiscal');
-})->middleware(['auth', 'verified', 'permission:approve_fiscal_envelope'])->name('planning.fiscal');
+// The fiscal ceiling screen was a second way to do what the envelope pages do (and skipped their checks): one place now.
+Route::redirect('planning/fiscal', '/budget/envelope/current', 301);
 
 Route::get('planning/budget-cycle', function () {
     return view('planning.budget-cycle');

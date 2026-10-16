@@ -82,9 +82,16 @@ class NavigationTest extends TestCase
     {
         $this->as('Admin');
 
-        foreach (['notifications.index', 'profile', 'activities.create', 'planning.fiscal', 'reports.approved-plan', 'planning.paa-approval', 'monitoring.approval'] as $route) {
+        foreach (['notifications.index', 'profile', 'activities.create', 'reports.approved-plan', 'planning.paa-approval', 'monitoring.approval'] as $route) {
             $this->get(route($route))->assertOk("{$route} does not open");
         }
+    }
+
+    public function test_the_old_fiscal_ceiling_address_leads_to_the_envelope_page(): void
+    {
+        $this->as('Admin');
+
+        $this->get('/planning/fiscal')->assertRedirect('/budget/envelope/current');
     }
 
     public function test_breadcrumbs_say_where_you_are(): void

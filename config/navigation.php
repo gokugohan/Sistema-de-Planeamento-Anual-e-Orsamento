@@ -114,7 +114,6 @@ return [
         'reports.approved-plan' => ['reports.paa', 'Approved plan for CRO'],
         'planning.paa-approval' => ['approvals.index', 'Activities to decide'],
         'monitoring.approval' => ['approvals.index', 'Verify progress'],
-        'planning.fiscal' => ['budget.envelope.current', 'Fiscal authority'],
         'notifications.index' => [null, 'Notifications', 'Overview'],
         'profile' => [null, 'Profile', 'Overview'],
     ],
