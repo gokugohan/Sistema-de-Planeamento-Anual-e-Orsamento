@@ -54,6 +54,10 @@ Route::get('monitoring', function () {
     return view('monitoring.index');
 })->middleware(['auth', 'verified'])->name('monitoring.index');
 
+Route::get('reports/compile', function () {
+    return view('reports.compile');
+})->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.compile');
+
 Route::get('approvals/interim', function () {
     return view('approvals.delegations');
 })->middleware(['auth', 'verified', 'role:Admin|Director'])->name('approvals.delegations');

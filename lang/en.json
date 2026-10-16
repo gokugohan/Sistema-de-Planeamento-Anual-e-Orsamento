@@ -904,5 +904,7 @@
     "The ceilings the programmes plan within": "The ceilings the programmes plan within",
     "Activate fiscal year": "Activate fiscal year",
     "Activate this fiscal year? This cannot be undone.": "Activate this fiscal year? This cannot be undone.",
-    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance."
+    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.",
+    ":n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q": "{1} :n approved activity has no compiled text for Q:q|[2,*] :n approved activities have no compiled text for Q:q",
+    "Spending to report for the month that has just ended, and reporting windows about to close.": "Spending to report for the month that has just ended, quarterly text to compile, and reporting windows about to close."
 }

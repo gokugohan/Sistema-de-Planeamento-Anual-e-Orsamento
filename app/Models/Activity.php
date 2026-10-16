@@ -111,6 +111,11 @@ class Activity extends Model
         return $this->hasMany(Indicator::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(ActivityReport::class);
+    }
+
     public function lineItems()
     {
         return $this->hasMany(LineItem::class);

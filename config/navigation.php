@@ -67,6 +67,8 @@ return [
         [
             'label' => 'Execute',
             'items' => [
+                ['label' => 'Compile the quarter', 'route' => 'reports.compile', 'icon' => 'file-bar-chart', 'roles' => ['Admin', 'Director'],
+                    'hint' => 'Turn the units\' monthly and quarterly reports into the text of the ministry report'],
                 ['label' => 'Report execution', 'route' => 'monitoring.report', 'icon' => 'banknote', 'permission' => 'view_monitoring',
                     'hint' => 'Report what an activity spent and achieved in a quarter'],
             ],

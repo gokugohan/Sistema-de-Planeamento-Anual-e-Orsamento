@@ -109,6 +109,16 @@ class ApprovalInbox
             }
         }
 
+        // ── directors: the quarter that has just ended is theirs to compile
+        if ($year === (int) now()->year && ($user->isAdministrator() || $user->isDirector())) {
+            $ended = (int) ceil(now()->month / 3) - 1;
+            if ($ended >= 1) {
+                $todo = app(QuarterCompilation::class)->activities($user, $year)
+                    ->whereDoesntHave('reports', fn ($q) => $q->where('period_type', 'quarter')->where('period', $ended)->whereNotNull('compiled_at'))->count();
+                $add('report', $todo, trans_choice(':n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q', $todo, ['n' => $todo, 'q' => $ended]), route('reports.compile'), 'indigo');
+            }
+        }
+
         // ── your own work
         if ($user->can('create_activities') || $user->can('submit_paa')) {
             $drafts = $activities()->where('status', Activity::STATUS_DRAFT)->count();

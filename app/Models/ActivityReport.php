@@ -18,10 +18,10 @@ class ActivityReport extends Model
 
     protected $fillable = [
         'activity_id', 'period_type', 'period', 'results', 'constraints', 'reasons_not_met', 'corrective_measures',
-        'rating', 'status', 'submitted_by', 'verified_by', 'verified_at', 'rejection_notes',
+        'rating', 'compiled_results', 'compiled_constraints', 'compiled_by', 'compiled_at', 'status', 'submitted_by', 'verified_by', 'verified_at', 'rejection_notes',
     ];
 
-    protected $casts = ['verified_at' => 'datetime'];
+    protected $casts = ['verified_at' => 'datetime', 'compiled_at' => 'datetime'];
 
     public function activity()
     {

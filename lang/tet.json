@@ -1838,7 +1838,7 @@
     "Latest reports": "Relatóriu ikus sira",
     "Verify spending and progress against targets": "Verifika despeza no progresu kompara ho meta",
     "Reporting due": "Relatóriu hein",
-    "Spending to report for the month that has just ended, and reporting windows about to close.": "Despeza atu relata ba fulan ne'ebé foin remata, no periodu relatóriu ne'ebé besik taka.",
+    "Spending to report for the month that has just ended, and reporting windows about to close.": "Despeza atu relata ba fulan ne'ebé foin remata, testu trimestre atu kompila no periodu relatóriu ne'ebé besik taka.",
     ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} Atividade aprovadu :n la iha despeza relata ba :month|[2,*] Atividade aprovadu :n la iha despeza relata ba :month",
     "Reporting for :month closes on :d.": "Relatóriu ba :month taka iha :d.",
     "Plan of approved activities": "Planu atividade aprovadu sira",
@@ -1856,5 +1856,17 @@
     "The ceilings the programmes plan within": "Teto ne'ebé programa sira planeia laran",
     "Activate fiscal year": "Ativa tinan fiskál",
     "Activate this fiscal year? This cannot be undone.": "Ativa tinan fiskál ida-ne'e? La bele halo fila.",
-    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Valór sira hatudu planeamentu no distribuisaun. Saida mak gasta, depois relata no verifika, iha Relata ezekusaun no Desempeñu."
+    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Valór sira hatudu planeamentu no distribuisaun. Saida mak gasta, depois relata no verifika, iha Relata ezekusaun no Desempeñu.",
+    "Compile the quarter": "Kompila trimestre",
+    "Turn the units' monthly and quarterly reports into the text of the ministry report": "Halo relatóriu mensal no trimestral husi unidade sira sai testu relatóriu ministériu nian",
+    "Turn what your units reported in the three months and in the quarter into the text that goes in the ministry's report. Start from a draft, edit it, save. What the units wrote is kept as it was.": "Halo saida mak ita-nia unidade sira relata iha fulan tolu no trimestre sai testu ba relatóriu ministériu. Hahú husi rascunhu, edita, rai. Saida mak unidade sira hakerek sei hela hanesan.",
+    "What the unit reported": "Saida mak unidade relata",
+    "Nothing verified yet for this quarter.": "Seidauk iha buat ida verifika iha trimestre ida-ne'e.",
+    "Draft from the reports": "Rascunhu husi relatóriu sira",
+    "Compiled": "Kompila ona",
+    "Not compiled": "Seidauk kompila",
+    "Compiled text saved.": "Testu kompila rai ona.",
+    "No approved activities to compile": "La iha atividade aprovadu atu kompila",
+    "Approved activities of the units you direct appear here.": "Atividade aprovadu husi unidade sira ne'ebé ita dirije sei hatudu iha ne'e.",
+    ":n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q": "{1} Atividade aprovadu :n la iha testu kompila ba T:q|[2,*] Atividade aprovadu :n la iha testu kompila ba T:q"
 }

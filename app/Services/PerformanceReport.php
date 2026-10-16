@@ -46,8 +46,11 @@ class PerformanceReport
             ->selectRaw('li.activity_id, fs.name, SUM(li.estimated_amount) AS amount')->orderBy('fs.id')->get()->groupBy('activity_id');
 
         $indicators = Indicator::whereIn('activity_id', $activities->pluck('id'))->with('progress')->orderBy('id')->get()->groupBy('activity_id');
-        $notes = ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')
-            ->where('period_type', $type)->where('period', $period)->get()->keyBy('activity_id');
+        // a quarter's text is the director's compiled text once there is one, otherwise what the unit wrote and had verified
+        $notes = ActivityReport::whereIn('activity_id', $activities->pluck('id'))
+            ->where('period_type', $type)->where('period', $period)
+            ->when($type === 'quarter', fn ($q) => $q->where(fn ($w) => $w->where('status', 'Verified')->orWhereNotNull('compiled_at')), fn ($q) => $q->where('status', 'Verified'))
+            ->get()->keyBy('activity_id');
         // a month report also shows the quarter's rating and measures when that quarter is already written up
         $quarterNotes = $type === 'month'
             ? ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')->where('period_type', 'quarter')->where('period', $quarter)->get()->keyBy('activity_id')
@@ -57,6 +60,7 @@ class PerformanceReport
             $m = $money[$a->id];
             $paid = array_sum(array_map(fn ($i) => $m['paid_m'][$i], $months));
             $note = $notes[$a->id] ?? null;
+            $verifiedNote = $note?->status === 'Verified' ? $note : null;
             $inds = ($indicators[$a->id] ?? collect());
 
             return [
@@ -78,11 +82,12 @@ class PerformanceReport
                         'standing' => $standing,
                     ];
                 })->all(),
-                'results' => $note?->results,
-                'constraints' => $note?->constraints,
-                'reasons_not_met' => $note?->reasons_not_met ?? ($quarterNotes[$a->id] ?? null)?->reasons_not_met,
-                'corrective_measures' => $note?->corrective_measures ?? ($quarterNotes[$a->id] ?? null)?->corrective_measures,
-                'rating' => $note?->rating ?? ($quarterNotes[$a->id] ?? null)?->rating,
+                'results' => $note?->compiled_at ? $note->compiled_results : ($note?->status === 'Verified' ? $note->results : null),
+                'constraints' => $note?->compiled_at ? $note->compiled_constraints : ($note?->status === 'Verified' ? $note->constraints : null),
+                'compiled' => (bool) $note?->compiled_at,
+                'reasons_not_met' => $verifiedNote?->reasons_not_met ?? ($quarterNotes[$a->id] ?? null)?->reasons_not_met,
+                'corrective_measures' => $verifiedNote?->corrective_measures ?? ($quarterNotes[$a->id] ?? null)?->corrective_measures,
+                'rating' => $verifiedNote?->rating ?? ($quarterNotes[$a->id] ?? null)?->rating,
             ];
         });
 

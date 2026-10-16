@@ -1838,7 +1838,7 @@
     "Latest reports": "Últimos relatórios",
     "Verify spending and progress against targets": "Verificar a despesa e o progresso face às metas",
     "Reporting due": "Reporte em falta",
-    "Spending to report for the month that has just ended, and reporting windows about to close.": "Despesa a reportar do mês que acabou de terminar e períodos de reporte prestes a fechar.",
+    "Spending to report for the month that has just ended, and reporting windows about to close.": "Despesa a reportar do mês que acabou de terminar, texto do trimestre a compilar e períodos de reporte prestes a fechar.",
     ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} :n atividade aprovada sem despesa reportada para :month|[2,*] :n atividades aprovadas sem despesa reportada para :month",
     "Reporting for :month closes on :d.": "O reporte de :month fecha em :d.",
     "Plan of approved activities": "Plano das atividades aprovadas",
@@ -1856,5 +1856,17 @@
     "The ceilings the programmes plan within": "Os tetos dentro dos quais os programas planeiam",
     "Activate fiscal year": "Ativar ano fiscal",
     "Activate this fiscal year? This cannot be undone.": "Ativar este ano fiscal? Não se pode desfazer.",
-    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Os valores mostram o planeamento e a distribuição. O que foi gasto, depois de reportado e verificado, está em Reportar execução e Desempenho."
+    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Os valores mostram o planeamento e a distribuição. O que foi gasto, depois de reportado e verificado, está em Reportar execução e Desempenho.",
+    "Compile the quarter": "Compilar o trimestre",
+    "Turn the units' monthly and quarterly reports into the text of the ministry report": "Transformar os relatórios mensais e trimestrais das unidades no texto do relatório do ministério",
+    "Turn what your units reported in the three months and in the quarter into the text that goes in the ministry's report. Start from a draft, edit it, save. What the units wrote is kept as it was.": "Transforme o que as suas unidades reportaram nos três meses e no trimestre no texto que vai no relatório do ministério. Comece por um rascunho, edite e guarde. O que as unidades escreveram mantém-se como estava.",
+    "What the unit reported": "O que a unidade reportou",
+    "Nothing verified yet for this quarter.": "Ainda nada verificado neste trimestre.",
+    "Draft from the reports": "Rascunho a partir dos relatórios",
+    "Compiled": "Compilado",
+    "Not compiled": "Não compilado",
+    "Compiled text saved.": "Texto compilado guardado.",
+    "No approved activities to compile": "Sem atividades aprovadas para compilar",
+    "Approved activities of the units you direct appear here.": "As atividades aprovadas das unidades que dirige aparecem aqui.",
+    ":n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q": "{1} :n atividade aprovada sem texto compilado para T:q|[2,*] :n atividades aprovadas sem texto compilado para T:q"
 }
