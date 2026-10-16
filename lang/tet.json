@@ -2002,5 +2002,7 @@
     "Finalized by :by on :date": "Finaliza husi :by iha :date",
     "Every activity of :unit for :year has been decided: the plan is ready to be finalized.": "Atividade hotu husi :unit ba :year dekidi ona: planu prontu atu finaliza.",
     ":n of :total directorates finalized": ":n husi :total direksaun finaliza ona",
-    "This is the final approval of the plan. No new activities can be added afterwards; only the head of the directorate or an administrator can reopen planning, with a remark.": "Ne'e aprovasaun final husi planu. Depois ne'e la bele aumenta atividade; xefe direksaun ka administrador deit bele loke fali planeamentu, ho observasaun."
+    "This is the final approval of the plan. No new activities can be added afterwards; only the head of the directorate or an administrator can reopen planning, with a remark.": "Ne'e aprovasaun final husi planu. Depois ne'e la bele aumenta atividade; xefe direksaun ka administrador deit bele loke fali planeamentu, ho observasaun.",
+    "Prepared": "Prepara ona",
+    "Certified": "Sertifika ona"
 }
