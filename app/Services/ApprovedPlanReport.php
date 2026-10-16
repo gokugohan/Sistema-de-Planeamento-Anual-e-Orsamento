@@ -27,9 +27,13 @@ class ApprovedPlanReport
             ->with([
                 'directorate:id,code,name,type,parent_id,administration,legal_form',
                 'directorate.parent:id,code,name',
-                'program:id,oge_code,name',
-                'indicators:id,activity_id,name,type,unit,annual_target',
-                'lineItems:id,activity_id,economic_classification_id,estimated_amount',
+                'program:id,oge_code,name,objective',
+                'program.alignments', 'program.resultIndicators',
+                'subprogram:id,program_id,code,name,objective',
+                'subprogram.alignments', 'subprogram.resultIndicators',
+                'indicators:id,activity_id,name,type,unit,annual_target,baseline,target_text,means_of_verification',
+                'lineItems:id,activity_id,economic_classification_id,funding_source_id,estimated_amount',
+                'lineItems.fundingSource:id,name',
             ])
             ->orderBy('directorate_id')
             ->orderBy('id')
@@ -84,6 +88,16 @@ class ApprovedPlanReport
             ->sortBy('code')
             ->values();
 
+        // The ministry's template: programme, then subprogramme, then each activity with its indicators.
+        $tree = $rows->groupBy(fn ($r) => $r['activity']->program_id)->map(function ($g) use ($sum) {
+            $program = $g->first()['activity']->program;
+            $subs = $g->filter(fn ($r) => $r['activity']->subprogram_id)->groupBy(fn ($r) => $r['activity']->subprogram_id)
+                ->map(fn ($s) => ['subprogram' => $s->first()['activity']->subprogram, 'rows' => $s->values()] + $sum($s))
+                ->sortBy(fn ($s) => $s['subprogram']->code)->values();
+
+            return ['program' => $program, 'subprograms' => $subs, 'loose' => $g->filter(fn ($r) => ! $r['activity']->subprogram_id)->values()] + $sum($g);
+        })->sortBy(fn ($p) => $p['program']->oge_code)->values();
+
         $pending = Activity::query()
             ->where('fiscal_year', $year)
             ->where('status', '!=', Activity::STATUS_APPROVED)
@@ -108,6 +122,7 @@ class ApprovedPlanReport
             'totals' => $totals,
             'autonomous' => $autonomous,
             'by_program' => $byProgram,
+            'tree' => $tree,
             'by_unit' => $byUnit,
             'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),
             'pending' => $pending,

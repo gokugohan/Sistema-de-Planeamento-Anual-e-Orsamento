@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $report['reference'] }} — {{ __('Annual Activity Plan') }} {{ $report['year'] }}</title>
     <style>
-        @page { size: A4 portrait; margin: 18mm 14mm 20mm 14mm; }
+        @page { size: A4 landscape; margin: 10mm 10mm 14mm 10mm; }
         * { box-sizing: border-box; }
         body { font-family: 'DejaVu Sans', 'Inter', Arial, sans-serif; font-size: 9pt; color: #1C2434; margin: 0; line-height: 1.35; }
         h1 { font-size: 16pt; margin: 0; }
@@ -46,7 +46,7 @@
         .toolbar a, .toolbar button { background: #2152C4; color: #fff; border: 0; border-radius: 4px; padding: 7px 12px; text-decoration: none; cursor: pointer; font-size: 13px; }
         .toolbar a.secondary { background: transparent; border: 1px solid #475569; }
         .toolbar select { padding: 6px; border-radius: 4px; }
-        .sheet { max-width: 210mm; margin: 16px auto; background: #fff; padding: 14mm; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+        .sheet { max-width: 297mm; margin: 16px auto; background: #fff; padding: 12mm; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
         /* dompdf renders with media "screen", so browser-only rules hang off body.screen instead of @media */
         body.screen { background: #F1F5F9; }
         body.screen .footer { position: static; margin-top: 16px; }
@@ -115,7 +115,13 @@
     <p class="muted" style="margin-top:20px">{{ __('There are no approved activities for this fiscal year yet.') }}</p>
 @else
 
-<h2>1. {{ __('Summary by economic category') }}</h2>
+<div class="page-break"></div>
+<h2>1. {{ __('Plan of approved activities') }}</h2>
+@include('reports.partials.plan-table', ['tree' => $report['tree'], 'classes' => $classes, 'totals' => $report['totals']])
+
+
+<div class="page-break"></div>
+<h2>2. {{ __('Summary by economic category') }}</h2>
 <table>
     <thead><tr><th style="width:12%">{{ __('Code') }}</th><th>{{ __('Category') }}</th><th class="num">{{ __('Amount') }}</th><th class="num" style="width:12%">%</th></tr></thead>
     <tbody>
@@ -127,7 +133,7 @@
     </tbody>
 </table>
 
-<h2>2. {{ __('Summary by programme and economic category') }}</h2>
+<h2>3. {{ __('Summary by programme and economic category') }}</h2>
 <table>
     <thead><tr>
         <th>{{ __('Programme') }}</th>
@@ -152,7 +158,7 @@
 <p class="small muted">{{ __('Category columns') }}: {{ $classes->map(fn ($c) => $c->code . ' ' . $c->name)->implode(' · ') }}. {{ __('Amounts in USD.') }}</p>
 
 <div class="page-break"></div>
-<h2>3. {{ __('Summary by organic unit and economic category') }}</h2>
+<h2>4. {{ __('Summary by organic unit and economic category') }}</h2>
 <table>
     <thead><tr>
         <th>{{ __('Organic unit') }}</th>
@@ -207,55 +213,6 @@
         {{ __('The total is one package for the ministry. The autonomous bodies are shown as a separate section because the ministry passes their share on once it has received its fiscal envelope.') }}
     </p>
 @endif
-
-<div class="page-break"></div>
-<h2>4. {{ __('Approved activities by organic unit') }}</h2>
-@foreach($report['by_unit'] as $root)
-    @foreach($root['units'] as $u)
-        <h3>{{ $u['code'] }} — {{ $u['name'] }} <span class="muted small">({{ $u['count'] }} · {{ $money($u['total']) }})</span></h3>
-        <table>
-            <thead><tr>
-                <th style="width:4%">#</th>
-                <th style="width:38%">{{ __('Activity') }}</th>
-                <th style="width:10%">{{ __('Period') }}</th>
-                <th style="width:28%">{{ __('Indicators / targets') }}</th>
-                <th class="num" style="width:20%">{{ __('Budget') }}</th>
-            </tr></thead>
-            <tbody>
-            @foreach($u['rows'] as $i => $r)
-                @php $a = $r['activity']; @endphp
-                <tr class="avoid-break">
-                    <td>{{ $i + 1 }}</td>
-                    <td>
-                        {{ $a->description }}
-                        <div class="small muted">{{ $a->program->oge_code ?? '' }} {{ $a->program->name ?? '' }} · {{ __('Priority') }}: {{ $a->priority }}@if($a->procurement_required) · {{ __('Procurement') }}@endif</div>
-                    </td>
-                    <td class="small">{{ collect($a->execution_quarters ?: [$a->quarter])->map(fn ($q) => 'T'.$q)->implode(' ') }}<br>{{ \Illuminate\Support\Carbon::parse($a->planned_start)->format('d/m') }}–{{ \Illuminate\Support\Carbon::parse($a->planned_end)->format('d/m') }}</td>
-                    <td class="small">
-                        @if($a->indicators->isEmpty())
-                            <span class="muted">—</span>
-                        @else
-                            <ul class="ind">
-                                @foreach($a->indicators as $ind)
-                                    <li>{{ $ind->name }}: <strong>{{ rtrim(rtrim(number_format((float) $ind->annual_target, 2), '0'), '.') }}</strong> {{ $ind->unit }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </td>
-                    <td class="num">
-                        <strong>{{ $money($r['total']) }}</strong>
-                        @foreach($classes as $c)
-                            @if(($r['by_class'][$c->id] ?? 0) > 0)
-                                <div class="small muted">{{ $c->code }}: {{ number_format($r['by_class'][$c->id], 2) }}</div>
-                            @endif
-                        @endforeach
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    @endforeach
-@endforeach
 
 @endif
 

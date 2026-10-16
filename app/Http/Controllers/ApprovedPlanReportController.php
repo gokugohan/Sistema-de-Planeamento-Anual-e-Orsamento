@@ -39,7 +39,7 @@ class ApprovedPlanReportController extends Controller
         ]);
 
         $pdf = Pdf::loadView('reports.approved-plan', ['report' => $report, 'pdf' => true])
-            ->setPaper('a4', 'portrait');
+            ->setPaper('a4', 'landscape');
 
         // "Page X / Y" on every page (CSS page counters are not supported by dompdf).
         $pdf->render();

@@ -1854,5 +1854,9 @@
     "Reporting due": "Relatóriu hein",
     "Spending to report for the month that has just ended, and reporting windows about to close.": "Despeza atu relata ba fulan ne'ebé foin remata, no periodu relatóriu ne'ebé besik taka.",
     ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} Atividade aprovadu :n la iha despeza relata ba :month|[2,*] Atividade aprovadu :n la iha despeza relata ba :month",
-    "Reporting for :month closes on :d.": "Relatóriu ba :month taka iha :d."
+    "Reporting for :month closes on :d.": "Relatóriu ba :month taka iha :d.",
+    "Plan of approved activities": "Planu atividade aprovadu sira",
+    "Implementation schedule": "Kronograma implementasaun",
+    "Budget category": "Kategoria orsamentu",
+    "TOTAL": "TOTAL"
 }

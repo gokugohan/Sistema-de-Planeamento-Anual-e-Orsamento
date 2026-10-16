@@ -1854,5 +1854,9 @@
     "Reporting due": "Reporte em falta",
     "Spending to report for the month that has just ended, and reporting windows about to close.": "Despesa a reportar do mês que acabou de terminar e períodos de reporte prestes a fechar.",
     ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} :n atividade aprovada sem despesa reportada para :month|[2,*] :n atividades aprovadas sem despesa reportada para :month",
-    "Reporting for :month closes on :d.": "O reporte de :month fecha em :d."
+    "Reporting for :month closes on :d.": "O reporte de :month fecha em :d.",
+    "Plan of approved activities": "Plano das atividades aprovadas",
+    "Implementation schedule": "Cronograma de implementação",
+    "Budget category": "Categoria orçamental",
+    "TOTAL": "TOTAL"
 }
