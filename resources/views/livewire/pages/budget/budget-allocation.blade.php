@@ -202,5 +202,5 @@ new class extends Component {
         @endif
     </x-ui.card>
 
-    <p class="text-xs text-zinc-500">{{ __('Figures show planning and distribution. Spending is not tracked in this system, so no "used" or "remaining" amounts are shown.') }}</p>
+    <p class="text-xs text-zinc-500">{{ __('Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.') }}</p>
 </div>

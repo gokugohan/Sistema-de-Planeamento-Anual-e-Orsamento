@@ -29,9 +29,9 @@
         <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
             @forelse($directorates as $d)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
-                    <td class="px-8 py-5 text-gray-900 font-semibold font-mono">{{ $d->code }}
+                    <td class="px-5 py-5 text-gray-900 font-semibold font-mono">{{ $d->code }}
                     </td>
-                    <td class="px-8 py-5 min-w-[18rem]">
+                    <td class="px-5 py-5 min-w-[18rem]">
                         <div class="font-bold text-gray-900 {{ $d->parent ? 'pl-4 border-l-2 border-zinc-200' : '' }}">{{ $d->name }}</div>
                         @if($d->parent)
                             <div class="flex items-center gap-1.5 mt-1">
@@ -46,20 +46,20 @@
                             </div>
                         @endif
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <x-ui.badge variant="gray" class="!text-xs ">{{ __($d->type) }}</x-ui.badge>
                         @if($d->isAutonomous())
                             <x-ui.badge variant="indigo" class="!text-xs mt-1" title="{{ $d->legal_basis }}">{{ __('Autonomous') }}{{ $d->legal_form ? ' · '.$d->legal_form : '' }}</x-ui.badge>
                         @endif
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <div class="font-bold text-gray-900 leading-none text-xs">
                             {{ $d->director_name ?: '—' }}
                         </div>
                         @if($d->director_email)<div class="text-xs text-gray-400 mt-1 font-medium">{{ $d->director_email }}</div>@endif
                     </td>
                     @php $f = $dirFunding[$d->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
-                    <td class="px-8 py-5 text-sm tabular-nums">
+                    <td class="px-5 py-5 text-sm tabular-nums">
                         @if($f['plan'] > 0)
                             <div class="font-semibold text-zinc-900">$ {{ number_format($f['plan']) }}</div>
                             <div class="text-xs text-zinc-500">{{ trans_choice(':n activity|:n activities', $f['n'], ['n' => $f['n']]) }}</div>
@@ -67,7 +67,7 @@
                             <span class="text-zinc-400">—</span>
                         @endif
                     </td>
-                    <td class="px-8 py-5 w-40">
+                    <td class="px-5 py-5 w-40">
                         @if($pct !== null)
                             <div class="flex items-center gap-2">
                                 <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
@@ -77,14 +77,14 @@
                             <span class="text-zinc-400">—</span>
                         @endif
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         @if($d->active)
                             <x-ui.badge variant="emerald" pulse="true">{{ __('Operational') }}</x-ui.badge>
                         @else
                             <x-ui.badge variant="red">{{ __('Inactive') }}</x-ui.badge>
                         @endif
                     </td>
-                    <td class="px-8 py-5 text-right">
+                    <td class="px-5 py-5 text-right">
                         <div class="flex justify-end items-center gap-2">
                             <button wire:click="openModal({{ $d->id }})"
                                 class="p-2 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"

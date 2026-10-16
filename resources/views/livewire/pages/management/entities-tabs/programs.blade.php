@@ -44,24 +44,24 @@
         <x-ui.table :headers="[__('OGE Code'), __('Program Name'), __('Manager'), __('Objective'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Actions')]">
             @forelse($programs as $p)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
-                    <td class="px-8 py-5 text-gray-900 font-semibold font-mono">
+                    <td class="px-5 py-5 text-gray-900 font-semibold font-mono">
                         {{ $p->oge_code ?? '—' }}
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <div class="font-bold text-gray-900">{{ $p->name }}</div>
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <div class="font-bold text-gray-900 leading-none text-xs">
                             {{ $p->manager_name ?: __('Not Assigned') }}
                         </div>
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <div class="text-xs text-gray-600 line-clamp-2">
                             {{ $p->objective ? Str::limit($p->objective, 60) : __('No objective defined') }}
                         </div>
                     </td>
                     @php $f = $progFunding[$p->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
-                    <td class="px-8 py-5 text-sm tabular-nums">
+                    <td class="px-5 py-5 text-sm tabular-nums">
                         @if($f['plan'] > 0)
                             <div class="font-semibold text-zinc-900">$ {{ number_format($f['plan']) }}</div>
                             <div class="text-xs text-zinc-500">{{ trans_choice(':n activity|:n activities', $f['n'], ['n' => $f['n']]) }}</div>
@@ -69,7 +69,7 @@
                             <span class="text-zinc-400">—</span>
                         @endif
                     </td>
-                    <td class="px-8 py-5 w-40">
+                    <td class="px-5 py-5 w-40">
                         @if($pct !== null)
                             <div class="flex items-center gap-2">
                                 <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
@@ -79,7 +79,7 @@
                             <span class="text-zinc-400">—</span>
                         @endif
                     </td>
-                    <td class="px-8 py-5 text-right">
+                    <td class="px-5 py-5 text-right">
                         <div class="flex justify-end items-center gap-2">
                             <button type="button" wire:click="openDetails('program', {{ $p->id }})" class="px-2 py-1 text-xs font-medium text-indigo-700 hover:underline" aria-label="{{ __('Objectives and result indicators') }}: {{ $p->oge_code }}">{{ __('Details') }}@if($p->alignments_count + $p->result_indicators_count)<span class="ml-1 text-zinc-500">({{ $p->alignments_count + $p->result_indicators_count }})</span>@endif</button>
                             <button wire:click="openProgramModal({{ $p->id }})"

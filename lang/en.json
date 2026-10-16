@@ -753,7 +753,6 @@
     "By programme": "By programme",
     "Economic category": "Economic category",
     "No approved activities with a budget for :year yet.": "No approved activities with a budget for :year yet.",
-    "Figures show planning and distribution. Spending is not tracked in this system, so no \"used\" or \"remaining\" amounts are shown.": "Figures show planning and distribution. Spending is not tracked in this system, so no \"used\" or \"remaining\" amounts are shown.",
     "Entities": "Entities",
     "Units, programmes and economic categories: edit them and see their funding": "Units, programmes and economic categories: edit them and see their funding",
     ":n activity|:n activities": ":n activity|:n activities",
@@ -893,5 +892,17 @@
     "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)",
     ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n spending figure is waiting for verification and is not counted yet.|[2,*] :n spending figures are waiting for verification and are not counted yet.",
     "Verify spending and progress against targets": "Verify spending and progress against targets",
-    ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} :n approved activity has no spending reported for :month|[2,*] :n approved activities have no spending reported for :month"
+    ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} :n approved activity has no spending reported for :month|[2,*] :n approved activities have no spending reported for :month",
+    "Fiscal ceiling": "Fiscal ceiling",
+    "The ceiling for each fiscal year, shared over the economic categories": "The ceiling for each fiscal year, shared over the economic categories",
+    "Ceiling assigned to categories": "Ceiling assigned to categories",
+    "assigned": "assigned",
+    "Planned by activities": "Planned by activities",
+    "Fiscal years": "Fiscal years",
+    "Authority": "Authority",
+    "New fiscal year": "New fiscal year",
+    "The ceilings the programmes plan within": "The ceilings the programmes plan within",
+    "Activate fiscal year": "Activate fiscal year",
+    "Activate this fiscal year? This cannot be undone.": "Activate this fiscal year? This cannot be undone.",
+    "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance.": "Figures show planning and distribution. What was spent, once reported and verified, is in Report execution and Performance."
 }

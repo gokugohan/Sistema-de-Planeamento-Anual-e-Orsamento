@@ -29,23 +29,23 @@
         <x-ui.table :headers="[__('Code'), __('Category Name'), __('Description'), __('Type'), __('Actions')]">
             @forelse($economicCategories as $c)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
-                    <td class="px-8 py-5 text-gray-900 font-semibold font-mono">{{ $c->code }}
+                    <td class="px-5 py-5 text-gray-900 font-semibold font-mono">{{ $c->code }}
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <div class="font-bold text-gray-900">{{ $c->name }}</div>
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <div class="text-xs text-gray-600 line-clamp-2">
                             {{ $c->description ? Str::limit($c->description, 80) : __('No description') }}
                         </div>
                     </td>
-                    <td class="px-8 py-5">
+                    <td class="px-5 py-5">
                         <x-ui.badge variant="{{ $c->category_type === 'Expense' ? 'rose' : 'emerald' }}"
                             class="!text-xs ">
                             {{ __($c->category_type) }}
                         </x-ui.badge>
                     </td>
-                    <td class="px-8 py-5 text-right">
+                    <td class="px-5 py-5 text-right">
                         <div class="flex justify-end items-center gap-2">
                             <button wire:click="openClassificationModal({{ $c->id }})"
                                 class="p-2 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"

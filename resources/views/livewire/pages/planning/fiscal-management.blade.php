@@ -102,9 +102,9 @@ new class extends Component {
 <div class="space-y-6">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-            <h1 class="page-title">{{ __('Fiscal Authority') }}</h1>
+            <h1 class="page-title">{{ __('Fiscal ceiling') }}</h1>
             <p class="page-subtitle">
-                {{ __('Macro-Budgetary Ceiling & Consolidation Hub') }}
+                {{ __('The ceiling for each fiscal year, shared over the economic categories') }}
             </p>
         </div>
         <div class="flex gap-3">
@@ -114,7 +114,7 @@ new class extends Component {
                     <path d="M5 12h14" />
                     <path d="M12 5v14" />
                 </svg>
-                <span class="text-xs font-semibold">{{ __('Establish New Context') }}</span>
+                <span class="text-xs font-semibold">{{ __('New fiscal year') }}</span>
             </x-ui.button>
         </div>
     </div>
@@ -125,7 +125,7 @@ new class extends Component {
             <div class="bg-white/80 backdrop-blur-sm rounded-xl p-8 border border-zinc-100 shadow-sm ring-1 ring-zinc-200/50">
                 <div class="flex items-center justify-between mb-8">
                     <h3 class="text-[14px] font-semibold text-zinc-400 ">
-                        {{ __('Historical Archive') }}
+                        {{ __('Fiscal years') }}
                     </h3>
                     <div class="flex gap-1">
                         <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
@@ -210,7 +210,7 @@ new class extends Component {
                                         <div class="w-8 h-8 rounded-full bg-indigo-500 border-2 border-white flex items-center justify-center text-xs font-semibold text-white">CE</div>
                                     </div>
                                     <div class="h-px w-10 bg-zinc-200"></div>
-                                    <span class="text-xs font-semibold text-indigo-500 ">{{ __('Authorized Authority') }}</span>
+                                    <span class="text-xs font-semibold text-indigo-500 ">{{ __('Authority') }}</span>
                                 </div>
                                 <h2 class="text-3xl font-semibold text-zinc-900 leading-none italic group-hover:translate-x-2 transition-transform duration-700">{{ $env->fiscal_year }}</h2>
                                 <p class="text-lg font-bold text-zinc-400 tracking-tight tracking-tight">{{ $env->reference_number }}</p>
@@ -227,9 +227,9 @@ new class extends Component {
                                     </div>
                                 @else
                                     <button wire:click="approveEnvelope"
-                                        wire:confirm="{{ __('Seal this fiscal context? This action cannot be reversed.') }}"
-                                        class="px-10 py-5 bg-indigo-600 hover:bg-zinc-900 text-white rounded-xl text-xs font-semibold transition-all shadow-sm hover:">
-                                        {{ __('Activate Context') }}
+                                        wire:confirm="{{ __('Activate this fiscal year? This cannot be undone.') }}"
+                                        class="px-6 py-4 bg-indigo-600 hover:bg-zinc-900 text-white rounded-xl text-xs font-semibold transition-all shadow-sm hover:">
+                                        {{ __('Activate fiscal year') }}
                                     </button>
                                 @endif
                             </div>
@@ -243,14 +243,14 @@ new class extends Component {
 
                             <div class="bg-white p-8 rounded-xl border border-zinc-100 shadow-sm md:col-span-2 flex items-center justify-between">
                                 <div class="space-y-4 flex-1 pr-10 border-r border-zinc-100">
-                                    <p class="text-xs font-semibold text-indigo-700 ">{{ __('Utilization Strategy') }}</p>
+                                    <p class="text-xs font-semibold text-indigo-700 ">{{ __('Ceiling assigned to categories') }}</p>
                                     @php
                                         $totalAlloc = collect($allocations)->sum('allocated_amount');
                                         $utilRate = $env->total_amount > 0 ? ($totalAlloc / $env->total_amount) * 100 : 0;
                                     @endphp
                                     <div class="flex items-baseline gap-2">
                                         <span class="text-lg font-semibold text-zinc-900 leading-none">{{ number_format($utilRate, 1) }}%</span>
-                                        <span class="text-xs font-bold text-zinc-400 ">{{ __('Consolidated') }}</span>
+                                        <span class="text-xs font-bold text-zinc-400 ">{{ __('assigned') }}</span>
                                     </div>
                                     <div class="h-1.5 w-full bg-zinc-50 rounded-full overflow-hidden">
                                         <div class="h-full bg-indigo-600 transition-all duration-1000" style="width: {{ $utilRate }}%"></div>
@@ -269,16 +269,10 @@ new class extends Component {
 
                 <!-- Strategic Allocation Matrix -->
                 <div class="bg-white rounded-xl shadow-sm border border-zinc-100 overflow-hidden ring-1 ring-zinc-100/50 relative">
-                    <div class="px-10 py-8 border-b border-zinc-50 bg-zinc-50/30 flex items-center justify-between">
+                    <div class="px-5 py-5 border-b border-zinc-50 bg-zinc-50/30 flex items-center justify-between">
                         <div>
                             <h3 class="text-xs font-semibold text-zinc-900 ">{{ __('Economic Category Distribution') }}</h3>
-                            <p class="text-xs font-bold text-zinc-400 mt-1 italic">{{ __('Refining ceilings for programmatic units') }}</p>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-semibold text-zinc-400 ">{{ __('Precision Mode') }}</span>
-                            <div class="w-8 h-4 bg-indigo-600 rounded-full relative">
-                                <div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
-                            </div>
+                            <p class="text-xs font-bold text-zinc-400 mt-1 italic">{{ __('The ceilings the programmes plan within') }}</p>
                         </div>
                     </div>
 
@@ -286,28 +280,27 @@ new class extends Component {
                         <table class="min-w-full divide-y divide-zinc-100">
                             <thead>
                                 <tr class="bg-white">
-                                    <th class="px-10 py-6 text-left text-xs font-semibold text-zinc-400">{{ __('Economic Node') }}</th>
-                                    <th class="px-10 py-6 text-right text-xs font-semibold text-zinc-400">{{ __('Requirement Audit (Planned)') }}</th>
-                                    <th class="px-10 py-6 text-right text-xs font-semibold text-zinc-400">{{ __('Assigned Ceiling') }}</th>
-                                    <th class="px-10 py-6 text-right text-xs font-semibold text-zinc-400">{{ __('Audit Variance') }}</th>
+                                    <th class="px-5 py-4 text-left text-xs font-semibold text-zinc-400">{{ __('Economic category') }}</th>
+                                    <th class="px-5 py-4 text-right text-xs font-semibold text-zinc-400">{{ __('Planned by activities') }}</th>
+                                    <th class="px-5 py-4 text-right text-xs font-semibold text-zinc-400">{{ __('Assigned Ceiling') }}</th>
+                                    <th class="px-5 py-4 text-right text-xs font-semibold text-zinc-400">{{ __('Difference') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-zinc-50 bg-white">
                                 @foreach($allocations as $alloc)
                                     <tr class="hover:bg-zinc-50/50 transition-all duration-300 group">
-                                        <td class="px-10 py-6">
+                                        <td class="px-5 py-4">
                                             <div class="flex items-center gap-4">
                                                 <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center text-xs font-semibold text-zinc-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">{{ $alloc->economicClassification->code }}</div>
                                                 <div>
                                                     <div class="text-xs font-semibold text-zinc-900 group-hover:text-indigo-600 transition-colors">{{ $alloc->economicClassification->name }}</div>
-                                                    <div class="text-xs font-semibold text-zinc-400 mt-1">{{ __('Structural Classification') }}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-10 py-6 text-right">
+                                        <td class="px-5 py-4 text-right">
                                             <div class="text-xs font-bold text-zinc-500 italic">$ {{ number_format($alloc->planned_amount, 2) }}</div>
                                         </td>
-                                        <td class="px-10 py-6 text-right">
+                                        <td class="px-5 py-4 text-right">
                                             <div class="inline-flex items-center relative group/input">
                                                 <span class="absolute left-4 text-zinc-300 font-bold text-xs">$</span>
                                                 <input type="number" aria-label="{{ __('Allocated amount') }} {{ $alloc->economicClassification->code ?? '' }}"
@@ -317,7 +310,7 @@ new class extends Component {
                                                     {{ $env->status === 'Approved' ? 'disabled' : '' }}>
                                             </div>
                                         </td>
-                                        <td class="px-10 py-6 text-right">
+                                        <td class="px-5 py-4 text-right">
                                             @php $isOver = $alloc->variance_amount < 0; @endphp
                                             <div class="flex items-center justify-end gap-3">
                                                 <div class="text-right">
@@ -334,11 +327,11 @@ new class extends Component {
                             </tbody>
                             <tfoot>
                                 <tr class="bg-white border-t-2 border-zinc-100">
-                                    <td class="px-10 py-8 text-xs font-semibold text-indigo-600">{{ __('Aggregated Matrix Totals') }}</td>
-                                    <td class="px-10 py-8 text-right">
+                                    <td class="px-5 py-5 text-xs font-semibold text-indigo-600">{{ __('Total') }}</td>
+                                    <td class="px-5 py-5 text-right">
                                         <div class="text-[13px] font-semibold text-zinc-400">$ {{ number_format(collect($allocations)->sum('planned_amount'), 2) }}</div>
                                     </td>
-                                    <td class="px-10 py-8 text-right underline decoration-indigo-500/20 underline-offset-8">
+                                    <td class="px-5 py-5 text-right underline decoration-indigo-500/20 underline-offset-8">
                                         <div class="text-[15px] font-semibold text-zinc-900">$ {{ number_format(collect($allocations)->sum('allocated_amount'), 2) }}</div>
                                     </td>
                                     @php
@@ -346,7 +339,7 @@ new class extends Component {
                                         $finalTotalAlloc = collect($allocations)->sum('allocated_amount');
                                         $finalVar = $finalTotalAlloc - $finalTotalPlanned;
                                     @endphp
-                                    <td class="px-10 py-8 text-right">
+                                    <td class="px-5 py-5 text-right">
                                         <div class="inline-block px-5 py-2 rounded-xl {{ $finalVar < 0 ? 'bg-rose-50 text-rose-600' : 'bg-emerald-50 text-emerald-600' }} text-xs font-semibold ">
                                             {{ $finalVar < 0 ? '-' : '+' }} $ {{ number_format(abs($finalVar), 2) }}
                                         </div>

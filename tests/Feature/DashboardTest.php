@@ -144,7 +144,7 @@ class DashboardTest extends TestCase
         $html = $this->get(route('budget.allocation'))->assertOk()->getContent();
 
         $this->assertStringContainsString('$ 1,000', $html);
-        $this->assertStringContainsString('Spending is not tracked', $html);
+        $this->assertStringContainsString('is in Report execution and Performance', $html);
         $this->assertStringNotContainsString('OVER BUDGET', $html);
         $this->assertStringNotContainsString('spent of', $html);
     }
