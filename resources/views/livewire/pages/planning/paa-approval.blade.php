@@ -25,6 +25,17 @@ new class extends Component {
     {
     }
 
+    /** Who works here: those who decide on activities (a head, a named approver or certifier) and administrators. */
+    private function mayApprove($user): bool
+    {
+        return $user->isAdministrator() || $user->isDirector() || app(\App\Services\ApproverLists::class)->unitIdsOf($user) !== [];
+    }
+
+    public function mount(): void
+    {
+        abort_unless($this->mayApprove(auth()->user()), 403);
+    }
+
     public string $queue = 'review';  // review | approval | approved | returned | all
     public $unit = '';                // top-level unit filter ('' = all)
 
@@ -106,7 +117,7 @@ new class extends Component {
     {
         $workflow = app(\App\Services\ActivityWorkflow::class);
         $user = auth()->user();
-        abort_unless($user->can('approve_paa'), 403);
+        abort_unless($this->mayApprove($user), 403);
 
         $activities = $this->scope()->with('directorate:id,code')->withSum('lineItems as total', 'estimated_amount')
             ->whereIn('id', array_map('intval', $this->selected))->get();
@@ -129,7 +140,7 @@ new class extends Component {
 
     public function approveSelected(): void
     {
-        abort_unless(auth()->user()->can('approve_paa'), 403);
+        abort_unless($this->mayApprove(auth()->user()), 403);
 
         try {
             $this->result = app(\App\Services\ActivityWorkflow::class)->approveMany(auth()->user(), $this->selected, $this->note);
@@ -156,7 +167,7 @@ new class extends Component {
     /** One approval, written through the same rules (and trail) as everything else. */
     public function approve($id)
     {
-        abort_unless(auth()->user()->can('approve_paa'), 403);
+        abort_unless($this->mayApprove(auth()->user()), 403);
 
         app(\App\Services\ActivityWorkflow::class)->approve(auth()->user(), Activity::findOrFail($id));
 
@@ -166,7 +177,7 @@ new class extends Component {
     /** Return one activity to its unit; the reason is required and the unit will read it. */
     public function returnActivity(): void
     {
-        abort_unless(auth()->user()->can('approve_paa'), 403);
+        abort_unless($this->mayApprove(auth()->user()), 403);
 
         try {
             app(\App\Services\ActivityWorkflow::class)->sendBack(auth()->user(), Activity::findOrFail($this->returnId), $this->reason);
@@ -182,7 +193,7 @@ new class extends Component {
 
     public function review($id)
     {
-        abort_unless(auth()->user()->can('approve_paa'), 403);
+        abort_unless($this->mayApprove(auth()->user()), 403);
         $activity = Activity::findOrFail($id);
         abort_unless(in_array($activity->status, self::QUEUES['review'], true), 422);
 
@@ -227,7 +238,7 @@ new class extends Component {
             'approvedPlan' => $money(self::QUEUES['approved']),
             'locked' => $env && $env->status === FiscalEnvelope::STATUS_CLOSED,
             'rootUnits' => Directorate::whereNull('parent_id')->orderBy('code')->get(['id', 'code', 'name']),
-            'canApprove' => auth()->user()->can('approve_paa'),
+            'canApprove' => $this->mayApprove(auth()->user()),
             'queues' => [
                 'review' => __('To review'), 'approval' => __('Ready for approval'), 'approved' => __('Approved'),
                 'returned' => __('Returned / draft'), 'all' => __('All'),

@@ -11,7 +11,6 @@ new class extends Component {
     public $systemOwner;
     public string $institutionLevel = 'ministry';
     public string $reportRecipient = '';
-    public string $finalApprover = 'minister';
     public bool $parentValidation = true;
     public bool $budgetConfirmation = false;
     public $implementedBy;
@@ -32,7 +31,6 @@ new class extends Component {
         $this->institutionLevel    = \App\Support\Institution::level();
         $this->reportRecipient     = (string) SystemSetting::get('report_recipient', '');
         $rules                     = \App\Support\ApprovalRules::current();
-        $this->finalApprover       = $rules->finalApprover;
         $this->parentValidation    = $rules->parentValidation;
         $this->budgetConfirmation  = $rules->budgetConfirmation;
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
@@ -59,7 +57,6 @@ new class extends Component {
     public function updatedInstitutionLevel($level): void
     {
         $preset = \App\Support\ApprovalRules::preset($level);
-        $this->finalApprover    = $preset->finalApprover;
         $this->parentValidation = $preset->parentValidation;
         $this->budgetConfirmation = $preset->budgetConfirmation;
     }
@@ -71,7 +68,6 @@ new class extends Component {
             'systemOwner'           => 'nullable|string|max:255',
             'institutionLevel'      => 'required|in:ministry,subordinate',
             'reportRecipient'       => 'nullable|string|max:255',
-            'finalApprover'         => 'required|in:minister,head',
             'parentValidation'      => 'boolean',
             'budgetConfirmation'    => 'boolean',
             'implementedBy'         => 'nullable|string|max:255',
@@ -85,7 +81,7 @@ new class extends Component {
         SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
         SystemSetting::set('institution_level',    $this->institutionLevel,    'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
         SystemSetting::set('report_recipient',     trim($this->reportRecipient), 'string', 'Who receives the approved plan when the institution is not a ministry');
-        (new \App\Support\ApprovalRules($this->finalApprover, (bool) $this->parentValidation, (bool) $this->budgetConfirmation))->save($this->institutionLevel);
+        (new \App\Support\ApprovalRules((bool) $this->parentValidation, (bool) $this->budgetConfirmation))->save($this->institutionLevel);
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
         SystemSetting::set('enable_next_year_planning',      (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
@@ -264,14 +260,7 @@ new class extends Component {
                             <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Approval chain') }}
                         </p>
                         <div class="space-y-4">
-                            <div class="space-y-2">
-                                <x-input-label for="finalApprover" :value="__('Final approval by')" class="field-label" />
-                                <select id="finalApprover" wire:model="finalApprover" class="flux-input w-full max-w-md">
-                                    <option value="minister">{{ __('The Minister') }}</option>
-                                    <option value="head">{{ __('The head of the top-level unit (Director / Chefe do Gabinete)') }}</option>
-                                </select>
-                                <x-input-error :messages="$errors->get('finalApprover')" />
-                            </div>
+                            <p class="text-sm text-zinc-600">{{ __('The final approval is given by the head of the directorate (or the people named for it in the approval lists), for the plans of their own directorate.') }}</p>
                             <label class="flex items-center gap-3 text-sm text-zinc-700">
                                 <input type="checkbox" wire:model="parentValidation" class="rounded border-zinc-300 text-indigo-600">
                                 {{ __('The parent director validates sub-units first') }}

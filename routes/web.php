@@ -88,7 +88,7 @@ Route::get('monitoring/approval', function () {
 
 Route::get('planning/paa-approval', function () {
     return view('planning.paa-approval');
-})->middleware(['auth', 'verified', 'permission:approve_paa'])->name('planning.paa-approval');
+})->middleware(['auth', 'verified'])->name('planning.paa-approval'); // the page checks who may decide
 
 Route::get('planning/director-review', function () {
     return view('planning.director-review');

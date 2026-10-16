@@ -106,12 +106,13 @@ class ActivityWorkflow
                     ? Activity::STATUS_VALIDATED : null;
 
             case Activity::STATUS_VALIDATED:
-                $listed = ApprovalRules::current()->headApproves() ? $lists->designated($user, $activity->directorate_id, ApproverAssignment::APPROVE) : null;
+                // the final approval is the head of the directorate's (or whoever its list of approvers names)
+                $listed = $lists->designated($user, $activity->directorate_id, ApproverAssignment::APPROVE);
                 if (! ($admin || $listed === true || ($listed === null && $this->isHeadOf($user, $unit)))) {
                     return null;
                 }
 
-                return ApprovalRules::current()->headApproves() ? Activity::STATUS_APPROVED : Activity::STATUS_WAITING_APPROVAL;
+                return Activity::STATUS_APPROVED;
         }
 
         return null;
@@ -173,7 +174,7 @@ class ActivityWorkflow
             Activity::STATUS_REVIEWED => [__('PAA Pending Review'), __('Director :name has reviewed an activity of :dir. Pending your validation.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Director'], $activity->directorate->parent_id],
             Activity::STATUS_APPROVED => [__('PAA Activity Approved'), __('Activity ":desc" has been approved.', ['desc' => str($activity->description)->limit(30)]), ['Director', 'Planning'], $activity->directorate_id],
             Activity::STATUS_VALIDATED => [__('PAA Validated'), __('An activity of :dir was validated by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
-            default => [__('PAA Pending Final Approval'), __('The plan of :dir was sent to the Minister by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Minister'], null],
+            default => [__('PAA Validated'), __('An activity of :dir was validated by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
         };
         $this->notify($roles, $unitId, new SystemNotification($title, $message, route('activities.show', ['activity' => $activity->id], false)));
 
@@ -186,7 +187,7 @@ class ActivityWorkflow
             return false;
         }
 
-        return $user->can('approve_paa') || $this->headApproves($user, $activity) || $this->isListedApprover($user, $activity) || $this->canConfirmBudget($user, $activity) || $this->next($user, $activity) !== null;
+        return $user->isAdministrator() || $this->headApproves($user, $activity) || $this->isListedApprover($user, $activity) || $this->canConfirmBudget($user, $activity) || $this->next($user, $activity) !== null;
     }
 
     /** Return the activity to its unit. The reason is required: the unit must know what to correct. */
@@ -220,7 +221,7 @@ class ActivityWorkflow
     {
         $listed = app(ApproverLists::class)->designated($user, $activity->directorate_id, ApproverAssignment::APPROVE);
 
-        return $user->isAdministrator() || ($listed ?? ($user->can('approve_paa') || $this->headApproves($user, $activity)));
+        return $user->isAdministrator() || ($listed ?? $this->headApproves($user, $activity));
     }
 
     private function isListedApprover(User $user, Activity $activity): bool
@@ -334,7 +335,7 @@ class ActivityWorkflow
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => $named(ApproverAssignment::PREPARE),
             Activity::STATUS_SUBMITTED => $named(ApproverAssignment::CERTIFY),
             Activity::STATUS_REVIEWED => app(ApproverLists::class)->namesAbove($activity, ApproverAssignment::CERTIFY),
-            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => ($activity->status === Activity::STATUS_WAITING_APPROVAL || ApprovalRules::current()->headApproves()) ? $named(ApproverAssignment::APPROVE) : null,
+            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => $named(ApproverAssignment::APPROVE),
             default => null,
         };
         if ($who) {
@@ -345,8 +346,7 @@ class ActivityWorkflow
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => __('The unit to complete and submit it'),
             Activity::STATUS_SUBMITTED => __('The director of the unit to review it'),
             Activity::STATUS_REVIEWED => __('The director of the unit above to validate it'),
-            Activity::STATUS_VALIDATED => ApprovalRules::current()->headApproves() ? __('The head of the office to approve it') : __('The top director to send it up for approval'),
-            Activity::STATUS_WAITING_APPROVAL => __('The Minister to approve it'),
+            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => __('The head of the directorate to approve it'),
             default => null,
         };
     }
@@ -372,7 +372,7 @@ class ActivityWorkflow
      */
     private function headApproves(User $user, Activity $activity): bool
     {
-        return ApprovalRules::current()->headApproves() && $this->isHeadOf($user, $activity->directorate);
+        return $this->isHeadOf($user, $activity->directorate);
     }
 
     /** The director of a top-level unit, for that unit and everything below it. */

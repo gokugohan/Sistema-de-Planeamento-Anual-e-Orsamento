@@ -163,7 +163,7 @@ class ApprovalTrailTest extends TestCase
     public function test_what_is_awaited_depends_on_the_status_and_the_rules(): void
     {
         $a = $this->draft();
-        $this->assertStringContainsString('head of the office', $this->workflow->awaiting($this->setStatus($a, Activity::STATUS_VALIDATED)));
+        $this->assertStringContainsString('head of the directorate', $this->workflow->awaiting($this->setStatus($a, Activity::STATUS_VALIDATED)));
         $this->assertStringContainsString('director of the unit', $this->workflow->awaiting($this->setStatus($a, Activity::STATUS_SUBMITTED)));
         $this->assertNull($this->workflow->awaiting($this->setStatus($a, Activity::STATUS_APPROVED)));
     }

@@ -97,7 +97,7 @@ class ActivityPlanningTest extends TestCase
         $this->get(route('activities.edit', $approved))->assertForbidden();
     }
 
-    public function test_the_chain_runs_from_planner_to_minister(): void
+    public function test_the_chain_runs_from_planner_to_the_head_of_the_directorate(): void
     {
         $a = $this->activity($this->dn);
         $wf = app(ActivityWorkflow::class);
@@ -112,11 +112,10 @@ class ActivityPlanningTest extends TestCase
 
         $dgDirector = $this->as('Director', $this->dg);
         $this->assertSame(Activity::STATUS_VALIDATED, $wf->advance($dgDirector, $a->fresh()));
-        $this->assertSame(Activity::STATUS_WAITING_APPROVAL, $wf->advance($dgDirector, $a->fresh()));
+        $this->assertSame(Activity::STATUS_APPROVED, $wf->advance($dgDirector, $a->fresh()), 'the head of the directorate-general gives the final approval');
 
         $minister = $this->as('Minister');
-        $wf->approve($minister, $a->fresh());
-        $this->assertSame(Activity::STATUS_APPROVED, $a->fresh()->status);
+        $this->assertFalse($wf->canApprove($minister, $a->fresh()), 'the Minister does not approve plans');
     }
 
     public function test_an_incomplete_activity_cannot_be_submitted(): void

@@ -73,11 +73,9 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'name' => 'Minister',
                 'display_name' => 'Minister',
-                'description' => 'Ministry leader with approval authority',
+                'description' => 'Ministry leader: sees every plan and approves the fiscal envelope; plans are approved by the heads of the directorates',
                 'permissions' => [
-                    'approve_paa',
                     'approve_fiscal_envelope',
-                    'approve_progress_report',
                     'view_all_paa',
                     'view_paa',
                     'view_budget',

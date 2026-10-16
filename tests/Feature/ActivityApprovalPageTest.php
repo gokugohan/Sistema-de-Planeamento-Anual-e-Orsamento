@@ -85,6 +85,6 @@ class ActivityApprovalPageTest extends TestCase
         $a = $this->validated();
         $this->asHead();
 
-        Volt::test('pages.activities.show', ['activity' => $a])->assertSee('Waiting for')->assertSee('The head of the office to approve it');
+        Volt::test('pages.activities.show', ['activity' => $a])->assertSee('Waiting for')->assertSee('The head of the directorate to approve it');
     }
 }

@@ -60,38 +60,32 @@ class ApprovalChainEndToEndTest extends TestCase
         return $activity->fresh();
     }
 
-    public function test_the_whole_ministry_goes_up_to_the_minister_and_the_cro(): void
+    public function test_in_the_whole_ministry_each_directorate_head_approves_its_own_plan(): void
     {
         $this->seed(MtcSampleDataSeeder::class);
         $this->assertSame(Institution::MINISTRY, Institution::level());
-        $this->assertTrue(Institution::isMinistry());
-        $this->assertFalse(ApprovalRules::current()->headApproves());
 
         $activity = $this->draftIn('DNTT'); // a national directorate under the Direção-Geral dos Transportes
         $activity = $this->step($this->user('planner.dntt@goku.tl'), $activity, Activity::STATUS_SUBMITTED);
         $activity = $this->step($this->user('director.dntt@goku.tl'), $activity, Activity::STATUS_REVIEWED);
         $activity = $this->step($this->user('director.dgt@goku.tl'), $activity, Activity::STATUS_VALIDATED);
-        $activity = $this->step($this->user('director.dgt@goku.tl'), $activity, Activity::STATUS_WAITING_APPROVAL);
 
         $head = $this->user('director.dgt@goku.tl');
-        $minister = $this->user('ministro@goku.tl');
-        $this->assertFalse($this->workflow->canApprove($head, $activity), 'the top director does not approve in a ministry');
-        $this->assertTrue($this->workflow->canApprove($minister, $activity));
+        $this->assertTrue($this->workflow->canApprove($head, $activity), 'the head of the directorate-general approves');
+        $this->assertFalse($this->workflow->canApprove($this->user('ministro@goku.tl'), $activity), 'the Minister does not approve plans');
+        $this->assertFalse($this->workflow->canApprove($this->user('director.dgc@goku.tl'), $activity), 'nor does the head of another directorate-general');
+        $this->assertFalse($this->workflow->canApprove($this->user('director.dntt@goku.tl'), $activity), 'a national directorate below only validates');
 
-        $this->workflow->approve($minister, $activity);
+        $this->workflow->approve($head, $activity);
         $activity->refresh();
         $this->assertSame(Activity::STATUS_APPROVED, $activity->status);
-        $this->assertSame($minister->id, $activity->approved_by);
-
-        $this->assertStringContainsString('(CRO)', Institution::coverLine());
-        $this->assertSame('CRO decision', Institution::label('CRO decision'));
+        $this->assertSame($head->id, $activity->approved_by);
     }
 
-    public function test_a_single_office_is_approved_by_its_head_and_goes_to_the_ministry(): void
+    public function test_a_single_office_is_approved_by_its_head(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(); // the Gabinete de Digitalização e Segurança Cibernética
         $this->assertSame(Institution::SUBORDINATE, Institution::level());
-        $this->assertTrue(ApprovalRules::current()->headApproves());
         $this->assertNull(User::where('email', 'ministro@goku.tl')->first(), 'an office has no Minister');
 
         $activity = $this->draftIn('UDIG'); // the Unidade para o Digital, under the Gabinete
@@ -106,10 +100,6 @@ class ApprovalChainEndToEndTest extends TestCase
         $activity = $this->step($chefe, $activity, Activity::STATUS_APPROVED);
         $this->assertSame($chefe->id, $activity->approved_by);
         $this->assertNotNull($activity->approved_at);
-
-        $this->assertStringStartsWith('Submitted to:', Institution::coverLine());
-        $this->assertStringContainsString('DNOGF', Institution::coverLine());
-        $this->assertSame('Ministry decision', Institution::label('CRO decision'));
     }
 
     public function test_an_account_moves_an_activity_one_step_at_a_time(): void

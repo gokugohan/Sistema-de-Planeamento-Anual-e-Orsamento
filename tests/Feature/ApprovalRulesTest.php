@@ -8,13 +8,13 @@ use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Support\ApprovalRules;
-use App\Support\Institution;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
 use Tests\TestCase;
 
+/** The approval chain is the same everywhere: the head of the directorate approves; the institution chooses only the two options. */
 class ApprovalRulesTest extends TestCase
 {
     use RefreshDatabase;
@@ -32,50 +32,58 @@ class ApprovalRulesTest extends TestCase
         return $activity->fresh();
     }
 
-    public function test_each_level_starts_from_its_preset(): void
+    public function test_the_preset_is_the_same_for_everyone(): void
     {
-        $this->assertSame(ApprovalRules::MINISTER, ApprovalRules::preset(Institution::MINISTRY)->finalApprover);
-        $this->assertSame(ApprovalRules::HEAD, ApprovalRules::preset(Institution::SUBORDINATE)->finalApprover);
-        $this->assertTrue(ApprovalRules::preset(Institution::MINISTRY)->parentValidation);
-
-        SystemSetting::set('institution_level', Institution::SUBORDINATE, 'string');
-        $this->assertTrue(ApprovalRules::current()->headApproves(), 'with nothing stored the level decides');
+        $preset = ApprovalRules::preset();
+        $this->assertTrue($preset->parentValidation);
+        $this->assertFalse($preset->budgetConfirmation);
+        $this->assertTrue(ApprovalRules::current()->equals($preset), 'with nothing stored the preset decides');
     }
 
     public function test_a_stored_rule_overrides_the_preset_and_only_differences_are_stored(): void
     {
-        SystemSetting::set('institution_level', Institution::SUBORDINATE, 'string');
-
-        (new ApprovalRules(ApprovalRules::MINISTER, true))->save(Institution::SUBORDINATE);
-        $this->assertFalse(ApprovalRules::current()->headApproves());
+        (new ApprovalRules(false, true))->save();
+        $this->assertFalse(ApprovalRules::current()->parentValidation);
+        $this->assertTrue(ApprovalRules::current()->budgetConfirmation);
         $this->assertNotNull(SystemSetting::where('key', 'approval_rules')->first());
 
-        (new ApprovalRules(ApprovalRules::HEAD, true))->save(Institution::SUBORDINATE); // back to the preset
+        (new ApprovalRules(true, false))->save(); // back to the preset
         $this->assertNull(SystemSetting::where('key', 'approval_rules')->first());
-        $this->assertTrue(ApprovalRules::current()->headApproves());
+        $this->assertTrue(ApprovalRules::current()->parentValidation);
     }
 
-    public function test_an_office_can_choose_to_send_its_plan_to_a_minister(): void
+    public function test_the_head_of_the_directorate_approves_and_nobody_sends_it_up_to_a_minister(): void
     {
         $this->office();
-        (new ApprovalRules(ApprovalRules::MINISTER, true))->save(Institution::SUBORDINATE);
+        app()->setLocale('en');
         $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
         $activity = $this->activityAt('UDIG', Activity::STATUS_VALIDATED);
         $workflow = app(ActivityWorkflow::class);
 
-        $this->assertSame(Activity::STATUS_WAITING_APPROVAL, $workflow->next($head, $activity));
-        $this->assertFalse($workflow->canApprove($head, $activity));
+        $this->assertSame(Activity::STATUS_APPROVED, $workflow->next($head, $activity));
+        $this->assertTrue($workflow->canApprove($head, $activity));
+        $this->assertSame('The head of the directorate to approve it', $workflow->awaiting($activity));
     }
 
-    public function test_a_ministry_can_choose_head_approval(): void
+    public function test_a_unit_director_below_the_head_cannot_give_the_final_approval(): void
     {
         $this->office();
-        SystemSetting::set('institution_level', Institution::MINISTRY, 'string');
-        (new ApprovalRules(ApprovalRules::HEAD, true))->save(Institution::MINISTRY);
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $unitDirector = User::where('email', 'director.udig@goku.tl')->firstOrFail();
         $activity = $this->activityAt('UDIG', Activity::STATUS_VALIDATED);
 
-        $this->assertSame(Activity::STATUS_APPROVED, app(ActivityWorkflow::class)->next($head, $activity));
+        $this->assertNull(app(ActivityWorkflow::class)->next($unitDirector, $activity));
+        $this->assertFalse(app(ActivityWorkflow::class)->canApprove($unitDirector, $activity));
+    }
+
+    public function test_the_minister_sees_the_plans_but_does_not_approve_them(): void
+    {
+        $this->seed(RolesAndPermissionsSeeder::class);
+        $minister = User::factory()->create();
+        $minister->assignRole('Minister');
+
+        $this->assertTrue($minister->can('view_all_paa'));
+        $this->assertFalse($minister->can('approve_paa'));
+        $this->assertTrue($minister->can('approve_fiscal_envelope'), 'the budget envelope stays with the Minister');
     }
 
     public function test_the_parent_review_step_can_be_skipped(): void
@@ -87,29 +95,25 @@ class ApprovalRulesTest extends TestCase
         $activity = $this->activityAt('UDIG', Activity::STATUS_SUBMITTED);
         $this->assertSame(Activity::STATUS_REVIEWED, $workflow->next($unitDirector, $activity), 'by default the parent validates afterwards');
 
-        (new ApprovalRules(ApprovalRules::HEAD, false))->save(Institution::SUBORDINATE);
+        (new ApprovalRules(false))->save();
         $this->assertSame(Activity::STATUS_VALIDATED, $workflow->next($unitDirector, $activity));
     }
 
-    public function test_settings_apply_the_preset_when_the_level_changes_and_save_the_rules(): void
+    public function test_settings_save_the_two_options_and_show_no_choice_of_final_approver(): void
     {
         $this->seed(RolesAndPermissionsSeeder::class);
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
         $this->actingAs($admin);
 
+        app()->setLocale('en');
         Volt::test('pages.management.settings')
-            ->assertSet('finalApprover', 'minister')
-            ->set('institutionLevel', 'subordinate')
-            ->assertSet('finalApprover', 'head')
+            ->assertSee('The final approval is given by the head of the directorate')
             ->set('parentValidation', false)
             ->call('saveSettings')
             ->assertHasNoErrors();
 
-        $this->assertSame(Institution::SUBORDINATE, Institution::level());
-        $this->assertTrue(ApprovalRules::current()->headApproves());
         $this->assertFalse(ApprovalRules::current()->parentValidation);
-
         $this->assertTrue(
             AuditLog::where('action', 'systemsetting.created')->get()->contains(fn ($log) => ($log->new_values['key'] ?? null) === 'approval_rules'),
             'a change to the approval rules is in the audit trail'
@@ -118,8 +122,8 @@ class ApprovalRulesTest extends TestCase
 
     public function test_returning_to_the_preset_is_audited_too(): void
     {
-        (new ApprovalRules(ApprovalRules::MINISTER, false))->save(Institution::MINISTRY);
-        (new ApprovalRules(ApprovalRules::MINISTER, true))->save(Institution::MINISTRY);
+        (new ApprovalRules(false, false))->save();
+        (new ApprovalRules(true, false))->save();
 
         $this->assertTrue(AuditLog::where('action', 'systemsetting.deleted')->get()->contains(fn ($log) => ($log->old_values['key'] ?? null) === 'approval_rules'));
     }

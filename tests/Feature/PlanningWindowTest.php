@@ -76,7 +76,7 @@ class PlanningWindowTest extends TestCase
     public function test_the_final_approver_finalizes_the_plan_and_planning_ends(): void
     {
         $this->activity(Activity::STATUS_APPROVED);
-        $minister = $this->user('Minister');
+        $minister = $this->user('Director', $this->unit);
 
         $this->assertTrue($this->window->isOpen(self::YEAR));
         $this->window->finalize($minister, self::YEAR, 'All units decided.');
@@ -95,8 +95,9 @@ class PlanningWindowTest extends TestCase
         foreach (['Planning', 'Viewer'] as $role) {
             $this->assertFalse($this->window->canDecide($this->user($role, $this->unit)), $role);
         }
-        $this->assertTrue($this->window->canDecide($this->user('Minister')));
-        $this->assertTrue($this->window->canDecide($this->user('Admin')));
+        $this->assertTrue($this->window->canDecide($this->user('Director', $this->unit), self::YEAR));
+        $this->assertTrue($this->window->canDecide($this->user('Admin'), self::YEAR));
+        $this->assertFalse($this->window->canDecide($this->user('Minister')), 'the Minister sees the plans but does not end planning');
 
         $planner = $this->user('Planning', $this->unit);
         try {
@@ -110,7 +111,7 @@ class PlanningWindowTest extends TestCase
 
     public function test_it_cannot_be_finalized_while_something_waits_for_a_decision_or_with_nothing_approved(): void
     {
-        $minister = $this->user('Minister');
+        $minister = $this->user('Director', $this->unit);
 
         try {
             $this->window->finalize($minister, self::YEAR);
@@ -133,7 +134,7 @@ class PlanningWindowTest extends TestCase
     public function test_reopening_needs_a_remark_the_right_person_and_is_recorded(): void
     {
         $this->activity(Activity::STATUS_APPROVED);
-        $minister = $this->user('Minister');
+        $minister = $this->user('Director', $this->unit);
         $this->window->finalize($minister, self::YEAR);
 
         try {
@@ -159,7 +160,7 @@ class PlanningWindowTest extends TestCase
     public function test_once_the_envelope_is_received_planning_cannot_be_reopened_and_only_distribution_remains(): void
     {
         $approved = $this->activity(Activity::STATUS_APPROVED);
-        $minister = $this->user('Minister');
+        $minister = $this->user('Director', $this->unit);
         $this->window->finalize($minister, self::YEAR);
         $this->assertTrue(app(ActivityWorkflow::class)->canReopen($minister, $approved->fresh()), 'before the envelope an approved activity can still be reopened');
 
@@ -179,13 +180,13 @@ class PlanningWindowTest extends TestCase
 
         $this->assertSame('Approved', $this->window->endedBy(self::YEAR));
         $this->expectException(DomainException::class);
-        $this->window->finalize($this->user('Minister'), self::YEAR);
+        $this->window->finalize($this->user('Director', $this->unit), self::YEAR);
     }
 
     public function test_the_planning_card_finalizes_and_reopens_for_the_final_approver(): void
     {
         $this->activity(Activity::STATUS_APPROVED);
-        $this->actingAs($this->user('Minister'));
+        $this->actingAs($this->user('Director', $this->unit));
 
         Volt::test('pages.planning.planning-window', ['year' => self::YEAR])
             ->assertSee('Planning for '.self::YEAR.' is open')->assertSee('Finalize plan')
@@ -200,7 +201,7 @@ class PlanningWindowTest extends TestCase
     public function test_a_planner_sees_the_state_but_no_buttons(): void
     {
         $this->activity(Activity::STATUS_APPROVED);
-        $this->window->finalize($this->user('Minister'), self::YEAR);
+        $this->window->finalize($this->user('Director', $this->unit), self::YEAR);
         $this->actingAs($this->user('Planning', $this->unit));
 
         Volt::test('pages.planning.planning-window', ['year' => self::YEAR])
@@ -215,10 +216,24 @@ class PlanningWindowTest extends TestCase
         // everything of 2027 decided, so the plan can be finalized
         DB::table('activities')->where('fiscal_year', 2027)->update(['status' => Activity::STATUS_APPROVED]);
 
-        $this->assertTrue($this->window->canDecide($head));
-        $this->assertFalse($this->window->canDecide($unitDirector), 'the director of a unit does not give the final approval');
+        $this->assertTrue($this->window->canDecide($head, 2027));
+        $this->assertFalse($this->window->canDecide($unitDirector, 2027), 'the director of a unit does not give the final approval');
 
         $this->window->finalize($head, 2027, 'Plan of the office is final.');
         $this->assertSame('Finalized', $this->window->endedBy(2027));
+    }
+
+    public function test_where_several_directorates_plan_one_head_cannot_end_the_year_for_all(): void
+    {
+        $this->activity(Activity::STATUS_APPROVED);
+        $other = Directorate::create(['name' => 'Other', 'code' => 'OTH', 'type' => 'General Directorate', 'active' => true]);
+        Activity::create([
+            'fiscal_year' => self::YEAR, 'program_id' => $this->program->id, 'directorate_id' => $other->id, 'description' => 'Elsewhere', 'priority' => 'Alta',
+            'planned_start' => self::YEAR.'-02-01', 'planned_end' => self::YEAR.'-06-30', 'quarter' => 1, 'status' => Activity::STATUS_APPROVED, 'is_test_data' => false,
+        ]);
+        $head = $this->user('Director', $this->unit);
+
+        $this->assertFalse($this->window->canDecide($head, self::YEAR), 'the plan of another directorate is not theirs to freeze');
+        $this->assertTrue($this->window->canDecide($this->user('Admin'), self::YEAR));
     }
 }

@@ -46,7 +46,7 @@ class BudgetConfirmationTest extends TestCase
 
     private function switchOn(): void
     {
-        (new ApprovalRules(ApprovalRules::MINISTER, true, true))->save(Institution::level());
+        (new ApprovalRules(true, true))->save();
         \App\Models\SystemSetting::flushCache();
     }
 

@@ -20,6 +20,8 @@ new class extends Component {
     public $bAmount  = '';
     public $bSourceId = '';
     public $bIndicatorId = '';
+    public $moveUnitId = '';
+    public $moveRemark = '';
 
     // Workflow dialogs: the note an approver or reopener may leave, and the reason a return must give
     public string $note   = '';
@@ -49,6 +51,16 @@ new class extends Component {
             // once approved, how the activity is doing: verified spending, indicators, the latest words
             'execution'               => $this->activity->status === Activity::STATUS_APPROVED ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
         ];
+    }
+
+    /** Every request starts from the stored id: bring back what the page reads, so typing into a field never lazy-loads. */
+    public function hydrate(): void
+    {
+        $this->activity->loadMissing([
+            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators.actions',
+            'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
+            'approvedBy', 'reviewedBy',
+        ]);
     }
 
     public function mount(Activity $activity): void
@@ -175,6 +187,25 @@ new class extends Component {
         $this->reset('reason');
         $this->refresh();
         $this->dispatch('toast', message: __('Activity returned to department for correction.'), type: 'success');
+    }
+
+    /** After a restructuring: an administrator moves the activity (with its budget and indicators) to another unit, saying why. */
+    public function moveToUnit(): void
+    {
+        abort_unless(auth()->user()->isAdministrator(), 403);
+        $this->validate(['moveUnitId' => 'required|integer|exists:directorates,id', 'moveRemark' => 'required|string|min:3|max:500']);
+        $to = \App\Models\Directorate::findOrFail((int) $this->moveUnitId);
+        if ($to->id === $this->activity->directorate_id) {
+            $this->addError('moveUnitId', __('The activity is already in that unit.'));
+
+            return;
+        }
+        $from = $this->activity->directorate?->code;
+        $this->activity->auditMetadata = ['by' => auth()->id(), 'moved' => true, 'from' => $from, 'to' => $to->code, 'remark' => trim($this->moveRemark)];
+        $this->activity->update(['directorate_id' => $to->id]);
+        $this->reset('moveUnitId', 'moveRemark');
+        $this->refresh();
+        $this->dispatch('toast', message: __('Activity moved to :unit.', ['unit' => $to->name]), type: 'success');
     }
 
     public function reopen(): void
@@ -757,6 +788,23 @@ new class extends Component {
                     </p>
                 @endif
             </div>
+
+            @if(auth()->user()->isAdministrator() && ! $activity->isLocked())
+                <details class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-5 text-sm">
+                    <summary class="cursor-pointer text-xs font-bold text-zinc-500">{{ __('Move to another unit') }}</summary>
+                    <p class="mt-2 text-xs text-zinc-500">{{ __('For a restructuring. The budget and indicators go with it; whoever approves for the new unit takes over from here. It is recorded with your remark.') }}</p>
+                    <div class="mt-3 space-y-2">
+                        <select wire:model="moveUnitId" class="flux-input w-full text-sm" aria-label="{{ __('Unit') }}">
+                            <option value="">{{ __('Select...') }}</option>
+                            @foreach(\App\Models\Directorate::orderBy('code')->get(['id', 'code', 'name']) as $u)<option value="{{ $u->id }}">{{ $u->code }} — {{ \Illuminate\Support\Str::limit($u->name, 34) }}</option>@endforeach
+                        </select>
+                        @error('moveUnitId')<p class="text-xs text-rose-600">{{ $message }}</p>@enderror
+                        <textarea wire:model="moveRemark" rows="2" class="flux-input w-full text-sm" placeholder="{{ __('Why it is moved') }}" aria-label="{{ __('Why it is moved') }}"></textarea>
+                        @error('moveRemark')<p class="text-xs text-rose-600">{{ $message }}</p>@enderror
+                        <x-ui.button type="button" variant="secondary" size="sm" wire:click="moveToUnit" wire:confirm="{{ __('Move this activity to the chosen unit?') }}">{{ __('Move') }}</x-ui.button>
+                    </div>
+                </details>
+            @endif
 
             {{-- Governance Actions --}}
             <div class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-5">

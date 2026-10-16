@@ -124,6 +124,17 @@ class User extends Authenticatable
     public function forgetSeats(): void
     {
         $this->seatCache = null;
+        $this->interimCache = null;
+    }
+
+    /** @var array<int, int>|null */
+    private ?array $interimCache = null;
+
+    /** The unit ids (and the units below them) this user stands in for today, by an interim appointment only. @return array<int, int> */
+    public function interimUnitIds(): array
+    {
+        return $this->interimCache ??= ApprovalDelegation::active()->where('user_id', $this->id)->pluck('directorate_id')
+            ->flatMap(fn ($id) => Directorate::find($id)?->getSelfAndDescendantIds() ?? [])->unique()->values()->all();
     }
 
     /**

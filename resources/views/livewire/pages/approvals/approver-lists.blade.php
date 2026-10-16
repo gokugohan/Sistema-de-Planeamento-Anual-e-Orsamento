@@ -64,7 +64,33 @@ new class extends Component {
     {
         $a = ApproverAssignment::findOrFail($id);
         abort_unless($this->mayEdit($a->directorate_id), 403);
+        $key = ['directorate_id' => $a->directorate_id, 'step' => $a->step];
         $a->delete();
+        if (! ApproverAssignment::where($key)->exists()) {
+            $this->dispatch('toast', message: __('That list is now empty: the default rule applies again.'), type: 'info');
+        }
+    }
+
+    public string $replaceOld = '';
+    public string $replaceNew = '';
+
+    /** A reshuffle: one person takes over from another in every list of the units this user keeps. */
+    public function replaceEverywhere(): void
+    {
+        abort_unless($this->allowed(), 403);
+        $this->validate(['replaceOld' => 'required|integer|exists:users,id', 'replaceNew' => 'required|integer|exists:users,id|different:replaceOld']);
+        $ids = $this->units()->pluck('id');
+        $n = 0;
+        foreach (ApproverAssignment::whereIn('directorate_id', $ids)->where('user_id', (int) $this->replaceOld)->get() as $row) {
+            if (ApproverAssignment::where(['directorate_id' => $row->directorate_id, 'step' => $row->step, 'user_id' => (int) $this->replaceNew])->exists()) {
+                $row->delete(); // already named there: the old one simply leaves
+            } else {
+                $row->update(['user_id' => (int) $this->replaceNew]);
+            }
+            $n++;
+        }
+        $this->reset('replaceOld', 'replaceNew');
+        $this->dispatch('toast', message: $n ? trans_choice('Replaced in :n list.|Replaced in :n lists.', $n, ['n' => $n]) : __('That person is not named in any of your lists.'), type: $n ? 'success' : 'info');
     }
 
     /** Move a person up or down within the list: the order is the order they are named. */
@@ -90,7 +116,12 @@ new class extends Component {
         $unit = $this->unitId ? $this->units()->firstWhere('id', (int) $this->unitId) : null;
         $lists = $unit ? ApproverAssignment::with('user:id,name')->where('directorate_id', $unit->id)->orderBy('position')->orderBy('id')->get()->groupBy('step') : collect();
 
-        return ['units' => $this->units(), 'unit' => $unit, 'lists' => $lists, 'people' => $unit ? User::orderBy('name')->limit(500)->get(['id', 'name']) : collect()];
+        $named = ApproverAssignment::whereIn('directorate_id', $this->units()->pluck('id'))->distinct()->pluck('user_id');
+
+        return [
+            'units' => $this->units(), 'unit' => $unit, 'lists' => $lists, 'people' => User::orderBy('name')->limit(500)->get(['id', 'name']),
+            'named' => User::whereIn('id', $named)->orderBy('name')->get(['id', 'name']),
+        ];
     }
 }; ?>
 
@@ -144,6 +175,25 @@ new class extends Component {
                 </x-ui.card>
             @endforeach
         </div>
+        @if($named->isNotEmpty())
+            <x-ui.card :title="__('Replace someone in every list')" :description="__('After a reshuffle: one person takes over from another in all the lists of the units you keep.')" padding="p-5">
+                <div class="grid gap-4 md:grid-cols-12">
+                    <div class="md:col-span-5">
+                        <label for="al-ro" class="field-label">{{ __('Leaves') }}</label>
+                        <select id="al-ro" wire:model="replaceOld" class="flux-input"><option value="">{{ __('Select...') }}</option>@foreach($named as $p)<option value="{{ $p->id }}">{{ $p->name }}</option>@endforeach</select>
+                        @error('replaceOld')<p class="field-error">{{ $message }}</p>@enderror
+                    </div>
+                    <div class="md:col-span-5">
+                        <label for="al-rn" class="field-label">{{ __('Takes over') }}</label>
+                        <select id="al-rn" wire:model="replaceNew" class="flux-input"><option value="">{{ __('Select...') }}</option>@foreach($people as $p)<option value="{{ $p->id }}">{{ $p->name }}</option>@endforeach</select>
+                        @error('replaceNew')<p class="field-error">{{ $message }}</p>@enderror
+                    </div>
+                    <div class="flex items-end md:col-span-2">
+                        <x-ui.button type="button" wire:click="replaceEverywhere" wire:confirm="{{ __('Replace this person in every list of your units?') }}">{{ __('Replace') }}</x-ui.button>
+                    </div>
+                </div>
+            </x-ui.card>
+        @endif
         <p class="text-xs text-zinc-500">{{ __('A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act; the order is the order they are named in. Administrators are never locked out.') }}</p>
     @endif
 </div>

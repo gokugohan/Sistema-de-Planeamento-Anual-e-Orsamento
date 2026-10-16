@@ -12,7 +12,7 @@
     ];
     $tones = ['amber' => 'bg-amber-50 text-amber-800', 'indigo' => 'bg-indigo-50 text-indigo-800', 'rose' => 'bg-rose-50 text-rose-800', 'emerald' => 'bg-emerald-50 text-emerald-800'];
     $places = array_values(array_filter([
-        $user->can('approve_paa') ? ['PAA Tech Review', route('planning.paa-approval'), __('Review and approve submitted activities, in bulk')] : null,
+        ($user->isAdministrator() || $user->isDirector() || app(\App\Services\ApproverLists::class)->unitIdsOf($user) !== []) ? ['PAA Tech Review', route('planning.paa-approval'), __('Review and approve submitted activities, in bulk')] : null,
         $user->can('approve_progress_report') ? ['Verify Progress', route('monitoring.approval'), __('Verify quarterly indicator progress')] : null,
         $user->can('view_monitoring') ? ['Report execution', route('monitoring.report'), __('Report and verify what an activity spent and achieved in a quarter')] : null,
         ['Allocation Review', route('planning.director-review'), __('Review how the envelope was allocated')],

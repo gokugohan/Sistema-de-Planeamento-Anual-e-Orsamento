@@ -12,8 +12,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * A ministry sends its plan to the CRO and the Minister approves. A directorate or gabinete inside a
- * ministry sends its plan to the ministry (or its budget team) and its own head approves.
+ * The level of the institution (a ministry, or a directorate or gabinete inside one) changes wording and the
+ * budget law needed for an envelope; the head of the directorate approves in both.
  */
 class InstitutionLevelTest extends TestCase
 {
@@ -64,15 +64,15 @@ class InstitutionLevelTest extends TestCase
         $this->assertStringContainsString("Ministry's budget preparation team", Institution::coverLine());
     }
 
-    public function test_in_a_ministry_the_top_director_sends_up_and_cannot_approve(): void
+    public function test_in_a_ministry_the_head_of_the_directorate_approves_too(): void
     {
         $activity = $this->validatedActivity();
         SystemSetting::set('institution_level', Institution::MINISTRY, 'string');
         $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
         $workflow = app(ActivityWorkflow::class);
 
-        $this->assertSame(Activity::STATUS_WAITING_APPROVAL, $workflow->next($head, $activity));
-        $this->assertFalse($workflow->canApprove($head, $activity));
+        $this->assertSame(Activity::STATUS_APPROVED, $workflow->next($head, $activity), 'the level does not change who approves');
+        $this->assertTrue($workflow->canApprove($head, $activity));
     }
 
     public function test_in_an_office_the_head_gives_the_final_approval(): void

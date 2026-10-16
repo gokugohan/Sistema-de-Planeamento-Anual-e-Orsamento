@@ -35,7 +35,7 @@ class ApprovalInbox
             }
         };
 
-        $approver = $user->hasAnyRole(['Admin', 'Minister']);
+        $approver = $user->isAdministrator();
         $seesAll = $approver || $user->can('view_all_paa');
         $scope = null; // null = every unit
         if (! $seesAll) {
@@ -93,7 +93,7 @@ class ApprovalInbox
 
         // ── the plan: ready to be finalized by whoever gives the final approval
         $window = app(PlanningWindow::class);
-        if ($window->canDecide($user) && $window->isOpen($year)) {
+        if ($window->canDecide($user, $year) && $window->isOpen($year)) {
             $pending = $window->pending($year);
             $approved = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->count();
             if ($pending === 0 && $approved > 0) {

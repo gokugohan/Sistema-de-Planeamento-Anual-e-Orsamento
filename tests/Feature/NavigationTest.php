@@ -151,7 +151,7 @@ class NavigationTest extends TestCase
         $program = Program::create(['oge_code' => '900', 'name' => 'P']);
         Activity::create(['fiscal_year' => 2027, 'program_id' => $program->id, 'directorate_id' => $unit->id, 'description' => 'Waiting',
             'quarter' => 1, 'priority' => 'Alta', 'planned_start' => '2027-01-01', 'planned_end' => '2027-03-31', 'status' => Activity::STATUS_SUBMITTED]);
-        $this->as('Minister');
+        $this->as('Admin');
 
         $this->get(route('dashboard'))->assertSee('1 activity waiting for technical review');
     }

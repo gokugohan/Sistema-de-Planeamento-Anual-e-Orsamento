@@ -6,7 +6,6 @@ use App\Models\Activity;
 use App\Models\BudgetCycle;
 use App\Models\FiscalEnvelope;
 use App\Models\User;
-use App\Support\ApprovalRules;
 use Carbon\CarbonInterface;
 use DomainException;
 
@@ -85,14 +84,27 @@ class PlanningWindow
         return $this->endedBy($year) === null;
     }
 
-    /** Who can finalize or reopen: an administrator, or whoever gives the final approval at this institution's level. */
-    public function canDecide(User $user): bool
+    /**
+     * Who can finalize or reopen the plan of a year: an administrator, or the head of a top-level unit. With a year
+     * given, a head can do it only when every activity of that year is in their own directorate (the only directorate
+     * there is); where several directorates plan, ending the year is an administrator's, not one directorate's.
+     * Without a year (for the units a head already stands for) the head of any top-level unit counts.
+     */
+    public function canDecide(User $user, ?int $year = null): bool
     {
-        if ($user->isAdministrator() || $user->can('approve_paa')) {
+        if ($user->isAdministrator()) {
             return true;
         }
+        $seats = $user->seats()->filter(fn ($d) => ! $d->parent_id);
+        if ($seats->isEmpty()) {
+            return false;
+        }
+        if ($year === null) {
+            return true;
+        }
+        $own = $seats->flatMap(fn ($d) => $d->getSelfAndDescendantIds())->unique()->values()->all();
 
-        return ApprovalRules::current()->headApproves() && $user->seats()->contains(fn ($d) => ! $d->parent_id);
+        return ! Activity::where('fiscal_year', $year)->whereNotIn('directorate_id', $own)->exists();
     }
 
     public function pending(int $year): int
@@ -117,7 +129,7 @@ class PlanningWindow
     /** The final approval of the plan: planning for the year ends. */
     public function finalize(User $user, int $year, ?string $remark = null): void
     {
-        abort_unless($this->canDecide($user), 403);
+        abort_unless($this->canDecide($user, $year), 403);
 
         if ($this->envelopeReceived($year)) {
             throw new DomainException(__('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]));
@@ -141,7 +153,7 @@ class PlanningWindow
     /** Open planning again, for the final approver or an administrator, with a remark. */
     public function reopen(User $user, int $year, string $remark): void
     {
-        abort_unless($this->canDecide($user), 403);
+        abort_unless($this->canDecide($user, $year), 403);
 
         if ($this->envelopeReceived($year)) {
             throw new DomainException(__('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]));

@@ -34,11 +34,14 @@ class ReviewPagesTest extends TestCase
         return $u;
     }
 
-    public function test_units_can_open_their_allocation_review_but_not_the_technical_review(): void
+    public function test_directors_open_both_reviews_and_planners_only_the_allocation_review(): void
     {
         $unit = $this->unit();
         $this->as('Director', $unit->id);
+        $this->get(route('planning.director-review'))->assertOk();
+        $this->get(route('planning.paa-approval'))->assertOk();
 
+        $this->as('Planning', $unit->id);
         $this->get(route('planning.director-review'))->assertOk();
         $this->get(route('planning.paa-approval'))->assertForbidden();
     }

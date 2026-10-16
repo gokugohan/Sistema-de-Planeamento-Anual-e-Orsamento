@@ -48,14 +48,28 @@ class ApproverLists
     {
         $list = $this->listFor($unitId, $step);
 
-        return $list === null ? null : $list['people']->contains('user_id', $user->id);
+        return $list === null ? null : $this->onList($user, $list, $unitId, $step);
     }
 
     public function designatedAbove(User $user, ?int $unitId, string $step): ?bool
     {
         $list = $this->listAbove($unitId, $step);
+        $parent = $unitId ? Directorate::whereKey($unitId)->value('parent_id') : null;
 
-        return $list === null ? null : $list['people']->contains('user_id', $user->id);
+        return $list === null ? null : $this->onList($user, $list, $parent, $step);
+    }
+
+    /**
+     * On the list, or standing in (an interim appointment) for the head of that unit, which counts for the steps
+     * the head decides (certify and approve) but not for preparing: so the work does not stop while the head is away.
+     */
+    private function onList(User $user, array $list, ?int $unitId, string $step): bool
+    {
+        if ($list['people']->contains('user_id', $user->id)) {
+            return true;
+        }
+
+        return $step !== ApproverAssignment::PREPARE && $unitId !== null && in_array($unitId, $user->interimUnitIds(), true);
     }
 
     /** The unit ids (with the units below them) of every list the user is on: what they may see and act on. @return array<int, int> */
