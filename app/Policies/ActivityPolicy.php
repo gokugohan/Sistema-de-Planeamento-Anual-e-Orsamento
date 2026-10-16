@@ -30,11 +30,12 @@ class ActivityPolicy
         if ($user->seats()->isNotEmpty() && in_array($unitId, $user->directedUnitIds(), true)) {
             return true;
         }
-        if (! $user->directorate_id) {
-            return false;
+        if ($user->directorate_id && in_array($unitId, Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? [], true)) {
+            return true;
         }
 
-        return in_array($unitId, Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? [], true);
+        // named in the approval list of a unit: its activities, and those of the units below it, are theirs to see
+        return in_array($unitId, app(\App\Services\ApproverLists::class)->unitIdsOf($user), true);
     }
 
     public function viewAny(User $user): bool

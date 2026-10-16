@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ApproverAssignment;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\User;
@@ -62,26 +63,43 @@ class ActivityWorkflow
         $admin = $user->isAdministrator();
         $unit = $activity->directorate;
         $mine = $user->directorate;
+        $lists = app(ApproverLists::class);
 
         switch ($activity->status) {
             case Activity::STATUS_DRAFT:
             case Activity::STATUS_REJECTED:
-                return $user->can('submit_paa') ? Activity::STATUS_SUBMITTED : null;
+                // a list of preparers decides who submits; without one, whoever may submit
+                return match ($lists->designated($user, $activity->directorate_id, ApproverAssignment::PREPARE)) {
+                    true => Activity::STATUS_SUBMITTED,
+                    false => $admin && $user->can('submit_paa') ? Activity::STATUS_SUBMITTED : null,
+                    null => $user->can('submit_paa') ? Activity::STATUS_SUBMITTED : null,
+                };
 
             case Activity::STATUS_SUBMITTED:
-                if (! $this->directsUnit($user, $unit)) {
+                $listed = $lists->designated($user, $activity->directorate_id, ApproverAssignment::CERTIFY);
+                if ($listed === false && ! $admin) {
                     return null;
                 }
-                $parent = $admin ? $unit?->parent : $user->seatFor($unit)?->parent;
+                if ($listed !== true && ! $this->directsUnit($user, $unit)) {
+                    return null;
+                }
+                $parent = ($admin || $listed) ? $unit?->parent : $user->seatFor($unit)?->parent;
 
                 return ($parent && ApprovalRules::current()->parentValidation) ? Activity::STATUS_REVIEWED : Activity::STATUS_VALIDATED;
 
             case Activity::STATUS_REVIEWED:
+                // the unit above validates: its own list of certifiers if it has one, otherwise its director
+                $above = $lists->designatedAbove($user, $activity->directorate_id, ApproverAssignment::CERTIFY);
+                if ($above !== null) {
+                    return ($admin || $above) ? Activity::STATUS_VALIDATED : null;
+                }
+
                 return ($admin || ($user->isDirector() && ($seat = $user->seatFor($unit)) && $seat->id !== $unit?->id))
                     ? Activity::STATUS_VALIDATED : null;
 
             case Activity::STATUS_VALIDATED:
-                if (! ($admin || $this->isHeadOf($user, $unit))) {
+                $listed = ApprovalRules::current()->headApproves() ? $lists->designated($user, $activity->directorate_id, ApproverAssignment::APPROVE) : null;
+                if (! ($admin || $listed === true || ($listed === null && $this->isHeadOf($user, $unit)))) {
                     return null;
                 }
 
@@ -132,7 +150,7 @@ class ActivityWorkflow
             return false;
         }
 
-        return $user->can('approve_paa') || $this->headApproves($user, $activity) || $this->next($user, $activity) !== null;
+        return $user->can('approve_paa') || $this->headApproves($user, $activity) || $this->isListedApprover($user, $activity) || $this->next($user, $activity) !== null;
     }
 
     /** Return the activity to its unit. The reason is required: the unit must know what to correct. */
@@ -158,7 +176,20 @@ class ActivityWorkflow
     {
         return in_array($activity->status, [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
             && ! $activity->isLocked()
-            && ($user->can('approve_paa') || $this->headApproves($user, $activity));
+            && $this->mayGiveFinalApproval($user, $activity);
+    }
+
+    /** The final approval: a list of approvers for the unit decides if there is one (administrators always may), otherwise the rules. */
+    private function mayGiveFinalApproval(User $user, Activity $activity): bool
+    {
+        $listed = app(ApproverLists::class)->designated($user, $activity->directorate_id, ApproverAssignment::APPROVE);
+
+        return $user->isAdministrator() || ($listed ?? ($user->can('approve_paa') || $this->headApproves($user, $activity)));
+    }
+
+    private function isListedApprover(User $user, Activity $activity): bool
+    {
+        return app(ApproverLists::class)->designated($user, $activity->directorate_id, ApproverAssignment::APPROVE) === true;
     }
 
     public function approve(User $user, Activity $activity, ?string $note = null): void
@@ -259,6 +290,18 @@ class ActivityWorkflow
     /** Who has to act next on this activity, in words (null once it is approved). */
     public function awaiting(Activity $activity): ?string
     {
+        $named = fn (string $step) => app(ApproverLists::class)->names($activity, $step);
+        $who = match ($activity->status) {
+            Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => $named(ApproverAssignment::PREPARE),
+            Activity::STATUS_SUBMITTED => $named(ApproverAssignment::CERTIFY),
+            Activity::STATUS_REVIEWED => app(ApproverLists::class)->namesAbove($activity, ApproverAssignment::CERTIFY),
+            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => ($activity->status === Activity::STATUS_WAITING_APPROVAL || ApprovalRules::current()->headApproves()) ? $named(ApproverAssignment::APPROVE) : null,
+            default => null,
+        };
+        if ($who) {
+            return __('Named in the approval list: :names', ['names' => $who]);
+        }
+
         return match ($activity->status) {
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => __('The unit to complete and submit it'),
             Activity::STATUS_SUBMITTED => __('The director of the unit to review it'),
@@ -273,7 +316,7 @@ class ActivityWorkflow
     {
         return $activity->status === Activity::STATUS_APPROVED && ! $activity->isLocked()
             && ! app(PlanningWindow::class)->envelopeReceived((int) $activity->fiscal_year) // after the envelope only its distribution changes
-            && ($user->can('approve_paa') || $this->headApproves($user, $activity));
+            && $this->mayGiveFinalApproval($user, $activity);
     }
 
     public function reopen(User $user, Activity $activity, ?string $note = null): void

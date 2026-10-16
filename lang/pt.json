@@ -1868,5 +1868,21 @@
     "Compiled text saved.": "Texto compilado guardado.",
     "No approved activities to compile": "Sem atividades aprovadas para compilar",
     "Approved activities of the units you direct appear here.": "As atividades aprovadas das unidades que dirige aparecem aqui.",
-    ":n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q": "{1} :n atividade aprovada sem texto compilado para T:q|[2,*] :n atividades aprovadas sem texto compilado para T:q"
+    ":n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q": "{1} :n atividade aprovada sem texto compilado para T:q|[2,*] :n atividades aprovadas sem texto compilado para T:q",
+    "Approval lists": "Listas de aprovação",
+    "Name who prepares, certifies and approves the activities of a unit": "Indicar quem prepara, certifica e aprova as atividades de uma unidade",
+    "Name the people who prepare, certify and approve the activities of a unit. A step with no list keeps the default rule: the director of the unit acts.": "Indique as pessoas que preparam, certificam e aprovam as atividades de uma unidade. Um passo sem lista mantém a regra por defeito: o diretor da unidade age.",
+    "Prepare": "Preparar",
+    "Prepare the activity and submit it. Without a list, anyone who may submit does.": "Preparar a atividade e submetê-la. Sem lista, quem pode submeter fá-lo.",
+    "Certify": "Certificar",
+    "Review it and validate it. Without a list, the director of the unit, then of the unit above, does.": "Rever e validar. Sem lista, fá-lo o diretor da unidade e depois o da unidade acima.",
+    "Give the final approval. Without a list, the Minister or the head of the office does, as the institution's rules say.": "Dar a aprovação final. Sem lista, fá-lo o Ministro ou o chefe do gabinete, conforme as regras da instituição.",
+    "No list: the default rule applies.": "Sem lista: aplica-se a regra por defeito.",
+    "Move up": "Subir",
+    "Move down": "Descer",
+    "Remove this person from the list?": "Remover esta pessoa da lista?",
+    "Add a person": "Adicionar uma pessoa",
+    "A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act; the order is the order they are named in. Administrators are never locked out.": "Uma lista de uma unidade aplica-se também às unidades abaixo que não têm lista própria. Qualquer pessoa da lista pode agir; a ordem é a ordem de nomeação. Os administradores nunca ficam bloqueados.",
+    "Named in the approval list: :names": "Indicado na lista de aprovação: :names",
+    ":n activity waiting for your decision|:n activities waiting for your decision": "{1} :n atividade aguarda a sua decisão|[2,*] :n atividades aguardam a sua decisão"
 }

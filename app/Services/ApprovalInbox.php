@@ -54,6 +54,19 @@ class ApprovalInbox
             $add('decide', $own, trans_choice(':n activity in your units waiting for a decision|:n activities in your units waiting for a decision', $own, ['n' => $own]), route('activities.index', ['tab' => 'review']), 'amber');
         }
 
+        // ── named in an approval list: what is waiting at the step they were named for
+        if (! $approver && ! $user->isDirector()) {
+            $unitIds = app(ApproverLists::class)->unitIdsOf($user);
+            if ($unitIds) {
+                $workflow = app(ActivityWorkflow::class);
+                $waiting = Activity::where('fiscal_year', $year)->whereIn('directorate_id', $unitIds)
+                    ->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])
+                    ->with('directorate.parent')->limit(300)->get()
+                    ->filter(fn (Activity $a) => $workflow->next($user, $a) !== null || $workflow->canApprove($user, $a))->count();
+                $add('decide', $waiting, trans_choice(':n activity waiting for your decision|:n activities waiting for your decision', $waiting, ['n' => $waiting]), route('activities.index'), 'indigo');
+            }
+        }
+
         // ── execution figures to verify (never your own reports)
         $mayVerifyProgress = $user->can('approve_progress_report') || $user->isDirector();
         if ($mayVerifyProgress || $user->can('verify_spending')) {
