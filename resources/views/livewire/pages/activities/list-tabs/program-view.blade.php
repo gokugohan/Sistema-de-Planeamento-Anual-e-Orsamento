@@ -105,9 +105,9 @@
                                                 'Approved'         => __('Approved'),
                                                 'Rejected'         => __('Rejected'),
                                                 'Waiting Approval' => __('Waiting Approval'),
-                                                'Validated'        => __('Validated'),
-                                                'Reviewed'         => __('Reviewed'),
-                                                'Submitted'        => __('Submitted'),
+                                                'Validated'        => __('Certified'),
+                                                'Reviewed'         => __('Verified'),
+                                                'Submitted'        => __('Prepared'),
                                                 'Draft'            => __('Draft'),
                                                 default            => $activity->status,
                                             };

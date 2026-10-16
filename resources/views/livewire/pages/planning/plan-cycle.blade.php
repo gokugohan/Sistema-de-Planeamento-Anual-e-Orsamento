@@ -35,8 +35,8 @@ new class extends Component {
     $windowTone = ['none' => 'bg-zinc-100 text-zinc-700', 'upcoming' => 'bg-amber-50 text-amber-800', 'open' => 'bg-emerald-50 text-emerald-800', 'closed' => 'bg-rose-50 text-rose-800'];
     $windowLabel = ['none' => __('Open (no dates)'), 'upcoming' => __('Not yet open'), 'open' => __('Open'), 'closed' => __('Closed')];
     $statusOrder = [
-        'Draft' => ['bg-zinc-300', __('Draft')], 'Rejected' => ['bg-rose-400', __('Returned')], 'Submitted' => ['bg-sky-400', __('Submitted')],
-        'Reviewed' => ['bg-indigo-300', __('Reviewed')], 'Validated' => ['bg-indigo-500', __('Validated')], 'Waiting Approval' => ['bg-amber-400', __('Waiting approval')], 'Approved' => ['bg-emerald-500', __('Approved')],
+        'Draft' => ['bg-zinc-300', __('Draft')], 'Rejected' => ['bg-rose-400', __('Returned')], 'Submitted' => ['bg-sky-400', __('Prepared')],
+        'Reviewed' => ['bg-indigo-300', __('Verified')], 'Validated' => ['bg-indigo-500', __('Certified')], 'Waiting Approval' => ['bg-amber-400', __('Waiting approval')], 'Approved' => ['bg-emerald-500', __('Approved')],
     ];
     $a = $cycle['approval'];
 @endphp

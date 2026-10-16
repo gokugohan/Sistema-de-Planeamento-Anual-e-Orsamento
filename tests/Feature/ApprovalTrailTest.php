@@ -66,7 +66,7 @@ class ApprovalTrailTest extends TestCase
 
         $trail = app(ApprovalTrail::class)->for($a->fresh());
 
-        $this->assertSame(['Created', 'Submitted', 'Reviewed', 'Validated', 'Approved'], array_column($trail, 'label'));
+        $this->assertSame(['Created', 'Prepared', 'Verified', 'Certified', 'Approved'], array_column($trail, 'label'));
         $this->assertSame([null, 'Planner UDIG', 'Director UDIG', 'Chefe GDSC', 'Chefe GDSC'], array_column($trail, 'by'));
         $this->assertSame('Within the ceiling.', end($trail)['note']);
 
@@ -177,7 +177,7 @@ class ApprovalTrailTest extends TestCase
 
         $trail = app(ApprovalTrail::class)->for($a->fresh());
 
-        $this->assertSame(['Created', 'Submitted', 'Approved'], array_column($trail, 'label'));
+        $this->assertSame(['Created', 'Prepared', 'Approved'], array_column($trail, 'label'));
         $this->assertSame('Chefe GDSC', end($trail)['by']);
     }
 

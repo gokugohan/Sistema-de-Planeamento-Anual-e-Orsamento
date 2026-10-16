@@ -62,8 +62,8 @@
 
                         $statusLabel = match ($activity->status) {
                             'Approved' => __('Approved'),
-                            'Submitted' => __('Submitted'),
-                            'Reviewed' => __('Reviewed'),
+                            'Submitted' => __('Prepared'),
+                            'Reviewed' => __('Verified'),
                             'Rejected' => __('Rejected'),
                             'Cut' => __('Cut'),
                             'Draft' => __('Draft'),
@@ -118,7 +118,7 @@
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                     <polyline points="22 4 12 14.01 9 11.01" />
                                 </svg>
-                                {{ __('Validated') }}
+                                {{ __('Certified') }}
                             </div>
                             <div class="text-xs text-zinc-400 font-bold mt-1 opacity-70">
                                 {{ __('Final Ministry Queue') }}

@@ -132,9 +132,9 @@
                             'Approved'         => __('Approved'),
                             'Waiting Approval' => __('Waiting'),
                             'Rejected'         => __('Rejected'),
-                            'Submitted'        => __('Submitted'),
-                            'Reviewed'         => __('Reviewed'),
-                            'Validated'        => __('Validated'),
+                            'Submitted'        => __('Prepared'),
+                            'Reviewed'         => __('Verified'),
+                            'Validated'        => __('Certified'),
                             default            => __('Draft'),
                         };
                         $statusColor = match($activity->status) {

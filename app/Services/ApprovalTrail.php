@@ -54,7 +54,7 @@ class ApprovalTrail
             [$kind, $label] = match (true) {
                 $to === Activity::STATUS_REJECTED => ['returned', __('Returned for correction')],
                 $from === Activity::STATUS_APPROVED && $to === Activity::STATUS_DRAFT => ['reopened', __('Reopened')],
-                default => ['forward', __($to)],
+                default => ['forward', __(['Submitted' => 'Prepared', 'Reviewed' => 'Verified', 'Validated' => 'Certified'][$to] ?? $to)],
             };
             $steps[] = $this->step($kind, $to, $label, $log->created_at, $by, $reason ?? ($log->metadata['note'] ?? null), $reason !== null, isset($log->metadata['batch']));
         }
@@ -80,10 +80,10 @@ class ApprovalTrail
     {
         $steps = [$this->step('created', Activity::STATUS_DRAFT, __('Created'), $a->created_at, null)];
         if ($a->submitted_at) {
-            $steps[] = $this->step('forward', Activity::STATUS_SUBMITTED, __('Submitted'), $a->submitted_at, null);
+            $steps[] = $this->step('forward', Activity::STATUS_SUBMITTED, __('Prepared'), $a->submitted_at, null);
         }
         if ($a->reviewed_at) {
-            $steps[] = $this->step('forward', Activity::STATUS_REVIEWED, __('Reviewed'), $a->reviewed_at, $a->reviewedBy?->name);
+            $steps[] = $this->step('forward', Activity::STATUS_REVIEWED, __('Verified'), $a->reviewed_at, $a->reviewedBy?->name);
         }
         if ($a->approved_at) {
             $steps[] = $this->step('forward', Activity::STATUS_APPROVED, __('Approved'), $a->approved_at, $a->approvedBy?->name);
