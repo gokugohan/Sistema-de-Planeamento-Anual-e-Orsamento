@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ActivitySignature;
 use App\Models\ApproverAssignment;
 use App\Models\Directorate;
 use App\Models\User;
@@ -103,6 +104,34 @@ class ApproverLists
     public function namesAbove(Activity $activity, string $step): ?string
     {
         return $this->namesOf($this->listAbove($activity->directorate_id, $step));
+    }
+
+    /** Does this list ask everyone named to sign, in order? (A list of one is the same either way.) */
+    public function sequential(?array $list): bool
+    {
+        return $list !== null && $list['people']->count() > 1 && $list['people']->contains('sequential', true);
+    }
+
+    /** The people of an in-order list who have not signed this activity in this stage yet, in order. @return Collection<int, ApproverAssignment> */
+    public function unsigned(array $list, int $activityId, string $stage): Collection
+    {
+        $signed = ActivitySignature::where(['activity_id' => $activityId, 'stage' => $stage])->pluck('user_id');
+
+        return $list['people']->reject(fn ($a) => $signed->contains($a->user_id))->values();
+    }
+
+    /** Whose signature is next: the first listed person who has not signed. */
+    public function nextSigner(array $list, int $activityId, string $stage): ?ApproverAssignment
+    {
+        return $this->unsigned($list, $activityId, $stage)->first();
+    }
+
+    /** Is it this user's turn to sign: they are the next signer, or stand in as the interim of the unit of the list. */
+    public function inTurn(User $user, array $list, int $activityId, string $stage): bool
+    {
+        $next = $this->nextSigner($list, $activityId, $stage);
+
+        return $next !== null && ($next->user_id === $user->id || in_array($list['unit_id'], $user->interimUnitIds(), true));
     }
 
     public function forget(): void

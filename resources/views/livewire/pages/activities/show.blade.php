@@ -157,6 +157,7 @@ new class extends Component {
 
     public function submit(): void
     {
+        $before = $this->activity->status;
         try {
             $to = app(\App\Services\ActivityWorkflow::class)->advance(auth()->user(), $this->activity);
         } catch (\DomainException $e) {
@@ -164,6 +165,11 @@ new class extends Component {
             return;
         }
         $this->refresh();
+        if ($to === $before) {
+            $this->dispatch('toast', message: __('Your signature is recorded. It moves on after the others on the list have signed.'), type: 'success');
+
+            return;
+        }
         $this->dispatch('toast', message: __('Activity updated to :status.', ['status' => __($to)]), type: 'success');
     }
 
@@ -172,6 +178,11 @@ new class extends Component {
         app(\App\Services\ActivityWorkflow::class)->approve(auth()->user(), $this->activity, $this->note);
         $this->reset('note');
         $this->refresh();
+        if ($this->activity->status !== \App\Models\Activity::STATUS_APPROVED) {
+            $this->dispatch('toast', message: __('Your signature is recorded. It moves on after the others on the list have signed.'), type: 'success');
+
+            return;
+        }
         $this->dispatch('toast', message: __('Activity approved successfully.'), type: 'success');
     }
 

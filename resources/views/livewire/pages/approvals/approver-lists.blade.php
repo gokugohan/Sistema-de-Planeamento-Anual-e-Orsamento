@@ -60,6 +60,18 @@ new class extends Component {
         $this->pick[$step] = '';
     }
 
+    /** Certify and approve lists can ask everyone named to sign, one after the other in the listed order. */
+    public function toggleSequential(string $step): void
+    {
+        abort_unless(in_array($step, [ApproverAssignment::CERTIFY, ApproverAssignment::APPROVE], true) && $this->mayEdit((int) $this->unitId), 403);
+        $rows = ApproverAssignment::where(['directorate_id' => (int) $this->unitId, 'step' => $step]);
+        $on = ! $rows->clone()->where('sequential', true)->exists();
+        foreach ($rows->get() as $row) {
+            $row->update(['sequential' => $on]);
+        }
+        $this->dispatch('toast', message: $on ? __('Everyone on this list now signs, in the order listed.') : __('Anyone on this list may act again.'), type: 'info');
+    }
+
     public function remove(int $id): void
     {
         $a = ApproverAssignment::findOrFail($id);
@@ -165,6 +177,13 @@ new class extends Component {
                             @endforeach
                         </ol>
                     @endif
+                    @if($key !== 'prepare' && $members->count() > 1)
+                        @php $inOrder = $members->contains('sequential', true); @endphp
+                        <label class="mt-4 flex items-start gap-2 text-sm text-zinc-700">
+                            <input type="checkbox" class="mt-0.5 rounded border-zinc-300" @checked($inOrder) wire:click="toggleSequential('{{ $key }}')">
+                            <span>{{ __('Everyone signs, in the order listed') }}<span class="block text-xs text-zinc-500">{{ __('It moves on only after the last one has signed. Without this, any one of them may act.') }}</span></span>
+                        </label>
+                    @endif
                     <div class="mt-4 flex gap-2">
                         <select wire:model="pick.{{ $key }}" class="flux-input" aria-label="{{ __('Add a person') }}">
                             <option value="">{{ __('Add a person') }}</option>
@@ -194,6 +213,6 @@ new class extends Component {
                 </div>
             </x-ui.card>
         @endif
-        <p class="text-xs text-zinc-500">{{ __('A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act; the order is the order they are named in. Administrators are never locked out.') }}</p>
+        <p class="text-xs text-zinc-500">{{ __('A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act, unless it is set so that everyone signs in the order listed. Administrators are never locked out.') }}</p>
     @endif
 </div>

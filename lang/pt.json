@@ -1882,7 +1882,6 @@
     "Move down": "Descer",
     "Remove this person from the list?": "Remover esta pessoa da lista?",
     "Add a person": "Adicionar uma pessoa",
-    "A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act; the order is the order they are named in. Administrators are never locked out.": "Uma lista de uma unidade aplica-se também às unidades abaixo que não têm lista própria. Qualquer pessoa da lista pode agir; a ordem é a ordem de nomeação. Os administradores nunca ficam bloqueados.",
     "Named in the approval list: :names": "Indicado na lista de aprovação: :names",
     ":n activity waiting for your decision|:n activities waiting for your decision": "{1} :n atividade aguarda a sua decisão|[2,*] :n atividades aguardam a sua decisão",
     "confirmed by :name": "confirmado por :name",
@@ -2004,5 +2003,15 @@
     ":n of :total directorates finalized": ":n de :total direções finalizadas",
     "This is the final approval of the plan. No new activities can be added afterwards; only the head of the directorate or an administrator can reopen planning, with a remark.": "Esta é a aprovação final do plano. Depois não se podem acrescentar atividades; só o chefe da direção ou um administrador pode reabrir o planeamento, com uma observação.",
     "Prepared": "Preparado",
-    "Certified": "Certificado"
+    "Certified": "Certificado",
+    "Your signature is next": "A sua assinatura é a seguinte",
+    "Activity \":desc\" of :dir waits for your signature.": "A atividade \":desc\" de :dir aguarda a sua assinatura.",
+    "Signing in order: :name is next (:done of :total signed)": "Assinatura por ordem: segue :name (:done de :total assinaram)",
+    "Your signature is recorded; still to sign: :names.": "A sua assinatura ficou registada; falta assinar: :names.",
+    "Your signature is recorded. It moves on after the others on the list have signed.": "A sua assinatura ficou registada. Avança depois de os restantes da lista assinarem.",
+    "Everyone on this list now signs, in the order listed.": "Todos nesta lista assinam agora, pela ordem indicada.",
+    "Anyone on this list may act again.": "Qualquer pessoa desta lista pode voltar a atuar.",
+    "Everyone signs, in the order listed": "Todos assinam, pela ordem indicada",
+    "It moves on only after the last one has signed. Without this, any one of them may act.": "Só avança depois de o último assinar. Sem isto, qualquer um deles pode atuar.",
+    "A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act, unless it is set so that everyone signs in the order listed. Administrators are never locked out.": "Uma lista de uma unidade aplica-se também às unidades abaixo que não tenham lista própria. Qualquer pessoa da lista pode atuar, a menos que esteja definido que todos assinam pela ordem indicada. Os administradores nunca ficam bloqueados."
 }

@@ -18,7 +18,9 @@ class ApproverAssignment extends Model
 
     public const STEPS = [self::PREPARE, self::CERTIFY, self::APPROVE];
 
-    protected $fillable = ['directorate_id', 'user_id', 'step', 'position', 'created_by'];
+    protected $fillable = ['directorate_id', 'user_id', 'step', 'position', 'sequential', 'created_by'];
+
+    protected $casts = ['sequential' => 'boolean'];
 
     public function user()
     {

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ActivitySignature;
 use App\Models\ApproverAssignment;
 use App\Models\AuditLog;
 use App\Models\Directorate;
@@ -55,6 +56,72 @@ class ActivityWorkflow
 
     /** The status this user would move the activity to, or null if it is not their turn. */
     public function next(User $user, Activity $activity): ?string
+    {
+        $to = $this->target($user, $activity);
+
+        return $to !== null && ! $this->inTurn($user, $activity) ? null : $to;
+    }
+
+    // ── lists that sign in order: everyone named signs, one after the other, and only the last signature moves it on
+
+    /** The list that governs the stage the activity is in (null: no list, or a stage without one). */
+    private function stageList(Activity $activity): ?array
+    {
+        $lists = app(ApproverLists::class);
+
+        return match ($activity->status) {
+            Activity::STATUS_SUBMITTED => $lists->listFor($activity->directorate_id, ApproverAssignment::CERTIFY),
+            Activity::STATUS_REVIEWED => $lists->listAbove($activity->directorate_id, ApproverAssignment::CERTIFY),
+            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => $lists->listFor($activity->directorate_id, ApproverAssignment::APPROVE),
+            default => null,
+        };
+    }
+
+    /** Is it this user's turn to sign? Always, unless the list of the stage signs in order and somebody else is next. Administrators are never held up. */
+    private function inTurn(User $user, Activity $activity): bool
+    {
+        $list = $this->stageList($activity);
+        $lists = app(ApproverLists::class);
+
+        return $user->isAdministrator() || ! $lists->sequential($list) || $lists->inTurn($user, $list, $activity->id, $activity->status);
+    }
+
+    /**
+     * Record this user's signature for the stage. Null when the stage is complete (no in-order list, an administrator,
+     * or the last name signed): the activity moves on. Otherwise the names still to sign, and the activity stays.
+     */
+    private function signStage(User $user, Activity $activity): ?string
+    {
+        $list = $this->stageList($activity);
+        $lists = app(ApproverLists::class);
+        $clear = fn () => ActivitySignature::where(['activity_id' => $activity->id, 'stage' => $activity->status])->delete();
+
+        if (! $lists->sequential($list) || $user->isAdministrator()) {
+            $clear();
+
+            return null;
+        }
+        $slot = $lists->nextSigner($list, $activity->id, $activity->status);
+        $signature = new ActivitySignature(['activity_id' => $activity->id, 'stage' => $activity->status, 'user_id' => $slot->user_id, 'signed_by' => $user->id, 'signed_at' => now()]);
+        $signature->auditMetadata = ['by' => $user->id, 'activity' => $activity->id, 'stage' => $activity->status];
+        $signature->save();
+
+        $left = $lists->unsigned($list, $activity->id, $activity->status);
+        if ($left->isEmpty()) {
+            $clear();
+
+            return null;
+        }
+        $left->first()->user?->notify(new SystemNotification(
+            __('Your signature is next'),
+            __('Activity ":desc" of :dir waits for your signature.', ['desc' => str($activity->description)->limit(30), 'dir' => $activity->directorate?->name]),
+            route('activities.show', ['activity' => $activity->id], false)
+        ));
+
+        return $left->map(fn ($a) => $a->user?->name)->filter()->implode(', ');
+    }
+
+    private function target(User $user, Activity $activity): ?string
     {
         if (! Gate::forUser($user)->allows('view', $activity) || $activity->isLocked()) {
             return null;
@@ -160,6 +227,10 @@ class ActivityWorkflow
             throw new DomainException(__('This activity is not ready to submit: ').implode(' ', $problems));
         }
 
+        if ($this->signStage($user, $activity) !== null) {
+            return $activity->status; // signed; the next name on the list is still to sign
+        }
+
         $stamps = match ($to) {
             Activity::STATUS_APPROVED => ['reviewed_at' => now(), 'reviewed_by' => $user->id, 'approved_at' => now(), 'approved_by' => $user->id],
             Activity::STATUS_SUBMITTED => ['submitted_at' => now()],
@@ -202,6 +273,7 @@ class ActivityWorkflow
 
         $activity->auditMetadata = ['by' => $user->id, 'reason' => $reason];
         $activity->update(['status' => Activity::STATUS_REJECTED]);
+        ActivitySignature::where('activity_id', $activity->id)->delete(); // the next round starts again
         $this->notify(['Director', 'Planning'], $activity->directorate_id, new SystemNotification(
             __('Activity Returned for Correction'),
             __('Activity ":desc" requires corrections for :year.', ['desc' => str($activity->description)->limit(30), 'year' => $activity->fiscal_year]).' '.__('Reason: :reason', ['reason' => $reason]),
@@ -213,7 +285,8 @@ class ActivityWorkflow
     {
         return in_array($activity->status, [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
             && ! $activity->isLocked()
-            && $this->mayGiveFinalApproval($user, $activity);
+            && $this->mayGiveFinalApproval($user, $activity)
+            && $this->inTurn($user, $activity);
     }
 
     /** The final approval: a list of approvers for the unit decides if there is one (administrators always may), otherwise the rules. */
@@ -233,6 +306,9 @@ class ActivityWorkflow
     {
         abort_unless($this->canApprove($user, $activity), 403);
 
+        if ($this->signStage($user, $activity) !== null) {
+            return; // signed; the next name on the list is still to sign
+        }
         $this->markApproved($user, $activity, $this->trailMeta($user, $note));
         $this->notify(['Director', 'Planning'], $activity->directorate_id, new SystemNotification(
             __('PAA Activity Approved'),
@@ -264,7 +340,8 @@ class ActivityWorkflow
 
         foreach ($ids as $id) {
             try {
-                $activity = DB::transaction(function () use ($user, $id, $note, $batch) {
+                $waiting = null;
+                $activity = DB::transaction(function () use ($user, $id, $note, $batch, &$waiting) {
                     $fresh = Activity::query()->with('directorate')->lockForUpdate()->find($id);
                     if (! $fresh) {
                         throw new DomainException(__('Not found.'));
@@ -272,10 +349,18 @@ class ActivityWorkflow
                     if (! $this->canApprove($user, $fresh)) {
                         throw new DomainException(__('Cannot be approved now (status: :status).', ['status' => __($fresh->status)]));
                     }
+                    if ($waiting = $this->signStage($user, $fresh)) {
+                        return $fresh;
+                    }
                     $this->markApproved($user, $fresh, $this->trailMeta($user, $note) + ['batch' => $batch]);
 
                     return $fresh;
                 });
+                if ($waiting) {
+                    $skipped[] = ['id' => $id, 'description' => $activity->description, 'reason' => __('Your signature is recorded; still to sign: :names.', ['names' => $waiting])];
+
+                    continue;
+                }
                 $approved[] = $id;
                 $byUnit[$activity->directorate_id] = ($byUnit[$activity->directorate_id] ?? 0) + 1;
             } catch (DomainException $e) {
@@ -338,6 +423,13 @@ class ActivityWorkflow
             Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => $named(ApproverAssignment::APPROVE),
             default => null,
         };
+        $list = $this->stageList($activity);
+        if ($list !== null && app(ApproverLists::class)->sequential($list)) {
+            $left = app(ApproverLists::class)->unsigned($list, $activity->id, $activity->status);
+            if ($left->isNotEmpty()) {
+                return __('Signing in order: :name is next (:done of :total signed)', ['name' => $left->first()->user?->name, 'done' => $list['people']->count() - $left->count(), 'total' => $list['people']->count()]);
+            }
+        }
         if ($who) {
             return __('Named in the approval list: :names', ['names' => $who]);
         }
@@ -364,6 +456,7 @@ class ActivityWorkflow
 
         $activity->auditMetadata = $this->trailMeta($user, $note);
         $activity->update(['status' => Activity::STATUS_DRAFT, 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null]);
+        ActivitySignature::where('activity_id', $activity->id)->delete();
     }
 
     /**
