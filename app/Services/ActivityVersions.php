@@ -52,19 +52,24 @@ class ActivityVersions
     public function snapshot(Activity $activity): array
     {
         return [
+            // 1: the first snapshots (a subset of the fields); 2: every field that says what the activity is
+            'schema' => 2,
             'activity' => [
                 'code' => $activity->code, 'description' => $activity->description, 'objective' => $activity->objective,
                 'directorate_id' => $activity->directorate_id, 'program_id' => $activity->program_id, 'subprogram_id' => $activity->subprogram_id,
                 'priority' => $activity->priority, 'planned_start' => $activity->planned_start?->toDateString(), 'planned_end' => $activity->planned_end?->toDateString(),
                 'execution_quarters' => $activity->execution_quarters, 'manager_name' => $activity->manager_name,
+                'location' => $activity->location, 'procurement_required' => $activity->procurement_required, 'gender_responsive' => $activity->gender_responsive,
+                'period_type' => $activity->period_type, 'quarter' => $activity->quarter,
             ],
             'indicators' => $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'annual_target' => (float) $i->annual_target,
                 'baseline' => $i->baseline, 'means_of_verification' => $i->means_of_verification, 'due_quarters' => $i->due_quarters,
+                'measure' => $i->measure, 'target_text' => $i->target_text, 'funding_source' => $i->funding_source,
                 'actions' => $i->actions->map(fn ($a) => ['position' => $a->position, 'text' => $a->text, 'months' => $a->months])->values()->all(),
             ])->values()->all(),
             'lines' => $activity->lineItems->map(fn ($l) => [
-                'id' => $l->id, 'economic_classification_id' => $l->economic_classification_id,
+                'id' => $l->id, 'code' => $l->code, 'account_code' => $l->account_code, 'economic_classification_id' => $l->economic_classification_id,
                 'class_code' => $l->economicClassification?->code, 'class_name' => $l->economicClassification?->name,
                 'funding_source_id' => $l->funding_source_id, 'source_name' => $l->fundingSource?->name,
                 'indicator_id' => $l->indicator_id, 'estimated_amount' => (float) $l->estimated_amount,
