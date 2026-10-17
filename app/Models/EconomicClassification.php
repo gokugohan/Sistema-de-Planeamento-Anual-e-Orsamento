@@ -17,12 +17,4 @@ class EconomicClassification extends Model
     {
         return $this->hasMany(LineItem::class);
     }
-
-    /**
-     * Relationship: Economic classification has many fiscal envelope allocations
-     */
-    public function fiscalEnvelopeAllocations()
-    {
-        return $this->hasMany(FiscalEnvelopeCategoryAllocation::class);
-    }
 }

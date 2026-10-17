@@ -186,8 +186,8 @@ class PlanningWindowTest extends TestCase
     public function test_at_an_office_the_head_gives_the_final_approval_of_the_plan(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
-        $unitDirector = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
+        $unitDirector = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         // everything of 2027 decided, so the plan can be finalized
         DB::table('activities')->where('fiscal_year', 2027)->update(['status' => Activity::STATUS_APPROVED]);
 

@@ -45,14 +45,14 @@ class ApprovalInboxTest extends TestCase
 
     public function test_the_head_of_the_office_sees_what_waits_in_their_units(): void
     {
-        $g = $this->counts($this->user('chefe.gdsc@goku.tl'));
+        $g = $this->counts($this->user('chefe.gdsc@gdsc.tl'));
 
         $this->assertGreaterThan(0, $g['decide'], 'the 2027 sample has activities at every step of the workflow');
     }
 
     public function test_execution_figures_to_verify_never_include_your_own_reports(): void
     {
-        $head = $this->user('chefe.gdsc@goku.tl');
+        $head = $this->user('chefe.gdsc@gdsc.tl');
         $before = $this->counts($head, 2026)['verify'] ?? 0;
         $this->assertGreaterThan(0, $before, 'the running quarter has figures waiting for verification');
 
@@ -65,8 +65,8 @@ class ApprovalInboxTest extends TestCase
 
     public function test_the_plan_is_offered_for_finalizing_only_when_nothing_waits_and_only_to_the_final_approver(): void
     {
-        $head = $this->user('chefe.gdsc@goku.tl');
-        $unitDirector = $this->user('director.udig@goku.tl');
+        $head = $this->user('chefe.gdsc@gdsc.tl');
+        $unitDirector = $this->user('director.udig@gdsc.tl');
 
         $this->assertArrayNotHasKey('plan', $this->counts($head), 'activities are still waiting for a decision');
 
@@ -78,7 +78,7 @@ class ApprovalInboxTest extends TestCase
 
     public function test_a_planner_sees_their_drafts_and_what_was_returned(): void
     {
-        $planner = $this->user('planner.udig@goku.tl');
+        $planner = $this->user('planner.udig@gdsc.tl');
         $unit = \App\Models\Directorate::find($planner->directorate_id)->getSelfAndDescendantIds();
         DB::table('activities')->where('fiscal_year', 2027)->whereIn('directorate_id', $unit)->limit(1)->update(['status' => Activity::STATUS_REJECTED]);
 
@@ -89,7 +89,7 @@ class ApprovalInboxTest extends TestCase
 
     public function test_the_page_opens_for_those_with_work_to_do_and_not_for_viewers(): void
     {
-        $this->actingAs($this->user('chefe.gdsc@goku.tl'))->get(route('approvals.index'))
+        $this->actingAs($this->user('chefe.gdsc@gdsc.tl'))->get(route('approvals.index'))
             ->assertOk()->assertSee('Approvals')->assertSee('Activities to decide')->assertSee('Places');
 
         $viewer = User::factory()->create();
@@ -99,7 +99,7 @@ class ApprovalInboxTest extends TestCase
 
     public function test_the_dashboards_attention_list_is_the_same_inbox(): void
     {
-        $head = $this->user('chefe.gdsc@goku.tl');
+        $head = $this->user('chefe.gdsc@gdsc.tl');
         $this->actingAs($head);
 
         $this->assertSame(

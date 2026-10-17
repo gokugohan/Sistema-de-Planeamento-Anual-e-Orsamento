@@ -77,12 +77,12 @@ class ActivityRevisionTest extends TestCase
     {
         $a = $this->approved();
 
-        $this->assertFalse($this->workflow->canReopen($this->user('planner.dgc@goku.tl'), $a), 'a planner of another directorate');
-        $this->assertTrue($this->workflow->canReopen($this->user('planner.dntt@goku.tl'), $a), 'the unit prepares its revision');
-        $this->assertTrue($this->workflow->canReopen($this->user('director.dntt@goku.tl'), $a));
+        $this->assertFalse($this->workflow->canReopen($this->user('planner.dgc@gdsc.tl'), $a), 'a planner of another directorate');
+        $this->assertTrue($this->workflow->canReopen($this->user('planner.dntt@gdsc.tl'), $a), 'the unit prepares its revision');
+        $this->assertTrue($this->workflow->canReopen($this->user('director.dntt@gdsc.tl'), $a));
 
         try {
-            $this->workflow->reopen($this->user('planner.dntt@goku.tl'), $a, ' ');
+            $this->workflow->reopen($this->user('planner.dntt@gdsc.tl'), $a, ' ');
             $this->fail('a reason is required');
         } catch (DomainException $e) {
             $this->assertStringContainsString('Say why', $e->getMessage());
@@ -96,7 +96,7 @@ class ActivityRevisionTest extends TestCase
         $line = $a->lineItems->first();
         $before = (float) $line->estimated_amount;
 
-        $this->workflow->reopen($this->user('planner.dntt@goku.tl'), $a, 'The cost of fuel went up.');
+        $this->workflow->reopen($this->user('planner.dntt@gdsc.tl'), $a, 'The cost of fuel went up.');
         $a = $a->fresh();
         $this->assertSame(Activity::STATUS_DRAFT, $a->status);
         $this->assertTrue(ActivityVersions::revising($a));
@@ -158,13 +158,13 @@ class ActivityRevisionTest extends TestCase
         $window->finalize($this->admin, 2027, null, $a->directorate_id);
         $this->assertFalse($window->isOpenFor(2027, $a->directorate_id));
 
-        $this->assertTrue($this->workflow->canReopen($this->user('planner.dntt@goku.tl'), $a->fresh()));
+        $this->assertTrue($this->workflow->canReopen($this->user('planner.dntt@gdsc.tl'), $a->fresh()));
     }
 
     public function test_the_activity_page_offers_a_revision_and_shows_the_versions(): void
     {
         $a = $this->approved();
-        $this->actingAs($this->user('planner.dntt@goku.tl'));
+        $this->actingAs($this->user('planner.dntt@gdsc.tl'));
 
         Volt::test('pages.activities.show', ['activity' => $a])
             ->assertSee('Revise')->assertSee('Version 1')

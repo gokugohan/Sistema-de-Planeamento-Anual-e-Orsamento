@@ -4,10 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\AdjustedBudget;
-use App\Models\BudgetCycle;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\SystemSetting;
@@ -65,7 +63,7 @@ class SeedingTest extends TestCase
         $this->assertSame(18, Program::count());
         $this->assertSame(274, Activity::count());
         $this->assertSame('MTC', SystemSetting::getLocalized('org_abbr', '', 'en'));
-        $this->assertTrue(User::where('email', 'ministro@goku.tl')->first()->isMinister());
+        $this->assertTrue(User::where('email', 'ministro@gdsc.tl')->first()->isMinister());
         // Real activities carry their official budget codes.
         $this->assertDatabaseHas('activities', ['fiscal_year' => 2025, 'code' => '5020201']);
 
@@ -143,7 +141,6 @@ class SeedingTest extends TestCase
             $this->assertEqualsWithDelta($planned($year), $inForce($year), 0.01, "the approved amounts of {$year} are what the plan says");
         }
         $this->assertEqualsWithDelta(22339646, $planned(2025), 0.01, 'the 2025 plan as the budget books print it');
-        $this->assertSame(0, FiscalEnvelope::count(), 'there is no envelope any more');
     }
 
     public function test_the_real_dataset_can_be_purged_even_with_a_closed_year(): void
@@ -153,8 +150,6 @@ class SeedingTest extends TestCase
         $this->artisan('paa:purge-samples', ['--force' => true])->assertSuccessful();
 
         $this->assertSame(0, Activity::count());
-        $this->assertSame(0, FiscalEnvelope::count());
-        $this->assertSame(0, BudgetCycle::count());
         $this->assertSame(0, LineItem::count());
     }
 

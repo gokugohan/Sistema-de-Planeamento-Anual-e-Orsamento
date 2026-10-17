@@ -31,7 +31,7 @@ class DelegationTest extends TestCase
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
 
-        $this->director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->activity = Activity::where('fiscal_year', 2026)->whereIn('directorate_id', Directorate::find($this->director->directorate_id)->getSelfAndDescendantIds())->firstOrFail();
         $this->activity->forceFill(['status' => Activity::STATUS_SUBMITTED])->saveQuietly();
 

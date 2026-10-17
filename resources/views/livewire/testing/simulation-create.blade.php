@@ -31,9 +31,6 @@ new class extends Component {
             $this->fiscal_year = date('Y') + 1;
         }
 
-        // In simulation, we check for test-scoped envelopes but allow creation without them if needed
-        // $query = FiscalEnvelope::testData();
-        // $envelope = $query->where('fiscal_year', $this->fiscal_year)->first();
     }
 
     public function save(): void

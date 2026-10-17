@@ -56,7 +56,7 @@ class ApprovalRulesTest extends TestCase
     {
         $this->office();
         app()->setLocale('en');
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $activity = $this->activityAt('UDIG', Activity::STATUS_VALIDATED);
         $workflow = app(ActivityWorkflow::class);
 
@@ -68,7 +68,7 @@ class ApprovalRulesTest extends TestCase
     public function test_a_unit_director_below_the_head_cannot_give_the_final_approval(): void
     {
         $this->office();
-        $unitDirector = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $unitDirector = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $activity = $this->activityAt('UDIG', Activity::STATUS_VALIDATED);
 
         $this->assertNull(app(ActivityWorkflow::class)->next($unitDirector, $activity));
@@ -88,7 +88,7 @@ class ApprovalRulesTest extends TestCase
     public function test_the_parent_review_step_can_be_skipped(): void
     {
         $this->office();
-        $unitDirector = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $unitDirector = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $workflow = app(ActivityWorkflow::class);
 
         $activity = $this->activityAt('UDIG', Activity::STATUS_SUBMITTED);

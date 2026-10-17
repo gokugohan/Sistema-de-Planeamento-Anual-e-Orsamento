@@ -69,7 +69,7 @@ class PlanBreakdownTest extends TestCase
     private function adminWithSample(): User
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
-        $admin = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $admin = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $admin->assignRole('Admin');
         $this->actingAs($admin);
 

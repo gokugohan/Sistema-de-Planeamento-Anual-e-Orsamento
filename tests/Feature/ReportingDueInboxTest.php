@@ -27,7 +27,7 @@ class ReportingDueInboxTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        $this->director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
     }
 
     protected function tearDown(): void

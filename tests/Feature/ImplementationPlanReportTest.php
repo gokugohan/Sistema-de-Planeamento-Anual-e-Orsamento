@@ -30,7 +30,7 @@ class ImplementationPlanReportTest extends TestCase
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
         session(['fiscal_year' => 2026]);
-        $this->chief = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $this->chief = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
 
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('indicators')->whereHas('lineItems')->firstOrFail();
         $ind = $this->activity->indicators()->first();
@@ -83,7 +83,7 @@ class ImplementationPlanReportTest extends TestCase
 
     public function test_a_unit_only_lists_what_it_may_see_and_activities_not_approved_are_opt_in(): void
     {
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $mine = Directorate::find($director->directorate_id)->getSelfAndDescendantIds();
         $units = app(ImplementationPlanReport::class)->units($director, 2026);
         $this->assertTrue($units->every(fn ($u) => in_array($u->id, $mine, true)));

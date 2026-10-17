@@ -23,7 +23,7 @@ class AdoptSampleData extends Command
     public function handle(SampleRegistry $registry): int
     {
         $this->warn('Only records IDENTICAL to the MTC sample (same code and name/description) are adopted. Review before confirming:');
-        $this->line('  units · programmes · demo users (@goku.tl)');
+        $this->line('  units · programmes · demo users (@gdsc.tl)');
 
         if (! $this->option('force') && ! $this->confirm('Adopt matching records as sample data (they become purgeable)?')) {
             return self::FAILURE;

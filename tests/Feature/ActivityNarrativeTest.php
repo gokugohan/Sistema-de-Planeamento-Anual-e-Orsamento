@@ -28,7 +28,7 @@ class ActivityNarrativeTest extends TestCase
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
 
-        $this->director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')
             ->whereIn('directorate_id', Directorate::find($this->director->directorate_id)->getSelfAndDescendantIds())->firstOrFail();
         ActivityReport::query()->delete();
@@ -73,7 +73,7 @@ class ActivityNarrativeTest extends TestCase
     public function test_someone_else_verifies_or_returns_it(): void
     {
         $this->panel($this->director)->set('form.month.results', 'Done')->call('save', 'month')->call('submit');
-        $verifier = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $verifier = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
 
         $this->panel($verifier)->call('decide', 'month', true);
         $report = ActivityReport::where('period_type', 'month')->firstOrFail();

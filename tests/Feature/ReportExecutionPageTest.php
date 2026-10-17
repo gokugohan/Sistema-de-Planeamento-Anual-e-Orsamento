@@ -43,7 +43,7 @@ class ReportExecutionPageTest extends TestCase
 
     private function finalApprover(): User
     {
-        return User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        return User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
     }
 
     public function test_the_old_addresses_lead_to_the_one_page(): void
@@ -78,7 +78,7 @@ class ReportExecutionPageTest extends TestCase
 
     public function test_submit_everything_tells_both_panels_and_each_sends_its_drafts_for_verification(): void
     {
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         // the activity must be one of this director's
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereIn('directorate_id', \App\Models\Directorate::find($director->directorate_id)->getSelfAndDescendantIds())
             ->whereHas('indicators')->whereHas('lineItems.adjustedBudget')->firstOrFail();

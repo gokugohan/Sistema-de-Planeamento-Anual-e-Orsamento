@@ -43,12 +43,12 @@ class ExecutionCorrectionTest extends TestCase
 
     private function finalApprover(): User
     {
-        return $this->user('chefe.gdsc@goku.tl'); // the final approver of the office
+        return $this->user('chefe.gdsc@gdsc.tl'); // the final approver of the office
     }
 
     private function unitDirector(): User
     {
-        return $this->user('director.udig@goku.tl');
+        return $this->user('director.udig@gdsc.tl');
     }
 
     // ── money

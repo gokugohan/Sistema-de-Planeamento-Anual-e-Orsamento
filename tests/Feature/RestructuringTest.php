@@ -92,7 +92,7 @@ class RestructuringTest extends TestCase
 
     public function test_one_person_takes_over_in_every_list_of_the_units_a_director_keeps(): void
     {
-        $head = $this->user('director.dgt@goku.tl');
+        $head = $this->user('director.dgt@gdsc.tl');
         $dgt = Directorate::where('code', 'DGT')->firstOrFail();
         $dntt = Directorate::where('code', 'DNTT')->firstOrFail();
         $other = Directorate::where('code', 'DGC')->firstOrFail();
@@ -113,7 +113,7 @@ class RestructuringTest extends TestCase
 
     public function test_leaving_a_list_empty_says_so_and_the_default_rule_returns(): void
     {
-        $head = $this->user('director.dgt@goku.tl');
+        $head = $this->user('director.dgt@gdsc.tl');
         $dgt = Directorate::where('code', 'DGT')->firstOrFail();
         $solo = User::factory()->create();
         $this->appoint($dgt, $solo, 'approve');
@@ -127,11 +127,11 @@ class RestructuringTest extends TestCase
 
     public function test_an_administrator_moves_an_activity_to_another_unit_with_a_remark_and_the_new_heads_take_over(): void
     {
-        $admin = User::where('email', 'admin@goku.tl')->first() ?? tap(User::factory()->create(), fn ($u) => $u->assignRole('Admin'));
+        $admin = User::where('email', 'admin@gdsc.tl')->first() ?? tap(User::factory()->create(), fn ($u) => $u->assignRole('Admin'));
         $activity = $this->activityIn('DNTT', Activity::STATUS_VALIDATED);
-        $oldHead = $this->user('director.dgt@goku.tl');
+        $oldHead = $this->user('director.dgt@gdsc.tl');
         $newUnit = Directorate::where('code', 'DGC')->firstOrFail();
-        $newHead = $this->user('director.dgc@goku.tl');
+        $newHead = $this->user('director.dgc@gdsc.tl');
         $this->assertTrue($this->workflow->canApprove($oldHead, $activity));
 
         Volt::actingAs($admin)->test('pages.activities.show', ['activity' => $activity])
@@ -148,7 +148,7 @@ class RestructuringTest extends TestCase
     public function test_only_an_administrator_moves_an_activity(): void
     {
         $activity = $this->activityIn('DNTT', Activity::STATUS_DRAFT);
-        $head = $this->user('director.dgt@goku.tl');
+        $head = $this->user('director.dgt@gdsc.tl');
 
         Volt::actingAs($head)->test('pages.activities.show', ['activity' => $activity])
             ->set('moveUnitId', (string) Directorate::where('code', 'DGC')->value('id'))->set('moveRemark', 'because')->call('moveToUnit')->assertForbidden();
@@ -159,8 +159,8 @@ class RestructuringTest extends TestCase
         $dnc = Directorate::where('code', 'DNTT')->firstOrFail();
         $newParent = Directorate::where('code', 'DGC')->firstOrFail();
         $activity = $this->activityIn('DNTT', Activity::STATUS_VALIDATED);
-        $oldHead = $this->user('director.dgt@goku.tl');
-        $newHead = $this->user('director.dgc@goku.tl');
+        $oldHead = $this->user('director.dgt@gdsc.tl');
+        $newHead = $this->user('director.dgc@gdsc.tl');
 
         $dnc->update(['parent_id' => $newParent->id]);
 

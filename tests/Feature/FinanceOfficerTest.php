@@ -31,7 +31,7 @@ class FinanceOfficerTest extends TestCase
         app()->setLocale('en');
         session(['fiscal_year' => 2026]);
 
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('lineItems.adjustedBudget')->whereHas('indicators')
             ->whereIn('directorate_id', Directorate::find($director->directorate_id)->getSelfAndDescendantIds())->firstOrFail();
 

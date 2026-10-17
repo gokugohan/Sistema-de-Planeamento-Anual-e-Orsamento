@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
  * Demo accounts for the sample dataset: one Minister, and a Planner and a
  * Director for every organic unit. All use the password "password" and the
  *
- * @goku.tl domain, so they must never exist in production: purge them from
+ * @gdsc.tl domain, so they must never exist in production: purge them from
  * Management > Sample Data before going live.
  */
 class MtcDemoUsersSeeder extends Seeder
@@ -26,13 +26,13 @@ class MtcDemoUsersSeeder extends Seeder
         $hash = Hash::make('password'); // hashed once; the same demo password for every account
 
         if ($office === null) {
-            $head = $registry->upsert('mtc', User::class, ['email' => 'ministro@goku.tl'], [
+            $head = $registry->upsert('mtc', User::class, ['email' => 'ministro@gdsc.tl'], [
                 'name' => 'Ministro dos Transportes e Comunicações',
                 'password' => $hash,
             ]);
         } else {
             $unit = Directorate::where('code', $office)->firstOrFail();
-            $head = $registry->upsert('mtc', User::class, ['email' => 'chefe.'.strtolower($office).'@goku.tl'], [
+            $head = $registry->upsert('mtc', User::class, ['email' => 'chefe.'.strtolower($office).'@gdsc.tl'], [
                 'name' => "Chefe {$office}",
                 'password' => $hash,
                 'directorate_id' => $unit->id,
@@ -50,7 +50,7 @@ class MtcDemoUsersSeeder extends Seeder
                 if ($prefix === 'director' && $office !== null && $dir->code === $office) {
                     continue; // the head of the office is the account created above
                 }
-                $user = $registry->upsert('mtc', User::class, ['email' => "{$prefix}.{$code}@goku.tl"], [
+                $user = $registry->upsert('mtc', User::class, ['email' => "{$prefix}.{$code}@gdsc.tl"], [
                     'name' => "{$label} {$dir->code}",
                     'password' => $hash,
                     'directorate_id' => $dir->id,

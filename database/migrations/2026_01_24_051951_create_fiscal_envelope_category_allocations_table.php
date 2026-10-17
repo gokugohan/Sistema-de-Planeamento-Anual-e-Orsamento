@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\FiscalEnvelope;
 use App\Models\EconomicClassification;
 
 return new class extends Migration {
@@ -42,7 +41,7 @@ return new class extends Migration {
      */
     private function migrateExistingData(): void
     {
-        $envelopes = FiscalEnvelope::withoutGlobalScopes()->whereNotNull('category_allocations')->get();
+        $envelopes = DB::table('fiscal_envelopes')->whereNotNull('category_allocations')->get();
         $classifications = EconomicClassification::withoutGlobalScopes()->get()->keyBy('code');
 
         // Mapping of old JSON keys to economic classification codes
@@ -55,7 +54,7 @@ return new class extends Migration {
         ];
 
         foreach ($envelopes as $envelope) {
-            $allocations = $envelope->category_allocations ?? [];
+            $allocations = json_decode((string) ($envelope->category_allocations ?? '[]'), true) ?: [];
 
             foreach ($mapping as $oldKey => $code) {
                 if (isset($classifications[$code])) {
@@ -115,7 +114,7 @@ return new class extends Migration {
         });
 
         // Migrate data back to JSON (optional - for rollback support)
-        $envelopes = FiscalEnvelope::all();
+        $envelopes = DB::table('fiscal_envelopes')->get();
         foreach ($envelopes as $envelope) {
             $allocations = DB::table('fiscal_envelope_category_allocations')
                 ->where('fiscal_envelope_id', $envelope->id)

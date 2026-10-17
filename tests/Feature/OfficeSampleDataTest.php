@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\AdjustedBudget;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\SampleRegistry;
@@ -33,8 +32,8 @@ class OfficeSampleDataTest extends TestCase
         $this->assertSame(Directorate::where('code', 'GDSC')->value('id'), Directorate::where('code', 'UDIG')->value('parent_id'));
 
         // Nothing of the rest of the ministry is created.
-        $this->assertNull(User::where('email', 'ministro@goku.tl')->first());
-        $this->assertNotNull(User::where('email', 'chefe.gdsc@goku.tl')->first());
+        $this->assertNull(User::where('email', 'ministro@gdsc.tl')->first());
+        $this->assertNotNull(User::where('email', 'chefe.gdsc@gdsc.tl')->first());
         $this->assertSame(6, User::count()); // a Planner and a Director for each of the three units; the head of the office is the Director of the top unit
     }
 
@@ -56,7 +55,6 @@ class OfficeSampleDataTest extends TestCase
 
         $this->assertSame(0, Activity::where('fiscal_year', 2026)->where('version', '!=', 1)->count(), 'every approved activity is version 1');
         $this->assertGreaterThan(0, AdjustedBudget::count());
-        $this->assertSame(0, FiscalEnvelope::count(), 'there is no envelope any more');
     }
 
     public function test_the_institution_shown_is_the_office(): void
@@ -111,7 +109,6 @@ class OfficeSampleDataTest extends TestCase
 
         $this->assertSame(0, Directorate::count());
         $this->assertSame(0, Activity::count());
-        $this->assertSame(0, FiscalEnvelope::count());
         $this->assertSame(0, User::count());
         $this->assertSame('ORG', SystemSetting::getLocalized('org_abbr', '', 'en'));
     }

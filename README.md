@@ -196,7 +196,7 @@ php artisan paa:purge-samples                                                  #
 | `MtcDirectorateSeeder` | The MTC structure from Decreto-Lei 75/2023 as amended by Decreto-Lei 12/2026 (3 general directorates, their national directorates, gabinetes and units), the 5 **indirect-administration bodies** of art. 7 (ANATL E.P., APORTIL I.P., AACTL I.P., ANC I.P., TIC Timor I.P.) flagged *Autonomous*, and the **divisions the State Budget itself prints** (the Minister's office, 11 municipal directorates, AACTL's 8 directorates, APORTIL's ferry operations). Each carries its budget division code in its description. |
 | `MtcProgramSeeder` | The 6 programmes of the State Budget the ministry uses, with their **official OGE codes**: 502 Transportes, 510 Funcionamento e Desenvolvimento Institucional, 558 Serviços Postais, 980 Inclusão Social, A08 Tecnologia de Informação e Comunicação, A38 Meteorologia e Geofísica. A programme with the same code that already exists (510 is shared by every ministry) is left as it is. |
 | `MtcBrandingSeeder` | Sets the organisation name and abbreviation to MTC. |
-| `MtcDemoUsersSeeder` | `ministro@goku.tl` (Minister), plus `planner.<code>@goku.tl` and `director.<code>@goku.tl` for each ministry unit (for example `planner.dntt@goku.tl`). Password for all: `password`. |
+| `MtcDemoUsersSeeder` | `ministro@gdsc.tl` (Minister), plus `planner.<code>@gdsc.tl` and `director.<code>@gdsc.tl` for each ministry unit (for example `planner.dntt@gdsc.tl`). Password for all: `password`. |
 | `MtcBudgetSeeder` | The **real annual plans of 2025, 2026 and 2027**: about 270 activities with their official codes, programme and sub-programme, owning division, indicator (starting point and target as printed) and the amount in each economic category; every approved activity is **version 1** of the plan, with its amounts in force. |
 
 ### The sample budget data is real
@@ -228,7 +228,7 @@ Every record the sample creates is written to a registry table (`sample_records`
 - **Branding is reset only if you did not change it.** If you edited the organisation name after loading, your version stays.
 - The purge runs in one transaction: it either completes or changes nothing. It is written to the audit log.
 
-If units, programmes or accounts of the sample were loaded **before** tracking existed (an older database), register them once with `php artisan paa:adopt-samples`. It adopts only records identical to the sample (same code and same name or description); anything you changed is treated as real and left alone. The budget data is not adopted: purge and load again instead. It prints what it registered. Demo accounts whose name no longer matches (for example a `ministro@goku.tl` created long ago under another name) are not adopted; delete or rename them by hand.
+If units, programmes or accounts of the sample were loaded **before** tracking existed (an older database), register them once with `php artisan paa:adopt-samples`. It adopts only records identical to the sample (same code and same name or description); anything you changed is treated as real and left alone. The budget data is not adopted: purge and load again instead. It prints what it registered. Demo accounts whose name no longer matches (for example a `ministro@gdsc.tl` created long ago under another name) are not adopted; delete or rename them by hand.
 
 ### Using a different institution as the sample
 
@@ -344,7 +344,7 @@ php artisan up
 ### Security checklist
 
 - `APP_DEBUG=false`, `APP_ENV=production`, HTTPS only (the app forces `https` URLs in production).
-- Strong `ADMIN_PASSWORD`; **purge the sample data** (*Management → Sample Data* or `php artisan paa:purge-samples`) so no demo accounts (`@goku.tl`, password `password`) remain. A red banner warns administrators while any are present.
+- Strong `ADMIN_PASSWORD`; **purge the sample data** (*Management → Sample Data* or `php artisan paa:purge-samples`) so no demo accounts (`@gdsc.tl`, password `password`) remain. A red banner warns administrators while any are present.
 - A dedicated MySQL user with rights on the app database only.
 - `.env` not readable by the web server's public directory; never commit it.
 - **Self-registration stays off** (`ALLOW_REGISTRATION=false`, the default): the `/register` route does not exist, and administrators create accounts in *Management → System Users*. Sign-in is rate-limited (5 attempts, then a lockout).

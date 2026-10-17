@@ -68,7 +68,7 @@ class InstitutionLevelTest extends TestCase
     {
         $activity = $this->validatedActivity();
         SystemSetting::set('institution_level', Institution::MINISTRY, 'string');
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $workflow = app(ActivityWorkflow::class);
 
         $this->assertSame(Activity::STATUS_APPROVED, $workflow->next($head, $activity), 'the level does not change who approves');
@@ -78,7 +78,7 @@ class InstitutionLevelTest extends TestCase
     public function test_in_an_office_the_head_gives_the_final_approval(): void
     {
         $activity = $this->validatedActivity();
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $workflow = app(ActivityWorkflow::class);
 
         $this->assertTrue($head->isDirector());
@@ -95,8 +95,8 @@ class InstitutionLevelTest extends TestCase
     public function test_only_the_head_of_the_top_unit_approves_not_a_sub_unit_director(): void
     {
         $activity = $this->validatedActivity();
-        $unitDirector = User::where('email', 'director.udig@goku.tl')->firstOrFail();
-        $planner = User::where('email', 'planner.udig@goku.tl')->firstOrFail();
+        $unitDirector = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
+        $planner = User::where('email', 'planner.udig@gdsc.tl')->firstOrFail();
         $workflow = app(ActivityWorkflow::class);
 
         $this->assertNotSame(Activity::STATUS_APPROVED, $workflow->next($unitDirector, $activity));
@@ -107,7 +107,7 @@ class InstitutionLevelTest extends TestCase
     public function test_the_head_cannot_approve_another_offices_plan(): void
     {
         $activity = $this->validatedActivity();
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $other = \App\Models\Directorate::create(['code' => 'ZZ', 'name' => 'Another office', 'type' => 'Independent', 'administration' => 'direct', 'active' => true]);
         $activity->forceFill(['directorate_id' => $other->id])->save();
 

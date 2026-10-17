@@ -63,27 +63,27 @@ class BudgetExecutionEntryTest extends TestCase
         $report = app(ExecutionReport::class);
         $before = $report->summary($report->load(2026))['paid'];
 
-        $this->fill($this->page($this->user('director.udig@goku.tl')), 1000, 800)->call('save', true)->assertHasNoErrors();
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), 1000, 800)->call('save', true)->assertHasNoErrors();
         $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->firstOrFail();
         $this->assertSame(BudgetExecution::SUBMITTED, $entry->status);
         $this->assertSame($before, $report->summary($report->load(2026))['paid'], 'a submitted figure does not count yet');
 
         // the person who reported it cannot verify it
-        $this->page($this->user('director.udig@goku.tl'))->call('verify', $this->line->id);
+        $this->page($this->user('director.udig@gdsc.tl'))->call('verify', $this->line->id);
         $this->assertSame(BudgetExecution::SUBMITTED, $entry->fresh()->status);
 
-        $this->page($this->user('chefe.gdsc@goku.tl'))->call('verify', $this->line->id);
+        $this->page($this->user('chefe.gdsc@gdsc.tl'))->call('verify', $this->line->id);
         $this->assertSame(BudgetExecution::VERIFIED, $entry->fresh()->status);
-        $this->assertSame($this->user('chefe.gdsc@goku.tl')->id, $entry->fresh()->verified_by);
+        $this->assertSame($this->user('chefe.gdsc@gdsc.tl')->id, $entry->fresh()->verified_by);
         $this->assertEqualsWithDelta($before + 800, $report->summary($report->load(2026))['paid'], 0.01);
     }
 
     public function test_a_verified_quarter_cannot_be_changed_from_the_page(): void
     {
-        $this->fill($this->page($this->user('director.udig@goku.tl')), 1000, 800)->call('save', true);
-        $this->page($this->user('chefe.gdsc@goku.tl'))->call('verify', $this->line->id);
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), 1000, 800)->call('save', true);
+        $this->page($this->user('chefe.gdsc@gdsc.tl'))->call('verify', $this->line->id);
 
-        $this->fill($this->page($this->user('director.udig@goku.tl')), 1, 1)->call('save', false);
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), 1, 1)->call('save', false);
 
         $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->first();
         $this->assertEquals(1000, $entry->committed);
@@ -92,11 +92,11 @@ class BudgetExecutionEntryTest extends TestCase
 
     public function test_a_returned_entry_can_be_corrected_and_sent_again(): void
     {
-        $this->fill($this->page($this->user('director.udig@goku.tl')), 500, 500)->call('save', true);
-        $this->page($this->user('chefe.gdsc@goku.tl'))->call('verify', $this->line->id, false);
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), 500, 500)->call('save', true);
+        $this->page($this->user('chefe.gdsc@gdsc.tl'))->call('verify', $this->line->id, false);
         $this->assertSame(BudgetExecution::REJECTED, BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->value('status'));
 
-        $this->fill($this->page($this->user('director.udig@goku.tl')), 600, 500)->call('save', true);
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), 600, 500)->call('save', true);
         $this->assertSame(BudgetExecution::SUBMITTED, BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->value('status'));
     }
 
@@ -104,15 +104,15 @@ class BudgetExecutionEntryTest extends TestCase
     {
         $approved = (float) $this->line->adjustedBudget->approved_amount;
 
-        $this->fill($this->page($this->user('director.udig@goku.tl')), $approved * 5, 0)->call('save')
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), $approved * 5, 0)->call('save')
             ->assertHasErrors(["form.{$this->line->id}.committed"]);
 
         // paid is capped by everything committed so far, including the other months
         $slack = (float) $this->line->executions()->where('month', '!=', 10)->sum('committed') - (float) $this->line->executions()->where('month', '!=', 10)->sum('paid');
-        $this->fill($this->page($this->user('director.udig@goku.tl')), 100, $slack + 100 + 50)->call('save')
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), 100, $slack + 100 + 50)->call('save')
             ->assertHasErrors(["form.{$this->line->id}.paid"]);
 
-        $this->fill($this->page($this->user('director.udig@goku.tl')), -5, 0)->call('save')
+        $this->fill($this->page($this->user('director.udig@gdsc.tl')), -5, 0)->call('save')
             ->assertHasErrors(["form.{$this->line->id}.committed"]);
 
         $this->assertNull(BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->first(), 'nothing invalid was saved');
@@ -120,7 +120,7 @@ class BudgetExecutionEntryTest extends TestCase
 
     public function test_someone_without_the_permission_or_outside_the_unit_cannot_report(): void
     {
-        $this->fill($this->page($this->user('planner.udig@goku.tl')), 10, 10)->call('save')->assertForbidden();
+        $this->fill($this->page($this->user('planner.udig@gdsc.tl')), 10, 10)->call('save')->assertForbidden();
 
         $other = User::factory()->create(['directorate_id' => Directorate::where('code', 'USC')->value('id')]);
         $other->assignRole('Director');
@@ -133,7 +133,7 @@ class BudgetExecutionEntryTest extends TestCase
     {
         Carbon::setTestNow('2026-05-10 10:00:00'); // May
 
-        $page = Volt::actingAs($this->user('director.udig@goku.tl'))->test('pages.monitoring.execution-spending')
+        $page = Volt::actingAs($this->user('director.udig@gdsc.tl'))->test('pages.monitoring.execution-spending')
             ->set('activityId', $this->activity->id)->set('month', 10);
 
         $page->assertSet('month', 5);

@@ -26,7 +26,7 @@ class PlanCycleTest extends TestCase
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
         session(['fiscal_year' => 2026]);
-        $this->chief = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $this->chief = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
     }
 
     protected function tearDown(): void
@@ -82,7 +82,7 @@ class PlanCycleTest extends TestCase
 
     public function test_a_directors_numbers_cover_only_their_units(): void
     {
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $ids = Directorate::find($director->directorate_id)->getSelfAndDescendantIds();
         $expected = Activity::where('fiscal_year', 2026)->whereIn('directorate_id', $ids)->count();
 

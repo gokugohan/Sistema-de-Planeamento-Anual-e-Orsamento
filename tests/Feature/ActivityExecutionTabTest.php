@@ -57,7 +57,7 @@ class ActivityExecutionTabTest extends TestCase
     {
         ActivityReport::create(['activity_id' => $this->activity->id, 'period_type' => 'quarter', 'period' => 3, 'results' => 'ROADS REPAIRED', 'status' => 'Verified']);
         ActivityReport::create(['activity_id' => $this->activity->id, 'period_type' => 'month', 'period' => 9, 'results' => 'STILL A DRAFT', 'status' => 'Draft']);
-        $user = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $user = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
 
         Volt::actingAs($user)->test('pages.activities.show', ['activity' => $this->activity])
             ->assertSee('Execution')->assertSee('Month by month')->assertSee('Paid / approved')->assertSee('ROADS REPAIRED')->assertDontSee('STILL A DRAFT');
@@ -67,7 +67,7 @@ class ActivityExecutionTabTest extends TestCase
     {
         $draft = Activity::where('fiscal_year', 2026)->firstOrFail();
         $draft->forceFill(['status' => Activity::STATUS_DRAFT, 'version' => 0])->saveQuietly(); // never approved: a revision keeps its execution tab
-        $user = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $user = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
 
         Volt::actingAs($user)->test('pages.activities.show', ['activity' => $draft])->assertDontSee('Paid / approved');
     }

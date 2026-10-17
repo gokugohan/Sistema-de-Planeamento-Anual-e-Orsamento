@@ -36,7 +36,7 @@ class TranslationCompletenessTest extends TestCase
     private function runtimeKeys(): array
     {
         $keys = ['Independent', 'General Directorate', 'National Directorate', 'Department', 'Unit', 'Cabinet', 'Regional Office'];
-        foreach ([\App\Models\Activity::class, \App\Models\FiscalEnvelope::class] as $class) {
+        foreach ([\App\Models\Activity::class] as $class) {
             foreach ((new \ReflectionClass($class))->getConstants() as $name => $value) {
                 if (str_starts_with($name, 'STATUS_') && is_string($value)) {
                     $keys[] = $value;

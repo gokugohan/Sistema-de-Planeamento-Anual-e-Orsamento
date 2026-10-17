@@ -66,15 +66,15 @@ class ApprovalChainEndToEndTest extends TestCase
         $this->assertSame(Institution::MINISTRY, Institution::level());
 
         $activity = $this->draftIn('DNTT'); // a national directorate under the Direção-Geral dos Transportes
-        $activity = $this->step($this->user('planner.dntt@goku.tl'), $activity, Activity::STATUS_SUBMITTED);
-        $activity = $this->step($this->user('director.dntt@goku.tl'), $activity, Activity::STATUS_REVIEWED);
-        $activity = $this->step($this->user('director.dgt@goku.tl'), $activity, Activity::STATUS_VALIDATED);
+        $activity = $this->step($this->user('planner.dntt@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
+        $activity = $this->step($this->user('director.dntt@gdsc.tl'), $activity, Activity::STATUS_REVIEWED);
+        $activity = $this->step($this->user('director.dgt@gdsc.tl'), $activity, Activity::STATUS_VALIDATED);
 
-        $head = $this->user('director.dgt@goku.tl');
+        $head = $this->user('director.dgt@gdsc.tl');
         $this->assertTrue($this->workflow->canApprove($head, $activity), 'the head of the directorate-general approves');
-        $this->assertFalse($this->workflow->canApprove($this->user('ministro@goku.tl'), $activity), 'the Minister does not approve plans');
-        $this->assertFalse($this->workflow->canApprove($this->user('director.dgc@goku.tl'), $activity), 'nor does the head of another directorate-general');
-        $this->assertFalse($this->workflow->canApprove($this->user('director.dntt@goku.tl'), $activity), 'a national directorate below only validates');
+        $this->assertFalse($this->workflow->canApprove($this->user('ministro@gdsc.tl'), $activity), 'the Minister does not approve plans');
+        $this->assertFalse($this->workflow->canApprove($this->user('director.dgc@gdsc.tl'), $activity), 'nor does the head of another directorate-general');
+        $this->assertFalse($this->workflow->canApprove($this->user('director.dntt@gdsc.tl'), $activity), 'a national directorate below only validates');
 
         $this->workflow->approve($head, $activity);
         $activity->refresh();
@@ -86,16 +86,16 @@ class ApprovalChainEndToEndTest extends TestCase
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(); // the Gabinete de Digitalização e Segurança Cibernética
         $this->assertSame(Institution::SUBORDINATE, Institution::level());
-        $this->assertNull(User::where('email', 'ministro@goku.tl')->first(), 'an office has no Minister');
+        $this->assertNull(User::where('email', 'ministro@gdsc.tl')->first(), 'an office has no Minister');
 
         $activity = $this->draftIn('UDIG'); // the Unidade para o Digital, under the Gabinete
-        $activity = $this->step($this->user('planner.udig@goku.tl'), $activity, Activity::STATUS_SUBMITTED);
-        $activity = $this->step($this->user('director.udig@goku.tl'), $activity, Activity::STATUS_REVIEWED);
-        $activity = $this->step($this->user('chefe.gdsc@goku.tl'), $activity, Activity::STATUS_VALIDATED);
+        $activity = $this->step($this->user('planner.udig@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
+        $activity = $this->step($this->user('director.udig@gdsc.tl'), $activity, Activity::STATUS_REVIEWED);
+        $activity = $this->step($this->user('chefe.gdsc@gdsc.tl'), $activity, Activity::STATUS_VALIDATED);
 
-        $chefe = $this->user('chefe.gdsc@goku.tl');
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
         $this->assertTrue($this->workflow->canApprove($chefe, $activity));
-        $this->assertFalse($this->workflow->canApprove($this->user('director.udig@goku.tl'), $activity), 'a unit director only validates');
+        $this->assertFalse($this->workflow->canApprove($this->user('director.udig@gdsc.tl'), $activity), 'a unit director only validates');
 
         $activity = $this->step($chefe, $activity, Activity::STATUS_APPROVED);
         $this->assertSame($chefe->id, $activity->approved_by);
@@ -106,7 +106,7 @@ class ApprovalChainEndToEndTest extends TestCase
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         $activity = $this->draftIn('UDIG');
-        $chefe = $this->user('chefe.gdsc@goku.tl');
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
 
         // Even the head of the office cannot jump from Draft to Approved: one advance is one step.
         $this->assertSame(Activity::STATUS_SUBMITTED, $this->workflow->advance($chefe, $activity));

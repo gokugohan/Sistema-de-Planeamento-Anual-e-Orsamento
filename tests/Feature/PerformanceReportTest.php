@@ -35,7 +35,7 @@ class PerformanceReportTest extends TestCase
 
     private function chief(): User
     {
-        return User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        return User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
     }
 
     public function test_the_quarter_is_the_sum_of_its_months_and_programmes_add_up_to_the_total(): void
@@ -51,7 +51,7 @@ class PerformanceReportTest extends TestCase
 
     public function test_a_unit_director_sees_only_their_own_units(): void
     {
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $ids = Directorate::find($director->directorate_id)->getSelfAndDescendantIds();
 
         $report = app(PerformanceReport::class)->build(2026, 'quarter', 3, $director);

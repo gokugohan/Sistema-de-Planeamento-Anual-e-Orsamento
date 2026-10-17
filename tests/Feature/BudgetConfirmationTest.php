@@ -60,7 +60,7 @@ class BudgetConfirmationTest extends TestCase
 
     private function director(): User
     {
-        return User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        return User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
     }
 
     public function test_switched_off_nothing_changes(): void

@@ -4,9 +4,7 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\AuditLog;
-use App\Models\BudgetCycle;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\Program;
 use App\Models\Subprogram;
 use App\Models\SampleRecord;
@@ -123,10 +121,6 @@ class SampleRegistry
             $ids = fn (string $class) => SampleRecord::where('dataset', $dataset)
                 ->where('model_type', (new $class)->getMorphClass())
                 ->pluck('model_id');
-
-            // 0. Budget cycles and envelopes loaded by an older version of the sample (there are none any more).
-            BudgetCycle::whereIn('id', $ids(BudgetCycle::class))->get()->each->delete();
-            FiscalEnvelope::withoutGlobalScopes()->whereIn('id', $ids(FiscalEnvelope::class))->get()->each->delete();
 
             // 1. Sample activities (indicators and budget lines go with them).
             Activity::withoutGlobalScopes()->whereIn('id', $ids(Activity::class))->get()->each(function ($a) use (&$deleted) {

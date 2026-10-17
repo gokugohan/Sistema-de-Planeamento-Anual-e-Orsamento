@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;

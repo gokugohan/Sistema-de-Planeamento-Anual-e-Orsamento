@@ -40,7 +40,7 @@ class QueryBudgetTest extends TestCase
     public function test_pages_stay_within_their_query_budget(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
-        $admin = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $admin = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $admin->assignRole('Admin');
         $this->actingAs($admin);
 

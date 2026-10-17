@@ -59,10 +59,10 @@ class ApprovalTrailTest extends TestCase
     public function test_the_trail_lists_every_step_with_who_and_when_and_the_approvers_note(): void
     {
         $a = $this->draft();
-        $a = tap($a, fn () => $this->workflow->advance($this->user('planner.udig@goku.tl'), $a))->fresh();
-        $this->workflow->advance($this->user('director.udig@goku.tl'), $a->fresh());
-        $this->workflow->advance($this->user('chefe.gdsc@goku.tl'), $a->fresh());
-        $this->workflow->approve($this->user('chefe.gdsc@goku.tl'), $a->fresh(), 'Within the ceiling.');
+        $a = tap($a, fn () => $this->workflow->advance($this->user('planner.udig@gdsc.tl'), $a))->fresh();
+        $this->workflow->advance($this->user('director.udig@gdsc.tl'), $a->fresh());
+        $this->workflow->advance($this->user('chefe.gdsc@gdsc.tl'), $a->fresh());
+        $this->workflow->approve($this->user('chefe.gdsc@gdsc.tl'), $a->fresh(), 'Within the ceiling.');
 
         $trail = app(ApprovalTrail::class)->for($a->fresh());
 
@@ -77,7 +77,7 @@ class ApprovalTrailTest extends TestCase
     public function test_returning_an_activity_needs_a_reason_and_the_reason_is_in_the_trail(): void
     {
         $a = $this->setStatus($this->draft(), Activity::STATUS_VALIDATED);
-        $chefe = $this->user('chefe.gdsc@goku.tl');
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
 
         try {
             $this->workflow->sendBack($chefe, $a, '   ');
@@ -99,7 +99,7 @@ class ApprovalTrailTest extends TestCase
     public function test_reopening_an_approved_activity_shows_in_the_trail(): void
     {
         $a = $this->setStatus($this->draft(), Activity::STATUS_APPROVED);
-        $this->workflow->reopen($this->user('chefe.gdsc@goku.tl'), $a->fresh(), 'A new quarter was added.');
+        $this->workflow->reopen($this->user('chefe.gdsc@gdsc.tl'), $a->fresh(), 'A new quarter was added.');
 
         $last = collect(app(ApprovalTrail::class)->for($a->fresh()))->last();
         $this->assertSame('Revision started', $last['label']);
@@ -108,7 +108,7 @@ class ApprovalTrailTest extends TestCase
 
     public function test_bulk_approval_approves_what_it_can_and_explains_the_rest(): void
     {
-        $chefe = $this->user('chefe.gdsc@goku.tl');
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
         $ready1 = $this->setStatus($this->draft('UDIG', 'Ready one'), Activity::STATUS_VALIDATED);
         $ready2 = $this->setStatus($this->draft('USC', 'Ready two'), Activity::STATUS_VALIDATED);
         $draft = $this->draft('UDIG', 'Still a draft');
@@ -136,7 +136,7 @@ class ApprovalTrailTest extends TestCase
 
     public function test_a_repeated_bulk_approval_changes_nothing(): void
     {
-        $chefe = $this->user('chefe.gdsc@goku.tl');
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
         $a = $this->setStatus($this->draft(), Activity::STATUS_VALIDATED);
 
         $first = $this->workflow->approveMany($chefe, [$a->id]);
@@ -149,7 +149,7 @@ class ApprovalTrailTest extends TestCase
 
     public function test_a_unit_director_cannot_bulk_approve_and_the_size_of_a_batch_is_limited(): void
     {
-        $unitDirector = $this->user('director.udig@goku.tl');
+        $unitDirector = $this->user('director.udig@gdsc.tl');
         $a = $this->setStatus($this->draft(), Activity::STATUS_VALIDATED);
 
         $result = $this->workflow->approveMany($unitDirector, [$a->id]);
@@ -157,7 +157,7 @@ class ApprovalTrailTest extends TestCase
         $this->assertSame(Activity::STATUS_VALIDATED, $a->fresh()->status);
 
         $this->expectException(DomainException::class);
-        $this->workflow->approveMany($this->user('chefe.gdsc@goku.tl'), range(1, ActivityWorkflow::BULK_LIMIT + 1));
+        $this->workflow->approveMany($this->user('chefe.gdsc@gdsc.tl'), range(1, ActivityWorkflow::BULK_LIMIT + 1));
     }
 
     public function test_what_is_awaited_depends_on_the_status_and_the_rules(): void
@@ -171,7 +171,7 @@ class ApprovalTrailTest extends TestCase
     public function test_an_activity_without_audit_steps_falls_back_to_what_it_remembers(): void
     {
         $a = $this->draft();
-        $chefe = $this->user('chefe.gdsc@goku.tl');
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
         DB::table('audit_logs')->where('auditable_type', $a->getMorphClass())->where('auditable_id', $a->id)->delete();
         DB::table('activities')->where('id', $a->id)->update(['status' => Activity::STATUS_APPROVED, 'submitted_at' => '2027-01-15 09:00:00', 'approved_at' => '2027-02-05 09:00:00', 'approved_by' => $chefe->id]);
 

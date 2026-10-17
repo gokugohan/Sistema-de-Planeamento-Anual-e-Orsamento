@@ -90,7 +90,7 @@ class ApproverListsTest extends TestCase
 
     public function test_a_named_certifier_certifies_and_the_unit_director_not_named_does_not(): void
     {
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $certifier = $this->person();
         $this->assertNotNull($this->next($director, Activity::STATUS_SUBMITTED), 'without a list the director certifies');
 
@@ -103,7 +103,7 @@ class ApproverListsTest extends TestCase
 
     public function test_the_unit_above_validates_from_its_own_list(): void
     {
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $validator = $this->person();
 
         $this->assertNotNull($this->next($head, Activity::STATUS_REVIEWED), 'without a list the director above validates');
@@ -116,7 +116,7 @@ class ApproverListsTest extends TestCase
 
     public function test_a_named_approver_gives_the_final_approval_and_a_list_reaches_the_units_below(): void
     {
-        $head = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $approver = $this->person();
         $this->activity->forceFill(['status' => Activity::STATUS_VALIDATED])->saveQuietly();
         $this->assertTrue($this->workflow->canApprove($head->fresh(), $this->activity->fresh()), 'without a list the head approves');
@@ -167,7 +167,7 @@ class ApproverListsTest extends TestCase
 
     public function test_a_director_keeps_the_lists_of_their_own_units_only_and_the_order_is_kept(): void
     {
-        $director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $a = $this->person();
         $b = $this->person();
 

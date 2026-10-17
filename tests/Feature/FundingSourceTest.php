@@ -106,7 +106,7 @@ class FundingSourceTest extends TestCase
         $activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('lineItems.adjustedBudget')->firstOrFail();
         $activity->lineItems()->first()->forceFill(['funding_source_id' => $partner->id])->saveQuietly();
 
-        $chief = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
+        $chief = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
         $rows = collect(app(PerformanceReport::class)->build(2026, 'quarter', 3, $chief)['tree'])->flatMap(fn ($p) => $p['subprograms']->flatMap(fn ($s) => $s['rows'])->merge($p['loose']));
         $row = $rows->first(fn ($r) => $r['activity']->id === $activity->id);
 

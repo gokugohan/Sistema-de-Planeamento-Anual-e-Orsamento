@@ -30,7 +30,7 @@ class ReportingWindowsTest extends TestCase
         app()->setLocale('en');
         session(['fiscal_year' => 2026]);
 
-        $this->director = User::where('email', 'director.udig@goku.tl')->firstOrFail();
+        $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('lineItems.adjustedBudget')
             ->whereIn('directorate_id', Directorate::find($this->director->directorate_id)->getSelfAndDescendantIds())->firstOrFail();
         BudgetExecution::whereIn('line_item_id', $this->activity->lineItems()->pluck('id'))->where('month', 10)->delete();
