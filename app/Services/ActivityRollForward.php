@@ -20,9 +20,10 @@ class ActivityRollForward
 {
     /**
      * @param  array<int>|null  $unitIds  limit the copy to these units (null = all)
+     * @param  array<int, string>|null  $statuses  copy only activities in these statuses (null = whatever their status)
      * @return array{copied: int, skipped: int}
      */
-    public function copy(int $fromYear, int $toYear, ?array $unitIds = null): array
+    public function copy(int $fromYear, int $toYear, ?array $unitIds = null, ?array $statuses = null): array
     {
         if ($toYear <= $fromYear) {
             throw new \DomainException(__('The target year must be after the source year.'));
@@ -41,10 +42,11 @@ class ActivityRollForward
         $programs = app(ProgramYears::class);
         $programMap = [];
 
-        DB::transaction(function () use ($fromYear, $toYear, $unitIds, $shift, $units, $programs, &$programMap, &$copied, &$skipped) {
+        DB::transaction(function () use ($fromYear, $toYear, $unitIds, $statuses, $shift, $units, $programs, &$programMap, &$copied, &$skipped) {
             Activity::where('fiscal_year', $fromYear)
                 ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds))
-                ->with(['lineItems', 'indicators', 'program', 'subprogram'])
+                ->when($statuses !== null, fn ($q) => $q->whereIn('status', $statuses))
+                ->with(['lineItems', 'indicators.actions', 'program', 'subprogram'])
                 ->orderBy('id')
                 ->chunkById(100, function ($activities) use ($toYear, $shift, $units, $programs, &$programMap, &$copied, &$skipped) {
                     foreach ($activities as $a) {
@@ -89,11 +91,25 @@ class ActivityRollForward
                             'procurement_required' => $a->procurement_required,
                             'gender_responsive' => $a->gender_responsive,
                         ]);
-                        foreach ($a->lineItems as $l) {
-                            LineItem::create(['activity_id' => $copy->id, 'economic_classification_id' => $l->economic_classification_id, 'funding_source_id' => $l->funding_source_id, 'account_code' => $l->account_code, 'estimated_amount' => $l->estimated_amount, 'is_test_data' => $l->is_test_data]);
-                        }
+                        // the indicators first, with everything that describes them, so the lines can keep paying for the same ones
+                        $indicatorMap = [];
                         foreach ($a->indicators as $i) {
-                            Indicator::create(['activity_id' => $copy->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'annual_target' => $i->annual_target]);
+                            $new = Indicator::create([
+                                'activity_id' => $copy->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'annual_target' => $i->annual_target,
+                                'baseline' => $i->baseline, 'target_text' => $i->target_text, 'means_of_verification' => $i->means_of_verification,
+                                'funding_source' => $i->funding_source, 'due_quarters' => $i->due_quarters,
+                            ]);
+                            $indicatorMap[$i->id] = $new->id;
+                            foreach ($i->actions as $action) {
+                                $new->actions()->create(['position' => $action->position, 'text' => $action->text, 'months' => $action->months]);
+                            }
+                        }
+                        foreach ($a->lineItems as $l) {
+                            LineItem::create([
+                                'activity_id' => $copy->id, 'indicator_id' => $l->indicator_id ? ($indicatorMap[$l->indicator_id] ?? null) : null, 'code' => $l->code,
+                                'economic_classification_id' => $l->economic_classification_id, 'funding_source_id' => $l->funding_source_id, 'account_code' => $l->account_code,
+                                'estimated_amount' => $l->estimated_amount, 'is_test_data' => $l->is_test_data,
+                            ]);
                         }
                         $copied++;
                     }
