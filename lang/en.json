@@ -1892,5 +1892,7 @@
     "How each unit is doing, the ones that need attention first. Open one to see its own plan.": "How each unit is doing, the ones that need attention first. Open one to see its own plan.",
     ":n unit has no activity yet|:n units have no activity yet": ":n unit has no activity yet|:n units have no activity yet",
     ":n activity with a budget to confirm|:n activities with a budget to confirm": ":n activity with a budget to confirm|:n activities with a budget to confirm",
-    "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Planner and a Director per unit, and a Finance officer per directorate.": "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Planner and a Director per unit, and a Finance officer per directorate."
+    "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.",
+    "Technical Officer": "Technical Officer",
+    "Technical officer of a unit: prepares its activities, indicators and budget lines": "Technical officer of a unit: prepares its activities, indicators and budget lines"
 }

@@ -120,7 +120,7 @@ class BudgetExecutionEntryTest extends TestCase
 
     public function test_someone_without_the_permission_or_outside_the_unit_cannot_report(): void
     {
-        $this->fill($this->page($this->user('planner.udig@gdsc.tl')), 10, 10)->call('save')->assertForbidden();
+        $this->fill($this->page($this->user('tecnico.udig@gdsc.tl')), 10, 10)->call('save')->assertForbidden();
 
         $other = User::factory()->create(['directorate_id' => Directorate::where('code', 'USC')->value('id')]);
         $other->assignRole('Director');

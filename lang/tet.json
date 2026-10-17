@@ -2137,5 +2137,7 @@
     "How each unit is doing, the ones that need attention first. Open one to see its own plan.": "Unidade ida-idak nia situasaun, uluk mak sira ne'ebé presiza atensaun. Loke ida atu haree ninia planu.",
     ":n unit has no activity yet|:n units have no activity yet": ":n unidade seidauk iha atividade|:n unidade sira seidauk iha atividade",
     ":n activity with a budget to confirm|:n activities with a budget to confirm": ":n atividade ho orsamentu atu konfirma|:n atividade sira ho orsamentu atu konfirma",
-    "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Planner and a Director per unit, and a Finance officer per directorate.": "Konta demonstrasaun (@gdsc.tl, password \"password\"): Ministru ida, Planeadór ida no Diretór ida ba unidade ida-idak, no Ofisiál Finansa ida ba direksaun ida-idak."
+    "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Konta demonstrasaun (@gdsc.tl, password \"password\"): Ministru ida, Tékniku ida no Diretór ida ba unidade ida-idak, no Ofisiál Finansa ida ba direksaun ida-idak.",
+    "Technical Officer": "Tékniku",
+    "Technical officer of a unit: prepares its activities, indicators and budget lines": "Tékniku unidade nian: prepara ninia atividade, indikadór no liña orsamentu"
 }

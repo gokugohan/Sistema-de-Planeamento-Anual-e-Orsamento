@@ -78,7 +78,7 @@ class ApprovalInboxTest extends TestCase
 
     public function test_a_planner_sees_their_drafts_and_what_was_returned(): void
     {
-        $planner = $this->user('planner.udig@gdsc.tl');
+        $planner = $this->user('tecnico.udig@gdsc.tl');
         $unit = \App\Models\Directorate::find($planner->directorate_id)->getSelfAndDescendantIds();
         DB::table('activities')->where('fiscal_year', 2027)->whereIn('directorate_id', $unit)->limit(1)->update(['status' => Activity::STATUS_REJECTED]);
 

@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
 /**
  * What a unit's workspace shows: where its plan stands, what waits for the person looking at it, how the month's
  * reporting is going, and (for a unit with units below it) how each of them is doing. The same data serves a
- * planner's "My work", a head of directorate's view of the whole directorate, and an administrator or the Minister
+ * technical officer's "My work", a head of directorate's view of the whole directorate, and an administrator or the Minister
  * looking at any unit's plan.
  *
  * Everything comes from grouped queries over the unit and its descendants; nothing is typed in by hand.

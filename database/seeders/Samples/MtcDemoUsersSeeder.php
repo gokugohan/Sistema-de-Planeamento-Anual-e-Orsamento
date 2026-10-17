@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Demo accounts for the sample dataset: one Minister, a Planner and a
+ * Demo accounts for the sample dataset: one Minister, a Technical Officer and a
  * Director for every organic unit, and a Finance officer for every directorate. All use the password "password" and the
  *
  * @gdsc.tl domain, so they must never exist in production: purge them from
@@ -46,7 +46,7 @@ class MtcDemoUsersSeeder extends Seeder
             }
             $code = strtolower($dir->code);
 
-            foreach (['planner' => ['Planning', 'Planner'], 'director' => ['Director', 'Director']] as $prefix => [$role, $label]) {
+            foreach (['tecnico' => ['Planning', 'Technical Officer'], 'director' => ['Director', 'Director']] as $prefix => [$role, $label]) {
                 if ($prefix === 'director' && $office !== null && $dir->code === $office) {
                     continue; // the head of the office is the account created above
                 }

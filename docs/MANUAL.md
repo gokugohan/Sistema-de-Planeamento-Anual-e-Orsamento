@@ -17,7 +17,7 @@ The screenshots come from the optional sample dataset (the Ministry of Transport
 2. [How the system thinks: the ideas you need](#2-how-the-system-thinks)
 3. [The annual cycle at a glance](#3-the-annual-cycle-at-a-glance)
 4. [Setting up the institution (administrators)](#4-setting-up-the-institution-administrators)
-5. [Planning activities (planners and unit directors)](#5-planning-activities)
+5. [Planning activities (technical officers and unit directors)](#5-planning-activities)
 6. [Approving: prepare, certify, approve](#6-approving-prepare-certify-approve)
 7. [Approval lists, interim approvers and reshuffles](#7-approval-lists-interim-approvers-and-reshuffles)
 8. [Ending planning: finalizing the plan of a directorate](#8-ending-planning-per-directorate)
@@ -96,7 +96,7 @@ You do not need to memorise this, but everything in the application follows thes
 
 | # | Step | What happens | Who |
 |---|---|---|---|
-| 1 | **Plan submission** | Units draft activities with indicators, actions and budget lines, and submit them while the submission window is open. | Planners, unit directors |
+| 1 | **Plan submission** | Units draft activities with indicators, actions and budget lines, and submit them while the submission window is open. | Technical officers, unit directors |
 | 2 | **Approval** | Each activity is prepared, certified and approved (Part 6). | Directors, heads of directorates |
 | 3 | **Plan finalized** | When everything in a directorate is decided, its head finalizes the plan: no new activities. | Head of the directorate |
 | 4 | **Reporting** | Units report spending and indicators monthly and quarterly; others verify; the quarter is compiled; reports are printed. A change to an approved activity is a revision (Part 9). | Units, finance, directors |
@@ -138,20 +138,20 @@ Add only the structure that the law defines; the system does not invent departme
 
 ### 4.3 Funding sources
 
-**Administration → Funding sources**: the list of where money comes from (State Budget, development partners and so on). Planners pick one for each budget line.
+**Administration → Funding sources**: the list of where money comes from (State Budget, development partners and so on). Technical officers pick one for each budget line.
 
 ### 4.4 Users
 
 ![Users](manual/img/users.png)
 
-**Administration → System Users**: *create* an account with name, e-mail, **role** and **unit**; edit a user's details, role and unit; deactivate someone who left. Give **each unit its own people**: a planner who prepares and a director who certifies. The unit decides what a person can see and plan.
+**Administration → System Users**: *create* an account with name, e-mail, **role** and **unit**; edit a user's details, role and unit; deactivate someone who left. Give **each unit its own people**: a technical officer who prepares and a director who certifies. The unit decides what a person can see and plan.
 
 | Role | In one line |
 |---|---|
 | **Admin** | Sets up and runs the system; always allowed to act. |
 | **Minister** | Sees every plan and every report; does *not* approve plans. |
 | **Director** | Head or director of a unit: certifies, and for a top-level unit gives the final approval. |
-| **Planning** (planner) | Prepares activities, indicators and budget lines. |
+| **Planning** (technical officer) | Prepares activities, indicators and budget lines. |
 | **Finance** | Confirms budget lines and verifies reported spending. |
 | **Viewer** | Reads plans and reports; changes nothing. |
 
@@ -183,7 +183,7 @@ Part 7. Directors keep these for their own units; administrators for any.
 
 ## 5. Planning activities
 
-For planners and unit directors. Open **Plan → PAA Activities**.
+For technical officers and unit directors. Open **Plan → PAA Activities**.
 
 ![The activity list](manual/img/activities.png)
 
@@ -258,7 +258,7 @@ Every activity goes through the same chain, whatever the size of the institution
 
 | Status shown | Meaning | Who moves it on |
 |---|---|---|
-| **Draft** | Being prepared by the unit. | Planner or unit director → *Submit* |
+| **Draft** | Being prepared by the unit. | Technical officer or unit director → *Submit* |
 | **Prepared** | Prepared and submitted; waits for certification. | Director of the unit (or the finance officer first, if budget confirmation is on) |
 | **Verified** | Certified by the unit's director; waits for the unit above. *Only where a unit above validates first.* | Director of the unit above |
 | **Certified** | Validated; waits for the final approval. | Head of the top-level unit (the directorate) |
@@ -482,12 +482,12 @@ Notifications are queued: the server must run the queue worker (Part 13.4) for t
 
 ## 12. A whole year, step by step (tutorial)
 
-Follow Ana (planner), Bento (director of a unit), Carla (head of a directorate), Dino (finance) and Eva (administrator).
+Follow Ana (technical officer), Bento (director of a unit), Carla (head of a directorate), Dino (finance) and Eva (administrator).
 
 **Before the year (Eva).**
 1. *Settings*: check the institution's name, the level and the approval chain.
 2. *Structure*: make sure the directorate and its units exist; add the **programmes and subprogrammes** for the new year.
-3. *System Users*: give every unit its planner and its director.
+3. *System Users*: give every unit its technical officer and its director.
 4. *Reporting windows*: set the dates in which the plan may be submitted, and the months and quarters of reporting.
 5. Optionally name **approval lists** for the units that need named people.
 
@@ -559,7 +559,7 @@ For the person who installs and runs it (the *README* has the full instructions)
 
 ## 14. Roles and what each can do
 
-| Task | Admin | Minister | Director | Planner | Finance | Viewer |
+| Task | Admin | Minister | Director | Technical officer | Finance | Viewer |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | See own unit's plan | ✔ | ✔ (all) | ✔ | ✔ | ✔ | ✔ |
 | See every unit's plan | ✔ | ✔ | own and below | own | own | own |

@@ -7,7 +7,7 @@ use Livewire\Volt\Component;
 
 /**
  * The workspace of one unit: where its plan stands, what waits for the person looking at it, how the month's
- * reporting is going, and how the units below it are doing. It is the home of a planner or director ("My work"),
+ * reporting is going, and how the units below it are doing. It is the home of a technical officer or director ("My work"),
  * of a head of directorate (their whole directorate), and the way an administrator or the Minister looks at the
  * plan of any unit. Authority is checked on the server; the unit selector only offers what the person may open.
  */

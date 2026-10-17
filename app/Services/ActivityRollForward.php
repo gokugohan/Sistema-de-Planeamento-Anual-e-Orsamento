@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * Starts a year's plan from the previous year's: recurring activities (training, inspections,
  * maintenance) are copied as drafts with their budget lines and indicators, dates moved one year
- * on and all progress and approval history left behind. The planner then adjusts the numbers.
+ * on and all progress and approval history left behind. The technical officer then adjusts the numbers.
  *
  * An activity already present in the target year (same unit, programme and text) is skipped, so
  * running it twice never duplicates.

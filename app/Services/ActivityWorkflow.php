@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
  *
  *   Draft/Rejected → Submitted → (Reviewed →) Validated → Waiting Approval → Approved
  *
- * The planner submits; the director of the unit reviews; where the unit sits under another one
+ * The technical officer submits; the director of the unit reviews; where the unit sits under another one
  * (a department under a directorate-general) the parent's director validates. Then, in a ministry,
  * the top-level director sends the validated plan to the Minister, who approves. In an institution
  * that is only a directorate or gabinete there is no Minister to ask: the head of the top-level unit

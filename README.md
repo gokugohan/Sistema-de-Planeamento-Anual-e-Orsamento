@@ -31,10 +31,10 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 
 | # | Step | Where in the app | Who |
 |---|---|---|---|
-| 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *Administration → Reporting windows* | Planner / Director |
+| 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *Administration → Reporting windows* | Technical officer / Director |
 | 2 | **Approval**: each activity moves through the chain of its unit (prepare, certify, approve; named lists and interim approvers where set; finance confirmation of the budget where asked for) until Approved | *Approvals* | Reviewers, final approver |
 | 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has); only they or an administrator can reopen it, with a remark. Finalizing stops new activities only | *PAA Activities*, *Approvals* | Final approver / Admin |
-| 4 | **Reporting**: units report spending (committed and paid) and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Planner / Director / Finance |
+| 4 | **Reporting**: units report spending (committed and paid) and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Technical officer / Director / Finance |
 | 5 | **Revision**: an approved activity changes only through a revision: a reason, the whole approval chain again, a new version; the version in force stays meanwhile | *Activity → Revise* | Preparers, director, final approver |
 
 **Printed reports follow the Ministry of Finance template.** The final plan report and the monthly/quarterly performance report both print on A4 landscape in the formal table used by the ministry: objective bands (SDG/PED), a programme band and a subprogramme band with their totals, then each activity with its indicators, baseline, target, means of verification, unit, funding source, the quarters it runs in (blue cells) and the budget by economic category. The approved plan's summaries by category, programme and unit follow the table.
@@ -68,7 +68,7 @@ The sample data is aware of today's date: a finished year is executed to the end
 | **Admin** | System administrator | everything |
 | **Minister** | Sees every plan and report; does not approve plans | view everything |
 | **Director** | Unit head | create/edit activities, submit PAA, update indicator progress, view |
-| **Planning** | Unit planner | create/edit activities, submit PAA, view |
+| **Planning** | Technical officer of a unit | create/edit activities, submit PAA, view |
 | **Viewer** | Read-only | view PAA, budget, monitoring, reports |
 
 Permissions are enforced on the server (route middleware and checks inside every Livewire action), not just by hiding buttons. Users only see activities of their own unit and its sub-units, unless they hold `view_all_paa` (Admin, Minister).
@@ -77,13 +77,13 @@ Permissions are enforced on the server (route middleware and checks inside every
 
 An activity follows the structure of a Timor-Leste annual action plan: **programme** and **responsible unit**, the activity and its **objective**, **municipality or region** (`config/paa.php` lists them; edit the list for your institution), **start/end dates inside the fiscal year** and the **quarters** it runs in, whether it needs **procurement**, a **gender-responsive budgeting** marker, the **budget by economic category** (the five OGE categories) and **indicators** (output or outcome, unit, annual target). One form (*PAA Activities → New activity*, or *Edit* on a draft) captures all of it; the code (`UNIT-YY-NNN`) is generated.
 
-- **Submitting.** A draft needs at least one budget line with an amount and one indicator before it can move on; the activity page lists what is missing. The chain is planner → unit director → (parent unit director) → top-level director → Minister (`ActivityWorkflow`).
+- **Submitting.** A draft needs at least one budget line with an amount and one indicator before it can move on; the activity page lists what is missing. The chain is technical officer → unit director → (parent unit director) → top-level director → Minister (`ActivityWorkflow`).
 - **Editing is locked** once an activity is submitted, and again when the planning cycle is closed. Only the unit's own users (and administrators) can change a draft.
 - **The list** filters by status, unit, programme, location and text, groups by programme or unit, offers "Needs my action", moves several activities on at once, **exports CSV** (one amount column per category, opens in Excel) and, for a new year, **copies last year's plan** as drafts (once; duplicates are skipped).
 
 ### Who sees what
 
-Visibility follows the unit tree. **Department users** (Director, Planner, Viewer) see and work on **their own unit and the units below it**, in activities and monitoring. The **dashboard** is the one ministry-wide page they can open; ministry-wide pages (plan cycle, reporting and the final plan report) are for users with *view all PAA* (**Admin** and **Minister**), and are hidden from the menu and refused on the server for everyone else. This is enforced by `ActivityPolicy` and route permissions, not just by hiding links.
+Visibility follows the unit tree. **Department users** (Director, Technical officer, Viewer) see and work on **their own unit and the units below it**, in activities and monitoring. The **dashboard** is the one ministry-wide page they can open; ministry-wide pages (plan cycle, reporting and the final plan report) are for users with *view all PAA* (**Admin** and **Minister**), and are hidden from the menu and refused on the server for everyone else. This is enforced by `ActivityPolicy` and route permissions, not just by hiding links.
 
 ### Navigation and the interface
 
@@ -162,7 +162,7 @@ A fresh install contains no organisation, programmes or activities. If you tried
 3. **Programmes.** *Management → Entities → Programs*: the programmes activities are planned under. Use the **official codes** your Ministry of Finance prescribes.
 4. **Economic categories.** The five Timor-Leste OGE categories are seeded: 10 Salaries & Wages, 20 Goods & Services, 30 Public Transfers, 40 Minor Capital, 50 Development Capital. If your jurisdiction differs, edit them in *Management → Entities → Classifications* **before** entering budget lines.
 5. **Users.** *Management → System Users*: create accounts, assign a role and a directorate. Users see their own unit's data. There is no public sign-up: the sign-in page tells people to contact the administrator.
-6. **Activities.** Planners enter them in the app, or an administrator **imports** them in bulk:
+6. **Activities.** Technical officers enter them in the app, or an administrator **imports** them in bulk:
    *Management → Import Activities* accepts a CSV (`;`, `,` or tab separated; UTF-8 or Windows-1252). Download the template from that page. Rows sharing a `ref` form one activity; each row can carry an indicator, a budget line, or both. The file is **validated first, with row numbers for every problem**, and nothing is written until it is clean. Everything imports as `Draft`, and re-importing the same file is rejected as a duplicate.
 7. **Fiscal year.** Turn on *enable next year planning* in Settings when you start planning the next year.
 
@@ -176,7 +176,7 @@ The repository ships an optional sample dataset based on the **Ministério dos T
 
 Sign in as an administrator and open **Management → Sample Data**.
 
-- **What to load**: *One directorate or office* (the default is the **Gabinete de Digitalização e Segurança Cibernética** with its units UDIG and USC; any other gabinete, direção-geral or autonomous body can be chosen) or *The whole ministry*. They are alternatives: load one, purge it, then load the other. An office gets only its own units, programmes, demo accounts (a head of office, plus a Planner and a Director per unit) and the activities the State Budget plans for it, and the app is branded as that office. The budget books give the Gabinete only one activity per unit, so it also gets an **illustrative** plan (`data/gdsc_illustrative.json`, not from any published document) with 2027 activities at every step of the approval workflow. Command line: `php artisan db:seed --class="Database\Seeders\Samples\MtcOfficeSampleDataSeeder"` (GDSC).
+- **What to load**: *One directorate or office* (the default is the **Gabinete de Digitalização e Segurança Cibernética** with its units UDIG and USC; any other gabinete, direção-geral or autonomous body can be chosen) or *The whole ministry*. They are alternatives: load one, purge it, then load the other. An office gets only its own units, programmes, demo accounts (a head of office, plus a Technical officer and a Director per unit) and the activities the State Budget plans for it, and the app is branded as that office. The budget books give the Gabinete only one activity per unit, so it also gets an **illustrative** plan (`data/gdsc_illustrative.json`, not from any published document) with 2027 activities at every step of the approval workflow. Command line: `php artisan db:seed --class="Database\Seeders\Samples\MtcOfficeSampleDataSeeder"` (GDSC).
 - **Load sample data** adds the dataset below. It is **disabled when `APP_ENV=production`**, because it creates demo accounts with a known password.
 - **Purge sample data** deletes exactly what the sample created and nothing else. It works in every environment, and it is the step to run **before you go live**.
 
@@ -196,7 +196,7 @@ php artisan paa:purge-samples                                                  #
 | `MtcDirectorateSeeder` | The MTC structure from Decreto-Lei 75/2023 as amended by Decreto-Lei 12/2026 (3 general directorates, their national directorates, gabinetes and units), the 5 **indirect-administration bodies** of art. 7 (ANATL E.P., APORTIL I.P., AACTL I.P., ANC I.P., TIC Timor I.P.) flagged *Autonomous*, and the **divisions the State Budget itself prints** (the Minister's office, 11 municipal directorates, AACTL's 8 directorates, APORTIL's ferry operations). Each carries its budget division code in its description. |
 | `MtcProgramSeeder` | The 6 programmes of the State Budget the ministry uses, with their **official OGE codes**: 502 Transportes, 510 Funcionamento e Desenvolvimento Institucional, 558 Serviços Postais, 980 Inclusão Social, A08 Tecnologia de Informação e Comunicação, A38 Meteorologia e Geofísica. A programme with the same code that already exists (510 is shared by every ministry) is left as it is. |
 | `MtcBrandingSeeder` | Sets the organisation name and abbreviation to MTC. |
-| `MtcDemoUsersSeeder` | `ministro@gdsc.tl` (Minister), plus `planner.<code>@gdsc.tl` and `director.<code>@gdsc.tl` for each ministry unit (for example `planner.dntt@gdsc.tl`). Password for all: `password`. |
+| `MtcDemoUsersSeeder` | `ministro@gdsc.tl` (Minister), plus `tecnico.<code>@gdsc.tl` and `director.<code>@gdsc.tl` for each ministry unit (for example `tecnico.dntt@gdsc.tl`). Password for all: `password`. |
 | `MtcBudgetSeeder` | The **real annual plans of 2025, 2026 and 2027**: about 270 activities with their official codes, programme and sub-programme, owning division, indicator (starting point and target as printed) and the amount in each economic category; every approved activity is **version 1** of the plan, with its amounts in force. |
 
 ### The sample budget data is real

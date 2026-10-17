@@ -96,7 +96,7 @@ class InstitutionLevelTest extends TestCase
     {
         $activity = $this->validatedActivity();
         $unitDirector = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
-        $planner = User::where('email', 'planner.udig@gdsc.tl')->firstOrFail();
+        $planner = User::where('email', 'tecnico.udig@gdsc.tl')->firstOrFail();
         $workflow = app(ActivityWorkflow::class);
 
         $this->assertNotSame(Activity::STATUS_APPROVED, $workflow->next($unitDirector, $activity));

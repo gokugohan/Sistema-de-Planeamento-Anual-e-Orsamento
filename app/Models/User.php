@@ -138,9 +138,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if user is a planner
+     * Check if user is a technical officer of a unit (the role that prepares its activities)
      */
-    public function isPlanner(): bool
+    public function isTechnicalOfficer(): bool
     {
         return $this->hasRole('Planning');
     }

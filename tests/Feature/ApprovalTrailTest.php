@@ -59,7 +59,7 @@ class ApprovalTrailTest extends TestCase
     public function test_the_trail_lists_every_step_with_who_and_when_and_the_approvers_note(): void
     {
         $a = $this->draft();
-        $a = tap($a, fn () => $this->workflow->advance($this->user('planner.udig@gdsc.tl'), $a))->fresh();
+        $a = tap($a, fn () => $this->workflow->advance($this->user('tecnico.udig@gdsc.tl'), $a))->fresh();
         $this->workflow->advance($this->user('director.udig@gdsc.tl'), $a->fresh());
         $this->workflow->advance($this->user('chefe.gdsc@gdsc.tl'), $a->fresh());
         $this->workflow->approve($this->user('chefe.gdsc@gdsc.tl'), $a->fresh(), 'Within the ceiling.');
@@ -67,7 +67,7 @@ class ApprovalTrailTest extends TestCase
         $trail = app(ApprovalTrail::class)->for($a->fresh());
 
         $this->assertSame(['Created', 'Prepared', 'Verified', 'Certified', 'Approved'], array_column($trail, 'label'));
-        $this->assertSame([null, 'Planner UDIG', 'Director UDIG', 'Chefe GDSC', 'Chefe GDSC'], array_column($trail, 'by'));
+        $this->assertSame([null, 'Technical Officer UDIG', 'Director UDIG', 'Chefe GDSC', 'Chefe GDSC'], array_column($trail, 'by'));
         $this->assertSame('Within the ceiling.', end($trail)['note']);
 
         $approval = app(ApprovalTrail::class)->approval($a->fresh());

@@ -66,7 +66,7 @@ class ApprovalChainEndToEndTest extends TestCase
         $this->assertSame(Institution::MINISTRY, Institution::level());
 
         $activity = $this->draftIn('DNTT'); // a national directorate under the Direção-Geral dos Transportes
-        $activity = $this->step($this->user('planner.dntt@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
+        $activity = $this->step($this->user('tecnico.dntt@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
         $activity = $this->step($this->user('director.dntt@gdsc.tl'), $activity, Activity::STATUS_REVIEWED);
         $activity = $this->step($this->user('director.dgt@gdsc.tl'), $activity, Activity::STATUS_VALIDATED);
 
@@ -89,7 +89,7 @@ class ApprovalChainEndToEndTest extends TestCase
         $this->assertNull(User::where('email', 'ministro@gdsc.tl')->first(), 'an office has no Minister');
 
         $activity = $this->draftIn('UDIG'); // the Unidade para o Digital, under the Gabinete
-        $activity = $this->step($this->user('planner.udig@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
+        $activity = $this->step($this->user('tecnico.udig@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
         $activity = $this->step($this->user('director.udig@gdsc.tl'), $activity, Activity::STATUS_REVIEWED);
         $activity = $this->step($this->user('chefe.gdsc@gdsc.tl'), $activity, Activity::STATUS_VALIDATED);
 

@@ -60,7 +60,7 @@ class ActivityApprovalPageTest extends TestCase
         $this->assertSame(Activity::STATUS_REJECTED, $a->fresh()->status);
 
         // the planner of the unit opens the page and reads why
-        $this->actingAs(User::where('email', 'planner.udig@gdsc.tl')->firstOrFail());
+        $this->actingAs(User::where('email', 'tecnico.udig@gdsc.tl')->firstOrFail());
         Volt::test('pages.activities.show', ['activity' => $a->fresh()])
             ->assertSee('Add the travel budget line.')
             ->assertSee($head->name)

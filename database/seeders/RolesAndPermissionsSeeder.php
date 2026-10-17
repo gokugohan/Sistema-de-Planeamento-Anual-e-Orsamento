@@ -96,8 +96,8 @@ class RolesAndPermissionsSeeder extends Seeder
             ],
             [
                 'name' => 'Planning',
-                'display_name' => 'Planner',
-                'description' => 'Activity planner',
+                'display_name' => 'Technical Officer',
+                'description' => 'Technical officer of a unit: prepares its activities, indicators and budget lines',
                 'permissions' => [
                     'create_activities',
                     'edit_activities',
