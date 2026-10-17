@@ -126,4 +126,16 @@ class ApprovalRulesTest extends TestCase
 
         $this->assertTrue(AuditLog::where('action', 'systemsetting.deleted')->get()->contains(fn ($log) => ($log->old_values['key'] ?? null) === 'approval_rules'));
     }
+
+    public function test_an_indicator_without_a_unit_or_name_keeps_the_activity_from_being_submitted(): void
+    {
+        $this->office();
+        app()->setLocale('en');
+        $activity = $this->activityAt('UDIG', Activity::STATUS_DRAFT);
+        $this->assertSame([], app(ActivityWorkflow::class)->problems($activity), 'the sample activity is complete');
+
+        $activity->indicators()->first()->forceFill(['unit' => ' '])->save();
+
+        $this->assertContains('Every indicator needs a name, a unit of measure and a target.', app(ActivityWorkflow::class)->problems($activity->fresh()));
+    }
 }

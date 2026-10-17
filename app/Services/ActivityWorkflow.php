@@ -46,6 +46,9 @@ class ActivityWorkflow
         }
         if ($activity->indicators->isEmpty()) {
             $problems[] = __('Add at least one indicator with a target.');
+        } elseif ($activity->indicators->contains(fn ($i) => trim((string) $i->name) === '' || trim((string) $i->unit) === '' || $i->annual_target === null)) {
+            // the same needs as the form and the import: every indicator has a name, a unit and a target (zero is a target)
+            $problems[] = __('Every indicator needs a name, a unit of measure and a target.');
         }
         if ($activity->planned_start && $activity->planned_end && $activity->planned_end < $activity->planned_start) {
             $problems[] = __('The end date is before the start date.');

@@ -2140,5 +2140,6 @@
     "Total planned resources": "Total dos recursos planeados",
     "Amounts in force for the activities": "Montantes em vigor nas atividades",
     "Revisions in progress:": "Revisões em curso:",
-    ":n approved activities are being revised. They appear here as last approved, until the revision is approved.": ":n atividades aprovadas estão em revisão. Aparecem aqui como foram aprovadas, até a revisão ser aprovada."
+    ":n approved activities are being revised. They appear here as last approved, until the revision is approved.": ":n atividades aprovadas estão em revisão. Aparecem aqui como foram aprovadas, até a revisão ser aprovada.",
+    "Every indicator needs a name, a unit of measure and a target.": "Cada indicador precisa de um nome, uma unidade de medida e uma meta."
 }

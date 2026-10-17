@@ -1895,5 +1895,6 @@
     "Total planned resources": "Total planned resources",
     "Amounts in force for the activities": "Amounts in force for the activities",
     "Revisions in progress:": "Revisions in progress:",
-    ":n approved activities are being revised. They appear here as last approved, until the revision is approved.": ":n approved activities are being revised. They appear here as last approved, until the revision is approved."
+    ":n approved activities are being revised. They appear here as last approved, until the revision is approved.": ":n approved activities are being revised. They appear here as last approved, until the revision is approved.",
+    "Every indicator needs a name, a unit of measure and a target.": "Every indicator needs a name, a unit of measure and a target."
 }
