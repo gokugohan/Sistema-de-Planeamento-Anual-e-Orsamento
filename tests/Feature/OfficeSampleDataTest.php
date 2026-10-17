@@ -34,7 +34,7 @@ class OfficeSampleDataTest extends TestCase
         // Nothing of the rest of the ministry is created.
         $this->assertNull(User::where('email', 'ministro@gdsc.tl')->first());
         $this->assertNotNull(User::where('email', 'chefe.gdsc@gdsc.tl')->first());
-        $this->assertSame(6, User::count()); // a Planner and a Director for each of the three units; the head of the office is the Director of the top unit
+        $this->assertSame(7, User::count()); // a Planner and a Director for each of the three units (the head of the office is the Director of the top unit), and a Finance officer for the office
     }
 
     public function test_the_gabinete_gets_a_real_and_an_illustrative_plan_for_2026_and_2027(): void

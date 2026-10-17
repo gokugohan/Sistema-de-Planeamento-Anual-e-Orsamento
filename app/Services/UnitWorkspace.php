@@ -256,7 +256,7 @@ class UnitWorkspace
         ];
     }
 
-    /** What the person looking at the workspace has to decide or do: activities that are their turn, and a directorate ready to finalize. @return array<string, int> */
+    /** What the person looking at the workspace has to decide, confirm or verify: activities that are their turn, budgets, spending and progress. @return array<string, int> */
     private function decisions(User $user, \Closure $activities, int $year): array
     {
         $toCertify = 0;
@@ -270,7 +270,36 @@ class UnitWorkspace
             }
         }
 
-        return ['certify' => $toCertify, 'approve' => $toApprove];
+        return ['certify' => $toCertify, 'approve' => $toApprove] + $this->verifications($user, $activities, $year);
+    }
+
+    /**
+     * What a finance officer, a director or an administrator has to confirm or verify in the unit: the budget of submitted
+     * activities (where the institution asks for it), the spending that units reported, and indicator progress. Never the
+     * person's own reports.
+     *
+     * @return array{confirm: int, spending: int, progress: int}
+     */
+    private function verifications(User $user, \Closure $activities, int $year): array
+    {
+        $out = ['confirm' => 0, 'spending' => 0, 'progress' => 0];
+        $admin = $user->isAdministrator();
+
+        if (\App\Support\ApprovalRules::current()->budgetConfirmation && ($admin || $user->can('confirm_budget'))) {
+            $out['confirm'] = $activities()->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')->count();
+        }
+        if ($admin || $user->can('verify_spending') || $user->isDirector()) {
+            $out['spending'] = (int) DB::table('budget_executions as be')->join('line_items as li', 'li.id', '=', 'be.line_item_id')
+                ->whereIn('li.activity_id', $activities()->select('id'))->where('be.status', BudgetExecution::SUBMITTED)
+                ->where(fn ($q) => $q->whereNull('be.submitted_by')->orWhere('be.submitted_by', '!=', $user->id))->count();
+        }
+        if ($admin || $user->can('approve_progress_report') || $user->isDirector()) {
+            $out['progress'] = (int) DB::table('indicator_progress as ip')->join('indicators as i', 'i.id', '=', 'ip.indicator_id')
+                ->whereIn('i.activity_id', $activities()->select('id'))->where('ip.status', 'Submitted')
+                ->where(fn ($q) => $q->whereNull('ip.submitted_by')->orWhere('ip.submitted_by', '!=', $user->id))->count();
+        }
+
+        return $out;
     }
 
     /** The plan of a top-level unit: whether it has been finalized, and whether it is ready to be. @return array{root: ?array, closed: bool, ready: bool, pending: int} */

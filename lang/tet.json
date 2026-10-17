@@ -608,7 +608,6 @@
     "What it contains": "Saida mak iha laran",
     "The 28 MTC entities from Decreto-Lei 75/2023 as amended by 12/2026 (no departments are invented).": "Entidade MTK 28 husi Dekretu-Lei 75/2023 ne'ebé altera husi 12/2026 (la halo departamentu).",
     "7 working programmes with placeholder codes MTC-001 to MTC-007, not official OGE codes.": "Programa servisu 7 ho kódigu provizóriu MTC-001 to'o MTC-007, la ofisiál OJE.",
-    "Demo accounts (@gdsc.tl, password \"password\"): a Minister, and a Planner and a Director per unit.": "Konta demonstrasaun (@gdsc.tl, liafuan-pase \"password\"): Ministru ida, no Planeadór no Diretór ida ba unidade ida-ida.",
     "19 illustrative 2027 activities marked [EXEMPLO]. Every amount, target and date is invented.": "Atividade ilustrativa 19 ba 2027 marka [EXEMPLO]. Montante, meta no data hotu inventadu.",
     "Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.": "Hamoos de'it saida mak ezemplu kria, no rai unidade ka programa ezemplu ne'ebé dadus loloos uza ona.",
     "Sample data cannot be loaded in production.": "Dadus ezemplu la bele karrega iha produsaun.",
@@ -2136,5 +2135,7 @@
     "The activities of your unit, with their indicators and budget lines": "Atividade husi ita-nia unidade, ho indikadór no liña orsamentu",
     "Your unit's plan, what waits for you and the deadlines": "Ita-nia unidade nia planu, saida mak hein ita no prazu sira",
     "How each unit is doing, the ones that need attention first. Open one to see its own plan.": "Unidade ida-idak nia situasaun, uluk mak sira ne'ebé presiza atensaun. Loke ida atu haree ninia planu.",
-    ":n unit has no activity yet|:n units have no activity yet": ":n unidade seidauk iha atividade|:n unidade sira seidauk iha atividade"
+    ":n unit has no activity yet|:n units have no activity yet": ":n unidade seidauk iha atividade|:n unidade sira seidauk iha atividade",
+    ":n activity with a budget to confirm|:n activities with a budget to confirm": ":n atividade ho orsamentu atu konfirma|:n atividade sira ho orsamentu atu konfirma",
+    "Demo accounts (@gdsc.tl, password \"password\"): a Minister, a Planner and a Director per unit, and a Finance officer per directorate.": "Konta demonstrasaun (@gdsc.tl, password \"password\"): Ministru ida, Planeadór ida no Diretór ida ba unidade ida-idak, no Ofisiál Finansa ida ba direksaun ida-idak."
 }

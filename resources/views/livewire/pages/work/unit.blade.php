@@ -53,6 +53,9 @@ new class extends Component {
     if ($canPlan && $c['draft'] > 0) { $cards[] = ['amber', trans_choice(':n draft to finish|:n drafts to finish', $c['draft'], ['n' => $c['draft']]), $listUrl(['tab' => 'draft'])]; }
     if ($decide['certify'] > 0) { $cards[] = ['indigo', trans_choice(':n activity to certify (your turn)|:n activities to certify (your turn)', $decide['certify'], ['n' => $decide['certify']]), $listUrl(['tab' => 'review'])]; }
     if ($decide['approve'] > 0) { $cards[] = ['indigo', trans_choice(':n activity to approve (your turn)|:n activities to approve (your turn)', $decide['approve'], ['n' => $decide['approve']]), route('planning.paa-approval')]; }
+    if ($decide['confirm'] > 0) { $cards[] = ['indigo', trans_choice(':n activity with a budget to confirm|:n activities with a budget to confirm', $decide['confirm'], ['n' => $decide['confirm']]), route('approvals.budget')]; }
+    if ($decide['spending'] > 0) { $cards[] = ['indigo', trans_choice(':n spending figure to verify|:n spending figures to verify', $decide['spending'], ['n' => $decide['spending']]), route('monitoring.report')]; }
+    if ($decide['progress'] > 0) { $cards[] = ['indigo', trans_choice(':n progress report to verify|:n progress reports to verify', $decide['progress'], ['n' => $decide['progress']]), auth()->user()->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report')]; }
     if ($reporting && $reporting['done'] < $reporting['total'] && auth()->user()->can('view_monitoring')) {
         $cards[] = ['amber', __(':m: :done of :total activities have spending reported', ['m' => \Carbon\Carbon::create($year, $reporting['month'], 1)->translatedFormat('F'), 'done' => $reporting['done'], 'total' => $reporting['total']]), route('monitoring.report')];
     }

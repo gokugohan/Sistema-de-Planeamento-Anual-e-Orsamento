@@ -135,4 +135,21 @@ class UnitWorkspaceTest extends TestCase
 
         $this->get(route('work.home'))->assertOk()->assertSee('not linked to a unit');
     }
+
+    public function test_a_finance_officer_sees_what_they_have_to_verify_and_not_their_own_reports(): void
+    {
+        $finance = $this->user('Finance', $this->dn);
+        $planner = $this->user('Planning', $this->dn);
+        $a = $this->activity($this->dn, Activity::STATUS_APPROVED, 1);
+        $line = \App\Models\LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => \App\Models\EconomicClassification::first()->id, 'estimated_amount' => 100]);
+        \App\Models\BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $planner->id]);
+        \App\Models\BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $finance->id]);
+
+        $this->actingAs($finance);
+        Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertSee('1 spending figure to verify');
+
+        // the person who reported it is not asked to verify it
+        $this->actingAs($planner);
+        Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertDontSee('spending figure to verify');
+    }
 }

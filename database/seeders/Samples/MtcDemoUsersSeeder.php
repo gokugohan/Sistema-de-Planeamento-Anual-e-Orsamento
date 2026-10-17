@@ -9,8 +9,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Demo accounts for the sample dataset: one Minister, and a Planner and a
- * Director for every organic unit. All use the password "password" and the
+ * Demo accounts for the sample dataset: one Minister, a Planner and a
+ * Director for every organic unit, and a Finance officer for every directorate. All use the password "password" and the
  *
  * @gdsc.tl domain, so they must never exist in production: purge them from
  * Management > Sample Data before going live.
@@ -56,6 +56,16 @@ class MtcDemoUsersSeeder extends Seeder
                     'directorate_id' => $dir->id,
                 ]);
                 $this->assignRole($registry, $user, $role);
+            }
+
+            // a finance officer for every directorate (top-level unit): confirms budgets and verifies the spending reported below it
+            if (! $dir->parent_id) {
+                $user = $registry->upsert('mtc', User::class, ['email' => "finance.{$code}@gdsc.tl"], [
+                    'name' => "Finance {$dir->code}",
+                    'password' => $hash,
+                    'directorate_id' => $dir->id,
+                ]);
+                $this->assignRole($registry, $user, 'Finance');
             }
         }
     }

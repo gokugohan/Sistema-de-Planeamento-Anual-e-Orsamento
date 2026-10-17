@@ -48,7 +48,7 @@ class SampleDataTest extends TestCase
         $this->load();
 
         $counts = app(SampleRegistry::class)->counts();
-        $this->assertSame(['activities' => 274, 'users' => 99, 'directorates' => 49, 'programs' => 18], $counts);
+        $this->assertSame(['activities' => 274, 'users' => 113, 'directorates' => 49, 'programs' => 18], $counts);
         $this->assertSame(Activity::count(), $counts['activities']);
         $this->assertTrue((bool) SystemSetting::get(SampleRegistry::FLAG));
     }
@@ -60,7 +60,7 @@ class SampleDataTest extends TestCase
 
         $report = app(SampleRegistry::class)->purge('mtc');
 
-        $this->assertSame(['activities' => 274, 'users' => 99, 'directorates' => 49, 'programs' => 18], $report['deleted']);
+        $this->assertSame(['activities' => 274, 'users' => 113, 'directorates' => 49, 'programs' => 18], $report['deleted']);
         $this->assertSame([], $report['kept']);
         $this->assertSame(0, Activity::count() + Directorate::count() + Program::count() + User::count());
         $this->assertSame(0, SampleRecord::count());
@@ -148,7 +148,7 @@ class SampleDataTest extends TestCase
 
         $this->assertSame(49, Directorate::count());
         $this->assertSame(274, Activity::count());
-        $this->assertSame(['activities' => 274, 'users' => 99, 'directorates' => 49, 'programs' => 18], app(SampleRegistry::class)->counts());
+        $this->assertSame(['activities' => 274, 'users' => 113, 'directorates' => 49, 'programs' => 18], app(SampleRegistry::class)->counts());
     }
 
     public function test_adopt_registers_matching_pre_existing_records_but_not_changed_ones(): void
