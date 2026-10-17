@@ -2138,5 +2138,7 @@
     "Committed would exceed the approved plan amount of $ :a.": "O comprometido excederia o montante do plano aprovado de $ :a.",
     "Approved plan ($)": "Plano aprovado ($)",
     "Total planned resources": "Total dos recursos planeados",
-    "Amounts in force for the activities": "Montantes em vigor nas atividades"
+    "Amounts in force for the activities": "Montantes em vigor nas atividades",
+    "Revisions in progress:": "Revisões em curso:",
+    ":n approved activities are being revised. They appear here as last approved, until the revision is approved.": ":n atividades aprovadas estão em revisão. Aparecem aqui como foram aprovadas, até a revisão ser aprovada."
 }

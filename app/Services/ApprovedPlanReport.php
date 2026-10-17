@@ -3,7 +3,12 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ActivityVersion;
 use App\Models\EconomicClassification;
+use App\Models\FundingSource;
+use App\Models\Indicator;
+use App\Models\IndicatorAction;
+use App\Models\LineItem;
 use App\Models\SystemSetting;
 use Illuminate\Support\Collection;
 
@@ -11,9 +16,9 @@ use Illuminate\Support\Collection;
  * The final report of the approved Annual Activity Plan (PAA) and budget proposal for a
  * fiscal year, as a summary or as the complete report with the plan table.
  *
- * Only activities with status Approved are included. Activities still in the
- * internal workflow are counted separately so the reader can see whether the
- * plan is complete.
+ * An activity is in the report as its approved version: one being revised stays in it, shown as it was
+ * approved (from the stored version), until the revision is approved. Activities still in the internal
+ * workflow for the first time are counted separately so the reader can see whether the plan is complete.
  */
 class ApprovedPlanReport
 {
@@ -23,7 +28,7 @@ class ApprovedPlanReport
 
         $activities = Activity::query()
             ->where('fiscal_year', $year)
-            ->where('status', Activity::STATUS_APPROVED)
+            ->where(fn ($q) => $q->where('status', Activity::STATUS_APPROVED)->orWhere('version', '>', 0))
             ->with([
                 'directorate:id,code,name,type,parent_id,administration,legal_form',
                 'directorate.parent:id,code,name',
@@ -39,6 +44,18 @@ class ApprovedPlanReport
             ->orderBy('directorate_id')
             ->orderBy('id')
             ->get();
+
+        // an activity being revised is reported as the version in force, not as the draft of its revision
+        $revising = $activities->filter(fn (Activity $a) => $a->status !== Activity::STATUS_APPROVED);
+        $versions = ActivityVersion::whereIn('activity_id', $revising->pluck('id'))->orderBy('version')->get()->groupBy('activity_id')->map->last();
+        $inForce = [];
+        foreach ($revising as $a) {
+            if ($version = $versions->get($a->id)) {
+                $this->asApproved($a, $version);
+                $inForce[$a->id] = $version->approved_at?->timestamp;
+            }
+        }
+        $activities = $activities->reject(fn (Activity $a) => $a->status !== Activity::STATUS_APPROVED && ! isset($inForce[$a->id]))->values();
 
         $empty = fn () => array_fill_keys($classes->pluck('id')->all(), 0.0);
 
@@ -108,11 +125,6 @@ class ApprovedPlanReport
             ->pluck('n', 'status')
             ->map(fn ($n) => (int) $n)
             ->all();
-        // activities approved before and now being revised: not in this report until the revision is approved
-        $revising = Activity::query()->where('fiscal_year', $year)->where('status', '!=', Activity::STATUS_APPROVED)->where('version', '>', 0)->count();
-        if ($revising > 0) {
-            $pending['Revision in progress'] = $revising;
-        }
 
         $totals = $sum($rows);
 
@@ -132,6 +144,7 @@ class ApprovedPlanReport
             'by_unit' => $byUnit,
             'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),
             'pending' => $pending,
+            'revising' => count($inForce),
             'generated_at' => now('Asia/Dili'), // Timor-Leste time (TLT, UTC+9)
             'generated_by' => auth()->user()?->name,
         ];
@@ -140,10 +153,46 @@ class ApprovedPlanReport
         // fingerprints, so a printed copy can be checked against the system.
         $report['fingerprint'] = substr(hash('sha256', json_encode([
             $year,
-            $rows->map(fn ($r) => [$r['activity']->id, $r['activity']->updated_at?->timestamp, $r['by_class']])->all(),
+            $rows->map(fn ($r) => [$r['activity']->id, $inForce[$r['activity']->id] ?? $r['activity']->updated_at?->timestamp, $r['by_class']])->all(),
         ])), 0, 16);
         $report['reference'] = sprintf('PAA-%d-%s', $year, strtoupper($report['fingerprint']));
 
         return $report;
+    }
+
+    /** Show the activity as the version in force says it is (in memory only: nothing is saved). */
+    private function asApproved(Activity $activity, ActivityVersion $version): void
+    {
+        $snap = $version->snapshot;
+        $a = $snap['activity'] ?? [];
+        foreach (['code', 'description', 'objective', 'priority', 'planned_start', 'planned_end', 'execution_quarters', 'manager_name', 'location', 'quarter'] as $field) {
+            if (array_key_exists($field, $a)) {
+                $activity->setAttribute($field, $a[$field]);
+            }
+        }
+
+        $sources = FundingSource::pluck('name', 'id');
+        $activity->setRelation('lineItems', collect($snap['lines'] ?? [])->map(function ($l) use ($activity, $sources) {
+            $line = (new LineItem)->forceFill([
+                'id' => $l['id'] ?? null, 'activity_id' => $activity->id, 'economic_classification_id' => $l['economic_classification_id'] ?? null,
+                'funding_source_id' => $l['funding_source_id'] ?? null, 'estimated_amount' => $l['estimated_amount'] ?? 0,
+            ]);
+            $line->setRelation('fundingSource', isset($l['funding_source_id']) && $sources->has($l['funding_source_id']) ? (new FundingSource)->forceFill(['id' => $l['funding_source_id'], 'name' => $sources[$l['funding_source_id']]]) : null);
+
+            return $line;
+        })->values());
+
+        $activity->setRelation('indicators', collect($snap['indicators'] ?? [])->map(function ($i) use ($activity) {
+            $indicator = (new Indicator)->forceFill([
+                'id' => $i['id'] ?? null, 'activity_id' => $activity->id, 'name' => $i['name'] ?? '', 'type' => $i['type'] ?? null, 'unit' => $i['unit'] ?? null,
+                'annual_target' => $i['annual_target'] ?? 0, 'baseline' => $i['baseline'] ?? null, 'target_text' => $i['target_text'] ?? null,
+                'means_of_verification' => $i['means_of_verification'] ?? null, 'due_quarters' => $i['due_quarters'] ?? null,
+            ]);
+            $indicator->setRelation('actions', collect($i['actions'] ?? [])->map(
+                fn ($x) => (new IndicatorAction)->forceFill(['position' => $x['position'] ?? 0, 'text' => $x['text'] ?? '', 'months' => $x['months'] ?? []])
+            )->values());
+
+            return $indicator;
+        })->values());
     }
 }

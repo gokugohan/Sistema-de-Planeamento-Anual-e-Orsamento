@@ -177,4 +177,54 @@ class ApprovedPlanReportTest extends TestCase
             ->assertSee('Ministry services')
             ->assertSee('APORTIL');
     }
+
+    public function test_an_activity_under_revision_stays_in_the_report_as_it_was_approved(): void
+    {
+        $a = $this->activity(Activity::STATUS_VALIDATED, [[$this->goods, 1000], [$this->capital, 4000]]);
+        $a->update(['status' => Activity::STATUS_APPROVED]);
+        app(\App\Services\ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
+        $approvedText = $a->fresh()->description;
+        $before = (new ApprovedPlanReport)->build(2027);
+
+        // a revision: back to Draft, with another text and other amounts
+        $a->fresh()->forceFill(['status' => Activity::STATUS_DRAFT, 'description' => 'Revised wording not yet approved'])->save();
+        $a->lineItems()->where('economic_classification_id', $this->goods->id)->first()->update(['estimated_amount' => 9999]);
+        $a->lineItems()->where('economic_classification_id', $this->capital->id)->first()->delete();
+
+        $r = (new ApprovedPlanReport)->build(2027);
+
+        $this->assertSame(1, $r['totals']['count'], 'the activity under revision is still in the plan');
+        $this->assertEquals(5000, $r['totals']['total'], 'with the amounts of the version in force');
+        $this->assertEquals(4000, $r['totals']['by_class'][$this->capital->id]);
+        $this->assertSame($approvedText, $r['tree'][0]['loose'][0]['activity']->description);
+        $this->assertSame(1, $r['revising']);
+        $this->assertArrayNotHasKey('Revision in progress', $r['pending']);
+        $this->assertSame($before['fingerprint'], $r['fingerprint'], 'editing a revision does not change what the report says');
+    }
+
+    public function test_the_report_total_equals_the_plan_in_force_during_a_revision(): void
+    {
+        $a = $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000], [$this->capital, 4000]]);
+        app(\App\Services\ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
+        $a->fresh()->forceFill(['status' => Activity::STATUS_DRAFT])->save();
+        $a->lineItems()->where('economic_classification_id', $this->capital->id)->first()->delete();
+
+        $inForce = (float) \App\Models\AdjustedBudget::whereHas('lineItem', fn ($l) => $l->withTrashed()->where('activity_id', $a->id))->sum('approved_amount');
+
+        $this->assertEquals($inForce, (new ApprovedPlanReport)->build(2027)['totals']['total']);
+    }
+
+    public function test_the_report_page_and_pdf_render_with_an_activity_under_revision(): void
+    {
+        app()->setLocale('en');
+        $a = $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
+        app(\App\Services\ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
+        $a->fresh()->forceFill(['status' => Activity::STATUS_DRAFT])->save();
+        $this->actingAs($this->user('Minister'));
+
+        $this->get(route('reports.approved-plan', ['year' => 2027]))->assertOk()->assertSee('Revisions in progress')->assertSee('1,000.00');
+        $pdf = $this->get(route('reports.approved-plan.pdf', ['year' => 2027]));
+        $pdf->assertOk();
+        $this->assertStringStartsWith('%PDF', $pdf->getContent());
+    }
 }

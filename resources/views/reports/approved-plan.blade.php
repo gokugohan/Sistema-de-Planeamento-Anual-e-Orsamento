@@ -101,6 +101,13 @@
     <tr><td class="muted">{{ __('Scope') }}</td><td>{{ __('Activities approved internally (status Approved)') }}</td></tr>
 </table>
 
+@if(($report['revising'] ?? 0) > 0)
+    <div class="note">
+        <strong>{{ __('Revisions in progress:') }}</strong>
+        {{ __(':n approved activities are being revised. They appear here as last approved, until the revision is approved.', ['n' => $report['revising']]) }}
+    </div>
+@endif
+
 @if($pendingTotal > 0)
     <div class="note">
         <strong>{{ __('Plan not complete:') }}</strong>
