@@ -38,16 +38,15 @@ class ActivityRollForward
         $copied = $skipped = 0;
         $shift = $toYear - $fromYear;
         $units = Directorate::pluck('code', 'id');
-        $next = [];
         $programs = app(ProgramYears::class);
         $programMap = [];
 
-        DB::transaction(function () use ($fromYear, $toYear, $unitIds, $shift, $units, $programs, &$programMap, &$copied, &$skipped, &$next) {
+        DB::transaction(function () use ($fromYear, $toYear, $unitIds, $shift, $units, $programs, &$programMap, &$copied, &$skipped) {
             Activity::where('fiscal_year', $fromYear)
                 ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds))
                 ->with(['lineItems', 'indicators', 'program', 'subprogram'])
                 ->orderBy('id')
-                ->chunkById(100, function ($activities) use ($toYear, $shift, $units, $programs, &$programMap, &$copied, &$skipped, &$next) {
+                ->chunkById(100, function ($activities) use ($toYear, $shift, $units, $programs, &$programMap, &$copied, &$skipped) {
                     foreach ($activities as $a) {
                         // the programme of the new year with the same code (registered now if it is missing)
                         $program = $programMap[$a->program_id] ??= $programs->forYearOf($a->program, $toYear);
@@ -67,8 +66,7 @@ class ActivityRollForward
                         }
 
                         $key = $a->directorate_id;
-                        $next[$key] ??= Activity::where('fiscal_year', $toYear)->where('directorate_id', $key)->count();
-                        $code = ($units[$key] ?? 'ACT').'-'.substr((string) $toYear, -2).'-'.str_pad((string) ++$next[$key], 3, '0', STR_PAD_LEFT);
+                        $code = Activity::nextCode($toYear, $units[$key] ?? 'ACT'); // the highest number in use plus one, copies made in this run included
 
                         $copy = Activity::create([
                             'fiscal_year' => $toYear,

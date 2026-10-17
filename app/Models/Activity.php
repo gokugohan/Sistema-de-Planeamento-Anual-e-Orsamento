@@ -35,6 +35,19 @@ class Activity extends Model
         });
     }
 
+    /**
+     * The next free code of a unit in a year, UNIT-YY-NNN: one more than the highest number in use (not the count, which
+     * repeats a number once an activity in the middle of the series has been deleted).
+     */
+    public static function nextCode(int $fiscalYear, string $unitCode): string
+    {
+        $prefix = $unitCode.'-'.substr((string) $fiscalYear, -2).'-';
+        $highest = static::query()->withoutGlobalScopes()->where('fiscal_year', $fiscalYear)->where('code', 'like', $prefix.'%')->pluck('code')
+            ->map(fn ($code) => (int) substr((string) $code, strlen($prefix)))->max() ?? 0;
+
+        return $prefix.str_pad((string) ($highest + 1), 3, '0', STR_PAD_LEFT);
+    }
+
     public function isLocked(): bool
     {
         // nothing locks a whole year: an approved activity is changed through a revision (see ActivityVersions)

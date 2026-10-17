@@ -198,10 +198,7 @@ new class extends Component {
 
     private function nextCode(Directorate $unit): string
     {
-        $prefix = $unit->code.'-'.substr((string) $this->year, -2).'-';
-        $n = Activity::where('fiscal_year', $this->year)->where('directorate_id', $unit->id)->where('code', 'like', $prefix.'%')->count() + 1;
-
-        return $prefix.str_pad((string) $n, 3, '0', STR_PAD_LEFT);
+        return Activity::nextCode((int) $this->year, $unit->code);
     }
 
     /** Why the plan cannot be saved now: the submission window is closed (a revision of an approved activity is not held back by it). */
