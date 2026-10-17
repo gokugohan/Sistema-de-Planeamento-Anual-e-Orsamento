@@ -142,7 +142,7 @@ php artisan db:seed           # roles, economic categories, default settings, fi
 # 4. Run
 npm run build                 # or `npm run dev` for hot reload
 php artisan serve
-php artisan queue:listen      # notifications are queued: keep this running
+php artisan queue:listen      # optional: nothing in the application is queued today; see "Queue worker" below
 ```
 
 `composer dev` starts the web server, queue worker, log viewer and Vite together.
@@ -240,7 +240,7 @@ Copy `database/seeders/Samples/` to a new folder, replace the structure and prog
 
 ### Server requirements
 
-PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`, a web server (Nginx or Apache) serving **`public/`** as the document root, HTTPS, and a process manager (systemd or Supervisor) for the queue worker. Redis is optional and recommended for large deployments.
+PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`, a web server (Nginx or Apache) serving **`public/`** as the document root, HTTPS, and, only if you later add queued work, a process manager (systemd or Supervisor) for a queue worker. Redis is optional and recommended for large deployments.
 
 ### Deploying on Railway
 
@@ -269,7 +269,7 @@ PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`
 3. In the app service's **Build** settings, set the build command to `composer install --no-dev --optimize-autoloader --no-interaction && npm ci && npm run build`. **Leave the web service's Start Command empty** so Railpack runs Laravel on FrankenPHP (a multi-worker production server that listens on Railway's port). Never use `php artisan serve`: it is PHP's single-request development server and makes the application feel slow. Add `&& php artisan optimize` to the build command if your Railway build does not already cache config, routes and views. Railpack installs Composer development dependencies while building, so this project requires PHP 8.3+; do not override its PHP version with 8.2. The `--no-dev` flag still keeps production-only dependencies in the final deployment.
 4. Set the service's **Pre-deploy Command** to `php artisan migrate --force`. This runs schema migrations before each release. Deploy, then generate a Railway domain in the service's **Networking** settings and update `APP_URL` to that HTTPS URL.
 5. In the app service's Railway shell, run `php artisan db:seed --force` once to create the base records and first administrator. Do not run this as a deploy command, and do not load the optional sample dataset in production. Sign in with the administrator credentials you set above.
-6. Add a second service from the same repository for the queue worker. Give it the same database and application variables, use the same build command, and set its **Start Command** to `php artisan queue:work --sleep=3 --tries=3 --max-time=3600`. Notifications will remain queued if this worker is not running.
+6. Add a second service from the same repository for the queue worker. Give it the same database and application variables, use the same build command, and set its **Start Command** to `php artisan queue:work --sleep=3 --tries=3 --max-time=3600`. This worker is optional today: notifications are written to the database straight away and do not wait for it.
 
 Railway's container filesystem is ephemeral. If you store uploaded files locally, attach a Railway Volume at the Laravel storage path or use persistent object storage; keep database backups outside the app container. Railway's managed MySQL backups are preferable to the local `paa:backup` command unless `mysqldump` and persistent backup storage have also been configured. Check `/health` after deployment.
 
@@ -312,9 +312,9 @@ chown -R www-data:www-data storage bootstrap/cache
 
 The compiled front-end (`public/build`) is committed. If you change CSS or views, rebuild with `npm ci && npm run build` and commit the result, or build in your pipeline.
 
-### Queue worker (required)
+### Queue worker (optional today)
 
-Notifications (approval requests, returned activities) are queued. **Without a running worker they are never delivered.** Example Supervisor program:
+Notifications (approval requests, returned activities) are written to the database synchronously, in the same request, and appear in the application only (the `database` channel; no e-mail is sent). Nothing in the application is dispatched to the queue, so a worker is **not** required today. Run one only if you add queued work (for example e-mail); then keep it running with a program such as this Supervisor example:
 
 ```ini
 [program:paa-queue]

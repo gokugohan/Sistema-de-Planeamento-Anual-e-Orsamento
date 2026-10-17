@@ -476,7 +476,7 @@ Choose **Complete report** or **Summary** from the selector. **Print** to paper 
 
 ### 11.5 Notifications and e-mail
 
-Notifications are queued: the server must run the queue worker (Part 13.4) for them to arrive promptly.
+Notifications are delivered inside the application as soon as the action happens; no queue worker or e-mail setup is needed for them.
 
 ---
 
@@ -551,7 +551,7 @@ See 4.8. Loading needs an administrator and is refused in production.
 For the person who installs and runs it (the *README* has the full instructions):
 
 - **Backups**: `php artisan paa:backup` makes a verified, compressed backup and deletes old ones. It is scheduled nightly at 02:00; the server must run the Laravel scheduler (`* * * * * php artisan schedule:run`).
-- **Notifications** are queued: run a queue worker (`php artisan queue:work`) in production.
+- **Notifications** are written to the database at once and shown in the application; no queue worker is needed today (see the README, "Queue worker").
 - **Health check**: the `/health` address answers for uptime monitoring.
 - **Security**: sign-in attempts are rate-limited; registration is closed; permissions are checked on the server for every action, not only hidden in the menu; senior roles use two-factor sign-in.
 

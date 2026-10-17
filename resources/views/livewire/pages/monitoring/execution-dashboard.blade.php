@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Component;
 
 /**
- * Execution of the active fiscal year: what has been paid and committed against the approved budget
+ * Execution of the active fiscal year: what has been paid and committed against the approved plan amount
  * (read against how far the year has gone), and the delivery of indicator targets, by programme and by quarter.
  * Only verified figures count.
  */
@@ -50,7 +50,7 @@ new class extends Component {
 
 <div class="space-y-6">
     <x-ui.page-header :title="__('Execution Monitoring')"
-        :subtitle="__('Paid and committed against the approved budget, and delivery of targets').($activeYear ? ' · '.$activeYear : '')">
+        :subtitle="__('Paid and committed against the approved plan amount, and delivery of targets').($activeYear ? ' · '.$activeYear : '')">
         @if($activeYear)
             <x-ui.button variant="primary" href="{{ route('monitoring.report') }}" wire:navigate>{{ __('Report execution') }}</x-ui.button>
         @endif
@@ -70,9 +70,9 @@ new class extends Component {
         @endphp
 
         <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            <x-ui.kpi :label="__('Approved budget')" :value="'$ '.number_format($s['approved'])" :sub="__('Distributed to the activities')" tone="zinc" />
+            <x-ui.kpi :label="__('Approved plan amount')" :value="'$ '.number_format($s['approved'])" :sub="__('Amounts in force for the activities')" tone="zinc" />
             <x-ui.kpi :label="__('Committed')" :value="'$ '.number_format($s['committed'])"
-                :sub="number_format($s['committed_rate'] ?? 0, 1).'% '.__('of the approved budget')" :progress="$s['committed_rate']" tone="emerald" />
+                :sub="number_format($s['committed_rate'] ?? 0, 1).'% '.__('of the approved plan amount')" :progress="$s['committed_rate']" tone="emerald" />
             <x-ui.kpi :label="__('Paid')" :value="'$ '.number_format($s['paid'])"
                 :sub="number_format($s['paid_rate'] ?? 0, 1).'% '.__('paid').' · '.number_format($s['elapsed'], 0).'% '.__('of the year has passed')"
                 :progress="$s['paid_rate']" :tone="$behindSchedule ? 'amber' : 'indigo'" />
@@ -97,7 +97,7 @@ new class extends Component {
                 </div>
             </x-ui.card>
 
-            <x-ui.card :title="__('Paid and delivered, by programme')" :description="__('Percent of the approved budget paid, and of the targets delivered')" class="min-w-0 lg:col-span-5">
+            <x-ui.card :title="__('Paid and delivered, by programme')" :description="__('Percent of the approved plan amount paid, and of the targets delivered')" class="min-w-0 lg:col-span-5">
                 <div wire:key="p-{{ md5(json_encode($rows)) }}" class="relative h-72"
                     x-data
                     x-init="onChart(() => { const r = @js($rows); const tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };

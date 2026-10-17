@@ -91,7 +91,7 @@
 <div class="cover">
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
-    <div class="title">{{ __('Annual Activity Plan and Budget Proposal') }} {{ $report['year'] }}</div>
+    <div class="title">{{ __('Annual Activity Plan') }} {{ $report['year'] }}</div>
     <div class="muted" style="margin-top:6px">{{ $complete ? __('Complete report') : __('Summary report') }}</div>
 </div>
 
@@ -114,7 +114,7 @@
         <td><div class="v">{{ $report['totals']['count'] }}</div><div class="small muted">{{ __('Approved activities') }}</div></td>
         <td><div class="v">{{ $report['by_unit']->sum(fn ($r) => $r['units']->count()) }}</div><div class="small muted">{{ __('Organic units') }}</div></td>
         <td><div class="v">{{ $report['indicator_count'] }}</div><div class="small muted">{{ __('Indicators') }}</div></td>
-        <td><div class="v">{{ $money($grand) }}</div><div class="small muted">{{ __('Total budget proposal') }}</div></td>
+        <td><div class="v">{{ $money($grand) }}</div><div class="small muted">{{ __('Total planned resources') }}</div></td>
     </tr>
 </table>
 

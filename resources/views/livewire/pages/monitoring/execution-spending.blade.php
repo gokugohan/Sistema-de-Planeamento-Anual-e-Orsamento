@@ -135,7 +135,7 @@ new class extends Component {
             if ($committed < 0 || $paid < 0) {
                 $errors["form.{$line->id}.committed"] = __('Amounts cannot be negative.');
             } elseif ($line->other_committed + $committed > $line->approved + 0.005) {
-                $errors["form.{$line->id}.committed"] = __('Committed would exceed the approved budget of $ :a.', ['a' => number_format($line->approved, 2)]);
+                $errors["form.{$line->id}.committed"] = __('Committed would exceed the approved plan amount of $ :a.', ['a' => number_format($line->approved, 2)]);
             } elseif ($line->other_paid + $paid > $line->other_committed + $committed + 0.005) {
                 $errors["form.{$line->id}.paid"] = __('Paid cannot exceed what has been committed.');
             } else {

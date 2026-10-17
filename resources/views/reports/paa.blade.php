@@ -103,7 +103,7 @@
             @if($unitRows === '')
                 <x-ui.empty-state :title="__('Nothing to report yet')" :text="__('Figures appear here once activities are planned for this year.')" />
             @else
-                <x-ui.table :headers="[__('Unit / Directorate Structure'), __('Planned resources ($)'), __('Approved Budget ($)'), __('Utilization (%)')]" :right="[1, 2, 3]" class="text-sm">
+                <x-ui.table :headers="[__('Unit / Directorate Structure'), __('Planned resources ($)'), __('Approved plan ($)'), __('Utilization (%)')]" :right="[1, 2, 3]" class="text-sm">
                     {!! $unitRows !!}
                     <tr class="border-t-2 border-zinc-300 bg-zinc-50 font-semibold text-zinc-900">
                         <td class="px-5 py-3 text-sm">{{ __('Consolidated Institutional Totals') }}</td>

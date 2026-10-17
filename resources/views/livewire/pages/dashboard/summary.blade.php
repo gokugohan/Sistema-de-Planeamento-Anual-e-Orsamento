@@ -126,7 +126,7 @@ new class extends Component {
         $achievement = $delivery['achievement'];
         $quarterly = $delivery['quarters'];
 
-        // ── execution: committed and paid against the approved budget, and against the calendar ──
+        // ── execution: committed and paid against the approved plan amount, and against the calendar ──
         $execReport = app(\App\Services\ExecutionReport::class);
         $execData = $execReport->load($year, $unitIds, $cat, null, $prog);
         $exec = $execReport->summary($execData);
@@ -330,7 +330,7 @@ new class extends Component {
                 default => [__('Behind schedule'), 'bg-amber-50 text-amber-800'],
             };
         @endphp
-        <x-ui.card :title="__('Budget execution')" :description="__('Paid and committed against the approved budget, by quarter')" padding="p-0">
+        <x-ui.card :title="__('Budget execution')" :description="__('Paid and committed against the approved plan amount, by quarter')" padding="p-0">
             <x-slot:actions>
                 @if($exec['quarter'] > 0)
                     <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium {{ $paceTone }}">{{ $paceLabel }}</span>
@@ -344,14 +344,14 @@ new class extends Component {
                 </div>
                 <div class="space-y-5 border-t border-zinc-200 p-5 lg:col-span-5 lg:border-l lg:border-t-0">
                     <dl class="grid grid-cols-3 gap-3">
-                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Approved budget') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['approved']) }}</dd></div>
+                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Approved plan amount') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['approved']) }}</dd></div>
                         <div><dt class="text-xs font-medium text-zinc-500">{{ __('Committed') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['committed']) }}</dd></div>
                         <div><dt class="text-xs font-medium text-zinc-500">{{ __('Paid') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-indigo-700">$ {{ number_format($exec['paid']) }}</dd></div>
                     </dl>
 
                     <div>
                         <div class="flex items-baseline justify-between text-sm">
-                            <span class="font-medium text-zinc-700">{{ __('Paid of the approved budget') }}</span>
+                            <span class="font-medium text-zinc-700">{{ __('Paid of the approved plan amount') }}</span>
                             <span class="font-semibold tabular-nums text-zinc-900">{{ number_format($exec['paid_rate'] ?? 0, 1) }}%</span>
                         </div>
                         {{-- the bar is the paid share; the tick is where the year stands --}}
