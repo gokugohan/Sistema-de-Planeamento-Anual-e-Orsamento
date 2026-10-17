@@ -1,6 +1,6 @@
 # Plano de Ação Anual (PAA)
 
-A web application for public institutions to **prepare, approve and carry out their Annual Action Plan** (*Plano de Ação Anual*, PAA). The plan is the centre: each unit's activities, with their indicators, the actions and months that deliver them, and the budget that pays for them, are approved directorate by directorate; the budget received is then distributed over the approved plan, and the plan is reported on month by month and quarter by quarter.
+A web application for public institutions to **prepare, approve and carry out their Annual Action Plan** (*Plano de Ação Anual*, PAA). The plan is the centre: each unit's activities, with their indicators, the actions and months that deliver them, and the budget lines that pay for them, are approved directorate by directorate. An approved activity is never overwritten: a change is a **revision** that makes a new **version** and goes through the approval again, while the approved version stays in force. The plan is reported on month by month and quarter by quarter. There is no separate fiscal envelope to register or distribute.
 
 It is designed around the Timor-Leste State Budget (OGE) process, but it is **not tied to any one institution**. Your ministry, secretariat or agency is configured in the app (name, organisational structure, programmes). The Ministry of Transport and Communications (MTC) appears in this repository only as an **optional sample dataset** used for demos, training and development. See [Sample data](#sample-data-mtc).
 
@@ -33,10 +33,9 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 |---|---|---|---|
 | 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *Administration → Reporting windows* | Planner / Director |
 | 2 | **Approval**: each activity moves through the chain of its unit (prepare, certify, approve; named lists and interim approvers where set; finance confirmation of the budget where asked for) until Approved | *Approvals* | Reviewers, final approver |
-| 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has, or the envelope is received); only they or an administrator can reopen it, with a remark | *PAA Activities*, *Approvals* | Final approver / Admin |
-| 4 | **Budget received**: the envelope the institution received is registered, split by economic category | *Fiscal Envelope* | Admin → Minister approves |
-| 5 | **Distribution**: the envelope is distributed over the approved plan | *Fiscal Envelope → Redistribute* | Admin / Minister |
-| 6 | **Reporting**: spending every month and indicators every quarter, inside their windows; verified by someone else; the director compiles the quarter; the performance and final plan reports are printed | *Execute*, *Reporting* | Units, verifiers, directors |
+| 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has); only they or an administrator can reopen it, with a remark. Finalizing stops new activities only | *PAA Activities*, *Approvals* | Final approver / Admin |
+| 4 | **Reporting**: units report spending (committed and paid) and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Planner / Director / Finance |
+| 5 | **Revision**: an approved activity changes only through a revision: a reason, the whole approval chain again, a new version; the version in force stays meanwhile | *Activity → Revise* | Preparers, director, final approver |
 
 **Printed reports follow the Ministry of Finance template.** The final plan report and the monthly/quarterly performance report both print on A4 landscape in the formal table used by the ministry: objective bands (SDG/PED), a programme band and a subprogramme band with their totals, then each activity with its indicators, baseline, target, means of verification, unit, funding source, the quarters it runs in (blue cells) and the budget by economic category. The approved plan's summaries by category, programme and unit follow the table.
 
@@ -48,9 +47,9 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 
 **Budget confirmation (the resource plan).** An institution can ask, in *Management > Settings*, that a finance officer confirms the budget lines of an activity before it is certified (off by default). The Finance role (`confirm_budget`) then finds the submitted activities of its unit at *Approvals > Budget review*, sees each line with its category and funding source, and confirms it with a short justification or sends it back to the unit with a reason. Until it is confirmed nobody can certify the activity; changing a budget line afterwards takes the confirmation away; the activity page says whether the budget is confirmed and by whom.
 
-**Implementation plan, as the ministry's form has it.** Under each indicator (in *More details* of the activity form) the unit lists the numbered **actions** that carry it out, each with the **months** it takes place in; the quarters the indicator is reported in follow from those months, and the months must fall in the quarters the activity runs in. The **budget is allocated per indicator**: each budget line can say which indicator it pays for (or stay with the whole activity), and an indicator's allocation is the sum of its lines. The plan shows on the activity page, to the unit on *Report execution* ("Planned for Q2") and in the printed reports. *Plan → Plan cycle → Implementation plan* prints the form per unit (A4 landscape, or as a PDF): programme and subprogramme bands, each activity with its indicators, the actions, a Jan-Dec grid grouped by quarter with the action's months shaded, the budget allocated per indicator, and the Prepared by / Approved by names taken from the unit's approval lists. By default it lists approved activities; activities not yet approved can be included.
+**Implementation plan, as the ministry's form has it.** Under each indicator (in *More details* of the activity form) the unit lists the numbered **actions** that carry it out, each with the **months** it takes place in; the quarters the indicator is reported in follow from those months, and the months must fall in the quarters the activity runs in. The **budget is allocated per indicator**: each budget line can say which indicator it pays for (or stay with the whole activity), and an indicator's budget is the sum of its lines. The plan shows on the activity page, to the unit on *Report execution* ("Planned for Q2") and in the printed reports. *Plan → Plan cycle → Implementation plan* prints the form per unit (A4 landscape, or as a PDF): programme and subprogramme bands, each activity with its indicators, the actions, a Jan-Dec grid grouped by quarter with the action's months shaded, the budget allocated per indicator, and the Prepared by / Approved by names taken from the unit's approval lists. By default it lists approved activities; activities not yet approved can be included.
 
-**Final approval and restructuring.** The final approval of a plan is given by the head of the top-level unit (the directorate) for the plans of its own directorate and the units below it; the Minister sees every plan and approves the fiscal envelope but does not approve plans. Because authority is worked out from the unit tree and the approval lists when someone acts (nothing is stored on the activity), a restructuring needs no clean-up of pending work: when a unit is moved to another parent, the heads and lists above it take over from the status where each activity stands. After a reshuffle, *Approvals → Approval lists* lets a director (for their own units) or an administrator replace one person by another in every list at once and tells when a list is left empty (the default rule then applies again); an administrator can also move an activity to another unit from its page, with a remark that is kept in the audit trail. An **interim** appointment counts for the steps the head decides (certify and approve) even where a unit's list names other people, but not for preparing, and it ends on its date or when revoked. Ending planning for a year is an administrator's, or the head's when every activity of the year is in their own directorate.
+**Final approval and restructuring.** The final approval of a plan is given by the head of the top-level unit (the directorate) for the plans of its own directorate and the units below it; the Minister sees every plan but does not approve plans. Because authority is worked out from the unit tree and the approval lists when someone acts (nothing is stored on the activity), a restructuring needs no clean-up of pending work: when a unit is moved to another parent, the heads and lists above it take over from the status where each activity stands. After a reshuffle, *Approvals → Approval lists* lets a director (for their own units) or an administrator replace one person by another in every list at once and tells when a list is left empty (the default rule then applies again); an administrator can also move an activity to another unit from its page, with a remark that is kept in the audit trail. An **interim** appointment counts for the steps the head decides (certify and approve) even where a unit's list names other people, but not for preparing, and it ends on its date or when revoked. Ending planning for a year is an administrator's, or the head's when every activity of the year is in their own directorate.
 
 **Interim approvers.** When a director is away, the director (for their own unit) or an administrator (for any unit) appoints someone at *Approvals > Interim approvers* for a set time. For that time the person has the director's authority over the unit and the units below it: they see its activities, move them along the approval chain, verify figures, and can give the final approval where the head approves. It ends by date or when revoked, the appointment is audited, and the person is notified. Authority comes from a user's *seats* (`User::seats()`: their own unit with the Director role, plus units they stand in for), not from the role name alone.
 
@@ -60,14 +59,14 @@ The sample data is aware of today's date: a finished year is executed to the end
 
 ### The plan cycle
 
-*Plan → Plan cycle* follows one fiscal year of the annual action plan: the window to submit it (an administrator sets its dates at *Administration → Reporting windows*; outside it only an administrator can create, edit or submit activities), how far the approval has got, whether planning has ended, the budget it receives and how much of it is distributed, and the monthly and quarterly reporting with the window of each period and how much has been reported and verified. Nothing is done on that page: each step is done where it belongs, and the page shows where the year stands. The same steps run along the top of the dashboard.
+*Plan → Plan cycle* follows one fiscal year of the annual action plan: the window to submit it (an administrator sets its dates at *Administration → Reporting windows*; outside it only an administrator can create, edit or submit activities), how far the approval has got, whether planning has ended (and how many revisions are in progress), what is planned and what the approved versions allow, and the monthly and quarterly reporting with the window of each period and how much has been reported and verified. Nothing is done on that page: each step is done where it belongs, and the page shows where the year stands. The same steps run along the top of the dashboard.
 
 ### Roles
 
 | Role | Typical use | Main permissions |
 |---|---|---|
 | **Admin** | System administrator | everything |
-| **Minister** | Approves plans, envelopes and progress | approve PAA / envelope / progress, view everything |
+| **Minister** | Sees every plan and report; does not approve plans | view everything |
 | **Director** | Unit head | create/edit activities, submit PAA, update indicator progress, view |
 | **Planning** | Unit planner | create/edit activities, submit PAA, view |
 | **Viewer** | Read-only | view PAA, budget, monitoring, reports |
@@ -84,25 +83,24 @@ An activity follows the structure of a Timor-Leste annual action plan: **program
 
 ### Who sees what
 
-Visibility follows the unit tree. **Department users** (Director, Planner, Viewer) see and work on **their own unit and the units below it**, in activities, monitoring and allocation review. The **dashboard** is the one ministry-wide page they can open; ministry-wide pages (fiscal envelope, budget allocation, plan cycle, reporting and the final plan report) are for users with *view all PAA* (**Admin** and **Minister**), and are hidden from the menu and refused on the server for everyone else. This is enforced by `ActivityPolicy` and route permissions, not just by hiding links.
+Visibility follows the unit tree. **Department users** (Director, Planner, Viewer) see and work on **their own unit and the units below it**, in activities and monitoring. The **dashboard** is the one ministry-wide page they can open; ministry-wide pages (plan cycle, reporting and the final plan report) are for users with *view all PAA* (**Admin** and **Minister**), and are hidden from the menu and refused on the server for everyone else. This is enforced by `ActivityPolicy` and route permissions, not just by hiding links.
 
 ### Navigation and the interface
 
 - **One menu definition** (`config/navigation.php`) drives the sidebar, the breadcrumbs and the **Go to…** quick-jump (press `Ctrl K`, or `/`). Each user sees only the pages their role can open. To add a page, add it there, and add a `pages` entry if it is a detail screen, so its breadcrumb reads correctly.
-- **Fiscal year is global.** The year picker in the top bar sets the year every page works in. Between budget cycles the default is the year being planned (the latest year with an envelope or activities, never beyond next year), not an empty calendar year.
-- **Dashboard** (one fiscal year, filterable by unit and category): the plan-cycle tracker (submission → approval → finalized → budget → distribution → reporting); key figures (envelope, approved plan, distributed, activities approved, delivery against targets); "Needs your attention" (what the signed-in user can act on) and "Worth a look" (undistributed envelope, units with no activities, approved activities without budget lines); charts by category, status and unit; a units table. Charts are bundled (no CDN), so they work on restricted networks.
-- **Budget Allocation** shows how the envelope was shared: approved plan, distributed and funded % by unit (with sub-units), economic category and programme.
+- **Fiscal year is global.** The year picker in the top bar sets the year every page works in. The default is the current year while its plan is being carried out, otherwise the latest year with activities (never beyond next year).
+- **Dashboard** (one fiscal year, filterable by unit and category): the plan-cycle tracker (submission → approval → finalized → reporting); key figures (planned, approved plan in force, paid, activities approved, delivery against targets); "Needs your attention" (what the signed-in user can act on) and "Worth a look" (units with no activities, approved activities without budget lines); charts by category, status and unit; a units table. Charts are bundled (no CDN), so they work on restricted networks.
 - **Entities** (*Administration → Entities*) is the single page for units, programmes and economic categories: create, edit, delete, and see each one's approved plan and funded % for the selected year. (It replaces the former "Entities Registry"; `/admin/entities` redirects here.)
 - **Sign-in screen:** two panes. The left pane says who and what: the institution (name and optional logo from *Settings*), the product tagline and description, the five-step annual cycle, and an "Implemented by" credit (it shows `public/logo.png` if the file exists). The right pane is the task: email, password with show/hide and a Caps Lock warning, remember-me, forgot-password, and a note to contact the administrator. It is institution-neutral and takes everything it displays from *Management → Settings*.
-- **Review pages.** *PAA Tech Review* (Admin, Minister) works through submitted activities in queues (To review → Ready for approval → Approved, plus Returned) with the amounts at stake in each. *Allocation Review* lets a unit compare what it was allocated with what its approved plan asked for, then accept it or ask for an adjustment; directors and planners act for their own unit only, administrators and ministers can look at any unit. Both follow the fiscal year chosen in the top bar.
+- **Review pages.** *Activities to decide* (Admin, directors, named approvers) works through submitted activities in queues (To review → Ready for approval → Approved, plus Returned) with the amounts at stake in each. Both follow the fiscal year chosen in the top bar.
 - **One visual language.** All screens use the same design system (sentence-case headings, indigo primary actions, the shared card, table, badge and KPI components); the legacy "black button" style is gone.
 - Keyboard and screen-reader support: skip links, labelled landmarks, the current page marked in the menu and breadcrumb, visible focus.
 
-**The menu follows the annual cycle:** *Plan* (activities), *Approvals*, *Budget* (cycle, envelope, allocation), *Execute* (spending and progress), *Insights* (performance, reports) and *Administration*. **Approvals** is one inbox, a plain server-rendered page (`App\Services\ApprovalInbox`): activities to decide, execution figures to verify (never your own), the plan ready to be finalized, budget steps, and your own drafts and returned work, each with a count and a link, plus the places where approving and verifying happen. The dashboard's "Needs your attention" is the same list.
+**The menu follows the annual cycle:** *Plan* (cycle, activities), *Approvals*, *Execute* (spending and progress), *Insights* (performance, reports) and *Administration*. **Approvals** is one inbox, a plain server-rendered page (`App\Services\ApprovalInbox`): activities to decide, execution figures to verify (never your own), the plan ready to be finalized, and your own drafts and returned work, each with a count and a link, plus the places where approving and verifying happen. The dashboard's "Needs your attention" is the same list.
 
 ### Audit trail
 
-Every create, update and delete on the core records (activities, line items, budgets, envelopes, indicators, users, units, programmes, settings) is written to the audit log with the old and new values, the user and the IP address. Admins browse it at *Management → Audit Log*. PDF exports of the final plan report and the performance report are logged too. Passwords are never recorded.
+Every create, update and delete on the core records (activities and their versions, line items, signatures, indicators, users, units, programmes, settings) is written to the audit log with the old and new values, the user and the IP address. Admins browse it at *Management → Audit Log*. PDF exports of the final plan report and the performance report are logged too. Passwords are never recorded.
 
 Bulk query-builder writes do not fire model events and are therefore not audited; use model saves for audited changes.
 
@@ -111,7 +109,7 @@ Bulk query-builder writes do not fire model events and are therefore not audited
 | | |
 |---|---|
 | Pages (Livewire Volt) | `resources/views/livewire/pages/…` |
-| Business logic | `app/Services/` (`EnvelopeDistributor`, `PlanCycle`, `ApprovedPlanReport`, `ActivityCsvImporter`, `SampleRegistry`) |
+| Business logic | `app/Services/` (`ActivityVersions`, `PlanCycle`, `ApprovedPlanReport`, `ActivityCsvImporter`, `SampleRegistry`) |
 | Models | `app/Models/` (audit via `Concerns/Auditable`) |
 | Routes and permissions | `routes/web.php` |
 | Seeders | `database/seeders/` (base) and `database/seeders/Samples/` (MTC sample) |
@@ -199,7 +197,7 @@ php artisan paa:purge-samples                                                  #
 | `MtcProgramSeeder` | The 6 programmes of the State Budget the ministry uses, with their **official OGE codes**: 502 Transportes, 510 Funcionamento e Desenvolvimento Institucional, 558 Serviços Postais, 980 Inclusão Social, A08 Tecnologia de Informação e Comunicação, A38 Meteorologia e Geofísica. A programme with the same code that already exists (510 is shared by every ministry) is left as it is. |
 | `MtcBrandingSeeder` | Sets the organisation name and abbreviation to MTC. |
 | `MtcDemoUsersSeeder` | `ministro@goku.tl` (Minister), plus `planner.<code>@goku.tl` and `director.<code>@goku.tl` for each ministry unit (for example `planner.dntt@goku.tl`). Password for all: `password`. |
-| `MtcBudgetSeeder` | The **real annual plans of 2025, 2026 and 2027**: about 270 activities with their official codes, programme and sub-programme, owning division, indicator (starting point and target as printed) and the amount in each economic category; the **2025 and 2026 fiscal envelopes**, distributed over the plan; and the **2027 budget cycle**. |
+| `MtcBudgetSeeder` | The **real annual plans of 2025, 2026 and 2027**: about 270 activities with their official codes, programme and sub-programme, owning division, indicator (starting point and target as printed) and the amount in each economic category; every approved activity is **version 1** of the plan, with its amounts in force. |
 
 ### The sample budget data is real
 
@@ -207,14 +205,14 @@ The activities and amounts are those printed in the State Budget books (*Livro O
 
 | Year | Status | Ministry (entity 025) | Package with the autonomous bodies |
 |---|---|---|---|
-| 2025 | Lei n.º 8/2024, de 26 de novembro. Year over: envelope **closed** | 13 353 528 USD | 22 339 646 USD |
-| 2026 | Lei n.º 8/2025, de 27 de novembro, **amended** by Lei n.º 8/2026, de 8 de junho. Envelope approved and distributed | 12 800 471 → **12 674 262** USD | 21 372 171 plan; **21 245 962** envelope |
-| 2027 | **Proposta de Lei** delivered to Parliament on 1 October 2026 and **still being debated**: the plan is approved internally, but the budget is not decided and there is **no envelope** | 14 620 942 USD | 24 427 884 USD |
+| 2025 | Lei n.º 8/2024, de 26 de novembro. Year over | 13 353 528 USD | 22 339 646 USD |
+| 2026 | Lei n.º 8/2025, de 27 de novembro, **amended** by Lei n.º 8/2026, de 8 de junho.  | 12 800 471 → **12 674 262** USD | 21 372 171 plan |
+| 2027 | **Proposta de Lei** delivered to Parliament on 1 October 2026 and **still being debated**: the plan is approved internally, but the budget is not decided  | 14 620 942 USD | 24 427 884 USD |
 
 Things to know when reading the data:
 
-- **The ministry's package.** The OGE lists APORTIL, TIC Timor, AACTL and ANC as entities with a budget of their own. Here they are part of one MTC package, as the ministry plans with them and passes their share on once it has received its envelope. ANATL, a public enterprise, has no appropriation in the OGE and therefore no activities.
-- **The 2026 amendment** cut the ministry's *Bens e Serviços* by 126 209 USD. The law does not say which activities, so the application's own distribution applies the cut pro rata: the 2026 plan is 21 372 171 and the envelope 21 245 962.
+- **The ministry's package.** The OGE lists APORTIL, TIC Timor, AACTL and ANC as entities with a budget of their own. Here they are part of one MTC package, as the ministry plans with them. ANATL, a public enterprise, has no appropriation in the OGE and therefore no activities.
+- **The 2026 amendment** cut the ministry's *Bens e Serviços* by 126 209 USD. The law does not say which activities, so the sample keeps the plan as the books print it (21 372 171); in the application, such a change would be made by revising the activities concerned.
 - **Activities printed without an amount** in the plan (for example four construction activities in 2026) are not loaded.
 - **What the plans do not say** is not invented: every activity is an annual one (Q1–Q4) with the default priority.
 - The 2025 and 2026 figures are **plans and appropriations, not execution**: no spending or progress is loaded.
@@ -410,7 +408,7 @@ composer lint                         # code style check (Laravel Pint); `compos
 composer check                        # style + tests, what CI runs
 ```
 
-The test database is wiped on each run by `RefreshDatabase`; never point `phpunit.xml` at the real database. GitHub Actions (`.github/workflows/ci.yml`) runs style, tests (on MySQL) and `composer audit` for every push and pull request. Tests cover the distribution rules, plan cycle and windows, final plan report, CSV import, audit trail, seeding, the sample-data load/purge safety rules, navigation, the dashboard, and the platform layer (security headers, password policy, temporary passwords, health endpoint, backups), two-factor authentication and the review pages. The suite (about 130 tests) passes in full.
+The test database is wiped on each run by `RefreshDatabase`; never point `phpunit.xml` at the real database. GitHub Actions (`.github/workflows/ci.yml`) runs style, tests (on MySQL) and `composer audit` for every push and pull request. Tests cover versions and revisions, plan cycle and windows, final plan report, CSV import, audit trail, seeding, the sample-data load/purge safety rules, navigation, the dashboard, and the platform layer (security headers, password policy, temporary passwords, health endpoint, backups), two-factor authentication and the review pages. The suite (about 130 tests) passes in full.
 
 Conventions: business rules live in `app/Services`, not in Livewire components; every state-changing Livewire action checks permissions on the server; new user-facing strings go through `__()` and into all three `lang/*.json` files.
 
@@ -418,8 +416,12 @@ Conventions: business rules live in `app/Services`, not in Livewire components; 
 
 ## Known limitations
 
-- **No expenditure tracking.** The app plans and distributes money; it does not record commitments or payments. Screens therefore never show "spent", "used" or "remaining" amounts, and a test fails the build if any view contains random or simulated figures.
+- **Spending is reported, not booked.** Units report what each line committed and paid, and someone else verifies it; the application does not connect to the Ministry of Finance's financial system. A test fails the build if any view contains random or simulated figures.
 - **No link to the Ministry of Finance's budget system.** Programme and activity codes are entered by hand.
 - **No dark mode.**
 - The Tetun translations were written without a native review and should be checked before official use.
 - Major framework upgrades (Laravel 13, Livewire 4) are available and have not been applied.
+
+## Versions and revisions
+
+Every approval of an activity makes a version (table `activity_versions`: a JSON copy of the activity, its indicators with their actions and its budget lines, the total, the reason, who and when). The amounts of the latest version are what `adjusted_budgets` holds per budget line, and spending is reported against them. `App\Services\ActivityVersions` records approvals and compares a revision with the version in force; `ActivityWorkflow::reopen` starts a revision (a reason is required, the activity goes back to Draft and through the whole chain, signatures of the round in progress are voided and kept). A budget line with spending reported, an indicator with progress reported, and an activity approved once cannot be deleted. The tables of the former fiscal envelope are left untouched and unused.

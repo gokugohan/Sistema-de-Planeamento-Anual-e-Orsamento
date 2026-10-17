@@ -848,7 +848,7 @@ new class extends Component {
                         <p class="mt-3 text-xs font-semibold text-amber-900">{{ __('What changes against version :n', ['n' => $activity->version]) }}</p>
                         <ul class="mt-1 space-y-1 text-xs text-zinc-800">
                             @foreach($changes['lines'] as $c)
-                                <li class="flex justify-between gap-2"><span class="min-w-0 truncate">{{ $c['label'] }}@if($c['source']) · {{ $c['source'] }}@endif</span>
+                                <li class="flex justify-between gap-2"><span class="min-w-0 break-words">{{ $c['label'] }}@if($c['source']) · {{ $c['source'] }}@endif</span>
                                     <span class="shrink-0 tabular-nums">{{ $c['from'] === null ? __('new') : '$'.number_format($c['from'], 2) }} → {{ $c['to'] === null ? __('removed') : '$'.number_format($c['to'], 2) }}</span></li>
                             @endforeach
                             @foreach($changes['indicators'] as $c)

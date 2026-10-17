@@ -5,7 +5,7 @@ Implemented by G-Kakaroto.
 
 This manual is for everyone who uses the system: the people who plan activities, the directors who certify them, the heads of directorates who approve them, the finance officers who confirm and verify figures, the administrators who set it all up, and the readers who only follow the results. Read Part 1 and Part 2 first, then the part for your role. Part 12 walks through a full year with all roles together.
 
-**The plan is the centre.** Everything in the application hangs on the activities of the Annual Action Plan: they are what units write, what directors certify and the heads of directorates approve, what the budget received is distributed over, and what is reported month by month and quarter by quarter. The budget is part of the plan (each activity carries its budget lines); the fiscal envelope is what pays for the approved plan.
+**The plan is the centre.** Everything in the application hangs on the activities of the Annual Action Plan: they are what units write, what directors certify and the heads of directorates approve, what is revised when it has to change, and what is reported month by month and quarter by quarter. The budget is part of the plan: each activity carries its budget lines, and what an approved activity may spend is what its approved version says. There is no separate budget to register or distribute.
 
 The screenshots come from the optional sample dataset (the Ministry of Transport and Communications). The system is not tied to one institution: your name, structure, programmes and people are set in the application.
 
@@ -21,7 +21,7 @@ The screenshots come from the optional sample dataset (the Ministry of Transport
 6. [Approving: prepare, certify, approve](#6-approving-prepare-certify-approve)
 7. [Approval lists, interim approvers and reshuffles](#7-approval-lists-interim-approvers-and-reshuffles)
 8. [Ending planning: finalizing the plan of a directorate](#8-ending-planning-per-directorate)
-9. [The budget: envelope, distribution and allocation](#9-the-budget-envelope-distribution-and-allocation)
+9. [Changing an approved activity: revisions and versions](#9-changing-an-approved-activity-revisions-and-versions)
 10. [Executing and reporting](#10-executing-and-reporting)
 11. [Reports, dashboard and printed forms](#11-reports-dashboard-and-printed-forms)
 12. [A whole year, step by step (tutorial)](#12-a-whole-year-step-by-step-tutorial)
@@ -57,8 +57,8 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 
 The **Dashboard** shows the year in one view:
 
-- the **plan cycle tracker** (six steps: plan submission, approval, plan finalized, budget received, distribution, reporting) and which step is current;
-- key figures: the fiscal envelope, the approved plan, what has been distributed, activities approved, delivery against targets;
+- the **plan cycle tracker** (four steps: plan submission, approval, plan finalized, reporting) and which step is current;
+- key figures: what is planned, the approved plan in force, what has been paid (verified), activities approved, delivery against targets;
 - **Needs your attention**: the same list as *Approvals*, for what you can act on;
 - charts by economic category, status and unit.
 
@@ -80,9 +80,9 @@ You do not need to memorise this, but everything in the application follows thes
 
 **Budget line.** The money, by **economic category** (10 Salaries and wages, 20 Goods and services, 30 Public transfers, 40 Minor capital, 50 Development capital). Each line has an amount and a **funding source** (State Budget, a development partner and so on). A line can say which indicator it pays for.
 
-**Fiscal envelope.** The amount the institution *receives* for the year to carry out the approved plan: the State Budget allocation for a ministry, or the allocation from the ministry for a directorate. It is registered once it is approved.
+**Version.** Every approval of an activity makes a version (1, 2, ...), a copy of what was approved, kept as it was. The amounts of the latest approved version are in force: spending is reported against them.
 
-**Distribution.** Sharing the received envelope over the *approved* plan, line by line, to the cent, never above what a line asked for. Any surplus stays unallocated.
+**Revision.** The way to change an approved activity: it needs a reason, goes back to Draft and through the whole approval chain again, and while it does the version in force stays. When it is approved it becomes the next version.
 
 **Windows.** Dates between which a thing may be done: the plan may be submitted, a month or a quarter may be reported. **No dates set means open**, and administrators can always act.
 
@@ -99,9 +99,7 @@ You do not need to memorise this, but everything in the application follows thes
 | 1 | **Plan submission** | Units draft activities with indicators, actions and budget lines, and submit them while the submission window is open. | Planners, unit directors |
 | 2 | **Approval** | Each activity is prepared, certified and approved (Part 6). | Directors, heads of directorates |
 | 3 | **Plan finalized** | When everything in a directorate is decided, its head finalizes the plan: no new activities. | Head of the directorate |
-| 4 | **Budget received** | The institution registers the envelope it receives. | Minister's office / administrators |
-| 5 | **Distribution** | The envelope is shared over the approved plan. | Administrators / budget officers |
-| 6 | **Reporting** | Units report spending and indicators monthly and quarterly; others verify; the quarter is compiled; reports are printed. | Units, finance, directors |
+| 4 | **Reporting** | Units report spending and indicators monthly and quarterly; others verify; the quarter is compiled; reports are printed. A change to an approved activity is a revision (Part 9). | Units, finance, directors |
 
 The *Plan cycle* page (**Plan → Plan cycle**) shows where the year stands and links to what comes next. The same tracker sits on the dashboard.
 
@@ -118,7 +116,7 @@ Do these once, in this order. Everything is under **Administration** in the menu
 **Administration → Settings**:
 
 - **Organisation**: the full name and abbreviation of your institution, in Tetum, Portuguese and English, and the texts of the login page. These are what users see; nothing is fixed in the code.
-- **Institution level**: *a ministry* (the envelope is the State Budget allocation) or *a directorate or gabinete inside a ministry* (the envelope is an allocation from the ministry, and you can say who the plan is sent to). This only changes the wording and the fields of the envelope form.
+- **Institution level**: *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry; you can say who it is sent to). This only changes the wording.
 - **Approval chain**: whether the director of the unit above **validates** first (the default for a ministry), and whether **finance confirms the budget** of each activity before it is certified (off by default).
 - **Next-year planning**: allow units to plan the next fiscal year.
 - **Testing mode**: a practice area with its own test data (off by default).
@@ -151,7 +149,7 @@ Add only the structure that the law defines; the system does not invent departme
 | Role | In one line |
 |---|---|
 | **Admin** | Sets up and runs the system; always allowed to act. |
-| **Minister** | Sees every plan; approves the fiscal envelope; does *not* approve plans. |
+| **Minister** | Sees every plan and every report; does *not* approve plans. |
 | **Director** | Head or director of a unit: certifies, and for a top-level unit gives the final approval. |
 | **Planning** (planner) | Prepares activities, indicators and budget lines. |
 | **Finance** | Confirms budget lines and verifies reported spending. |
@@ -242,9 +240,9 @@ A reviewer can **return** an activity with a written reason. It goes back to *Re
 
 At the start of a year with no activities yet, **Copy from 2026** copies the previous year's plan into the new year as **drafts** (once; units whose planning has ended for that year are skipped). Review each draft, adjust amounts and dates, then submit.
 
-### 5.7 Approved activities are locked
+### 5.7 Approved activities are changed by revision
 
-An approved activity cannot be edited. To change it, the person who can approve it (or an administrator) **reopens** it with a written reason, until the envelope for the year has been received. After the envelope, only its distribution changes.
+An approved activity cannot be edited. To change it (a cost went up, an action was added, a target changed), someone who prepares for the unit, its director, whoever gives the final approval, or an administrator starts a **revision** with a written reason (Part 9). It never disappears from the plan while the revision is pending.
 
 ### 5.8 Export
 
@@ -269,7 +267,7 @@ Every activity goes through the same chain, whatever the size of the institution
 
 The three groups are **Prepare** (the unit), **Certify** (verify and validate) and **Approve** (the head of the directorate). If your institution sets *the director of the unit above validates first* to off, an activity goes straight from Prepared to Certified.
 
-**Who gives the final approval.** The head of the top-level unit approves the plans of their own directorate and the units below it. The Minister does *not* approve plans; the Minister sees every plan and approves the fiscal envelope. Where a unit has an **approval list** (Part 7), the people named on it do the step instead of the default.
+**Who gives the final approval.** The head of the top-level unit approves the plans of their own directorate and the units below it. The Minister does *not* approve plans; the Minister sees every plan and every report. Where a unit has an **approval list** (Part 7), the people named on it do the step instead of the default.
 
 ### 6.1 The Approvals inbox
 
@@ -297,15 +295,15 @@ In *Activities to decide*, tick the activities in the *Ready for approval* queue
 
 Where **budget confirmation** is on, **Approvals → Budget review** lists submitted activities whose budget lines must be confirmed by finance **before** they are certified. The finance officer checks the lines and **confirms** (or returns with a reason).
 
-### 6.5 Reopen an approved activity
+### 6.5 Revise an approved activity
 
-On the approved activity, *Governance Actions → Reopen*, give the reason. It returns to *Draft*. Only the person who can approve it, or an administrator, and only until the envelope is received.
+On the approved activity, *Governance Actions → Revise*, give the reason. A revision starts (Part 9): the activity becomes a draft the unit can change and goes through the whole chain again, while the approved version stays in force.
 
 ### 6.6 Workflow History and versions
 
 ![Workflow History](manual/img/activity-history.png)
 
-The **Workflow History** tab lists every step: creation, submission, certification, approval, returns, reopenings, with who and when, and any note or reason. It is read from the audit log, so it cannot be edited. Where a list signs in order (7.2), every **signature** of every **round** appears too, including signatures given before the activity was returned or reopened, marked as voided with who voided them and why.
+The **Workflow History** tab lists every step: creation, submission, certification, approval, returns, revisions started, with who and when, and any note or reason. It is read from the audit log, so it cannot be edited. Where a list signs in order (7.2), every **signature** of every **round** appears too, including signatures given before the activity was returned or reopened, marked as voided with who voided them and why.
 
 ---
 
@@ -336,7 +334,7 @@ For a **Certify** or **Approve** list of two or more people, tick **Everyone sig
 - the activity **moves on only after the last signature**;
 - nobody signs twice in a round; an **interim** of the unit may sign in the place of the next name, and the record shows who actually signed;
 - **administrators** are never held up by the order;
-- if the activity is **returned or reopened**, a new **round** starts. The earlier signatures are **kept and shown as voided** (who voided them, when, and why); nothing is deleted. The History tab shows every signature of every round, so who signed before a reset can always be told.
+- if the activity is **returned**, or a **revision** is started, a new **round** starts. The earlier signatures are **kept and shown as voided** (who voided them, when, and why); nothing is deleted. The History tab shows every signature of every round, so who signed before a reset can always be told.
 
 Without the tick, any one person on the list may act on their own.
 
@@ -370,39 +368,48 @@ Each top-level unit (directorate) ends its own planning. The plan of a directora
 On **PAA Activities** the banner shows *Planning for 2027 is open · 0 of 13 directorates finalized*. **Show directorates** lists them; the head sees **Finalize plan** for their own directorate (greyed out while something still waits, or there is nothing approved yet), an administrator for all.
 
 - **Finalizing** says: this directorate's plan is final. It cannot take new activities, import lines or roll-forward copies for the year. The remark you write is kept.
-- The **year ends** when every directorate that planned has finalized, **or** when the fiscal envelope has been received (approved) or the year is closed. From the envelope on, a plan cannot be reopened; only the distribution of the envelope changes.
-- **Reopening** a directorate's plan (before the envelope) is for its head or an administrator, with a **reason**; both steps are recorded in the audit trail.
+- The **year ends** when every directorate that planned has finalized. Finalizing stops **new activities** only: an approved activity can still be changed by a revision.
+- **Reopening** a directorate's plan (to allow new activities again) is for its head or an administrator, with a **reason**; both steps are recorded in the audit trail.
 - The *Approvals* inbox tells each head when their directorate is ready to be finalized.
 
 ---
 
-## 9. The budget: envelope, distribution and allocation
+## 9. Changing an approved activity: revisions and versions
 
-### 9.1 Register the envelope
+There is no fiscal envelope and no distribution in this application: the plan is the budget. What an approved activity may spend is what its **approved version** says, and a change goes through a **revision**, so that nothing is overwritten and the record always shows what was approved, by whom, and why it changed.
 
-![Envelope](manual/img/envelope.png)
+![Versions](manual/img/activity-history.png)
 
-**Budget → Fiscal Envelope → Current Envelope / Envelope List**: when the institution learns the amount it receives for the year, register the envelope: the fiscal year, the **reference** (the budget law, or the ministry's decision for a directorate), the source authority, the dates and the **total**. Divide it by **economic category**. Approve it. Once the envelope is **Approved**, the plan for the year is final.
+### 9.1 Versions
 
-The old step of a separate *ceiling* is now part of the envelope pages; there is no separate screen to maintain.
+Every approval makes a **version** of the activity: a copy of the activity, its indicators with their actions, and its budget lines, kept as it was. The first approval is **version 1**; the **amounts of the latest version are in force**, and spending is reported against them. On the activity's **Workflow History** tab, *Approved versions* lists every version with who approved it, when, the total, and the reason for the revision that made it; *Show what was approved* opens its budget lines and indicators.
 
-### 9.2 Distribute it over the plan
+### 9.2 Start a revision
 
-Choose **Redistribute OGE** on the envelope page. The system shares the envelope over the **approved** activities only, line by line:
+On an approved activity, *Governance Actions → **Revise***. Give a **reason** (required). It can be started by someone who prepares for the unit (its list of preparers, or anyone who may submit for it), the director of the unit, whoever gives the final approval, or an administrator.
 
-- never above what a line asked for (a surplus stays unallocated);
-- cent-exact, in one transaction;
-- only for an **Approved** envelope.
+- The activity becomes a **Draft** that the unit can edit: amounts, lines, indicators, targets, actions, dates.
+- **The approved version stays in force**: its amounts are untouched, the activity keeps its place in the plan and its reports, and the unit keeps reporting spending against it.
+- A banner on the activity says *Revision in progress: version 2* and lists **what changes against version 1**, line by line and indicator by indicator, with the total before and after, so that reviewers see exactly what they are approving.
 
-![Allocation](manual/img/allocation.png)
+![A revision in progress](manual/img/activity-revision.png)
 
-**Budget → Budget Allocation** shows what each unit, programme and category received, against what it planned. **Budget → Allocation Review** is where directors review how the envelope was allocated to their units.
+### 9.3 Approve the revision
+
+The revision goes through **the whole chain again**: prepared, certified (and validated by the unit above where that applies), and approved by the head of the directorate or the named approvers (including lists that sign in order; its signatures belong to a new round). Returning it for correction works as before. When the revision is approved it becomes **version 2**: its amounts take over and the history shows both versions.
+
+### 9.4 What a revision cannot do
+
+- **Remove a budget line that already has spending reported against it**, or an indicator that already has progress reported: change its amount or target instead. This keeps the reported figures tied to their line.
+- **Delete the activity**: an activity that was approved once is part of the record of the plan.
+
+Finalizing a directorate's plan (Part 8) does not stop revisions.
 
 ---
 
 ## 10. Executing and reporting
 
-After the budget is distributed, the units report what they spent and achieved. Figures count only once **someone else verifies** them.
+Once an activity has an approved version, its unit reports what it spent and achieved. Figures count only once **someone else verifies** them.
 
 ### 10.1 Monthly spending
 
@@ -497,9 +504,9 @@ Follow Ana (planner), Bento (director of a unit), Carla (head of a directorate),
 13. When all of her directorate's activities are decided, the inbox says the plan is ready. Carla opens **PAA Activities → Show directorates → Finalize plan**, writes a remark and confirms. Her directorate takes no new activities.
 
 **Budget (Eva or the budget officer).**
-14. When the institution learns what it receives, Eva registers the **fiscal envelope**, divides it by category and approves it.
-15. She presses **Redistribute OGE**: the envelope is shared over the approved plan.
-16. The directors open **Allocation Review** and check what their units received.
+14. The plan is now in force: the amounts of each approved activity are what its unit may spend.
+15. When something has to change (a cost went up, an action was added), the unit opens the approved activity, presses **Revise** and gives the reason; the activity is edited and goes through the chain again, while version 1 stays in force.
+16. Carla approves the revision; it becomes **version 2**, and the history shows both.
 
 **Execution (all year).**
 17. Each month, Ana opens **Report execution**, chooses the month and the activity, and enters what each line **committed** and **paid**, and the narrative. She submits.
@@ -563,8 +570,7 @@ For the person who installs and runs it (the *README* has the full instructions)
 | Final approval of a plan | ✔ | | ✔ (head of a directorate) | | | |
 | Finalize / reopen a directorate's plan | ✔ | | ✔ (own directorate) | | | |
 | Keep approval lists, interim approvers | ✔ | | ✔ (own units) | | | |
-| Register / approve the envelope | ✔ | ✔ (approves) | | | | |
-| Distribute the envelope | ✔ | | | | | |
+| Start a revision of an approved activity | ✔ | | ✔ | ✔ (own unit) | | |
 | Report execution | ✔ | | ✔ | ✔ | | |
 | Verify spending | ✔ | | ✔ | | ✔ | |
 | Verify indicator progress | ✔ | | ✔ | | | |
@@ -580,7 +586,7 @@ Exact rules also depend on the unit tree and the approval lists; an administrato
 
 **I cannot submit the activity.** It must have a budget line with an amount, an indicator with a target, an end date not before the start date, and the plan submission window must be open. The message beside the *Submit* button says which.
 
-**The "New activity" button is missing or it says planning has ended.** Your directorate has finalized its plan for that year, or the envelope has been received. Ask the head of your directorate to reopen it (before the envelope), or plan for the next year.
+**The "New activity" button is missing or it says planning has ended.** Your directorate has finalized its plan for that year. Ask the head of your directorate to reopen it, or plan for the next year. (An approved activity can still be revised.)
 
 **It is not my turn.** The activity waits for somebody else. Open it: *Waiting for* names who. If the unit has an approval list that signs in order, the next name must sign first.
 
@@ -588,7 +594,7 @@ Exact rules also depend on the unit tree and the approval lists; an administrato
 
 **I cannot report this month.** The reporting window of the month is closed. An administrator can open it or report for you.
 
-**An approved activity needs a change.** The person who approves it reopens it with a reason, until the envelope is received. After that only the distribution changes.
+**An approved activity needs a change.** Start a revision: *Revise* on the activity, with a reason. It goes through the chain again and the approved version stays in force meanwhile.
 
 **The approver is away.** Appoint an interim (Part 7.3).
 
@@ -610,10 +616,10 @@ Exact rules also depend on the unit tree and the approval lists; an administrato
 | **Action** | A numbered step that carries an indicator out, with its months. |
 | **Budget line** | An amount in an economic category, with a funding source. |
 | **Economic category** | 10 Salaries, 20 Goods and services, 30 Transfers, 40 Minor capital, 50 Development capital. |
-| **Fiscal envelope** | The amount received for the year. |
-| **Distribution** | Sharing the envelope over the approved plan. |
+| **Version** | A copy of an activity as it was approved; the latest approved version is in force. |
+| **Revision** | A change to an approved activity: a reason, the whole approval chain again, the version in force stays until it is approved. |
 | **Prepare / Certify / Approve** | The three groups of the approval chain. |
-| **Round** | One run of signatures; a return or reopening starts a new round. |
+| **Round** | One run of signatures; a return or the start of a revision starts a new round. |
 | **Interim** | Someone standing in for a director for given dates. |
 | **Window** | The dates between which something may be done. |
 | **Directorate** | A top-level unit (directorate, gabinete or autonomous body). |
