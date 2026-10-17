@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  * amounts of its budget lines become the amounts in force (adjusted_budgets), against which spending is reported.
  *
  * A revision changes an approved activity: it needs a reason, the activity goes back to Draft and through the whole
- * approval chain, and until it is approved again the previous version stays in force (its amounts are untouched).
+ * approval chain, and until it is approved again the previous version stays in force (its amounts are untouched, even
+ * those of a line the revision removes: that line is only set aside, as a trashed line, until the approval).
  * Nothing is overwritten: every version stays on record and can be compared with the others.
  */
 class ActivityVersions
@@ -38,6 +39,9 @@ class ActivityVersions
         foreach ($activity->lineItems as $line) {
             AdjustedBudget::updateOrCreate(['line_item_id' => $line->id], ['approved_amount' => $line->estimated_amount, 'status' => 'Approved']);
         }
+
+        // lines the revision removed leave the plan with it, and their amounts in force go with them
+        $activity->lineItems()->onlyTrashed()->get()->each->forceDelete();
 
         $activity->forceFill(['version' => $number, 'revision_reason' => null])->saveQuietly();
 

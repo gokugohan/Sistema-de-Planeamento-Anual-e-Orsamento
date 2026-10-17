@@ -86,7 +86,7 @@ new class extends Component {
             ->when($cat, fn ($q) => $q->where('line_items.economic_classification_id', $cat))
             ->groupBy('activities.directorate_id', 'activities.program_id', 'activities.subprogram_id', 'activities.status', 'line_items.economic_classification_id')
             ->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.subprogram_id as sp, activities.status as s, line_items.economic_classification_id as c,
-                COALESCE(SUM(line_items.estimated_amount), 0) as req, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
+                COALESCE(SUM(CASE WHEN line_items.deleted_at IS NULL THEN line_items.estimated_amount ELSE 0 END), 0) as req, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
             ->get() as $r) {
             // planned: what every activity asks for; approved: the amounts of the approved versions in force
             $planAll += $r->req;

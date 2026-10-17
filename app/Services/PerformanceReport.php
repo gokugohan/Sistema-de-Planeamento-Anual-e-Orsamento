@@ -42,7 +42,7 @@ class PerformanceReport
 
         // where the money comes from: per activity, each source with the amount it funds
         $funding = \DB::table('line_items as li')->join('funding_sources as fs', 'fs.id', '=', 'li.funding_source_id')
-            ->whereIn('li.activity_id', $activities->pluck('id'))->groupBy('li.activity_id', 'fs.id', 'fs.name')
+            ->whereNull('li.deleted_at')->whereIn('li.activity_id', $activities->pluck('id'))->groupBy('li.activity_id', 'fs.id', 'fs.name')
             ->selectRaw('li.activity_id, fs.name, SUM(li.estimated_amount) AS amount')->orderBy('fs.id')->get()->groupBy('activity_id');
 
         $indicators = Indicator::whereIn('activity_id', $activities->pluck('id'))->with(['progress', 'actions'])->orderBy('id')->get()->groupBy('activity_id');

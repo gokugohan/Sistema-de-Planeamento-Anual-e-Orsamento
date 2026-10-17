@@ -6,11 +6,34 @@ use App\Models\Concerns\Auditable;
 use App\Models\Scopes\ProductionScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LineItem extends Model
 {
     use Auditable;
     use HasFactory;
+    use SoftDeletes {
+        performDeleteOnModel as protected deleteOrSetAside;
+    }
+
+    /**
+     * A line that is part of the version in force (it has an amount in force) is not deleted when a revision removes
+     * it: it only leaves the revision, and the amount in force stays until the revision is approved (ActivityVersions
+     * then removes it for good). Every other line is deleted as usual.
+     */
+    protected function performDeleteOnModel()
+    {
+        if ($this->forceDeleting || $this->adjustedBudget()->exists()) {
+            return $this->deleteOrSetAside();
+        }
+
+        $this->forceDeleting = true;
+        try {
+            return $this->deleteOrSetAside();
+        } finally {
+            $this->forceDeleting = false;
+        }
+    }
 
     /**
      * The "booted" method of the model.

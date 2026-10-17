@@ -128,9 +128,9 @@ class Directorate extends Model
      */
     public function getTotalApprovedRollup(int $fiscalYear): float
     {
-        return (float) AdjustedBudget::whereHas('lineItem.activity', fn ($q) => $q
+        return (float) AdjustedBudget::whereHas('lineItem', fn ($l) => $l->withTrashed()->whereHas('activity', fn ($q) => $q
             ->whereIn('directorate_id', $this->getSelfAndDescendantIds())
-            ->where('fiscal_year', $fiscalYear))
+            ->where('fiscal_year', $fiscalYear)))
             ->sum('approved_amount');
     }
 

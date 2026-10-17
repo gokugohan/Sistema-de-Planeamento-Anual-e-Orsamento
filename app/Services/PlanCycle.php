@@ -38,8 +38,8 @@ class PlanCycle
 
         $revising = $activities()->where('version', '>', 0)->where('status', '!=', Activity::STATUS_APPROVED)->count();
         // the plan in force: the amounts of the approved version of each activity
-        $approvedPlan = (float) AdjustedBudget::query()->whereHas('lineItem.activity', fn ($q) => $q->where('fiscal_year', $year)->when($scope !== null, fn ($w) => $w->whereIn('directorate_id', $scope ?: [0])))->sum('approved_amount');
-        $planned = $lite ? 0.0 : (float) DB::table('line_items as li')->join('activities as a', 'a.id', '=', 'li.activity_id')
+        $approvedPlan = (float) AdjustedBudget::query()->whereHas('lineItem', fn ($l) => $l->withTrashed()->whereHas('activity', fn ($q) => $q->where('fiscal_year', $year)->when($scope !== null, fn ($w) => $w->whereIn('directorate_id', $scope ?: [0]))))->sum('approved_amount');
+        $planned = $lite ? 0.0 : (float) DB::table('line_items as li')->join('activities as a', 'a.id', '=', 'li.activity_id')->whereNull('li.deleted_at')
             ->where('a.fiscal_year', $year)->when($scope !== null, fn ($q) => $q->whereIn('a.directorate_id', $scope ?: [0]))->sum('li.estimated_amount');
 
         $reporting = $lite ? null : $this->reporting($year, $scope);

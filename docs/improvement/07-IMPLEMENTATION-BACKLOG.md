@@ -12,7 +12,7 @@
 | PR-02 | FR-002 | Make single approval atomic | No | P0 | none |
 | PR-03 | FR-005 | Audit rows for bulk verification | No | P0 | none |
 | PR-04 | FR-006 | Correct README and neutral financial labels | No | P0 | wording decision (small) |
-| PR-05 | FR-003 | Keep amounts in force during a revision | **Yes** | P0 | backup, approval |
+| PR-05 | FR-003 | Keep amounts in force during a revision (soft-deleted lines) | **Yes** | P0 | backup, approval |
 | PR-06 | FR-007 | Complete the version snapshot | No | P1 | field list |
 | PR-07 | FR-004 | Report reads the version in force | No | P0 | PR-06 preferred |
 | PR-08 | FR-008 | Revisions outside the plan window | No | P1 | none |

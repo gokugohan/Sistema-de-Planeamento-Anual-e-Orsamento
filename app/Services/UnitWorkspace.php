@@ -226,7 +226,7 @@ class UnitWorkspace
 
         // ── money: planned by every activity, the amounts of the approved versions in force, what has been paid (verified)
         $lineIds = fn () => DB::table('line_items as li')->join('activities as a', 'a.id', '=', 'li.activity_id')->where('a.fiscal_year', $year)->whereIn('a.directorate_id', $ids);
-        $planned = (float) $lineIds()->sum('li.estimated_amount');
+        $planned = (float) $lineIds()->whereNull('li.deleted_at')->sum('li.estimated_amount');
         $inForce = (float) $lineIds()->join('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')->sum('ab.approved_amount');
         $paid = (float) $lineIds()->join('budget_executions as be', 'be.line_item_id', '=', 'li.id')->where('be.status', BudgetExecution::VERIFIED)->sum('be.paid');
 

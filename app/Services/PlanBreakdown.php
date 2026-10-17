@@ -31,7 +31,7 @@ class PlanBreakdown
     {
         $own = $this->amounts($year)
             ->groupBy('a.directorate_id')
-            ->selectRaw('a.directorate_id AS id, SUM(li.estimated_amount) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
+            ->selectRaw('a.directorate_id AS id, SUM(CASE WHEN li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
             ->get()->keyBy('id');
 
         $children = Directorate::query()->get(['id', 'parent_id'])->groupBy(fn ($d) => $d->parent_id ?? 0);
@@ -77,7 +77,7 @@ class PlanBreakdown
     {
         $rows = $this->amounts($year)
             ->groupBy('a.program_id', 'li.economic_classification_id')
-            ->selectRaw('a.program_id, li.economic_classification_id AS class_id, COUNT(DISTINCT a.id) AS activity_count, SUM(li.estimated_amount) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
+            ->selectRaw('a.program_id, li.economic_classification_id AS class_id, COUNT(DISTINCT a.id) AS activity_count, SUM(CASE WHEN li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
             ->get();
 
         if ($rows->isEmpty()) {
@@ -118,7 +118,7 @@ class PlanBreakdown
             ->where('a.program_id', $programId)
             ->where('li.economic_classification_id', $classId)
             ->groupBy('a.id')
-            ->selectRaw('a.id AS activity_id, SUM(li.estimated_amount) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
+            ->selectRaw('a.id AS activity_id, SUM(CASE WHEN li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
             ->get();
 
         if ($rows->isEmpty()) {
@@ -149,7 +149,7 @@ class PlanBreakdown
     {
         $rows = $this->amounts($year)->whereNotNull('a.subprogram_id')
             ->groupBy('a.program_id', 'a.subprogram_id')
-            ->selectRaw('a.program_id, a.subprogram_id, SUM(li.estimated_amount) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
+            ->selectRaw('a.program_id, a.subprogram_id, SUM(CASE WHEN li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS planned, COALESCE(SUM(ab.approved_amount), 0) AS approved')
             ->get();
         $subs = Subprogram::whereIn('id', $rows->pluck('subprogram_id'))->get(['id', 'code', 'name'])->keyBy('id');
 

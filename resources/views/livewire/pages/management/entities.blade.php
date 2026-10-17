@@ -97,7 +97,7 @@ new class extends Component {
             ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
             ->groupBy('activities.directorate_id', 'activities.program_id')
             ->selectRaw('activities.directorate_id as d, activities.program_id as p, COUNT(DISTINCT activities.id) as n,
-                COALESCE(SUM(line_items.estimated_amount), 0) as plan, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
+                COALESCE(SUM(CASE WHEN line_items.deleted_at IS NULL THEN line_items.estimated_amount ELSE 0 END), 0) as plan, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
             ->get();
 
         $own = [];
