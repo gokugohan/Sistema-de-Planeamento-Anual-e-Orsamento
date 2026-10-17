@@ -84,6 +84,7 @@ new class extends Component {
                     'approved' => (float) $line->adjustedBudget->approved_amount,
                     'other_committed' => (float) $others->sum('committed'), 'other_paid' => (float) $others->sum('paid'),
                     'entry' => $this_m,
+                    'earlier' => $this_m ? app(\App\Services\ExecutionHistory::class)->earlierVerified($this_m) : [],
                     'months' => $line->executions->sortBy('month')->map(fn ($e) => ['month' => (int) $e->month, 'committed' => (float) $e->committed, 'paid' => (float) $e->paid, 'status' => $e->status])->values()->all(),
                 ];
             });
@@ -319,6 +320,16 @@ new class extends Component {
                                             @if($canCorrect)
                                                 <button type="button" x-on:click="$wire.reopenId = {{ $line->id }}; $dispatch('open-modal', 'reopen-line')" class="mt-1 text-xs font-medium text-indigo-700 hover:underline">{{ __('Reopen') }}</button>
                                             @endif
+                                        @endif
+                                        @if(count($line->earlier) > 0)
+                                            <details class="mt-1 text-left text-xs">
+                                                <summary class="cursor-pointer text-indigo-700">{{ __('Earlier verified values') }}</summary>
+                                                <ul class="mt-1 space-y-0.5 tabular-nums text-zinc-600">
+                                                    @foreach($line->earlier as $e)
+                                                        <li>{{ $e['verified_at']->format('d/m/Y') }} · {{ $e['verified_by'] ?? '—' }}: {{ __('Committed') }} {{ number_format($e['committed'], 2) }} / {{ __('Paid') }} {{ number_format($e['paid'], 2) }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </details>
                                         @endif
                                         @if($line->entry->status === 'Submitted' && $canVerify)
                                             <div class="mt-2 flex gap-2">
