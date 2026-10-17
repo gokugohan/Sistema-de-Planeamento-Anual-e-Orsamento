@@ -114,8 +114,11 @@ new class extends Component {
             if (! $this->mayReport($type)) {
                 continue;
             }
+            // one model at a time, so that every submitted report leaves its own row in the audit trail
             $n += ActivityReport::where(['activity_id' => $this->activityId, 'period_type' => $type, 'period' => $this->period($type)])
-                ->whereIn('status', ['Draft', 'Rejected'])->update(['status' => 'Submitted', 'submitted_by' => auth()->id()]);
+                ->whereIn('status', ['Draft', 'Rejected'])->get()
+                ->each(fn (ActivityReport $r) => $r->update(['status' => 'Submitted', 'submitted_by' => auth()->id()]))
+                ->count();
         }
         if ($n) {
             $this->dispatch('toast', message: __('Submitted for verification.'), type: 'success');

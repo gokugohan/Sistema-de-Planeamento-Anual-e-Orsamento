@@ -109,8 +109,11 @@ new class extends Component {
     {
         $ids = $this->indicators->pluck('id')->filter(fn ($id) => $this->mayReport($id));
 
-        $n = IndicatorProgress::whereIn('indicator_id', $ids)->where('quarter', $this->quarter)->whereIn('status', ['Draft', 'Rejected'])
-            ->update(['status' => 'Submitted', 'submitted_by' => auth()->id()]);
+        // one model at a time, so that every submitted figure leaves its own row in the audit trail
+        $n = \Illuminate\Support\Facades\DB::transaction(fn () => IndicatorProgress::whereIn('indicator_id', $ids)->where('quarter', $this->quarter)->whereIn('status', ['Draft', 'Rejected'])
+            ->lockForUpdate()->get()
+            ->each(fn (IndicatorProgress $p) => $p->update(['status' => 'Submitted', 'submitted_by' => auth()->id()]))
+            ->count());
 
         if ($n) {
             $this->dispatch('toast', message: __('Progress submitted for verification.'), type: 'success');

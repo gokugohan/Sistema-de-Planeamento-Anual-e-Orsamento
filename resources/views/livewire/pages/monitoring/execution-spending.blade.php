@@ -228,9 +228,12 @@ new class extends Component {
         $activity = $this->activity;
         abort_unless($activity && $this->mayVerify($activity), 403);
 
-        $n = BudgetExecution::whereIn('line_item_id', $this->lines->pluck('id'))->where('month', $this->month)->where('status', BudgetExecution::SUBMITTED)
+        // one model at a time, so that every verified figure leaves its own row in the audit trail
+        $n = \Illuminate\Support\Facades\DB::transaction(fn () => BudgetExecution::whereIn('line_item_id', $this->lines->pluck('id'))->where('month', $this->month)->where('status', BudgetExecution::SUBMITTED)
             ->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', auth()->id()))
-            ->update(['status' => BudgetExecution::VERIFIED, 'verified_by' => auth()->id(), 'verified_at' => now()]);
+            ->lockForUpdate()->get()
+            ->each(fn (BudgetExecution $e) => $e->update(['status' => BudgetExecution::VERIFIED, 'verified_by' => auth()->id(), 'verified_at' => now()]))
+            ->count());
 
         $this->dispatch('toast', message: $n ? trans_choice(':n figure verified.|:n figures verified.', $n, ['n' => $n]) : __('Nothing to verify: your own reports are left for someone else.'), type: $n ? 'success' : 'info');
         if ($n) {
