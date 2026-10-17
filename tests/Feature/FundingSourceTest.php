@@ -7,9 +7,12 @@ use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\FundingSource;
 use App\Models\LineItem;
+use App\Models\Program;
 use App\Models\User;
 use App\Services\PerformanceReport;
 use Carbon\Carbon;
+use Database\Seeders\EconomicClassificationSeeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -23,14 +26,14 @@ class FundingSourceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed(\Database\Seeders\RolesAndPermissionsSeeder::class);
+        $this->seed(RolesAndPermissionsSeeder::class);
         app()->setLocale('en');
     }
 
     private function activity(): Activity
     {
         $unit = Directorate::create(['name' => 'Unit', 'code' => 'UNT', 'type' => 'Independent']);
-        $program = \App\Models\Program::create(['name' => 'Programme', 'oge_code' => 'P-001']);
+        $program = Program::create(['name' => 'Programme', 'oge_code' => 'P-001']);
 
         return Activity::create([
             'fiscal_year' => 2026, 'program_id' => $program->id, 'directorate_id' => $unit->id, 'description' => 'An activity', 'priority' => 'Alta',
@@ -54,7 +57,7 @@ class FundingSourceTest extends TestCase
 
     public function test_a_line_without_a_source_takes_the_default(): void
     {
-        $this->seed(\Database\Seeders\EconomicClassificationSeeder::class);
+        $this->seed(EconomicClassificationSeeder::class);
         $activity = $this->activity();
 
         $line = LineItem::create(['activity_id' => $activity->id, 'economic_classification_id' => EconomicClassification::first()->id, 'estimated_amount' => 10]);
@@ -88,7 +91,7 @@ class FundingSourceTest extends TestCase
 
     public function test_a_source_with_budget_lines_is_never_deleted(): void
     {
-        $this->seed(\Database\Seeders\EconomicClassificationSeeder::class);
+        $this->seed(EconomicClassificationSeeder::class);
         $partner = FundingSource::where('code', 'PARTNER')->firstOrFail();
         $activity = $this->activity();
         LineItem::create(['activity_id' => $activity->id, 'economic_classification_id' => EconomicClassification::first()->id, 'funding_source_id' => $partner->id, 'estimated_amount' => 5]);

@@ -5,6 +5,7 @@ namespace Database\Seeders\Samples;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
+use App\Models\FundingSource;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
@@ -288,6 +289,6 @@ class MtcBudgetSeeder extends Seeder
         $text = mb_strtolower((string) $text);
         $code = str_contains($text, 'parceiro') || str_contains($text, 'partner') ? 'PARTNER' : (str_contains($text, 'própri') ? 'OWN' : null);
 
-        return ($code ? \App\Models\FundingSource::where('code', $code)->value('id') : null) ?? \App\Models\FundingSource::defaultId();
+        return ($code ? FundingSource::where('code', $code)->value('id') : null) ?? FundingSource::defaultId();
     }
 }

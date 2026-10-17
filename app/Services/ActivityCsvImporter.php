@@ -8,6 +8,7 @@ use App\Models\EconomicClassification;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
+use App\Support\FiscalYear;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -278,7 +279,7 @@ class ActivityCsvImporter
             return null;
         }
 
-        return ['name' => $r['indicator_name'], 'type' => $type, 'unit' => $r['indicator_unit'], 'measure' => \App\Models\Indicator::defaultMeasure($r['indicator_unit']), 'annual_target' => $target];
+        return ['name' => $r['indicator_name'], 'type' => $type, 'unit' => $r['indicator_unit'], 'measure' => Indicator::defaultMeasure($r['indicator_unit']), 'annual_target' => $target];
     }
 
     private function buildLineItem(int $line, array $r, $classes, array &$errors): ?array
@@ -309,7 +310,7 @@ class ActivityCsvImporter
             if (! $a['directorate_id']) {
                 continue;
             }
-            if (! \App\Support\FiscalYear::planningOpen($year, (int) $a['directorate_id'])) {
+            if (! FiscalYear::planningOpen($year, (int) $a['directorate_id'])) {
                 $errors[] = $this->err($a['line'], 'Planning for the directorate of this activity has been finalized for '.$year.'; it cannot take new activities.');
             }
             $exists = Activity::query()

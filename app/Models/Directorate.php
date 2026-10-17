@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
+use App\Services\PlanningWindow;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,8 +31,8 @@ class Directorate extends Model
     protected static function booted(): void
     {
         // the planning window keeps the unit tree in memory
-        static::saved(fn () => \App\Services\PlanningWindow::forgetTree());
-        static::deleted(fn () => \App\Services\PlanningWindow::forgetTree());
+        static::saved(fn () => PlanningWindow::forgetTree());
+        static::deleted(fn () => PlanningWindow::forgetTree());
     }
 
     /**

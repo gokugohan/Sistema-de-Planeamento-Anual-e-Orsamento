@@ -7,13 +7,14 @@ use App\Models\Alignment;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Indicator;
-use App\Models\LineItem;
 use App\Models\IndicatorProgress;
+use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\ResultIndicator;
 use App\Models\User;
 use App\Services\DeliveryReport;
 use App\Services\ProgramYears;
+use App\Support\FiscalYear;
 use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -41,7 +42,7 @@ class IndicatorDetailsTest extends TestCase
         parent::setUp();
         $this->seed(DatabaseSeeder::class);
         app()->setLocale('en');
-        $this->year = \App\Support\FiscalYear::current();
+        $this->year = FiscalYear::current();
         $this->unit = Directorate::create(['name' => 'Unit', 'code' => 'UNT', 'type' => 'General Directorate', 'active' => true]);
         $this->planner = User::factory()->create(['directorate_id' => $this->unit->id]);
         $this->planner->assignRole('Planning');
@@ -56,7 +57,7 @@ class IndicatorDetailsTest extends TestCase
         return $u;
     }
 
-    private function program(int $year = null, string $code = '510'): Program
+    private function program(?int $year = null, string $code = '510'): Program
     {
         return Program::create(['fiscal_year' => $year ?? $this->year, 'oge_code' => $code, 'name' => "Programme {$code}"]);
     }

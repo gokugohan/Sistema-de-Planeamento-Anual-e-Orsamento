@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivityVersion;
 use App\Models\AdjustedBudget;
 use App\Models\BudgetExecution;
+use App\Models\Directorate;
 use App\Models\IndicatorProgress;
 use App\Models\User;
 use App\Services\ActivityVersions;
@@ -153,7 +154,7 @@ class ActivityRevisionTest extends TestCase
         $a = $this->approved();
         $window = app(PlanningWindow::class);
         // decide everything in the directorate so it can be finalized
-        Activity::where('fiscal_year', 2027)->whereIn('directorate_id', \App\Models\Directorate::find($window->rootOf($a->directorate_id))->getSelfAndDescendantIds())
+        Activity::where('fiscal_year', 2027)->whereIn('directorate_id', Directorate::find($window->rootOf($a->directorate_id))->getSelfAndDescendantIds())
             ->update(['status' => Activity::STATUS_APPROVED]);
         $window->finalize($this->admin, 2027, null, $a->directorate_id);
         $this->assertFalse($window->isOpenFor(2027, $a->directorate_id));

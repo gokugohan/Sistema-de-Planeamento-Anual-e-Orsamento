@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Program;
+use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Services\ApprovalInbox;
@@ -47,7 +48,7 @@ class BudgetConfirmationTest extends TestCase
     private function switchOn(): void
     {
         (new ApprovalRules(true, true))->save();
-        \App\Models\SystemSetting::flushCache();
+        SystemSetting::flushCache();
     }
 
     private function finance(): User

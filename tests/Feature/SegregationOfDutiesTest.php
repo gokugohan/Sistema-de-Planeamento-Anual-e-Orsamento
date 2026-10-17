@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\AuditLog;
+use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Support\ApprovalRules;
@@ -122,6 +123,6 @@ class SegregationOfDutiesTest extends TestCase
 
         $this->mode('off');
         $this->assertSame('off', ApprovalRules::current()->segregation);
-        $this->assertNull(\App\Models\SystemSetting::where('key', 'approval_rules')->first());
+        $this->assertNull(SystemSetting::where('key', 'approval_rules')->first());
     }
 }

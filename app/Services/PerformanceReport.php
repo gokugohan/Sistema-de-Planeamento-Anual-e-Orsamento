@@ -56,7 +56,7 @@ class PerformanceReport
             ? ActivityReport::whereIn('activity_id', $activities->pluck('id'))->where('status', 'Verified')->where('period_type', 'quarter')->where('period', $quarter)->get()->keyBy('activity_id')
             : collect();
 
-        $rows = $activities->map(function (Activity $a) use ($money, $months, $lastMonth, $indicators, $notes, $quarterNotes, $quarter, $funding) {
+        $rows = $activities->map(function (Activity $a) use ($money, $months, $indicators, $notes, $quarterNotes, $quarter, $funding) {
             $m = $money[$a->id];
             $paid = array_sum(array_map(fn ($i) => $m['paid_m'][$i], $months));
             $note = $notes[$a->id] ?? null;

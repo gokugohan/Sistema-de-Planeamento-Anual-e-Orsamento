@@ -9,6 +9,7 @@ use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
 use App\Services\ActivityVersions;
+use App\Support\FiscalYear;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -60,7 +61,7 @@ class DashboardTest extends TestCase
     {
         $this->activity(Activity::STATUS_DRAFT, 100);
 
-        $this->assertSame($this->year, \App\Support\FiscalYear::current());
+        $this->assertSame($this->year, FiscalYear::current());
     }
 
     public function test_the_year_can_be_switched_and_a_bogus_year_is_ignored(): void
@@ -69,10 +70,10 @@ class DashboardTest extends TestCase
         $previous = $this->year - 1;
 
         $this->get(route('fiscal-year.switch', $previous));
-        $this->assertSame($previous, \App\Support\FiscalYear::current());
+        $this->assertSame($previous, FiscalYear::current());
 
         $this->get(route('fiscal-year.switch', 1999));
-        $this->assertSame($previous, \App\Support\FiscalYear::current(), 'an unknown year must not change the context');
+        $this->assertSame($previous, FiscalYear::current(), 'an unknown year must not change the context');
     }
 
     public function test_dashboard_shows_the_cycle_the_money_and_the_work(): void
@@ -113,7 +114,7 @@ class DashboardTest extends TestCase
         $this->get(route('fiscal-year.switch', $this->year));
 
         Volt::test('pages.dashboard.summary')
-            ->assertSee('No activities for '.\App\Support\FiscalYear::current().' yet')
+            ->assertSee('No activities for '.FiscalYear::current().' yet')
             ->assertSee('Create first activity');
     }
 

@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\AdjustedBudget;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
+use App\Services\ActivityVersions;
 use App\Services\ApprovedPlanReport;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -182,7 +184,7 @@ class ApprovedPlanReportTest extends TestCase
     {
         $a = $this->activity(Activity::STATUS_VALIDATED, [[$this->goods, 1000], [$this->capital, 4000]]);
         $a->update(['status' => Activity::STATUS_APPROVED]);
-        app(\App\Services\ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
+        app(ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
         $approvedText = $a->fresh()->description;
         $before = (new ApprovedPlanReport)->build(2027);
 
@@ -205,11 +207,11 @@ class ApprovedPlanReportTest extends TestCase
     public function test_the_report_total_equals_the_plan_in_force_during_a_revision(): void
     {
         $a = $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000], [$this->capital, 4000]]);
-        app(\App\Services\ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
+        app(ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
         $a->fresh()->forceFill(['status' => Activity::STATUS_DRAFT])->save();
         $a->lineItems()->where('economic_classification_id', $this->capital->id)->first()->delete();
 
-        $inForce = (float) \App\Models\AdjustedBudget::whereHas('lineItem', fn ($l) => $l->withTrashed()->where('activity_id', $a->id))->sum('approved_amount');
+        $inForce = (float) AdjustedBudget::whereHas('lineItem', fn ($l) => $l->withTrashed()->where('activity_id', $a->id))->sum('approved_amount');
 
         $this->assertEquals($inForce, (new ApprovedPlanReport)->build(2027)['totals']['total']);
     }
@@ -218,7 +220,7 @@ class ApprovedPlanReportTest extends TestCase
     {
         app()->setLocale('en');
         $a = $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
-        app(\App\Services\ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
+        app(ActivityVersions::class)->approved($a->fresh(), $this->user('Admin'));
         $a->fresh()->forceFill(['status' => Activity::STATUS_DRAFT])->save();
         $this->actingAs($this->user('Minister'));
 

@@ -8,6 +8,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -89,14 +90,14 @@ class User extends Authenticatable
         return $this->hasRole('Director') || $this->seats()->isNotEmpty();
     }
 
-    /** @var \Illuminate\Support\Collection<int, Directorate>|null */
-    private ?\Illuminate\Support\Collection $seatCache = null;
+    /** @var Collection<int, Directorate>|null */
+    private ?Collection $seatCache = null;
 
     /**
      * The units this user directs: their own when they hold the Director role, and the units they stand in
      * for today (an interim appointment). Each seat gives authority over the unit and the units below it.
      */
-    public function seats(): \Illuminate\Support\Collection
+    public function seats(): Collection
     {
         return $this->seatCache ??= Directorate::whereIn('id', array_filter([
             $this->hasRole('Director') ? $this->directorate_id : null,

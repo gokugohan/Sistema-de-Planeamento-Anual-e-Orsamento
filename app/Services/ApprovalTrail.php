@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\ActivitySignature;
 use App\Models\AuditLog;
 use App\Models\User;
+use Carbon\CarbonInterface;
 
 /**
  * The approval trail of one activity: every step it went through, who took it, when, and any note or
@@ -18,7 +19,7 @@ use App\Models\User;
 class ApprovalTrail
 {
     /**
-     * @return array<int, array{kind: string, status: ?string, label: string, at: ?\Carbon\CarbonInterface, by: ?string, note: ?string, is_reason: bool, bulk: bool}>
+     * @return array<int, array{kind: string, status: ?string, label: string, at: ?CarbonInterface, by: ?string, note: ?string, is_reason: bool, bulk: bool}>
      */
     public function for(Activity $activity): array
     {

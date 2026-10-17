@@ -4,10 +4,12 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\ActivitySignature;
+use App\Models\ApprovalDelegation;
 use App\Models\ApproverAssignment;
 use App\Models\Directorate;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
+use App\Services\ApprovalTrail;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -45,7 +47,7 @@ class SequentialSigningTest extends TestCase
         $people = [];
         foreach (range(1, $n) as $i) {
             $people[] = $u = User::factory()->create();
-            $u->assignRole("Director");
+            $u->assignRole('Director');
             ApproverAssignment::create(['directorate_id' => $this->dgt->id, 'user_id' => $u->id, 'step' => $step, 'position' => $i, 'sequential' => $inOrder]);
         }
 
@@ -135,7 +137,7 @@ class SequentialSigningTest extends TestCase
         $this->assertSame([1, 2], $rows->pluck('round')->all());
         $this->assertSame(['voided', 'active'], $rows->pluck('state')->all());
 
-        $labels = collect(app(\App\Services\ApprovalTrail::class)->for($activity->fresh()))->where('kind', 'signature');
+        $labels = collect(app(ApprovalTrail::class)->for($activity->fresh()))->where('kind', 'signature');
         $this->assertCount(2, $labels, 'the trail shows the signature given before the reset too');
         $this->assertStringContainsString('voided', $labels->first()['note']);
         $this->assertSame($a->name, $labels->first()['by']);
@@ -145,7 +147,7 @@ class SequentialSigningTest extends TestCase
     {
         [$a, $b] = $this->list('approve', 2);
         $stand = User::factory()->create();
-        \App\Models\ApprovalDelegation::create(['user_id' => $stand->id, 'directorate_id' => $this->dgt->id, 'starts_on' => now()->subDay()->toDateString(), 'ends_on' => now()->addDays(5)->toDateString()]);
+        ApprovalDelegation::create(['user_id' => $stand->id, 'directorate_id' => $this->dgt->id, 'starts_on' => now()->subDay()->toDateString(), 'ends_on' => now()->addDays(5)->toDateString()]);
         $activity = $this->activity(Activity::STATUS_VALIDATED);
 
         $this->workflow->approve($stand->fresh(), $activity);

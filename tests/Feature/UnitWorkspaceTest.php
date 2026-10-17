@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\BudgetExecution;
 use App\Models\Directorate;
+use App\Models\EconomicClassification;
+use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
 use App\Services\UnitWorkspace;
@@ -141,9 +144,9 @@ class UnitWorkspaceTest extends TestCase
         $finance = $this->user('Finance', $this->dn);
         $planner = $this->user('Planning', $this->dn);
         $a = $this->activity($this->dn, Activity::STATUS_APPROVED, 1);
-        $line = \App\Models\LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => \App\Models\EconomicClassification::first()->id, 'estimated_amount' => 100]);
-        \App\Models\BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $planner->id]);
-        \App\Models\BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $finance->id]);
+        $line = LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => EconomicClassification::first()->id, 'estimated_amount' => 100]);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $planner->id]);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $finance->id]);
 
         $this->actingAs($finance);
         Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertSee('1 spending figure to verify');

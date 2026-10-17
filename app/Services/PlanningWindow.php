@@ -43,7 +43,6 @@ class PlanningWindow
         self::$closedRows = [];
     }
 
-
     // ── the tree
 
     private function parents(): array

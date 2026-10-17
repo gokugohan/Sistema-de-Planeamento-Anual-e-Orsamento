@@ -8,8 +8,10 @@ use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use App\Support\ApprovalRules;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 /**
  * What a unit's workspace shows: where its plan stands, what waits for the person looking at it, how the month's
@@ -285,7 +287,7 @@ class UnitWorkspace
         $out = ['confirm' => 0, 'spending' => 0, 'progress' => 0];
         $admin = $user->isAdministrator();
 
-        if (\App\Support\ApprovalRules::current()->budgetConfirmation && ($admin || $user->can('confirm_budget'))) {
+        if (ApprovalRules::current()->budgetConfirmation && ($admin || $user->can('confirm_budget'))) {
             $out['confirm'] = $activities()->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')->count();
         }
         if ($admin || $user->can('verify_spending') || $user->isDirector()) {
@@ -372,7 +374,7 @@ class UnitWorkspace
         foreach (ReportingWindow::where('fiscal_year', $year)->whereDate('closes_on', '>=', $today)->whereDate('closes_on', '<=', $today->copy()->addDays(45))->orderBy('closes_on')->get() as $w) {
             $label = match ($w->period_type) {
                 'plan' => __('Plan submission closes'),
-                'month' => __('Report for :m closes', ['m' => \Carbon\Carbon::create($year, (int) $w->period, 1)->translatedFormat('F')]),
+                'month' => __('Report for :m closes', ['m' => Carbon::create($year, (int) $w->period, 1)->translatedFormat('F')]),
                 default => __('Report for Q:q closes', ['q' => $w->period]),
             };
             $out[] = ['label' => $label, 'on' => $w->closes_on];

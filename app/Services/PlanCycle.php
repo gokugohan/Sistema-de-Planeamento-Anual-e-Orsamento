@@ -8,6 +8,7 @@ use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
+use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -120,7 +121,7 @@ class PlanCycle
         return array_values(array_unique(array_merge($ids, $user->directedUnitIds(), app(ApproverLists::class)->unitIdsOf($user))));
     }
 
-    /** @return array{state: string, opens_on: ?\Carbon\CarbonInterface, closes_on: ?\Carbon\CarbonInterface, note: ?string} state: none | upcoming | open | closed */
+    /** @return array{state: string, opens_on: ?CarbonInterface, closes_on: ?CarbonInterface, note: ?string} state: none | upcoming | open | closed */
     public function windowState(int $year, string $type, int $period): array
     {
         $w = ReportingWindow::where(['fiscal_year' => $year, 'period_type' => $type, 'period' => $period])->first();

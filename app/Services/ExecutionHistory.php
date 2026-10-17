@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\AuditLog;
 use App\Models\BudgetExecution;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 /**
  * The verified values a spending figure had before it was corrected. A figure is one row that is edited in place
@@ -14,8 +15,8 @@ use App\Models\User;
 class ExecutionHistory
 {
     /**
-     * @return array<int, array{committed: float, paid: float, verified_by: ?string, verified_at: \Illuminate\Support\Carbon}>
-     *                                                                                                                         every time the figure was verified with values that are not the current ones, oldest first
+     * @return array<int, array{committed: float, paid: float, verified_by: ?string, verified_at: Carbon}>
+     *                                                                                                     every time the figure was verified with values that are not the current ones, oldest first
      */
     public function earlierVerified(BudgetExecution $entry): array
     {

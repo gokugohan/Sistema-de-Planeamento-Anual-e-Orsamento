@@ -12,6 +12,7 @@ use App\Services\ApprovalInbox;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 /** The units' monthly duty shows in their inbox: spending missing for the month that ended, windows about to close. */
@@ -36,7 +37,7 @@ class ReportingDueInboxTest extends TestCase
         parent::tearDown();
     }
 
-    private function reportItems(?User $user = null): \Illuminate\Support\Collection
+    private function reportItems(?User $user = null): Collection
     {
         return collect(app(ApprovalInbox::class)->items($user ?? $this->director, 2026))->where('group', 'report');
     }

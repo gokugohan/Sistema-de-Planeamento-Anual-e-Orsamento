@@ -11,9 +11,10 @@ use App\Models\Program;
 use App\Models\User;
 use App\Services\ActivityRollForward;
 use App\Services\ProgramYears;
+use App\Support\FiscalYear;
+use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
-use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -30,7 +31,7 @@ class ProgramYearsTest extends TestCase
         parent::setUp();
         app()->setLocale('en');
         $this->seed(DatabaseSeeder::class);
-        $this->year = \App\Support\FiscalYear::current();
+        $this->year = FiscalYear::current();
     }
 
     private function admin(): User

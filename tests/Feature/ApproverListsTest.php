@@ -8,6 +8,7 @@ use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Program;
 use App\Models\User;
+use App\Policies\ActivityPolicy;
 use App\Services\ActivityWorkflow;
 use App\Services\ApprovalInbox;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -146,11 +147,11 @@ class ApproverListsTest extends TestCase
     {
         $certifier = $this->person();
         $this->activity->forceFill(['status' => Activity::STATUS_SUBMITTED, 'fiscal_year' => 2026])->saveQuietly();
-        $this->assertFalse(app(\App\Policies\ActivityPolicy::class)->inScope($certifier->fresh(), $this->unit->id));
+        $this->assertFalse(app(ActivityPolicy::class)->inScope($certifier->fresh(), $this->unit->id));
 
         $this->appoint($this->unit, $certifier, ApproverAssignment::CERTIFY);
 
-        $this->assertTrue(app(\App\Policies\ActivityPolicy::class)->inScope($certifier->fresh(), $this->unit->id));
+        $this->assertTrue(app(ActivityPolicy::class)->inScope($certifier->fresh(), $this->unit->id));
         $items = collect(app(ApprovalInbox::class)->items($certifier->fresh(), 2026));
         $this->assertTrue($items->contains(fn ($i) => str_contains($i['text'], 'waiting for your decision')));
     }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AuditLog;
 use App\Services\ImplementationPlanReport;
+use App\Support\FiscalYear;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ImplementationPlanController extends Controller
 {
@@ -41,10 +43,10 @@ class ImplementationPlanController extends Controller
         return $pdf->download("{$report['reference']}.pdf");
     }
 
-    /** @return array{0: array<string, mixed>, 1: \Illuminate\Support\Collection} */
+    /** @return array{0: array<string, mixed>, 1: Collection} */
     private function build(Request $request): array
     {
-        $year = (int) $request->query('year', \App\Support\FiscalYear::current());
+        $year = (int) $request->query('year', FiscalYear::current());
         abort_if($year < 2020 || $year > 2035, 404);
         $unit = $request->query('unit') ? (int) $request->query('unit') : null;
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
+use App\Services\PlanningWindow;
 use Illuminate\Database\Eloquent\Model;
 
 /** The plan of one directorate (a top-level unit) for one fiscal year has been finalized: its planning has ended. */
@@ -14,8 +15,8 @@ class UnitPlanning extends Model
 
     protected static function booted(): void
     {
-        static::saved(fn () => \App\Services\PlanningWindow::forgetTree());
-        static::deleted(fn () => \App\Services\PlanningWindow::forgetTree());
+        static::saved(fn () => PlanningWindow::forgetTree());
+        static::deleted(fn () => PlanningWindow::forgetTree());
     }
 
     protected $casts = ['planning_at' => 'datetime'];

@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\Directorate;
 use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
+use App\Services\SampleRegistry;
 use App\Support\Institution;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -108,7 +110,7 @@ class InstitutionLevelTest extends TestCase
     {
         $activity = $this->validatedActivity();
         $head = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
-        $other = \App\Models\Directorate::create(['code' => 'ZZ', 'name' => 'Another office', 'type' => 'Independent', 'administration' => 'direct', 'active' => true]);
+        $other = Directorate::create(['code' => 'ZZ', 'name' => 'Another office', 'type' => 'Independent', 'administration' => 'direct', 'active' => true]);
         $activity->forceFill(['directorate_id' => $other->id])->save();
 
         $this->assertFalse(app(ActivityWorkflow::class)->canApprove($head, $activity->fresh()));
@@ -117,7 +119,7 @@ class InstitutionLevelTest extends TestCase
     public function test_purging_the_office_sample_restores_the_ministry_defaults(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
-        app(\App\Services\SampleRegistry::class)->purge('mtc');
+        app(SampleRegistry::class)->purge('mtc');
 
         $this->assertSame(Institution::MINISTRY, Institution::level());
         $this->assertNull(Institution::recipient());

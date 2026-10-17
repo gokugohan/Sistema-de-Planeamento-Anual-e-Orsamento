@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\ActivityVersion;
 use App\Models\Directorate;
-use App\Models\Indicator;
 use App\Models\User;
 use App\Services\ActivityVersions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;

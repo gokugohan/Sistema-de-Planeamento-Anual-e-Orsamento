@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Auditable;
 use App\Models\Scopes\ProductionScope;
+use App\Support\FiscalYear;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,8 +20,8 @@ class Activity extends Model
     {
         static::addGlobalScope(new ProductionScope);
 
-        static::saved(fn () => \App\Support\FiscalYear::forget());
-        static::deleted(fn () => \App\Support\FiscalYear::forget());
+        static::saved(fn () => FiscalYear::forget());
+        static::deleted(fn () => FiscalYear::forget());
 
         static::updating(function ($activity) {
             if ($activity->isLocked()) {

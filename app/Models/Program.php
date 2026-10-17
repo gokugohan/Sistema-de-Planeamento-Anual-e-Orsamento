@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\Auditable;
+use App\Support\FiscalYear;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,7 @@ class Program extends Model
     {
         // A programme registered without a year belongs to the working year.
         static::creating(function (Program $program) {
-            $program->fiscal_year ??= \App\Support\FiscalYear::current();
+            $program->fiscal_year ??= FiscalYear::current();
         });
 
         static::deleting(function (Program $program) {

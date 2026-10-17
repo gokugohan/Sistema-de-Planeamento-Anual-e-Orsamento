@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\EconomicClassification;
+use App\Support\FiscalYear;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +38,7 @@ class SeedLoadTestData extends Command
 
     private function seed(): int
     {
-        $year = (int) ($this->option('year') ?: \App\Support\FiscalYear::current());
+        $year = (int) ($this->option('year') ?: FiscalYear::current());
         $total = max(1, (int) $this->option('activities'));
         $unitCount = max(1, (int) $this->option('units'));
         $started = microtime(true);

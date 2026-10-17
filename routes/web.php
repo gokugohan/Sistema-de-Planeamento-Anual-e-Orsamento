@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\ApprovedPlanReportController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\ImplementationPlanController;
+use App\Http\Controllers\PerformanceReportController;
 use App\Http\Controllers\PlanBreakdownController;
 use App\Models\Activity;
+use App\Models\Directorate;
 use App\Models\SystemSetting;
 use App\Services\ActivityCsvImporter;
+use App\Services\UnitWorkspace;
+use App\Support\FiscalYear;
 use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
@@ -22,14 +27,14 @@ Route::get('/', function () {
 
 // My work: the workspace of the person's own unit; any unit's workspace; and the tree of units to find one.
 Route::get('my-work', function () {
-    $unit = app(\App\Services\UnitWorkspace::class)->homeUnit(auth()->user());
+    $unit = app(UnitWorkspace::class)->homeUnit(auth()->user());
 
     return $unit ? redirect()->route('units.show', $unit) : view('work.none');
 })->middleware(['auth', 'verified'])->name('work.home');
 
 Route::get('units', fn () => view('work.units'))->middleware(['auth', 'verified'])->name('units.index');
 
-Route::get('units/{directorate}', fn (\App\Models\Directorate $directorate) => view('work.unit', ['directorate' => $directorate]))
+Route::get('units/{directorate}', fn (Directorate $directorate) => view('work.unit', ['directorate' => $directorate]))
     ->middleware(['auth', 'verified'])->name('units.show');
 
 Route::get('activities', function () {
@@ -119,15 +124,15 @@ Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activitie
     ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa.activities');
 
 // The implementation plan of a unit in the ministry's form
-Route::get('reports/implementation-plan', [\App\Http\Controllers\ImplementationPlanController::class, 'show'])
+Route::get('reports/implementation-plan', [ImplementationPlanController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan');
-Route::get('reports/implementation-plan/pdf', [\App\Http\Controllers\ImplementationPlanController::class, 'pdf'])
+Route::get('reports/implementation-plan/pdf', [ImplementationPlanController::class, 'pdf'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan.pdf');
 
 // Monthly / quarterly performance report: each reader gets the units they may see
-Route::get('reports/performance', [\App\Http\Controllers\PerformanceReportController::class, 'show'])
+Route::get('reports/performance', [PerformanceReportController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance');
-Route::get('reports/performance/pdf', [\App\Http\Controllers\PerformanceReportController::class, 'pdf'])
+Route::get('reports/performance/pdf', [PerformanceReportController::class, 'pdf'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance.pdf');
 
 Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
@@ -189,7 +194,7 @@ Route::get('health', HealthController::class)->middleware('throttle:60,1')->name
 
 // Global fiscal-year context: every page works in the year chosen here.
 Route::get('fiscal-year/{year}', function (int $year) {
-    if (in_array($year, \App\Support\FiscalYear::available(), true)) {
+    if (in_array($year, FiscalYear::available(), true)) {
         session(['fiscal_year' => $year]);
     }
 

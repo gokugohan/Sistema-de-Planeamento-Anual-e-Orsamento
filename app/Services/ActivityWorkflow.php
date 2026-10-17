@@ -10,6 +10,7 @@ use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\User;
 use App\Notifications\SystemNotification;
+use App\Policies\ActivityPolicy;
 use App\Support\ApprovalRules;
 use DomainException;
 use Illuminate\Support\Facades\DB;
@@ -166,6 +167,7 @@ class ActivityWorkflow
                 if (! $admin && app(ReportingWindows::class)->planClosedReasonFor($user, $activity)) {
                     return null;
                 }
+
                 // a list of preparers decides who submits; without one, whoever may submit
                 return match ($lists->designated($user, $activity->directorate_id, ApproverAssignment::PREPARE)) {
                     true => Activity::STATUS_SUBMITTED,
@@ -225,7 +227,7 @@ class ActivityWorkflow
             && $activity->status === Activity::STATUS_SUBMITTED
             && ! $activity->isLocked()
             && ($user->isAdministrator() || $user->can('confirm_budget'))
-            && app(\App\Policies\ActivityPolicy::class)->inScope($user, $activity->directorate_id);
+            && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id);
     }
 
     /** The finance officer confirms the budget lines as they stand, with a short justification of the resource plan. */

@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Services\ActivityRollForward;
 use App\Services\ProgramYears;
 use App\Services\SampleRegistry;
+use App\Support\FiscalYear;
 use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -32,7 +33,7 @@ class SubprogramTest extends TestCase
         parent::setUp();
         $this->seed(DatabaseSeeder::class);
         app()->setLocale('en');
-        $this->year = \App\Support\FiscalYear::current();
+        $this->year = FiscalYear::current();
     }
 
     private function admin(): User

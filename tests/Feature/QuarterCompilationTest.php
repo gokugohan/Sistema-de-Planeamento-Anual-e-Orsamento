@@ -6,12 +6,14 @@ use App\Models\Activity;
 use App\Models\ActivityReport;
 use App\Models\Directorate;
 use App\Models\User;
+use App\Services\ApprovalInbox;
 use App\Services\PerformanceReport;
 use App\Services\QuarterCompilation;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 /** The director compiles the quarter's text from the unit's reports; the printed report uses it and the unit's text is kept. */
@@ -110,7 +112,7 @@ class QuarterCompilationTest extends TestCase
 
         $this->actingAs($planner)->get(route('reports.compile'))->assertForbidden();
         $this->actingAs($this->director)->get(route('reports.compile'))->assertOk()->assertSee('Compile the quarter');
-        $this->expectException(\Symfony\Component\HttpKernel\Exception\HttpException::class);
+        $this->expectException(HttpException::class);
         app(QuarterCompilation::class)->save($planner, $this->activity, 3, 'nope', null);
     }
 
@@ -128,7 +130,7 @@ class QuarterCompilationTest extends TestCase
 
     public function test_the_inbox_asks_the_director_to_compile_the_quarter_that_ended_and_clears_when_done(): void
     {
-        $find = fn () => collect(app(\App\Services\ApprovalInbox::class)->items($this->director, 2026))->first(fn ($i) => str_contains($i['text'], 'no compiled text for Q3'));
+        $find = fn () => collect(app(ApprovalInbox::class)->items($this->director, 2026))->first(fn ($i) => str_contains($i['text'], 'no compiled text for Q3'));
 
         $this->assertNotNull($find());
 

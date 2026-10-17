@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
+use App\Models\FundingSource;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Services\ActivityExporter;
 use App\Services\ActivityRollForward;
 use App\Services\ActivityWorkflow;
+use App\Support\FiscalYear;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -37,7 +39,7 @@ class ActivityPlanningTest extends TestCase
         app()->setLocale('en');
         $this->seed(DatabaseSeeder::class);
 
-        $this->year = \App\Support\FiscalYear::current();
+        $this->year = FiscalYear::current();
         $this->dg = Directorate::create(['name' => 'General Directorate', 'code' => 'DGX', 'type' => 'General Directorate']);
         $this->dn = Directorate::create(['name' => 'National Directorate', 'code' => 'DNX', 'type' => 'National Directorate', 'parent_id' => $this->dg->id]);
         $this->other = Directorate::create(['name' => 'Other Directorate', 'code' => 'OTH', 'type' => 'Independent']);
@@ -155,8 +157,8 @@ class ActivityPlanningTest extends TestCase
     {
         $this->as('Planning', $this->dn);
         $class = EconomicClassification::first();
-        $partner = \App\Models\FundingSource::where('code', 'PARTNER')->firstOrFail();
-        $state = \App\Models\FundingSource::where('code', 'OGE')->firstOrFail();
+        $partner = FundingSource::where('code', 'PARTNER')->firstOrFail();
+        $state = FundingSource::where('code', 'OGE')->firstOrFail();
         $base = fn () => Volt::test('pages.activities.activity-form')
             ->set('program_id', (string) $this->program->id)->set('description', 'Two sources')->set('quarters', ['1'])
             ->set('indicators', [['name' => 'Reports', 'type' => 'Output', 'unit' => 'reports', 'target' => '4']]);

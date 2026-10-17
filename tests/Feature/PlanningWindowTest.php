@@ -11,12 +11,14 @@ use App\Models\Program;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Services\PlanningWindow;
+use App\Support\FiscalYear;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Volt;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 /**
@@ -73,7 +75,7 @@ class PlanningWindowTest extends TestCase
         $this->window->finalize($minister, self::YEAR, 'All units decided.');
 
         $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));
-        $this->assertFalse(\App\Support\FiscalYear::planningOpen(self::YEAR));
+        $this->assertFalse(FiscalYear::planningOpen(self::YEAR));
         $state = $this->window->state(self::YEAR);
         $this->assertSame($minister->name, $state['by']);
         $this->assertSame('All units decided.', $state['remark']);
@@ -94,7 +96,7 @@ class PlanningWindowTest extends TestCase
         try {
             $this->window->finalize($planner, self::YEAR);
             $this->fail('a planner cannot finalize the plan');
-        } catch (\Symfony\Component\HttpKernel\Exception\HttpException $e) {
+        } catch (HttpException $e) {
             $this->assertSame(403, $e->getStatusCode());
         }
         $this->assertTrue($this->window->isOpen(self::YEAR));
@@ -136,7 +138,7 @@ class PlanningWindowTest extends TestCase
         }
         $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));
 
-        $this->expectException(\Symfony\Component\HttpKernel\Exception\HttpException::class);
+        $this->expectException(HttpException::class);
         try {
             $this->window->reopen($this->user('Planning', $this->unit), self::YEAR, 'I would like to add one');
         } finally {
@@ -216,8 +218,8 @@ class PlanningWindowTest extends TestCase
         $this->assertNull($this->window->endedBy(self::YEAR), 'the other directorate is still planning');
         $this->assertFalse($this->window->isOpenFor(self::YEAR, $this->unit->id));
         $this->assertTrue($this->window->isOpenFor(self::YEAR, $other->id));
-        $this->assertFalse(\App\Support\FiscalYear::planningOpen(self::YEAR, $this->unit->id));
-        $this->assertTrue(\App\Support\FiscalYear::planningOpen(self::YEAR, $other->id));
+        $this->assertFalse(FiscalYear::planningOpen(self::YEAR, $this->unit->id));
+        $this->assertTrue(FiscalYear::planningOpen(self::YEAR, $other->id));
 
         $this->window->finalize($otherHead, self::YEAR);
         $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));

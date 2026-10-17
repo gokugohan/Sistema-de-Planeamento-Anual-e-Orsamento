@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Activity;
 use Illuminate\Support\Facades\File;
 use Tests\TestCase;
 
@@ -36,7 +37,7 @@ class TranslationCompletenessTest extends TestCase
     private function runtimeKeys(): array
     {
         $keys = ['Independent', 'General Directorate', 'National Directorate', 'Department', 'Unit', 'Cabinet', 'Regional Office'];
-        foreach ([\App\Models\Activity::class] as $class) {
+        foreach ([Activity::class] as $class) {
             foreach ((new \ReflectionClass($class))->getConstants() as $name => $value) {
                 if (str_starts_with($name, 'STATUS_') && is_string($value)) {
                     $keys[] = $value;
@@ -85,9 +86,9 @@ class TranslationCompletenessTest extends TestCase
             }
         }
 
-        $this->assertSame([], $missing, "Add these to lang/en.json (the text itself), or English readers see Portuguese:
-".implode("
-", array_slice($missing, 0, 30)));
+        $this->assertSame([], $missing, 'Add these to lang/en.json (the text itself), or English readers see Portuguese:
+'.implode('
+', array_slice($missing, 0, 30)));
     }
 
     public function test_translations_keep_their_placeholders_and_plural_forms(): void

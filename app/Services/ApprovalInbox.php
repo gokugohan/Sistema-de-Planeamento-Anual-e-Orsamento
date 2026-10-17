@@ -3,15 +3,17 @@
 namespace App\Services;
 
 use App\Models\Activity;
-use App\Models\ReportingWindow;
-use Carbon\Carbon;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\Indicator;
 use App\Models\IndicatorProgress;
 use App\Models\LineItem;
+use App\Models\ReportingWindow;
 use App\Models\User;
+use App\Policies\ActivityPolicy;
 use App\Support\ApprovalRules;
+use App\Support\FiscalYear;
+use Carbon\Carbon;
 
 /**
  * What is waiting for one person, gathered in one place: activities to decide, execution figures to verify,
@@ -25,7 +27,7 @@ class ApprovalInbox
     /** @return array<int, array{group: string, count: int, text: string, url: string, tone: string}> */
     public function items(User $user, ?int $year = null): array
     {
-        $year ??= \App\Support\FiscalYear::current();
+        $year ??= FiscalYear::current();
         $items = [];
         $add = function (string $group, int $count, string $text, string $url, string $tone) use (&$items) {
             if ($count > 0) {
@@ -55,7 +57,7 @@ class ApprovalInbox
 
         // ── finance: submitted activities whose budget is waiting for confirmation (where the institution asks for it)
         if (ApprovalRules::current()->budgetConfirmation && ($user->isAdministrator() || $user->can('confirm_budget'))) {
-            $policy = app(\App\Policies\ActivityPolicy::class);
+            $policy = app(ActivityPolicy::class);
             $n = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')
                 ->limit(300)->get(['id', 'directorate_id'])->filter(fn ($a) => $policy->inScope($user, $a->directorate_id))->count();
             $add('decide', $n, trans_choice(':n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed', $n, ['n' => $n]), route('approvals.budget'), 'amber');

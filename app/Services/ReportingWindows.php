@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Activity;
 use App\Models\ReportingWindow;
 use App\Models\User;
 
@@ -60,7 +61,7 @@ class ReportingWindows
      * The same for one activity. A revision of an approved activity (version above 0) is not new planning, so it is not
      * held back by the submission window of the annual plan: changes after approval are exactly what comes later.
      */
-    public function planClosedReasonFor(?User $user, \App\Models\Activity $activity): ?string
+    public function planClosedReasonFor(?User $user, Activity $activity): ?string
     {
         return (int) $activity->version > 0 ? null : $this->planClosedReason($user, (int) $activity->fiscal_year);
     }

@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\User;
+use App\Services\ApproverLists;
 
 /**
  * Who may see and change an activity.
@@ -35,7 +36,7 @@ class ActivityPolicy
         }
 
         // named in the approval list of a unit: its activities, and those of the units below it, are theirs to see
-        return in_array($unitId, app(\App\Services\ApproverLists::class)->unitIdsOf($user), true);
+        return in_array($unitId, app(ApproverLists::class)->unitIdsOf($user), true);
     }
 
     public function viewAny(User $user): bool

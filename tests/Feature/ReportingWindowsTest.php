@@ -3,10 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\ActivityReport;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
+use App\Services\ReportingWindows;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -70,7 +72,7 @@ class ReportingWindowsTest extends TestCase
 
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
-        $this->assertTrue(app(\App\Services\ReportingWindows::class)->allows($admin, 2026, 'month', 10));
+        $this->assertTrue(app(ReportingWindows::class)->allows($admin, 2026, 'month', 10));
     }
 
     public function test_inside_the_window_reporting_works_and_the_page_explains_when_closed(): void
@@ -78,7 +80,7 @@ class ReportingWindowsTest extends TestCase
         $this->window('month', 10, '2026-10-01', '2026-10-31');
         $this->window('quarter', 4, '2026-11-01', '2026-11-15'); // not yet open
 
-        $service = app(\App\Services\ReportingWindows::class);
+        $service = app(ReportingWindows::class);
         $this->assertTrue($service->allows($this->director, 2026, 'month', 10));
         $this->assertFalse($service->allows($this->director, 2026, 'quarter', 4));
         $this->assertStringContainsString('opens on 01/11/2026', $service->closedReason($this->director, 2026, 'quarter', 4));
@@ -96,7 +98,7 @@ class ReportingWindowsTest extends TestCase
             ->set('form.month.results', 'Done')->call('save', 'month')
             ->set('form.quarter.results', 'Too early')->call('save', 'quarter')->assertForbidden();
 
-        $this->assertSame(1, \App\Models\ActivityReport::where('activity_id', $this->activity->id)->count());
+        $this->assertSame(1, ActivityReport::where('activity_id', $this->activity->id)->count());
     }
 
     public function test_only_an_administrator_sets_windows(): void

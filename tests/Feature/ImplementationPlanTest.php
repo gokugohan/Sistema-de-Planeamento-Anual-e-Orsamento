@@ -9,6 +9,7 @@ use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
+use App\Support\FiscalYear;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -33,7 +34,7 @@ class ImplementationPlanTest extends TestCase
         parent::setUp();
         $this->seed(DatabaseSeeder::class);
         app()->setLocale('en');
-        $this->year = \App\Support\FiscalYear::current();
+        $this->year = FiscalYear::current();
         $unit = Directorate::create(['name' => 'Unit', 'code' => 'UNT', 'type' => 'General Directorate', 'active' => true]);
         $this->planner = User::factory()->create(['directorate_id' => $unit->id]);
         $this->planner->assignRole('Planning');
@@ -46,7 +47,7 @@ class ImplementationPlanTest extends TestCase
         return $over + ['name' => 'Inspections', 'type' => 'Output', 'unit' => 'ports', 'measure' => 'cumulative', 'target' => '6', 'quarters' => ['1', '2', '3', '4'], 'actions' => []];
     }
 
-    private function form(array $indicators, array $lines = null, array $quarters = ['1', '2', '3', '4'])
+    private function form(array $indicators, ?array $lines = null, array $quarters = ['1', '2', '3', '4'])
     {
         $class = EconomicClassification::first();
 
@@ -69,7 +70,7 @@ class ImplementationPlanTest extends TestCase
         $this->assertSame([3, 6], $i->actions[0]->monthList());
         $this->assertSame([], $i->actions[2]->monthList());
         $this->assertSame([2, 3, 6, 7], $i->plannedMonths());
-        $this->assertSame([1, 2, 3], $i->actions->pluck("position")->all());
+        $this->assertSame([1, 2, 3], $i->actions->pluck('position')->all());
         $this->assertSame([1, 2, 3], $i->dueQuarters(), 'reported in the quarters of the months');
         $this->assertSame('Study the southern ports; Consult the municipalities; Hire the team', $i->implementationText());
     }

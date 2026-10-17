@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\BudgetExecution;
+use App\Models\Directorate;
 use App\Models\Indicator;
 use App\Models\IndicatorProgress;
 use App\Models\LineItem;
@@ -80,7 +81,7 @@ class ReportExecutionPageTest extends TestCase
     {
         $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         // the activity must be one of this director's
-        $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereIn('directorate_id', \App\Models\Directorate::find($director->directorate_id)->getSelfAndDescendantIds())
+        $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereIn('directorate_id', Directorate::find($director->directorate_id)->getSelfAndDescendantIds())
             ->whereHas('indicators')->whereHas('lineItems.adjustedBudget')->firstOrFail();
         $line = LineItem::where('activity_id', $this->activity->id)->whereHas('adjustedBudget')->firstOrFail();
         $indicator = Indicator::where('activity_id', $this->activity->id)->firstOrFail();

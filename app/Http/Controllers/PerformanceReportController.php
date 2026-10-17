@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AuditLog;
 use App\Services\PerformanceReport;
+use App\Support\FiscalYear;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,7 @@ class PerformanceReportController extends Controller
 
     private function build(Request $request): array
     {
-        $year = (int) $request->query('year', \App\Support\FiscalYear::current());
+        $year = (int) $request->query('year', FiscalYear::current());
         abort_if($year < 2020 || $year > 2035, 404);
         $type = $request->query('type') === 'quarter' ? 'quarter' : 'month';
         $default = $year === (int) now()->year ? ($type === 'quarter' ? (int) ceil(now()->month / 3) : (int) now()->month) : ($year < now()->year ? ($type === 'quarter' ? 4 : 12) : 1);

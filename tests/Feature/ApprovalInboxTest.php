@@ -4,9 +4,11 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\BudgetExecution;
+use App\Models\Directorate;
 use App\Models\IndicatorProgress;
 use App\Models\User;
 use App\Services\ApprovalInbox;
+use App\View\Components\NextActions;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -79,7 +81,7 @@ class ApprovalInboxTest extends TestCase
     public function test_a_planner_sees_their_drafts_and_what_was_returned(): void
     {
         $planner = $this->user('tecnico.udig@gdsc.tl');
-        $unit = \App\Models\Directorate::find($planner->directorate_id)->getSelfAndDescendantIds();
+        $unit = Directorate::find($planner->directorate_id)->getSelfAndDescendantIds();
         DB::table('activities')->where('fiscal_year', 2027)->whereIn('directorate_id', $unit)->limit(1)->update(['status' => Activity::STATUS_REJECTED]);
 
         $items = collect(app(ApprovalInbox::class)->items($planner, 2027))->where('group', 'mine');
@@ -104,7 +106,7 @@ class ApprovalInboxTest extends TestCase
 
         $this->assertSame(
             collect(app(ApprovalInbox::class)->items($head))->pluck('text')->all(),
-            collect((new \App\View\Components\NextActions)->items)->pluck('text')->all(),
+            collect((new NextActions)->items)->pluck('text')->all(),
         );
     }
 }
