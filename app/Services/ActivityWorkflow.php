@@ -219,28 +219,41 @@ class ActivityWorkflow
     /** Move the activity one step up the chain on behalf of $user, with an optional note for the trail. */
     public function advance(User $user, Activity $activity, ?string $note = null): string
     {
-        $to = $this->next($user, $activity);
-        if (! $to) {
-            throw new DomainException(__('It is not your turn to submit this activity or you lack permission.'));
-        }
-        if ($to === Activity::STATUS_SUBMITTED && ($problems = $this->problems($activity))) {
-            throw new DomainException(__('This activity is not ready to submit: ').implode(' ', $problems));
-        }
+        // the check, the new status and the version are one unit of work, on the row as it is now
+        $signed = false;
+        $to = DB::transaction(function () use ($user, $activity, $note, &$signed) {
+            $this->lock($activity);
 
-        if ($this->signStage($user, $activity) !== null) {
-            return $activity->status; // signed; the next name on the list is still to sign
-        }
+            $to = $this->next($user, $activity);
+            if (! $to) {
+                throw new DomainException(__('It is not your turn to submit this activity or you lack permission.'));
+            }
+            if ($to === Activity::STATUS_SUBMITTED && ($problems = $this->problems($activity))) {
+                throw new DomainException(__('This activity is not ready to submit: ').implode(' ', $problems));
+            }
 
-        $stamps = match ($to) {
-            Activity::STATUS_APPROVED => ['reviewed_at' => now(), 'reviewed_by' => $user->id, 'approved_at' => now(), 'approved_by' => $user->id],
-            Activity::STATUS_SUBMITTED => ['submitted_at' => now()],
-            Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED => ['reviewed_at' => now(), 'reviewed_by' => $user->id],
-            default => [],
-        };
-        $activity->auditMetadata = $this->trailMeta($user, $note);
-        $activity->update(['status' => $to] + $stamps);
-        if ($to === Activity::STATUS_APPROVED) {
-            app(ActivityVersions::class)->approved($activity, $user);
+            if ($this->signStage($user, $activity) !== null) {
+                $signed = true; // signed; the next name on the list is still to sign
+
+                return $activity->status;
+            }
+
+            $stamps = match ($to) {
+                Activity::STATUS_APPROVED => ['reviewed_at' => now(), 'reviewed_by' => $user->id, 'approved_at' => now(), 'approved_by' => $user->id],
+                Activity::STATUS_SUBMITTED => ['submitted_at' => now()],
+                Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED => ['reviewed_at' => now(), 'reviewed_by' => $user->id],
+                default => [],
+            };
+            $activity->auditMetadata = $this->trailMeta($user, $note);
+            $activity->update(['status' => $to] + $stamps);
+            if ($to === Activity::STATUS_APPROVED) {
+                app(ActivityVersions::class)->approved($activity, $user);
+            }
+
+            return $to;
+        });
+        if ($signed) {
+            return $to;
         }
 
         [$title, $message, $roles, $unitId] = match ($to) {
@@ -307,17 +320,32 @@ class ActivityWorkflow
 
     public function approve(User $user, Activity $activity, ?string $note = null): void
     {
-        abort_unless($this->canApprove($user, $activity), 403);
+        $approved = DB::transaction(function () use ($user, $activity, $note) {
+            $this->lock($activity);
+            abort_unless($this->canApprove($user, $activity), 403);
 
-        if ($this->signStage($user, $activity) !== null) {
-            return; // signed; the next name on the list is still to sign
+            if ($this->signStage($user, $activity) !== null) {
+                return false; // signed; the next name on the list is still to sign
+            }
+            $this->markApproved($user, $activity, $this->trailMeta($user, $note));
+
+            return true;
+        });
+        if (! $approved) {
+            return;
         }
-        $this->markApproved($user, $activity, $this->trailMeta($user, $note));
         $this->notify(['Director', 'Planning'], $activity->directorate_id, new SystemNotification(
             __('PAA Activity Approved'),
             __('Activity ":desc" has been approved.', ['desc' => str($activity->description)->limit(30)]),
             route('activities.show', ['activity' => $activity->id], false)
         ));
+    }
+
+    /** Lock the activity row and take its current state, so two people acting at once cannot both pass the same check. */
+    private function lock(Activity $activity): void
+    {
+        $current = Activity::query()->whereKey($activity->getKey())->lockForUpdate()->firstOrFail();
+        $activity->setRawAttributes($current->getAttributes(), true);
     }
 
     /**

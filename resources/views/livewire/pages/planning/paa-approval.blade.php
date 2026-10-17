@@ -196,15 +196,15 @@ new class extends Component {
         $activity = Activity::findOrFail($id);
         abort_unless(in_array($activity->status, self::QUEUES['review'], true), 422);
 
-        $newStatus = Activity::STATUS_VALIDATED; // final validation by default
-        if ($activity->status === Activity::STATUS_SUBMITTED) {
-            $firstParent = $activity->directorate->parent;
-            if ($firstParent && $firstParent->parent) {
-                $newStatus = Activity::STATUS_REVIEWED; // an intermediate review is required first
-            }
+        // the same rules as everywhere else: scope, lists, interim, signing in order, budget confirmation, parent validation
+        try {
+            $newStatus = app(\App\Services\ActivityWorkflow::class)->advance(auth()->user(), $activity);
+        } catch (\DomainException $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+
+            return;
         }
 
-        $activity->update(['status' => $newStatus, 'reviewed_at' => now(), 'reviewed_by' => auth()->id()]);
         $this->dispatch('toast', message: __('Activity updated to :status.', ['status' => __($newStatus)]), type: 'success');
     }
 
