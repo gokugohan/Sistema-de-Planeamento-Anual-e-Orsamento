@@ -65,6 +65,7 @@ class ActivityPolicy
     {
         return ($user->can('delete_activities') || $user->can('edit_activities'))
             && $activity->status === Activity::STATUS_DRAFT
+            && (int) $activity->version === 0 // an activity that was approved once is part of the plan's record: it is revised, not deleted
             && $this->inScope($user, $activity->directorate_id)
             && ! $activity->isLocked();
     }

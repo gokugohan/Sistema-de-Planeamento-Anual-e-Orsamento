@@ -5,9 +5,9 @@ use App\Services\PlanningWindow;
 use Livewire\Volt\Component;
 
 /**
- * Where planning stands for a year: open, finalized by the final approver, or final because the budget
- * envelope has been received. The final approver (or an administrator) can finalize the plan and reopen
- * it with a remark; once the envelope is received the plan cannot be reopened. Everything is re-checked
+ * Where planning stands for a year, directorate by directorate: open, or finalized by its head. The head (or an
+ * administrator) finalizes the plan of the directorate and can reopen it with a remark. Finalizing stops new
+ * activities only; an approved activity can still be revised. Everything is re-checked
  * on the server in PlanningWindow, so hiding a button is only a convenience.
  */
 new class extends Component {
@@ -63,23 +63,7 @@ new class extends Component {
 <div>
     @php $ended = $state['ended']; @endphp
 
-    @if($ended === 'Closed' || $ended === 'Approved')
-        <div class="alert bg-indigo-50 text-indigo-900 ring-1 ring-indigo-200 !items-start justify-between gap-4">
-            <div class="min-w-0">
-                <p class="font-semibold">{{ __('Planning for :year has ended', ['year' => $year]) }}</p>
-                <p class="mt-1 text-sm font-normal">
-                    @if($ended === 'Closed')
-                        {{ __('The planning cycle for :year is closed; activities can no longer be changed.', ['year' => $year]) }}
-                    @else
-                        {{ __('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]) }}
-                    @endif
-                </p>
-            </div>
-            @if($canCreate)
-                <a href="{{ route('fiscal-year.switch', $nextYear) }}" class="shrink-0 text-sm font-semibold underline">{{ __('Plan for :year', ['year' => $nextYear]) }}</a>
-            @endif
-        </div>
-    @elseif(count($state['units']) > 0)
+    @if(count($state['units']) > 0)
         @php $doneN = count(array_filter($state['units'], fn ($u) => $u['closed'])); $totalN = count($state['units']); @endphp
         <details class="group rounded-lg border border-zinc-200 bg-white shadow-card" @if($totalN <= 3 || $deciding->isNotEmpty() && $deciding->count() <= 3) open @endif>
             <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-3 text-sm">
@@ -120,7 +104,7 @@ new class extends Component {
         @if($deciding->isNotEmpty())
             <x-note-dialog name="reopen-planning" property="remark" action="reopen" :required="true"
                 :title="__('Reopen planning for :year?', ['year' => $year])"
-                :message="__('New activities can be added again. This is recorded with your remark; once the budget envelope is received it can no longer be reopened.')"
+                :message="__('New activities can be added again. This is recorded with your remark.')"
                 :label="__('Why is planning reopened?')" :confirm="__('Reopen planning')" />
             <x-note-dialog name="finalize-plan" property="remark" action="finalize"
                 :title="__('Finalize the plan for :year?', ['year' => $year])"

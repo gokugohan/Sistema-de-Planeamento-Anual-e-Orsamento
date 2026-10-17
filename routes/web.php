@@ -4,7 +4,6 @@ use App\Http\Controllers\ApprovedPlanReportController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\PlanBreakdownController;
 use App\Models\Activity;
-use App\Models\FiscalEnvelope;
 use App\Models\SystemSetting;
 use App\Services\ActivityCsvImporter;
 use Illuminate\Support\Facades\Route;
@@ -38,17 +37,10 @@ Route::get('activities/{activity}', function (Activity $activity) {
     return view('activities.show', ['activity' => $activity]);
 })->middleware(['auth', 'verified'])->name('activities.show');
 
-Route::get('budget/envelope/current', function () {
-    return view('budget.envelope-current');
-})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('budget.envelope.current');
-
-Route::get('budget/envelope/list', function () {
-    return view('budget.envelope-list');
-})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('budget.envelope.list');
-
-Route::get('budget/allocation', function () {
-    return view('budget.allocation');
-})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('budget.allocation');
+// The plan is the centre: there is no fiscal envelope to register or distribute. Old addresses go to the plan cycle.
+Route::redirect('budget/envelope/current', '/planning/cycle', 301);
+Route::redirect('budget/envelope/list', '/planning/cycle', 301);
+Route::redirect('budget/allocation', '/planning/cycle', 301);
 
 Route::get('monitoring', function () {
     return view('monitoring.index');
@@ -90,12 +82,9 @@ Route::get('planning/paa-approval', function () {
     return view('planning.paa-approval');
 })->middleware(['auth', 'verified'])->name('planning.paa-approval'); // the page checks who may decide
 
-Route::get('planning/director-review', function () {
-    return view('planning.director-review');
-})->middleware(['auth', 'verified', 'role:Admin|Minister|Director|Planning'])->name('planning.director-review');
+Route::redirect('planning/director-review', '/planning/cycle', 301);
 
-// The fiscal ceiling screen was a second way to do what the envelope pages do (and skipped their checks): one place now.
-Route::redirect('planning/fiscal', '/budget/envelope/current', 301);
+Route::redirect('planning/fiscal', '/planning/cycle', 301);
 
 // The cycle of the annual action plan: windows, approval, end of planning, budget and reporting.
 Route::get('planning/cycle', function () {
@@ -182,7 +171,7 @@ Route::get('health', HealthController::class)->middleware('throttle:60,1')->name
 
 // Global fiscal-year context: every page works in the year chosen here.
 Route::get('fiscal-year/{year}', function (int $year) {
-    if (in_array($year, FiscalEnvelope::availableYears(), true)) {
+    if (in_array($year, \App\Support\FiscalYear::available(), true)) {
         session(['fiscal_year' => $year]);
     }
 

@@ -36,10 +36,6 @@ class RolesAndPermissionsSeeder extends Seeder
             ['name' => 'view_paa', 'module' => 'paa', 'display_name' => 'View PAA', 'description' => 'View annual activity plans'],
 
             // Module 4.3: Consolidação Orçamental Ministerial
-            ['name' => 'create_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Create Fiscal Envelope', 'description' => 'Create new fiscal envelopes'],
-            ['name' => 'edit_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Edit Fiscal Envelope', 'description' => 'Edit fiscal envelopes'],
-            ['name' => 'approve_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Approve Fiscal Envelope', 'description' => 'Approve or reject fiscal envelopes'],
-            ['name' => 'activate_fiscal_envelope', 'module' => 'budget', 'display_name' => 'Activate Fiscal Envelope', 'description' => 'Activate approved fiscal envelopes'],
             ['name' => 'confirm_budget', 'module' => 'budget', 'display_name' => 'Confirm Activity Budget', 'description' => 'Confirm the budget lines of an activity (the resource plan) before it is certified'],
             ['name' => 'view_budget', 'module' => 'budget', 'display_name' => 'View Budget', 'description' => 'View budget consolidation'],
 
@@ -73,9 +69,8 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'name' => 'Minister',
                 'display_name' => 'Minister',
-                'description' => 'Ministry leader: sees every plan and approves the fiscal envelope; plans are approved by the heads of the directorates',
+                'description' => 'Ministry leader: sees every plan and every report; plans are approved by the heads of the directorates',
                 'permissions' => [
-                    'approve_fiscal_envelope',
                     'view_all_paa',
                     'view_paa',
                     'view_budget',

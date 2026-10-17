@@ -33,7 +33,7 @@ class SubprogramTest extends TestCase
         parent::setUp();
         $this->seed(DatabaseSeeder::class);
         app()->setLocale('en');
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
     }
 
     private function admin(): User

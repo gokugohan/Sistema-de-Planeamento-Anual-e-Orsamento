@@ -54,7 +54,7 @@ class ApprovalTrail
 
             [$kind, $label] = match (true) {
                 $to === Activity::STATUS_REJECTED => ['returned', __('Returned for correction')],
-                $from === Activity::STATUS_APPROVED && $to === Activity::STATUS_DRAFT => ['reopened', __('Reopened')],
+                $from === Activity::STATUS_APPROVED && $to === Activity::STATUS_DRAFT => ['reopened', __('Revision started')],
                 default => ['forward', __(['Submitted' => 'Prepared', 'Reviewed' => 'Verified', 'Validated' => 'Certified'][$to] ?? $to)],
             };
             $steps[] = $this->step($kind, $to, $label, $log->created_at, $by, $reason ?? ($log->metadata['note'] ?? null), $reason !== null, isset($log->metadata['batch']));

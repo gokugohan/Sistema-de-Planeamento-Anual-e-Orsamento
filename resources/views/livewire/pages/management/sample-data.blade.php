@@ -168,7 +168,7 @@ new class extends Component {
             @if($report['action'] === 'purged')
                 <p class="text-sm font-semibold text-zinc-900">{{ __('Purged') }}</p>
                 <p class="text-sm text-zinc-600 mt-1">
-                    {{ __(':a activities, :u accounts, :d units, :p programmes and :e envelopes deleted.', ['a' => $report['deleted']['activities'], 'u' => $report['deleted']['users'], 'd' => $report['deleted']['directorates'], 'p' => $report['deleted']['programs'], 'e' => $report['deleted']['envelopes']]) }}
+                    {{ __(':a activities, :u accounts, :d units and :p programmes deleted.', ['a' => $report['deleted']['activities'], 'u' => $report['deleted']['users'], 'd' => $report['deleted']['directorates'], 'p' => $report['deleted']['programs']]) }}
                 </p>
                 @if(count($report['kept']))
                     <p class="text-sm font-medium text-amber-700 mt-3">{{ __('Kept because real data uses them (they are now ordinary records):') }}</p>
@@ -192,7 +192,7 @@ new class extends Component {
             <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
             <li>{{ __('Demo accounts (@goku.tl, password "password"): a Minister, and a Planner and a Director per unit.') }}</li>
             <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 approved activities with their official codes, indicators and amounts by economic category.') }}</li>
-            <li>{{ __('The 2025 (closed) and 2026 fiscal envelopes with their distribution, and the 2027 budget cycle, whose bill is still being debated in Parliament (no envelope yet).') }}</li>
+            <li>{{ __('The approved activities are version 1 of the plan; 2025 and 2026 have monthly spending and quarterly progress reported up to today, and 2027 is the year being planned.') }}</li>
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>

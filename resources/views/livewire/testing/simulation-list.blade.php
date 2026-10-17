@@ -5,7 +5,6 @@ use App\Models\Activity;
 use App\Models\Program;
 use App\Models\Directorate;
 use Illuminate\Support\Collection;
-use App\Models\FiscalEnvelope;
 
 new class extends Component {
     public $fiscalYear;
@@ -20,7 +19,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->activeYear = FiscalEnvelope::getEffectiveYear();
+        $this->activeYear = \App\Support\FiscalYear::current();
 
         $latestTestYear = Activity::testData()->max('fiscal_year');
         $this->fiscalYear = $latestTestYear ?? (date('Y') + 1);
@@ -214,10 +213,7 @@ new class extends Component {
 
     public function isYearLocked($year): bool
     {
-        $query = FiscalEnvelope::testData();
-
-        $status = $query->where('fiscal_year', $year)->value('status');
-        return in_array($status, ['Active', 'Closed']);
+        return false; // there is no envelope to close a year: approved simulations are revised, not locked
     }
 
     public function startNewPAA(): void
@@ -276,10 +272,7 @@ new class extends Component {
                 class="rounded-xl border-amber-200 bg-amber-50 text-sm font-bold text-amber-900 focus:ring-amber-500 focus:border-amber-500 transition-all h-9 px-3 cursor-pointer shadow-sm">
                 @php
                     $activityScope = Activity::testData();
-                    $envelopeScope = FiscalEnvelope::testData();
-
                     $availableYears = $activityScope->distinct()->pluck('fiscal_year')
-                        ->merge($envelopeScope->when(!$this->showDrafts, fn($q) => $q->where('status', '!=', 'Draft'))->pluck('fiscal_year'))
                         ->unique()
                         ->sortDesc();
 

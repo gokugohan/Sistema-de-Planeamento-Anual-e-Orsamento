@@ -97,9 +97,9 @@ new class extends Component {
             <label for="fiscal-year" class="hidden 2xl:block whitespace-nowrap text-xs font-medium text-zinc-500">{{ __('Fiscal year') }}</label>
             <select id="fiscal-year" @change="window.location.href = $event.target.value"
                 class="h-9 pl-3 pr-8 text-sm font-semibold text-zinc-900 bg-white border border-zinc-300 rounded-md focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/25" aria-label="{{ __('Fiscal year') }}">
-                @php $fy = \App\Models\FiscalEnvelope::getEffectiveYear(); $yearStatus = \App\Models\FiscalEnvelope::yearStatuses(); @endphp
-                @foreach(\App\Models\FiscalEnvelope::availableYears() as $year)
-                    <option value="{{ route('fiscal-year.switch', $year) }}" @selected($year === $fy)>{{ $year }}@if(in_array($yearStatus[$year] ?? null, ['Approved', 'Closed'], true)) · {{ __($yearStatus[$year]) }}@endif</option>
+                @php $fy = \App\Support\FiscalYear::current(); @endphp
+                @foreach(\App\Support\FiscalYear::available() as $year)
+                    <option value="{{ route('fiscal-year.switch', $year) }}" @selected($year === $fy)>{{ $year }}</option>
                 @endforeach
             </select>
         </div>

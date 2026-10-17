@@ -5,13 +5,12 @@ namespace Database\Seeders\Samples;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
-use App\Models\FiscalEnvelopeCategoryAllocation;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\Subprogram;
-use App\Services\EnvelopeDistributor;
+use App\Models\User;
+use App\Services\ActivityVersions;
 use App\Services\SampleRegistry;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -27,14 +26,15 @@ use Illuminate\Support\Str;
  *   2026  Lei n.º 8/2025, de 27 de novembro, as amended by Lei n.º 8/2026, de 8 de junho.
  *         MTC 12 800 471 USD, reduced to 12 674 262 USD by the amendment.
  *   2027  Proposta de Lei do OGE 2027, delivered to Parliament on 1 October 2026 and still being
- *         debated: the plan is loaded, but there is no budget law and therefore no envelope.
+ *         debated: the plan is loaded, but no spending is reported against it yet.
  * The totals of every programme and category match the budget tables; see data/README.md.
  *
  * What is loaded per year: each activity with its official code, name, programme, sub-programme,
  * owning division, indicator (with starting point and target as printed) and the amount in each
  * economic category. Where the official plan prints no amount for an activity, it is not loaded.
  * The OGE lists the autonomous bodies (APORTIL, TIC Timor, AACTL, ANC) as entities of their own; here
- * they are part of one MTC package, as the ministry plans and receives its envelope together with them.
+ * they are part of one MTC package, as the ministry plans together with them. Approved activities
+ * become version 1 of the plan (see ActivityVersions).
  *
  * Two things are NOT in the published plans and are therefore not invented: the quarter in which an
  * activity runs (every activity is an annual one) and its priority.
@@ -65,17 +65,10 @@ class MtcBudgetSeeder extends Seeder
                 continue; // a closed year cannot be edited; purge the sample to load it again
             }
 
-            // A year that already has a real envelope belongs to real data: never plan or distribute over it.
-            if ($this->hasRealEnvelope($registry, $year)) {
-                $registry->skipped[] = "Fiscal year {$year}: a real fiscal envelope already exists, so no sample plan was loaded for it";
-
-                continue;
-            }
-
             DB::transaction(function () use ($registry, $year, $data) {
-                $totals = $this->loadActivities($registry, $year, $data);
-                $this->registerBudget($registry, $year, $data, $totals);
-                // Spending and progress up to today, only where the budget law has been applied
+                $this->loadActivities($registry, $year, $data);
+                $this->approveVersions($year);
+                // Spending and progress up to today, only for the years whose budget law has been applied
                 if (isset($data['envelope'])) {
                     (new MtcExecutionSampler)->seed($year, $this->planted[$year] ?? []);
                 }
@@ -220,49 +213,20 @@ class MtcBudgetSeeder extends Seeder
         return $totals;
     }
 
-    /** The envelope (budget law approved) or the budget cycle (bill still in Parliament) of the year. */
-    private function registerBudget(SampleRegistry $registry, int $year, array $data, array $totals): void
+    /**
+     * Every approved sample activity becomes version 1 of the plan, approved by whoever approved it (or the first
+     * administrator), exactly as an approval in the application does it: its amounts are then in force.
+     */
+    private function approveVersions(int $year): void
     {
-        // The package: the ministry and its autonomous bodies, with any amendment replacing the ministry's figures.
-        $package = [];
-        foreach ($totals as $entity => $byCategory) {
-            $amounts = $data['amendments'][$entity]['amounts'] ?? $byCategory;
-            foreach ($amounts as $category => $amount) {
-                $package[$category] = ($package[$category] ?? 0) + $amount;
-            }
+        $versions = app(ActivityVersions::class);
+        $fallback = User::role('Admin')->first() ?? User::first();
+        $activities = Activity::withoutGlobalScopes()->whereIn('id', $this->planted[$year] ?? [])
+            ->where('status', Activity::STATUS_APPROVED)->where('version', 0)->get();
+        foreach ($activities as $activity) {
+            $by = $activity->approved_by ? User::find($activity->approved_by) : null;
+            $versions->approved($activity, $by ?? $fallback);
         }
-
-        if (isset($data['envelope'])) {
-            $meta = $data['envelope'];
-            $envelope = $registry->upsert('mtc', FiscalEnvelope::class, ['fiscal_year' => $year], [
-                'reference_number' => $meta['reference'],
-                'source_authority' => 'Parlamento Nacional',
-                'total_amount' => array_sum($package),
-                'status' => FiscalEnvelope::STATUS_APPROVED,
-                'approved_date' => $meta['date'],
-                'promulgation_date' => $meta['date'],
-                'start_date' => "{$year}-01-01",
-                'due_date' => "{$year}-12-31",
-                'budget_law_reference' => $meta['law'],
-                'is_test_data' => false,
-            ]);
-
-            $classes = EconomicClassification::pluck('id', 'code');
-            foreach (array_keys(self::CATEGORY) as $category) {
-                FiscalEnvelopeCategoryAllocation::updateOrCreate(
-                    ['fiscal_envelope_id' => $envelope->id, 'economic_classification_id' => $classes[$category]],
-                    ['allocated_amount' => $package[$category] ?? 0]
-                );
-            }
-
-            // The plan is distributed over the envelope exactly as the application does it.
-            app(EnvelopeDistributor::class)->distribute($envelope);
-
-            if (($meta['status'] ?? null) === FiscalEnvelope::STATUS_CLOSED) {
-                $envelope->update(['status' => FiscalEnvelope::STATUS_CLOSED]);
-            }
-        }
-        // a year whose budget is not decided yet has no envelope: its plan is simply open
     }
 
     /** Timestamps matching a workflow step, for the illustrative activities that sit mid-workflow. */
@@ -277,14 +241,6 @@ class MtcBudgetSeeder extends Seeder
             'reviewed_at' => in_array($status, [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED], true) ? null : "{$year}-01-22 09:00:00",
             'approved_at' => $status === Activity::STATUS_APPROVED ? "{$year}-02-05 09:00:00" : null,
         ];
-    }
-
-    /** Is there a fiscal envelope for the year that the sample did not create? */
-    private function hasRealEnvelope(SampleRegistry $registry, int $year): bool
-    {
-        $envelope = FiscalEnvelope::withoutGlobalScopes()->where('fiscal_year', $year)->first();
-
-        return $envelope !== null && ! $registry->isRegistered($envelope);
     }
 
     /** A year already loaded (and possibly closed, hence not editable) is left as it is. */

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AuditLog;
-use App\Models\FiscalEnvelope;
 use App\Services\ImplementationPlanReport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -45,7 +44,7 @@ class ImplementationPlanController extends Controller
     /** @return array{0: array<string, mixed>, 1: \Illuminate\Support\Collection} */
     private function build(Request $request): array
     {
-        $year = (int) $request->query('year', FiscalEnvelope::getEffectiveYear());
+        $year = (int) $request->query('year', \App\Support\FiscalYear::current());
         abort_if($year < 2020 || $year > 2035, 404);
         $unit = $request->query('unit') ? (int) $request->query('unit') : null;
 

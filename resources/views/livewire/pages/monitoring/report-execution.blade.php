@@ -3,7 +3,6 @@
 use App\Models\Activity;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\IndicatorProgress;
 use App\Policies\ActivityPolicy;
 use App\Services\ReportingWindows;
@@ -28,7 +27,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
         $this->month = $this->latestMonth();
     }
 
@@ -62,7 +61,7 @@ new class extends Component {
     public function getActivitiesProperty()
     {
         $user = auth()->user();
-        $query = Activity::where('fiscal_year', $this->year)->where('status', Activity::STATUS_APPROVED)
+        $query = Activity::where('fiscal_year', $this->year)->where('version', '>', 0) // an approved version in force, even while a revision is in progress
             ->where(fn ($q) => $q->whereHas('lineItems.adjustedBudget')->orWhereHas('indicators'))
             ->select(['id', 'code', 'description', 'directorate_id'])->with('directorate:id,code');
 
@@ -167,7 +166,7 @@ new class extends Component {
 
     @if(! $activityId)
         <x-ui.card padding="p-0">
-            <x-ui.empty-state :title="__('Choose an activity')" :text="__('Only approved activities with a distributed budget or indicators can report execution.')" />
+            <x-ui.empty-state :title="__('Choose an activity')" :text="__('Only activities with an approved version can report execution.')" />
         </x-ui.card>
     @else
         @php $activity = $this->activity; @endphp

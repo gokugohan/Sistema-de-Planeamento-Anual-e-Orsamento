@@ -219,7 +219,7 @@
 </table>
 @if($report['autonomous']['count'] > 0)
     <p class="small muted" style="margin-top:6px">
-        {{ __('The total is one package for the ministry. The autonomous bodies are shown as a separate section because the ministry passes their share on once it has received its fiscal envelope.') }}
+        {{ __('The total is one package for the ministry. The autonomous bodies are shown as a separate section.') }}
     </p>
 @endif
 

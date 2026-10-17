@@ -2,7 +2,6 @@
 
 use App\Models\Activity;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\LineItem;
 use App\Models\User;
 use App\Notifications\SystemNotification;
@@ -69,7 +68,7 @@ new class extends Component {
 
     private function year(): int
     {
-        return FiscalEnvelope::getEffectiveYear();
+        return \App\Support\FiscalYear::current();
     }
 
     private function unitIds(): ?array
@@ -227,8 +226,6 @@ new class extends Component {
 
         $money = fn (array $s) => (float) LineItem::whereIn('activity_id', $this->scope()->whereIn('status', $s)->select('id'))->sum('estimated_amount');
 
-        $env = FiscalEnvelope::where('fiscal_year', $year)->first();
-
         return [
             'year' => $year,
             'activities' => $activities,
@@ -236,7 +233,7 @@ new class extends Component {
             'pendingReview' => $money(self::QUEUES['review']),
             'awaitingApproval' => $money(self::QUEUES['approval']),
             'approvedPlan' => $money(self::QUEUES['approved']),
-            'locked' => $env && $env->status === FiscalEnvelope::STATUS_CLOSED,
+            'locked' => false,
             'rootUnits' => Directorate::whereNull('parent_id')->orderBy('code')->get(['id', 'code', 'name']),
             'canApprove' => $this->mayApprove(auth()->user()),
             'queues' => [

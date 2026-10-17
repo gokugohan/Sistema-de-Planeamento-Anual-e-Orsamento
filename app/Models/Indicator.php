@@ -34,6 +34,16 @@ class Indicator extends Model
 
     protected $casts = ['due_quarters' => 'array'];
 
+    protected static function booted(): void
+    {
+        // progress reported against an indicator keeps it: a revision changes its target instead of removing it
+        static::deleting(function (Indicator $indicator) {
+            if ($indicator->progress()->exists()) {
+                throw new \DomainException(__('This indicator already has progress reported against it: change its target instead of removing it.'));
+            }
+        });
+    }
+
     public function activity()
     {
         return $this->belongsTo(Activity::class);

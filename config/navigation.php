@@ -53,22 +53,6 @@ return [
             ],
         ],
         [
-            'label' => 'Budget',
-            'items' => [
-                ['label' => 'Fiscal Envelope', 'icon' => 'wallet-cards', 'permission' => 'view_all_paa', 'hint' => 'The amount received for the year',
-                    'children' => [
-                        ['label' => 'Current Envelope', 'route' => 'budget.envelope.current', 'icon' => 'circle',
-                            'hint' => 'The envelope in force and its distribution'],
-                        ['label' => 'Envelope List', 'route' => 'budget.envelope.list', 'icon' => 'list',
-                            'hint' => 'All fiscal years'],
-                    ]],
-                ['label' => 'Budget Allocation', 'route' => 'budget.allocation', 'icon' => 'layers', 'permission' => 'view_all_paa',
-                    'hint' => 'What each unit, programme and category received'],
-                ['label' => 'Allocation Review', 'route' => 'planning.director-review', 'icon' => 'user-check', 'roles' => ['Admin', 'Minister', 'Director', 'Planning'],
-                    'hint' => 'Review how the envelope was allocated'],
-            ],
-        ],
-        [
             'label' => 'Execute',
             'items' => [
                 ['label' => 'Compile the quarter', 'route' => 'reports.compile', 'icon' => 'file-bar-chart', 'roles' => ['Admin', 'Director'],

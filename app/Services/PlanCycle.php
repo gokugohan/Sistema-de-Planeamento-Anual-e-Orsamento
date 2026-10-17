@@ -6,16 +6,15 @@ use App\Models\Activity;
 use App\Models\AdjustedBudget;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\ReportingWindow;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Where the annual action plan of one fiscal year stands: the window to submit it, the approval workflow, the
- * end of planning, the budget it receives, and the monthly and quarterly reporting with their windows. Counts
- * are limited to what the user may see. Everything is a handful of grouped queries; the lite form (for the
- * dashboard) leaves out the month-by-month reporting and the budget figures it does not show.
+ * Where the annual action plan of one fiscal year stands: the window to submit it, the approval workflow (with the
+ * revisions in progress), the end of planning per directorate, and the monthly and quarterly reporting with their
+ * windows. Counts are limited to what the user may see. Everything is a handful of grouped queries; the lite form
+ * (for the dashboard) leaves out the month-by-month reporting.
  */
 class PlanCycle
 {
@@ -37,50 +36,47 @@ class PlanCycle
         $planWindow = $this->windowState($year, ReportingWindows::PLAN, 1);
         $state = $this->planning->state($year);
 
-        $envelope = FiscalEnvelope::where('fiscal_year', $year)->first(['status', 'total_amount']);
-        $received = $envelope && in_array($envelope->status, [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
+        $revising = $activities()->where('version', '>', 0)->where('status', '!=', Activity::STATUS_APPROVED)->count();
+        // the plan in force: the amounts of the approved version of each activity
         $approvedPlan = (float) AdjustedBudget::query()->whereHas('lineItem.activity', fn ($q) => $q->where('fiscal_year', $year)->when($scope !== null, fn ($w) => $w->whereIn('directorate_id', $scope ?: [0])))->sum('approved_amount');
         $planned = $lite ? 0.0 : (float) DB::table('line_items as li')->join('activities as a', 'a.id', '=', 'li.activity_id')
-            ->where('a.fiscal_year', $year)->where('a.status', Activity::STATUS_APPROVED)->when($scope !== null, fn ($q) => $q->whereIn('a.directorate_id', $scope ?: [0]))->sum('li.estimated_amount');
+            ->where('a.fiscal_year', $year)->when($scope !== null, fn ($q) => $q->whereIn('a.directorate_id', $scope ?: [0]))->sum('li.estimated_amount');
 
         $reporting = $lite ? null : $this->reporting($year, $scope);
 
         $steps = $this->steps([
             'planWindow' => $planWindow, 'ended' => $state['ended'], 'planning' => $state, 'pending' => $pending, 'drafts' => $drafts, 'total' => $total, 'approved' => $approved,
-            'envelopeStatus' => $envelope?->status, 'distributed' => $approvedPlan > 0,
+            'revising' => $revising, 'year' => $year,
         ]);
 
         return [
             'year' => $year,
             'steps' => $steps,
             'plan_window' => $planWindow,
-            'approval' => ['by_status' => $byStatus, 'total' => $total, 'approved' => $approved, 'pending' => $pending, 'drafts' => $drafts],
+            'approval' => ['by_status' => $byStatus, 'total' => $total, 'approved' => $approved, 'pending' => $pending, 'drafts' => $drafts, 'revising' => $revising],
             'planning' => $state,
-            'budget' => ['envelope' => $envelope?->total_amount !== null ? (float) $envelope->total_amount : null, 'received' => $received, 'approved_plan' => $approvedPlan, 'planned' => $planned],
+            'budget' => ['approved_plan' => $approvedPlan, 'planned' => $planned],
             'reporting' => $reporting,
         ];
     }
 
     /**
      * The steps of the plan and which one is current, from a few facts: planWindow (as windowState gives it), ended,
-     * pending, drafts, total, approved, envelopeStatus, distributed.
+     * planning (state), pending, drafts, total, approved, revising (revisions in progress) and year.
      *
      * @param  array<string, mixed>  $f
      * @return array<int, array{key: string, label: string, state: string, detail: string}>
      */
     public function steps(array $f): array
     {
-        $received = in_array($f['envelopeStatus'], [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
+        $revising = (int) ($f['revising'] ?? 0);
         $stepDone = [
             'submission' => $f['ended'] !== null || $f['planWindow']['state'] === 'closed',
             'approval' => $f['total'] > 0 && $f['pending'] === 0 && $f['drafts'] === 0,
             'finalized' => $f['ended'] !== null,
-            'budget' => $received,
-            'distribution' => $received && $f['distributed'],
-            'reporting' => $f['envelopeStatus'] === FiscalEnvelope::STATUS_CLOSED, // runs from the end of planning until the year is closed
+            'reporting' => isset($f['year']) && (int) $f['year'] < (int) date('Y'), // runs until the year is over
         ];
-        $steps = [];
-        $currentFound = false;
+        $units = $f['planning']['units'] ?? [];
         $details = [
             'submission' => match ($f['planWindow']['state']) {
                 'none' => __('No dates set: planning is open until it is finalized.'),
@@ -88,20 +84,21 @@ class PlanCycle
                 'open' => __('Open until :d', ['d' => $f['planWindow']['closes_on']->format('d/m/Y')]),
                 default => __('Closed on :d', ['d' => $f['planWindow']['closes_on']->format('d/m/Y')]),
             },
-            'approval' => $f['total'] === 0 ? __('No activity yet') : __(':approved of :total activities approved', ['approved' => $f['approved'], 'total' => $f['total']]),
-            'finalized' => $f['ended'] ? __('Planning has ended') : (($u = $f['planning']['units'] ?? []) && count($u) > 1 ? __(':n of :total directorates finalized', ['n' => count(array_filter($u, fn ($x) => $x['closed'])), 'total' => count($u)]) : ($f['pending'] > 0 ? trans_choice(':n activity still waiting for a decision|:n activities still waiting for a decision', $f['pending'], ['n' => $f['pending']]) : __('Ready to be finalized once everything is decided'))),
-            'budget' => $received ? __('Received') : ($f['envelopeStatus'] ? __($f['envelopeStatus']) : __('Not registered yet')),
-            'distribution' => ($received && $f['distributed']) ? __('Distributed over the approved plan') : __('Not distributed yet'),
-            'reporting' => $f['envelopeStatus'] === FiscalEnvelope::STATUS_CLOSED ? __('The year is closed') : __('Monthly spending and quarterly indicators'),
+            'approval' => ($f['total'] === 0 ? __('No activity yet') : __(':approved of :total activities approved', ['approved' => $f['approved'], 'total' => $f['total']]))
+                .($revising > 0 ? ' · '.trans_choice(':n revision in progress|:n revisions in progress', $revising, ['n' => $revising]) : ''),
+            'finalized' => $f['ended'] ? __('Planning has ended') : (count($units) > 1
+                ? __(':n of :total directorates finalized', ['n' => count(array_filter($units, fn ($x) => $x['closed'])), 'total' => count($units)])
+                : ($f['pending'] > 0 ? trans_choice(':n activity still waiting for a decision|:n activities still waiting for a decision', $f['pending'], ['n' => $f['pending']]) : __('Ready to be finalized once everything is decided'))),
+            'reporting' => __('Monthly spending and quarterly indicators'),
         ];
         $labels = [
             'submission' => __('Plan submission'),
             'approval' => __('Approval'),
             'finalized' => __('Plan finalized'),
-            'budget' => __('Budget received'),
-            'distribution' => __('Distribution'),
             'reporting' => __('Reporting'),
         ];
+        $steps = [];
+        $currentFound = false;
         foreach ($labels as $key => $label) {
             $done = $stepDone[$key];
             $current = ! $done && ! $currentFound;

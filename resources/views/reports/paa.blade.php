@@ -1,15 +1,14 @@
 @php
     $showDrafts = App\Models\SystemSetting::get('show_draft_planning_in_reports', false);
     $reportYears = App\Models\Activity::distinct()->pluck('fiscal_year')
-        ->merge(App\Models\FiscalEnvelope::when(!$showDrafts, fn($q) => $q->where('status', '!=', 'Draft'))->pluck('fiscal_year'))
         ->unique()
         ->sortDesc();
 
     if ($reportYears->isEmpty()) {
-        $reportYears = collect([App\Models\FiscalEnvelope::getEffectiveYear()]);
+        $reportYears = collect([\App\Support\FiscalYear::current()]);
     }
 
-    $selectedYear = (int) request('year', App\Models\FiscalEnvelope::getEffectiveYear());
+    $selectedYear = (int) request('year', \App\Support\FiscalYear::current());
 
     // Every figure on this page is added up by the database (see PlanBreakdown), never in loops over records.
     $breakdown = app(App\Services\PlanBreakdown::class);
@@ -45,10 +44,6 @@
         </div>
 
         @php
-            $activeEnvelope = App\Models\FiscalEnvelope::where('fiscal_year', $selectedYear)->first();
-            $totalDistributed = $breakdown->approvedTotal($selectedYear);
-            $ceiling = $activeEnvelope ? (float) $activeEnvelope->total_amount : 0;
-            $distributedPct = $ceiling > 0 ? ($totalDistributed / $ceiling) * 100 : 0;
 
             // One query for the whole tree; each unit's children are attached in memory.
             $byParent = App\Models\Directorate::all()->groupBy(fn ($d) => $d->parent_id ?? 0);
@@ -103,36 +98,6 @@
                 $unitRows .= $renderDirectorate($root);
             }
         @endphp
-
-        @if($activeEnvelope)
-            <x-ui.card :title="__('Fiscal Context Authority')" :description="$selectedYear.' · '.$activeEnvelope->reference_number">
-                <x-slot:actions>
-                    <x-ui.status :status="$activeEnvelope->status === 'Approved' ? 'Approved' : 'Waiting Approval'" />
-                    @if($activeEnvelope->isActiveByDate())
-                        <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-800">{{ __('Active') }}</span>
-                    @endif
-                </x-slot:actions>
-
-                <dl class="grid grid-cols-1 gap-6 sm:grid-cols-3">
-                    <div>
-                        <dt class="text-xs font-medium text-zinc-500">{{ __('Global OGE Ceiling') }}</dt>
-                        <dd class="mt-1 text-2xl font-semibold tabular-nums text-zinc-900">$ {{ number_format($ceiling, 2) }}</dd>
-                    </div>
-                    <div>
-                        <dt class="text-xs font-medium text-zinc-500">{{ __('Distributed to Activities') }}</dt>
-                        <dd class="mt-1 text-2xl font-semibold tabular-nums text-indigo-700">$ {{ number_format($totalDistributed, 2) }}</dd>
-                    </div>
-                    <div>
-                        <dt class="text-xs font-medium text-zinc-500">{{ __('Utilization Rate') }}</dt>
-                        <dd class="mt-1 text-2xl font-semibold tabular-nums text-zinc-900">{{ number_format($distributedPct, 1) }}%
-                            <span class="mt-2 block h-1.5 overflow-hidden rounded-full bg-zinc-100" aria-hidden="true">
-                                <span class="block h-full bg-indigo-600" style="width: {{ min($distributedPct, 100) }}%"></span>
-                            </span>
-                        </dd>
-                    </div>
-                </dl>
-            </x-ui.card>
-        @endif
 
         <x-ui.card :title="__('Hierarchical Performance Breakdown')" :description="__('Organizational structure with value rollups')" padding="p-0">
             @if($unitRows === '')

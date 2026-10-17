@@ -13,8 +13,7 @@ new class extends Component {
 
     public function mount()
     {
-        $activeEnvelope = App\Models\FiscalEnvelope::getActiveEnvelope();
-        $this->activeYear = $activeEnvelope?->fiscal_year;
+        $this->activeYear = \App\Support\FiscalYear::current();
 
         $month = date('n');
         $this->quarter = ceil($month / 3);

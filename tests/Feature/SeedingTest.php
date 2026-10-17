@@ -132,26 +132,18 @@ class SeedingTest extends TestCase
         $this->assertEqualsWithDelta(1152956, $plan(2026, 'ANC'), 0.01);
     }
 
-    public function test_mtc_budget_states_follow_the_real_calendar(): void
+    public function test_the_mtc_plan_is_approved_as_version_one_and_its_amounts_are_in_force(): void
     {
         $this->seed(MtcSampleDataSeeder::class);
 
-        // 2025: law in force and the year is over. 2026: law in force, then amended (-126 209 USD on the ministry).
-        $e25 = FiscalEnvelope::where('fiscal_year', 2025)->firstOrFail();
-        $e26 = FiscalEnvelope::where('fiscal_year', 2026)->firstOrFail();
-        $this->assertSame(FiscalEnvelope::STATUS_CLOSED, $e25->status);
-        $this->assertSame(FiscalEnvelope::STATUS_APPROVED, $e26->status);
-        $this->assertEqualsWithDelta(22339646, (float) $e25->total_amount, 0.01);
-        $this->assertEqualsWithDelta(21245962, (float) $e26->total_amount, 0.01);
-        $this->assertStringContainsString('Lei n.º 8/2026', $e26->budget_law_reference);
-
-        $distributed = fn (int $y) => (float) AdjustedBudget::whereHas('lineItem.activity', fn ($q) => $q->where('fiscal_year', $y))->sum('approved_amount');
-        $this->assertEqualsWithDelta(22339646, $distributed(2025), 0.01, 'the 2025 envelope covers the whole plan');
-        $this->assertEqualsWithDelta(21245962, $distributed(2026), 0.01, 'the amended 2026 envelope is fully distributed, pro rata');
-
-        // 2027: the budget is not decided yet, so there is no envelope and the plan is simply open.
-        $this->assertNull(FiscalEnvelope::where('fiscal_year', 2027)->first());
-        $this->assertSame(Activity::STATUS_APPROVED, Activity::where('fiscal_year', 2027)->value('status'));
+        $inForce = fn (int $y) => (float) AdjustedBudget::whereHas('lineItem.activity', fn ($q) => $q->where('fiscal_year', $y))->sum('approved_amount');
+        $planned = fn (int $y) => (float) LineItem::whereHas('activity', fn ($q) => $q->where('fiscal_year', $y)->where('status', Activity::STATUS_APPROVED))->sum('estimated_amount');
+        foreach ([2025, 2026, 2027] as $year) {
+            $this->assertSame(0, Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->where('version', '!=', 1)->count(), "every approved activity of {$year} is version 1");
+            $this->assertEqualsWithDelta($planned($year), $inForce($year), 0.01, "the approved amounts of {$year} are what the plan says");
+        }
+        $this->assertEqualsWithDelta(22339646, $planned(2025), 0.01, 'the 2025 plan as the budget books print it');
+        $this->assertSame(0, FiscalEnvelope::count(), 'there is no envelope any more');
     }
 
     public function test_the_real_dataset_can_be_purged_even_with_a_closed_year(): void

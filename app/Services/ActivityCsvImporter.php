@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
@@ -310,7 +309,7 @@ class ActivityCsvImporter
             if (! $a['directorate_id']) {
                 continue;
             }
-            if (! FiscalEnvelope::planningOpenFor($year, (int) $a['directorate_id'])) {
+            if (! \App\Support\FiscalYear::planningOpen($year, (int) $a['directorate_id'])) {
                 $errors[] = $this->err($a['line'], 'Planning for the directorate of this activity has been finalized for '.$year.'; it cannot take new activities.');
             }
             $exists = Activity::query()
@@ -326,8 +325,8 @@ class ActivityCsvImporter
 
     private function rejectClosedYear(int $year, array &$errors): void
     {
-        if (app(PlanningWindow::class)->envelopeReceived($year)) {
-            $errors[] = $this->err(0, "Planning for {$year} has ended (its budget is approved or the year is closed); activities cannot be imported into it.");
+        if (app(PlanningWindow::class)->endedBy($year)) {
+            $errors[] = $this->err(0, "Planning for {$year} has ended (every directorate has finalized its plan); activities cannot be imported into it.");
         } elseif ($reason = app(ReportingWindows::class)->planClosedReason(auth()->user(), $year)) {
             $errors[] = $this->err(0, $reason);
         }

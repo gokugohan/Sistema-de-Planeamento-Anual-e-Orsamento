@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use Illuminate\Support\Facades\DB;
@@ -28,8 +27,8 @@ class ActivityRollForward
         if ($toYear <= $fromYear) {
             throw new \DomainException(__('The target year must be after the source year.'));
         }
-        if (app(PlanningWindow::class)->envelopeReceived($toYear)) {
-            throw new \DomainException(__('Planning for :year has ended (its budget is approved or the year is closed), so activities cannot be copied into it.', ['year' => $toYear]));
+        if (app(PlanningWindow::class)->endedBy($toYear)) {
+            throw new \DomainException(__('Planning for :year has ended (every directorate has finalized its plan), so activities cannot be copied into it.', ['year' => $toYear]));
         }
 
         if ($reason = app(ReportingWindows::class)->planClosedReason(auth()->user(), $toYear)) {

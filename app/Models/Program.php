@@ -22,7 +22,7 @@ class Program extends Model
     {
         // A programme registered without a year belongs to the working year.
         static::creating(function (Program $program) {
-            $program->fiscal_year ??= FiscalEnvelope::getEffectiveYear();
+            $program->fiscal_year ??= \App\Support\FiscalYear::current();
         });
 
         static::deleting(function (Program $program) {

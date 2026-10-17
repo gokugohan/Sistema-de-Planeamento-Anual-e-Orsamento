@@ -239,6 +239,9 @@ class ActivityWorkflow
         };
         $activity->auditMetadata = $this->trailMeta($user, $note);
         $activity->update(['status' => $to] + $stamps);
+        if ($to === Activity::STATUS_APPROVED) {
+            app(ActivityVersions::class)->approved($activity, $user);
+        }
 
         [$title, $message, $roles, $unitId] = match ($to) {
             Activity::STATUS_SUBMITTED => [__('PAA Submitted for Review'), __('Activities of :dir were submitted by :name for review.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Director'], $activity->directorate_id],
@@ -393,6 +396,7 @@ class ActivityWorkflow
     {
         $activity->auditMetadata = $metadata;
         $activity->update(['status' => Activity::STATUS_APPROVED, 'approved_at' => now(), 'approved_by' => $user->id]);
+        app(ActivityVersions::class)->approved($activity, $user);
     }
 
     /** Who acted (the trail must not depend on who happens to be signed in) and the note, if any. */
@@ -443,20 +447,43 @@ class ActivityWorkflow
         };
     }
 
+    /**
+     * Can this user start a revision of an approved activity? Whoever prepares the unit's activities (its list of
+     * preparers, or anyone who may submit for the unit), the director of the unit, whoever gives its final approval,
+     * and administrators. The revision goes through the whole chain again, so starting one approves nothing.
+     */
     public function canReopen(User $user, Activity $activity): bool
     {
-        return $activity->status === Activity::STATUS_APPROVED && ! $activity->isLocked()
-            && ! app(PlanningWindow::class)->envelopeReceived((int) $activity->fiscal_year) // after the envelope only its distribution changes
-            && $this->mayGiveFinalApproval($user, $activity);
+        if ($activity->status !== Activity::STATUS_APPROVED || $activity->isLocked() || ! Gate::forUser($user)->allows('view', $activity)) {
+            return false;
+        }
+        if ($user->isAdministrator() || $this->mayGiveFinalApproval($user, $activity) || $this->directsUnit($user, $activity->directorate)) {
+            return true;
+        }
+
+        return match (app(ApproverLists::class)->designated($user, $activity->directorate_id, ApproverAssignment::PREPARE)) {
+            true => true,
+            false => false,
+            null => $user->can('submit_paa'),
+        };
     }
 
+    /**
+     * Start a revision of an approved activity: it goes back to Draft with the reason, and through the whole approval
+     * chain again. The approved version stays in force (its amounts are untouched) until the revision is approved and
+     * becomes the next version. Signatures of the round in progress, if any, are kept on record as voided.
+     */
     public function reopen(User $user, Activity $activity, ?string $note = null): void
     {
         abort_unless($this->canReopen($user, $activity), 403);
+        $reason = trim((string) $note);
+        if (mb_strlen($reason) < 3) {
+            throw new DomainException(__('Say why the activity is being revised.'));
+        }
 
-        $activity->auditMetadata = $this->trailMeta($user, $note);
-        $activity->update(['status' => Activity::STATUS_DRAFT, 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null]);
-        ActivitySignature::close($activity->id, ActivitySignature::VOIDED, $user->id, $this->trailNote($note)['note'] ?? __('Reopened'));
+        $activity->auditMetadata = $this->trailMeta($user, $reason) + ['revision' => (int) $activity->version + 1];
+        $activity->update(['status' => Activity::STATUS_DRAFT, 'revision_reason' => mb_substr($reason, 0, 2000), 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null]);
+        ActivitySignature::close($activity->id, ActivitySignature::VOIDED, $user->id, $reason);
     }
 
     /**

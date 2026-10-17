@@ -3,19 +3,16 @@
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
 use App\Models\Activity;
-use App\Models\FiscalEnvelope;
 use App\Models\SystemSetting;
 
 new class extends Component {
-    public $activeEnvelope;
     public $activeYear;
     public int $approvedCount = 0;
     public int $activityCount = 0;
 
     public function mount()
     {
-        $this->activeYear = FiscalEnvelope::getEffectiveYear();
-        $this->activeEnvelope = FiscalEnvelope::where('fiscal_year', $this->activeYear)->first();
+        $this->activeYear = \App\Support\FiscalYear::current();
 
         if ($this->activeYear) {
             $stats = Activity::where('fiscal_year', $this->activeYear)
@@ -106,15 +103,12 @@ new class extends Component {
     <div class="px-4 py-4 border-t border-white/10 space-y-3">
 
         <!-- Working year and how much of its plan is approved -->
-        @if($activeEnvelope || $activityCount > 0)
+        @if($activityCount > 0)
             <div class="rounded-md border border-white/10 bg-white/5 p-3.5">
                 <div class="flex items-baseline justify-between">
                     <p class="text-[11px] font-semibold uppercase tracking-wider text-nav-muted">{{ __('Fiscal year') }}</p>
                     <p class="text-lg font-semibold text-white tabular-nums">{{ $activeYear }}</p>
                 </div>
-                @if($activeEnvelope)
-                    <p class="mt-0.5 text-xs text-nav-text tabular-nums">{{ __('Fiscal envelope') }} ${{ number_format($activeEnvelope->total_amount / 1000000, 1) }}M</p>
-                @endif
                 <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuemin="0" aria-valuemax="{{ $activityCount }}" aria-valuenow="{{ $approvedCount }}" aria-label="{{ __('Approved') }}">
                     <div class="h-full rounded-full bg-emerald-400 transition-all duration-500" style="width: {{ $activityCount > 0 ? round($approvedCount / $activityCount * 100) : 0 }}%"></div>
                 </div>

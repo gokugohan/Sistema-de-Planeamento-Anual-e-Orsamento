@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\UnitPlanning;
 use App\Models\User;
 use Carbon\CarbonInterface;
@@ -20,11 +19,10 @@ use Illuminate\Support\Collection;
  * that has finalized takes no new activities while the others go on planning.
  *
  * The year counts as ended when every directorate that planned has finalized (so an institution with one
- * directorate behaves as before), and for good once the budget envelope has been received (approved) or the
- * year is closed: from there the plan cannot be reopened and only the distribution of the envelope changes.
+ * directorate behaves as before).
  *
- * Before that, existing activities keep following their own rules (an approved one is changed by reopening
- * it, by the final approver or an administrator, with a reason).
+ * Finalizing stops new activities only: an approved activity can still be changed through a revision, which
+ * makes a new version and goes through the approval chain again (see ActivityVersions).
  */
 class PlanningWindow
 {
@@ -36,23 +34,15 @@ class PlanningWindow
     /** @var array<int, int|null>|null unit id => parent id, kept for the process and dropped whenever a unit changes */
     private static ?array $parents = null;
 
-    /** @var array<int, string|null> year => status of its envelope, kept for the process and dropped whenever an envelope changes */
-    private static array $envelopes = [];
-
     /** @var array<int, Collection> year => the finalized directorates, dropped whenever one changes */
     private static array $closedRows = [];
 
     public static function forgetTree(): void
     {
         self::$parents = null;
-        self::$envelopes = [];
         self::$closedRows = [];
     }
 
-    private function envelopeStatus(int $year): ?string
-    {
-        return array_key_exists($year, self::$envelopes) ? self::$envelopes[$year] : (self::$envelopes[$year] = FiscalEnvelope::where('fiscal_year', $year)->value('status'));
-    }
 
     // ── the tree
 
@@ -86,47 +76,30 @@ class PlanningWindow
 
     // ── the verdict
 
-    /** 'Closed' (the year is closed), 'Approved' (the budget is received), or null: the envelope's say, before planning's own. */
-    private function envelopeVerdict(?string $envelopeStatus): ?string
-    {
-        return match ($envelopeStatus) {
-            FiscalEnvelope::STATUS_CLOSED => 'Closed',
-            FiscalEnvelope::STATUS_APPROVED => 'Approved', // the envelope is received: from here only its distribution changes
-            default => null,
-        };
-    }
-
-    /** 'Closed', 'Approved' (the budget is approved), 'Finalized' (every directorate has finalized) or null while open. */
+    /** 'Finalized' when every directorate that planned has finalized its plan, null while planning is open. */
     public function endedBy(int $year): ?string
     {
-        if ($verdict = $this->envelopeVerdict($this->envelopeStatus($year))) {
-            return $verdict;
-        }
         $roots = $this->plannedRoots($year);
         $closed = $this->closed($year);
 
         return $roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null;
     }
 
-    /** The light version of state() for places that only need how far the directorates are: the verdict and whether each has finalized. @return array{ended: ?string, units: array<int, array{closed: bool}>} */
+    /** The light version of state() for places that only need how far the directorates are. @return array{ended: ?string, units: array<int, array{closed: bool}>} */
     public function progress(int $year): array
     {
         $closed = $this->closed($year);
         $roots = $this->plannedRoots($year);
 
         return [
-            'ended' => $this->envelopeVerdict($this->envelopeStatus($year)) ?? ($roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null),
+            'ended' => $roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null,
             'units' => $roots->map(fn ($id) => ['closed' => $closed->has($id)])->all(),
         ];
     }
 
-    /** The same, for the plan of one unit (through its directorate): the envelope's say, then the directorate's own. */
+    /** The same, for the plan of one unit (through its directorate). */
     public function unitEndedBy(int $year, int $unitId): ?string
     {
-        if ($verdict = $this->envelopeVerdict($this->envelopeStatus($year))) {
-            return $verdict;
-        }
-
         return $this->closed($year)->has($this->rootOf($unitId)) ? 'Finalized' : null;
     }
 
@@ -159,12 +132,6 @@ class PlanningWindow
         }
 
         return $current + 3;
-    }
-
-    /** Has the budget envelope been received (or the year closed)? Then the plan can no longer change at all. */
-    public function envelopeReceived(int $year): bool
-    {
-        return in_array($this->envelopeVerdict($this->envelopeStatus($year)), ['Approved', 'Closed'], true);
     }
 
     public function isOpen(int $year): bool
@@ -237,11 +204,7 @@ class PlanningWindow
         $names = User::whereIn('id', $closed->pluck('planning_by')->filter())->pluck('name', 'id');
         $dirs = Directorate::whereIn('id', $roots)->get(['id', 'code', 'name'])->keyBy('id');
 
-        if ($verdict = $this->envelopeVerdict($this->envelopeStatus($year))) {
-            $ended = $verdict;
-        } else {
-            $ended = $roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null;
-        }
+        $ended = $roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null;
 
         $units = $roots->map(function ($id) use ($closed, $names, $dirs, $perRoot) {
             $row = $closed->get($id);
@@ -276,9 +239,6 @@ class PlanningWindow
     {
         $roots = $this->targets($user, $year, $unitId);
 
-        if ($this->envelopeReceived($year)) {
-            throw new DomainException(__('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]));
-        }
         $open = $roots->reject(fn ($id) => UnitPlanning::where(['fiscal_year' => $year, 'directorate_id' => $id])->exists());
         if ($open->isEmpty()) {
             throw new DomainException(__('The plan for :year is already finalized.', ['year' => $year]));
@@ -308,9 +268,6 @@ class PlanningWindow
     {
         $roots = $this->targets($user, $year, $unitId);
 
-        if ($this->envelopeReceived($year)) {
-            throw new DomainException(__('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]));
-        }
         $closed = UnitPlanning::where('fiscal_year', $year)->whereIn('directorate_id', $roots)->get();
         if ($closed->isEmpty()) {
             throw new DomainException(__('Planning for :year is already open.', ['year' => $year]));

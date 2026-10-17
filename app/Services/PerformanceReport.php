@@ -36,7 +36,7 @@ class PerformanceReport
 
         $money = app(ExecutionReport::class)->load($year, $unitIds)['activities'];
 
-        $activities = Activity::whereIn('id', array_keys($money))->where('status', Activity::STATUS_APPROVED)
+        $activities = Activity::whereIn('id', array_keys($money))->where('version', '>', 0)
             ->with(['directorate:id,code,name'])->orderBy('directorate_id')->orderBy('id')
             ->get(['id', 'code', 'description', 'directorate_id', 'program_id', 'subprogram_id']);
 

@@ -6,8 +6,6 @@ use App\Models\Activity;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
-use App\Models\FiscalEnvelopeCategoryAllocation;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
@@ -154,25 +152,6 @@ class ApprovedPlanReportTest extends TestCase
         $this->get(route('reports.approved-plan.pdf', ['year' => 2027]))->assertForbidden();
     }
 
-    public function test_planned_amount_on_the_envelope_counts_only_approved_activities(): void
-    {
-        $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000]]);
-        $this->activity(Activity::STATUS_DRAFT, [[$this->goods, 4000]]);
-        $this->activity(Activity::STATUS_REJECTED, [[$this->goods, 2000]]);
-
-        $this->assertEquals(1000, FiscalEnvelopeCategoryAllocation::calculatePlannedAmount(2027, $this->goods->id));
-
-        $envelope = FiscalEnvelope::create(['fiscal_year' => 2027, 'total_amount' => 1500, 'status' => FiscalEnvelope::STATUS_DRAFT, 'reference_number' => 'X']);
-        $alloc = FiscalEnvelopeCategoryAllocation::create([
-            'fiscal_envelope_id' => $envelope->id, 'economic_classification_id' => $this->goods->id,
-            'allocated_amount' => 1500, 'planned_amount' => 999999, // stale value must be replaced
-        ]);
-        $alloc->calculateVariance();
-
-        $this->assertEquals(1000, $alloc->fresh()->planned_amount);
-        $this->assertEquals(500, $alloc->fresh()->variance_amount);
-    }
-
     /** Autonomous bodies stay inside the ministry's package (one total) but are shown as their own section. */
     public function test_autonomous_bodies_are_in_the_total_and_shown_as_a_separate_section(): void
     {
@@ -197,7 +176,5 @@ class ApprovedPlanReportTest extends TestCase
             ->assertSee('Transfers to autonomous bodies')
             ->assertSee('Ministry services')
             ->assertSee('APORTIL');
-
-        $this->get(route('budget.allocation'))->assertOk()->assertSee('Transfers to autonomous bodies')->assertSee('APORTIL');
     }
 }

@@ -47,18 +47,16 @@ class OfficeSampleDataTest extends TestCase
         $this->assertSame(13, Activity::where('fiscal_year', 2027)->count());
         $this->assertSame(0, Activity::where('fiscal_year', 2025)->count());
 
-        // 2026 is fully approved and distributed over its envelope; 2027 sits at every step of the workflow.
+        // 2026 is fully approved (version 1 of the plan, in force); 2027 sits at every step of the workflow.
         $this->assertSame(13, Activity::where('fiscal_year', 2026)->where('status', Activity::STATUS_APPROVED)->count());
         $statuses2027 = Activity::where('fiscal_year', 2027)->pluck('status')->unique()->all();
         foreach ([Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL, Activity::STATUS_APPROVED] as $status) {
             $this->assertContains($status, $statuses2027);
         }
 
-        $envelope = FiscalEnvelope::where('fiscal_year', 2026)->firstOrFail();
-        $this->assertSame(FiscalEnvelope::STATUS_APPROVED, $envelope->status);
-        $this->assertGreaterThan(0, (float) $envelope->total_amount);
+        $this->assertSame(0, Activity::where('fiscal_year', 2026)->where('version', '!=', 1)->count(), 'every approved activity is version 1');
         $this->assertGreaterThan(0, AdjustedBudget::count());
-        $this->assertNull(FiscalEnvelope::where('fiscal_year', 2027)->first(), 'the 2027 bill is still in Parliament');
+        $this->assertSame(0, FiscalEnvelope::count(), 'there is no envelope any more');
     }
 
     public function test_the_institution_shown_is_the_office(): void

@@ -19,8 +19,8 @@ class Activity extends Model
     {
         static::addGlobalScope(new ProductionScope);
 
-        static::saved(fn () => FiscalEnvelope::forgetMemos());
-        static::deleted(fn () => FiscalEnvelope::forgetMemos());
+        static::saved(fn () => \App\Support\FiscalYear::forget());
+        static::deleted(fn () => \App\Support\FiscalYear::forget());
 
         static::updating(function ($activity) {
             if ($activity->isLocked()) {
@@ -37,7 +37,8 @@ class Activity extends Model
 
     public function isLocked(): bool
     {
-        return FiscalEnvelope::isYearClosed((int) $this->fiscal_year);
+        // nothing locks a whole year: an approved activity is changed through a revision (see ActivityVersions)
+        return false;
     }
 
     const STATUS_DRAFT = 'Draft';
@@ -73,6 +74,8 @@ class Activity extends Model
         'planned_start',
         'planned_end',
         'status',
+        'version',
+        'revision_reason',
         'procurement_required',
         'fiscal_year',
         'submitted_at',

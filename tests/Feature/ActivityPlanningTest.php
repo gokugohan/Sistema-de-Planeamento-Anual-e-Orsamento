@@ -38,7 +38,7 @@ class ActivityPlanningTest extends TestCase
         app()->setLocale('en');
         $this->seed(DatabaseSeeder::class);
 
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
         $this->dg = Directorate::create(['name' => 'General Directorate', 'code' => 'DGX', 'type' => 'General Directorate']);
         $this->dn = Directorate::create(['name' => 'National Directorate', 'code' => 'DNX', 'type' => 'National Directorate', 'parent_id' => $this->dg->id]);
         $this->other = Directorate::create(['name' => 'Other Directorate', 'code' => 'OTH', 'type' => 'Independent']);

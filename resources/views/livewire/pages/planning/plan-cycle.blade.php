@@ -1,12 +1,11 @@
 <?php
 
-use App\Models\FiscalEnvelope;
 use App\Services\PlanCycle;
 use Livewire\Volt\Component;
 
 /**
- * The cycle of the annual action plan: when it may be submitted, how far the approval has got, whether planning
- * has ended, the budget it receives, and the monthly and quarterly reporting with their windows. Read-only;
+ * The cycle of the annual action plan: when it may be submitted, how far the approval has got (with the revisions
+ * in progress), whether planning has ended, and the monthly and quarterly reporting with their windows. Read-only;
  * the windows are set by an administrator and the steps are done where they belong.
  */
 new class extends Component {
@@ -15,7 +14,7 @@ new class extends Component {
     public function mount(): void
     {
         abort_unless(auth()->user()->can('view_paa'), 403);
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
     }
 
     public function updatedYear(): void
@@ -42,7 +41,7 @@ new class extends Component {
 @endphp
 
 <div class="space-y-6">
-    <x-ui.page-header :title="__('Plan cycle')" :subtitle="__('Where the annual action plan stands: when it may be submitted, how far the approval has got, the budget it receives and the reporting that follows.')">
+    <x-ui.page-header :title="__('Plan cycle')" :subtitle="__('Where the annual action plan stands: when it may be submitted, how far the approval has got, whether it is finalized and the reporting that follows.')">
         <label for="pc-y" class="sr-only">{{ __('Fiscal year') }}</label>
         <select id="pc-y" wire:model.live="year" class="flux-input !w-auto">
             @foreach(range((int) date('Y') + 2, 2024) as $y)<option value="{{ $y }}">{{ $y }}</option>@endforeach
@@ -50,7 +49,7 @@ new class extends Component {
     </x-ui.page-header>
 
     {{-- the steps --}}
-    <ol class="grid gap-3 md:grid-cols-3 xl:grid-cols-6" aria-label="{{ __('Steps of the plan') }}">
+    <ol class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="{{ __('Steps of the plan') }}">
         @foreach($cycle['steps'] as $i => $s)
             <li class="rounded-lg p-4 ring-1 {{ $stateTone[$s['state']] }}">
                 <div class="flex items-center justify-between gap-2">
@@ -118,15 +117,12 @@ new class extends Component {
 
     {{-- the budget --}}
     @php $b = $cycle['budget']; @endphp
-    <x-ui.card :title="__('Budget')" padding="p-5">
+    <x-ui.card :title="__('Budget of the plan')" :description="__('What the activities plan, and what their approved versions allow. A revision changes an approved activity; until it is approved the version in force stays.')" padding="p-5">
         <dl class="grid gap-4 sm:grid-cols-3">
-            <div><dt class="text-xs font-medium text-zinc-500">{{ __('Planned by approved activities') }}</dt><dd class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($b['planned']) }}</dd></div>
-            <div><dt class="text-xs font-medium text-zinc-500">{{ __('Fiscal envelope') }}</dt><dd class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">{{ $b['envelope'] !== null ? '$ '.number_format($b['envelope']) : '—' }}</dd></div>
-            <div><dt class="text-xs font-medium text-zinc-500">{{ __('Distributed over the plan') }}</dt><dd class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($b['approved_plan']) }}</dd></div>
+            <div><dt class="text-xs font-medium text-zinc-500">{{ __('Planned by all activities') }}</dt><dd class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($b['planned']) }}</dd></div>
+            <div><dt class="text-xs font-medium text-zinc-500">{{ __('Approved plan in force') }}</dt><dd class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($b['approved_plan']) }}</dd></div>
+            <div><dt class="text-xs font-medium text-zinc-500">{{ __('Revisions in progress') }}</dt><dd class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">{{ $a['revising'] }}</dd></div>
         </dl>
-        @can('view_all_paa')
-            <x-ui.button variant="secondary" size="md" shadow="none" class="mt-4" href="{{ route('budget.envelope.current') }}" wire:navigate>{{ __('Open the fiscal envelope') }}</x-ui.button>
-        @endcan
     </x-ui.card>
 
     {{-- reporting --}}

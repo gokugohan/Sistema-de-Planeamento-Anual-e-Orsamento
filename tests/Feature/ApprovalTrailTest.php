@@ -102,7 +102,7 @@ class ApprovalTrailTest extends TestCase
         $this->workflow->reopen($this->user('chefe.gdsc@goku.tl'), $a->fresh(), 'A new quarter was added.');
 
         $last = collect(app(ApprovalTrail::class)->for($a->fresh()))->last();
-        $this->assertSame('Reopened', $last['label']);
+        $this->assertSame('Revision started', $last['label']);
         $this->assertSame('A new quarter was added.', $last['note']);
     }
 

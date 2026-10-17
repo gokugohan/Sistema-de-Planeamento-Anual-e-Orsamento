@@ -2,7 +2,6 @@
 
 use App\Models\Activity;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\Program;
 use App\Models\Subprogram;
 use App\Policies\ActivityPolicy;
@@ -70,7 +69,7 @@ new class extends Component {
 
     private function year(): int
     {
-        return FiscalEnvelope::getEffectiveYear();
+        return \App\Support\FiscalYear::current();
     }
 
     /** Everything the user may see for the year, before the screen's own filters. */
@@ -226,7 +225,7 @@ new class extends Component {
             'locations' => config('paa.locations'),
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,
-            'locked' => FiscalEnvelope::planningEndedByFor($year, $user->isAdministrator() ? null : $user->directorate_id),
+            'locked' => \App\Support\FiscalYear::planningEndedBy($year, $user->isAdministrator() ? null : $user->directorate_id),
             'tabs' => ['all' => __('All'), 'draft' => __('Drafts & returned'), 'review' => __('In review'), 'approved' => __('Approved'), 'mine' => __('Needs my action')],
             'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->subprogram !== '' || $this->location !== '' || $this->search !== '',
         ];

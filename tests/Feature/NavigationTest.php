@@ -60,7 +60,7 @@ class NavigationTest extends TestCase
             $this->assertNotContains('Audit Log', $this->labels($u));
             $this->assertNotContains('Settings', $this->labels($u));
         }
-        foreach (['Budget Allocation', 'Reporting', 'Current Envelope'] as $wide) {
+        foreach (['Reporting'] as $wide) {
             $this->assertNotContains($wide, $this->labels($planner), "department users do not get $wide");
             $this->assertNotContains($wide, $this->labels($viewer), "department users do not get $wide");
             $this->assertContains($wide, $this->labels($minister));
@@ -87,11 +87,13 @@ class NavigationTest extends TestCase
         }
     }
 
-    public function test_the_old_fiscal_ceiling_address_leads_to_the_envelope_page(): void
+    public function test_the_old_envelope_addresses_lead_to_the_plan_cycle(): void
     {
         $this->as('Admin');
 
-        $this->get('/planning/fiscal')->assertRedirect('/budget/envelope/current');
+        foreach (['/planning/fiscal', '/budget/envelope/current', '/budget/envelope/list', '/budget/allocation', '/planning/director-review'] as $old) {
+            $this->get($old)->assertRedirect('/planning/cycle');
+        }
     }
 
     public function test_breadcrumbs_say_where_you_are(): void
@@ -103,7 +105,7 @@ class NavigationTest extends TestCase
             ->assertSeeInOrder(['Dashboard', 'Administration', 'Audit Log']);
 
         $this->get(route('activities.create'))->assertSeeInOrder(['Plan', 'PAA Activities', 'New activity']);
-        $this->get(route('budget.envelope.list'))->assertSeeInOrder(['Budget', 'Fiscal Envelope', 'Envelope List']);
+        $this->get(route('planning.cycle'))->assertSeeInOrder(['Plan', 'Plan cycle']);
     }
 
     public function test_sidebar_marks_the_current_page_for_assistive_technology(): void

@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Activity;
-use App\Models\FiscalEnvelope;
 use App\Services\QuarterCompilation;
 use Livewire\Volt\Component;
 
@@ -18,7 +17,7 @@ new class extends Component {
     public function mount(): void
     {
         abort_unless($this->allowed(), 403);
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
         $this->quarter = $this->latestQuarter();
         $this->fillForm();
     }

@@ -3,7 +3,6 @@
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
@@ -63,7 +62,7 @@ new class extends Component {
             $this->gender_responsive = (bool) $activity->gender_responsive;
             $indicatorIds = $activity->indicators->pluck('id')->values();
             $this->lines = $activity->lineItems->map(fn ($l) => [
-                'class_id' => (string) $l->economic_classification_id, 'source_id' => (string) $l->funding_source_id, 'amount' => (string) (float) $l->estimated_amount,
+                'id' => $l->id, 'class_id' => (string) $l->economic_classification_id, 'source_id' => (string) $l->funding_source_id, 'amount' => (string) (float) $l->estimated_amount,
                 'indicator' => ($k = $indicatorIds->search($l->indicator_id)) !== false ? (string) $k : '',
             ])->all();
             $this->indicators = $activity->indicators->map(fn ($i) => [
@@ -74,7 +73,7 @@ new class extends Component {
             ])->all();
         } else {
             $this->authorize('create', Activity::class);
-            $this->year = FiscalEnvelope::getEffectiveYear();
+            $this->year = \App\Support\FiscalYear::current();
             $this->directorate_id = (string) ($user->directorate_id ?? '');
             $this->planned_start = "{$this->year}-01-01";
             $this->planned_end = "{$this->year}-12-31";
@@ -90,7 +89,7 @@ new class extends Component {
 
     private function blankLine(): array
     {
-        return ['class_id' => '', 'source_id' => (string) \App\Models\FundingSource::defaultId(), 'amount' => '', 'indicator' => ''];
+        return ['id' => null, 'class_id' => '', 'source_id' => (string) \App\Models\FundingSource::defaultId(), 'amount' => '', 'indicator' => ''];
     }
 
     public function removeLine(int $i): void
@@ -208,7 +207,7 @@ new class extends Component {
     public function save()
     {
         // First of all: a year whose plan has ended takes no new activity, whatever was typed.
-        abort_if(! $this->activity && ! FiscalEnvelope::planningOpenFor($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null), 422);
+        abort_if(! $this->activity && ! \App\Support\FiscalYear::planningOpen($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null), 422);
 
         // and outside the submission window of the annual plan nobody but an administrator creates, edits or submits
         if ($reason = app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year)) {
@@ -267,7 +266,6 @@ new class extends Component {
         if ($this->activity) {
             $this->authorize('update', $this->activity);
         }
-        abort_if(FiscalEnvelope::where('fiscal_year', $this->year)->value('status') === FiscalEnvelope::STATUS_CLOSED, 422);
 
         $q = collect($this->quarters)->map(fn ($n) => (int) $n)->sort()->values();
         $data = [
@@ -293,52 +291,64 @@ new class extends Component {
             'gender_responsive' => $this->gender_responsive,
         ];
 
-        $activity = DB::transaction(function () use ($data, $unit) {
-            $activity = $this->activity
-                ? tap($this->activity)->update($data)
-                : Activity::create($data + ['fiscal_year' => $this->year, 'status' => Activity::STATUS_DRAFT, 'code' => $this->nextCode($unit), 'is_test_data' => false]);
+        try {
+            $activity = DB::transaction(function () use ($data, $unit) {
+                $activity = $this->activity
+                    ? tap($this->activity)->update($data)
+                    : Activity::create($data + ['fiscal_year' => $this->year, 'status' => Activity::STATUS_DRAFT, 'code' => $this->nextCode($unit), 'is_test_data' => false]);
 
-            $keep = [];
-            foreach ($this->indicators as $i) {
-                $actions = collect($i['actions'] ?? [])->map(fn ($a) => ['text' => trim((string) ($a['text'] ?? '')), 'months' => collect($a['months'] ?? [])->map(fn ($m) => (int) $m)->unique()->sort()->values()->all()])->filter(fn ($a) => $a['text'] !== '')->values();
-                $months = $actions->flatMap(fn ($a) => $a['months'])->unique()->sort()->values()->all();
-                // the quarters of an indicator follow from the months of its actions when they have any
-                $quarters = $months
-                    ? collect($months)->map(fn ($m) => (int) ceil($m / 3))->unique()->sort()->values()->all()
-                    : collect($i['quarters'] ?? [])->map(fn ($q) => (int) $q)->unique()->sort()->values()->all();
-                $attrs = [
-                    'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
-                    'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
-                    'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null,
-                    // every quarter is the default: store nothing for it
-                    'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
-                ];
-                $existing = ! empty($i['id']) ? $activity->indicators()->find($i['id']) : null;
-                if ($existing) {
-                    $existing->update($attrs); // updated in place, so its quarterly progress is kept
-                    $indicator = $existing;
-                } else {
-                    $indicator = Indicator::create($attrs + ['activity_id' => $activity->id]);
+                $keep = [];
+                foreach ($this->indicators as $i) {
+                    $actions = collect($i['actions'] ?? [])->map(fn ($a) => ['text' => trim((string) ($a['text'] ?? '')), 'months' => collect($a['months'] ?? [])->map(fn ($m) => (int) $m)->unique()->sort()->values()->all()])->filter(fn ($a) => $a['text'] !== '')->values();
+                    $months = $actions->flatMap(fn ($a) => $a['months'])->unique()->sort()->values()->all();
+                    // the quarters of an indicator follow from the months of its actions when they have any
+                    $quarters = $months
+                        ? collect($months)->map(fn ($m) => (int) ceil($m / 3))->unique()->sort()->values()->all()
+                        : collect($i['quarters'] ?? [])->map(fn ($q) => (int) $q)->unique()->sort()->values()->all();
+                    $attrs = [
+                        'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
+                        'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
+                        'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null,
+                        // every quarter is the default: store nothing for it
+                        'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
+                    ];
+                    $existing = ! empty($i['id']) ? $activity->indicators()->find($i['id']) : null;
+                    if ($existing) {
+                        $existing->update($attrs); // updated in place, so its quarterly progress is kept
+                        $indicator = $existing;
+                    } else {
+                        $indicator = Indicator::create($attrs + ['activity_id' => $activity->id]);
+                    }
+                    $keep[] = $indicator->id;
+                    $indicator->actions()->delete();
+                    foreach ($actions as $pos => $a) {
+                        $indicator->actions()->create(['position' => $pos + 1, 'text' => $a['text'], 'months' => $a['months'] ?: null]);
+                    }
                 }
-                $keep[] = $indicator->id;
-                $indicator->actions()->delete();
-                foreach ($actions as $pos => $a) {
-                    $indicator->actions()->create(['position' => $pos + 1, 'text' => $a['text'], 'months' => $a['months'] ?: null]);
+                // removed one by one, so that an indicator or a line with reported execution refuses (see the models)
+                $activity->indicators()->whereNotIn('id', $keep)->get()->each->delete();
+
+                // budget lines are updated in place: the spending reported against them, and their approved amount, stay
+                $keepLines = [];
+                foreach ($this->lines as $l) {
+                    $attrs = [
+                        'economic_classification_id' => $l['class_id'], 'funding_source_id' => ($l['source_id'] ?? '') ?: null,
+                        'indicator_id' => ($l['indicator'] ?? '') !== '' ? ($keep[(int) $l['indicator']] ?? null) : null,
+                        'estimated_amount' => round((float) $l['amount'], 2),
+                    ];
+                    $line = ! empty($l['id']) ? $activity->lineItems()->find($l['id']) : null;
+                    $line ? $line->update($attrs) : ($line = LineItem::create($attrs + ['activity_id' => $activity->id, 'is_test_data' => false]));
+                    $keepLines[] = $line->id;
                 }
-            }
-            $activity->indicators()->whereNotIn('id', $keep)->delete();
+                $activity->lineItems()->whereNotIn('id', $keepLines)->get()->each->delete();
 
-            $activity->lineItems()->delete();
-            foreach ($this->lines as $l) {
-                LineItem::create([
-                    'activity_id' => $activity->id, 'economic_classification_id' => $l['class_id'], 'funding_source_id' => ($l['source_id'] ?? '') ?: null,
-                    'indicator_id' => ($l['indicator'] ?? '') !== '' ? ($keep[(int) $l['indicator']] ?? null) : null,
-                    'estimated_amount' => round((float) $l['amount'], 2), 'is_test_data' => false,
-                ]);
-            }
+                return $activity;
+            });
+        } catch (\DomainException $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
 
-            return $activity;
-        });
+            return;
+        }
 
         session()->flash('success', __('Activity saved.'));
 
@@ -358,9 +368,9 @@ new class extends Component {
             'total' => $total,
             'locations' => config('paa.locations'),
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
-            'endedBy' => $this->activity ? null : FiscalEnvelope::planningEndedByFor($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null),
+            'endedBy' => $this->activity ? null : \App\Support\FiscalYear::planningEndedBy($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null),
             'windowReason' => app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year),
-            'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : FiscalEnvelope::nextPlanningYear(),
+            'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : \App\Support\FiscalYear::nextPlanningYear(),
         ];
     }
 }; ?>
@@ -379,13 +389,7 @@ new class extends Component {
             <div class="flex flex-col items-start gap-3">
                 <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</h2>
                 <p class="max-w-2xl text-sm text-zinc-600">
-                    @if($endedBy === 'Closed')
-                        {{ __('The planning cycle for :year is closed, so activities can no longer be added.', ['year' => $year]) }}
-                    @elseif($endedBy === 'Approved')
-                        {{ __('The budget for :year has been received, so its plan is final: only the distribution of the envelope can still change.', ['year' => $year]) }}
-                    @else
-                        {{ __('The plan for :year has been finalized, so activities can no longer be added. Only the final approver or an administrator can reopen planning, with a remark.', ['year' => $year]) }}
-                    @endif
+                    {{ __('The plan of this directorate for :year has been finalized, so activities can no longer be added. An approved activity can still be revised; only the head of the directorate or an administrator can reopen planning, with a remark.', ['year' => $year]) }}
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>

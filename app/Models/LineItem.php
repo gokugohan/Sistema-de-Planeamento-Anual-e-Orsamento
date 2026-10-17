@@ -40,12 +40,17 @@ class LineItem extends Model
             if ($item->isLocked()) {
                 throw new \Exception(__('This line item is locked because the planning cycle is finalized.'));
             }
+            // spending reported against a line keeps it: a revision sets its amount instead of removing it
+            if ($item->executions()->exists()) {
+                throw new \DomainException(__('This budget line already has spending reported against it: change its amount instead of removing it.'));
+            }
         });
     }
 
+    /** Nothing locks a line any more: an approved activity is changed through a revision (see ActivityVersions). */
     public function isLocked(): bool
     {
-        return $this->activity && $this->activity->isLocked();
+        return false;
     }
 
     protected $fillable = [

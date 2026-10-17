@@ -31,7 +31,7 @@ class ProgramYearsTest extends TestCase
         parent::setUp();
         app()->setLocale('en');
         $this->seed(DatabaseSeeder::class);
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
     }
 
     private function admin(): User

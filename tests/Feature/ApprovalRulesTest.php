@@ -83,7 +83,6 @@ class ApprovalRulesTest extends TestCase
 
         $this->assertTrue($minister->can('view_all_paa'));
         $this->assertFalse($minister->can('approve_paa'));
-        $this->assertTrue($minister->can('approve_fiscal_envelope'), 'the budget envelope stays with the Minister');
     }
 
     public function test_the_parent_review_step_can_be_skipped(): void

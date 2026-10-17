@@ -3,7 +3,6 @@
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\Program;
 use App\Models\SystemSetting;
@@ -28,7 +27,7 @@ new class extends Component {
 
     public function with(): array
     {
-        $year = FiscalEnvelope::getEffectiveYear();
+        $year = \App\Support\FiscalYear::current();
         $dirs = Directorate::get(['id', 'code', 'name', 'type', 'parent_id'])->keyBy('id');
         $rootOf = fn ($id) => ($dirs[$id]->parent_id ?? null) ?: $id;
         $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name'])->keyBy('id');
@@ -89,30 +88,28 @@ new class extends Component {
             ->selectRaw('activities.directorate_id as d, activities.program_id as p, activities.subprogram_id as sp, activities.status as s, line_items.economic_classification_id as c,
                 COALESCE(SUM(line_items.estimated_amount), 0) as req, COALESCE(SUM(adjusted_budgets.approved_amount), 0) as alloc')
             ->get() as $r) {
+            // planned: what every activity asks for; approved: the amounts of the approved versions in force
             $planAll += $r->req;
             $allocated += $r->alloc;
             if ($r->s === Activity::STATUS_APPROVED) {
                 $plan += $r->req;
-                $root = $rootOf($r->d);
-                $unitStats[$root]['plan'] = ($unitStats[$root]['plan'] ?? 0) + $r->req;
-                $unitStats[$root]['alloc'] = ($unitStats[$root]['alloc'] ?? 0) + $r->alloc;
-                $progStats[$r->p]['plan'] = ($progStats[$r->p]['plan'] ?? 0) + $r->req;
-                $progStats[$r->p]['alloc'] = ($progStats[$r->p]['alloc'] ?? 0) + $r->alloc;
-                if ($r->sp) {
-                    $subStats[$r->sp]['plan'] = ($subStats[$r->sp]['plan'] ?? 0) + $r->req;
-                    $subStats[$r->sp]['alloc'] = ($subStats[$r->sp]['alloc'] ?? 0) + $r->alloc;
-                }
-                if ($r->c) {
-                    $planByClass[$r->c] = ($planByClass[$r->c] ?? 0) + $r->req;
-                    $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
-                }
+            }
+            $root = $rootOf($r->d);
+            $unitStats[$root]['plan'] = ($unitStats[$root]['plan'] ?? 0) + $r->req;
+            $unitStats[$root]['alloc'] = ($unitStats[$root]['alloc'] ?? 0) + $r->alloc;
+            $progStats[$r->p]['plan'] = ($progStats[$r->p]['plan'] ?? 0) + $r->req;
+            $progStats[$r->p]['alloc'] = ($progStats[$r->p]['alloc'] ?? 0) + $r->alloc;
+            if ($r->sp) {
+                $subStats[$r->sp]['plan'] = ($subStats[$r->sp]['plan'] ?? 0) + $r->req;
+                $subStats[$r->sp]['alloc'] = ($subStats[$r->sp]['alloc'] ?? 0) + $r->alloc;
+            }
+            if ($r->c) {
+                $planByClass[$r->c] = ($planByClass[$r->c] ?? 0) + $r->req;
+                $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
             }
         }
 
         // ── the cycle of the annual plan for this year ──
-        $env = FiscalEnvelope::where('fiscal_year', $year)->with('categoryAllocations')->first();
-        $envelope = $env ? (float) $env->total_amount : null;
-        $envApproved = $env && in_array($env->status, [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
         $planCycle = app(\App\Services\PlanCycle::class);
         $planning = app(\App\Services\PlanningWindow::class)->progress($year);
         $ended = $planning['ended'];
@@ -120,12 +117,9 @@ new class extends Component {
             'planWindow' => $planCycle->windowState($year, 'plan', 1), 'ended' => $ended, 'planning' => $planning, 'total' => $totalActivities, 'approved' => $byStatus[Activity::STATUS_APPROVED] ?? 0,
             'pending' => ($byStatus[Activity::STATUS_SUBMITTED] ?? 0) + ($byStatus[Activity::STATUS_REVIEWED] ?? 0) + ($byStatus[Activity::STATUS_VALIDATED] ?? 0) + ($byStatus[Activity::STATUS_WAITING_APPROVAL] ?? 0),
             'drafts' => ($byStatus[Activity::STATUS_DRAFT] ?? 0) + ($byStatus[Activity::STATUS_REJECTED] ?? 0),
-            'envelopeStatus' => $env?->status, 'distributed' => $allocated > 0,
+            'year' => $year,
         ]);
         $currentStep = collect($steps)->search(fn ($s) => $s['state'] === 'current');
-
-        // The best available "money in hand" figure and its honest label
-        [$fundLabel, $fund] = [__('Fiscal envelope'), $envelope];
 
         // ── physical delivery: verified progress against annual targets (cumulative or level, see DeliveryReport) ──
         $delivery = app(\App\Services\DeliveryReport::class)->summary($base()->select('activities.id')->toBase());
@@ -184,12 +178,6 @@ new class extends Component {
 
         // ── things worth a look ──
         $watch = [];
-        if ($envApproved && $plan > 0 && $allocated == 0) {
-            $watch[] = ['tone' => 'amber', 'text' => __('The envelope is approved but has not been distributed yet.'), 'url' => route('budget.envelope.current')];
-        }
-        if ($envelope !== null && $allocated > 0 && $envelope - $allocated > 0.5) {
-            $watch[] = ['tone' => 'zinc', 'text' => __(':a of the envelope is unallocated.', ['a' => '$ ' . number_format($envelope - $allocated)]), 'url' => route('budget.allocation')];
-        }
         $noLines = $base()->where('activities.status', Activity::STATUS_APPROVED)->doesntHave('lineItems')->count();
         if ($noLines > 0) {
             $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n approved activity has no budget lines|:n approved activities have no budget lines', $noLines, ['n' => $noLines]), 'url' => route('activities.index')];
@@ -212,7 +200,6 @@ new class extends Component {
         $charts = [
             'categories' => [
                 'labels' => $classes->map(fn ($c) => $c->code . ' ' . $c->name)->values()->all(),
-                'envelope' => $classes->map(fn ($c) => (float) ($env?->categoryAllocations->firstWhere('economic_classification_id', $c->id)?->allocated_amount ?? 0))->values()->all(),
                 'plan' => $classes->map(fn ($c) => (float) ($planByClass[$c->id] ?? 0))->values()->all(),
                 'alloc' => $classes->map(fn ($c) => (float) ($allocByClass[$c->id] ?? 0))->values()->all(),
             ],
@@ -228,13 +215,12 @@ new class extends Component {
                 'committed' => array_column($exec['quarters'], 'committed'),
                 'paid' => array_column($exec['quarters'], 'paid'),
             ],
-            'labels' => [__('Requested'), __('Approved plan'), __('Envelope'), __('Distributed'), __('Plan'), __('Cumulative progress'), __('Planned (cumulative)'), __('Committed'), __('Paid')],
+            'labels' => [__('Requested'), __('Planned'), __('Planned'), __('Approved plan'), __('Plan'), __('Cumulative progress'), __('Planned (cumulative)'), __('Committed'), __('Paid')],
         ];
 
         return [
             'year' => $year, 'org' => SystemSetting::getLocalized('org_abbr', ''),
             'steps' => $steps, 'currentStep' => $currentStep,
-            'fundLabel' => $fundLabel, 'fund' => $fund, 'envelope' => $envelope,
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
             'achievement' => $achievement, 'indicatorCount' => $delivery['n'],
@@ -312,20 +298,19 @@ new class extends Component {
 
     {{-- Key figures --}}
     @php
-        $fundedPct = $envelope ? min(100, $allocated / max($envelope, 1) * 100) : null;
+        $approvedPct = $planAll > 0 ? min(100, $allocated / $planAll * 100) : null;
         $approvedShare = $totalActivities > 0 ? ($byStatus[\App\Models\Activity::STATUS_APPROVED] / $totalActivities * 100) : 0;
     @endphp
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        <x-ui.kpi :label="$fundLabel" :value="$fund !== null ? '$ ' . number_format($fund) : '—'"
-            :sub="$fund !== null ? ($envelope === null ? __('Not yet the final envelope') : __('Received for the year')) : __('Not registered yet')" tone="zinc"
-            :href="$wide ? route('budget.envelope.current') : null" />
-        <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($plan)"
-            :sub="__('of $ :t requested in total', ['t' => number_format($planAll)])"
-            :progress="$fund ? min(100, $plan / max($fund, 1) * 100) : null" :tone="($fund && $plan > $fund) ? 'rose' : 'indigo'"
+        <x-ui.kpi :label="__('Planned')" :value="'$ ' . number_format($planAll)"
+            :sub="trans_choice(':n activity in the plan|:n activities in the plan', $totalActivities, ['n' => $totalActivities])" tone="zinc"
             href="{{ route('activities.index') }}" />
-        <x-ui.kpi :label="__('Distributed')" :value="'$ ' . number_format($allocated)"
-            :sub="$envelope ? number_format($fundedPct, 1) . '% ' . __('of the envelope') : __('Needs an approved envelope')"
-            :progress="$fundedPct" tone="emerald" :href="$wide ? route('budget.allocation') : null" />
+        <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($allocated)"
+            :sub="$approvedPct !== null ? number_format($approvedPct, 1) . '% ' . __('of what is planned') : __('Nothing planned yet')"
+            :progress="$approvedPct" tone="indigo" href="{{ route('planning.paa-approval') }}" />
+        <x-ui.kpi :label="__('Paid')" :value="'$ ' . number_format((float) ($exec['paid'] ?? 0))"
+            :sub="$allocated > 0 ? number_format(min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan, verified') : __('Verified spending')"
+            :progress="$allocated > 0 ? min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100) : null" tone="emerald" href="{{ route('monitoring.index') }}" />
         <x-ui.kpi :label="__('Activities approved')" :value="$byStatus[\App\Models\Activity::STATUS_APPROVED] . ' / ' . $totalActivities"
             :sub="number_format($approvedShare, 0) . '% ' . __('of the plan')" :progress="$approvedShare" tone="indigo"
             href="{{ route('planning.paa-approval') }}" />
@@ -435,7 +420,7 @@ new class extends Component {
             <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Money by economic category') }}</h2></x-slot>
             <div class="p-5">
                 <div wire:key="c-cat-{{ md5(json_encode($charts['categories'])) }}" x-data="dashChart('categories', @js($charts))" x-init="mount()" class="relative h-72">
-                    <canvas role="img" aria-label="{{ __('Envelope, approved plan and distributed amount for each economic category') }}"></canvas>
+                    <canvas role="img" aria-label="{{ __('Planned and approved amount for each economic category') }}"></canvas>
                 </div>
             </div>
         </x-ui.card>
@@ -467,7 +452,7 @@ new class extends Component {
             <div class="p-5">
                 @if(count($charts['units']['labels']))
                     <div wire:key="c-units-{{ md5(json_encode($charts['units'])) }}" x-data="dashChart('units', @js($charts))" x-init="mount()" class="relative h-52">
-                        <canvas role="img" aria-label="{{ __('Approved plan and distributed amount for the largest units') }}"></canvas>
+                        <canvas role="img" aria-label="{{ __('Planned and approved amount for the largest units') }}"></canvas>
                     </div>
                 @else
                     <p class="text-sm text-zinc-500 py-10 text-center">{{ __('No approved activities with a budget yet.') }}</p>
@@ -479,7 +464,7 @@ new class extends Component {
     {{-- Units table: the numbers behind the charts --}}
     <x-ui.card padding="p-0">
         <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Units') }}</h2></x-slot>
-        <x-ui.table :headers="[__('Unit'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded')]">
+        <x-ui.table :headers="[__('Unit'), __('Activities'), __('Planned'), __('Approved plan'), __('Approved')]">
             @forelse($units as $u)
                 @php $pct = $u['plan'] > 0 ? min(100, $u['alloc'] / $u['plan'] * 100) : null; @endphp
                 <tr>
@@ -509,7 +494,7 @@ new class extends Component {
     {{-- Programmes: the same plan seen by programme --}}
     <x-ui.card padding="p-0">
         <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Programs') }}</h2></x-slot>
-        <x-ui.table :headers="[__('Program'), __('Activities'), __('Approved plan'), __('Distributed'), __('Funded'), __('Paid')]" :right="[2, 3]">
+        <x-ui.table :headers="[__('Program'), __('Activities'), __('Planned'), __('Approved plan'), __('Approved'), __('Paid')]" :right="[2, 3]">
             @forelse($progRows as $r)
                 @php $pct = $r['plan'] > 0 ? min(100, $r['alloc'] / $r['plan'] * 100) : null; $late = $r['paid_pct'] !== null && $r['due_pct'] !== null && $r['paid_pct'] < $r['due_pct'] - 5; @endphp
                 <tr>
@@ -582,7 +567,6 @@ new class extends Component {
                                    tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + (kind === 'status' || kind === 'quarterly' ? c.parsed.y ?? c.parsed : usd(c.parsed.y ?? c.parsed.x)) } } } };
                     const cfg = {
                         categories: () => ({ type: 'bar', data: { labels: d.categories.labels.map(l => l.length > 22 ? l.slice(0, 21) + '…' : l), datasets: [
-                            { label: L[2], data: d.categories.envelope, backgroundColor: '#CBD5E1', borderRadius: 3 },
                             { label: L[1], data: d.categories.plan, backgroundColor: '#2152C4', borderRadius: 3 },
                             { label: L[3], data: d.categories.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),

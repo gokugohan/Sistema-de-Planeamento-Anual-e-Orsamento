@@ -25,11 +25,7 @@ class QueryBudgetTest extends TestCase
         '/activities' => 44, // includes the per-directorate planning card
         '/activities/create' => 25,
         '/planning/paa-approval' => 30,
-        '/planning/director-review' => 25,
         '/planning/cycle' => 40,
-        '/budget/envelope/current' => 25,
-        '/budget/envelope/list' => 25,
-        '/budget/allocation' => 30,
         '/monitoring' => 40,
         '/monitoring/approval' => 25,
         '/reports/paa' => 60,

@@ -33,7 +33,7 @@ new class extends Component {
         $user = auth()->user();
 
         return [
-            'activeYear'              => \App\Models\FiscalEnvelope::getEffectiveYear(),
+            'activeYear'              => \App\Support\FiscalYear::current(),
             'economicClassifications' => EconomicClassification::orderBy('code')->get(),
             'canEdit'                 => $user->can('update', $this->activity),
             'canDelete'               => $user->can('delete', $this->activity),
@@ -49,7 +49,11 @@ new class extends Component {
             'budgetRule'              => \App\Support\ApprovalRules::current()->budgetConfirmation,
             'budgetBy'                => $this->activity->budget_confirmed_by ? \App\Models\User::whereKey($this->activity->budget_confirmed_by)->value('name') : null,
             // once approved, how the activity is doing: verified spending, indicators, the latest words
-            'execution'               => $this->activity->status === Activity::STATUS_APPROVED ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
+            'execution'               => (int) $this->activity->version > 0 ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
+            // the approved versions, and what a revision in progress changes against the version in force
+            'versions'                => app(\App\Services\ActivityVersions::class)->of($this->activity),
+            'revising'                => \App\Services\ActivityVersions::revising($this->activity),
+            'changes'                 => \App\Services\ActivityVersions::revising($this->activity) ? app(\App\Services\ActivityVersions::class)->changes($this->activity) : null,
         ];
     }
 
@@ -219,12 +223,19 @@ new class extends Component {
         $this->dispatch('toast', message: __('Activity moved to :unit.', ['unit' => $to->name]), type: 'success');
     }
 
+    /** Start a revision: a new version, with its reason, through the whole approval chain again. */
     public function reopen(): void
     {
-        app(\App\Services\ActivityWorkflow::class)->reopen(auth()->user(), $this->activity, $this->note);
+        try {
+            app(\App\Services\ActivityWorkflow::class)->reopen(auth()->user(), $this->activity, $this->note);
+        } catch (\DomainException $e) {
+            $this->dispatch('toast', message: $e->getMessage(), type: 'error');
+
+            return;
+        }
         $this->reset('note');
         $this->refresh();
-        $this->dispatch('toast', message: __('Activity returned to draft.'), type: 'success');
+        $this->dispatch('toast', message: __('Revision started. Version :n stays in force until the revision is approved.', ['n' => $this->activity->version]), type: 'success');
     }
 
     private function refresh(): void
@@ -758,6 +769,33 @@ new class extends Component {
                                 </li>
                             @endif
                         </ol>
+                        @if($versions->isNotEmpty())
+                            <h3 class="mt-6 text-sm font-semibold text-zinc-900">{{ __('Approved versions') }}</h3>
+                            <ul class="mt-2 divide-y divide-zinc-100 rounded-lg ring-1 ring-zinc-200">
+                                @foreach($versions as $v)
+                                    <li class="px-4 py-3 text-sm" x-data="{ open: false }">
+                                        <div class="flex flex-wrap items-center justify-between gap-2">
+                                            <p class="font-medium text-zinc-900">{{ __('Version :n', ['n' => $v->version]) }}
+                                                @if($v->version === (int) $activity->version)<span class="ml-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-800">{{ __('In force') }}</span>@endif
+                                            </p>
+                                            <p class="text-xs text-zinc-500">{{ __('Approved by :name on :date', ['name' => $v->approver?->name ?? '—', 'date' => $v->approved_at?->timezone('Asia/Dili')->format('d M Y')]) }} · <span class="tabular-nums">${{ number_format((float) $v->total, 2) }}</span></p>
+                                        </div>
+                                        @if($v->reason)<p class="mt-1 text-xs text-zinc-600"><span class="font-medium">{{ __('Reason for the revision') }}:</span> {{ $v->reason }}</p>@endif
+                                        <button type="button" class="mt-1 text-xs font-medium text-indigo-700 hover:underline" x-on:click="open = ! open" x-text="open ? @js(__('Hide')) : @js(__('Show what was approved'))"></button>
+                                        <div x-show="open" x-cloak class="mt-2 grid gap-3 text-xs md:grid-cols-2">
+                                            <div>
+                                                <p class="font-semibold text-zinc-700">{{ __('Budget lines') }}</p>
+                                                <ul class="mt-1 space-y-0.5">@foreach($v->snapshot['lines'] ?? [] as $l)<li class="flex justify-between gap-2"><span class="truncate">{{ $l['class_code'] ?? '' }} {{ $l['class_name'] ?? '' }}@if(! empty($l['source_name'])) · {{ $l['source_name'] }}@endif</span><span class="tabular-nums">${{ number_format((float) $l['estimated_amount'], 2) }}</span></li>@endforeach</ul>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold text-zinc-700">{{ __('Indicators') }}</p>
+                                                <ul class="mt-1 space-y-0.5">@foreach($v->snapshot['indicators'] ?? [] as $ind)<li class="flex justify-between gap-2"><span class="truncate">{{ $ind['name'] }}</span><span class="tabular-nums">{{ (float) $ind['annual_target'] }} {{ $ind['unit'] }}</span></li>@endforeach</ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
 
@@ -800,6 +838,29 @@ new class extends Component {
                     </p>
                 @endif
             </div>
+
+            @if($revising)
+                <div class="rounded-xl bg-amber-50 p-5 text-sm ring-1 ring-amber-200">
+                    <p class="font-semibold text-amber-900">{{ __('Revision in progress: version :n', ['n' => $activity->version + 1]) }}</p>
+                    <p class="mt-1 text-amber-900">{{ __('Version :n stays in force, and spending is reported against it, until this revision is approved.', ['n' => $activity->version]) }}</p>
+                    @if($activity->revision_reason)<p class="mt-2 rounded-md bg-white/70 px-3 py-2 text-zinc-800"><span class="font-medium">{{ __('Reason') }}:</span> {{ $activity->revision_reason }}</p>@endif
+                    @if($changes && ($changes['lines'] || $changes['indicators'] || abs($changes['total_from'] - $changes['total_to']) >= 0.005))
+                        <p class="mt-3 text-xs font-semibold text-amber-900">{{ __('What changes against version :n', ['n' => $activity->version]) }}</p>
+                        <ul class="mt-1 space-y-1 text-xs text-zinc-800">
+                            @foreach($changes['lines'] as $c)
+                                <li class="flex justify-between gap-2"><span class="min-w-0 truncate">{{ $c['label'] }}@if($c['source']) · {{ $c['source'] }}@endif</span>
+                                    <span class="shrink-0 tabular-nums">{{ $c['from'] === null ? __('new') : '$'.number_format($c['from'], 2) }} → {{ $c['to'] === null ? __('removed') : '$'.number_format($c['to'], 2) }}</span></li>
+                            @endforeach
+                            @foreach($changes['indicators'] as $c)
+                                <li class="flex justify-between gap-2"><span class="min-w-0 truncate">{{ $c['name'] }}</span><span class="shrink-0">{{ $c['change'] }}</span></li>
+                            @endforeach
+                            <li class="flex justify-between gap-2 border-t border-amber-200 pt-1 font-semibold"><span>{{ __('Total') }}</span><span class="tabular-nums">${{ number_format($changes['total_from'], 2) }} → ${{ number_format($changes['total_to'], 2) }}</span></li>
+                        </ul>
+                    @else
+                        <p class="mt-2 text-xs text-amber-900">{{ __('Nothing has been changed yet.') }}</p>
+                    @endif
+                </div>
+            @endif
 
             @if(auth()->user()->isAdministrator() && ! $activity->isLocked())
                 <details class="bg-white rounded-xl ring-1 ring-zinc-950/5 shadow-sm p-5 text-sm">
@@ -857,9 +918,11 @@ new class extends Component {
                             :label="__('What should be corrected?')" :confirm="__('Return for correction')" :required="true" />
                     @endif
                     @if($canReopen)
-                        <x-ui.button variant="secondary" class="w-full" x-on:click="$dispatch('open-modal', 'reopen-activity')">{{ __('Reopen') }}</x-ui.button>
-                        <x-note-dialog name="reopen-activity" property="note" action="reopen" :title="__('Return this activity to draft? This will allow editing again.')"
-                            :label="__('Why is it reopened?')" :confirm="__('Reopen')" />
+                        <x-ui.button variant="secondary" class="w-full" x-on:click="$dispatch('open-modal', 'reopen-activity')">{{ __('Revise') }}</x-ui.button>
+                        <x-note-dialog name="reopen-activity" property="note" action="reopen" :required="true"
+                            :title="__('Start a revision of this activity?')"
+                            :message="__('It becomes a draft that the unit can change, and goes through preparation, certification and approval again. Version :n stays in force until the revision is approved.', ['n' => $activity->version])"
+                            :label="__('Why is it revised?')" :confirm="__('Revise')" />
                     @endif
                     @if($canEdit)
                         <a href="{{ route('activities.edit', $activity) }}" wire:navigate class="block text-center text-sm font-medium text-indigo-600 hover:text-indigo-700 pt-1">{{ __('Edit details') }}</a>

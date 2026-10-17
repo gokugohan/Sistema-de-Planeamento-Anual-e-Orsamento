@@ -2,7 +2,6 @@
 
 use App\Models\Activity;
 use App\Models\BudgetExecution;
-use App\Models\FiscalEnvelope;
 use App\Models\LineItem;
 use App\Policies\ActivityPolicy;
 use Livewire\Attributes\On;
@@ -23,7 +22,7 @@ new class extends Component {
 
     public function mount(?int $activityId = null, ?int $month = null): void
     {
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
         $this->month = max(1, min($month ?? $this->latestMonth(), $this->latestMonth()));
         $this->activityId = $activityId;
         if ($activityId) {

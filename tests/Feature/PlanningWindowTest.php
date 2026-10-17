@@ -6,7 +6,6 @@ use App\Models\Activity;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
@@ -22,7 +21,7 @@ use Tests\TestCase;
 
 /**
  * Planning ends with the final approval of the plan; only the final approver or an administrator reopens it,
- * with a remark; and once the budget envelope is received nothing but its distribution changes.
+ * with a remark. Finalizing stops new activities only: an approved activity can still be revised.
  */
 class PlanningWindowTest extends TestCase
 {
@@ -65,14 +64,6 @@ class PlanningWindowTest extends TestCase
         return $a;
     }
 
-    private function envelope(string $status): FiscalEnvelope
-    {
-        return FiscalEnvelope::create([
-            'fiscal_year' => self::YEAR, 'reference_number' => 'OGE', 'source_authority' => 'Parlamento', 'total_amount' => 1000,
-            'status' => $status, 'start_date' => self::YEAR.'-01-01', 'due_date' => self::YEAR.'-12-31', 'is_test_data' => false,
-        ]);
-    }
-
     public function test_the_final_approver_finalizes_the_plan_and_planning_ends(): void
     {
         $this->activity(Activity::STATUS_APPROVED);
@@ -82,7 +73,7 @@ class PlanningWindowTest extends TestCase
         $this->window->finalize($minister, self::YEAR, 'All units decided.');
 
         $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));
-        $this->assertFalse(FiscalEnvelope::planningOpen(self::YEAR));
+        $this->assertFalse(\App\Support\FiscalYear::planningOpen(self::YEAR));
         $state = $this->window->state(self::YEAR);
         $this->assertSame($minister->name, $state['by']);
         $this->assertSame('All units decided.', $state['remark']);
@@ -157,30 +148,14 @@ class PlanningWindowTest extends TestCase
         }
     }
 
-    public function test_once_the_envelope_is_received_planning_cannot_be_reopened_and_only_distribution_remains(): void
+    public function test_a_finalized_plan_still_lets_an_approved_activity_be_revised(): void
     {
         $approved = $this->activity(Activity::STATUS_APPROVED);
-        $minister = $this->user('Director', $this->unit);
-        $this->window->finalize($minister, self::YEAR);
-        $this->assertTrue(app(ActivityWorkflow::class)->canReopen($minister, $approved->fresh()), 'before the envelope an approved activity can still be reopened');
+        $head = $this->user('Director', $this->unit);
+        $this->window->finalize($head, self::YEAR);
 
-        $this->envelope(FiscalEnvelope::STATUS_APPROVED);
-
-        $this->assertSame('Approved', $this->window->endedBy(self::YEAR));
-        $this->assertTrue($this->window->envelopeReceived(self::YEAR));
-        $this->assertFalse(app(ActivityWorkflow::class)->canReopen($minister, $approved->fresh()), 'after the envelope only its distribution changes');
-        $this->expectException(DomainException::class);
-        $this->window->reopen($this->user('Admin'), self::YEAR, 'Even an administrator cannot reopen it now');
-    }
-
-    public function test_an_envelope_received_without_finalizing_ends_planning_too(): void
-    {
-        $this->activity(Activity::STATUS_APPROVED);
-        $this->envelope(FiscalEnvelope::STATUS_APPROVED);
-
-        $this->assertSame('Approved', $this->window->endedBy(self::YEAR));
-        $this->expectException(DomainException::class);
-        $this->window->finalize($this->user('Director', $this->unit), self::YEAR);
+        $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));
+        $this->assertTrue(app(ActivityWorkflow::class)->canReopen($head, $approved->fresh()), 'finalizing stops new activities only');
     }
 
     public function test_the_planning_card_finalizes_and_reopens_for_the_final_approver(): void
@@ -241,8 +216,8 @@ class PlanningWindowTest extends TestCase
         $this->assertNull($this->window->endedBy(self::YEAR), 'the other directorate is still planning');
         $this->assertFalse($this->window->isOpenFor(self::YEAR, $this->unit->id));
         $this->assertTrue($this->window->isOpenFor(self::YEAR, $other->id));
-        $this->assertFalse(FiscalEnvelope::planningOpenFor(self::YEAR, $this->unit->id));
-        $this->assertTrue(FiscalEnvelope::planningOpenFor(self::YEAR, $other->id));
+        $this->assertFalse(\App\Support\FiscalYear::planningOpen(self::YEAR, $this->unit->id));
+        $this->assertTrue(\App\Support\FiscalYear::planningOpen(self::YEAR, $other->id));
 
         $this->window->finalize($otherHead, self::YEAR);
         $this->assertSame('Finalized', $this->window->endedBy(self::YEAR));

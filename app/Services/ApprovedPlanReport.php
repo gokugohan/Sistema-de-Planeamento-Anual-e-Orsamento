@@ -102,17 +102,22 @@ class ApprovedPlanReport
         $pending = Activity::query()
             ->where('fiscal_year', $year)
             ->where('status', '!=', Activity::STATUS_APPROVED)
+            ->where('version', 0)
             ->selectRaw('status, COUNT(*) as n')
             ->groupBy('status')
             ->pluck('n', 'status')
             ->map(fn ($n) => (int) $n)
             ->all();
+        // activities approved before and now being revised: not in this report until the revision is approved
+        $revising = Activity::query()->where('fiscal_year', $year)->where('status', '!=', Activity::STATUS_APPROVED)->where('version', '>', 0)->count();
+        if ($revising > 0) {
+            $pending['Revision in progress'] = $revising;
+        }
 
         $totals = $sum($rows);
 
         // Autonomous bodies (indirect administration) are part of the ministry's package: their plans are
-        // inside the totals above and are shown as a subtotal, because the ministry passes their share on
-        // once it has received the envelope.
+        // inside the totals above and are shown as a subtotal.
         $autonomous = $sum($rows->filter(fn ($r) => $r['activity']->directorate->isAutonomous()));
 
         $report = [

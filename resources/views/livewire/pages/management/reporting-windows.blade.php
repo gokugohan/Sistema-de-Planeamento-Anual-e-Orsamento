@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\FiscalEnvelope;
 use App\Models\ReportingWindow;
 use Livewire\Volt\Component;
 
@@ -16,7 +15,7 @@ new class extends Component {
     public function mount(): void
     {
         abort_unless(auth()->user()?->isAdministrator(), 403);
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
     }
 
     public function updatedPeriodType(): void

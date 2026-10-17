@@ -6,7 +6,6 @@ use App\Models\Directorate;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
 use Tests\TestCase;
 
 class ReviewPagesTest extends TestCase
@@ -34,24 +33,13 @@ class ReviewPagesTest extends TestCase
         return $u;
     }
 
-    public function test_directors_open_both_reviews_and_planners_only_the_allocation_review(): void
+    public function test_directors_open_the_review_of_activities_and_planners_do_not(): void
     {
         $unit = $this->unit();
         $this->as('Director', $unit->id);
-        $this->get(route('planning.director-review'))->assertOk();
         $this->get(route('planning.paa-approval'))->assertOk();
 
         $this->as('Planning', $unit->id);
-        $this->get(route('planning.director-review'))->assertOk();
         $this->get(route('planning.paa-approval'))->assertForbidden();
-    }
-
-    public function test_a_unit_cannot_answer_for_another_unit(): void
-    {
-        $mine = $this->unit();
-        $other = $this->unit();
-        $this->as('Director', $mine->id);
-
-        Volt::test('pages.planning.director-budget-review')->set('unitId', (string) $other->id)->call('confirmAllocation')->assertForbidden();
     }
 }

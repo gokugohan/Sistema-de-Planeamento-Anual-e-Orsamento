@@ -95,7 +95,7 @@ class SampleRegistry
         return SampleRecord::exists();
     }
 
-    /** @return array{activities: int, users: int, directorates: int, programs: int, envelopes: int} */
+    /** @return array{activities: int, users: int, directorates: int, programs: int} */
     public function counts(?string $dataset = null): array
     {
         $q = fn (string $class) => SampleRecord::query()
@@ -108,7 +108,6 @@ class SampleRegistry
             'users' => $q(User::class),
             'directorates' => $q(Directorate::class),
             'programs' => $q(Program::class),
-            'envelopes' => $q(FiscalEnvelope::class),
         ];
     }
 
@@ -118,19 +117,16 @@ class SampleRegistry
     public function purge(string $dataset): array
     {
         $report = DB::transaction(function () use ($dataset) {
-            $deleted = ['activities' => 0, 'users' => 0, 'directorates' => 0, 'programs' => 0, 'envelopes' => 0];
+            $deleted = ['activities' => 0, 'users' => 0, 'directorates' => 0, 'programs' => 0];
             $kept = [];
 
             $ids = fn (string $class) => SampleRecord::where('dataset', $dataset)
                 ->where('model_type', (new $class)->getMorphClass())
                 ->pluck('model_id');
 
-            // 0. Sample budget cycles and envelopes first: a closed year locks its activities against deletion.
+            // 0. Budget cycles and envelopes loaded by an older version of the sample (there are none any more).
             BudgetCycle::whereIn('id', $ids(BudgetCycle::class))->get()->each->delete();
-            FiscalEnvelope::withoutGlobalScopes()->whereIn('id', $ids(FiscalEnvelope::class))->get()->each(function ($e) use (&$deleted) {
-                $e->delete();
-                $deleted['envelopes']++;
-            });
+            FiscalEnvelope::withoutGlobalScopes()->whereIn('id', $ids(FiscalEnvelope::class))->get()->each->delete();
 
             // 1. Sample activities (indicators and budget lines go with them).
             Activity::withoutGlobalScopes()->whereIn('id', $ids(Activity::class))->get()->each(function ($a) use (&$deleted) {

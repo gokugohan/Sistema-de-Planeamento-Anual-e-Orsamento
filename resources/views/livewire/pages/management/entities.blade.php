@@ -6,7 +6,6 @@ use App\Models\Program;
 use App\Models\Subprogram;
 use App\Models\EconomicClassification;
 use App\Models\Activity;
-use App\Models\FiscalEnvelope;
 use App\Services\ProgramYears;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
@@ -91,7 +90,7 @@ new class extends Component {
         });
 
         // Funding for the working year (approved activities only). Parent units include their sub-units.
-        $year = FiscalEnvelope::getEffectiveYear();
+        $year = \App\Support\FiscalYear::current();
         $rows = Activity::withoutGlobalScopes()
             ->where('activities.is_test_data', false)->where('activities.fiscal_year', $year)->where('activities.status', Activity::STATUS_APPROVED)
             ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
@@ -302,7 +301,7 @@ new class extends Component {
     public function copyPrograms(): void
     {
         $this->guardPrograms();
-        $year = FiscalEnvelope::getEffectiveYear();
+        $year = \App\Support\FiscalYear::current();
         $from = (int) $this->copyFromYear;
         if (! in_array($from, app(ProgramYears::class)->years()->all(), true) || $from === $year) {
             $this->addError('copyFromYear', __('Choose the year to copy from.'));
@@ -343,7 +342,7 @@ new class extends Component {
     public function saveProgram()
     {
         $this->guardPrograms();
-        $year = $this->isProgramEditing ? (int) Program::findOrFail($this->programId)->fiscal_year : FiscalEnvelope::getEffectiveYear();
+        $year = $this->isProgramEditing ? (int) Program::findOrFail($this->programId)->fiscal_year : \App\Support\FiscalYear::current();
 
         $rules = [
             'programName' => 'required|string|max:255',
@@ -432,7 +431,7 @@ new class extends Component {
     public function saveSubprogram()
     {
         $this->guardPrograms();
-        $year = FiscalEnvelope::getEffectiveYear();
+        $year = \App\Support\FiscalYear::current();
 
         $this->validate([
             // a subprogramme belongs to a programme of the working year

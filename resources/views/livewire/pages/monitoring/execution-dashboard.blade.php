@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\FiscalEnvelope;
 use App\Models\Program;
 use App\Services\ExecutionReport;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +15,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->activeYear = FiscalEnvelope::getActiveEnvelope()?->fiscal_year;
+        $this->activeYear = \App\Support\FiscalYear::current();
     }
 
     public function with(): array

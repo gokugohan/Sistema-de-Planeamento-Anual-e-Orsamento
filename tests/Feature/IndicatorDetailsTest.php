@@ -42,7 +42,7 @@ class IndicatorDetailsTest extends TestCase
         parent::setUp();
         $this->seed(DatabaseSeeder::class);
         app()->setLocale('en');
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
         $this->unit = Directorate::create(['name' => 'Unit', 'code' => 'UNT', 'type' => 'General Directorate', 'active' => true]);
         $this->planner = User::factory()->create(['directorate_id' => $this->unit->id]);
         $this->planner->assignRole('Planning');

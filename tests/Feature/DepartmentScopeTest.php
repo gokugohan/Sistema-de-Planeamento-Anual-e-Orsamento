@@ -14,7 +14,7 @@ class DepartmentScopeTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const MINISTRY_WIDE = ['budget.envelope.current', 'budget.envelope.list', 'budget.allocation', 'reports.paa'];
+    private const MINISTRY_WIDE = ['reports.paa'];
 
     protected function setUp(): void
     {

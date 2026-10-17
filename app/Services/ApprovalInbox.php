@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use App\Models\BudgetCycle;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
-use App\Models\FiscalEnvelope;
 use App\Models\Indicator;
 use App\Models\IndicatorProgress;
 use App\Models\LineItem;
@@ -27,7 +26,7 @@ class ApprovalInbox
     /** @return array<int, array{group: string, count: int, text: string, url: string, tone: string}> */
     public function items(User $user, ?int $year = null): array
     {
-        $year ??= FiscalEnvelope::getEffectiveYear();
+        $year ??= \App\Support\FiscalYear::current();
         $items = [];
         $add = function (string $group, int $count, string $text, string $url, string $tone) use (&$items) {
             if ($count > 0) {
@@ -93,20 +92,12 @@ class ApprovalInbox
 
         // ── the plan: each directorate that is ready to be finalized, for whoever gives its final approval
         $window = app(PlanningWindow::class);
-        if (! $window->envelopeReceived($year)) {
-            $units = $window->state($year)['units'];
-            foreach ($window->decidesFor($user, $year) as $rootId) {
-                $u = collect($units)->firstWhere('id', $rootId);
-                if ($u && ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0) {
-                    $add('plan', 1, __('Every activity of :unit for :year has been decided: the plan is ready to be finalized.', ['unit' => $u['code'], 'year' => $year]), route('activities.index'), 'emerald');
-                }
+        $units = $window->state($year)['units'];
+        foreach ($window->decidesFor($user, $year) as $rootId) {
+            $u = collect($units)->firstWhere('id', $rootId);
+            if ($u && ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0) {
+                $add('plan', 1, __('Every activity of :unit for :year has been decided: the plan is ready to be finalized.', ['unit' => $u['code'], 'year' => $year]), route('activities.index'), 'emerald');
             }
-        }
-
-        // ── budget steps for those who run them
-        if ($user->hasAnyRole(['Admin', 'Minister'])) {
-            $pending = FiscalEnvelope::where('status', FiscalEnvelope::STATUS_PENDING)->count();
-            $add('budget', $pending, trans_choice(':n fiscal envelope waiting for approval|:n fiscal envelopes waiting for approval', $pending, ['n' => $pending]), route('budget.envelope.current'), 'indigo');
         }
 
         // ── reporting due: the units' monthly duty, in the running year
@@ -114,7 +105,7 @@ class ApprovalInbox
             $month = (int) now()->month;
             $last = $month - 1; // the month that has just ended is the one to have reported
             if ($last >= 1) {
-                $due = $activities()->where('status', Activity::STATUS_APPROVED)->whereHas('lineItems.adjustedBudget')
+                $due = $activities()->where('version', '>', 0)->whereHas('lineItems.adjustedBudget')
                     ->whereDoesntHave('lineItems.executions', fn ($q) => $q->where('month', $last))->count();
                 $name = Carbon::create($year, $last, 1)->translatedFormat('F');
                 $add('report', $due, trans_choice(':n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month', $due, ['n' => $due, 'month' => $name]), route('monitoring.report'), 'amber');

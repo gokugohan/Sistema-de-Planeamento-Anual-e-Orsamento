@@ -66,7 +66,7 @@ class ActivityExecutionTabTest extends TestCase
     public function test_a_draft_activity_has_no_execution_tab(): void
     {
         $draft = Activity::where('fiscal_year', 2026)->firstOrFail();
-        $draft->forceFill(['status' => Activity::STATUS_DRAFT])->saveQuietly();
+        $draft->forceFill(['status' => Activity::STATUS_DRAFT, 'version' => 0])->saveQuietly(); // never approved: a revision keeps its execution tab
         $user = User::where('email', 'chefe.gdsc@goku.tl')->firstOrFail();
 
         Volt::actingAs($user)->test('pages.activities.show', ['activity' => $draft])->assertDontSee('Paid / approved');

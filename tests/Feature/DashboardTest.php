@@ -5,12 +5,10 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
-use App\Models\FiscalEnvelope;
-use App\Models\FiscalEnvelopeCategoryAllocation;
 use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\User;
-use App\Services\EnvelopeDistributor;
+use App\Services\ActivityVersions;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -62,7 +60,7 @@ class DashboardTest extends TestCase
     {
         $this->activity(Activity::STATUS_DRAFT, 100);
 
-        $this->assertSame($this->year, FiscalEnvelope::getEffectiveYear());
+        $this->assertSame($this->year, \App\Support\FiscalYear::current());
     }
 
     public function test_the_year_can_be_switched_and_a_bogus_year_is_ignored(): void
@@ -71,33 +69,28 @@ class DashboardTest extends TestCase
         $previous = $this->year - 1;
 
         $this->get(route('fiscal-year.switch', $previous));
-        $this->assertSame($previous, FiscalEnvelope::getEffectiveYear());
+        $this->assertSame($previous, \App\Support\FiscalYear::current());
 
         $this->get(route('fiscal-year.switch', 1999));
-        $this->assertSame($previous, FiscalEnvelope::getEffectiveYear(), 'an unknown year must not change the context');
+        $this->assertSame($previous, \App\Support\FiscalYear::current(), 'an unknown year must not change the context');
     }
 
     public function test_dashboard_shows_the_cycle_the_money_and_the_work(): void
     {
-        $this->activity(Activity::STATUS_APPROVED, 1000);
-        $this->activity(Activity::STATUS_APPROVED, 500);
+        $admin = User::where('email', 'admin@example.org')->first();
+        foreach ([1000, 500] as $amount) {
+            app(ActivityVersions::class)->approved($this->activity(Activity::STATUS_APPROVED, $amount), $admin);
+        }
         $this->activity(Activity::STATUS_DRAFT, 9999);
-
-        $env = FiscalEnvelope::create([
-            'fiscal_year' => $this->year, 'total_amount' => 1200, 'status' => FiscalEnvelope::STATUS_APPROVED, 'reference_number' => 'OGE',
-            'start_date' => "{$this->year}-01-01", 'due_date' => "{$this->year}-12-31",
-            'budget_law_reference' => 'Lei 1', 'promulgation_date' => ($this->year - 1).'-12-20',
-        ]);
-        FiscalEnvelopeCategoryAllocation::create(['fiscal_envelope_id' => $env->id, 'economic_classification_id' => $this->goods->id, 'allocated_amount' => 1200]);
-        app(EnvelopeDistributor::class)->distribute($env);
 
         $this->get(route('dashboard'))
             ->assertOk()
             ->assertSee('Plan cycle '.$this->year)
-            ->assertSee('$ 1,200')            // envelope
-            ->assertSee('$ 1,500')            // approved plan (drafts excluded)
+            ->assertSee('$ 11,499')           // planned by every activity
+            ->assertSee('$ 1,500')            // the approved plan in force (drafts excluded)
             ->assertSee('2 / 3')              // approved / all activities
-            ->assertSee('Needs your attention');
+            ->assertSee('Needs your attention')
+            ->assertDontSee('Fiscal envelope');
     }
 
     public function test_unit_filter_narrows_the_figures_and_can_be_cleared(): void
@@ -120,26 +113,8 @@ class DashboardTest extends TestCase
         $this->get(route('fiscal-year.switch', $this->year));
 
         Volt::test('pages.dashboard.summary')
-            ->assertSee('No activities for '.FiscalEnvelope::getEffectiveYear().' yet')
+            ->assertSee('No activities for '.\App\Support\FiscalYear::current().' yet')
             ->assertSee('Create first activity');
-    }
-
-    public function test_budget_allocation_shows_real_distribution_and_no_invented_spending(): void
-    {
-        $this->activity(Activity::STATUS_APPROVED, 1000);
-        $env = FiscalEnvelope::create([
-            'fiscal_year' => $this->year, 'total_amount' => 1000, 'status' => FiscalEnvelope::STATUS_APPROVED, 'reference_number' => 'OGE',
-            'start_date' => "{$this->year}-01-01", 'due_date' => "{$this->year}-12-31",
-        ]);
-        FiscalEnvelopeCategoryAllocation::create(['fiscal_envelope_id' => $env->id, 'economic_classification_id' => $this->goods->id, 'allocated_amount' => 1000]);
-        app(EnvelopeDistributor::class)->distribute($env);
-
-        $html = $this->get(route('budget.allocation'))->assertOk()->getContent();
-
-        $this->assertStringContainsString('$ 1,000', $html);
-        $this->assertStringContainsString('is in Report execution and Performance', $html);
-        $this->assertStringNotContainsString('OVER BUDGET', $html);
-        $this->assertStringNotContainsString('spent of', $html);
     }
 
     public function test_no_view_fabricates_figures(): void

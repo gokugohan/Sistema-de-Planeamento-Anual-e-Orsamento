@@ -1,6 +1,6 @@
 @php
     $user = auth()->user();
-    $year = \App\Models\FiscalEnvelope::getEffectiveYear();
+    $year = \App\Support\FiscalYear::current();
     $items = collect(app(\App\Services\ApprovalInbox::class)->items($user, $year))->groupBy('group');
     $groups = [
         'decide' => [__('Activities to decide'), __('Review, validate or approve what units have submitted.')],
@@ -15,7 +15,6 @@
         ($user->isAdministrator() || $user->isDirector() || app(\App\Services\ApproverLists::class)->unitIdsOf($user) !== []) ? ['PAA Tech Review', route('planning.paa-approval'), __('Review and approve submitted activities, in bulk')] : null,
         $user->can('approve_progress_report') ? ['Verify Progress', route('monitoring.approval'), __('Verify quarterly indicator progress')] : null,
         $user->can('view_monitoring') ? ['Report execution', route('monitoring.report'), __('Report and verify what an activity spent and achieved in a quarter')] : null,
-        ['Allocation Review', route('planning.director-review'), __('Review how the envelope was allocated')],
     ]));
 @endphp
 <x-app-layout title="{{ __('Approvals') }}">

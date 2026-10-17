@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Activity;
-use App\Models\FiscalEnvelope;
 use App\Policies\ActivityPolicy;
 use App\Services\ActivityWorkflow;
 use App\Support\ApprovalRules;
@@ -20,7 +19,7 @@ new class extends Component {
     public function mount(): void
     {
         abort_unless(auth()->user()?->isAdministrator() || auth()->user()?->can('confirm_budget'), 403);
-        $this->year = FiscalEnvelope::getEffectiveYear();
+        $this->year = \App\Support\FiscalYear::current();
     }
 
     public function getActivitiesProperty()
