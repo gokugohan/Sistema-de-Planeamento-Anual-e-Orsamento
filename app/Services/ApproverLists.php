@@ -115,7 +115,7 @@ class ApproverLists
     /** The people of an in-order list who have not signed this activity in this stage yet, in order. @return Collection<int, ApproverAssignment> */
     public function unsigned(array $list, int $activityId, string $stage): Collection
     {
-        $signed = ActivitySignature::where(['activity_id' => $activityId, 'stage' => $stage])->pluck('user_id');
+        $signed = ActivitySignature::where(['activity_id' => $activityId, 'stage' => $stage, 'state' => ActivitySignature::ACTIVE])->pluck('user_id');
 
         return $list['people']->reject(fn ($a) => $signed->contains($a->user_id))->values();
     }

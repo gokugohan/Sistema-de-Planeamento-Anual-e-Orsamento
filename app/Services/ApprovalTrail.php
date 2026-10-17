@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ActivitySignature;
 use App\Models\AuditLog;
 use App\Models\User;
 
@@ -64,7 +65,7 @@ class ApprovalTrail
             $steps = $this->fromTheActivity($activity);
         }
 
-        return $steps;
+        return $this->withSignatures($activity, $steps);
     }
 
     /** The approval, if it happened: who gave it and when. */
@@ -73,6 +74,35 @@ class ApprovalTrail
         $step = collect($this->for($activity))->last(fn ($s) => $s['status'] === Activity::STATUS_APPROVED && $s['kind'] === 'forward');
 
         return $step && $activity->status === Activity::STATUS_APPROVED ? $step : null;
+    }
+
+    /**
+     * Where a list signs in order, each signature is a step of its own, with its round: a signature given before the
+     * activity was returned or reopened stays in the trail, marked as voided with the reason.
+     *
+     * @param  array<int, array>  $steps
+     * @return array<int, array>
+     */
+    private function withSignatures(Activity $activity, array $steps): array
+    {
+        $rows = ActivitySignature::where('activity_id', $activity->id)->orderBy('id')->get();
+        if ($rows->isEmpty()) {
+            return $steps;
+        }
+        $names = User::whereIn('id', $rows->pluck('user_id')->merge($rows->pluck('signed_by'))->merge($rows->pluck('closed_by'))->filter()->unique())->pluck('name', 'id');
+        foreach ($rows as $s) {
+            $by = $names[$s->signed_by ?? $s->user_id] ?? null;
+            $note = __('Round :n', ['n' => $s->round]);
+            if ($s->signed_by && $s->signed_by !== $s->user_id) {
+                $note .= ' · '.__('in the place of :name', ['name' => $names[$s->user_id] ?? '—']);
+            }
+            if ($s->state === ActivitySignature::VOIDED) {
+                $note .= ' · '.__('voided on :date by :name', ['date' => $s->closed_at?->format('d/m/Y'), 'name' => $names[$s->closed_by] ?? '—']).($s->close_reason ? ': '.$s->close_reason : '');
+            }
+            $steps[] = $this->step('signature', null, __('Signed'), $s->signed_at ?? $s->created_at, $by, $note);
+        }
+
+        return collect($steps)->sortBy(fn ($st) => $st['at'])->values()->all();
     }
 
     /** @return array<int, array> */

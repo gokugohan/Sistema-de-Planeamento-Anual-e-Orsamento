@@ -94,7 +94,7 @@ class ActivityWorkflow
     {
         $list = $this->stageList($activity);
         $lists = app(ApproverLists::class);
-        $clear = fn () => ActivitySignature::where(['activity_id' => $activity->id, 'stage' => $activity->status])->delete();
+        $clear = fn () => ActivitySignature::close($activity->id, ActivitySignature::COMPLETED, $user->id, null, $activity->status);
 
         if (! $lists->sequential($list) || $user->isAdministrator()) {
             $clear();
@@ -102,7 +102,7 @@ class ActivityWorkflow
             return null;
         }
         $slot = $lists->nextSigner($list, $activity->id, $activity->status);
-        $signature = new ActivitySignature(['activity_id' => $activity->id, 'stage' => $activity->status, 'user_id' => $slot->user_id, 'signed_by' => $user->id, 'signed_at' => now()]);
+        $signature = new ActivitySignature(['activity_id' => $activity->id, 'stage' => $activity->status, 'round' => ActivitySignature::currentRound($activity->id), 'user_id' => $slot->user_id, 'signed_by' => $user->id, 'signed_at' => now()]);
         $signature->auditMetadata = ['by' => $user->id, 'activity' => $activity->id, 'stage' => $activity->status];
         $signature->save();
 
@@ -273,7 +273,7 @@ class ActivityWorkflow
 
         $activity->auditMetadata = ['by' => $user->id, 'reason' => $reason];
         $activity->update(['status' => Activity::STATUS_REJECTED]);
-        ActivitySignature::where('activity_id', $activity->id)->delete(); // the next round starts again
+        ActivitySignature::close($activity->id, ActivitySignature::VOIDED, $user->id, $reason); // kept on record; the next signatures belong to the next round
         $this->notify(['Director', 'Planning'], $activity->directorate_id, new SystemNotification(
             __('Activity Returned for Correction'),
             __('Activity ":desc" requires corrections for :year.', ['desc' => str($activity->description)->limit(30), 'year' => $activity->fiscal_year]).' '.__('Reason: :reason', ['reason' => $reason]),
@@ -456,7 +456,7 @@ class ActivityWorkflow
 
         $activity->auditMetadata = $this->trailMeta($user, $note);
         $activity->update(['status' => Activity::STATUS_DRAFT, 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null]);
-        ActivitySignature::where('activity_id', $activity->id)->delete();
+        ActivitySignature::close($activity->id, ActivitySignature::VOIDED, $user->id, $this->trailNote($note)['note'] ?? __('Reopened'));
     }
 
     /**

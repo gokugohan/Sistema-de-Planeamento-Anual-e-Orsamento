@@ -719,6 +719,7 @@ new class extends Component {
                                         'returned' => 'bg-rose-600 ring-rose-600',
                                         'reopened' => 'bg-amber-600 ring-amber-600',
                                         'created'  => 'bg-zinc-500 ring-zinc-500',
+                                        'signature' => 'bg-sky-600 ring-sky-600',
                                         default    => $step['status'] === \App\Models\Activity::STATUS_APPROVED ? 'bg-emerald-700 ring-emerald-700' : 'bg-indigo-600 ring-indigo-600',
                                     };
                                 @endphp

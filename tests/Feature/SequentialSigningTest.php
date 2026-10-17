@@ -74,7 +74,8 @@ class SequentialSigningTest extends TestCase
         $fresh = $activity->fresh();
         $this->assertSame(Activity::STATUS_APPROVED, $fresh->status);
         $this->assertSame($c->id, $fresh->approved_by);
-        $this->assertSame(0, ActivitySignature::where('activity_id', $activity->id)->count(), 'the signatures are cleared once it has moved on');
+        $this->assertSame(3, ActivitySignature::where(['activity_id' => $activity->id, 'state' => 'completed'])->count(), 'the signatures stay on record once it has moved on');
+        $this->assertSame(0, ActivitySignature::where(['activity_id' => $activity->id, 'state' => 'active'])->count());
     }
 
     public function test_a_list_that_is_not_in_order_still_lets_any_one_act(): void
@@ -119,7 +120,25 @@ class SequentialSigningTest extends TestCase
         $this->assertSame(1, ActivitySignature::where('activity_id', $activity->id)->count());
 
         $this->workflow->sendBack($b, $activity->fresh(), 'Fix the budget lines.');
-        $this->assertSame(0, ActivitySignature::where('activity_id', $activity->id)->count());
+        $kept = ActivitySignature::where('activity_id', $activity->id)->get();
+        $this->assertCount(1, $kept, 'the signature is kept, not deleted');
+        $this->assertSame('voided', $kept[0]->state);
+        $this->assertSame(1, $kept[0]->round);
+        $this->assertSame($b->id, $kept[0]->closed_by);
+        $this->assertSame('Fix the budget lines.', $kept[0]->close_reason);
+
+        // the next round: the same person signs again and both signatures are on record, in their rounds
+        $again = $activity->fresh();
+        $again->forceFill(['status' => Activity::STATUS_VALIDATED])->saveQuietly();
+        $this->workflow->approve($a, $again->fresh());
+        $rows = ActivitySignature::where(['activity_id' => $activity->id, 'user_id' => $a->id])->orderBy('id')->get();
+        $this->assertSame([1, 2], $rows->pluck('round')->all());
+        $this->assertSame(['voided', 'active'], $rows->pluck('state')->all());
+
+        $labels = collect(app(\App\Services\ApprovalTrail::class)->for($activity->fresh()))->where('kind', 'signature');
+        $this->assertCount(2, $labels, 'the trail shows the signature given before the reset too');
+        $this->assertStringContainsString('voided', $labels->first()['note']);
+        $this->assertSame($a->name, $labels->first()['by']);
     }
 
     public function test_the_interim_of_the_unit_signs_in_the_place_of_the_next_name(): void

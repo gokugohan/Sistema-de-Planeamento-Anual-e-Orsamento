@@ -2013,5 +2013,9 @@
     "Anyone on this list may act again.": "Qualquer pessoa desta lista pode voltar a atuar.",
     "Everyone signs, in the order listed": "Todos assinam, pela ordem indicada",
     "It moves on only after the last one has signed. Without this, any one of them may act.": "Só avança depois de o último assinar. Sem isto, qualquer um deles pode atuar.",
-    "A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act, unless it is set so that everyone signs in the order listed. Administrators are never locked out.": "Uma lista de uma unidade aplica-se também às unidades abaixo que não tenham lista própria. Qualquer pessoa da lista pode atuar, a menos que esteja definido que todos assinam pela ordem indicada. Os administradores nunca ficam bloqueados."
+    "A list for a unit also applies to the units below it that have no list of their own. Anyone on a list may act, unless it is set so that everyone signs in the order listed. Administrators are never locked out.": "Uma lista de uma unidade aplica-se também às unidades abaixo que não tenham lista própria. Qualquer pessoa da lista pode atuar, a menos que esteja definido que todos assinam pela ordem indicada. Os administradores nunca ficam bloqueados.",
+    "Signed": "Assinado",
+    "Round :n": "Ronda :n",
+    "in the place of :name": "em substituição de :name",
+    "voided on :date by :name": "anulada em :date por :name"
 }
