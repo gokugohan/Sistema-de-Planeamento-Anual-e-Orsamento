@@ -104,7 +104,7 @@ class NavigationTest extends TestCase
             ->assertSee('aria-label="Breadcrumb"', false)
             ->assertSeeInOrder(['Dashboard', 'Administration', 'Audit Log']);
 
-        $this->get(route('activities.create'))->assertSeeInOrder(['Plan', 'PAA Activities', 'New activity']);
+        $this->get(route('activities.create'))->assertSeeInOrder(['Plan', 'All activities', 'New activity']);
         $this->get(route('planning.cycle'))->assertSeeInOrder(['Plan', 'Plan cycle']);
     }
 
@@ -123,7 +123,7 @@ class NavigationTest extends TestCase
     public function test_quick_jump_lists_only_pages_the_user_may_open(): void
     {
         $viewer = $this->as('Viewer');
-        $html = $this->get(route('dashboard'))->getContent();
+        $html = $this->followingRedirects()->get(route('dashboard'))->getContent();
 
         $this->assertStringContainsString('Go to a page', $html);
         $this->assertStringNotContainsString(route('management.users'), $html);
@@ -137,14 +137,14 @@ class NavigationTest extends TestCase
         $program = Program::create(['oge_code' => '900', 'name' => 'P']);
         $this->as('Planning', $unit);
 
-        $this->get(route('dashboard'))->assertSee('You are all caught up');
+        $this->followingRedirects()->get(route('dashboard'))->assertSee('Nothing is waiting for you');
 
         foreach ([Activity::STATUS_DRAFT, Activity::STATUS_DRAFT] as $i => $status) {
             Activity::create(['fiscal_year' => 2027, 'program_id' => $program->id, 'directorate_id' => $unit->id, 'description' => "Draft {$i}",
                 'quarter' => 1, 'priority' => 'Alta', 'planned_start' => '2027-01-01', 'planned_end' => '2027-03-31', 'status' => $status]);
         }
 
-        $this->get(route('dashboard'))->assertSee('Needs your attention')->assertSee('2 draft activities not yet submitted');
+        $this->followingRedirects()->get(route('dashboard'))->assertSee('Next for you')->assertSee('2 drafts to finish');
     }
 
     public function test_approvers_see_the_work_waiting_for_them(): void

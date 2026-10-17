@@ -25,17 +25,25 @@ return [
         [
             'label' => 'Overview',
             'items' => [
-                ['label' => 'Dashboard', 'route' => 'dashboard', 'icon' => 'layout-dashboard',
+                ['label' => 'Dashboard', 'route' => 'dashboard', 'icon' => 'layout-dashboard', 'audience' => 'wide',
                     'hint' => 'Key figures and what needs your attention'],
+                ['label' => 'My work', 'route' => 'work.home', 'match' => ['work.home', 'units.show'], 'icon' => 'layout-dashboard', 'audience' => 'unit',
+                    'hint' => 'Your unit\'s plan, what waits for you and the deadlines'],
             ],
         ],
         [
             'label' => 'Plan',
             'items' => [
-                ['label' => 'Plan cycle', 'route' => 'planning.cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_paa',
-                    'hint' => 'Submission windows, approval, budget and reporting of the annual plan'],
-                ['label' => 'PAA Activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list',
-                    'hint' => 'Plan activities with indicators and budget lines'],
+                ['label' => 'Units', 'route' => 'units.index', 'match' => ['units.*'], 'icon' => 'building', 'audience' => 'wide',
+                    'hint' => 'The action plan of any directorate, department or unit'],
+                ['label' => 'My units', 'route' => 'units.index', 'icon' => 'building', 'audience' => 'unit', 'roles' => ['Director'],
+                    'hint' => 'The units of your directorate and how each is doing'],
+                ['label' => 'Plan cycle', 'route' => 'planning.cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_paa', 'audience' => 'wide',
+                    'hint' => 'Submission windows, approval and reporting of the annual plan'],
+                ['label' => 'All activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'wide',
+                    'hint' => 'Every activity of the plan, with its indicators and budget lines'],
+                ['label' => 'My plan', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'unit',
+                    'hint' => 'The activities of your unit, with their indicators and budget lines'],
             ],
         ],
         [
@@ -96,6 +104,7 @@ return [
 
     // Screens that are not menu entries: route => [parent route, breadcrumb label]
     'pages' => [
+        'units.show' => ['units.index', 'Unit workspace'],
         'activities.create' => ['activities.index', 'New activity'],
         'activities.edit' => ['activities.index', 'Edit activity'],
         'activities.show' => ['activities.index', 'Activity details'],

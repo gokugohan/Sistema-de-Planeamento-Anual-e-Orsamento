@@ -102,7 +102,13 @@ class Navigation
             return [];
         }
 
-        $crumbs = [['label' => __('Dashboard'), 'url' => route('dashboard')]];
+        $wide = $user && ($user->isAdministrator() || $user->can('view_all_paa'));
+        $crumbs = [$wide ? ['label' => __('Dashboard'), 'url' => route('dashboard')] : ['label' => __('My work'), 'url' => route('work.home')]];
+
+        // a unit's workspace is the home of a unit user: My work › the unit
+        if ($current === 'units.show' && ! $wide) {
+            return [['label' => __('My work'), 'url' => null]];
+        }
 
         // A screen that is not a menu entry (create/detail pages): Group › Parent › Page
         // Not config("navigation.pages.{$current}"): route names contain dots, which config() reads as nesting.
@@ -163,6 +169,10 @@ class Navigation
             return false;
         }
         if (isset($node['permission']) && ! $user->can($node['permission'])) {
+            return false;
+        }
+        // 'wide': those who see every plan (administrators, the Minister); 'unit': everyone who works from a unit
+        if (isset($node['audience']) && (($node['audience'] === 'wide') !== ($user->isAdministrator() || $user->can('view_all_paa')))) {
             return false;
         }
         if (($node['feature'] ?? null) === 'testing' && ! SystemSetting::get('enable_paa_testing_mode', false)) {

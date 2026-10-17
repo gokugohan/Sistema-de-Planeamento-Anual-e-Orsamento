@@ -33,12 +33,14 @@ class DepartmentScopeTest extends TestCase
         return $u;
     }
 
-    public function test_department_roles_can_open_the_dashboard_and_their_own_pages_only(): void
+    public function test_department_roles_can_open_their_workspace_and_their_own_pages_only(): void
     {
         foreach (['Director', 'Planning', 'Viewer'] as $role) {
             $user = $this->as($role);
 
-            $this->get(route('dashboard'))->assertOk();
+            $this->get(route('dashboard'))->assertRedirect(route('work.home')); // the dashboard is for those who see every plan
+            $this->get(route('work.home'))->assertRedirect(route('units.show', $user->directorate_id));
+            $this->get(route('units.show', $user->directorate_id))->assertOk();
             $this->get(route('activities.index'))->assertOk();
             $this->get(route('monitoring.index'))->assertOk();
             foreach (self::MINISTRY_WIDE as $route) {

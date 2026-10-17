@@ -26,6 +26,6 @@ class ExampleTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('Viewer');
 
-        $this->actingAs($user)->get('/')->assertOk();
+        $this->actingAs($user)->get('/')->assertRedirect(route('work.home')); // unit users start from their workspace
     }
 }

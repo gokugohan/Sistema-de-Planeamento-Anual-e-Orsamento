@@ -144,7 +144,7 @@ class PlatformTest extends TestCase
             ->call('updatePassword')->assertHasNoErrors();
 
         $this->assertFalse($user->fresh()->must_change_password);
-        $this->get(route('dashboard'))->assertOk();
+        $this->get(route('work.home'))->assertOk();
     }
 
     // ── health ──

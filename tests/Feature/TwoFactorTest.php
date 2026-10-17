@@ -94,7 +94,7 @@ class TwoFactorTest extends TestCase
         $this->get(route('dashboard'))->assertRedirect(route('two-factor.challenge'));
 
         Volt::test('pages.auth.two-factor-challenge')->set('code', $this->totp->getCurrentOtp($secret))->call('verify')->assertHasNoErrors();
-        $this->get(route('dashboard'))->assertOk();
+        $this->get(route('work.home'))->assertOk();
     }
 
     public function test_a_code_can_be_used_only_once(): void
@@ -128,7 +128,7 @@ class TwoFactorTest extends TestCase
 
         Volt::test('pages.auth.two-factor-challenge')->call('toggleRecovery')->set('code', $codes[0])->call('verify')->assertHasNoErrors();
 
-        $this->get(route('dashboard'))->assertOk();
+        $this->get(route('work.home'))->assertOk();
     }
 
     public function test_repeated_wrong_codes_are_locked_out(): void
@@ -157,7 +157,7 @@ class TwoFactorTest extends TestCase
 
         // A non-required role is not forced.
         $this->actingAs($this->user('Viewer'));
-        $this->get(route('dashboard'))->assertOk();
+        $this->get(route('work.home'))->assertOk();
 
         // Once enrolled, a required role cannot disable it.
         $this->actingAs($admin);
@@ -224,7 +224,7 @@ class TwoFactorTest extends TestCase
     {
         $user = $this->user();
 
-        $this->actingAs($user)->get(route('dashboard'))->assertOk();
+        $this->actingAs($user)->get(route('work.home'))->assertOk();
         $this->assertTrue(Hash::check('password', $user->password));
     }
 }

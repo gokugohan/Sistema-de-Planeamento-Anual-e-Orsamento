@@ -10,9 +10,27 @@ use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
 
-Route::view('/', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// The ministry-wide dashboard is for those who see every plan; everyone else starts from their unit's workspace.
+Route::get('/', function () {
+    $user = auth()->user();
+    if (! ($user->isAdministrator() || $user->can('view_all_paa'))) {
+        return redirect()->route('work.home');
+    }
+
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// My work: the workspace of the person's own unit; any unit's workspace; and the tree of units to find one.
+Route::get('my-work', function () {
+    $unit = app(\App\Services\UnitWorkspace::class)->homeUnit(auth()->user());
+
+    return $unit ? redirect()->route('units.show', $unit) : view('work.none');
+})->middleware(['auth', 'verified'])->name('work.home');
+
+Route::get('units', fn () => view('work.units'))->middleware(['auth', 'verified'])->name('units.index');
+
+Route::get('units/{directorate}', fn (\App\Models\Directorate $directorate) => view('work.unit', ['directorate' => $directorate]))
+    ->middleware(['auth', 'verified'])->name('units.show');
 
 Route::get('activities', function () {
     return view('activities.index');

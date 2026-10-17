@@ -15,7 +15,10 @@ new class extends Component {
         $this->activeYear = \App\Support\FiscalYear::current();
 
         if ($this->activeYear) {
+            // what the person works on: everything for those who see every plan, otherwise their units
+            $scope = app(\App\Services\UnitWorkspace::class)->visibleUnitIds(auth()->user());
             $stats = Activity::where('fiscal_year', $this->activeYear)
+                ->when($scope !== null, fn ($q) => $q->whereIn('directorate_id', $scope ?: [0]))
                 ->selectRaw('COUNT(*) as total, COALESCE(SUM(status = ?), 0) as approved', [Activity::STATUS_APPROVED])
                 ->first();
             $this->activityCount = (int) $stats->total;

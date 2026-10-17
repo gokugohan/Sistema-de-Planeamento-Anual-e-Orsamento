@@ -72,6 +72,24 @@ class TranslationCompletenessTest extends TestCase
         $this->assertSame([], $missing, "Strings without a translation:\n".implode("\n", array_slice($missing, 0, 30)));
     }
 
+    /** The fallback language is Portuguese: an English string missing from lang/en.json would show in Portuguese to English readers. */
+    public function test_english_has_every_string_that_portuguese_translates(): void
+    {
+        $en = $this->table('en');
+        $pt = $this->table('pt');
+
+        $missing = [];
+        foreach (array_merge($this->usedKeys(), $this->runtimeKeys()) as $key) {
+            if (! array_key_exists($key, $en) && isset($pt[$key]) && $pt[$key] !== $key) {
+                $missing[] = $key;
+            }
+        }
+
+        $this->assertSame([], $missing, "Add these to lang/en.json (the text itself), or English readers see Portuguese:
+".implode("
+", array_slice($missing, 0, 30)));
+    }
+
     public function test_translations_keep_their_placeholders_and_plural_forms(): void
     {
         $problems = [];
