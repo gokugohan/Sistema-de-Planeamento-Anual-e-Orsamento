@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\ActivitySignature;
+use App\Models\ApprovalDelegation;
 use App\Models\ApproverAssignment;
 use App\Models\AuditLog;
 use App\Models\Directorate;
@@ -289,7 +290,11 @@ class ActivityWorkflow
             Activity::STATUS_VALIDATED => [__('PAA Validated'), __('An activity of :dir was validated by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
             default => [__('PAA Validated'), __('An activity of :dir was validated by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
         };
-        $this->notify($roles, $unitId, new SystemNotification($title, $message, route('activities.show', ['activity' => $activity->id], false)));
+        $notification = new SystemNotification($title, $message, route('activities.show', ['activity' => $activity->id], false));
+        $notified = $this->notify($roles, $unitId, $notification);
+        if ($to !== Activity::STATUS_APPROVED) {
+            $this->notifyHolders($activity->fresh(), $notification, $notified); // whoever holds the next step, named in a list or appointed as interim
+        }
 
         return $to;
     }
@@ -571,9 +576,35 @@ class ActivityWorkflow
         return in_array($unit->id, $user->directedUnitIds(), true);
     }
 
-    private function notify(array $roles, ?int $unitId, SystemNotification $notification): void
+    /** @return array<int, int> the ids of the users told */
+    private function notify(array $roles, ?int $unitId, SystemNotification $notification): array
     {
-        User::role($roles)->when($unitId, fn ($q) => $q->where('directorate_id', $unitId))->get()
-            ->each(fn ($u) => $u->notify($notification));
+        $users = User::role($roles)->when($unitId, fn ($q) => $q->where('directorate_id', $unitId))->get();
+        $users->each(fn ($u) => $u->notify($notification));
+
+        return $users->pluck('id')->all();
+    }
+
+    /**
+     * Tell those who can act on the activity now and were not told yet: people named in an approval list, appointed as
+     * interim, or directing the unit or a unit above it. Only people who really hold the next step are told.
+     *
+     * @param  array<int, int>  $already
+     */
+    private function notifyHolders(Activity $activity, SystemNotification $notification, array $already): void
+    {
+        $chain = [];
+        for ($id = $activity->directorate_id, $guard = 0; $id && $guard++ < 20; $id = Directorate::whereKey($id)->value('parent_id')) {
+            $chain[] = $id;
+        }
+
+        $candidateIds = ApproverAssignment::whereIn('directorate_id', $chain)->pluck('user_id')
+            ->merge(ApprovalDelegation::active()->whereIn('directorate_id', $chain)->pluck('user_id'))
+            ->merge(User::role('Director')->whereIn('directorate_id', $chain)->pluck('id'))
+            ->unique()->diff($already);
+
+        User::with('directorate')->whereIn('id', $candidateIds)->get()
+            ->filter(fn (User $u) => $this->next($u, $activity) !== null || $this->canApprove($u, $activity))
+            ->each(fn (User $u) => $u->notify($notification));
     }
 }
