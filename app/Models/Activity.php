@@ -92,6 +92,7 @@ class Activity extends Model
         'procurement_required',
         'fiscal_year',
         'submitted_at',
+        'submitted_by',
         'reviewed_at',
         'approved_at',
         'reviewed_by',

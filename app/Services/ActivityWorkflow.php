@@ -61,8 +61,31 @@ class ActivityWorkflow
     public function next(User $user, Activity $activity): ?string
     {
         $to = $this->target($user, $activity);
+        if ($to !== null && $to !== Activity::STATUS_SUBMITTED && $this->selfActionRefused($user, $activity)) {
+            return null;
+        }
 
         return $to !== null && ! $this->inTurn($user, $activity) ? null : $to;
+    }
+
+    /** Did this user prepare the activity (the chain has gone past the preparing)? */
+    private function preparedBy(User $user, Activity $activity): bool
+    {
+        return $activity->submitted_by !== null && (int) $activity->submitted_by === $user->id
+            && ! in_array($activity->status, [Activity::STATUS_DRAFT, Activity::STATUS_REJECTED], true);
+    }
+
+    /** The institution keeps preparer and approver apart (block mode) and this user would be both. Administrators are not refused; theirs is marked. */
+    private function selfActionRefused(User $user, Activity $activity): bool
+    {
+        return ApprovalRules::current()->segregation === ApprovalRules::SEGREGATION_BLOCK && ! $user->isAdministrator() && $this->preparedBy($user, $activity);
+    }
+
+    /** What the trail records when the preparer also acts on the activity further up the chain (flag mode, or an administrator's override). */
+    private function selfActionMeta(User $user, Activity $activity): array
+    {
+        return ApprovalRules::current()->segregation !== ApprovalRules::SEGREGATION_OFF && $this->preparedBy($user, $activity)
+            ? ['segregation' => 'exception: the preparer also acted on this activity'] : [];
     }
 
     // ── lists that sign in order: everyone named signs, one after the other, and only the last signature moves it on
@@ -243,11 +266,11 @@ class ActivityWorkflow
 
             $stamps = match ($to) {
                 Activity::STATUS_APPROVED => ['reviewed_at' => now(), 'reviewed_by' => $user->id, 'approved_at' => now(), 'approved_by' => $user->id],
-                Activity::STATUS_SUBMITTED => ['submitted_at' => now()],
+                Activity::STATUS_SUBMITTED => ['submitted_at' => now(), 'submitted_by' => $user->id],
                 Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED => ['reviewed_at' => now(), 'reviewed_by' => $user->id],
                 default => [],
             };
-            $activity->auditMetadata = $this->trailMeta($user, $note);
+            $activity->auditMetadata = $this->trailMeta($user, $note) + $this->selfActionMeta($user, $activity);
             $activity->update(['status' => $to] + $stamps);
             if ($to === Activity::STATUS_APPROVED) {
                 app(ActivityVersions::class)->approved($activity, $user);
@@ -305,6 +328,7 @@ class ActivityWorkflow
         return in_array($activity->status, [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
             && ! $activity->isLocked()
             && $this->mayGiveFinalApproval($user, $activity)
+            && ! $this->selfActionRefused($user, $activity)
             && $this->inTurn($user, $activity);
     }
 
@@ -330,7 +354,7 @@ class ActivityWorkflow
             if ($this->signStage($user, $activity) !== null) {
                 return false; // signed; the next name on the list is still to sign
             }
-            $this->markApproved($user, $activity, $this->trailMeta($user, $note));
+            $this->markApproved($user, $activity, $this->trailMeta($user, $note) + $this->selfActionMeta($user, $activity));
 
             return true;
         });
@@ -386,7 +410,7 @@ class ActivityWorkflow
                     if ($waiting = $this->signStage($user, $fresh)) {
                         return $fresh;
                     }
-                    $this->markApproved($user, $fresh, $this->trailMeta($user, $note) + ['batch' => $batch]);
+                    $this->markApproved($user, $fresh, $this->trailMeta($user, $note) + $this->selfActionMeta($user, $fresh) + ['batch' => $batch]);
 
                     return $fresh;
                 });

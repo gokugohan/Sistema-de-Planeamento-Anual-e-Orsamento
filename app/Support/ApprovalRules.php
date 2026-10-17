@@ -20,7 +20,17 @@ final class ApprovalRules
     public function __construct(
         public readonly bool $parentValidation = true,
         public readonly bool $budgetConfirmation = false,
+        /** Does the person who prepared an activity also certify or approve it? off: allowed; flag: allowed and marked in the trail; block: refused (an administrator's override is marked). */
+        public readonly string $segregation = self::SEGREGATION_OFF,
     ) {}
+
+    public const SEGREGATION_OFF = 'off';
+
+    public const SEGREGATION_FLAG = 'flag';
+
+    public const SEGREGATION_BLOCK = 'block';
+
+    public const SEGREGATION_MODES = [self::SEGREGATION_OFF, self::SEGREGATION_FLAG, self::SEGREGATION_BLOCK];
 
     /** The rules an institution starts with. */
     public static function preset(string $level = ''): self
@@ -40,12 +50,13 @@ final class ApprovalRules
         return new self(
             array_key_exists('parent_validation', $stored) ? (bool) $stored['parent_validation'] : $preset->parentValidation,
             (bool) ($stored['budget_confirmation'] ?? false),
+            in_array($stored['segregation'] ?? null, self::SEGREGATION_MODES, true) ? $stored['segregation'] : self::SEGREGATION_OFF,
         );
     }
 
     public function equals(self $other): bool
     {
-        return $this->parentValidation === $other->parentValidation && $this->budgetConfirmation === $other->budgetConfirmation;
+        return $this->parentValidation === $other->parentValidation && $this->budgetConfirmation === $other->budgetConfirmation && $this->segregation === $other->segregation;
     }
 
     /** Store these rules, or forget the stored ones when they are exactly the preset. */
@@ -59,6 +70,6 @@ final class ApprovalRules
             return;
         }
 
-        SystemSetting::set('approval_rules', ['parent_validation' => $this->parentValidation, 'budget_confirmation' => $this->budgetConfirmation], 'json', 'Approval chain rules that differ from the preset');
+        SystemSetting::set('approval_rules', ['parent_validation' => $this->parentValidation, 'budget_confirmation' => $this->budgetConfirmation, 'segregation' => $this->segregation], 'json', 'Approval chain rules that differ from the preset');
     }
 }

@@ -2141,5 +2141,9 @@
     "Amounts in force for the activities": "Montante iha vigor ba atividade sira",
     "Revisions in progress:": "Revizaun la'o hela:",
     ":n approved activities are being revised. They appear here as last approved, until the revision is approved.": "Atividade aprova :n sei halo revizaun. Hatudu iha ne'e hanesan ikus aprovasaun, to'o revizaun aprova.",
-    "Every indicator needs a name, a unit of measure and a target.": "Indikadór ida-idak presiza naran, unidade medida no meta."
+    "Every indicator needs a name, a unit of measure and a target.": "Indikadór ida-idak presiza naran, unidade medida no meta.",
+    "May the person who prepared an activity also certify or approve it?": "Pesoa neʼebé prepara atividade bele mós sertifika ka aprova ka lae?",
+    "Yes, without any mark": "Sin, la iha marka",
+    "Yes, but mark it in the record": "Sin, maibé halo marka iha rejistu",
+    "No (an administrator may, and it is marked)": "Lae (administradór bele, no hatudu marka)"
 }
