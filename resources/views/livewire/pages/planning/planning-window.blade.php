@@ -80,11 +80,16 @@ new class extends Component {
             @endif
         </div>
     @elseif(count($state['units']) > 0)
-        <div class="rounded-lg border border-zinc-200 bg-white shadow-card">
-            <div class="border-b border-zinc-200 px-5 py-3 text-sm">
-                <p class="font-semibold text-zinc-900">{{ $ended ? __('Planning for :year has ended', ['year' => $year]) : __('Planning for :year is open', ['year' => $year]) }}</p>
-                <p class="text-zinc-600">{{ __('Each directorate finalizes its own plan once everything in it has been decided; no new activities can be added to it afterwards.') }}</p>
-            </div>
+        @php $doneN = count(array_filter($state['units'], fn ($u) => $u['closed'])); $totalN = count($state['units']); @endphp
+        <details class="group rounded-lg border border-zinc-200 bg-white shadow-card" @if($totalN <= 3 || $deciding->isNotEmpty() && $deciding->count() <= 3) open @endif>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-3 text-sm">
+                <span class="min-w-0">
+                    <span class="block font-semibold text-zinc-900">{{ $ended ? __('Planning for :year has ended', ['year' => $year]) : __('Planning for :year is open', ['year' => $year]) }} · {{ __(':n of :total directorates finalized', ['n' => $doneN, 'total' => $totalN]) }}</span>
+                    <span class="block text-zinc-600">{{ __('Each directorate finalizes its own plan once everything in it has been decided; no new activities can be added to it afterwards.') }}</span>
+                </span>
+                <span class="shrink-0 text-xs font-medium text-indigo-700 group-open:hidden">{{ __('Show directorates') }}</span>
+                <span class="hidden shrink-0 text-xs font-medium text-indigo-700 group-open:inline">{{ __('Hide') }}</span>
+            </summary>
             <ul class="divide-y divide-zinc-100">
                 @foreach($state['units'] as $u)
                     @php $mine = $deciding->contains($u['id']); @endphp
@@ -110,7 +115,7 @@ new class extends Component {
                     </li>
                 @endforeach
             </ul>
-        </div>
+        </details>
 
         @if($deciding->isNotEmpty())
             <x-note-dialog name="reopen-planning" property="remark" action="reopen" :required="true"

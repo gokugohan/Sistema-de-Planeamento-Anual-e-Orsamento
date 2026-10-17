@@ -889,7 +889,6 @@
     ":n spending figure to verify|:n spending figures to verify": ":n spending figure to verify|:n spending figures to verify",
     ":n activity returned for correction|:n activities returned for correction": ":n activity returned for correction|:n activities returned for correction",
     ":n figure verified.|:n figures verified.": "{1} :n figure verified.|[2,*] :n figures verified.",
-    "Annual Action Plan System": "Sistema de Planeamento de Ação Anual (PAA)",
     ":n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.": "{1} :n spending figure is waiting for verification and is not counted yet.|[2,*] :n spending figures are waiting for verification and are not counted yet.",
     "Verify spending and progress against targets": "Verify spending and progress against targets",
     ":n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month": "{1} :n approved activity has no spending reported for :month|[2,*] :n approved activities have no spending reported for :month",
@@ -910,5 +909,15 @@
     ":n activity waiting for your decision|:n activities waiting for your decision": "{1} :n activity waiting for your decision|[2,*] :n activities waiting for your decision",
     ":n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed": "{1} :n activity waiting for its budget to be confirmed|[2,*] :n activities waiting for their budget to be confirmed",
     ":n activity still waiting for a decision|:n activities still waiting for a decision": "{1} :n activity still waiting for a decision|[2,*] :n activities still waiting for a decision",
-    "Replaced in :n list.|Replaced in :n lists.": "{1} Replaced in :n list.|[2,*] Replaced in :n lists."
+    "Replaced in :n list.|Replaced in :n lists.": "{1} Replaced in :n list.|[2,*] Replaced in :n lists.",
+    "Annual Action Plan": "Annual Action Plan (PAA)",
+    "The Annual Action Plan, from the first activity to the report of the year": "The Annual Action Plan, from the first activity to the report of the year",
+    "Write the plan": "Write the plan",
+    "Units write their activities, indicators and budget lines": "Units write their activities, indicators and budget lines",
+    "Prepared, certified and approved by the head of each directorate": "Prepared, certified and approved by the head of each directorate",
+    "Finalize": "Finalize",
+    "Each directorate finalizes its approved plan": "Each directorate finalizes its approved plan",
+    "Fund": "Fund",
+    "Report": "Report",
+    "Report month by month and verify the results against the targets": "Report month by month and verify the results against the targets"
 }

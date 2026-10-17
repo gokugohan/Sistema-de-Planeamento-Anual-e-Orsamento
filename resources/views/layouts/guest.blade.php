@@ -6,7 +6,7 @@
     // Never show the framework's default name ("Laravel") as the product name.
     $product = SystemSetting::getLocalized('app_name', '');
     if ($product === '' || strcasecmp($product, 'Laravel') === 0) {
-        $product = __('Annual Action Plan System');
+        $product = __('Annual Action Plan');
     }
     $tagline = SystemSetting::getLocalized('app_tagline', '');
     $description = SystemSetting::getLocalized('app_description', '');
@@ -19,11 +19,11 @@
 
     // The cycle the application supports, in the order users live it.
     $steps = [
-        [__('Plan'), __('Units plan activities, indicators and budget lines')],
-        [__('Review & approve'), __('Internal review up to ministerial approval')],
-        [__('Budget review'), __('Submit the approved plan to the Budget Review Committee')],
-        [__('Distribute'), __('Register the envelope and share it over the approved plan')],
-        [__('Monitor'), __('Verify spending and progress against targets')],
+        [__('Write the plan'), __('Units write their activities, indicators and budget lines')],
+        [__('Review & approve'), __('Prepared, certified and approved by the head of each directorate')],
+        [__('Finalize'), __('Each directorate finalizes its approved plan')],
+        [__('Fund'), __('Register the envelope and share it over the approved plan')],
+        [__('Report'), __('Report month by month and verify the results against the targets')],
     ];
 @endphp
 <!DOCTYPE html>
@@ -74,7 +74,7 @@
                 <div class="flex-1 flex flex-col justify-center py-14 max-w-xl">
                     <p class="text-sm font-medium text-indigo-300">{{ $product }}</p>
                     <h2 class="mt-3 text-3xl xl:text-4xl font-bold text-white leading-tight tracking-tight">
-                        {{ $tagline !== '' ? $tagline : __('One place for the annual plan and its budget') }}
+                        {{ $tagline !== '' ? $tagline : __('The Annual Action Plan, from the first activity to the report of the year') }}
                     </h2>
                     @if($description !== '')
                         <p class="mt-4 text-[15px] leading-relaxed text-zinc-400">{{ $description }}</p>

@@ -267,7 +267,7 @@ new class extends Component {
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <x-ui.kpi :label="__('Activities')" :value="number_format($tabCounts['all'])" :sub="__(':n in draft', ['n' => $tabCounts['draft']])" tone="zinc" />
         <x-ui.kpi :label="__('In review')" :value="number_format($tabCounts['review'])" :sub="__('Waiting for a decision')" tone="amber" />
-        <x-ui.kpi :label="__('Approved')" :value="number_format($tabCounts['approved'])" :sub="\App\Support\Institution::label('Part of the plan for the CRO')" tone="emerald" />
+        <x-ui.kpi :label="__('Approved')" :value="number_format($tabCounts['approved'])" :sub="__('Part of the approved plan')" tone="emerald" />
         <x-ui.kpi :label="__('Planned budget')" :value="'$ ' . number_format($totalPlanned)" :sub="__('Approved: $ :n', ['n' => number_format($totalApproved)])" tone="indigo" />
     </div>
 

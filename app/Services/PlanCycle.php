@@ -46,7 +46,7 @@ class PlanCycle
         $reporting = $lite ? null : $this->reporting($year, $scope);
 
         $steps = $this->steps([
-            'planWindow' => $planWindow, 'ended' => $state['ended'], 'pending' => $pending, 'drafts' => $drafts, 'total' => $total, 'approved' => $approved,
+            'planWindow' => $planWindow, 'ended' => $state['ended'], 'planning' => $state, 'pending' => $pending, 'drafts' => $drafts, 'total' => $total, 'approved' => $approved,
             'envelopeStatus' => $envelope?->status, 'distributed' => $approvedPlan > 0,
         ]);
 

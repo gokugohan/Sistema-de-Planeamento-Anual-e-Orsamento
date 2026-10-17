@@ -232,14 +232,14 @@ new class extends Component {
                                 <input type="radio" wire:model.live="institutionLevel" value="ministry" class="mt-1">
                                 <span>
                                     <span class="font-medium text-zinc-900">{{ __('A ministry') }}</span>
-                                    <span class="block text-xs text-zinc-500">{{ __('The Minister gives the final approval and the plan is submitted to the CRO.') }}</span>
+                                    <span class="block text-xs text-zinc-500">{{ __('The envelope is the State Budget allocation, registered with the reference of the budget law.') }}</span>
                                 </span>
                             </label>
                             <label class="flex items-start gap-3 text-sm text-zinc-700">
                                 <input type="radio" wire:model.live="institutionLevel" value="subordinate" class="mt-1">
                                 <span>
                                     <span class="font-medium text-zinc-900">{{ __('A directorate or gabinete inside a ministry') }}</span>
-                                    <span class="block text-xs text-zinc-500">{{ __('The Director or Chefe do Gabinete gives the final approval and the plan goes to the ministry.') }}</span>
+                                    <span class="block text-xs text-zinc-500">{{ __('The envelope is an allocation from the ministry, and the plan is sent to the ministry.') }}</span>
                                 </span>
                             </label>
                             @if($institutionLevel === 'subordinate')

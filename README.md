@@ -1,12 +1,14 @@
-# Sistema de Planeamento de Ação Anual (PAA)
+# Plano de Ação Anual (PAA)
 
-A web application for public institutions to **plan their annual activities, build the budget proposal behind them, get the plan approved, receive and distribute the budget, and report on it month by month and quarter by quarter**.
+A web application for public institutions to **prepare, approve and carry out their Annual Action Plan** (*Plano de Ação Anual*, PAA). The plan is the centre: each unit's activities, with their indicators, the actions and months that deliver them, and the budget that pays for them, are approved directorate by directorate; the budget received is then distributed over the approved plan, and the plan is reported on month by month and quarter by quarter.
 
 It is designed around the Timor-Leste State Budget (OGE) process, but it is **not tied to any one institution**. Your ministry, secretariat or agency is configured in the app (name, organisational structure, programmes). The Ministry of Transport and Communications (MTC) appears in this repository only as an **optional sample dataset** used for demos, training and development. See [Sample data](#sample-data-mtc).
 
 Built with Laravel 12, Livewire 3 (Volt), Tailwind CSS 3, Alpine.js and MySQL. Interface languages: English, Português, Tetun.
 
 ---
+
+**Documentation.** The complete user manual, for every role and with a step-by-step tutorial for a whole year, is in [docs/MANUAL.md](docs/MANUAL.md). The presentation deck is `docs/Sistema-PAA-apresentacao-v5.pptx` (older versions are kept beside it).
 
 ## Contents
 

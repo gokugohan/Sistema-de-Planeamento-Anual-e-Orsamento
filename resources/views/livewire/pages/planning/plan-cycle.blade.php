@@ -80,7 +80,10 @@ new class extends Component {
                     <p class="font-medium text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</p>
                     @if($p['at'])<p class="mt-1 text-xs text-zinc-500">{{ $p['by'] }} · {{ $p['at']->timezone('Asia/Dili')->format('d/m/Y H:i') }}@if($p['remark']) — {{ $p['remark'] }}@endif</p>@endif
                 @else
-                    <p class="text-zinc-700">{{ __('Planning is open. It ends when the final approver finalizes the plan.') }}</p>
+                    <p class="text-zinc-700">{{ __('Planning is open. Each directorate ends its own planning when its head finalizes the plan.') }}</p>
+                    @if(count($p['units']) > 0)
+                        <p class="mt-1 text-xs text-zinc-500">{{ __(':n of :total directorates finalized', ['n' => count(array_filter($p['units'], fn ($u) => $u['closed'])), 'total' => count($p['units'])]) }}</p>
+                    @endif
                 @endif
             </div>
             @if($canSetWindows)

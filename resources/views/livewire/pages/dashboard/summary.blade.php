@@ -114,9 +114,10 @@ new class extends Component {
         $envelope = $env ? (float) $env->total_amount : null;
         $envApproved = $env && in_array($env->status, [FiscalEnvelope::STATUS_APPROVED, FiscalEnvelope::STATUS_CLOSED], true);
         $planCycle = app(\App\Services\PlanCycle::class);
-        $ended = app(\App\Services\PlanningWindow::class)->endedBy($year);
+        $planning = app(\App\Services\PlanningWindow::class)->progress($year);
+        $ended = $planning['ended'];
         $steps = $planCycle->steps([
-            'planWindow' => $planCycle->windowState($year, 'plan', 1), 'ended' => $ended, 'total' => $totalActivities, 'approved' => $byStatus[Activity::STATUS_APPROVED] ?? 0,
+            'planWindow' => $planCycle->windowState($year, 'plan', 1), 'ended' => $ended, 'planning' => $planning, 'total' => $totalActivities, 'approved' => $byStatus[Activity::STATUS_APPROVED] ?? 0,
             'pending' => ($byStatus[Activity::STATUS_SUBMITTED] ?? 0) + ($byStatus[Activity::STATUS_REVIEWED] ?? 0) + ($byStatus[Activity::STATUS_VALIDATED] ?? 0) + ($byStatus[Activity::STATUS_WAITING_APPROVAL] ?? 0),
             'drafts' => ($byStatus[Activity::STATUS_DRAFT] ?? 0) + ($byStatus[Activity::STATUS_REJECTED] ?? 0),
             'envelopeStatus' => $env?->status, 'distributed' => $allocated > 0,

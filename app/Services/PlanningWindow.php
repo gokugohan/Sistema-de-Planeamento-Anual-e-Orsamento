@@ -108,6 +108,18 @@ class PlanningWindow
         return $roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null;
     }
 
+    /** The light version of state() for places that only need how far the directorates are: the verdict and whether each has finalized. @return array{ended: ?string, units: array<int, array{closed: bool}>} */
+    public function progress(int $year): array
+    {
+        $closed = $this->closed($year);
+        $roots = $this->plannedRoots($year);
+
+        return [
+            'ended' => $this->envelopeVerdict($this->envelopeStatus($year)) ?? ($roots->isNotEmpty() && $roots->every(fn ($id) => $closed->has($id)) ? 'Finalized' : null),
+            'units' => $roots->map(fn ($id) => ['closed' => $closed->has($id)])->all(),
+        ];
+    }
+
     /** The same, for the plan of one unit (through its directorate): the envelope's say, then the directorate's own. */
     public function unitEndedBy(int $year, int $unitId): ?string
     {
