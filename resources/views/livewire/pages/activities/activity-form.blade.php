@@ -204,13 +204,21 @@ new class extends Component {
         return $prefix.str_pad((string) $n, 3, '0', STR_PAD_LEFT);
     }
 
+    /** Why the plan cannot be saved now: the submission window is closed (a revision of an approved activity is not held back by it). */
+    private function windowClosedReason(): ?string
+    {
+        $windows = app(\App\Services\ReportingWindows::class);
+
+        return $this->activity ? $windows->planClosedReasonFor(auth()->user(), $this->activity) : $windows->planClosedReason(auth()->user(), $this->year);
+    }
+
     public function save()
     {
         // First of all: a year whose plan has ended takes no new activity, whatever was typed.
         abort_if(! $this->activity && ! \App\Support\FiscalYear::planningOpen($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null), 422);
 
         // and outside the submission window of the annual plan nobody but an administrator creates, edits or submits
-        if ($reason = app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year)) {
+        if ($reason = $this->windowClosedReason()) {
             $this->dispatch('toast', message: $reason, type: 'error');
 
             return;
@@ -369,7 +377,7 @@ new class extends Component {
             'locations' => config('paa.locations'),
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
             'endedBy' => $this->activity ? null : \App\Support\FiscalYear::planningEndedBy($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null),
-            'windowReason' => app(\App\Services\ReportingWindows::class)->planClosedReason(auth()->user(), $this->year),
+            'windowReason' => $this->windowClosedReason(),
             'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : \App\Support\FiscalYear::nextPlanningYear(),
         ];
     }

@@ -136,7 +136,7 @@ class ActivityWorkflow
             case Activity::STATUS_DRAFT:
             case Activity::STATUS_REJECTED:
                 // outside the submission window of the annual plan only an administrator submits
-                if (! $admin && app(ReportingWindows::class)->planClosedReason($user, (int) $activity->fiscal_year)) {
+                if (! $admin && app(ReportingWindows::class)->planClosedReasonFor($user, $activity)) {
                     return null;
                 }
                 // a list of preparers decides who submits; without one, whoever may submit

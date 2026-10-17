@@ -55,4 +55,13 @@ class ReportingWindows
     {
         return $this->closedReason($user, $year, self::PLAN, 1);
     }
+
+    /**
+     * The same for one activity. A revision of an approved activity (version above 0) is not new planning, so it is not
+     * held back by the submission window of the annual plan: changes after approval are exactly what comes later.
+     */
+    public function planClosedReasonFor(?User $user, \App\Models\Activity $activity): ?string
+    {
+        return (int) $activity->version > 0 ? null : $this->planClosedReason($user, (int) $activity->fiscal_year);
+    }
 }

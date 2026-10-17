@@ -100,4 +100,23 @@ class PlanSubmissionWindowTest extends TestCase
         $w = ReportingWindow::where('period_type', 'plan')->firstOrFail();
         $this->assertSame(1, (int) $w->period);
     }
+
+    public function test_a_revision_is_not_held_back_by_the_closed_plan_window(): void
+    {
+        $this->window('2026-08-01', '2026-08-31'); // closed
+        $this->draft->forceFill(['version' => 1, 'revision_reason' => 'Correct the target'])->save(); // an approved activity being revised
+
+        $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()), 'the revision can be submitted');
+
+        $this->actingAs($this->planner);
+        Volt::test('pages.activities.activity-form', ['activity' => $this->draft->fresh()])
+            ->set('description', 'Revised after the window closed')->call('save')->assertNotDispatched('toast');
+    }
+
+    public function test_a_new_activity_is_still_held_back_by_the_closed_plan_window(): void
+    {
+        $this->window('2026-08-01', '2026-08-31');
+
+        $this->assertNull(app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()));
+    }
 }
