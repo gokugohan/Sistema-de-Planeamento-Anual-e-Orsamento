@@ -43,6 +43,9 @@ class BackupDatabase extends Command
         ]);
 
         $this->info(sprintf('Backup written: %s (%s KB). Removed %d old backup(s).', $r['path'], number_format($r['bytes'] / 1024, 1), $r['pruned']));
+        if ($r['copy'] ?? null) {
+            $this->info('Copied to: '.$r['copy']);
+        }
 
         return self::SUCCESS;
     }

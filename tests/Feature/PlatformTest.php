@@ -54,6 +54,27 @@ class PlatformTest extends TestCase
         };
     }
 
+    public function test_a_backup_is_also_copied_to_the_second_place_when_one_is_set(): void
+    {
+        $copyDir = $this->backupDir.'_copy';
+        config(['backup.copy_to' => $copyDir]);
+
+        $r = (new DatabaseBackup($this->goodDump()))->run();
+
+        $this->assertNotNull($r['copy']);
+        $this->assertFileExists($r['copy']);
+        $this->assertSame(filesize($r['path']), filesize($r['copy']));
+        @unlink($r['copy']);
+        @rmdir($copyDir);
+    }
+
+    public function test_without_a_second_place_no_copy_is_made(): void
+    {
+        config(['backup.copy_to' => null]);
+
+        $this->assertNull((new DatabaseBackup($this->goodDump()))->run()['copy']);
+    }
+
     // ── security headers ──
 
     public function test_responses_carry_the_security_headers(): void

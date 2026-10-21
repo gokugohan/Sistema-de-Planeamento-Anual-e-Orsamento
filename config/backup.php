@@ -9,6 +9,10 @@ return [
     'enabled' => env('BACKUP_ENABLED', true),
 
     'path' => env('BACKUP_PATH', storage_path('app/backups')),
+
+    // A second place each verified backup is copied to: another disk, a mounted network share or synced folder.
+    // Empty (the default) means no copy is made; set it so that a backup does not live only on the application server.
+    'copy_to' => env('BACKUP_COPY_PATH'),
     'prefix' => 'paa_',
 
     // Backups older than this are deleted after each successful run.

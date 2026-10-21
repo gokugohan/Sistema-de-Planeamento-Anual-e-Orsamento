@@ -22,7 +22,7 @@ class DatabaseBackup
 
     public function __construct(private ?Closure $dumper = null) {}
 
-    /** @return array{path: string, bytes: int, pruned: int} */
+    /** @return array{path: string, bytes: int, pruned: int, copy: ?string} */
     public function run(): array
     {
         $dir = config('backup.path');
@@ -54,15 +54,41 @@ class DatabaseBackup
 
         rename($partial, $final);
 
-        return ['path' => $final, 'bytes' => filesize($final), 'pruned' => $this->prune()];
+        return ['path' => $final, 'bytes' => filesize($final), 'pruned' => $this->prune(), 'copy' => $this->copyAway($final)];
+    }
+
+    /** Copy the verified backup to the second place, if one is configured, and check the copy is whole. */
+    private function copyAway(string $file): ?string
+    {
+        $dir = config('backup.copy_to');
+        if (blank($dir)) {
+            return null;
+        }
+        if (! is_dir($dir) && ! @mkdir($dir, 0775, true) && ! is_dir($dir)) {
+            throw new RuntimeException("Cannot create the backup copy directory: {$dir}");
+        }
+        $target = rtrim($dir, '\/').DIRECTORY_SEPARATOR.basename($file);
+        if (! @copy($file, $target) || filesize($target) !== filesize($file)) {
+            @unlink($target);
+
+            throw new RuntimeException("The backup could not be copied to {$dir}; the backup on this server is kept.");
+        }
+        $this->pruneIn($dir);
+
+        return $target;
     }
 
     /** Delete backups older than the retention period; returns how many were removed. */
     public function prune(): int
     {
+        return $this->pruneIn(config('backup.path'));
+    }
+
+    private function pruneIn(string $dir): int
+    {
         $limit = time() - config('backup.keep_days') * 86400;
         $removed = 0;
-        foreach (glob(config('backup.path').DIRECTORY_SEPARATOR.config('backup.prefix').'*.sql.gz') ?: [] as $file) {
+        foreach (glob(rtrim($dir, '\/').DIRECTORY_SEPARATOR.config('backup.prefix').'*.sql.gz') ?: [] as $file) {
             if (filemtime($file) < $limit && @unlink($file)) {
                 $removed++;
             }
