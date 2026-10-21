@@ -2227,5 +2227,19 @@
     "Directly under the programme": "Diretamente sob o programa",
     "Open activities": "Abrir atividades",
     "Open all activities of this programme": "Abrir todas as atividades deste programa",
-    "Paid (verified)": "Pago (verificado)"
+    "Paid (verified)": "Pago (verificado)",
+    ":n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified": ":n atividade preparada, a aguardar certificação|:n atividades preparadas, a aguardar certificação",
+    ":n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval": ":n atividade certificada, a aguardar a aprovação final|:n atividades certificadas, a aguardar a aprovação final",
+    ":n directorates have decided every activity for :year and are ready to finalize their plan: :units.": ":n direções decidiram todas as atividades de :year e estão prontas para finalizar o plano: :units.",
+    "Waiting for you": "À sua espera",
+    "What needs a decision or a check from you for :year. Your own drafts and reporting due are in My work.": "O que precisa de uma decisão ou verificação sua em :year. Os seus rascunhos e relatórios em falta estão em O meu trabalho.",
+    "To decide": "Para decidir",
+    "Activities waiting for you: first certified by the unit, then given the final approval.": "Atividades à sua espera: primeiro certificadas pela unidade, depois com a aprovação final.",
+    "Decide": "Decidir",
+    "To verify": "Para verificar",
+    "Figures reported by others. You cannot verify your own.": "Valores comunicados por outros. Não pode verificar os seus.",
+    "Ready to finalize": "Prontas para finalizar",
+    "Everything is decided. Finalizing ends planning for that directorate: no new activities after it.": "Tudo está decidido. Finalizar termina o planeamento dessa direção: sem novas atividades depois.",
+    "Nothing is waiting for a decision or a check from you right now.": "Nada espera agora por uma decisão ou verificação sua.",
+    "Activities to decide, figures to verify and plans ready to finalize": "Atividades para decidir, valores para verificar e planos prontos a finalizar"
 }

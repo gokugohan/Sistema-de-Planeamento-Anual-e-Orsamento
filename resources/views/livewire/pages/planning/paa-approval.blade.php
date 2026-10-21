@@ -35,6 +35,7 @@ new class extends Component {
         abort_unless($this->mayApprove(auth()->user()), 403);
     }
 
+    #[\Livewire\Attributes\Url(as: 'queue')]
     public string $queue = 'review';  // review | approval | approved | returned | all
     public $unit = '';                // top-level unit filter ('' = all)
 

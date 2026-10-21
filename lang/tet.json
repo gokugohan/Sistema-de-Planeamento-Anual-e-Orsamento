@@ -2227,5 +2227,19 @@
     "Directly under the programme": "Diretamente iha okos programa",
     "Open activities": "Loke atividade",
     "Open all activities of this programme": "Loke atividade hotu husi programa ne'e",
-    "Paid (verified)": "Selu (verifika ona)"
+    "Paid (verified)": "Selu (verifika ona)",
+    ":n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified": ":n atividade prepara ona, hein sertifikasaun|:n atividade prepara ona, hein sertifikasaun",
+    ":n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval": ":n atividade sertifika ona, hein aprovasaun finál|:n atividade sertifika ona, hein aprovasaun finál",
+    ":n directorates have decided every activity for :year and are ready to finalize their plan: :units.": ":n direksaun desidi ona atividade hotu ba :year no prontu atu finaliza planu: :units.",
+    "Waiting for you": "Hein ita",
+    "What needs a decision or a check from you for :year. Your own drafts and reporting due are in My work.": "Buat ne'ebé presiza desizaun ka verifikasaun husi ita ba :year. Ita-nia rascunhu no relatóriu ne'ebé tarde iha Ha'u-nia servisu.",
+    "To decide": "Atu deside",
+    "Activities waiting for you: first certified by the unit, then given the final approval.": "Atividade hein ita: uluk sertifika husi unidade, depois fó aprovasaun finál.",
+    "Decide": "Deside",
+    "To verify": "Atu verifika",
+    "Figures reported by others. You cannot verify your own.": "Valór relata husi ema seluk. Ita la bele verifika ita-nia an.",
+    "Ready to finalize": "Prontu atu finaliza",
+    "Everything is decided. Finalizing ends planning for that directorate: no new activities after it.": "Buat hotu desidi ona. Finaliza termina planeamentu direksaun ne'e nian: la iha atividade foun depois.",
+    "Nothing is waiting for a decision or a check from you right now.": "Agora la iha buat ida hein desizaun ka verifikasaun husi ita.",
+    "Activities to decide, figures to verify and plans ready to finalize": "Atividade atu deside, valór atu verifika no planu prontu atu finaliza"
 }

@@ -96,7 +96,7 @@ Visibility follows the unit tree. **Department users** (Director, Technical offi
 - **One visual language.** All screens use the same design system (sentence-case headings, indigo primary actions, the shared card, table, badge and KPI components); the legacy "black button" style is gone.
 - Keyboard and screen-reader support: skip links, labelled landmarks, the current page marked in the menu and breadcrumb, visible focus.
 
-**The menu follows the annual cycle:** *Plan* (cycle, activities), *Approvals*, *Execute* (spending and progress), *Insights* (performance, reports) and *Administration*. **Approvals** is one inbox, a plain server-rendered page (`App\Services\ApprovalInbox`): activities to decide, execution figures to verify (never your own), the plan ready to be finalized, and your own drafts and returned work, each with a count and a link, plus the places where approving and verifying happen. The dashboard's "Needs your attention" is the same list.
+**The menu follows the annual cycle:** *Plan* (cycle, activities), *Approvals*, *Execute* (spending and progress), *Insights* (performance, reports) and *Administration*. **Approvals → Waiting for you** is a plain server-rendered page (`App\Services\ApprovalInbox`) with only decisions and checks: activities to decide (each line opens its own queue), execution figures to verify (never your own), and the directorates ready to be finalized as one line. Drafts and reporting due are in *My work*. The dashboard's "Needs your attention" is the same list.
 
 ### Audit trail
 

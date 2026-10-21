@@ -52,8 +52,8 @@ return [
             'label' => 'Approvals',
             'roles' => ['Admin', 'Minister', 'Director', 'Planning', 'Finance'],
             'items' => [
-                ['label' => 'Approvals', 'route' => 'approvals.index', 'match' => ['approvals.*', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
-                    'hint' => 'Everything waiting for you: activities to decide, figures to verify, the plan to finalize'],
+                ['label' => 'Waiting for you', 'route' => 'approvals.index', 'match' => ['approvals.index', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
+                    'hint' => 'Activities to decide, figures to verify and plans ready to finalize'],
                 ['label' => 'Budget review', 'route' => 'approvals.budget', 'icon' => 'banknote', 'permission' => 'confirm_budget',
                     'hint' => 'Confirm the budget lines of submitted activities'],
                 ['label' => 'Approval lists', 'route' => 'approvals.lists', 'icon' => 'users', 'roles' => ['Admin', 'Director'],

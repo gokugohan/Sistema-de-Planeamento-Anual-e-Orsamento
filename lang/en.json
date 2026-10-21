@@ -1982,5 +1982,19 @@
     "Directly under the programme": "Directly under the programme",
     "Open activities": "Open activities",
     "Open all activities of this programme": "Open all activities of this programme",
-    "Paid (verified)": "Paid (verified)"
+    "Paid (verified)": "Paid (verified)",
+    ":n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified": ":n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified",
+    ":n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval": ":n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval",
+    ":n directorates have decided every activity for :year and are ready to finalize their plan: :units.": ":n directorates have decided every activity for :year and are ready to finalize their plan: :units.",
+    "Waiting for you": "Waiting for you",
+    "What needs a decision or a check from you for :year. Your own drafts and reporting due are in My work.": "What needs a decision or a check from you for :year. Your own drafts and reporting due are in My work.",
+    "To decide": "To decide",
+    "Activities waiting for you: first certified by the unit, then given the final approval.": "Activities waiting for you: first certified by the unit, then given the final approval.",
+    "Decide": "Decide",
+    "To verify": "To verify",
+    "Figures reported by others. You cannot verify your own.": "Figures reported by others. You cannot verify your own.",
+    "Ready to finalize": "Ready to finalize",
+    "Everything is decided. Finalizing ends planning for that directorate: no new activities after it.": "Everything is decided. Finalizing ends planning for that directorate: no new activities after it.",
+    "Nothing is waiting for a decision or a check from you right now.": "Nothing is waiting for a decision or a check from you right now.",
+    "Activities to decide, figures to verify and plans ready to finalize": "Activities to decide, figures to verify and plans ready to finalize"
 }

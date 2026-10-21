@@ -78,12 +78,13 @@ class ReportingDueInboxTest extends TestCase
         $this->assertTrue($this->reportItems($viewer)->isEmpty());
     }
 
-    public function test_the_approvals_page_shows_the_group(): void
+    public function test_the_waiting_for_you_page_leaves_reporting_due_to_my_work(): void
     {
         // the page shows the running year, and only the month that has just ended can be missing
         $unitIds = Directorate::find($this->director->directorate_id)->getSelfAndDescendantIds();
         BudgetExecution::whereIn('line_item_id', LineItem::whereIn('activity_id', Activity::whereIn('directorate_id', $unitIds)->select('id'))->select('id'))->where('month', 9)->delete();
 
-        $this->actingAs($this->director)->withSession(['fiscal_year' => 2026])->get(route('approvals.index'))->assertOk()->assertSee('Reporting due');
+        $this->assertTrue($this->reportItems($this->director)->isNotEmpty(), 'the item still exists for the dashboard and My work');
+        $this->actingAs($this->director)->withSession(['fiscal_year' => 2026])->get(route('approvals.index'))->assertOk()->assertDontSee('Reporting due');
     }
 }

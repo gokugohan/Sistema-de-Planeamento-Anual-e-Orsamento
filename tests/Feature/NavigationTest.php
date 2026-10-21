@@ -46,15 +46,15 @@ class NavigationTest extends TestCase
         $viewer = $this->as('Viewer');
 
         $this->assertContains('Audit Log', $this->labels($admin));
-        $this->assertContains('Approvals', $this->labels($admin));
+        $this->assertContains('Waiting for you', $this->labels($admin));
 
-        $this->assertContains('Approvals', $this->labels($minister));
+        $this->assertContains('Waiting for you', $this->labels($minister));
         $this->assertNotContains('System Users', $this->labels($minister));
         $this->assertNotContains('Structure', $this->labels($minister));
 
-        $this->assertContains('Approvals', $this->labels($planner), 'a planner sees what was returned to them');
-        $this->assertNotContains('Approvals', $this->labels($viewer));
-        $this->assertNotContains('PAA Tech Review', $this->labels($admin), 'it is reached from Approvals now, not from the menu');
+        $this->assertContains('Waiting for you', $this->labels($planner), 'a planner sees what was returned to them');
+        $this->assertNotContains('Waiting for you', $this->labels($viewer));
+        $this->assertNotContains('PAA Tech Review', $this->labels($admin), 'it is reached from Waiting for you now, not from the menu');
 
         foreach ([$planner, $viewer] as $u) {
             $this->assertNotContains('Audit Log', $this->labels($u));
@@ -155,7 +155,7 @@ class NavigationTest extends TestCase
             'quarter' => 1, 'priority' => 'Alta', 'planned_start' => '2027-01-01', 'planned_end' => '2027-03-31', 'status' => Activity::STATUS_SUBMITTED]);
         $this->as('Admin');
 
-        $this->get(route('dashboard'))->assertSee('1 activity waiting for technical review');
+        $this->get(route('dashboard'))->assertSee('1 activity prepared, waiting to be certified');
     }
 
     public function test_every_menu_entry_also_opens_with_data_in_the_system(): void

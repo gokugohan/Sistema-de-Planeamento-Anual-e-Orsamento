@@ -72,7 +72,7 @@ The left menu is grouped by what you do. Each person sees only the groups and en
 |---|---|
 | **Overview** | *Dashboard* (those who see every plan) or *My work* (everyone else), notifications, profile. |
 | **Plan** | *Units* (the plan of any unit you may see), **Programmes** (the programmes and sub-programmes with their activities and amounts), *Plan cycle*, and the activities themselves (*All activities* or *My plan*). |
-| **Approvals** | Everything waiting for your decision; budget review, approval lists and interim approvers where your role has them. |
+| **Approvals** | *Waiting for you* (what needs your decision or check), and, where your role has them, budget review, approval lists and interim approvers. |
 | **Execute** | Report what was spent and achieved; compile the quarter. |
 | **Insights** | Performance and reports. |
 | **Administration** (administrators) | *System Users*, *Structure* (units, programmes, sub-programmes, economic categories) and *Funding sources*: who and what the plan is made of. |
@@ -304,19 +304,15 @@ The three groups are **Prepare** (the unit), **Certify** (verify and validate) a
 
 **Who gives the final approval.** The head of the top-level unit approves the plans of their own directorate and the units below it. The Minister does *not* approve plans; the Minister sees every plan and every report. Where a unit has an **approval list** (Part 7), the people named on it do the step instead of the default.
 
-### 6.1 The Approvals inbox
+### 6.1 Waiting for you
 
-![Approvals](manual/img/approvals.png)
+**Approvals → Waiting for you** is one page with only what needs a decision or a check from you. It has three blocks, each line with a count and one button:
 
-**Approvals** is one page with everything waiting for you, each with a count and a link:
+- **To decide**: activities prepared and waiting to be certified, and activities certified and waiting for the final approval. Each line opens *Activities to decide* already on that queue, so you land on the list the count refers to;
+- **To verify**: spending figures and progress reports reported by others (never your own);
+- **Ready to finalize**: the directorates you head whose activities are all decided, as one line.
 
-- activities to decide (certify or approve);
-- **execution figures to verify** (never your own);
-- the **plan ready to be finalized** for the directorates you head;
-- budget steps;
-- your own drafts and returned work.
-
-The dashboard's *Needs your attention* is the same list.
+Your own drafts, returned work and reporting due are not here: they are in **My work**. The dashboard's *Needs your attention* lists all of them together.
 
 ### 6.2 Certify or approve one activity
 

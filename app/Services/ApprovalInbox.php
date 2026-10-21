@@ -44,15 +44,12 @@ class ApprovalInbox
         }
         $activities = fn () => Activity::query()->where('fiscal_year', $year)->when($scope !== null, fn ($q) => $q->whereIn('directorate_id', $scope));
 
-        // ── activities to decide
-        if ($approver) {
+        // ── activities to decide: first to be certified, then to be given the final approval; each opens its own queue
+        if ($approver || $user->isDirector()) {
             $review = $activities()->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED])->count();
-            $add('decide', $review, trans_choice(':n activity waiting for technical review|:n activities waiting for technical review', $review, ['n' => $review]), route('planning.paa-approval'), 'amber');
+            $add('decide', $review, trans_choice(':n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified', $review, ['n' => $review]), route('planning.paa-approval', ['queue' => 'review']), 'amber');
             $approval = $activities()->whereIn('status', [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])->count();
-            $add('decide', $approval, trans_choice(':n activity waiting for approval|:n activities waiting for approval', $approval, ['n' => $approval]), route('planning.paa-approval'), 'indigo');
-        } elseif ($user->isDirector()) {
-            $own = $activities()->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])->count();
-            $add('decide', $own, trans_choice(':n activity in your units waiting for a decision|:n activities in your units waiting for a decision', $own, ['n' => $own]), route('activities.index', ['tab' => 'review']), 'amber');
+            $add('decide', $approval, trans_choice(':n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval', $approval, ['n' => $approval]), route('planning.paa-approval', ['queue' => 'approval']), 'indigo');
         }
 
         // ── finance: submitted activities whose budget is waiting for confirmation (where the institution asks for it)
@@ -94,11 +91,19 @@ class ApprovalInbox
         // ── the plan: each directorate that is ready to be finalized, for whoever gives its final approval
         $window = app(PlanningWindow::class);
         $units = $window->state($year)['units'];
+        $ready = [];
         foreach ($window->decidesFor($user, $year) as $rootId) {
             $u = collect($units)->firstWhere('id', $rootId);
             if ($u && ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0) {
-                $add('plan', 1, __('Every activity of :unit for :year has been decided: the plan is ready to be finalized.', ['unit' => $u['code'], 'year' => $year]), route('activities.index'), 'emerald');
+                $ready[] = $u['code'];
             }
+        }
+        if ($ready) {
+            // one line for all of them, not one per directorate
+            $add('plan', count($ready), count($ready) === 1
+                ? __('Every activity of :unit for :year has been decided: the plan is ready to be finalized.', ['unit' => $ready[0], 'year' => $year])
+                : __(':n directorates have decided every activity for :year and are ready to finalize their plan: :units.', ['n' => count($ready), 'year' => $year, 'units' => implode(', ', $ready)]),
+                route('activities.index'), 'emerald');
         }
 
         // ── reporting due: the units' monthly duty, in the running year
