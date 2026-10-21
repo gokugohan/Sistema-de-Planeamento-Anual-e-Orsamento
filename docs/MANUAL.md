@@ -1,6 +1,6 @@
 # Plano de Ação Anual (PAA) — User Manual
 
-**The Annual Action Plan of a public body, from the first activity to the report of the year, with the budget that pays for it.**
+**The Annual Action Plan of a public body, from the first activity to the report of the year, with its calendar, its approvals and its reports.**
 Implemented by G-Kakaroto.
 
 This manual is for everyone who uses the system: the people who plan activities, the directors who certify them, the heads of directorates who approve them, the finance officers who confirm and verify figures, the administrators who set it all up, and the readers who only follow the results. Read Part 1 and Part 2 first, then the part for your role. Part 12 walks through a full year with all roles together.
@@ -59,6 +59,7 @@ The **Dashboard** shows the year in one view:
 
 - the **plan cycle tracker** (four steps: plan submission, approval, plan finalized, reporting) and which step is current;
 - key figures: what is planned, the approved plan in force, what has been executed (verified), activities approved, delivery against targets;
+- **Dates to keep in mind**: a line for each step of the calendar that concerns you (closing within two weeks, opening soon, extra time given to your unit, or closed with work left in your unit), with a link to the page where you act (Part 4.5);
 - **Needs your attention**: the same list as *Approvals*, for what you can act on;
 - charts by economic category, status and unit.
 
@@ -119,6 +120,8 @@ You do not need to memorise this, but everything in the application follows thes
 
 The *Plan cycle* page (**Plan → Plan cycle**) shows where the year stands and links to what comes next. The same tracker sits on the dashboard.
 
+Each step has its dates in the **calendar** (Part 4.5). The order matters: the plan of a directorate is **complete** when all its activities are submitted; only then are they certified and approved; and only when everything in the directorate is approved can it **finalize** its plan.
+
 ---
 
 ## 4. Setting up the institution (administrators)
@@ -173,7 +176,7 @@ Add only the structure that the law defines; the system does not invent departme
 
 ### 4.5 The calendar
 
-![The calendar](manual/img/windows.png)
+![The calendar: the year in dates, a late unit and the units given more time](manual/img/windows.png)
 
 **System → Calendar**: for the fiscal year, give the dates of
 
@@ -206,10 +209,13 @@ Part 7. Directors keep these for their own units; administrators for any.
 
 ### 4.9 Optional rules
 
-**System → Optional rules** holds rules that are **off** until your institution confirms that its own rules ask for them. Each changes only what is described here.
+**System → Optional rules** holds rules that are **off** until your institution confirms that its own rules ask for them (one, the order of the year, is **on** and can be switched off). Each changes only what is described here.
+
+![Optional rules](manual/img/optional-rules.png)
 
 | Rule | When it is on |
 |---|---|
+| **The plan must be complete before approval** (on by default) | A directorate's activities are certified and approved, and its plan finalized, only once every activity of the directorate has been submitted. Until then the decisions wait and *Waiting for you* and the approval page say which directorate still has activities to submit. Switch it off here if your institution decides activity by activity. |
 | **Every active directorate must submit** | Each active top-level unit of the year is expected to finalize a plan or to declare that it has **nothing to plan** (a nil return, with a reason). The year ends only when all of them have. |
 | **Also required before an activity is submitted** | The fields you tick (objective, person responsible, location, indicator baselines, means of verification) must be filled in before submitting. |
 | **Guidance for preparing the plan** | Free text per fiscal year, shown at the top of the activity form (for example the deadlines of the planning circular). |
@@ -409,6 +415,7 @@ On **PAA Activities** the banner shows *Planning for 2027 is open · 0 of 13 dir
 - The **year ends** when every directorate that planned has finalized. Finalizing stops **new activities** only: an approved activity can still be changed by a revision.
 - **Reopening** a directorate's plan (to allow new activities again) is for its head or an administrator, with a **reason**; both steps are recorded in the audit trail.
 - The *Approvals* inbox tells each head when their directorate is ready to be finalized.
+- **The order.** A directorate can be finalized only when nothing in it waits for a decision and, unless the institution switched the rule off, every one of its activities has been submitted. Outside the finalizing dates of the calendar only an administrator can finalize, or a directorate for which the administrator reopened the step (Part 4.5).
 
 ---
 
@@ -454,6 +461,8 @@ Once an activity has an approved version, its unit reports what it spent and ach
 ![Report execution](manual/img/report-execution.png)
 
 **Execute → Report execution** opens on a **worklist** of the approved activities you may report. Choose the **month** (indicators follow the quarter it belongs to: October to December is Q4). Each row shows where the activity stands for that month: *To report*, *Returned*, *Waiting for verification* or *Verified*, once for the executed amount and once for indicators; the filters above the list (*To report*, *Waiting for verification*, *Done*) narrow it, and the search box finds an activity by code or words. Click a row to open it.
+
+![An activity opened in Report execution](manual/img/report-execution-open.png)
 
 An opened activity shows a short checklist (1 Executed amount, 2 Indicators, 3 Narrative, with how many are verified), and **← All activities** takes you back. For each budget line enter the amount **executed** in that month. The page shows, as you type, what is left of the approved amount; **Copy the amounts of last month** starts from last month's figures and **Nothing executed this month** reports 0 for the lines that have nothing to report, so that "nothing" is reported and not forgotten; the narrative is optional and stays folded until you open it. One button at the bottom, **Send everything for verification**, sends the month's executed amount and the quarter's indicators together. The month must be within its reporting window (Part 4.5).
 
@@ -503,6 +512,8 @@ The **Dashboard** (Part 1.3) and **Insights → Reporting** show the annual perf
 **Reporting → Final plan report** is the plan of approved activities in the layout of the Ministry of Finance form (A4 landscape): programme and subprogramme bands, each activity with its indicators, baseline, target, means of verification, unit, funding source, the quarterly implementation schedule and the amount by economic category. It carries a document reference and a fingerprint so that a printed copy can be checked.
 
 Choose **Complete report** or **Summary** from the selector. **Print** to paper or **Download PDF**. The report is of the plan; it is not addressed to anyone.
+
+**A warning before you print.** If the plan is not fully approved (activities not yet submitted or waiting for a decision) or a directorate has not finalized, the application says so and asks you to confirm before printing or downloading, and the document carries a *Draft state* line with the same words. The implementation plan and the performance report do the same.
 
 ### 11.3 The implementation plan, per unit
 
@@ -632,6 +643,10 @@ Exact rules also depend on the unit tree and the approval lists; an administrato
 
 **I cannot verify this figure.** You entered it yourself; someone else must verify it.
 
+**I cannot approve: it says the plan is not complete.** Approval waits until every activity of the directorate has been submitted. Ask the unit to submit (or delete) its drafts; *Waiting for you* names the directorate and how many are left. An administrator can switch the rule off in *Optional rules*.
+
+**The calendar is closed and my unit is late.** Use the button on the message (or on the dashboard line) to ask the administrator to reopen it for your unit. They give your unit more time without reopening it for everybody.
+
 **I cannot report this month.** The calendar of the month is closed. Use the button to ask the administrator to reopen it for your unit, or ask them to report for you.
 
 **An approved activity needs a change.** Start a revision: *Revise* on the activity, with a reason. It goes through the chain again and the approved version stays in force meanwhile.
@@ -661,7 +676,10 @@ Exact rules also depend on the unit tree and the approval lists; an administrato
 | **Prepare / Certify / Approve** | The three groups of the approval chain. |
 | **Round** | One run of signatures; a return or the start of a revision starts a new round. |
 | **Interim** | Someone standing in for a director for given dates. |
+| **Calendar** | The dates of each step of the year: submitting, approving and finalizing the plan, revisions, each month and quarter of reporting (Part 4.5). |
 | **Window** | The dates between which something may be done. |
+| **Late** | A step whose dates have closed while a unit still has work left in it; the administrator can give that unit more time. |
+| **Executed amount** | The amount a budget line spent in a month, reported by the unit and counted once someone else verifies it. |
 | **Directorate** | A top-level unit (directorate, gabinete or autonomous body). |
 | **Verified** | Confirmed by someone other than the person who reported it. |
 | **MoF form** | The formal template of the Ministry of Finance used for the printed reports. |
