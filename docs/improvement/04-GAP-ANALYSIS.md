@@ -12,7 +12,7 @@
 | G-04 | P0 | **closed** | `76ededc` | |
 | G-05 | P0 | **closed** | `1a486e2` | absence of audit rows confirmed by test first |
 | G-06 | P0 | **closed** | `8963146` | final wording waits for R-FIN-01; pt/tet to review |
-| G-07 | P1 | open, **on hold** | — | R-OBL-01 to R-OBL-04 |
+| G-07 | P1 | **closed** (optional rule) | `0659f97` | built as an optional rule, **off by default**: expected directorates and nil returns; which units are obliged stays R-OBL-01 to R-OBL-04 |
 | G-08 | P1 | **closed** | `5743f92` | a separate revision window waits for R-AMD-05 |
 | G-09 | P1 | **closed** | `628f1ac` | |
 | G-10 | P1 | **closed** | `ba427d8` | default statuses wait for R-FRM-06 |
@@ -21,15 +21,15 @@
 | G-13 | P1 | **closed** (configurable) | `96bff33` | default off until R-APP-04; migration to run |
 | G-14 | P1 | **closed** | `d94f203` | a view over the audit trail; no schema change |
 | G-15 | P2 | **closed** | `f1e20db` | |
-| G-16 | P2 | open, **on hold** | — | R-FRM-04 |
-| G-17 | P2 | open, **on hold** | — | R-APP-05, R-CON-03; the report part is covered by G-04 |
-| G-18 | P2 | open | — | R-CAL-01 |
-| G-19 | P2 | open | — | R-FIN-06 |
-| G-20 | P2 | open | — | R-AMD-02 |
-| G-21 | P2 | open | — | decision on historical structure (H6) |
-| G-22 | P3 | open | — | operations: off-server backups, retention |
+| G-16 | P2 | **closed** (optional rule) | `0659f97` | built as an optional rule, **off by default**: corrective actions with person responsible, due date, closing note |
+| G-17 | P2 | **partly closed** (optional rule) | `0659f97` | baselines built as an optional rule, **off by default**; a consolidation **review decision is not built**: no rule-holder is known (R-APP-05, R-CON-03) and none is assumed |
+| G-18 | P2 | **closed** | `0659f97` | guidance text per fiscal year on the activity form; the official calendar is still set as windows (R-CAL-01) |
+| G-19 | P2 | **closed** (optional rule) | `0659f97` | built as an optional rule, **off by default**: finance officers see and verify every unit |
+| G-20 | P2 | **closed** (optional rule) | `0659f97` | built as an optional rule, **off by default**: a revision marked as needing an outside approval waits for its reference |
+| G-21 | P2 | **closed** (optional rule) | `0659f97` | snapshots record the unit path (schema 3); the report can group by it, built as an optional rule, **off by default** |
+| G-22 | P3 | **partly closed** | `b437a0d` | `BACKUP_COPY_PATH` copies every verified backup to a second place; the retention period itself is an institutional rule (R-RET-01) |
 | G-23 | P3 | **partly closed** | `094242b` | Pint passes; legacy "Waiting Approval", the `adjusted_budgets` name and static analysis remain |
-| G-24 (new) | P3 | open | — | the Simulator writes statuses directly and lets the Minister approve simulation records (01, O11) |
+| G-24 (new) | P3 | **closed** | `b5ee79d` | only directors and administrators approve or return simulation records; it still writes the status directly, on simulation records only |
 
 
 **Priority definitions (from the brief):** P0 data integrity, security, destructive migration, incorrect approved or financial reporting, severe workflow integrity risk. P1 essential planning, approval, versioning or monitoring requirement. P2 institutional maturity, usability, reporting enhancement or integration preparation. P3 optional.

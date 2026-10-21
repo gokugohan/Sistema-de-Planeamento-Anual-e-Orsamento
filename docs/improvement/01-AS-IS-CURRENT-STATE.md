@@ -12,8 +12,8 @@ The findings below are those of sections 7 and 8. "Fixed" means the code on the 
 | H2 submission completeness | only "an indicator exists" | also name, unit and target of every indicator; the official field matrix is still **to validate** | `a0fbcbf` | `ApprovalRulesTest` |
 | H3 roll-forward | baseline, means, target text, due quarters, actions and line links lost | all copied; optional status filter; the default statuses are still **to decide** | `ba427d8` | `RollForwardFidelityTest` |
 | H4 snapshot | subset of fields | every descriptive field, with a schema number; old snapshots untouched | `628f1ac` | `VersionSnapshotTest` |
-| H5 planning completeness | silent units invisible; no nil return | **unchanged**: waits for R-OBL-01 to R-OBL-04 | — | — |
-| H6 historical structure | reports read the live tree | **unchanged**: waits for an institutional decision | — | — |
+| H5 planning completeness | silent units invisible; no nil return | optional rule, off by default: active directorates expected, nil return with a reason; which units are obliged stays **to validate** | `0659f97` | `OptionalPlanRulesTest` |
+| H6 historical structure | reports read the live tree | snapshots record the unit path; the report can group by it (optional rule, off) | `0659f97` | `OptionalPlanRulesTest` |
 | H7 irreversible migrations | old migrations irreversible | unchanged (not re-run); the three new migrations each have a working `down()` | — | — |
 | H8 planning vs authorisation | "Approved budget", "Budget Proposal" | neutral wording ("Approved plan amount", "Planned resources"); what "approved" means is still **to validate** | `8963146` | `NeutralFinancialLabelsTest` |
 | O1 Review bypass | direct status write, user-level check | goes through `ActivityWorkflow`; a guard test stops new direct writes | `6195b92`, `b9d286a` | `ReviewActionAuthorizationTest`, `NoDirectStatusUpdateTest` |
@@ -25,14 +25,14 @@ The findings below are those of sections 7 and 8. "Fixed" means the code on the 
 | O7 segregation of duties | not recorded | preparer recorded; rule off / flag / block, default **off** until the institution decides | `96bff33` | `SegregationOfDutiesTest` |
 | O8 corrected spending history | earlier values only in the audit log | listed on the spending page ("Earlier verified values"); the row is still edited in place | `d94f203` | `ExecutionHistoryTest` |
 | O9 notifications | README said queued; lists and interim not told | README and manual corrected; holders of the next step told | `8963146`, `f1e20db` | `NextHolderNotificationTest` |
-| O10 corrective actions | free text | **unchanged**: waits for R-FRM-04 | — | — |
+| O10 corrective actions | free text | tracked actions with person responsible and due date (optional rule, off) | `0659f97` | `OptionalPlanRulesTest` |
 
 **New findings made while building**
 
-- **O11.** The Simulator (`resources/views/livewire/testing/simulation-list.blade.php`) approves and rejects by writing the status itself, and lets the Minister approve. It works only on simulation records (`Activity::testData()`), which reports and the audit trail leave out, so it is allowed in the guard test. It does not follow the real chain and could mislead a trainee. **[CODE]**
+- **O11.** The Simulator (`resources/views/livewire/testing/simulation-list.blade.php`) approves and rejects by writing the status itself, and let the Minister approve. It works only on simulation records (`Activity::testData()`), which reports and the audit trail leave out, so it is allowed in the guard test. Since `b5ee79d` only directors and administrators approve there. **[CODE]**
 - **O12.** Official budget-book activity codes repeat across units in the same year (sample data, for example `5100111`). An activity code is therefore unique only within a unit and a year. **[CODE]**, from the sample seeders.
 
-**Tests.** full suite on `819f84a` (same application code as `b9d286a`): **421 passed, 0 failed** (1,780 assertions); `vendor/bin/pint --test` passed on `094242b`, and the only PHP file added since (`NoDirectStatusUpdateTest`) was formatted with Pint.
+**Tests.** latest full suite on `0659f97`: **439 passed, 0 failed** (1,839 assertions). Earlier: full suite on `819f84a` (same application code as `b9d286a`): **421 passed, 0 failed** (1,780 assertions); `vendor/bin/pint --test` passed on `094242b`, and the only PHP file added since (`NoDirectStatusUpdateTest`) was formatted with Pint.
 
 
 ## 0. Method, limits and labels

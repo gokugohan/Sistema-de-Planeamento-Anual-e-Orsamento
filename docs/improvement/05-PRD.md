@@ -14,15 +14,15 @@
 | FR-006 | **done** | 1, 2, 3 | final wording waits for R-FIN-01 |
 | FR-007 | **done** | 1, 2 tested | — |
 | FR-008 | **done** | 1, 2 tested | a revision-specific window is not built (R-AMD-05) |
-| FR-009 | **partly done** | name, unit and target | the field matrix waits for R-FRM-01 |
+| FR-009 | **done** (matrix configurable) | name, unit and target always; extra fields chosen in *Optional rules* (`0659f97`) | which fields the official form requires is still R-FRM-01 |
 | FR-010 | **done** | 1, 2 tested | uniqueness is per **unit** and year, not per year: official codes repeat across units |
 | FR-011 | **done** | 1, 2, 3 tested | the result summary is the existing `copied` / `skipped` count; no page change for the status filter |
 | FR-012 | **done** | block, flag, off and null preparer tested | in block mode an administrator is not refused; the override is marked |
 | FR-013 | **done** | tested on the service and the page | built as a view over the audit trail (the design's first option) |
-| FR-014 | **on hold** | — | R-OBL-01 to R-OBL-04 |
+| FR-014 | **done**, built as an optional rule, **off by default** (`0659f97`) | expected directorate, nil return with reason, refusal with activities, rule off | obliged units = active top-level units of the year; another level would need R-OBL-04 |
 | FR-015 | **done** | director, list member, interim, no double notice | — |
-| FR-016 | **on hold** | — | R-FRM-04 |
-| FR-017 | **on hold** | — | R-APP-05, R-CON-03, R-CON-04 |
+| FR-016 | **done**, built as an optional rule, **off by default** (`0659f97`) | record, close, refused when off | listed on the narrative page; not yet in the quarter compilation |
+| FR-017 | **partly done**, built as an optional rule, **off by default** (`0659f97`) | baseline record and print, administrators only, rule off | the review decision by a rule-holder is not built: no rule-holder is known and none is assumed |
 
 Non-functional (Part B): auditability and maintainability improved (audit of bulk actions, Pint passes, guard tests); numeric targets are still to be confirmed.
 

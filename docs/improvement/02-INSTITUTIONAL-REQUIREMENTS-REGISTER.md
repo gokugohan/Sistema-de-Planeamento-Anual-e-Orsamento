@@ -24,7 +24,9 @@ Only the software side has moved. An entry marked `TO VALIDATE` stays so until t
 | R-OPS-02 | The three new migrations are reversible and were not run on any database of value. | Backup and a run on a copy before production. |
 | R-LAN-01 | New Portuguese and Tetun texts were added. | Review by a competent speaker. |
 
-Unchanged and still blocking the held work: R-OBL-01 to R-OBL-04 (submission obligations, nil returns), R-APP-05 and R-CON-03 (any consolidation approval; **no approving official is assumed**), R-FRM-04 (corrective actions), R-CAL-01 and R-CAL-02 (official calendar), R-FIN-01, R-FIN-04 to R-FIN-06, R-AMD-02, R-RET-01 to R-RET-03.
+Built as optional rules, off by default (`0659f97`), so that the answer only switches them on: R-OBL-01/02 (expected directorates, nil returns), R-FRM-01 (extra mandatory fields), R-FRM-04 (corrective actions), R-AMD-02 (outside-approval reference), R-AMD-05 (revision window), R-FIN-06 (institution-wide finance), R-CON-04 (baselines), H6 (structure at approval), R-CAL-01 (guidance text). R-OPS-01: backups can be copied to a second place (`b437a0d`).
+
+Still open as questions, and still blocking the remaining work: R-OBL-01 to R-OBL-04 (submission obligations, nil returns), R-APP-05 and R-CON-03 (any consolidation approval; **no approving official is assumed**), R-FRM-04 (corrective actions), R-CAL-01 and R-CAL-02 (official calendar), R-FIN-01, R-FIN-04 to R-FIN-06, R-AMD-02, R-RET-01 to R-RET-03.
 
 New fact from the work: official budget-book activity codes repeat across units in a year, so activity codes are unique per unit and year (01, O12).
 

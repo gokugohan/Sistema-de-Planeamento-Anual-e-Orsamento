@@ -6,20 +6,20 @@
 
 | Stage | Baseline | Now | What changed |
 |---|---|---|---|
-| 1 Cycle setup | PARTIAL | PARTIAL | — (guidance text and revision window still new) |
-| 2 Submission obligations | NEW | NEW | on hold (R-OBL-01 to R-OBL-04) |
-| 3 Preparation and checks | PARTIAL | PARTIAL | name, unit and target checked; codes unique per unit and year; field matrix to validate |
+| 1 Cycle setup | PARTIAL | EXISTS | guidance text per year; optional revision window |
+| 2 Submission obligations | NEW | EXISTS (optional, off) | expected directorates; which units are obliged stays to validate |
+| 3 Preparation and checks | PARTIAL | EXISTS | name, unit and target checked; extra mandatory fields configurable; codes unique per unit and year |
 | 4 Certification | EXISTS (with a bypass) | EXISTS | bypass removed; preparer recorded; segregation rule available (default off) |
 | 5 Parent validation | EXISTS (with a bypass) | EXISTS | every path now follows the `parentValidation` setting |
-| 6 Finance review | EXISTS | EXISTS | — (ministry-wide finance scope still new, R-FIN-06) |
+| 6 Finance review | EXISTS | EXISTS | institution-wide finance scope available (optional, off) |
 | 7 Final approval | PARTIAL | EXISTS | approval and version are atomic |
-| 8 Directorate finalisation | PARTIAL | PARTIAL | — (nil return still new) |
-| 9 Consolidation (conditional) | NEW | NEW | on hold (R-APP-05, R-CON-03) |
-| 10 Baseline (conditional) | NEW | PARTIAL | the report reads the version in force; a baseline marker is still new |
+| 8 Directorate finalisation | PARTIAL | EXISTS | nil return (optional, off) |
+| 9 Consolidation (conditional) | NEW | NEW | not built: no rule-holder is known (R-APP-05, R-CON-03) and none is assumed |
+| 10 Baseline (conditional) | NEW | EXISTS (optional, off) | the report reads the version in force; baselines recorded and printed |
 | 11 Implementation reporting | EXISTS | EXISTS | — |
 | 12 Verification and review | PARTIAL | EXISTS | bulk actions audited; earlier verified values shown |
-| 13 Corrective actions | NEW | NEW | on hold (R-FRM-04) |
-| 14 Revision control | PARTIAL | EXISTS (one part new) | amounts kept, window exemption, full snapshot; a flag for amendments needing outside approval is still new (R-AMD-02) |
+| 13 Corrective actions | NEW | EXISTS (optional, off) | person responsible, due date, closing note |
+| 14 Revision control | PARTIAL | EXISTS | amounts kept, own window, full snapshot with unit path, outside-approval reference (optional, off) |
 | 15 Evaluation and next cycle | PARTIAL | PARTIAL | roll-forward complete; annual evaluation report still new |
 
 Cross-cutting: **authority** now has one entry point, checked by a guard test; **audit** covers bulk actions; **notifications** reach the holder of the next step; **labels** are neutral.

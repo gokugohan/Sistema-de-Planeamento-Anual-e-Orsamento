@@ -23,7 +23,9 @@
 | PR-13 | FR-013 | Correction history of verified figures | No | P1 | none | done `d94f203` |
 | PR-14 | FR-015 | Notify the next holder | No | P2 | none | done `f1e20db` |
 | PR-15 | hygiene | Style clean-up (Pint) | No | P3 | after others | done `094242b` |
-| — | FR-014, 016, 017 | Obligations, corrective actions, baseline | Yes | P1/P2 | **HOLD** on decisions | not started |
+| PR-16 | FR-014, 016, 017 and G-18 to G-21 | Optional rules, off by default: obligations and nil returns, extra mandatory fields, guidance, revision window, outside-approval reference, baselines, institution-wide finance, corrective actions, structure at approval | Yes | P1/P2 | none (switched on by the institution) | done `0659f97`, 4 migrations |
+| PR-17 | G-24 | Simulator approvals follow the real chain | No | P3 | none | done `b5ee79d` |
+| PR-18 | G-22 | Copy each backup to a second place | No | P3 | none | done `b437a0d` |
 
 PR-01 to PR-04 needed no schema change and were done first. PR-05, PR-10 and PR-12 add migrations that have not been run on any database of value.
 
