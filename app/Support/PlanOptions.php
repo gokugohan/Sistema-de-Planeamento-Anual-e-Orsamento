@@ -29,6 +29,7 @@ final class PlanOptions
      * @param  bool  $correctiveActions  reports that are off track or partly on track carry tracked corrective actions
      * @param  bool  $baselines  the approved plan of a year can be recorded as a baseline and printed as it stood then
      * @param  bool  $structureAtApproval  reports show each activity under the unit it belonged to when it was approved
+     * @param  bool  $completeBeforeApproval  a directorate's activities are decided on, and its plan finalized, only once all of them have been submitted
      */
     public function __construct(
         public readonly bool $obligations = false,
@@ -38,6 +39,7 @@ final class PlanOptions
         public readonly bool $correctiveActions = false,
         public readonly bool $baselines = false,
         public readonly bool $structureAtApproval = false,
+        public readonly bool $completeBeforeApproval = false,
     ) {}
 
     private const KEY = 'plan_options';
@@ -57,6 +59,7 @@ final class PlanOptions
             (bool) ($s['corrective_actions'] ?? false),
             (bool) ($s['baselines'] ?? false),
             (bool) ($s['structure_at_approval'] ?? false),
+            (bool) ($s['complete_before_approval'] ?? false),
         );
     }
 
@@ -71,6 +74,7 @@ final class PlanOptions
             'corrective_actions' => $this->correctiveActions,
             'baselines' => $this->baselines,
             'structure_at_approval' => $this->structureAtApproval,
+            'complete_before_approval' => $this->completeBeforeApproval,
         ];
     }
 

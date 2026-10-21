@@ -50,6 +50,7 @@
     </style>
 </head>
 <body>
+@php $stateWarning = app(\App\Services\PlanStatus::class)->reportWarning(auth()->user(), $report['year'], $unit?->id); @endphp
 @unless($pdf)
 <div class="toolbar">
     <a class="secondary" href="{{ route('planning.cycle') }}">← {{ __('Plan cycle') }}</a>
@@ -63,12 +64,15 @@
         <label><input type="checkbox" name="status" value="all" onchange="this.form.submit()" @checked(! $report['approved_only'])> {{ __('Include activities not yet approved') }}</label>
     </form>
     <span style="margin-left:auto"></span>
-    <button type="button" onclick="window.print()">{{ __('Print') }}</button>
-    <a href="{{ route('reports.implementation-plan.pdf', array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'status' => $report['approved_only'] ? null : 'all'])) }}">{{ __('Download PDF') }}</a>
+    <button type="button" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Print anyway?') : '' }}" onclick="if (this.dataset.warn && ! confirm(this.dataset.warn)) return; window.print()">{{ __('Print') }}</button>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.implementation-plan.pdf', array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'status' => $report['approved_only'] ? null : 'all'])) }}">{{ __('Download PDF') }}</a>
 </div>
 <div class="sheet">
 @endunless
 
+@if($stateWarning)
+    <div class="state-warning" style="border:1px solid #B45309;background:#FEF3C7;color:#78350F;padding:5px 8px;margin:0 0 6px;font-size:7.5pt;font-weight:bold">{{ __('Draft state') }}: {{ $stateWarning }}</div>
+@endif
 <div class="head">
     <div class="unit">{{ $unit ? $unit->code.' : '.$unit->name : $report['organization'] }}</div>
     <div class="title">{{ $title }}</div>

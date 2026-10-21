@@ -15,6 +15,7 @@ new class extends Component {
     public bool $correctiveActions = false;
     public bool $baselines = false;
     public bool $structureAtApproval = false;
+    public bool $completeBeforeApproval = false;
     public int $year;
     public string $guidance = '';
 
@@ -29,6 +30,7 @@ new class extends Component {
         $this->correctiveActions = $o->correctiveActions;
         $this->baselines = $o->baselines;
         $this->structureAtApproval = $o->structureAtApproval;
+        $this->completeBeforeApproval = $o->completeBeforeApproval;
         $this->year = \App\Support\FiscalYear::current();
         $this->guidance = (string) PlanOptions::guidance($this->year);
     }
@@ -50,7 +52,7 @@ new class extends Component {
 
         (new PlanOptions(
             $this->obligations, $this->financeInstitutionWide, $this->requiredFields,
-            $this->externalReference, $this->correctiveActions, $this->baselines, $this->structureAtApproval,
+            $this->externalReference, $this->correctiveActions, $this->baselines, $this->structureAtApproval, $this->completeBeforeApproval,
         ))->save();
         PlanOptions::setGuidance((int) $this->year, $this->guidance);
 
@@ -98,6 +100,11 @@ new class extends Component {
                     <input type="checkbox" wire:model="externalReference" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
                     <span><span class="font-medium text-zinc-900">{{ __('Some revisions need an approval outside the institution') }}</span><br>
                         <span class="text-zinc-600">{{ __('Whoever opens a revision can mark it as needing an outside approval; it can then be approved only once the reference of that approval is recorded.') }}</span></span>
+                </label>
+                <label class="flex items-start gap-3">
+                    <input type="checkbox" wire:model="completeBeforeApproval" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
+                    <span><span class="font-medium text-zinc-900">{{ __('The plan must be complete before approval') }}</span><br>
+                        <span class="text-zinc-600">{{ __('A directorate\'s activities are certified and approved, and its plan finalized, only once every activity of the directorate has been submitted. Until then the decisions wait and the directorate sees why.') }}</span></span>
                 </label>
                 <label class="flex items-start gap-3">
                     <input type="checkbox" wire:model="baselines" class="mt-0.5 rounded border-zinc-300 text-indigo-600">

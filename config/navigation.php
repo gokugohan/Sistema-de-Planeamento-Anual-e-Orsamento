@@ -97,7 +97,7 @@ return [
             'items' => [
                 ['label' => 'Settings', 'route' => 'management.settings', 'icon' => 'settings', 'hint' => 'Organisation identity and planning options'],
                 ['label' => 'Optional rules', 'route' => 'management.optional-rules', 'icon' => 'settings', 'hint' => 'Rules of the planning cycle to switch on when your institution needs them'],
-                ['label' => 'Reporting windows', 'route' => 'management.reporting-windows', 'icon' => 'calendar', 'hint' => 'When the plan, a month, a quarter or a revision may be submitted'],
+                ['label' => 'Calendar', 'route' => 'management.reporting-windows', 'icon' => 'calendar', 'hint' => 'Dates for planning, approval, finalizing and reporting; more time for a late unit'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
                 ['label' => 'Sample Data', 'route' => 'management.sample-data', 'icon' => 'flask-conical', 'hint' => 'Load or purge the demo dataset'],

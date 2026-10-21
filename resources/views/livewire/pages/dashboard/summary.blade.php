@@ -261,6 +261,8 @@ new class extends Component {
         </div>
     </x-ui.page-header>
 
+    <x-calendar-alerts :year="$year" />
+
     {{-- Where the year stands, in plain sentences, with the way to act --}}
     <x-year-at-a-glance :year="$year" :items="$attention" />
 

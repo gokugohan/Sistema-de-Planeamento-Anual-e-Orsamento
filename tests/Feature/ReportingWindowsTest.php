@@ -109,7 +109,7 @@ class ReportingWindowsTest extends TestCase
 
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
-        $this->actingAs($admin)->get(route('management.reporting-windows'))->assertOk()->assertSee('Reporting windows');
+        $this->actingAs($admin)->get(route('management.reporting-windows'))->assertOk()->assertSee('Calendar');
 
         Volt::actingAs($admin)->test('pages.management.reporting-windows')
             ->set('periodType', 'month')->set('period', 10)->set('opensOn', '2026-10-05')->set('closesOn', '2026-10-01')->call('save')->assertHasErrors('closesOn')

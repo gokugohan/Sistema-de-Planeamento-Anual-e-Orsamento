@@ -261,6 +261,8 @@ new class extends Component {
         @endif
     </x-ui.page-header>
 
+    <x-calendar-alerts :year="$year" />
+
     <livewire:pages.planning.planning-window :year="$year" :key="'planning-'.$year" />
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

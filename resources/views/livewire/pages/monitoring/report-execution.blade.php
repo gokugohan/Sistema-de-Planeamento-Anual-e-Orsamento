@@ -179,9 +179,9 @@ new class extends Component {
             'worklist' => $activity ? collect() : $this->worklist,
             'maxMonth' => $this->latestMonth(),
             'closed' => array_filter([
-                __('Executed amount and monthly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month),
-                __('Indicators and quarterly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'quarter', $this->quarter),
-            ]),
+                ['what' => __('Executed amount and monthly report'), 'type' => 'month', 'period' => $this->month, 'reason' => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month, $activity?->directorate_id)],
+                ['what' => __('Indicators and quarterly report'), 'type' => 'quarter', 'period' => $this->quarter, 'reason' => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'quarter', $this->quarter, $activity?->directorate_id)],
+            ], fn ($c) => $c['reason']),
             'canReport' => auth()->user()->can('update_indicator_progress') || auth()->user()->can('approve_progress_report'),
         ];
     }
@@ -194,6 +194,8 @@ new class extends Component {
             <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.performance', ['year' => $year, 'type' => 'month', 'period' => $month]) }}">{{ __('Performance report') }}</x-ui.button>
         @endcan
     </x-ui.page-header>
+
+    <x-calendar-alerts :year="$year" />
 
     <x-ui.card padding="p-5">
         <div class="flex flex-wrap items-end gap-4">
@@ -279,8 +281,10 @@ new class extends Component {
             </div>
         </x-ui.card>
 
-        @foreach($closed as $what => $reason)
-            <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900"><span class="font-medium">{{ $what }}:</span> {{ $reason }}</div>
+        @foreach($closed as $c)
+            <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900"><span class="font-medium">{{ $c['what'] }}:</span> {{ $c['reason'] }}
+                <livewire:pages.calendar.ask-reopen :year="$year" :type="$c['type']" :period="(int) $c['period']" :key="'ask-'.$c['type'].'-'.$c['period']" />
+            </div>
         @endforeach
 
         <nav aria-label="{{ __('What to do for this activity') }}" class="grid gap-3 sm:grid-cols-3">

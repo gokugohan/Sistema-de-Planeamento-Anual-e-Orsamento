@@ -42,7 +42,7 @@ new class extends Component {
         $activity = Indicator::with('activity:id,directorate_id,fiscal_year')->find($indicatorId)?->activity;
 
         return $activity && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
-            && app(\App\Services\ReportingWindows::class)->allows($user, $activity->fiscal_year, 'quarter', $this->quarter);
+            && app(\App\Services\ReportingWindows::class)->allows($user, $activity->fiscal_year, 'quarter', $this->quarter, $activity->directorate_id);
     }
 
     /** For the view: can this user reopen verified figures at all? (each reopening is checked again on its own) */

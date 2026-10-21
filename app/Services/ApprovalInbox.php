@@ -20,7 +20,7 @@ use Carbon\Carbon;
  * the plan to finalize, budget steps, and their own drafts and returned work. Only counts and a link each,
  * from grouped queries, so it is cheap enough for the dashboard as well as the Approvals page.
  *
- * Each item: group (decide | verify | plan | budget | mine), count, text, url, tone.
+ * Each item: group (decide | verify | plan | budget | late | mine), count, text, url, tone.
  */
 class ApprovalInbox
 {
@@ -130,6 +130,12 @@ class ApprovalInbox
                     ->whereDoesntHave('reports', fn ($q) => $q->where('period_type', 'quarter')->where('period', $ended)->whereNotNull('compiled_at'))->count();
                 $add('report', $todo, trans_choice(':n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q', $todo, ['n' => $todo, 'q' => $ended]), route('reports.compile'), 'indigo');
             }
+        }
+
+        // ── the administrator: units that are late on the calendar and need more time
+        if ($approver) {
+            $late = count(app(ReportingWindows::class)->overdue($year));
+            $add('late', $late, trans_choice(':n late item on the calendar: give the unit more time|:n late items on the calendar: give the units more time', $late, ['n' => $late]), route('management.reporting-windows'), 'rose');
         }
 
         // ── your own work

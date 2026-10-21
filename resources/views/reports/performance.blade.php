@@ -53,6 +53,7 @@
     </style>
 </head>
 <body>
+@php $stateWarning = app(\App\Services\PlanStatus::class)->reportWarning(auth()->user(), $report['year'], null); @endphp
 @unless($pdf)
 <div class="toolbar">
     <a class="secondary" href="{{ route('monitoring.report') }}">← {{ __('Report execution') }}</a>
@@ -71,12 +72,15 @@
         </select>
     </form>
     <span style="margin-left:auto"></span>
-    <button type="button" onclick="window.print()">{{ __('Print') }}</button>
-    <a href="{{ route('reports.performance.pdf', ['year' => $report['year'], 'type' => $report['type'], 'period' => $report['period']]) }}">{{ __('Download PDF') }}</a>
+    <button type="button" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Print anyway?') : '' }}" onclick="if (this.dataset.warn && ! confirm(this.dataset.warn)) return; window.print()">{{ __('Print') }}</button>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.performance.pdf', ['year' => $report['year'], 'type' => $report['type'], 'period' => $report['period']]) }}">{{ __('Download PDF') }}</a>
 </div>
 <div class="sheet">
 @endunless
 
+@if($stateWarning)
+    <div class="state-warning" style="border:1px solid #B45309;background:#FEF3C7;color:#78350F;padding:5px 8px;margin:0 0 6px;font-size:7.5pt;font-weight:bold">{{ __('Draft state') }}: {{ $stateWarning }}</div>
+@endif
 <div class="head">
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>

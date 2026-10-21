@@ -47,7 +47,7 @@ new class extends Component {
         return ($user->can('update_indicator_progress') || $user->can('approve_progress_report'))
             && app(ActivityPolicy::class)->inScope($user, $activity->directorate_id)
             && ! $activity->isLocked()
-            && app(\App\Services\ReportingWindows::class)->allows($user, $this->year, 'month', $this->month);
+            && app(\App\Services\ReportingWindows::class)->allows($user, $this->year, 'month', $this->month, $activity->directorate_id);
     }
 
     private function mayVerify(Activity $activity): bool

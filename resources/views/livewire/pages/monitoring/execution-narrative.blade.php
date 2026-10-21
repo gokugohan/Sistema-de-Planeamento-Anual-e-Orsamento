@@ -68,8 +68,8 @@ new class extends Component {
         $windows = app(\App\Services\ReportingWindows::class);
 
         return $type
-            ? $windows->allows($user, $a->fiscal_year, $type, $this->period($type))
-            : ($windows->allows($user, $a->fiscal_year, 'month', $this->month) || $windows->allows($user, $a->fiscal_year, 'quarter', $this->quarter));
+            ? $windows->allows($user, $a->fiscal_year, $type, $this->period($type), $a->directorate_id)
+            : ($windows->allows($user, $a->fiscal_year, 'month', $this->month, $a->directorate_id) || $windows->allows($user, $a->fiscal_year, 'quarter', $this->quarter, $a->directorate_id));
     }
 
     private function mayVerify(): bool

@@ -250,6 +250,8 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6" x-data="{ selected: $wire.$entangle('selected') }">
+    <x-calendar-alerts :year="$year" />
+    <x-plan-complete-notice :year="$year" />
     <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
             <h1 class="page-title">{{ __('PAA Technical Review') }}</h1>

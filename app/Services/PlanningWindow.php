@@ -192,6 +192,12 @@ class PlanningWindow
             ->when($rootIds !== null, fn ($q) => $q->whereIn('directorate_id', $this->subtreeOf($rootIds)))->count();
     }
 
+    /** The directorate of this unit and every unit in it. @return array<int, int> */
+    public function subtree(int $unitId): array
+    {
+        return $this->subtreeOf([$this->rootOf($unitId)]);
+    }
+
     /** @return array<int, int> the units in these directorates, the directorates included */
     private function subtreeOf(array $rootIds): array
     {
@@ -267,6 +273,22 @@ class PlanningWindow
         $open = $roots->reject(fn ($id) => UnitPlanning::where(['fiscal_year' => $year, 'directorate_id' => $id])->exists());
         if ($open->isEmpty()) {
             throw new DomainException(__('The plan for :year is already finalized.', ['year' => $year]));
+        }
+        // where the institution asks for it, a directorate finalizes only once every one of its activities has been submitted
+        if (PlanOptions::current()->completeBeforeApproval) {
+            foreach ($open as $id) {
+                if ($n = app(PlanStatus::class)->notSubmitted($year, (int) $id)) {
+                    throw new DomainException(app(PlanStatus::class)->incompleteText($n));
+                }
+            }
+        }
+        // the calendar for finalizing the plan: only an administrator (or a unit it has reopened it for) finalizes outside it
+        if (! $user->isAdministrator()) {
+            foreach ($open as $id) {
+                if ($reason = app(ReportingWindows::class)->closedReason($user, $year, ReportingWindows::FINALIZE, 1, (int) $id)) {
+                    throw new DomainException($reason);
+                }
+            }
         }
         if ($pending = $this->pending($year, $open->all())) {
             throw new DomainException(trans_choice(

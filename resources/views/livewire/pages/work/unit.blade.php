@@ -104,6 +104,7 @@ new class extends Component {
     </header>
 
     {{-- where the year stands, and what is yours --}}
+    <x-calendar-alerts :year="$year" />
     <x-year-at-a-glance :year="$year" />
 
     {{-- next for you --}}

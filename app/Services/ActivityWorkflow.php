@@ -178,6 +178,20 @@ class ActivityWorkflow
         $mine = $user->directorate;
         $lists = app(ApproverLists::class);
 
+        // where the institution asks for it, nothing is decided until the whole plan of the directorate has been submitted
+        if (in_array($activity->status, [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
+            && app(PlanStatus::class)->holdBack($activity)) {
+            return null;
+        }
+
+        // outside the calendar for deciding on the annual plan only an administrator (or a unit it has reopened it for) decides;
+        // revisions of approved activities are not new planning and are not held back by it
+        if (! $admin && (int) $activity->version === 0
+            && in_array($activity->status, [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
+            && app(ReportingWindows::class)->closedReason($user, (int) $activity->fiscal_year, ReportingWindows::APPROVAL, 1, $activity->directorate_id)) {
+            return null;
+        }
+
         switch ($activity->status) {
             case Activity::STATUS_DRAFT:
             case Activity::STATUS_REJECTED:

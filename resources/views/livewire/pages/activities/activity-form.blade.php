@@ -405,7 +405,9 @@ new class extends Component {
         </x-ui.card>
     @else
     @if($windowReason)
-        <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">{{ $windowReason }} {{ __('You can look at the activity but not save changes.') }}</div>
+        <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">{{ $windowReason }} {{ __('You can look at the activity but not save changes.') }}
+            <livewire:pages.calendar.ask-reopen :year="(int) ($this->activity->fiscal_year ?? $year)" :type="(int) ($this->activity->version ?? 0) > 0 ? 'revision' : 'plan'" :period="1" :key="'ask-window'" />
+        </div>
     @endif
     @if($guidance)
         <details class="rounded-lg border border-indigo-100 bg-indigo-50/60 px-5 py-3 text-sm text-zinc-800" open>

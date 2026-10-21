@@ -76,7 +76,7 @@ The left menu is grouped by what you do. Each person sees only the groups and en
 | **Execute** | Report what was spent and achieved; compile the quarter. |
 | **Insights** | Performance and reports. |
 | **Administration** (administrators) | *System Users*, *Structure* (units, programmes, sub-programmes, economic categories) and *Funding sources*: who and what the plan is made of. |
-| **System** (administrators) | *Settings*, *Optional rules*, *Reporting windows*, *Import Activities*, *Audit Log* and *Sample Data*: how the system runs. |
+| **System** (administrators) | *Settings*, *Optional rules*, *Calendar*, *Import Activities*, *Audit Log* and *Sample Data*: how the system runs. |
 
 **Plan → Programmes** is for reading. Each programme shows its sub-programmes, how many activities each has (and how many are approved), the amount planned, the approved plan amount and what has been executed (verified). A directorate sees the programmes and the figures of its own units only; an administrator or anyone who sees every plan sees them all. *Open activities* leads to the activity list already filtered to that programme or sub-programme. Programmes are created and edited by an administrator under *Administration → Structure*.
 
@@ -171,19 +171,26 @@ Add only the structure that the law defines; the system does not invent departme
 | **Finance** | Confirms budget lines and verifies the reported executed amounts. |
 | **Viewer** | Reads plans and reports; changes nothing. |
 
-### 4.5 Reporting windows
+### 4.5 The calendar
 
-![Reporting windows](manual/img/windows.png)
+![The calendar](manual/img/windows.png)
 
-**System → Reporting windows**: for the fiscal year, give the dates of
+**System → Calendar**: for the fiscal year, give the dates of
 
-- the **plan submission** window (when units may submit the plan);
+- the **plan submission** (when units may submit their activities);
+- the **approval** (when submitted activities are certified and approved);
+- the **finalizing** of the plan (when a directorate may end planning);
 - each **month** (monthly executed amount and narrative);
-- each **quarter** (quarterly indicators and the quarter's text).
+- each **quarter** (quarterly indicators and the quarter's text);
+- optionally the **revisions** of approved activities.
 
-Pick the type, the month or quarter, *Opens on*, *Closes on* and an optional note, then **Save**. Outside its window a unit cannot report that period; an administrator always can. A period with no window is open.
+Pick the step, the month or quarter, *Opens on*, *Closes on* and an optional note, then **Save**. Outside its dates a unit cannot act in that step; an administrator always can. A step with no dates is open. Revisions are never held back by the plan-submission dates.
 
-A **revisions** window may also be set: it limits when approved activities can be revised. Without one, revisions can be made at any time; they are never held back by the plan-submission window.
+**Who sees the dates.** Everyone sees, on the dashboard, in *My work*, in *Waiting for you*, in the activities list and in *Report execution*, the dates that concern them: a step that opens or closes within two weeks, a step that closed with work left in their unit, and any extra time they were given.
+
+**A unit that is late.** When a step has closed and a unit still has work left in it (activities not submitted or not decided, a plan not finalized, a month without an executed amount, a quarter without indicator figures), it appears under **Late** on the calendar page and as an item in the administrator's *Waiting for you*. The administrator chooses **Reopen for this unit**, gives a date and a reason (without a date, seven days), and only that unit, with the units below it, can act again until then. The period stays closed for everybody else. The unit is told, the reopening is in the audit log, and it can be withdrawn. The people of a late unit see a button to **ask the administrator** to reopen it; the administrators are notified (once a day per person and step).
+
+**The order of the year.** Where the institution switches on *The plan must be complete before approval* (System → Optional rules), a directorate's activities are certified and approved, and its plan finalized, only once every activity of the directorate has been submitted; until then the decisions wait and the directorate sees why. Finalizing always needs the directorate's activities to be decided. Before a report of the plan is printed or downloaded, the application warns when the plan is not fully approved (activities not submitted or waiting for a decision) or not finalized, asks for confirmation, and prints a *Draft state* line on the document.
 
 ### 4.6 Approval lists and interim approvers
 
@@ -521,7 +528,7 @@ Follow Ana (technical officer), Bento (director of a unit), Carla (head of a dir
 1. *Settings*: check the institution's name, the level and the approval chain.
 2. *Structure*: make sure the directorate and its units exist; add the **programmes and subprogrammes** for the new year.
 3. *System Users*: give every unit its technical officer and its director.
-4. *Reporting windows*: set the dates in which the plan may be submitted, and the months and quarters of reporting.
+4. *Calendar*: set the dates for submitting, approving and finalizing the plan, and for the months and quarters of reporting.
 5. Optionally name **approval lists** for the units that need named people.
 
 **Planning (Ana, Bento).**
@@ -625,7 +632,7 @@ Exact rules also depend on the unit tree and the approval lists; an administrato
 
 **I cannot verify this figure.** You entered it yourself; someone else must verify it.
 
-**I cannot report this month.** The reporting window of the month is closed. An administrator can open it or report for you.
+**I cannot report this month.** The calendar of the month is closed. Use the button to ask the administrator to reopen it for your unit, or ask them to report for you.
 
 **An approved activity needs a change.** Start a revision: *Revise* on the activity, with a reason. It goes through the chain again and the approved version stays in force meanwhile.
 

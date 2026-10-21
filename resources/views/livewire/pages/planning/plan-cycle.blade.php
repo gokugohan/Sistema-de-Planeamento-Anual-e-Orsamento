@@ -95,7 +95,7 @@ new class extends Component {
                 <p class="mt-2 text-xs text-zinc-500">{{ __('The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.') }}</p>
             @endif
             @if($canSetWindows)
-                <x-ui.button variant="secondary" size="md" shadow="none" class="mt-4" href="{{ route('management.reporting-windows') }}" wire:navigate>{{ __('Set the windows') }}</x-ui.button>
+                <x-ui.button variant="secondary" size="md" shadow="none" class="mt-4" href="{{ route('management.reporting-windows') }}" wire:navigate>{{ __('Set the calendar') }}</x-ui.button>
             @endif
         </x-ui.card>
 
