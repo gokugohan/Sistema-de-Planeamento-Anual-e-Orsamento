@@ -1286,7 +1286,6 @@
     "Select a category": "Escolha uma categoria",
     "Select a programme": "Escolha um programa",
     "Select a unit": "Escolha uma unidade",
-    "Send to the Minister": "Enviar ao Ministro",
     "Send up": "Enviar para cima",
     "Shortfall": "Insuficiência",
     "Show": "Mostrar",
@@ -1863,7 +1862,6 @@
     "Prepare the activity and submit it. Without a list, anyone who may submit does.": "Preparar a atividade e submetê-la. Sem lista, quem pode submeter fá-lo.",
     "Certify": "Certificar",
     "Review it and validate it. Without a list, the director of the unit, then of the unit above, does.": "Rever e validar. Sem lista, fá-lo o diretor da unidade e depois o da unidade acima.",
-    "Give the final approval. Without a list, the Minister or the head of the office does, as the institution's rules say.": "Dar a aprovação final. Sem lista, fá-lo o Ministro ou o chefe do gabinete, conforme as regras da instituição.",
     "No list: the default rule applies.": "Sem lista: aplica-se a regra por defeito.",
     "Move up": "Subir",
     "Move down": "Descer",
@@ -2209,5 +2207,6 @@
     "Revisions of approved activities closed on :d.": "As revisões de atividades aprovadas fecharam em :d.",
     "Objective of the activity": "Objetivo da atividade",
     "Baseline of every indicator": "Base de referência de cada indicador",
-    "Means of verification of every indicator": "Meios de verificação de cada indicador"
+    "Means of verification of every indicator": "Meios de verificação de cada indicador",
+    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Dar a aprovação final. Sem lista, fá-lo o chefe da direção (a unidade de topo)."
 }

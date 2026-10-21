@@ -1158,7 +1158,6 @@
     "Move this activity to :status?": "Move this activity to :status?",
     "Submit for Review": "Submit for Review",
     "Mark as Reviewed": "Mark as Reviewed",
-    "Send to the Minister": "Send to the Minister",
     "Approve Activity": "Approve Activity",
     "Approve this activity for the annual plan?": "Approve this activity for the annual plan?",
     "Return for correction": "Return for correction",
@@ -1188,7 +1187,6 @@
     "Prepare the activity and submit it. Without a list, anyone who may submit does.": "Prepare the activity and submit it. Without a list, anyone who may submit does.",
     "Certify": "Certify",
     "Review it and validate it. Without a list, the director of the unit, then of the unit above, does.": "Review it and validate it. Without a list, the director of the unit, then of the unit above, does.",
-    "Give the final approval. Without a list, the Minister or the head of the office does, as the institution's rules say.": "Give the final approval. Without a list, the Minister or the head of the office does, as the institution's rules say.",
     "No list: the default rule applies.": "No list: the default rule applies.",
     "Move up": "Move up",
     "Move down": "Move down",
@@ -1964,5 +1962,6 @@
     "Revisions of approved activities closed on :d.": "Revisions of approved activities closed on :d.",
     "Objective of the activity": "Objective of the activity",
     "Baseline of every indicator": "Baseline of every indicator",
-    "Means of verification of every indicator": "Means of verification of every indicator"
+    "Means of verification of every indicator": "Means of verification of every indicator",
+    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Give the final approval. Without a list, the head of the directorate (the top-level unit) does."
 }

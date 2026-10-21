@@ -154,7 +154,7 @@ new class extends Component {
             $steps = [
                 'prepare' => [__('Prepare'), __('Prepare the activity and submit it. Without a list, anyone who may submit does.')],
                 'certify' => [__('Certify'), __('Review it and validate it. Without a list, the director of the unit, then of the unit above, does.')],
-                'approve' => [__('Approve'), __('Give the final approval. Without a list, the Minister or the head of the office does, as the institution\'s rules say.')],
+                'approve' => [__('Approve'), __('Give the final approval. Without a list, the head of the directorate (the top-level unit) does.')],
             ];
         @endphp
         <div class="grid gap-6 lg:grid-cols-3">

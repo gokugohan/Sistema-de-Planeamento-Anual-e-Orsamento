@@ -8,7 +8,8 @@ use App\Models\SystemSetting;
  * What kind of institution this deployment serves, because it decides who the plan goes to and who
  * gives the final approval.
  *
- *  - ministry:     the plan is approved by the Minister and submitted to the CRO (Comité de Revisão Orçamental).
+ *  - ministry:     the heads of its directorates approve the plans of their own directorates; the approved
+ *                  plans are reported together for the ministry.
  *  - subordinate:  a directorate, gabinete or agency inside a ministry. The head of the office
  *                  (Director / Chefe do Gabinete) gives the final approval, and the approved plan is
  *                  sent to the ministry, or to the team there that prepares the budget.

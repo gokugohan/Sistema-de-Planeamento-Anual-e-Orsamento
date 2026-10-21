@@ -23,12 +23,11 @@ use Illuminate\Support\Str;
  *
  *   Draft/Rejected → Submitted → (Reviewed →) Validated → Waiting Approval → Approved
  *
- * The technical officer submits; the director of the unit reviews; where the unit sits under another one
- * (a department under a directorate-general) the parent's director validates. Then, in a ministry,
- * the top-level director sends the validated plan to the Minister, who approves. In an institution
- * that is only a directorate or gabinete there is no Minister to ask: the head of the top-level unit
- * (Director / Chefe do Gabinete) gives the final approval. Which of the two applies, and whether a
- * parent director validates sub-units first, is an institution setting (ApprovalRules).
+ * The technical officer submits; the director of the unit certifies; where the unit sits under another one
+ * (a department under a directorate-general) the parent's director validates. The final approval is given by
+ * the head of the top-level unit (the directorate), or by the people named for it in the approval lists. The
+ * Minister does not approve plans. Whether a parent director validates sub-units first, and whether finance
+ * confirms the budget, are institution settings (ApprovalRules).
  * Every method re-checks who is asking, so the screens only decide what to show.
  */
 class ActivityWorkflow

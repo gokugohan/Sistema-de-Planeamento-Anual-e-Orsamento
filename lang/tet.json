@@ -1286,7 +1286,6 @@
     "Select a category": "Hili kategoria ida",
     "Select a programme": "Hili programa ida",
     "Select a unit": "Hili unidade ida",
-    "Send to the Minister": "Haruka ba Ministru",
     "Send up": "Haruka ba leten",
     "Shortfall": "Falta",
     "Show": "Hatudu",
@@ -1863,7 +1862,6 @@
     "Prepare the activity and submit it. Without a list, anyone who may submit does.": "Prepara atividade no submete. Se la iha lista, ema ne'ebé bele submete halo.",
     "Certify": "Sertifika",
     "Review it and validate it. Without a list, the director of the unit, then of the unit above, does.": "Revee no valida. Se la iha lista, diretór unidade nian, depois diretór unidade leten nian, halo.",
-    "Give the final approval. Without a list, the Minister or the head of the office does, as the institution's rules say.": "Fó aprovasaun final. Se la iha lista, Ministru ka xefe gabinete halo, tuir regra instituisaun nian.",
     "No list: the default rule applies.": "La iha lista: uza regra padraun.",
     "Move up": "Sa'e",
     "Move down": "Tun",
@@ -2209,5 +2207,6 @@
     "Revisions of approved activities closed on :d.": "Revizaun ba atividade aprova taka ona iha :d.",
     "Objective of the activity": "Objetivu atividade nian",
     "Baseline of every indicator": "Baseline indikadór ida-idak nian",
-    "Means of verification of every indicator": "Meiu verifikasaun indikadór ida-idak nian"
+    "Means of verification of every indicator": "Meiu verifikasaun indikadór ida-idak nian",
+    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Fó aprovasaun final. Se la iha lista, xefe direksaun (unidade leten) mak halo."
 }

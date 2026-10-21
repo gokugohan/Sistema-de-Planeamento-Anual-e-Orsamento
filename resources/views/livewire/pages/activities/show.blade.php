@@ -939,7 +939,8 @@ new class extends Component {
                 </div>
 
                 <div class="space-y-2">
-                    @if($nextStatus)
+                    {{-- the final approval has its own button below (with a note for the record), so it is not offered twice --}}
+                    @if($nextStatus && $nextStatus !== App\Models\Activity::STATUS_APPROVED)
                         @if($nextStatus === App\Models\Activity::STATUS_SUBMITTED && $problems)
                             <div class="rounded-lg bg-amber-50 ring-1 ring-amber-200 p-3 text-xs text-amber-800">
                                 <p class="font-semibold mb-1">{{ __('Not ready to submit') }}</p>
@@ -951,8 +952,7 @@ new class extends Component {
                                 {{ match($nextStatus) {
                                     App\Models\Activity::STATUS_SUBMITTED => __('Submit for Review'),
                                     App\Models\Activity::STATUS_REVIEWED => __('Mark as Reviewed'),
-                                    App\Models\Activity::STATUS_VALIDATED => __('Validate'),
-                                    default => __('Send to the Minister'),
+                                    default => __('Validate'),
                                 } }}
                             </x-ui.button>
                         @endif

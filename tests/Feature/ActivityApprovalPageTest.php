@@ -87,4 +87,16 @@ class ActivityApprovalPageTest extends TestCase
 
         Volt::test('pages.activities.show', ['activity' => $a])->assertSee('Waiting for')->assertSee('The head of the directorate to approve it');
     }
+
+    public function test_the_final_approval_is_offered_once_and_never_as_sending_to_the_minister(): void
+    {
+        $activity = $this->validated();
+        $this->asHead();
+
+        $page = Volt::test('pages.activities.show', ['activity' => $activity]);
+
+        $page->assertSee('Approve Activity');
+        $page->assertDontSee('Send to the Minister');
+        $this->assertStringNotContainsString('wire:click="submit"', $page->html(), 'the step is not offered a second time as a plain move-on button');
+    }
 }
