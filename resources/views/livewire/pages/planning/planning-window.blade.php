@@ -55,6 +55,9 @@ new class extends Component {
         $user = auth()->user();
 
         $state = $window->state($this->year);
+        // a user sees the directorates they work in; administrators and those who see every plan see them all
+        $policy = app(\App\Policies\ActivityPolicy::class);
+        $state['units'] = array_values(array_filter($state['units'], fn ($u) => $policy->inScope($user, $u['id'])));
 
         return [
             'state' => $state,
