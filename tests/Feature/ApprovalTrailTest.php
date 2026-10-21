@@ -10,6 +10,7 @@ use App\Models\Program;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Services\ApprovalTrail;
+use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,6 +28,7 @@ class ApprovalTrailTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        (new PlanOptions(completeBeforeApproval: false))->save(); // these tests are about the chain, not the order of the year
         app()->setLocale('en');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(); // an office: its head approves
         $this->workflow = app(ActivityWorkflow::class);

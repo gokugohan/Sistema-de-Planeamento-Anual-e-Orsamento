@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Policies\ActivityPolicy;
 use App\Services\ActivityWorkflow;
 use App\Services\ApprovalInbox;
+use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -34,6 +35,7 @@ class ApproverListsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        (new PlanOptions(completeBeforeApproval: false))->save(); // these tests are about the chain, not the order of the year
         app()->setLocale('en');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         $this->workflow = app(ActivityWorkflow::class);

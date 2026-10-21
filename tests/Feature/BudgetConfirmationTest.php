@@ -12,6 +12,7 @@ use App\Services\ActivityWorkflow;
 use App\Services\ApprovalInbox;
 use App\Support\ApprovalRules;
 use App\Support\Institution;
+use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -33,6 +34,7 @@ class BudgetConfirmationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        (new PlanOptions(completeBeforeApproval: false))->save(); // these tests are about the chain, not the order of the year
         app()->setLocale('en');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         $this->workflow = app(ActivityWorkflow::class);

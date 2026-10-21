@@ -9,6 +9,7 @@ use App\Models\Program;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Support\Institution;
+use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,6 +31,7 @@ class ApprovalChainEndToEndTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        (new PlanOptions(completeBeforeApproval: false))->save(); // these tests are about the chain, not the order of the year
         app()->setLocale('en');
         $this->workflow = app(ActivityWorkflow::class);
     }
