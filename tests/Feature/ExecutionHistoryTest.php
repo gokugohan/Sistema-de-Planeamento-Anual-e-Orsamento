@@ -48,38 +48,37 @@ class ExecutionHistoryTest extends TestCase
             ->set('activityId', $this->activity->id)->set('month', 10);
     }
 
-    private function report(float $committed, float $paid): void
+    private function report(float $executed): void
     {
-        $this->page('director.udig@gdsc.tl')->set("form.{$this->line->id}.committed", $committed)->set("form.{$this->line->id}.paid", $paid)->call('save', true);
+        $this->page('director.udig@gdsc.tl')->set("form.{$this->line->id}.executed", $executed)->call('save', true);
     }
 
     public function test_the_values_verified_before_a_correction_stay_visible(): void
     {
-        $this->report(1000, 800);
+        $this->report(800);
         $this->page('chefe.gdsc@gdsc.tl')->call('verify', $this->line->id);
         $entry = BudgetExecution::where('line_item_id', $this->line->id)->where('month', 10)->firstOrFail();
         $this->assertSame([], app(ExecutionHistory::class)->earlierVerified($entry->fresh()), 'nothing earlier yet');
 
         $this->page('chefe.gdsc@gdsc.tl')->set('reopenId', $this->line->id)->set('remark', 'Entered twice')->call('reopen');
-        $this->report(1200, 900);
+        $this->report(900);
         $this->page('chefe.gdsc@gdsc.tl')->call('verify', $this->line->id);
 
         $earlier = app(ExecutionHistory::class)->earlierVerified($entry->fresh());
         $this->assertCount(1, $earlier);
-        $this->assertEquals(1000, $earlier[0]['committed']);
-        $this->assertEquals(800, $earlier[0]['paid']);
+        $this->assertEquals(800, $earlier[0]['executed']);
         $this->assertSame(User::where('email', 'chefe.gdsc@gdsc.tl')->value('name'), $earlier[0]['verified_by']);
-        $this->assertEquals(1200, $entry->fresh()->committed, 'the current figure is the corrected one');
+        $this->assertEquals(900, $entry->fresh()->executed, 'the current figure is the corrected one');
     }
 
     public function test_the_page_lists_the_earlier_values(): void
     {
-        $this->report(1000, 800);
+        $this->report(800);
         $this->page('chefe.gdsc@gdsc.tl')->call('verify', $this->line->id);
         $this->page('chefe.gdsc@gdsc.tl')->set('reopenId', $this->line->id)->set('remark', 'Entered twice')->call('reopen');
-        $this->report(1200, 900);
+        $this->report(900);
         $this->page('chefe.gdsc@gdsc.tl')->call('verify', $this->line->id);
 
-        $this->page('chefe.gdsc@gdsc.tl')->assertSee('Earlier verified values')->assertSee('1,000.00');
+        $this->page('chefe.gdsc@gdsc.tl')->assertSee('Earlier verified values')->assertSee('800.00');
     }
 }

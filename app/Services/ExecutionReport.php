@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Execution of the approved plan of one fiscal year: what was approved, what was planned to be spent by
- * each quarter (the approved amount spread over the quarters the activity runs in), and what was committed
- * and paid (verified entries only). The headline rate is paid / approved, the way budget execution is
+ * each quarter (the approved amount spread over the quarters the activity runs in), and what was executed
+ * (verified entries only). The headline rate is executed / approved, the way budget execution is
  * reported; it is read against how much of the year has gone by.
  *
  * Two grouped queries feed everything (per activity: approved + quarters; per activity and quarter:
- * committed + paid), so the cost grows with the number of activities, not with budget lines or entries,
+ * executed), so the cost grows with the number of activities, not with budget lines or entries,
  * and nothing is loaded as a model.
  */
 class ExecutionReport
@@ -59,8 +59,7 @@ class ExecutionReport
             $activities[$r->id] = [
                 'id' => (int) $r->id, 'name' => $r->description, 'program_id' => (int) $r->program_id, 'subprogram_id' => (int) ($r->subprogram_id ?? 0), 'unit_id' => (int) $r->directorate_id,
                 'approved' => $approved, 'planned' => $planned,
-                'committed' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'paid' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0],
-                'committed_m' => array_fill(1, 12, 0.0), 'paid_m' => array_fill(1, 12, 0.0),
+                'executed' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'executed_m' => array_fill(1, 12, 0.0),
             ];
         }
 
@@ -71,16 +70,14 @@ class ExecutionReport
                 ->where('be.status', BudgetExecution::VERIFIED)
                 ->tap($scope)
                 ->groupBy('a.id', 'be.month')
-                ->selectRaw('a.id, be.month, SUM(be.committed) AS committed, SUM(be.paid) AS paid')
+                ->selectRaw('a.id, be.month, SUM(be.executed) AS executed')
                 ->get()
                 ->each(function ($r) use (&$activities) {
                     if (isset($activities[$r->id]) && $r->month >= 1 && $r->month <= 12) {
                         $m = (int) $r->month;
                         $q = (int) ceil($m / 3);
-                        $activities[$r->id]['committed_m'][$m] = (float) $r->committed;
-                        $activities[$r->id]['paid_m'][$m] = (float) $r->paid;
-                        $activities[$r->id]['committed'][$q] += (float) $r->committed;
-                        $activities[$r->id]['paid'][$q] += (float) $r->paid;
+                        $activities[$r->id]['executed_m'][$m] = (float) $r->executed;
+                        $activities[$r->id]['executed'][$q] += (float) $r->executed;
                     }
                 });
         }
@@ -113,29 +110,27 @@ class ExecutionReport
     }
 
     /**
-     * Totals, and the cumulative planned / committed / paid at the end of each quarter (actual figures
+     * Totals, and the cumulative planned / executed at the end of each quarter (actual figures
      * only for quarters that have started).
      */
     public function summary(array $data): array
     {
-        $approved = $committed = $paid = 0.0;
-        $q = ['planned' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'committed' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'paid' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0]];
+        $approved = $executed = 0.0;
+        $q = ['planned' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0], 'executed' => [1 => 0.0, 2 => 0.0, 3 => 0.0, 4 => 0.0]];
         $plannedToDate = 0.0;
 
         foreach ($data['activities'] as $a) {
             $approved += $a['approved'];
-            $committed += array_sum($a['committed']);
-            $paid += array_sum($a['paid']);
+            $executed += array_sum($a['executed']);
             $plannedToDate += $this->plannedToDate($a, $data);
             foreach ([1, 2, 3, 4] as $n) {
                 $q['planned'][$n] += $a['planned'][$n];
-                $q['committed'][$n] += $a['committed'][$n];
-                $q['paid'][$n] += $a['paid'][$n];
+                $q['executed'][$n] += $a['executed'][$n];
             }
         }
 
         $quarters = [];
-        $cum = ['planned' => 0.0, 'committed' => 0.0, 'paid' => 0.0];
+        $cum = ['planned' => 0.0, 'executed' => 0.0];
         foreach ([1, 2, 3, 4] as $n) {
             foreach ($cum as $k => $v) {
                 $cum[$k] += $q[$k][$n];
@@ -144,9 +139,8 @@ class ExecutionReport
             $quarters[] = [
                 'quarter' => $n,
                 'planned' => $cum['planned'],
-                'committed' => $started ? $cum['committed'] : null,
-                'paid' => $started ? $cum['paid'] : null,
-                'quarter_paid' => $started ? $q['paid'][$n] : null,
+                'executed' => $started ? $cum['executed'] : null,
+                'quarter_executed' => $started ? $q['executed'][$n] : null,
                 'quarter_planned' => $q['planned'][$n],
             ];
         }
@@ -154,34 +148,32 @@ class ExecutionReport
         $yearFraction = $data['quarter'] === 0 ? 0.0 : (($data['quarter'] - 1) + $data['fraction']) / 4;
 
         return [
-            'approved' => $approved, 'committed' => $committed, 'paid' => $paid,
-            'paid_rate' => $approved > 0 ? $paid / $approved * 100 : null,
-            'committed_rate' => $approved > 0 ? $committed / $approved * 100 : null,
+            'approved' => $approved, 'executed' => $executed,
+            'executed_rate' => $approved > 0 ? $executed / $approved * 100 : null,
             'planned_to_date' => $plannedToDate,
             'planned_rate' => $approved > 0 ? $plannedToDate / $approved * 100 : null,
             'elapsed' => $yearFraction * 100,
             'quarter' => $data['quarter'],
             'quarters' => $quarters,
             'has_data' => $approved > 0,
-            'has_actuals' => $committed > 0 || $paid > 0,
+            'has_actuals' => $executed > 0,
         ];
     }
 
     /**
-     * Paid against approved, by programme or by unit.
+     * Executed against approved, by programme or by unit.
      *
      * @param  'program_id'|'subprogram_id'|'unit_id'  $by
-     * @return array<int, array{id: int, approved: float, paid: float, committed: float, planned_to_date: float}> keyed by id
+     * @return array<int, array{id: int, approved: float, executed: float, planned_to_date: float}> keyed by id
      */
     public function grouped(array $data, string $by): array
     {
         $out = [];
         foreach ($data['activities'] as $a) {
             $g = &$out[$a[$by]];
-            $g ??= ['id' => $a[$by], 'approved' => 0.0, 'paid' => 0.0, 'committed' => 0.0, 'planned_to_date' => 0.0];
+            $g ??= ['id' => $a[$by], 'approved' => 0.0, 'executed' => 0.0, 'planned_to_date' => 0.0];
             $g['approved'] += $a['approved'];
-            $g['paid'] += array_sum($a['paid']);
-            $g['committed'] += array_sum($a['committed']);
+            $g['executed'] += array_sum($a['executed']);
             $g['planned_to_date'] += $this->plannedToDate($a, $data);
             unset($g);
         }
@@ -190,7 +182,7 @@ class ExecutionReport
     }
 
     /**
-     * The activities furthest behind their own schedule: paid so far against what should have been paid
+     * The activities furthest behind their own schedule: executed so far against what should have been executed
      * by now, largest shortfall first.
      *
      * @return array<int, array>
@@ -200,10 +192,10 @@ class ExecutionReport
         $rows = [];
         foreach ($data['activities'] as $a) {
             $due = $this->plannedToDate($a, $data);
-            $paid = array_sum($a['paid']);
-            $gap = $due - $paid;
+            $executed = array_sum($a['executed']);
+            $gap = $due - $executed;
             if ($due > 0 && $gap > 0.5) {
-                $rows[] = $a + ['due' => $due, 'paid_total' => $paid, 'gap' => $gap];
+                $rows[] = $a + ['due' => $due, 'executed_total' => $executed, 'gap' => $gap];
             }
         }
         usort($rows, fn ($x, $y) => $y['gap'] <=> $x['gap']);
@@ -211,7 +203,7 @@ class ExecutionReport
         return array_slice($rows, 0, $limit);
     }
 
-    /** What the activity should have paid by today: finished quarters in full, the current one pro rata. */
+    /** What the activity should have executed by today: finished quarters in full, the current one pro rata. */
     public function plannedToDate(array $activity, array $data): float
     {
         $sum = 0.0;

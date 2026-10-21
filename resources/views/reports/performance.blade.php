@@ -112,7 +112,7 @@
         @endforeach
         <tr class="prog">
             <td colspan="7">{{ __('Programme') }} <b>{{ $p['program']->oge_code }}</b>: {{ $p['program']->name }}</td>
-            <td class="r">{{ $money($p['approved']) }}</td><td class="r">{{ $money($p['paid']) }}</td><td class="r">{{ $pct($p['pct']) }}</td><td></td><td></td>
+            <td class="r">{{ $money($p['approved']) }}</td><td class="r">{{ $money($p['executed']) }}</td><td class="r">{{ $pct($p['pct']) }}</td><td></td><td></td>
         </tr>
         @foreach($p['program']->resultIndicators as $ri)
             <tr class="prog-i"><td>{{ $loop->first ? ($p['program']->objective ?? '') : '' }}</td><td>{{ $ri->name }}</td><td>{{ $ri->baseline }}</td><td>{{ $ri->target }}</td><td>{{ $ri->means_of_verification }}</td><td colspan="7"></td></tr>
@@ -121,7 +121,7 @@
         @foreach($p['subprograms'] as $s)
             <tr class="sub">
                 <td colspan="7">{{ __('Subprogramme') }} <b>{{ $s['subprogram']->code }}</b>: {{ $s['subprogram']->name }}</td>
-                <td class="r">{{ $money($s['approved']) }}</td><td class="r">{{ $money($s['paid']) }}</td><td class="r">{{ $pct($s['pct']) }}</td><td></td><td></td>
+                <td class="r">{{ $money($s['approved']) }}</td><td class="r">{{ $money($s['executed']) }}</td><td class="r">{{ $pct($s['pct']) }}</td><td></td><td></td>
             </tr>
             @foreach($s['subprogram']->resultIndicators as $ri)
                 <tr class="sub-i"><td>{{ $loop->first ? ($s['subprogram']->objective ?? '') : '' }}</td><td>{{ $ri->name }}</td><td>{{ $ri->baseline }}</td><td>{{ $ri->target }}</td><td>{{ $ri->means_of_verification }}</td><td colspan="7"></td></tr>
@@ -139,7 +139,7 @@
     @endforelse
         <tr class="tot">
             <td colspan="7" class="c">{{ __('TOTAL EXECUTION') }}</td>
-            <td class="r">{{ $money($report['totals']['approved']) }}</td><td class="r">{{ $money($report['totals']['paid']) }}</td><td class="r">{{ $pct($report['totals']['pct']) }}</td><td></td><td></td>
+            <td class="r">{{ $money($report['totals']['approved']) }}</td><td class="r">{{ $money($report['totals']['executed']) }}</td><td class="r">{{ $pct($report['totals']['pct']) }}</td><td></td><td></td>
         </tr>
     </tbody>
 </table>

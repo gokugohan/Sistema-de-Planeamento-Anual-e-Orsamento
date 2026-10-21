@@ -115,13 +115,13 @@ new class extends Component {
         $achievement = $delivery['achievement'];
         $quarterly = $delivery['quarters'];
 
-        // ── execution: committed and paid against the approved plan amount, and against the calendar ──
+        // ── execution: executed amount against the approved plan amount, and against the calendar ──
         $execReport = app(\App\Services\ExecutionReport::class);
         $execData = $execReport->load($year, $unitIds, $cat, null, $prog);
         $exec = $execReport->summary($execData);
         $behind = array_map(fn ($a) => $a + ['unit' => $dirs[$a['unit_id']]->code ?? ''], $execReport->behind($execData, 5));
 
-        // ── programmes: what each one plans, receives and has paid ──
+        // ── programmes: what each one plans, receives and has executed ──
         $execByProg = $execReport->grouped($execData, 'program_id');
         $execBySub = $execReport->grouped($execData, 'subprogram_id');
         $subsByProg = \App\Models\Subprogram::whereIn('id', array_keys($subStats))->orderBy('code')->get(['id', 'program_id', 'code', 'name'])->groupBy('program_id');
@@ -135,7 +135,7 @@ new class extends Component {
             $progRows[] = [
                 'id' => $id, 'code' => $p->oge_code, 'name' => $p->name, 'n' => $s['n'], 'approved' => $s['approved'] ?? 0,
                 'plan' => (float) ($s['plan'] ?? 0), 'alloc' => (float) ($s['alloc'] ?? 0),
-                'paid_pct' => $e && $e['approved'] > 0 ? $e['paid'] / $e['approved'] * 100 : null,
+                'executed_pct' => $e && $e['approved'] > 0 ? $e['executed'] / $e['approved'] * 100 : null,
                 'due_pct' => $e && $e['approved'] > 0 ? $e['planned_to_date'] / $e['approved'] * 100 : null,
                 'subs' => $subsByProg->get($id, collect())->map(function ($sub) use ($subStats, $execBySub) {
                     $s = $subStats[$sub->id] ?? [];
@@ -144,7 +144,7 @@ new class extends Component {
                     return [
                         'code' => $sub->code, 'name' => $sub->name, 'n' => $s['n'] ?? 0, 'approved' => $s['approved'] ?? 0,
                         'plan' => (float) ($s['plan'] ?? 0), 'alloc' => (float) ($s['alloc'] ?? 0),
-                        'paid_pct' => $x && $x['approved'] > 0 ? $x['paid'] / $x['approved'] * 100 : null,
+                        'executed_pct' => $x && $x['approved'] > 0 ? $x['executed'] / $x['approved'] * 100 : null,
                     ];
                 })->all(),
             ];
@@ -201,10 +201,9 @@ new class extends Component {
             'quarterly' => $quarterly,
             'execution' => [
                 'planned' => array_column($exec['quarters'], 'planned'),
-                'committed' => array_column($exec['quarters'], 'committed'),
-                'paid' => array_column($exec['quarters'], 'paid'),
+                'executed' => array_column($exec['quarters'], 'executed'),
             ],
-            'labels' => [__('Requested'), __('Planned'), __('Planned'), __('Approved plan'), __('Plan'), __('Cumulative progress'), __('Planned (cumulative)'), __('Committed'), __('Paid')],
+            'labels' => [__('Requested'), __('Planned'), __('Planned'), __('Approved plan'), __('Plan'), __('Cumulative progress'), __('Planned (cumulative)'), __('Executed')],
         ];
 
         return [
@@ -296,9 +295,9 @@ new class extends Component {
         <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($allocated)"
             :sub="$planAll > 0 ? __('of $ :planned planned in :n activities', ['planned' => number_format($planAll), 'n' => $totalActivities]) : __('Nothing planned yet')"
             :progress="$approvedPct" tone="indigo" href="{{ route('activities.index') }}" />
-        <x-ui.kpi :label="__('Paid')" :value="'$ ' . number_format((float) ($exec['paid'] ?? 0))"
-            :sub="($allocated > 0 ? number_format(min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan.') . ' ' : '') . __('Entered monthly by the units, counted once verified.')"
-            :progress="$allocated > 0 ? min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100) : null" tone="emerald" href="{{ route('monitoring.index') }}" />
+        <x-ui.kpi :label="__('Executed')" :value="'$ ' . number_format((float) ($exec['executed'] ?? 0))"
+            :sub="($allocated > 0 ? number_format(min(100, (float) ($exec['executed'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan.') . ' ' : '') . __('Entered monthly by the units, counted once verified.')"
+            :progress="$allocated > 0 ? min(100, (float) ($exec['executed'] ?? 0) / $allocated * 100) : null" tone="emerald" href="{{ route('monitoring.index') }}" />
         <x-ui.kpi :label="__('Activities approved')" :value="$byStatus[\App\Models\Activity::STATUS_APPROVED] . ' / ' . $totalActivities"
             :sub="number_format($approvedShare, 0) . '% ' . __('of the plan')" :progress="$approvedShare" tone="indigo"
             href="{{ route('planning.paa-approval') }}" />
@@ -307,10 +306,10 @@ new class extends Component {
             :progress="$achievement" tone="amber" href="{{ route('monitoring.index') }}" />
     </div>
 
-    {{-- Budget execution: what has been committed and paid, read against how much of the year has passed --}}
+    {{-- Budget execution: what has been executed, read against how much of the year has passed --}}
     @if($exec['has_data'])
         @php
-            $gap = $exec['paid_rate'] !== null && $exec['planned_rate'] !== null ? $exec['paid_rate'] - $exec['planned_rate'] : null;
+            $gap = $exec['executed_rate'] !== null && $exec['planned_rate'] !== null ? $exec['executed_rate'] - $exec['planned_rate'] : null;
             [$paceLabel, $paceTone] = match (true) {
                 ! $exec['has_actuals'] => [__('Nothing reported yet'), 'bg-zinc-100 text-zinc-700'],
                 $gap >= 5 => [__('Ahead of schedule'), 'bg-emerald-50 text-emerald-800'],
@@ -318,7 +317,7 @@ new class extends Component {
                 default => [__('Behind schedule'), 'bg-amber-50 text-amber-800'],
             };
         @endphp
-        <x-ui.card :title="__('Budget execution')" :description="__('Paid and committed against the approved plan amount, by quarter')" padding="p-0">
+        <x-ui.card :title="__('Budget execution')" :description="__('Executed amount against the approved plan amount, by quarter')" padding="p-0">
             <x-slot:actions>
                 @if($exec['quarter'] > 0)
                     <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium {{ $paceTone }}">{{ $paceLabel }}</span>
@@ -327,28 +326,27 @@ new class extends Component {
             <div class="grid gap-0 lg:grid-cols-12">
                 <div class="min-w-0 p-5 lg:col-span-7">
                     <div wire:key="c-x-{{ md5(json_encode($charts['execution'])) }}" x-data="dashChart('execution', @js($charts))" x-init="mount()" class="relative h-80">
-                        <canvas role="img" aria-label="{{ __('Cumulative planned, committed and paid amounts after each quarter') }}"></canvas>
+                        <canvas role="img" aria-label="{{ __('Cumulative planned and executed amounts after each quarter') }}"></canvas>
                     </div>
                 </div>
                 <div class="space-y-5 border-t border-zinc-200 p-5 lg:col-span-5 lg:border-l lg:border-t-0">
-                    <dl class="grid grid-cols-3 gap-3">
+                    <dl class="grid grid-cols-2 gap-3">
                         <div><dt class="text-xs font-medium text-zinc-500">{{ __('Approved plan amount') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['approved']) }}</dd></div>
-                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Committed') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($exec['committed']) }}</dd></div>
-                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Paid') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-indigo-700">$ {{ number_format($exec['paid']) }}</dd></div>
+                        <div><dt class="text-xs font-medium text-zinc-500">{{ __('Executed') }}</dt><dd class="mt-1 text-lg font-semibold tabular-nums text-indigo-700">$ {{ number_format($exec['executed']) }}</dd></div>
                     </dl>
 
                     <div>
                         <div class="flex items-baseline justify-between text-sm">
-                            <span class="font-medium text-zinc-700">{{ __('Paid of the approved plan amount') }}</span>
-                            <span class="font-semibold tabular-nums text-zinc-900">{{ number_format($exec['paid_rate'] ?? 0, 1) }}%</span>
+                            <span class="font-medium text-zinc-700">{{ __('Executed of the approved plan amount') }}</span>
+                            <span class="font-semibold tabular-nums text-zinc-900">{{ number_format($exec['executed_rate'] ?? 0, 1) }}%</span>
                         </div>
-                        {{-- the bar is the paid share; the tick is where the year stands --}}
+                        {{-- the bar is the executed share; the tick is where the year stands --}}
                         <div class="relative mt-2 h-2 rounded-full bg-zinc-100" role="img"
-                            aria-label="{{ __(':paid% paid, :elapsed% of the year has passed', ['paid' => number_format($exec['paid_rate'] ?? 0, 1), 'elapsed' => number_format($exec['elapsed'], 0)]) }}">
-                            <div class="h-full rounded-full bg-indigo-600" style="width: {{ min(100, $exec['paid_rate'] ?? 0) }}%"></div>
+                            aria-label="{{ __(':executed% executed, :elapsed% of the year has passed', ['executed' => number_format($exec['executed_rate'] ?? 0, 1), 'elapsed' => number_format($exec['elapsed'], 0)]) }}">
+                            <div class="h-full rounded-full bg-indigo-600" style="width: {{ min(100, $exec['executed_rate'] ?? 0) }}%"></div>
                             <div class="absolute -top-1 h-4 w-0.5 bg-zinc-900" style="left: {{ min(100, $exec['elapsed']) }}%"></div>
                         </div>
-                        <p class="mt-2 text-xs text-zinc-500">{{ __(':elapsed% of the year has passed; the schedule calls for :planned% paid by now.', ['elapsed' => number_format($exec['elapsed'], 0), 'planned' => number_format($exec['planned_rate'] ?? 0, 0)]) }}</p>
+                        <p class="mt-2 text-xs text-zinc-500">{{ __(':elapsed% of the year has passed; the schedule calls for :planned% executed by now.', ['elapsed' => number_format($exec['elapsed'], 0), 'planned' => number_format($exec['planned_rate'] ?? 0, 0)]) }}</p>
                     </div>
 
                     @if(count($behind))
@@ -474,8 +472,7 @@ new class extends Component {
                             { label: L[3], data: d.units.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
                         execution: () => ({ type: 'bar', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [
-                            { type: 'bar', label: L[8], data: d.execution.paid, backgroundColor: '#2152C4', borderRadius: 3, order: 2 },
-                            { type: 'line', label: L[7], data: d.execution.committed, borderColor: '#10B981', backgroundColor: '#10B981', tension: .25, pointRadius: 3, spanGaps: false, order: 1 },
+                            { type: 'bar', label: L[7], data: d.execution.executed, backgroundColor: '#2152C4', borderRadius: 3, order: 2 },
                             { type: 'line', label: L[6], data: d.execution.planned, borderColor: '#94A3B8', borderDash: [5, 4], backgroundColor: '#94A3B8', tension: .25, pointRadius: 2, order: 0 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
                         quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#2152C4', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#2152C4' }] },

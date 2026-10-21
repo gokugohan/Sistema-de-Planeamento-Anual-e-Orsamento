@@ -43,11 +43,11 @@ class PerformanceReportTest extends TestCase
     public function test_the_quarter_is_the_sum_of_its_months_and_programmes_add_up_to_the_total(): void
     {
         $quarter = app(PerformanceReport::class)->build(2026, 'quarter', 3, $this->chief());
-        $months = collect([7, 8, 9])->sum(fn ($m) => app(PerformanceReport::class)->build(2026, 'month', $m, $this->chief())['totals']['paid']);
+        $months = collect([7, 8, 9])->sum(fn ($m) => app(PerformanceReport::class)->build(2026, 'month', $m, $this->chief())['totals']['executed']);
 
         $this->assertGreaterThan(0, $quarter['totals']['activities']);
-        $this->assertEqualsWithDelta($months, $quarter['totals']['paid'], 0.05);
-        $this->assertEqualsWithDelta($quarter['totals']['paid'], $quarter['tree']->sum('paid'), 0.05);
+        $this->assertEqualsWithDelta($months, $quarter['totals']['executed'], 0.05);
+        $this->assertEqualsWithDelta($quarter['totals']['executed'], $quarter['tree']->sum('executed'), 0.05);
         $this->assertEqualsWithDelta($quarter['totals']['approved'], $quarter['tree']->sum('approved'), 0.05);
     }
 

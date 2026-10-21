@@ -58,7 +58,7 @@ class PerformanceReport
 
         $rows = $activities->map(function (Activity $a) use ($money, $months, $indicators, $notes, $quarterNotes, $quarter, $funding) {
             $m = $money[$a->id];
-            $paid = array_sum(array_map(fn ($i) => $m['paid_m'][$i], $months));
+            $executed = array_sum(array_map(fn ($i) => $m['executed_m'][$i], $months));
             $note = $notes[$a->id] ?? null;
             $verifiedNote = $note?->status === 'Verified' ? $note : null;
             $inds = ($indicators[$a->id] ?? collect());
@@ -66,9 +66,8 @@ class PerformanceReport
             return [
                 'activity' => $a,
                 'approved' => $m['approved'],
-                'paid' => $paid,
-                'committed' => array_sum(array_map(fn ($i) => $m['committed_m'][$i], $months)),
-                'pct' => $m['approved'] > 0 ? $paid / $m['approved'] * 100 : null,
+                'executed' => $executed,
+                'pct' => $m['approved'] > 0 ? $executed / $m['approved'] * 100 : null,
                 'funding' => ($funding[$a->id] ?? collect())->map(fn ($f) => __($f->name))->all(),
                 'means' => $inds->pluck('means_of_verification')->filter()->unique()->implode('; '),
                 'indicators' => $inds->map(function (Indicator $i) use ($quarter) {
@@ -92,8 +91,8 @@ class PerformanceReport
         });
 
         $tally = fn (Collection $rs) => [
-            'approved' => $rs->sum('approved'), 'paid' => $rs->sum('paid'),
-            'pct' => $rs->sum('approved') > 0 ? $rs->sum('paid') / $rs->sum('approved') * 100 : null,
+            'approved' => $rs->sum('approved'), 'executed' => $rs->sum('executed'),
+            'pct' => $rs->sum('approved') > 0 ? $rs->sum('executed') / $rs->sum('approved') * 100 : null,
         ];
 
         $programs = Program::whereIn('id', $rows->pluck('activity.program_id')->unique())
@@ -122,7 +121,7 @@ class PerformanceReport
             'label' => $type === 'quarter' ? 'Q'.$period : Carbon::create($year, $period, 1)->translatedFormat('F'),
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
             'tree' => $tree,
-            'totals' => $all + ['activities' => $rows->count(), 'committed' => $rows->sum('committed')],
+            'totals' => $all + ['activities' => $rows->count()],
             'reference' => sprintf('PERF-%d-%s%02d', $year, $type === 'quarter' ? 'Q' : 'M', $period),
             'generated_at' => now(), 'generated_by' => $user->name,
         ];

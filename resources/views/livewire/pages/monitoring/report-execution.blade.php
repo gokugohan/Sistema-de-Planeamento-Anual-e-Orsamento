@@ -179,7 +179,7 @@ new class extends Component {
             'worklist' => $activity ? collect() : $this->worklist,
             'maxMonth' => $this->latestMonth(),
             'closed' => array_filter([
-                __('Spending and monthly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month),
+                __('Executed amount and monthly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month),
                 __('Indicators and quarterly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'quarter', $this->quarter),
             ]),
             'canReport' => auth()->user()->can('update_indicator_progress') || auth()->user()->can('approve_progress_report'),
@@ -203,7 +203,7 @@ new class extends Component {
                     @foreach(range(1, $maxMonth) as $m)<option value="{{ $m }}">{{ \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F') }}</option>@endforeach
                 </select>
             </div>
-            <p class="max-w-xl pb-2 text-sm text-zinc-600">{{ __('You report spending for the month you choose, and indicators for the quarter it belongs to (:months).', ['months' => \Carbon\Carbon::create($year, ($this->quarter - 1) * 3 + 1, 1)->translatedFormat('F').' – '.\Carbon\Carbon::create($year, $this->quarter * 3, 1)->translatedFormat('F')]) }}</p>
+            <p class="max-w-xl pb-2 text-sm text-zinc-600">{{ __('You report the executed amount for the month you choose, and indicators for the quarter it belongs to (:months).', ['months' => \Carbon\Carbon::create($year, ($this->quarter - 1) * 3 + 1, 1)->translatedFormat('F').' – '.\Carbon\Carbon::create($year, $this->quarter * 3, 1)->translatedFormat('F')]) }}</p>
             @if(! $activityId)
                 <div class="ml-auto w-full sm:w-72">
                     <label for="re-s" class="field-label">{{ __('Search activities') }}</label>
@@ -240,7 +240,7 @@ new class extends Component {
                                     <span class="block text-xs font-medium text-indigo-700">{{ $a->directorate?->code }}@if($a->code) · {{ $a->code }}@endif</span>
                                     <span class="block text-sm text-zinc-900">{{ \Illuminate\Support\Str::limit($a->description, 110) }}</span>
                                 </span>
-                                @foreach(['spendingState' => __('Spending'), 'progressState' => __('Indicators')] as $field => $what)
+                                @foreach(['spendingState' => __('Executed amount'), 'progressState' => __('Indicators')] as $field => $what)
                                     <span class="w-44 shrink-0 text-xs"><span class="block text-zinc-500">{{ $what }}</span><span class="mt-0.5 inline-flex rounded-full px-2 py-0.5 font-medium {{ $badge[$a->$field][0] }}">{{ $badge[$a->$field][1] }}</span></span>
                                 @endforeach
                                 <span class="text-xs font-semibold text-indigo-700">{{ __('Open') }} →</span>
@@ -264,7 +264,7 @@ new class extends Component {
                     </p>
                 </div>
                 <dl class="flex shrink-0 flex-wrap gap-x-8 gap-y-2 text-sm">
-                    @foreach(['spending' => __('Spending'), 'progress' => __('Indicators')] as $key => $label)
+                    @foreach(['spending' => __('Executed amount'), 'progress' => __('Indicators')] as $key => $label)
                         @php $c = $summary[$key]; @endphp
                         <div>
                             <dt class="text-xs font-medium text-zinc-500">{{ $label }} · {{ $key === 'spending' ? \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F') : 'Q'.$this->quarter }}</dt>
@@ -284,7 +284,7 @@ new class extends Component {
         @endforeach
 
         <nav aria-label="{{ __('What to do for this activity') }}" class="grid gap-3 sm:grid-cols-3">
-            @foreach([['spending', '1', __('Spending'), __('Committed and paid in :month', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F')]), $summary['spending']], ['progress', '2', __('Indicators'), __('What was achieved in Q:q', ['q' => $this->quarter]), $summary['progress']], ['narrative', '3', __('Narrative'), __('The words that go with the numbers (optional)'), null]] as [$anchor, $n, $label, $hint, $c])
+            @foreach([['spending', '1', __('Executed amount'), __('Executed in :month', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F')]), $summary['spending']], ['progress', '2', __('Indicators'), __('What was achieved in Q:q', ['q' => $this->quarter]), $summary['progress']], ['narrative', '3', __('Narrative'), __('The words that go with the numbers (optional)'), null]] as [$anchor, $n, $label, $hint, $c])
                 <a href="#{{ $anchor }}" class="flex items-start gap-3 rounded-lg border border-zinc-200 bg-white p-3 text-sm hover:border-indigo-300">
                     <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-xs font-semibold text-indigo-800">{{ $n }}</span>
                     <span><span class="block font-medium text-zinc-900">{{ $label }}</span><span class="block text-xs text-zinc-500">{{ $hint }}</span>
@@ -301,7 +301,7 @@ new class extends Component {
 
         @if($canReport)
             <div class="sticky bottom-4 z-10 flex flex-col items-start justify-between gap-3 rounded-lg border border-indigo-200 bg-white px-5 py-4 shadow-lg sm:flex-row sm:items-center">
-                <p class="text-sm text-zinc-700">{{ __('Done? Send the spending of :month and the indicators of Q:q for verification together. Someone else then checks them; until they do, they do not count.', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F'), 'q' => $this->quarter]) }}</p>
+                <p class="text-sm text-zinc-700">{{ __('Done? Send the executed amount of :month and the indicators of Q:q for verification together. Someone else then checks them; until they do, they do not count.', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F'), 'q' => $this->quarter]) }}</p>
                 <x-ui.button type="button" wire:click="submitAll">{{ __('Send everything for verification') }}</x-ui.button>
             </div>
         @endif

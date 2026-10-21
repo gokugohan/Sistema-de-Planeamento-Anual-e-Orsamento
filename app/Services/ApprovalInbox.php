@@ -79,7 +79,7 @@ class ApprovalInbox
             $activityIds = $activities()->select('id');
             $money = BudgetExecution::where('status', BudgetExecution::SUBMITTED)->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('line_item_id', LineItem::whereIn('activity_id', $activityIds)->select('id'))->count();
-            $add('verify', $money, trans_choice(':n spending figure to verify|:n spending figures to verify', $money, ['n' => $money]), route('monitoring.report'), 'indigo');
+            $add('verify', $money, trans_choice(':n executed amount to verify|:n executed amounts to verify', $money, ['n' => $money]), route('monitoring.report'), 'indigo');
         }
         if ($mayVerifyProgress) {
             $progress = IndicatorProgress::where('status', 'Submitted')->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
@@ -114,7 +114,7 @@ class ApprovalInbox
                 $due = $activities()->where('version', '>', 0)->whereHas('lineItems.adjustedBudget')
                     ->whereDoesntHave('lineItems.executions', fn ($q) => $q->where('month', $last))->count();
                 $name = Carbon::create($year, $last, 1)->translatedFormat('F');
-                $add('report', $due, trans_choice(':n approved activity has no spending reported for :month|:n approved activities have no spending reported for :month', $due, ['n' => $due, 'month' => $name]), route('monitoring.report'), 'amber');
+                $add('report', $due, trans_choice(':n approved activity has no executed amount reported for :month|:n approved activities have no executed amount reported for :month', $due, ['n' => $due, 'month' => $name]), route('monitoring.report'), 'amber');
             }
             foreach (ReportingWindow::where('fiscal_year', $year)->where('period_type', 'month')->whereIn('period', array_filter([$month, $last]))
                 ->whereDate('closes_on', '>=', now()->toDateString())->whereDate('closes_on', '<=', now()->addDays(7)->toDateString())->get() as $w) {

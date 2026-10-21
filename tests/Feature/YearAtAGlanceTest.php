@@ -141,7 +141,7 @@ class YearAtAGlanceTest extends TestCase
     public function test_the_guide_opens_for_everyone_and_marks_the_persons_own_steps(): void
     {
         $officer = $this->actingAs($this->user('tecnico.udig@gdsc.tl'))->get(route('guide'))->assertOk()
-            ->assertSee('How the year works')->assertSee('Where does &quot;Paid&quot; come from?', false)->assertSee('Report the spending')->getContent();
+            ->assertSee('How the year works')->assertSee('Where does &quot;Executed&quot; come from?', false)->assertSee('Report the executed amount')->getContent();
         $this->assertStringContainsString('Yours', $officer);
 
         $viewer = User::factory()->create();

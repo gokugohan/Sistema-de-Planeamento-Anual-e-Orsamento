@@ -112,7 +112,7 @@ new class extends Component {
                 <label class="flex items-start gap-3">
                     <input type="checkbox" wire:model="financeInstitutionWide" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
                     <span><span class="font-medium text-zinc-900">{{ __('Finance officers work for the whole institution') }}</span><br>
-                        <span class="text-zinc-600">{{ __('Finance officers see every unit, confirm budgets and verify spending everywhere, not only in their own unit.') }}</span></span>
+                        <span class="text-zinc-600">{{ __('Finance officers see every unit, confirm budgets and verify executed amounts everywhere, not only in their own unit.') }}</span></span>
                 </label>
                 <label class="flex items-start gap-3">
                     <input type="checkbox" wire:model="correctiveActions" class="mt-0.5 rounded border-zinc-300 text-indigo-600">

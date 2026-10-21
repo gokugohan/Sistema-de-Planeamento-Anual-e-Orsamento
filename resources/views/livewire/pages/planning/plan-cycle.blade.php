@@ -135,9 +135,9 @@ new class extends Component {
     </x-ui.card>
 
     {{-- reporting --}}
-    <x-ui.card :title="__('Reporting')" :description="__('Spending is reported every month and indicators every quarter, inside the windows set for them.')" padding="p-0">
+    <x-ui.card :title="__('Reporting')" :description="__('The executed amount is reported every month and indicators every quarter, inside the windows set for them.')" padding="p-0">
         @php $r = $cycle['reporting']; @endphp
-        <x-ui.table :headers="[__('Month'), __('Window'), __('Activities with verified spending'), __('Waiting for verification')]" :right="[2, 3]" class="text-sm">
+        <x-ui.table :headers="[__('Month'), __('Window'), __('Activities with a verified executed amount'), __('Waiting for verification')]" :right="[2, 3]" class="text-sm">
             @foreach($r['months'] as $m => $row)
                 <tr wire:key="pc-m-{{ $m }}">
                     <td class="px-5 py-2.5 font-medium text-zinc-900">{{ \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F') }}</td>

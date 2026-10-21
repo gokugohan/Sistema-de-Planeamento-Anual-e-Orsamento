@@ -26,7 +26,7 @@
             <td rowspan="{{ $n }}">{{ $a->directorate?->name }}</td>
             <td rowspan="{{ $n }}">@foreach($r['funding'] as $f){{ $f }}@if(! $loop->last)<br>@endif @endforeach</td>
             <td rowspan="{{ $n }}" class="r">$ {{ number_format($r['approved'], 2) }}</td>
-            <td rowspan="{{ $n }}" class="r">$ {{ number_format($r['paid'], 2) }}</td>
+            <td rowspan="{{ $n }}" class="r">$ {{ number_format($r['executed'], 2) }}</td>
             <td rowspan="{{ $n }}" class="r">{{ $r['pct'] === null ? '0.00%' : number_format($r['pct'], 2).'%' }}</td>
             <td rowspan="{{ $n }}">
                 {{ $r['results'] }}

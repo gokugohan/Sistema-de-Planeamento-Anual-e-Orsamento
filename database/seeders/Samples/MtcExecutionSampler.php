@@ -52,7 +52,7 @@ class MtcExecutionSampler
                 continue;
             }
             $pace = $this->pace($line->activity_id, $finished);
-            $committed = $paid = 0.0;
+            $executed = 0.0;
 
             for ($m = 1; $m <= $currentMonth; $m++) {
                 $q = (int) ceil($m / 3);
@@ -61,18 +61,14 @@ class MtcExecutionSampler
                 $jitter = 0.85 + (crc32("{$line->id}:{$m}") % 31) / 100; // 0.85 - 1.15
 
                 $planned = $approved / 12;
-                $paidM = min($planned * $pace * self::SEASON[$q] * $jitter * $share, $approved - $paid);
-                $committedM = min($paidM * (1.1 + (crc32("c{$line->id}{$m}") % 15) / 100), $approved - $committed);
-                $committedM = max($committedM, $paidM);
-
-                $committed += $committedM;
-                $paid += $paidM;
+                $executedM = min($planned * $pace * self::SEASON[$q] * $jitter * $share, $approved - $executed);
+                $executed += $executedM;
 
                 // The running month is still being reported: two thirds of it is verified, the rest waits.
                 $verified = ! $inProgress || $line->activity_id % 3 !== 0;
                 $rows[] = [
                     'line_item_id' => $line->id, 'month' => $m, 'quarter' => $q,
-                    'committed' => round($committedM, 2), 'paid' => round($paidM, 2),
+                    'executed' => round($executedM, 2),
                     'status' => $verified ? BudgetExecution::VERIFIED : BudgetExecution::SUBMITTED,
                     'submitted_by' => $reporter, 'verified_by' => $verified ? $verifier : null,
                     'verified_at' => $verified ? $stamp : null,
@@ -81,7 +77,7 @@ class MtcExecutionSampler
             }
         }
         foreach (array_chunk($rows, 500) as $chunk) {
-            DB::table('budget_executions')->upsert($chunk, ['line_item_id', 'month'], ['quarter', 'committed', 'paid', 'status', 'submitted_by', 'verified_by', 'verified_at', 'updated_at']);
+            DB::table('budget_executions')->upsert($chunk, ['line_item_id', 'month'], ['quarter', 'executed', 'status', 'submitted_by', 'verified_by', 'verified_at', 'updated_at']);
         }
 
         $this->physicalProgress($activityIds, $current, $fractionOfCurrent, $finished, $stamp);

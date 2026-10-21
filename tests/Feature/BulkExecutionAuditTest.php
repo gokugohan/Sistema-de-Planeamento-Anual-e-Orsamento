@@ -61,7 +61,7 @@ class BulkExecutionAuditTest extends TestCase
         $reporter = Volt::actingAs($this->user('director.udig@gdsc.tl'))->test('pages.monitoring.execution-spending')
             ->set('activityId', $this->activity->id)->set('month', 10);
         foreach ($lines as $line) {
-            $reporter->set("form.{$line->id}.committed", 100)->set("form.{$line->id}.paid", 50);
+            $reporter->set("form.{$line->id}.executed", 50);
         }
         $reporter->call('save', true);
         $entries = BudgetExecution::whereIn('line_item_id', $lines->pluck('id'))->where('month', 10)->get();

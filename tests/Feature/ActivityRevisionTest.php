@@ -123,7 +123,7 @@ class ActivityRevisionTest extends TestCase
     {
         $a = $this->approved();
         $line = $a->lineItems->first();
-        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => BudgetExecution::SUBMITTED]);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'executed' => 5, 'status' => BudgetExecution::SUBMITTED]);
         $indicator = $a->indicators->first();
         IndicatorProgress::create(['indicator_id' => $indicator->id, 'quarter' => 1, 'achieved_value' => 1, 'status' => 'Submitted']);
 

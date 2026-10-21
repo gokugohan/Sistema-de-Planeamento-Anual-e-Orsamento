@@ -65,7 +65,7 @@ class LineItem extends Model
             }
             // spending reported against a line keeps it: a revision sets its amount instead of removing it
             if ($item->executions()->exists()) {
-                throw new \DomainException(__('This budget line already has spending reported against it: change its amount instead of removing it.'));
+                throw new \DomainException(__('This budget line already has an executed amount reported against it: change its amount instead of removing it.'));
             }
         });
     }

@@ -8,8 +8,8 @@ use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 /**
- * The spending half of "Report execution": what an approved activity committed and paid in a month,
- * line by line. The activity and the month come from the page that holds it. The unit reports it
+ * The budget half of "Report execution": the amount an approved activity executed in a month, line by line:
+ * one figure per budget line, with what remains of the approved amount shown as it is typed. The activity and the month come from the page that holds it. The unit reports it
  * (Draft, then Submitted); someone else verifies it, and only verified figures count in the reports.
  * A verified figure is changed only by reopening it.
  */
@@ -17,7 +17,7 @@ new class extends Component {
     public int $year;
     public int $month = 1;
     public ?int $activityId = null;
-    /** @var array<int, array{committed: mixed, paid: mixed}> keyed by budget line */
+    /** @var array<int, array{executed: mixed}> keyed by budget line */
     public array $form = [];
 
     public function mount(?int $activityId = null, ?int $month = null): void
@@ -82,10 +82,10 @@ new class extends Component {
                 return (object) [
                     'id' => $line->id, 'code' => $line->code, 'category' => $line->economicClassification?->code.' '.$line->economicClassification?->name,
                     'approved' => (float) $line->adjustedBudget->approved_amount,
-                    'other_committed' => (float) $others->sum('committed'), 'other_paid' => (float) $others->sum('paid'),
+                    'other' => (float) $others->sum('executed'),
                     'entry' => $this_m,
                     'earlier' => $this_m ? app(\App\Services\ExecutionHistory::class)->earlierVerified($this_m) : [],
-                    'months' => $line->executions->sortBy('month')->map(fn ($e) => ['month' => (int) $e->month, 'committed' => (float) $e->committed, 'paid' => (float) $e->paid, 'status' => $e->status])->values()->all(),
+                    'months' => $line->executions->sortBy('month')->map(fn ($e) => ['month' => (int) $e->month, 'executed' => (float) $e->executed, 'status' => $e->status])->values()->all(),
                 ];
             });
     }
@@ -107,10 +107,7 @@ new class extends Component {
     {
         $this->form = [];
         foreach ($this->lines as $line) {
-            $this->form[$line->id] = [
-                'committed' => $line->entry ? (float) $line->entry->committed : '',
-                'paid' => $line->entry ? (float) $line->entry->paid : '',
-            ];
+            $this->form[$line->id] = ['executed' => $line->entry ? (float) $line->entry->executed : ''];
         }
     }
 
@@ -127,22 +124,19 @@ new class extends Component {
                 continue; // submitted or verified: not changed from here
             }
             $in = $this->form[$line->id] ?? [];
-            if (($in['committed'] ?? '') === '' && ($in['paid'] ?? '') === '') {
+            if (($in['executed'] ?? '') === '' || ! is_numeric($in['executed'])) {
                 continue;
             }
-            $committed = round((float) ($in['committed'] ?? 0), 2);
-            $paid = round((float) ($in['paid'] ?? 0), 2);
+            $executed = round((float) $in['executed'], 2);
 
-            if ($committed < 0 || $paid < 0) {
-                $errors["form.{$line->id}.committed"] = __('Amounts cannot be negative.');
-            } elseif ($line->other_committed + $committed > $line->approved + 0.005) {
-                $errors["form.{$line->id}.committed"] = __('Committed would exceed the approved plan amount of $ :a.', ['a' => number_format($line->approved, 2)]);
-            } elseif ($line->other_paid + $paid > $line->other_committed + $committed + 0.005) {
-                $errors["form.{$line->id}.paid"] = __('Paid cannot exceed what has been committed.');
+            if ($executed < 0) {
+                $errors["form.{$line->id}.executed"] = __('Amounts cannot be negative.');
+            } elseif ($line->other + $executed > $line->approved + 0.005) {
+                $errors["form.{$line->id}.executed"] = __('The executed amount would exceed the approved plan amount of $ :a (only $ :r is left).', ['a' => number_format($line->approved, 2), 'r' => number_format(max(0, $line->approved - $line->other), 2)]);
             } else {
                 BudgetExecution::updateOrCreate(
                     ['line_item_id' => $line->id, 'month' => $this->month],
-                    ['committed' => $committed, 'paid' => $paid, 'status' => $submit ? BudgetExecution::SUBMITTED : BudgetExecution::DRAFT,
+                    ['executed' => $executed, 'status' => $submit ? BudgetExecution::SUBMITTED : BudgetExecution::DRAFT,
                      'submitted_by' => auth()->id(), 'verified_by' => null, 'verified_at' => null]
                 );
                 $saved++;
@@ -159,6 +153,33 @@ new class extends Component {
             $this->dispatch('execution-changed');
         }
         $this->fillForm();
+    }
+
+    /** Nothing was spent this month: every line that can still be changed gets 0, so that "nothing" is reported and not forgotten. */
+    public function markNothingSpent(): void
+    {
+        $activity = $this->activity;
+        abort_unless($activity && $this->mayReport($activity), 403);
+        foreach ($this->lines as $line) {
+            if (! $line->entry || $line->entry->isEditable()) {
+                if (($this->form[$line->id]['executed'] ?? '') === '') {
+                    $this->form[$line->id]['executed'] = 0;
+                }
+            }
+        }
+    }
+
+    /** Start from last month's amounts (spending is often steady): fills the empty lines that can still be changed. */
+    public function copyPreviousMonth(): void
+    {
+        $activity = $this->activity;
+        abort_unless($activity && $this->mayReport($activity), 403);
+        foreach ($this->lines as $line) {
+            $previous = collect($line->months)->firstWhere('month', $this->month - 1);
+            if ($previous && (! $line->entry || $line->entry->isEditable()) && ($this->form[$line->id]['executed'] ?? '') === '') {
+                $this->form[$line->id]['executed'] = $previous['executed'];
+            }
+        }
     }
 
     public ?int $reopenId = null;
@@ -267,15 +288,15 @@ new class extends Component {
 
 <div>
     @if(! $activityId)
-        <x-ui.card :title="__('Spending')" padding="p-0"><x-ui.empty-state :title="__('Choose an activity')" /></x-ui.card>
+        <x-ui.card :title="__('Executed amount')" padding="p-0"><x-ui.empty-state :title="__('Choose an activity')" /></x-ui.card>
     @else
         @php $lines = $this->lines; @endphp
-        <x-ui.card :title="__('Spending')" :description="__('What each budget line committed and paid in :month', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F')])" padding="p-0">
+        <x-ui.card :title="__('Executed amount')" :description="__('The amount each budget line executed in :month', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F')])" padding="p-0">
             @if($lines->isEmpty())
                 <x-ui.empty-state :title="__('This activity has no distributed budget lines.')" />
             @else
                 <form wire:submit="save(false)">
-                    <x-ui.table :headers="[__('Budget line'), __('Approved'), __('Reported in other months'), __('Committed this month'), __('Paid this month'), __('Status')]" :right="[1, 2]" class="text-sm">
+                    <x-ui.table :headers="[__('Budget line'), __('Approved'), __('Executed in other months'), __('Executed this month'), __('Left after this month'), __('Status')]" :right="[1, 2, 4]" class="text-sm">
                         @foreach($lines as $line)
                             @php
                                 $locked = $line->entry && ! $line->entry->isEditable();
@@ -288,31 +309,38 @@ new class extends Component {
                                 </td>
                                 <td class="px-5 py-3 num">$ {{ number_format($line->approved, 2) }}</td>
                                 <td class="px-5 py-3 num text-zinc-600">
-                                    <div>{{ __('Committed') }} $ {{ number_format($line->other_committed, 2) }}</div>
-                                    <div class="text-xs">{{ __('Paid') }} $ {{ number_format($line->other_paid, 2) }}</div>
+                                    <div>$ {{ number_format($line->other, 2) }}</div>
                                     @if(count($line->months) > 1 || (count($line->months) === 1 && $line->months[0]['month'] !== $month))
                                         <details class="mt-1 text-left text-xs">
                                             <summary class="cursor-pointer text-indigo-700">{{ __('Month by month') }}</summary>
                                             <ul class="mt-1 space-y-0.5 tabular-nums">
                                                 @foreach($line->months as $mm)
-                                                    <li>{{ \Carbon\Carbon::create($year, $mm['month'], 1)->translatedFormat('M') }}: {{ number_format($mm['committed']) }} / {{ number_format($mm['paid']) }}</li>
+                                                    <li>{{ \Carbon\Carbon::create($year, $mm['month'], 1)->translatedFormat('M') }}: {{ number_format($mm['executed']) }}</li>
                                                 @endforeach
                                             </ul>
                                         </details>
                                     @endif
                                 </td>
-                                @foreach(['committed', 'paid'] as $field)
-                                    <td class="px-5 py-3 align-top">
-                                        <label for="f-{{ $field }}-{{ $line->id }}" class="sr-only">{{ __(ucfirst($field)) }} — {{ $line->code }}</label>
-                                        <div class="relative w-36"><span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-xs text-zinc-400" aria-hidden="true">$</span>
-                                        <input id="f-{{ $field }}-{{ $line->id }}" type="number" step="0.01" min="0" inputmode="decimal" @disabled($disabled)
-                                            wire:model="form.{{ $line->id }}.{{ $field }}" class="flux-input !w-36 pl-6 text-right tabular-nums"
-                                            @error("form.{$line->id}.{$field}") aria-invalid="true" aria-describedby="e-{{ $field }}-{{ $line->id }}" @enderror></div>
-                                        @error("form.{$line->id}.{$field}")
-                                            <p id="e-{{ $field }}-{{ $line->id }}" class="field-error max-w-[14rem]">{{ $message }}</p>
-                                        @enderror
-                                    </td>
-                                @endforeach
+                                <td class="px-5 py-3 align-top">
+                                    <label for="f-executed-{{ $line->id }}" class="sr-only">{{ __('Executed this month') }} — {{ $line->code }}</label>
+                                    <div class="relative w-36"><span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-xs text-zinc-400" aria-hidden="true">$</span>
+                                    <input id="f-executed-{{ $line->id }}" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0.00" @disabled($disabled)
+                                        wire:model.live.debounce.500ms="form.{{ $line->id }}.executed" class="flux-input !w-36 pl-6 text-right tabular-nums"
+                                        @error("form.{$line->id}.executed") aria-invalid="true" aria-describedby="e-executed-{{ $line->id }}" @enderror></div>
+                                    @error("form.{$line->id}.executed")
+                                        <p id="e-executed-{{ $line->id }}" class="field-error max-w-[14rem]">{{ $message }}</p>
+                                    @enderror
+                                </td>
+                                @php
+                                    $typed = $disabled ? (float) ($line->entry->executed ?? 0) : (is_numeric($form[$line->id]['executed'] ?? null) ? (float) $form[$line->id]['executed'] : 0.0);
+                                    $left = $line->approved - $line->other - $typed;
+                                    $share = $line->approved > 0 ? min(100, ($line->other + $typed) / $line->approved * 100) : 0;
+                                    $monthTotal = ($monthTotal ?? 0) + $typed;
+                                @endphp
+                                <td class="px-5 py-3 align-top text-right tabular-nums">
+                                    <div class="{{ $left < -0.005 ? 'font-medium text-rose-700' : 'text-zinc-900' }}">$ {{ number_format($left, 2) }}</div>
+                                    <div class="ml-auto mt-1.5 h-1.5 w-24 overflow-hidden rounded-full bg-zinc-100" role="img" aria-label="{{ __(':p% of the approved amount executed', ['p' => number_format($share, 0)]) }}"><div class="h-full {{ $left < -0.005 ? 'bg-rose-500' : 'bg-indigo-600' }}" style="width: {{ $share }}%"></div></div>
+                                </td>
                                 <td class="px-5 py-3 align-top">
                                     @if($line->entry)
                                         <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium {{ ['Verified' => 'bg-emerald-50 text-emerald-800', 'Submitted' => 'bg-sky-50 text-sky-800', 'Rejected' => 'bg-rose-50 text-rose-800'][$line->entry->status] ?? 'bg-zinc-100 text-zinc-700' }}">{{ __($line->entry->status) }}</span>
@@ -327,7 +355,7 @@ new class extends Component {
                                                 <summary class="cursor-pointer text-indigo-700">{{ __('Earlier verified values') }}</summary>
                                                 <ul class="mt-1 space-y-0.5 tabular-nums text-zinc-600">
                                                     @foreach($line->earlier as $e)
-                                                        <li>{{ $e['verified_at']->format('d/m/Y') }} · {{ $e['verified_by'] ?? '—' }}: {{ __('Committed') }} {{ number_format($e['committed'], 2) }} / {{ __('Paid') }} {{ number_format($e['paid'], 2) }}</li>
+                                                        <li>{{ $e['verified_at']->format('d/m/Y') }} · {{ $e['verified_by'] ?? '—' }}: {{ number_format($e['executed'], 2) }}</li>
                                                     @endforeach
                                                 </ul>
                                             </details>
@@ -348,6 +376,15 @@ new class extends Component {
 
                     @php $anyEditable = $lines->contains(fn ($l) => ! $l->entry || $l->entry->isEditable()); @endphp
                     @php $anySubmitted = $lines->contains(fn ($l) => $l->entry && $l->entry->status === 'Submitted'); @endphp
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200 px-5 py-3 text-sm">
+                        <p class="text-zinc-600">{{ __('Executed in :month', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F')]) }}: <span class="font-semibold tabular-nums text-zinc-900">$ {{ number_format($monthTotal ?? 0, 2) }}</span></p>
+                        @if($canReport && $anyEditable)
+                            <div class="flex flex-wrap gap-4">
+                                @if($month > 1)<button type="button" wire:click="copyPreviousMonth" class="text-sm font-medium text-indigo-700 hover:underline">{{ __('Copy the amounts of last month') }}</button>@endif
+                                <button type="button" wire:click="markNothingSpent" class="text-sm font-medium text-indigo-700 hover:underline">{{ __('Nothing executed this month') }}</button>
+                            </div>
+                        @endif
+                    </div>
                     @if($canVerify && $anySubmitted)
                         <div class="flex justify-end border-t border-zinc-200 bg-zinc-50 px-5 py-3">
                             <x-ui.button type="button" variant="secondary" shadow="none" wire:click="verifyAll">{{ __('Verify all submitted') }}</x-ui.button>

@@ -5,7 +5,7 @@ use Livewire\Volt\Component;
 
 /**
  * The programmes of the plan with their sub-programmes: how many activities each has, how many are approved, and the
- * amounts planned, in force and paid. A directorate sees the figures of its own units only. Reading only: programmes
+ * amounts planned, in force and executed. A directorate sees the figures of its own units only. Reading only: programmes
  * are set up by an administrator under Administration → Structure.
  */
 new class extends Component {
@@ -48,7 +48,7 @@ new class extends Component {
         <x-ui.card padding="p-4"><p class="text-xs text-zinc-500">{{ __('Activities') }}</p><p class="mt-1 text-xl font-semibold tabular-nums text-zinc-900">{{ $totals['activities'] }}</p><p class="text-xs text-zinc-500">{{ __(':n approved', ['n' => $totals['approved_activities']]) }}</p></x-ui.card>
         <x-ui.card padding="p-4"><p class="text-xs text-zinc-500">{{ __('Planned') }}</p><p class="mt-1 text-xl font-semibold tabular-nums text-zinc-900">{{ $money($totals['planned']) }}</p></x-ui.card>
         <x-ui.card padding="p-4"><p class="text-xs text-zinc-500">{{ __('Approved plan amount') }}</p><p class="mt-1 text-xl font-semibold tabular-nums text-zinc-900">{{ $money($totals['in_force']) }}</p></x-ui.card>
-        <x-ui.card padding="p-4"><p class="text-xs text-zinc-500">{{ __('Paid (verified)') }}</p><p class="mt-1 text-xl font-semibold tabular-nums text-zinc-900">{{ $money($totals['paid']) }}</p><p class="text-xs text-zinc-500">{{ $pct($totals['paid'], $totals['in_force']) }}% {{ __('of the approved plan amount') }}</p></x-ui.card>
+        <x-ui.card padding="p-4"><p class="text-xs text-zinc-500">{{ __('Executed (verified)') }}</p><p class="mt-1 text-xl font-semibold tabular-nums text-zinc-900">{{ $money($totals['executed']) }}</p><p class="text-xs text-zinc-500">{{ $pct($totals['executed'], $totals['in_force']) }}% {{ __('of the approved plan amount') }}</p></x-ui.card>
     </div>
 
     <div>
@@ -70,14 +70,14 @@ new class extends Component {
                         <span class="flex items-center gap-5 text-right text-sm tabular-nums">
                             <span><span class="block text-xs text-zinc-500">{{ __('Planned') }}</span>{{ $money($p['planned']) }}</span>
                             <span><span class="block text-xs text-zinc-500">{{ __('Approved plan amount') }}</span>{{ $money($p['in_force']) }}</span>
-                            <span><span class="block text-xs text-zinc-500">{{ __('Paid (verified)') }}</span>{{ $money($p['paid']) }}</span>
+                            <span><span class="block text-xs text-zinc-500">{{ __('Executed (verified)') }}</span>{{ $money($p['executed']) }}</span>
                         </span>
                     </summary>
                     <div class="border-t border-zinc-100">
                         @if($p['objective'])<p class="px-5 pt-3 text-sm text-zinc-600">{{ $p['objective'] }}</p>@endif
                         <table class="mt-2 w-full text-sm">
                             <thead class="text-left text-xs text-zinc-500">
-                                <tr><th class="px-5 py-2 font-medium">{{ __('Sub-programme') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Activities') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Planned') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Approved plan amount') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Paid (verified)') }}</th><th class="px-5 py-2"></th></tr>
+                                <tr><th class="px-5 py-2 font-medium">{{ __('Sub-programme') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Activities') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Planned') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Approved plan amount') }}</th><th class="px-3 py-2 text-right font-medium">{{ __('Executed (verified)') }}</th><th class="px-5 py-2"></th></tr>
                             </thead>
                             <tbody class="divide-y divide-zinc-100">
                                 @foreach($p['subs'] as $s)
@@ -86,7 +86,7 @@ new class extends Component {
                                         <td class="px-3 py-2.5 text-right tabular-nums">{{ $s['activities'] }} <span class="text-xs text-zinc-500">({{ $s['approved_activities'] }})</span></td>
                                         <td class="px-3 py-2.5 text-right tabular-nums">{{ $money($s['planned']) }}</td>
                                         <td class="px-3 py-2.5 text-right tabular-nums">{{ $money($s['in_force']) }}</td>
-                                        <td class="px-3 py-2.5 text-right tabular-nums">{{ $money($s['paid']) }}</td>
+                                        <td class="px-3 py-2.5 text-right tabular-nums">{{ $money($s['executed']) }}</td>
                                         <td class="px-5 py-2.5 text-right">
                                             @if($s['activities'] > 0)
                                                 <a href="{{ route('activities.index', array_filter(['programme' => $p['id'], 'subprogramme' => $s['id']])) }}" wire:navigate class="text-xs font-medium text-indigo-700 hover:underline">{{ __('Open activities') }}</a>

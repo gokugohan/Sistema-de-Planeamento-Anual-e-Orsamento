@@ -41,16 +41,16 @@ class ActivityExecutionTabTest extends TestCase
     {
         $line = $this->activity->lineItems()->whereHas('adjustedBudget')->firstOrFail();
         BudgetExecution::where('line_item_id', $line->id)->delete();
-        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'committed' => 200, 'paid' => 100, 'status' => 'Verified']);
-        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'committed' => 50, 'paid' => 40, 'status' => 'Verified']);
-        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 3, 'committed' => 999, 'paid' => 999, 'status' => 'Submitted']);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'executed' => 100, 'status' => 'Verified']);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'executed' => 40, 'status' => 'Verified']);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 3, 'executed' => 999, 'status' => 'Submitted']);
 
         $s = app(ActivityExecutionSummary::class)->for($this->activity);
 
-        $other = BudgetExecution::whereIn('line_item_id', $this->activity->lineItems()->where('id', '!=', $line->id)->pluck('id'))->where('status', 'Verified')->sum('paid');
-        $this->assertEqualsWithDelta(140 + $other, $s['paid'], 0.01);
+        $other = BudgetExecution::whereIn('line_item_id', $this->activity->lineItems()->where('id', '!=', $line->id)->pluck('id'))->where('status', 'Verified')->sum('executed');
+        $this->assertEqualsWithDelta(140 + $other, $s['executed'], 0.01);
         $this->assertGreaterThanOrEqual(140, $s['months'][2]['cumulative']);
-        $this->assertEqualsWithDelta($s['months'][2]['cumulative'], $s['months'][3]['cumulative'] - $s['months'][3]['paid'], 0.01);
+        $this->assertEqualsWithDelta($s['months'][2]['cumulative'], $s['months'][3]['cumulative'] - $s['months'][3]['executed'], 0.01);
         $this->assertGreaterThanOrEqual(1, $s['waiting']);
         $this->assertCount($this->activity->indicators()->count(), $s['indicators']);
     }
@@ -62,7 +62,7 @@ class ActivityExecutionTabTest extends TestCase
         $user = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
 
         Volt::actingAs($user)->test('pages.activities.show', ['activity' => $this->activity])
-            ->assertSee('Execution')->assertSee('Month by month')->assertSee('Paid / approved')->assertSee('ROADS REPAIRED')->assertDontSee('STILL A DRAFT');
+            ->assertSee('Execution')->assertSee('Month by month')->assertSee('Executed / approved')->assertSee('ROADS REPAIRED')->assertDontSee('STILL A DRAFT');
     }
 
     public function test_a_draft_activity_has_no_execution_tab(): void
@@ -71,6 +71,6 @@ class ActivityExecutionTabTest extends TestCase
         $draft->forceFill(['status' => Activity::STATUS_DRAFT, 'version' => 0])->saveQuietly(); // never approved: a revision keeps its execution tab
         $user = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
 
-        Volt::actingAs($user)->test('pages.activities.show', ['activity' => $draft])->assertDontSee('Paid / approved');
+        Volt::actingAs($user)->test('pages.activities.show', ['activity' => $draft])->assertDontSee('Executed / approved');
     }
 }

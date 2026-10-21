@@ -145,14 +145,14 @@ class UnitWorkspaceTest extends TestCase
         $planner = $this->user('Planning', $this->dn);
         $a = $this->activity($this->dn, Activity::STATUS_APPROVED, 1);
         $line = LineItem::create(['activity_id' => $a->id, 'economic_classification_id' => EconomicClassification::first()->id, 'estimated_amount' => 100]);
-        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $planner->id]);
-        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'quarter' => 1, 'committed' => 10, 'paid' => 5, 'status' => 'Submitted', 'submitted_by' => $finance->id]);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'quarter' => 1, 'executed' => 5, 'status' => 'Submitted', 'submitted_by' => $planner->id]);
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 2, 'quarter' => 1, 'executed' => 5, 'status' => 'Submitted', 'submitted_by' => $finance->id]);
 
         $this->actingAs($finance);
-        Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertSee('1 spending figure to verify');
+        Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertSee('1 executed amount to verify');
 
         // the person who reported it is not asked to verify it
         $this->actingAs($planner);
-        Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertDontSee('spending figure to verify');
+        Volt::test('pages.work.unit', ['directorate' => $this->dn])->assertDontSee('executed amount to verify');
     }
 }

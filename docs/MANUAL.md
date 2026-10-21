@@ -58,7 +58,7 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 The **Dashboard** shows the year in one view:
 
 - the **plan cycle tracker** (four steps: plan submission, approval, plan finalized, reporting) and which step is current;
-- key figures: what is planned, the approved plan in force, what has been paid (verified), activities approved, delivery against targets;
+- key figures: what is planned, the approved plan in force, what has been executed (verified), activities approved, delivery against targets;
 - **Needs your attention**: the same list as *Approvals*, for what you can act on;
 - charts by economic category, status and unit.
 
@@ -78,7 +78,7 @@ The left menu is grouped by what you do. Each person sees only the groups and en
 | **Administration** (administrators) | *System Users*, *Structure* (units, programmes, sub-programmes, economic categories) and *Funding sources*: who and what the plan is made of. |
 | **System** (administrators) | *Settings*, *Optional rules*, *Reporting windows*, *Import Activities*, *Audit Log* and *Sample Data*: how the system runs. |
 
-**Plan → Programmes** is for reading. Each programme shows its sub-programmes, how many activities each has (and how many are approved), the amount planned, the approved plan amount and what has been paid (verified). A directorate sees the programmes and the figures of its own units only; an administrator or anyone who sees every plan sees them all. *Open activities* leads to the activity list already filtered to that programme or sub-programme. Programmes are created and edited by an administrator under *Administration → Structure*.
+**Plan → Programmes** is for reading. Each programme shows its sub-programmes, how many activities each has (and how many are approved), the amount planned, the approved plan amount and what has been executed (verified). A directorate sees the programmes and the figures of its own units only; an administrator or anyone who sees every plan sees them all. *Open activities* leads to the activity list already filtered to that programme or sub-programme. Programmes are created and edited by an administrator under *Administration → Structure*.
 
 ---
 
@@ -102,7 +102,7 @@ You do not need to memorise this, but everything in the application follows thes
 
 **Windows.** Dates between which a thing may be done: the plan may be submitted, a month or a quarter may be reported. **No dates set means open**, and administrators can always act.
 
-**Verified by someone else.** Figures that units report (committed, paid, indicator progress) count only after another person verifies them. Nobody verifies their own report.
+**Verified by someone else.** Figures that units report (the executed amount, indicator progress) count only after another person verifies them. Nobody verifies their own report.
 
 ---
 
@@ -115,7 +115,7 @@ You do not need to memorise this, but everything in the application follows thes
 | 1 | **Plan submission** | Units draft activities with indicators, actions and budget lines, and submit them while the submission window is open. | Technical officers, unit directors |
 | 2 | **Approval** | Each activity is prepared, certified and approved (Part 6). | Directors, heads of directorates |
 | 3 | **Plan finalized** | When everything in a directorate is decided, its head finalizes the plan: no new activities. | Head of the directorate |
-| 4 | **Reporting** | Units report spending and indicators monthly and quarterly; others verify; the quarter is compiled; reports are printed. A change to an approved activity is a revision (Part 9). | Units, finance, directors |
+| 4 | **Reporting** | Units report the executed amount and indicators monthly and quarterly; others verify; the quarter is compiled; reports are printed. A change to an approved activity is a revision (Part 9). | Units, finance, directors |
 
 The *Plan cycle* page (**Plan → Plan cycle**) shows where the year stands and links to what comes next. The same tracker sits on the dashboard.
 
@@ -168,7 +168,7 @@ Add only the structure that the law defines; the system does not invent departme
 | **Minister** | Sees every plan and every report; does *not* approve plans. |
 | **Director** | Head or director of a unit: certifies, and for a top-level unit gives the final approval. |
 | **Planning** (technical officer) | Prepares activities, indicators and budget lines. |
-| **Finance** | Confirms budget lines and verifies reported spending. |
+| **Finance** | Confirms budget lines and verifies the reported executed amounts. |
 | **Viewer** | Reads plans and reports; changes nothing. |
 
 ### 4.5 Reporting windows
@@ -178,7 +178,7 @@ Add only the structure that the law defines; the system does not invent departme
 **System → Reporting windows**: for the fiscal year, give the dates of
 
 - the **plan submission** window (when units may submit the plan);
-- each **month** (monthly spending and narrative);
+- each **month** (monthly executed amount and narrative);
 - each **quarter** (quarterly indicators and the quarter's text).
 
 Pick the type, the month or quarter, *Opens on*, *Closes on* and an optional note, then **Save**. Outside its window a unit cannot report that period; an administrator always can. A period with no window is open.
@@ -208,7 +208,7 @@ Part 7. Directors keep these for their own units; administrators for any.
 | **Guidance for preparing the plan** | Free text per fiscal year, shown at the top of the activity form (for example the deadlines of the planning circular). |
 | **Some revisions need an approval outside the institution** | A revision can be marked as needing it; it is then approved only once the reference of that approval is recorded on the activity page. |
 | **Record the approved plan as a baseline** | An administrator records the approved plan of a year as it stands (*Final plan report → Record baseline*); the report can then be printed as it stood at that moment. Recording a baseline approves nothing. |
-| **Finance officers work for the whole institution** | Finance officers see every unit, confirm budgets and verify spending everywhere. |
+| **Finance officers work for the whole institution** | Finance officers see every unit, confirm budgets and verify executed amounts everywhere. |
 | **Track corrective actions** | In *Report execution → Narrative*, the unit records corrective actions with a person responsible and a due date, and closes them when done. |
 | **Reports keep the structure at approval** | The final report shows each activity under the unit it belonged to when it was approved, even after a restructuring. |
 
@@ -309,7 +309,7 @@ The three groups are **Prepare** (the unit), **Certify** (verify and validate) a
 **Approvals → Waiting for you** is one page with only what needs a decision or a check from you. It has three blocks, each line with a count and one button:
 
 - **To decide**: activities prepared and waiting to be certified, and activities certified and waiting for the final approval. Each line opens *Activities to decide* already on that queue, so you land on the list the count refers to;
-- **To verify**: spending figures and progress reports reported by others (never your own);
+- **To verify**: executed amounts and progress reports reported by others (never your own);
 - **Ready to finalize**: the directorates you head whose activities are all decided, as one line.
 
 Your own drafts, returned work and reporting due are not here: they are in **My work**. The dashboard's *Needs your attention* lists all of them together.
@@ -431,7 +431,7 @@ The revision goes through **the whole chain again**: prepared, certified (and va
 
 ### 9.4 What a revision cannot do
 
-- **Remove a budget line that already has spending reported against it**, or an indicator that already has progress reported: change its amount or target instead. This keeps the reported figures tied to their line.
+- **Remove a budget line that already has an executed amount reported against it**, or an indicator that already has progress reported: change its amount or target instead. This keeps the reported figures tied to their line.
 - **Delete the activity**: an activity that was approved once is part of the record of the plan.
 
 Finalizing a directorate's plan (Part 8) does not stop revisions.
@@ -442,13 +442,13 @@ Finalizing a directorate's plan (Part 8) does not stop revisions.
 
 Once an activity has an approved version, its unit reports what it spent and achieved. Figures count only once **someone else verifies** them.
 
-### 10.1 Monthly spending
+### 10.1 Monthly executed amount
 
 ![Report execution](manual/img/report-execution.png)
 
-**Execute → Report execution** opens on a **worklist** of the approved activities you may report. Choose the **month** (indicators follow the quarter it belongs to: October to December is Q4). Each row shows where the activity stands for that month: *To report*, *Returned*, *Waiting for verification* or *Verified*, once for spending and once for indicators; the filters above the list (*To report*, *Waiting for verification*, *Done*) narrow it, and the search box finds an activity by code or words. Click a row to open it.
+**Execute → Report execution** opens on a **worklist** of the approved activities you may report. Choose the **month** (indicators follow the quarter it belongs to: October to December is Q4). Each row shows where the activity stands for that month: *To report*, *Returned*, *Waiting for verification* or *Verified*, once for the executed amount and once for indicators; the filters above the list (*To report*, *Waiting for verification*, *Done*) narrow it, and the search box finds an activity by code or words. Click a row to open it.
 
-An opened activity shows a short checklist (1 Spending, 2 Indicators, 3 Narrative, with how many are verified), and **← All activities** takes you back. For each budget line enter what was **committed** and what was **paid** in that month; the narrative is optional and stays folded until you open it. One button at the bottom, **Send everything for verification**, sends the month's spending and the quarter's indicators together. The month must be within its reporting window (Part 4.5).
+An opened activity shows a short checklist (1 Executed amount, 2 Indicators, 3 Narrative, with how many are verified), and **← All activities** takes you back. For each budget line enter the amount **executed** in that month. The page shows, as you type, what is left of the approved amount; **Copy the amounts of last month** starts from last month's figures and **Nothing executed this month** reports 0 for the lines that have nothing to report, so that "nothing" is reported and not forgotten; the narrative is optional and stays folded until you open it. One button at the bottom, **Send everything for verification**, sends the month's executed amount and the quarter's indicators together. The month must be within its reporting window (Part 4.5).
 
 ### 10.2 Quarterly indicators
 
@@ -464,7 +464,7 @@ For each month and quarter the unit writes the **narrative**: results achieved, 
 
 A different person opens the figures and **verifies or returns** them:
 
-- **Spending (committed and paid)**: a director or the finance officer, from the items in **Approvals** or from *Report execution*.
+- **Executed amount**: a director or the finance officer, from the items in **Approvals** or from *Report execution*.
 - **Indicator progress**: a director from *Report execution*; administrators also have the page **Approvals → Verify progress**, which lists every pending record. Open a line with **Details** to see who reported it and when, what the indicator is and how it is checked (kind, baseline, means of verification, what was planned for the quarter), what was verified in the other quarters and where the indicator then stands against its target, and the words the unit wrote for the quarter. Then **Verify**, or **Return with a reason** (the unit reads the reason). You cannot verify what you reported yourself; *Verify all* leaves those lines for someone else.
 
 Only verified figures appear in the dashboard, the performance report and the printed report. You cannot verify your own entry; the system says so.
@@ -479,7 +479,7 @@ Only verified figures appear in the dashboard, the performance report and the pr
 
 ![Performance](manual/img/performance.png)
 
-**Insights → Performance**: paid and delivered against the plan, by quarter and programme, with the activities falling behind.
+**Insights → Performance**: executed and delivered against the plan, by quarter and programme, with the activities falling behind.
 
 ---
 
@@ -542,8 +542,8 @@ Follow Ana (technical officer), Bento (director of a unit), Carla (head of a dir
 16. Carla approves the revision; it becomes **version 2**, and the history shows both.
 
 **Execution (all year).**
-17. Each month, Ana opens **Report execution**, chooses the month and the activity, and enters what each line **committed** and **paid**, and the narrative. She submits.
-18. Dino (spending) or Bento (spending and indicators) opens the figures from **Approvals** and verifies or returns them.
+17. Each month, Ana opens **Report execution**, chooses the month and the activity, and enters the amount each line **executed**, and the narrative. She submits.
+18. Dino (executed amounts) or Bento (executed amounts and indicators) opens the figures from **Approvals** and verifies or returns them.
 19. At the end of the quarter, the unit reports the indicators; Carla opens **Compile the quarter**, presses **Draft from the reports**, edits and saves.
 
 **Reporting.**
@@ -605,7 +605,7 @@ For the person who installs and runs it (the *README* has the full instructions)
 | Keep approval lists, interim approvers | ✔ | | ✔ (own units) | | | |
 | Start a revision of an approved activity | ✔ | | ✔ | ✔ (own unit) | | |
 | Report execution | ✔ | | ✔ | ✔ | | |
-| Verify spending | ✔ | | ✔ | | ✔ | |
+| Verify executed amounts | ✔ | | ✔ | | ✔ | |
 | Verify indicator progress | ✔ | | ✔ | | | |
 | Compile the quarter | ✔ | | ✔ | | | |
 | Reports (view, print) | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |

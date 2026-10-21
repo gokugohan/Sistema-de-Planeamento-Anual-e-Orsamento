@@ -54,10 +54,10 @@ new class extends Component {
     if ($decide['certify'] > 0) { $cards[] = ['indigo', trans_choice(':n activity to certify (your turn)|:n activities to certify (your turn)', $decide['certify'], ['n' => $decide['certify']]), $listUrl(['tab' => 'review'])]; }
     if ($decide['approve'] > 0) { $cards[] = ['indigo', trans_choice(':n activity to approve (your turn)|:n activities to approve (your turn)', $decide['approve'], ['n' => $decide['approve']]), route('planning.paa-approval')]; }
     if ($decide['confirm'] > 0) { $cards[] = ['indigo', trans_choice(':n activity with a budget to confirm|:n activities with a budget to confirm', $decide['confirm'], ['n' => $decide['confirm']]), route('approvals.budget')]; }
-    if ($decide['spending'] > 0) { $cards[] = ['indigo', trans_choice(':n spending figure to verify|:n spending figures to verify', $decide['spending'], ['n' => $decide['spending']]), route('monitoring.report')]; }
+    if ($decide['spending'] > 0) { $cards[] = ['indigo', trans_choice(':n executed amount to verify|:n executed amounts to verify', $decide['spending'], ['n' => $decide['spending']]), route('monitoring.report')]; }
     if ($decide['progress'] > 0) { $cards[] = ['indigo', trans_choice(':n progress report to verify|:n progress reports to verify', $decide['progress'], ['n' => $decide['progress']]), auth()->user()->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report')]; }
     if ($reporting && $reporting['done'] < $reporting['total'] && auth()->user()->can('view_monitoring')) {
-        $cards[] = ['amber', __(':m: :done of :total activities have spending reported', ['m' => \Carbon\Carbon::create($year, $reporting['month'], 1)->translatedFormat('F'), 'done' => $reporting['done'], 'total' => $reporting['total']]), route('monitoring.report')];
+        $cards[] = ['amber', __(':m: :done of :total activities have an executed amount reported', ['m' => \Carbon\Carbon::create($year, $reporting['month'], 1)->translatedFormat('F'), 'done' => $reporting['done'], 'total' => $reporting['total']]), route('monitoring.report')];
     }
     if ($planning['ready'] && $canFinalize) { $cards[] = ['emerald', __('Everything is decided: the plan of this directorate is ready to be finalized.'), $listUrl()]; }
     if ($c['revising'] > 0) { $cards[] = ['zinc', trans_choice(':n revision in progress|:n revisions in progress', $c['revising'], ['n' => $c['revising']]), $listUrl(['tab' => 'draft'])]; }
@@ -147,9 +147,9 @@ new class extends Component {
             <dl class="space-y-3 text-sm">
                 <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Planned by all activities') }}</dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['planned']) }}</dd></div>
                 <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Approved plan in force') }}</dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['in_force']) }}</dd></div>
-                <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Paid') }} <span class="text-xs text-zinc-400">({{ __('verified') }})</span></dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['paid']) }}</dd></div>
+                <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Executed') }} <span class="text-xs text-zinc-400">({{ __('verified') }})</span></dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['executed']) }}</dd></div>
             </dl>
-            <p class="mt-4 text-xs text-zinc-500">{{ __('Paid is entered every month in Report execution and counts once someone else has verified it.') }}
+            <p class="mt-4 text-xs text-zinc-500">{{ __('The executed amount is entered every month in Report execution and counts once someone else has verified it.') }}
                 @if(auth()->user()->can('update_indicator_progress'))
                     <a href="{{ route('monitoring.report') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Report execution') }} →</a>
                 @else
@@ -157,7 +157,7 @@ new class extends Component {
                 @endif
             </p>
             @if($money['in_force'] > 0)
-                <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-zinc-100" role="img" aria-label="{{ __(':p% of the approved plan paid', ['p' => number_format(min(100, $money['paid'] / $money['in_force'] * 100), 1)]) }}"><div class="h-full bg-emerald-500" style="width: {{ min(100, $money['paid'] / $money['in_force'] * 100) }}%"></div></div>
+                <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-zinc-100" role="img" aria-label="{{ __(':p% of the approved plan executed', ['p' => number_format(min(100, $money['executed'] / $money['in_force'] * 100), 1)]) }}"><div class="h-full bg-emerald-500" style="width: {{ min(100, $money['executed'] / $money['in_force'] * 100) }}%"></div></div>
             @endif
         </x-ui.card>
     </div>

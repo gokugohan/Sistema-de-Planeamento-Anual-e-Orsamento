@@ -192,7 +192,7 @@ new class extends Component {
             <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
             <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
             <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 approved activities with their official codes, indicators and amounts by economic category.') }}</li>
-            <li>{{ __('The approved activities are version 1 of the plan; 2025 and 2026 have monthly spending and quarterly progress reported up to today, and 2027 is the year being planned.') }}</li>
+            <li>{{ __('The approved activities are version 1 of the plan; 2025 and 2026 have monthly executed amounts and quarterly progress reported up to today, and 2027 is the year being planned.') }}</li>
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>

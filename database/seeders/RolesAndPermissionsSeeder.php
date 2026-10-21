@@ -42,7 +42,7 @@ class RolesAndPermissionsSeeder extends Seeder
             // Module 4.4: Monitorização da Execução Física
             ['name' => 'update_indicator_progress', 'module' => 'monitoring', 'display_name' => 'Update Indicator Progress', 'description' => 'Update progress on indicators'],
             ['name' => 'approve_progress_report', 'module' => 'monitoring', 'display_name' => 'Approve Progress Report', 'description' => 'Approve progress reports'],
-            ['name' => 'verify_spending', 'module' => 'monitoring', 'display_name' => 'Verify Spending', 'description' => 'Verify the committed and paid figures reported by the units'],
+            ['name' => 'verify_spending', 'module' => 'monitoring', 'display_name' => 'Verify Executed Amounts', 'description' => 'Verify the executed amounts reported by the units'],
             ['name' => 'view_monitoring', 'module' => 'monitoring', 'display_name' => 'View Monitoring', 'description' => 'View monitoring data'],
 
             // Module 4.5: Relatório: PAA
@@ -109,7 +109,7 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'name' => 'Finance',
                 'display_name' => 'Finance Officer',
-                'description' => 'Verifies the spending (committed and paid) that units report',
+                'description' => 'Verifies the executed amounts that units report',
                 'permissions' => [
                     'verify_spending',
                     'confirm_budget',

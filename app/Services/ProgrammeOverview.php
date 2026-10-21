@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * The programmes of a fiscal year with their sub-programmes, and for each how many activities it has, how many are
- * approved, and the amounts planned, in force and paid (verified). Only the activities the user may see are counted:
+ * approved, and the amounts planned, in force and executed (verified). Only the activities the user may see are counted:
  * a directorate sees the figures of its own units, an administrator or anyone who sees every plan sees all of them.
  */
 class ProgrammeOverview
@@ -25,13 +25,13 @@ class ProgrammeOverview
         $scoped = $visible !== null;
 
         $figures = $this->figures($year, $visible);
-        $paid = $this->paid($year, $visible);
+        $executed = $this->executed($year, $visible);
 
         $programs = Program::forYear($year)->orderBy('oge_code')->get(['id', 'oge_code', 'name', 'objective']);
         $subprograms = Subprogram::whereIn('program_id', $programs->pluck('id'))->orderBy('code')->get(['id', 'program_id', 'code', 'name'])->groupBy('program_id');
 
         $rows = [];
-        $totals = ['activities' => 0, 'approved_activities' => 0, 'planned' => 0.0, 'in_force' => 0.0, 'paid' => 0.0];
+        $totals = ['activities' => 0, 'approved_activities' => 0, 'planned' => 0.0, 'in_force' => 0.0, 'executed' => 0.0];
         foreach ($programs as $program) {
             $subs = [];
             foreach ($subprograms->get($program->id, collect()) as $sub) {
@@ -39,23 +39,23 @@ class ProgrammeOverview
                 if ($scoped && ! $f) {
                     continue; // nothing of this sub-programme in the user's units
                 }
-                $subs[] = $this->row($f, $paid[$program->id][$sub->id] ?? 0.0) + ['id' => $sub->id, 'code' => (string) $sub->code, 'name' => $sub->name];
+                $subs[] = $this->row($f, $executed[$program->id][$sub->id] ?? 0.0) + ['id' => $sub->id, 'code' => (string) $sub->code, 'name' => $sub->name];
             }
             $loose = $figures[$program->id][0] ?? null; // activities filed straight under the programme
             if ($loose) {
-                $subs[] = $this->row($loose, $paid[$program->id][0] ?? 0.0) + ['id' => null, 'code' => '', 'name' => null];
+                $subs[] = $this->row($loose, $executed[$program->id][0] ?? 0.0) + ['id' => null, 'code' => '', 'name' => null];
             }
 
             $own = $this->row(null, 0.0);
             foreach ($subs as $s) {
-                foreach (['activities', 'approved_activities', 'planned', 'in_force', 'paid'] as $k) {
+                foreach (['activities', 'approved_activities', 'planned', 'in_force', 'executed'] as $k) {
                     $own[$k] += $s[$k];
                 }
             }
             if ($scoped && $own['activities'] === 0) {
                 continue; // a programme the user has no activity in
             }
-            foreach (['activities', 'approved_activities', 'planned', 'in_force', 'paid'] as $k) {
+            foreach (['activities', 'approved_activities', 'planned', 'in_force', 'executed'] as $k) {
                 $totals[$k] += $own[$k];
             }
             $rows[] = $own + ['id' => $program->id, 'code' => (string) $program->oge_code, 'name' => $program->name, 'objective' => $program->objective, 'subs' => $subs];
@@ -64,12 +64,12 @@ class ProgrammeOverview
         return ['programmes' => $rows, 'totals' => $totals, 'scoped' => $scoped];
     }
 
-    /** @return array{activities: int, approved_activities: int, planned: float, in_force: float, paid: float} */
-    private function row(?object $f, float $paid): array
+    /** @return array{activities: int, approved_activities: int, planned: float, in_force: float, executed: float} */
+    private function row(?object $f, float $executed): array
     {
         return [
             'activities' => (int) ($f->activities ?? 0), 'approved_activities' => (int) ($f->approved ?? 0),
-            'planned' => (float) ($f->planned ?? 0), 'in_force' => (float) ($f->in_force ?? 0), 'paid' => $paid,
+            'planned' => (float) ($f->planned ?? 0), 'in_force' => (float) ($f->in_force ?? 0), 'executed' => $executed,
         ];
     }
 
@@ -97,7 +97,7 @@ class ProgrammeOverview
     }
 
     /** Verified payments per programme and sub-programme. @return array<int, array<int, float>> */
-    private function paid(int $year, ?array $visible): array
+    private function executed(int $year, ?array $visible): array
     {
         $rows = DB::table('budget_executions as be')
             ->join('line_items as li', 'li.id', '=', 'be.line_item_id')
@@ -105,12 +105,12 @@ class ProgrammeOverview
             ->where('a.fiscal_year', $year)->where('a.is_test_data', false)->where('be.status', BudgetExecution::VERIFIED)
             ->when($visible !== null, fn ($q) => $q->whereIn('a.directorate_id', $visible ?: [0]))
             ->groupBy('a.program_id', 'a.subprogram_id')
-            ->selectRaw('a.program_id, COALESCE(a.subprogram_id, 0) AS sub_id, COALESCE(SUM(be.paid), 0) AS paid')
+            ->selectRaw('a.program_id, COALESCE(a.subprogram_id, 0) AS sub_id, COALESCE(SUM(be.executed), 0) AS executed')
             ->get();
 
         $out = [];
         foreach ($rows as $r) {
-            $out[$r->program_id][$r->sub_id] = (float) $r->paid;
+            $out[$r->program_id][$r->sub_id] = (float) $r->executed;
         }
 
         return $out;

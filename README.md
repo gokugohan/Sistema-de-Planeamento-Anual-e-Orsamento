@@ -34,7 +34,7 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 | 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *System → Reporting windows* | Technical officer / Director |
 | 2 | **Approval**: each activity moves through the chain of its unit (prepare, certify, approve; named lists and interim approvers where set; finance confirmation of the budget where asked for) until Approved | *Approvals* | Reviewers, final approver |
 | 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has); only they or an administrator can reopen it, with a remark. Finalizing stops new activities only | *PAA Activities*, *Approvals* | Final approver / Admin |
-| 4 | **Reporting**: units report spending (committed and paid) and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Technical officer / Director / Finance |
+| 4 | **Reporting**: units report the executed amount and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Technical officer / Director / Finance |
 | 5 | **Revision**: an approved activity changes only through a revision: a reason, the whole approval chain again, a new version; the version in force stays meanwhile | *Activity → Revise* | Preparers, director, final approver |
 
 **Printed reports follow the Ministry of Finance template.** The final plan report and the monthly/quarterly performance report both print on A4 landscape in the formal table used by the ministry: objective bands (SDG/PED), a programme band and a subprogramme band with their totals, then each activity with its indicators, baseline, target, means of verification, unit, funding source, the quarters it runs in (blue cells) and the budget by economic category. The approved plan's summaries by category, programme and unit follow the table.
@@ -96,7 +96,7 @@ Visibility follows the unit tree. **Department users** (Director, Technical offi
 - **One visual language.** All screens use the same design system (sentence-case headings, indigo primary actions, the shared card, table, badge and KPI components); the legacy "black button" style is gone.
 - Keyboard and screen-reader support: skip links, labelled landmarks, the current page marked in the menu and breadcrumb, visible focus.
 
-**The menu follows the annual cycle:** *Plan* (cycle, activities), *Approvals*, *Execute* (spending and progress), *Insights* (performance, reports) and *Administration*. **Approvals → Waiting for you** is a plain server-rendered page (`App\Services\ApprovalInbox`) with only decisions and checks: activities to decide (each line opens its own queue), execution figures to verify (never your own), and the directorates ready to be finalized as one line. Drafts and reporting due are in *My work*. The dashboard's "Needs your attention" is the same list.
+**The menu follows the annual cycle:** *Plan* (cycle, activities), *Approvals*, *Execute* (executed amount and progress), *Insights* (performance, reports) and *Administration*. **Approvals → Waiting for you** is a plain server-rendered page (`App\Services\ApprovalInbox`) with only decisions and checks: activities to decide (each line opens its own queue), execution figures to verify (never your own), and the directorates ready to be finalized as one line. Drafts and reporting due are in *My work*. The dashboard's "Needs your attention" is the same list.
 
 ### Audit trail
 
@@ -216,7 +216,7 @@ Things to know when reading the data:
 - **The 2026 amendment** cut the ministry's *Bens e Serviços* by 126 209 USD. The law does not say which activities, so the sample keeps the plan as the books print it (21 372 171); in the application, such a change would be made by revising the activities concerned.
 - **Activities printed without an amount** in the plan (for example four construction activities in 2026) are not loaded.
 - **What the plans do not say** is not invented: every activity is an annual one (Q1–Q4) with the default priority.
-- The 2025 and 2026 figures are **plans and appropriations, not execution**: no spending or progress is loaded.
+- The 2025 and 2026 figures are **plans and appropriations, not execution**: no executed amount or progress is loaded.
 - **Not for a real MTC system.** It is a dataset to demonstrate and train with; the codes of units that only exist as budget divisions are working abbreviations.
 
 ### How purging stays safe
@@ -422,7 +422,7 @@ Conventions: business rules live in `app/Services`, not in Livewire components; 
 
 ## Known limitations
 
-- **Spending is reported, not booked.** Units report what each line committed and paid, and someone else verifies it; the application does not connect to the Ministry of Finance's financial system. A test fails the build if any view contains random or simulated figures.
+- **The executed amount is reported, not booked.** Units report the amount each budget line executed in the month (one figure, as in the earlier Django PAA), and someone else verifies it; the application does not connect to the Ministry of Finance's financial system. A test fails the build if any view contains random or simulated figures.
 - **No link to the Ministry of Finance's budget system.** Programme and activity codes are entered by hand.
 - **No dark mode.**
 - The Tetun translations were written without a native review and should be checked before official use.

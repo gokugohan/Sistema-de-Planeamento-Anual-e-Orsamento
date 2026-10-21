@@ -50,15 +50,15 @@ class ReportingDueInboxTest extends TestCase
         $activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereIn('directorate_id', $unitIds)->whereHas('lineItems.adjustedBudget')->firstOrFail();
         BudgetExecution::whereIn('line_item_id', $activity->lineItems()->pluck('id'))->where('month', 9)->delete();
 
-        $before = $this->reportItems()->first(fn ($i) => str_contains($i['text'], 'no spending reported for September'));
+        $before = $this->reportItems()->first(fn ($i) => str_contains($i['text'], 'no executed amount reported for September'));
         $this->assertNotNull($before);
 
         // report every approved activity of the unit for September: the item goes away
         Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereIn('directorate_id', $unitIds)->whereHas('lineItems.adjustedBudget')->get()->each(function ($a) {
             $line = $a->lineItems()->whereHas('adjustedBudget')->first();
-            BudgetExecution::updateOrCreate(['line_item_id' => $line->id, 'month' => 9], ['committed' => 1, 'paid' => 1, 'status' => 'Draft']);
+            BudgetExecution::updateOrCreate(['line_item_id' => $line->id, 'month' => 9], ['executed' => 1, 'status' => 'Draft']);
         });
-        $this->assertNull($this->reportItems()->first(fn ($i) => str_contains($i['text'], 'no spending reported')));
+        $this->assertNull($this->reportItems()->first(fn ($i) => str_contains($i['text'], 'no executed amount reported')));
     }
 
     public function test_a_window_about_to_close_is_listed_and_a_distant_one_is_not(): void

@@ -44,7 +44,7 @@ class ReportExecutionWorklistTest extends TestCase
     private function state(string $spending, bool $indicatorsVerified): void
     {
         foreach ($this->activity->lineItems()->whereHas('adjustedBudget')->get() as $line) {
-            BudgetExecution::create(['line_item_id' => $line->id, 'month' => 10, 'quarter' => 4, 'committed' => 10, 'paid' => 5, 'status' => $spending]);
+            BudgetExecution::create(['line_item_id' => $line->id, 'month' => 10, 'quarter' => 4, 'executed' => 5, 'status' => $spending]);
         }
         if ($indicatorsVerified) {
             foreach ($this->activity->indicators as $i) {
@@ -117,7 +117,7 @@ class ReportExecutionWorklistTest extends TestCase
 
     public function test_the_page_explains_that_the_quarter_follows_the_month(): void
     {
-        $this->page()->assertSee('You report spending for the month you choose')->assertSee('October – December');
+        $this->page()->assertSee('You report the executed amount for the month you choose')->assertSee('October – December');
     }
 
     public function test_spending_inputs_show_the_currency(): void

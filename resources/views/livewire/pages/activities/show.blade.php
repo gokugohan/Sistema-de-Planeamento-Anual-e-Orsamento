@@ -672,14 +672,14 @@ new class extends Component {
                 {{-- ── EXECUTION TAB ──────────────────────────────────── --}}
                 @if($execution)
                     <div x-show="tab === 'execution'" x-transition class="px-6 py-5 space-y-6">
-                        <div class="grid gap-4 sm:grid-cols-4">
-                            @foreach([[__('Approved'), $execution['approved']], [__('Committed'), $execution['committed']], [__('Paid'), $execution['paid']]] as [$label, $value])
+                        <div class="grid gap-4 sm:grid-cols-3">
+                            @foreach([[__('Approved'), $execution['approved']], [__('Executed'), $execution['executed']]] as [$label, $value])
                                 <div><p class="text-xs font-semibold text-zinc-400">{{ $label }}</p><p class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">$ {{ number_format($value, 2) }}</p></div>
                             @endforeach
-                            <div><p class="text-xs font-semibold text-zinc-400">{{ __('Paid / approved') }}</p><p class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">{{ $execution['rate'] === null ? '—' : number_format($execution['rate'], 1).'%' }}</p></div>
+                            <div><p class="text-xs font-semibold text-zinc-400">{{ __('Executed / approved') }}</p><p class="mt-0.5 text-lg font-semibold tabular-nums text-zinc-900">{{ $execution['rate'] === null ? '—' : number_format($execution['rate'], 1).'%' }}</p></div>
                         </div>
                         @if($execution['waiting'] > 0)
-                            <p class="rounded-md bg-sky-50 px-3 py-2 text-sm text-sky-900">{{ trans_choice(':n spending figure is waiting for verification and is not counted yet.|:n spending figures are waiting for verification and are not counted yet.', $execution['waiting'], ['n' => $execution['waiting']]) }}</p>
+                            <p class="rounded-md bg-sky-50 px-3 py-2 text-sm text-sky-900">{{ trans_choice(':n executed amount is waiting for verification and is not counted yet.|:n executed amounts are waiting for verification and are not counted yet.', $execution['waiting'], ['n' => $execution['waiting']]) }}</p>
                         @endif
 
                         <div class="overflow-x-auto" tabindex="0">
@@ -687,23 +687,21 @@ new class extends Component {
                                 <caption class="sr-only">{{ __('Month by month') }}</caption>
                                 <thead><tr class="border-b border-zinc-100 text-xs font-semibold text-zinc-400">
                                     <th scope="col" class="py-2 pr-4 text-left">{{ __('Month') }}</th>
-                                    <th scope="col" class="py-2 px-4 text-right">{{ __('Committed') }}</th>
-                                    <th scope="col" class="py-2 px-4 text-right">{{ __('Paid') }}</th>
-                                    <th scope="col" class="py-2 pl-4 text-right">{{ __('Paid so far') }}</th>
+                                    <th scope="col" class="py-2 px-4 text-right">{{ __('Executed') }}</th>
+                                    <th scope="col" class="py-2 pl-4 text-right">{{ __('Executed so far') }}</th>
                                 </tr></thead>
                                 <tbody class="divide-y divide-zinc-50">
                                     @foreach($execution['months'] as $m => $row)
                                         @if($row['reported'])
                                             <tr>
                                                 <td class="py-2 pr-4 text-zinc-700">{{ \Carbon\Carbon::create($activity->fiscal_year, $m, 1)->translatedFormat('F') }}</td>
-                                                <td class="py-2 px-4 text-right tabular-nums">{{ number_format($row['committed'], 2) }}</td>
-                                                <td class="py-2 px-4 text-right tabular-nums">{{ number_format($row['paid'], 2) }}</td>
+                                                <td class="py-2 px-4 text-right tabular-nums">{{ number_format($row['executed'], 2) }}</td>
                                                 <td class="py-2 pl-4 text-right tabular-nums font-medium text-zinc-900">{{ number_format($row['cumulative'], 2) }}</td>
                                             </tr>
                                         @endif
                                     @endforeach
                                     @if(! collect($execution['months'])->contains('reported', true))
-                                        <tr><td colspan="4" class="py-6 text-center text-sm text-zinc-400">{{ __('No verified spending yet.') }}</td></tr>
+                                        <tr><td colspan="3" class="py-6 text-center text-sm text-zinc-400">{{ __('No verified executed amount yet.') }}</td></tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -744,7 +742,7 @@ new class extends Component {
                         @endif
 
                         <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-700">
-                            <p class="max-w-xl">{{ __('Where do these figures come from? The unit\'s Director enters what each budget line committed and paid every month, and what each indicator achieved every quarter, in Report execution. A figure counts here once someone else has verified it.') }}</p>
+                            <p class="max-w-xl">{{ __('Where do these figures come from? The unit\'s Director enters the amount each budget line executed every month, and what each indicator achieved every quarter, in Report execution. A figure counts here once someone else has verified it.') }}</p>
                             @can('view_monitoring')
                                 <a href="{{ route('monitoring.report', ['activity' => $activity->id]) }}" wire:navigate class="inline-flex shrink-0 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">{{ __('Report this activity') }} →</a>
                             @endcan
@@ -874,7 +872,7 @@ new class extends Component {
             @if($revising)
                 <div class="rounded-xl bg-amber-50 p-5 text-sm ring-1 ring-amber-200">
                     <p class="font-semibold text-amber-900">{{ __('Revision in progress: version :n', ['n' => $activity->version + 1]) }}</p>
-                    <p class="mt-1 text-amber-900">{{ __('Version :n stays in force, and spending is reported against it, until this revision is approved.', ['n' => $activity->version]) }}</p>
+                    <p class="mt-1 text-amber-900">{{ __('Version :n stays in force, and the executed amount is reported against it, until this revision is approved.', ['n' => $activity->version]) }}</p>
                     @if($activity->revision_reason)<p class="mt-2 rounded-md bg-white/70 px-3 py-2 text-zinc-800"><span class="font-medium">{{ __('Reason') }}:</span> {{ $activity->revision_reason }}</p>@endif
                     @if($changes && ($changes['lines'] || $changes['indicators'] || abs($changes['total_from'] - $changes['total_to']) >= 0.005))
                         <p class="mt-3 text-xs font-semibold text-amber-900">{{ __('What changes against version :n', ['n' => $activity->version]) }}</p>

@@ -91,7 +91,7 @@ class PlanCycle
             'finalized' => $f['ended'] ? __('Planning has ended') : (count($units) > 1
                 ? __(':n of :total directorates finalized', ['n' => count(array_filter($units, fn ($x) => $x['closed'])), 'total' => count($units)])
                 : ($f['pending'] > 0 ? trans_choice(':n activity still waiting for a decision|:n activities still waiting for a decision', $f['pending'], ['n' => $f['pending']]) : __('Ready to be finalized once everything is decided'))),
-            'reporting' => __('Monthly spending and quarterly indicators'),
+            'reporting' => __('Monthly executed amounts and quarterly indicators'),
         ];
         $labels = [
             'submission' => __('Plan submission'),

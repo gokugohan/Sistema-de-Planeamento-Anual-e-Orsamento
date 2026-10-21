@@ -77,7 +77,7 @@ return [
             'label' => 'Insights',
             'items' => [
                 ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart',
-                    'hint' => 'Paid and delivered against the plan, by quarter and programme'],
+                    'hint' => 'Executed and delivered against the plan, by quarter and programme'],
                 ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_all_paa',
                     'hint' => 'Reports and the final plan report'],
             ],

@@ -63,7 +63,7 @@ class ReportExecutionPageTest extends TestCase
         $page = Volt::actingAs($this->finalApprover())->test('pages.monitoring.report-execution')
             ->set('month', 10)->set('activityId', $this->activity->id);
 
-        $page->assertSee($this->activity->description)->assertSee('Spending')->assertSee('Indicators')->assertSee('Send everything for verification');
+        $page->assertSee($this->activity->description)->assertSee('Executed amount')->assertSee('Indicators')->assertSee('Send everything for verification');
         $summary = $page->viewData('summary');
         $this->assertSame($this->activity->lineItems()->whereHas('adjustedBudget')->count(), $summary['spending']['total']);
         $this->assertSame($this->activity->indicators()->count(), $summary['progress']['total']);
@@ -94,7 +94,7 @@ class ReportExecutionPageTest extends TestCase
             ->call('submitAll')->assertDispatched('submit-execution');
 
         $spending = Volt::actingAs($director)->test('pages.monitoring.execution-spending', ['activityId' => $this->activity->id, 'month' => 10])
-            ->set("form.{$line->id}.committed", 100)->set("form.{$line->id}.paid", 50);
+            ->set("form.{$line->id}.executed", 50);
         $progress = Volt::actingAs($director)->test('pages.monitoring.execution-progress', ['activityId' => $this->activity->id, 'quarter' => 4]);
         $progress->call('saveProgress', $indicator->id, 5);
 

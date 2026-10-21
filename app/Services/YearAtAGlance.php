@@ -70,7 +70,7 @@ class YearAtAGlance
         // ── reporting
         $today = Carbon::now();
         $isCurrent = $year === (int) $today->year;
-        $reportingText = __('Spending is reported every month and indicators every quarter, in Report execution; a figure counts once someone else has verified it.');
+        $reportingText = __('The executed amount is reported every month and indicators every quarter, in Report execution; a figure counts once someone else has verified it.');
         $reportingCta = null;
         $reportingState = $year < (int) $today->year ? 'done' : ($isCurrent ? 'now' : 'soon');
         if ($isCurrent && $today->month > 1) {
@@ -78,7 +78,7 @@ class YearAtAGlance
             $m = $this->cycle->month($user, $year, $last);
             $name = Carbon::create($year, $last, 1)->translatedFormat('F');
             $reportingText = $m['due'] > 0
-                ? __(':name: :done of :due approved activities have a verified spending figure.', ['name' => $name, 'done' => $m['verified'], 'due' => $m['due']]).' '.__('Indicators are reported every quarter.')
+                ? __(':name: :done of :due approved activities have a verified executed amount.', ['name' => $name, 'done' => $m['verified'], 'due' => $m['due']]).' '.__('Indicators are reported every quarter.')
                 : $reportingText;
             if ($m['window']['state'] === 'open' && $m['window']['closes_on']) {
                 $reportingText .= ' '.__('Reporting for :name closes on :d.', ['name' => $name, 'd' => $m['window']['closes_on']->format('d/m/Y')]);

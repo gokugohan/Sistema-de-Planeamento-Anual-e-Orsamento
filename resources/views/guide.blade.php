@@ -20,7 +20,7 @@
                 'when' => __('When every activity of the directorate is decided.'), 'where' => __('The card at the top of the activities list'), 'url' => route('activities.index')],
         ]],
         [__('Monitor'), [
-            ['who' => ['Director'], 'whoText' => __('The Director of the unit'), 'what' => __('Report the spending'), 'how' => __('For each budget line, enter what was committed and what was paid in the month. This is where "Paid" comes from.'),
+            ['who' => ['Director'], 'whoText' => __('The Director of the unit'), 'what' => __('Report the executed amount'), 'how' => __('For each budget line, enter the amount executed in the month. This is where "Executed" comes from.'),
                 'when' => __('Every month, once the month has started and inside its reporting window if one is set.'), 'where' => __('Execute → Report execution'), 'url' => $user->can('view_monitoring') ? route('monitoring.report') : route('approvals.index')],
             ['who' => ['Director'], 'whoText' => __('The Director of the unit'), 'what' => __('Update the indicators'), 'how' => __('Enter what each indicator has achieved. The quarter follows the month you chose: October to December is Q4.'),
                 'when' => __('Every quarter.'), 'where' => __('Execute → Report execution (the Indicators block)'), 'url' => $user->can('view_monitoring') ? route('monitoring.report') : route('approvals.index')],
@@ -32,7 +32,7 @@
                 'when' => __('After the quarter ends.'), 'where' => __('Execute → Compile the quarter'), 'url' => $user->hasAnyRole(['Admin', 'Director']) ? route('reports.compile') : route('approvals.index')],
         ]],
         [__('Change'), [
-            ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer, Director or the head'), 'what' => __('Revise an approved activity'), 'how' => __('Say why, change what is needed and send it through approval again. The approved version stays in force, and spending is reported against it, until the revision is approved.'),
+            ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer, Director or the head'), 'what' => __('Revise an approved activity'), 'how' => __('Say why, change what is needed and send it through approval again. The approved version stays in force, and the executed amount is reported against it, until the revision is approved.'),
                 'when' => __('Whenever an approved activity has to change.'), 'where' => __('The activity page → Revise'), 'url' => route('activities.index')],
         ]],
     ];
@@ -50,8 +50,8 @@
         <x-ui.page-header :title="__('How the year works')" :subtitle="__('Who does what, when and where. The steps that are yours are marked.')" />
 
         <x-ui.card padding="p-5">
-            <p class="text-sm text-zinc-700"><span class="font-semibold text-zinc-900">{{ __('Where does "Paid" come from?') }}</span>
-                {{ __('It is not imported from another system. The unit enters what each budget line committed and paid, every month, in Report execution. Someone else then verifies it, and only verified figures count in every total, chart and report.') }}</p>
+            <p class="text-sm text-zinc-700"><span class="font-semibold text-zinc-900">{{ __('Where does "Executed" come from?') }}</span>
+                {{ __('It is not imported from another system. The unit enters the amount each budget line executed, every month, in Report execution. Someone else then verifies it, and only verified figures count in every total, chart and report.') }}</p>
         </x-ui.card>
 
         @foreach($groups as [$title, $steps])

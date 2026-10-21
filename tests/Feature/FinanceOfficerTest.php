@@ -42,7 +42,7 @@ class FinanceOfficerTest extends TestCase
 
         $line = $this->activity->lineItems()->whereHas('adjustedBudget')->firstOrFail();
         BudgetExecution::updateOrCreate(['line_item_id' => $line->id, 'month' => 10], [
-            'committed' => 100, 'paid' => 50, 'status' => 'Submitted', 'submitted_by' => $director->id,
+            'executed' => 50, 'status' => 'Submitted', 'submitted_by' => $director->id,
         ]);
         $this->line = $line;
     }
@@ -82,7 +82,7 @@ class FinanceOfficerTest extends TestCase
     public function test_the_inbox_lists_spending_to_verify_and_the_approvals_page_opens(): void
     {
         $items = collect(app(ApprovalInbox::class)->items($this->finance, 2026));
-        $this->assertTrue($items->contains(fn ($i) => str_contains($i['text'], 'spending figure')));
+        $this->assertTrue($items->contains(fn ($i) => str_contains($i['text'], 'executed amount')));
         $this->assertFalse($items->contains(fn ($i) => str_contains($i['text'], 'progress report')));
 
         $this->actingAs($this->finance)->get(route('approvals.index'))->assertOk();

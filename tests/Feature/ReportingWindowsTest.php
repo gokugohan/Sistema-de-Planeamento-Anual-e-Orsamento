@@ -59,7 +59,7 @@ class ReportingWindowsTest extends TestCase
     public function test_without_a_window_the_period_is_open(): void
     {
         $line = $this->activity->lineItems()->whereHas('adjustedBudget')->firstOrFail();
-        $this->spending($this->director)->set("form.{$line->id}.committed", 10)->set("form.{$line->id}.paid", 5)->call('save');
+        $this->spending($this->director)->set("form.{$line->id}.executed", 5)->call('save');
 
         $this->assertSame(1, BudgetExecution::where('line_item_id', $line->id)->where('month', 10)->count());
     }
@@ -69,7 +69,7 @@ class ReportingWindowsTest extends TestCase
         $this->window('month', 10, '2026-10-01', '2026-10-10'); // closed four days ago
         $line = $this->activity->lineItems()->whereHas('adjustedBudget')->firstOrFail();
 
-        $this->spending($this->director)->set("form.{$line->id}.committed", 10)->set("form.{$line->id}.paid", 5)->call('save')->assertForbidden();
+        $this->spending($this->director)->set("form.{$line->id}.executed", 5)->call('save')->assertForbidden();
         $this->assertSame(0, BudgetExecution::where('line_item_id', $line->id)->where('month', 10)->count());
 
         $admin = User::factory()->create();

@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
 class ExecutionHistory
 {
     /**
-     * @return array<int, array{committed: float, paid: float, verified_by: ?string, verified_at: Carbon}>
+     * @return array<int, array{executed: float, verified_by: ?string, verified_at: Carbon}>
      *                                                                                                     every time the figure was verified with values that are not the current ones, oldest first
      */
     public function earlierVerified(BudgetExecution $entry): array
@@ -33,7 +33,7 @@ class ExecutionHistory
                 continue;
             }
             if (($state['status'] ?? null) === BudgetExecution::VERIFIED && (($row->new_values['status'] ?? null) === BudgetExecution::VERIFIED)) {
-                $verified[] = ['committed' => (float) ($state['committed'] ?? 0), 'paid' => (float) ($state['paid'] ?? 0), 'verified_by' => $state['verified_by'] ?? null, 'verified_at' => $row->created_at];
+                $verified[] = ['executed' => (float) ($state['executed'] ?? 0), 'verified_by' => $state['verified_by'] ?? null, 'verified_at' => $row->created_at];
             }
         }
 
