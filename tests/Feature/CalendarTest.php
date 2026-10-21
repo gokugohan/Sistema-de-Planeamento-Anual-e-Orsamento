@@ -117,6 +117,7 @@ class CalendarTest extends TestCase
 
     public function test_deciding_on_the_plan_can_have_its_own_dates(): void
     {
+        (new PlanOptions(completeBeforeApproval: false))->save(); // this test is about the dates, not the order of the year
         $activity = $this->submitted2027();
         $workflow = app(ActivityWorkflow::class);
         $this->assertNotNull($workflow->next($this->director, $activity), 'no dates: open');
@@ -137,10 +138,11 @@ class CalendarTest extends TestCase
             ->forceFill(['status' => Activity::STATUS_DRAFT, 'version' => 0])->save();
         $workflow = app(ActivityWorkflow::class);
 
-        $this->assertNotNull($workflow->next($this->director, $activity), 'off by default');
+        $this->assertNull($workflow->next($this->director, $activity), 'on by default: a draft of the directorate holds the decisions back');
 
-        (new PlanOptions(completeBeforeApproval: true))->save();
-        $this->assertNull($workflow->next($this->director, $activity), 'a draft of the directorate holds the decisions back');
+        (new PlanOptions(completeBeforeApproval: false))->save();
+        $this->assertNotNull($workflow->next($this->director, $activity), 'the institution can switch it off');
+        (new PlanOptions)->save();
         $this->assertStringContainsString('not submitted yet', (string) app(PlanStatus::class)->holdBack($activity));
 
         $this->expectException(\DomainException::class);

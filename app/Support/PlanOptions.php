@@ -6,7 +6,8 @@ use App\Models\SystemSetting;
 
 /**
  * Optional rules of the planning cycle that an institution switches on when its own rules ask for them. Every option
- * is off by default, which is how the application behaved before they existed; nothing here assumes a rule that the
+ * is off by default, which is how the application behaved before they existed, except the order of the year
+ * (a plan must be complete before it is approved), which is on; nothing here assumes a rule that the
  * institution has not confirmed (see docs/improvement/02-INSTITUTIONAL-REQUIREMENTS-REGISTER.md). Only a difference
  * from the defaults is stored.
  */
@@ -39,7 +40,7 @@ final class PlanOptions
         public readonly bool $correctiveActions = false,
         public readonly bool $baselines = false,
         public readonly bool $structureAtApproval = false,
-        public readonly bool $completeBeforeApproval = false,
+        public readonly bool $completeBeforeApproval = true,
     ) {}
 
     private const KEY = 'plan_options';
@@ -59,7 +60,7 @@ final class PlanOptions
             (bool) ($s['corrective_actions'] ?? false),
             (bool) ($s['baselines'] ?? false),
             (bool) ($s['structure_at_approval'] ?? false),
-            (bool) ($s['complete_before_approval'] ?? false),
+            (bool) ($s['complete_before_approval'] ?? true),
         );
     }
 

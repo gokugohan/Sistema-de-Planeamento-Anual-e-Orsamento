@@ -15,7 +15,7 @@ new class extends Component {
     public bool $correctiveActions = false;
     public bool $baselines = false;
     public bool $structureAtApproval = false;
-    public bool $completeBeforeApproval = false;
+    public bool $completeBeforeApproval = true;
     public int $year;
     public string $guidance = '';
 
