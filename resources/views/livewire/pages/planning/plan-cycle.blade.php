@@ -24,7 +24,12 @@ new class extends Component {
 
     public function with(): array
     {
-        return ['cycle' => app(PlanCycle::class)->build(auth()->user(), $this->year), 'canSetWindows' => auth()->user()->isAdministrator()];
+        return [
+            'cycle' => app(PlanCycle::class)->build(auth()->user(), $this->year),
+            'canSetWindows' => auth()->user()->isAdministrator(),
+            // the head of a directorate (or an administrator) ends the planning of their directorate
+            'canFinalize' => app(\App\Services\PlanningWindow::class)->canDecide(auth()->user(), $this->year),
+        ];
     }
 }; ?>
 
@@ -85,6 +90,10 @@ new class extends Component {
                     @endif
                 @endif
             </div>
+            @if($canFinalize && ! $p['ended'])
+                <x-ui.button variant="primary" size="md" shadow="none" class="mt-4" href="{{ route('activities.index') }}" wire:navigate>{{ __('Finalize the plan') }}</x-ui.button>
+                <p class="mt-2 text-xs text-zinc-500">{{ __('The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.') }}</p>
+            @endif
             @if($canSetWindows)
                 <x-ui.button variant="secondary" size="md" shadow="none" class="mt-4" href="{{ route('management.reporting-windows') }}" wire:navigate>{{ __('Set the windows') }}</x-ui.button>
             @endif

@@ -1963,5 +1963,7 @@
     "Objective of the activity": "Objective of the activity",
     "Baseline of every indicator": "Baseline of every indicator",
     "Means of verification of every indicator": "Means of verification of every indicator",
-    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Give the final approval. Without a list, the head of the directorate (the top-level unit) does."
+    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.",
+    "Finalize the plan": "Finalize the plan",
+    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved."
 }

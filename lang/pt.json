@@ -2208,5 +2208,7 @@
     "Objective of the activity": "Objetivo da atividade",
     "Baseline of every indicator": "Base de referência de cada indicador",
     "Means of verification of every indicator": "Meios de verificação de cada indicador",
-    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Dar a aprovação final. Sem lista, fá-lo o chefe da direção (a unidade de topo)."
+    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Dar a aprovação final. Sem lista, fá-lo o chefe da direção (a unidade de topo).",
+    "Finalize the plan": "Finalizar o plano",
+    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "O cartão no topo da lista de atividades tem o botão Finalizar plano da sua direção. Fica disponível quando nada espera por uma decisão e há pelo menos uma atividade aprovada."
 }

@@ -2208,5 +2208,7 @@
     "Objective of the activity": "Objetivu atividade nian",
     "Baseline of every indicator": "Baseline indikadór ida-idak nian",
     "Means of verification of every indicator": "Meiu verifikasaun indikadór ida-idak nian",
-    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Fó aprovasaun final. Se la iha lista, xefe direksaun (unidade leten) mak halo."
+    "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Fó aprovasaun final. Se la iha lista, xefe direksaun (unidade leten) mak halo.",
+    "Finalize the plan": "Finaliza planu",
+    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "Kartaun iha leten lista atividade nian iha botaun Finaliza planu ba ita-nia direksaun. Disponível bainhira laiha buat ida hein desizaun no iha pelumenus atividade ida aprova."
 }

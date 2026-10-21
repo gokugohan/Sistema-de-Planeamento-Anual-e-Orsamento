@@ -97,4 +97,12 @@ class PlanCycleTest extends TestCase
         $this->assertStringNotContainsString('CRO', $html);
         $this->get('/planning/budget-cycle')->assertRedirect(route('planning.cycle'));
     }
+
+    public function test_the_head_of_a_directorate_is_pointed_to_where_the_plan_is_finalized(): void
+    {
+        $this->actingAs($this->chief)->get(route('planning.cycle'))->assertOk()->assertSee('Finalize the plan')->assertSee(route('activities.index'));
+
+        $officer = User::where('email', 'tecnico.udig@gdsc.tl')->firstOrFail();
+        $this->actingAs($officer)->get(route('planning.cycle'))->assertOk()->assertDontSee('Finalize the plan');
+    }
 }
