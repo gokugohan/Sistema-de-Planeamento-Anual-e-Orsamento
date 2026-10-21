@@ -130,8 +130,8 @@ new class extends Component {
 
     public function approveBatch(): void
     {
-        if (!auth()->user()->isMinister() && !auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
-            $this->dispatch('toast', message: 'Only the Minister or Admins can approve simulation activities.', type: 'error');
+        if (!auth()->user()->hasAnyRole(['Admin', 'Director'])) {
+            $this->dispatch('toast', message: __('Only directors and administrators approve simulation activities, as in the real plan.'), type: 'error');
             return;
         }
 
@@ -159,8 +159,8 @@ new class extends Component {
 
     public function rejectBatch(): void
     {
-        if (!auth()->user()->isMinister() && !auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
-            $this->dispatch('toast', message: 'Only the Minister or Admins can reject simulation activities.', type: 'error');
+        if (!auth()->user()->hasAnyRole(['Admin', 'Director'])) {
+            $this->dispatch('toast', message: __('Only directors and administrators return simulation activities, as in the real plan.'), type: 'error');
             return;
         }
 
@@ -186,8 +186,8 @@ new class extends Component {
 
     public function approve($id): void
     {
-        if (!auth()->user()->isMinister() && !auth()->user()->hasAnyRole(['Admin', 'Planning'])) {
-            $this->dispatch('toast', message: 'Only the Minister or Admins can approve simulation activities.', type: 'error');
+        if (!auth()->user()->hasAnyRole(['Admin', 'Director'])) {
+            $this->dispatch('toast', message: __('Only directors and administrators approve simulation activities, as in the real plan.'), type: 'error');
             return;
         }
 
@@ -304,7 +304,7 @@ new class extends Component {
         }
 
         $canSubmit = $hasDrafts && !$isYearLocked;
-        $canApprove = $hasSubmitted && !$isYearLocked && ($user->isMinister() || $user->hasAnyRole(['Admin', 'Planning']));
+        $canApprove = $hasSubmitted && !$isYearLocked && $user->hasAnyRole(['Admin', 'Director']);
     @endphp
 
     <div class="flex justify-between items-start">

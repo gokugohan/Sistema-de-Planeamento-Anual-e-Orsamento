@@ -136,7 +136,7 @@
                                 </x-ui.button>
                             @endif
 
-                            @if((auth()->user()->isMinister() || auth()->user()->hasAnyRole(['Admin', 'Planning'])) && $activity->status === 'Submitted')
+                            @if(auth()->user()->hasAnyRole(['Admin', 'Director']) && $activity->status === 'Submitted')
                                 <x-ui.button variant="success" size="xs" wire:click="approve({{ $activity->id }})"
                                     class="!rounded-lg !bg-green-600 hover:!bg-green-700 !text-white">
                                     {{ __('Approve') }}
