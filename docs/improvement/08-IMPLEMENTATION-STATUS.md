@@ -47,6 +47,10 @@
 - **A directorate user saw other directorates' data in two places**: the planning card (names, who finalized, pending counts) and the *Activities to decide* page (the activities themselves, for any Director). Both are now limited to the user's units; `DirectorateSeesOnlyOwnPlanTest` guards them. The activity list, My work and the reports already were.
 - **A stale "Send to the Minister" button** on the activity page duplicated "Approve Activity" and named a step that does not exist; removed.
 
+## Migrations squashed into a baseline
+
+The application is still in development, so the 86 migrations up to `2026_11_12_130000` were replaced by `database/schema/mysql-schema.sql` (the removed files stay in git history) plus `2026_11_21_000000_add_the_default_funding_sources`, which adds the starting rows an old migration used to insert. A scratch database built from the baseline has exactly the same schema as one built by the 86 migrations (compared table by table, 824 lines identical). This also settles the concern in 01 (H7) about irreversible old migrations: they no longer exist as files. Consequence: a **new** database needs the `mysql` command-line client on the server to load the baseline; existing databases are unaffected.
+
 ## Not done
 
 - A consolidation **review decision** (FR-017): no rule-holder is known and none is assumed.

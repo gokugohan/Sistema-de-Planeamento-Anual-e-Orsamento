@@ -241,7 +241,7 @@ Copy `database/seeders/Samples/` to a new folder, replace the structure and prog
 
 ### Server requirements
 
-PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4`, a web server (Nginx or Apache) serving **`public/`** as the document root, HTTPS, and, only if you later add queued work, a process manager (systemd or Supervisor) for a queue worker. Redis is optional and recommended for large deployments.
+PHP 8.3+ with the extensions above, MySQL 5.7+ (8.0 recommended) using `utf8mb4` and the `mysql` command-line client (a new database is built from the schema baseline with it; see Development), a web server (Nginx or Apache) serving **`public/`** as the document root, HTTPS, and, only if you later add queued work, a process manager (systemd or Supervisor) for a queue worker. Redis is optional and recommended for large deployments.
 
 ### Deploying on Railway
 
@@ -404,12 +404,16 @@ It runs `paa:backup` at 02:00 and prunes failed jobs and expired password-reset 
 ## Development
 
 ```bash
-php artisan test                      # uses the paa_orcamento_test database
+php artisan test                      # the whole suite: about 460 end-to-end tests, roughly 15 minutes
+php artisan test tests/Feature/ApprovalRulesTest.php   # one file: seconds; use this while working
+php artisan test --filter=SegregationOfDuties           # tests by name
 composer lint                         # code style check (Laravel Pint); `composer lint:fix` repairs it
 composer check                        # style + tests, what CI runs
 ```
 
-The test database is wiped on each run by `RefreshDatabase`; never point `phpunit.xml` at the real database. GitHub Actions (`.github/workflows/ci.yml`) runs style, tests (on MySQL) and `composer audit` for every push and pull request. Tests cover versions and revisions, plan cycle and windows, final plan report, CSV import, audit trail, seeding, the sample-data load/purge safety rules, navigation, the dashboard, and the platform layer (security headers, password policy, temporary passwords, health endpoint, backups), two-factor authentication and the review pages. The suite (about 130 tests) passes in full.
+The test database is wiped on each run by `RefreshDatabase`; never point `phpunit.xml` at the real database. GitHub Actions (`.github/workflows/ci.yml`) runs style, tests (on MySQL) and `composer audit` for every push and pull request. Tests cover versions and revisions, plan cycle and windows, final plan report, CSV import, audit trail, seeding, the sample-data load/purge safety rules, navigation, the dashboard, and the platform layer (security headers, password policy, temporary passwords, health endpoint, backups), two-factor authentication and the review pages. The suite (about 460 tests) passes in full.
+
+**Why the suite is slow, and what helps.** Most tests load the sample office dataset and drive real pages, so each takes about two seconds, and the database is shared, so running them in parallel does not help. While working, run the files you touched; run the whole suite before you push (it can run in the background). The migrations up to 2026-11-12 were squashed into one baseline, `database/schema/mysql-schema.sql`, taken while the application was still in development; a new database loads it with the `mysql` client in seconds instead of replaying ninety migrations, and any migration added after it runs on top. The starting rows that old migrations used to insert (the three funding sources) now come from `2026_11_21_000000_add_the_default_funding_sources`, so a schema dump must always be paired with a migration or seeder for the data it cannot carry. Existing databases keep their `migrations` table and are unaffected. To refresh the baseline later, build a scratch database with `php artisan migrate`, run `DB_DATABASE=<scratch> php artisan schema:dump`, and compare it with the old one.
 
 Conventions: business rules live in `app/Services`, not in Livewire components; every state-changing Livewire action checks permissions on the server; new user-facing strings go through `__()` and into all three `lang/*.json` files.
 
