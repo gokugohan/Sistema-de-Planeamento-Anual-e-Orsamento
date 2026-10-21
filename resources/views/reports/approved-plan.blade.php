@@ -73,10 +73,29 @@
                 <option value="summary" @selected(! $complete)>{{ __('Summary report') }}</option>
             </select>
         </form>
+        @if(($baselines ?? null) !== null)
+            <form method="GET" action="{{ route('reports.approved-plan') }}" style="margin:0">
+                <input type="hidden" name="year" value="{{ $report['year'] }}"><input type="hidden" name="mode" value="{{ $mode }}">
+                <select name="baseline" onchange="this.form.submit()" aria-label="{{ __('Baseline') }}">
+                    <option value="">{{ __('The plan in force now') }}</option>
+                    @foreach($baselines as $b)
+                        <option value="{{ $b->id }}" @selected(($report['baseline']['id'] ?? null) === $b->id)>{{ __('Baseline of :date', ['date' => $b->recorded_at->format('d/m/Y H:i')]) }}</option>
+                    @endforeach
+                </select>
+            </form>
+            @if(auth()->user()?->isAdministrator() && ! $report['baseline'])
+                <form method="POST" action="{{ route('reports.approved-plan.baseline', ['year' => $report['year']]) }}" style="margin:0" onsubmit="return confirm('{{ __('Record the approved plan of :year as it stands now? This approves nothing.', ['year' => $report['year']]) }}')">
+                    @csrf
+                    <input type="text" name="note" maxlength="2000" placeholder="{{ __('Note (optional)') }}" aria-label="{{ __('Note (optional)') }}">
+                    <button type="submit" class="secondary">{{ __('Record baseline') }}</button>
+                </form>
+            @endif
+        @endif
         <span style="margin-left:auto"></span>
         <button type="button" onclick="window.print()">{{ __('Print') }}</button>
-        <a href="{{ route('reports.approved-plan.pdf', ['year' => $report['year'], 'mode' => $mode]) }}">{{ __('Download PDF') }}</a>
+        <a href="{{ route('reports.approved-plan.pdf', array_filter(['year' => $report['year'], 'mode' => $mode, 'baseline' => $report['baseline']['id'] ?? null])) }}">{{ __('Download PDF') }}</a>
     </div>
+    @if(session('status'))<div class="note" style="margin:8px auto;max-width:297mm">{{ session('status') }}</div>@endif
     <div class="sheet">
 @endunless
 
@@ -100,6 +119,14 @@
     <tr><td class="muted">{{ __('Fiscal year') }}</td><td>{{ $report['year'] }}</td></tr>
     <tr><td class="muted">{{ __('Scope') }}</td><td>{{ __('Activities approved internally (status Approved)') }}</td></tr>
 </table>
+
+@if($report['baseline'] ?? null)
+    <div class="note">
+        <strong>{{ __('Baseline:') }}</strong>
+        {{ __('the approved plan as it stood on :date, recorded by :by.', ['date' => $report['baseline']['recorded_at']->format('d/m/Y H:i'), 'by' => $report['baseline']['by'] ?? '—']) }}
+        @if($report['baseline']['note']) “{{ $report['baseline']['note'] }}”@endif
+    </div>
+@endif
 
 @if(($report['revising'] ?? 0) > 0)
     <div class="note">

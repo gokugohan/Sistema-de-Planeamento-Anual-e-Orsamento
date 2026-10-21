@@ -90,6 +90,8 @@ class Activity extends Model
         'status',
         'version',
         'revision_reason',
+        'external_approval_required',
+        'external_approval_reference',
         'procurement_required',
         'fiscal_year',
         'submitted_at',

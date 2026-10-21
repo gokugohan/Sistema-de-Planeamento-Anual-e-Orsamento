@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\User;
 use App\Services\ApproverLists;
+use App\Support\PlanOptions;
 
 /**
  * Who may see and change an activity.
@@ -22,6 +23,10 @@ class ActivityPolicy
     public function inScope(User $user, ?int $unitId): bool
     {
         if ($user->can('view_all_paa') || $user->isAdministrator()) {
+            return true;
+        }
+        // where the institution has one finance function, its officers work on every unit (an optional rule)
+        if (PlanOptions::current()->financeInstitutionWide && $user->hasRole('Finance')) {
             return true;
         }
         if (! $unitId) {

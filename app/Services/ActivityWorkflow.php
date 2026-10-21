@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Notifications\SystemNotification;
 use App\Policies\ActivityPolicy;
 use App\Support\ApprovalRules;
+use App\Support\PlanOptions;
 use DomainException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -52,6 +53,21 @@ class ActivityWorkflow
             // the same needs as the form and the import: every indicator has a name, a unit and a target (zero is a target)
             $problems[] = __('Every indicator needs a name, a unit of measure and a target.');
         }
+        // fields the institution made mandatory as well (an optional rule; none by default)
+        $missing = [];
+        foreach (PlanOptions::current()->requiredFields as $field) {
+            $empty = match ($field) {
+                'indicator_baseline' => $activity->indicators->contains(fn ($i) => blank($i->baseline)),
+                'indicator_means' => $activity->indicators->contains(fn ($i) => blank($i->means_of_verification)),
+                default => blank($activity->getAttribute($field)),
+            };
+            if ($empty) {
+                $missing[] = __(PlanOptions::FIELDS[$field]);
+            }
+        }
+        if ($missing) {
+            $problems[] = __('Fill in: :fields.', ['fields' => implode(', ', $missing)]);
+        }
         if ($activity->planned_start && $activity->planned_end && $activity->planned_end < $activity->planned_start) {
             $problems[] = __('The end date is before the start date.');
         }
@@ -64,6 +80,9 @@ class ActivityWorkflow
     {
         $to = $this->target($user, $activity);
         if ($to !== null && $to !== Activity::STATUS_SUBMITTED && $this->selfActionRefused($user, $activity)) {
+            return null;
+        }
+        if ($to === Activity::STATUS_APPROVED && $this->externalApprovalMissing($activity)) {
             return null;
         }
 
@@ -336,7 +355,23 @@ class ActivityWorkflow
             && ! $activity->isLocked()
             && $this->mayGiveFinalApproval($user, $activity)
             && ! $this->selfActionRefused($user, $activity)
+            && ! $this->externalApprovalMissing($activity)
             && $this->inTurn($user, $activity);
+    }
+
+    /**
+     * A revision marked as needing an approval outside the institution (an optional rule) is approved only once the
+     * reference of that approval is recorded.
+     */
+    public function externalApprovalMissing(Activity $activity): bool
+    {
+        return PlanOptions::current()->externalReference && $activity->external_approval_required && blank($activity->external_approval_reference);
+    }
+
+    /** May this user give the final approval of the activity (whatever its status now)? For the outside-approval reference. */
+    public function isFinalApprover(User $user, Activity $activity): bool
+    {
+        return $this->mayGiveFinalApproval($user, $activity);
     }
 
     /** The final approval: a list of approvers for the unit decides if there is one (administrators always may), otherwise the rules. */
@@ -544,7 +579,7 @@ class ActivityWorkflow
         }
 
         $activity->auditMetadata = $this->trailMeta($user, $reason) + ['revision' => (int) $activity->version + 1];
-        $activity->update(['status' => Activity::STATUS_DRAFT, 'revision_reason' => mb_substr($reason, 0, 2000), 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null]);
+        $activity->update(['status' => Activity::STATUS_DRAFT, 'revision_reason' => mb_substr($reason, 0, 2000), 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null, 'external_approval_required' => false, 'external_approval_reference' => null]);
         ActivitySignature::close($activity->id, ActivitySignature::VOIDED, $user->id, $reason);
     }
 

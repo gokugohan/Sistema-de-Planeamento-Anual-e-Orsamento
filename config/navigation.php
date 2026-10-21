@@ -88,6 +88,7 @@ return [
                 ['label' => 'Funding sources', 'route' => 'management.funding-sources', 'icon' => 'banknote', 'hint' => 'Where the money of a budget line comes from'],
                 ['label' => 'Reporting windows', 'route' => 'management.reporting-windows', 'icon' => 'calendar', 'hint' => 'When each month and quarter may be reported'],
                 ['label' => 'Settings', 'route' => 'management.settings', 'icon' => 'settings', 'hint' => 'Organisation identity and planning options'],
+                ['label' => 'Optional rules', 'route' => 'management.optional-rules', 'icon' => 'settings', 'hint' => 'Rules of the planning cycle to switch on when your institution needs them'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
                 ['label' => 'Sample Data', 'route' => 'management.sample-data', 'icon' => 'flask-conical', 'hint' => 'Load or purge the demo dataset'],
             ],

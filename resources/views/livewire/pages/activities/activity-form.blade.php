@@ -375,6 +375,7 @@ new class extends Component {
             'title' => $this->activity ? __('Edit activity') : __('New activity'),
             'endedBy' => $this->activity ? null : \App\Support\FiscalYear::planningEndedBy($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null),
             'windowReason' => $this->windowClosedReason(),
+            'guidance' => \App\Support\PlanOptions::guidance((int) $this->year),
             'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : \App\Support\FiscalYear::nextPlanningYear(),
         ];
     }
@@ -405,6 +406,12 @@ new class extends Component {
     @else
     @if($windowReason)
         <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">{{ $windowReason }} {{ __('You can look at the activity but not save changes.') }}</div>
+    @endif
+    @if($guidance)
+        <details class="rounded-lg border border-indigo-100 bg-indigo-50/60 px-5 py-3 text-sm text-zinc-800" open>
+            <summary class="cursor-pointer font-medium text-indigo-900">{{ __('Guidance for preparing the plan of :year', ['year' => $year]) }}</summary>
+            <div class="mt-2 whitespace-pre-line">{{ $guidance }}</div>
+        </details>
     @endif
     <form wire:submit="save" class="space-y-6">
         {{-- 1. What and why --}}

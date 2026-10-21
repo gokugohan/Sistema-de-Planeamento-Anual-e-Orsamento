@@ -26,6 +26,11 @@ new class extends Component {
         $this->act(fn () => app(PlanningWindow::class)->finalize(auth()->user(), $this->year, $this->remark, $this->unit), __('The plan for :year is final: no new activities can be added.', ['year' => $this->year]));
     }
 
+    public function declareNil(): void
+    {
+        $this->act(fn () => app(PlanningWindow::class)->finalize(auth()->user(), $this->year, $this->remark, $this->unit, true), __('Recorded: this directorate has nothing to plan for :year.', ['year' => $this->year]));
+    }
+
     public function reopen(): void
     {
         $this->act(fn () => app(PlanningWindow::class)->reopen(auth()->user(), $this->year, $this->remark, $this->unit), __('Planning for :year is open again.', ['year' => $this->year]));
@@ -81,9 +86,14 @@ new class extends Component {
                         <div class="min-w-0">
                             <p class="font-medium text-zinc-900">{{ $u['code'] }} · {{ $u['name'] }}</p>
                             <p class="text-zinc-600">
-                                @if($u['closed'])
+                                @if($u['closed'] && ($u['nil_return'] ?? false))
+                                    {{ __('Nothing to plan, declared by :by on :date', ['by' => $u['by'] ?? '—', 'date' => $u['at']?->format('d/m/Y') ?? '—']) }}
+                                    @if($u['remark'])<span class="italic">“{{ $u['remark'] }}”</span>@endif
+                                @elseif($u['closed'])
                                     {{ __('Finalized by :by on :date', ['by' => $u['by'] ?? '—', 'date' => $u['at']?->format('d/m/Y') ?? '—']) }}
                                     @if($u['remark'])<span class="italic">“{{ $u['remark'] }}”</span>@endif
+                                @elseif($u['nothing_yet'] ?? false)
+                                    {{ __('Expected to submit: no activity yet.') }}
                                 @elseif($u['pending'] > 0)
                                     {{ trans_choice(':n activity is still waiting for a decision. Decide on it before finalizing the plan.|:n activities are still waiting for a decision. Decide on them before finalizing the plan.', $u['pending'], ['n' => $u['pending']]) }}
                                 @else
@@ -94,7 +104,12 @@ new class extends Component {
                         @if($mine && $u['closed'])
                             <x-ui.button variant="secondary" size="sm" shadow="none" wire:click="$set('unit', {{ $u['id'] }})" x-on:click="$dispatch('open-modal', 'reopen-planning')">{{ __('Reopen planning') }}</x-ui.button>
                         @elseif($mine)
-                            <x-ui.button variant="secondary" size="sm" shadow="none" :disabled="$u['pending'] > 0 || $u['approved'] === 0" wire:click="$set('unit', {{ $u['id'] }})" x-on:click="$dispatch('open-modal', 'finalize-plan')">{{ __('Finalize plan') }}</x-ui.button>
+                            <span class="flex flex-wrap gap-2">
+                                @if($u['may_declare_nil'] ?? false)
+                                    <x-ui.button variant="secondary" size="sm" shadow="none" wire:click="$set('unit', {{ $u['id'] }})" x-on:click="$dispatch('open-modal', 'declare-nil')">{{ __('Nothing to plan') }}</x-ui.button>
+                                @endif
+                                <x-ui.button variant="secondary" size="sm" shadow="none" :disabled="$u['pending'] > 0 || $u['approved'] === 0" wire:click="$set('unit', {{ $u['id'] }})" x-on:click="$dispatch('open-modal', 'finalize-plan')">{{ __('Finalize plan') }}</x-ui.button>
+                            </span>
                         @endif
                     </li>
                 @endforeach
@@ -106,6 +121,10 @@ new class extends Component {
                 :title="__('Reopen planning for :year?', ['year' => $year])"
                 :message="__('New activities can be added again. This is recorded with your remark.')"
                 :label="__('Why is planning reopened?')" :confirm="__('Reopen planning')" />
+            <x-note-dialog name="declare-nil" property="remark" action="declareNil" :required="true"
+                :title="__('Declare that this directorate has nothing to plan for :year?', ['year' => $year])"
+                :message="__('Its year closes as a nil return. Only the head of the directorate or an administrator can reopen it, with a remark.')"
+                :label="__('Why is there nothing to plan?')" :confirm="__('Nothing to plan')" />
             <x-note-dialog name="finalize-plan" property="remark" action="finalize"
                 :title="__('Finalize the plan for :year?', ['year' => $year])"
                 :message="__('This is the final approval of the plan. No new activities can be added afterwards; only the head of the directorate or an administrator can reopen planning, with a remark.')"

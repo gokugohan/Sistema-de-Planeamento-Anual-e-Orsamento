@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Activity;
 use App\Models\ActivityVersion;
 use App\Models\AdjustedBudget;
+use App\Models\Directorate;
 use App\Models\User;
 use Illuminate\Support\Collection;
 
@@ -52,8 +53,10 @@ class ActivityVersions
     public function snapshot(Activity $activity): array
     {
         return [
-            // 1: the first snapshots (a subset of the fields); 2: every field that says what the activity is
-            'schema' => 2,
+            // 1: the first snapshots (a subset of the fields); 2: every field that says what the activity is;
+            // 3: also the unit and the units above it as they were at the approval
+            'schema' => 3,
+            'unit_path' => $this->unitPath($activity->directorate_id),
             'activity' => [
                 'code' => $activity->code, 'description' => $activity->description, 'objective' => $activity->objective,
                 'directorate_id' => $activity->directorate_id, 'program_id' => $activity->program_id, 'subprogram_id' => $activity->subprogram_id,
@@ -61,6 +64,7 @@ class ActivityVersions
                 'execution_quarters' => $activity->execution_quarters, 'manager_name' => $activity->manager_name,
                 'location' => $activity->location, 'procurement_required' => $activity->procurement_required, 'gender_responsive' => $activity->gender_responsive,
                 'period_type' => $activity->period_type, 'quarter' => $activity->quarter,
+                'external_approval_reference' => $activity->external_approval_reference,
             ],
             'indicators' => $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'annual_target' => (float) $i->annual_target,
@@ -75,6 +79,22 @@ class ActivityVersions
                 'indicator_id' => $l->indicator_id, 'estimated_amount' => (float) $l->estimated_amount,
             ])->values()->all(),
         ];
+    }
+
+    /** @return array<int, array<string, mixed>> the unit of the activity and the units above it, nearest first */
+    private function unitPath(?int $unitId): array
+    {
+        $path = [];
+        for ($guard = 0; $unitId && $guard < 20; $guard++) {
+            $d = Directorate::find($unitId, ['id', 'code', 'name', 'type', 'parent_id', 'administration', 'legal_form']);
+            if (! $d) {
+                break;
+            }
+            $path[] = $d->only(['id', 'code', 'name', 'type', 'parent_id', 'administration', 'legal_form']);
+            $unitId = $d->parent_id;
+        }
+
+        return $path;
     }
 
     /** @return Collection<int, ActivityVersion> every approved version, the latest first */

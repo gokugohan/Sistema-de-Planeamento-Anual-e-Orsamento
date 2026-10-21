@@ -167,6 +167,8 @@ Add only the structure that the law defines; the system does not invent departme
 
 Pick the type, the month or quarter, *Opens on*, *Closes on* and an optional note, then **Save**. Outside its window a unit cannot report that period; an administrator always can. A period with no window is open.
 
+A **revisions** window may also be set: it limits when approved activities can be revised. Without one, revisions can be made at any time; they are never held back by the plan-submission window.
+
 ### 4.6 Approval lists and interim approvers
 
 Part 7. Directors keep these for their own units; administrators for any.
@@ -178,6 +180,23 @@ Part 7. Directors keep these for their own units; administrators for any.
 ### 4.8 Sample data
 
 **Administration → Sample Data** loads (or removes) an optional demonstration dataset, so people can practise before real use. It is refused in production. *Purge* removes only what the sample created; your real data is never touched.
+
+### 4.9 Optional rules
+
+**Administration → Optional rules** holds rules that are **off** until your institution confirms that its own rules ask for them. Each changes only what is described here.
+
+| Rule | When it is on |
+|---|---|
+| **Every active directorate must submit** | Each active top-level unit of the year is expected to finalize a plan or to declare that it has **nothing to plan** (a nil return, with a reason). The year ends only when all of them have. |
+| **Also required before an activity is submitted** | The fields you tick (objective, person responsible, location, indicator baselines, means of verification) must be filled in before submitting. |
+| **Guidance for preparing the plan** | Free text per fiscal year, shown at the top of the activity form (for example the deadlines of the planning circular). |
+| **Some revisions need an approval outside the institution** | A revision can be marked as needing it; it is then approved only once the reference of that approval is recorded on the activity page. |
+| **Record the approved plan as a baseline** | An administrator records the approved plan of a year as it stands (*Final plan report → Record baseline*); the report can then be printed as it stood at that moment. Recording a baseline approves nothing. |
+| **Finance officers work for the whole institution** | Finance officers see every unit, confirm budgets and verify spending everywhere. |
+| **Track corrective actions** | In *Report execution → Narrative*, the unit records corrective actions with a person responsible and a due date, and closes them when done. |
+| **Reports keep the structure at approval** | The final report shows each activity under the unit it belonged to when it was approved, even after a restructuring. |
+
+Nothing in these rules decides who approves the consolidated plan of the institution: no such step is assumed.
 
 ---
 

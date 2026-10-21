@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\UnitPlanning;
 use App\Models\User;
+use App\Support\PlanOptions;
 use Carbon\CarbonInterface;
 use DomainException;
 use Illuminate\Support\Collection;
@@ -19,7 +20,9 @@ use Illuminate\Support\Collection;
  * that has finalized takes no new activities while the others go on planning.
  *
  * The year counts as ended when every directorate that planned has finalized (so an institution with one
- * directorate behaves as before).
+ * directorate behaves as before). Where the institution says every active directorate must submit (an optional rule,
+ * PlanOptions::obligations), those directorates count too even before they plan anything, and one with nothing to plan
+ * closes its year by declaring so (a nil return).
  *
  * Finalizing stops new activities only: an approved activity can still be changed through a revision, which
  * makes a new version and goes through the approval chain again (see ActivityVersions).
@@ -61,10 +64,22 @@ class PlanningWindow
         return $unitId;
     }
 
-    /** The top-level units that have activities in the year. @return Collection<int, int> */
+    /** The top-level units that have activities in the year, and those obliged to submit where that rule is on. @return Collection<int, int> */
     public function plannedRoots(int $year): Collection
     {
-        return Activity::where('fiscal_year', $year)->distinct()->pluck('directorate_id')->map(fn ($id) => $this->rootOf((int) $id))->unique()->values();
+        $planned = Activity::where('fiscal_year', $year)->distinct()->pluck('directorate_id')->map(fn ($id) => $this->rootOf((int) $id));
+
+        return $planned->merge($this->obligedRoots($year))->unique()->values();
+    }
+
+    /** The active top-level units of the year that must finalize a plan or declare a nil return (none unless the rule is on). @return Collection<int, int> */
+    public function obligedRoots(int $year): Collection
+    {
+        if (! PlanOptions::current()->obligations) {
+            return collect();
+        }
+
+        return Directorate::whereNull('parent_id')->activeInYear($year)->pluck('id')->map(fn ($id) => (int) $id);
     }
 
     /** @return Collection<int, UnitPlanning> the finalized directorates of the year, by top-level unit id */
@@ -198,6 +213,9 @@ class PlanningWindow
             $perRoot[$root]['pending'] = ($perRoot[$root]['pending'] ?? 0) + (in_array($row->status, self::PENDING, true) ? (int) $row->n : 0);
             $perRoot[$root]['approved'] = ($perRoot[$root]['approved'] ?? 0) + ($row->status === Activity::STATUS_APPROVED ? (int) $row->n : 0);
         }
+        foreach ($this->obligedRoots($year) as $id) {
+            $perRoot[$id] ??= ['pending' => 0, 'approved' => 0, 'none' => true];
+        }
         $roots = collect(array_keys($perRoot));
         $closed = $this->closed($year);
         $names = User::whereIn('id', $closed->pluck('planning_by')->filter())->pluck('name', 'id');
@@ -213,6 +231,8 @@ class PlanningWindow
                 'closed' => $row !== null, 'by' => $row?->planning_by ? ($names[$row->planning_by] ?? null) : null,
                 'at' => $row?->planning_at, 'remark' => $row?->planning_remark,
                 'pending' => $perRoot[$id]['pending'], 'approved' => $perRoot[$id]['approved'],
+                'nothing_yet' => $perRoot[$id]['none'] ?? false, 'nil_return' => (bool) $row?->nil_return,
+                'may_declare_nil' => $row === null && $perRoot[$id]['approved'] === 0 && $perRoot[$id]['pending'] === 0 && PlanOptions::current()->obligations,
             ];
         })->sortBy('code')->values()->all();
 
@@ -234,8 +254,14 @@ class PlanningWindow
      * The final approval of the plan of a directorate: its planning ends. With no unit given, the user finalizes
      * every directorate they decide for that is still open (an administrator: all of them).
      */
-    public function finalize(User $user, int $year, ?string $remark = null, ?int $unitId = null): void
+    public function finalize(User $user, int $year, ?string $remark = null, ?int $unitId = null, bool $nilReturn = false): void
     {
+        if ($nilReturn) {
+            $this->declareNilReturn($user, $year, (string) $remark, $unitId);
+
+            return;
+        }
+
         $roots = $this->targets($user, $year, $unitId);
 
         $open = $roots->reject(fn ($id) => UnitPlanning::where(['fiscal_year' => $year, 'directorate_id' => $id])->exists());
@@ -248,8 +274,16 @@ class PlanningWindow
                 $pending, ['n' => $pending]
             ));
         }
+        $hasApproved = fn ($id) => Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->whereIn('directorate_id', $this->subtreeOf([$id]))->exists();
+        if ($unitId === null && PlanOptions::current()->obligations) {
+            // finalizing every directorate at once leaves out those that still have to plan or declare a nil return
+            $open = $open->filter($hasApproved)->values();
+            if ($open->isEmpty()) {
+                throw new DomainException(__('There is no approved activity to finalize.'));
+            }
+        }
         foreach ($open as $id) {
-            if (! Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_APPROVED)->whereIn('directorate_id', $this->subtreeOf([$id]))->exists()) {
+            if (! $hasApproved($id)) {
                 throw new DomainException(__('There is no approved activity to finalize.'));
             }
         }
@@ -260,6 +294,33 @@ class PlanningWindow
             $row->auditMetadata = array_filter(['by' => $user->id, 'remark' => $remark, 'planning' => 'finalized']);
             $row->save();
         }
+    }
+
+    /**
+     * Close the year of one directorate by declaring that it has nothing to plan: only where the institution asks every
+     * active directorate to submit, only when nothing in it is approved or waiting for a decision, and with a reason.
+     * It is recorded like a finalization, marked as a nil return, and reopened the same way.
+     */
+    public function declareNilReturn(User $user, int $year, string $remark, ?int $unitId): void
+    {
+        if (! PlanOptions::current()->obligations || $unitId === null) {
+            throw new DomainException(__('A nil return is not used by this institution.'));
+        }
+        $root = $this->targets($user, $year, $unitId)->first();
+        if (UnitPlanning::where(['fiscal_year' => $year, 'directorate_id' => $root])->exists()) {
+            throw new DomainException(__('The plan for :year is already finalized.', ['year' => $year]));
+        }
+        $subtree = $this->subtreeOf([$root]);
+        if (Activity::where('fiscal_year', $year)->whereIn('directorate_id', $subtree)->whereNotIn('status', [Activity::STATUS_DRAFT, Activity::STATUS_REJECTED])->exists()) {
+            throw new DomainException(__('This directorate has activities in the plan, so it cannot declare that it has nothing to plan.'));
+        }
+        if (mb_strlen(trim($remark)) < 3) {
+            throw new DomainException(__('Say why the directorate has nothing to plan.'));
+        }
+
+        $row = new UnitPlanning(['fiscal_year' => $year, 'directorate_id' => $root, 'planning_by' => $user->id, 'planning_at' => now(), 'planning_remark' => trim($remark), 'nil_return' => true]);
+        $row->auditMetadata = ['by' => $user->id, 'remark' => trim($remark), 'planning' => 'nil return'];
+        $row->save();
     }
 
     /** Open planning again, for the head of the directorate or an administrator, with a remark. */

@@ -26,6 +26,7 @@ new class extends Component {
     // Workflow dialogs: the note an approver or reopener may leave, and the reason a return must give
     public string $note   = '';
     public string $reason = '';
+    public string $externalReference = '';
 
     public function with(): array
     {
@@ -54,6 +55,11 @@ new class extends Component {
             'versions'                => app(\App\Services\ActivityVersions::class)->of($this->activity),
             'revising'                => \App\Services\ActivityVersions::revising($this->activity),
             'changes'                 => \App\Services\ActivityVersions::revising($this->activity) ? app(\App\Services\ActivityVersions::class)->changes($this->activity) : null,
+            // an optional rule: a revision may need an approval outside the institution, recorded by its reference
+            'externalRule'            => \App\Support\PlanOptions::current()->externalReference,
+            'mayMarkExternal'         => $user->isAdministrator() || $user->can('update', $this->activity),
+            'mayRecordExternal'       => $user->isAdministrator() || $workflow->isFinalApprover($user, $this->activity),
+            'externalMissing'         => $workflow->externalApprovalMissing($this->activity),
         ];
     }
 
@@ -221,6 +227,29 @@ new class extends Component {
         $this->reset('moveUnitId', 'moveRemark');
         $this->refresh();
         $this->dispatch('toast', message: __('Activity moved to :unit.', ['unit' => $to->name]), type: 'success');
+    }
+
+    /** Mark the revision as needing an approval outside the institution, or not (an optional rule). */
+    public function markExternal(bool $required): void
+    {
+        abort_unless(\App\Support\PlanOptions::current()->externalReference && \App\Services\ActivityVersions::revising($this->activity), 403);
+        abort_unless(auth()->user()->isAdministrator() || auth()->user()->can('update', $this->activity), 403);
+        $this->activity->auditMetadata = ['by' => auth()->id(), 'external_approval' => $required ? 'required' : 'not required'];
+        $this->activity->update(['external_approval_required' => $required, 'external_approval_reference' => $required ? $this->activity->external_approval_reference : null]);
+        $this->refresh();
+    }
+
+    /** Record the reference of the outside approval (by whoever gives the final approval, or an administrator). */
+    public function saveExternalReference(): void
+    {
+        abort_unless(\App\Support\PlanOptions::current()->externalReference && $this->activity->external_approval_required, 403);
+        abort_unless(auth()->user()->isAdministrator() || app(\App\Services\ActivityWorkflow::class)->isFinalApprover(auth()->user(), $this->activity), 403);
+        $this->validate(['externalReference' => 'required|string|min:3|max:255']);
+        $this->activity->auditMetadata = ['by' => auth()->id(), 'external_approval' => 'reference recorded'];
+        $this->activity->update(['external_approval_reference' => trim($this->externalReference)]);
+        $this->reset('externalReference');
+        $this->refresh();
+        $this->dispatch('toast', message: __('Reference of the outside approval recorded.'), type: 'success');
     }
 
     /** Start a revision: a new version, with its reason, through the whole approval chain again. */
@@ -858,6 +887,29 @@ new class extends Component {
                         </ul>
                     @else
                         <p class="mt-2 text-xs text-amber-900">{{ __('Nothing has been changed yet.') }}</p>
+                    @endif
+                    @if($externalRule)
+                        <div class="mt-3 border-t border-amber-200 pt-3 text-xs text-zinc-800">
+                            @if($mayMarkExternal)
+                                <label class="flex items-center gap-2"><input type="checkbox" @checked($activity->external_approval_required) wire:click="markExternal({{ $activity->external_approval_required ? 'false' : 'true' }})" class="rounded border-zinc-300 text-indigo-600"> {{ __('This revision needs an approval outside the institution') }}</label>
+                            @elseif($activity->external_approval_required)
+                                <p>{{ __('This revision needs an approval outside the institution') }}</p>
+                            @endif
+                            @if($activity->external_approval_required)
+                                @if($activity->external_approval_reference)
+                                    <p class="mt-1"><span class="font-medium">{{ __('Reference of the outside approval') }}:</span> {{ $activity->external_approval_reference }}</p>
+                                @else
+                                    <p class="mt-1 font-medium text-amber-900">{{ __('It can be approved once the reference of the outside approval is recorded.') }}</p>
+                                    @if($mayRecordExternal)
+                                        <div class="mt-2 flex gap-2">
+                                            <input type="text" wire:model="externalReference" class="flux-input text-sm" placeholder="{{ __('Reference of the outside approval') }}" aria-label="{{ __('Reference of the outside approval') }}">
+                                            <x-ui.button type="button" size="sm" variant="secondary" wire:click="saveExternalReference">{{ __('Record') }}</x-ui.button>
+                                        </div>
+                                        @error('externalReference')<p class="field-error">{{ $message }}</p>@enderror
+                                    @endif
+                                @endif
+                            @endif
+                        </div>
                     @endif
                 </div>
             @endif

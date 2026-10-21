@@ -15,6 +15,10 @@ new class extends Component {
     public ?int $activityId = null;
     public int $month = 1;
     public array $form = ['month' => [], 'quarter' => []];
+    /** A new corrective action (an optional rule) and the note that closes one. */
+    public array $action = ['description' => '', 'owner_name' => '', 'due_on' => ''];
+    public ?int $closingId = null;
+    public string $closingNote = '';
 
     public function mount(?int $activityId = null, ?int $month = null): void
     {
@@ -150,9 +154,48 @@ new class extends Component {
         $this->dispatch('execution-changed');
     }
 
+    // ── corrective actions, where the institution tracks them (PlanOptions::correctiveActions)
+
+    private function tracksActions(): bool
+    {
+        return \App\Support\PlanOptions::current()->correctiveActions && $this->activity !== null;
+    }
+
+    public function addAction(): void
+    {
+        abort_unless($this->tracksActions() && $this->mayReport(), 403);
+        $data = $this->validate([
+            'action.description' => 'required|string|min:3|max:2000',
+            'action.owner_name' => 'required|string|max:150',
+            'action.due_on' => 'nullable|date',
+        ])['action'];
+
+        \App\Models\CorrectiveAction::create([
+            'activity_id' => $this->activityId, 'quarter' => $this->quarter, 'description' => trim($data['description']),
+            'owner_name' => trim($data['owner_name']), 'due_on' => $data['due_on'] ?: null, 'status' => \App\Models\CorrectiveAction::OPEN, 'created_by' => auth()->id(),
+        ]);
+        $this->action = ['description' => '', 'owner_name' => '', 'due_on' => ''];
+        $this->dispatch('toast', message: __('Corrective action recorded.'), type: 'success');
+    }
+
+    public function closeAction(): void
+    {
+        abort_unless($this->tracksActions() && ($this->mayReport() || $this->mayVerify()), 403);
+        $item = \App\Models\CorrectiveAction::where('activity_id', $this->activityId)->whereKey($this->closingId)->where('status', \App\Models\CorrectiveAction::OPEN)->firstOrFail();
+        if (mb_strlen(trim($this->closingNote)) < 3) {
+            $this->dispatch('toast', message: __('Say what was done.'), type: 'error');
+
+            return;
+        }
+        $item->update(['status' => \App\Models\CorrectiveAction::DONE, 'closing_note' => trim($this->closingNote), 'closed_at' => now(), 'closed_by' => auth()->id()]);
+        $this->reset('closingId', 'closingNote');
+        $this->dispatch('toast', message: __('Corrective action closed.'), type: 'success');
+    }
+
     public function with(): array
     {
-        return ['reports' => $this->reports(), 'canReport' => $this->mayReport(), 'mayType' => ['month' => $this->mayReport('month'), 'quarter' => $this->mayReport('quarter')], 'canVerify' => $this->mayVerify(), 'year' => $this->activity?->fiscal_year ?? now()->year];
+        return ['actions' => $this->tracksActions() ? \App\Models\CorrectiveAction::where('activity_id', $this->activityId)->orderByRaw("status = 'Done'")->orderBy('due_on')->orderBy('id')->get() : null,
+            'reports' => $this->reports(), 'canReport' => $this->mayReport(), 'mayType' => ['month' => $this->mayReport('month'), 'quarter' => $this->mayReport('quarter')], 'canVerify' => $this->mayVerify(), 'year' => $this->activity?->fiscal_year ?? now()->year];
     }
 }; ?>
 
@@ -208,6 +251,54 @@ new class extends Component {
                     </div>
                 </section>
             @endforeach
+            @if($actions !== null)
+                <section aria-labelledby="corr-actions" class="border-t border-zinc-200 pt-6">
+                    <h3 id="corr-actions" class="text-sm font-semibold text-zinc-900">{{ __('Corrective actions') }}</h3>
+                    <p class="mt-1 text-sm text-zinc-600">{{ __('For an activity that is off track or partly on track: what will be done, by whom and by when. Open actions stay here until they are closed.') }}</p>
+                    @if($actions->isNotEmpty())
+                        <ul class="mt-3 divide-y divide-zinc-100 rounded-lg border border-zinc-200 text-sm">
+                            @foreach($actions as $ca)
+                                <li class="flex flex-wrap items-start justify-between gap-3 px-4 py-3" wire:key="ca-{{ $ca->id }}">
+                                    <div class="min-w-0">
+                                        <p class="text-zinc-900">{{ $ca->description }}</p>
+                                        <p class="text-xs text-zinc-600">Q{{ $ca->quarter }} · {{ $ca->owner_name }}@if($ca->due_on) · {{ __('due :date', ['date' => $ca->due_on->format('d/m/Y')]) }}@endif
+                                            @if($ca->status === \App\Models\CorrectiveAction::DONE) · {{ __('Done') }}: {{ $ca->closing_note }}@elseif($ca->isOverdue()) · <span class="font-medium text-rose-700">{{ __('Overdue') }}</span>@endif</p>
+                                    </div>
+                                    @if($ca->status === \App\Models\CorrectiveAction::OPEN && ($canReport || $canVerify))
+                                        @if($closingId === $ca->id)
+                                            <div class="flex w-full gap-2 sm:w-auto">
+                                                <input type="text" wire:model="closingNote" class="flux-input text-sm" placeholder="{{ __('What was done') }}" aria-label="{{ __('What was done') }}">
+                                                <x-ui.button type="button" size="sm" variant="secondary" wire:click="closeAction">{{ __('Close') }}</x-ui.button>
+                                            </div>
+                                        @else
+                                            <button type="button" wire:click="$set('closingId', {{ $ca->id }})" class="text-xs font-medium text-indigo-700 hover:underline">{{ __('Close') }}</button>
+                                        @endif
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                    @if($canReport)
+                        <div class="mt-3 grid gap-3 md:grid-cols-[1fr_12rem_10rem_auto] md:items-end">
+                            <div>
+                                <label for="ca-d" class="field-label">{{ __('Action') }}</label>
+                                <input id="ca-d" type="text" wire:model="action.description" class="flux-input">
+                                @error('action.description')<p class="field-error">{{ $message }}</p>@enderror
+                            </div>
+                            <div>
+                                <label for="ca-o" class="field-label">{{ __('Person responsible') }}</label>
+                                <input id="ca-o" type="text" wire:model="action.owner_name" class="flux-input">
+                                @error('action.owner_name')<p class="field-error">{{ $message }}</p>@enderror
+                            </div>
+                            <div>
+                                <label for="ca-u" class="field-label">{{ __('Due date') }}</label>
+                                <input id="ca-u" type="date" wire:model="action.due_on" class="flux-input">
+                            </div>
+                            <x-ui.button type="button" variant="secondary" wire:click="addAction">{{ __('Add') }}</x-ui.button>
+                        </div>
+                    @endif
+                </section>
+            @endif
             @if($canReport)
                 <div class="flex justify-end border-t border-zinc-200 pt-4">
                     <x-ui.button type="button" wire:click="submit">{{ __('Submit for Verification') }}</x-ui.button>

@@ -4,12 +4,15 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\ActivityVersion;
+use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\FundingSource;
 use App\Models\Indicator;
 use App\Models\IndicatorAction;
 use App\Models\LineItem;
+use App\Models\PlanBaseline;
 use App\Models\SystemSetting;
+use App\Support\PlanOptions;
 use Illuminate\Support\Collection;
 
 /**
@@ -22,13 +25,16 @@ use Illuminate\Support\Collection;
  */
 class ApprovedPlanReport
 {
-    public function build(int $year): array
+    /** With a baseline (an optional rule), the plan as it stood when the baseline was recorded. */
+    public function build(int $year, ?PlanBaseline $baseline = null): array
     {
+        $baseline?->loadMissing('recorder:id,name');
         $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name']);
 
         $activities = Activity::query()
             ->where('fiscal_year', $year)
-            ->where(fn ($q) => $q->where('status', Activity::STATUS_APPROVED)->orWhere('version', '>', 0))
+            ->when($baseline, fn ($q) => $q->whereIn('id', array_map('intval', array_keys($baseline->versions))))
+            ->unless($baseline, fn ($q) => $q->where(fn ($w) => $w->where('status', Activity::STATUS_APPROVED)->orWhere('version', '>', 0)))
             ->with([
                 'directorate:id,code,name,type,parent_id,administration,legal_form',
                 'directorate.parent:id,code,name',
@@ -45,9 +51,12 @@ class ApprovedPlanReport
             ->orderBy('id')
             ->get();
 
-        // an activity being revised is reported as the version in force, not as the draft of its revision
-        $revising = $activities->filter(fn (Activity $a) => $a->status !== Activity::STATUS_APPROVED);
-        $versions = ActivityVersion::whereIn('activity_id', $revising->pluck('id'))->orderBy('version')->get()->groupBy('activity_id')->map->last();
+        // an activity being revised is reported as the version in force, not as the draft of its revision;
+        // with a baseline, every activity is reported as the version the baseline recorded
+        $revising = $baseline ? $activities : $activities->filter(fn (Activity $a) => $a->status !== Activity::STATUS_APPROVED);
+        $versions = $baseline
+            ? ActivityVersion::whereIn('activity_id', $revising->pluck('id'))->get()->filter(fn ($v) => (int) ($baseline->versions[(string) $v->activity_id] ?? 0) === (int) $v->version)->keyBy('activity_id')
+            : ActivityVersion::whereIn('activity_id', $revising->pluck('id'))->orderBy('version')->get()->groupBy('activity_id')->map->last();
         $inForce = [];
         foreach ($revising as $a) {
             if ($version = $versions->get($a->id)) {
@@ -55,7 +64,20 @@ class ApprovedPlanReport
                 $inForce[$a->id] = $version->approved_at?->timestamp;
             }
         }
-        $activities = $activities->reject(fn (Activity $a) => $a->status !== Activity::STATUS_APPROVED && ! isset($inForce[$a->id]))->values();
+        $activities = $activities->reject(fn (Activity $a) => ($baseline || $a->status !== Activity::STATUS_APPROVED) && ! isset($inForce[$a->id]))->values();
+
+        // an optional rule: each activity is shown under the unit it belonged to when its version in force was approved
+        if (PlanOptions::current()->structureAtApproval) {
+            $latest = ActivityVersion::whereIn('activity_id', $activities->pluck('id'))->orderBy('version')->get()->groupBy('activity_id')->map->last();
+            foreach ($activities as $a) {
+                $path = $latest->get($a->id)?->snapshot['unit_path'] ?? [];
+                if ($path !== []) {
+                    $unit = (new Directorate)->forceFill($path[0]);
+                    $unit->setRelation('parent', isset($path[1]) ? (new Directorate)->forceFill($path[1]) : null);
+                    $a->setRelation('directorate', $unit);
+                }
+            }
+        }
 
         $empty = fn () => array_fill_keys($classes->pluck('id')->all(), 0.0);
 
@@ -116,7 +138,7 @@ class ApprovedPlanReport
             return ['program' => $program, 'subprograms' => $subs, 'loose' => $g->filter(fn ($r) => ! $r['activity']->subprogram_id)->values()] + $sum($g);
         })->sortBy(fn ($p) => $p['program']->oge_code)->values();
 
-        $pending = Activity::query()
+        $pending = $baseline ? [] : Activity::query()
             ->where('fiscal_year', $year)
             ->where('status', '!=', Activity::STATUS_APPROVED)
             ->where('version', 0)
@@ -144,7 +166,8 @@ class ApprovedPlanReport
             'by_unit' => $byUnit,
             'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),
             'pending' => $pending,
-            'revising' => count($inForce),
+            'revising' => $baseline ? 0 : count($inForce),
+            'baseline' => $baseline ? ['id' => $baseline->id, 'recorded_at' => $baseline->recorded_at, 'note' => $baseline->note, 'by' => $baseline->recorder?->name] : null,
             'generated_at' => now('Asia/Dili'), // Timor-Leste time (TLT, UTC+9)
             'generated_by' => auth()->user()?->name,
         ];

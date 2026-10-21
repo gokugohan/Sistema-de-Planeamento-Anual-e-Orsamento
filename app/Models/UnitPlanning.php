@@ -11,7 +11,7 @@ class UnitPlanning extends Model
 {
     use Auditable;
 
-    protected $fillable = ['fiscal_year', 'directorate_id', 'planning_by', 'planning_at', 'planning_remark'];
+    protected $fillable = ['fiscal_year', 'directorate_id', 'planning_by', 'planning_at', 'planning_remark', 'nil_return'];
 
     protected static function booted(): void
     {
@@ -19,7 +19,7 @@ class UnitPlanning extends Model
         static::deleted(fn () => PlanningWindow::forgetTree());
     }
 
-    protected $casts = ['planning_at' => 'datetime'];
+    protected $casts = ['planning_at' => 'datetime', 'nil_return' => 'boolean'];
 
     public function directorate()
     {

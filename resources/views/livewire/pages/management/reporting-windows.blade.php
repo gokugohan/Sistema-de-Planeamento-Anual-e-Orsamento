@@ -28,7 +28,7 @@ new class extends Component {
         abort_unless(auth()->user()?->isAdministrator(), 403);
         $max = match ($this->periodType) { 'month' => 12, 'quarter' => 4, default => 1 };
         $this->validate([
-            'periodType' => 'required|in:plan,month,quarter',
+            'periodType' => 'required|in:plan,revision,month,quarter',
             'period' => "required|integer|min:1|max:$max",
             'opensOn' => 'required|date',
             'closesOn' => 'required|date|after_or_equal:opensOn',
@@ -67,11 +67,12 @@ new class extends Component {
                 <label for="rw-t" class="field-label">{{ __('Reports') }}</label>
                 <select id="rw-t" wire:model.live="periodType" class="flux-input">
                     <option value="plan">{{ __('Annual plan') }}</option>
+                    <option value="revision">{{ __('Revisions') }}</option>
                     <option value="month">{{ __('Monthly') }}</option>
                     <option value="quarter">{{ __('Quarterly') }}</option>
                 </select>
             </div>
-            <div class="md:col-span-2 @if($periodType === 'plan') hidden @endif">
+            <div class="md:col-span-2 @if(in_array($periodType, ['plan', 'revision'], true)) hidden @endif">
                 <label for="rw-p" class="field-label">{{ $periodType === 'month' ? __('Month') : __('Quarter') }}</label>
                 <select id="rw-p" wire:model="period" class="flux-input">
                     @foreach(range(1, $periodType === 'month' ? 12 : 4) as $p)
@@ -106,7 +107,7 @@ new class extends Component {
             <x-ui.table :headers="[__('Period'), __('Opens on'), __('Closes on'), __('Note'), '']" class="text-sm">
                 @foreach($windows as $w)
                     <tr wire:key="rw-{{ $w->id }}">
-                        <td class="px-5 py-3 font-medium text-zinc-900">{{ match ($w->period_type) { 'plan' => __('Annual plan').' · '.__('submission'), 'month' => \Carbon\Carbon::create($year, $w->period, 1)->translatedFormat('F'), default => 'Q'.$w->period } }}</td>
+                        <td class="px-5 py-3 font-medium text-zinc-900">{{ match ($w->period_type) { 'plan' => __('Annual plan').' · '.__('submission'), 'revision' => __('Revisions of approved activities'), 'month' => \Carbon\Carbon::create($year, $w->period, 1)->translatedFormat('F'), default => 'Q'.$w->period } }}</td>
                         <td class="px-5 py-3 tabular-nums">{{ $w->opens_on->format('d/m/Y') }}</td>
                         <td class="px-5 py-3 tabular-nums">{{ $w->closes_on->format('d/m/Y') }}</td>
                         <td class="px-5 py-3 text-zinc-600">{{ $w->note }}</td>

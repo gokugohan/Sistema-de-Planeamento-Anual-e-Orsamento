@@ -16,6 +16,9 @@ class ReportingWindows
 {
     public const PLAN = 'plan';
 
+    /** Revisions of approved activities: no window means they can be made at any time (an optional window). */
+    public const REVISION = 'revision';
+
     public function find(int $year, string $type, int $period): ?ReportingWindow
     {
         return ReportingWindow::where(['fiscal_year' => $year, 'period_type' => $type, 'period' => $period])->first();
@@ -40,6 +43,11 @@ class ReportingWindows
         $w = $this->find($year, $type, $period);
         $before = now()->startOfDay()->lt($w->opens_on);
 
+        if ($type === self::REVISION) {
+            return $before
+                ? __('Revisions of approved activities open on :d.', ['d' => $w->opens_on->format('d/m/Y')])
+                : __('Revisions of approved activities closed on :d.', ['d' => $w->closes_on->format('d/m/Y')]);
+        }
         if ($type === self::PLAN) {
             return $before
                 ? __('Submission of the annual plan opens on :d.', ['d' => $w->opens_on->format('d/m/Y')])
@@ -63,6 +71,8 @@ class ReportingWindows
      */
     public function planClosedReasonFor(?User $user, Activity $activity): ?string
     {
-        return (int) $activity->version > 0 ? null : $this->planClosedReason($user, (int) $activity->fiscal_year);
+        return (int) $activity->version > 0
+            ? $this->closedReason($user, (int) $activity->fiscal_year, self::REVISION, 1) // its own window, if the institution set one
+            : $this->planClosedReason($user, (int) $activity->fiscal_year);
     }
 }

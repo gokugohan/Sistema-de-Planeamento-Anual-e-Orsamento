@@ -165,6 +165,7 @@ A fresh install contains no organisation, programmes or activities. If you tried
 6. **Activities.** Technical officers enter them in the app, or an administrator **imports** them in bulk:
    *Management → Import Activities* accepts a CSV (`;`, `,` or tab separated; UTF-8 or Windows-1252). Download the template from that page. Rows sharing a `ref` form one activity; each row can carry an indicator, a budget line, or both. The file is **validated first, with row numbers for every problem**, and nothing is written until it is clean. Everything imports as `Draft`, and re-importing the same file is rejected as a duplicate.
 7. **Fiscal year.** Turn on *enable next year planning* in Settings when you start planning the next year.
+8. **Optional rules.** *Management → Optional rules*: rules that are off until your institution needs them (nil returns, extra mandatory fields, planning guidance, revisions needing an outside approval, baselines, institution-wide finance officers, corrective actions, reports by the structure at approval). See the manual, Part 4.9.
 
 ---
 
@@ -381,7 +382,7 @@ It runs `paa:backup` at 02:00 and prunes failed jobs and expired password-reset 
 - The database password is passed to `mysqldump` through the environment, not on the command line.
 - Backups older than `BACKUP_KEEP_DAYS` (default 30) are deleted after each successful run (`--prune-only` just prunes). Every backup is recorded in the audit log.
 - If `mysqldump` is not on `PATH`, set `BACKUP_MYSQLDUMP` to its full path.
-- **Copy the files off the server** (another machine or object storage): a backup on the same disk is not a backup. Restore with `gunzip -c file.sql.gz | mysql -u<user> -p paa_orcamento`, and test a restore periodically.
+- **Copy the files off the server**: set `BACKUP_COPY_PATH` to another disk or a mounted network share and every verified backup is copied there too (and pruned the same way); otherwise copy them by other means. A backup on the same disk is not a backup. Restore with `gunzip -c file.sql.gz | mysql -u<user> -p paa_orcamento`, and test a restore periodically.
 
 ### Health check
 

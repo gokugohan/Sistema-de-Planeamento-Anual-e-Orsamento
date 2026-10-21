@@ -35,7 +35,7 @@ class VersionSnapshotTest extends TestCase
 
         $snapshot = app(ActivityVersions::class)->snapshot($activity->fresh(['lineItems.economicClassification', 'lineItems.fundingSource', 'indicators.actions']));
 
-        $this->assertSame(2, $snapshot['schema']);
+        $this->assertSame(3, $snapshot['schema']);
         $this->assertSame('Dili', $snapshot['activity']['location']);
         $this->assertTrue((bool) $snapshot['activity']['procurement_required']);
         $this->assertTrue((bool) $snapshot['activity']['gender_responsive']);

@@ -138,6 +138,7 @@ Route::get('reports/performance/pdf', [PerformanceReportController::class, 'pdf'
 Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');
     Route::get('reports/approved-plan/pdf', [ApprovedPlanReportController::class, 'pdf'])->name('reports.approved-plan.pdf');
+    Route::post('reports/approved-plan/baseline', [ApprovedPlanReportController::class, 'recordBaseline'])->name('reports.approved-plan.baseline');
 });
 
 // The old "Entities Registry" was merged into Management > Entities; keep bookmarks working.
@@ -171,6 +172,10 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
     Route::get('/reporting-windows', function () {
         return view('management.reporting-windows');
     })->name('reporting-windows');
+
+    Route::get('/optional-rules', function () {
+        return view('management.optional-rules');
+    })->name('optional-rules');
 
     Route::get('/import', function () {
         return view('management.import');
