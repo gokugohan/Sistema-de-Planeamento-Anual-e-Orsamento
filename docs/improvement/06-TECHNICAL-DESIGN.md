@@ -1,6 +1,28 @@
 # 06. Technical Design
 
-*Step 6 (part 1) of the improvement brief. Status: **draft for review**. Maps each requirement in `05-PRD.md` to existing Laravel files. File and line references are as of commit `17fe16c` and were read in earlier steps; they must be re-checked at the start of each implementation task. No dependency is added by this design.*
+*Step 6 (part 1) of the improvement brief. Maps each requirement in `05-PRD.md` to existing Laravel files. File and line references are as of the baseline commit `17fe16c`. The section below records how the design was actually built on branch `improvement`, commit `b9d286a`; no dependency was added.*
+
+## As built (branch `improvement`, commit `b9d286a`)
+
+| Req | Built as designed? | As built |
+|---|---|---|
+| FR-001 | yes | `review()` calls `ActivityWorkflow::advance()`; no new service method was needed. `tests/Unit/NoDirectStatusUpdateTest.php` is the guard (the Simulator is allowed, see 01 O11). |
+| FR-002 | yes | `advance()` and `approve()` run in `DB::transaction` with `lockForUpdate()`; the row is re-read inside the lock; notifications after commit. |
+| FR-003 | **no** | soft deletes on `line_items` instead of an FK change and a marker column. A line with an amount in force is set aside; `ActivityVersions::approved` force-deletes set-aside lines. Planned totals exclude them; in-force totals include them. |
+| FR-004 | yes | activities under revision are rebuilt in memory from their version snapshot; fingerprint follows the version in force. |
+| FR-005 | yes | model-by-model updates; spending inside a transaction with a lock. |
+| FR-006 | yes | text only, plus a unit test against the old wording. |
+| FR-007 | yes | `schema: 2` in the snapshot JSON. |
+| FR-008 | yes | `ReportingWindows::planClosedReasonFor()` skips the plan window for `version > 0`; used by the workflow and the form. |
+| FR-009 | partly | the check lives in `ActivityWorkflow::problems()`; the config-driven field matrix is not built. |
+| FR-010 | **changed** | `Activity::nextCode()`; index on `(fiscal_year, directorate_id, code)` instead of `(fiscal_year, code)`. No retry on conflict: the index refuses a duplicate. |
+| FR-011 | yes | indicators copied before lines so that line links map to the copies. |
+| FR-012 | yes, one addition | administrators are not refused in block mode; their action is marked. Setting is part of `ApprovalRules` (stored only when it differs from the preset). |
+| FR-013 | yes (first option) | `App\Services\ExecutionHistory` reads audit rows; no new table. |
+| FR-015 | yes | candidates are list members, active interim appointees and directors of the unit or above, filtered with the same rules as the buttons. |
+
+Schema changes actually made: `line_items.deleted_at`; unique index `activities_unit_year_code_unique`; `activities.submitted_by`. The FK of `adjusted_budgets` is unchanged.
+
 
 **Work classes:** `REUSE` existing code as is; `MODIFY` existing code; `ADD` new code or schema; `DEPRECATE` only with an approved migration plan (none proposed).
 

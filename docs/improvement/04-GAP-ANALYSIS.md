@@ -1,6 +1,36 @@
 # 04. Gap Analysis (AS-IS vs TO-BE)
 
-*Step 4 of the improvement brief. Status: **draft for review**. Compares `01-AS-IS-CURRENT-STATE.md` with `03-TARGET-BUSINESS-PROCESS.md`. Nothing here is implemented.*
+*Step 4 of the improvement brief. Compares `01-AS-IS-CURRENT-STATE.md` (baseline `17fe16c`) with `03-TARGET-BUSINESS-PROCESS.md`. The gap descriptions below are those of the baseline; the table gives each gap's status on branch `improvement`, commit `b9d286a`.*
+
+## Status of the gaps (branch `improvement`, commit `b9d286a`)
+
+| Gap | Priority | Status | Commit | Note |
+|---|---|---|---|---|
+| G-01 | P0 | **closed** | `6195b92`, `b9d286a` | plus a guard test |
+| G-02 | P0 | **closed** | `6195b92` | concurrency tested with a stale copy, not two simultaneous requests |
+| G-03 | P0 | **closed** | `e2a9abe` | soft deletes instead of an FK change; migration to run |
+| G-04 | P0 | **closed** | `76ededc` | |
+| G-05 | P0 | **closed** | `1a486e2` | absence of audit rows confirmed by test first |
+| G-06 | P0 | **closed** | `8963146` | final wording waits for R-FIN-01; pt/tet to review |
+| G-07 | P1 | open, **on hold** | — | R-OBL-01 to R-OBL-04 |
+| G-08 | P1 | **closed** | `5743f92` | a separate revision window waits for R-AMD-05 |
+| G-09 | P1 | **closed** | `628f1ac` | |
+| G-10 | P1 | **closed** | `ba427d8` | default statuses wait for R-FRM-06 |
+| G-11 | P1 | **partly closed** | `a0fbcbf` | full field matrix waits for R-FRM-01 |
+| G-12 | P1 | **closed** | `6adc8cb` | unique per unit and year (official codes repeat across units); migration to run |
+| G-13 | P1 | **closed** (configurable) | `96bff33` | default off until R-APP-04; migration to run |
+| G-14 | P1 | **closed** | `d94f203` | a view over the audit trail; no schema change |
+| G-15 | P2 | **closed** | `f1e20db` | |
+| G-16 | P2 | open, **on hold** | — | R-FRM-04 |
+| G-17 | P2 | open, **on hold** | — | R-APP-05, R-CON-03; the report part is covered by G-04 |
+| G-18 | P2 | open | — | R-CAL-01 |
+| G-19 | P2 | open | — | R-FIN-06 |
+| G-20 | P2 | open | — | R-AMD-02 |
+| G-21 | P2 | open | — | decision on historical structure (H6) |
+| G-22 | P3 | open | — | operations: off-server backups, retention |
+| G-23 | P3 | **partly closed** | `094242b` | Pint passes; legacy "Waiting Approval", the `adjusted_budgets` name and static analysis remain |
+| G-24 (new) | P3 | open | — | the Simulator writes statuses directly and lets the Minister approve simulation records (01, O11) |
+
 
 **Priority definitions (from the brief):** P0 data integrity, security, destructive migration, incorrect approved or financial reporting, severe workflow integrity risk. P1 essential planning, approval, versioning or monitoring requirement. P2 institutional maturity, usability, reporting enhancement or integration preparation. P3 optional.
 

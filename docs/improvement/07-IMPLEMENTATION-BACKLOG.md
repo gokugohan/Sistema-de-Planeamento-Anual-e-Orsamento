@@ -1,31 +1,31 @@
 # 07. Implementation Backlog
 
-*Step 6 (part 2). Status: **draft for review**. Nothing is started. Each item becomes a separate small pull request, started only after the user approves that requirement and that task (Step 7 rules). Design basis: `06-TECHNICAL-DESIGN.md`.*
+*Step 6 (part 2). Design basis: `06-TECHNICAL-DESIGN.md`. Status on branch `improvement`, commit `b9d286a`: PR-01 to PR-15 are done (PR-09 partly); the held items are not started. Each item was built as its own commit and is listed with its result in `08-IMPLEMENTATION-STATUS.md`.*
 
 **Per-task routine (from the brief):** confirm branch and working-tree state; make a focused change; add regression tests; run the relevant tests and style checks; report exact commands and real results and any check not run; review migration safety, access control, audit trail and compatibility; summarise files and risks; wait for approval before committing, pushing or deploying.
 
 ## Order and groups
 
-| PR | Req | Title | Schema | Priority | Depends on |
-|---|---|---|---|---|---|
-| PR-01 | FR-001 | Route the review action through the workflow service | No | P0 | none |
-| PR-02 | FR-002 | Make single approval atomic | No | P0 | none |
-| PR-03 | FR-005 | Audit rows for bulk verification | No | P0 | none |
-| PR-04 | FR-006 | Correct README and neutral financial labels | No | P0 | wording decision (small) |
-| PR-05 | FR-003 | Keep amounts in force during a revision (soft-deleted lines) | **Yes** | P0 | backup, approval |
-| PR-06 | FR-007 | Complete the version snapshot | No | P1 | field list |
-| PR-07 | FR-004 | Report reads the version in force | No | P0 | PR-06 preferred |
-| PR-08 | FR-008 | Revisions outside the plan window | No | P1 | none |
-| PR-09 | FR-009 | One completeness rule | No | P1 | field matrix |
-| PR-10 | FR-010 | Unique activity codes | **Yes** | P1 | duplicate report |
-| PR-11 | FR-011 | Complete roll-forward | No | P1 | field and status policy |
-| PR-12 | FR-012 | Preparer recorded; segregation setting | **Yes** | P1 | default mode |
-| PR-13 | FR-013 | Correction history of verified figures | No | P1 | none |
-| PR-14 | FR-015 | Notify the next holder | No | P2 | none |
-| PR-15 | hygiene | Style clean-up (Pint) | No | P3 | after others |
-| — | FR-014, 016, 017 | Obligations, corrective actions, baseline | Yes | P1/P2 | **HOLD** on decisions |
+| PR | Req | Title | Schema | Priority | Depends on | Status |
+|---|---|---|---|---|---|---|
+| PR-01 | FR-001 | Route the review action through the workflow service | No | P0 | none | done `6195b92`, guard `b9d286a` |
+| PR-02 | FR-002 | Make single approval atomic | No | P0 | none | done `6195b92` |
+| PR-03 | FR-005 | Audit rows for bulk verification | No | P0 | none | done `1a486e2` |
+| PR-04 | FR-006 | Correct README and neutral financial labels | No | P0 | wording decision (small) | done `8963146` |
+| PR-05 | FR-003 | Keep amounts in force during a revision (soft-deleted lines) | **Yes** | P0 | backup, approval | done `e2a9abe`, migration to run |
+| PR-06 | FR-007 | Complete the version snapshot | No | P1 | field list | done `628f1ac` |
+| PR-07 | FR-004 | Report reads the version in force | No | P0 | PR-06 preferred | done `76ededc` |
+| PR-08 | FR-008 | Revisions outside the plan window | No | P1 | none | done `5743f92` |
+| PR-09 | FR-009 | One completeness rule | No | P1 | field matrix | partly `a0fbcbf` |
+| PR-10 | FR-010 | Unique activity codes | **Yes** | P1 | duplicate report | done `6adc8cb`, migration to run |
+| PR-11 | FR-011 | Complete roll-forward | No | P1 | field and status policy | done `ba427d8` |
+| PR-12 | FR-012 | Preparer recorded; segregation setting | **Yes** | P1 | default mode | done `96bff33`, migration to run |
+| PR-13 | FR-013 | Correction history of verified figures | No | P1 | none | done `d94f203` |
+| PR-14 | FR-015 | Notify the next holder | No | P2 | none | done `f1e20db` |
+| PR-15 | hygiene | Style clean-up (Pint) | No | P3 | after others | done `094242b` |
+| — | FR-014, 016, 017 | Obligations, corrective actions, baseline | Yes | P1/P2 | **HOLD** on decisions | not started |
 
-PR-01 to PR-04 need no schema change and are suggested first.
+PR-01 to PR-04 needed no schema change and were done first. PR-05, PR-10 and PR-12 add migrations that have not been run on any database of value.
 
 ---
 

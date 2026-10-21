@@ -1,6 +1,33 @@
 # 02. Institutional Requirements Register
 
-*Step 2 of the business process improvement brief. Status: **draft for review**. Builds on `01-AS-IS-CURRENT-STATE.md` (references such as H5 or O1 point to that document).*
+*Step 2 of the business process improvement brief. Status: **open**: no institutional answer has been received yet, so every `TO VALIDATE` entry is still open. Builds on `01-AS-IS-CURRENT-STATE.md` (references such as H5 or O1 point to that document). The section below says which entries the software work on branch `improvement`, commit `b9d286a` has addressed.*
+
+## Status after implementation (branch `improvement`, commit `b9d286a`)
+
+Only the software side has moved. An entry marked `TO VALIDATE` stays so until the named office answers; where the branch made the behaviour configurable, the answer now only sets a value.
+
+| ID | What the branch did | Still open |
+|---|---|---|
+| R-APP-08 | **Done.** The Review action goes through the workflow service; a guard test prevents new direct status writes. | — |
+| R-AMD-03 | **Done.** In-force amounts stay until a revision is approved. | — |
+| R-AMD-04 | **Done.** Snapshots hold every descriptive field. | Which fields are mandatory on the official form (R-OGE-03). |
+| R-AMD-05 | **Partly.** Revisions are no longer held back by the plan window. | Whether revisions need their own window. |
+| R-APP-04 | **Ready.** The preparer is recorded; the rule can be off, flag or block (default off). | Which mode the institution requires. |
+| R-APP-06 | Overrides by an administrator in block mode are marked in the audit trail. | Whether skip-level certification and administrator override are acceptable. |
+| R-FIN-02 | **Done.** Neutral wording for planned amounts. | R-FIN-01: what may be called "approved" or "budget". |
+| R-FRM-02 | **Done** for name, unit and target. | R-FRM-01: the full mandatory-field matrix. |
+| R-FRM-06 | **Done** for the fields; a status filter exists. | Which statuses are copied by default. |
+| R-EXE-03 | **Done.** Earlier verified values are shown. | — |
+| R-EXE-05 | **Done.** One audit row per figure in bulk actions. | — |
+| R-LAN-02 | **Done.** Holders of the next step, including list members and interim appointees, are told. | — |
+| R-CON-04 | **Partly.** The report reads the version in force. | A formal baseline marker (FR-017, on hold). |
+| R-OPS-02 | The three new migrations are reversible and were not run on any database of value. | Backup and a run on a copy before production. |
+| R-LAN-01 | New Portuguese and Tetun texts were added. | Review by a competent speaker. |
+
+Unchanged and still blocking the held work: R-OBL-01 to R-OBL-04 (submission obligations, nil returns), R-APP-05 and R-CON-03 (any consolidation approval; **no approving official is assumed**), R-FRM-04 (corrective actions), R-CAL-01 and R-CAL-02 (official calendar), R-FIN-01, R-FIN-04 to R-FIN-06, R-AMD-02, R-RET-01 to R-RET-03.
+
+New fact from the work: official budget-book activity codes repeat across units in a year, so activity codes are unique per unit and year (01, O12).
+
 
 ## How to read this register
 

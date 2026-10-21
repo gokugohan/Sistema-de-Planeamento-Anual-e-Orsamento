@@ -1,6 +1,31 @@
 # 05. Product Requirements Document (PRD)
 
-*Step 5 of the improvement brief. Status: **draft for review**. Requirements trace to gaps in `04-GAP-ANALYSIS.md` and to the register in `02-INSTITUTIONAL-REQUIREMENTS-REGISTER.md`. Nothing here is implemented.*
+*Step 5 of the improvement brief. Requirements trace to gaps in `04-GAP-ANALYSIS.md` and to the register in `02-INSTITUTIONAL-REQUIREMENTS-REGISTER.md`. The requirement texts are unchanged; the table gives each one's status on branch `improvement`, commit `b9d286a`.*
+
+## Status of the requirements (branch `improvement`, commit `b9d286a`)
+
+| Requirement | Status | Acceptance scenarios | Deviation from the text below |
+|---|---|---|---|
+| FR-001 | **done** | 1, 2, 4 tested; 3 (unit with a certify list) covered by `ApproverListsTest` through the same service | — |
+| FR-002 | **done** | 1 tested; 2 tested with a stale copy | not tested with two truly simultaneous requests |
+| FR-003 | **done** | 1, 2 tested | scenario 3 ("returned and withdrawn"): the app has no withdrawal; amounts stay while the revision is open, which scenario 1 covers |
+| FR-004 | **done** | 1, 2 tested; page and PDF render | — |
+| FR-005 | **done** | 1 tested for all three bulk buttons; 2 by existing tests | progress and narratives have bulk *submit*, not bulk verify; both are audited |
+| FR-006 | **done** | 1, 2, 3 | final wording waits for R-FIN-01 |
+| FR-007 | **done** | 1, 2 tested | — |
+| FR-008 | **done** | 1, 2 tested | a revision-specific window is not built (R-AMD-05) |
+| FR-009 | **partly done** | name, unit and target | the field matrix waits for R-FRM-01 |
+| FR-010 | **done** | 1, 2 tested | uniqueness is per **unit** and year, not per year: official codes repeat across units |
+| FR-011 | **done** | 1, 2, 3 tested | the result summary is the existing `copied` / `skipped` count; no page change for the status filter |
+| FR-012 | **done** | block, flag, off and null preparer tested | in block mode an administrator is not refused; the override is marked |
+| FR-013 | **done** | tested on the service and the page | built as a view over the audit trail (the design's first option) |
+| FR-014 | **on hold** | — | R-OBL-01 to R-OBL-04 |
+| FR-015 | **done** | director, list member, interim, no double notice | — |
+| FR-016 | **on hold** | — | R-FRM-04 |
+| FR-017 | **on hold** | — | R-APP-05, R-CON-03, R-CON-04 |
+
+Non-functional (Part B): auditability and maintainability improved (audit of bulk actions, Pint passes, guard tests); numeric targets are still to be confirmed.
+
 
 **Conventions.** IDs are `PAA-FR-nnn`. "Gap" and "Reg" give the trace. Requirements marked **[HOLD]** depend on an unanswered institutional question and must not be built until it is answered. Acceptance criteria are written as Given / When / Then scenarios. Statuses used in scenarios are the existing ones (Draft, Prepared, Verified, Certified, Approved, Returned). No numeric service levels are invented: those are marked for confirmation in the non-functional section.
 
