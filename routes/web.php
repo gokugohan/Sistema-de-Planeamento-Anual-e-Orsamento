@@ -115,6 +115,11 @@ Route::get('planning/cycle', function () {
 })->middleware(['auth', 'verified', 'permission:view_paa'])->name('planning.cycle');
 Route::redirect('planning/budget-cycle', '/planning/cycle', 301);
 
+// The programmes and sub-programmes of the plan, with the activities and amounts under each (a directorate sees its own).
+Route::get('planning/programmes', function () {
+    return view('planning.programmes');
+})->middleware(['auth', 'verified', 'permission:view_paa'])->name('planning.programmes');
+
 Route::get('reports/paa', function () {
     return view('reports.paa');
 })->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');

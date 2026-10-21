@@ -2210,5 +2210,22 @@
     "Means of verification of every indicator": "Meios de verificação de cada indicador",
     "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Dar a aprovação final. Sem lista, fá-lo o chefe da direção (a unidade de topo).",
     "Finalize the plan": "Finalizar o plano",
-    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "O cartão no topo da lista de atividades tem o botão Finalizar plano da sua direção. Fica disponível quando nada espera por uma decisão e há pelo menos uma atividade aprovada."
+    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "O cartão no topo da lista de atividades tem o botão Finalizar plano da sua direção. Fica disponível quando nada espera por uma decisão e há pelo menos uma atividade aprovada.",
+    "The programmes and sub-programmes of the plan, with their activities and amounts": "Os programas e subprogramas do plano, com as suas atividades e montantes",
+    "Units, programmes, sub-programmes and economic categories: set them up and edit them": "Unidades, programas, subprogramas e categorias económicas: criar e editar",
+    "When the plan, a month, a quarter or a revision may be submitted": "Quando o plano, um mês, um trimestre ou uma revisão podem ser submetidos",
+    "The programmes and sub-programmes your units plan activities under, with the amounts of your units only. :year": "Os programas e subprogramas sob os quais as suas unidades planeiam atividades, apenas com os montantes das suas unidades. :year",
+    "Every programme and sub-programme of the plan, with its activities and amounts. :year": "Todos os programas e subprogramas do plano, com as suas atividades e montantes. :year",
+    "Edit programmes": "Editar programas",
+    ":n approved": ":n aprovadas",
+    "Search a programme or sub-programme": "Pesquisar um programa ou subprograma",
+    "No programme to show": "Nenhum programa para mostrar",
+    "None of your units has planned activities for this year yet.": "Nenhuma das suas unidades planeou ainda atividades para este ano.",
+    "No programme is registered for this year.": "Não há programas registados para este ano.",
+    ":n sub-programme|:n sub-programmes": ":n subprograma|:n subprogramas",
+    "Sub-programme": "Subprograma",
+    "Directly under the programme": "Diretamente sob o programa",
+    "Open activities": "Abrir atividades",
+    "Open all activities of this programme": "Abrir todas as atividades deste programa",
+    "Paid (verified)": "Pago (verificado)"
 }

@@ -8,6 +8,7 @@ use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
+use App\Support\PlanOptions;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
 
@@ -115,6 +116,9 @@ class PlanCycle
     {
         if ($user->isAdministrator() || $user->can('view_all_paa')) {
             return null;
+        }
+        if ($user->hasRole('Finance') && PlanOptions::current()->financeInstitutionWide) {
+            return null; // the finance function of the whole institution (an optional rule)
         }
         $ids = $user->directorate_id ? (Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? []) : [];
 

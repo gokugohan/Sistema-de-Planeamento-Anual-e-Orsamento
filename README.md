@@ -31,7 +31,7 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 
 | # | Step | Where in the app | Who |
 |---|---|---|---|
-| 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *Administration → Reporting windows* | Technical officer / Director |
+| 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *System → Reporting windows* | Technical officer / Director |
 | 2 | **Approval**: each activity moves through the chain of its unit (prepare, certify, approve; named lists and interim approvers where set; finance confirmation of the budget where asked for) until Approved | *Approvals* | Reviewers, final approver |
 | 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has); only they or an administrator can reopen it, with a remark. Finalizing stops new activities only | *PAA Activities*, *Approvals* | Final approver / Admin |
 | 4 | **Reporting**: units report spending (committed and paid) and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Technical officer / Director / Finance |
@@ -59,7 +59,7 @@ The sample data is aware of today's date: a finished year is executed to the end
 
 ### The plan cycle
 
-*Plan → Plan cycle* follows one fiscal year of the annual action plan: the window to submit it (an administrator sets its dates at *Administration → Reporting windows*; outside it only an administrator can create, edit or submit activities), how far the approval has got, whether planning has ended (and how many revisions are in progress), what is planned and what the approved versions allow, and the monthly and quarterly reporting with the window of each period and how much has been reported and verified. Nothing is done on that page: each step is done where it belongs, and the page shows where the year stands. The same steps run along the top of the dashboard.
+*Plan → Plan cycle* follows one fiscal year of the annual action plan: the window to submit it (an administrator sets its dates at *System → Reporting windows*; outside it only an administrator can create, edit or submit activities), how far the approval has got, whether planning has ended (and how many revisions are in progress), what is planned and what the approved versions allow, and the monthly and quarterly reporting with the window of each period and how much has been reported and verified. Nothing is done on that page: each step is done where it belongs, and the page shows where the year stands. The same steps run along the top of the dashboard.
 
 ### Roles
 
@@ -90,8 +90,8 @@ Visibility follows the unit tree. **Department users** (Director, Technical offi
 - **One menu definition** (`config/navigation.php`) drives the sidebar, the breadcrumbs and the **Go to…** quick-jump (press `Ctrl K`, or `/`). Each user sees only the pages their role can open. To add a page, add it there, and add a `pages` entry if it is a detail screen, so its breadcrumb reads correctly.
 - **Fiscal year is global.** The year picker in the top bar sets the year every page works in. The default is the current year while its plan is being carried out, otherwise the latest year with activities (never beyond next year).
 - **Dashboard** (one fiscal year, filterable by unit and category): the plan-cycle tracker (submission → approval → finalized → reporting); key figures (planned, approved plan in force, paid, activities approved, delivery against targets); "Needs your attention" (what the signed-in user can act on) and "Worth a look" (units with no activities, approved activities without budget lines); charts by category, status and unit; a units table. Charts are bundled (no CDN), so they work on restricted networks.
-- **Entities** (*Administration → Entities*) is the single page for units, programmes and economic categories: create, edit, delete, and see each one's approved plan and funded % for the selected year. (It replaces the former "Entities Registry"; `/admin/entities` redirects here.)
-- **Sign-in screen:** two panes. The left pane says who and what: the institution (name and optional logo from *Settings*), the product tagline and description, the five-step annual cycle, and an "Implemented by" credit (it shows `public/logo.png` if the file exists). The right pane is the task: email, password with show/hide and a Caps Lock warning, remember-me, forgot-password, and a note to contact the administrator. It is institution-neutral and takes everything it displays from *Management → Settings*.
+- **Entities** (*Administration → Structure*) is the single page for units, programmes and economic categories: create, edit, delete, and see each one's approved plan and funded % for the selected year. (It replaces the former "Entities Registry"; `/admin/entities` redirects here.)
+- **Sign-in screen:** two panes. The left pane says who and what: the institution (name and optional logo from *Settings*), the product tagline and description, the five-step annual cycle, and an "Implemented by" credit (it shows `public/logo.png` if the file exists). The right pane is the task: email, password with show/hide and a Caps Lock warning, remember-me, forgot-password, and a note to contact the administrator. It is institution-neutral and takes everything it displays from *System → Settings*.
 - **Review pages.** *Activities to decide* (Admin, directors, named approvers) works through submitted activities in queues (To review → Ready for approval → Approved, plus Returned) with the amounts at stake in each. Both follow the fiscal year chosen in the top bar.
 - **One visual language.** All screens use the same design system (sentence-case headings, indigo primary actions, the shared card, table, badge and KPI components); the legacy "black button" style is gone.
 - Keyboard and screen-reader support: skip links, labelled landmarks, the current page marked in the menu and breadcrumb, visible focus.
@@ -100,7 +100,7 @@ Visibility follows the unit tree. **Department users** (Director, Technical offi
 
 ### Audit trail
 
-Every create, update and delete on the core records (activities and their versions, line items, signatures, indicators, users, units, programmes, settings) is written to the audit log with the old and new values, the user and the IP address. Admins browse it at *Management → Audit Log*. PDF exports of the final plan report and the performance report are logged too. Passwords are never recorded.
+Every create, update and delete on the core records (activities and their versions, line items, signatures, indicators, users, units, programmes, settings) is written to the audit log with the old and new values, the user and the IP address. Admins browse it at *System → Audit Log*. PDF exports of the final plan report and the performance report are logged too. Passwords are never recorded.
 
 Bulk query-builder writes do not fire model events and are therefore not audited; use model saves for audited changes.
 
@@ -149,23 +149,23 @@ php artisan queue:listen      # optional: nothing in the application is queued t
 
 Sign in with the administrator printed by the seeder. Without `ADMIN_PASSWORD` in `.env`, development installs use the password `password` (the seeder warns you). Set `ADMIN_NAME`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env` before seeding to choose your own.
 
-To explore with realistic data instead of an empty system, an administrator can load the [sample dataset](#sample-data-mtc) from **Management → Sample Data** (and purge it again later).
+To explore with realistic data instead of an empty system, an administrator can load the [sample dataset](#sample-data-mtc) from **System → Sample Data** (and purge it again later).
 
 ---
 
 ## Setting it up for your institution
 
-A fresh install contains no organisation, programmes or activities. If you tried the sample dataset first, **purge it** (*Management → Sample Data*). Then do this once:
+A fresh install contains no organisation, programmes or activities. If you tried the sample dataset first, **purge it** (*System → Sample Data*). Then do this once:
 
-1. **Identity.** *Management → Settings*: organisation name and abbreviation (per language), tagline and branding. These appear in the sidebar, login screen and printed documents.
-2. **Organisational structure.** *Management → Entities → Directorates*: create your general directorates, national directorates, departments, units and independent bodies, with their parent–child relationships and the year they were established. The `code` of each is used in reports and for CSV import.
-3. **Programmes.** *Management → Entities → Programs*: the programmes activities are planned under. Use the **official codes** your Ministry of Finance prescribes.
-4. **Economic categories.** The five Timor-Leste OGE categories are seeded: 10 Salaries & Wages, 20 Goods & Services, 30 Public Transfers, 40 Minor Capital, 50 Development Capital. If your jurisdiction differs, edit them in *Management → Entities → Classifications* **before** entering budget lines.
-5. **Users.** *Management → System Users*: create accounts, assign a role and a directorate. Users see their own unit's data. There is no public sign-up: the sign-in page tells people to contact the administrator.
+1. **Identity.** *System → Settings*: organisation name and abbreviation (per language), tagline and branding. These appear in the sidebar, login screen and printed documents.
+2. **Organisational structure.** *Administration → Structure → Directorates*: create your general directorates, national directorates, departments, units and independent bodies, with their parent–child relationships and the year they were established. The `code` of each is used in reports and for CSV import.
+3. **Programmes.** *Administration → Structure → Programs* (everyone can then see them under *Plan → Programmes*): the programmes activities are planned under. Use the **official codes** your Ministry of Finance prescribes.
+4. **Economic categories.** The five Timor-Leste OGE categories are seeded: 10 Salaries & Wages, 20 Goods & Services, 30 Public Transfers, 40 Minor Capital, 50 Development Capital. If your jurisdiction differs, edit them in *Administration → Structure → Classifications* **before** entering budget lines.
+5. **Users.** *Administration → System Users*: create accounts, assign a role and a directorate. Users see their own unit's data. There is no public sign-up: the sign-in page tells people to contact the administrator.
 6. **Activities.** Technical officers enter them in the app, or an administrator **imports** them in bulk:
-   *Management → Import Activities* accepts a CSV (`;`, `,` or tab separated; UTF-8 or Windows-1252). Download the template from that page. Rows sharing a `ref` form one activity; each row can carry an indicator, a budget line, or both. The file is **validated first, with row numbers for every problem**, and nothing is written until it is clean. Everything imports as `Draft`, and re-importing the same file is rejected as a duplicate.
+   *System → Import Activities* accepts a CSV (`;`, `,` or tab separated; UTF-8 or Windows-1252). Download the template from that page. Rows sharing a `ref` form one activity; each row can carry an indicator, a budget line, or both. The file is **validated first, with row numbers for every problem**, and nothing is written until it is clean. Everything imports as `Draft`, and re-importing the same file is rejected as a duplicate.
 7. **Fiscal year.** Turn on *enable next year planning* in Settings when you start planning the next year.
-8. **Optional rules.** *Management → Optional rules*: rules that are off until your institution needs them (nil returns, extra mandatory fields, planning guidance, revisions needing an outside approval, baselines, institution-wide finance officers, corrective actions, reports by the structure at approval). See the manual, Part 4.9.
+8. **Optional rules.** *System → Optional rules*: rules that are off until your institution needs them (nil returns, extra mandatory fields, planning guidance, revisions needing an outside approval, baselines, institution-wide finance officers, corrective actions, reports by the structure at approval). See the manual, Part 4.9.
 
 ---
 
@@ -175,7 +175,7 @@ The repository ships an optional sample dataset based on the **Ministério dos T
 
 ### Load and purge it from the app (recommended)
 
-Sign in as an administrator and open **Management → Sample Data**.
+Sign in as an administrator and open **System → Sample Data**.
 
 - **What to load**: *One directorate or office* (the default is the **Gabinete de Digitalização e Segurança Cibernética** with its units UDIG and USC; any other gabinete, direção-geral or autonomous body can be chosen) or *The whole ministry*. They are alternatives: load one, purge it, then load the other. An office gets only its own units, programmes, demo accounts (a head of office, plus a Technical officer and a Director per unit) and the activities the State Budget plans for it, and the app is branded as that office. The budget books give the Gabinete only one activity per unit, so it also gets an **illustrative** plan (`data/gdsc_illustrative.json`, not from any published document) with 2027 activities at every step of the approval workflow. Command line: `php artisan db:seed --class="Database\Seeders\Samples\MtcOfficeSampleDataSeeder"` (GDSC).
 - **Load sample data** adds the dataset below. It is **disabled when `APP_ENV=production`**, because it creates demo accounts with a known password.
@@ -345,16 +345,16 @@ php artisan up
 ### Security checklist
 
 - `APP_DEBUG=false`, `APP_ENV=production`, HTTPS only (the app forces `https` URLs in production).
-- Strong `ADMIN_PASSWORD`; **purge the sample data** (*Management → Sample Data* or `php artisan paa:purge-samples`) so no demo accounts (`@gdsc.tl`, password `password`) remain. A red banner warns administrators while any are present.
+- Strong `ADMIN_PASSWORD`; **purge the sample data** (*System → Sample Data* or `php artisan paa:purge-samples`) so no demo accounts (`@gdsc.tl`, password `password`) remain. A red banner warns administrators while any are present.
 - A dedicated MySQL user with rights on the app database only.
 - `.env` not readable by the web server's public directory; never commit it.
-- **Self-registration stays off** (`ALLOW_REGISTRATION=false`, the default): the `/register` route does not exist, and administrators create accounts in *Management → System Users*. Sign-in is rate-limited (5 attempts, then a lockout).
+- **Self-registration stays off** (`ALLOW_REGISTRATION=false`, the default): the `/register` route does not exist, and administrators create accounts in *Administration → System Users*. Sign-in is rate-limited (5 attempts, then a lockout).
 - **No default passwords.** When an administrator creates a user or resets a password, the app generates a random temporary password, shows it **once** (it is never stored in clear text), and forces the user to choose their own at first sign-in; until then every page redirects to their profile. In production, passwords must be at least 12 characters with upper and lower case, a number and a symbol (`AppServiceProvider`).
-- **Two-factor authentication (TOTP).** Anyone can turn it on at *Profile → Two-factor authentication*: scan the QR code with an authenticator app (Google Authenticator, Microsoft Authenticator, Authy…), confirm with a code, and save the **eight one-time recovery codes** (shown once). At sign-in, users with 2FA enter a 6-digit code (or a recovery code) after their password. The secret is stored encrypted and recovery codes hashed; a code cannot be reused; five wrong codes lock the challenge for a few minutes; enrolment, use of a recovery code and disabling are audited. **In production, `Admin` and `Minister` must set it up** before they can use the app (`TWO_FACTOR_REQUIRED_ROLES=Admin,Minister` in `.env`; list other roles, or leave it empty to make it optional; it is not enforced in local/testing). A required role cannot switch it off. If someone loses their device and recovery codes, an administrator resets it in *Management → System Users* (the audit log records who did it); the user then enrols again. Turning it off needs the account password.
+- **Two-factor authentication (TOTP).** Anyone can turn it on at *Profile → Two-factor authentication*: scan the QR code with an authenticator app (Google Authenticator, Microsoft Authenticator, Authy…), confirm with a code, and save the **eight one-time recovery codes** (shown once). At sign-in, users with 2FA enter a 6-digit code (or a recovery code) after their password. The secret is stored encrypted and recovery codes hashed; a code cannot be reused; five wrong codes lock the challenge for a few minutes; enrolment, use of a recovery code and disabling are audited. **In production, `Admin` and `Minister` must set it up** before they can use the app (`TWO_FACTOR_REQUIRED_ROLES=Admin,Minister` in `.env`; list other roles, or leave it empty to make it optional; it is not enforced in local/testing). A required role cannot switch it off. If someone loses their device and recovery codes, an administrator resets it in *Administration → System Users* (the audit log records who did it); the user then enrols again. Turning it off needs the account password.
 - **Browser protections.** Every response carries `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` and `Cross-Origin-Opener-Policy`; HSTS is added over HTTPS in production; signed-in pages are sent `no-store`, so the Back button after signing out shows nothing. A Content-Security-Policy is not set yet: Alpine.js and Livewire need relaxed script rules, so it must be designed and tested against the whole UI first.
 - **Sessions** expire after `SESSION_LIFETIME` minutes of inactivity (60 in `.env.example`); use `SESSION_SECURE_COOKIE=true` behind HTTPS.
 - Keep dependencies patched: `composer audit` should report nothing.
-- Review *Management → Audit Log* regularly.
+- Review *System → Audit Log* regularly.
 
 ### Scaling
 
@@ -395,7 +395,7 @@ It runs `paa:backup` at 02:00 and prunes failed jobs and expired password-reset 
 |---|---|
 | Add an administrator | `php artisan tinker` → create the user and `assignRole('Admin')` |
 | Clear caches after a config change | `php artisan optimize:clear` |
-| Remove all sample data | `php artisan paa:purge-samples` (or *Management → Sample Data*) |
+| Remove all sample data | `php artisan paa:purge-samples` (or *System → Sample Data*) |
 | Register old sample data so it can be purged | `php artisan paa:adopt-samples` |
 | Watch logs | `php artisan pail` or `storage/logs/laravel.log` |
 

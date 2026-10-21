@@ -102,7 +102,7 @@ class NavigationTest extends TestCase
 
         $this->get(route('management.audit'))
             ->assertSee('aria-label="Breadcrumb"', false)
-            ->assertSeeInOrder(['Dashboard', 'Administration', 'Audit Log']);
+            ->assertSeeInOrder(['Dashboard', 'System', 'Audit Log']);
 
         $this->get(route('activities.create'))->assertSeeInOrder(['Plan', 'All activities', 'New activity']);
         $this->get(route('planning.cycle'))->assertSeeInOrder(['Plan', 'Plan cycle']);

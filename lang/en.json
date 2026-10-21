@@ -1965,5 +1965,22 @@
     "Means of verification of every indicator": "Means of verification of every indicator",
     "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.",
     "Finalize the plan": "Finalize the plan",
-    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved."
+    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.",
+    "The programmes and sub-programmes of the plan, with their activities and amounts": "The programmes and sub-programmes of the plan, with their activities and amounts",
+    "Units, programmes, sub-programmes and economic categories: set them up and edit them": "Units, programmes, sub-programmes and economic categories: set them up and edit them",
+    "When the plan, a month, a quarter or a revision may be submitted": "When the plan, a month, a quarter or a revision may be submitted",
+    "The programmes and sub-programmes your units plan activities under, with the amounts of your units only. :year": "The programmes and sub-programmes your units plan activities under, with the amounts of your units only. :year",
+    "Every programme and sub-programme of the plan, with its activities and amounts. :year": "Every programme and sub-programme of the plan, with its activities and amounts. :year",
+    "Edit programmes": "Edit programmes",
+    ":n approved": ":n approved",
+    "Search a programme or sub-programme": "Search a programme or sub-programme",
+    "No programme to show": "No programme to show",
+    "None of your units has planned activities for this year yet.": "None of your units has planned activities for this year yet.",
+    "No programme is registered for this year.": "No programme is registered for this year.",
+    ":n sub-programme|:n sub-programmes": ":n sub-programme|:n sub-programmes",
+    "Sub-programme": "Sub-programme",
+    "Directly under the programme": "Directly under the programme",
+    "Open activities": "Open activities",
+    "Open all activities of this programme": "Open all activities of this programme",
+    "Paid (verified)": "Paid (verified)"
 }

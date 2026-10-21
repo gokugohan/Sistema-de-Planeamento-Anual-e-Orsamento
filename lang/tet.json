@@ -2210,5 +2210,22 @@
     "Means of verification of every indicator": "Meiu verifikasaun indikadór ida-idak nian",
     "Give the final approval. Without a list, the head of the directorate (the top-level unit) does.": "Fó aprovasaun final. Se la iha lista, xefe direksaun (unidade leten) mak halo.",
     "Finalize the plan": "Finaliza planu",
-    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "Kartaun iha leten lista atividade nian iha botaun Finaliza planu ba ita-nia direksaun. Disponível bainhira laiha buat ida hein desizaun no iha pelumenus atividade ida aprova."
+    "The card at the top of the activities list has the Finalize plan button for your directorate. It is available once nothing is waiting for a decision and at least one activity is approved.": "Kartaun iha leten lista atividade nian iha botaun Finaliza planu ba ita-nia direksaun. Disponível bainhira laiha buat ida hein desizaun no iha pelumenus atividade ida aprova.",
+    "The programmes and sub-programmes of the plan, with their activities and amounts": "Programa no subprograma husi planu, ho sira-nia atividade no montante",
+    "Units, programmes, sub-programmes and economic categories: set them up and edit them": "Unidade, programa, subprograma no kategoria ekonómika: hari no edita",
+    "When the plan, a month, a quarter or a revision may be submitted": "Bainhira planu, fulan, trimestre ka revizaun bele submete",
+    "The programmes and sub-programmes your units plan activities under, with the amounts of your units only. :year": "Programa no subprograma ne'ebé ita-nia unidade planeia atividade, ho montante ita-nia unidade nian de'it. :year",
+    "Every programme and sub-programme of the plan, with its activities and amounts. :year": "Programa no subprograma hotu husi planu, ho atividade no montante. :year",
+    "Edit programmes": "Edita programa",
+    ":n approved": ":n aprova",
+    "Search a programme or sub-programme": "Buka programa ka subprograma",
+    "No programme to show": "La iha programa atu hatudu",
+    "None of your units has planned activities for this year yet.": "Ita-nia unidade ida mós seidauk planeia atividade ba tinan ne'e.",
+    "No programme is registered for this year.": "La iha programa rejista ba tinan ne'e.",
+    ":n sub-programme|:n sub-programmes": ":n subprograma|:n subprograma",
+    "Sub-programme": "Subprograma",
+    "Directly under the programme": "Diretamente iha okos programa",
+    "Open activities": "Loke atividade",
+    "Open all activities of this programme": "Loke atividade hotu husi programa ne'e",
+    "Paid (verified)": "Selu (verifika ona)"
 }

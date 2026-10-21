@@ -84,8 +84,12 @@ new class extends Component {
     private function scope()
     {
         $ids = $this->unitIds();
+        // only the units this user works in; administrators and those who see every plan have no limit
+        $visible = app(\App\Services\PlanCycle::class)->scopeFor(auth()->user());
 
-        return Activity::query()->where('fiscal_year', $this->year())->when($ids, fn ($q) => $q->whereIn('directorate_id', $ids));
+        return Activity::query()->where('fiscal_year', $this->year())
+            ->when($visible !== null, fn ($q) => $q->whereIn('directorate_id', $visible ?: [0]))
+            ->when($ids, fn ($q) => $q->whereIn('directorate_id', $ids));
     }
 
     /** The activities that wait for the final approval, within the unit filter (at most one batch). */

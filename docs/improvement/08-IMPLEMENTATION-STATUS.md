@@ -24,6 +24,8 @@
 | PR-16 | PAA-FR-014, 016, 017; G-18 to G-21 | G-07, G-16 to G-21 | Optional rules, off by default (*Administration → Optional rules*) | 4 migrations | done; the consolidation review decision is not built (no rule-holder known) |
 | PR-17 | — | G-24 | Simulator approvals follow the real chain (`b5ee79d`) | no | done |
 | PR-18 | — | G-22 | Copy each backup to a second place (`b437a0d`) | no | done |
+| PR-19 | — | — | Plan → Programmes page for everyone (scoped to the user's units); Administration menu split into Administration and System | no | done |
+| PR-20 | — | — | Scope fixes: *Activities to decide* and the planning card showed other directorates to a directorate user; they now list only the user's units | no | done |
 
 ## Findings made while building
 
@@ -39,6 +41,11 @@
 3. Compare the plan totals before and after on the copy.
 4. Have a competent speaker review the new Portuguese and Tetun texts.
 5. The manual's PDF and Word files were regenerated from `MANUAL.md` (`b9d286a`).
+
+## Found while using the application
+
+- **A directorate user saw other directorates' data in two places**: the planning card (names, who finalized, pending counts) and the *Activities to decide* page (the activities themselves, for any Director). Both are now limited to the user's units; `DirectorateSeesOnlyOwnPlanTest` guards them. The activity list, My work and the reports already were.
+- **A stale "Send to the Minister" button** on the activity page duplicated "Approve Activity" and named a step that does not exist; removed.
 
 ## Not done
 

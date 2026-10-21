@@ -55,4 +55,12 @@ class DirectorateSeesOnlyOwnPlanTest extends TestCase
         $this->actingAs($officer)->withSession(['fiscal_year' => 2027]);
         Volt::test('pages.activities.list-activities')->assertDontSee('Activity of another directorate');
     }
+
+    public function test_the_page_of_activities_to_decide_lists_only_activities_in_the_directors_scope(): void
+    {
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
+        $this->actingAs($director)->withSession(['fiscal_year' => 2027]);
+
+        Volt::test('pages.planning.paa-approval')->set('queue', 'all')->assertDontSee('Activity of another directorate');
+    }
 }

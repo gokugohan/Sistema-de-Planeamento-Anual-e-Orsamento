@@ -64,6 +64,22 @@ The **Dashboard** shows the year in one view:
 
 Filter it by unit, programme and category at the top.
 
+### 1.4 The menu
+
+The left menu is grouped by what you do. Each person sees only the groups and entries their role allows.
+
+| Group | What is in it |
+|---|---|
+| **Overview** | *Dashboard* (those who see every plan) or *My work* (everyone else), notifications, profile. |
+| **Plan** | *Units* (the plan of any unit you may see), **Programmes** (the programmes and sub-programmes with their activities and amounts), *Plan cycle*, and the activities themselves (*All activities* or *My plan*). |
+| **Approvals** | Everything waiting for your decision; budget review, approval lists and interim approvers where your role has them. |
+| **Execute** | Report what was spent and achieved; compile the quarter. |
+| **Insights** | Performance and reports. |
+| **Administration** (administrators) | *System Users*, *Structure* (units, programmes, sub-programmes, economic categories) and *Funding sources*: who and what the plan is made of. |
+| **System** (administrators) | *Settings*, *Optional rules*, *Reporting windows*, *Import Activities*, *Audit Log* and *Sample Data*: how the system runs. |
+
+**Plan → Programmes** is for reading. Each programme shows its sub-programmes, how many activities each has (and how many are approved), the amount planned, the approved plan amount and what has been paid (verified). A directorate sees the programmes and the figures of its own units only; an administrator or anyone who sees every plan sees them all. *Open activities* leads to the activity list already filtered to that programme or sub-programme. Programmes are created and edited by an administrator under *Administration → Structure*.
+
 ---
 
 ## 2. How the system thinks
@@ -113,7 +129,7 @@ Do these once, in this order. Everything is under **Administration** in the menu
 
 ![Settings](manual/img/settings.png)
 
-**Administration → Settings**:
+**System → Settings**:
 
 - **Organisation**: the full name and abbreviation of your institution, in Tetum, Portuguese and English, and the texts of the login page. These are what users see; nothing is fixed in the code.
 - **Institution level**: *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry; you can say who it is sent to). This only changes the wording.
@@ -159,7 +175,7 @@ Add only the structure that the law defines; the system does not invent departme
 
 ![Reporting windows](manual/img/windows.png)
 
-**Administration → Reporting windows**: for the fiscal year, give the dates of
+**System → Reporting windows**: for the fiscal year, give the dates of
 
 - the **plan submission** window (when units may submit the plan);
 - each **month** (monthly spending and narrative);
@@ -175,15 +191,15 @@ Part 7. Directors keep these for their own units; administrators for any.
 
 ### 4.7 Loading activities from a file
 
-**Administration → Import Activities**: download the **CSV template**, fill it (unit code, programme and subprogramme, description, dates, quarters, indicators, budget lines), and upload. The importer checks every line first and tells you which lines are wrong and why; nothing is saved until the file is clean. It refuses lines for a year or a directorate whose planning has ended.
+**System → Import Activities**: download the **CSV template**, fill it (unit code, programme and subprogramme, description, dates, quarters, indicators, budget lines), and upload. The importer checks every line first and tells you which lines are wrong and why; nothing is saved until the file is clean. It refuses lines for a year or a directorate whose planning has ended.
 
 ### 4.8 Sample data
 
-**Administration → Sample Data** loads (or removes) an optional demonstration dataset, so people can practise before real use. It is refused in production. *Purge* removes only what the sample created; your real data is never touched.
+**System → Sample Data** loads (or removes) an optional demonstration dataset, so people can practise before real use. It is refused in production. *Purge* removes only what the sample created; your real data is never touched.
 
 ### 4.9 Optional rules
 
-**Administration → Optional rules** holds rules that are **off** until your institution confirms that its own rules ask for them. Each changes only what is described here.
+**System → Optional rules** holds rules that are **off** until your institution confirms that its own rules ask for them. Each changes only what is described here.
 
 | Rule | When it is on |
 |---|---|
@@ -559,7 +575,7 @@ See 4.4. Deactivate rather than delete someone who has acted: their name stays o
 
 ![Audit log](manual/img/audit.png)
 
-**Administration → Audit Log**: every change to plans, budgets, approvals, users and settings is recorded with **who**, **when**, the old and the new values, and any remark. The log cannot be edited from the application. Use it to answer "who changed this, and why".
+**System → Audit Log**: every change to plans, budgets, approvals, users and settings is recorded with **who**, **when**, the old and the new values, and any remark. The log cannot be edited from the application. Use it to answer "who changed this, and why".
 
 ### 13.3 Sample data
 
