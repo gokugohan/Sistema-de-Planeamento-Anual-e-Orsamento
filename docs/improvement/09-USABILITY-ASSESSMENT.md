@@ -1,6 +1,6 @@
 # 09. Usability Assessment
 
-*Assessment of how easily each person understands the application, with proposals. Status: **proposal, nothing changed yet**. Written after looking at the real screens (1440 × 900) as an administrator, as the head of a directorate and as a technical officer, with the development database, on branch `improvement` (commit `9a49ed4`).*
+*Assessment of how easily each person understands the application, with proposals. Status: **Wave 1 built** (see section 6); waves 2 and 3 proposed, not built. Written after looking at the real screens (1440 × 900) as an administrator, as the head of a directorate and as a technical officer, with the development database, on branch `improvement` (commit `9a49ed4`).*
 
 ## The test
 
@@ -134,7 +134,29 @@ Three waves, each independent and testable. Wave 1 answers your two questions di
 2. **Dashboard length**: move the unit and programme tables off the dashboard (recommended), or keep them?
 3. **Vocabulary**: confirm *Prepared / Certified / Approved* (plus Returned), and *Approved plan amount* for the in-force amount, as the single set of words.
 
-## 5. What this assessment does not cover
+## 5. Decisions taken
+
+1. The **Director reports** spending and indicators; the Technical Officer does not. The officer is told so on My work, with a link to follow the figures on each activity.
+2. The unit and programme **tables move off the dashboard**; they are on *Units* and *Programmes*.
+3. The vocabulary is **Prepared / Certified / Approved**, with **Approved plan amount** (wave 2).
+4. Build **wave 1 now**, then review.
+
+## 6. Wave 1: built
+
+| Proposal | Built |
+|---|---|
+| 1 Year at a glance | A strip of four phases (Planning, Approval, Finalizing, Reporting) in plain sentences from the real dates and counts, each marked done, now or next, with one button when the step is the person's own. On the Dashboard and on My work. Service `YearAtAGlance`. |
+| 2 Guide | *Overview → How the year works*: the table of section 1, with the person's own steps marked ("Yours"), where "Paid" comes from, and the words used for an activity. |
+| 3 Dashboard order | Strip, then Needs your attention and Worth a look, then the figures and charts. The unit and programme tables are replaced by two links. |
+| 4 One figure | "Planned" and "Approved plan" merged: Approved plan, with "of $ X planned in N activities". |
+| 5 Explain Paid | On the dashboard card, on My work, on the activity's Execution tab and in the guide. |
+| 6 Activity page | The Execution tab explains where the figures come from and has **Report this activity**, which opens Report execution on that activity. |
+| 7 Report execution | "What the activity achieved in Q4 (October to December)"; the empty state lists the activities still without a spending report for the month, each with a Report button; the page opens on `?activity=`. |
+| 8 Technical Officer | A line in the Budget card of My work: the Director of the unit reports it; follow it on each activity. |
+
+Not changed in wave 1: the menu clipping (M1), the old status names in tabs and cards (A2, X1), page subtitles (X2) and the 403 page (X4). These are waves 2 and 3.
+
+## 7. What this assessment does not cover
 
 - Mobile layouts and accessibility beyond what was checked in earlier sessions.
 - The Portuguese and Tetun versions: screens were reviewed in English; the new wording for each change needs a competent speaker.

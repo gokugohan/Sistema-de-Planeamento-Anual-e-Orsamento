@@ -29,6 +29,8 @@ return [
                     'hint' => 'Key figures and what needs your attention'],
                 ['label' => 'My work', 'route' => 'work.home', 'match' => ['work.home', 'units.show'], 'icon' => 'layout-dashboard', 'audience' => 'unit',
                     'hint' => 'Your unit\'s plan, what waits for you and the deadlines'],
+                ['label' => 'How the year works', 'route' => 'guide', 'icon' => 'list',
+                    'hint' => 'Who does what, when and where: planning, approval, reporting and verification'],
             ],
         ],
         [

@@ -140,6 +140,18 @@ class PlanCycle
         ];
     }
 
+    /** One month of reporting: its window and how many approved activities with a budget have a verified figure (a lighter reporting()). */
+    public function month(User $user, int $year, int $month): array
+    {
+        $scope = $this->scopeFor($user);
+        $base = DB::table('activities as a')->join('line_items as li', 'li.activity_id', '=', 'a.id')->join('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
+            ->where('a.fiscal_year', $year)->where('a.status', Activity::STATUS_APPROVED)->when($scope !== null, fn ($q) => $q->whereIn('a.directorate_id', $scope ?: [0]));
+        $due = (int) (clone $base)->distinct()->count('a.id');
+        $verified = (int) (clone $base)->join('budget_executions as be', 'be.line_item_id', '=', 'li.id')->where('be.status', BudgetExecution::VERIFIED)->where('be.month', $month)->distinct()->count('a.id');
+
+        return ['due' => $due, 'verified' => $verified, 'window' => $this->windowState($year, 'month', $month)];
+    }
+
     /**
      * Month by month and quarter by quarter: the window and how much has been reported. A month counts the
      * approved activities with a budget that have a verified figure, and those with one still waiting.

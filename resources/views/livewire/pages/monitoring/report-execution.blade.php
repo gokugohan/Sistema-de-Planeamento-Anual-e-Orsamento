@@ -20,6 +20,7 @@ use Livewire\Volt\Component;
 new class extends Component {
     public int $year;
     public int $month = 1;
+    #[\Livewire\Attributes\Url(as: 'activity')]
     public ?int $activityId = null;
     public string $search = '';
 
@@ -76,6 +77,19 @@ new class extends Component {
         return $query->orderBy('directorate_id')->orderBy('id')->limit(self::PICKER_LIMIT + 1)->get();
     }
 
+    /** Approved activities that still have no spending figure for the chosen month (the first few), for those who report. */
+    public function awaitingReport()
+    {
+        if (! auth()->user()->can('update_indicator_progress')) {
+            return collect();
+        }
+        $activities = $this->activities->take(self::PICKER_LIMIT);
+        $reported = DB::table('budget_executions as be')->join('line_items as li', 'li.id', '=', 'be.line_item_id')
+            ->whereIn('li.activity_id', $activities->pluck('id'))->where('be.month', $this->month)->distinct()->pluck('li.activity_id');
+
+        return $activities->whereNotIn('id', $reported)->take(8)->values();
+    }
+
     public function getActivityProperty(): ?Activity
     {
         if (! $this->activityId) {
@@ -120,6 +134,7 @@ new class extends Component {
 
         return [
             'summary' => $activity ? $this->summary($activity) : null,
+            'awaiting' => $activity ? collect() : $this->awaitingReport(),
             'maxMonth' => $this->latestMonth(),
             'closed' => array_filter([
                 __('Spending and monthly report') => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month),
@@ -166,7 +181,18 @@ new class extends Component {
 
     @if(! $activityId)
         <x-ui.card padding="p-0">
-            <x-ui.empty-state :title="__('Choose an activity')" :text="__('Only activities with an approved version can report execution.')" />
+            <x-ui.empty-state :title="__('Choose an activity')" :text="__('Only activities with an approved version can report execution. Spending is reported for the month chosen above; indicators for the quarter it belongs to.')" />
+            @if($awaiting->isNotEmpty())
+                <div class="border-t border-zinc-200 px-5 py-4">
+                    <p class="text-sm font-medium text-zinc-900">{{ __('Still without a spending report for :month', ['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F')]) }}</p>
+                    <ul class="mt-2 divide-y divide-zinc-100 text-sm">
+                        @foreach($awaiting as $a)
+                            <li class="flex items-center justify-between gap-3 py-2"><span class="min-w-0 truncate text-zinc-700">{{ $a->directorate?->code }} — {{ \Illuminate\Support\Str::limit($a->description, 90) }}</span>
+                                <button type="button" wire:click="$set('activityId', {{ $a->id }})" class="shrink-0 text-xs font-semibold text-indigo-700 hover:underline">{{ __('Report') }} →</button></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </x-ui.card>
     @else
         @php $activity = $this->activity; @endphp

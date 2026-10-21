@@ -15,9 +15,12 @@ class NextActions extends Component
     /** @var array<int, array{group: string, count: int, text: string, url: string, tone: string}> */
     public array $items = [];
 
-    public function __construct()
+    /** @param  array<int, array<string, mixed>>|null  $items  the inbox, when the page already has it (saves asking twice) */
+    public function __construct(?array $items = null)
     {
-        if ($user = auth()->user()) {
+        if ($items !== null) {
+            $this->items = $items;
+        } elseif ($user = auth()->user()) {
             $this->items = app(ApprovalInbox::class)->items($user);
         }
     }

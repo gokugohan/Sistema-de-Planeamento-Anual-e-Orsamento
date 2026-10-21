@@ -743,9 +743,12 @@ new class extends Component {
                             </div>
                         @endif
 
-                        @can('view_monitoring')
-                            <a href="{{ route('monitoring.report') }}" wire:navigate class="inline-flex text-sm font-medium text-indigo-700 hover:underline">{{ __('Report execution') }} →</a>
-                        @endcan
+                        <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-700">
+                            <p class="max-w-xl">{{ __('Where do these figures come from? The unit\'s Director enters what each budget line committed and paid every month, and what each indicator achieved every quarter, in Report execution. A figure counts here once someone else has verified it.') }}</p>
+                            @can('view_monitoring')
+                                <a href="{{ route('monitoring.report', ['activity' => $activity->id]) }}" wire:navigate class="inline-flex shrink-0 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">{{ __('Report this activity') }} →</a>
+                            @endcan
+                        </div>
                     </div>
                 @endif
 

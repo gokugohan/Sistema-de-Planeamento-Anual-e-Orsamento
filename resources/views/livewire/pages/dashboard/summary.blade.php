@@ -28,6 +28,7 @@ new class extends Component {
     public function with(): array
     {
         $year = \App\Support\FiscalYear::current();
+        $attention = app(\App\Services\ApprovalInbox::class)->items(auth()->user(), $year); // asked once, used by two panels
         $dirs = Directorate::get(['id', 'code', 'name', 'type', 'parent_id'])->keyBy('id');
         $rootOf = fn ($id) => ($dirs[$id]->parent_id ?? null) ?: $id;
         $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name'])->keyBy('id');
@@ -108,18 +109,6 @@ new class extends Component {
                 $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
             }
         }
-
-        // ── the cycle of the annual plan for this year ──
-        $planCycle = app(\App\Services\PlanCycle::class);
-        $planning = app(\App\Services\PlanningWindow::class)->progress($year);
-        $ended = $planning['ended'];
-        $steps = $planCycle->steps([
-            'planWindow' => $planCycle->windowState($year, 'plan', 1), 'ended' => $ended, 'planning' => $planning, 'total' => $totalActivities, 'approved' => $byStatus[Activity::STATUS_APPROVED] ?? 0,
-            'pending' => ($byStatus[Activity::STATUS_SUBMITTED] ?? 0) + ($byStatus[Activity::STATUS_REVIEWED] ?? 0) + ($byStatus[Activity::STATUS_VALIDATED] ?? 0) + ($byStatus[Activity::STATUS_WAITING_APPROVAL] ?? 0),
-            'drafts' => ($byStatus[Activity::STATUS_DRAFT] ?? 0) + ($byStatus[Activity::STATUS_REJECTED] ?? 0),
-            'year' => $year,
-        ]);
-        $currentStep = collect($steps)->search(fn ($s) => $s['state'] === 'current');
 
         // ── physical delivery: verified progress against annual targets (cumulative or level, see DeliveryReport) ──
         $delivery = app(\App\Services\DeliveryReport::class)->summary($base()->select('activities.id')->toBase());
@@ -220,7 +209,7 @@ new class extends Component {
 
         return [
             'year' => $year, 'org' => SystemSetting::getLocalized('org_abbr', ''),
-            'steps' => $steps, 'currentStep' => $currentStep,
+            'attention' => $attention,
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
             'achievement' => $achievement, 'indicatorCount' => $delivery['n'],
@@ -273,43 +262,42 @@ new class extends Component {
         </div>
     </x-ui.page-header>
 
-    {{-- The annual plan cycle: where is this year? --}}
-    <section aria-label="{{ __('Plan cycle') }}" class="bg-white rounded-lg border border-zinc-200 shadow-card px-5 py-4">
-        <div class="flex items-center justify-between mb-4">
-            <h2 class="text-sm font-semibold text-zinc-900">{{ __('Plan cycle') }} {{ $year }}</h2>
-            <a href="{{ route('planning.cycle') }}" wire:navigate class="text-xs font-medium text-indigo-600 hover:underline">{{ __('Open') }} →</a>
+    {{-- Where the year stands, in plain sentences, with the way to act --}}
+    <x-year-at-a-glance :year="$year" :items="$attention" />
+
+    {{-- What needs you comes first --}}
+    <div class="grid gap-6 xl:grid-cols-12">
+        <div class="xl:col-span-7"><x-next-actions :items="$attention" /></div>
+        <div class="xl:col-span-5">
+            @if(count($watch))
+                <section class="bg-white rounded-lg border border-zinc-200 shadow-card" aria-labelledby="watch-title">
+                    <div class="px-5 py-4 border-b border-zinc-200"><h2 id="watch-title" class="text-sm font-semibold text-zinc-900">{{ __('Worth a look') }}</h2></div>
+                    <ul class="divide-y divide-zinc-200">
+                        @foreach($watch as $w)
+                            <li>
+                                <a href="{{ $w['url'] }}" wire:navigate class="flex items-start gap-3 px-5 py-3 hover:bg-zinc-50">
+                                    <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full {{ ['rose' => 'bg-rose-500', 'amber' => 'bg-amber-500', 'zinc' => 'bg-zinc-400'][$w['tone']] ?? 'bg-zinc-400' }}"></span>
+                                    <span class="text-sm text-zinc-700">{{ $w['text'] }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </section>
+            @endif
         </div>
-        <ol class="grid grid-cols-2 gap-4 md:grid-cols-6">
-            @foreach($steps as $i => $step)
-                @php $done = $step['state'] === 'done'; $current = $step['state'] === 'current'; @endphp
-                <li class="relative">
-                    <div class="flex items-center gap-2">
-                        <span class="w-6 h-6 shrink-0 rounded-full flex items-center justify-center text-xs font-semibold
-                            {{ $done ? 'bg-emerald-600 text-white' : ($current ? 'bg-indigo-600 text-white ring-4 ring-indigo-100' : 'bg-zinc-100 text-zinc-500') }}">
-                            @if($done)<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>@else{{ $i + 1 }}@endif
-                        </span>
-                        <span class="text-sm {{ $current ? 'font-semibold text-zinc-900' : ($done ? 'font-medium text-zinc-700' : 'text-zinc-500') }}">{{ $step['label'] }}</span>
-                    </div>
-                    <p class="mt-1 ml-8 text-xs {{ $done || $current ? 'text-zinc-600' : 'text-zinc-400' }}">{{ $step['detail'] }}</p>
-                </li>
-            @endforeach
-        </ol>
-    </section>
+    </div>
 
     {{-- Key figures --}}
     @php
         $approvedPct = $planAll > 0 ? min(100, $allocated / $planAll * 100) : null;
         $approvedShare = $totalActivities > 0 ? ($byStatus[\App\Models\Activity::STATUS_APPROVED] / $totalActivities * 100) : 0;
     @endphp
-    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        <x-ui.kpi :label="__('Planned')" :value="'$ ' . number_format($planAll)"
-            :sub="trans_choice(':n activity in the plan|:n activities in the plan', $totalActivities, ['n' => $totalActivities])" tone="zinc"
-            href="{{ route('activities.index') }}" />
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($allocated)"
-            :sub="$approvedPct !== null ? number_format($approvedPct, 1) . '% ' . __('of what is planned') : __('Nothing planned yet')"
-            :progress="$approvedPct" tone="indigo" href="{{ route('planning.paa-approval') }}" />
+            :sub="$planAll > 0 ? __('of $ :planned planned in :n activities', ['planned' => number_format($planAll), 'n' => $totalActivities]) : __('Nothing planned yet')"
+            :progress="$approvedPct" tone="indigo" href="{{ route('activities.index') }}" />
         <x-ui.kpi :label="__('Paid')" :value="'$ ' . number_format((float) ($exec['paid'] ?? 0))"
-            :sub="$allocated > 0 ? number_format(min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan, verified') : __('Verified spending')"
+            :sub="($allocated > 0 ? number_format(min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan.') . ' ' : '') . __('Entered monthly by the units, counted once verified.')"
             :progress="$allocated > 0 ? min(100, (float) ($exec['paid'] ?? 0) / $allocated * 100) : null" tone="emerald" href="{{ route('monitoring.index') }}" />
         <x-ui.kpi :label="__('Activities approved')" :value="$byStatus[\App\Models\Activity::STATUS_APPROVED] . ' / ' . $totalActivities"
             :sub="number_format($approvedShare, 0) . '% ' . __('of the plan')" :progress="$approvedShare" tone="indigo"
@@ -394,29 +382,9 @@ new class extends Component {
         </x-ui.card>
     @endif
 
-    {{-- Attention + watch list | money by category --}}
+    {{-- Money by economic category --}}
     <div class="grid gap-6 xl:grid-cols-12">
-        <div class="xl:col-span-5 space-y-6">
-            <x-next-actions />
-
-            @if(count($watch))
-                <section class="bg-white rounded-lg border border-zinc-200 shadow-card" aria-labelledby="watch-title">
-                    <div class="px-5 py-4 border-b border-zinc-200"><h2 id="watch-title" class="text-sm font-semibold text-zinc-900">{{ __('Worth a look') }}</h2></div>
-                    <ul class="divide-y divide-zinc-200">
-                        @foreach($watch as $w)
-                            <li>
-                                <a href="{{ $w['url'] }}" wire:navigate class="flex items-start gap-3 px-5 py-3 hover:bg-zinc-50">
-                                    <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full {{ ['rose' => 'bg-rose-500', 'amber' => 'bg-amber-500', 'zinc' => 'bg-zinc-400'][$w['tone']] ?? 'bg-zinc-400' }}"></span>
-                                    <span class="text-sm text-zinc-700">{{ $w['text'] }}</span>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </section>
-            @endif
-        </div>
-
-        <x-ui.card class="xl:col-span-7" padding="p-0">
+        <x-ui.card class="xl:col-span-12" padding="p-0">
             <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Money by economic category') }}</h2></x-slot>
             <div class="p-5">
                 <div wire:key="c-cat-{{ md5(json_encode($charts['categories'])) }}" x-data="dashChart('categories', @js($charts))" x-init="mount()" class="relative h-72">
@@ -461,81 +429,10 @@ new class extends Component {
         </x-ui.card>
     </div>
 
-    {{-- Units table: the numbers behind the charts --}}
-    <x-ui.card padding="p-0">
-        <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Units') }}</h2></x-slot>
-        <x-ui.table :headers="[__('Unit'), __('Activities'), __('Planned'), __('Approved plan'), __('Approved')]">
-            @forelse($units as $u)
-                @php $pct = $u['plan'] > 0 ? min(100, $u['alloc'] / $u['plan'] * 100) : null; @endphp
-                <tr>
-                    <td class="px-6 py-3 text-sm"><span class="font-semibold text-zinc-900">{{ $u['code'] }}</span> <span class="text-zinc-500">{{ $u['name'] }}</span></td>
-                    <td class="px-6 py-3 text-sm tabular-nums">
-                        @if($u['n'] > 0){{ $u['approved'] }}<span class="text-zinc-400"> / {{ $u['n'] }}</span>@else<span class="text-zinc-400">{{ __('None') }}</span>@endif
-                    </td>
-                    <td class="px-6 py-3 text-sm tabular-nums">{{ $u['plan'] > 0 ? '$ ' . number_format($u['plan']) : '—' }}</td>
-                    <td class="px-6 py-3 text-sm tabular-nums">{{ $u['alloc'] > 0 ? '$ ' . number_format($u['alloc']) : '—' }}</td>
-                    <td class="px-6 py-3 text-sm w-48">
-                        @if($pct !== null)
-                            <div class="flex items-center gap-2">
-                                <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
-                                <span class="text-xs tabular-nums text-zinc-600 w-10 text-right">{{ number_format($pct, 0) }}%</span>
-                            </div>
-                        @else
-                            <span class="text-zinc-400">—</span>
-                        @endif
-                    </td>
-                </tr>
-            @empty
-                <tr><td colspan="5"><x-ui.empty-state :title="__('No units to show.')" /></td></tr>
-            @endforelse
-        </x-ui.table>
-    </x-ui.card>
-
-    {{-- Programmes: the same plan seen by programme --}}
-    <x-ui.card padding="p-0">
-        <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Programs') }}</h2></x-slot>
-        <x-ui.table :headers="[__('Program'), __('Activities'), __('Planned'), __('Approved plan'), __('Approved'), __('Paid')]" :right="[2, 3]">
-            @forelse($progRows as $r)
-                @php $pct = $r['plan'] > 0 ? min(100, $r['alloc'] / $r['plan'] * 100) : null; $late = $r['paid_pct'] !== null && $r['due_pct'] !== null && $r['paid_pct'] < $r['due_pct'] - 5; @endphp
-                <tr>
-                    <td class="px-6 py-3 text-sm">
-                        <button type="button" wire:click="$set('program', '{{ $r['id'] }}')" class="text-left hover:text-indigo-700" title="{{ __('Show only this program') }}">
-                            <span class="font-semibold text-zinc-900">{{ $r['code'] }}</span> <span class="text-zinc-500">{{ $r['name'] }}</span>
-                        </button>
-                    </td>
-                    <td class="px-6 py-3 text-sm tabular-nums">{{ $r['approved'] }}<span class="text-zinc-400"> / {{ $r['n'] }}</span></td>
-                    <td class="px-6 py-3 num text-sm">{{ $r['plan'] > 0 ? '$ ' . number_format($r['plan']) : '—' }}</td>
-                    <td class="px-6 py-3 num text-sm">{{ $r['alloc'] > 0 ? '$ ' . number_format($r['alloc']) : '—' }}</td>
-                    <td class="px-6 py-3 text-sm w-44">
-                        @if($pct !== null)
-                            <div class="flex items-center gap-2">
-                                <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
-                                <span class="text-xs tabular-nums text-zinc-600 w-10 text-right">{{ number_format($pct, 0) }}%</span>
-                            </div>
-                        @else
-                            <span class="text-zinc-400">—</span>
-                        @endif
-                    </td>
-                    <td class="px-6 py-3 text-sm tabular-nums {{ $late ? 'text-amber-800 font-medium' : 'text-zinc-700' }}">
-                        @if($r['paid_pct'] !== null){{ number_format($r['paid_pct'], 0) }}%@if($late)<span class="sr-only"> ({{ __('behind schedule') }})</span>@endif @else — @endif
-                    </td>
-                </tr>
-                @foreach($r['subs'] as $sub)
-                    @php $spct = $sub['plan'] > 0 ? min(100, $sub['alloc'] / $sub['plan'] * 100) : null; @endphp
-                    <tr class="bg-zinc-50/60">
-                        <td class="py-2 pr-6 pl-12 text-xs text-zinc-700"><span class="font-mono font-semibold">{{ $sub['code'] }}</span> {{ $sub['name'] }}</td>
-                        <td class="px-6 py-2 text-xs tabular-nums text-zinc-600">{{ $sub['approved'] }}<span class="text-zinc-400"> / {{ $sub['n'] }}</span></td>
-                        <td class="px-6 py-2 num text-xs text-zinc-700">{{ $sub['plan'] > 0 ? '$ ' . number_format($sub['plan']) : '—' }}</td>
-                        <td class="px-6 py-2 num text-xs text-zinc-700">{{ $sub['alloc'] > 0 ? '$ ' . number_format($sub['alloc']) : '—' }}</td>
-                        <td class="px-6 py-2 text-xs tabular-nums text-zinc-600">{{ $spct !== null ? number_format($spct, 0) . '%' : '—' }}</td>
-                        <td class="px-6 py-2 text-xs tabular-nums text-zinc-600">{{ $sub['paid_pct'] !== null ? number_format($sub['paid_pct'], 0) . '%' : '—' }}</td>
-                    </tr>
-                @endforeach
-            @empty
-                <tr><td colspan="6"><x-ui.empty-state :title="__('No programs to show.')" :text="__('Programs are registered for each fiscal year at Management > Entities.')" /></td></tr>
-            @endforelse
-        </x-ui.table>
-    </x-ui.card>
+    {{-- The tables are on their own pages --}}
+    <p class="text-sm text-zinc-600">{{ __('The figures of each unit and each programme are on their own pages:') }}
+        <a href="{{ route('units.index') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Units') }}</a> ·
+        <a href="{{ route('planning.programmes') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Programmes') }}</a>.</p>
 
     {{-- Delivery over the year --}}
     @if($achievement !== null)

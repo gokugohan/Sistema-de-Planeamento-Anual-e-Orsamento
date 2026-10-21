@@ -21,7 +21,7 @@ class QueryBudgetTest extends TestCase
 
     /** route => maximum queries for one visit by an administrator, with the Gabinete sample loaded */
     private const BUDGET = [
-        '/' => 42,
+        '/' => 48, // includes the year-at-a-glance panel (cycle, last month's reporting, the inbox); it does not grow with the data
         '/activities' => 44, // includes the per-directorate planning card
         '/activities/create' => 25,
         '/planning/paa-approval' => 30,

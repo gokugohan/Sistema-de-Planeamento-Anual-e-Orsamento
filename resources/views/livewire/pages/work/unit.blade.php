@@ -103,6 +103,9 @@ new class extends Component {
         </div>
     </header>
 
+    {{-- where the year stands, and what is yours --}}
+    <x-year-at-a-glance :year="$year" />
+
     {{-- next for you --}}
     <section aria-label="{{ __('Next for you') }}">
         <h2 class="section-title mb-3">{{ __('Next for you') }}</h2>
@@ -146,6 +149,13 @@ new class extends Component {
                 <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Approved plan in force') }}</dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['in_force']) }}</dd></div>
                 <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Paid') }} <span class="text-xs text-zinc-400">({{ __('verified') }})</span></dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['paid']) }}</dd></div>
             </dl>
+            <p class="mt-4 text-xs text-zinc-500">{{ __('Paid is entered every month in Report execution and counts once someone else has verified it.') }}
+                @if(auth()->user()->can('update_indicator_progress'))
+                    <a href="{{ route('monitoring.report') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Report execution') }} →</a>
+                @else
+                    {{ __('The Director of the unit reports it; you can follow it on each activity, in its Execution tab.') }}
+                @endif
+            </p>
             @if($money['in_force'] > 0)
                 <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-zinc-100" role="img" aria-label="{{ __(':p% of the approved plan paid', ['p' => number_format(min(100, $money['paid'] / $money['in_force'] * 100), 1)]) }}"><div class="h-full bg-emerald-500" style="width: {{ min(100, $money['paid'] / $money['in_force'] * 100) }}%"></div></div>
             @endif

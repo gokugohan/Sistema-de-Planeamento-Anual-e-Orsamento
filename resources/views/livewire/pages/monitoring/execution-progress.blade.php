@@ -184,7 +184,7 @@ new class extends Component {
         $verifierNames = \App\Models\User::whereIn('id', $indicators->flatMap(fn ($i) => $i->progress->pluck('verified_by'))->filter()->unique())->pluck('name', 'id');
     @endphp
 
-    <x-ui.card :title="__('Indicators')" :description="__('What the activity achieved in Q:q', ['q' => $quarter])" padding="p-0">
+    <x-ui.card :title="__('Indicators')" :description="__('What the activity achieved in Q:q (:from to :to)', ['q' => $quarter, 'from' => \Carbon\Carbon::create(2000, ($quarter - 1) * 3 + 1, 1)->translatedFormat('F'), 'to' => \Carbon\Carbon::create(2000, $quarter * 3, 1)->translatedFormat('F')])" padding="p-0">
         @if(! $activityId)
             <x-ui.empty-state :title="__('Choose an activity')" />
         @elseif($indicators->isEmpty())

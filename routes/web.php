@@ -25,6 +25,9 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// How the year works: who does what, when and where, with the steps of the signed-in person marked.
+Route::get('guide', fn () => view('guide'))->middleware(['auth', 'verified'])->name('guide');
+
 // My work: the workspace of the person's own unit; any unit's workspace; and the tree of units to find one.
 Route::get('my-work', function () {
     $unit = app(UnitWorkspace::class)->homeUnit(auth()->user());

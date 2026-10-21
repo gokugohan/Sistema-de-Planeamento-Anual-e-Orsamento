@@ -86,7 +86,7 @@ class DashboardTest extends TestCase
 
         $this->get(route('dashboard'))
             ->assertOk()
-            ->assertSee('Plan cycle '.$this->year)
+            ->assertSee('The year '.$this->year.' at a glance')
             ->assertSee('$ 11,499')           // planned by every activity
             ->assertSee('$ 1,500')            // the approved plan in force (drafts excluded)
             ->assertSee('2 / 3')              // approved / all activities
