@@ -11,9 +11,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** An approved activity's page shows how it is doing: verified spending by month, indicators, the latest words. */
+#[Group('office')]
 class ActivityExecutionTabTest extends TestCase
 {
     use RefreshDatabase;

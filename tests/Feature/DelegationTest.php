@@ -11,9 +11,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** An interim approver stands in for a director for a set time, with that seat's authority over the unit and below. */
+#[Group('office')]
 class DelegationTest extends TestCase
 {
     use RefreshDatabase;

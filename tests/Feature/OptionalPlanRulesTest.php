@@ -20,10 +20,12 @@ use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 /** Nil returns, outside approvals, structure at approval, corrective actions and baselines: off by default, as described when on. */
+#[Group('office')]
 class OptionalPlanRulesTest extends TestCase
 {
     use RefreshDatabase;

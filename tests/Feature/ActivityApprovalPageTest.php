@@ -11,9 +11,11 @@ use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The activity page: the approval trail it shows, and the reason / note its dialogs collect. */
+#[Group('office')]
 class ActivityApprovalPageTest extends TestCase
 {
     use RefreshDatabase;

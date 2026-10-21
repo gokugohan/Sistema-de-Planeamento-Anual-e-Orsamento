@@ -304,9 +304,10 @@ new class extends Component {
                                 @foreach(['committed', 'paid'] as $field)
                                     <td class="px-5 py-3 align-top">
                                         <label for="f-{{ $field }}-{{ $line->id }}" class="sr-only">{{ __(ucfirst($field)) }} — {{ $line->code }}</label>
+                                        <div class="relative w-36"><span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-xs text-zinc-400" aria-hidden="true">$</span>
                                         <input id="f-{{ $field }}-{{ $line->id }}" type="number" step="0.01" min="0" inputmode="decimal" @disabled($disabled)
-                                            wire:model="form.{{ $line->id }}.{{ $field }}" class="flux-input !w-36 text-right tabular-nums"
-                                            @error("form.{$line->id}.{$field}") aria-invalid="true" aria-describedby="e-{{ $field }}-{{ $line->id }}" @enderror>
+                                            wire:model="form.{{ $line->id }}.{{ $field }}" class="flux-input !w-36 pl-6 text-right tabular-nums"
+                                            @error("form.{$line->id}.{$field}") aria-invalid="true" aria-describedby="e-{{ $field }}-{{ $line->id }}" @enderror></div>
                                         @error("form.{$line->id}.{$field}")
                                             <p id="e-{{ $field }}-{{ $line->id }}" class="field-error max-w-[14rem]">{{ $message }}</p>
                                         @enderror

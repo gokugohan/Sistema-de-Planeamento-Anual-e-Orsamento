@@ -13,9 +13,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** Report execution: one page for what an activity spent and achieved in a quarter. */
+#[Group('office')]
 class ReportExecutionPageTest extends TestCase
 {
     use RefreshDatabase;
@@ -61,7 +63,7 @@ class ReportExecutionPageTest extends TestCase
         $page = Volt::actingAs($this->finalApprover())->test('pages.monitoring.report-execution')
             ->set('month', 10)->set('activityId', $this->activity->id);
 
-        $page->assertSee($this->activity->description)->assertSee('Spending')->assertSee('Indicators')->assertSee('Submit everything for verification');
+        $page->assertSee($this->activity->description)->assertSee('Spending')->assertSee('Indicators')->assertSee('Send everything for verification');
         $summary = $page->viewData('summary');
         $this->assertSame($this->activity->lineItems()->whereHas('adjustedBudget')->count(), $summary['spending']['total']);
         $this->assertSame($this->activity->indicators()->count(), $summary['progress']['total']);

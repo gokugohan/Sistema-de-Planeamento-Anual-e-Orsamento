@@ -18,8 +18,10 @@ use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('office')]
 class ProgramYearsTest extends TestCase
 {
     use RefreshDatabase;

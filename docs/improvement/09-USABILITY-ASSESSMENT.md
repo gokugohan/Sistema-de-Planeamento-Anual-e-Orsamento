@@ -156,7 +156,13 @@ Three waves, each independent and testable. Wave 1 answers your two questions di
 
 Not changed in wave 1: the menu clipping (M1), the old status names in tabs and cards (A2, X1), page subtitles (X2) and the 403 page (X4). These are waves 2 and 3.
 
-## 7. What this assessment does not cover
+## 7. Two more pages, built after review
+
+**Verify progress** (Approvals): it showed a bare number and two icon buttons. Each pending line now opens into the details a reviewer needs: who reported it and when, the indicator (kind, target, baseline, means of verification, what was planned for the quarter), what was verified in the other quarters and where that leaves the indicator against its target (with a warning above the target), and the words the unit wrote for the quarter. Buttons say what they do (*Verify*, *Return with a reason*), and a return needs a reason that the unit reads.
+
+**Report execution**: a long dropdown of every activity, three stacked forms and three submit buttons. It now opens on a **worklist** (one row per activity, with badges for spending and indicators: To report, Returned, Waiting for verification, Verified; filters and search), explains that the quarter follows the month, shows a three-step checklist on an opened activity with a way back, keeps the narrative folded until needed, shows a currency sign on amounts and has one send button, *Send everything for verification*.
+
+## 8. What this assessment does not cover
 
 - Mobile layouts and accessibility beyond what was checked in earlier sessions.
 - The Portuguese and Tetun versions: screens were reviewed in English; the new wording for each change needs a competent speaker.

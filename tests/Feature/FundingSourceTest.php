@@ -16,9 +16,11 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** Funding source is a property of the budget line, chosen from a list the administration keeps. */
+#[Group('office')]
 class FundingSourceTest extends TestCase
 {
     use RefreshDatabase;

@@ -8,9 +8,11 @@ use App\Models\User;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The Simulator follows the real chain on who approves: directors and administrators, never the Minister or the technical officer. */
+#[Group('office')]
 class SimulatorApprovalTest extends TestCase
 {
     use RefreshDatabase;

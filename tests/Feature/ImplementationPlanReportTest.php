@@ -12,9 +12,11 @@ use App\Services\ImplementationPlanReport;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The implementation plan of a unit in the ministry's form: actions, months, budget per indicator, the signatures. */
+#[Group('office')]
 class ImplementationPlanReportTest extends TestCase
 {
     use RefreshDatabase;

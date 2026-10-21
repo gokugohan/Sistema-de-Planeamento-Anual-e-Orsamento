@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ['**']
   pull_request:
 
 concurrency:
@@ -13,7 +13,7 @@ jobs:
   checks:
     name: Tests, style and dependency audit
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
 
     services:
       mysql:

@@ -12,9 +12,11 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The approval chain is the same everywhere: the head of the directorate approves; the institution chooses only the two options. */
+#[Group('office')]
 class ApprovalRulesTest extends TestCase
 {
     use RefreshDatabase;

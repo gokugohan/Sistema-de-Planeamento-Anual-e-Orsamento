@@ -15,9 +15,11 @@ use App\Support\Institution;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The resource plan: where an institution asks for it, a finance officer confirms the budget before the activity is certified. */
+#[Group('office')]
 class BudgetConfirmationTest extends TestCase
 {
     use RefreshDatabase;

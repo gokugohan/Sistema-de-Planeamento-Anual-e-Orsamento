@@ -14,9 +14,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The Approvals page: everything waiting for one person, in one place. */
+#[Group('office')]
 class ApprovalInboxTest extends TestCase
 {
     use RefreshDatabase;

@@ -13,9 +13,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The bulk buttons of "Report execution" leave one audit row per figure, like the single actions do. */
+#[Group('office')]
 class BulkExecutionAuditTest extends TestCase
 {
     use RefreshDatabase;

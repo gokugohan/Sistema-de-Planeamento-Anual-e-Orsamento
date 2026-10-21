@@ -9,9 +9,11 @@ use App\Support\ApprovalRules;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The Review button on the Plan Approval page obeys the same rules as the rest of the approval chain. */
+#[Group('office')]
 class ReviewActionAuthorizationTest extends TestCase
 {
     use RefreshDatabase;

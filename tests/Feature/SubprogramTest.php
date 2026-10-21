@@ -19,9 +19,11 @@ use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The budget structure: programme, subprogramme, activity. */
+#[Group('office')]
 class SubprogramTest extends TestCase
 {
     use RefreshDatabase;

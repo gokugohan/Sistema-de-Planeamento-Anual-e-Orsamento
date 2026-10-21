@@ -10,9 +10,11 @@ use App\Services\PlanningWindow;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** A directorate user sees the plan of their own directorate only; an administrator sees every directorate. */
+#[Group('office')]
 class DirectorateSeesOnlyOwnPlanTest extends TestCase
 {
     use RefreshDatabase;

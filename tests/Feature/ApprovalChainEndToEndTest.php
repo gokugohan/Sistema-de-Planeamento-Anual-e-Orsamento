@@ -12,6 +12,7 @@ use App\Support\Institution;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /**
@@ -19,6 +20,7 @@ use Tests\TestCase;
  * the whole ministry (the Minister approves, the plan goes to the CRO) and a single office (its head
  * approves, the plan goes to the ministry).
  */
+#[Group('office')]
 class ApprovalChainEndToEndTest extends TestCase
 {
     use RefreshDatabase;

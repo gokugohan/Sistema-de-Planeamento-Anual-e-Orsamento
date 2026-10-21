@@ -13,10 +13,12 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 /** The director compiles the quarter's text from the unit's reports; the printed report uses it and the unit's text is kept. */
+#[Group('office')]
 class QuarterCompilationTest extends TestCase
 {
     use RefreshDatabase;

@@ -10,9 +10,11 @@ use App\Services\PlanCycle;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The cycle of the annual action plan: windows, approval, end of planning, budget and reporting. */
+#[Group('office')]
 class PlanCycleTest extends TestCase
 {
     use RefreshDatabase;

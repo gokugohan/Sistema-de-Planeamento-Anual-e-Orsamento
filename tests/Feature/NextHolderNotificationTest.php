@@ -11,9 +11,11 @@ use App\Services\ActivityWorkflow;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** When an activity is submitted, those who hold the next step are told: the director, people named in a list, and an interim appointee. */
+#[Group('office')]
 class NextHolderNotificationTest extends TestCase
 {
     use RefreshDatabase;

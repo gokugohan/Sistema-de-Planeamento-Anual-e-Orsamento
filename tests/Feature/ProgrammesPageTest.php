@@ -13,9 +13,11 @@ use App\Services\ProgrammeOverview;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** Plan → Programmes: programmes and sub-programmes with activities and amounts, for the units the user works in. */
+#[Group('office')]
 class ProgrammesPageTest extends TestCase
 {
     use RefreshDatabase;

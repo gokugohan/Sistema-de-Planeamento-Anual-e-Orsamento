@@ -11,12 +11,14 @@ use App\Services\SampleRegistry;
 use App\Support\Institution;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /**
  * The level of the institution (a ministry, or a directorate or gabinete inside one) changes wording and the
  * budget law needed for an envelope; the head of the directorate approves in both.
  */
+#[Group('office')]
 class InstitutionLevelTest extends TestCase
 {
     use RefreshDatabase;

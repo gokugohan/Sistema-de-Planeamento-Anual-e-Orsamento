@@ -12,9 +12,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The Finance Officer verifies the spending the units report, and nothing else. */
+#[Group('office')]
 class FinanceOfficerTest extends TestCase
 {
     use RefreshDatabase;

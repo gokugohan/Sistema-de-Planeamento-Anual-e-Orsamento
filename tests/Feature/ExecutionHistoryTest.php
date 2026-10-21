@@ -12,9 +12,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** A corrected figure still shows what was verified before: who verified it, when, and the values. */
+#[Group('office')]
 class ExecutionHistoryTest extends TestCase
 {
     use RefreshDatabase;

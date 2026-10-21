@@ -13,9 +13,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** A month or quarter with a window can be reported only inside it; no window means open; administrators always can. */
+#[Group('office')]
 class ReportingWindowsTest extends TestCase
 {
     use RefreshDatabase;

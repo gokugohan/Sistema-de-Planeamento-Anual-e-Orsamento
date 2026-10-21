@@ -9,11 +9,13 @@ use App\Services\ActivityVersions;
 use App\Services\ActivityWorkflow;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use RuntimeException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 /** Approving an activity and writing its version is one piece of work: both happen or neither does. */
+#[Group('office')]
 class ApprovalAtomicityTest extends TestCase
 {
     use RefreshDatabase;

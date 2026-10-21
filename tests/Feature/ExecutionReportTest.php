@@ -9,8 +9,10 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('office')]
 class ExecutionReportTest extends TestCase
 {
     use RefreshDatabase;

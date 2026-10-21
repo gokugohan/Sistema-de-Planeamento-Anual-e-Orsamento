@@ -13,9 +13,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The annual plan may be created, edited and submitted only inside its window; no window means open; administrators always can. */
+#[Group('office')]
 class PlanSubmissionWindowTest extends TestCase
 {
     use RefreshDatabase;

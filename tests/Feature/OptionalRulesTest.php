@@ -14,9 +14,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The optional rules are off by default, change nothing until switched on, and do what they say when on. */
+#[Group('office')]
 class OptionalRulesTest extends TestCase
 {
     use RefreshDatabase;

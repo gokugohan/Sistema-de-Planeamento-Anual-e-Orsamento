@@ -11,9 +11,11 @@ use App\Services\PerformanceReport;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The compiled monthly and quarterly performance report, laid out like the printed one: verified figures, the units the reader may see. */
+#[Group('office')]
 class PerformanceReportTest extends TestCase
 {
     use RefreshDatabase;

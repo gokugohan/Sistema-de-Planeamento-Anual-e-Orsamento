@@ -14,9 +14,11 @@ use App\Services\ApprovalInbox;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** Named people for the steps of the chain: they decide where a list exists, and the default rule stays where none does. */
+#[Group('office')]
 class ApproverListsTest extends TestCase
 {
     use RefreshDatabase;

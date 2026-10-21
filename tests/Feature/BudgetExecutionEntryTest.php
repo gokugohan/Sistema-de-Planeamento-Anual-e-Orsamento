@@ -12,8 +12,10 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('office')]
 class BudgetExecutionEntryTest extends TestCase
 {
     use RefreshDatabase;

@@ -12,8 +12,10 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('office')]
 class OfficeSampleDataTest extends TestCase
 {
     use RefreshDatabase;

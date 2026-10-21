@@ -201,7 +201,12 @@ new class extends Component {
 
 <div>
     <x-ui.card :title="__('Narrative')" :description="__('The words that go with the numbers')" padding="p-5">
-        <div class="space-y-8">
+        <div x-data="{ open: {{ ($reports['month'] || $reports['quarter']) ? 'true' : 'false' }} }">
+        <button type="button" x-on:click="open = ! open" x-bind:aria-expanded="open.toString()" class="mb-4 flex w-full items-center justify-between rounded-lg border border-zinc-200 px-4 py-3 text-left text-sm hover:bg-zinc-50">
+            <span class="font-medium text-zinc-900"><span x-show="! open">{{ __('Write the narrative') }}</span><span x-show="open" x-cloak>{{ __('Hide the narrative') }}</span></span>
+            <span class="text-xs text-zinc-500">{{ __('Monthly report') }}: {{ $reports['month'] ? __($reports['month']->status) : __('Not written') }} · {{ __('Quarterly report') }}: {{ $reports['quarter'] ? __($reports['quarter']->status) : __('Not written') }}</span>
+        </button>
+        <div x-show="open" x-cloak class="space-y-8">
             @foreach(['month' => \Carbon\Carbon::create($year, $month, 1)->translatedFormat('F'), 'quarter' => 'Q'.$this->quarter] as $type => $label)
                 @php
                     $r = $reports[$type];
@@ -301,9 +306,10 @@ new class extends Component {
             @endif
             @if($canReport)
                 <div class="flex justify-end border-t border-zinc-200 pt-4">
-                    <x-ui.button type="button" wire:click="submit">{{ __('Submit for Verification') }}</x-ui.button>
+                    <x-ui.button type="button" variant="secondary" wire:click="submit">{{ __('Submit the narrative') }}</x-ui.button>
                 </div>
             @endif
+        </div>
         </div>
     </x-ui.card>
 </div>

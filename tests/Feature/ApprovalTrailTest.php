@@ -14,8 +14,10 @@ use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('office')]
 class ApprovalTrailTest extends TestCase
 {
     use RefreshDatabase;

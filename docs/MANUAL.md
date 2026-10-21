@@ -446,7 +446,9 @@ Once an activity has an approved version, its unit reports what it spent and ach
 
 ![Report execution](manual/img/report-execution.png)
 
-**Execute → Report execution**: choose the **month**, then an **approved activity**. For each budget line enter what was **committed** and what was **paid** in that month, and submit. The month must be within its reporting window (Part 4.5).
+**Execute → Report execution** opens on a **worklist** of the approved activities you may report. Choose the **month** (indicators follow the quarter it belongs to: October to December is Q4). Each row shows where the activity stands for that month: *To report*, *Returned*, *Waiting for verification* or *Verified*, once for spending and once for indicators; the filters above the list (*To report*, *Waiting for verification*, *Done*) narrow it, and the search box finds an activity by code or words. Click a row to open it.
+
+An opened activity shows a short checklist (1 Spending, 2 Indicators, 3 Narrative, with how many are verified), and **← All activities** takes you back. For each budget line enter what was **committed** and what was **paid** in that month; the narrative is optional and stays folded until you open it. One button at the bottom, **Send everything for verification**, sends the month's spending and the quarter's indicators together. The month must be within its reporting window (Part 4.5).
 
 ### 10.2 Quarterly indicators
 
@@ -463,7 +465,7 @@ For each month and quarter the unit writes the **narrative**: results achieved, 
 A different person opens the figures and **verifies or returns** them:
 
 - **Spending (committed and paid)**: a director or the finance officer, from the items in **Approvals** or from *Report execution*.
-- **Indicator progress**: a director from *Report execution*; administrators also have the page **Approvals → Verify progress**, which lists every pending record and can verify them together.
+- **Indicator progress**: a director from *Report execution*; administrators also have the page **Approvals → Verify progress**, which lists every pending record. Open a line with **Details** to see who reported it and when, what the indicator is and how it is checked (kind, baseline, means of verification, what was planned for the quarter), what was verified in the other quarters and where the indicator then stands against its target, and the words the unit wrote for the quarter. Then **Verify**, or **Return with a reason** (the unit reads the reason). You cannot verify what you reported yourself; *Verify all* leaves those lines for someone else.
 
 Only verified figures appear in the dashboard, the performance report and the printed report. You cannot verify your own entry; the system says so.
 

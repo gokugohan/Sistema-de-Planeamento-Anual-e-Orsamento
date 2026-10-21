@@ -13,9 +13,11 @@ use App\Services\ActivityWorkflow;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** While a revision is pending, the version in force keeps its amounts, even for a line the revision removes. */
+#[Group('office')]
 class RevisionKeepsAmountsInForceTest extends TestCase
 {
     use RefreshDatabase;

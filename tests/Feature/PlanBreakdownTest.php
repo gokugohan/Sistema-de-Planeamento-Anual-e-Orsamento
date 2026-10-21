@@ -11,8 +11,10 @@ use App\Models\User;
 use App\Services\PlanBreakdown;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
+#[Group('office')]
 class PlanBreakdownTest extends TestCase
 {
     use RefreshDatabase;

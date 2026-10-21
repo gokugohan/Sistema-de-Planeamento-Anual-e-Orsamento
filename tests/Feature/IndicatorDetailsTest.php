@@ -21,12 +21,14 @@ use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /**
  * Richer indicators: how an indicator is verified, funded and when it is reported; and the national
  * objectives and result indicators of programmes and subprogrammes.
  */
+#[Group('office')]
 class IndicatorDetailsTest extends TestCase
 {
     use RefreshDatabase;

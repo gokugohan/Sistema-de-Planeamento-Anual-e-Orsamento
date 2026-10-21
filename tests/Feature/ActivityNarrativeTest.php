@@ -10,9 +10,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The words that go with the numbers: monthly and quarterly narrative, written by the unit and verified by someone else. */
+#[Group('office')]
 class ActivityNarrativeTest extends TestCase
 {
     use RefreshDatabase;

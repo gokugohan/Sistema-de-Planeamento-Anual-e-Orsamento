@@ -241,7 +241,7 @@ new class extends Component {
 
             @if($anyDrafts && $canReport)
                 <div class="flex justify-end border-t border-zinc-200 bg-zinc-50 px-5 py-4">
-                    <x-ui.button type="button" wire:click="submitProgress">{{ __('Submit for Verification') }}</x-ui.button>
+                    <x-ui.button type="button" wire:click="submitProgress">{{ __('Submit the indicators') }}</x-ui.button>
                 </div>
             @endif
         @endif

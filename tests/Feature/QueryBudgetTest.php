@@ -6,6 +6,7 @@ use App\Models\User;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /**
@@ -15,6 +16,7 @@ use Tests\TestCase;
  *
  * If a page legitimately needs more, raise its ceiling here on purpose and say why in the commit.
  */
+#[Group('office')]
 class QueryBudgetTest extends TestCase
 {
     use RefreshDatabase;

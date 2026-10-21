@@ -18,6 +18,7 @@ use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
@@ -25,6 +26,7 @@ use Tests\TestCase;
  * Planning ends with the final approval of the plan; only the final approver or an administrator reopens it,
  * with a remark. Finalizing stops new activities only: an approved activity can still be revised.
  */
+#[Group('office')]
 class PlanningWindowTest extends TestCase
 {
     use RefreshDatabase;

@@ -11,9 +11,11 @@ use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** Bulk approval on the Plan Approval page: select, review the server's summary, confirm, read what was left out. */
+#[Group('office')]
 class BulkApprovalPageTest extends TestCase
 {
     use RefreshDatabase;

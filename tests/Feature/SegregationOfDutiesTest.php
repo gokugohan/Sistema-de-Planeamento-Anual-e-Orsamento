@@ -11,9 +11,11 @@ use App\Support\ApprovalRules;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The institution may keep the person who prepared an activity from also certifying or approving it. */
+#[Group('office')]
 class SegregationOfDutiesTest extends TestCase
 {
     use RefreshDatabase;

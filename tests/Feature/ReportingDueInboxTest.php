@@ -13,9 +13,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The units' monthly duty shows in their inbox: spending missing for the month that ended, windows about to close. */
+#[Group('office')]
 class ReportingDueInboxTest extends TestCase
 {
     use RefreshDatabase;

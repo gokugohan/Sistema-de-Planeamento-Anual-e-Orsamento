@@ -11,9 +11,11 @@ use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** The year in four plain sentences, the guide page, and the explanations of where the figures come from. */
+#[Group('office')]
 class YearAtAGlanceTest extends TestCase
 {
     use RefreshDatabase;
@@ -163,7 +165,7 @@ class YearAtAGlanceTest extends TestCase
         BudgetExecution::whereIn('line_item_id', $activity->lineItems()->select('id'))->where('month', 10)->delete();
         $this->actingAs($director);
 
-        Volt::test('pages.monitoring.report-execution')->assertSee('Still without a spending report for October')->assertSee('indicators for the quarter it belongs to');
+        Volt::test('pages.monitoring.report-execution')->assertSee('To report')->assertSee('indicators for the quarter it belongs to (October – December)');
 
         $this->get(route('monitoring.report', ['activity' => $activity->id]))->assertOk()->assertSee('What the activity achieved in Q4 (October to December)');
     }

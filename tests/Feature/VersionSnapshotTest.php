@@ -9,9 +9,11 @@ use App\Models\User;
 use App\Services\ActivityVersions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
 /** A version keeps every field that says what the activity is, so it can be read exactly as it was approved. */
+#[Group('office')]
 class VersionSnapshotTest extends TestCase
 {
     use RefreshDatabase;
