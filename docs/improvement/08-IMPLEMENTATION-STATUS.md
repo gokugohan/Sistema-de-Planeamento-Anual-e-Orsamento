@@ -2,7 +2,7 @@
 
 *Branch `improvement`, pushed to `origin/improvement` (pull request into `main` not opened yet). Latest commit `b9d286a`. Work is traced to `07-IMPLEMENTATION-BACKLOG.md`. No migration has been run against the development or any production database: schema changes ran only in the automated tests, on the test database.*
 
-**Tests on `b9d286a`:** full suite on `094242b` (same application code as `b9d286a`): 420 passed, 0 failed, 1,779 assertions; `vendor/bin/pint --test` passed. `b9d286a` adds only the unit test `NoDirectStatusUpdateTest`, which passes on its own; the full suite was not re-run on it because the local MySQL server was stopped.
+**Tests on `b9d286a`:** full suite on `819f84a` (same application code as `b9d286a`): **421 passed, 0 failed** (1,780 assertions); `vendor/bin/pint --test` passed on `094242b`, and the only PHP file added since (`NoDirectStatusUpdateTest`) was formatted with Pint.
 
 | PR | Requirement | Gap | Commit subject | Schema | Status |
 |---|---|---|---|---|---|

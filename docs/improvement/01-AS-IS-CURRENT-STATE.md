@@ -32,7 +32,7 @@ The findings below are those of sections 7 and 8. "Fixed" means the code on the 
 - **O11.** The Simulator (`resources/views/livewire/testing/simulation-list.blade.php`) approves and rejects by writing the status itself, and lets the Minister approve. It works only on simulation records (`Activity::testData()`), which reports and the audit trail leave out, so it is allowed in the guard test. It does not follow the real chain and could mislead a trainee. **[CODE]**
 - **O12.** Official budget-book activity codes repeat across units in the same year (sample data, for example `5100111`). An activity code is therefore unique only within a unit and a year. **[CODE]**, from the sample seeders.
 
-**Tests.** full suite on `094242b` (same application code as `b9d286a`): 420 passed, 0 failed, 1,779 assertions; `vendor/bin/pint --test` passed. `b9d286a` adds only the unit test `NoDirectStatusUpdateTest`, which passes on its own; the full suite was not re-run on it because the local MySQL server was stopped.
+**Tests.** full suite on `819f84a` (same application code as `b9d286a`): **421 passed, 0 failed** (1,780 assertions); `vendor/bin/pint --test` passed on `094242b`, and the only PHP file added since (`NoDirectStatusUpdateTest`) was formatted with Pint.
 
 
 ## 0. Method, limits and labels
