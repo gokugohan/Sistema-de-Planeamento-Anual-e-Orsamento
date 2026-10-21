@@ -16,7 +16,7 @@ class ExecutionHistory
 {
     /**
      * @return array<int, array{executed: float, verified_by: ?string, verified_at: Carbon}>
-     *                                                                                                     every time the figure was verified with values that are not the current ones, oldest first
+     *                                                                                       every time the figure was verified with values that are not the current ones, oldest first
      */
     public function earlierVerified(BudgetExecution $entry): array
     {
