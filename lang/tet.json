@@ -2510,5 +2510,9 @@
     "Institution logo": "Logu instituisaun nian",
     "Logo of the institution": "Logu instituisaun nian",
     "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.": "Enderesu imajen ida (https://...) ka fitxeiru ida iha laran husi pasta public aplikasaun nian. Hatudu iha menu no iha pájina hatama. Husik mamuk atu hatudu sigla.",
-    "Planned and approved, by unit": "Planu no aprova, tuir unidade"
+    "Planned and approved, by unit": "Planu no aprova, tuir unidade",
+    "Identity, logo, approval rules, e-mail and testing": "Identidade, logu, regra aprovasaun nian, e-mail no teste",
+    "Rules of the planning cycle to switch on": "Regra husi siklu planeamentu atu loke",
+    "Dates for each step, and more time for a late unit": "Data ba pasu ida-idak no tempu tan ba unidade neʼebé tarde",
+    "Notifications and testing": "Notifikasaun no teste"
 }

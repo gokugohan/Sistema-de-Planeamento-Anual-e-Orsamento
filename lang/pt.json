@@ -2510,5 +2510,9 @@
     "Institution logo": "Logótipo da instituição",
     "Logo of the institution": "Logótipo da instituição",
     "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.": "O endereço de uma imagem (https://...) ou um ficheiro dentro da pasta public da aplicação. É mostrado no menu e na página de entrada. Deixe vazio para mostrar a sigla.",
-    "Planned and approved, by unit": "Planeado e aprovado, por unidade"
+    "Planned and approved, by unit": "Planeado e aprovado, por unidade",
+    "Identity, logo, approval rules, e-mail and testing": "Identidade, logótipo, regras de aprovação, e-mail e testes",
+    "Rules of the planning cycle to switch on": "Regras do ciclo de planeamento a ativar",
+    "Dates for each step, and more time for a late unit": "Datas de cada passo e mais tempo para uma unidade em atraso",
+    "Notifications and testing": "Notificações e testes"
 }

@@ -22,7 +22,6 @@
         [__('Write the plan'), __('Units write their activities, indicators and budget lines')],
         [__('Review & approve'), __('Prepared, certified and approved by the head of each directorate')],
         [__('Finalize'), __('Each directorate finalizes its approved plan')],
-        [__('Fund'), __('Register the envelope and share it over the approved plan')],
         [__('Report'), __('Report month by month and verify the results against the targets')],
     ];
 @endphp
@@ -53,40 +52,37 @@
             <div class="absolute inset-x-0 top-0 h-1 bg-indigo-600"></div>
 
             <div class="relative flex flex-col h-full px-12 xl:px-16 py-12">
-                {{-- Institution --}}
-                <div class="flex items-center gap-4">
+                <p class="text-[11px] font-medium uppercase tracking-[0.18em] text-nav-muted">República Democrática de Timor-Leste</p>
+
+                {{-- The institution: its emblem, large, then who and what this system is --}}
+                <div class="flex-1 flex flex-col justify-center py-10 max-w-xl">
                     @if($logoUrl)
-                        <img src="{{ $logoUrl }}" alt="" class="h-12 w-12 object-contain rounded bg-white p-1">
+                        <img src="{{ $logoUrl }}" alt="" class="h-36 xl:h-40 w-auto self-start rounded-2xl bg-white p-4 shadow-xl shadow-black/30">
                     @else
-                        <div class="h-12 w-12 rounded-md bg-indigo-600 flex items-center justify-center" aria-hidden="true">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="h-28 w-28 rounded-2xl bg-indigo-600 flex items-center justify-center shadow-xl shadow-black/30" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 21h18" /><path d="M5 21V9l7-5 7 5v12" /><path d="M9 21v-6h6v6" />
                             </svg>
                         </div>
                     @endif
-                    <div class="min-w-0">
-                        <p class="text-[11px] font-medium uppercase tracking-[0.18em] text-nav-muted">República Democrática de Timor-Leste</p>
-                        <p class="text-base font-semibold text-white leading-snug truncate">{{ $org }}</p>
-                    </div>
-                </div>
 
-                {{-- Product and cycle --}}
-                <div class="flex-1 flex flex-col justify-center py-14 max-w-xl">
-                    <p class="text-sm font-medium text-indigo-300">{{ $product }}</p>
-                    <h2 class="mt-3 text-3xl xl:text-4xl font-bold text-white leading-tight tracking-tight">
+                    <p class="mt-8 text-2xl xl:text-[1.75rem] font-bold text-white leading-tight tracking-tight">{{ $org }}</p>
+                    <p class="mt-2 text-sm font-medium text-indigo-300">{{ $product }}</p>
+                    <div class="mt-6 h-px w-16 bg-white/20"></div>
+                    <h2 class="mt-6 text-lg font-medium text-zinc-200 leading-relaxed">
                         {{ $tagline !== '' ? $tagline : __('The Annual Action Plan, from the first activity to the report of the year') }}
                     </h2>
                     @if($description !== '')
-                        <p class="mt-4 text-[15px] leading-relaxed text-zinc-400">{{ $description }}</p>
+                        <p class="mt-3 text-sm leading-relaxed text-zinc-400">{{ $description }}</p>
                     @endif
 
-                    <ol class="mt-10 space-y-5" aria-label="{{ __('The annual cycle') }}">
+                    <ol class="mt-8 grid grid-cols-2 gap-x-8 gap-y-5" aria-label="{{ __('The annual cycle') }}">
                         @foreach($steps as $i => [$title, $text])
-                            <li class="flex gap-4">
-                                <span class="mt-0.5 h-7 w-7 shrink-0 rounded-full border border-white/20 text-xs font-semibold text-white flex items-center justify-center" aria-hidden="true">{{ $i + 1 }}</span>
+                            <li class="flex gap-3">
+                                <span class="mt-0.5 h-6 w-6 shrink-0 rounded-full border border-white/25 text-[11px] font-semibold text-white flex items-center justify-center" aria-hidden="true">{{ $i + 1 }}</span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">{{ $title }}</p>
-                                    <p class="text-sm text-zinc-400">{{ $text }}</p>
+                                    <p class="text-xs leading-relaxed text-zinc-400">{{ $text }}</p>
                                 </div>
                             </li>
                         @endforeach
@@ -127,7 +123,7 @@
                 {{-- compact identity when pane 1 is hidden --}}
                 <div class="lg:hidden flex items-center gap-3 min-w-0">
                     @if($logoUrl)
-                        <img src="{{ $logoUrl }}" alt="" class="h-9 w-9 object-contain">
+                        <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3.25rem] object-contain">
                     @else
                         <div class="h-9 w-9 rounded-md bg-indigo-600 flex items-center justify-center" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18" /><path d="M5 21V9l7-5 7 5v12" /><path d="M9 21v-6h6v6" /></svg>

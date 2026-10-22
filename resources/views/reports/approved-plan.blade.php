@@ -102,7 +102,7 @@
 
 <div class="footer">
     <table><tr>
-        <td style="width:44%">{{ $report['reference'] }} · {{ __('Fingerprint') }} {{ $report['fingerprint'] }}</td>
+        <td style="width:44%">{{ $report['reference'] }}</td>
         <td style="width:38%">{{ __('Generated') }} {{ $report['generated_at']->format('Y-m-d H:i') . ' TLT' }}@if($report['generated_by']) · {{ $report['generated_by'] }}@endif</td>
         <td style="width:18%"></td>{{-- page numbers are drawn by the PDF renderer --}}
     </tr></table>

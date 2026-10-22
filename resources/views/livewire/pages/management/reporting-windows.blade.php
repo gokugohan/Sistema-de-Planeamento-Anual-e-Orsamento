@@ -95,6 +95,7 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
+    <x-system-tabs />
     <x-ui.page-header :title="__('Calendar')" :subtitle="__('The dates for planning, approval, finalizing the plan, revisions and reporting. A step with no dates is open. Administrators can always act; a late unit can be given more time on its own.')">
         <span class="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-800">{{ __('Fiscal year') }} {{ $year }}</span>
     </x-ui.page-header>

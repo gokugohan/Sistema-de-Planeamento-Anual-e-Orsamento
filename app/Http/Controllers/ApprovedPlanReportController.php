@@ -65,6 +65,7 @@ class ApprovedPlanReportController extends Controller
                 'fiscal_year' => $report['year'],
                 'mode' => $mode,
                 'reference' => $report['reference'],
+                'fingerprint' => $report['fingerprint'],
                 'activities' => $report['totals']['count'],
                 'total' => $report['totals']['total'],
                 'baseline' => $report['baseline']['id'] ?? null,

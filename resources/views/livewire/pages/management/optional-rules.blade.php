@@ -61,6 +61,7 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
+    <x-system-tabs />
     <x-ui.page-header :title="__('Optional rules')" :subtitle="__('Rules of the planning cycle that are off until your institution confirms that it needs them. Each one changes only what is written next to it.')" />
 
     <form wire:submit="save" class="space-y-6">

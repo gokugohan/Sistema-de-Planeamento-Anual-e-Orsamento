@@ -95,9 +95,8 @@ return [
             'label' => 'System',
             'roles' => ['Admin'],
             'items' => [
-                ['label' => 'Settings', 'route' => 'management.settings', 'icon' => 'settings', 'hint' => 'Organisation identity and planning options'],
-                ['label' => 'Optional rules', 'route' => 'management.optional-rules', 'icon' => 'settings', 'hint' => 'Rules of the planning cycle to switch on when your institution needs them'],
-                ['label' => 'Calendar', 'route' => 'management.reporting-windows', 'icon' => 'calendar', 'hint' => 'Dates for planning, approval, finalizing and reporting; more time for a late unit'],
+                ['label' => 'Settings', 'route' => 'management.settings', 'match' => ['management.settings', 'management.optional-rules', 'management.reporting-windows'], 'icon' => 'settings',
+                    'hint' => 'Identity and logo, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
                 ['label' => 'Sample Data', 'route' => 'management.sample-data', 'icon' => 'flask-conical', 'hint' => 'Load or purge the demo dataset'],
@@ -115,6 +114,8 @@ return [
 
     // Screens that are not menu entries: route => [parent route, breadcrumb label]
     'pages' => [
+        'management.optional-rules' => ['management.settings', 'Optional rules'],
+        'management.reporting-windows' => ['management.settings', 'Calendar'],
         'units.show' => ['units.index', 'Unit workspace'],
         'activities.create' => ['activities.index', 'New activity'],
         'activities.edit' => ['activities.index', 'Edit activity'],

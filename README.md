@@ -164,7 +164,7 @@ A fresh install contains no organisation, programmes or activities. If you tried
 5. **Users.** *Administration → System Users*: create accounts, assign a role and a directorate. Users see their own unit's data. There is no public sign-up: the sign-in page tells people to contact the administrator.
 6. **Activities.** Technical officers enter them in the app, or an administrator **imports** them in bulk:
    *System → Import Activities* accepts a CSV (`;`, `,` or tab separated; UTF-8 or Windows-1252). Download the template from that page. Rows sharing a `ref` form one activity; each row can carry an indicator, a budget line, or both. The file is **validated first, with row numbers for every problem**, and nothing is written until it is clean. Everything imports as `Draft`, and re-importing the same file is rejected as a duplicate.
-7. **Fiscal year.** Turn on *enable next year planning* in Settings when you start planning the next year.
+7. **Fiscal year.** Planning for a new year opens by itself once the years before it are finalized; the dates of each step are set in *System → Settings → Calendar*.
 8. **Optional rules.** *System → Optional rules*: rules that are off until your institution needs them (nil returns, extra mandatory fields, planning guidance, revisions needing an outside approval, baselines, institution-wide finance officers, corrective actions, reports by the structure at approval). See the manual, Part 4.9.
 
 ---

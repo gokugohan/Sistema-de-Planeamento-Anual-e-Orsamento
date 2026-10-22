@@ -77,7 +77,7 @@ The left menu is grouped by what you do. Each person sees only the groups and en
 | **Execute** | Report what was spent and achieved; compile the quarter. |
 | **Insights** | Performance and reports. |
 | **Administration** (administrators) | *System Users*, *Structure* (units, programmes, sub-programmes, economic categories) and *Funding sources*: who and what the plan is made of. |
-| **System** (administrators) | *Settings*, *Optional rules*, *Calendar*, *Import Activities*, *Audit Log* and *Sample Data*: how the system runs. |
+| **System** (administrators) | *Settings* (with its tabs *Optional rules* and *Calendar*), *Import Activities*, *Audit Log* and *Sample Data*: how the system runs. The three tabs are one area: the identity and the logo of the institution, the approval rules, e-mail and testing; the rules of the planning cycle; and the dates of each step. |
 
 **Plan → Programmes** is for reading. Each programme shows its sub-programmes, how many activities each has (and how many are approved), the amount planned, the approved plan amount and what has been executed (verified). A directorate sees the programmes and the figures of its own units only; an administrator or anyone who sees every plan sees them all. *Open activities* leads to the activity list already filtered to that programme or sub-programme. Programmes are created and edited by an administrator under *Administration → Structure*.
 
@@ -509,7 +509,7 @@ The **Dashboard** (Part 1.3) and **Insights → Reporting** show the annual perf
 
 ![The approved plan report](manual/img/approved-plan.png)
 
-**Reporting → Final plan report** is the plan of approved activities in the layout of the Ministry of Finance form (A4 landscape): programme and subprogramme bands, each activity with its indicators, baseline, target, means of verification, unit, funding source, the quarterly implementation schedule and the amount by economic category. It carries a document reference and a fingerprint so that a printed copy can be checked.
+**Reporting → Final plan report** is the plan of approved activities in the layout of the Ministry of Finance form (A4 landscape): programme and subprogramme bands, each activity with its indicators, baseline, target, means of verification, unit, funding source, the quarterly implementation schedule and the amount by economic category. It carries a document reference such as `PAA-2027`; each export is also recorded in the audit log, with a code that identifies the exact content of the plan it came from.
 
 Choose **Complete report** or **Summary** from the selector. **Print** to paper or **Download PDF**. The report is of the plan; it is not addressed to anyone.
 

@@ -2266,5 +2266,9 @@
     "Institution logo": "Institution logo",
     "Logo of the institution": "Logo of the institution",
     "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.": "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.",
-    "Planned and approved, by unit": "Planned and approved, by unit"
+    "Planned and approved, by unit": "Planned and approved, by unit",
+    "Identity, logo, approval rules, e-mail and testing": "Identity, logo, approval rules, e-mail and testing",
+    "Rules of the planning cycle to switch on": "Rules of the planning cycle to switch on",
+    "Dates for each step, and more time for a late unit": "Dates for each step, and more time for a late unit",
+    "Notifications and testing": "Notifications and testing"
 }

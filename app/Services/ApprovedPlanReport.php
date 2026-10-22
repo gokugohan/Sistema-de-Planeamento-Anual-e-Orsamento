@@ -172,13 +172,13 @@ class ApprovedPlanReport
             'generated_by' => auth()->user()?->name,
         ];
 
-        // Fingerprint of the plan content: identical plans give identical
-        // fingerprints, so a printed copy can be checked against the system.
+        // A fingerprint of the plan content (identical plans give identical ones). It is not printed: it is kept in the audit
+        // trail of each export, so that it is known which version of the plan a document came from.
         $report['fingerprint'] = substr(hash('sha256', json_encode([
             $year,
             $rows->map(fn ($r) => [$r['activity']->id, $inForce[$r['activity']->id] ?? $r['activity']->updated_at?->timestamp, $r['by_class']])->all(),
         ])), 0, 16);
-        $report['reference'] = sprintf('PAA-%d-%s', $year, strtoupper($report['fingerprint']));
+        $report['reference'] = $baseline ? sprintf('PAA-%d-B%d', $year, $baseline->id) : sprintf('PAA-%d', $year);
 
         return $report;
     }
