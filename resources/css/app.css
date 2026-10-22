@@ -203,3 +203,14 @@ input.bg-transparent:not(.flux-input):focus-visible {
         display: none !important;
     }
 }
+
+
+/* ─── Date picker (flatpickr): the brand blue, above sticky bars ─── */
+.flatpickr-calendar { @apply rounded-lg border border-zinc-200 shadow-lg font-sans; z-index: 60; }
+.flatpickr-day.selected, .flatpickr-day.selected:hover, .flatpickr-day.startRange, .flatpickr-day.endRange {
+    background: #2152C4; border-color: #2152C4; color: #fff;
+}
+.flatpickr-day.today { border-color: #2152C4; }
+.flatpickr-day:hover { background: #EEF4FF; border-color: #EEF4FF; }
+.flatpickr-months .flatpickr-month, .flatpickr-current-month .flatpickr-monthDropdown-months, span.flatpickr-weekday { color: #0F172A; fill: #0F172A; }
+input.flatpickr-input.flux-input[readonly] { cursor: pointer; }

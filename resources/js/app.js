@@ -1,4 +1,5 @@
 import './bootstrap';
+import './datepicker';
 
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';

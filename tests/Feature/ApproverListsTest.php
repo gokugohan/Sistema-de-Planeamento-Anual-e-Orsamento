@@ -175,6 +175,8 @@ class ApproverListsTest extends TestCase
         $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $a = $this->person();
         $b = $this->person();
+        $a->update(['directorate_id' => $this->unit->id]);
+        $b->update(['directorate_id' => $this->unit->id]);
 
         $page = Volt::actingAs($director)->test('pages.approvals.approver-lists')->set('unitId', (string) $this->unit->id)
             ->set('pick.certify', (string) $a->id)->call('add', 'certify')
@@ -190,6 +192,25 @@ class ApproverListsTest extends TestCase
 
         $foreign = Directorate::where('id', '!=', $this->unit->id)->where('id', '!=', $this->root->id)->firstOrFail();
         $page->set('unitId', (string) $foreign->id)->set('pick.approve', (string) $a->id)->call('add', 'approve')->assertForbidden();
+    }
+
+    public function test_only_the_people_of_the_unit_can_be_named_for_it(): void
+    {
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
+        $mine = $this->person();
+        $mine->update(['name' => 'Ana Ofunit', 'directorate_id' => $this->unit->id]);
+        $other = $this->person();
+        $other->update(['name' => 'Bento Elsewhere', 'directorate_id' => $this->root->id]);
+
+        $page = fn () => Volt::actingAs($director)->test('pages.approvals.approver-lists')->set('unitId', (string) $this->unit->id);
+
+        $page()->assertSee('Ana Ofunit')->assertDontSee('Bento Elsewhere');
+
+        $page()->set('pick.certify', (string) $other->id)->call('add', 'certify')->assertStatus(422);
+        $this->assertSame(0, ApproverAssignment::where(['directorate_id' => $this->unit->id, 'user_id' => $other->id])->count());
+
+        $page()->set('pick.certify', (string) $mine->id)->call('add', 'certify')->assertOk();
+        $this->assertSame(1, ApproverAssignment::where(['directorate_id' => $this->unit->id, 'user_id' => $mine->id, 'step' => 'certify'])->count());
     }
 
     public function test_only_directors_and_administrators_open_the_page(): void

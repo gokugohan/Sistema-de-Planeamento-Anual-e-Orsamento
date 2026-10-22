@@ -48,7 +48,8 @@ new class extends Component {
     {
         abort_unless(in_array($step, ApproverAssignment::STEPS, true) && $this->mayEdit((int) $this->unitId), 403);
         $userId = (int) ($this->pick[$step] ?? 0);
-        abort_unless($userId && User::whereKey($userId)->exists(), 422);
+        // only the people of the unit can be named for it
+        abort_unless($userId && User::whereKey($userId)->where('directorate_id', (int) $this->unitId)->exists(), 422);
 
         $exists = ApproverAssignment::where(['directorate_id' => $this->unitId, 'user_id' => $userId, 'step' => $step])->exists();
         if (! $exists) {
@@ -132,6 +133,7 @@ new class extends Component {
 
         return [
             'units' => $this->units(), 'unit' => $unit, 'lists' => $lists, 'people' => User::orderBy('name')->limit(500)->get(['id', 'name']),
+            'unitPeople' => $unit ? User::where('directorate_id', $unit->id)->orderBy('name')->get(['id', 'name']) : collect(),
             'named' => User::whereIn('id', $named)->orderBy('name')->get(['id', 'name']),
         ];
     }
@@ -187,10 +189,13 @@ new class extends Component {
                     <div class="mt-4 flex gap-2">
                         <select wire:model="pick.{{ $key }}" class="flux-input" aria-label="{{ __('Add a person') }}">
                             <option value="">{{ __('Add a person') }}</option>
-                            @foreach($people as $p)@unless($members->contains('user_id', $p->id))<option value="{{ $p->id }}">{{ $p->name }}</option>@endunless @endforeach
+                            @foreach($unitPeople as $p)@unless($members->contains('user_id', $p->id))<option value="{{ $p->id }}">{{ $p->name }}</option>@endunless @endforeach
                         </select>
                         <x-ui.button type="button" variant="secondary" shadow="none" wire:click="add('{{ $key }}')">{{ __('Add') }}</x-ui.button>
                     </div>
+                    @if($unitPeople->isEmpty())
+                        <p class="mt-2 text-xs text-amber-800">{{ __('No user belongs to this unit yet. Give the unit its people in System Users, then name them here.') }}</p>
+                    @endif
                 </x-ui.card>
             @endforeach
         </div>
