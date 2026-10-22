@@ -13,9 +13,8 @@
     $owner = SystemSetting::get('system_owner', '');
     $implementedBy = SystemSetting::get('implemented_by', '');
 
-    // Institution logo (Settings), if one was provided: a full URL or a path inside /public.
-    $logo = SystemSetting::get('organization_logo');
-    $logoUrl = $logo ? (str_starts_with($logo, 'http') ? $logo : asset(ltrim($logo, '/'))) : null;
+    // Institution logo (Settings), if one was provided; the browser icon follows it.
+    $logoUrl = \App\Support\Branding::logoUrl();
 
     // The cycle the application supports, in the order users live it.
     $steps = [
@@ -33,6 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="{{ \App\Support\Branding::faviconUrl() }}">
 
     <title>{{ __('Sign in') }} &mdash; {{ $product }}</title>
 
@@ -106,12 +106,7 @@
                         <p class="text-xs leading-relaxed text-indigo-200">
                             &copy; {{ date('Y') }} {{ $owner ?: $org }}<br>{{ __('All rights reserved') }}
                         </p>
-                        @if(file_exists(public_path('logo.png')))
-                            <div class="flex items-center gap-2.5" title="{{ __('Implemented by') }} {{ $implementedBy }}">
-                                <span class="text-xs text-indigo-200 text-right leading-tight">{{ __('Implemented by') }}<br><span class="text-white font-medium">{{ $implementedBy ?: 'G-Kakaroto' }}</span></span>
-                                <img src="{{ asset('logo.png') }}" alt="" width="44" height="44" loading="lazy" class="h-11 w-11 shrink-0 object-contain">
-                            </div>
-                        @endif
+                        <p class="text-xs text-indigo-200 text-right leading-tight">{{ __('Implemented by') }}<br><span class="text-white font-medium">{{ $implementedBy ?: \App\Support\Branding::IMPLEMENTER }}</span></p>
                     </div>
                 </div>
             </div>

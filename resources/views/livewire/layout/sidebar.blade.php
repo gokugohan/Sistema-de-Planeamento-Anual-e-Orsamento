@@ -33,13 +33,13 @@ new class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col h-screen w-64 bg-zinc-900 fixed left-0 top-0 overflow-y-auto z-50 transition-transform duration-300 md:translate-x-0"
+<div class="flex flex-col h-screen w-64 bg-gradient-to-b from-indigo-800 via-indigo-900 to-indigo-950 fixed left-0 top-0 overflow-y-auto z-50 transition-transform duration-300 md:translate-x-0"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
     <!-- Mobile Close -->
     <div class="md:hidden absolute top-4 right-4">
         <button @click="sidebarOpen = false"
-            class="p-1.5 text-zinc-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+            class="p-1.5 text-indigo-200 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 6 6 18" /><path d="m6 6 12 12" />
@@ -52,15 +52,14 @@ new class extends Component {
         $orgName = \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name');
         $orgAbbr = \App\Models\SystemSetting::getLocalized('org_abbr', 'ORG');
         // the institution's logo (Settings), when there is one: a full URL or a path inside /public
-        $logo = \App\Models\SystemSetting::get('organization_logo');
-        $logoUrl = $logo ? (str_starts_with($logo, 'http') ? $logo : asset(ltrim($logo, '/'))) : null;
+        $logoUrl = \App\Support\Branding::logoUrl();
     @endphp
     <a href="{{ route('dashboard') }}" wire:navigate title="{{ $orgName }}"
-        class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-white/10 hover:bg-white/5 transition-colors">
+        class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-white/15 hover:bg-white/5 transition-colors">
         @if($logoUrl)
-            <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3rem] shrink-0 object-contain" aria-hidden="true">
+            <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3rem] shrink-0 object-contain rounded-lg bg-white p-1" aria-hidden="true">
         @else
-            <span class="flex h-10 min-w-10 items-center justify-center rounded-md bg-indigo-600 px-1.5 text-[11px] font-bold tracking-wide text-white" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
+            <span class="flex h-10 min-w-10 items-center justify-center rounded-md bg-white/15 px-1.5 text-[11px] font-bold tracking-wide text-white ring-1 ring-white/30" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
         @endif
         <span class="min-w-0">
             <span class="block text-[13px] font-semibold leading-snug text-white line-clamp-3">{{ $orgName }}</span>
@@ -92,7 +91,7 @@ new class extends Component {
                                         <path d="m6 9 6 6 6-6" />
                                     </svg>
                                 </button>
-                                <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-white/10 space-y-0.5">
+                                <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-white/20 space-y-0.5">
                                     @foreach($item['children'] as $child)
                                         <x-sidebar-link :href="route($child['route'])" :active="\App\Support\Navigation::isActive($child)"
                                             :icon="$child['icon'] ?? 'circle'">{{ __($child['label']) }}</x-sidebar-link>
@@ -110,7 +109,7 @@ new class extends Component {
     </nav>
 
     <!-- Bottom Widgets -->
-    <div class="px-4 py-4 border-t border-white/10 space-y-3">
+    <div class="px-4 py-4 border-t border-white/15 space-y-3">
 
         <!-- Working year and how much of its plan is approved -->
         @if($activityCount > 0)
@@ -133,8 +132,8 @@ new class extends Component {
         $sOwner  = \App\Models\SystemSetting::get('system_owner', '');
         $sImplBy = \App\Models\SystemSetting::get('implemented_by', '');
     @endphp
-    <div class="px-5 pb-4 pt-3 border-t border-white/10 text-[11px] leading-relaxed text-nav-muted">
+    <div class="px-5 pb-4 pt-3 border-t border-white/15 text-[11px] leading-relaxed text-nav-muted">
         <p>&copy; {{ date('Y') }} {{ $sOwner }}</p>
-        @if($sImplBy)<p>{{ __('Implemented by') }} {{ $sImplBy }}</p>@endif
+        <p>{{ __('Implemented by') }} {{ $sImplBy ?: \App\Support\Branding::IMPLEMENTER }}</p>
     </div>
 </div>

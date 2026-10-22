@@ -132,15 +132,14 @@ Do these once, in this order. Everything is under **Administration** in the menu
 
 ![Settings](manual/img/settings.png)
 
-**System → Settings**:
+**System → Settings** is one page of four parts, listed on the left (the list stays in view as you scroll). The **Optional rules** and **Calendar** tabs above it are the rest of the same area.
 
-- **Organisation**: the full name and abbreviation of your institution, in Tetum, Portuguese and English, and the texts of the login page. These are what users see; nothing is fixed in the code.
-- **Institution level**: *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry; you can say who it is sent to). This only changes the wording.
-- **Approval chain**: whether the director of the unit above **validates** first (the default for a ministry), and whether **finance confirms the budget** of each activity before it is certified (off by default).
-- **Next-year planning**: allow units to plan the next fiscal year.
-- **Testing mode**: a practice area with its own test data (off by default).
+1. **Institution and texts**: the full name and abbreviation of your institution, the name, tagline and description of the system, in Tetum, Portuguese and English (choose the language with the buttons), and the credits at the foot of the sign-in page (the owner, and who implemented the system). These are what users see; nothing is fixed in the code.
+2. **Logo and browser icon**: choose an image (PNG, JPG or WebP, up to 2 MB) and press **Use this logo**. It is made smaller, shown in the menu and on the sign-in page, and a browser icon (favicon) is made from it. **Remove logo** goes back to the abbreviation. This part saves with its own buttons.
+3. **Level and approval**: *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry; you can say who it is sent to), whether the director of the unit above **validates** first, whether **finance confirms the budget** of each activity before it is certified, and whether the person who prepared an activity may also certify or approve it.
+4. **Notifications and testing**: send notifications **by e-mail** as well as in the bell (Part 11.5), and the **testing mode**, a practice area with its own test data (off by default).
 
-Click **Save Settings**.
+Click **Save Settings** to save parts 1, 3 and 4.
 
 ### 4.2 Structure: units, programmes, economic categories
 

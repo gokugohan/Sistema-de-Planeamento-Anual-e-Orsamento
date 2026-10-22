@@ -56,7 +56,7 @@
     }
 
     .nav-item-active {
-        @apply bg-white/10 text-white;
+        @apply bg-white/15 text-white;
     }
 
     .nav-item-inactive {

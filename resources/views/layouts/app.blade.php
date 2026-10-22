@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ \App\Support\Branding::faviconUrl() }}">
 
     <title>@if(!empty($title)){{ $title }} &mdash; @endif{{ \App\Models\SystemSetting::getLocalized('app_name', config('app.name')) }} &mdash; {{ \App\Models\SystemSetting::getLocalized('app_tagline', '') }}</title>
 
@@ -92,7 +93,7 @@
             <livewire:layout.topbar />
 
             <!-- Page Content -->
-            <div class="flex-1 overflow-y-auto">
+            <div class="flex-1 overflow-x-clip">
 
                 <!-- Main Content Area -->
                 @if(app()->isProduction() && \App\Models\SystemSetting::get(\App\Services\SampleRegistry::FLAG, false) && auth()->user()?->isAdministrator())

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnualPlanReportController;
 use App\Http\Controllers\ApprovedPlanReportController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ImplementationPlanController;
 use App\Http\Controllers\PerformanceReportController;
@@ -127,6 +128,10 @@ Route::get('planning/programmes', function () {
 Route::get('reports/paa', function () {
     return view('reports.paa');
 })->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');
+
+// The institution's logo and browser icon (public: the sign-in page shows them)
+Route::get('brand/logo', [BrandController::class, 'logo'])->name('brand.logo');
+Route::get('brand/favicon', [BrandController::class, 'favicon'])->name('brand.favicon');
 
 // The annual report of the plan as a printable document and as a PDF
 Route::get('reports/annual-plan', [AnnualPlanReportController::class, 'show'])

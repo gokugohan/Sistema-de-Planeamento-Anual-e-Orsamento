@@ -62,9 +62,9 @@ export default {
                 gray: neutral,
                 slate: neutral,
                 body: '#F5F7FB',
-                'nav-hover': '#1E293B',
-                'nav-text': '#D5DDE8',
-                'nav-muted': '#93A3B8',
+                'nav-hover': 'rgba(255, 255, 255, 0.10)',
+                'nav-text': '#DCE8FF',
+                'nav-muted': '#BED3FF',
             },
             borderRadius: {
                 lg: '0.5rem',
