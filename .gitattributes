@@ -9,3 +9,6 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+
+# shell scripts run inside Linux containers: always LF
+*.sh text eol=lf

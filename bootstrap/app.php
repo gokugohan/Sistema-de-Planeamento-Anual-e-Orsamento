@@ -25,6 +25,10 @@ return Application::configure(basePath: dirname(__DIR__))
             SecurityHeaders::class,
             LogSlowRequests::class,
         ]);
+        // behind a reverse proxy (Caddy, a load balancer): trust its X-Forwarded-* headers so that links and cookies use https
+        if ($proxies = env('TRUSTED_PROXIES')) {
+            $middleware->trustProxies(at: $proxies === '*' ? '*' : array_map('trim', explode(',', $proxies)));
+        }
         $middleware->alias([
             'role' => RoleMiddleware::class,
             'permission' => PermissionMiddleware::class,

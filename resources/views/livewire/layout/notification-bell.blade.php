@@ -4,6 +4,25 @@ use Livewire\Attributes\Computed;
 use Livewire\Volt\Component;
 
 new class extends Component {
+    /** how many unread there were at the last look: a rise means something new arrived */
+    public int $known = 0;
+
+    public function mount(): void
+    {
+        $this->known = $this->notifications->count(); // the list the bell shows anyway: no extra query
+    }
+
+    /** Called every 20 seconds while the page is visible: the bell and a short message appear without reloading the page. */
+    public function refresh(): void
+    {
+        unset($this->notifications);
+        $count = $this->notifications->count();
+        if ($count > $this->known && ($latest = $this->notifications->first())) {
+            $this->dispatch('toast', message: (string) ($latest->data['title'] ?? __('New notification')), type: 'info');
+        }
+        $this->known = $count;
+    }
+
     #[Computed]
     public function notifications()
     {
@@ -22,7 +41,7 @@ new class extends Component {
     }
 }; ?>
 
-<div class="relative" x-data="{ open: false }">
+<div class="relative" x-data="{ open: false }" wire:poll.20s.visible="refresh">
     <button @click="open = !open" :aria-expanded="open.toString()" aria-label="{{ __('Notifications') }}"
         class="relative p-2 text-slate-400 hover:text-indigo-600 transition-colors bg-white rounded-xl shadow-sm border border-slate-100 group">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"

@@ -1,0 +1,7 @@
+# Optional HTTPS in front of the web container: `docker compose ... --profile https up -d`
+# APP_DOMAIN is the public name of the application (for example paa.example.gov.tl); its DNS must point at this server
+# and ports 80 and 443 must be reachable, so that the certificate can be obtained and renewed automatically.
+{$APP_DOMAIN} {
+    encode gzip
+    reverse_proxy web:80
+}

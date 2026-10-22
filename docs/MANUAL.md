@@ -527,7 +527,9 @@ Choose **Complete report** or **Summary** from the selector. **Print** to paper 
 
 ### 11.5 Notifications and e-mail
 
-Notifications are delivered inside the application as soon as the action happens; no queue worker or e-mail setup is needed for them.
+Notifications are delivered inside the application as soon as the action happens, and appear in the **bell** at the top. While a page is open the bell checks for new ones every 20 seconds and shows a short message when one arrives; you do not have to reload.
+
+**E-mail.** An administrator can switch on **System → Settings → Send notifications by e-mail**. Every notification is then also e-mailed to the people who have not opted out; each person chooses in **Profile → Also send me notifications by e-mail**. The mail is sent in the background, so a slow mail server never holds up what you are doing. It needs the server's mail settings and a running queue worker (the Docker stack includes one). The bell is never optional.
 
 ---
 

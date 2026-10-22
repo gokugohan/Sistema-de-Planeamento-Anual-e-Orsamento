@@ -2499,5 +2499,12 @@
     "The calendar was reopened for your unit": "Kalendáriu loke fali ba ita-nia unidade",
     ":what is open again for :unit until :d.": ":what loke fali ba :unit to'o :d.",
     "A unit asks for the calendar to be reopened": "Unidade ida husu atu loke fali kalendáriu",
-    ":user (:unit) asks to reopen :what.": ":user (:unit) husu atu loke fali :what."
+    ":user (:unit) asks to reopen :what.": ":user (:unit) husu atu loke fali :what.",
+    "New notification": "Notifikasaun foun",
+    "Send notifications by e-mail": "Haruka notifikasaun liuhosi e-mail",
+    "Besides the bell, every notification is e-mailed to the people who have not opted out in their profile. The server must be set up to send mail, and a queue worker must be running.": "Aleinde sinu, notifikasaun ida-idak haruka liuhosi e-mail ba ema sira neʼebé la taka iha sira-nia perfíl. Servidor tenke konfigura atu haruka korreiu no prosesu fila tenke servisu.",
+    "Also send me notifications by e-mail": "Haruka mós notifikasaun ba ha'u liuhosi e-mail",
+    "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.": "Notifikasaun sempre hatudu iha sinu. Ida ne'e servisu de'it se administradór loke e-mail ona.",
+    "Open in the application": "Loke iha aplikasaun",
+    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "Ita simu e-mail ne'e tanba ita iha konta iha :app. Ita bele taka notifikasaun e-mail iha ita-nia perfíl."
 }

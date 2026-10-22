@@ -2499,5 +2499,12 @@
     "The calendar was reopened for your unit": "O calendário foi reaberto para a sua unidade",
     ":what is open again for :unit until :d.": ":what está novamente aberto para :unit até :d.",
     "A unit asks for the calendar to be reopened": "Uma unidade pede a reabertura do calendário",
-    ":user (:unit) asks to reopen :what.": ":user (:unit) pede a reabertura de :what."
+    ":user (:unit) asks to reopen :what.": ":user (:unit) pede a reabertura de :what.",
+    "New notification": "Nova notificação",
+    "Send notifications by e-mail": "Enviar notificações por e-mail",
+    "Besides the bell, every notification is e-mailed to the people who have not opted out in their profile. The server must be set up to send mail, and a queue worker must be running.": "Além do sino, cada notificação é enviada por e-mail às pessoas que não a desativaram no seu perfil. O servidor tem de estar configurado para enviar correio e um processo de fila tem de estar em execução.",
+    "Also send me notifications by e-mail": "Enviar-me também as notificações por e-mail",
+    "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.": "As notificações aparecem sempre no sino. Isto só funciona se o administrador tiver ativado o e-mail.",
+    "Open in the application": "Abrir na aplicação",
+    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "Recebe este e-mail porque tem uma conta em :app. Pode desativar as notificações por e-mail no seu perfil."
 }

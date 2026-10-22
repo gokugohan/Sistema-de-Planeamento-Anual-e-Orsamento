@@ -2255,5 +2255,12 @@
     "The calendar was reopened for your unit": "The calendar was reopened for your unit",
     ":what is open again for :unit until :d.": ":what is open again for :unit until :d.",
     "A unit asks for the calendar to be reopened": "A unit asks for the calendar to be reopened",
-    ":user (:unit) asks to reopen :what.": ":user (:unit) asks to reopen :what."
+    ":user (:unit) asks to reopen :what.": ":user (:unit) asks to reopen :what.",
+    "New notification": "New notification",
+    "Send notifications by e-mail": "Send notifications by e-mail",
+    "Besides the bell, every notification is e-mailed to the people who have not opted out in their profile. The server must be set up to send mail, and a queue worker must be running.": "Besides the bell, every notification is e-mailed to the people who have not opted out in their profile. The server must be set up to send mail, and a queue worker must be running.",
+    "Also send me notifications by e-mail": "Also send me notifications by e-mail",
+    "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.": "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.",
+    "Open in the application": "Open in the application",
+    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile."
 }

@@ -1,0 +1,128 @@
+# Production stack of the Plano de Ação Anual (PAA).
+#
+#   cp .env.production.example .env.production      (then fill it in)
+#   docker compose --env-file .env.production -f compose.prod.yml up -d --build
+#
+# Services: web (nginx), app (PHP-FPM), queue (e-mail and other queued work), scheduler (nightly backup), db (MySQL), redis.
+# Optional: --profile https adds Caddy, which obtains and renews an HTTPS certificate for APP_DOMAIN.
+# Only web (or caddy) is reachable from outside; the database and redis stay on the internal network.
+name: paa
+
+x-app: &app
+  image: paa-app:latest
+  build:
+    context: .
+    target: production
+  env_file: .env.production
+  restart: unless-stopped
+  volumes:
+    - storage:/var/www/html/storage
+    - ${BACKUP_HOST_DIR:-./backups}:/backups
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+  app:
+    <<: *app
+    environment:
+      # the database is migrated when this container starts; set RUN_MIGRATIONS=false to do it by hand
+      RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
+    healthcheck:
+      # php-fpm listens only after the migrations have run
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 9000"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+      start_period: 60s
+
+  queue:
+    <<: *app
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    depends_on:
+      app:
+        condition: service_healthy
+
+  scheduler:
+    <<: *app
+    command: php artisan schedule:work
+    depends_on:
+      app:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      target: web
+    image: paa-web:latest
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    volumes:
+      - storage:/var/www/html/storage:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/up >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    # native password: the mysql client in the application image is MariaDB's
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$REDIS_PASSWORD ping | grep -q PONG"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["https"]
+    restart: unless-stopped
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - web
+
+volumes:
+  storage:
+  db-data:
+  redis-data:
+  caddy-data:
+  caddy-config:

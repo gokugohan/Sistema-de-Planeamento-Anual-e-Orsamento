@@ -15,6 +15,7 @@ new class extends Component {
     public string $segregation = 'off';
     public $implementedBy;
     public $enableNextYearPlanning;
+    public bool $emailNotifications = false;
     public $showDraftInReports;
     public $enableTestMode;
     public array $appTexts = [];
@@ -37,6 +38,7 @@ new class extends Component {
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->enableNextYearPlanning = SystemSetting::get('enable_next_year_planning', false);
+        $this->emailNotifications     = \App\Support\EmailNotifications::enabled();
         $this->showDraftInReports     = SystemSetting::get('show_draft_planning_in_reports', false);
         $this->enableTestMode         = SystemSetting::get('enable_paa_testing_mode', false);
 
@@ -75,6 +77,7 @@ new class extends Component {
             'segregation'           => 'in:'.implode(',', \App\Support\ApprovalRules::SEGREGATION_MODES),
             'implementedBy'         => 'nullable|string|max:255',
             'enableNextYearPlanning' => 'boolean',
+            'emailNotifications'    => 'boolean',
             'showDraftInReports'    => 'boolean',
             'enableTestMode'        => 'boolean',
         ]);
@@ -87,6 +90,7 @@ new class extends Component {
         (new \App\Support\ApprovalRules((bool) $this->parentValidation, (bool) $this->budgetConfirmation, $this->segregation))->save($this->institutionLevel);
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
+        SystemSetting::set(\App\Support\EmailNotifications::KEY, (bool) $this->emailNotifications, 'boolean', 'Also e-mail every in-app notification (queued) to people who have not opted out');
         SystemSetting::set('enable_next_year_planning',      (bool) $this->enableNextYearPlanning, 'boolean', 'Allow users to create PAA activities for the next fiscal year');
         SystemSetting::set('show_draft_planning_in_reports', (bool) $this->showDraftInReports,     'boolean', 'Control visibility of draft data in reports');
         SystemSetting::set('enable_paa_testing_mode',        (bool) $this->enableTestMode,         'boolean', 'Enable testing mode for PAA planning');
@@ -334,6 +338,24 @@ new class extends Component {
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" wire:model.live="enableNextYearPlanning" class="sr-only peer" aria-label="{{ __('Allow planning for the next fiscal year') }}">
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+                            </div>
+                        </label>
+                    </div>
+
+                    <div
+                        class="flex items-center justify-between p-6 bg-zinc-50/50 rounded-xl border border-zinc-100">
+                        <div class="max-w-md">
+                            <h4 class="text-xs font-semibold text-zinc-900 mb-1">
+                                {{ __('Send notifications by e-mail') }}
+                            </h4>
+                            <p class="text-xs text-zinc-500 font-medium leading-relaxed">
+                                {{ __('Besides the bell, every notification is e-mailed to the people who have not opted out in their profile. The server must be set up to send mail, and a queue worker must be running.') }}
+                            </p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" wire:model.live="emailNotifications" class="sr-only peer" aria-label="{{ __('Send notifications by e-mail') }}">
                             <div
                                 class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
                             </div>

@@ -313,9 +313,13 @@ chown -R www-data:www-data storage bootstrap/cache
 
 The compiled front-end (`public/build`) is committed. If you change CSS or views, rebuild with `npm ci && npm run build` and commit the result, or build in your pipeline.
 
-### Queue worker (optional today)
+### Docker (recommended for production)
 
-Notifications (approval requests, returned activities) are written to the database synchronously, in the same request, and appear in the application only (the `database` channel; no e-mail is sent). Nothing in the application is dispatched to the queue, so a worker is **not** required today. Run one only if you add queued work (for example e-mail); then keep it running with a program such as this Supervisor example:
+`compose.prod.yml` runs the whole stack: nginx, PHP-FPM, a queue worker, the scheduler, MySQL and Redis, with optional HTTPS through Caddy. See [docs/DEPLOYMENT-DOCKER.md](docs/DEPLOYMENT-DOCKER.md).
+
+### Notifications: in the application, by e-mail, and live
+
+Notifications (approval requests, returned activities, calendar changes) are written to the database synchronously, in the same request, and appear in the bell. The bell checks for new ones every 20 seconds while the page is open and shows a short message when one arrives (no websocket server is needed). An administrator can also switch on **Management > Settings > Send notifications by e-mail**: every notification is then also mailed to the people who have not opted out in their profile. The mail is **queued**, so a slow mail server never holds up an action, and it needs a queue worker and the `MAIL_*` settings. With e-mail off, no worker is needed. Run a worker with (for example e-mail); then keep it running with a program such as this Supervisor example:
 
 ```ini
 [program:paa-queue]

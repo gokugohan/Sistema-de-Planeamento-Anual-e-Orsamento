@@ -10,6 +10,7 @@ new class extends Component
 {
     public string $name = '';
     public string $email = '';
+    public bool $emailNotifications = true;
 
     /**
      * Mount the component.
@@ -18,6 +19,7 @@ new class extends Component
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
+        $this->emailNotifications = (bool) (Auth::user()->email_notifications ?? true);
     }
 
     /**
@@ -30,9 +32,11 @@ new class extends Component
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'emailNotifications' => ['boolean'],
         ]);
 
-        $user->fill($validated);
+        $user->fill(\Illuminate\Support\Arr::only($validated, ['name', 'email']));
+        $user->email_notifications = (bool) $this->emailNotifications;
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
@@ -93,6 +97,12 @@ new class extends Component
             </div>
         @endif
     </div>
+
+    <label class="flex items-start gap-3 text-sm text-zinc-700">
+        <input type="checkbox" wire:model="emailNotifications" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
+        <span><span class="font-medium text-zinc-900">{{ __('Also send me notifications by e-mail') }}</span><br>
+            <span class="text-zinc-600">{{ __('Notifications always appear in the bell. This works only where your administrator has switched e-mail on.') }}</span></span>
+    </label>
 
     <div class="flex items-center gap-3 pt-1">
         <x-primary-button>{{ __('Save Changes') }}</x-primary-button>
