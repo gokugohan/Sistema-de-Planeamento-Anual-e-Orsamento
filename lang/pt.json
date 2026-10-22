@@ -2506,5 +2506,9 @@
     "Also send me notifications by e-mail": "Enviar-me também as notificações por e-mail",
     "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.": "As notificações aparecem sempre no sino. Isto só funciona se o administrador tiver ativado o e-mail.",
     "Open in the application": "Abrir na aplicação",
-    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "Recebe este e-mail porque tem uma conta em :app. Pode desativar as notificações por e-mail no seu perfil."
+    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "Recebe este e-mail porque tem uma conta em :app. Pode desativar as notificações por e-mail no seu perfil.",
+    "Institution logo": "Logótipo da instituição",
+    "Logo of the institution": "Logótipo da instituição",
+    "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.": "O endereço de uma imagem (https://...) ou um ficheiro dentro da pasta public da aplicação. É mostrado no menu e na página de entrada. Deixe vazio para mostrar a sigla.",
+    "Planned and approved, by unit": "Planeado e aprovado, por unidade"
 }

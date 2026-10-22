@@ -51,10 +51,17 @@ new class extends Component {
     @php
         $orgName = \App\Models\SystemSetting::getLocalized('org_name', 'Institution Name');
         $orgAbbr = \App\Models\SystemSetting::getLocalized('org_abbr', 'ORG');
+        // the institution's logo (Settings), when there is one: a full URL or a path inside /public
+        $logo = \App\Models\SystemSetting::get('organization_logo');
+        $logoUrl = $logo ? (str_starts_with($logo, 'http') ? $logo : asset(ltrim($logo, '/'))) : null;
     @endphp
     <a href="{{ route('dashboard') }}" wire:navigate title="{{ $orgName }}"
         class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-white/10 hover:bg-white/5 transition-colors">
-        <span class="flex h-10 min-w-10 items-center justify-center rounded-md bg-indigo-600 px-1.5 text-[11px] font-bold tracking-wide text-white" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
+        @if($logoUrl)
+            <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3rem] shrink-0 object-contain" aria-hidden="true">
+        @else
+            <span class="flex h-10 min-w-10 items-center justify-center rounded-md bg-indigo-600 px-1.5 text-[11px] font-bold tracking-wide text-white" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
+        @endif
         <span class="min-w-0">
             <span class="block text-[13px] font-semibold leading-snug text-white line-clamp-3">{{ $orgName }}</span>
         </span>

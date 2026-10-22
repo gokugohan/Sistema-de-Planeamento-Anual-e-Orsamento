@@ -9,6 +9,7 @@
     }
 
     $selectedYear = (int) request('year', \App\Support\FiscalYear::current());
+    $stateWarning = app(App\Services\PlanStatus::class)->reportWarning(auth()->user(), $selectedYear);
 
     // Every figure on this page is added up by the database (see PlanBreakdown), never in loops over records.
     $breakdown = app(App\Services\PlanBreakdown::class);
@@ -33,7 +34,7 @@
             <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', ['year' => $selectedYear]) }}">
                 {{ __('Final plan report') }}
             </x-ui.button>
-            <x-ui.button variant="primary" size="md" onclick="withFullReport('print')">{{ __('Print Report') }}</x-ui.button>
+            <x-ui.button variant="primary" size="md" href="{{ route('reports.annual-plan.pdf', ['year' => $selectedYear]) }}" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)">{{ __('Print Report') }}</x-ui.button>
         </x-ui.page-header>
 
         {{-- Official header: printed pages only --}}

@@ -70,6 +70,7 @@ new class extends Component {
         abort_unless(auth()->user()->isAdministrator(), 403);
         $this->validate([
             'systemOwner'           => 'nullable|string|max:255',
+            'organizationLogo'      => ['nullable', 'string', 'max:500', 'regex:/^(https?:\/\/\S+|[A-Za-z0-9_\-\/.]+)$/', 'not_regex:/\.\./'],
             'institutionLevel'      => 'required|in:ministry,subordinate',
             'reportRecipient'       => 'nullable|string|max:255',
             'parentValidation'      => 'boolean',
@@ -289,6 +290,18 @@ new class extends Component {
                     </div>
 
                     <!-- Footer Credits (not localized) -->
+                    <div class="pt-8 mt-8 border-t border-zinc-100">
+                        <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
+                            <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Institution logo') }}
+                        </p>
+                        <div class="space-y-2">
+                            <x-input-label for="organizationLogo" :value="__('Logo of the institution')" class="field-label" />
+                            <x-text-input id="organizationLogo" wire:model="organizationLogo" class="w-full" placeholder="images/logo.png" />
+                            <p class="text-xs text-zinc-500">{{ __('The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.') }}</p>
+                            <x-input-error :messages="$errors->get('organizationLogo')" />
+                        </div>
+                    </div>
+
                     <div class="pt-8 mt-8 border-t border-zinc-100">
                         <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
                             <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Footer Credits') }}

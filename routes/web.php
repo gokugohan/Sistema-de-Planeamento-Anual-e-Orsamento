@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnualPlanReportController;
 use App\Http\Controllers\ApprovedPlanReportController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ImplementationPlanController;
@@ -126,6 +127,12 @@ Route::get('planning/programmes', function () {
 Route::get('reports/paa', function () {
     return view('reports.paa');
 })->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');
+
+// The annual report of the plan as a printable document and as a PDF
+Route::get('reports/annual-plan', [AnnualPlanReportController::class, 'show'])
+    ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.annual-plan');
+Route::get('reports/annual-plan/pdf', [AnnualPlanReportController::class, 'pdf'])
+    ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.annual-plan.pdf');
 
 // The activities of one programme and category, fetched when that row is expanded.
 Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activities'])

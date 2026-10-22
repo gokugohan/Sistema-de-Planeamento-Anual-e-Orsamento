@@ -2262,5 +2262,9 @@
     "Also send me notifications by e-mail": "Also send me notifications by e-mail",
     "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.": "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.",
     "Open in the application": "Open in the application",
-    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile."
+    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.",
+    "Institution logo": "Institution logo",
+    "Logo of the institution": "Logo of the institution",
+    "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.": "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.",
+    "Planned and approved, by unit": "Planned and approved, by unit"
 }

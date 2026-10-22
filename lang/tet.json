@@ -2506,5 +2506,9 @@
     "Also send me notifications by e-mail": "Haruka mós notifikasaun ba ha'u liuhosi e-mail",
     "Notifications always appear in the bell. This works only where your administrator has switched e-mail on.": "Notifikasaun sempre hatudu iha sinu. Ida ne'e servisu de'it se administradór loke e-mail ona.",
     "Open in the application": "Loke iha aplikasaun",
-    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "Ita simu e-mail ne'e tanba ita iha konta iha :app. Ita bele taka notifikasaun e-mail iha ita-nia perfíl."
+    "You receive this e-mail because you have an account in :app. You can switch e-mail notifications off in your profile.": "Ita simu e-mail ne'e tanba ita iha konta iha :app. Ita bele taka notifikasaun e-mail iha ita-nia perfíl.",
+    "Institution logo": "Logu instituisaun nian",
+    "Logo of the institution": "Logu instituisaun nian",
+    "The address of an image (https://...) or a file inside the public folder of the application. It is shown in the menu and on the sign-in page. Leave it empty to show the abbreviation instead.": "Enderesu imajen ida (https://...) ka fitxeiru ida iha laran husi pasta public aplikasaun nian. Hatudu iha menu no iha pájina hatama. Husik mamuk atu hatudu sigla.",
+    "Planned and approved, by unit": "Planu no aprova, tuir unidade"
 }

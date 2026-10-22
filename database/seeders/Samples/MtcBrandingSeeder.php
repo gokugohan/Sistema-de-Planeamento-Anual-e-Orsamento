@@ -14,6 +14,9 @@ class MtcBrandingSeeder extends Seeder
 
     public const FULL_NAME = 'Ministério dos Transportes e Comunicações';
 
+    /** The sample institution's logo, a file inside public/. */
+    public const LOGO = 'images/sample/mtc-logo.png';
+
     public function run(): void
     {
         SystemSetting::set('organization_name_full', self::FULL_NAME, 'string', 'Full name of the Ministry/Entity');
@@ -21,6 +24,7 @@ class MtcBrandingSeeder extends Seeder
         SystemSetting::set('system_owner', self::FULL_NAME, 'string', 'System owner organization');
         SystemSetting::set('org_name', self::ORG_NAME, 'json', 'Localized organization name');
         SystemSetting::set('org_abbr', self::ORG_ABBR, 'json', 'Localized organization abbreviation');
+        SystemSetting::set('organization_logo', self::LOGO, 'string', 'Path to organization logo file');
 
         // The whole ministry: the Minister approves and the plan goes to the CRO.
         SystemSetting::set('institution_level', 'ministry', 'string');
@@ -38,6 +42,9 @@ class MtcBrandingSeeder extends Seeder
             'org_abbr' => ['en' => 'ORG', 'pt' => 'ORG', 'tet' => 'ORG'],
         ];
 
+        if (SystemSetting::get('organization_logo') === self::LOGO) {
+            SystemSetting::set('organization_logo', null, 'string');
+        }
         if (SystemSetting::get('org_name') === self::ORG_NAME) {
             SystemSetting::set('org_name', $neutral['org_name'], 'json');
         }

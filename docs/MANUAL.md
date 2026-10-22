@@ -503,7 +503,7 @@ Only verified figures appear in the dashboard, the performance report and the pr
 
 ### 11.1 The dashboard and Reporting page
 
-The **Dashboard** (Part 1.3) and **Insights → Reporting** show the annual performance report: planned and approved by unit, rolled up the tree, with **Export Data** (CSV), **Final plan report** and **Print Report**.
+The **Dashboard** (Part 1.3) and **Insights → Reporting** show the annual performance report: planned and approved by unit, rolled up the tree, with **Export Data** (CSV), **Final plan report** and **Print Report**. *Print Report* downloads the annual report as a **PDF document** (A4 landscape, with the institution's name, a reference such as `PAA-2027`, who made it and when, the units rolled up, and the programmes with their categories, activities and indicators), not the browser's print of the page. If the plan is not fully approved yet, you are asked to confirm first and the document carries a *Draft state* line.
 
 ### 11.2 The final plan report
 
