@@ -315,7 +315,7 @@ The compiled front-end (`public/build`) is committed. If you change CSS or views
 
 ### Docker (recommended for production)
 
-`compose.prod.yml` runs the whole stack: nginx, PHP-FPM, a queue worker, the scheduler, MySQL and Redis, with optional HTTPS through Caddy. See [docs/DEPLOYMENT-DOCKER.md](docs/DEPLOYMENT-DOCKER.md).
+`compose.prod.yml` runs the whole stack: nginx, PHP-FPM, a queue worker, the scheduler, MySQL and Redis, with optional HTTPS through Caddy. See [docs/DEPLOYMENT-DOCKER.md](docs/DEPLOYMENT-DOCKER.md). For **CapRover** (one container per app) the repository has a `captain-definition` and a single-container image: see [docs/DEPLOYMENT-CAPROVER.md](docs/DEPLOYMENT-CAPROVER.md).
 
 ### Notifications: in the application, by e-mail, and live
 

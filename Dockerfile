@@ -52,3 +52,14 @@ CMD ["php-fpm"]
 FROM nginx:1.27-alpine AS web
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=production /var/www/html/public /var/www/html/public
+
+# ── 6. everything in one container, for platforms that run one container per app (CapRover, Dokku, Railway).
+# It must stay the LAST stage: a build without --target (CapRover) builds the last one.
+FROM production AS caprover
+RUN apk add --no-cache nginx supervisor \
+    && rm -f /etc/nginx/http.d/default.conf \
+    && mkdir -p /run/nginx
+COPY docker/caprover/nginx.conf /etc/nginx/http.d/default.conf
+COPY docker/caprover/supervisord.conf /etc/supervisord.conf
+EXPOSE 80
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
