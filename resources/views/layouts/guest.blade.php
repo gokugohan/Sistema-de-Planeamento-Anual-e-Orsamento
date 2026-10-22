@@ -45,14 +45,14 @@
     <div class="min-h-screen grid lg:grid-cols-[minmax(420px,5fr)_6fr]">
 
         {{-- ─────────── Pane 1: who and what ─────────── --}}
-        <aside class="hidden lg:flex flex-col relative overflow-hidden bg-zinc-900 text-zinc-300" aria-label="{{ __('About this system') }}">
+        <aside class="hidden lg:flex flex-col relative overflow-hidden bg-gradient-to-br from-indigo-800 via-indigo-900 to-indigo-950 text-indigo-100" aria-label="{{ __('About this system') }}">
             {{-- quiet grid texture, no decoration that competes with the content --}}
-            <div class="absolute inset-0 opacity-[0.04] pointer-events-none"
+            <div class="absolute inset-0 opacity-[0.07] pointer-events-none"
                 style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"></div>
-            <div class="absolute inset-x-0 top-0 h-1 bg-indigo-600"></div>
+            <div class="absolute inset-x-0 top-0 h-1 bg-indigo-400"></div>
 
             <div class="relative flex flex-col h-full px-12 xl:px-16 py-12">
-                <p class="text-[11px] font-medium uppercase tracking-[0.18em] text-nav-muted">República Democrática de Timor-Leste</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-200">República Democrática de Timor-Leste</p>
 
                 {{-- The institution: its emblem, large, then who and what this system is --}}
                 <div class="flex-1 flex flex-col justify-center py-10 max-w-xl">
@@ -67,22 +67,22 @@
                     @endif
 
                     <p class="mt-8 text-2xl xl:text-[1.75rem] font-bold text-white leading-tight tracking-tight">{{ $org }}</p>
-                    <p class="mt-2 text-sm font-medium text-indigo-300">{{ $product }}</p>
-                    <div class="mt-6 h-px w-16 bg-white/20"></div>
-                    <h2 class="mt-6 text-lg font-medium text-zinc-200 leading-relaxed">
+                    <p class="mt-2 text-base font-medium text-indigo-200">{{ $product }}</p>
+                    <div class="mt-6 h-px w-16 bg-white/30"></div>
+                    <h2 class="mt-6 text-lg font-medium text-white leading-relaxed">
                         {{ $tagline !== '' ? $tagline : __('The Annual Action Plan, from the first activity to the report of the year') }}
                     </h2>
                     @if($description !== '')
-                        <p class="mt-3 text-sm leading-relaxed text-zinc-400">{{ $description }}</p>
+                        <p class="mt-3 text-[15px] leading-relaxed text-indigo-100">{{ $description }}</p>
                     @endif
 
                     <ol class="mt-8 grid grid-cols-2 gap-x-8 gap-y-5" aria-label="{{ __('The annual cycle') }}">
                         @foreach($steps as $i => [$title, $text])
                             <li class="flex gap-3">
-                                <span class="mt-0.5 h-6 w-6 shrink-0 rounded-full border border-white/25 text-[11px] font-semibold text-white flex items-center justify-center" aria-hidden="true">{{ $i + 1 }}</span>
+                                <span class="mt-0.5 h-6 w-6 shrink-0 rounded-full border border-white/50 bg-white/10 text-xs font-semibold text-white flex items-center justify-center" aria-hidden="true">{{ $i + 1 }}</span>
                                 <div>
                                     <p class="text-sm font-semibold text-white">{{ $title }}</p>
-                                    <p class="text-xs leading-relaxed text-zinc-400">{{ $text }}</p>
+                                    <p class="text-sm leading-relaxed text-indigo-200">{{ $text }}</p>
                                 </div>
                             </li>
                         @endforeach
@@ -91,24 +91,24 @@
 
                 {{-- Assurance and credits --}}
                 <div class="space-y-5">
-                    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-zinc-400">
+                    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-indigo-100">
                         <li class="flex items-center gap-2">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-300" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-200" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                             {{ __('Role-based access') }}
                         </li>
                         <li class="flex items-center gap-2">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-300" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-200" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
                             {{ __('Every change is audited') }}
                         </li>
                     </ul>
 
-                    <div class="flex items-center justify-between gap-6 border-t border-white/10 pt-5">
-                        <p class="text-[11px] leading-relaxed text-nav-muted">
+                    <div class="flex items-center justify-between gap-6 border-t border-white/20 pt-5">
+                        <p class="text-xs leading-relaxed text-indigo-200">
                             &copy; {{ date('Y') }} {{ $owner ?: $org }}<br>{{ __('All rights reserved') }}
                         </p>
                         @if(file_exists(public_path('logo.png')))
                             <div class="flex items-center gap-2.5" title="{{ __('Implemented by') }} {{ $implementedBy }}">
-                                <span class="text-[11px] text-nav-muted text-right leading-tight">{{ __('Implemented by') }}<br><span class="text-zinc-300">{{ $implementedBy ?: 'G-Kakaroto' }}</span></span>
+                                <span class="text-xs text-indigo-200 text-right leading-tight">{{ __('Implemented by') }}<br><span class="text-white font-medium">{{ $implementedBy ?: 'G-Kakaroto' }}</span></span>
                                 <img src="{{ asset('logo.png') }}" alt="" width="44" height="44" loading="lazy" class="h-11 w-11 shrink-0 object-contain">
                             </div>
                         @endif
