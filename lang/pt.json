@@ -2572,5 +2572,10 @@
     "opens :d": "abre :d",
     "no dates: open": "sem datas: aberto",
     "not started": "ainda não começou",
-    "This month": "Este mês"
+    "This month": "Este mês",
+    ":n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes": ":n unidade não tem ninguém que a dirija, por isso ninguém pode dar a aprovação final das suas atividades: :codes|:n unidades não têm ninguém que as dirija, por isso ninguém pode dar a aprovação final das suas atividades: :codes",
+    "Give a user the Director role in the unit, in System Users.": "Atribua o perfil de Diretor a um utilizador da unidade, em Utilizadores do sistema.",
+    "People": "Pessoas",
+    "Directed from :unit": "Dirigida a partir de :unit",
+    "No Director": "Sem Diretor"
 }

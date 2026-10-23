@@ -2328,5 +2328,10 @@
     "opens :d": "opens :d",
     "no dates: open": "no dates: open",
     "not started": "not started",
-    "This month": "This month"
+    "This month": "This month",
+    ":n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes": ":n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes",
+    "Give a user the Director role in the unit, in System Users.": "Give a user the Director role in the unit, in System Users.",
+    "People": "People",
+    "Directed from :unit": "Directed from :unit",
+    "No Director": "No Director"
 }

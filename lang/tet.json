@@ -2572,5 +2572,10 @@
     "opens :d": "loke :d",
     "no dates: open": "la iha data: loke",
     "not started": "seidauk komesa",
-    "This month": "Fulan ne'e"
+    "This month": "Fulan ne'e",
+    ":n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes": "Unidade :n la iha ema ida atu dirije, entaun ema ida la bele fó aprovasaun final ba ninia atividade sira: :codes|Unidade :n la iha ema ida atu dirije, entaun ema ida la bele fó aprovasaun final ba sira-nia atividade: :codes",
+    "Give a user the Director role in the unit, in System Users.": "Fó papél Diretór ba uzuáriu ida iha unidade, iha Uzuáriu sistema nian.",
+    "People": "Ema",
+    "Directed from :unit": "Dirije husi :unit",
+    "No Director": "La iha Diretór"
 }

@@ -121,7 +121,41 @@ new class extends Component {
         $dirFunding = $allDirectorates->mapWithKeys(fn ($d) => [$d->id => $rollup($d->id)])->all();
         $progFunding = $rows->groupBy('p')->map(fn ($g) => ['n' => (int) $g->sum('n'), 'plan' => (float) $g->sum('plan'), 'alloc' => (float) $g->sum('alloc')])->all();
 
+        // Who is in each unit and who directs it: two grouped queries, kept until a user, role or unit changes.
+        $people = $this->activeTab === 'directorates'
+            ? \App\Support\StructureCache::remember('unit-people-counts', 300, fn () => [
+                'count' => \App\Models\User::whereNotNull('directorate_id')->groupBy('directorate_id')->selectRaw('directorate_id, COUNT(*) AS n')->pluck('n', 'directorate_id')->map(fn ($n) => (int) $n)->all(),
+                'directors' => \Illuminate\Support\Facades\DB::table('users as u')
+                    ->join('model_has_roles as mr', fn ($j) => $j->on('mr.model_id', '=', 'u.id')->where('mr.model_type', (new \App\Models\User)->getMorphClass()))
+                    ->join('roles as r', 'r.id', '=', 'mr.role_id')->where('r.name', 'Director')->whereNotNull('u.directorate_id')
+                    ->orderBy('u.name')->get(['u.directorate_id', 'u.name'])->groupBy('directorate_id')->map(fn ($g) => $g->pluck('name')->all())->all(),
+            ])
+            : ['count' => [], 'directors' => []];
+
+        // A unit with no Director of its own is directed from the nearest unit above that has one; if there is none, nobody directs it.
+        $parentOf = $allDirectorates->pluck('parent_id', 'id');
+        $directedFrom = [];
+        $nobody = [];
+        foreach ($allDirectorates as $d) {
+            if (isset($people['directors'][$d->id])) {
+                continue;
+            }
+            $up = $parentOf[$d->id] ?? null;
+            for ($n = 0; $up && $n < 20 && ! isset($people['directors'][$up]); $n++) {
+                $up = $parentOf[$up] ?? null;
+            }
+            if ($up) {
+                $directedFrom[$d->id] = $allDirectorates->firstWhere('id', $up)?->code;
+            } elseif ($d->active) {
+                $nobody[] = $d->code;
+            }
+        }
+
         return [
+            'peopleByUnit' => $people['count'],
+            'directorsByUnit' => $people['directors'],
+            'directedFrom' => $directedFrom,
+            'nobodyDirects' => $this->activeTab === 'directorates' ? $nobody : [],
             'fundingYear' => $year,
             'dirFunding' => $dirFunding,
             'progFunding' => $progFunding,

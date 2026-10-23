@@ -52,6 +52,10 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 - **Fiscal year**: almost every screen shows one year at a time. Change it at the top and the whole application follows.
 - **Language**: English, Portuguese and Tetum. The choice is remembered for you.
 - **Notifications**: the bell lists what happened that concerns you (an activity submitted to you, returned to you, approved). Click one to go to it.
+- **Dates**: every date field opens a small calendar. Click the day; it is shown as dd/mm/yyyy, with Monday first. You do not type dates.
+- **Your profile** (your name, top right): your details and password, two-factor sign-in, whether you also want notifications by e-mail, and **Your recent activity**: when you signed in and what you did in the system, newest first. Nobody can edit it.
+
+![Your recent activity in the profile](manual/img/profile-activity.png)
 
 ### 1.3 What you see first
 
@@ -147,7 +151,10 @@ Click **Save Settings** to save parts 1, 3 and 4.
 
 **Administration → Structure** has four tabs:
 
-1. **Directorates**: the tree of units. *Add New Unit* with a code, name, type and **parent**. A unit with no parent is a top-level unit (a directorate or gabinete). Set the director's name and the years the unit existed. Deactivate rather than delete a unit that has history.
+1. **Directorates**: the tree of units. *Add New Unit* with a code, name, type and **parent**. A unit with no parent is a top-level unit (a directorate or gabinete). Set the years the unit existed. Deactivate rather than delete a unit that has history. Two columns say who is in each unit:
+   - **Director**: the people who hold the Director role in the unit. A unit without one shows *Directed from ROOT* when a unit above it has a Director, or **No Director** when nobody directs it.
+   - **People**: how many users belong to the unit; click the number to open them in System Users, or *+ Add* to create the first person of the unit with the unit already chosen.
+   A banner at the top lists the units that nobody directs: without a Director nobody can give the final approval of their activities, so give a user the Director role in that unit.
 2. **Programs**: the OGE programmes for the year, with code, name and objective.
 3. **Subprograms**: the subprogrammes under each programme.
 4. **Economic classifications**: the economic categories (10 to 50 and the detail codes below them).
@@ -163,6 +170,18 @@ Add only the structure that the law defines; the system does not invent departme
 ![Users](manual/img/users.png)
 
 **Administration → System Users**: *create* an account with name, e-mail, **role** and **unit**; edit a user's details, role and unit; deactivate someone who left. Give **each unit its own people**: a technical officer who prepares and a director who certifies. The unit decides what a person can see and plan.
+
+The list can be **filtered by unit** (the unit and every unit below it, or *No unit*) and **by role**, next to the search. A banner warns when directors or officers have **no unit**: they cannot see any activity until they get one (*Show them*). The unit code in each row opens the unit's page, and the clock icon opens the **Audit Log** already filtered to that person.
+
+![System Users filtered by unit](manual/img/users-filtered.png)
+
+The tab **Roles and permissions** is one grid: switch a permission on or off for a role and it applies at once to everyone who has that role.
+
+![Roles and permissions](manual/img/roles-permissions.png)
+
+On the page of a unit (**Plan → Units**, open a unit) the card **People of this unit** lists its people with their role and the steps they are named for in its approval lists (*Prepares*, *Certifies*, *Approves*), and who stands in for the director today. E-mail addresses are shown only to administrators and the unit's director. Administrators can add a person to the unit from there.
+
+![People of this unit](manual/img/unit-people.png)
 
 | Role | In one line |
 |---|---|
@@ -204,7 +223,7 @@ Part 7. Directors keep these for their own units; administrators for any.
 
 ### 4.8 Sample data
 
-**System → Sample Data** loads (or removes) an optional demonstration dataset, so people can practise before real use. It is refused in production. *Purge* removes only what the sample created; your real data is never touched.
+**System → Sample Data** loads (or removes) an optional demonstration dataset, so people can practise before real use. It brings the structure, the people, the plans, the reported amounts of the earlier years and the **reporting calendar** of those years (each month may be reported until the 10th of the next month, each quarter's indicators until the 15th after it). Planning dates are left open on purpose. It is refused in production. *Purge* removes only what the sample created; your real data is never touched.
 
 ### 4.9 Optional rules
 
@@ -512,7 +531,7 @@ The **Dashboard** (Part 1.3) and **Insights → Reporting** show the annual perf
 
 Choose **Complete report** or **Summary** from the selector. **Print** to paper or **Download PDF**. The report is of the plan; it is not addressed to anyone.
 
-**A warning before you print.** If the plan is not fully approved (activities not yet submitted or waiting for a decision) or a directorate has not finalized, the application says so and asks you to confirm before printing or downloading, and the document carries a *Draft state* line with the same words. The implementation plan and the performance report do the same.
+**A warning before you print.** If the plan is not fully approved (activities not yet submitted or waiting for a decision) or a directorate has not finalized, the application says so and asks you to confirm before printing or downloading, and the document carries a *Draft state* line with the same words. The implementation plan and the performance report do the same. The institution's **logo** (System → Settings → Logo and browser icon) is printed above the header of these reports and of the annual report, when the institution has one.
 
 ### 11.3 The implementation plan, per unit
 
@@ -592,7 +611,7 @@ See 4.4. Deactivate rather than delete someone who has acted: their name stays o
 
 ![Audit log](manual/img/audit.png)
 
-**System → Audit Log**: every change to plans, budgets, approvals, users and settings is recorded with **who**, **when**, the old and the new values, and any remark. The log cannot be edited from the application. Use it to answer "who changed this, and why".
+**System → Audit Log**: every change to plans, budgets, approvals, users and settings is recorded with **who**, **when**, the old and the new values, and any remark. The log cannot be edited from the application. Use it to answer "who changed this, and why". **Sign-ins, sign-outs and failed sign-in attempts** are recorded too (the e-mail typed, never the password). Each person sees their own entries in their profile; an administrator reaches anyone's from the clock icon in System Users.
 
 ### 13.3 Sample data
 

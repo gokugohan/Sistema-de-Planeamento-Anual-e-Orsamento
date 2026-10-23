@@ -25,8 +25,15 @@
         </div>
     </x-slot>
 
+    @if(count($nobodyDirects))
+        <div role="status" class="border-b border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">
+            {{ trans_choice(':n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes', count($nobodyDirects), ['n' => count($nobodyDirects), 'codes' => implode(', ', array_slice($nobodyDirects, 0, 6)).(count($nobodyDirects) > 6 ? ' …' : '')]) }}
+            <span class="ml-1 text-xs text-amber-800">{{ __('Give a user the Director role in the unit, in System Users.') }}</span>
+        </div>
+    @endif
+
     <div class="overflow-x-auto" tabindex="0">
-        <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
+        <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('People'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
             @forelse($directorates as $d)
                 <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
                     <td class="px-5 py-5 text-gray-900 font-semibold font-mono">{{ $d->code }}
@@ -53,10 +60,23 @@
                         @endif
                     </td>
                     <td class="px-5 py-5">
-                        <div class="font-bold text-gray-900 leading-none text-xs">
-                            {{ $d->director_name ?: '—' }}
-                        </div>
-                        @if($d->director_email)<div class="text-xs text-gray-400 mt-1 font-medium">{{ $d->director_email }}</div>@endif
+                        @if(isset($directorsByUnit[$d->id]))
+                            <div class="text-xs font-bold leading-snug text-gray-900">{{ implode(', ', $directorsByUnit[$d->id]) }}</div>
+                        @elseif(isset($directedFrom[$d->id]))
+                            <div class="text-xs text-zinc-500">{{ __('Directed from :unit', ['unit' => $directedFrom[$d->id]]) }}</div>
+                        @elseif($d->active)
+                            <x-ui.badge variant="amber" class="!text-xs">{{ __('No Director') }}</x-ui.badge>
+                        @else
+                            <span class="text-zinc-400">—</span>
+                        @endif
+                        @if($d->director_name && ! isset($directorsByUnit[$d->id]))<div class="mt-1 text-xs text-gray-400">{{ $d->director_name }}</div>@endif
+                    </td>
+                    <td class="px-5 py-5 text-sm tabular-nums">
+                        @if(($peopleByUnit[$d->id] ?? 0) > 0)
+                            <a href="{{ route('management.users', ['unit' => $d->id]) }}" wire:navigate class="font-semibold text-indigo-700 hover:underline" title="{{ __('See them in System Users') }}">{{ $peopleByUnit[$d->id] }}</a>
+                        @else
+                            <a href="{{ route('management.users', ['unit' => $d->id, 'new' => 1]) }}" wire:navigate class="text-xs font-medium text-zinc-500 hover:text-indigo-700 hover:underline" title="{{ __('Add a person to this unit') }}">+ {{ __('Add') }}</a>
+                        @endif
                     </td>
                     @php $f = $dirFunding[$d->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
                     <td class="px-5 py-5 text-sm tabular-nums">
@@ -115,7 +135,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6"><x-ui.empty-state :title="__('No directorates found.')" /></td>
+                    <td colspan="9"><x-ui.empty-state :title="__('No directorates found.')" /></td>
                 </tr>
             @endforelse
         </x-ui.table>
