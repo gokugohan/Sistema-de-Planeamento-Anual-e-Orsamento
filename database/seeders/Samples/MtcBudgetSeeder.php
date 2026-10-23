@@ -66,12 +66,16 @@ class MtcBudgetSeeder extends Seeder
                 continue; // a closed year cannot be edited; purge the sample to load it again
             }
 
-            DB::transaction(function () use ($registry, $year, $data) {
+            DB::transaction(function () use ($registry, $year, $data, $units) {
                 $this->loadActivities($registry, $year, $data);
                 $this->approveVersions($year);
                 // Spending and progress up to today, only for the years whose budget law has been applied
                 if (isset($data['envelope'])) {
                     (new MtcExecutionSampler)->seed($year, $this->planted[$year] ?? []);
+                    if ($units === null) {
+                        // the whole ministry also gets its reporting calendar; the small office sample does not (nothing is closed for it)
+                        MtcCalendarSeeder::seedYear($year, $registry);
+                    }
                 }
             });
         }

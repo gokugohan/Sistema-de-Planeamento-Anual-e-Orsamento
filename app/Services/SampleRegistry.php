@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\Program;
+use App\Models\ReportingWindow;
 use App\Models\SampleRecord;
 use App\Models\Subprogram;
 use App\Models\SystemSetting;
@@ -176,6 +177,9 @@ class SampleRegistry
                 $p->delete();
                 $deleted['programs']++;
             });
+
+            // 4b. The sample's reporting calendar.
+            ReportingWindow::whereIn('id', $ids(ReportingWindow::class))->delete();
 
             // 5. Whatever is left is real data now: stop tracking it.
             SampleRecord::where('dataset', $dataset)->delete();

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\Program;
+use App\Models\ReportingWindow;
 use App\Models\SampleRecord;
 use App\Models\SystemSetting;
 use App\Models\User;
@@ -53,6 +54,18 @@ class SampleDataTest extends TestCase
         $this->assertTrue((bool) SystemSetting::get(SampleRegistry::FLAG));
     }
 
+    public function test_the_sample_comes_with_the_reporting_calendar_of_the_years_it_reports_on(): void
+    {
+        $this->load();
+
+        $years = ReportingWindow::distinct()->orderBy('fiscal_year')->pluck('fiscal_year')->all();
+        $this->assertNotEmpty($years);
+        $this->assertSame(16, ReportingWindow::where('fiscal_year', $years[0])->count(), '12 months and 4 quarters');
+        $window = ReportingWindow::where(['fiscal_year' => $years[0], 'period_type' => 'month', 'period' => 3])->firstOrFail();
+        $this->assertSame($years[0].'-03-01', $window->opens_on->toDateString());
+        $this->assertSame($years[0].'-04-10', $window->closes_on->toDateString());
+    }
+
     public function test_purge_removes_all_sample_data_and_resets_branding(): void
     {
         $this->load();
@@ -64,6 +77,7 @@ class SampleDataTest extends TestCase
         $this->assertSame([], $report['kept']);
         $this->assertSame(0, Activity::count() + Directorate::count() + Program::count() + User::count());
         $this->assertSame(0, SampleRecord::count());
+        $this->assertSame(0, ReportingWindow::count(), 'the sample calendar goes with the sample');
         $this->assertFalse((bool) SystemSetting::get(SampleRegistry::FLAG));
         $this->assertSame('ORG', SystemSetting::getLocalized('org_abbr', '', 'en'));
     }
