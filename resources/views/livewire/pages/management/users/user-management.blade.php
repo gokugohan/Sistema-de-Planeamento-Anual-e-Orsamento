@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Permission;
 use App\Models\Directorate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\WithPagination;
 
@@ -15,6 +16,65 @@ new class extends Component {
 
     public $tab = 'users'; // users, roles, permissions
     public $search = '';
+
+    // Filters of the list: a unit (with the units below it) or 'none', and a role. The unit page links here with ?unit=
+    #[Url(as: 'unit')]
+    public $unitFilter = '';
+    #[Url(as: 'role')]
+    public $roleFilter = '';
+    // ?new=1 opens the form for a new user, with the filtered unit already chosen
+    #[Url(as: 'new')]
+    public $openNew = false;
+
+    public function mount(): void
+    {
+        if ($this->openNew && auth()->user()?->isAdministrator()) {
+            $this->openModal();
+            $this->directorate_id = ctype_digit((string) $this->unitFilter) ? (int) $this->unitFilter : null;
+        }
+        $this->openNew = false;
+    }
+
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedUnitFilter(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedRoleFilter(): void
+    {
+        $this->resetPage();
+    }
+
+    public function clearFilters(): void
+    {
+        $this->reset('search', 'unitFilter', 'roleFilter');
+        $this->resetPage();
+    }
+
+    /** The units in tree order, each with its depth, for the filter and the form. @return array<int, array{id: int, label: string, depth: int}> */
+    private function unitTree(): array
+    {
+        $all = Directorate::orderBy('code')->get(['id', 'parent_id', 'code', 'name']);
+        $byParent = $all->groupBy(fn ($d) => $d->parent_id ?? 0);
+        $out = [];
+        $walk = function ($parentId, $depth, $seen) use (&$walk, &$out, $byParent) {
+            foreach ($byParent->get($parentId, collect()) as $d) {
+                if (in_array($d->id, $seen, true)) {
+                    continue;
+                }
+                $out[] = ['id' => $d->id, 'label' => $d->code.' — '.\Illuminate\Support\Str::limit($d->name, 48), 'depth' => $depth];
+                $walk($d->id, $depth + 1, [...$seen, $d->id]);
+            }
+        };
+        $walk(0, 0, []);
+
+        return $out;
+    }
 
     // User Form State
     public $userId = null;
@@ -37,21 +97,36 @@ new class extends Component {
 
     public function with(): array
     {
+        $matrix = $this->tab === 'roles';
+
         return [
-            'users' => $this->getUsers(),
-            'roles' => Role::with('permissions')->get(),
-            'permissions' => Permission::all()->groupBy('module'),
-            'directorates' => Directorate::all(),
+            // each tab loads only its own data
+            'users' => $this->tab === 'users' ? $this->getUsers() : null,
+            'roles' => $matrix ? Role::with('permissions:id,name')->orderBy('id')->get() : collect(),
+            'permissions' => $matrix ? Permission::orderBy('id')->get()->groupBy('module') : collect(),
+            // the same on every visit: kept until a unit, a role or a user changes
+            'unitTree' => \App\Support\StructureCache::remember('unit-tree', 600, fn () => $this->unitTree()),
+            'roleOptions' => \App\Support\StructureCache::remember('role-options', 600, fn () => Role::orderBy('name')->get(['id', 'name', 'display_name'])),
+            // people who need a unit to see anything: they cannot find their plan without one
+            'noUnit' => \App\Support\StructureCache::remember('users-without-unit', 120, fn () => User::whereNull('directorate_id')->whereHas('roles', fn ($q) => $q->whereIn('name', ['Director', 'Planning', 'Finance']))->count()),
         ];
     }
 
     private function getUsers()
     {
-        return User::with(['directorate', 'roles'])
+        $unitIds = null;
+        if ($this->unitFilter !== '' && $this->unitFilter !== 'none' && ctype_digit((string) $this->unitFilter)) {
+            $unitIds = Directorate::find((int) $this->unitFilter)?->getSelfAndDescendantIds() ?? [0];
+        }
+
+        return User::with(['directorate:id,code,name', 'roles'])
             ->when($this->search, function ($q) {
-                $q->where('name', 'like', "%{$this->search}%")
-                    ->orWhere('email', 'like', "%{$this->search}%");
+                $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")->orWhere('email', 'like', "%{$this->search}%"));
             })
+            ->when($this->unitFilter === 'none', fn ($q) => $q->whereNull('directorate_id'))
+            ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds))
+            ->when($this->roleFilter !== '', fn ($q) => $q->whereHas('roles', fn ($r) => $r->where('name', $this->roleFilter)))
+            ->orderBy('name')
             ->paginate(10);
     }
 
@@ -94,6 +169,7 @@ new class extends Component {
                 'directorate_id' => $this->directorate_id ?: null,
             ]);
             $user->syncRoles([$this->selectedRole]);
+            \App\Support\StructureCache::bump();
             $this->dispatch('toast', message: __('User updated successfully!'), type: 'success');
         } else {
             $temporary = Str::password(14, symbols: false);
@@ -105,6 +181,7 @@ new class extends Component {
                 'directorate_id' => $this->directorate_id ?: null,
             ]);
             $user->assignRole($this->selectedRole);
+            \App\Support\StructureCache::bump();
             $this->issuedPassword = $temporary;
             $this->issuedFor = $user->email;
             $this->dispatch('toast', message: __('User created. Pass on the temporary password shown below.'), type: 'success');
@@ -236,16 +313,7 @@ new class extends Component {
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                 <path d="m9 12 2 2 4-4" />
             </svg>
-            {{ __('Authorization') }}
-        </x-ui.button>
-        <x-ui.button wire:click="setTab('permissions')"
-            variant="{{ $tab === 'permissions' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-xs">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-            </svg>
-            {{ __('Policy Matrix') }}
+            {{ __('Roles and permissions') }}
         </x-ui.button>
     </div>
 
@@ -255,8 +323,6 @@ new class extends Component {
             @include('livewire.pages.management.users.user-list')
         @elseif($tab === 'roles')
             @include('livewire.pages.management.users.role-management')
-        @elseif($tab === 'permissions')
-            @include('livewire.pages.management.users.permission-list')
         @endif
     </div>
 
@@ -293,8 +359,8 @@ new class extends Component {
                                 <select id="modal_role" wire:model.live="selectedRole"
                                     class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
                                     <option value="">{{ __('Select Role') }}</option>
-                                    @foreach($roles as $role)
-                                        <option value="{{ $role->name }}">{{ $role->display_name ?: $role->name }}</option>
+                                    @foreach($roleOptions as $role)
+                                        <option value="{{ $role->name }}">{{ __($role->display_name ?: $role->name) }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('selectedRole')" />
@@ -306,8 +372,8 @@ new class extends Component {
                                 <select id="modal_directorate" wire:model="directorate_id"
                                     class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
                                     <option value="">{{ __('National (All)') }}</option>
-                                    @foreach($directorates as $dir)
-                                        <option value="{{ $dir->id }}">{{ $dir->code }} {{ $dir->name }}</option>
+                                    @foreach($unitTree as $u)
+                                        <option value="{{ $u['id'] }}">{{ str_repeat('— ', $u['depth']) }}{{ $u['label'] }}</option>
                                     @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('directorate_id')" />

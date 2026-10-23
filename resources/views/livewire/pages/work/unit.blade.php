@@ -38,6 +38,7 @@ new class extends Component {
             'canPlan' => $user->can('create_activities') || $user->can('submit_paa'),
             'canDirect' => $user->isAdministrator() || $user->isDirector(),
             'canFinalize' => app(\App\Services\PlanningWindow::class)->canDecide($user, $year, $unit->id),
+            'people' => app(\App\Services\UnitPeople::class)->for($unit, $user),
         ];
     }
 }; ?>
@@ -197,6 +198,55 @@ new class extends Component {
             @endif
         </x-ui.card>
     @endif
+
+    {{-- who belongs to this unit --}}
+    <x-ui.card :title="__('People of this unit')" :description="trans_choice(':n person|:n people', count($people['members']), ['n' => count($people['members'])])" padding="p-0">
+        @if(! $people['has_director'])
+            <div class="border-b border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">
+                {{ __('This unit has no Director of its own.') }}
+                @if($people['above'])
+                    {{ __('It is directed from :unit: :names.', ['unit' => $people['above']['unit']?->code, 'names' => implode(', ', $people['above']['people'])]) }}
+                @else
+                    {{ __('Nobody directs it yet, so nobody can give the final approval of its activities.') }}
+                @endif
+            </div>
+        @endif
+        @forelse($people['members'] as $p)
+            <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-3 @unless($loop->last) border-b border-zinc-100 @endunless">
+                <div class="flex min-w-0 items-center gap-3">
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-600 text-xs font-semibold text-white" aria-hidden="true">{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($p['name'], 0, 2)) }}</span>
+                    <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-zinc-900">{{ $p['name'] }}</p>
+                        @if($people['show_email'])<p class="truncate text-xs text-zinc-500">{{ $p['email'] }}</p>@endif
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-1.5">
+                    <span class="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs font-medium text-zinc-700">{{ $p['role'] }}</span>
+                    @foreach($p['steps'] as $step)
+                        <span class="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-800">{{ ['prepare' => __('Prepares'), 'certify' => __('Certifies'), 'approve' => __('Approves')][$step] ?? $step }}</span>
+                    @endforeach
+                </div>
+            </div>
+        @empty
+            <p class="px-5 py-6 text-sm text-zinc-600">{{ __('No user belongs to this unit yet.') }}</p>
+        @endforelse
+        @foreach($people['stand_in'] as $s)
+            <div class="border-t border-zinc-100 bg-zinc-50 px-5 py-2.5 text-sm text-zinc-700">
+                <span class="font-medium">{{ $s['name'] }}</span> {{ __('stands in for the director') }}@if($s['until']) {{ __('until :d', ['d' => $s['until']->format('d/m/Y')]) }}@endif
+            </div>
+        @endforeach
+        @if($people['may_manage'] || $people['may_lists'])
+            <div class="flex flex-wrap gap-4 border-t border-zinc-100 px-5 py-3 text-sm">
+                @if($people['may_manage'])
+                    <a href="{{ route('management.users', ['unit' => $unit->id, 'new' => 1]) }}" wire:navigate class="font-medium text-indigo-700 hover:underline">+ {{ __('Add a person to this unit') }}</a>
+                    <a href="{{ route('management.users', ['unit' => $unit->id]) }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('See them in System Users') }}</a>
+                @endif
+                @if($people['may_lists'])
+                    <a href="{{ route('approvals.lists') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Approval lists') }}</a>
+                @endif
+            </div>
+        @endif
+    </x-ui.card>
 
     <div class="grid gap-6 lg:grid-cols-2">
         <x-ui.card :title="__('Recently')" padding="p-5">

@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\ApprovalDelegation;
+use App\Models\ApproverAssignment;
+use App\Models\Directorate;
+use App\Models\User;
 use App\Notifications\SystemNotification;
 use App\Notifications\SystemNotificationEmail;
 use App\Services\SampleRegistry;
 use App\Support\EmailNotifications;
+use App\Support\StructureCache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\LazyLoadingViolationException;
 use Illuminate\Notifications\Events\NotificationSent;
@@ -14,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Spatie\Permission\Models\Role;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +40,12 @@ class AppServiceProvider extends ServiceProvider
         // production is served over https; a trial run of the production stack over plain http (an APP_URL that starts with http://) is left alone
         if ($this->app->environment('production') && ! str_starts_with((string) config('app.url'), 'http://')) {
             URL::forceScheme('https');
+        }
+
+        // The cached unit tree, role list and unit people are renewed whenever one of them changes.
+        foreach ([User::class, Directorate::class, config('permission.models.role', Role::class), ApproverAssignment::class, ApprovalDelegation::class] as $model) {
+            $model::saved(fn () => StructureCache::bump());
+            $model::deleted(fn () => StructureCache::bump());
         }
 
         // Where e-mail is switched on, every in-app notification is also mailed (queued) to people who have not opted out.

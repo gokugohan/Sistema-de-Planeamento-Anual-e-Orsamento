@@ -15,11 +15,39 @@
                 class="block w-full pl-11 pr-4 h-11 bg-gray-50/50 border-transparent rounded-xl text-sm focus:ring-1 focus:ring-black focus:border-black focus:bg-white transition-all">
         </div>
 
-        <div class="flex items-center gap-2">
-            <span class="text-xs font-semibold text-gray-400 ">{{ $users->total() }}
-                {{ __('Registered Users') }}</span>
+        <div class="flex w-full flex-col gap-3 sm:flex-row sm:items-center md:w-auto">
+            <div>
+                <label for="uf-unit" class="sr-only">{{ __('Unit') }}</label>
+                <select id="uf-unit" wire:model.live="unitFilter" class="flux-input !w-auto min-w-[14rem]">
+                    <option value="">{{ __('All units') }}</option>
+                    <option value="none">{{ __('No unit') }}</option>
+                    @foreach($unitTree as $u)
+                        <option value="{{ $u['id'] }}">{{ str_repeat('— ', $u['depth']) }}{{ $u['label'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="uf-role" class="sr-only">{{ __('Security Role') }}</label>
+                <select id="uf-role" wire:model.live="roleFilter" class="flux-input !w-auto">
+                    <option value="">{{ __('All roles') }}</option>
+                    @foreach($roleOptions as $r)
+                        <option value="{{ $r->name }}">{{ __($r->display_name ?: $r->name) }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <span class="whitespace-nowrap text-xs font-semibold text-gray-400">{{ $users->total() }} {{ __('Registered Users') }}</span>
+            @if($search !== '' || $unitFilter !== '' || $roleFilter !== '')
+                <button type="button" wire:click="clearFilters" class="whitespace-nowrap text-xs font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
+            @endif
         </div>
     </div>
+
+    @if($noUnit > 0 && $unitFilter !== 'none')
+        <div role="status" class="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            <span>{{ trans_choice(':n director or officer has no unit and cannot see any activity.|:n directors or officers have no unit and cannot see any activity.', $noUnit, ['n' => $noUnit]) }}</span>
+            <button type="button" wire:click="$set('unitFilter', 'none')" class="font-medium underline">{{ __('Show them') }}</button>
+        </div>
+    @endif
 
     <!-- Users Table -->
     <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
@@ -36,7 +64,7 @@
                     </th>
                     <th
                         class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
-                        {{ __('Directorate-General') }}
+                        {{ __('Unit') }}
                     </th>
                     <th
                         class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
@@ -69,8 +97,12 @@
                             </span>
                         </td>
                         <td class="px-8 py-6 text-sm">
-                            <span
-                                class="font-bold text-gray-700 italic tracking-tight">{{ $user->directorate->code ?? __('National Authority') }}</span>
+                            @if($user->directorate)
+                                <a href="{{ route('units.show', $user->directorate->id) }}" wire:navigate title="{{ __('Open the unit') }}" class="font-semibold text-indigo-700 hover:underline">{{ $user->directorate->code }}</a>
+                                <span class="block max-w-[16rem] truncate text-xs text-gray-500">{{ $user->directorate->name }}</span>
+                            @else
+                                <span class="text-xs text-gray-500">{{ __('No unit') }}</span>
+                            @endif
                         </td>
                         <td class="px-8 py-6">
                             <span
