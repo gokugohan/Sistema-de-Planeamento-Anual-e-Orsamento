@@ -134,8 +134,8 @@ New fact from the work: official budget-book activity codes repeat across units 
 
 | ID | Requirement / rule | Source | Status | Accountable to validate | Impact if unresolved | Stage / software area |
 |---|---|---|---|---|---|---|
-| R-EXE-01 | Execution is reported monthly as committed and paid per budget line. | Software (`execution-spending.blade.php`) | TO VALIDATE (committed/paid are the official terms and stages) | Finance office | Reporting stages differ from the ledger | S11 |
-| R-EXE-02 | Committed cannot exceed the amount in force; paid cannot exceed committed. | Software (`:137-141`) | TO VALIDATE (overspend and transfers rules) | Finance office | Legitimate changes blocked, or overspending allowed | S11 |
+| R-EXE-01 | Execution is reported monthly as ONE executed amount per budget line (committed and paid were removed on 2026-10-22, as in the earlier Django PAA). | Software (`execution-spending.blade.php`) | The project owner states that the Ministry of Finance expects the executed amount. TO VALIDATE against the Ministry's template (per line or per category) | Finance office | The report asks for a different figure | S11 |
+| R-EXE-02 | The executed amount of a line, over all months, cannot exceed the amount in force. | Software (`execution-spending.blade.php`) | TO VALIDATE (overspend and transfers rules) | Finance office | Legitimate changes blocked, or overspending allowed | S11 |
 | R-EXE-03 | A verified figure that is later corrected keeps its earlier values as a visible history. | O8: only `audit_logs.old_values` | RECOMMENDATION | Internal audit | Prior verified values are hard to find | S12 |
 | R-EXE-04 | Quarterly indicator progress is cumulative or level, as defined per indicator. | Software | TO VALIDATE | Planning office | Misreported progress | S11 |
 | R-EXE-05 | Bulk verification must leave an audit record per figure. | O3 | RECOMMENDATION | Internal audit | Verification invisible in the audit trail | S12; `execution-*.blade.php` |

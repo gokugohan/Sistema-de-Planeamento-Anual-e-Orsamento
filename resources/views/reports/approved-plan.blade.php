@@ -112,6 +112,7 @@
     <div class="state-warning" style="border:1px solid #B45309;background:#FEF3C7;color:#78350F;padding:5px 8px;margin:0 0 6px;font-size:7.5pt;font-weight:bold">{{ __('Draft state') }}: {{ $stateWarning }}</div>
 @endif
 <div class="cover">
+    @if($logoUri = \App\Support\Branding::logoDataUri())<div style="text-align:center"><img src="{{ $logoUri }}" alt="" style="height:46px;margin-bottom:4px"></div>@endif
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
     <div class="title">{{ __('Annual Activity Plan') }} {{ $report['year'] }}</div>

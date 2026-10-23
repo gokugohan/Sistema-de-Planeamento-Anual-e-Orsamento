@@ -48,6 +48,28 @@ final class Branding
         return self::logoUrl() ?? asset('favicon.ico');
     }
 
+    /**
+     * The logo as a data: address, for printed documents (the PDF renderer does not fetch pictures from the application's own
+     * addresses). Null when there is no logo, or when it is only an address on another site. Kept in the cache until the logo
+     * changes; the reports of a year are printed many times and the picture is read from disk once.
+     */
+    public static function logoDataUri(): ?string
+    {
+        return StructureCache::remember('logo-data-uri', 3600, function () {
+            $logo = SystemSetting::get('organization_logo');
+            if (! $logo || str_starts_with((string) $logo, 'http')) {
+                return null;
+            }
+            $path = $logo === self::LOGO ? self::file('logo') : public_path(ltrim((string) $logo, '/'));
+            if (! $path || ! is_file($path)) {
+                return null;
+            }
+            $mime = mime_content_type($path) ?: 'image/png';
+
+            return 'data:'.$mime.';base64,'.base64_encode((string) file_get_contents($path));
+        });
+    }
+
     public static function version(): string
     {
         return (string) SystemSetting::get('organization_logo_version', '1');
@@ -79,6 +101,7 @@ final class Branding
         SystemSetting::set('organization_logo', self::LOGO, 'string', 'Path to organization logo file');
         SystemSetting::set('organization_favicon', self::FAVICON, 'string', 'Browser icon made from the logo');
         SystemSetting::set('organization_logo_version', (string) time(), 'string', 'Changes when the logo is replaced, so that browsers fetch the new one');
+        StructureCache::bump();
     }
 
     /** Take the logo away: the application goes back to the abbreviation and its default icon. */
@@ -88,6 +111,7 @@ final class Branding
         SystemSetting::set('organization_logo', null, 'string');
         SystemSetting::set('organization_favicon', null, 'string');
         SystemSetting::set('organization_logo_version', (string) time(), 'string');
+        StructureCache::bump();
     }
 
     /** @return \GdImage a copy no larger than the box, in proportion, with transparency kept */

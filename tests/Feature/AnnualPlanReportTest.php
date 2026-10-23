@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\AuditLog;
+use App\Models\SystemSetting;
 use App\Models\User;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -61,6 +62,19 @@ class AnnualPlanReportTest extends TestCase
         Activity::where('fiscal_year', 2027)->orderBy('id')->firstOrFail()->forceFill(['status' => Activity::STATUS_SUBMITTED, 'version' => 0])->save();
 
         $this->actingAs($this->admin())->get(route('reports.annual-plan', ['year' => 2027]))->assertSee('Draft state')->assertSee('not fully approved');
+    }
+
+    public function test_the_institutions_logo_is_on_the_printed_reports_and_the_pdf_still_renders(): void
+    {
+        $admin = $this->admin();
+        $this->actingAs($admin)->get(route('reports.annual-plan', ['year' => 2027]))->assertDontSee('data:image/png;base64', false);
+
+        SystemSetting::set('organization_logo', 'images/sample/mtc-logo.png', 'string');
+
+        foreach (['reports.annual-plan', 'reports.approved-plan', 'reports.implementation-plan'] as $route) {
+            $this->actingAs($admin)->get(route($route, ['year' => 2027]))->assertOk()->assertSee('data:image/png;base64', false);
+        }
+        $this->actingAs($admin)->get(route('reports.annual-plan.pdf', ['year' => 2027]))->assertOk();
     }
 
     public function test_only_those_who_see_every_plan_get_it(): void

@@ -7,6 +7,7 @@ use App\Models\ApproverAssignment;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
+use App\Models\SystemSetting;
 use App\Models\User;
 use App\Models\WindowExtension;
 use App\Notifications\SystemNotification;
@@ -60,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
         Event::listen(Failed::class, fn (Failed $e) => $trail('auth.failed', 'Failed sign-in attempt for '.mb_substr((string) ($e->credentials['email'] ?? ''), 0, 120), $e->user?->getAuthIdentifier()));
 
         // The cached unit tree, role list and unit people are renewed whenever one of them changes.
-        foreach ([User::class, Directorate::class, config('permission.models.role', Role::class), ApproverAssignment::class, ApprovalDelegation::class, ReportingWindow::class, WindowExtension::class] as $model) {
+        foreach ([User::class, Directorate::class, config('permission.models.role', Role::class), ApproverAssignment::class, ApprovalDelegation::class, ReportingWindow::class, WindowExtension::class, SystemSetting::class] as $model) {
             $model::saved(fn () => StructureCache::bump());
             $model::deleted(fn () => StructureCache::bump());
         }
