@@ -44,6 +44,13 @@ new class extends Component {
         };
     }
 
+    /** A month of the calendar is chosen (a month that has not started cannot be). */
+    public function selectMonth(int $month): void
+    {
+        $this->month = max(1, min($month, $this->latestMonth()));
+        $this->activityId = null;
+    }
+
     public function updatedMonth(): void
     {
         $this->month = max(1, min((int) $this->month, $this->latestMonth()));
@@ -178,6 +185,7 @@ new class extends Component {
             'summary' => $activity ? $this->summary($activity) : null,
             'worklist' => $activity ? collect() : $this->worklist,
             'maxMonth' => $this->latestMonth(),
+            'calendar' => app(ReportingWindows::class)->calendar($this->year, $activity?->directorate_id ?? auth()->user()->directorate_id, $this->latestMonth()),
             'closed' => array_filter([
                 ['what' => __('Executed amount and monthly report'), 'type' => 'month', 'period' => $this->month, 'reason' => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'month', $this->month, $activity?->directorate_id)],
                 ['what' => __('Indicators and quarterly report'), 'type' => 'quarter', 'period' => $this->quarter, 'reason' => app(ReportingWindows::class)->closedReason(auth()->user(), $this->year, 'quarter', $this->quarter, $activity?->directorate_id)],
@@ -199,11 +207,50 @@ new class extends Component {
 
     <x-ui.card padding="p-5">
         <div class="flex flex-wrap items-end gap-4">
-            <div>
-                <label for="re-m" class="field-label">{{ __('Month') }}</label>
-                <select id="re-m" wire:model.live="month" class="flux-input !w-auto">
-                    @foreach(range(1, $maxMonth) as $m)<option value="{{ $m }}">{{ \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F') }}</option>@endforeach
-                </select>
+            <div class="w-full" role="group" aria-label="{{ __('Reporting calendar') }}">
+                <p class="field-label mb-2">{{ __('Reporting calendar') }} · {{ $year }}</p>
+                @php
+                    $tone = [
+                        'open' => 'border-emerald-200 bg-emerald-50 text-emerald-900',
+                        'closing' => 'border-amber-300 bg-amber-50 text-amber-900',
+                        'closed' => 'border-rose-200 bg-rose-50 text-rose-900',
+                        'reopened' => 'border-emerald-300 bg-emerald-50 text-emerald-900',
+                        'before' => 'border-indigo-200 bg-indigo-50 text-indigo-900',
+                        'free' => 'border-zinc-200 bg-white text-zinc-800',
+                        'future' => 'border-zinc-100 bg-zinc-50 text-zinc-400',
+                    ];
+                    $words = fn (array $c) => match ($c['state']) {
+                        'open' => __('closes :d', ['d' => \Carbon\Carbon::parse($c['date'])->format('d/m')]),
+                        'closing' => trans_choice(':n day left|:n days left', max(1, $c['left']), ['n' => max(1, $c['left'])]),
+                        'closed' => __('closed :d', ['d' => \Carbon\Carbon::parse($c['date'])->format('d/m')]),
+                        'reopened' => __('open until :d', ['d' => \Carbon\Carbon::parse($c['date'])->format('d/m')]),
+                        'before' => __('opens :d', ['d' => \Carbon\Carbon::parse($c['date'])->format('d/m')]),
+                        'free' => __('no dates: open'),
+                        default => __('not started'),
+                    };
+                @endphp
+                <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    @foreach(range(1, 4) as $q)
+                        @php $qc = $calendar['quarters'][$q]; @endphp
+                        <div class="rounded-lg border border-zinc-200 p-2">
+                            <p class="mb-1.5 flex items-center justify-between px-1 text-[11px] font-semibold uppercase tracking-wide text-zinc-500">
+                                <span>Q{{ $q }} · {{ __('Indicators') }}</span>
+                                <span class="rounded-full border px-2 py-0.5 text-[10px] font-medium normal-case tracking-normal {{ $tone[$qc['state']] }}">{{ $words($qc) }}</span>
+                            </p>
+                            <div class="grid grid-cols-3 gap-1.5">
+                                @foreach(range(($q - 1) * 3 + 1, $q * 3) as $m)
+                                    @php $c = $calendar['months'][$m]; $future = $c['state'] === 'future'; $on = $month === $m; @endphp
+                                    <button type="button" wire:click="selectMonth({{ $m }})" @disabled($future) aria-pressed="{{ $on ? 'true' : 'false' }}"
+                                        aria-label="{{ \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F') }}: {{ $words($c) }}"
+                                        class="rounded-md border px-2 py-1.5 text-left transition {{ $tone[$c['state']] }} {{ $on ? 'ring-2 ring-indigo-600 ring-offset-1' : '' }} {{ $future ? 'cursor-not-allowed' : 'hover:shadow-sm' }}">
+                                        <span class="block text-sm font-semibold">{{ \Carbon\Carbon::create($year, $m, 1)->translatedFormat('M') }}@if($year === now()->year && $m === now()->month) <span class="ml-0.5 inline-block h-1.5 w-1.5 rounded-full bg-indigo-600 align-middle" title="{{ __('This month') }}"></span>@endif</span>
+                                        <span class="block text-[10px] leading-tight">{{ $words($c) }}</span>
+                                    </button>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
             <p class="max-w-xl pb-2 text-sm text-zinc-600">{{ __('You report the executed amount for the month you choose, and indicators for the quarter it belongs to (:months).', ['months' => \Carbon\Carbon::create($year, ($this->quarter - 1) * 3 + 1, 1)->translatedFormat('F').' – '.\Carbon\Carbon::create($year, $this->quarter * 3, 1)->translatedFormat('F')]) }}</p>
             @if(! $activityId)

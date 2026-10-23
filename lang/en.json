@@ -2319,5 +2319,14 @@
     "Newer": "Newer",
     "Older": "Older",
     "Your recent activity": "Your recent activity",
-    "When you signed in and what you did in the system. Nobody can edit this record.": "When you signed in and what you did in the system. Nobody can edit this record."
+    "When you signed in and what you did in the system. Nobody can edit this record.": "When you signed in and what you did in the system. Nobody can edit this record.",
+    "Reporting calendar": "Reporting calendar",
+    "closes :d": "closes :d",
+    ":n day left|:n days left": ":n day left|:n days left",
+    "closed :d": "closed :d",
+    "open until :d": "open until :d",
+    "opens :d": "opens :d",
+    "no dates: open": "no dates: open",
+    "not started": "not started",
+    "This month": "This month"
 }

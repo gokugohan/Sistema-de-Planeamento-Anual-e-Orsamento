@@ -8,6 +8,7 @@ use App\Models\ReportingWindow;
 use App\Models\User;
 use App\Models\WindowExtension;
 use App\Notifications\SystemNotification;
+use App\Support\StructureCache;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -116,6 +117,59 @@ class ReportingWindows
         return (int) $activity->version > 0
             ? $this->closedReason($user, (int) $activity->fiscal_year, self::REVISION, 1, $activity->directorate_id) // its own window, if the institution set one
             : $this->planClosedReason($user, (int) $activity->fiscal_year, $activity->directorate_id);
+    }
+
+    /**
+     * The reporting calendar of a year for one unit: each month and each quarter with its dates and where it stands today.
+     * States: future (the month has not started), free (no dates set: open), before (not open yet), open, closing (three days
+     * or fewer left), closed, reopened (an administrator gave this unit more time). One cached read of the dates of the year
+     * and one query for the unit's extra time; the cache is renewed when the calendar changes.
+     *
+     * @return array{months: array<int, array<string, mixed>>, quarters: array<int, array<string, mixed>>}
+     */
+    public function calendar(int $year, ?int $unitId, int $latestMonth): array
+    {
+        $windows = StructureCache::remember('calendar-windows:'.$year, 300, fn () => ReportingWindow::where('fiscal_year', $year)->whereIn('period_type', ['month', 'quarter'])
+            ->get(['period_type', 'period', 'opens_on', 'closes_on'])
+            ->mapWithKeys(fn ($w) => [$w->period_type.':'.$w->period => ['opens' => $w->opens_on->toDateString(), 'closes' => $w->closes_on->toDateString()]])->all());
+
+        $extra = $unitId
+            ? WindowExtension::where('fiscal_year', $year)->whereIn('period_type', ['month', 'quarter'])->whereIn('directorate_id', $this->chain($unitId))
+                ->whereDate('closes_on', '>=', now()->toDateString())->get(['period_type', 'period', 'closes_on'])
+                ->mapWithKeys(fn ($e) => [$e->period_type.':'.$e->period => $e->closes_on->toDateString()])->all()
+            : [];
+
+        $today = now()->toDateString();
+        $state = function (string $type, int $period, bool $future) use ($windows, $extra, $today): array {
+            $key = $type.':'.$period;
+            $w = $windows[$key] ?? null;
+            if ($future) {
+                return ['state' => 'future'];
+            }
+            if (! $w) {
+                return ['state' => 'free'];
+            }
+            if ($today < $w['opens']) {
+                return ['state' => 'before', 'date' => $w['opens']];
+            }
+            if ($today > $w['closes']) {
+                return isset($extra[$key]) ? ['state' => 'reopened', 'date' => $extra[$key]] : ['state' => 'closed', 'date' => $w['closes']];
+            }
+            $left = (int) Carbon::parse($today)->diffInDays($w['closes']);
+
+            return ['state' => $left <= 3 ? 'closing' : 'open', 'date' => $w['closes'], 'left' => $left];
+        };
+
+        $months = [];
+        foreach (range(1, 12) as $m) {
+            $months[$m] = $state('month', $m, $m > $latestMonth);
+        }
+        $quarters = [];
+        foreach (range(1, 4) as $q) {
+            $quarters[$q] = $state('quarter', $q, ($q - 1) * 3 + 1 > $latestMonth);
+        }
+
+        return ['months' => $months, 'quarters' => $quarters];
     }
 
     // ── late units: reopening the calendar for one of them

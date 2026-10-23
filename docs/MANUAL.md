@@ -459,7 +459,7 @@ Once an activity has an approved version, its unit reports what it spent and ach
 
 ![Report execution](manual/img/report-execution.png)
 
-**Execute → Report execution** opens on a **worklist** of the approved activities you may report. Choose the **month** (indicators follow the quarter it belongs to: October to December is Q4). Each row shows where the activity stands for that month: *To report*, *Returned*, *Waiting for verification* or *Verified*, once for the executed amount and once for indicators; the filters above the list (*To report*, *Waiting for verification*, *Done*) narrow it, and the search box finds an activity by code or words. Click a row to open it.
+**Execute → Report execution** starts with the **reporting calendar** of the year: the twelve months in four quarters, each with its dates and where it stands for your unit (*closes 31/10*, *2 days left*, *closed 30/09*, *open until 12/11* when the administrator gave your unit more time, *not started*). Click a month to report it. The indicators of each quarter show their own dates above its months. Below it, the page opens on a **worklist** of the approved activities you may report. Choose the **month** (indicators follow the quarter it belongs to: October to December is Q4). Each row shows where the activity stands for that month: *To report*, *Returned*, *Waiting for verification* or *Verified*, once for the executed amount and once for indicators; the filters above the list (*To report*, *Waiting for verification*, *Done*) narrow it, and the search box finds an activity by code or words. Click a row to open it.
 
 ![An activity opened in Report execution](manual/img/report-execution-open.png)
 

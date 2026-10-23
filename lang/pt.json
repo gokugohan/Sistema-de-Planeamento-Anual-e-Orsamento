@@ -2563,5 +2563,14 @@
     "Newer": "Mais recentes",
     "Older": "Mais antigos",
     "Your recent activity": "A sua atividade recente",
-    "When you signed in and what you did in the system. Nobody can edit this record.": "Quando entrou e o que fez no sistema. Ninguém pode editar este registo."
+    "When you signed in and what you did in the system. Nobody can edit this record.": "Quando entrou e o que fez no sistema. Ninguém pode editar este registo.",
+    "Reporting calendar": "Calendário de reporte",
+    "closes :d": "fecha :d",
+    ":n day left|:n days left": "falta :n dia|faltam :n dias",
+    "closed :d": "fechado :d",
+    "open until :d": "aberto até :d",
+    "opens :d": "abre :d",
+    "no dates: open": "sem datas: aberto",
+    "not started": "ainda não começou",
+    "This month": "Este mês"
 }

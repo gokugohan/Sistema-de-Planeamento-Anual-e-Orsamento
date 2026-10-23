@@ -2563,5 +2563,14 @@
     "Newer": "Foun liu",
     "Older": "Tuan liu",
     "Your recent activity": "Ita-nia atividade foin dadauk",
-    "When you signed in and what you did in the system. Nobody can edit this record.": "Bainhira ita tama no saida mak ita halo iha sistema. La iha ema ida bele edita rejistu ne'e."
+    "When you signed in and what you did in the system. Nobody can edit this record.": "Bainhira ita tama no saida mak ita halo iha sistema. La iha ema ida bele edita rejistu ne'e.",
+    "Reporting calendar": "Kalendáriu relatóriu nian",
+    "closes :d": "taka :d",
+    ":n day left|:n days left": "sobra loron :n|sobra loron :n",
+    "closed :d": "taka ona :d",
+    "open until :d": "loke to'o :d",
+    "opens :d": "loke :d",
+    "no dates: open": "la iha data: loke",
+    "not started": "seidauk komesa",
+    "This month": "Fulan ne'e"
 }
