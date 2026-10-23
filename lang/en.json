@@ -2313,5 +2313,11 @@
     "Roles and permissions": "Roles and permissions",
     "Switch a permission on or off for a role: it applies at once to everyone who has that role.": "Switch a permission on or off for a role: it applies at once to everyone who has that role.",
     "Permissions": "Permissions",
-    "Open the unit": "Open the unit"
+    "Open the unit": "Open the unit",
+    "Activity of this person": "Activity of this person",
+    "Nothing recorded for you yet.": "Nothing recorded for you yet.",
+    "Newer": "Newer",
+    "Older": "Older",
+    "Your recent activity": "Your recent activity",
+    "When you signed in and what you did in the system. Nobody can edit this record.": "When you signed in and what you did in the system. Nobody can edit this record."
 }

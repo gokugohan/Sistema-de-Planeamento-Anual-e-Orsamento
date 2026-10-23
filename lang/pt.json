@@ -2557,5 +2557,11 @@
     "Roles and permissions": "Perfis e permissões",
     "Switch a permission on or off for a role: it applies at once to everyone who has that role.": "Ligue ou desligue uma permissão de um perfil: aplica-se logo a todos os que têm esse perfil.",
     "Permissions": "Permissões",
-    "Open the unit": "Abrir a unidade"
+    "Open the unit": "Abrir a unidade",
+    "Activity of this person": "Atividade desta pessoa",
+    "Nothing recorded for you yet.": "Ainda nada registado para si.",
+    "Newer": "Mais recentes",
+    "Older": "Mais antigos",
+    "Your recent activity": "A sua atividade recente",
+    "When you signed in and what you did in the system. Nobody can edit this record.": "Quando entrou e o que fez no sistema. Ninguém pode editar este registo."
 }

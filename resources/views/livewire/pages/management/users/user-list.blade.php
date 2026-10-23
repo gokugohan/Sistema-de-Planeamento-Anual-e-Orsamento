@@ -122,6 +122,12 @@
                                         <path d="m15 5 4 4" />
                                     </svg>
                                 </button>
+                                @if(auth()->user()->isAdministrator())
+                                    <a href="{{ route('management.audit', ['userId' => $user->id]) }}" wire:navigate title="{{ __('Activity of this person') }}" aria-label="{{ __('Activity of this person') }}"
+                                        class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+                                    </a>
+                                @endif
                                 @if($user->id !== auth()->id() && auth()->user()->isAdministrator())
                                     @if($user->two_factor_confirmed_at)
                                         <button wire:click="resetTwoFactor({{ $user->id }})"

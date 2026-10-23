@@ -49,6 +49,17 @@
             <livewire:profile.two-factor-authentication-form />
         </x-ui.card>
 
+        <!-- What this person did -->
+        <x-ui.card>
+            <x-slot name="header">
+                <div>
+                    <h2 class="text-sm font-semibold text-zinc-900">{{ __('Your recent activity') }}</h2>
+                    <p class="text-xs text-zinc-400 mt-0.5">{{ __('When you signed in and what you did in the system. Nobody can edit this record.') }}</p>
+                </div>
+            </x-slot>
+            <livewire:profile.my-activity />
+        </x-ui.card>
+
         <p class="text-xs text-zinc-500">{{ __('Accounts are created, changed and removed by your system administrator; ask them if you need to leave the system.') }}</p>
 
     </div>

@@ -2557,5 +2557,11 @@
     "Roles and permissions": "Papél no permisaun",
     "Switch a permission on or off for a role: it applies at once to everyone who has that role.": "Loke ka taka permisaun ida ba papél ida: aplika imediatamente ba ema hotu neʼebé iha papél ne'e.",
     "Permissions": "Permisaun",
-    "Open the unit": "Loke unidade"
+    "Open the unit": "Loke unidade",
+    "Activity of this person": "Atividade husi ema ne'e",
+    "Nothing recorded for you yet.": "Seidauk iha rejistu ida ba ita.",
+    "Newer": "Foun liu",
+    "Older": "Tuan liu",
+    "Your recent activity": "Ita-nia atividade foin dadauk",
+    "When you signed in and what you did in the system. Nobody can edit this record.": "Bainhira ita tama no saida mak ita halo iha sistema. La iha ema ida bele edita rejistu ne'e."
 }

@@ -70,7 +70,7 @@ class ProgrammesPageTest extends TestCase
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
         $this->actingAs($admin)->get(route('planning.programmes'))->assertOk()
-            ->assertSeeInOrder(['Plan', 'Programmes', 'Plan cycle'])->assertSeeInOrder(['Administration', 'System Users', 'Structure', 'System', 'Settings', 'Optional rules']);
+            ->assertSeeInOrder(['Plan', 'Programmes', 'Plan cycle'])->assertSeeInOrder(['Administration', 'System Users', 'Structure', 'System', 'Settings', 'Import Activities']); // Optional rules and Calendar are tabs of Settings, not menu entries
 
         $officer = User::where('email', 'tecnico.udig@gdsc.tl')->firstOrFail();
         $this->actingAs($officer)->get(route('planning.programmes'))->assertOk();
