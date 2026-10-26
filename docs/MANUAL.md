@@ -242,6 +242,7 @@ Part 7. Directors keep these for their own units; administrators for any.
 | **Finance officers work for the whole institution** | Finance officers see every unit, confirm budgets and verify executed amounts everywhere. |
 | **Track corrective actions** | In *Report execution → Narrative*, the unit records corrective actions with a person responsible and a due date, and closes them when done. |
 | **Reports keep the structure at approval** | The final report shows each activity under the unit it belonged to when it was approved, even after a restructuring. |
+| **Compare the plan with the budget decisions** | Adds *Plan → Budget decisions*, where an administrator records what the budget review committee, the State Budget law or a supplementary budget decided, by economic category. The plan is compared with the latest decision, and the dashboard shows the difference. A decision limits nothing (see 9.5). |
 
 Nothing in these rules decides who approves the consolidated plan of the institution: no such step is assumed.
 
@@ -467,6 +468,18 @@ The revision goes through **the whole chain again**: prepared, certified (and va
 - **Delete the activity**: an activity that was approved once is part of the record of the plan.
 
 Finalizing a directorate's plan (Part 8) does not stop revisions.
+
+### 9.5 When the budget decided for the institution changes
+
+The plan the directorates approve is the institution's proposal. The amount the institution finally gets is decided outside it: by the budget review committee, then by the State Budget law, and sometimes changed during the year by a supplementary budget (*orçamento retificativo*). Where the optional rule **Compare the plan with the budget decisions** is on (4.9):
+
+1. After each decision, an administrator opens *Plan → **Budget decisions*** and clicks *Record a decision*. They enter who decided it, the date, the reference (for example the number of the law or the minutes) and the **amount for each economic category**. The form starts from the amounts of the previous decision, so only the categories that changed need typing.
+2. The plan in force at that moment is kept with the decision as a baseline. *Decisions of the year* lists every decision, and its *Plan then* figure opens the final plan report as it stood.
+3. The page compares the **approved plan amount** with the latest decision, by category. A positive difference is what the plan has above the decision; *Still being prepared* shows activities not approved yet, which are not counted in the plan amount. *Plan by directorate* shows where the plan sits. The decision is **not** divided among the directorates.
+4. While the plan is above or below the latest decision, those who see every plan get a **Budget** line on the dashboard.
+5. To follow the decision, the units concerned **revise** their activities (9.2): reduce, move or postpone lines. Each revision goes through the whole chain. The difference closes as the revisions are approved, because the version in force counts until then.
+
+A decision is a reference only. It does not block submitting, approving or finalizing, and it changes no activity.
 
 ---
 

@@ -125,6 +125,11 @@ Route::get('planning/programmes', function () {
     return view('planning.programmes');
 })->middleware(['auth', 'verified', 'permission:view_paa'])->name('planning.programmes');
 
+// The decisions on the institution's budget for the year, by category, against the plan (an optional rule; the page checks it).
+Route::get('planning/budget-decisions', function () {
+    return view('planning.budget-decisions');
+})->middleware(['auth', 'verified'])->name('planning.budget-decisions');
+
 Route::get('reports/paa', function () {
     return view('reports.paa');
 })->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');

@@ -31,6 +31,7 @@ final class PlanOptions
      * @param  bool  $baselines  the approved plan of a year can be recorded as a baseline and printed as it stood then
      * @param  bool  $structureAtApproval  reports show each activity under the unit it belonged to when it was approved
      * @param  bool  $completeBeforeApproval  a directorate's activities are decided on, and its plan finalized, only once all of them have been submitted
+     * @param  bool  $budgetDecisions  the decisions on the institution's budget (committee, budget law, supplementary budget) are recorded by category and compared with the plan
      */
     public function __construct(
         public readonly bool $obligations = false,
@@ -41,6 +42,7 @@ final class PlanOptions
         public readonly bool $baselines = false,
         public readonly bool $structureAtApproval = false,
         public readonly bool $completeBeforeApproval = true,
+        public readonly bool $budgetDecisions = false,
     ) {}
 
     private const KEY = 'plan_options';
@@ -61,6 +63,7 @@ final class PlanOptions
             (bool) ($s['baselines'] ?? false),
             (bool) ($s['structure_at_approval'] ?? false),
             (bool) ($s['complete_before_approval'] ?? true),
+            (bool) ($s['budget_decisions'] ?? false),
         );
     }
 
@@ -76,6 +79,7 @@ final class PlanOptions
             'baselines' => $this->baselines,
             'structure_at_approval' => $this->structureAtApproval,
             'complete_before_approval' => $this->completeBeforeApproval,
+            'budget_decisions' => $this->budgetDecisions,
         ];
     }
 

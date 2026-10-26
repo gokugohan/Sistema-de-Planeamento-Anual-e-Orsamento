@@ -178,6 +178,9 @@ class Navigation
         if (($node['feature'] ?? null) === 'testing' && ! SystemSetting::get('enable_paa_testing_mode', false)) {
             return false;
         }
+        if (($node['feature'] ?? null) === 'budget_decisions' && ! PlanOptions::current()->budgetDecisions) {
+            return false;
+        }
 
         return true;
     }

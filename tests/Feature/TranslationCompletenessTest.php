@@ -36,7 +36,7 @@ class TranslationCompletenessTest extends TestCase
     /** @return array<int, string> texts the code picks at run time, e.g. __($activity->status) */
     private function runtimeKeys(): array
     {
-        $keys = ['Independent', 'General Directorate', 'National Directorate', 'Department', 'Unit', 'Cabinet', 'Regional Office'];
+        $keys = ['Independent', 'General Directorate', 'National Directorate', 'Department', 'Unit', 'Cabinet', 'Regional Office', ...array_values(\App\Models\BudgetDecision::STAGES)];
         foreach ([Activity::class] as $class) {
             foreach ((new \ReflectionClass($class))->getConstants() as $name => $value) {
                 if (str_starts_with($name, 'STATUS_') && is_string($value)) {

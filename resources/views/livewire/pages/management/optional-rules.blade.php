@@ -16,6 +16,7 @@ new class extends Component {
     public bool $baselines = false;
     public bool $structureAtApproval = false;
     public bool $completeBeforeApproval = true;
+    public bool $budgetDecisions = false;
     public int $year;
     public string $guidance = '';
 
@@ -31,6 +32,7 @@ new class extends Component {
         $this->baselines = $o->baselines;
         $this->structureAtApproval = $o->structureAtApproval;
         $this->completeBeforeApproval = $o->completeBeforeApproval;
+        $this->budgetDecisions = $o->budgetDecisions;
         $this->year = \App\Support\FiscalYear::current();
         $this->guidance = (string) PlanOptions::guidance($this->year);
     }
@@ -53,6 +55,7 @@ new class extends Component {
         (new PlanOptions(
             $this->obligations, $this->financeInstitutionWide, $this->requiredFields,
             $this->externalReference, $this->correctiveActions, $this->baselines, $this->structureAtApproval, $this->completeBeforeApproval,
+            $this->budgetDecisions,
         ))->save();
         PlanOptions::setGuidance((int) $this->year, $this->guidance);
 
@@ -117,6 +120,11 @@ new class extends Component {
 
         <x-ui.card :title="__('Finance and monitoring')" padding="p-5">
             <div class="space-y-4 text-sm text-zinc-700">
+                <label class="flex items-start gap-3">
+                    <input type="checkbox" wire:model="budgetDecisions" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
+                    <span><span class="font-medium text-zinc-900">{{ __('Compare the plan with the budget decisions') }}</span><br>
+                        <span class="text-zinc-600">{{ __('An administrator records what the budget review committee, the State Budget law or a supplementary budget decided, by category; the plan is compared with the latest decision and the dashboard shows the difference. A decision limits nothing: the units revise their activities to follow it.') }}</span></span>
+                </label>
                 <label class="flex items-start gap-3">
                     <input type="checkbox" wire:model="financeInstitutionWide" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
                     <span><span class="font-medium text-zinc-900">{{ __('Finance officers work for the whole institution') }}</span><br>

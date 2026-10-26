@@ -43,7 +43,9 @@ class ApprovedPlanReportController extends Controller
     /** The baseline asked for, if the rule is on and it belongs to the year. */
     private function baseline(Request $request, int $year): ?PlanBaseline
     {
-        if (! PlanOptions::current()->baselines || ! $request->filled('baseline')) {
+        // a budget decision keeps the plan as it stood as a baseline, so that rule opens them too
+        $options = PlanOptions::current();
+        if (! ($options->baselines || $options->budgetDecisions) || ! $request->filled('baseline')) {
             return null;
         }
 

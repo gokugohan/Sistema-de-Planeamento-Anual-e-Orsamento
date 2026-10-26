@@ -59,6 +59,23 @@ class PlanBreakdown
         return $totals;
     }
 
+    /**
+     * By economic category: the amount in force (approved versions) and the amount of activities still being prepared
+     * for the first time (not rejected), in one grouped query.
+     *
+     * @return array<int, array{in_force: float, preparing: float}> keyed by economic classification id
+     */
+    public function classTotals(int $year): array
+    {
+        return $this->amounts($year)
+            ->groupBy('li.economic_classification_id')
+            ->selectRaw('li.economic_classification_id AS id, COALESCE(SUM(ab.approved_amount), 0) AS in_force, '
+                .'SUM(CASE WHEN a.version = 0 AND a.status <> ? AND li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS preparing', [Activity::STATUS_REJECTED])
+            ->get()
+            ->mapWithKeys(fn ($r) => [(int) $r->id => ['in_force' => (float) $r->in_force, 'preparing' => (float) $r->preparing]])
+            ->all();
+    }
+
     /** Amount distributed to the activities of the year. */
     public function approvedTotal(int $year): float
     {

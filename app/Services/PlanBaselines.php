@@ -20,6 +20,12 @@ class PlanBaselines
     {
         abort_unless(PlanOptions::current()->baselines && $user->isAdministrator(), 403);
 
+        return $this->capture($user, $year, $note);
+    }
+
+    /** Record the plan as it stands, for a rule that needs it (a budget decision), whether or not baselines are switched on. */
+    public function capture(User $user, int $year, ?string $note = null): PlanBaseline
+    {
         $ids = Activity::where('fiscal_year', $year)->where('version', '>', 0)->pluck('id');
         $versions = ActivityVersion::whereIn('activity_id', $ids)->orderBy('version')->get()->groupBy('activity_id')->map->last();
         if ($versions->isEmpty()) {
