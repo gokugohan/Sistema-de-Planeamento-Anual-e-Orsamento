@@ -130,6 +130,11 @@ Route::get('planning/budget-decisions', function () {
     return view('planning.budget-decisions');
 })->middleware(['auth', 'verified'])->name('planning.budget-decisions');
 
+// The adjustment round of the year: the directorates revise the activities they choose to follow a budget decision.
+Route::get('planning/adjustment', function () {
+    return view('planning.adjustment-round');
+})->middleware(['auth', 'verified', 'permission:view_paa'])->name('planning.adjustment');
+
 Route::get('reports/paa', function () {
     return view('reports.paa');
 })->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');

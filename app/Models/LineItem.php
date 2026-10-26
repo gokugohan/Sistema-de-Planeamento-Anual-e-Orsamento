@@ -57,6 +57,13 @@ class LineItem extends Model
             if ($item->isLocked()) {
                 throw new \Exception(__('This line item is locked because the planning cycle is finalized.'));
             }
+            // a line cannot be reduced below what has already been reported as executed against it
+            if ($item->isDirty('estimated_amount') && (float) $item->estimated_amount < (float) $item->getOriginal('estimated_amount')) {
+                $executed = (float) $item->executions()->where('status', '!=', BudgetExecution::REJECTED)->sum('executed');
+                if ((float) $item->estimated_amount + 0.005 < $executed) {
+                    throw new \DomainException(__('A budget line cannot be reduced below what has already been reported as executed against it ($ :amount).', ['amount' => number_format($executed, 2)]));
+                }
+            }
         });
 
         static::deleting(function ($item) {

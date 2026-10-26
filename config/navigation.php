@@ -46,6 +46,8 @@ return [
                     'hint' => 'Submission windows, approval and reporting of the annual plan'],
                 ['label' => 'Budget decisions', 'route' => 'planning.budget-decisions', 'icon' => 'banknote', 'audience' => 'wide', 'feature' => 'budget_decisions',
                     'hint' => 'What the budget committee and the budget law decided, by category, against the plan'],
+                ['label' => 'Adjustment round', 'route' => 'planning.adjustment', 'icon' => 'arrow-left-right', 'permission' => 'view_paa', 'feature' => 'budget_decisions',
+                    'hint' => 'Revise the activities your directorate chooses so that the plan follows the budget decision'],
                 ['label' => 'All activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'wide',
                     'hint' => 'Every activity of the plan, with its indicators and budget lines'],
                 ['label' => 'My plan', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'unit',

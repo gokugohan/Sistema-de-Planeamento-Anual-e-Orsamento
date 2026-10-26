@@ -80,6 +80,9 @@ new class extends Component {
 
 <div class="space-y-6">
     <x-ui.page-header :title="__('Budget decisions')" :subtitle="__('What was decided about the budget for :year, by category, and the plan against it. A decision limits nothing: where the plan has to follow it, the units revise their activities.', ['year' => $year])">
+        @if($gap)
+            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('planning.adjustment') }}" wire:navigate>{{ __('Adjustment round') }}</x-ui.button>
+        @endif
         @if($canRecord && ! $showForm)
             <x-ui.button size="md" wire:click="openForm">{{ __('Record a decision') }}</x-ui.button>
         @endif

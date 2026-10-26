@@ -465,6 +465,7 @@ The revision goes through **the whole chain again**: prepared, certified (and va
 ### 9.4 What a revision cannot do
 
 - **Remove a budget line that already has an executed amount reported against it**, or an indicator that already has progress reported: change its amount or target instead. This keeps the reported figures tied to their line.
+- **Reduce a budget line below what has already been reported as executed against it.**
 - **Delete the activity**: an activity that was approved once is part of the record of the plan.
 
 Finalizing a directorate's plan (Part 8) does not stop revisions.
@@ -477,9 +478,21 @@ The plan the directorates approve is the institution's proposal. The amount the 
 2. The plan in force at that moment is kept with the decision as a baseline. *Decisions of the year* lists every decision, and its *Plan then* figure opens the final plan report as it stood.
 3. The page compares the **approved plan amount** with the latest decision, by category. A positive difference is what the plan has above the decision; *Still being prepared* shows activities not approved yet, which are not counted in the plan amount. *Plan by directorate* shows where the plan sits. The decision is **not** divided among the directorates.
 4. While the plan is above or below the latest decision, those who see every plan get a **Budget** line on the dashboard.
-5. To follow the decision, the units concerned **revise** their activities (9.2): reduce, move or postpone lines. Each revision goes through the whole chain. The difference closes as the revisions are approved, because the version in force counts until then.
+5. To make the plan follow the decision, the planning office opens an **adjustment round** (below).
 
 A decision is a reference only. It does not block submitting, approving or finalizing, and it changes no activity.
+
+#### The adjustment round
+
+*Plan → **Adjustment round*** organises the work after a decision. There is one open round per year at a time.
+
+1. **Open (administrator).** Set a **deadline**, write the **instructions** (for example *protect salaries; postpone new equipment*), and give each directorate a **target reduction**. The targets are suggested by sharing the difference between the plan and the decision in proportion to each directorate's approved plan; change any of them, or enter zero to ask for no reduction. Opening the round notifies the directors and planners of each directorate, and an alert appears on the dashboard and on each unit's home page.
+2. **Choose and revise (each directorate).** The page lists the directorate's approved activities, the biggest first. Click **Revise for this round** on the ones you choose. The activity goes back to Draft with the round as the reason, and you change its amounts, postpone a part, or reduce a line. It then goes through the whole approval chain as usual. Activities you do not choose are not touched.
+3. **Follow progress.** For each directorate the table shows the **target**, how much has been **reduced** (approved revisions), what is **proposed** (revisions still in the approval chain), what is **still to reduce**, and its state: *Not started*, *Revisions in the approval chain*, *Ready to confirm* or *Confirmed*. Those who see every plan see every directorate; everyone else sees their own.
+4. **Confirm (head of the directorate).** When the revisions are approved, the head clicks **Confirm the adjustment**. This waits while a revision of the round is still in the chain. If the target is not reached, a remark explaining why is required.
+5. **Close (administrator).** Close the round with a note when the work is done, for example once the law is published. Activities can still be revised afterwards, but no longer for that round.
+
+A budget line can never be reduced below what has already been reported as executed against it.
 
 ---
 

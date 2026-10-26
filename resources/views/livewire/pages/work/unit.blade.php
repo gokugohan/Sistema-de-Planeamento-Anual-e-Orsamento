@@ -106,6 +106,7 @@ new class extends Component {
 
     {{-- where the year stands, and what is yours --}}
     <x-calendar-alerts :year="$year" />
+    <x-adjustment-round-alert :year="$year" />
     <x-year-at-a-glance :year="$year" />
 
     {{-- next for you --}}
