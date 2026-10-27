@@ -276,27 +276,27 @@ new class extends Component {
                 <x-ui.table :headers="[__('Directorate'), __('Target'), __('Reduced'), __('Added'), __('Proposed'), __('Still to reduce'), __('State')]" :right="[1, 2, 3, 4, 5]" class="text-sm">
                     @foreach($progress as $id => $p)
                         <tr wire:key="ar-p-{{ $id }}" @class(['bg-indigo-50/50' => $id === $unit])>
-                            <td class="px-5 py-2.5">
+                            <td class="min-w-[16rem] px-5 py-2.5">
                                 <button type="button" wire:click="$set('unit', {{ $id }})" class="text-left font-medium text-indigo-700 hover:underline">{{ $p['unit']->directorate?->code }}</button>
                                 <span class="text-zinc-700">{{ $p['unit']->directorate?->name }}</span>
                             </td>
-                            <td class="px-5 py-2.5 num">{{ $p['target'] > 0 ? $money($p['target']) : '—' }}</td>
-                            <td class="px-5 py-2.5 num">{{ $money($p['reduced']) }}</td>
-                            <td class="px-5 py-2.5 num">{{ $p['added'] >= 0.5 ? $money($p['added']) : '—' }}@if($p['adding'] >= 0.5)<span class="block text-xs text-zinc-500">+ {{ $money($p['adding']) }} {{ __('on the way') }}</span>@endif</td>
-                            <td class="px-5 py-2.5 num text-zinc-600">{{ abs($p['proposed']) >= 0.5 ? $money($p['proposed']) : '—' }}</td>
-                            <td class="px-5 py-2.5 num font-medium {{ $p['remaining'] > 0.5 ? 'text-rose-700' : 'text-emerald-700' }}">{{ $p['remaining'] > 0.5 ? $money($p['remaining']) : __('Reached') }}</td>
-                            <td class="px-5 py-2.5"><span class="inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium {{ $states[$p['state']][1] }}">{{ $states[$p['state']][0] }}</span></td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $p['target'] > 0 ? $money($p['target']) : '—' }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($p['reduced']) }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $p['added'] >= 0.5 ? $money($p['added']) : '—' }}@if($p['adding'] >= 0.5)<span class="block text-xs text-zinc-500">+ {{ $money($p['adding']) }} {{ __('on the way') }}</span>@endif</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap text-zinc-600">{{ abs($p['proposed']) >= 0.5 ? $money($p['proposed']) : '—' }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap font-medium {{ $p['remaining'] > 0.5 ? 'text-rose-700' : 'text-emerald-700' }}">{{ $p['remaining'] > 0.5 ? $money($p['remaining']) : __('Reached') }}</td>
+                            <td class="px-5 py-2.5"><span class="inline-flex whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium {{ $states[$p['state']][1] }}">{{ $states[$p['state']][0] }}</span></td>
                         </tr>
                     @endforeach
                     @if($wide && count($progress) > 1)
                         @php $sum = fn ($k) => array_sum(array_column($progress, $k)); @endphp
                         <tr class="bg-zinc-50 font-semibold">
                             <td class="px-5 py-2.5">{{ __('Total') }}</td>
-                            <td class="px-5 py-2.5 num">{{ $money($sum('target')) }}</td>
-                            <td class="px-5 py-2.5 num">{{ $money($sum('reduced')) }}</td>
-                            <td class="px-5 py-2.5 num">{{ $money($sum('added')) }}</td>
-                            <td class="px-5 py-2.5 num">{{ $money($sum('proposed')) }}</td>
-                            <td class="px-5 py-2.5 num">{{ $money($sum('remaining')) }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($sum('target')) }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($sum('reduced')) }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($sum('added')) }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($sum('proposed')) }}</td>
+                            <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($sum('remaining')) }}</td>
                             <td class="px-5 py-2.5 text-xs font-normal text-zinc-600">{{ __(':n of :m confirmed', ['n' => count(array_filter($progress, fn ($p) => $p['state'] === 'confirmed')), 'm' => count($progress)]) }}</td>
                         </tr>
                     @endif
@@ -322,16 +322,16 @@ new class extends Component {
                                 <tr wire:key="ar-a-{{ $a->id }}">
                                     <td class="px-5 py-2.5"><a href="{{ route('activities.show', $a) }}" wire:navigate class="text-indigo-700 hover:underline">{{ $a->code }}</a> <span class="text-zinc-800">{{ str($a->description)->limit(80) }}</span></td>
                                     <td class="px-5 py-2.5 text-zinc-600">{{ $a->directorate?->code }}</td>
-                                    <td class="px-5 py-2.5 num">{{ $money($a->in_force) }}</td>
+                                    <td class="px-5 py-2.5 num whitespace-nowrap">{{ $money($a->in_force) }}</td>
                                     <td class="px-5 py-2.5">
                                         @if($a->status !== Activity::STATUS_APPROVED)
                                             <span class="text-xs font-medium text-amber-800">{{ $a->round_entry ? __('Being revised for the round') : __('Being revised') }}</span>
                                             <a href="{{ route('activities.edit', $a) }}" wire:navigate class="ml-2 text-xs font-semibold text-indigo-700 hover:underline">{{ __('Edit') }}</a>
                                         @elseif($a->can_revise)
-                                            <button type="button" wire:click="revise({{ $a->id }})" wire:confirm="{{ __('Revise this activity for the round? It goes back to draft and through the whole approval chain; the approved amounts stay in force until the revision is approved.') }}" class="text-xs font-semibold text-indigo-700 hover:underline">{{ __('Revise for this round') }}</button>
-                                            @if($a->round_entry)<span class="ml-2 text-xs text-emerald-700">{{ __('Revised: $ :from → $ :to', ['from' => number_format((float) $a->round_entry->total_before, 0), 'to' => number_format((float) $a->in_force, 0)]) }}</span>@endif
+                                            <button type="button" wire:click="revise({{ $a->id }})" wire:confirm="{{ __('Revise this activity for the round? It goes back to draft and through the whole approval chain; the approved amounts stay in force until the revision is approved.') }}" class="whitespace-nowrap text-xs font-semibold text-indigo-700 hover:underline">{{ __('Revise for this round') }}</button>
+                                            @if($a->round_entry)<span class="ml-2 text-xs text-emerald-700">{{ $a->round_entry->is_new ? __('New in this round') : __('Revised: $ :from → $ :to', ['from' => number_format((float) $a->round_entry->total_before, 0), 'to' => number_format((float) $a->in_force, 0)]) }}</span>@endif
                                         @elseif($a->round_entry)
-                                            <span class="text-xs text-emerald-700">{{ __('Revised: $ :from → $ :to', ['from' => number_format((float) $a->round_entry->total_before, 0), 'to' => number_format((float) $a->in_force, 0)]) }}</span>
+                                            <span class="text-xs text-emerald-700">{{ $a->round_entry->is_new ? __('New in this round') : __('Revised: $ :from → $ :to', ['from' => number_format((float) $a->round_entry->total_before, 0), 'to' => number_format((float) $a->in_force, 0)]) }}</span>
                                         @else
                                             <span class="text-xs text-zinc-400">—</span>
                                         @endif
