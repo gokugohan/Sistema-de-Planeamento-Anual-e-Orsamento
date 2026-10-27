@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\AdjustmentRound;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
@@ -52,6 +53,12 @@ class ReportingWindows
         }
         $window = $this->find($year, $type, $period);
         if (! $window || (now()->startOfDay()->gte($window->opens_on) && now()->startOfDay()->lte($window->closes_on))) {
+            return true;
+        }
+        // an adjustment round that takes new activities opens their submission and approval for its directorates
+        $unit = $unitId ?? $user?->directorate_id;
+        if (in_array($type, [self::PLAN, self::APPROVAL], true) && $unit
+            && AdjustmentRound::takesNewActivities($year, app(PlanningWindow::class)->rootOf((int) $unit))) {
             return true;
         }
 

@@ -492,6 +492,8 @@ A decision is a reference only. It does not block submitting, approving or final
 4. **Confirm (head of the directorate).** When the revisions are approved, the head clicks **Confirm the adjustment**. This waits while a revision of the round is still in the chain. If the target is not reached, a remark explaining why is required.
 5. **Close (administrator).** Close the round with a note when the work is done, for example once the law is published. Activities can still be revised afterwards, but no longer for that round.
 
+**New activities (a supplementary budget with new money).** When opening the round, tick *Directorates may add new activities in this round*. Until the round closes, or until a directorate confirms, the directorates of the round can create new activities although their plan is finalized, and submit and approve them outside the calendar. The directorate's card on the round page lists them with a **+ New activity** button. Once approved, their amount appears in the **Added** column. The target counts the plan as a whole: what revisions took off, minus what new activities put in. Leave the box unticked for a round that only cuts, for example after the budget review committee.
+
 A budget line can never be reduced below what has already been reported as executed against it.
 
 ---

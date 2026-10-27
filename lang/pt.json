@@ -2683,5 +2683,13 @@
     "The head of the directorate confirms here when its adjustment is complete.": "O chefe da direção confirma aqui quando o ajustamento estiver concluído.",
     "Not confirmed before the round closed.": "Não confirmado antes do fecho da ronda.",
     "A budget line cannot be reduced below what has already been reported as executed against it ($ :amount).": "Uma linha orçamental não pode ser reduzida abaixo do que já foi reportado como executado nela ($ :amount).",
-    "Revise the activities your directorate chooses so that the plan follows the budget decision": "Rever as atividades que a sua direção escolher para que o plano siga a decisão orçamental"
+    "Revise the activities your directorate chooses so that the plan follows the budget decision": "Rever as atividades que a sua direção escolher para que o plano siga a decisão orçamental",
+    "New activities may be added until the round closes.": "Podem ser acrescentadas novas atividades até ao fecho da ronda.",
+    "Directorates may add new activities in this round": "As direções podem acrescentar novas atividades nesta ronda",
+    "For a supplementary budget with new money: until the round closes (or the directorate confirms), the directorates can create new activities although their plan is finalized, and submit and approve them outside the calendar.": "Para um orçamento retificativo com dinheiro novo: até ao fecho da ronda (ou à confirmação da direção), as direções podem criar novas atividades apesar de o seu plano estar finalizado, e submetê-las e aprová-las fora do calendário.",
+    "Reduced: what revisions took off the activities the directorate already had. Added: the new activities of the round once approved. Proposed: what revisions still in the approval chain would take off.": "Reduzido: o que as revisões tiraram às atividades que a direção já tinha. Acrescentado: as novas atividades da ronda, depois de aprovadas. Proposto: o que as revisões ainda no circuito de aprovação tirariam.",
+    "Added": "Acrescentado",
+    "on the way": "em curso",
+    "New activities of the round": "Novas atividades da ronda",
+    "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.": "Ainda nenhuma. Uma nova atividade passa pela aprovação habitual; depois de aprovada, o seu montante conta como acrescentado."
 }

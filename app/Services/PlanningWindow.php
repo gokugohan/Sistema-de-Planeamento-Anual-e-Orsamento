@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\AdjustmentRound;
 use App\Models\Directorate;
 use App\Models\UnitPlanning;
 use App\Models\User;
@@ -117,9 +118,10 @@ class PlanningWindow
         return $this->closed($year)->has($this->rootOf($unitId)) ? 'Finalized' : null;
     }
 
+    /** Can the unit add new activities to the plan of the year: its directorate has not finalized, or an adjustment round lets it. */
     public function isOpenFor(int $year, int $unitId): bool
     {
-        return $this->unitEndedBy($year, $unitId) === null;
+        return $this->unitEndedBy($year, $unitId) === null || AdjustmentRound::takesNewActivities($year, $this->rootOf($unitId));
     }
 
     /** The first year from this one on whose plan is still open for this unit: where its new activities go. */

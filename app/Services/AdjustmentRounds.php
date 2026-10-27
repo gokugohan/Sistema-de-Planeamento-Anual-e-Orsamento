@@ -21,8 +21,12 @@ use Illuminate\Support\Facades\DB;
  * changes only when a revision is approved. The head of the directorate confirms when its adjustment is complete,
  * and the administrator closes the round. Nothing is reduced automatically and nothing is blocked.
  *
- * The target is the amount a directorate is asked to reduce (zero: no reduction asked). "Reduced" is how much its
- * approved plan went down since the round opened; "proposed" is what its revisions still in the chain would add.
+ * A round may also let its directorates add new activities until it closes (a supplementary budget with new money):
+ * their plan is then open again for new activities, outside the calendar, as if it had not been finalized.
+ *
+ * The target is the amount a directorate is asked to reduce its plan by (zero: no reduction asked). "Reduced" is what
+ * revisions took off its existing activities, "added" what new activities of the round put in; the target is reached
+ * when the plan as a whole has gone down by it. "Proposed" is what revisions still in the chain would take off.
  */
 class AdjustmentRounds
 {
@@ -75,7 +79,7 @@ class AdjustmentRounds
     }
 
     /** @param  array<int|string, mixed>  $targets  directorate id => amount to reduce */
-    public function open(User $user, int $year, string $closesOn, ?string $instructions, array $targets): AdjustmentRound
+    public function open(User $user, int $year, string $closesOn, ?string $instructions, array $targets, bool $allowsNewActivities = false): AdjustmentRound
     {
         abort_unless($this->canOpen($user), 403);
         if (AdjustmentRound::openFor($year)) {
@@ -94,10 +98,11 @@ class AdjustmentRounds
             }
         }
 
-        $round = DB::transaction(function () use ($user, $year, $closesOn, $instructions, $targets, $decision, $plans) {
+        $round = DB::transaction(function () use ($user, $year, $closesOn, $instructions, $targets, $decision, $plans, $allowsNewActivities) {
             $round = AdjustmentRound::create([
                 'fiscal_year' => $year, 'budget_decision_id' => $decision->id, 'closes_on' => $closesOn,
-                'instructions' => filled($instructions) ? mb_substr(trim($instructions), 0, 4000) : null, 'opened_by' => $user->id,
+                'instructions' => filled($instructions) ? mb_substr(trim($instructions), 0, 4000) : null,
+                'allows_new_activities' => $allowsNewActivities, 'opened_by' => $user->id,
             ]);
             foreach ($plans as $directorateId => $plan) {
                 $round->units()->create(['directorate_id' => $directorateId, 'target' => round((float) ($targets[$directorateId] ?? 0), 2), 'plan_at_start' => $plan]);
@@ -138,7 +143,8 @@ class AdjustmentRounds
             $before = (float) ActivityVersion::where('activity_id', $activity->id)->orderByDesc('version')->value('total');
             app(ActivityWorkflow::class)->reopen($user, $activity, $this->reasonFor($round).(filled($note) ? ': '.trim($note) : ''));
 
-            // revised again in the same round (after an earlier revision of the round was approved): one row, the first amount
+            // revised again in the same round (after an earlier revision of the round was approved, or a new activity of
+            // the round revised after its approval): one row, as it was first recorded
             return $round->activities()->firstOrCreate(['activity_id' => $activity->id], ['total_before' => $before, 'added_by' => $user->id]);
         });
     }
@@ -191,47 +197,51 @@ class AdjustmentRounds
         $units = $round->units()->with(['directorate:id,code,name', 'confirmer:id,name'])->get();
         $now = $this->breakdown->unitTotals($round->fiscal_year);
 
-        // the revisions of the round: draft amount against the amount in force, for those still in the chain
-        $rows = DB::table('adjustment_round_activities as ra')
-            ->join('activities as a', 'a.id', '=', 'ra.activity_id')
-            ->leftJoin('line_items as li', 'li.activity_id', '=', 'a.id')
-            ->leftJoin('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
-            ->where('ra.adjustment_round_id', $round->id)
-            ->groupBy('a.id', 'a.directorate_id', 'a.status')
-            ->selectRaw('a.id, a.directorate_id, a.status, SUM(CASE WHEN li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS draft, COALESCE(SUM(ab.approved_amount), 0) AS in_force')
-            ->get();
-
+        $empty = ['revised' => 0, 'in_revision' => 0, 'proposed' => 0.0, 'added' => 0.0, 'adding' => 0.0, 'new' => 0];
         $byRoot = [];
-        foreach ($rows as $r) {
+        foreach ($this->activitiesOf($round)->get() as $r) {
             $root = $this->window->rootOf((int) $r->directorate_id);
-            $byRoot[$root] ??= ['revised' => 0, 'in_revision' => 0, 'proposed' => 0.0];
-            $byRoot[$root]['revised']++;
-            if (! in_array($r->status, [Activity::STATUS_APPROVED, Activity::STATUS_REJECTED], true)) {
-                $byRoot[$root]['in_revision']++;
-                $byRoot[$root]['proposed'] += (float) $r->in_force - (float) $r->draft; // positive: a reduction
+            $byRoot[$root] ??= $empty;
+            $waiting = ! in_array($r->status, [Activity::STATUS_APPROVED, Activity::STATUS_REJECTED], true);
+            if ($r->is_new) {
+                // a new activity: once approved it is in the plan ("added"); until then it is on its way
+                if ($r->status === Activity::STATUS_REJECTED) {
+                    continue;
+                }
+                $byRoot[$root]['new']++;
+                $byRoot[$root]['added'] += (float) $r->in_force;
+                $byRoot[$root]['adding'] += $waiting ? (float) $r->draft : 0.0;
+            } else {
+                // a revision: what its draft takes off the amount in force, while it is in the chain
+                $byRoot[$root]['revised']++;
+                $byRoot[$root]['proposed'] += $waiting ? (float) $r->in_force - (float) $r->draft : 0.0;
             }
+            $byRoot[$root]['in_revision'] += $waiting ? 1 : 0;
         }
 
         $result = [];
         foreach ($units as $u) {
             $start = (float) $u->plan_at_start;
             $planNow = (float) ($now[$u->directorate_id]['approved'] ?? 0);
-            $reduced = $start - $planNow;
-            $mine = $byRoot[$u->directorate_id] ?? ['revised' => 0, 'in_revision' => 0, 'proposed' => 0.0];
+            $mine = $byRoot[$u->directorate_id] ?? $empty;
+            $reduced = $start - ($planNow - $mine['added']); // what came off the activities it already had
             $result[$u->directorate_id] = [
                 'unit' => $u,
                 'target' => (float) $u->target,
                 'plan_at_start' => $start,
                 'plan_now' => $planNow,
                 'reduced' => $reduced,
+                'added' => $mine['added'],
+                'adding' => $mine['adding'],
                 'proposed' => $mine['proposed'],
-                'remaining' => max(0.0, (float) $u->target - $reduced),
+                'remaining' => max(0.0, (float) $u->target - ($start - $planNow)),
                 'revised' => $mine['revised'],
+                'new' => $mine['new'],
                 'in_revision' => $mine['in_revision'],
                 'state' => match (true) {
                     $u->confirmed_at !== null => 'confirmed',
                     $mine['in_revision'] > 0 => 'revising',
-                    $mine['revised'] > 0 || abs($reduced) >= 0.5 => 'ready',
+                    $mine['revised'] > 0 || $mine['new'] > 0 || abs($start - $planNow) >= 0.5 => 'ready',
                     default => 'not_started',
                 },
             ];
@@ -239,6 +249,46 @@ class AdjustmentRounds
         uasort($result, fn ($a, $b) => strcmp((string) $a['unit']->directorate?->code, (string) $b['unit']->directorate?->code));
 
         return $result;
+    }
+
+    /**
+     * The activities of the round, one row each: its directorate, status, whether it is new, its amount in force and
+     * its draft amount (one grouped query).
+     */
+    public function activitiesOf(AdjustmentRound $round)
+    {
+        return DB::table('adjustment_round_activities as ra')
+            ->join('activities as a', 'a.id', '=', 'ra.activity_id')
+            ->leftJoin('line_items as li', 'li.activity_id', '=', 'a.id')
+            ->leftJoin('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
+            ->where('ra.adjustment_round_id', $round->id)
+            ->groupBy('a.id', 'a.code', 'a.description', 'a.directorate_id', 'a.status', 'ra.is_new')
+            ->selectRaw('a.id, a.code, a.description, a.directorate_id, a.status, ra.is_new, COALESCE(SUM(ab.approved_amount), 0) AS in_force, SUM(CASE WHEN li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS draft');
+    }
+
+    /** The new activities of the round (see activitiesOf), the rejected ones left out. */
+    public function newActivities(AdjustmentRound $round)
+    {
+        return $this->activitiesOf($round)->where('ra.is_new', true)->where('a.status', '!=', Activity::STATUS_REJECTED);
+    }
+
+    /**
+     * Keep a new activity with the round when it exists because of it: its directorate had finalized its plan and the
+     * round reopened it for new activities. Activities planned while the directorate's plan was open anyway are ordinary
+     * planning, not part of the round. Called when an activity is created.
+     */
+    public function recordNew(Activity $activity): void
+    {
+        if ($activity->is_test_data || ! $activity->directorate_id) {
+            return;
+        }
+        $root = $this->window->rootOf((int) $activity->directorate_id);
+        if ($this->window->unitEndedBy((int) $activity->fiscal_year, $root) === null || ! AdjustmentRound::takesNewActivities((int) $activity->fiscal_year, $root)) {
+            return;
+        }
+        if ($round = AdjustmentRound::openFor((int) $activity->fiscal_year)) {
+            $round->activities()->create(['activity_id' => $activity->id, 'is_new' => true, 'total_before' => 0, 'added_by' => auth()->id()]);
+        }
     }
 
     // ── helpers
@@ -271,6 +321,9 @@ class AdjustmentRounds
             $message = (float) $unit->target > 0
                 ? __('The plan of :year is being adjusted to :decision. Your directorate is asked to reduce $ :amount by :date: choose the activities to revise.', ['year' => $round->fiscal_year, 'decision' => $what, 'amount' => number_format((float) $unit->target, 0), 'date' => $round->closes_on->format('d/m/Y')])
                 : __('The plan of :year is being adjusted to :decision, by :date. Your directorate is not asked to reduce, but may revise its activities.', ['year' => $round->fiscal_year, 'decision' => $what, 'date' => $round->closes_on->format('d/m/Y')]);
+            if ($round->allows_new_activities) {
+                $message .= ' '.__('New activities may be added until the round closes.');
+            }
             $users->each->notify(new SystemNotification(__('Adjustment round open'), $message, route('planning.adjustment', [], false)));
         }
     }

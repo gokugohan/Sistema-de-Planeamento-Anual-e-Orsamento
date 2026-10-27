@@ -45,6 +45,9 @@ class AdjustmentRoundAlert extends Component
         $this->text = (float) $mine->target > 0
             ? __('adjustment round open until :date: your directorate is asked to reduce $ :amount. Choose the activities to revise.', ['date' => $date, 'amount' => number_format((float) $mine->target, 0)])
             : __('adjustment round open until :date: your directorate may revise its activities.', ['date' => $date]);
+        if ($round->allows_new_activities) {
+            $this->text .= ' '.__('New activities may be added until the round closes.');
+        }
         $this->urgent = $round->closes_on->isPast();
     }
 

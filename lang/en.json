@@ -2439,5 +2439,13 @@
     "The head of the directorate confirms here when its adjustment is complete.": "The head of the directorate confirms here when its adjustment is complete.",
     "Not confirmed before the round closed.": "Not confirmed before the round closed.",
     "A budget line cannot be reduced below what has already been reported as executed against it ($ :amount).": "A budget line cannot be reduced below what has already been reported as executed against it ($ :amount).",
-    "Revise the activities your directorate chooses so that the plan follows the budget decision": "Revise the activities your directorate chooses so that the plan follows the budget decision"
+    "Revise the activities your directorate chooses so that the plan follows the budget decision": "Revise the activities your directorate chooses so that the plan follows the budget decision",
+    "New activities may be added until the round closes.": "New activities may be added until the round closes.",
+    "Directorates may add new activities in this round": "Directorates may add new activities in this round",
+    "For a supplementary budget with new money: until the round closes (or the directorate confirms), the directorates can create new activities although their plan is finalized, and submit and approve them outside the calendar.": "For a supplementary budget with new money: until the round closes (or the directorate confirms), the directorates can create new activities although their plan is finalized, and submit and approve them outside the calendar.",
+    "Reduced: what revisions took off the activities the directorate already had. Added: the new activities of the round once approved. Proposed: what revisions still in the approval chain would take off.": "Reduced: what revisions took off the activities the directorate already had. Added: the new activities of the round once approved. Proposed: what revisions still in the approval chain would take off.",
+    "Added": "Added",
+    "on the way": "on the way",
+    "New activities of the round": "New activities of the round",
+    "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.": "None yet. A new activity goes through the usual approval; once approved, its amount counts as added."
 }

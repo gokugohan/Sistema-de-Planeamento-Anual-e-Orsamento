@@ -14,6 +14,12 @@ class AdjustmentRoundUnit extends Model
 
     protected $casts = ['target' => 'decimal:2', 'plan_at_start' => 'decimal:2', 'confirmed_at' => 'datetime'];
 
+    protected static function booted(): void
+    {
+        // confirming ends the directorate's new activities for the round
+        static::saved(fn () => AdjustmentRound::forgetMemo());
+    }
+
     public function round()
     {
         return $this->belongsTo(AdjustmentRound::class, 'adjustment_round_id');

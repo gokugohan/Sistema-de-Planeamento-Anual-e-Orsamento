@@ -2683,5 +2683,13 @@
     "The head of the directorate confirms here when its adjustment is complete.": "Xefe diresaun konfirma iha ne'e bainhira ajustamentu kompletu ona.",
     "Not confirmed before the round closed.": "La konfirma molok ronda taka.",
     "A budget line cannot be reduced below what has already been reported as executed against it ($ :amount).": "Liña orsamentu labele hamenus ba okos husi saida mak relata ona nu'udar ezekuta iha nia ($ :amount).",
-    "Revise the activities your directorate chooses so that the plan follows the budget decision": "Revee atividade sira ne'ebé ita-nia diresaun hili atu planu tuir desizaun orsamentu"
+    "Revise the activities your directorate chooses so that the plan follows the budget decision": "Revee atividade sira ne'ebé ita-nia diresaun hili atu planu tuir desizaun orsamentu",
+    "New activities may be added until the round closes.": "Bele aumenta atividade foun to'o ronda taka.",
+    "Directorates may add new activities in this round": "Diresaun sira bele aumenta atividade foun iha ronda ida-ne'e",
+    "For a supplementary budget with new money: until the round closes (or the directorate confirms), the directorates can create new activities although their plan is finalized, and submit and approve them outside the calendar.": "Ba orsamentu retifikativu ho osan foun: to'o ronda taka (ka diresaun konfirma), diresaun sira bele kria atividade foun maski sira-nia planu finaliza ona, no submete no aprova sira iha li'ur kalendáriu.",
+    "Reduced: what revisions took off the activities the directorate already had. Added: the new activities of the round once approved. Proposed: what revisions still in the approval chain would take off.": "Hamenus ona: saida mak revizaun sira hasai husi atividade ne'ebé diresaun iha ona. Aumenta ona: atividade foun ronda nian, depois aprova. Proposta: saida mak revizaun sira ne'ebé sei iha prosesu aprovasaun sei hasai.",
+    "Added": "Aumenta ona",
+    "on the way": "iha dalan",
+    "New activities of the round": "Atividade foun ronda nian",
+    "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.": "Seidauk iha. Atividade foun liu husi aprovasaun normál; depois aprova, nia montante konta nu'udar aumenta ona."
 }

@@ -23,6 +23,9 @@ class Activity extends Model
         static::saved(fn () => FiscalYear::forget());
         static::deleted(fn () => FiscalYear::forget());
 
+        // an activity created because an adjustment round reopened its finalized directorate belongs to that round
+        static::created(fn (Activity $a) => app(\App\Services\AdjustmentRounds::class)->recordNew($a));
+
         static::updating(function ($activity) {
             if ($activity->isLocked()) {
                 throw new \Exception(__('This activity is locked because the planning cycle is finalized.'));

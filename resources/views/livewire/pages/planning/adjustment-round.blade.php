@@ -32,6 +32,7 @@ new class extends Component {
     public string $closesOn = '';
     public string $instructions = '';
     public array $targets = [];
+    public bool $allowsNewActivities = false;
 
     // confirming and closing
     public string $remark = '';
@@ -67,7 +68,7 @@ new class extends Component {
     {
         $this->validate(['closesOn' => 'required|date', 'instructions' => 'nullable|string|max:4000', 'targets.*' => 'nullable|numeric|min:0']);
         try {
-            $rounds->open(auth()->user(), FiscalYear::current(), $this->closesOn, $this->instructions, $this->targets);
+            $rounds->open(auth()->user(), FiscalYear::current(), $this->closesOn, $this->instructions, $this->targets, $this->allowsNewActivities);
         } catch (\DomainException $e) {
             $this->addError('targets', $e->getMessage());
 
@@ -144,6 +145,8 @@ new class extends Component {
             'selected' => $selected,
             'canConfirm' => $selected && $rounds->canConfirm($user, $selected['unit']),
             'activities' => $selected ? $this->activities($round, $this->unit) : null,
+            'newActivities' => $selected ? $rounds->newActivities($round)->whereIn('a.directorate_id', app(PlanningWindow::class)->subtree($this->unit))->orderBy('a.id')->get() : collect(),
+            'canAdd' => $selected && $round->isOpen() && $round->allows_new_activities && ! $selected['unit']->confirmed_at && $user->can('create_activities'),
             'reason' => $rounds->reasonFor($round),
         ];
     }
@@ -226,6 +229,11 @@ new class extends Component {
                         @error('targets')<p class="field-error">{{ $message }}</p>@enderror
                         @error('targets.*')<p class="field-error">{{ $message }}</p>@enderror
                     </div>
+                    <label class="flex items-start gap-3 text-sm text-zinc-700">
+                        <input type="checkbox" wire:model="allowsNewActivities" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
+                        <span><span class="font-medium text-zinc-900">{{ __('Directorates may add new activities in this round') }}</span><br>
+                            <span class="text-zinc-600">{{ __('For a supplementary budget with new money: until the round closes (or the directorate confirms), the directorates can create new activities although their plan is finalized, and submit and approve them outside the calendar.') }}</span></span>
+                    </label>
                     <div class="flex justify-end"><x-ui.button type="submit">{{ __('Open the round') }}</x-ui.button></div>
                 </form>
             </x-ui.card>
@@ -246,6 +254,7 @@ new class extends Component {
                             {{ __('Closed on :date', ['date' => $round->closed_at->format('d/m/Y')]) }}@if($round->closing_note) · {{ $round->closing_note }}@endif
                         @endif
                     </p>
+                    @if($round->allows_new_activities)<p class="text-zinc-700">{{ __('New activities may be added until the round closes.') }}</p>@endif
                     @if($round->instructions)<p class="whitespace-pre-line text-zinc-700">{{ $round->instructions }}</p>@endif
                 </div>
                 @if($round->isOpen() && $canOpen)
@@ -263,8 +272,8 @@ new class extends Component {
         @if(count($progress) === 0)
             <x-ui.card padding="p-0"><x-ui.empty-state :title="__('Your directorate is not in this round')" :description="__('Only directorates with an approved plan when the round opened take part.')" /></x-ui.card>
         @else
-            <x-ui.card :title="__('Directorates')" :description="__('Reduced: how much the approved plan went down since the round opened. Proposed: what the revisions still in the approval chain would reduce.')" padding="p-0">
-                <x-ui.table :headers="[__('Directorate'), __('Target'), __('Reduced'), __('Proposed'), __('Still to reduce'), __('State')]" :right="[1, 2, 3, 4]" class="text-sm">
+            <x-ui.card :title="__('Directorates')" :description="__('Reduced: what revisions took off the activities the directorate already had. Added: the new activities of the round once approved. Proposed: what revisions still in the approval chain would take off.')" padding="p-0">
+                <x-ui.table :headers="[__('Directorate'), __('Target'), __('Reduced'), __('Added'), __('Proposed'), __('Still to reduce'), __('State')]" :right="[1, 2, 3, 4, 5]" class="text-sm">
                     @foreach($progress as $id => $p)
                         <tr wire:key="ar-p-{{ $id }}" @class(['bg-indigo-50/50' => $id === $unit])>
                             <td class="px-5 py-2.5">
@@ -273,6 +282,7 @@ new class extends Component {
                             </td>
                             <td class="px-5 py-2.5 num">{{ $p['target'] > 0 ? $money($p['target']) : '—' }}</td>
                             <td class="px-5 py-2.5 num">{{ $money($p['reduced']) }}</td>
+                            <td class="px-5 py-2.5 num">{{ $p['added'] >= 0.5 ? $money($p['added']) : '—' }}@if($p['adding'] >= 0.5)<span class="block text-xs text-zinc-500">+ {{ $money($p['adding']) }} {{ __('on the way') }}</span>@endif</td>
                             <td class="px-5 py-2.5 num text-zinc-600">{{ abs($p['proposed']) >= 0.5 ? $money($p['proposed']) : '—' }}</td>
                             <td class="px-5 py-2.5 num font-medium {{ $p['remaining'] > 0.5 ? 'text-rose-700' : 'text-emerald-700' }}">{{ $p['remaining'] > 0.5 ? $money($p['remaining']) : __('Reached') }}</td>
                             <td class="px-5 py-2.5"><span class="inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium {{ $states[$p['state']][1] }}">{{ $states[$p['state']][0] }}</span></td>
@@ -284,6 +294,7 @@ new class extends Component {
                             <td class="px-5 py-2.5">{{ __('Total') }}</td>
                             <td class="px-5 py-2.5 num">{{ $money($sum('target')) }}</td>
                             <td class="px-5 py-2.5 num">{{ $money($sum('reduced')) }}</td>
+                            <td class="px-5 py-2.5 num">{{ $money($sum('added')) }}</td>
                             <td class="px-5 py-2.5 num">{{ $money($sum('proposed')) }}</td>
                             <td class="px-5 py-2.5 num">{{ $money($sum('remaining')) }}</td>
                             <td class="px-5 py-2.5 text-xs font-normal text-zinc-600">{{ __(':n of :m confirmed', ['n' => count(array_filter($progress, fn ($p) => $p['state'] === 'confirmed')), 'm' => count($progress)]) }}</td>
@@ -329,6 +340,27 @@ new class extends Component {
                             @endforeach
                         </x-ui.table>
                         @if($activities->hasPages())<div class="border-t border-zinc-200 px-5 py-3">{{ $activities->links() }}</div>@endif
+                    @endif
+
+                    @if($canAdd || $newActivities->isNotEmpty())
+                        <div class="border-t border-zinc-200 px-5 py-4">
+                            <div class="flex flex-wrap items-center justify-between gap-3">
+                                <h3 class="text-sm font-semibold text-zinc-900">{{ __('New activities of the round') }}</h3>
+                                @if($canAdd)<x-ui.button size="sm" shadow="none" href="{{ route('activities.create') }}" wire:navigate>+ {{ __('New activity') }}</x-ui.button>@endif
+                            </div>
+                            @if($newActivities->isEmpty())
+                                <p class="mt-1 text-sm text-zinc-500">{{ __('None yet. A new activity goes through the usual approval; once approved, its amount counts as added.') }}</p>
+                            @else
+                                <ul class="mt-2 divide-y divide-zinc-100 text-sm">
+                                    @foreach($newActivities as $n)
+                                        <li class="flex flex-wrap items-center justify-between gap-2 py-1.5" wire:key="ar-n-{{ $n->id }}">
+                                            <span><a href="{{ route('activities.show', $n->id) }}" wire:navigate class="text-indigo-700 hover:underline">{{ $n->code }}</a> {{ str($n->description)->limit(80) }}</span>
+                                            <span class="tabular-nums text-zinc-700">{{ $money($n->status === Activity::STATUS_APPROVED ? $n->in_force : $n->draft) }} · <x-ui.status :status="$n->status" /></span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
                     @endif
 
                     <div class="border-t border-zinc-200 bg-zinc-50 px-5 py-4 text-sm">

@@ -6,12 +6,17 @@ use App\Models\Activity;
 use App\Models\AdjustmentRound;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
+use App\Models\EconomicClassification;
+use App\Models\Program;
+use App\Models\ReportingWindow;
+use App\Models\UnitPlanning;
 use App\Models\User;
 use App\Services\ActivityVersions;
 use App\Services\AdjustmentRounds;
 use App\Services\BudgetDecisions;
 use App\Services\PlanBreakdown;
 use App\Services\PlanningWindow;
+use App\Services\ReportingWindows;
 use App\Support\PlanOptions;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -186,6 +191,54 @@ class AdjustmentRoundTest extends TestCase
         $this->assertFalse($round->fresh()->isOpen());
         $this->assertFalse(app(AdjustmentRounds::class)->canRevise($this->head, $round->fresh(), $this->activityWithLine(1)));
         $this->actingAs($this->admin)->get(route('dashboard'))->assertOk()->assertDontSee('adjustment round open until');
+    }
+
+    public function test_a_round_with_new_money_lets_a_finalized_directorate_add_activities_until_it_confirms(): void
+    {
+        UnitPlanning::firstOrCreate(['fiscal_year' => 2027, 'directorate_id' => $this->root->id], ['planning_by' => $this->admin->id, 'planning_at' => now()]);
+        ReportingWindow::create(['fiscal_year' => 2027, 'period_type' => ReportingWindows::PLAN, 'period' => 1, 'opens_on' => '2026-08-01', 'closes_on' => '2026-08-31']);
+        $unit = Directorate::where('code', 'UDIG')->firstOrFail();
+        $window = app(PlanningWindow::class);
+        $calendar = app(ReportingWindows::class);
+        $this->decideACut(0.01);
+
+        $this->assertFalse($window->isOpenFor(2027, $unit->id), 'the plan is finalized');
+        $this->assertNotNull($calendar->planClosedReason($this->head, 2027, $unit->id), 'and submission is closed');
+
+        // a round that does not take new activities changes nothing
+        $plain = $this->openRound(0);
+        $this->assertFalse($window->isOpenFor(2027, $unit->id));
+        app(AdjustmentRounds::class)->close($this->admin, $plain);
+
+        $round = app(AdjustmentRounds::class)->open($this->admin, 2027, '2027-04-30', 'Supplementary budget: new projects', [], true);
+        $this->assertTrue($window->isOpenFor(2027, $unit->id));
+        $this->assertNull($calendar->planClosedReason($this->head, 2027, $unit->id));
+        $this->assertNull($calendar->closedReason($this->head, 2027, ReportingWindows::APPROVAL, 1, $unit->id));
+
+        // a new activity of the round: on its way, then added once approved
+        $new = Activity::create([
+            'fiscal_year' => 2027, 'program_id' => Program::firstOrFail()->id, 'directorate_id' => $unit->id,
+            'description' => 'New project funded by the supplementary budget', 'quarter' => 3, 'priority' => 'Alta',
+            'planned_start' => '2027-07-01', 'planned_end' => '2027-12-31', 'status' => Activity::STATUS_DRAFT,
+        ]);
+        $new->lineItems()->create(['code' => 'N-1', 'economic_classification_id' => EconomicClassification::firstOrFail()->id, 'estimated_amount' => 8000]);
+        $rounds = app(AdjustmentRounds::class);
+        $row = $rounds->progress($round)[$this->root->id];
+        $this->assertSame(1, $row['new']);
+        $this->assertEqualsWithDelta(8000, $row['adding'], 0.01);
+        $this->assertSame('revising', $row['state']);
+
+        $this->approveRevision($new);
+        $row = $rounds->progress($round)[$this->root->id];
+        $this->assertEqualsWithDelta(8000, $row['added'], 0.01);
+        $this->assertEqualsWithDelta(0, $row['reduced'], 0.01, 'nothing came off the activities it had');
+
+        $this->actingAs($this->head)->get(route('planning.adjustment'))->assertOk()->assertSee('New project funded by the supplementary budget');
+
+        // confirming ends it for the directorate
+        $rounds->confirm($this->head, $round->units()->firstOrFail());
+        $this->assertFalse($window->isOpenFor(2027, $unit->id));
+        $this->assertNotNull($calendar->planClosedReason($this->head, 2027, $unit->id));
     }
 
     public function test_a_line_cannot_be_cut_below_what_was_reported_as_executed(): void
