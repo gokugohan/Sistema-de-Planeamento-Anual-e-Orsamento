@@ -31,6 +31,8 @@ return [
                     'hint' => 'Your unit\'s plan, what waits for you and the deadlines'],
                 ['label' => 'How the year works', 'route' => 'guide', 'icon' => 'list',
                     'hint' => 'Who does what, when and where: planning, approval, reporting and verification'],
+                ['label' => 'Manual', 'route' => 'manual', 'icon' => 'book-open',
+                    'hint' => 'The user manual, and for administrators the administrator manual, to read or download'],
             ],
         ],
         [

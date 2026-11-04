@@ -2692,5 +2692,16 @@
     "on the way": "iha dalan",
     "New activities of the round": "Atividade foun ronda nian",
     "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.": "Seidauk iha. Atividade foun liu husi aprovasaun normál; depois aprova, nia montante konta nu'udar aumenta ona.",
-    "New in this round": "Foun iha ronda ida-ne'e"
+    "New in this round": "Foun iha ronda ida-ne'e",
+    "Manual": "Manuál",
+    "User manual": "Manuál ba utilizadór",
+    "Administrator manual": "Manuál ba administradór",
+    "For everyone who works with the plan: planning activities, approving them, revisions, reporting and verifying, the reports, and a whole year step by step.": "Ba ema hotu ne'ebé servisu ho planu: planeia atividade, aprova, revizaun, relata no verifika, relatóriu sira, no tinan ida tomak pasu ba pasu.",
+    "For administrators: settings, structure, users and permissions, the calendar, the optional rules, budget decisions and adjustment rounds, notifications, the audit log and sample data.": "Ba administradór sira: konfigurasaun, estrutura, utilizadór no permisaun, kalendáriu, regra opsionál, desizaun orsamentu no ronda ajustamentu, notifikasaun, rejistu auditoria no dadus ezemplu.",
+    "How to use the system, to read here or download as a PDF. The manuals are in English.": "Oinsá uza sistema, atu lee iha ne'e ka download hanesan PDF. Manuál sira iha lian Inglés.",
+    "PDF, :size MB, updated :date": "PDF, :size MB, atualiza iha :date",
+    "Read here": "Lee iha ne'e",
+    "Open in a new tab": "Loke iha tab foun",
+    "This manual has not been built on this server yet.": "Manuál ida-ne'e seidauk prepara iha servidór ida-ne'e.",
+    "The user manual, and for administrators the administrator manual, to read or download": "Manuál ba utilizadór, no ba administradór manuál ba administradór, atu lee ka download"
 }

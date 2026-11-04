@@ -2448,5 +2448,16 @@
     "on the way": "on the way",
     "New activities of the round": "New activities of the round",
     "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.": "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.",
-    "New in this round": "New in this round"
+    "New in this round": "New in this round",
+    "Manual": "Manual",
+    "User manual": "User manual",
+    "Administrator manual": "Administrator manual",
+    "For everyone who works with the plan: planning activities, approving them, revisions, reporting and verifying, the reports, and a whole year step by step.": "For everyone who works with the plan: planning activities, approving them, revisions, reporting and verifying, the reports, and a whole year step by step.",
+    "For administrators: settings, structure, users and permissions, the calendar, the optional rules, budget decisions and adjustment rounds, notifications, the audit log and sample data.": "For administrators: settings, structure, users and permissions, the calendar, the optional rules, budget decisions and adjustment rounds, notifications, the audit log and sample data.",
+    "How to use the system, to read here or download as a PDF. The manuals are in English.": "How to use the system, to read here or download as a PDF. The manuals are in English.",
+    "PDF, :size MB, updated :date": "PDF, :size MB, updated :date",
+    "Read here": "Read here",
+    "Open in a new tab": "Open in a new tab",
+    "This manual has not been built on this server yet.": "This manual has not been built on this server yet.",
+    "The user manual, and for administrators the administrator manual, to read or download": "The user manual, and for administrators the administrator manual, to read or download"
 }

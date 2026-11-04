@@ -2692,5 +2692,16 @@
     "on the way": "em curso",
     "New activities of the round": "Novas atividades da ronda",
     "None yet. A new activity goes through the usual approval; once approved, its amount counts as added.": "Ainda nenhuma. Uma nova atividade passa pela aprovação habitual; depois de aprovada, o seu montante conta como acrescentado.",
-    "New in this round": "Nova nesta ronda"
+    "New in this round": "Nova nesta ronda",
+    "Manual": "Manual",
+    "User manual": "Manual do utilizador",
+    "Administrator manual": "Manual do administrador",
+    "For everyone who works with the plan: planning activities, approving them, revisions, reporting and verifying, the reports, and a whole year step by step.": "Para todos os que trabalham com o plano: planear atividades, aprová-las, revisões, reportar e verificar, os relatórios e um ano inteiro passo a passo.",
+    "For administrators: settings, structure, users and permissions, the calendar, the optional rules, budget decisions and adjustment rounds, notifications, the audit log and sample data.": "Para administradores: configurações, estrutura, utilizadores e permissões, o calendário, as regras opcionais, decisões orçamentais e rondas de ajustamento, notificações, o registo de auditoria e os dados de exemplo.",
+    "How to use the system, to read here or download as a PDF. The manuals are in English.": "Como usar o sistema, para ler aqui ou descarregar em PDF. Os manuais estão em inglês.",
+    "PDF, :size MB, updated :date": "PDF, :size MB, atualizado em :date",
+    "Read here": "Ler aqui",
+    "Open in a new tab": "Abrir num novo separador",
+    "This manual has not been built on this server yet.": "Este manual ainda não foi gerado neste servidor.",
+    "The user manual, and for administrators the administrator manual, to read or download": "O manual do utilizador e, para administradores, o manual do administrador, para ler ou descarregar"
 }

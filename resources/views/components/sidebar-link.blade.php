@@ -26,6 +26,7 @@
         'flask-conical'    => '<path d="M14 2v6l3 10H7L10 8V2"/><path d="M6 2h12"/>',
         'calendar'         => '<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>',
         'circle'           => '<circle cx="12" cy="12" r="10"/>',
+        'book-open'        => '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
         'list'             => '<line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/>',
         default            => '<circle cx="12" cy="12" r="4"/>',
     };

@@ -8,7 +8,7 @@ Built with Laravel 12, Livewire 3 (Volt), Tailwind CSS 3, Alpine.js and MySQL. I
 
 ---
 
-**Documentation.** The complete user manual, for every role and with a step-by-step tutorial for a whole year, is in [docs/MANUAL.md](docs/MANUAL.md). The presentation deck is `docs/Sistema-PAA-apresentacao-v5.pptx` (older versions are kept beside it).
+**Documentation.** Two manuals, also readable and downloadable as PDF in the application (*Overview → Manual*): the [user manual](docs/MANUAL-USER.md), for everyone who plans, approves, reports and reads, with a step-by-step tutorial for a whole year; and the [administrator manual](docs/MANUAL-ADMIN.md), for setting up and running the system (the PDF is shown to administrators only). Edit the Markdown, then run `python docs/manual/build.py` to rebuild the PDFs in `resources/manuals/` and the Word files beside the Markdown (needs `pip install markdown python-docx` and Google Chrome). The presentation deck is `docs/Sistema-PAA-apresentacao-v5.pptx` (older versions are kept beside it).
 
 ## Contents
 

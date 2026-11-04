@@ -285,7 +285,7 @@ new class extends Component {
                             <td class="px-5 py-2.5 num whitespace-nowrap">{{ $p['added'] >= 0.5 ? $money($p['added']) : '—' }}@if($p['adding'] >= 0.5)<span class="block text-xs text-zinc-500">+ {{ $money($p['adding']) }} {{ __('on the way') }}</span>@endif</td>
                             <td class="px-5 py-2.5 num whitespace-nowrap text-zinc-600">{{ abs($p['proposed']) >= 0.5 ? $money($p['proposed']) : '—' }}</td>
                             <td class="px-5 py-2.5 num whitespace-nowrap font-medium {{ $p['remaining'] > 0.5 ? 'text-rose-700' : 'text-emerald-700' }}">{{ $p['remaining'] > 0.5 ? $money($p['remaining']) : __('Reached') }}</td>
-                            <td class="px-5 py-2.5"><span class="inline-flex whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium {{ $states[$p['state']][1] }}">{{ $states[$p['state']][0] }}</span></td>
+                            <td class="px-5 py-2.5"><span class="inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium {{ $states[$p['state']][1] }}">{{ $states[$p['state']][0] }}</span></td>
                         </tr>
                     @endforeach
                     @if($wide && count($progress) > 1)
