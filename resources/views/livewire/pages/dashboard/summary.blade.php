@@ -51,7 +51,8 @@ new class extends Component {
                 ->where('line_items.economic_classification_id', $cat)));
 
         // ── counts: activities by unit and status ──
-        $statusOrder = [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL, Activity::STATUS_APPROVED];
+        // the stages as people see them (Activity::STATUS_WORDS); the old "waiting approval" counts as certified
+        $statusOrder = [Activity::STATUS_DRAFT, Activity::STATUS_REJECTED, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_APPROVED];
         $byStatus = array_fill_keys($statusOrder, 0);
         $unitStats = [];
         $progStats = [];
@@ -68,7 +69,8 @@ new class extends Component {
                     $subStats[$r->sp]['approved'] = ($subStats[$r->sp]['approved'] ?? 0) + $r->n;
                 }
             }
-            $byStatus[$r->s] = ($byStatus[$r->s] ?? 0) + $r->n;
+            $stage = $r->s === Activity::STATUS_WAITING_APPROVAL ? Activity::STATUS_VALIDATED : $r->s;
+            $byStatus[$stage] = ($byStatus[$stage] ?? 0) + $r->n;
             $unitStats[$root]['n'] = ($unitStats[$root]['n'] ?? 0) + $r->n;
             if ($r->s === Activity::STATUS_APPROVED) {
                 $unitStats[$root]['approved'] = ($unitStats[$root]['approved'] ?? 0) + $r->n;
@@ -192,7 +194,7 @@ new class extends Component {
                 'plan' => $classes->map(fn ($c) => (float) ($planByClass[$c->id] ?? 0))->values()->all(),
                 'alloc' => $classes->map(fn ($c) => (float) ($allocByClass[$c->id] ?? 0))->values()->all(),
             ],
-            'status' => ['labels' => array_map(fn ($s) => __($s), $statusOrder), 'values' => array_values($byStatus)],
+            'status' => ['labels' => array_map(fn ($s) => Activity::statusWord($s), $statusOrder), 'values' => array_values($byStatus)],
             'units' => [
                 'labels' => collect($units)->where('plan', '>', 0)->take(8)->pluck('code')->values()->all(),
                 'plan' => collect($units)->where('plan', '>', 0)->take(8)->pluck('plan')->map(fn ($v) => (float) $v)->values()->all(),
@@ -290,6 +292,50 @@ new class extends Component {
         </div>
     </div>
 
+    {{-- Nothing to show yet: say so, and the way to start, instead of empty figures and charts --}}
+    @if($totalActivities === 0)
+        @php
+            $filtered = $unit !== '' || $category !== '' || $program !== '';
+            $plannable = \App\Services\PlanningWindow::yearAllowed($year);
+            $nextYear = (int) now()->year + 1;
+            // in the last quarter of the year the plan being prepared is usually next year's
+            $suggestNext = ! $filtered && $year === (int) now()->year && now()->month >= 10;
+            $canPlan = auth()->user()->can('create_activities');
+        @endphp
+        <x-ui.card>
+            <div class="mx-auto max-w-2xl py-10 text-center">
+                @if($filtered)
+                    <h2 class="text-base font-semibold text-zinc-900">{{ __('No activities match these filters') }}</h2>
+                    <p class="mt-1 text-sm text-zinc-500">{{ __('Clear the filters to see the whole plan of :year.', ['year' => $year]) }}</p>
+                    <x-ui.button variant="secondary" shadow="none" class="mt-5" wire:click="clearFilters">{{ __('Clear filters') }}</x-ui.button>
+                @else
+                    <h2 class="text-base font-semibold text-zinc-900">{{ __('There is no plan for :year yet', ['year' => $year]) }}</h2>
+                    @if($plannable)
+                        <p class="mt-1 text-sm text-zinc-600">{{ __('The plan starts with its activities: each unit prepares its own, with indicators and budget lines, and submits them for certification and approval. The figures and charts appear here once there is something to show.') }}</p>
+                        @if($suggestNext)
+                            <p class="mt-3 text-sm text-zinc-600">{{ __('It is the last quarter of :year: the plan being prepared now is usually the one for :next.', ['year' => $year, 'next' => $nextYear]) }}</p>
+                        @endif
+                        <div class="mt-5 flex flex-wrap justify-center gap-2">
+                            @if($suggestNext)
+                                <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan :year', ['year' => $nextYear]) }}</x-ui.button>
+                            @endif
+                            @if($canPlan)
+                                <x-ui.button :variant="$suggestNext ? 'secondary' : 'primary'" :shadow="$suggestNext ? 'none' : 'sm'" href="{{ route('activities.create') }}" wire:navigate>{{ __('Plan the first activity of :year', ['year' => $year]) }}</x-ui.button>
+                            @endif
+                            @if(auth()->user()->isAdministrator())
+                                <x-ui.button variant="secondary" shadow="none" href="{{ route('management.import') }}" wire:navigate>{{ __('Import activities from a file') }}</x-ui.button>
+                            @endif
+                            <x-ui.button variant="secondary" shadow="none" href="{{ route('guide') }}" wire:navigate>{{ __('How the year works') }}</x-ui.button>
+                        </div>
+                    @else
+                        <p class="mt-1 text-sm text-zinc-600">{{ __('No plan was recorded for :year, and it can no longer be planned: new activities go into the plan of :current or :next.', ['year' => $year, 'current' => now()->year, 'next' => $nextYear]) }}</p>
+                        <x-ui.button class="mt-5" href="{{ route('fiscal-year.switch', (int) now()->year) }}">{{ __('Go to :year', ['year' => now()->year]) }}</x-ui.button>
+                    @endif
+                @endif
+            </div>
+        </x-ui.card>
+    @else
+
     {{-- Key figures --}}
     @php
         $approvedPct = $planAll > 0 ? min(100, $allocated / $planAll * 100) : null;
@@ -374,16 +420,6 @@ new class extends Component {
         </x-ui.card>
     @endif
 
-    @if($totalActivities === 0)
-        <x-ui.card>
-            <div class="text-center py-10">
-                <h2 class="text-base font-semibold text-zinc-900">{{ __('No activities for :year yet', ['year' => $year]) }}</h2>
-                <p class="mt-1 text-sm text-zinc-500">{{ __('Plan the first activity, or switch the fiscal year in the top bar.') }}</p>
-                <x-ui.button variant="primary" class="mt-5" href="{{ route('activities.create') }}">{{ __('Create first activity') }}</x-ui.button>
-            </div>
-        </x-ui.card>
-    @endif
-
     {{-- Money by economic category --}}
     <div class="grid gap-6 xl:grid-cols-12">
         <x-ui.card class="xl:col-span-12" padding="p-0">
@@ -408,7 +444,7 @@ new class extends Component {
                     @foreach($statusOrder as $i => $st)
                         <li class="flex items-center justify-between gap-3">
                             <span class="flex items-center gap-2 text-zinc-600">
-                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#94A3B8', '#0EA5E9', '#5F8BF0', '#2152C4', '#F59E0B', '#10B981'][$i] }}"></span>{{ __($st) }}
+                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#94A3B8', '#F43F5E', '#0EA5E9', '#5F8BF0', '#2152C4', '#10B981'][$i] }}"></span>{{ \App\Models\Activity::statusWord($st) }}
                             </span>
                             <span class="font-semibold tabular-nums text-zinc-900">{{ $byStatus[$st] }}</span>
                         </li>
@@ -448,6 +484,8 @@ new class extends Component {
         </x-ui.card>
     @endif
 
+    @endif
+
     @once
         <script>
             // Drawn with the bundled Chart.js. Each chart is rebuilt when its data changes (new wire:key).
@@ -469,7 +507,7 @@ new class extends Component {
                             { label: L[1], data: d.categories.plan, backgroundColor: '#2152C4', borderRadius: 3 },
                             { label: L[3], data: d.categories.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
-                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#94A3B8', '#0EA5E9', '#5F8BF0', '#2152C4', '#F59E0B', '#10B981'], borderWidth: 2, borderColor: '#fff' }] },
+                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#94A3B8', '#F43F5E', '#0EA5E9', '#5F8BF0', '#2152C4', '#10B981'], borderWidth: 2, borderColor: '#fff' }] },
                             options: { ...base, cutout: '68%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.label + ': ' + c.parsed } } } } }),
                         units: () => ({ type: 'bar', data: { labels: d.units.labels, datasets: [
                             { label: L[1], data: d.units.plan, backgroundColor: '#2152C4', borderRadius: 3 },

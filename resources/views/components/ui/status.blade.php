@@ -12,11 +12,10 @@
         'Approved'         => ['bg-emerald-50 text-emerald-800', 'bg-emerald-500'],
     ];
     [$tone, $dot] = $styles[$status] ?? $styles['Draft'];
-    // the stages as the Prepare - Verify/Certify - Approve flow names them
-    $word = ['Submitted' => 'Prepared', 'Reviewed' => 'Verified', 'Validated' => 'Certified'][$status] ?? $status;
+    $word = \App\Models\Activity::statusWord($status); // the same word on every page
 @endphp
 
 <span {{ $attributes->merge(['class' => "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium {$tone}"]) }}>
     <span class="h-1.5 w-1.5 rounded-full {{ $dot }}" aria-hidden="true"></span>
-    {{ __($word) }}
+    {{ $word }}
 </span>

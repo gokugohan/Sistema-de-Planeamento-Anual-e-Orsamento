@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\ActivityWorkflow;
 use App\Services\PlanningWindow;
 use App\Support\FiscalYear;
+use Carbon\Carbon;
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use DomainException;
@@ -42,11 +43,18 @@ class PlanningWindowTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Carbon::setTestNow('2027-06-01 10:00:00'); // YEAR is next year: one that may be planned
         $this->seed(DatabaseSeeder::class);
         app()->setLocale('en');
         $this->unit = Directorate::create(['name' => 'Unit', 'code' => 'UNT', 'type' => 'General Directorate', 'active' => true]);
         $this->program = Program::create(['fiscal_year' => self::YEAR, 'oge_code' => 'P1', 'name' => 'P']);
         $this->window = app(PlanningWindow::class);
+    }
+
+    protected function tearDown(): void
+    {
+        Carbon::setTestNow();
+        parent::tearDown();
     }
 
     private function user(string $role, ?Directorate $unit = null): User

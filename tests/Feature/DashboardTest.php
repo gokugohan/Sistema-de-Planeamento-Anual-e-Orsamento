@@ -114,8 +114,8 @@ class DashboardTest extends TestCase
         $this->get(route('fiscal-year.switch', $this->year));
 
         Volt::test('pages.dashboard.summary')
-            ->assertSee('No activities for '.FiscalYear::current().' yet')
-            ->assertSee('Create first activity');
+            ->assertSee('There is no plan for '.FiscalYear::current().' yet')
+            ->assertSee('How the year works');
     }
 
     public function test_no_view_fabricates_figures(): void

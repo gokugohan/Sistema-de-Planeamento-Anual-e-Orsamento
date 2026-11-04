@@ -101,16 +101,7 @@
                                                 'Draft'            => 'zinc',
                                                 default            => 'zinc',
                                             };
-                                            $statusLabel = match ($activity->status) {
-                                                'Approved'         => __('Approved'),
-                                                'Rejected'         => __('Rejected'),
-                                                'Waiting Approval' => __('Waiting Approval'),
-                                                'Validated'        => __('Certified'),
-                                                'Reviewed'         => __('Verified'),
-                                                'Submitted'        => __('Prepared'),
-                                                'Draft'            => __('Draft'),
-                                                default            => $activity->status,
-                                            };
+                                            $statusLabel = \App\Models\Activity::statusWord($activity->status);
                                         @endphp
                                         <x-ui.badge :variant="$statusVariant"
                                             class="!rounded-md">{{ $statusLabel }}</x-ui.badge>

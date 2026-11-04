@@ -39,6 +39,7 @@ new class extends Component {
             'canEdit'                 => $user->can('update', $this->activity),
             'canDelete'               => $user->can('delete', $this->activity),
             'nextStatus'              => $workflow->next($user, $this->activity),
+            'reach'                   => $workflow->reach($user, $this->activity),
             'canReturn'               => $workflow->canReturn($user, $this->activity),
             'canApprove'              => $workflow->canApprove($user, $this->activity),
             'canReopen'               => $workflow->canReopen($user, $this->activity),
@@ -180,7 +181,7 @@ new class extends Component {
 
             return;
         }
-        $this->dispatch('toast', message: __('Activity updated to :status.', ['status' => __($to)]), type: 'success');
+        $this->dispatch('toast', message: __('The activity is now :status.', ['status' => \App\Models\Activity::statusWord($to)]), type: 'success');
     }
 
     public function approve(): void
@@ -948,14 +949,16 @@ new class extends Component {
                                 <ul class="list-disc pl-4 space-y-0.5">@foreach($problems as $p)<li>{{ $p }}</li>@endforeach</ul>
                             </div>
                         @else
-                            <x-ui.button wire:click="submit" class="w-full"
-                                wire:confirm="{{ __('Move this activity to :status?', ['status' => __($nextStatus)]) }}">
-                                {{ match($nextStatus) {
-                                    App\Models\Activity::STATUS_SUBMITTED => __('Submit for Review'),
-                                    App\Models\Activity::STATUS_REVIEWED => __('Mark as Reviewed'),
-                                    default => __('Validate'),
-                                } }}
-                            </x-ui.button>
+                            @php
+                                // the same words as the status chips; one click may take several steps that are all this person's
+                                $checking = $activity->status === App\Models\Activity::STATUS_REVIEWED ? __('Validate') : __('Certify');
+                                [$label, $question] = match (true) {
+                                    $nextStatus === App\Models\Activity::STATUS_SUBMITTED => [__('Submit for certification'), __('Submit this activity for certification? It can no longer be edited unless it is returned.')],
+                                    $reach === App\Models\Activity::STATUS_APPROVED => [__(':step and approve', ['step' => $checking]), __('You also give the final approval of this activity, so both steps are taken now and each is recorded in the history. Continue?')],
+                                    default => [$checking, __(':step this activity? It then goes to the next person in the chain.', ['step' => $checking])],
+                                };
+                            @endphp
+                            <x-ui.button wire:click="submit" class="w-full" wire:confirm="{{ $question }}">{{ $label }}</x-ui.button>
                         @endif
                     @endif
 

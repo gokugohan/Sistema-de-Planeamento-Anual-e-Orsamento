@@ -125,8 +125,8 @@ You do not need to memorise this, but everything in the application follows thes
 | # | Step | What happens | Who |
 |---|---|---|---|
 | 1 | **Plan submission** | Units draft activities with indicators, actions and budget lines, and submit them while the submission window is open. | Technical officers, unit directors |
-| 2 | **Approval** | Each activity is prepared, certified and approved (Part 5). | Directors, heads of directorates |
-| 3 | **Plan finalized** | When everything in a directorate is decided, its head finalizes the plan: it takes no new activities. | Head of the directorate |
+| 2 | **Certification** | The director of the unit certifies each activity; where the unit sits under a national directorate, its director validates (Part 5). | Unit directors, national directors |
+| 3 | **Approval of the plan** | The head of the directorate approves the plan: every certified activity is approved and the plan is finalized, in one step. It then takes no new activities. | Head of the directorate |
 | 4 | **Reporting** | Units report the executed amount monthly and indicators quarterly; someone else verifies them; the quarter is compiled; reports are printed. Changing an approved activity needs a revision (Part 8). | Units, finance, directors |
 
 The *Plan cycle* page (**Plan → Plan cycle**) shows where the year stands and links to what comes next. The same tracker is on the dashboard.
@@ -135,7 +135,9 @@ Each step has its dates in the **calendar**, which the administrator keeps. The 
 
 1. The plan of a directorate is **complete** when all its activities are submitted.
 2. Only then are its activities certified and approved.
-3. Only when everything in the directorate is approved can it **finalize** its plan.
+3. Approving the plan also **finalizes** it.
+
+**Which years can be planned.** New activities go into the plan of the **current year** (until its directorate finalizes) or the **next year**. Earlier years cannot take new activities; their approved activities can still be revised. (For practice, an administrator can switch on a testing mode in which any year can be planned.)
 
 ---
 
@@ -214,20 +216,27 @@ An approved activity cannot be edited. To change it (for example, a cost went up
 
 ## 5. Approving: prepare, certify, approve
 
-Every activity goes through the same chain, whatever the size of the institution.
+Every activity goes through the same short chain, whatever the size of the institution: **the unit submits, its director certifies, and the head of the directorate approves the plan**. Where a unit sits under a national directorate (unit → national directorate → general directorate), the national director validates in between, so that each level of management checks once.
 
 ![Statuses](manual/img/activity-show.png)
 
 | Status shown | Meaning | Who moves it on |
 |---|---|---|
-| **Draft** | Being prepared by the unit. | Technical officer or unit director → *Submit* |
-| **Prepared** | Submitted; waits for certification. | Director of the unit (or first the finance officer, where budget confirmation is on) |
-| **Verified** | Certified by the unit's director; waits for the unit above. *Only where the unit above validates first.* | Director of the unit above |
-| **Certified** | Validated; waits for the final approval. | Head of the top-level unit (the directorate) |
+| **Draft** | Being prepared by the unit. | Technical officer or unit director → *Submit for certification* |
+| **Prepared** | Submitted; waits for certification. | Director of the unit → *Certify* (or first the finance officer, where budget confirmation is on) |
+| **Verified** | Certified by the unit's director; waits for the national directorate above it. | Director of the unit above → *Validate* |
+| **Certified** | Ready for the final approval. | Head of the directorate → *Approve the plan* |
 | **Approved** | Final approval given; the activity is locked. | |
 | **Returned** | Sent back with a reason; the unit corrects it. | |
 
-The three groups are **Prepare** (the unit), **Certify** (verify and validate) and **Approve** (the head of the directorate). Where the institution does not ask the director of the unit above to validate first, an activity goes straight from Prepared to Certified.
+These words are the same on every page: in the lists, on the activity, on the dashboard and in the messages.
+
+**One person, one click.** When the next step is yours as well, the same click takes it. For example:
+
+- the head of the directorate certifies an activity of the directorate itself: the button reads **Certify and approve**;
+- the unit above a unit is the directorate itself, so its head validates and approves: **Validate and approve**.
+
+Each step is still recorded on its own in the history. This never applies to submitting: the person who prepares an activity never checks it. Where an approval list makes several people sign in order, each of them still signs.
 
 **Who gives the final approval.** The head of a top-level unit approves the plans of their own directorate and of the units below it. The Minister does *not* approve plans; the Minister sees every plan and every report. Where a unit has an **approval list** (Part 6), the people named on it do the step instead.
 
@@ -235,17 +244,28 @@ The three groups are **Prepare** (the unit), **Certify** (verify and validate) a
 
 **Approvals → Waiting for you** is one page with only what needs a decision or a check from you. It has three blocks, and each line has a count and one button:
 
+- **Approve the plan** (heads of directorates): one line for each directorate you head, saying where its plan stands (see 5.3).
 - **To decide**: activities prepared and waiting to be certified, and activities certified and waiting for the final approval. Each line opens *Activities to decide* on that queue, so you land on the list the count refers to.
 - **To verify**: executed amounts and progress reports entered by others (never your own).
-- **Ready to finalize**: the directorates you head whose activities are all decided.
 
 Your own drafts, returned work and reports due are not here: they are in **My work**. The dashboard's *Needs your attention* lists all of them together.
 
 ### 5.2 Certify or approve one activity
 
-Open the activity. The panel on the right says where it stands and what you can do. Add a **note** if you wish, and click the action: **Certify**, **Approve**, or **Return** (a reason is required). Every step is written in the **Workflow History** tab: who, when, and the note.
+Open the activity. The panel on the right says where it stands and what you can do. Add a **note** if you wish, and click the action: **Certify**, **Validate**, **Approve**, or **Return** (a reason is required). Every step is written in the **Workflow History** tab: who, when, and the note.
 
-### 5.3 Approve many at once
+### 5.3 Approve the plan (heads of directorates)
+
+The head of a directorate does not approve activity by activity. On **Approvals → Waiting for you**, the card **Approve the plan** shows each directorate you head:
+
+- **Not ready yet**, with what is missing: activities still being certified, or still with the units (drafts or returned).
+- **Ready**: *N certified activities are ready for your approval*. Write a remark for the record if you wish, and click **Approve the plan**.
+
+That one step gives the final approval to every certified activity of the directorate, each checked and recorded on its own, and then **finalizes the plan** (Part 7). Activities of units right under the directorate that wait for your own validation are included. Before approving the plan you can still open a single activity to **return** it with a reason, or approve some on their own.
+
+If an activity cannot be approved at that moment (for example, a list still needs a signature), the others are approved but the plan is not finalized. The message says which activity and why.
+
+### 5.4 Approve many at once
 
 1. In *Activities to decide*, tick the activities in the *Ready for approval* queue and use the bulk action.
 2. Confirm *Approve the selected activities?*, with an optional note for the record. You can approve up to 200 at a time.
@@ -253,11 +273,11 @@ Open the activity. The panel on the right says where it stands and what you can 
 
 Each activity is checked again as it is approved. One that was returned in the meantime, or that is not your turn, is skipped and listed with the reason. Every approval is recorded with the batch it belonged to, and each unit is told once.
 
-### 5.4 Budget review (finance)
+### 5.5 Budget review (finance)
 
 Where **budget confirmation** is on, **Approvals → Budget review** lists submitted activities whose budget lines finance must confirm **before** they are certified. The finance officer checks the lines and **confirms** them, or returns the activity with a reason.
 
-### 5.5 Workflow History and versions
+### 5.6 Workflow History and versions
 
 ![Workflow History](manual/img/activity-history.png)
 
@@ -322,14 +342,14 @@ Authority is worked out from the unit tree and the lists **at the moment someone
 
 ## 7. Ending planning per directorate
 
-Each top-level unit (directorate) ends its own planning. Its head **finalizes** the plan of the directorate once nothing in it, or in the units below it, is still waiting for a decision.
+Each top-level unit (directorate) ends its own planning. Normally this happens when its head **approves the plan** (5.3): approving and finalizing are one step.
 
-On **PAA Activities**, the banner shows for example *Planning for 2027 is open · 0 of 13 directorates finalized*. **Show directorates** lists them. The head of a directorate sees **Finalize plan** for their own directorate; the button is greyed out while something is still waiting, or while nothing has been approved yet.
+Where every activity was already approved one by one, the same card says *the plan only needs to be finalized* and offers **Finalize the plan**. On **PAA Activities**, the banner also shows, for example, *Planning for 2027 is open · 0 of 13 directorates finalized*, and **Show directorates** lists them with their **Finalize plan** button.
 
 - **Finalizing** says that this directorate's plan is final. After it, the directorate takes no new activities, imported lines or copies from last year for that year. The remark you write is kept.
 - The **year ends** when every directorate that planned has finalized. Finalizing stops **new activities** only: an approved activity can still be changed by a revision.
 - **Reopening** a directorate's plan, to allow new activities again, is done by its head (or an administrator) with a **reason**. Finalizing and reopening are both recorded in the audit trail.
-- The *Approvals* inbox tells each head when their directorate is ready to be finalized.
+- The *Approvals* inbox tells each head when the plan of their directorate is ready for their approval.
 - **The order.** A directorate can be finalized only when nothing in it is waiting for a decision. Unless the institution has switched the rule off, every one of its activities must also have been submitted. Outside the finalizing dates of the calendar, a directorate can be finalized only where the administrator has reopened that step for it.
 
 ---
@@ -536,15 +556,15 @@ Follow Ana (technical officer), Bento (director of a unit), Carla (head of a dir
 
 1. Ana opens **PAA Activities**. At the start of the year she presses **Copy from last year** (or **+ New activity**).
 2. For each activity she completes the dates and quarters, the **indicators** (target, baseline, actions with their months) and the **budget lines** (category, amount, funding source).
-3. Ana presses **Submit**. The activity becomes *Prepared*, and Bento is notified.
+3. Ana presses **Submit for certification**. The activity becomes *Prepared*, and Bento is notified.
 
 **Certify and approve (Bento, Dino, Carla).**
 
 4. If budget confirmation is on, Dino opens **Budget review** and confirms the lines.
 5. Bento opens **Approvals**, reads each activity and presses **Certify**, or **Return** with a reason (Ana corrects it and submits it again).
-6. If the unit above validates first, its director presses **Certify** once more.
-7. Carla opens **Approvals** and approves the activities, one by one or by selecting several and approving them together. Each approved activity is locked.
-8. When all her directorate's activities are decided, the inbox says the plan is ready. Carla opens **PAA Activities → Show directorates → Finalize plan**, writes a remark and confirms. Her directorate takes no new activities.
+6. Where Bento's unit sits under a national directorate, its director reads the activity and presses **Validate**. Where the unit sits right under Carla's directorate, there is no such step: Carla's approval covers it.
+7. When every activity of the directorate is certified, the inbox tells Carla that the plan is ready for her approval. She opens **Waiting for you → Approve the plan**, writes a remark and confirms. Every certified activity is approved and locked, and the plan of her directorate is finalized: it takes no new activities.
+8. (If she wants to send one activity back first, she opens it and presses **Return** with a reason; the plan is ready again once it is certified.)
 
 **The plan in force.**
 
@@ -612,6 +632,8 @@ The exact rules also depend on the unit tree and the approval lists. An administ
 
 **I cannot verify this figure.** You entered it yourself; someone else must verify it.
 
+**I cannot add an activity to this year.** New activities go into the current year (until your directorate finalizes) or the next year only. Switch the year at the top. An approved activity of an earlier year can still be revised.
+
 **I cannot approve: it says the plan is not complete.** Approval waits until every activity of the directorate has been submitted. Ask the unit to submit (or delete) its drafts; *Waiting for you* names the directorate and how many activities are left.
 
 **The calendar is closed and my unit is late.** Use the button on the message (or on the dashboard line) to ask the administrator to reopen the step for your unit. They can give your unit more time without reopening it for everybody.
@@ -642,7 +664,8 @@ The exact rules also depend on the unit tree and the approval lists. An administ
 | **Economic category** | 10 Salaries, 20 Goods and services, 30 Transfers, 40 Minor capital, 50 Development capital. |
 | **Version** | A copy of an activity as it was approved; the latest approved version is in force. |
 | **Revision** | A change to an approved activity: a reason, the whole approval chain again, and the version in force stays until the revision is approved. |
-| **Prepare / Certify / Approve** | The three groups of the approval chain. |
+| **Prepare / Certify / Approve** | The three groups of the approval chain: the unit submits, its director certifies (and the national directorate above validates, where there is one), the head of the directorate approves the plan. |
+| **Approve the plan** | The head's one step that approves every certified activity of the directorate and finalizes its plan. |
 | **Round (of signatures)** | One run of signatures; returning an activity or starting a revision starts a new round. |
 | **Interim** | Someone standing in for a director between given dates. |
 | **Calendar** | The dates of each step of the year: submitting, approving and finalizing the plan, revisions, and each month and quarter of reporting. |

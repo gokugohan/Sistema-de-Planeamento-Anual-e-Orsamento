@@ -34,16 +34,18 @@ class YearAtAGlance
         $closedUnits = $units->where('closed', true)->count();
         $ready = $units->filter(fn ($u) => ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0)->count();
         $ended = $units->isNotEmpty() && $closedUnits === $units->count();
+        $yearOpen = PlanningWindow::yearAllowed($year);
 
         // ── planning
         $planningText = match (true) {
+            ! $yearOpen => __('Closed: new activities go into the plan of :current or :next. Approved activities can still be revised.', ['current' => now()->year, 'next' => now()->year + 1]),
             $ended => __('Planning has ended: every directorate has finalized its plan. Approved activities can still be revised.'),
             $w['state'] === 'upcoming' => __('Not open yet: it opens on :d.', ['d' => $w['opens_on']->format('d/m/Y')]),
             $w['state'] === 'open' => __('Open until :d. Units add and change their activities now.', ['d' => $w['closes_on']->format('d/m/Y')]),
             $w['state'] === 'closed' => __('Closed on :d. Only an administrator adds or submits activities now; approved activities can still be revised.', ['d' => $w['closes_on']->format('d/m/Y')]),
             default => __('Open: units add and change their activities until their directorate finalizes its plan.'),
         };
-        $planningCta = ! $ended && $w['state'] !== 'closed' && $w['state'] !== 'upcoming' && $user->directorate_id && $user->can('create_activities') && FiscalYear::planningOpen($year, $user->directorate_id)
+        $planningCta = $yearOpen && ! $ended && $w['state'] !== 'closed' && $w['state'] !== 'upcoming' && $user->directorate_id && $user->can('create_activities') && FiscalYear::planningOpen($year, $user->directorate_id)
             ? [__('Add an activity'), route('activities.create')] : null;
 
         // ── approval
@@ -65,15 +67,19 @@ class YearAtAGlance
                 .($ready > 0 ? ' '.trans_choice(':n is ready: everything is decided.|:n are ready: everything is decided.', $ready, ['n' => $ready]) : ''),
         };
         $mayFinalize = $items->where('group', 'plan')->isNotEmpty();
-        $finalizeCta = $mayFinalize ? [__('Finalize the plan'), route('activities.index')] : null;
+        $finalizeCta = $mayFinalize ? [__('Approve the plan'), route('approvals.index').'#plan'] : null;
 
         // ── reporting
         $today = Carbon::now();
         $isCurrent = $year === (int) $today->year;
         $reportingText = __('The executed amount is reported every month and indicators every quarter, in Report execution; a figure counts once someone else has verified it.');
         $reportingCta = null;
-        $reportingState = $year < (int) $today->year ? 'done' : ($isCurrent ? 'now' : 'soon');
-        if ($isCurrent && $today->month > 1) {
+        // reporting needs an approved plan: without one there is nothing to report, whatever the date
+        $past = $year < (int) $today->year;
+        $reportingState = $past ? 'done' : ($a['approved'] === 0 ? 'soon' : ($isCurrent ? 'now' : 'soon'));
+        if ($a['approved'] === 0 && ! $past) {
+            $reportingText = __('Starts once activities are approved: the executed amount is then reported every month and indicators every quarter.');
+        } elseif ($isCurrent && $today->month > 1) {
             $last = $today->month - 1;
             $m = $this->cycle->month($user, $year, $last);
             $name = Carbon::create($year, $last, 1)->translatedFormat('F');
@@ -84,7 +90,7 @@ class YearAtAGlance
                 $reportingText .= ' '.__('Reporting for :name closes on :d.', ['name' => $name, 'd' => $m['window']['closes_on']->format('d/m/Y')]);
             }
         }
-        if ($isCurrent) {
+        if ($isCurrent && $a['approved'] > 0) {
             $verify = (int) $items->where('group', 'verify')->sum('count');
             $due = (int) $items->where('group', 'report')->sum('count');
             if ($user->can('update_indicator_progress') && ($due > 0 || $verify === 0)) {
@@ -95,7 +101,7 @@ class YearAtAGlance
         }
 
         $phases = [
-            ['key' => 'planning', 'label' => __('Planning'), 'state' => $ended || $w['state'] === 'closed' ? 'done' : 'now', 'text' => $planningText, 'cta' => $planningCta],
+            ['key' => 'planning', 'label' => __('Planning'), 'state' => ! $yearOpen || $ended || $w['state'] === 'closed' ? 'done' : 'now', 'text' => $planningText, 'cta' => $planningCta],
             ['key' => 'approval', 'label' => __('Approval'), 'state' => $a['total'] > 0 && $a['pending'] === 0 && $a['drafts'] === 0 ? 'done' : ($a['total'] > 0 ? 'now' : 'soon'), 'text' => $approvalText, 'cta' => $approvalCta],
             ['key' => 'finalize', 'label' => __('Finalizing'), 'state' => $ended ? 'done' : ($ready > 0 ? 'now' : 'soon'), 'text' => $finalizeText, 'cta' => $finalizeCta],
             ['key' => 'reporting', 'label' => __('Reporting'), 'state' => $reportingState, 'text' => $reportingText, 'cta' => $reportingCta],

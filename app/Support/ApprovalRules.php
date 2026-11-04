@@ -32,7 +32,12 @@ final class ApprovalRules
 
     public const SEGREGATION_MODES = [self::SEGREGATION_OFF, self::SEGREGATION_FLAG, self::SEGREGATION_BLOCK];
 
-    /** The rules an institution starts with. */
+    /**
+     * The rules an institution starts with: the director of the unit certifies, the director of the unit above
+     * validates (a unit -> national directorate -> general directorate structure checks once at each level), and the
+     * head of the directorate approves the plan. Where the same person would act twice in a row (the unit above is
+     * the directorate itself), one click covers both (ActivityWorkflow::continues).
+     */
     public static function preset(string $level = ''): self
     {
         return new self(true, false);

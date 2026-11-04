@@ -29,21 +29,24 @@ use Illuminate\Support\Facades\DB;
  */
 class MtcSampleDataSeeder extends Seeder
 {
-    public function run(): void
+    /** @param  string  $state  how far the plans of the current year and the next have gone (MtcBudgetSeeder::STATES) */
+    public function run(string $state = 'approved'): void
     {
         if (app()->isProduction()) {
             throw new \RuntimeException('The sample dataset creates demo accounts with a known password and must not be loaded in production.');
         }
 
         // All or nothing: a failure part-way must not leave units and accounts without their plans.
-        DB::transaction(fn () => $this->call([
-            RolesAndPermissionsSeeder::class,
-            EconomicClassificationSeeder::class,
-            MtcBrandingSeeder::class,
-            MtcDirectorateSeeder::class,
-            MtcProgramSeeder::class,
-            MtcDemoUsersSeeder::class,
-            MtcBudgetSeeder::class,
-        ]));
+        DB::transaction(function () use ($state) {
+            $this->call([
+                RolesAndPermissionsSeeder::class,
+                EconomicClassificationSeeder::class,
+                MtcBrandingSeeder::class,
+                MtcDirectorateSeeder::class,
+                MtcProgramSeeder::class,
+                MtcDemoUsersSeeder::class,
+            ]);
+            $this->call(MtcBudgetSeeder::class, false, ['state' => $state]);
+        });
     }
 }

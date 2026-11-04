@@ -103,6 +103,15 @@
                         <a href="{{ route('management.sample-data') }}" class="ml-auto underline font-semibold">{{ __('Purge it') }}</a>
                     </div>
                 @endif
+                @if(\App\Models\SystemSetting::get('enable_paa_testing_mode', false))
+                    <div class="bg-amber-100 text-amber-900 text-sm px-6 py-2 flex flex-wrap items-center gap-3" role="status">
+                        <strong>{{ __('Testing mode is on:') }}</strong>
+                        <span>{{ __('any year can be planned. Switch it off for real use.') }}</span>
+                        @if(auth()->user()?->isAdministrator())
+                            <a href="{{ route('management.settings') }}#notifications" class="ml-auto underline font-semibold">{{ __('Settings') }}</a>
+                        @endif
+                    </div>
+                @endif
 
                 <main id="main-content" tabindex="-1" class="mx-auto w-full max-w-screen-2xl p-4 md:p-6 2xl:p-10 animate-in fade-in duration-300">
                     @if (isset($header))

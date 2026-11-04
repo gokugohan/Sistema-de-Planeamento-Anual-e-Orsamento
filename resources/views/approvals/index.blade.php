@@ -7,9 +7,9 @@
         'decide' => [__('To decide'), __('Activities waiting for you: first certified by the unit, then given the final approval.'), __('Decide')],
         'verify' => [__('To verify'), __('Figures reported by others. You cannot verify your own.'), __('Verify')],
         'late' => [__('Late on the calendar'), __('Periods that have closed with work left in them. Give a unit more time without reopening the period for everybody.'), __('Open the calendar')],
-        'plan' => [__('Ready to finalize'), __('Everything is decided. Finalizing ends planning for that directorate: no new activities after it.'), __('Finalize')],
     ];
     $tones = ['amber' => 'bg-amber-50 text-amber-800', 'indigo' => 'bg-indigo-50 text-indigo-800', 'rose' => 'bg-rose-50 text-rose-800', 'emerald' => 'bg-emerald-50 text-emerald-800'];
+    // the plans ready for their head's approval are in the card "Approve the plan" (below the notices), not in a list
     $shown = collect($groups)->keys()->filter(fn ($k) => $items->has($k));
     $mine = auth()->user()->can('view_paa') ? route('work.home') : null;
 @endphp
@@ -23,6 +23,8 @@
 
         <x-calendar-alerts :year="$year" />
         <x-plan-complete-notice :year="$year" />
+
+        <livewire:pages.planning.approve-plan :year="$year" :key="'approve-plan-'.$year" />
 
         @php
             $calendar = app(\App\Services\ReportingWindows::class);
@@ -54,7 +56,7 @@
             </x-ui.card>
         @endforeach
 
-        @if($shown->isEmpty())
+        @if($shown->isEmpty() && ! $items->has('plan'))
             <x-ui.card padding="p-0">
                 <x-ui.empty-state :title="__('You are all caught up.')" :text="__('Nothing is waiting for a decision or a check from you right now.')" />
             </x-ui.card>

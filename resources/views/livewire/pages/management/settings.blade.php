@@ -412,7 +412,7 @@ new class extends Component {
                                 </h4>
                             </div>
                             <p class="text-xs text-amber-800 font-medium leading-relaxed">
-                                {{ __('Enable a separate testing environment for PAA planning (adds 🧪 Testing Mode menu). Test data is excluded from all production reports and calculations.') }}
+                                {{ __('For practice and testing: activities can be planned for any year (otherwise only the current year and the next), and the Testing Zone menu appears. Its test data is excluded from all reports and totals. Switch it off for real use.') }}
                             </p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">

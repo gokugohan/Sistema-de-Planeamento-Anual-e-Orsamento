@@ -93,7 +93,7 @@ class YearAtAGlanceTest extends TestCase
     public function test_the_finalize_button_is_offered_only_to_the_head_of_a_directorate_that_is_ready(): void
     {
         $head = $this->phase($this->glance($this->user('chefe.gdsc@gdsc.tl')), 'finalize');
-        $this->assertSame('Finalize the plan', $head['cta'][0]);
+        $this->assertSame('Approve the plan', $head['cta'][0]);
         $this->assertStringContainsString('Everything is decided', $head['text']);
 
         $unitDirector = $this->phase($this->glance($this->user('director.udig@gdsc.tl')), 'finalize');

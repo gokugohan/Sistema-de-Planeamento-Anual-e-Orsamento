@@ -65,8 +65,8 @@ class ApprovalTrailTest extends TestCase
         $a = $this->draft();
         $a = tap($a, fn () => $this->workflow->advance($this->user('tecnico.udig@gdsc.tl'), $a))->fresh();
         $this->workflow->advance($this->user('director.udig@gdsc.tl'), $a->fresh());
-        $this->workflow->advance($this->user('chefe.gdsc@gdsc.tl'), $a->fresh());
-        $this->workflow->approve($this->user('chefe.gdsc@gdsc.tl'), $a->fresh(), 'Within the ceiling.');
+        // the head validates and approves in one click (one person, one click); each step is in the trail
+        $this->workflow->advance($this->user('chefe.gdsc@gdsc.tl'), $a->fresh(), 'Within the ceiling.');
 
         $trail = app(ApprovalTrail::class)->for($a->fresh());
 

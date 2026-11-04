@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Activity;
 use App\Models\AdjustmentRound;
 use App\Models\Directorate;
+use App\Models\SystemSetting;
 use App\Models\UnitPlanning;
 use App\Models\User;
 use App\Support\PlanOptions;
@@ -118,41 +119,53 @@ class PlanningWindow
         return $this->closed($year)->has($this->rootOf($unitId)) ? 'Finalized' : null;
     }
 
+    /**
+     * May the year take new activities at all? Only the current year and the next one, unless testing mode is on
+     * (Settings), where any year can be planned. Revisions of approved activities do not depend on this.
+     */
+    public static function yearAllowed(int $year): bool
+    {
+        $now = (int) now()->year;
+
+        return $year === $now || $year === $now + 1 || (bool) SystemSetting::get('enable_paa_testing_mode', false);
+    }
+
     /** Can the unit add new activities to the plan of the year: its directorate has not finalized, or an adjustment round lets it. */
     public function isOpenFor(int $year, int $unitId): bool
     {
-        return $this->unitEndedBy($year, $unitId) === null || AdjustmentRound::takesNewActivities($year, $this->rootOf($unitId));
+        return self::yearAllowed($year)
+            && ($this->unitEndedBy($year, $unitId) === null || AdjustmentRound::takesNewActivities($year, $this->rootOf($unitId)));
     }
 
     /** The first year from this one on whose plan is still open for this unit: where its new activities go. */
     public function nextOpenYearFor(int $unitId): int
     {
-        $current = (int) date('Y');
-        foreach ([$current, $current + 1, $current + 2] as $year) {
+        $current = (int) now()->year;
+        foreach ([$current, $current + 1] as $year) {
             if ($this->isOpenFor($year, $unitId)) {
                 return $year;
             }
         }
 
-        return $current + 3;
+        return $current + 1;
     }
 
     /** The first year from this one on whose plan is still open for everyone (two queries for the three years). */
     public function nextOpenYear(): int
     {
-        $current = (int) date('Y');
-        foreach ([$current, $current + 1, $current + 2] as $year) {
+        $current = (int) now()->year;
+        foreach ([$current, $current + 1] as $year) {
             if ($this->endedBy($year) === null) {
                 return $year;
             }
         }
 
-        return $current + 3;
+        return $current + 1;
     }
 
     public function isOpen(int $year): bool
     {
-        return $this->endedBy($year) === null;
+        return self::yearAllowed($year) && $this->endedBy($year) === null;
     }
 
     // ── who
@@ -254,6 +267,96 @@ class PlanningWindow
             'pending' => array_sum(array_column($perRoot, 'pending')),
             'units' => $units,
         ];
+    }
+
+    // ── the plan of a directorate, approved in one act
+
+    /**
+     * Where the plan of a directorate stands for its head's approval: certified activities waiting for the final
+     * approval (with those of the units right under the directorate that wait for its head's validation: approving
+     * the plan covers it), approved ones, those still with the units (drafts and returned, not yet submitted) and
+     * those still being certified or validated below. It is ready when nothing is being certified, nothing is with the units (where the plan must be
+     * complete before approval), and there is something to approve or finalize.
+     *
+     * @return array{certified: int, approved: int, with_units: int, in_certification: int, finalized: bool, ready: bool}
+     */
+    public function planReadiness(int $year, int $rootId): array
+    {
+        $rows = Activity::where('fiscal_year', $year)->whereIn('directorate_id', $this->subtreeOf([$rootId]))
+            ->selectRaw('status, version > 0 AS revised, COUNT(*) AS n')->groupBy('status', 'revised')->get();
+        $count = fn (array $statuses, ?bool $revised = null) => (int) $rows
+            ->filter(fn ($r) => in_array($r->status, $statuses, true) && ($revised === null || (bool) $r->revised === $revised))->sum('n');
+
+        $headValidates = $this->waitingForHeadValidation($year, $rootId)->count();
+        $certified = $count([Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL]) + $headValidates;
+        $approved = $count([Activity::STATUS_APPROVED]);
+        $withUnits = $count([Activity::STATUS_DRAFT, Activity::STATUS_REJECTED], false);
+        $inCertification = $count([Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]) - $headValidates;
+        $finalized = $this->closed($year)->has($rootId);
+
+        return [
+            'certified' => $certified, 'approved' => $approved, 'with_units' => $withUnits, 'in_certification' => $inCertification,
+            'finalized' => $finalized,
+            'ready' => ! $finalized && $inCertification === 0 && ($certified + $approved) > 0
+                && ($withUnits === 0 || ! PlanOptions::current()->completeBeforeApproval),
+        ];
+    }
+
+    /**
+     * The head approves the plan of the directorate in one act: every certified activity of it is given the final
+     * approval (each checked and recorded on its own, as in a bulk approval) and the plan is then finalized, with the
+     * one remark. When an activity cannot be approved (for example a list that signs in order still needs a
+     * signature), nothing is finalized and the result says which and why.
+     *
+     * @return array{approved: int, skipped: array<int, array{id: int, description: ?string, reason: string}>, finalized: bool}
+     */
+    public function approvePlan(User $user, int $year, int $rootId, ?string $remark = null): array
+    {
+        abort_unless($this->canDecide($user, $year, $rootId), 403);
+        $state = $this->planReadiness($year, $rootId);
+        if (! $state['ready']) {
+            throw new DomainException(match (true) {
+                $state['finalized'] => __('The plan for :year is already finalized.', ['year' => $year]),
+                $state['in_certification'] > 0 => trans_choice(':n activity is still being certified.|:n activities are still being certified.', $state['in_certification'], ['n' => $state['in_certification']]),
+                $state['with_units'] > 0 => trans_choice(':n activity is still with the units (draft or returned).|:n activities are still with the units (drafts or returned).', $state['with_units'], ['n' => $state['with_units']]),
+                default => __('There is no certified activity to approve.'),
+            });
+        }
+
+        $workflow = app(ActivityWorkflow::class);
+        $approved = 0;
+        $skipped = [];
+        // first the validation that falls to the head (units right under the directorate); for the head this one
+        // click also approves (one person, one click), for an administrator it validates and the approval follows below
+        foreach ($this->waitingForHeadValidation($year, $rootId) as $activity) {
+            try {
+                if ($workflow->advance($user, $activity) === Activity::STATUS_APPROVED) {
+                    $approved++;
+                }
+            } catch (DomainException $e) {
+                $skipped[] = ['id' => $activity->id, 'description' => $activity->description, 'reason' => $e->getMessage()];
+            }
+        }
+        $ids = Activity::where('fiscal_year', $year)->whereIn('directorate_id', $this->subtreeOf([$rootId]))
+            ->whereIn('status', [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])->pluck('id');
+        foreach ($ids->chunk(ActivityWorkflow::BULK_LIMIT) as $chunk) {
+            $result = $workflow->approveMany($user, $chunk, $remark);
+            $approved += count($result['approved']);
+            $skipped = array_merge($skipped, $result['skipped']);
+        }
+        if ($skipped) {
+            return ['approved' => $approved, 'skipped' => $skipped, 'finalized' => false];
+        }
+        $this->finalize($user, $year, $remark, $rootId);
+
+        return ['approved' => $approved, 'skipped' => [], 'finalized' => true];
+    }
+
+    /** Activities of the units right under the directorate, certified and waiting for the validation of its head. */
+    private function waitingForHeadValidation(int $year, int $rootId): Collection
+    {
+        return Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_REVIEWED)
+            ->whereIn('directorate_id', Directorate::where('parent_id', $rootId)->select('id'))->get();
     }
 
     // ── the acts

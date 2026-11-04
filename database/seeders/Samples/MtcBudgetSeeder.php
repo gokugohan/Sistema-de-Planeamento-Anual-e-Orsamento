@@ -12,6 +12,7 @@ use App\Models\Program;
 use App\Models\Subprogram;
 use App\Models\User;
 use App\Services\ActivityVersions;
+use App\Services\PlanningWindow;
 use App\Services\SampleRegistry;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +45,18 @@ class MtcBudgetSeeder extends Seeder
 {
     public const YEARS = [2025, 2026, 2027];
 
+    /**
+     * How far the plans of the current year and the next have gone when they are loaded (earlier years are always
+     * approved and reported, so that there is a finished year to read):
+     *   approved  every activity approved, the current year with its spending reported up to today;
+     *   halfway   each directorate at one stage of the approval chain, in turn: still drafting, submitted (one
+     *             activity returned with a reason), certified and waiting for the final approval, approved;
+     *   draft     every activity a draft: the whole cycle, from planning to reporting, is still to be done.
+     */
+    public const STATES = ['approved', 'halfway', 'draft'];
+
+    private string $state = 'approved';
+
     /** @var array<int, array<int, int>> ids of the activities this run planted, by year (their execution is sampled afterwards) */
     private array $planted = [];
 
@@ -52,9 +65,11 @@ class MtcBudgetSeeder extends Seeder
     /**
      * @param  array<int, string>|null  $units  unit codes: load only the activities these units own (one office), null for the whole ministry
      * @param  bool  $illustrative  also load the illustrative plan of the Gabinete de Digitalização e Segurança Cibernética
+     * @param  string  $state  how far the plans of the current year and the next have gone (see STATES)
      */
-    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false): void
+    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false, string $state = 'approved'): void
     {
+        $this->state = in_array($state, self::STATES, true) ? $state : 'approved';
         foreach (self::YEARS as $year) {
             $data = self::data($year, $units, $illustrative);
 
@@ -68,9 +83,13 @@ class MtcBudgetSeeder extends Seeder
 
             DB::transaction(function () use ($registry, $year, $data, $units) {
                 $this->loadActivities($registry, $year, $data);
+                if ($this->stateOf($year) === 'halfway') {
+                    $this->advanceHalfway($year);
+                }
                 $this->approveVersions($year);
-                // Spending and progress up to today, only for the years whose budget law has been applied
-                if (isset($data['envelope'])) {
+                // Spending and progress up to today, only for the years whose budget law has been applied and whose
+                // plan is loaded approved (a plan still in the cycle is reported by the people practising it)
+                if (isset($data['envelope']) && $this->stateOf($year) === 'approved') {
                     (new MtcExecutionSampler)->seed($year, $this->planted[$year] ?? []);
                     if ($units === null) {
                         // the whole ministry also gets its reporting calendar; the small office sample does not (nothing is closed for it)
@@ -171,9 +190,9 @@ class MtcBudgetSeeder extends Seeder
                         'planned_end' => "{$year}-12-31",
                         'procurement_required' => false,
                         'gender_responsive' => false,
-                        'status' => $a['status'] ?? Activity::STATUS_APPROVED,
+                        'status' => $this->stateOf($year) === 'approved' ? ($a['status'] ?? Activity::STATUS_APPROVED) : Activity::STATUS_DRAFT,
                         'is_test_data' => false,
-                    ] + $this->workflowDates($year, $a['status'] ?? null));
+                    ] + $this->workflowDates($year, $this->stateOf($year) === 'approved' ? ($a['status'] ?? null) : Activity::STATUS_DRAFT));
 
                 if (! $registry->isRegistered($activity)) {
                     continue; // a real activity with this code already exists: leave it alone
@@ -234,17 +253,61 @@ class MtcBudgetSeeder extends Seeder
         }
     }
 
-    /** Timestamps matching a workflow step, for the illustrative activities that sit mid-workflow. */
+    /** The state a year is loaded in: the chosen one for the current year and the next, approved for earlier years. */
+    private function stateOf(int $year): string
+    {
+        return $year >= (int) now()->year ? $this->state : 'approved';
+    }
+
+    /**
+     * Move the drafts of the year along the approval chain, one directorate at a time and in turn through the stages
+     * (drafting, submitted, certified, approved), so that each role finds work that makes sense under the order of
+     * the year. With a single directorate (one office), its units take the turns instead.
+     */
+    private function advanceHalfway(int $year): void
+    {
+        $window = app(PlanningWindow::class);
+        $activities = Activity::withoutGlobalScopes()->whereIn('id', $this->planted[$year] ?? [])->orderBy('code')->get();
+        $roots = $activities->groupBy(fn ($a) => $window->rootOf((int) $a->directorate_id));
+        $groups = $roots->count() > 1 ? $roots : $activities->groupBy('directorate_id');
+        $codes = Directorate::whereIn('id', $groups->keys())->pluck('code', 'id');
+        $groups = $groups->sortBy(fn ($g, $id) => $codes[$id] ?? '')->values();
+        $stages = [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_VALIDATED, Activity::STATUS_APPROVED];
+        $by = User::role('Admin')->first() ?? User::first();
+
+        foreach ($groups as $i => $group) {
+            $status = $stages[$i % count($stages)];
+            if ($status === Activity::STATUS_DRAFT) {
+                continue;
+            }
+            foreach ($group as $activity) {
+                $activity->update(['status' => $status] + $this->workflowDates($year, $status));
+            }
+            if ($status === Activity::STATUS_SUBMITTED) {
+                // one activity came back from the director, with the reason the unit reads on it
+                $returned = $group->first();
+                $returned->auditMetadata = ['by' => $by?->id, 'reason' => 'Please split the budget by quarter and add the means of verification of the indicator.'];
+                $returned->update(['status' => Activity::STATUS_REJECTED]);
+            }
+        }
+    }
+
+    /**
+     * Timestamps matching a workflow step: early in the year for the years loaded as carried out, a few weeks ago
+     * for a plan that is still moving through the cycle.
+     */
     private function workflowDates(int $year, ?string $status): array
     {
         if ($status === null) {
             return [];
         }
+        $recent = $this->stateOf($year) !== 'approved';
+        $at = fn (string $fixed, int $daysAgo) => $recent ? now()->subDays($daysAgo)->setTime(9, 0)->toDateTimeString() : "{$year}-{$fixed} 09:00:00";
 
         return [
-            'submitted_at' => $status === Activity::STATUS_DRAFT ? null : "{$year}-01-15 09:00:00",
-            'reviewed_at' => in_array($status, [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED], true) ? null : "{$year}-01-22 09:00:00",
-            'approved_at' => $status === Activity::STATUS_APPROVED ? "{$year}-02-05 09:00:00" : null,
+            'submitted_at' => $status === Activity::STATUS_DRAFT ? null : $at('01-15', 21),
+            'reviewed_at' => in_array($status, [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED], true) ? null : $at('01-22', 14),
+            'approved_at' => $status === Activity::STATUS_APPROVED ? $at('02-05', 7) : null,
         ];
     }
 

@@ -74,6 +74,26 @@ class Activity extends Model
 
     const STATUS_REJECTED = 'Rejected';
 
+    /**
+     * The word people see for a status, the same on every page: the stages of Prepare, Certify (verify, validate)
+     * and Approve. The stored values stay as they are, because queries and reports depend on them.
+     */
+    public const STATUS_WORDS = [
+        self::STATUS_DRAFT => 'Draft',
+        self::STATUS_SUBMITTED => 'Prepared',
+        self::STATUS_REVIEWED => 'Verified',
+        self::STATUS_VALIDATED => 'Certified',
+        self::STATUS_WAITING_APPROVAL => 'Certified', // no longer reached; read as waiting for the final approval
+        self::STATUS_APPROVED => 'Approved',
+        self::STATUS_REJECTED => 'Returned',
+    ];
+
+    /** The translated word for a status (see STATUS_WORDS). */
+    public static function statusWord(?string $status): string
+    {
+        return __(self::STATUS_WORDS[$status] ?? (string) $status);
+    }
+
     protected $fillable = [
         'program_id',
         'subprogram_id',

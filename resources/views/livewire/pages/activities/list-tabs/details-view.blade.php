@@ -60,15 +60,7 @@
                             default => 'blue',
                         };
 
-                        $statusLabel = match ($activity->status) {
-                            'Approved' => __('Approved'),
-                            'Submitted' => __('Prepared'),
-                            'Reviewed' => __('Verified'),
-                            'Rejected' => __('Rejected'),
-                            'Cut' => __('Cut'),
-                            'Draft' => __('Draft'),
-                            default => __('Unknown'),
-                        };
+                        $statusLabel = \App\Models\Activity::statusWord($activity->status);
                     @endphp
                     <div class="flex flex-col">
                         <x-ui.badge :variant="$statusVariant" :pulse="in_array($activity->status, ['Submitted', 'Reviewed', 'Validated'])">

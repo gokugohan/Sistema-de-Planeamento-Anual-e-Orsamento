@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\SampleRegistry;
+use Database\Seeders\Samples\MtcBudgetSeeder;
 use Database\Seeders\Samples\MtcDirectorateSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
@@ -13,6 +14,9 @@ new class extends Component {
     public string $scope = 'office';
 
     public string $office = MtcOfficeSampleDataSeeder::DEFAULT_OFFICE;
+
+    /** How far the plans of the current year and the next have gone (MtcBudgetSeeder::STATES) */
+    public string $state = 'draft';
 
     public function mount(): void
     {
@@ -30,11 +34,12 @@ new class extends Component {
 
         try {
             // Seeders need the container to inject the registry into their run() methods.
+            abort_unless(in_array($this->state, MtcBudgetSeeder::STATES, true), 422);
             if ($this->scope === 'ministry') {
-                app(MtcSampleDataSeeder::class)->setContainer(app())->run();
+                app(MtcSampleDataSeeder::class)->setContainer(app())->run($this->state);
             } else {
                 abort_unless(array_key_exists($this->office, MtcDirectorateSeeder::offices()), 422);
-                app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($this->office);
+                app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($this->office, $this->state);
             }
         } catch (\Throwable $e) {
             report($e);
@@ -147,6 +152,24 @@ new class extends Component {
                     </span>
                 </label>
             </fieldset>
+
+            <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
+                <legend class="text-sm font-medium text-zinc-900">{{ __('How far the plans of :current and :next have gone', ['current' => now()->year, 'next' => now()->year + 1]) }}</legend>
+                <p class="text-xs text-zinc-500">{{ __('Earlier years are always loaded approved, with their spending and progress reported, so that there is a finished year to read.') }}</p>
+                @foreach([
+                    'draft' => [__('Everything to do: all drafts'), __('Practise the whole cycle: units complete and submit, directors certify, heads approve and finalize, then the units report and others verify.')],
+                    'halfway' => [__('Halfway through approval'), __('Each directorate at one stage, in turn: still drafting, submitted (one activity returned with a reason), certified and waiting for the final approval, approved. Every role finds work to do.')],
+                    'approved' => [__('Approved and being carried out'), __('Every activity approved; the current year with its spending and progress reported up to today.')],
+                ] as $value => [$label, $hint])
+                    <label class="flex items-start gap-3 text-sm text-zinc-700">
+                        <input type="radio" wire:model.live="state" value="{{ $value }}" class="mt-1">
+                        <span>
+                            <span class="font-medium text-zinc-900">{{ $label }}</span>
+                            <span class="block text-xs text-zinc-500">{{ $hint }}</span>
+                        </span>
+                    </label>
+                @endforeach
+            </fieldset>
         @endif
 
         @if($production && !$loaded)
@@ -187,12 +210,12 @@ new class extends Component {
     <x-ui.card>
         <h2 class="text-sm font-semibold text-zinc-900 mb-2">{{ __('What it contains') }}</h2>
         <ul class="list-disc pl-5 text-sm text-zinc-600 space-y-1">
-            <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document), with 2027 activities at every step of the approval workflow.') }}</li>
+            <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document).') }}</li>
             <li>{{ __('For the whole ministry: the MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
             <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
             <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
-            <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 approved activities with their official codes, indicators and amounts by economic category.') }}</li>
-            <li>{{ __('The approved activities are version 1 of the plan; 2025 and 2026 have monthly executed amounts and quarterly progress reported up to today, and 2027 is the year being planned.') }}</li>
+            <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 activities with their official codes, indicators and amounts by economic category.') }}</li>
+            <li>{{ __('2025 is approved, with monthly executed amounts and quarterly progress reported. 2026 and 2027 are loaded as you choose above: as drafts, halfway through approval, or approved (2026 then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>

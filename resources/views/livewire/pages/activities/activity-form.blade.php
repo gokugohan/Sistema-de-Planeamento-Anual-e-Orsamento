@@ -393,10 +393,17 @@ new class extends Component {
     @if($endedBy)
         <x-ui.card>
             <div class="flex flex-col items-start gap-3">
-                <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</h2>
-                <p class="max-w-2xl text-sm text-zinc-600">
-                    {{ __('The plan of this directorate for :year has been finalized, so activities can no longer be added. An approved activity can still be revised; only the head of the directorate or an administrator can reopen planning, with a remark.', ['year' => $year]) }}
-                </p>
+                @if($endedBy === 'Year')
+                    <h2 class="text-base font-semibold text-zinc-900">{{ __(':year cannot be planned', ['year' => $year]) }}</h2>
+                    <p class="max-w-2xl text-sm text-zinc-600">
+                        {{ __('New activities go into the plan of the current year or the next one: :current or :next. An approved activity of another year can still be revised. For practice with other years, an administrator can switch on testing mode in Settings.', ['current' => now()->year, 'next' => now()->year + 1]) }}
+                    </p>
+                @else
+                    <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</h2>
+                    <p class="max-w-2xl text-sm text-zinc-600">
+                        {{ __('The plan of this directorate for :year has been finalized, so activities can no longer be added. An approved activity can still be revised; only the head of the directorate or an administrator can reopen planning, with a remark.', ['year' => $year]) }}
+                    </p>
+                @endif
                 <div class="flex flex-wrap gap-2">
                     <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>
                     <x-ui.button variant="secondary" shadow="none" href="{{ route('activities.index') }}" wire:navigate>{{ __('Back to activities') }}</x-ui.button>

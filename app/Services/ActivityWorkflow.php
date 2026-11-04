@@ -88,6 +88,43 @@ class ActivityWorkflow
         return $to !== null && ! $this->inTurn($user, $activity) ? null : $to;
     }
 
+    /**
+     * One person, one click: after a certification or validation, may the next step be taken by the same person in
+     * the same action? Yes when that step is theirs as well: the head who validates for the unit above and also gives
+     * the final approval, or the head who certifies an activity of their own directorate. Never after a submission
+     * (the one who prepares is not the one who checks), never for an administrator (whose every step would otherwise
+     * collapse into one), and never into a stage where a list signs in order (each name signs on its own).
+     */
+    private function continues(User $user, Activity $activity): bool
+    {
+        return in_array($activity->status, [Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED], true)
+            && ! $user->isAdministrator()
+            && ! app(ApproverLists::class)->sequential($this->stageList($activity))
+            && $this->next($user, $activity) !== null;
+    }
+
+    /**
+     * Where one click of this user takes the activity: the next status, or further when the steps that follow are
+     * theirs too (see continues). Null when it is not their turn. The buttons are labelled from it.
+     */
+    public function reach(User $user, Activity $activity): ?string
+    {
+        $to = $this->next($user, $activity);
+        if ($to === null || $to === Activity::STATUS_SUBMITTED || $to === Activity::STATUS_APPROVED) {
+            return $to;
+        }
+        $probe = clone $activity; // never saved: only asks what the rules say about the status it would have
+        for ($step = 0; $step < 3; $step++) {
+            $probe->status = $to;
+            if (! $this->continues($user, $probe)) {
+                break;
+            }
+            $to = $this->next($user, $probe);
+        }
+
+        return $to;
+    }
+
     /** Did this user prepare the activity (the chain has gone past the preparing)? */
     private function preparedBy(User $user, Activity $activity): bool
     {
@@ -316,6 +353,11 @@ class ActivityWorkflow
         if ($signed) {
             return $to;
         }
+        // one person, one click: the step that follows is this person's too, so it is taken now (and only its
+        // outcome is announced); each step is still recorded on its own
+        if ($this->continues($user, $activity->fresh())) {
+            return $this->advance($user, $activity->fresh(), $note);
+        }
 
         [$title, $message, $roles, $unitId] = match ($to) {
             Activity::STATUS_SUBMITTED => [__('PAA Submitted for Review'), __('Activities of :dir were submitted by :name for review.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Director'], $activity->directorate_id],
@@ -460,7 +502,7 @@ class ActivityWorkflow
                         throw new DomainException(__('Not found.'));
                     }
                     if (! $this->canApprove($user, $fresh)) {
-                        throw new DomainException(__('Cannot be approved now (status: :status).', ['status' => __($fresh->status)]));
+                        throw new DomainException(__('Cannot be approved now (status: :status).', ['status' => Activity::statusWord($fresh->status)]));
                     }
                     if ($waiting = $this->signStage($user, $fresh)) {
                         return $fresh;

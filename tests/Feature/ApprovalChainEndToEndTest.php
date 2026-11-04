@@ -71,17 +71,14 @@ class ApprovalChainEndToEndTest extends TestCase
         $activity = $this->draftIn('DNTT'); // a national directorate under the Direção-Geral dos Transportes
         $activity = $this->step($this->user('tecnico.dntt@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
         $activity = $this->step($this->user('director.dntt@gdsc.tl'), $activity, Activity::STATUS_REVIEWED);
-        $activity = $this->step($this->user('director.dgt@gdsc.tl'), $activity, Activity::STATUS_VALIDATED);
 
         $head = $this->user('director.dgt@gdsc.tl');
-        $this->assertTrue($this->workflow->canApprove($head, $activity), 'the head of the directorate-general approves');
-        $this->assertFalse($this->workflow->canApprove($this->user('ministro@gdsc.tl'), $activity), 'the Minister does not approve plans');
-        $this->assertFalse($this->workflow->canApprove($this->user('director.dgc@gdsc.tl'), $activity), 'nor does the head of another directorate-general');
-        $this->assertFalse($this->workflow->canApprove($this->user('director.dntt@gdsc.tl'), $activity), 'a national directorate below only validates');
+        $this->assertSame(Activity::STATUS_APPROVED, $this->workflow->reach($head, $activity), 'the head of the directorate-general validates and approves');
+        $this->assertNull($this->workflow->next($this->user('ministro@gdsc.tl'), $activity), 'the Minister does not approve plans');
+        $this->assertNull($this->workflow->next($this->user('director.dgc@gdsc.tl'), $activity), 'nor does the head of another directorate-general');
+        $this->assertNull($this->workflow->next($this->user('director.dntt@gdsc.tl'), $activity), 'a national directorate below only certifies');
 
-        $this->workflow->approve($head, $activity);
-        $activity->refresh();
-        $this->assertSame(Activity::STATUS_APPROVED, $activity->status);
+        $activity = $this->step($head, $activity, Activity::STATUS_APPROVED); // one click: validated and approved
         $this->assertSame($head->id, $activity->approved_by);
     }
 
@@ -94,13 +91,12 @@ class ApprovalChainEndToEndTest extends TestCase
         $activity = $this->draftIn('UDIG'); // the Unidade para o Digital, under the Gabinete
         $activity = $this->step($this->user('tecnico.udig@gdsc.tl'), $activity, Activity::STATUS_SUBMITTED);
         $activity = $this->step($this->user('director.udig@gdsc.tl'), $activity, Activity::STATUS_REVIEWED);
-        $activity = $this->step($this->user('chefe.gdsc@gdsc.tl'), $activity, Activity::STATUS_VALIDATED);
 
         $chefe = $this->user('chefe.gdsc@gdsc.tl');
-        $this->assertTrue($this->workflow->canApprove($chefe, $activity));
-        $this->assertFalse($this->workflow->canApprove($this->user('director.udig@gdsc.tl'), $activity), 'a unit director only validates');
+        $this->assertSame(Activity::STATUS_APPROVED, $this->workflow->reach($chefe, $activity));
+        $this->assertNull($this->workflow->next($this->user('director.udig@gdsc.tl'), $activity), 'a unit director only certifies');
 
-        $activity = $this->step($chefe, $activity, Activity::STATUS_APPROVED);
+        $activity = $this->step($chefe, $activity, Activity::STATUS_APPROVED); // the head validates and approves in one click
         $this->assertSame($chefe->id, $activity->approved_by);
         $this->assertNotNull($activity->approved_at);
     }

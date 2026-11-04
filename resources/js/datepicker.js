@@ -39,6 +39,9 @@ function enhance(input) {
     if (input._flatpickr) {
         input._flatpickr.destroy();
     }
+    // a page brought back from Livewire's navigation cache (the Back button) still holds the visible copy of the field
+    // as it was, but not the picker behind it: remove that copy, or the field would show twice
+    input.parentElement?.querySelectorAll('input[data-fp-alt]').forEach((stale) => stale.remove());
 
     const fp = flatpickr(input, {
         altInput: true,
@@ -58,6 +61,7 @@ function enhance(input) {
     });
 
     const alt = fp.altInput;
+    alt.dataset.fpAlt = '1';
     // Livewire must not morph the picker away when it re-renders the page; the value still follows wire:model
     input.setAttribute('wire:ignore', '');
     alt.setAttribute('wire:ignore', '');

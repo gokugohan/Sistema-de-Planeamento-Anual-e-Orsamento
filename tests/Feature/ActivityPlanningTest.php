@@ -111,9 +111,13 @@ class ActivityPlanningTest extends TestCase
         $this->assertSame(Activity::STATUS_REVIEWED, $wf->advance($dnDirector, $a->fresh()));
         $this->assertNull($wf->next($dnDirector, $a->fresh()), 'the unit director cannot also validate');
 
+        // the head of the directorate-general validates and also gives the final approval: one click, both recorded
         $dgDirector = $this->as('Director', $this->dg);
-        $this->assertSame(Activity::STATUS_VALIDATED, $wf->advance($dgDirector, $a->fresh()));
+        $this->assertSame(Activity::STATUS_APPROVED, $wf->reach($dgDirector, $a->fresh()));
         $this->assertSame(Activity::STATUS_APPROVED, $wf->advance($dgDirector, $a->fresh()), 'the head of the directorate-general gives the final approval');
+        $steps = \App\Models\AuditLog::where('auditable_type', Activity::class)->where('auditable_id', $a->id)->get()
+            ->map(fn ($l) => $l->new_values['status'] ?? null)->filter()->values()->all();
+        $this->assertSame([Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_APPROVED], array_values(array_intersect($steps, [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_APPROVED])), 'every step is in the history');
 
         $minister = $this->as('Minister');
         $this->assertFalse($wf->canApprove($minister, $a->fresh()), 'the Minister does not approve plans');

@@ -76,10 +76,10 @@ The menu groups the administrator's pages under **Administration** (*System User
 2. **Logo and browser icon**: choose an image (PNG, JPG or WebP, up to 2 MB) and press **Use this logo**. It is resized and shown in the menu, on the sign-in page and above the header of the printed reports, and a browser icon (favicon) is made from it. **Remove logo** goes back to the abbreviation. This part has its own save buttons.
 3. **Level and approval**:
     - the level: *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry, and you can say who it is sent to);
-    - whether the director of the unit above **validates** first;
+    - whether the director of the unit above **validates** after the unit's own certification (on by default, so that a unit → national directorate → general directorate structure checks once at each level; where the unit above is the directorate itself, its head's validation and approval are one click);
     - whether **finance confirms the budget** of each activity before it is certified;
     - whether the person who prepared an activity may also certify or approve it.
-4. **Notifications and testing**: whether notifications are also sent **by e-mail** (off by default, see Part 11), and the **testing mode**, a practice area with its own test data (off by default).
+4. **Notifications and testing**: whether notifications are also sent **by e-mail** (off by default, see Part 11), and the **testing mode** (off by default). In testing mode activities can be planned for **any year** (otherwise only the current year and the next), the year selector offers more years, and the *Testing Zone* menu appears; an amber bar on every page says that it is on. Switch it off for real use.
 
 Click **Save Settings** to save parts 1, 3 and 4.
 
@@ -198,7 +198,7 @@ Authority is worked out from the unit tree and the lists **at the moment someone
 
 ## 7. Ending planning for a directorate
 
-The head of each directorate finalizes its plan (User manual, Part 7). An administrator can finalize or reopen **any** directorate, with a reason, and can finalize outside the finalizing dates of the calendar. On **PAA Activities**, **Show directorates** lists every directorate with its state and the **Finalize plan** or **Reopen** button.
+The head of each directorate approves and finalizes its plan in one step, **Approve the plan** on *Waiting for you* (User manual, 5.3 and Part 7). An administrator sees that card for **every** directorate, can approve or finalize any of them, reopen one with a reason, and act outside the finalizing dates of the calendar. On **PAA Activities**, **Show directorates** lists every directorate with its state and the **Finalize plan** or **Reopen** button.
 
 Finalizing stops **new activities** for that directorate and year: no new activities, imported lines or copies from last year. Revisions of approved activities are still possible. An adjustment round that allows new activities lifts this stop for its directorates until they confirm (Part 9).
 
@@ -333,9 +333,12 @@ From then on, every notification is also e-mailed to the people who have an e-ma
 
 **System → Sample Data** loads (or removes) an optional demonstration dataset, so that people can practise before real use. It brings:
 
-- the structure, the people and the plans;
-- the reported amounts of the earlier years;
-- the **reporting calendar** of those years: each month may be reported until the 10th of the next month, and each quarter's indicators until the 15th after it.
+- the structure, the people and the plans of three years;
+- the earlier year approved, with its reported amounts and progress, and its **reporting calendar** (each month may be reported until the 10th of the next month, each quarter's indicators until the 15th after it);
+- the **current year and the next** in the state you choose before loading:
+    - **Everything to do: all drafts** (the default): practise the whole cycle, from submitting to reporting;
+    - **Halfway through approval**: each directorate at one stage, in turn (still drafting; submitted, with one activity returned with a reason; certified and waiting for the head; approved), so that every role finds work;
+    - **Approved and being carried out**: every activity approved, the current year with its spending reported up to today.
 
 Planning dates are left open on purpose. Loading is refused in production. *Purge* removes only what the sample created; your real data is never touched.
 
@@ -357,6 +360,8 @@ For the person who installs and runs the server (the **Deployment manual** has t
 **A unit's activities cannot get their final approval.** Nobody directs the unit or a unit above it. *Structure* lists the units nobody directs: give a user the Director role in that unit, or name approvers in its approval list.
 
 **A director sees no activities.** The user has no unit. *System Users* warns about users without a unit; edit the user and choose the unit.
+
+**A unit cannot add an activity to a past year.** Only the current and the next year take new activities. For practice with other years, switch on the testing mode in Settings, and off again afterwards.
 
 **A unit asks for more time.** Open *System → Calendar*, find the unit under **Late** and choose **Reopen for this unit** with a date and a reason. The step stays closed for everybody else.
 

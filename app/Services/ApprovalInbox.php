@@ -88,22 +88,20 @@ class ApprovalInbox
                 $user->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report'), 'indigo');
         }
 
-        // ── the plan: each directorate that is ready to be finalized, for whoever gives its final approval
+        // ── the plan: each directorate whose plan is ready for its head's approval (approve the plan: approve and finalize)
         $window = app(PlanningWindow::class);
-        $units = $window->state($year)['units'];
         $ready = [];
         foreach ($window->decidesFor($user, $year) as $rootId) {
-            $u = collect($units)->firstWhere('id', $rootId);
-            if ($u && ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0) {
-                $ready[] = $u['code'];
+            if ($window->planReadiness($year, (int) $rootId)['ready']) {
+                $ready[] = Directorate::whereKey($rootId)->value('code');
             }
         }
         if ($ready) {
             // one line for all of them, not one per directorate
             $add('plan', count($ready), count($ready) === 1
-                ? __('Every activity of :unit for :year has been decided: the plan is ready to be finalized.', ['unit' => $ready[0], 'year' => $year])
-                : __(':n directorates have decided every activity for :year and are ready to finalize their plan: :units.', ['n' => count($ready), 'year' => $year, 'units' => implode(', ', $ready)]),
-                route('activities.index'), 'emerald');
+                ? __('The plan of :unit for :year is ready for your approval.', ['unit' => $ready[0], 'year' => $year])
+                : __(':n directorates have their plan for :year ready for your approval: :units.', ['n' => count($ready), 'year' => $year, 'units' => implode(', ', $ready)]),
+                route('approvals.index').'#plan', 'emerald');
         }
 
         // ── reporting due: the units' monthly duty, in the running year

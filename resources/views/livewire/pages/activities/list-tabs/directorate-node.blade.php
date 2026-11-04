@@ -128,15 +128,7 @@
                             'Validated'        => 'bg-indigo-500',
                             default            => 'bg-zinc-300',
                         };
-                        $statusLabel = match($activity->status) {
-                            'Approved'         => __('Approved'),
-                            'Waiting Approval' => __('Waiting'),
-                            'Rejected'         => __('Rejected'),
-                            'Submitted'        => __('Prepared'),
-                            'Reviewed'         => __('Verified'),
-                            'Validated'        => __('Certified'),
-                            default            => __('Draft'),
-                        };
+                        $statusLabel = \App\Models\Activity::statusWord($activity->status);
                         $statusColor = match($activity->status) {
                             'Approved'         => 'text-emerald-700 bg-emerald-50 ring-emerald-200',
                             'Waiting Approval' => 'text-amber-700 bg-amber-50 ring-amber-200',

@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use App\Models\Activity;
+use App\Models\SystemSetting;
 use App\Services\PlanningWindow;
 
 /**
@@ -49,16 +50,20 @@ class FiscalYear
         return self::$defaultMemo = $planned ? (int) $planned : $current;
     }
 
-    /** Years the user can switch to: every year with a plan, plus this year and next. @return array<int, int> */
+    /**
+     * Years the user can switch to: every year with a plan, plus this year and next; in testing mode also the five
+     * years before and the two after next, so that any of them can be planned. @return array<int, int>
+     */
     public static function available(): array
     {
         if (self::$yearsMemo !== null && ! app()->runningUnitTests()) {
             return self::$yearsMemo;
         }
         $current = (int) date('Y');
+        $extra = SystemSetting::get('enable_paa_testing_mode', false) ? range($current - 5, $current + 3) : [];
 
         return self::$yearsMemo = Activity::query()->distinct()->pluck('fiscal_year')
-            ->push($current, $current + 1)
+            ->push($current, $current + 1, ...$extra)
             ->map(fn ($y) => (int) $y)->unique()->sortDesc()->values()->all();
     }
 
@@ -70,9 +75,15 @@ class FiscalYear
         return $unitId === null ? $window->isOpen($year) : $window->isOpenFor($year, $unitId);
     }
 
-    /** 'Finalized' when planning has ended for the year (or the unit's directorate), null while it is open. */
+    /**
+     * Why the year takes no new activities: 'Year' when it is neither the current year nor the next one (and testing
+     * mode is off), 'Finalized' when planning has ended for the year (or the unit's directorate); null while it is open.
+     */
     public static function planningEndedBy(int $year, ?int $unitId = null): ?string
     {
+        if (! PlanningWindow::yearAllowed($year)) {
+            return 'Year';
+        }
         $window = app(PlanningWindow::class);
 
         return $unitId === null ? $window->endedBy($year) : $window->unitEndedBy($year, $unitId);
