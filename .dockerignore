@@ -17,6 +17,9 @@ tests
 docs
 *.md
 *.png
+# ...but the application's own images are served from public/
+!public/**/*.png
+!public/*.png
 *.xlsx
 .phpunit.result.cache
 Dockerfile
