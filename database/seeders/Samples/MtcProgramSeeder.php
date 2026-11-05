@@ -30,8 +30,11 @@ class MtcProgramSeeder extends Seeder
         'A38' => [['SDG', 'SDG 13', 'Ação climática']],
     ];
 
-    /** @param  array<int, string>|null  $only  OGE codes to load (null: all six) */
-    public function run(SampleRegistry $registry, ?array $only = null): void
+    /**
+     * @param  array<int, string>|null  $only  OGE codes to load (null: all six)
+     * @param  array<int, int|string>|null  $years  the years of the sample to register them for (null: all of them)
+     */
+    public function run(SampleRegistry $registry, ?array $only = null, ?array $years = null): void
     {
         $programs = [
             ['oge_code' => '502', 'name' => 'Transportes', 'objective' => 'Sistema de transporte terrestre em bom funcionamento que contribui a ligar as comunidades, apoiar o desenvolvimento rural, a indústria e o turismo e fornecer acesso ao mercado e apoiar os serviços públicos de fornecimento.'],
@@ -42,8 +45,8 @@ class MtcProgramSeeder extends Seeder
             ['oge_code' => 'A38', 'name' => 'Meteorologia e Geofísica', 'objective' => 'Cidadãos de Timor-Leste informados sobre o clima e o estado do tempo, disponível para todos os cidadãos.'],
         ];
 
-        // Programmes belong to a fiscal year, so each one is registered for every year of the sample.
-        foreach (MtcBudgetSeeder::YEARS as $year) {
+        // Programs belong to a fiscal year, so each one is registered for every year of the sample that is loaded.
+        foreach (MtcBudgetSeeder::years($years) as $year) {
             foreach ($programs as $prog) {
                 if ($only !== null && ! in_array($prog['oge_code'], $only, true)) {
                     continue;

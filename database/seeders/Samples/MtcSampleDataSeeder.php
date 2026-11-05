@@ -30,23 +30,24 @@ use Illuminate\Support\Facades\DB;
 class MtcSampleDataSeeder extends Seeder
 {
     /** @param  string  $state  how far the plans of the current year and the next have gone (MtcBudgetSeeder::STATES) */
-    public function run(string $state = 'approved'): void
+    /** @param  array<int, int|string>|null  $years  the years of the sample to load (null: all of them) */
+    public function run(string $state = 'approved', ?array $years = null): void
     {
         if (app()->isProduction()) {
             throw new \RuntimeException('The sample dataset creates demo accounts with a known password and must not be loaded in production.');
         }
 
         // All or nothing: a failure part-way must not leave units and accounts without their plans.
-        DB::transaction(function () use ($state) {
+        DB::transaction(function () use ($state, $years) {
             $this->call([
                 RolesAndPermissionsSeeder::class,
                 EconomicClassificationSeeder::class,
                 MtcBrandingSeeder::class,
                 MtcDirectorateSeeder::class,
-                MtcProgramSeeder::class,
-                MtcDemoUsersSeeder::class,
             ]);
-            $this->call(MtcBudgetSeeder::class, false, ['state' => $state]);
+            $this->call(MtcProgramSeeder::class, false, ['years' => $years]);
+            $this->call(MtcDemoUsersSeeder::class);
+            $this->call(MtcBudgetSeeder::class, false, ['state' => $state, 'years' => $years]);
         });
     }
 }

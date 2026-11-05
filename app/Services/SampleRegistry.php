@@ -10,6 +10,7 @@ use App\Models\ReportingWindow;
 use App\Models\SampleRecord;
 use App\Models\Subprogram;
 use App\Models\SystemSetting;
+use App\Models\UnitPlanning;
 use App\Models\User;
 use Database\Seeders\Samples\MtcBrandingSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -113,9 +114,13 @@ class SampleRegistry
     /**
      * @return array{deleted: array<string,int>, kept: array<int,string>}
      */
-    public function purge(string $dataset): array
+    /**
+     * @param  bool  $keepUnits  keep the sample's units as the institution's own structure (they become ordinary records,
+     *                           with the institution's name); everything else of the sample goes, the demo accounts too
+     */
+    public function purge(string $dataset, bool $keepUnits = false): array
     {
-        $report = DB::transaction(function () use ($dataset) {
+        $report = DB::transaction(function () use ($dataset, $keepUnits) {
             $deleted = ['activities' => 0, 'users' => 0, 'directorates' => 0, 'programs' => 0];
             $kept = [];
 
@@ -140,8 +145,14 @@ class SampleRegistry
                 $deleted['users']++;
             });
 
-            // 3. Sample units, leaves first, skipping any that real data still uses.
+            // 3. Sample units, leaves first, skipping any that real data still uses; or all of them kept as the structure,
+            //    without the plans finalized while practising (their activities are gone, the real year starts open)
             $units = Directorate::whereIn('id', $ids(Directorate::class))->get()->keyBy('id');
+            if ($keepUnits) {
+                UnitPlanning::whereIn('directorate_id', $units->keys())->delete();
+                $kept[] = trans_choice(':n unit kept as the structure of the institution|:n units kept as the structure of the institution', $units->count(), ['n' => $units->count()]);
+                $units = collect();
+            }
             do {
                 $progress = false;
                 foreach ($units as $id => $unit) {
@@ -184,7 +195,7 @@ class SampleRegistry
             // 5. Whatever is left is real data now: stop tracking it.
             SampleRecord::where('dataset', $dataset)->delete();
 
-            if ($dataset === 'mtc') {
+            if ($dataset === 'mtc' && ! $keepUnits) { // with its units kept, the institution keeps its name too
                 MtcBrandingSeeder::resetIfUnchanged();
                 MtcOfficeSampleDataSeeder::resetBrandingIfUnchanged();
             }
@@ -194,7 +205,7 @@ class SampleRegistry
                 'action' => 'sample_data.purged',
                 'user_id' => auth()->id(),
                 'description' => "Sample dataset '{$dataset}' purged",
-                'metadata' => ['deleted' => $deleted, 'kept' => $kept],
+                'metadata' => ['deleted' => $deleted, 'kept' => $kept, 'units_kept' => $keepUnits],
             ]);
 
             return ['deleted' => $deleted, 'kept' => $kept];

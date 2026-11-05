@@ -7,9 +7,9 @@ This manual is for everyone who works with the plan: the technical officers who 
 
 Setting the system up (the institution, its structure, its people, the calendar and the optional rules) is described in the separate **Administrator manual**. Installing and running the server is described in the **Deployment manual**.
 
-**The plan is the centre.** Everything in the application hangs on the activities of the Annual Action Plan. Units write them, directors certify them and the heads of directorates approve them. An activity is revised when it has to change, and it is reported month by month and quarter by quarter. The budget is part of the plan: each activity carries its budget lines, and what an approved activity may spend is what its approved version says. There is no separate budget to register or distribute.
+**The plan is the center.** Everything in the application hangs on the activities of the Annual Action Plan. Units write them, directors certify them and the heads of directorates approve them. An activity is revised when it has to change, and it is reported month by month and quarter by quarter. The budget is part of the plan: each activity carries its budget lines, and what an approved activity may spend is what its approved version says. There is no separate budget to register or distribute.
 
-The screenshots come from the optional sample dataset (the Ministry of Transport and Communications). The system is not tied to one institution: your institution's name, structure, programmes and people are set in the application.
+The screenshots come from the optional sample dataset (the Ministry of Transport and Communications). The system is not tied to one institution: your institution's name, structure, programs and people are set in the application.
 
 ---
 
@@ -47,7 +47,7 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 
 ![The dashboard](manual/img/dashboard.png)
 
-- **Left menu**: the places you may use. It is built for your role, so you only see what is yours. It follows the annual cycle: *Overview → Plan → Approvals → Execute → Insights*.
+- **Left menu**: the places you may use. It is built for your role, so you only see what is yours. It follows the annual cycle, and its four steps are numbered in the order they are done: *Overview*, then **1 Plan → 2 Approvals → 3 Execute → 4 Insights**. Within each step, the entries come in the order you use them.
 - **Top bar**: a search that jumps to any page (press **Ctrl + K**), the **fiscal year** selector, the language buttons **EN / PT / TET**, your notifications (the bell) and your profile.
 - **Fiscal year**: almost every screen shows one year at a time. Change it at the top and the whole application follows.
 - **Language**: English, Portuguese and Tetum. Your choice is remembered.
@@ -57,6 +57,8 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 - **Manual** (under *Overview*): this manual, to read in the application or download as a PDF.
 
 ![Your recent activity in the profile](manual/img/profile-activity.png)
+
+![This manual inside the application](manual/img/manual-page.png)
 
 ### 1.3 What you see first
 
@@ -68,29 +70,31 @@ Those who see every plan land on the **Dashboard**; everyone else lands on **My 
 - **Needs your attention**: what you can act on (the same list as *Approvals*);
 - charts by economic category, status and unit.
 
-Filter it by unit, programme and category at the top. **How the year works** (under *Overview*) shows on one page who does what, when and where, with your own steps marked.
+Filter it by unit, program and category at the top. **How the year works** (under *Overview*) shows on one page who does what, when and where, with your own steps marked.
+
+![How the year works: who does what, when and where](manual/img/guide.png)
 
 ### 1.4 The menu
 
-The left menu is grouped by what you do. Each person sees only the groups and entries their role allows.
+The left menu is grouped by what you do, and the steps of the year are numbered 1 to 4, so the next step is always the next number. Each person sees only the groups and entries their role allows.
 
 | Group | What is in it |
 |---|---|
 | **Overview** | *Dashboard* (those who see every plan) or *My work* (everyone else), *How the year works*, *Manual*. |
-| **Plan** | *Units* (the plan of any unit you may see), *Programmes*, *Plan cycle*, the activities themselves (*All activities* or *My plan*) and, where the institution uses them, *Budget decisions* and the *Adjustment round* (8.5). |
-| **Approvals** | *Waiting for you* (what needs your decision or check), and, where your role has them, budget review, approval lists and interim approvers. |
-| **Execute** | Report what was spent and achieved; compile the quarter. |
-| **Insights** | Performance and reports. |
+| **1 Plan** | The activities themselves (*All activities* or *My plan*), then *Units* (the plan of any unit you may see), *Programs*, *Plan cycle* and, where the institution uses them, *Budget decisions* and the *Adjustment round* (8.5). |
+| **2 Approvals** | *Waiting for you* (what needs your decision or check, and *Approve the plan* for heads of directorates), and, where your role has them, budget review, approval lists and interim approvers. |
+| **3 Execute** | *Report execution* (what was spent and achieved, every month), then *Compile the quarter*. |
+| **4 Insights** | Performance and reports. |
 
 Administrators also see *Administration* and *System*; they are described in the Administrator manual.
 
-**Plan → Programmes** is for reading. Each programme lists its sub-programmes, with:
+**Plan → Programs** is for reading. Each program lists its sub-programs, with:
 
 - how many activities each has, and how many are approved;
 - the amount planned and the approved plan amount;
 - what has been executed (verified).
 
-A directorate sees the programmes and figures of its own units only; anyone who sees every plan sees them all. *Open activities* opens the activity list already filtered to that programme or sub-programme.
+A directorate sees the programs and figures of its own units only; anyone who sees every plan sees them all. *Open activities* opens the activity list already filtered to that program or sub-program.
 
 ---
 
@@ -100,7 +104,7 @@ You do not need to memorise this, but everything in the application follows thes
 
 **Institution and units.** Your institution is a tree. At the top are the *top-level units* (directorates, gabinetes or autonomous bodies), with *units* below them, to any depth the law defines. Each unit has its own people. Authority follows the tree: the head of a top-level unit gives the final approval for everything below it.
 
-**Programme and subprogramme.** The budget classification of the State (the OGE codes). Every activity belongs to one programme and one subprogramme.
+**Program and subprogram.** The budget classification of the State (the OGE codes). Every activity belongs to one program and one subprogram.
 
 **Activity.** What a unit will do in the year. It has a description, a priority, the quarters it runs in, start and end dates, and the person responsible. It starts as a **Draft**.
 
@@ -147,7 +151,7 @@ For technical officers and unit directors. Open **Plan → PAA Activities** (or 
 
 ![The activity list](manual/img/activities.png)
 
-The list shows the activities you may see: those of your unit and of the units below it. It has the tabs *All*, *Drafts & returned*, *In review*, *Approved* and *Needs my action*, and you can filter by unit, programme and subprogramme. A banner says whether planning for the year is open for your directorate.
+The list shows the activities you may see: those of your unit and of the units below it. It has the tabs *All*, *Drafts & returned*, *In review*, *Approved* and *Needs my action*, and you can filter by unit, program and subprogram. A banner says whether planning for the year is open for your directorate.
 
 ### 4.1 Create an activity
 
@@ -155,7 +159,7 @@ Click **+ New activity** (or **Copy from last year**, see 4.6).
 
 ![New activity](manual/img/activity-new.png)
 
-1. **The activity**: choose the **responsible unit** and the **programme**, and describe in one line what will be done. Optionally add the expected result, the person responsible and the priority.
+1. **The activity**: choose the **responsible unit** and the **program**, and describe in one line what will be done. Optionally add the expected result, the person responsible and the priority.
 2. **When and where**: the start and end dates, the municipality or region, and the **quarters** in which the activity is carried out. Tick *needs procurement* or *contributes to gender equality* where they apply.
 3. **Budget by economic category**: the amount for each category. Add the lines under **Budget lines** (4.3).
 4. **More details**: the indicators and their actions (4.2).
@@ -218,7 +222,7 @@ An approved activity cannot be edited. To change it (for example, a cost went up
 
 Every activity goes through the same short chain, whatever the size of the institution: **the unit submits, its director certifies, and the head of the directorate approves the plan**. Where a unit sits under a national directorate (unit → national directorate → general directorate), the national director validates in between, so that each level of management checks once.
 
-![Statuses](manual/img/activity-show.png)
+![A certified activity, as its head sees it](manual/img/activity-show.png)
 
 | Status shown | Meaning | Who moves it on |
 |---|---|---|
@@ -257,6 +261,8 @@ Open the activity. The panel on the right says where it stands and what you can 
 ### 5.3 Approve the plan (heads of directorates)
 
 The head of a directorate does not approve activity by activity. On **Approvals → Waiting for you**, the card **Approve the plan** shows each directorate you head:
+
+![Approve the plan](manual/img/approve-plan.png)
 
 - **Not ready yet**, with what is missing: activities still being certified, or still with the units (drafts or returned).
 - **Ready**: *N certified activities are ready for your approval*. Write a remark for the record if you wish, and click **Approve the plan**.
@@ -482,7 +488,7 @@ What the unit wrote is kept as it was. The compiled text becomes the text of the
 
 ![Performance](manual/img/performance.png)
 
-**Insights → Performance**: what was executed and delivered against the plan, by quarter and programme, with the activities falling behind.
+**Insights → Performance**: what was executed and delivered against the plan, by quarter and program, with the activities falling behind.
 
 ---
 
@@ -496,13 +502,13 @@ The **Dashboard** (1.3) and **Insights → Reporting** show the annual performan
 
 - the institution's name, a reference such as `PAA-2027`, and who made it and when;
 - the totals of each unit, added up through the tree;
-- the programmes with their categories, activities and indicators.
+- the programs with their categories, activities and indicators.
 
 ### 10.2 The final plan report
 
 ![The approved plan report](manual/img/approved-plan.png)
 
-**Reporting → Final plan report** is the plan of approved activities in the layout of the Ministry of Finance form (A4 landscape), with bands for each programme and subprogramme. For each activity it shows:
+**Reporting → Final plan report** is the plan of approved activities in the layout of the Ministry of Finance form (A4 landscape), with bands for each program and subprogram. For each activity it shows:
 
 - its indicators, baseline, target and means of verification;
 - its unit and funding source;
@@ -550,7 +556,7 @@ Notifications are **inside the application**. You see them in two places:
 
 ## 11. A whole year, step by step (tutorial)
 
-Follow Ana (technical officer), Bento (director of a unit), Carla (head of a directorate) and Dino (finance). Before the year starts, the administrator has set up the structure, the programmes, the people and the calendar (see the Administrator manual).
+Follow Ana (technical officer), Bento (director of a unit), Carla (head of a directorate) and Dino (finance). Before the year starts, the administrator has set up the structure, the programs, the people and the calendar (see the Administrator manual).
 
 **Planning (Ana, Bento).**
 
@@ -656,7 +662,7 @@ The exact rules also depend on the unit tree and the approval lists. An administ
 |---|---|
 | **PAA** | Plano de Ação Anual: the annual action plan. |
 | **OGE** | Orçamento Geral do Estado: the State Budget and its classification. |
-| **Programme / Subprogramme** | The budget classification an activity belongs to. |
+| **Program / Subprogram** | The budget classification an activity belongs to. |
 | **Activity** | What a unit will do in the year. |
 | **Indicator** | A measurable result with a target and a baseline. |
 | **Action** | A numbered step that carries an indicator out, with its months. |

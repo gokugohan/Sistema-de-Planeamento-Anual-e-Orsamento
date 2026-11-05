@@ -15,11 +15,21 @@ new class extends Component {
 
     public string $office = MtcOfficeSampleDataSeeder::DEFAULT_OFFICE;
 
+    /** On purging, keep the sample's units as the institution's own structure */
+    public bool $keepUnits = false;
+
     /** How far the plans of the current year and the next have gone (MtcBudgetSeeder::STATES) */
     public string $state = 'draft';
 
+    /** The years to load, from and to (a year outside the sample takes the plan of the nearest sample year) */
+    public int $fromYear = 0;
+
+    public int $toYear = 0;
+
     public function mount(): void
     {
+        $this->fromYear = (int) now()->year - 1;
+        $this->toYear = (int) now()->year + 1;
         abort_unless(auth()->user()?->isAdministrator(), 403);
     }
 
@@ -35,11 +45,17 @@ new class extends Component {
         try {
             // Seeders need the container to inject the registry into their run() methods.
             abort_unless(in_array($this->state, MtcBudgetSeeder::STATES, true), 422);
+            if ($this->fromYear < 2000 || $this->toYear > (int) now()->year + 5 || $this->fromYear > $this->toYear || $this->toYear - $this->fromYear > 9) {
+                $this->dispatch('toast', message: __('Choose a range of at most ten years, from 2000 to :max, with the first year not after the last.', ['max' => (int) now()->year + 5]), type: 'error');
+
+                return;
+            }
+            $years = range($this->fromYear, $this->toYear);
             if ($this->scope === 'ministry') {
-                app(MtcSampleDataSeeder::class)->setContainer(app())->run($this->state);
+                app(MtcSampleDataSeeder::class)->setContainer(app())->run($this->state, $years);
             } else {
                 abort_unless(array_key_exists($this->office, MtcDirectorateSeeder::offices()), 422);
-                app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($this->office, $this->state);
+                app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($this->office, $this->state, $years);
             }
         } catch (\Throwable $e) {
             report($e);
@@ -57,7 +73,7 @@ new class extends Component {
         abort_unless(auth()->user()?->isAdministrator(), 403);
 
         try {
-            $result = app(SampleRegistry::class)->purge('mtc');
+            $result = app(SampleRegistry::class)->purge('mtc', $this->keepUnits);
         } catch (\Throwable $e) {
             report($e);
             $this->dispatch('toast', message: __('Purge failed, nothing was changed: :m', ['m' => $e->getMessage()]), type: 'error');
@@ -154,6 +170,21 @@ new class extends Component {
             </fieldset>
 
             <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
+                <legend class="text-sm font-medium text-zinc-900">{{ __('Which years') }}</legend>
+                <div class="flex flex-wrap items-end gap-3">
+                    <div>
+                        <label for="sample-from" class="field-label">{{ __('From year') }}</label>
+                        <input id="sample-from" type="number" min="2000" max="{{ now()->year + 5 }}" wire:model.live="fromYear" class="flux-input !w-32">
+                    </div>
+                    <div>
+                        <label for="sample-to" class="field-label">{{ __('To year') }}</label>
+                        <input id="sample-to" type="number" min="2000" max="{{ now()->year + 5 }}" wire:model.live="toYear" class="flux-input !w-32">
+                    </div>
+                </div>
+                <p class="text-xs text-zinc-500">{{ __('The sample holds the real plans of :years. Each year you load takes the plan of the same year, or of the nearest of these; its dates, programs, calendar and reported spending follow the year you chose. Years before :current are loaded approved, with their spending reported.', ['years' => implode(', ', \Database\Seeders\Samples\MtcBudgetSeeder::YEARS), 'current' => now()->year]) }}</p>
+            </fieldset>
+
+            <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
                 <legend class="text-sm font-medium text-zinc-900">{{ __('How far the plans of :current and :next have gone', ['current' => now()->year, 'next' => now()->year + 1]) }}</legend>
                 <p class="text-xs text-zinc-500">{{ __('Earlier years are always loaded approved, with their spending and progress reported, so that there is a finished year to read.') }}</p>
                 @foreach([
@@ -170,6 +201,16 @@ new class extends Component {
                     </label>
                 @endforeach
             </fieldset>
+        @endif
+
+        @if($loaded)
+            <label class="mt-6 flex items-start gap-3 border-t border-zinc-100 pt-5 text-sm text-zinc-700">
+                <input type="checkbox" wire:model.live="keepUnits" class="mt-1 rounded border-zinc-300 text-indigo-600">
+                <span>
+                    <span class="font-medium text-zinc-900">{{ __('When purging, keep the units as our structure') }}</span>
+                    <span class="block text-xs text-zinc-500">{{ __('The units, with their codes, names and hierarchy, and the name of the institution stay as your own data. Activities, programmes, the calendar and the demo accounts (whose password is public) are still deleted, so the units have no people yet: add them in System Users.') }}</span>
+                </span>
+            </label>
         @endif
 
         @if($production && !$loaded)
@@ -214,8 +255,8 @@ new class extends Component {
             <li>{{ __('For the whole ministry: the MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
             <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
             <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
-            <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books: about 270 activities with their official codes, indicators and amounts by economic category.') }}</li>
-            <li>{{ __('2025 is approved, with monthly executed amounts and quarterly progress reported. 2026 and 2027 are loaded as you choose above: as drafts, halfway through approval, or approved (2026 then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
+            <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
+            <li>{{ __('Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>
@@ -225,5 +266,7 @@ new class extends Component {
             : __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office])" />
 
     <x-confirm-dialog name="confirm-purge" :title="__('Purge sample data')" :confirm="__('Purge sample data')" variant="danger" wire:click="purge"
-        :message="__('Purge all sample data? Demo accounts, sample units, programmes and activities will be deleted. Real data is never touched.')" />
+        :message="$keepUnits
+            ? __('Purge the sample data but keep its units as your structure? Demo accounts, programmes, activities and the calendar will be deleted. Real data is never touched.')
+            : __('Purge all sample data? Demo accounts, sample units, programmes and activities will be deleted. Real data is never touched.')" />
 </div>

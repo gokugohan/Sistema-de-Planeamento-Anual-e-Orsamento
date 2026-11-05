@@ -18,7 +18,7 @@ The screenshots come from the optional sample dataset (the Ministry of Transport
 3. [Structure and funding sources](#3-structure-and-funding-sources)
 4. [Users, roles and permissions](#4-users-roles-and-permissions)
 5. [The calendar and late units](#5-the-calendar-and-late-units)
-6. [Approval lists, interim approvers and reorganisations](#6-approval-lists-interim-approvers-and-reorganisations)
+6. [Approval lists, interim approvers and reorganizations](#6-approval-lists-interim-approvers-and-reorganizations)
 7. [Ending planning for a directorate](#7-ending-planning-for-a-directorate)
 8. [Optional rules](#8-optional-rules)
 9. [Budget decisions and the adjustment round](#9-budget-decisions-and-the-adjustment-round)
@@ -45,7 +45,7 @@ The menu groups the administrator's pages under **Administration** (*System User
 
 **Before each year.**
 
-6. *Structure*: the **programmes and subprogrammes** of the new year; the units that start or stop existing.
+6. *Structure*: the **programs and subprograms** of the new year; the units that start or stop existing.
 7. *Calendar*: the dates for submitting, approving and finalizing the plan, and for reporting each month and quarter (Part 5).
 8. *Optional rules → Guidance for preparing the plan*: the text of the planning circular for the year, if any.
 9. Check that every unit has a director: the *Structure* page lists the units nobody directs.
@@ -96,8 +96,8 @@ Click **Save Settings** to save parts 1, 3 and 4.
     - **People**: how many users belong to the unit. Click the number to open them in System Users, or *+ Add* to create the unit's first person with the unit already chosen.
 
     A banner at the top lists the units that nobody directs. Without a Director, nobody can give the final approval of their activities, so give a user the Director role in each of those units.
-2. **Programs**: the OGE programmes for the year, with code, name and objective.
-3. **Subprograms**: the subprogrammes under each programme.
+2. **Programs**: the OGE programs for the year, with code, name and objective.
+3. **Subprograms**: the subprograms under each program.
 4. **Economic classifications**: the economic categories (10 to 50, and the detail codes below them).
 
 Add only the structure the law defines: the system does not invent departments.
@@ -183,11 +183,11 @@ Before a report of the plan is printed or downloaded, the application warns when
 
 ---
 
-## 6. Approval lists, interim approvers and reorganisations
+## 6. Approval lists, interim approvers and reorganizations
 
 Approval lists and interim approvers are described in the User manual (Part 6). Directors keep them for their own units; administrators can keep them for **any** unit, and are never held up by a list that signs in order.
 
-Authority is worked out from the unit tree and the lists **at the moment someone acts**; nothing is stored on the activity. So after a reorganisation:
+Authority is worked out from the unit tree and the lists **at the moment someone acts**; nothing is stored on the activity. So after a reorganization:
 
 - **A unit moves to another parent**: in *Structure*, edit the unit and change its parent. The heads and lists above it take over each activity from where it stands. There is nothing to clean up.
 - **One person replaces another everywhere**: *Approval lists → **Replace someone in every list***. Choose who leaves and who takes over; every list is updated at once, and you are told if a list is left empty. Then deactivate the person who left (Part 4).
@@ -297,7 +297,7 @@ When the work is done (for example once the law is published), **close** the rou
 **System → Import Activities**:
 
 1. Download the **CSV template**.
-2. Fill it in: unit code, programme and subprogramme, description, dates, quarters, indicators and budget lines.
+2. Fill it in: unit code, program and subprogram, description, dates, quarters, indicators and budget lines.
 3. Upload it.
 
 The importer checks every line first and tells you which lines are wrong and why. Nothing is saved until the whole file is clean. It refuses lines for a year or a directorate whose planning has ended.
@@ -310,8 +310,16 @@ Notifications are **inside the application**. Each person sees them in the bell 
 
 **E-mail notifications are off by default.** To send each notification by e-mail as well:
 
-1. Have the server's mail settings configured, and a **queue worker** running: e-mails are sent in the background, so a slow mail server never holds anyone up. The Deployment manual describes both, and its Docker stack includes a queue worker.
-2. Switch on **System → Settings → Notifications and testing → Send notifications by e-mail**, and save.
+1. Switch on **System → Settings → Notifications and testing → Send notifications by e-mail**. The **Mail server** form opens below it.
+
+    ![The mail server in Settings](manual/img/settings-mail.png)
+
+2. Fill in the server as your e-mail provider or IT department gives it: **server (host)**, **port**, **security** (STARTTLS, port 587, or SSL/TLS, port 465), **user name** and **password**, and the **sender address** and name the e-mails come from. The password is stored encrypted and never shown again; leave the field empty to keep it. Left empty, the server set in the installation (the `.env` file, see the Deployment manual) is used.
+3. Choose the **delivery**:
+    - **Through the queue worker** (recommended where one runs; the Docker installation has one): e-mails are sent in the background, so a slow mail server never holds anyone up.
+    - **Right away**: nothing else has to run; each action waits while its e-mails are sent. A mail server that fails never stops the action: the failure is logged and the notification stays in the application.
+4. Press **Send a test e-mail to me**. It uses what is in the form at that moment, before saving, and shows the mail server's own answer if something is wrong (a wrong password, port or host).
+5. **Save Settings**.
 
 From then on, every notification is also e-mailed to the people who have an e-mail address and have not turned it off in **Profile → Also send me notifications by e-mail**. Switching e-mail off again stops the e-mails; the notifications inside the application continue in either case.
 
@@ -331,16 +339,18 @@ From then on, every notification is also e-mailed to the people who have an e-ma
 
 ![Sample data](manual/img/sample-data.png)
 
-**System → Sample Data** loads (or removes) an optional demonstration dataset, so that people can practise before real use. It brings:
+**System → Sample Data** loads (or removes) an optional demonstration dataset, so that people can practice before real use. It brings:
 
-- the structure, the people and the plans of three years;
+- the structure, the people and the plans of the **years you choose** (*From year* and *To year*, last year to next year by default). The sample holds the real plans of 2025, 2026 and 2027 from the State Budget books; any other year takes the plan of the nearest of these, with its dates, programs, calendar and reported spending moved to the year you chose;
 - the earlier year approved, with its reported amounts and progress, and its **reporting calendar** (each month may be reported until the 10th of the next month, each quarter's indicators until the 15th after it);
 - the **current year and the next** in the state you choose before loading:
-    - **Everything to do: all drafts** (the default): practise the whole cycle, from submitting to reporting;
+    - **Everything to do: all drafts** (the default): practice the whole cycle, from submitting to reporting;
     - **Halfway through approval**: each directorate at one stage, in turn (still drafting; submitted, with one activity returned with a reason; certified and waiting for the head; approved), so that every role finds work;
     - **Approved and being carried out**: every activity approved, the current year with its spending reported up to today.
 
 Planning dates are left open on purpose. Loading is refused in production. *Purge* removes only what the sample created; your real data is never touched.
+
+**Keep the units.** If the sample's structure is your own (or a good start for it), tick **When purging, keep the units as our structure** before purging. The units stay, with their codes, names and hierarchy, and so does the name of the institution; they become ordinary records that a later purge leaves alone. Everything else of the sample is still deleted: activities, programs, the calendar, plans finalized while practicing, and the demo accounts, whose password is public. The units therefore have no people yet: add them in *System Users*. From the command line: `php artisan paa:purge-samples --keep-units`.
 
 ---
 
@@ -369,6 +379,6 @@ For the person who installs and runs the server (the **Deployment manual** has t
 
 **A directorate must add an activity after finalizing.** Reopen its plan with a reason (Part 7), or, after a supplementary budget, open an adjustment round that allows new activities (Part 9).
 
-**Nobody receives e-mails.** E-mail notifications are off by default. Check that they are switched on in Settings, that the server's mail settings are configured, and that a queue worker is running (Part 11). The notifications inside the application are not affected.
+**Nobody receives e-mails.** E-mail notifications are off by default. Check that they are switched on in Settings, press **Send a test e-mail to me** to check the mail server, and, with delivery *through the queue worker*, that a worker is running (or choose *right away*) (Part 11). The notifications inside the application are not affected.
 
 **The pages show the sample ministry.** The sample data is loaded. Purge it in *System → Sample Data* before real use.

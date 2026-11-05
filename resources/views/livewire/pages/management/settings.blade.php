@@ -17,6 +17,16 @@ new class extends Component {
     public string $segregation = 'off';
     public $implementedBy;
     public bool $emailNotifications = false;
+
+    /** The mail server (MailSettings): host, port, security, username, from_address, from_name, delivery */
+    public array $mail = [];
+
+    /** A new password; empty keeps the saved one */
+    public string $mailPassword = '';
+
+    public bool $mailHasPassword = false;
+
+    public bool $mailClearPassword = false;
     public $enableTestMode;
     public array $appTexts = [];
 
@@ -36,6 +46,10 @@ new class extends Component {
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->emailNotifications     = \App\Support\EmailNotifications::enabled();
+        $server                       = \App\Support\MailSettings::current();
+        $this->mailHasPassword        = $server['has_password'];
+        unset($server['has_password']);
+        $this->mail                   = $server;
         $this->enableTestMode         = SystemSetting::get('enable_paa_testing_mode', false);
 
         $empty = ['en' => '', 'pt' => '', 'tet' => ''];
@@ -99,7 +113,7 @@ new class extends Component {
             'implementedBy'         => 'nullable|string|max:255',
             'emailNotifications'    => 'boolean',
             'enableTestMode'        => 'boolean',
-        ]);
+        ] + $this->mailRules());
 
         SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
         SystemSetting::set('institution_level',    $this->institutionLevel,    'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
@@ -108,6 +122,9 @@ new class extends Component {
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
         SystemSetting::set(\App\Support\EmailNotifications::KEY, (bool) $this->emailNotifications, 'boolean', 'Also e-mail every in-app notification (queued) to people who have not opted out');
+        \App\Support\MailSettings::save($this->mail, $this->mailPassword, $this->mailClearPassword);
+        $this->mailHasPassword = \App\Support\MailSettings::current()['has_password'];
+        $this->reset('mailPassword', 'mailClearPassword');
         SystemSetting::set('enable_paa_testing_mode',        (bool) $this->enableTestMode,         'boolean', 'Enable testing mode for PAA planning');
 
         SystemSetting::set('org_name',        $this->appTexts['org_name'],     'json', 'Organization / institution name (localized)');
@@ -117,6 +134,53 @@ new class extends Component {
         SystemSetting::set('app_description', $this->appTexts['description'],  'json', 'Application description (localized)');
 
         $this->dispatch('toast', message: __('System settings updated successfully.'), type: 'success');
+    }
+
+    /** @return array<string, mixed> */
+    private function mailRules(): array
+    {
+        return [
+            'mail.host'         => 'nullable|string|max:255',
+            'mail.port'         => 'nullable|required_with:mail.host|integer|between:1,65535',
+            'mail.security'     => 'required|in:'.implode(',', array_keys(\App\Support\MailSettings::SECURITY)),
+            'mail.username'     => 'nullable|string|max:255',
+            'mail.from_address' => 'nullable|required_with:mail.host|email|max:255',
+            'mail.from_name'    => 'nullable|string|max:255',
+            'mail.delivery'     => 'required|in:'.implode(',', \App\Support\MailSettings::DELIVERY),
+            'mailPassword'      => 'nullable|string|max:255',
+        ];
+    }
+
+    /**
+     * Send a test e-mail to the administrator with the server as it is in the form now (saved or not), right away,
+     * so that a wrong host, port or password shows at once with the server's own answer.
+     */
+    public function testMail(): void
+    {
+        abort_unless(auth()->user()->isAdministrator(), 403);
+        $this->validate($this->mailRules());
+        $to = auth()->user()->email;
+
+        if (trim((string) $this->mail['host']) !== '') {
+            $password = $this->mailPassword !== '' ? $this->mailPassword : ($this->mailClearPassword ? null : \App\Support\MailSettings::savedPassword());
+            \App\Support\MailSettings::use($this->mail, $password);
+        } elseif (in_array(config('mail.default'), ['log', 'array'], true)) {
+            $this->dispatch('toast', type: 'error', message: __('No mail server is set, here or in the .env file: e-mails are only written to the log. Fill in the server above.'));
+
+            return;
+        }
+
+        try {
+            \Illuminate\Support\Facades\Mail::raw(
+                __('This is a test e-mail from :app. If you read it, the mail server settings work.', ['app' => config('app.name')]),
+                fn ($m) => $m->to($to)->subject(__('Test e-mail from :app', ['app' => config('app.name')]))
+            );
+        } catch (\Throwable $e) {
+            $this->dispatch('toast', type: 'error', message: __('The test e-mail could not be sent: :m', ['m' => \Illuminate\Support\Str::limit($e->getMessage(), 300)]));
+
+            return;
+        }
+        $this->dispatch('toast', type: 'success', message: __('A test e-mail was sent to :email. Check the inbox (and the spam folder).', ['email' => $to]));
     }
 }; ?>
 
@@ -390,7 +454,7 @@ new class extends Component {
                                 {{ __('Send notifications by e-mail') }}
                             </h4>
                             <p class="text-xs text-zinc-500 font-medium leading-relaxed">
-                                {{ __('Besides the bell, every notification is e-mailed to the people who have not opted out in their profile. The server must be set up to send mail, and a queue worker must be running.') }}
+                                {{ __('Besides the bell and the notifications page, every notification is e-mailed to the people who have not opted out in their profile. Set the mail server below.') }}
                             </p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
@@ -400,6 +464,69 @@ new class extends Component {
                             </div>
                         </label>
                     </div>
+
+                    @if($emailNotifications)
+                        <div class="space-y-4 rounded-xl border border-zinc-200 p-6">
+                            <div>
+                                <h4 class="text-xs font-semibold text-zinc-900">{{ __('Mail server') }}</h4>
+                                <p class="mt-1 text-xs text-zinc-500">{{ __('The server that sends the e-mails (SMTP), as your e-mail provider or IT gives it. Left empty, the settings of the server installation (.env file) are used.') }}</p>
+                            </div>
+                            <div class="grid gap-4 sm:grid-cols-6">
+                                <div class="sm:col-span-3">
+                                    <label for="mail-host" class="field-label">{{ __('Server (host)') }}</label>
+                                    <input id="mail-host" type="text" wire:model="mail.host" class="flux-input" placeholder="smtp.example.gov.tl" autocomplete="off">
+                                    @error('mail.host')<p class="mt-1 text-xs text-rose-700">{{ $message }}</p>@enderror
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label for="mail-port" class="field-label">{{ __('Port') }}</label>
+                                    <input id="mail-port" type="number" min="1" max="65535" wire:model="mail.port" class="flux-input">
+                                    @error('mail.port')<p class="mt-1 text-xs text-rose-700">{{ $message }}</p>@enderror
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="mail-security" class="field-label">{{ __('Security') }}</label>
+                                    <select id="mail-security" wire:model="mail.security" class="flux-input">
+                                        <option value="starttls">{{ __('STARTTLS (port 587)') }}</option>
+                                        <option value="ssl">{{ __('SSL/TLS (port 465)') }}</option>
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="mail-user" class="field-label">{{ __('User name') }} <span class="font-normal text-zinc-500">{{ __('(optional)') }}</span></label>
+                                    <input id="mail-user" type="text" wire:model="mail.username" class="flux-input" autocomplete="off">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="mail-pass" class="field-label">{{ __('Password') }}</label>
+                                    <input id="mail-pass" type="password" wire:model="mailPassword" class="flux-input" autocomplete="new-password"
+                                        placeholder="{{ $mailHasPassword ? __('Saved. Leave empty to keep it.') : '' }}">
+                                    @if($mailHasPassword)
+                                        <label class="mt-1 flex items-center gap-2 text-xs text-zinc-600"><input type="checkbox" wire:model="mailClearPassword" class="rounded border-zinc-300"> {{ __('Remove the saved password') }}</label>
+                                    @endif
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="mail-from" class="field-label">{{ __('Sender address') }}</label>
+                                    <input id="mail-from" type="email" wire:model="mail.from_address" class="flux-input" placeholder="paa@example.gov.tl">
+                                    @error('mail.from_address')<p class="mt-1 text-xs text-rose-700">{{ $message }}</p>@enderror
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="mail-from-name" class="field-label">{{ __('Sender name') }} <span class="font-normal text-zinc-500">{{ __('(optional)') }}</span></label>
+                                    <input id="mail-from-name" type="text" wire:model="mail.from_name" class="flux-input">
+                                </div>
+                            </div>
+                            <fieldset class="space-y-2">
+                                <legend class="field-label">{{ __('Delivery') }}</legend>
+                                <label class="flex items-start gap-2 text-sm text-zinc-700"><input type="radio" wire:model="mail.delivery" value="queue" class="mt-1">
+                                    <span>{{ __('Through the queue worker') }} <span class="block text-xs text-zinc-500">{{ __('Recommended where a queue worker runs (the Docker installation has one): a slow mail server never holds anyone up.') }}</span></span></label>
+                                <label class="flex items-start gap-2 text-sm text-zinc-700"><input type="radio" wire:model="mail.delivery" value="now" class="mt-1">
+                                    <span>{{ __('Right away') }} <span class="block text-xs text-zinc-500">{{ __('Nothing else to run; each action waits while its e-mails are sent. A mail server that fails never stops the action.') }}</span></span></label>
+                            </fieldset>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <x-ui.button variant="secondary" shadow="none" wire:click="testMail" wire:loading.attr="disabled" wire:target="testMail">
+                                    <span wire:loading.remove wire:target="testMail">{{ __('Send a test e-mail to me') }}</span>
+                                    <span wire:loading wire:target="testMail">{{ __('Sending…') }}</span>
+                                </x-ui.button>
+                                <p class="text-xs text-zinc-500">{{ __('Tests what is in the form now, before saving. Save Settings keeps it.') }}</p>
+                            </div>
+                        </div>
+                    @endif
 
                     <div
                         class="flex items-center justify-between p-6 bg-amber-50 rounded-xl border border-amber-100">

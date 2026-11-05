@@ -94,7 +94,7 @@ class YearAtAGlanceTest extends TestCase
     {
         $head = $this->phase($this->glance($this->user('chefe.gdsc@gdsc.tl')), 'finalize');
         $this->assertSame('Approve the plan', $head['cta'][0]);
-        $this->assertStringContainsString('Everything is decided', $head['text']);
+        $this->assertStringContainsString('Everything is certified', $head['text']);
 
         $unitDirector = $this->phase($this->glance($this->user('director.udig@gdsc.tl')), 'finalize');
         $this->assertNull($unitDirector['cta'], 'a unit director does not finalize');
@@ -123,8 +123,9 @@ class YearAtAGlanceTest extends TestCase
         $admin->assignRole('Admin');
         $dashboard = $this->actingAs($admin)->get(route('dashboard'))->assertOk()->assertSee('The year 2026 at a glance')->assertSee('How the year works')->getContent();
 
-        $this->assertStringContainsString('The figures of each unit and each programme are on their own pages', $dashboard);
-        $this->assertStringNotContainsString('Programs', explode('The figures of each unit', $dashboard)[1] ?? '', 'the programme table is no longer on the dashboard');
+        $this->assertStringContainsString('The figures of each unit and each program are on their own pages', $dashboard);
+        $after = explode('</p>', explode('The figures of each unit', $dashboard)[1] ?? '', 2)[1] ?? ''; // after the sentence and its two links
+        $this->assertStringNotContainsString('Programs', $after, 'the program table is no longer on the dashboard');
         $this->assertLessThan(strpos($dashboard, 'Approved plan'), strpos($dashboard, 'Needs your attention'), 'what needs you comes before the figures');
 
         $this->actingAs($this->user('director.udig@gdsc.tl'))->followingRedirects()->get(route('work.home'))->assertOk()->assertSee('The year 2026 at a glance')->assertSee('counts once someone else has verified it');

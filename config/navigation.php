@@ -37,7 +37,12 @@ return [
         ],
         [
             'label' => 'Plan',
+            'step' => 1,
             'items' => [
+                ['label' => 'All activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'wide',
+                    'hint' => 'Every activity of the plan, with its indicators and budget lines'],
+                ['label' => 'My plan', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'unit',
+                    'hint' => 'The activities of your unit, with their indicators and budget lines'],
                 ['label' => 'Units', 'route' => 'units.index', 'match' => ['units.*'], 'icon' => 'building', 'audience' => 'wide',
                     'hint' => 'The action plan of any directorate, department or unit'],
                 ['label' => 'My units', 'route' => 'units.index', 'icon' => 'building', 'audience' => 'unit', 'roles' => ['Director'],
@@ -50,14 +55,11 @@ return [
                     'hint' => 'What the budget committee and the budget law decided, by category, against the plan'],
                 ['label' => 'Adjustment round', 'route' => 'planning.adjustment', 'icon' => 'arrow-left-right', 'permission' => 'view_paa', 'feature' => 'budget_decisions',
                     'hint' => 'Revise the activities your directorate chooses so that the plan follows the budget decision'],
-                ['label' => 'All activities', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'wide',
-                    'hint' => 'Every activity of the plan, with its indicators and budget lines'],
-                ['label' => 'My plan', 'route' => 'activities.index', 'match' => ['activities.*'], 'icon' => 'clipboard-list', 'audience' => 'unit',
-                    'hint' => 'The activities of your unit, with their indicators and budget lines'],
             ],
         ],
         [
             'label' => 'Approvals',
+            'step' => 2,
             'roles' => ['Admin', 'Minister', 'Director', 'Planning', 'Finance'],
             'items' => [
                 ['label' => 'Waiting for you', 'route' => 'approvals.index', 'match' => ['approvals.index', 'planning.paa-approval', 'monitoring.approval'], 'icon' => 'check-square',
@@ -72,15 +74,17 @@ return [
         ],
         [
             'label' => 'Execute',
+            'step' => 3,
             'items' => [
-                ['label' => 'Compile the quarter', 'route' => 'reports.compile', 'icon' => 'file-bar-chart', 'roles' => ['Admin', 'Director'],
-                    'hint' => 'Turn the units\' monthly and quarterly reports into the text of the ministry report'],
                 ['label' => 'Report execution', 'route' => 'monitoring.report', 'icon' => 'banknote', 'permission' => 'view_monitoring',
                     'hint' => 'Report what an activity spent and achieved in a quarter'],
+                ['label' => 'Compile the quarter', 'route' => 'reports.compile', 'icon' => 'file-bar-chart', 'roles' => ['Admin', 'Director'],
+                    'hint' => 'Turn the units\' monthly and quarterly reports into the text of the ministry report'],
             ],
         ],
         [
             'label' => 'Insights',
+            'step' => 4,
             'items' => [
                 ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart',
                     'hint' => 'Executed and delivered against the plan, by quarter and programme'],

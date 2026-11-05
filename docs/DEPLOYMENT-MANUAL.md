@@ -291,7 +291,7 @@ gunzip -c paa_YYYYMMDD_HHMMSS.sql.gz | docker exec -i $(docker ps -q -f name=srv
 
 Stop the `paa` app in the CapRover console while you restore, and start it again afterwards.
 
-**Practise a restore** once on a spare server before you need it. `GET /health` reports the age of the newest backup.
+**Practice a restore** once on a spare server before you need it. `GET /health` reports the age of the newest backup.
 
 ---
 
@@ -365,7 +365,7 @@ With Docker Compose, MySQL, Redis and Caddy have their own images: `docker compo
 - [ ] The first administrator's password was changed at the first sign-in, and the administrator uses two-factor sign-in (Profile).
 - [ ] Self-registration stays off (the default): accounts are created by an administrator.
 - [ ] The server's operating system and Docker are kept up to date; the application is rebuilt for each new version.
-- [ ] Backups are copied off the server, and a restore has been practised.
+- [ ] Backups are copied off the server, and a restore has been practiced.
 - [ ] Only the people who administer the server have shell access to it; the application's administrators do not need it.
 
 ---

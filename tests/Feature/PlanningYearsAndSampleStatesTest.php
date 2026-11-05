@@ -120,4 +120,35 @@ class PlanningYearsAndSampleStatesTest extends TestCase
         $this->assertTrue(DB::table('audit_logs')->where('auditable_id', $byStatus[Activity::STATUS_REJECTED]->first()->id)
             ->where('metadata', 'like', '%split the budget by quarter%')->exists());
     }
+
+    public function test_only_the_chosen_years_of_the_sample_are_loaded(): void
+    {
+        app(\Database\Seeders\Samples\MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', [2027]);
+
+        $this->assertSame([2027], Activity::distinct()->pluck('fiscal_year')->map(fn ($y) => (int) $y)->all());
+        $this->assertSame([2027], \App\Models\Program::distinct()->pluck('fiscal_year')->map(fn ($y) => (int) $y)->all(), 'programs follow the years');
+    }
+
+    public function test_a_year_outside_the_sample_takes_the_plan_of_the_nearest_sample_year(): void
+    {
+        app(\Database\Seeders\Samples\MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', range(2027, 2028));
+
+        $count = fn (int $year) => Activity::where('fiscal_year', $year)->count();
+        $this->assertGreaterThan(0, $count(2028));
+        $this->assertSame($count(2027), $count(2028), '2028 takes the plan of 2027');
+        $this->assertSame('2028-01-01', Activity::where('fiscal_year', 2028)->value('planned_start')?->toDateString() ?? substr((string) Activity::where('fiscal_year', 2028)->value('planned_start'), 0, 10));
+    }
+
+    public function test_an_office_borrows_the_nearest_year_that_has_a_plan_for_it_and_every_year_can_be_chosen(): void
+    {
+        app(\Database\Seeders\Samples\MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', range(2024, 2026));
+
+        $count = fn (int $year) => Activity::where('fiscal_year', $year)->count();
+        $this->assertGreaterThan(0, $count(2026));
+        $this->assertSame($count(2026), $count(2024), 'the office has no 2025 plan in the books: 2024 borrows 2026');
+        $this->assertSame($count(2026), $count(2025));
+        foreach ([2024, 2025, 2026] as $year) {
+            $this->assertContains($year, FiscalYear::available());
+        }
+    }
 }

@@ -32,7 +32,8 @@ class YearAtAGlance
         // the directorates the person can see: all of them for those who see every plan, their own otherwise
         $units = collect($c['planning']['units'])->filter(fn ($u) => $wide || $policy->inScope($user, $u['id']))->values();
         $closedUnits = $units->where('closed', true)->count();
-        $ready = $units->filter(fn ($u) => ! $u['closed'] && $u['pending'] === 0 && $u['approved'] > 0)->count();
+        // ready for the approval of the plan (approve and finalize in one act): the same reading as Waiting for you
+        $ready = $units->filter(fn ($u) => ! $u['closed'] && $this->planning->planReadiness($year, (int) $u['id'])['ready'])->count();
         $ended = $units->isNotEmpty() && $closedUnits === $units->count();
         $yearOpen = PlanningWindow::yearAllowed($year);
 
@@ -61,10 +62,10 @@ class YearAtAGlance
         $finalizeText = match (true) {
             $units->isEmpty() => __('Nothing to finalize yet.'),
             $units->count() === 1 => $closedUnits === 1 ? __('Your directorate has finalized its plan: no new activities.') : ($ready === 1
-                ? __('Everything is decided: the directorate can finalize its plan, which ends its planning.')
-                : __('The directorate finalizes its plan once everything in it is decided.')),
+                ? __('Everything is certified: the head can approve the plan, which also ends its planning.')
+                : __('The head approves the plan, and so finalizes it, once everything in it is certified.')),
             default => __(':n of :total directorates have finalized their plan.', ['n' => $closedUnits, 'total' => $units->count()])
-                .($ready > 0 ? ' '.trans_choice(':n is ready: everything is decided.|:n are ready: everything is decided.', $ready, ['n' => $ready]) : ''),
+                .($ready > 0 ? ' '.trans_choice(':n is ready for the approval of its plan.|:n are ready for the approval of their plan.', $ready, ['n' => $ready]) : ''),
         };
         $mayFinalize = $items->where('group', 'plan')->isNotEmpty();
         $finalizeCta = $mayFinalize ? [__('Approve the plan'), route('approvals.index').'#plan'] : null;

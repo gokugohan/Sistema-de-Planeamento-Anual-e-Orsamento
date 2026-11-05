@@ -66,12 +66,15 @@ class MtcBudgetSeeder extends Seeder
      * @param  array<int, string>|null  $units  unit codes: load only the activities these units own (one office), null for the whole ministry
      * @param  bool  $illustrative  also load the illustrative plan of the Gabinete de Digitalização e Segurança Cibernética
      * @param  string  $state  how far the plans of the current year and the next have gone (see STATES)
+     * @param  array<int, int|string>|null  $years  the years of the sample to load (null: all of them)
      */
-    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false, string $state = 'approved'): void
+    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false, string $state = 'approved', ?array $years = null): void
     {
         $this->state = in_array($state, self::STATES, true) ? $state : 'approved';
-        foreach (self::YEARS as $year) {
-            $data = self::data($year, $units, $illustrative);
+        foreach (self::years($years) as $year) {
+            // a year chosen on purpose that the sample has no plan for borrows the nearest one; the sample's own years
+            // (no choice made) load only what the budget books hold
+            $data = self::data($years === null ? $year : self::sourceYear($year, $units, $illustrative), $units, $illustrative);
 
             if ($units !== null && ! $data['entities']) {
                 continue; // the office has no activities this year
@@ -87,9 +90,9 @@ class MtcBudgetSeeder extends Seeder
                     $this->advanceHalfway($year);
                 }
                 $this->approveVersions($year);
-                // Spending and progress up to today, only for the years whose budget law has been applied and whose
-                // plan is loaded approved (a plan still in the cycle is reported by the people practising it)
-                if (isset($data['envelope']) && $this->stateOf($year) === 'approved') {
+                // Spending and progress up to today (none for a year that has not started), for the years whose plan
+                // is loaded approved (a plan still in the cycle is reported by the people practicing with it)
+                if ($this->stateOf($year) === 'approved') {
                     (new MtcExecutionSampler)->seed($year, $this->planted[$year] ?? []);
                     if ($units === null) {
                         // the whole ministry also gets its reporting calendar; the small office sample does not (nothing is closed for it)
@@ -251,6 +254,36 @@ class MtcBudgetSeeder extends Seeder
             $by = $activity->approved_by ? User::find($activity->approved_by) : null;
             $versions->approved($activity, $by ?? $fallback);
         }
+    }
+
+    /**
+     * The years to load, in order: those asked for (any years), or the years of the sample. A year outside the
+     * sample takes the plan of the nearest sample year (see sourceYear). @return array<int, int>
+     */
+    public static function years(?array $asked = null): array
+    {
+        if ($asked === null) {
+            return self::YEARS;
+        }
+        $years = array_values(array_unique(array_map('intval', $asked)));
+        sort($years);
+
+        return $years;
+    }
+
+    /**
+     * The sample year whose plan a year takes: its own when the sample has one (for these units), otherwise the
+     * nearest sample year that has a plan for them (an office the budget books list only from 2026 borrows 2026).
+     */
+    public static function sourceYear(int $year, ?array $units = null, bool $illustrative = false): int
+    {
+        $withPlan = array_values(array_filter(self::YEARS, fn ($y) => $units === null || self::data($y, $units, $illustrative)['entities']));
+        if ($withPlan === []) {
+            return max(min(self::YEARS), min(max(self::YEARS), $year));
+        }
+        usort($withPlan, fn ($a, $b) => [abs($a - $year), -$a] <=> [abs($b - $year), -$b]); // nearest; on a tie the later
+
+        return $withPlan[0];
     }
 
     /** The state a year is loaded in: the chosen one for the current year and the next, approved for earlier years. */

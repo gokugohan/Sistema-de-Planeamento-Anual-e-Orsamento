@@ -37,7 +37,8 @@ class MtcOfficeSampleDataSeeder extends Seeder
     public const SAMPLE_RECIPIENT = 'Ministério dos Transportes e Comunicações — Direção Nacional do Orçamento e Gestão Financeira (DNOGF)';
 
     /** @param  string  $state  how far the plans of the current year and the next have gone (MtcBudgetSeeder::STATES) */
-    public function run(?string $office = null, string $state = 'approved'): void
+    /** @param  array<int, int|string>|null  $years  the years of the sample to load (null: all of them) */
+    public function run(?string $office = null, string $state = 'approved', ?array $years = null): void
     {
         $office ??= self::DEFAULT_OFFICE;
 
@@ -52,13 +53,13 @@ class MtcOfficeSampleDataSeeder extends Seeder
         $illustrative = $office === self::DEFAULT_OFFICE;
 
         // All or nothing: a failure part-way must not leave units and accounts without their plans.
-        DB::transaction(function () use ($office, $units, $illustrative, $state) {
+        DB::transaction(function () use ($office, $units, $illustrative, $state, $years) {
             $this->call([RolesAndPermissionsSeeder::class, EconomicClassificationSeeder::class]);
             $this->call(MtcDirectorateSeeder::class, true, ['office' => $office]);
-            $this->call(MtcProgramSeeder::class, true, ['only' => MtcBudgetSeeder::programmeCodes($units, $illustrative)]);
+            $this->call(MtcProgramSeeder::class, true, ['only' => MtcBudgetSeeder::programmeCodes($units, $illustrative), 'years' => $years]);
             $this->branding($office);
             $this->call(MtcDemoUsersSeeder::class, true, ['office' => $office]);
-            $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'illustrative' => $illustrative, 'state' => $state]);
+            $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'illustrative' => $illustrative, 'state' => $state, 'years' => $years]);
         });
     }
 

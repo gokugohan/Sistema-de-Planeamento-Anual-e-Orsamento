@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class PurgeSampleData extends Command
 {
-    protected $signature = 'paa:purge-samples {--force : Do not ask for confirmation}';
+    protected $signature = 'paa:purge-samples {--force : Do not ask for confirmation} {--keep-units : Keep the sample units as the institution\'s own structure}';
 
     protected $description = 'Remove everything the sample dataset created (demo users, sample units, programmes and activities). Real data is never touched.';
 
@@ -27,7 +27,7 @@ class PurgeSampleData extends Command
             return self::FAILURE;
         }
 
-        $report = $registry->purge('mtc');
+        $report = $registry->purge('mtc', (bool) $this->option('keep-units'));
 
         $this->info('Deleted: '.collect($report['deleted'])->map(fn ($n, $k) => "$n $k")->implode(', ').'.');
         foreach ($report['kept'] as $line) {

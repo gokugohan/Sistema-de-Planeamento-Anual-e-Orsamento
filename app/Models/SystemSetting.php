@@ -22,6 +22,13 @@ class SystemSetting extends Model
     /** Per-request memo of raw rows (key => [value, type]) */
     private static ?array $rows = null;
 
+    /** Forget only this process's memo, so the next read comes from the shared cache (a long-running queue worker). */
+    public static function forgetMemo(): void
+    {
+        self::$cache = [];
+        self::$rows = null;
+    }
+
     /** Flush all caches (call after any write) */
     public static function flushCache(): void
     {

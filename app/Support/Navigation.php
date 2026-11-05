@@ -41,7 +41,7 @@ class Navigation
             }
 
             if ($items) {
-                $groups[] = ['label' => $group['label'], 'items' => $items];
+                $groups[] = ['label' => $group['label'], 'step' => $group['step'] ?? null, 'items' => $items];
             }
         }
 

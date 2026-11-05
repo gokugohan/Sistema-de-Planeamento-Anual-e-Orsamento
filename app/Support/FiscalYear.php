@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use App\Models\Activity;
+use App\Models\Program;
 use App\Models\SystemSetting;
 use App\Services\PlanningWindow;
 
@@ -51,7 +52,7 @@ class FiscalYear
     }
 
     /**
-     * Years the user can switch to: every year with a plan, plus this year and next; in testing mode also the five
+     * Years the user can switch to: every year with a plan or with programs registered, plus this year and next; in testing mode also the five
      * years before and the two after next, so that any of them can be planned. @return array<int, int>
      */
     public static function available(): array
@@ -62,7 +63,9 @@ class FiscalYear
         $current = (int) date('Y');
         $extra = SystemSetting::get('enable_paa_testing_mode', false) ? range($current - 5, $current + 3) : [];
 
+        // a year being set up (its programs registered, no activity yet) can be chosen too
         return self::$yearsMemo = Activity::query()->distinct()->pluck('fiscal_year')
+            ->merge(Program::query()->distinct()->pluck('fiscal_year'))
             ->push($current, $current + 1, ...$extra)
             ->map(fn ($y) => (int) $y)->unique()->sortDesc()->values()->all();
     }

@@ -70,7 +70,14 @@ new class extends Component {
     <nav class="flex-1 px-4 py-5 space-y-6 overflow-y-auto" aria-label="{{ __('Main navigation') }}">
         @foreach(\App\Support\Navigation::groups(auth()->user()) as $group)
             <div>
-                <p class="nav-section-label {{ $group['label'] === 'Testing Zone' ? '!text-amber-500/80' : '' }}">{{ __($group['label']) }}</p>
+                {{-- the four steps of the year are numbered, in the order they are done --}}
+                <p class="nav-section-label flex items-center gap-2 {{ $group['label'] === 'Testing Zone' ? '!text-amber-500/80' : '' }}">
+                    @if($group['step'])
+                        <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/15 text-[10px] font-bold leading-none text-white" aria-hidden="true">{{ $group['step'] }}</span>
+                        <span class="sr-only">{{ __('Step :n:', ['n' => $group['step']]) }}</span>
+                    @endif
+                    <span>{{ __($group['label']) }}</span>
+                </p>
                 <div class="space-y-0.5">
                     @foreach($group['items'] as $item)
                         @if(isset($item['children']))

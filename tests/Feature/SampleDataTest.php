@@ -82,6 +82,23 @@ class SampleDataTest extends TestCase
         $this->assertSame('ORG', SystemSetting::getLocalized('org_abbr', '', 'en'));
     }
 
+    public function test_purge_can_keep_the_units_as_the_structure_of_the_institution(): void
+    {
+        $this->load();
+        $unit = Directorate::whereNull('parent_id')->orderBy('code')->firstOrFail();
+        \App\Models\UnitPlanning::create(['fiscal_year' => 2027, 'directorate_id' => $unit->id, 'planning_at' => now()]); // finalized while practising
+
+        $report = app(SampleRegistry::class)->purge('mtc', keepUnits: true);
+
+        $this->assertSame(49, Directorate::count(), 'every unit stays, with its hierarchy');
+        $this->assertSame(0, $report['deleted']['directorates']);
+        $this->assertSame(0, Activity::count() + Program::count() + User::count() + ReportingWindow::count(), 'the rest of the sample goes, demo accounts included');
+        $this->assertSame(0, \App\Models\UnitPlanning::count(), 'the real year starts open');
+        $this->assertSame(0, SampleRecord::count(), 'the units are ordinary records now: a later purge leaves them');
+        $this->assertSame('MTC', SystemSetting::getLocalized('org_abbr', '', 'en'), 'the institution keeps its name');
+        $this->assertFalse((bool) SystemSetting::get(SampleRegistry::FLAG));
+    }
+
     public function test_purge_never_touches_real_data(): void
     {
         $realDir = Directorate::create(['code' => 'REAL', 'name' => 'Real Directorate', 'type' => 'Independent', 'active' => true]);

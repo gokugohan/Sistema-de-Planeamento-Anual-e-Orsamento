@@ -14,6 +14,7 @@ use App\Notifications\SystemNotification;
 use App\Notifications\SystemNotificationEmail;
 use App\Services\SampleRegistry;
 use App\Support\EmailNotifications;
+use App\Support\MailSettings;
 use App\Support\StructureCache;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Auth\Events\Login;
@@ -66,6 +67,13 @@ class AppServiceProvider extends ServiceProvider
             $model::deleted(fn () => StructureCache::bump());
         }
 
+        // The mail server saved in Settings (if any) replaces the .env one, for every e-mail the application sends.
+        // Settings are read from the shared cache; before the database exists (installing, migrating) there is nothing to apply.
+        try {
+            MailSettings::apply();
+        } catch (\Throwable) {
+        }
+
         // Where e-mail is switched on, every in-app notification is also mailed (queued) to people who have not opted out.
         Event::listen(NotificationSent::class, function (NotificationSent $event) {
             if ($event->channel !== 'database' || ! $event->notification instanceof SystemNotification || ! EmailNotifications::enabled()) {
@@ -75,7 +83,18 @@ class AppServiceProvider extends ServiceProvider
             if (! filled($user->email ?? null) || ($user->email_notifications ?? true) === false) {
                 return;
             }
-            $user->notify(new SystemNotificationEmail((string) $event->notification->title, (string) $event->notification->message, $event->notification->actionUrl));
+            $mail = new SystemNotificationEmail((string) $event->notification->title, (string) $event->notification->message, $event->notification->actionUrl);
+            // sent during the action where Settings say so (no queue worker needed), otherwise handed to the worker
+            if (! MailSettings::sendNow()) {
+                $user->notify($mail);
+
+                return;
+            }
+            try {
+                $user->notifyNow($mail);
+            } catch (\Throwable $e) {
+                report($e); // a mail server that fails must not undo or break the action; the bell already has it
+            }
         });
 
         // Performance guardrail: a relation read without eager loading is a hidden query per row (N+1).
