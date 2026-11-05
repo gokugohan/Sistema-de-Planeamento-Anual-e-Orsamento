@@ -2592,5 +2592,21 @@
     "While an adjustment round is open.": "While an adjustment round is open.",
     "Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.": "Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.",
     "Finance Officer": "Finance Officer",
-    "Step :n:": "Step :n:"
+    "Step :n:": "Step :n:",
+    "Technical Officer (or whoever the unit's approval list names to prepare)": "Technical Officer (or whoever the unit's approval list names to prepare)",
+    "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; the approval waits, and the directorate sees why.": "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; the approval waits, and the directorate sees why.",
+    "The director of the unit to certify it": "The director of the unit to certify it",
+    ":n activity of the directorate is not submitted yet. The final approval starts when the whole plan is complete.|:n activities of the directorate are not submitted yet. The final approval starts when the whole plan is complete.": ":n activity of the directorate is not submitted yet. The final approval starts when the whole plan is complete.|:n activities of the directorate are not submitted yet. The final approval starts when the whole plan is complete.",
+    "Head of Unit": "Head of Unit",
+    "Head of Department": "Head of Department",
+    "National Director": "National Director",
+    "Director-General": "Director-General",
+    "Head of Office": "Head of Office",
+    "Head of the regional office": "Head of the regional office",
+    ":leader to certify it": ":leader to certify it",
+    ":leader to validate it": ":leader to validate it",
+    ":leader to approve the plan": ":leader to approve the plan",
+    "Head": "Head",
+    "Technical Officer of the unit": "Technical Officer of the unit",
+    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit"
 }

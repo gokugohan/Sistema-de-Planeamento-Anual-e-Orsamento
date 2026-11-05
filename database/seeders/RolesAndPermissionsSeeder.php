@@ -80,12 +80,11 @@ class RolesAndPermissionsSeeder extends Seeder
             ],
             [
                 'name' => 'Director',
-                'display_name' => 'Director',
-                'description' => 'Directorate director with planning and monitoring authority',
+                'display_name' => 'Head',
+                'description' => 'The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit',
+                // a head checks what the unit prepares and does not create, edit, delete or submit it (the one who prepares
+                // is not the one who checks); a unit without a technical officer names its preparer in its approval list
                 'permissions' => [
-                    'create_activities',
-                    'edit_activities',
-                    'submit_paa',
                     'update_indicator_progress',
                     'view_paa',
                     'view_budget',

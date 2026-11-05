@@ -108,7 +108,7 @@ new class extends Component {
                 <label class="flex items-start gap-3">
                     <input type="checkbox" wire:model="completeBeforeApproval" class="mt-0.5 rounded border-zinc-300 text-indigo-600">
                     <span><span class="font-medium text-zinc-900">{{ __('The plan must be complete before approval') }}</span><br>
-                        <span class="text-zinc-600">{{ __('A directorate\'s activities are certified and approved, and its plan finalized, only once every activity of the directorate has been submitted. Until then the decisions wait and the directorate sees why.') }}</span></span>
+                        <span class="text-zinc-600">{{ __('The head approves a directorate\'s plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; the approval waits, and the directorate sees why.') }}</span></span>
                 </label>
                 <label class="flex items-start gap-3">
                     <input type="checkbox" wire:model="baselines" class="mt-0.5 rounded border-zinc-300 text-indigo-600">

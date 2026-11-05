@@ -64,7 +64,7 @@ class ApprovalRulesTest extends TestCase
 
         $this->assertSame(Activity::STATUS_APPROVED, $workflow->next($head, $activity));
         $this->assertTrue($workflow->canApprove($head, $activity));
-        $this->assertSame('The head of the directorate to approve it', $workflow->awaiting($activity));
+        $this->assertStringContainsString('(GDSC) to approve the plan', $workflow->awaiting($activity), 'the leader of the gabinete, by title');
     }
 
     public function test_a_unit_director_below_the_head_cannot_give_the_final_approval(): void

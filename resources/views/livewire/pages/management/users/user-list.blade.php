@@ -95,6 +95,10 @@
                                 <span class="w-1 h-1 bg-indigo-500 rounded-full"></span>
                                 {{ $role?->display_name ? __($role->display_name) : ($role?->name ? __($role->name) : __('No Role')) }}
                             </span>
+                            @if($role?->name === 'Director' && $user->directorate)
+                                {{-- one role for every leader: the title says which level they lead --}}
+                                <span class="mt-1 block text-xs text-gray-500">{{ $user->directorate->leaderTitle() }}</span>
+                            @endif
                         </td>
                         <td class="px-8 py-6 text-sm">
                             @if($user->directorate)

@@ -215,8 +215,9 @@ class ActivityWorkflow
         $mine = $user->directorate;
         $lists = app(ApproverLists::class);
 
-        // where the institution asks for it, nothing is decided until the whole plan of the directorate has been submitted
-        if (in_array($activity->status, [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
+        // where the institution asks for it, the final approval waits until the whole plan of the directorate has been
+        // submitted; certifying and validating go on as the activities arrive
+        if (in_array($activity->status, [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
             && app(PlanStatus::class)->holdBack($activity)) {
             return null;
         }
@@ -408,6 +409,7 @@ class ActivityWorkflow
     {
         return in_array($activity->status, [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
             && ! $activity->isLocked()
+            && ! app(PlanStatus::class)->holdBack($activity)
             && $this->mayGiveFinalApproval($user, $activity)
             && ! $this->selfActionRefused($user, $activity)
             && ! $this->externalApprovalMissing($activity)
@@ -571,6 +573,11 @@ class ActivityWorkflow
         if ($activity->status === Activity::STATUS_SUBMITTED && ! $this->budgetConfirmed($activity)) {
             return __('The finance officer to confirm the budget');
         }
+        // certified, but the final approval waits for the whole plan of the directorate (where the institution asks for it)
+        if (in_array($activity->status, [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL], true)
+            && ($held = app(PlanStatus::class)->holdBack($activity))) {
+            return $held;
+        }
         $named = fn (string $step) => app(ApproverLists::class)->names($activity, $step);
         $who = match ($activity->status) {
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => $named(ApproverAssignment::PREPARE),
@@ -590,11 +597,18 @@ class ActivityWorkflow
             return __('Named in the approval list: :names', ['names' => $who]);
         }
 
+        // the leader by the title of their level: the Head of Unit certifies, the National Director validates, the
+        // Director-General (or the Head of Office of a gabinete) approves the plan
+        $unit = $activity->relationLoaded('directorate') ? $activity->directorate : Directorate::find($activity->directorate_id);
+        $above = $unit?->parent_id ? Directorate::find($unit->parent_id) : null;
+        $root = $unit ? Directorate::find(app(PlanningWindow::class)->rootOf($unit->id)) : null;
+        $leader = fn (?Directorate $d) => $d ? $d->leaderTitle().' ('.$d->code.')' : __('Director');
+
         return match ($activity->status) {
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => __('The unit to complete and submit it'),
-            Activity::STATUS_SUBMITTED => __('The director of the unit to review it'),
-            Activity::STATUS_REVIEWED => __('The director of the unit above to validate it'),
-            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => __('The head of the directorate to approve it'),
+            Activity::STATUS_SUBMITTED => __(':leader to certify it', ['leader' => $leader($unit)]),
+            Activity::STATUS_REVIEWED => __(':leader to validate it', ['leader' => $leader($above)]),
+            Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => __(':leader to approve the plan', ['leader' => $leader($root)]),
             default => null,
         };
     }

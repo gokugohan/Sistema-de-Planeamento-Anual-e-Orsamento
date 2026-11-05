@@ -80,7 +80,7 @@ class PlanStatus
     public function incompleteText(int $n): string
     {
         return trans_choice(
-            ':n activity of the directorate is not submitted yet. Approval starts when the whole plan is complete.|:n activities of the directorate are not submitted yet. Approval starts when the whole plan is complete.',
+            ':n activity of the directorate is not submitted yet. The final approval starts when the whole plan is complete.|:n activities of the directorate are not submitted yet. The final approval starts when the whole plan is complete.',
             $n, ['n' => $n]
         );
     }

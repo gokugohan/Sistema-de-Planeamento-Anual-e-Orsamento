@@ -138,10 +138,14 @@ class CalendarTest extends TestCase
             ->forceFill(['status' => Activity::STATUS_DRAFT, 'version' => 0])->save();
         $workflow = app(ActivityWorkflow::class);
 
-        $this->assertNull($workflow->next($this->director, $activity), 'on by default: a draft of the directorate holds the decisions back');
+        // on by default: a draft of the directorate holds back the final approval, not the certification
+        $this->assertNotNull($workflow->next($this->director, $activity), 'certifying goes on as the activities arrive');
+        $activity->forceFill(['status' => Activity::STATUS_VALIDATED])->save();
+        $this->assertNotNull(app(PlanStatus::class)->holdBack($activity));
+        $this->assertNull($workflow->next($this->admin, $activity), 'the final approval waits, even for an administrator');
 
         (new PlanOptions(completeBeforeApproval: false))->save();
-        $this->assertNotNull($workflow->next($this->director, $activity), 'the institution can switch it off');
+        $this->assertSame(Activity::STATUS_APPROVED, $workflow->next($this->admin, $activity), 'the institution can switch it off');
         (new PlanOptions)->save();
         $this->assertStringContainsString('not submitted yet', (string) app(PlanStatus::class)->holdBack($activity));
 

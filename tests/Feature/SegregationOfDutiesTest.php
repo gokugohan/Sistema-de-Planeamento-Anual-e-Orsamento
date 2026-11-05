@@ -30,6 +30,9 @@ class SegregationOfDutiesTest extends TestCase
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
         $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
+        // the case this rule guards: an institution that lets its heads prepare as well (heads do not submit by default)
+        \Spatie\Permission\Models\Role::findByName('Director')->givePermissionTo('submit_paa');
+        app(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
         $this->activity = Activity::where('fiscal_year', 2027)->whereHas('directorate', fn ($q) => $q->where('code', 'UDIG'))->firstOrFail();
         $this->activity->forceFill(['status' => Activity::STATUS_DRAFT, 'submitted_by' => null, 'approved_at' => null, 'approved_by' => null])->save();
     }
@@ -52,8 +55,17 @@ class SegregationOfDutiesTest extends TestCase
         $this->assertSame($this->director->id, $this->submitted()->submitted_by);
     }
 
-    public function test_by_default_the_preparer_may_also_certify(): void
+    public function test_by_default_the_preparer_may_not_also_certify(): void
     {
+        $activity = $this->submitted();
+        $this->assertSame('block', ApprovalRules::current()->segregation);
+
+        $this->assertNull(app(ActivityWorkflow::class)->next($this->director, $activity));
+    }
+
+    public function test_where_allowed_the_preparer_may_also_certify(): void
+    {
+        $this->mode('off');
         $activity = $this->submitted();
 
         $this->assertNotNull(app(ActivityWorkflow::class)->next($this->director, $activity));
@@ -120,11 +132,11 @@ class SegregationOfDutiesTest extends TestCase
 
     public function test_the_rule_is_stored_only_when_it_differs_from_the_preset(): void
     {
-        $this->mode('block');
-        $this->assertSame('block', ApprovalRules::current()->segregation);
-
         $this->mode('off');
         $this->assertSame('off', ApprovalRules::current()->segregation);
-        $this->assertNull(SystemSetting::where('key', 'approval_rules')->first());
+
+        $this->mode('block');
+        $this->assertSame('block', ApprovalRules::current()->segregation);
+        $this->assertNull(SystemSetting::where('key', 'approval_rules')->first(), 'block is the preset: nothing to store');
     }
 }

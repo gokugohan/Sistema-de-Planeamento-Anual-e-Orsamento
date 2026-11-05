@@ -2835,5 +2835,21 @@
     "Which years": "Tinan sira ne'ebé",
     "While an adjustment round is open.": "Bainhira ronda ajustamentu sei loke.",
     "Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.": "Tinan molok tinan ne'e aprova ona, ho montante ezekutadu kada fulan no progresu kada trimestre relata ona. Tinan ne'e no tinan oin karrega tuir ita-nia hili iha leten: rascunho, iha klaran aprovasaun, ka aprova ona (tinan ne'e ho nia despeza relata to'o ohin). Atividade aprova ona mak versaun 1 planu nian.",
-    "Step :n:": "Pasu :n:"
+    "Step :n:": "Pasu :n:",
+    "Technical Officer (or whoever the unit's approval list names to prepare)": "Tékniku (ka ema ne'ebé lista aprovasaun unidade nian indika atu prepara)",
+    "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; the approval waits, and the directorate sees why.": "Xefe aprova planu diresaun ida nian (no nune'e finaliza) só depois atividade hotu diresaun nian submete ona. Sertifikasaun no validasaun la'o bainhira atividade sira to'o; aprovasaun hein, no diresaun haree tanba saida.",
+    "The director of the unit to certify it": "Diretór unidade nian atu sertifika",
+    ":n activity of the directorate is not submitted yet. The final approval starts when the whole plan is complete.|:n activities of the directorate are not submitted yet. The final approval starts when the whole plan is complete.": "Atividade :n diresaun nian seidauk submete. Aprovasaun finál hahú bainhira planu kompletu.|Atividade :n diresaun nian seidauk submete. Aprovasaun finál hahú bainhira planu kompletu.",
+    "Head of Unit": "Xefe Unidade",
+    "Head of Department": "Xefe Departamentu",
+    "National Director": "Diretór Nasionál",
+    "Director-General": "Diretór-Jerál",
+    "Head of Office": "Xefe Gabinete",
+    "Head of the regional office": "Xefe delegasaun rejionál",
+    ":leader to certify it": ":leader atu sertifika",
+    ":leader to validate it": ":leader atu valida",
+    ":leader to approve the plan": ":leader atu aprova planu",
+    "Head": "Xefia",
+    "Technical Officer of the unit": "Tékniku unidade nian",
+    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "Xefe unidade iha nivel saida de'it (xefe unidade ka departamentu, diretór, diretór-jerál, xefe gabinete): sertifika, valida ka aprova tuir nivel unidade nian"
 }

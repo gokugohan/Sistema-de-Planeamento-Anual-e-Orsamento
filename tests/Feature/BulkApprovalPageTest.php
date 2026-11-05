@@ -70,6 +70,8 @@ class BulkApprovalPageTest extends TestCase
     public function test_confirming_approves_the_batch_with_one_note_and_reports_what_was_left_out(): void
     {
         $admin = $this->admin();
+        // about a stale selection, not the completeness of the plan (a draft would otherwise hold the approval back)
+        (new \App\Support\PlanOptions(completeBeforeApproval: false))->save();
         $a = $this->ready('UDIG', 'Ready A', 1000);
         $b = $this->ready('USC', 'Ready B', 2500);
         $late = $this->ready('UDIG', 'Turned into a draft meanwhile', 300);

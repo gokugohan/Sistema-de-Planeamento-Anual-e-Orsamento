@@ -137,8 +137,8 @@ The *Plan cycle* page (**Plan → Plan cycle**) shows where the year stands and 
 
 Each step has its dates in the **calendar**, which the administrator keeps. The order matters:
 
-1. The plan of a directorate is **complete** when all its activities are submitted.
-2. Only then are its activities certified and approved.
+1. Each activity is certified (and validated) as soon as its unit submits it: a unit never waits for the others.
+2. The plan of a directorate is **complete** when all its activities are submitted. Only then does its head approve the plan.
 3. Approving the plan also **finalizes** it.
 
 **Which years can be planned.** New activities go into the plan of the **current year** (until its directorate finalizes) or the **next year**. Earlier years cannot take new activities; their approved activities can still be revised. (For practice, an administrator can switch on a testing mode in which any year can be planned.)
@@ -147,7 +147,7 @@ Each step has its dates in the **calendar**, which the administrator keeps. The 
 
 ## 4. Planning activities
 
-For technical officers and unit directors. Open **Plan → PAA Activities** (or *My plan*).
+For technical officers, who prepare and submit. The head of the unit (chefe de unidade or departamento) checks the activities and does not create, edit, delete or submit them: the one who prepares is not the one who checks. Open **Plan → PAA Activities** (or *My plan*).
 
 ![The activity list](manual/img/activities.png)
 
@@ -226,7 +226,7 @@ Every activity goes through the same short chain, whatever the size of the insti
 
 | Status shown | Meaning | Who moves it on |
 |---|---|---|
-| **Draft** | Being prepared by the unit. | Technical officer or unit director → *Submit for certification* |
+| **Draft** | Being prepared by the unit. | Technical officer → *Submit for certification* (in a unit without one, the person its approval list names to prepare) |
 | **Prepared** | Submitted; waits for certification. | Director of the unit → *Certify* (or first the finance officer, where budget confirmation is on) |
 | **Verified** | Certified by the unit's director; waits for the national directorate above it. | Director of the unit above → *Validate* |
 | **Certified** | Ready for the final approval. | Head of the directorate → *Approve the plan* |
@@ -605,12 +605,12 @@ A directorate wants the head of the directorate, the legal adviser and the direc
 
 ## 12. Roles and what each can do
 
-| Task | Admin | Minister | Director | Technical officer | Finance | Viewer |
+| Task | Admin | Minister | Head | Technical officer | Finance | Viewer |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | See own unit's plan | ✔ | ✔ (all) | ✔ | ✔ | ✔ | ✔ |
 | See every unit's plan | ✔ | ✔ | own and below | own | own | own |
-| Create and edit activities | ✔ | | ✔ | ✔ | | |
-| Submit (prepare) | ✔ | | ✔ | ✔ | | |
+| Create and edit activities | ✔ | | | ✔ | | |
+| Submit (prepare) | ✔ | | (only if named to prepare) | ✔ | | |
 | Confirm the budget lines | ✔ | | | | ✔ | |
 | Certify | ✔ | | ✔ (unit, unit above) | | | |
 | Final approval of a plan | ✔ | | ✔ (head of a directorate) | | | |
@@ -634,13 +634,15 @@ The exact rules also depend on the unit tree and the approval lists. An administ
 
 **The "New activity" button is missing, or it says planning has ended.** Your directorate has finalized its plan for that year. Ask the head of your directorate to reopen it, or plan for the next year. An approved activity can still be revised.
 
+**I am the head of a unit and see no Submit, Edit or Delete button.** Heads check what their unit prepares; they do not prepare it. If your unit has no technical officer, ask for your name to be put under *Prepare* in the unit's approval list (6.1).
+
 **It is not my turn.** The activity is waiting for somebody else. Open it: *Waiting for* names who. If the unit has an approval list that signs in order, the next person on the list must sign first.
 
 **I cannot verify this figure.** You entered it yourself; someone else must verify it.
 
 **I cannot add an activity to this year.** New activities go into the current year (until your directorate finalizes) or the next year only. Switch the year at the top. An approved activity of an earlier year can still be revised.
 
-**I cannot approve: it says the plan is not complete.** Approval waits until every activity of the directorate has been submitted. Ask the unit to submit (or delete) its drafts; *Waiting for you* names the directorate and how many activities are left.
+**I cannot approve: it says the plan is not complete.** The final approval waits until every activity of the directorate has been submitted; certifying does not. Ask the unit to submit (or delete) its drafts; *Waiting for you* names the directorate and how many activities are left.
 
 **The calendar is closed and my unit is late.** Use the button on the message (or on the dashboard line) to ask the administrator to reopen the step for your unit. They can give your unit more time without reopening it for everybody.
 

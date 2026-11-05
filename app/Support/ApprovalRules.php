@@ -21,7 +21,7 @@ final class ApprovalRules
         public readonly bool $parentValidation = true,
         public readonly bool $budgetConfirmation = false,
         /** Does the person who prepared an activity also certify or approve it? off: allowed; flag: allowed and marked in the trail; block: refused (an administrator's override is marked). */
-        public readonly string $segregation = self::SEGREGATION_OFF,
+        public readonly string $segregation = self::SEGREGATION_BLOCK,
     ) {}
 
     public const SEGREGATION_OFF = 'off';
@@ -40,7 +40,7 @@ final class ApprovalRules
      */
     public static function preset(string $level = ''): self
     {
-        return new self(true, false);
+        return new self(true, false, self::SEGREGATION_BLOCK); // the one who prepares never checks
     }
 
     /** The rules in force: the preset, with any stored differences applied. */
@@ -55,7 +55,7 @@ final class ApprovalRules
         return new self(
             array_key_exists('parent_validation', $stored) ? (bool) $stored['parent_validation'] : $preset->parentValidation,
             (bool) ($stored['budget_confirmation'] ?? false),
-            in_array($stored['segregation'] ?? null, self::SEGREGATION_MODES, true) ? $stored['segregation'] : self::SEGREGATION_OFF,
+            in_array($stored['segregation'] ?? null, self::SEGREGATION_MODES, true) ? $stored['segregation'] : $preset->segregation,
         );
     }
 

@@ -116,7 +116,7 @@ Add only the structure the law defines: the system does not invent departments.
 - **Edit** a user's details, role and unit.
 - **Deactivate** someone who has left. Deactivate rather than delete a person who has acted in the system, so that their name stays on the records they made.
 
-Give **each unit its own people**: a technical officer who prepares and a director who certifies. A person's unit decides what they can see and plan.
+Give **each unit its own people**: a technical officer who prepares and submits, and a director who certifies. Heads do not create, edit, delete or submit activities (the one who prepares is not the one who checks); in a unit without a technical officer, name its preparer under *Prepare* in the unit's approval list. A person's unit decides what they can see and plan.
 
 The list can be **filtered by unit** (the unit and every unit below it, or *No unit*) and **by role**, next to the search. A banner warns when directors or officers have **no unit**: they cannot see any activity until they get one (*Show them*). The unit code in each row opens the unit's page, and the clock icon opens the **Audit Log** already filtered to that person.
 
@@ -126,7 +126,7 @@ The list can be **filtered by unit** (the unit and every unit below it, or *No u
 |---|---|
 | **Admin** | Sets up and runs the system; always allowed to act. |
 | **Minister** | Sees every plan and every report; does *not* approve plans. |
-| **Director** | Head or director of a unit: certifies, and for a top-level unit gives the final approval. |
+| **Head** (the Director role) | The head of a unit at any level: the chefe de unidade or departamento certifies, the diretor of a national directorate validates, the diretor-geral or chefe de gabinete approves the plan. One role for all of them: the level of their unit decides the step, and *System Users* shows each person's title. Heads do not create, edit, delete or submit activities. |
 | **Planning** (technical officer) | Prepares activities, indicators and budget lines. |
 | **Finance** | Confirms budget lines and verifies the reported executed amounts. |
 | **Viewer** | Reads plans and reports; changes nothing. |
@@ -177,7 +177,7 @@ To give it more time:
 
 Only that unit, and the units below it, can act again until then; the step stays closed for everybody else. The unit is told, the reopening is recorded in the audit log, and it can be withdrawn. The people of a late unit see a button to **ask the administrator** to reopen the step; the administrators are notified (at most once a day per person and step).
 
-**The order of the year.** A directorate's activities are certified and approved, and its plan finalized, only once every one of its activities has been submitted. Until then, the decisions wait and the directorate sees why. This rule is on by default; you can switch it off in *The plan must be complete before approval* (Part 8). Finalizing always needs every activity of the directorate to be decided.
+**The order of the year.** Each activity is certified (and validated) as soon as its unit submits it. The head approves a directorate's plan, and so finalizes it, only once every one of its activities has been submitted; until then the approval waits and the directorate sees why. This rule is on by default; you can switch it off in *The plan must be complete before approval* (Part 8). Finalizing always needs every activity of the directorate to be decided.
 
 Before a report of the plan is printed or downloaded, the application warns when the plan is not fully approved or not finalized, asks for confirmation, and prints a *Draft state* line on the document.
 
@@ -212,7 +212,7 @@ Finalizing stops **new activities** for that directorate and year: no new activi
 
 | Rule | When it is on |
 |---|---|
-| **The plan must be complete before approval** (on by default) | A directorate's activities are certified and approved, and its plan finalized, only once every activity of the directorate has been submitted. Until then the decisions wait, and *Waiting for you* and the approval page say which directorate still has activities to submit. Switch it off if your institution decides activity by activity. |
+| **The plan must be complete before approval** (on by default) | The head approves a directorate's plan, and so finalizes it, only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive. Until then the approval waits, and *Waiting for you* and the approval page say which directorate still has activities to submit. Switch it off if your institution decides activity by activity. |
 | **Every active directorate must submit** | Each active top-level unit of the year must either finalize a plan or declare that it has **nothing to plan** (a nil return, with a reason). The year ends only when all of them have done one or the other. |
 | **Also required before an activity is submitted** | The fields you tick (objective, person responsible, location, indicator baselines, means of verification) must be filled in before an activity can be submitted. |
 | **Guidance for preparing the plan** | Free text for each fiscal year, shown at the top of the activity form (for example the deadlines of the planning circular). |

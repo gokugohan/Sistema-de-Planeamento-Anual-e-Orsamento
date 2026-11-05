@@ -18,9 +18,9 @@
                 'when' => __('After each decision.'), 'where' => __('Plan → Budget decisions'), 'url' => route('planning.budget-decisions')] : null,
         ]] : null,
         [__('Plan'), [
-            ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer of the unit (the Director too)'), 'what' => __('Prepare the activities'), 'short' => __('Prepare'), 'how' => __('Describe each activity with its indicators and targets, its actions and its budget lines.'),
+            ['who' => ['Planning'], 'whoText' => __('Technical Officer of the unit'), 'what' => __('Prepare the activities'), 'short' => __('Prepare'), 'how' => __('Describe each activity with its indicators and targets, its actions and its budget lines.'),
                 'when' => __('For the current year or the next, while planning is open: until your directorate finalizes its plan, and within the dates an administrator may have set.'), 'where' => __('Plan → My plan → New activity'), 'url' => route('activities.index')],
-            ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer or Director'), 'what' => __('Submit the activity'), 'short' => __('Submit'), 'how' => __('Send the complete activity up for certification. The page says what is missing if it is not ready.'),
+            ['who' => ['Planning'], 'whoText' => __('Technical Officer (or whoever the unit\'s approval list names to prepare)'), 'what' => __('Submit the activity'), 'short' => __('Submit'), 'how' => __('Send the complete activity up for certification. The page says what is missing if it is not ready.'),
                 'when' => __('When the activity is complete.'), 'where' => __('The activity page → Submit for certification'), 'url' => route('activities.index')],
         ]],
         [__('Approve'), [

@@ -61,6 +61,24 @@ class Directorate extends Model
 
     public const INDIRECT = 'indirect';
 
+    /**
+     * What the leader of this unit is called, from its type: the Head of a unit or department, the Director of a
+     * national directorate, the Director-General, the Head of a gabinete. Every leader holds the Director role; the
+     * title only says which level they lead.
+     */
+    public function leaderTitle(): string
+    {
+        return match ($this->type) {
+            'Unit' => __('Head of Unit'),
+            'Department' => __('Head of Department'),
+            'National Directorate' => __('National Director'),
+            'Directorate General', 'General Directorate' => __('Director-General'),
+            'Cabinet' => __('Head of Office'),
+            'Regional Office' => __('Head of the regional office'),
+            default => __('Director'),
+        };
+    }
+
     /** A public body with its own legal personality and financial autonomy, supervised by the ministry. */
     public function isAutonomous(): bool
     {

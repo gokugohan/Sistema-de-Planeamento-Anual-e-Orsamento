@@ -107,8 +107,23 @@ class ApprovalChainEndToEndTest extends TestCase
         $activity = $this->draftIn('UDIG');
         $chefe = $this->user('chefe.gdsc@gdsc.tl');
 
-        // Even the head of the office cannot jump from Draft to Approved: one advance is one step.
-        $this->assertSame(Activity::STATUS_SUBMITTED, $this->workflow->advance($chefe, $activity));
-        $this->assertFalse($this->workflow->canApprove($chefe, $activity->fresh()), 'it must be validated before it can be approved');
+        // A director does not submit (the one who prepares is not the one who checks), and once submitted even the head
+        // of the office cannot jump to Approved: the unit's director certifies first.
+        $this->assertNull($this->workflow->next($chefe, $activity), 'a director does not submit');
+        $this->assertSame(Activity::STATUS_SUBMITTED, $this->workflow->advance($this->user('tecnico.udig@gdsc.tl'), $activity));
+        $this->assertFalse($this->workflow->canApprove($chefe, $activity->fresh()), 'it must be certified before it can be approved');
+    }
+
+    public function test_a_unit_director_certifies_while_other_units_still_plan_and_only_the_final_approval_waits(): void
+    {
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft'); // every other activity of the office is a draft
+        (new \App\Support\PlanOptions(completeBeforeApproval: true))->save(); // the rule this test is about (off in this class)
+        $activity = $this->step($this->user('tecnico.udig@gdsc.tl'), $this->draftIn('UDIG'), Activity::STATUS_SUBMITTED);
+
+        $activity = $this->step($this->user('director.udig@gdsc.tl'), $activity, Activity::STATUS_REVIEWED); // certified at once
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
+        $activity = $this->step($chefe, $activity, Activity::STATUS_VALIDATED); // validated; the approval waits for the plan
+        $this->assertFalse($this->workflow->canApprove($chefe, $activity), 'the final approval waits until the whole plan is submitted');
+        $this->assertNotNull(app(\App\Services\PlanStatus::class)->holdBack($activity));
     }
 }
