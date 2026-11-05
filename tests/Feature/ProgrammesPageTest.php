@@ -49,7 +49,7 @@ class ProgrammesPageTest extends TestCase
         $admin->assignRole('Admin');
 
         Volt::actingAs($admin)->test('pages.planning.programmes')
-            ->assertSee('Programme of the other directorate')->assertSee('ZZ1.1')->assertSee('12,345')->assertSee('Edit programmes');
+            ->assertSee('Programme of the other directorate')->assertSee('ZZ1.1')->assertSee('12,345')->assertSee('Edit programs');
     }
 
     public function test_a_directorate_user_sees_only_programmes_with_activities_in_their_units(): void
@@ -70,7 +70,7 @@ class ProgrammesPageTest extends TestCase
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
         $this->actingAs($admin)->get(route('planning.programmes'))->assertOk()
-            ->assertSeeInOrder(['Plan', 'Programmes', 'Plan cycle'])->assertSeeInOrder(['Administration', 'System Users', 'Structure', 'System', 'Settings', 'Import Activities']); // Optional rules and Calendar are tabs of Settings, not menu entries
+            ->assertSeeInOrder(['Plan', 'Programs', 'Plan cycle'])->assertSeeInOrder(['Administration', 'System Users', 'Structure', 'System', 'Settings', 'Import Activities']); // Optional rules and Calendar are tabs of Settings, not menu entries
 
         $officer = User::where('email', 'tecnico.udig@gdsc.tl')->firstOrFail();
         $this->actingAs($officer)->get(route('planning.programmes'))->assertOk();

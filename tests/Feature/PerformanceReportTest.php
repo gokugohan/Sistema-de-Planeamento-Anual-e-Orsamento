@@ -74,7 +74,7 @@ class PerformanceReportTest extends TestCase
         $this->actingAs($this->chief())->get(route('reports.performance', ['year' => 2026, 'type' => 'month', 'period' => 9]))
             ->assertOk()->assertSee('Monthly performance report')
             ->assertSee('Performance indicators')->assertSee('Means of verification')->assertSee('Implementation constraints')->assertSee('TOTAL EXECUTION')
-            ->assertSee('Programme')->assertSee('VERIFIED TEXT')->assertSee('LATE FUNDS')->assertDontSee('DRAFT TEXT');
+            ->assertSee('Program')->assertSee('VERIFIED TEXT')->assertSee('LATE FUNDS')->assertDontSee('DRAFT TEXT');
     }
 
     public function test_the_pdf_downloads_and_is_audited(): void

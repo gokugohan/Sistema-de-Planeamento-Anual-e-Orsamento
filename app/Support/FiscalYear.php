@@ -64,8 +64,8 @@ class FiscalYear
         $extra = SystemSetting::get('enable_paa_testing_mode', false) ? range($current - 5, $current + 3) : [];
 
         // a year being set up (its programs registered, no activity yet) can be chosen too
-        return self::$yearsMemo = Activity::query()->distinct()->pluck('fiscal_year')
-            ->merge(Program::query()->distinct()->pluck('fiscal_year'))
+        return self::$yearsMemo = Activity::query()->select('fiscal_year')->distinct()
+            ->union(Program::query()->select('fiscal_year')->distinct())->pluck('fiscal_year') // one query
             ->push($current, $current + 1, ...$extra)
             ->map(fn ($y) => (int) $y)->unique()->sortDesc()->values()->all();
     }

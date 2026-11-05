@@ -31,8 +31,6 @@ return [
                     'hint' => 'Your unit\'s plan, what waits for you and the deadlines'],
                 ['label' => 'How the year works', 'route' => 'guide', 'icon' => 'list',
                     'hint' => 'Who does what, when and where: planning, approval, reporting and verification'],
-                ['label' => 'Manual', 'route' => 'manual', 'icon' => 'book-open',
-                    'hint' => 'The user manual, and for administrators the administrator manual, to read or download'],
             ],
         ],
         [
@@ -136,6 +134,7 @@ return [
         'planning.paa-approval' => ['approvals.index', 'Activities to decide'],
         'monitoring.approval' => ['approvals.index', 'Verify progress'],
         'notifications.index' => [null, 'Notifications', 'Overview'],
+        'manual' => [null, 'Manual', 'Overview'], // opened from the menu under the person's name
         'profile' => [null, 'Profile', 'Overview'],
     ],
 ];

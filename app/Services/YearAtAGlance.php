@@ -33,7 +33,8 @@ class YearAtAGlance
         $units = collect($c['planning']['units'])->filter(fn ($u) => $wide || $policy->inScope($user, $u['id']))->values();
         $closedUnits = $units->where('closed', true)->count();
         // ready for the approval of the plan (approve and finalize in one act): the same reading as Waiting for you
-        $ready = $units->filter(fn ($u) => ! $u['closed'] && $this->planning->planReadiness($year, (int) $u['id'])['ready'])->count();
+        $readiness = $this->planning->planReadinessOf($year, $units->reject(fn ($u) => $u['closed'])->pluck('id')->all());
+        $ready = collect($readiness)->where('ready', true)->count();
         $ended = $units->isNotEmpty() && $closedUnits === $units->count();
         $yearOpen = PlanningWindow::yearAllowed($year);
 

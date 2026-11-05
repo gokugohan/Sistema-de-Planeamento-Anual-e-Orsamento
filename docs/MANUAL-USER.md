@@ -54,7 +54,7 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 - **Notifications**: the bell lists what happened that concerns you (an activity submitted to you, returned to you or approved), and your Notifications page keeps all of them. Click one to go to it. They are inside the application; e-mail is sent only where the administrator has switched it on (10.5).
 - **Dates**: every date field opens a small calendar. Click the day. Dates are shown as dd/mm/yyyy, with Monday as the first day of the week, and you never type them.
 - **Your profile** (your name, top right): your details and password, two-factor sign-in, whether you also want notifications by e-mail, and **Your recent activity**, which shows when you signed in and what you did in the system, newest first. Nobody can edit it.
-- **Manual** (under *Overview*): this manual, to read in the application or download as a PDF.
+- **Manual** (in the menu under your name, top right): this manual, to read in the application or download as a PDF.
 
 ![Your recent activity in the profile](manual/img/profile-activity.png)
 
@@ -80,7 +80,7 @@ The left menu is grouped by what you do, and the steps of the year are numbered 
 
 | Group | What is in it |
 |---|---|
-| **Overview** | *Dashboard* (those who see every plan) or *My work* (everyone else), *How the year works*, *Manual*. |
+| **Overview** | *Dashboard* (those who see every plan) or *My work* (everyone else), *How the year works*. |
 | **1 Plan** | The activities themselves (*All activities* or *My plan*), then *Units* (the plan of any unit you may see), *Programs*, *Plan cycle* and, where the institution uses them, *Budget decisions* and the *Adjustment round* (8.5). |
 | **2 Approvals** | *Waiting for you* (what needs your decision or check, and *Approve the plan* for heads of directorates), and, where your role has them, budget review, approval lists and interim approvers. |
 | **3 Execute** | *Report execution* (what was spent and achieved, every month), then *Compile the quarter*. |

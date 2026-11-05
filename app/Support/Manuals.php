@@ -5,7 +5,7 @@ namespace App\Support;
 use App\Models\User;
 
 /**
- * The manuals the application serves (Overview > Manual): a user manual for everyone and an administrator manual for
+ * The manuals the application serves (Manual, in the menu under the person's name): a user manual for everyone and an administrator manual for
  * administrators. The PDFs are built from docs/MANUAL-USER.md and docs/MANUAL-ADMIN.md by docs/manual/build.py.
  */
 final class Manuals

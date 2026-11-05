@@ -169,6 +169,15 @@ new class extends Component {
                     </svg>
                     {{ __('Profile') }}
                 </a>
+                <a href="{{ route('manual') }}" wire:navigate
+                    class="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-700 hover:text-zinc-900 hover:bg-zinc-50 transition-colors rounded-lg mx-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="flex-shrink-0 text-zinc-400">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                    {{ __('Manual') }}
+                </a>
                 {{-- On a phone the language switch lives here, so the bar stays within the screen --}}
                 <div class="sm:hidden mx-1 mt-1 border-t border-zinc-100 pt-1">
                     <p class="px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{{ __('Language') }}</p>

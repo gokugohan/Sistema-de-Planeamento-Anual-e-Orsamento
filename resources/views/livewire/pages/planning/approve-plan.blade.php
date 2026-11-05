@@ -38,8 +38,9 @@ new class extends Component {
         $window = app(PlanningWindow::class);
         $ids = $window->decidesFor(auth()->user(), $this->year)->all();
         $names = Directorate::whereIn('id', $ids)->get(['id', 'code', 'name'])->keyBy('id');
+        $readiness = $window->planReadinessOf($this->year, $ids);
         $plans = collect($ids)
-            ->map(fn ($id) => ['unit' => $names[$id] ?? null] + $window->planReadiness($this->year, (int) $id) + ['id' => (int) $id])
+            ->map(fn ($id) => ['unit' => $names[$id] ?? null] + $readiness[(int) $id] + ['id' => (int) $id])
             ->filter(fn ($p) => $p['unit'] && ! $p['finalized'] && ($p['certified'] + $p['approved'] + $p['with_units'] + $p['in_certification']) > 0)
             ->sortBy([fn ($a, $b) => $b['ready'] <=> $a['ready'], fn ($a, $b) => strcmp($a['unit']->code, $b['unit']->code)])
             ->values();

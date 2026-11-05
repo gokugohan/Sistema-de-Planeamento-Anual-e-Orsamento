@@ -90,12 +90,9 @@ class ApprovalInbox
 
         // ── the plan: each directorate whose plan is ready for its head's approval (approve the plan: approve and finalize)
         $window = app(PlanningWindow::class);
-        $ready = [];
-        foreach ($window->decidesFor($user, $year) as $rootId) {
-            if ($window->planReadiness($year, (int) $rootId)['ready']) {
-                $ready[] = Directorate::whereKey($rootId)->value('code');
-            }
-        }
+        $readiness = $window->planReadinessOf($year, $window->decidesFor($user, $year)->all());
+        $readyIds = array_keys(array_filter($readiness, fn ($r) => $r['ready']));
+        $ready = $readyIds ? Directorate::whereIn('id', $readyIds)->orderBy('code')->pluck('code')->all() : [];
         if ($ready) {
             // one line for all of them, not one per directorate
             $add('plan', count($ready), count($ready) === 1

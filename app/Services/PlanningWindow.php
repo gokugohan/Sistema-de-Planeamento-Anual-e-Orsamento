@@ -282,24 +282,48 @@ class PlanningWindow
      */
     public function planReadiness(int $year, int $rootId): array
     {
-        $rows = Activity::where('fiscal_year', $year)->whereIn('directorate_id', $this->subtreeOf([$rootId]))
-            ->selectRaw('status, version > 0 AS revised, COUNT(*) AS n')->groupBy('status', 'revised')->get();
-        $count = fn (array $statuses, ?bool $revised = null) => (int) $rows
-            ->filter(fn ($r) => in_array($r->status, $statuses, true) && ($revised === null || (bool) $r->revised === $revised))->sum('n');
+        return $this->planReadinessOf($year, [$rootId])[$rootId];
+    }
 
-        $headValidates = $this->waitingForHeadValidation($year, $rootId)->count();
-        $certified = $count([Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL]) + $headValidates;
-        $approved = $count([Activity::STATUS_APPROVED]);
-        $withUnits = $count([Activity::STATUS_DRAFT, Activity::STATUS_REJECTED], false);
-        $inCertification = $count([Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]) - $headValidates;
-        $finalized = $this->closed($year)->has($rootId);
+    /**
+     * planReadiness for several directorates at once, in two grouped queries whatever their number (the dashboard
+     * and the inbox ask for every directorate a person sees).
+     *
+     * @param  array<int, int>  $rootIds
+     * @return array<int, array{certified: int, approved: int, with_units: int, in_certification: int, finalized: bool, ready: bool}>
+     */
+    public function planReadinessOf(int $year, array $rootIds): array
+    {
+        $rootIds = array_values(array_unique(array_map('intval', $rootIds)));
+        $rows = $rootIds === [] ? collect() : Activity::where('fiscal_year', $year)->whereIn('directorate_id', $this->subtreeOf($rootIds))
+            ->selectRaw('directorate_id, status, version > 0 AS revised, COUNT(*) AS n')->groupBy('directorate_id', 'status', 'revised')->get();
+        // certified by a unit right under the directorate and waiting for its head's validation: approving the plan covers it
+        $anyReviewed = $rows->contains(fn ($r) => $r->status === Activity::STATUS_REVIEWED);
+        $headValidates = ! $anyReviewed ? collect() : Activity::where('activities.fiscal_year', $year)->where('activities.status', Activity::STATUS_REVIEWED)
+            ->join('directorates as d', 'd.id', '=', 'activities.directorate_id')->whereIn('d.parent_id', $rootIds)
+            ->selectRaw('d.parent_id AS root, COUNT(*) AS n')->groupBy('d.parent_id')->pluck('n', 'root');
+        $byRoot = $rows->groupBy(fn ($r) => $this->rootOf((int) $r->directorate_id));
+        $completeFirst = PlanOptions::current()->completeBeforeApproval;
 
-        return [
-            'certified' => $certified, 'approved' => $approved, 'with_units' => $withUnits, 'in_certification' => $inCertification,
-            'finalized' => $finalized,
-            'ready' => ! $finalized && $inCertification === 0 && ($certified + $approved) > 0
-                && ($withUnits === 0 || ! PlanOptions::current()->completeBeforeApproval),
-        ];
+        $result = [];
+        foreach ($rootIds as $rootId) {
+            $mine = $byRoot->get($rootId, collect());
+            $count = fn (array $statuses, ?bool $revised = null) => (int) $mine
+                ->filter(fn ($r) => in_array($r->status, $statuses, true) && ($revised === null || (bool) $r->revised === $revised))->sum('n');
+            $waiting = (int) ($headValidates[$rootId] ?? 0);
+            $certified = $count([Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL]) + $waiting;
+            $approved = $count([Activity::STATUS_APPROVED]);
+            $withUnits = $count([Activity::STATUS_DRAFT, Activity::STATUS_REJECTED], false);
+            $inCertification = $count([Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]) - $waiting;
+            $finalized = $this->closed($year)->has($rootId);
+            $result[$rootId] = [
+                'certified' => $certified, 'approved' => $approved, 'with_units' => $withUnits, 'in_certification' => $inCertification,
+                'finalized' => $finalized,
+                'ready' => ! $finalized && $inCertification === 0 && ($certified + $approved) > 0 && ($withUnits === 0 || ! $completeFirst),
+            ];
+        }
+
+        return $result;
     }
 
     /**
