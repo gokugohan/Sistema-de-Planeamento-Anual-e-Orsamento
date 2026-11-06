@@ -49,7 +49,7 @@ class AdjustmentRoundTest extends TestCase
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Admin');
         PlanningWindow::forgetTree();
-        session(['fiscal_year' => 2027]);
+        \App\Support\FiscalYear::pin(2027);
         (new PlanOptions(budgetDecisions: true))->save();
     }
 

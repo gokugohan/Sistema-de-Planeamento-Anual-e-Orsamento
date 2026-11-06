@@ -3,7 +3,7 @@
 **Setting up and running the Annual Action Plan of a public body: the institution, its structure and people, the calendar, the rules of the cycle, budget decisions and the records.**
 Implemented by G-Kakaroto.
 
-This manual is for the **administrators** of the system, usually in the planning office. An administrator sets up the institution, keeps its structure, people and calendar, chooses the optional rules, records the budget decisions and runs the adjustment rounds. An administrator can always act on any step.
+This manual is for the **administrators** of the system, usually in the planning office. An administrator sets up the institution, keeps its structure, people and calendar, chooses the optional rules, records the budget decisions and runs the adjustment rounds. An administrator can act on any step, except submitting the plan outside its dates: that holds for everybody.
 
 Read the **User manual** first: it explains the ideas of the system (activities, versions, revisions, the approval chain, reporting) and how everyone else works with it. This manual covers only what administrators do. Installing the server, e-mail delivery, backups and updates are in the **Deployment manual**.
 
@@ -73,13 +73,9 @@ The menu groups the administrator's pages under **Administration** (*System User
 **System → Settings** is one page in four parts, listed on the left (the list stays in view as you scroll). The **Optional rules** and **Calendar** tabs above it are the rest of the same area.
 
 1. **Institution and texts**: the full name and abbreviation of your institution; the name, tagline and description of the system, in Tetum, Portuguese and English (choose the language with the buttons); and the credits at the foot of the sign-in page (the owner, and who implemented the system). These are what users see; nothing is fixed in the code.
-2. **Logo and browser icon**: choose an image (PNG, JPG or WebP, up to 2 MB) and press **Use this logo**. It is resized and shown in the menu, on the sign-in page and above the header of the printed reports, and a browser icon (favicon) is made from it. **Remove logo** goes back to the abbreviation. This part has its own save buttons.
-3. **Level and approval**:
-    - the level: *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry, and you can say who it is sent to);
-    - whether the director of the unit above **validates** after the unit's own certification (on by default, so that a unit → national directorate → general directorate structure checks once at each level; where the unit above is the directorate itself, its head's validation and approval are one click);
-    - whether **finance confirms the budget** of each activity before it is certified;
-    - whether the person who prepared an activity may also certify or approve it.
-4. **Notifications and testing**: whether notifications are also sent **by e-mail** (off by default, see Part 11), and the **testing mode** (off by default). In testing mode activities can be planned for **any year** (otherwise only the current year and the next), the year selector offers more years, and the *Testing Zone* menu appears; an amber bar on every page says that it is on. Switch it off for real use.
+2. **Logo and browser icon**: choose an image (PNG, JPG or WebP, up to 2 MB). It is used as soon as it is chosen, with no extra button: it is resized and shown in the menu, on the sign-in page and above the header of the printed reports, and a browser icon (favicon) is made from it. Until the institution chooses its own, the application's own logo (`public/logo.png`) is the logo and the browser icon (printed reports then have no logo). **Remove logo** goes back to the application's logo.
+3. **Level and approval**: the level, *a whole ministry* (several directorates, each finalizing its own plan) or *one directorate or gabinete* (its plan is sent to the ministry, and you can say who it is sent to). The approval rules themselves are in **Optional rules** (Part 8).
+4. **Notifications and testing**: whether notifications are also sent **by e-mail** (off by default, see Part 11), and the **testing mode** (off by default). In testing mode activities can be planned for **any year** (otherwise only the current year and the next), the year list above each page offers more years, and the *Testing Zone* menu appears; an amber bar on every page says that it is on. Switch it off for real use.
 
 Click **Save Settings** to save parts 1, 3 and 4.
 
@@ -154,16 +150,13 @@ E-mail addresses are shown only to administrators and the unit's director. Admin
 
 ![The calendar: the year in dates, a late unit and the units given more time](manual/img/windows.png)
 
-**System → Calendar** holds the dates of the fiscal year for:
+**System → Calendar** shows the year in the order it runs, one row per step. Type *Opens on* and *Closes on* in the row and press **Save** on that row; empty both dates and save to remove them. Each row says where the step stands today (*Open*, *Not open yet*, *Closed*). Choose another year with *Fiscal year* at the top of the page.
 
-- the **plan submission** (when units may submit their activities);
-- the **approval** (when submitted activities are certified and approved);
-- the **finalizing** of the plan (when a directorate may end planning);
-- each **month** (the monthly executed amount and narrative);
-- each **quarter** (the quarterly indicators and the quarter's text);
-- optionally, the **revisions** of approved activities.
+1. **Planning: submission of the plan (required).** The units can prepare their activities at any time, but they **submit only between these dates**. Without them nobody can submit: the units see *Submission is closed* on each activity, with the reason, and a note on the dashboard; you are asked on your dashboard to set the dates. This holds for administrators too: an administrator cannot submit either until the dates are set and open. The **guidance for preparing the plan** (for example the deadlines of the planning circular) is written here too, and shown at the top of the activity form.
+2. **Approval (optional).** *Certifying, validating and approving the plan*: approving the plan of a directorate finalizes it, so these dates cover both. *Revisions of approved activities*: when a unit may start a revision. Without dates these steps are always open.
+3. **Reporting (optional).** Instead of typing sixteen periods, give one rule: the **monthly report is due so many days after the month ends** (for example 10) and the **quarterly report so many days after the quarter ends** (for example 15), then **Fill in the dates**. Each month and quarter is then open from its first day until its due date. Under *Each month and quarter* any one of them can still be changed. **Remove them** makes reporting always open again.
 
-Pick the step, the month or quarter, *Opens on*, *Closes on* and an optional note, then **Save**. Outside its dates a unit cannot act in that step, but an administrator always can. A step with no dates is open. Revisions are never held back by the plan-submission dates.
+**Nobody submits outside the submission dates, administrators included**: until the dates are set and open, every activity stays a draft. To let one late unit submit, reopen the dates for that unit (*Late → Reopen for this unit*); the reopening is recorded. For the other steps an administrator can act whatever the dates. Revisions are never held back by the submission dates. In testing mode submission needs no dates.
 
 **Who sees the dates.** Each person sees the dates that concern them, on the dashboard, in *My work*, in *Waiting for you*, in the activity list and in *Report execution*. These are:
 
@@ -180,7 +173,7 @@ To give it more time:
 
 Only that unit, and the units below it, can act again until then; the step stays closed for everybody else. The unit is told, the reopening is recorded in the audit log, and it can be withdrawn. The people of a late unit see a button to **ask the administrator** to reopen the step; the administrators are notified (at most once a day per person and step).
 
-**The order of the year.** Each activity is certified (and validated) as soon as its unit submits it. The head approves a directorate's plan, and so finalizes it, only once every one of its activities has been submitted; until then the approval waits and the directorate sees why. This rule is on by default; you can switch it off in *The plan must be complete before approval* (Part 8). Finalizing always needs every activity of the directorate to be decided.
+**The order of the year.** Each activity is certified (and validated) as soon as its unit submits it. The head approves a directorate's plan, and so finalizes it, only once every one of its activities has been submitted; until then the approval waits and the directorate sees why. This rule is on by default; you can switch it off in Optional rules (*Must every activity of a directorate be submitted before its plan is approved?*, Part 8). Finalizing always needs every activity of the directorate to be decided.
 
 Before a report of the plan is printed or downloaded, the application warns when the plan is not fully approved or not finalized, asks for confirmation, and prints a *Draft state* line on the document.
 
@@ -209,22 +202,28 @@ Finalizing stops **new activities** for that directorate and year: no new activi
 
 ## 8. Optional rules
 
-**System → Optional rules** holds rules that stay **off** until your institution confirms that its own rules ask for them. One rule, the order of the year, is **on** by default and can be switched off. Each rule changes only what is described here.
+**System → Optional rules** holds every rule of the cycle your institution can choose, as **one question each with a switch**. **Details** under a question explains exactly what it changes. Press **Save** at the bottom; changes apply from now on, and are recorded in the audit log.
 
 ![Optional rules](manual/img/optional-rules.png)
 
-| Rule | When it is on |
-|---|---|
-| **The plan must be complete before approval** (on by default) | The head approves a directorate's plan, and so finalizes it, only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive. Until then the approval waits, and *Waiting for you* and the approval page say which directorate still has activities to submit. Switch it off if your institution decides activity by activity. |
-| **Every active directorate must submit** | Each active top-level unit of the year must either finalize a plan or declare that it has **nothing to plan** (a nil return, with a reason). The year ends only when all of them have done one or the other. |
-| **Also required before an activity is submitted** | The fields you tick (objective, person responsible, location, indicator baselines, means of verification) must be filled in before an activity can be submitted. |
-| **Guidance for preparing the plan** | Free text for each fiscal year, shown at the top of the activity form (for example the deadlines of the planning circular). |
-| **Some revisions need an approval outside the institution** | A revision can be marked as needing it. It is then approved only once the reference of that approval is recorded on the activity page. |
-| **Record the approved plan as a baseline** | An administrator records the approved plan of a year as it stands (*Final plan report → Record baseline*), and the report can then be printed as it stood at that moment. Recording a baseline approves nothing. |
-| **Finance officers work for the whole institution** | Finance officers see every unit, and confirm budgets and verify executed amounts everywhere. |
-| **Track corrective actions** | In *Report execution → Narrative*, the unit records corrective actions with a person responsible and a due date, and closes them when they are done. |
-| **Reports keep the structure at approval** | The final report shows each activity under the unit it belonged to when it was approved, even after a restructuring. |
-| **Compare the plan with the budget decisions** | Adds *Plan → Budget decisions* and *Plan → Adjustment round* (Part 9). |
+| Question | Default | When it is on |
+|---|---|---|
+| **Planning** | | |
+| Must every directorate submit a plan, or say it has nothing to plan? | Off | Each active top-level unit of the year must either finalize a plan or declare that it has **nothing to plan** (a nil return, with a reason). The year ends only when all of them have done one or the other. |
+| What else must be filled in before an activity is submitted? | None | The fields you tick (objective, person responsible, location, indicator baselines, means of verification) must be filled in before an activity can be submitted. A description, dates, an indicator and a budget line are always required. |
+| **Approval** | | |
+| Does the head of the unit above validate before the final approval? | On | After the unit's head certifies, the head of the unit above (for example the national director) validates, so a unit → national directorate → general directorate structure checks once at each level. Where the same person would act twice in a row, one click covers both. |
+| Does a finance officer confirm the budget before an activity is certified? | Off | A submitted activity can be certified only once finance has confirmed its budget lines (*Approvals → Budget review*). |
+| May the person who prepared an activity also certify or approve it? | No | *No* (best practice; an administrator may, and it is marked), *Yes, but mark it in the record*, or *Yes, without any mark*. |
+| Must every activity of a directorate be submitted before its plan is approved? | On | The head approves a directorate's plan, and so finalizes it, only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; *Waiting for you* and the approval page say which directorate still has activities to submit. |
+| Can a revision need an approval from outside the institution? | Off | A revision can be marked as needing it; it is approved only once the reference of that approval is recorded on the activity page. |
+| **Finance and monitoring** | | |
+| Do finance officers work for the whole institution? | Off | Finance officers see every unit, and confirm budgets and verify executed amounts everywhere. |
+| Compare the plan with the budget decisions? | Off | Adds *Plan → Budget decisions* and *Plan → Adjustment round* (Part 9). |
+| Track corrective actions when a report is off track? | Off | In *Report execution → Narrative*, the unit records corrective actions with a person responsible and a due date, and closes them when done. |
+| **Records** | | |
+| Can the approved plan be recorded as a baseline? | Off | An administrator records the approved plan of a year as it stands (*Final plan report → Record baseline*); the report can then be printed as it stood at that moment. Recording a baseline approves nothing. |
+| Do reports keep the structure the plan had when it was approved? | Off | The final report shows each activity under the unit it belonged to when it was approved, even after a restructuring. |
 
 Nothing in these rules decides who approves the consolidated plan of the institution: no such step is assumed.
 

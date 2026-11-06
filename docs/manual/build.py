@@ -1,21 +1,16 @@
 """
-Build the manuals: docs/MANUAL-USER.md and docs/MANUAL-ADMIN.md become
+Build the manuals as Word documents, to edit and to send: docs/MANUAL-USER.md and docs/MANUAL-ADMIN.md become
+docs/MANUAL-USER.docx and docs/MANUAL-ADMIN.docx. The manuals are documents only; the application does not show them.
+Building again replaces the Word files, so edits made in Word are lost unless they are also made in the Markdown.
 
-  resources/manuals/manual-user.pdf, resources/manuals/manual-admin.pdf   (served by the application, Manual page)
-  docs/MANUAL-USER.docx, docs/MANUAL-ADMIN.docx                          (for editing and sending)
-
-Needs Python with `markdown` and `python-docx` (pip install markdown python-docx) and Google Chrome, which prints the
-PDF (set CHROME to its path if it is not in the usual place). Run from the repository root:
+Needs Python with `markdown` and `python-docx` (pip install markdown python-docx). Run from the repository root:
 
     python docs/manual/build.py
 
 The screenshots are in docs/manual/img and are referenced from the Markdown as manual/img/<name>.png.
 """
-import os
 import re
-import subprocess
 import sys
-import tempfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import unquote
@@ -27,34 +22,8 @@ from docx.shared import Cm, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCS = ROOT / 'docs'
-OUT_PDF = ROOT / 'resources' / 'manuals'
 MANUALS = [('MANUAL-USER', 'manual-user'), ('MANUAL-ADMIN', 'manual-admin')]
-CHROME = os.environ.get('CHROME', r'C:\Program Files\Google\Chrome\Application\chrome.exe')
 
-CSS = """
-@page { size: A4; margin: 18mm 16mm 20mm 16mm;
-  @bottom-left { content: "%(title)s"; font: 8pt 'Segoe UI', Arial, sans-serif; color: #71717a; }
-  @bottom-right { content: counter(page) " / " counter(pages); font: 8pt 'Segoe UI', Arial, sans-serif; color: #71717a; } }
-@page :first { @bottom-left { content: none; } @bottom-right { content: none; } }
-body { font: 10pt/1.5 'Segoe UI', Arial, sans-serif; color: #18181b; }
-.cover { height: 240mm; display: flex; flex-direction: column; justify-content: center; border-left: 6px solid #2152C4; padding-left: 14mm; break-after: page; }
-.cover h1 { font-size: 28pt; line-height: 1.2; color: #2152C4; margin: 0 0 6mm; }
-.cover p { font-size: 12pt; color: #3f3f46; max-width: 140mm; }
-h1 { font-size: 20pt; color: #2152C4; }
-h2 { font-size: 16pt; color: #2152C4; break-before: page; border-bottom: 1px solid #d4d4d8; padding-bottom: 2mm; margin-top: 0; }
-h3 { font-size: 12pt; margin: 6mm 0 2mm; break-after: avoid; }
-h4 { font-size: 10.5pt; margin: 5mm 0 2mm; break-after: avoid; }
-p, li { orphans: 3; widows: 3; }
-a { color: #2152C4; text-decoration: none; }
-code { font-family: Consolas, monospace; font-size: 9pt; background: #f4f4f5; padding: 0 1mm; border-radius: 2px; }
-table { border-collapse: collapse; width: 100%%; margin: 3mm 0; font-size: 9pt; break-inside: auto; }
-th { background: #eef2fb; text-align: left; }
-th, td { border: 1px solid #d4d4d8; padding: 1.5mm 2mm; vertical-align: top; }
-tr { break-inside: avoid; }
-img { max-width: 100%%; max-height: 200mm; border: 1px solid #d4d4d8; border-radius: 2mm; display: block; margin: 3mm auto; }
-p:has(> img) { break-inside: avoid; }
-hr { display: none; }
-"""
 
 
 def html_of(md_text: str) -> tuple[str, str]:
@@ -65,15 +34,6 @@ def html_of(md_text: str) -> tuple[str, str]:
     # the H1 and the paragraphs before the first rule make the cover
     head, _, rest = body.partition('<hr />')
     return title, f'<section class="cover">{head}</section>{rest}'
-
-
-def build_pdf(title: str, body: str, target: Path) -> None:
-    page = f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>{title}</title><style>{CSS % {"title": title}}</style></head><body>{body}</body></html>'
-    with tempfile.TemporaryDirectory() as tmp:
-        src = Path(tmp) / 'manual.html'
-        src.write_text(page, encoding='utf-8')
-        subprocess.run([CHROME, '--headless', '--disable-gpu', '--no-pdf-header-footer', '--allow-file-access-from-files',
-                        f'--print-to-pdf={target}', src.as_uri()], check=True, capture_output=True)
 
 
 # ── Word
@@ -143,7 +103,7 @@ def build_docx(title: str, body: str, target: Path) -> None:
         for child in el:
             if child.tag == 'h1':
                 h = doc.add_heading(child.text, level=0)
-                h.runs[0].font.color.rgb = RGBColor(0x21, 0x52, 0xC4)
+                h.runs[0].font.color.rgb = RGBColor(0x46, 0x5F, 0xFF)
             else:
                 add_runs(doc.add_paragraph(), child)
         doc.add_page_break()
@@ -166,12 +126,10 @@ def build_docx(title: str, body: str, target: Path) -> None:
 
 
 def main() -> None:
-    OUT_PDF.mkdir(parents=True, exist_ok=True)
-    for source, name in MANUALS:
+    for source, _ in MANUALS:
         title, body = html_of((DOCS / f'{source}.md').read_text(encoding='utf-8'))
-        build_pdf(title, body, OUT_PDF / f'{name}.pdf')
         build_docx(title, body, DOCS / f'{source}.docx')
-        print(f'{source}: {OUT_PDF / (name + ".pdf")} and docs/{source}.docx')
+        print(f'{source}: docs/{source}.docx')
 
 
 if __name__ == '__main__':

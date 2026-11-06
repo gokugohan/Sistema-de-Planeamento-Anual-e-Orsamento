@@ -48,13 +48,19 @@ Open the address your administrator gave you and sign in with your e-mail and pa
 ![The dashboard](manual/img/dashboard.png)
 
 - **Left menu**: the places you may use. It is built for your role, so you only see what is yours. It follows the annual cycle, and its four steps are numbered in the order they are done: *Overview*, then **1 Plan → 2 Approvals → 3 Execute → 4 Insights**. Within each step, the entries come in the order you use them.
-- **Top bar**: a search that jumps to any page (press **Ctrl + K**), the **fiscal year** selector, the language buttons **EN / PT / TET**, your notifications (the bell) and your profile.
+- **Top bar**: a search that jumps to any page (press **Ctrl + K**), your notifications (the bell) and your name, which opens a menu with your profile, the **appearance** and the **language**.
+- **The year of the page**: most of the year two plans are alive at once, the one being **carried out** (and reported on) and the one being **prepared**. Each page opens on its own year without you choosing it, shown above the page title:
+    - a **blue** label, *Planning 2027*, on the pages of the plan being prepared (activities, approvals, units, programs);
+    - a **green** label, *Reporting 2026*, on the pages of the plan being carried out (report execution, performance, reports);
+    - on the dashboard, both, with a link to each.
+
+    To look at another year, use the small year list next to the label. It changes **that page only**; every other page stays on its own year. While a page shows an unusual year, an amber bar says so, with **Back to** the usual year.
 - **Fiscal year**: almost every screen shows one year at a time. Change it at the top and the whole application follows.
-- **Language**: English, Portuguese and Tetum. Your choice is remembered.
+- **Language**: English, Portuguese and Tetum, under your name at the top right (*Language*: EN / PT / TET). Your choice is remembered.
+- **Day or night mode**: under your name at the top right, *Appearance* offers **Day**, **Night** (dark pages, easier on the eyes in low light) and **System**, which follows the setting of your computer or phone. The choice is remembered on that browser.
 - **Notifications**: the bell lists what happened that concerns you (an activity submitted to you, returned to you or approved), and your Notifications page keeps all of them. Click one to go to it. They are inside the application; e-mail is sent only where the administrator has switched it on (10.5).
 - **Dates**: every date field opens a small calendar. Click the day. Dates are shown as dd/mm/yyyy, with Monday as the first day of the week, and you never type them.
 - **Your profile** (your name, top right): your details and password, two-factor sign-in, whether you also want notifications by e-mail, and **Your recent activity**, which shows when you signed in and what you did in the system, newest first. Nobody can edit it.
-- **Manual** (in the menu under your name, top right): this manual, to read in the application or download as a PDF.
 
 ![Your recent activity in the profile](manual/img/profile-activity.png)
 
@@ -116,7 +122,7 @@ You do not need to memorise this, but everything in the application follows thes
 
 **Revision.** The way to change an approved activity. It needs a reason, and the activity goes back to Draft and through the whole approval chain again. While it does, the version in force stays. When the revision is approved, it becomes the next version.
 
-**Windows.** The dates between which something may be done: submitting the plan, or reporting a month or a quarter. **When no dates are set, the step is open.**
+**Windows.** The dates between which something may be done: submitting the plan, or reporting a month or a quarter. **Submitting the plan needs its dates**: you can prepare your activities at any time, and submit them once the administrator has set the submission dates. The other steps are open when no dates are set.
 
 **Verified by someone else.** The figures units report (executed amounts, indicator progress) count only after another person verifies them. Nobody verifies their own report.
 
@@ -194,7 +200,7 @@ An activity can be **submitted** only when it is complete:
 - at least one **budget line with an amount**;
 - at least one **indicator with a target**;
 - an **end date that is not before the start date**;
-- the plan submission window is open for your unit.
+- the plan submission dates are set and open for your unit. Before they are set, the activity says *Submission is closed* and why; keep preparing, and submit once the dates are set.
 
 Your institution may require more fields before submission (for example the objective or the person responsible); the page says which ones are missing.
 
@@ -624,7 +630,7 @@ A directorate wants the head of the directorate, the legal adviser and the direc
 | Reports (view, print) | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
 | Users, structure, settings, calendar, import | ✔ | | | | | |
 
-The exact rules also depend on the unit tree and the approval lists. An administrator can always act.
+The exact rules also depend on the unit tree and the approval lists. An administrator can always act, except submitting outside the submission dates, which nobody can.
 
 ---
 
@@ -640,7 +646,7 @@ The exact rules also depend on the unit tree and the approval lists. An administ
 
 **I cannot verify this figure.** You entered it yourself; someone else must verify it.
 
-**I cannot add an activity to this year.** New activities go into the current year (until your directorate finalizes) or the next year only. Switch the year at the top. An approved activity of an earlier year can still be revised.
+**I cannot add an activity to this year.** New activities go into the current year (until your directorate finalizes) or the next year only. *All activities* opens on the plan being prepared; if the label says another year, click **Back to** that year. An approved activity of an earlier year can still be revised.
 
 **I cannot approve: it says the plan is not complete.** The final approval waits until every activity of the directorate has been submitted; certifying does not. Ask the unit to submit (or delete) its drafts; *Waiting for you* names the directorate and how many activities are left.
 
@@ -654,7 +660,7 @@ The exact rules also depend on the unit tree and the approval lists. An administ
 
 **The approver is away.** Ask the director to appoint an interim (6.3).
 
-**The pages show text in the wrong language.** Use the EN / PT / TET buttons at the top.
+**The pages show text in the wrong language.** Click your name at the top right and choose EN / PT / TET under *Language*.
 
 ---
 

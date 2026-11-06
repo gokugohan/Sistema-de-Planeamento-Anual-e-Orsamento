@@ -16,7 +16,7 @@ use Livewire\Volt\Volt;
 use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
-/** The annual plan may be created, edited and submitted only inside its window; no window means open; administrators always can. */
+/** The annual plan is submitted only inside its window, by everybody, administrators included; without dates activities stay drafts. */
 #[Group('office')]
 class PlanSubmissionWindowTest extends TestCase
 {
@@ -56,22 +56,76 @@ class PlanSubmissionWindowTest extends TestCase
         ReportingWindow::create(['fiscal_year' => 2027, 'period_type' => 'plan', 'period' => 1, 'opens_on' => $from, 'closes_on' => $to]);
     }
 
-    public function test_without_a_window_the_planner_submits(): void
+    public function test_where_the_rule_is_off_the_planner_submits_without_a_window(): void
     {
+        config(['paa.submission_needs_dates' => false]); // as the other automated tests run
         $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()));
     }
 
-    public function test_outside_the_window_the_planner_cannot_submit_but_an_administrator_can(): void
+    public function test_without_submission_dates_the_planner_prepares_but_does_not_submit(): void
+    {
+        config(['paa.submission_needs_dates' => true]);
+        $admin = User::factory()->create();
+        $admin->assignRole('Admin');
+
+        $this->assertNull(app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()), 'no dates: no submission');
+        $this->assertNull(app(ActivityWorkflow::class)->next($admin, $this->draft->fresh()), 'nor does an administrator: the dates hold for everybody');
+
+        // drafts are still prepared: the form saves
+        $this->actingAs($this->planner);
+        Volt::test('pages.activities.activity-form', ['activity' => $this->draft])
+            ->set('description', 'Prepared before the dates')->call('save')->assertNotDispatched('toast');
+
+        // the activity says why, and the dashboard tells the planner and asks the administrator for the dates
+        $this->get(route('activities.show', $this->draft))->assertOk()
+            ->assertSee('Submission is closed')->assertSee('Submission of the 2027 plan has no dates yet');
+        $this->assertNotEmpty(collect(app(\App\Services\CalendarAlerts::class)->for($this->planner, 2027))->filter(fn ($a) => str_contains($a['text'], 'has no dates yet')));
+        $this->assertNotEmpty(collect(app(\App\Services\CalendarAlerts::class)->for($admin, 2027))->filter(fn ($a) => str_contains($a['text'], 'Set the dates in the Calendar')));
+
+        $this->window('2026-10-01', '2026-10-31');
+        $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()), 'with dates, inside them, it works');
+    }
+
+    public function test_testing_mode_needs_no_submission_dates(): void
+    {
+        config(['paa.submission_needs_dates' => true]);
+        \App\Models\SystemSetting::set('enable_paa_testing_mode', true, 'boolean');
+
+        $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()));
+    }
+
+    public function test_the_calendar_fills_the_reporting_dates_from_one_rule_and_approval_dates_cover_finalizing(): void
+    {
+        $admin = User::factory()->create();
+        $admin->assignRole('Admin');
+        $page = Volt::actingAs($admin)->test('pages.management.reporting-windows')->set('year', 2027);
+
+        $page->set('monthDays', 10)->set('quarterDays', 15)->call('fillReports')->assertHasNoErrors();
+        $this->assertSame(16, ReportingWindow::where('fiscal_year', 2027)->whereIn('period_type', ['month', 'quarter'])->count());
+        $feb = ReportingWindow::where(['fiscal_year' => 2027, 'period_type' => 'month', 'period' => 2])->firstOrFail();
+        $this->assertSame(['2027-02-01', '2027-03-10'], [$feb->opens_on->toDateString(), $feb->closes_on->toDateString()], 'open from the first day, due 10 days after the month');
+        $q4 = ReportingWindow::where(['fiscal_year' => 2027, 'period_type' => 'quarter', 'period' => 4])->firstOrFail();
+        $this->assertSame(['2027-10-01', '2028-01-15'], [$q4->opens_on->toDateString(), $q4->closes_on->toDateString()]);
+
+        $page->set('dates.approval_1.opens', '2027-01-01')->set('dates.approval_1.closes', '2027-02-28')->call('saveStep', 'approval_1')->assertHasNoErrors();
+        $this->assertSame(2, ReportingWindow::where('fiscal_year', 2027)->whereIn('period_type', ['approval', 'finalize'])->count(), 'approving the plan finalizes it: same dates');
+
+        $page->call('clearReports');
+        $this->assertSame(0, ReportingWindow::where('fiscal_year', 2027)->whereIn('period_type', ['month', 'quarter'])->count());
+    }
+
+    public function test_outside_the_window_nobody_submits_not_even_an_administrator(): void
     {
         $this->window('2026-11-01', '2026-11-30'); // not open yet
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
 
         $this->assertNull(app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()));
-        $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($admin, $this->draft->fresh()));
+        $this->assertNull(app(ActivityWorkflow::class)->next($admin, $this->draft->fresh()), 'the dates hold for administrators too');
 
         ReportingWindow::query()->update(['opens_on' => '2026-10-01', 'closes_on' => '2026-10-31']);
         $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($this->planner, $this->draft->fresh()), 'inside the window it works');
+        $this->assertSame(Activity::STATUS_SUBMITTED, app(ActivityWorkflow::class)->next($admin, $this->draft->fresh()), 'for an administrator too');
     }
 
     public function test_the_form_refuses_to_save_outside_the_window_and_says_why(): void
@@ -97,7 +151,7 @@ class PlanSubmissionWindowTest extends TestCase
         $admin->assignRole('Admin');
 
         Volt::actingAs($admin)->test('pages.management.reporting-windows')
-            ->set('periodType', 'plan')->set('opensOn', '2026-10-01')->set('closesOn', '2026-10-31')->call('save')->assertHasNoErrors();
+            ->set('dates.plan_1.opens', '2026-10-01')->set('dates.plan_1.closes', '2026-10-31')->call('saveStep', 'plan_1')->assertHasNoErrors();
 
         $w = ReportingWindow::where('period_type', 'plan')->firstOrFail();
         $this->assertSame(1, (int) $w->period);

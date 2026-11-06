@@ -76,7 +76,7 @@ class ReportingCalendarTest extends TestCase
         $user = User::factory()->create(['directorate_id' => $this->unit->id]);
         $user->assignRole('Director');
         $this->window('month', 9, '2026-09-01', '2026-09-30');
-        session(['fiscal_year' => 2026]);
+        \App\Support\FiscalYear::pin(2026);
 
         $page = Volt::actingAs($user)->test('pages.monitoring.report-execution');
 

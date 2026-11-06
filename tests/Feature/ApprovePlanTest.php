@@ -88,7 +88,8 @@ class ApprovePlanTest extends TestCase
     public function test_waiting_for_you_offers_the_plan_to_its_head_and_approves_it(): void
     {
         [$root, $head] = $this->directorateAt(Activity::STATUS_VALIDATED);
-        $this->actingAs($head)->withSession(['fiscal_year' => 2027]);
+        \App\Support\FiscalYear::pin(2027);
+        $this->actingAs($head);
 
         $this->get(route('approvals.index'))->assertOk()->assertSee('Approve the plan')->assertSee($root->code);
         Volt::test('pages.planning.approve-plan', ['year' => 2027])->call('approve', $root->id)->assertDispatched('toast');

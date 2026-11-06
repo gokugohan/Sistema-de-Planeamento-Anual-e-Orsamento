@@ -12,9 +12,6 @@ new class extends Component {
     public $systemOwner;
     public string $institutionLevel = 'ministry';
     public string $reportRecipient = '';
-    public bool $parentValidation = true;
-    public bool $budgetConfirmation = false;
-    public string $segregation = 'off';
     public $implementedBy;
     public bool $emailNotifications = false;
 
@@ -39,10 +36,6 @@ new class extends Component {
         $this->systemOwner         = SystemSetting::get('system_owner', '');
         $this->institutionLevel    = \App\Support\Institution::level();
         $this->reportRecipient     = (string) SystemSetting::get('report_recipient', '');
-        $rules                     = \App\Support\ApprovalRules::current();
-        $this->parentValidation    = $rules->parentValidation;
-        $this->budgetConfirmation  = $rules->budgetConfirmation;
-        $this->segregation         = $rules->segregation;
         $this->implementedBy       = SystemSetting::get('implemented_by', '');
 
         $this->emailNotifications     = \App\Support\EmailNotifications::enabled();
@@ -60,23 +53,11 @@ new class extends Component {
         }
     }
 
-    /** Choosing a level starts from that level's preset; the two rules below it can then be adjusted. */
-    public function updatedInstitutionLevel($level): void
-    {
-        $preset = \App\Support\ApprovalRules::preset($level);
-        $this->parentValidation = $preset->parentValidation;
-        $this->budgetConfirmation = $preset->budgetConfirmation;
-        $this->segregation = $preset->segregation;
-    }
-
-    /** A picture is chosen: check it before it is shown. */
+    /**
+     * A picture is chosen: it is checked and becomes the logo and the browser icon at once. The page is loaded again so
+     * that the menu, and the icon in the browser tab, show it straight away.
+     */
     public function updatedLogoUpload(): void
-    {
-        $this->validate(['logoUpload' => ['image', 'mimes:png,jpg,jpeg,webp', 'max:2048', 'dimensions:min_width=32,min_height=32']]);
-    }
-
-    /** The chosen picture becomes the logo and the browser icon. */
-    public function saveLogo(): void
     {
         abort_unless(auth()->user()?->isAdministrator(), 403);
         $this->validate(['logoUpload' => ['required', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2048', 'dimensions:min_width=32,min_height=32']]);
@@ -89,15 +70,18 @@ new class extends Component {
             return;
         }
         $this->reset('logoUpload');
-        $this->dispatch('toast', message: __('Logo updated.'), type: 'success');
+        session()->flash('success', __('Logo updated.'));
+        $this->redirect(route('management.settings').'#logo');
     }
 
+    /** Back to the application's own logo and icon. */
     public function removeLogo(): void
     {
         abort_unless(auth()->user()?->isAdministrator(), 403);
         \App\Support\Branding::clear();
         $this->reset('logoUpload');
-        $this->dispatch('toast', message: __('Logo removed.'), type: 'success');
+        session()->flash('success', __('Logo removed.'));
+        $this->redirect(route('management.settings').'#logo');
     }
 
     public function saveSettings()
@@ -107,9 +91,6 @@ new class extends Component {
             'systemOwner'           => 'nullable|string|max:255',
             'institutionLevel'      => 'required|in:ministry,subordinate',
             'reportRecipient'       => 'nullable|string|max:255',
-            'parentValidation'      => 'boolean',
-            'budgetConfirmation'    => 'boolean',
-            'segregation'           => 'in:'.implode(',', \App\Support\ApprovalRules::SEGREGATION_MODES),
             'implementedBy'         => 'nullable|string|max:255',
             'emailNotifications'    => 'boolean',
             'enableTestMode'        => 'boolean',
@@ -118,7 +99,6 @@ new class extends Component {
         SystemSetting::set('system_owner',         $this->systemOwner,         'string', 'Copyright / footer owner name');
         SystemSetting::set('institution_level',    $this->institutionLevel,    'string', 'ministry or subordinate (directorate / gabinete inside a ministry)');
         SystemSetting::set('report_recipient',     trim($this->reportRecipient), 'string', 'Who receives the approved plan when the institution is not a ministry');
-        (new \App\Support\ApprovalRules((bool) $this->parentValidation, (bool) $this->budgetConfirmation, $this->segregation))->save($this->institutionLevel);
         SystemSetting::set('implemented_by',       $this->implementedBy,       'string', 'Implementing partner / vendor name');
 
         SystemSetting::set(\App\Support\EmailNotifications::KEY, (bool) $this->emailNotifications, 'boolean', 'Also e-mail every in-app notification (queued) to people who have not opted out');
@@ -331,12 +311,10 @@ new class extends Component {
                     </div>
                 </x-slot>
                     <div>
-                        @php $currentLogo = \App\Support\Branding::logoUrl(); @endphp
+                        @php $currentLogo = \App\Support\Branding::logoUrl(); $ownLogo = \App\Support\Branding::hasOwnLogo(); @endphp
                         <div class="flex flex-wrap items-start gap-6">
                             <div class="flex h-28 w-28 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-50 p-2">
-                                @if($logoUpload && ! $errors->has('logoUpload'))
-                                    <img src="{{ $logoUpload->temporaryUrl() }}" alt="{{ __('The new logo') }}" class="max-h-full max-w-full object-contain">
-                                @elseif($currentLogo)
+                                @if($currentLogo)
                                     <img src="{{ $currentLogo }}" alt="{{ __('The current logo') }}" class="max-h-full max-w-full object-contain">
                                 @else
                                     <span class="text-center text-xs text-zinc-500">{{ __('No logo') }}</span>
@@ -347,18 +325,18 @@ new class extends Component {
                                     <x-input-label for="logoUpload" :value="__('Logo of the institution')" class="field-label" />
                                     <input id="logoUpload" type="file" wire:model="logoUpload" accept="image/png,image/jpeg,image/webp"
                                         class="mt-1 block w-full text-sm text-zinc-600 file:mr-4 file:rounded-md file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-indigo-700 hover:file:bg-indigo-100">
-                                    <p class="mt-1 text-xs text-zinc-500">{{ __('PNG, JPG or WebP, up to 2 MB, at least 32 pixels. It is shown in the menu and on the sign-in page, and a browser icon (favicon) is made from it.') }}</p>
-                                    <div wire:loading wire:target="logoUpload" class="mt-1 text-xs text-zinc-500">{{ __('Uploading...') }}</div>
+                                    <p class="mt-1 text-xs text-zinc-500">{{ __('PNG, JPG or WebP, up to 2 MB, at least 32 pixels. It is used as soon as it is chosen: in the menu, on the sign-in page, and as the browser icon (favicon).') }}</p>
+                                    <div wire:loading wire:target="logoUpload" class="mt-1 text-xs font-medium text-indigo-700">{{ __('Uploading...') }}</div>
                                     <x-input-error :messages="$errors->get('logoUpload')" />
+                                    @unless($ownLogo)
+                                        <p class="mt-2 text-xs text-zinc-500">{{ __('Shown now: the application\'s own logo, until the institution chooses its own.') }}</p>
+                                    @endunless
                                 </div>
-                                <div class="flex flex-wrap gap-3">
-                                    @if($logoUpload && ! $errors->has('logoUpload'))
-                                        <x-ui.button type="button" wire:click="saveLogo">{{ __('Use this logo') }}</x-ui.button>
-                                    @endif
-                                    @if($currentLogo)
-                                        <x-ui.button type="button" variant="secondary" shadow="none" wire:click="removeLogo" wire:confirm="{{ __('Remove the logo?') }}">{{ __('Remove logo') }}</x-ui.button>
-                                    @endif
-                                </div>
+                                @if($ownLogo)
+                                    <div class="flex flex-wrap gap-3">
+                                        <x-ui.button type="button" variant="secondary" shadow="none" wire:click="removeLogo" wire:confirm="{{ __('Remove the logo of the institution? The application\'s own logo is shown again.') }}">{{ __('Remove logo') }}</x-ui.button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -407,32 +385,11 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <!-- Approval chain: starts from the preset of the level, adjustable -->
-                    <div class="pt-8 mt-8 border-t border-zinc-100">
-                        <p class="text-xs font-semibold text-zinc-400 mb-5 flex items-center gap-2">
-                            <span class="w-5 h-px bg-zinc-200 block"></span>{{ __('Approval chain') }}
-                        </p>
-                        <div class="space-y-4">
-                            <p class="text-sm text-zinc-600">{{ __('The final approval is given by the head of the directorate (or the people named for it in the approval lists), for the plans of their own directorate.') }}</p>
-                            <label class="flex items-center gap-3 text-sm text-zinc-700">
-                                <input type="checkbox" wire:model="parentValidation" class="rounded border-zinc-300 text-indigo-600">
-                                {{ __('The parent director validates sub-units first') }}
-                            </label>
-                            <label class="flex items-center gap-3 text-sm text-zinc-700">
-                                <input type="checkbox" wire:model="budgetConfirmation" class="rounded border-zinc-300 text-indigo-600">
-                                {{ __('A finance officer confirms the budget of an activity before it is certified') }}
-                            </label>
-                            <div class="space-y-1">
-                                <label for="segregation" class="text-sm text-zinc-700">{{ __('May the person who prepared an activity also certify or approve it?') }}</label>
-                                <select id="segregation" wire:model="segregation" class="flux-input">
-                                    <option value="off">{{ __('Yes, without any mark') }}</option>
-                                    <option value="flag">{{ __('Yes, but mark it in the record') }}</option>
-                                    <option value="block">{{ __('No (an administrator may, and it is marked)') }}</option>
-                                </select>
-                            </div>
-                            <p class="text-xs text-zinc-500">{{ __('Changing these rules applies from now on; activities already in the chain continue under the new rules.') }}</p>
-                        </div>
-                    </div>
+                    <!-- The approval rules are with the other rules of the cycle -->
+                    <p class="pt-6 mt-6 border-t border-zinc-100 text-sm text-zinc-600">
+                        {{ __('The final approval is given by the head of the directorate, for the plans of their own directorate.') }}
+                        <a href="{{ route('management.optional-rules') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('The approval rules are in Optional rules.') }}</a>
+                    </p>
 
 
                 </div>

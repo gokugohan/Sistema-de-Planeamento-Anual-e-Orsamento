@@ -32,7 +32,7 @@ class ReportingWindowsTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        session(['fiscal_year' => 2026]);
+        \App\Support\FiscalYear::pin(2026);
 
         $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('lineItems.adjustedBudget')
@@ -111,9 +111,13 @@ class ReportingWindowsTest extends TestCase
         $admin->assignRole('Admin');
         $this->actingAs($admin)->get(route('management.reporting-windows'))->assertOk()->assertSee('Calendar');
 
-        Volt::actingAs($admin)->test('pages.management.reporting-windows')
-            ->set('periodType', 'month')->set('period', 10)->set('opensOn', '2026-10-05')->set('closesOn', '2026-10-01')->call('save')->assertHasErrors('closesOn')
-            ->set('closesOn', '2026-10-20')->call('save')->assertHasNoErrors();
-        $this->assertSame(1, ReportingWindow::where('period', 10)->count());
+        $page = Volt::actingAs($admin)->test('pages.management.reporting-windows');
+        $page->set('dates.month_10.opens', '2026-10-05')->set('dates.month_10.closes', '2026-10-01')->call('saveStep', 'month_10')->assertHasErrors('dates.month_10.closes')
+            ->set('dates.month_10.closes', '2026-10-20')->call('saveStep', 'month_10')->assertHasNoErrors();
+        $this->assertSame(1, ReportingWindow::where(['period_type' => 'month', 'period' => 10])->count());
+
+        // emptying both dates removes them
+        $page->set('dates.month_10.opens', '')->set('dates.month_10.closes', '')->call('saveStep', 'month_10');
+        $this->assertSame(0, ReportingWindow::where(['period_type' => 'month', 'period' => 10])->count());
     }
 }

@@ -38,7 +38,7 @@ class UnitWorkspaceTest extends TestCase
         $this->dn = Directorate::create(['code' => 'DNTT', 'name' => 'Terrestres', 'type' => 'National Directorate', 'parent_id' => $this->dg->id, 'active' => true]);
         $this->other = Directorate::create(['code' => 'DGC', 'name' => 'Comunicações', 'type' => 'General Directorate', 'active' => true]);
         $this->program = Program::create(['fiscal_year' => 2027, 'oge_code' => 'P1', 'name' => 'Transportes']);
-        session(['fiscal_year' => 2027]);
+        \App\Support\FiscalYear::pin(2027);
     }
 
     private function user(string $role, ?Directorate $unit = null): User

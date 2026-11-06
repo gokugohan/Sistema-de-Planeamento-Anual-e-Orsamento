@@ -30,7 +30,8 @@ class ReportExecutionPageTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        session(['fiscal_year' => 2026, 'locale' => 'en']);
+        \App\Support\FiscalYear::pin(2026);
+        session(['locale' => 'en']);
 
         // an activity of the unit director's unit, with a distributed line and an indicator, cleared for the quarter
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('indicators')->whereHas('lineItems.adjustedBudget')->firstOrFail();

@@ -90,6 +90,10 @@ class MtcBudgetSeeder extends Seeder
                     $this->advanceHalfway($year);
                 }
                 $this->approveVersions($year);
+                // a plan still in the cycle can be submitted: its submission dates run around today
+                if ($this->stateOf($year) !== 'approved' && \App\Services\PlanningWindow::yearAllowed($year)) {
+                    MtcCalendarSeeder::seedSubmission($year, $registry);
+                }
                 // Spending and progress up to today (none for a year that has not started), for the years whose plan
                 // is loaded approved (a plan still in the cycle is reported by the people practicing with it)
                 if ($this->stateOf($year) === 'approved') {

@@ -95,7 +95,8 @@ class PlanningYearsAndSampleStatesTest extends TestCase
         // 2025 has a plan, so it can be chosen, but it takes no new activities; testing mode lifts that and says so
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
-        $this->actingAs($admin)->withSession(['fiscal_year' => 2025]);
+        \App\Support\FiscalYear::pin(2025);
+        $this->actingAs($admin);
         $this->get(route('activities.create'))->assertOk()->assertSee('2025 cannot be planned')->assertSee('2026 or 2027');
         SystemSetting::set('enable_paa_testing_mode', true, 'boolean');
         $this->get(route('activities.create'))->assertOk()->assertDontSee('cannot be planned')->assertSee('Testing mode is on:');

@@ -87,6 +87,7 @@ class ReportingDueInboxTest extends TestCase
         BudgetExecution::whereIn('line_item_id', LineItem::whereIn('activity_id', Activity::whereIn('directorate_id', $unitIds)->select('id'))->select('id'))->where('month', 9)->delete();
 
         $this->assertTrue($this->reportItems($this->director)->isNotEmpty(), 'the item still exists for the dashboard and My work');
-        $this->actingAs($this->director)->withSession(['fiscal_year' => 2026])->get(route('approvals.index'))->assertOk()->assertDontSee('Reporting due');
+        \App\Support\FiscalYear::pin(2026);
+        $this->actingAs($this->director)->get(route('approvals.index'))->assertOk()->assertDontSee('Reporting due');
     }
 }

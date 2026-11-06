@@ -46,12 +46,7 @@ new class extends Component {
 @endphp
 
 <div class="space-y-6">
-    <x-ui.page-header :title="__('Plan cycle')" :subtitle="__('Where the annual action plan stands: when it may be submitted, how far the approval has got, whether it is finalized and the reporting that follows.')">
-        <label for="pc-y" class="sr-only">{{ __('Fiscal year') }}</label>
-        <select id="pc-y" wire:model.live="year" class="flux-input !w-auto">
-            @foreach(range((int) date('Y') + 2, 2024) as $y)<option value="{{ $y }}">{{ $y }}</option>@endforeach
-        </select>
-    </x-ui.page-header>
+    <x-ui.page-header :title="__('Plan cycle')" :subtitle="__('Where the annual action plan stands: when it may be submitted, how far the approval has got, whether it is finalized and the reporting that follows.')" />
 
     {{-- the steps --}}
     <ol class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="{{ __('Steps of the plan') }}">

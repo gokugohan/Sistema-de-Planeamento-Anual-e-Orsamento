@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\DB;
  * A period with no window is open; with a window it is open from its first to its last day, and an
  * administrator can always act. Verifying is not limited by windows, only reporting is.
  *
+ * Submission is the exception: the annual plan is submitted only between its dates. Without them the units prepare
+ * their activities as drafts and submit once the administrator has set the dates (not in testing mode).
+ *
  * A period that has closed can be reopened by an administrator for one unit (and the units below it) until a date,
  * so that one department that is late does not reopen the period for everybody.
  */
@@ -113,6 +116,43 @@ class ReportingWindows
     public function planClosedReason(?User $user, int $year, ?int $unitId = null): ?string
     {
         return $this->closedReason($user, $year, self::PLAN, 1, $unitId);
+    }
+
+    /**
+     * Why this activity cannot be submitted now (null when it can): outside the submission dates, or, for the annual plan,
+     * because the submission has no dates yet. This holds for administrators too; a revision of an approved activity
+     * follows its own (optional) window.
+     */
+    public function submissionClosedReason(?User $user, Activity $activity): ?string
+    {
+        // a revision of an approved activity follows its own (optional) window
+        if ((int) $activity->version > 0) {
+            return $this->planClosedReasonFor($user, $activity);
+        }
+        // the submission dates hold for everybody, administrators included: they let a unit through by setting the dates
+        // or reopening them for that unit, which is recorded, never by going around them
+        $year = (int) $activity->fiscal_year;
+        $unit = $activity->directorate_id;
+        if ($reason = $this->closedReason(null, $year, self::PLAN, 1, $unit)) {
+            return $reason;
+        }
+        if (! $this->submissionUndated($year)) {
+            return null;
+        }
+        if ($unit && ($this->reopenedFor($year, self::PLAN, 1, $unit)
+            || AdjustmentRound::takesNewActivities($year, app(PlanningWindow::class)->rootOf((int) $unit)))) {
+            return null;
+        }
+
+        return __('Submission of the :year plan has no dates yet. Prepare your activities now; they can be submitted once the administrator sets the dates in the Calendar.', ['year' => $year]);
+    }
+
+    /** Does the year still wait for its submission dates (which submitting needs)? */
+    public function submissionUndated(int $year): bool
+    {
+        return config('paa.submission_needs_dates', true)
+            && ! \App\Models\SystemSetting::get('enable_paa_testing_mode', false)
+            && ! $this->find($year, self::PLAN, 1);
     }
 
     /**

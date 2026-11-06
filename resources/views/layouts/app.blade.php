@@ -18,6 +18,7 @@
             ? window.loadChart().then(cb)
             : window.addEventListener('app:ready', () => window.loadChart().then(cb), { once: true });
     </script>
+    <x-theme-script />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -114,6 +115,9 @@
                 @endif
 
                 <main id="main-content" tabindex="-1" class="mx-auto w-full max-w-screen-2xl p-4 md:p-6 2xl:p-10 animate-in fade-in duration-300">
+                    @if(\App\Support\FiscalYear::pageHasYear())
+                        <x-year-bar />
+                    @endif
                     @if (isset($header))
                         <div class="mb-6">
                             {{ $header }}

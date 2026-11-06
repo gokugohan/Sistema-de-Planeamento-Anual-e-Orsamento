@@ -64,16 +64,16 @@ class DashboardTest extends TestCase
         $this->assertSame($this->year, FiscalYear::current());
     }
 
-    public function test_the_year_can_be_switched_and_a_bogus_year_is_ignored(): void
+    public function test_another_year_opens_for_one_page_only_and_a_bogus_year_is_ignored(): void
     {
         $this->activity(Activity::STATUS_DRAFT, 100);
         $previous = $this->year - 1;
 
-        $this->get(route('fiscal-year.switch', $previous));
-        $this->assertSame($previous, FiscalYear::current());
+        // another year is asked for in the page's own address; nothing is kept for the other pages
+        $this->get(route('dashboard', ['year' => $previous]))->assertOk()->assertSee('The year '.$previous.' at a glance');
+        $this->get(route('dashboard'))->assertOk()->assertSee('The year '.$this->year.' at a glance');
 
-        $this->get(route('fiscal-year.switch', 1999));
-        $this->assertSame($previous, FiscalYear::current(), 'an unknown year must not change the context');
+        $this->get(route('dashboard', ['year' => 1999]))->assertOk()->assertSee('The year '.$this->year.' at a glance', false);
     }
 
     public function test_dashboard_shows_the_cycle_the_money_and_the_work(): void
@@ -111,8 +111,6 @@ class DashboardTest extends TestCase
 
     public function test_empty_year_explains_what_to_do(): void
     {
-        $this->get(route('fiscal-year.switch', $this->year));
-
         Volt::test('pages.dashboard.summary')
             ->assertSee('There is no plan for '.FiscalYear::current().' yet')
             ->assertSee('How the year works');

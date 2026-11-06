@@ -66,10 +66,14 @@ class OptionalRulesTest extends TestCase
         $this->get(route('management.optional-rules'))->assertForbidden();
 
         Volt::actingAs($this->admin())->test('pages.management.optional-rules')
-            ->set('correctiveActions', true)->set('requiredFields', ['objective'])->set('guidance', 'Submit by 30 June.')->call('save')->assertHasNoErrors();
+            ->set('correctiveActions', true)->set('requiredFields', ['objective'])->set('segregation', 'flag')->call('save')->assertHasNoErrors();
 
         $this->assertTrue(PlanOptions::current()->correctiveActions);
         $this->assertSame(['objective'], PlanOptions::current()->requiredFields);
+        $this->assertSame('flag', \App\Support\ApprovalRules::current()->segregation, 'the approval rules are saved here too');
+
+        // the guidance for preparing the plan is set with the planning dates, in the Calendar
+        Volt::actingAs($this->admin())->test('pages.management.reporting-windows')->set('guidance', 'Submit by 30 June.')->call('saveGuidance')->assertHasNoErrors();
         $this->assertSame('Submit by 30 June.', PlanOptions::guidance(2026));
     }
 

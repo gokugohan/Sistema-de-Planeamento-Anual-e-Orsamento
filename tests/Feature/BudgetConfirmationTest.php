@@ -124,7 +124,7 @@ class BudgetConfirmationTest extends TestCase
         $second = Activity::create(['fiscal_year' => 2027, 'program_id' => $this->activity->program_id, 'directorate_id' => $this->unit->id, 'description' => 'Second', 'quarter' => 1, 'priority' => 'Alta',
             'planned_start' => '2027-01-01', 'planned_end' => '2027-12-31', 'status' => Activity::STATUS_SUBMITTED]);
         $second->lineItems()->create(['code' => 'B-2', 'economic_classification_id' => EconomicClassification::firstOrFail()->id, 'estimated_amount' => 50]);
-        session(['fiscal_year' => 2027]);
+        \App\Support\FiscalYear::pin(2027);
 
         $page = Volt::actingAs($finance)->test('pages.approvals.budget-review')->assertSee('Budget test activity');
         $page->set("justification.{$this->activity->id}", 'Costing checked')->call('confirm', $this->activity->id);
@@ -139,7 +139,7 @@ class BudgetConfirmationTest extends TestCase
     public function test_the_page_and_the_inbox_are_for_finance_and_say_when_it_is_off(): void
     {
         $finance = $this->finance();
-        session(['fiscal_year' => 2027]);
+        \App\Support\FiscalYear::pin(2027);
 
         $this->actingAs($this->director())->get(route('approvals.budget'))->assertForbidden();
         $this->actingAs($finance)->get(route('approvals.budget'))->assertOk()->assertSee('not switched on');

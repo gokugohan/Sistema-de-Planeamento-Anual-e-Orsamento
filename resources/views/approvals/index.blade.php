@@ -1,7 +1,7 @@
 @php
     $user = auth()->user();
     $year = \App\Support\FiscalYear::current();
-    $items = collect(app(\App\Services\ApprovalInbox::class)->items($user, $year))->groupBy('group');
+    $items = collect(app(\App\Services\ApprovalInbox::class)->items($user, \App\Support\FiscalYear::isUnusual() ? $year : null))->groupBy('group');
     // only decisions and verifications belong here; drafts and reporting due are in My work
     $groups = [
         'decide' => [__('To decide'), __('Activities waiting for you: first certified by the unit, then given the final approval.'), __('Decide')],

@@ -405,7 +405,7 @@ new class extends Component {
                     </p>
                 @endif
                 <div class="flex flex-wrap gap-2">
-                    <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>
+                    <x-ui.button href="{{ route('activities.create', ['year' => $nextYear]) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>
                     <x-ui.button variant="secondary" shadow="none" href="{{ route('activities.index') }}" wire:navigate>{{ __('Back to activities') }}</x-ui.button>
                 </div>
             </div>

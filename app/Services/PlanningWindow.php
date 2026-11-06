@@ -55,6 +55,14 @@ class PlanningWindow
         return self::$parents ??= Directorate::pluck('parent_id', 'id')->all();
     }
 
+    /** The unit directly above this one, from the tree kept in memory. */
+    public function parentOf(int $unitId): ?int
+    {
+        $parent = $this->parents()[$unitId] ?? null;
+
+        return $parent ? (int) $parent : null;
+    }
+
     /** The top-level unit a unit belongs to (itself when it has no parent). */
     public function rootOf(int $unitId): int
     {

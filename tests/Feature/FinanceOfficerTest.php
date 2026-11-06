@@ -31,7 +31,7 @@ class FinanceOfficerTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        session(['fiscal_year' => 2026]);
+        \App\Support\FiscalYear::pin(2026);
 
         $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->activity = Activity::where('fiscal_year', 2026)->where('status', 'Approved')->whereHas('lineItems.adjustedBudget')->whereHas('indicators')

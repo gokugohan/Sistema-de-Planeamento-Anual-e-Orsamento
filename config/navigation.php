@@ -134,7 +134,6 @@ return [
         'planning.paa-approval' => ['approvals.index', 'Activities to decide'],
         'monitoring.approval' => ['approvals.index', 'Verify progress'],
         'notifications.index' => [null, 'Notifications', 'Overview'],
-        'manual' => [null, 'Manual', 'Overview'], // opened from the menu under the person's name
         'profile' => [null, 'Profile', 'Overview'],
     ],
 ];

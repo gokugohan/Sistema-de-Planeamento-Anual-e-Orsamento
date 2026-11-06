@@ -100,7 +100,7 @@ class ApprovalRulesTest extends TestCase
         $this->assertSame(Activity::STATUS_VALIDATED, $workflow->next($unitDirector, $activity));
     }
 
-    public function test_settings_save_the_two_options_and_show_no_choice_of_final_approver(): void
+    public function test_the_rules_page_saves_the_approval_rules_and_settings_points_to_it(): void
     {
         $this->seed(RolesAndPermissionsSeeder::class);
         $admin = User::factory()->create();
@@ -110,8 +110,11 @@ class ApprovalRulesTest extends TestCase
         app()->setLocale('en');
         Volt::test('pages.management.settings')
             ->assertSee('The final approval is given by the head of the directorate')
+            ->assertSee('The approval rules are in Optional rules.');
+        Volt::test('pages.management.optional-rules')
+            ->assertSee('Does the head of the unit above validate before the final approval?')
             ->set('parentValidation', false)
-            ->call('saveSettings')
+            ->call('save')
             ->assertHasNoErrors();
 
         $this->assertFalse(ApprovalRules::current()->parentValidation);

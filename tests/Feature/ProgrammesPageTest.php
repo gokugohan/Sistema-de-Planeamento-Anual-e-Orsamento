@@ -31,7 +31,7 @@ class ProgrammesPageTest extends TestCase
         parent::setUp();
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        session(['fiscal_year' => 2027]);
+        \App\Support\FiscalYear::pin(2027);
         $this->program = Program::create(['oge_code' => 'ZZ1', 'name' => 'Programme of the other directorate', 'fiscal_year' => 2027]);
         $this->sub = Subprogram::create(['program_id' => $this->program->id, 'code' => 'ZZ1.1', 'name' => 'Sub of the other directorate']);
         $other = Directorate::create(['code' => 'XOTHER', 'name' => 'Other Directorate', 'type' => 'National Directorate', 'active' => true]);

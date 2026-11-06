@@ -39,6 +39,9 @@ new class extends Component {
             'canEdit'                 => $user->can('update', $this->activity),
             'canDelete'               => $user->can('delete', $this->activity),
             'nextStatus'              => $workflow->next($user, $this->activity),
+            // why the person who would submit cannot, now: the calendar of the submission
+            'submitClosed'            => in_array($this->activity->status, [\App\Models\Activity::STATUS_DRAFT, \App\Models\Activity::STATUS_REJECTED], true) && $user->can('submit_paa')
+                ? app(\App\Services\ReportingWindows::class)->submissionClosedReason($user, $this->activity) : null,
             'reach'                   => $workflow->reach($user, $this->activity),
             'canReturn'               => $workflow->canReturn($user, $this->activity),
             'canApprove'              => $workflow->canApprove($user, $this->activity),
@@ -941,6 +944,12 @@ new class extends Component {
                 </div>
 
                 <div class="space-y-2">
+                    @if($submitClosed)
+                        <div class="rounded-lg bg-amber-50 ring-1 ring-amber-200 p-3 text-xs text-amber-800" role="status">
+                            <p class="font-semibold mb-1">{{ __('Submission is closed') }}</p>
+                            <p>{{ $submitClosed }}</p>
+                        </div>
+                    @endif
                     {{-- the final approval has its own button below (with a note for the record), so it is not offered twice --}}
                     @if($nextStatus && $nextStatus !== App\Models\Activity::STATUS_APPROVED)
                         @if($nextStatus === App\Models\Activity::STATUS_SUBMITTED && $problems)

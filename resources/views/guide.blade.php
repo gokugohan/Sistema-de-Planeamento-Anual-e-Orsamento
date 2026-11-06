@@ -12,7 +12,7 @@
                 'when' => __('Before planning starts.'), 'where' => __('Administration → Structure'), 'url' => route('management.entities')],
             ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Give every unit its people'), 'how' => __('A technical officer who prepares and a director who certifies. A unit that nobody directs cannot get its activities approved.'),
                 'when' => __('Before planning starts, and whenever people change.'), 'where' => __('Administration → System Users'), 'url' => route('management.users')],
-            ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Set the calendar'), 'how' => __('The dates for submitting, approving and finalizing the plan, and for reporting each month and quarter. A unit that is late can be given more time.'),
+            ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Set the calendar'), 'how' => __('The submission dates of the plan (the units submit only between them), and if you wish the dates for approving and for reporting each month and quarter. A unit that is late can be given more time.'),
                 'when' => __('Before each step opens.'), 'where' => __('System → Calendar'), 'url' => route('management.reporting-windows')],
             $options->budgetDecisions ? ['who' => ['Admin'], 'whoText' => __('Administrator (the planning office)'), 'what' => __('Record the budget decisions'), 'how' => __('What the budget review committee, the State Budget law or a supplementary budget decided, by category; then open an adjustment round if the plan has to follow.'),
                 'when' => __('After each decision.'), 'where' => __('Plan → Budget decisions'), 'url' => route('planning.budget-decisions')] : null,

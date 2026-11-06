@@ -27,7 +27,15 @@ class ApprovalInbox
     /** @return array<int, array{group: string, count: int, text: string, url: string, tone: string}> */
     public function items(User $user, ?int $year = null): array
     {
-        $year ??= FiscalYear::current();
+        // Two plans are alive at once: the one being prepared (its decisions) and the one being carried out (its reports,
+        // and revisions of its approved activities). Without a year asked for, the inbox covers both.
+        if ($year !== null || FiscalYear::pinned() !== null) {
+            $planYear = $reportYear = $year ?? FiscalYear::current();
+        } else {
+            [$planYear, $reportYear] = [FiscalYear::planning(), FiscalYear::execution()];
+        }
+        $years = array_values(array_unique([$planYear, $reportYear]));
+        $year = $planYear;
         $items = [];
         $add = function (string $group, int $count, string $text, string $url, string $tone) use (&$items) {
             if ($count > 0) {
@@ -42,7 +50,9 @@ class ApprovalInbox
             $unit = $user->directorate_id ? Directorate::find($user->directorate_id) : null;
             $scope = $unit ? $unit->getSelfAndDescendantIds() : [0];
         }
-        $activities = fn () => Activity::query()->where('fiscal_year', $year)->when($scope !== null, fn ($q) => $q->whereIn('directorate_id', $scope));
+        $activities = fn () => Activity::query()->whereIn('fiscal_year', $years)->when($scope !== null, fn ($q) => $q->whereIn('directorate_id', $scope));
+        // what is reported on: the plan being carried out
+        $reported = fn () => Activity::query()->where('fiscal_year', $reportYear)->when($scope !== null, fn ($q) => $q->whereIn('directorate_id', $scope));
 
         // ── activities to decide: first to be certified, then to be given the final approval; each opens its own queue
         if ($approver || $user->isDirector()) {
@@ -55,7 +65,7 @@ class ApprovalInbox
         // ── finance: submitted activities whose budget is waiting for confirmation (where the institution asks for it)
         if (ApprovalRules::current()->budgetConfirmation && ($user->isAdministrator() || $user->can('confirm_budget'))) {
             $policy = app(ActivityPolicy::class);
-            $n = Activity::where('fiscal_year', $year)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')
+            $n = Activity::whereIn('fiscal_year', $years)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')
                 ->limit(300)->get(['id', 'directorate_id'])->filter(fn ($a) => $policy->inScope($user, $a->directorate_id))->count();
             $add('decide', $n, trans_choice(':n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed', $n, ['n' => $n]), route('approvals.budget'), 'amber');
         }
@@ -65,7 +75,7 @@ class ApprovalInbox
             $unitIds = app(ApproverLists::class)->unitIdsOf($user);
             if ($unitIds) {
                 $workflow = app(ActivityWorkflow::class);
-                $waiting = Activity::where('fiscal_year', $year)->whereIn('directorate_id', $unitIds)
+                $waiting = Activity::whereIn('fiscal_year', $years)->whereIn('directorate_id', $unitIds)
                     ->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])
                     ->with('directorate.parent')->limit(300)->get()
                     ->filter(fn (Activity $a) => $workflow->next($user, $a) !== null || $workflow->canApprove($user, $a))->count();
@@ -76,14 +86,14 @@ class ApprovalInbox
         // ── execution figures to verify (never your own reports)
         $mayVerifyProgress = $user->can('approve_progress_report') || $user->isDirector();
         if ($mayVerifyProgress || $user->can('verify_spending')) {
-            $activityIds = $activities()->select('id');
+            $activityIds = $reported()->select('id');
             $money = BudgetExecution::where('status', BudgetExecution::SUBMITTED)->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('line_item_id', LineItem::whereIn('activity_id', $activityIds)->select('id'))->count();
             $add('verify', $money, trans_choice(':n executed amount to verify|:n executed amounts to verify', $money, ['n' => $money]), route('monitoring.report'), 'indigo');
         }
         if ($mayVerifyProgress) {
             $progress = IndicatorProgress::where('status', 'Submitted')->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
-                ->whereIn('indicator_id', Indicator::whereIn('activity_id', $activities()->select('id'))->select('id'))->count();
+                ->whereIn('indicator_id', Indicator::whereIn('activity_id', $reported()->select('id'))->select('id'))->count();
             $add('verify', $progress, trans_choice(':n progress report to verify|:n progress reports to verify', $progress, ['n' => $progress]),
                 $user->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report'), 'indigo');
         }
@@ -102,26 +112,26 @@ class ApprovalInbox
         }
 
         // ── reporting due: the units' monthly duty, in the running year
-        if ($year === (int) now()->year && $user->can('update_indicator_progress')) {
+        if ($reportYear === (int) now()->year && $user->can('update_indicator_progress')) {
             $month = (int) now()->month;
             $last = $month - 1; // the month that has just ended is the one to have reported
             if ($last >= 1) {
-                $due = $activities()->where('version', '>', 0)->whereHas('lineItems.adjustedBudget')
+                $due = $reported()->where('version', '>', 0)->whereHas('lineItems.adjustedBudget')
                     ->whereDoesntHave('lineItems.executions', fn ($q) => $q->where('month', $last))->count();
-                $name = Carbon::create($year, $last, 1)->translatedFormat('F');
+                $name = Carbon::create($reportYear, $last, 1)->translatedFormat('F');
                 $add('report', $due, trans_choice(':n approved activity has no executed amount reported for :month|:n approved activities have no executed amount reported for :month', $due, ['n' => $due, 'month' => $name]), route('monitoring.report'), 'amber');
             }
-            foreach (ReportingWindow::where('fiscal_year', $year)->where('period_type', 'month')->whereIn('period', array_filter([$month, $last]))
+            foreach (ReportingWindow::where('fiscal_year', $reportYear)->where('period_type', 'month')->whereIn('period', array_filter([$month, $last]))
                 ->whereDate('closes_on', '>=', now()->toDateString())->whereDate('closes_on', '<=', now()->addDays(7)->toDateString())->get() as $w) {
-                $add('report', 1, __('Reporting for :month closes on :d.', ['month' => Carbon::create($year, $w->period, 1)->translatedFormat('F'), 'd' => $w->closes_on->format('d/m/Y')]), route('monitoring.report'), 'rose');
+                $add('report', 1, __('Reporting for :month closes on :d.', ['month' => Carbon::create($reportYear, $w->period, 1)->translatedFormat('F'), 'd' => $w->closes_on->format('d/m/Y')]), route('monitoring.report'), 'rose');
             }
         }
 
         // ── directors: the quarter that has just ended is theirs to compile
-        if ($year === (int) now()->year && ($user->isAdministrator() || $user->isDirector())) {
+        if ($reportYear === (int) now()->year && ($user->isAdministrator() || $user->isDirector())) {
             $ended = (int) ceil(now()->month / 3) - 1;
             if ($ended >= 1) {
-                $todo = app(QuarterCompilation::class)->activities($user, $year)
+                $todo = app(QuarterCompilation::class)->activities($user, $reportYear)
                     ->whereDoesntHave('reports', fn ($q) => $q->where('period_type', 'quarter')->where('period', $ended)->whereNotNull('compiled_at'))->count();
                 $add('report', $todo, trans_choice(':n approved activity has no compiled text for Q:q|:n approved activities have no compiled text for Q:q', $todo, ['n' => $todo, 'q' => $ended]), route('reports.compile'), 'indigo');
             }
@@ -129,7 +139,7 @@ class ApprovalInbox
 
         // ── the administrator: units that are late on the calendar and need more time
         if ($approver) {
-            $late = count(app(ReportingWindows::class)->overdue($year));
+            $late = collect($years)->sum(fn ($y) => count(app(ReportingWindows::class)->overdue($y)));
             $add('late', $late, trans_choice(':n late item on the calendar: give the unit more time|:n late items on the calendar: give the units more time', $late, ['n' => $late]), route('management.reporting-windows'), 'rose');
         }
 

@@ -28,7 +28,7 @@ new class extends Component {
     public function with(): array
     {
         $year = \App\Support\FiscalYear::current();
-        $attention = app(\App\Services\ApprovalInbox::class)->items(auth()->user(), $year); // asked once, used by two panels
+        $attention = app(\App\Services\ApprovalInbox::class)->items(auth()->user(), \App\Support\FiscalYear::isUnusual() ? $year : null); // asked once, used by two panels
         $dirs = Directorate::get(['id', 'code', 'name', 'type', 'parent_id'])->keyBy('id');
         $rootOf = fn ($id) => ($dirs[$id]->parent_id ?? null) ?: $id;
         $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name'])->keyBy('id');
@@ -317,7 +317,7 @@ new class extends Component {
                         @endif
                         <div class="mt-5 flex flex-wrap justify-center gap-2">
                             @if($suggestNext)
-                                <x-ui.button href="{{ route('fiscal-year.switch', $nextYear) }}">{{ __('Plan :year', ['year' => $nextYear]) }}</x-ui.button>
+                                <x-ui.button href="{{ route('activities.index', ['year' => $nextYear]) }}" wire:navigate>{{ __('Plan :year', ['year' => $nextYear]) }}</x-ui.button>
                             @endif
                             @if($canPlan)
                                 <x-ui.button :variant="$suggestNext ? 'secondary' : 'primary'" :shadow="$suggestNext ? 'none' : 'sm'" href="{{ route('activities.create') }}" wire:navigate>{{ __('Plan the first activity of :year', ['year' => $year]) }}</x-ui.button>
@@ -329,7 +329,7 @@ new class extends Component {
                         </div>
                     @else
                         <p class="mt-1 text-sm text-zinc-600">{{ __('No plan was recorded for :year, and it can no longer be planned: new activities go into the plan of :current or :next.', ['year' => $year, 'current' => now()->year, 'next' => $nextYear]) }}</p>
-                        <x-ui.button class="mt-5" href="{{ route('fiscal-year.switch', (int) now()->year) }}">{{ __('Go to :year', ['year' => now()->year]) }}</x-ui.button>
+                        <x-ui.button class="mt-5" href="{{ route('dashboard', ['year' => (int) now()->year]) }}" wire:navigate>{{ __('Go to :year', ['year' => now()->year]) }}</x-ui.button>
                     @endif
                 @endif
             </div>
@@ -497,10 +497,10 @@ new class extends Component {
                     const el = this.$el.querySelector('canvas');
                     if (!el || this.chart) return;
                     const L = d.labels, usd = (v) => '$ ' + Math.round(v).toLocaleString();
-                    const grid = { color: '#E4E7EC' }, tick = { color: '#667085', font: { family: 'Outfit', size: 11 } };
+                    const grid = { color: themeColor('--c-neutral-200') }, tick = { color: themeColor('--t-neutral-400'), font: { family: 'Outfit', size: 11 } };
                     const moneyAxis = { beginAtZero: true, grid, ticks: { ...tick, callback: (v) => v >= 1000000 ? '$' + +(v / 1000000).toFixed(1) + 'M' : (v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v) } };
                     const base = { responsive: true, maintainAspectRatio: false, animation: false,
-                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: '#475467', font: { family: 'Outfit', size: 11 } } },
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: themeColor('--t-neutral-600'), font: { family: 'Outfit', size: 11 } } },
                                    tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + (kind === 'status' || kind === 'quarterly' ? c.parsed.y ?? c.parsed : usd(c.parsed.y ?? c.parsed.x)) } } } };
                     const cfg = {
                         categories: () => ({ type: 'bar', data: { labels: d.categories.labels.map(l => l.length > 22 ? l.slice(0, 21) + '…' : l), datasets: [

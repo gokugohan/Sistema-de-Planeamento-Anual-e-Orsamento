@@ -18,12 +18,21 @@ class CalendarAlerts
     public function for(User $user, int $year): array
     {
         $windows = ReportingWindow::where('fiscal_year', $year)->get();
-        if ($windows->isEmpty()) {
-            return [];
-        }
         $today = now()->startOfDay();
         $alerts = [];
         $service = app(ReportingWindows::class);
+
+        // submitting the plan needs its dates: the administrator is asked to set them, the units are told to prepare meanwhile
+        if ($year === \App\Support\FiscalYear::planning() && app(PlanningWindow::class)->isOpen($year) && $service->submissionUndated($year)) { // only for the plan being prepared
+            if ($user->isAdministrator()) {
+                $alerts[] = ['tone' => 'amber', 'text' => __('Submission of the :year plan has no dates yet, so nobody can submit: the activities stay drafts. Set the dates in the Calendar.', ['year' => $year]), 'url' => route('management.reporting-windows'), 'when' => 0];
+            } elseif ($user->can('create_activities') || $user->can('submit_paa')) { // those who prepare
+                $alerts[] = ['tone' => 'amber', 'text' => __('Submission of the :year plan has no dates yet. Prepare your activities now; they can be submitted once the administrator sets the dates.', ['year' => $year]), 'url' => route('activities.index'), 'when' => 0];
+            }
+        }
+        if ($windows->isEmpty()) {
+            return $alerts;
+        }
 
         foreach ($windows as $w) {
             if (! $this->concerns($user, $w->period_type)) {

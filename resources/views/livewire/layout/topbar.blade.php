@@ -92,36 +92,10 @@ new class extends Component {
     <!-- Right Side -->
     <div class="ml-auto flex items-center gap-1 md:shrink-0">
 
-        <!-- Fiscal year: the year every page works in -->
-        <div x-data class="flex items-center gap-2 mr-2">
-            <label for="fiscal-year" class="hidden 2xl:block whitespace-nowrap text-xs font-medium text-zinc-500">{{ __('Fiscal year') }}</label>
-            <select id="fiscal-year" @change="window.location.href = $event.target.value"
-                class="h-9 pl-3 pr-8 text-sm font-semibold text-zinc-900 bg-white border border-zinc-300 rounded-md focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/25" aria-label="{{ __('Fiscal year') }}">
-                @php $fy = \App\Support\FiscalYear::current(); @endphp
-                @foreach(\App\Support\FiscalYear::available() as $year)
-                    <option value="{{ route('fiscal-year.switch', $year) }}" @selected($year === $fy)>{{ $year }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <!-- Language Switcher -->
-        <div class="hidden sm:flex items-center gap-0.5 p-1 bg-zinc-100 rounded-md">
-            @foreach(['en' => 'EN', 'pt' => 'PT', 'tet' => 'TET'] as $code => $label)
-                <a href="{{ route('lang.switch', $code) }}"
-                    class="px-2.5 py-1 text-[11px] font-medium rounded-md transition-all
-                    {{ app()->getLocale() === $code
-                        ? 'bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-950/5'
-                        : 'text-zinc-500 hover:text-zinc-700' }}">
-                    {{ $label }}
-                </a>
-            @endforeach
-        </div>
-
-        <!-- Spacer -->
-        <div class="hidden sm:block w-px h-5 bg-zinc-200 mx-2"></div>
 
         <!-- Notification Bell -->
         <livewire:layout.notification-bell />
+
 
         <!-- Settings -->
         <a href="{{ route('management.settings') }}"
@@ -169,21 +143,23 @@ new class extends Component {
                     </svg>
                     {{ __('Profile') }}
                 </a>
-                <a href="{{ route('manual') }}" wire:navigate
-                    class="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-700 hover:text-zinc-900 hover:bg-zinc-50 transition-colors rounded-lg mx-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="flex-shrink-0 text-zinc-400">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                    </svg>
-                    {{ __('Manual') }}
-                </a>
-                {{-- On a phone the language switch lives here, so the bar stays within the screen --}}
-                <div class="sm:hidden mx-1 mt-1 border-t border-zinc-100 pt-1">
+                {{-- Day, night, or as the device is set --}}
+                <div class="mx-1 mt-1 border-t border-zinc-100 pt-1" x-data="{ mode: window.currentTheme ? currentTheme() : 'light' }" @theme-changed.window="mode = $event.detail">
+                    <p class="px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{{ __('Appearance') }}</p>
+                    <div class="flex gap-1 px-2 pb-1" role="group" aria-label="{{ __('Appearance') }}">
+                        @foreach(['light' => __('Day'), 'dark' => __('Night'), 'system' => __('System')] as $value => $label)
+                            <button type="button" @click="setTheme('{{ $value }}')" :aria-pressed="(mode === '{{ $value }}').toString()"
+                                :class="mode === '{{ $value }}' ? 'bg-indigo-600 text-white' : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'"
+                                class="flex-1 rounded-md px-2 py-1.5 text-center text-xs font-medium">{{ $label }}</button>
+                        @endforeach
+                    </div>
+                </div>
+                {{-- The language, like the appearance, is chosen here --}}
+                <div class="mx-1 mt-1 border-t border-zinc-100 pt-1">
                     <p class="px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{{ __('Language') }}</p>
                     <div class="flex gap-1 px-2 pb-1">
                         @foreach(['en' => 'EN', 'pt' => 'PT', 'tet' => 'TET'] as $code => $label)
-                            <a href="{{ route('lang.switch', $code) }}" class="flex-1 rounded-md px-2 py-1.5 text-center text-xs font-medium {{ app()->getLocale() === $code ? 'bg-indigo-600 text-white' : 'bg-zinc-100 text-zinc-700' }}">{{ $label }}</a>
+                            <a href="{{ route('lang.switch', $code) }}" @if(app()->getLocale() === $code) aria-current="true" @endif class="flex-1 rounded-md px-2 py-1.5 text-center text-xs font-medium {{ app()->getLocale() === $code ? 'bg-indigo-600 text-white' : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200' }}">{{ $label }}</a>
                         @endforeach
                     </div>
                 </div>

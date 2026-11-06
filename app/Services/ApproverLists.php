@@ -22,17 +22,27 @@ class ApproverLists
     /** @var array<string, Collection> */
     private array $cache = [];
 
+    /** Which unit has a list for which step, as 'unit|step' keys; renewed whenever a list changes. @return array<string, true> */
+    private function unitsWithLists(): array
+    {
+        return \App\Support\StructureCache::remember('approver-list-units', 600, fn () => ApproverAssignment::query()->select('directorate_id', 'step')->distinct()->get()
+            ->mapWithKeys(fn ($a) => [$a->directorate_id.'|'.$a->step => true])->all());
+    }
+
     /** The unit (the one given or the nearest above it) whose list for $step applies, with its people in order. @return array{unit_id: int, people: Collection}|null */
     public function listFor(?int $unitId, string $step): ?array
     {
         $guard = 0;
         while ($unitId && $guard++ < 20) {
             $key = $unitId.'|'.$step;
-            $this->cache[$key] ??= ApproverAssignment::where(['directorate_id' => $unitId, 'step' => $step])->with('user:id,name')->orderBy('position')->orderBy('id')->get();
-            if ($this->cache[$key]->isNotEmpty()) {
-                return ['unit_id' => $unitId, 'people' => $this->cache[$key]];
+            // most units have no list: only a unit that has one is read, so a page of many activities costs no query per row
+            if (isset($this->unitsWithLists()[$key])) {
+                $this->cache[$key] ??= ApproverAssignment::where(['directorate_id' => $unitId, 'step' => $step])->with('user:id,name')->orderBy('position')->orderBy('id')->get();
+                if ($this->cache[$key]->isNotEmpty()) {
+                    return ['unit_id' => $unitId, 'people' => $this->cache[$key]];
+                }
             }
-            $unitId = Directorate::whereKey($unitId)->value('parent_id');
+            $unitId = app(PlanningWindow::class)->parentOf($unitId);
         }
 
         return null;
@@ -41,7 +51,7 @@ class ApproverLists
     /** The list of the unit above this one (its parent, or higher), for the step done by the unit above. */
     public function listAbove(?int $unitId, string $step): ?array
     {
-        return $unitId ? $this->listFor(Directorate::whereKey($unitId)->value('parent_id'), $step) : null;
+        return $unitId ? $this->listFor(app(PlanningWindow::class)->parentOf($unitId), $step) : null;
     }
 
     /** null: no list applies (the default rule decides); true/false: is this user on the list that applies? */
@@ -55,7 +65,7 @@ class ApproverLists
     public function designatedAbove(User $user, ?int $unitId, string $step): ?bool
     {
         $list = $this->listAbove($unitId, $step);
-        $parent = $unitId ? Directorate::whereKey($unitId)->value('parent_id') : null;
+        $parent = $unitId ? app(PlanningWindow::class)->parentOf($unitId) : null;
 
         return $list === null ? null : $this->onList($user, $list, $parent, $step);
     }

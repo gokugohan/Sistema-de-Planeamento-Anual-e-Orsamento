@@ -29,7 +29,8 @@ class ApprovalInboxTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        session(['fiscal_year' => 2027, 'locale' => 'en']);
+        \App\Support\FiscalYear::pin(2027);
+        session(['locale' => 'en']);
     }
 
     protected function tearDown(): void

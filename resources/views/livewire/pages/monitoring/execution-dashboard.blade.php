@@ -83,13 +83,13 @@ new class extends Component {
                 <div wire:key="q-{{ md5(json_encode($s['quarters'])) }}" class="relative h-72"
                     x-data
                     x-init="onChart(() => { const q = @js($s['quarters']); const usd = v => '$ ' + Math.round(v).toLocaleString();
-                        const tick = { color: '#667085', font: { family: 'Outfit', size: 11 } };
+                        const tick = { color: themeColor('--t-neutral-400'), font: { family: 'Outfit', size: 11 } };
                         new Chart($refs.c, { type: 'bar', data: { labels: ['Q1','Q2','Q3','Q4'], datasets: [
                             { type: 'bar', label: @js(__('Executed')), data: q.map(x => x.executed), backgroundColor: '#465FFF', borderRadius: 3, order: 2 },
                             { type: 'line', label: @js(__('Planned (cumulative)')), data: q.map(x => x.planned), borderColor: '#98A2B3', borderDash: [5,4], backgroundColor: '#98A2B3', tension: .25, order: 0 } ] },
                             options: { responsive: true, maintainAspectRatio: false, animation: false,
                                 plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, font: { family: 'Outfit', size: 11 } } }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + usd(c.parsed.y) } } },
-                                scales: { y: { beginAtZero: true, grid: { color: '#E4E7EC' }, ticks: { ...tick, callback: v => v >= 1e6 ? '$' + +(v/1e6).toFixed(1) + 'M' : (v >= 1e3 ? '$' + (v/1e3) + 'k' : '$' + v) } }, x: { grid: { display: false }, ticks: tick } } } }); })">
+                                scales: { y: { beginAtZero: true, grid: { color: themeColor('--c-neutral-200') }, ticks: { ...tick, callback: v => v >= 1e6 ? '$' + +(v/1e6).toFixed(1) + 'M' : (v >= 1e3 ? '$' + (v/1e3) + 'k' : '$' + v) } }, x: { grid: { display: false }, ticks: tick } } } }); })">
                     <canvas x-ref="c" role="img" aria-label="{{ __('Cumulative planned and executed amounts after each quarter') }}"></canvas>
                 </div>
             </x-ui.card>
@@ -97,13 +97,13 @@ new class extends Component {
             <x-ui.card :title="__('Executed and delivered, by programme')" :description="__('Percent of the approved plan amount executed, and of the targets delivered')" class="min-w-0 lg:col-span-5">
                 <div wire:key="p-{{ md5(json_encode($rows)) }}" class="relative h-72"
                     x-data
-                    x-init="onChart(() => { const r = @js($rows); const tick = { color: '#667085', font: { family: 'Outfit', size: 11 } };
+                    x-init="onChart(() => { const r = @js($rows); const tick = { color: themeColor('--t-neutral-400'), font: { family: 'Outfit', size: 11 } };
                         new Chart($refs.c, { type: 'bar', data: { labels: r.map(x => x.code), datasets: [
                             { label: @js(__('Executed')) + ' %', data: r.map(x => x.executed_pct), backgroundColor: '#465FFF', borderRadius: 3 },
                             { label: @js(__('Delivered')) + ' %', data: r.map(x => x.physical), backgroundColor: '#12B76A', borderRadius: 3 } ] },
                             options: { responsive: true, maintainAspectRatio: false, animation: false,
                                 plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, font: { family: 'Outfit', size: 11 } } }, tooltip: { callbacks: { label: c => ' ' + c.dataset.label + ': ' + (c.parsed.y ?? 0).toFixed(1) + '%' } } },
-                                scales: { y: { beginAtZero: true, max: 100, grid: { color: '#E4E7EC' }, ticks: { ...tick, callback: v => v + '%' } }, x: { grid: { display: false }, ticks: tick } } } }); })">
+                                scales: { y: { beginAtZero: true, max: 100, grid: { color: themeColor('--c-neutral-200') }, ticks: { ...tick, callback: v => v + '%' } }, x: { grid: { display: false }, ticks: tick } } } }); })">
                     <canvas x-ref="c" role="img" aria-label="{{ __('Percent executed and percent of targets delivered for each programme') }}"></canvas>
                 </div>
             </x-ui.card>

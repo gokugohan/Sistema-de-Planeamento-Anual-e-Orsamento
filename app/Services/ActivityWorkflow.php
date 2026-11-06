@@ -233,8 +233,9 @@ class ActivityWorkflow
         switch ($activity->status) {
             case Activity::STATUS_DRAFT:
             case Activity::STATUS_REJECTED:
-                // outside the submission window of the annual plan only an administrator submits
-                if (! $admin && app(ReportingWindows::class)->planClosedReasonFor($user, $activity)) {
+                // outside the submission dates of the annual plan, or before they are set, nobody submits: an administrator
+                // opens the dates (for everybody, or for one unit) instead of going around them
+                if (app(ReportingWindows::class)->submissionClosedReason($user, $activity)) {
                     return null;
                 }
 
@@ -700,7 +701,7 @@ class ActivityWorkflow
     private function notifyHolders(Activity $activity, SystemNotification $notification, array $already): void
     {
         $chain = [];
-        for ($id = $activity->directorate_id, $guard = 0; $id && $guard++ < 20; $id = Directorate::whereKey($id)->value('parent_id')) {
+        for ($id = $activity->directorate_id, $guard = 0; $id && $guard++ < 20; $id = app(PlanningWindow::class)->parentOf($id)) {
             $chain[] = $id;
         }
 

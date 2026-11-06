@@ -13,9 +13,7 @@ use App\Models\SystemSetting;
 use App\Services\ActivityCsvImporter;
 use App\Services\UnitWorkspace;
 use App\Support\FiscalYear;
-use App\Support\Manuals;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 // Route::view('/', 'welcome');
 
@@ -31,21 +29,6 @@ Route::get('/', function () {
 
 // How the year works: who does what, when and where, with the steps of the signed-in person marked.
 Route::get('guide', fn () => view('guide'))->middleware(['auth', 'verified'])->name('guide');
-
-// The manuals: the user manual for everyone, the administrator manual for administrators; read in the page or downloaded.
-Route::get('manual', fn () => view('manual'))->middleware(['auth', 'verified'])->name('manual');
-Route::get('manual/{manual}.pdf', function (string $manual) {
-    $all = Manuals::for(auth()->user());
-    abort_unless(isset(Manuals::all()[$manual]), 404);
-    abort_unless(isset($all[$manual]), 403);
-    $path = Manuals::path($manual);
-    abort_unless(is_file($path), 404);
-    $name = Str::slug($all[$manual]['title']).'.pdf';
-
-    return request()->boolean('download')
-        ? response()->download($path, $name, ['Content-Type' => 'application/pdf'])
-        : response()->file($path, ['Content-Type' => 'application/pdf', 'Content-Disposition' => 'inline; filename="'.$name.'"']);
-})->middleware(['auth', 'verified'])->where('manual', '[a-z]+')->name('manual.file');
 
 // My work: the workspace of the person's own unit; any unit's workspace; and the tree of units to find one.
 Route::get('my-work', function () {
@@ -244,14 +227,6 @@ Route::view('profile', 'profile')
 // Monitoring endpoint: database, cache, storage, queue, disk and backup status (no secrets).
 Route::get('health', HealthController::class)->middleware('throttle:60,1')->name('health');
 
-// Global fiscal-year context: every page works in the year chosen here.
-Route::get('fiscal-year/{year}', function (int $year) {
-    if (in_array($year, FiscalYear::available(), true)) {
-        session(['fiscal_year' => $year]);
-    }
-
-    return redirect()->back();
-})->middleware(['auth'])->whereNumber('year')->name('fiscal-year.switch');
 
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'pt', 'tet'])) {

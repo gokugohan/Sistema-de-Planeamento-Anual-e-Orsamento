@@ -33,12 +33,12 @@ class OrganizationLogoTest extends TestCase
         return $u;
     }
 
-    public function test_the_menu_shows_the_abbreviation_until_a_logo_is_set(): void
+    public function test_the_menu_shows_the_application_logo_until_the_institution_sets_its_own(): void
     {
-        SystemSetting::set('org_abbr', ['en' => 'ABC', 'pt' => 'ABC', 'tet' => 'ABC'], 'json');
         $user = User::factory()->create();
 
-        Volt::actingAs($user)->test('layout.sidebar')->assertSee('ABC')->assertDontSeeHtml('mtc-logo.png');
+        Volt::actingAs($user)->test('layout.sidebar')->assertSeeHtml('/logo.png')->assertDontSeeHtml('mtc-logo.png');
+        $this->assertStringEndsWith('/logo.png', Branding::faviconUrl(), 'the browser icon too');
 
         SystemSetting::set('organization_logo', 'images/sample/mtc-logo.png', 'string');
         Volt::actingAs($user)->test('layout.sidebar')->assertSeeHtml('images/sample/mtc-logo.png');
@@ -58,7 +58,7 @@ class OrganizationLogoTest extends TestCase
     {
         Volt::actingAs($this->admin())->test('pages.management.settings')
             ->set('logoUpload', UploadedFile::fake()->image('emblem.png', 800, 700))
-            ->call('saveLogo')->assertHasNoErrors();
+            ->assertHasNoErrors()->assertRedirect(route('management.settings').'#logo');
 
         $this->assertSame(Branding::LOGO, SystemSetting::get('organization_logo'));
         Storage::disk('local')->assertExists([Branding::LOGO, Branding::FAVICON]);
@@ -77,10 +77,10 @@ class OrganizationLogoTest extends TestCase
     {
         $page = Volt::actingAs($this->admin())->test('pages.management.settings');
 
-        $page->set('logoUpload', UploadedFile::fake()->image('a.png', 300, 300))->call('saveLogo');
+        $page->set('logoUpload', UploadedFile::fake()->image('a.png', 300, 300));
         SystemSetting::set('organization_logo_version', '1', 'string');
         $first = Branding::logoUrl();
-        $page->set('logoUpload', UploadedFile::fake()->image('b.png', 300, 300))->call('saveLogo');
+        $page->set('logoUpload', UploadedFile::fake()->image('b.png', 300, 300));
 
         $this->assertNotSame($first, Branding::logoUrl());
     }
@@ -96,15 +96,16 @@ class OrganizationLogoTest extends TestCase
         $this->assertEmpty(SystemSetting::get('organization_logo'));
     }
 
-    public function test_removing_the_logo_goes_back_to_the_abbreviation_and_the_default_icon(): void
+    public function test_removing_the_logo_goes_back_to_the_application_logo_and_icon(): void
     {
         $page = Volt::actingAs($this->admin())->test('pages.management.settings');
-        $page->set('logoUpload', UploadedFile::fake()->image('a.png', 300, 300))->call('saveLogo');
+        $page->set('logoUpload', UploadedFile::fake()->image('a.png', 300, 300));
 
         $page->call('removeLogo');
 
-        $this->assertNull(Branding::logoUrl());
-        $this->assertStringContainsString('favicon.ico', Branding::faviconUrl());
+        $this->assertStringEndsWith('/logo.png', Branding::logoUrl());
+        $this->assertStringEndsWith('/logo.png', Branding::faviconUrl());
+        $this->assertNull(Branding::logoDataUri(), 'printed documents carry only the institution\'s own logo');
         Storage::disk('local')->assertMissing(Branding::LOGO);
         $this->get(route('brand.logo'))->assertNotFound();
     }

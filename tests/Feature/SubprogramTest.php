@@ -194,7 +194,7 @@ class SubprogramTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         $this->admin();
-        session(['fiscal_year' => 2026]);
+        \App\Support\FiscalYear::pin(2026);
 
         $sub = Subprogram::where('code', '51001')->firstOrFail();
         $this->assertSame('Funcionamento Institucional', $sub->name);

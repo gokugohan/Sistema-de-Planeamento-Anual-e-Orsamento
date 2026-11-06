@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\DB;
  * its first day to the 10th of the month after, and every quarter's indicators from the quarter's first day to the 15th of
  * the month after it. Without dates the Report execution calendar would show every month as "no dates: open" next to
  * figures that were reported month by month. The dates are registered with the sample, so purging the sample removes them.
- * Planning dates (submission, approval, finalizing) are left unset on purpose: the demo accounts can plan and approve freely.
+ * A plan loaded as drafts or halfway gets submission dates around today (submitting needs them); approval and finalizing are
+ * left unset on purpose, so the demo accounts can decide freely.
  *
  * Run alone (`php artisan db:seed --class="Database\Seeders\Samples\MtcCalendarSeeder"`) it adds the dates for every year
  * that already has reported amounts.
@@ -38,6 +39,12 @@ class MtcCalendarSeeder extends Seeder
             $opens = Carbon::create($year, ($q - 1) * 3 + 1, 1);
             self::window($registry, $year, 'quarter', $q, $opens, $opens->copy()->addMonthsNoOverflow(3)->day(15));
         }
+    }
+
+    /** The submission dates of a plan still in the cycle: from a month ago to two months ahead. */
+    public static function seedSubmission(int $year, SampleRegistry $registry): void
+    {
+        self::window($registry, $year, 'plan', 1, now()->subMonth()->startOfDay(), now()->addMonths(2)->startOfDay());
     }
 
     private static function window(SampleRegistry $registry, int $year, string $type, int $period, Carbon $opens, Carbon $closes): void

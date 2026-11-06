@@ -193,7 +193,7 @@ class ProgramYearsTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         $this->admin();
-        session(['fiscal_year' => 2026]);
+        \App\Support\FiscalYear::pin(2026);
 
         $page = Volt::test('pages.dashboard.summary')
             ->assertSee('Funcionamento e Desenvolvimento Institucional')
