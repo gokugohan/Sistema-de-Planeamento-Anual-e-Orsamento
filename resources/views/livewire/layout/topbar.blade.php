@@ -147,7 +147,7 @@ new class extends Component {
                 <div class="hidden xl:block text-left whitespace-nowrap">
                     <p class="text-[13px] font-semibold text-zinc-900 leading-none">{{ auth()->user()->name }}</p>
                     <p class="text-[11px] text-zinc-500 mt-1">
-                        {{ __(auth()->user()->roles->first()?->display_name ?: 'System User') }}
+                        {{ auth()->user()->roleTitle() }}
                     </p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"

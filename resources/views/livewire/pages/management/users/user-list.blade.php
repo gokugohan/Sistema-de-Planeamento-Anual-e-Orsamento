@@ -35,8 +35,16 @@
                     @endforeach
                 </select>
             </div>
+            <div>
+                <label for="uf-status" class="sr-only">{{ __('Status') }}</label>
+                <select id="uf-status" wire:model.live="statusFilter" class="flux-input !w-auto">
+                    <option value="">{{ __('Every status') }}</option>
+                    <option value="active">{{ __('Active') }}</option>
+                    <option value="deactivated">{{ __('Deactivated') }}</option>
+                </select>
+            </div>
             <span class="whitespace-nowrap text-xs font-semibold text-gray-400">{{ $users->total() }} {{ __('Registered Users') }}</span>
-            @if($search !== '' || $unitFilter !== '' || $roleFilter !== '')
+            @if($search !== '' || $unitFilter !== '' || $roleFilter !== '' || $statusFilter !== '')
                 <button type="button" wire:click="clearFilters" class="whitespace-nowrap text-xs font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
             @endif
         </div>
@@ -93,11 +101,11 @@
                             <span
                                 class="inline-flex items-center gap-1.5 px-3 py-1 transparent text-xs font-semibold border border-gray-200 rounded-lg text-gray-600">
                                 <span class="w-1 h-1 bg-indigo-500 rounded-full"></span>
-                                {{ $role?->display_name ? __($role->display_name) : ($role?->name ? __($role->name) : __('No Role')) }}
+                                {{-- a head shows the title of the level they lead; the role underneath --}}
+                                {{ $role ? $user->roleTitle() : __('No Role') }}
                             </span>
                             @if($role?->name === 'Director' && $user->directorate)
-                                {{-- one role for every leader: the title says which level they lead --}}
-                                <span class="mt-1 block text-xs text-gray-500">{{ $user->directorate->leaderTitle() }}</span>
+                                <span class="mt-1 block text-xs text-gray-500">{{ __('Head') }}</span>
                             @endif
                         </td>
                         <td class="px-8 py-6 text-sm">
@@ -109,11 +117,19 @@
                             @endif
                         </td>
                         <td class="px-8 py-6">
-                            <span
-                                class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-lg border border-green-100">
-                                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                                {{ __('Active') }}
-                            </span>
+                            @if($user->isActive())
+                                <span
+                                    class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-lg border border-green-100">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                                    {{ __('Active') }}
+                                </span>
+                            @else
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-100 text-zinc-600 text-xs font-semibold rounded-lg border border-zinc-200">
+                                    <span class="w-1.5 h-1.5 bg-zinc-400 rounded-full"></span>
+                                    {{ __('Deactivated') }}
+                                </span>
+                                <span class="mt-1 block text-xs text-gray-500">{{ __('since :date', ['date' => $user->deactivated_at->format('d/m/Y')]) }}</span>
+                            @endif
                         </td>
                         <td class="px-8 py-6 text-right">
                             <div class="flex justify-end items-center gap-2">
@@ -141,6 +157,20 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M9.5 9.5 14.5 14.5"/><path d="m14.5 9.5-5 5"/></svg>
                                         </button>
                                     @endif
+                                    @if($user->isActive())
+                                        <button wire:click="toggleActive({{ $user->id }})"
+                                            wire:confirm="{{ __('Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.') }}"
+                                            class="p-2 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
+                                            title="{{ __('Deactivate') }}" aria-label="{{ __('Deactivate') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+                                        </button>
+                                    @else
+                                        <button wire:click="toggleActive({{ $user->id }})"
+                                            class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-xl transition-all"
+                                            title="{{ __('Reactivate') }}" aria-label="{{ __('Reactivate') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+                                        </button>
+                                    @endif
                                     <button wire:click="resetPassword({{ $user->id }})"
                                         wire:confirm="{{ __('Issue a new temporary password for this user? Their current password stops working.') }}"
                                         class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
@@ -148,7 +178,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
                                     </button>
                                     <button wire:click="deleteUser({{ $user->id }})" title="{{ __('Delete') }}" aria-label="{{ __('Delete') }}"
-                                        wire:confirm="{{ __('Are you sure you want to delete this user?') }}"
+                                        wire:confirm="{{ __('Delete this account for good? To keep their history, deactivate it instead.') }}"
                                         class="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                             fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"

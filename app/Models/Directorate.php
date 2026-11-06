@@ -63,8 +63,9 @@ class Directorate extends Model
 
     /**
      * What the leader of this unit is called, from its type: the Head of a unit or department, the Director of a
-     * national directorate, the Director-General, the Head of a gabinete. Every leader holds the Director role; the
-     * title only says which level they lead.
+     * national directorate, the Director-General, the Head of a gabinete, the President of an autonomous public body.
+     * Every leader holds the Director role; the title only says which level they lead. Needs `type` and
+     * `administration` loaded.
      */
     public function leaderTitle(): string
     {
@@ -75,7 +76,9 @@ class Directorate extends Model
             'Directorate General', 'General Directorate' => __('Director-General'),
             'Cabinet' => __('Head of Office'),
             'Regional Office' => __('Head of the regional office'),
-            default => __('Director'),
+            // a top-level body: an autonomous one (I.P.) is led by its president, any other by its head
+            'Independent' => $this->administration === self::INDIRECT ? __('President') : __('Head of Office'),
+            default => __('Head'),
         };
     }
 

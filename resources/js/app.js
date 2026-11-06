@@ -1,10 +1,10 @@
 import './bootstrap';
 import './datepicker';
 
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/600.css';
+import '@fontsource/outfit/700.css';
 
 // Chart.js is bundled and loaded on demand, only by pages that draw charts.
 window.loadChart = () => window.Chart

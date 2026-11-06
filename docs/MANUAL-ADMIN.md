@@ -114,11 +114,14 @@ Add only the structure the law defines: the system does not invent departments.
 
 - **Create** an account with a name, e-mail, **role** and **unit**. There is no self-registration: every account is created here.
 - **Edit** a user's details, role and unit.
-- **Deactivate** someone who has left. Deactivate rather than delete a person who has acted in the system, so that their name stays on the records they made.
+- **Deactivate** someone who has left (the crossed-circle icon). They can no longer sign in, an open session ends at their next click, they get no e-mails, and they are no longer offered in the approval lists. Their name stays on everything they did. **Reactivate** (the arrow icon) gives the access back. Deactivate rather than delete a person who has acted in the system; *Delete* is for an account made by mistake.
+- **Reset password** (the key icon) issues a temporary password to give to the person; they must choose their own at the first sign-in.
+
+Nobody can deactivate or delete their own account, so there is always an active administrator. The list shows each account's status (*Active*, or *Deactivated* with the date) and can be filtered by it.
 
 Give **each unit its own people**: a technical officer who prepares and submits, and a director who certifies. Heads do not create, edit, delete or submit activities (the one who prepares is not the one who checks); in a unit without a technical officer, name its preparer under *Prepare* in the unit's approval list. A person's unit decides what they can see and plan.
 
-The list can be **filtered by unit** (the unit and every unit below it, or *No unit*) and **by role**, next to the search. A banner warns when directors or officers have **no unit**: they cannot see any activity until they get one (*Show them*). The unit code in each row opens the unit's page, and the clock icon opens the **Audit Log** already filtered to that person.
+The list can be **filtered by unit** (the unit and every unit below it, or *No unit*), **by role** and **by status**, next to the search. A banner warns when directors or officers have **no unit**: they cannot see any activity until they get one (*Show them*). The unit code in each row opens the unit's page, and the clock icon opens the **Audit Log** already filtered to that person.
 
 ![System Users filtered by unit](manual/img/users-filtered.png)
 
@@ -126,7 +129,7 @@ The list can be **filtered by unit** (the unit and every unit below it, or *No u
 |---|---|
 | **Admin** | Sets up and runs the system; always allowed to act. |
 | **Minister** | Sees every plan and every report; does *not* approve plans. |
-| **Head** (the Director role) | The head of a unit at any level: the chefe de unidade or departamento certifies, the diretor of a national directorate validates, the diretor-geral or chefe de gabinete approves the plan. One role for all of them: the level of their unit decides the step, and *System Users* shows each person's title. Heads do not create, edit, delete or submit activities. |
+| **Head** (the Director role) | The head of a unit at any level: the chefe de unidade or departamento certifies, the diretor of a national directorate validates, the diretor-geral or chefe de gabinete approves the plan. One role for all of them: the level of their unit decides the step and the title. The title (Head of Department, National Director, Director-General, Head of Office) is shown instead of "Head" in *System Users*, under the person's name in the top bar and on their profile, and the user form says it as soon as the unit is chosen. Heads do not create, edit, delete or submit activities. |
 | **Planning** (technical officer) | Prepares activities, indicators and budget lines. |
 | **Finance** | Confirms budget lines and verifies the reported executed amounts. |
 | **Viewer** | Reads plans and reports; changes nothing. |
@@ -376,6 +379,18 @@ For the person who installs and runs the server (the **Deployment manual** has t
 **A unit asks for more time.** Open *System → Calendar*, find the unit under **Late** and choose **Reopen for this unit** with a date and a reason. The step stays closed for everybody else.
 
 **Somebody left.** Use *Replace someone in every list* in Approval lists so that their approvals pass to a colleague, then deactivate the user.
+
+**An administrator lost their password.** In order of preference:
+
+1. **Another administrator** resets it in *System Users* (the key icon) and gives the temporary password.
+2. **Forgot your password?** on the sign-in page sends a reset link, when the e-mail server is set up (Part 11).
+3. **From the server**, when neither is possible (the only administrator, no e-mail). Someone with access to the server runs:
+
+    `php artisan paa:reset-password admin@institution.tl`
+
+    In Docker: `docker compose -f compose.prod.yml exec app php artisan paa:reset-password admin@institution.tl`. It prints a temporary password that must be changed at the first sign-in. Add `--reactivate` if the account was deactivated and `--reset-2fa` if the phone for two-factor sign-in was lost too. A wrong e-mail lists the administrators' addresses.
+
+To avoid the third case, keep **two administrator accounts**.
 
 **A directorate must add an activity after finalizing.** Reopen its plan with a reason (Part 7), or, after a supplementary budget, open an adjustment round that allows new activities (Part 9).
 

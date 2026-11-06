@@ -80,7 +80,8 @@ class AppServiceProvider extends ServiceProvider
                 return;
             }
             $user = $event->notifiable;
-            if (! filled($user->email ?? null) || ($user->email_notifications ?? true) === false) {
+            // nobody mails a deactivated account
+            if (! filled($user->email ?? null) || ($user->email_notifications ?? true) === false || ($user->deactivated_at ?? null) !== null) {
                 return;
             }
             $mail = new SystemNotificationEmail((string) $event->notification->title, (string) $event->notification->message, $event->notification->actionUrl);

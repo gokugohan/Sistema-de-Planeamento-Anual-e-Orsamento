@@ -45,7 +45,7 @@
     <div class="min-h-screen grid lg:grid-cols-[minmax(420px,5fr)_6fr]">
 
         {{-- ─────────── Pane 1: who and what ─────────── --}}
-        <aside class="hidden lg:flex flex-col relative overflow-hidden bg-gradient-to-br from-indigo-800 via-indigo-900 to-indigo-950 text-indigo-100" aria-label="{{ __('About this system') }}">
+        <aside class="hidden lg:flex flex-col relative overflow-hidden bg-indigo-950 text-indigo-100" aria-label="{{ __('About this system') }}">
             {{-- quiet grid texture, no decoration that competes with the content --}}
             <div class="absolute inset-0 opacity-[0.07] pointer-events-none"
                 style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"></div>

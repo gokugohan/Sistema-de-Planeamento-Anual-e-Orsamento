@@ -10,7 +10,7 @@
             <div>
                 <h1 class="page-title">{{ auth()->user()->name }}</h1>
                 <p class="text-sm text-zinc-400 mt-0.5">
-                    {{ __(auth()->user()->roles->first()?->display_name ?: 'System User') }}
+                    {{ auth()->user()->roleTitle() }}
                     &middot; {{ auth()->user()->email }}
                 </p>
             </div>

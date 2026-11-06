@@ -2851,5 +2851,20 @@
     ":leader to approve the plan": ":leader, para aprovar o plano",
     "Head": "Chefia",
     "Technical Officer of the unit": "Técnico da unidade",
-    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "O chefe de uma unidade de qualquer nível (chefe de unidade ou departamento, diretor, diretor-geral, chefe de gabinete): certifica, valida ou aprova conforme o nível da unidade"
+    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "O chefe de uma unidade de qualquer nível (chefe de unidade ou departamento, diretor, diretor-geral, chefe de gabinete): certifica, valida ou aprova conforme o nível da unidade",
+    "As head of :unit this person is the :title.": "Como chefia de :unit, esta pessoa é :title.",
+    "Choose the unit this person heads: its level gives their title and their approval step.": "Escolha a unidade que esta pessoa chefia: o nível dela dá o título e o passo de aprovação.",
+    "President": "Presidente",
+    "Autonomous body": "Organismo autónomo",
+    "Your account is deactivated. Ask the administrator if you need access again.": "A sua conta está desativada. Peça ao administrador se precisar de acesso novamente.",
+    "Every status": "Todos os estados",
+    "Deactivated": "Desativada",
+    "since :date": "desde :date",
+    "Reactivate": "Reativar",
+    "Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.": "Desativar esta conta? A pessoa deixa de poder entrar; o seu histórico mantém-se. Pode reativá-la a qualquer momento.",
+    "Delete this account for good? To keep their history, deactivate it instead.": "Eliminar esta conta definitivamente? Para manter o histórico, desative-a em vez disso.",
+    "You cannot deactivate your own account.": "Não pode desativar a sua própria conta.",
+    "This is the last active administrator: name another one first.": "Este é o último administrador ativo: nomeie outro primeiro.",
+    ":email can sign in again.": ":email pode voltar a entrar.",
+    ":email is deactivated and can no longer sign in.": ":email foi desativada e já não pode entrar."
 }

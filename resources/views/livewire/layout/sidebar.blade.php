@@ -33,13 +33,13 @@ new class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col h-screen w-64 bg-gradient-to-b from-indigo-800 via-indigo-900 to-indigo-950 fixed left-0 top-0 overflow-y-auto z-50 transition-transform duration-300 md:translate-x-0"
+<div class="flex flex-col h-screen w-64 bg-white border-r border-zinc-200 fixed left-0 top-0 overflow-y-auto z-50 transition-transform duration-300 md:translate-x-0"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
     <!-- Mobile Close -->
     <div class="md:hidden absolute top-4 right-4">
         <button @click="sidebarOpen = false"
-            class="p-1.5 text-indigo-200 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+            class="p-1.5 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 rounded-lg transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M18 6 6 18" /><path d="m6 6 12 12" />
@@ -55,14 +55,14 @@ new class extends Component {
         $logoUrl = \App\Support\Branding::logoUrl();
     @endphp
     <a href="{{ route('dashboard') }}" wire:navigate title="{{ $orgName }}"
-        class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-white/15 hover:bg-white/5 transition-colors">
+        class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-zinc-200 hover:bg-zinc-50 transition-colors">
         @if($logoUrl)
-            <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3rem] shrink-0 object-contain rounded-lg bg-white p-1" aria-hidden="true">
+            <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3rem] shrink-0 object-contain rounded-lg" aria-hidden="true">
         @else
-            <span class="flex h-10 min-w-10 items-center justify-center rounded-md bg-white/15 px-1.5 text-[11px] font-bold tracking-wide text-white ring-1 ring-white/30" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
+            <span class="flex h-10 min-w-10 items-center justify-center rounded-lg bg-indigo-500 px-1.5 text-[11px] font-bold tracking-wide text-white" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
         @endif
         <span class="min-w-0">
-            <span class="block text-[13px] font-semibold leading-snug text-white line-clamp-3">{{ $orgName }}</span>
+            <span class="block text-[13px] font-semibold leading-snug text-zinc-900 line-clamp-3">{{ $orgName }}</span>
         </span>
     </a>
 
@@ -71,9 +71,9 @@ new class extends Component {
         @foreach(\App\Support\Navigation::groups(auth()->user()) as $group)
             <div>
                 {{-- the four steps of the year are numbered, in the order they are done --}}
-                <p class="nav-section-label flex items-center gap-2 {{ $group['label'] === 'Testing Zone' ? '!text-amber-500/80' : '' }}">
+                <p class="nav-section-label flex items-center gap-2 {{ $group['label'] === 'Testing Zone' ? '!text-amber-700' : '' }}">
                     @if($group['step'])
-                        <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/15 text-[10px] font-bold leading-none text-white" aria-hidden="true">{{ $group['step'] }}</span>
+                        <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-[10px] font-bold leading-none text-indigo-600" aria-hidden="true">{{ $group['step'] }}</span>
                         <span class="sr-only">{{ __('Step :n:', ['n' => $group['step']]) }}</span>
                     @endif
                     <span>{{ __($group['label']) }}</span>
@@ -98,7 +98,7 @@ new class extends Component {
                                         <path d="m6 9 6 6 6-6" />
                                     </svg>
                                 </button>
-                                <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-white/20 space-y-0.5">
+                                <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-zinc-200 space-y-0.5">
                                     @foreach($item['children'] as $child)
                                         <x-sidebar-link :href="route($child['route'])" :active="\App\Support\Navigation::isActive($child)"
                                             :icon="$child['icon'] ?? 'circle'">{{ __($child['label']) }}</x-sidebar-link>
@@ -116,17 +116,17 @@ new class extends Component {
     </nav>
 
     <!-- Bottom Widgets -->
-    <div class="px-4 py-4 border-t border-white/15 space-y-3">
+    <div class="px-4 py-4 border-t border-zinc-200 space-y-3">
 
         <!-- Working year and how much of its plan is approved -->
         @if($activityCount > 0)
-            <div class="rounded-md border border-white/10 bg-white/5 p-3.5">
+            <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-3.5">
                 <div class="flex items-baseline justify-between">
                     <p class="text-[11px] font-semibold uppercase tracking-wider text-nav-muted">{{ __('Fiscal year') }}</p>
-                    <p class="text-lg font-semibold text-white tabular-nums">{{ $activeYear }}</p>
+                    <p class="text-lg font-semibold text-zinc-900 tabular-nums">{{ $activeYear }}</p>
                 </div>
-                <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10" role="progressbar" aria-valuemin="0" aria-valuemax="{{ $activityCount }}" aria-valuenow="{{ $approvedCount }}" aria-label="{{ __('Approved') }}">
-                    <div class="h-full rounded-full bg-emerald-400 transition-all duration-500" style="width: {{ $activityCount > 0 ? round($approvedCount / $activityCount * 100) : 0 }}%"></div>
+                <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-zinc-200" role="progressbar" aria-valuemin="0" aria-valuemax="{{ $activityCount }}" aria-valuenow="{{ $approvedCount }}" aria-label="{{ __('Approved') }}">
+                    <div class="h-full rounded-full bg-emerald-500 transition-all duration-500" style="width: {{ $activityCount > 0 ? round($approvedCount / $activityCount * 100) : 0 }}%"></div>
                 </div>
                 <p class="mt-1.5 text-xs text-nav-text tabular-nums">{{ $approvedCount }} / {{ $activityCount }} {{ __('Approved') }}</p>
             </div>
@@ -139,7 +139,7 @@ new class extends Component {
         $sOwner  = \App\Models\SystemSetting::get('system_owner', '');
         $sImplBy = \App\Models\SystemSetting::get('implemented_by', '');
     @endphp
-    <div class="px-5 pb-4 pt-3 border-t border-white/15 text-[11px] leading-relaxed text-nav-muted">
+    <div class="px-5 pb-4 pt-3 border-t border-zinc-200 text-[11px] leading-relaxed text-nav-muted">
         <p>&copy; {{ date('Y') }} {{ $sOwner }}</p>
         <p>{{ __('Implemented by') }} {{ $sImplBy ?: \App\Support\Branding::IMPLEMENTER }}</p>
     </div>

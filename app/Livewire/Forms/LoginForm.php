@@ -30,11 +30,21 @@ class LoginForm extends Form
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only(['email', 'password']), $this->remember)) {
+        // a deactivated account does not sign in; it is told so only once the password is right
+        $deactivated = false;
+        $signedIn = Auth::attemptWhen($this->only(['email', 'password']), function ($user) use (&$deactivated) {
+            $deactivated = $user->deactivated_at !== null;
+
+            return ! $deactivated;
+        }, $this->remember);
+
+        if (! $signedIn) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'form.email' => __('These credentials do not match our records.'),
+                'form.email' => $deactivated
+                    ? __('Your account is deactivated. Ask the administrator if you need access again.')
+                    : __('These credentials do not match our records.'),
             ]);
         }
 

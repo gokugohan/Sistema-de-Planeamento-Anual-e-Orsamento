@@ -2608,5 +2608,20 @@
     ":leader to approve the plan": ":leader to approve the plan",
     "Head": "Head",
     "Technical Officer of the unit": "Technical Officer of the unit",
-    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit"
+    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit",
+    "As head of :unit this person is the :title.": "As head of :unit this person is the :title.",
+    "Choose the unit this person heads: its level gives their title and their approval step.": "Choose the unit this person heads: its level gives their title and their approval step.",
+    "President": "President",
+    "Autonomous body": "Autonomous body",
+    "Your account is deactivated. Ask the administrator if you need access again.": "Your account is deactivated. Ask the administrator if you need access again.",
+    "Every status": "Every status",
+    "Deactivated": "Deactivated",
+    "since :date": "since :date",
+    "Reactivate": "Reactivate",
+    "Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.": "Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.",
+    "Delete this account for good? To keep their history, deactivate it instead.": "Delete this account for good? To keep their history, deactivate it instead.",
+    "You cannot deactivate your own account.": "You cannot deactivate your own account.",
+    "This is the last active administrator: name another one first.": "This is the last active administrator: name another one first.",
+    ":email can sign in again.": ":email can sign in again.",
+    ":email is deactivated and can no longer sign in.": ":email is deactivated and can no longer sign in."
 }

@@ -9,6 +9,7 @@
         'National Directorate' => 'bg-violet-100 text-violet-700',
         'Department'           => 'bg-sky-100 text-sky-700',
         'Independent'          => 'bg-amber-100 text-amber-700',
+        'Cabinet'              => 'bg-amber-100 text-amber-700',
         default                => 'bg-zinc-100 text-zinc-500',
     };
 

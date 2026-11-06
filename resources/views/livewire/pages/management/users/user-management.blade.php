@@ -22,6 +22,9 @@ new class extends Component {
     public $unitFilter = '';
     #[Url(as: 'role')]
     public $roleFilter = '';
+    // '' every account, 'active' or 'deactivated'
+    #[Url(as: 'status')]
+    public $statusFilter = '';
     // ?new=1 opens the form for a new user, with the filtered unit already chosen
     #[Url(as: 'new')]
     public $openNew = false;
@@ -50,9 +53,14 @@ new class extends Component {
         $this->resetPage();
     }
 
+    public function updatedStatusFilter(): void
+    {
+        $this->resetPage();
+    }
+
     public function clearFilters(): void
     {
-        $this->reset('search', 'unitFilter', 'roleFilter');
+        $this->reset('search', 'unitFilter', 'roleFilter', 'statusFilter');
         $this->resetPage();
     }
 
@@ -119,13 +127,15 @@ new class extends Component {
             $unitIds = Directorate::find((int) $this->unitFilter)?->getSelfAndDescendantIds() ?? [0];
         }
 
-        return User::with(['directorate:id,code,name', 'roles'])
+        return User::with(['directorate:id,code,name,type,administration', 'roles'])
             ->when($this->search, function ($q) {
                 $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")->orWhere('email', 'like', "%{$this->search}%"));
             })
             ->when($this->unitFilter === 'none', fn ($q) => $q->whereNull('directorate_id'))
             ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds))
             ->when($this->roleFilter !== '', fn ($q) => $q->whereHas('roles', fn ($r) => $r->where('name', $this->roleFilter)))
+            ->when($this->statusFilter === 'active', fn ($q) => $q->whereNull('deactivated_at'))
+            ->when($this->statusFilter === 'deactivated', fn ($q) => $q->whereNotNull('deactivated_at'))
             ->orderBy('name')
             ->paginate(10);
     }
@@ -202,8 +212,45 @@ new class extends Component {
             $this->dispatch('toast', message: __('You cannot delete your own account!'), type: 'error');
             return;
         }
+        if ($this->isLastAdministrator(User::findOrFail($id))) {
+            $this->dispatch('toast', message: __('This is the last active administrator: name another one first.'), type: 'error');
+            return;
+        }
         User::destroy($id);
         $this->dispatch('toast', message: __('User deleted successfully.'), type: 'success');
+    }
+
+    /**
+     * Deactivate an account (it can no longer sign in; its history stays) or reactivate it. Not one's own account and
+     * not the last active administrator, so the system always keeps someone who can manage it.
+     */
+    public function toggleActive($id)
+    {
+        abort_unless(auth()->user()->isAdministrator(), 403);
+
+        $user = User::findOrFail($id);
+        if ($user->id === auth()->id()) {
+            $this->dispatch('toast', message: __('You cannot deactivate your own account.'), type: 'error');
+
+            return;
+        }
+        if ($user->isActive() && $this->isLastAdministrator($user)) {
+            $this->dispatch('toast', message: __('This is the last active administrator: name another one first.'), type: 'error');
+
+            return;
+        }
+
+        $user->forceFill(['deactivated_at' => $user->isActive() ? now() : null])->save();
+        \App\Support\StructureCache::bump();
+        $this->dispatch('toast', message: $user->isActive()
+            ? __(':email can sign in again.', ['email' => $user->email])
+            : __(':email is deactivated and can no longer sign in.', ['email' => $user->email]), type: 'success');
+    }
+
+    private function isLastAdministrator(User $user): bool
+    {
+        return $user->isAdministrator() && $user->isActive()
+            && User::role('Admin')->whereNull('deactivated_at')->where('id', '!=', $user->id)->doesntExist();
     }
 
     public function resetPassword($id)
@@ -369,7 +416,7 @@ new class extends Component {
                             <div class="space-y-2">
                                 <x-input-label for="modal_directorate" :value="__('Directorate')"
                                     class="text-xs font-semibold text-gray-400 ml-1" />
-                                <select id="modal_directorate" wire:model="directorate_id"
+                                <select id="modal_directorate" wire:model.live="directorate_id"
                                     class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
                                     <option value="">{{ __('National (All)') }}</option>
                                     @foreach($unitTree as $u)
@@ -379,6 +426,17 @@ new class extends Component {
                                 <x-input-error :messages="$errors->get('directorate_id')" />
                             </div>
                         </div>
+                        @if($selectedRole === 'Director')
+                            {{-- one role for every head: the level of the unit gives the title and the step --}}
+                            @php $headOf = $directorate_id ? \App\Models\Directorate::find($directorate_id) : null; @endphp
+                            <p class="text-xs text-zinc-500">
+                                @if($headOf)
+                                    {{ __('As head of :unit this person is the :title.', ['unit' => $headOf->code, 'title' => $headOf->leaderTitle()]) }}
+                                @else
+                                    {{ __('Choose the unit this person heads: its level gives their title and their approval step.') }}
+                                @endif
+                            </p>
+                        @endif
                     </div>
 
                     <div class="flex items-center justify-end gap-3 pt-4">

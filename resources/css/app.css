@@ -6,7 +6,7 @@
     :root {
         --sidebar-width: 256px;
         --header-height: 60px;
-        --color-primary: 33 82 196;
+        --color-primary: 70 95 255;
         --radius-card: 0.5rem;
     }
 
@@ -16,7 +16,6 @@
 
     body {
         @apply bg-body text-zinc-600;
-        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -47,20 +46,20 @@
 
     /* ─── Sidebar navigation ──────────────────────────────── */
     .nav-section-label {
-        @apply text-[11px] font-semibold text-nav-muted uppercase tracking-wider px-3 mb-2;
+        @apply text-xs font-medium text-nav-muted uppercase tracking-wider px-3 mb-2;
     }
 
     .nav-item {
-        @apply relative flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md
+        @apply relative flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg
                transition-colors duration-150 cursor-pointer;
     }
 
     .nav-item-active {
-        @apply bg-white/15 text-white;
+        @apply bg-indigo-50 text-indigo-600;
     }
 
     .nav-item-inactive {
-        @apply text-nav-text hover:bg-nav-hover hover:text-white;
+        @apply text-nav-text hover:bg-nav-hover hover:text-zinc-900;
     }
 
     /* ─── Page header (one style for every page) ───────────── */

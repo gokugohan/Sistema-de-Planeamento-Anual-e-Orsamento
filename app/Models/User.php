@@ -52,6 +52,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'deactivated_at' => 'datetime',
             'password' => 'hashed',
             'must_change_password' => 'boolean',
             'email_notifications' => 'boolean',
@@ -65,6 +66,29 @@ class User extends Authenticatable
     public function directorate()
     {
         return $this->belongsTo(Directorate::class);
+    }
+
+    /** A deactivated account cannot sign in; its history stays. */
+    public function isActive(): bool
+    {
+        return $this->deactivated_at === null;
+    }
+
+    /**
+     * What to call this person's role: for a head (the Director role) the title of the level they lead
+     * (Head of Department, National Director, Director-General, Head of Office), else the role's own name.
+     */
+    public function roleTitle(): string
+    {
+        $role = $this->roles->first();
+        if (! $role) {
+            return __('System User');
+        }
+        if ($role->name === 'Director' && $this->directorate) {
+            return $this->directorate->leaderTitle();
+        }
+
+        return __($role->display_name ?: $role->name);
     }
 
     /**

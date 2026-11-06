@@ -178,9 +178,10 @@ class MtcDirectorateSeeder extends Seeder
         ]);
     }
 
+    /** A gabinete at the top of the ministry, led by its chefe de gabinete. */
     private function independent(string $code, string $name, int $since): Directorate
     {
-        return $this->upsert($code, $name, 'Independent', null, $since);
+        return $this->upsert($code, $name, 'Cabinet', null, $since);
     }
 
     private function generalDirectorate(string $code, string $name, int $since): Directorate

@@ -444,7 +444,7 @@ new class extends Component {
                     @foreach($statusOrder as $i => $st)
                         <li class="flex items-center justify-between gap-3">
                             <span class="flex items-center gap-2 text-zinc-600">
-                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#94A3B8', '#F43F5E', '#0EA5E9', '#5F8BF0', '#2152C4', '#10B981'][$i] }}"></span>{{ \App\Models\Activity::statusWord($st) }}
+                                <span class="h-2.5 w-2.5 rounded-sm" style="background: {{ ['#98A2B3', '#F04438', '#0BA5EC', '#9CB9FF', '#465FFF', '#12B76A'][$i] }}"></span>{{ \App\Models\Activity::statusWord($st) }}
                             </span>
                             <span class="font-semibold tabular-nums text-zinc-900">{{ $byStatus[$st] }}</span>
                         </li>
@@ -497,27 +497,27 @@ new class extends Component {
                     const el = this.$el.querySelector('canvas');
                     if (!el || this.chart) return;
                     const L = d.labels, usd = (v) => '$ ' + Math.round(v).toLocaleString();
-                    const grid = { color: '#E2E8F0' }, tick = { color: '#64748B', font: { family: 'Inter', size: 11 } };
+                    const grid = { color: '#E4E7EC' }, tick = { color: '#667085', font: { family: 'Outfit', size: 11 } };
                     const moneyAxis = { beginAtZero: true, grid, ticks: { ...tick, callback: (v) => v >= 1000000 ? '$' + +(v / 1000000).toFixed(1) + 'M' : (v >= 1000 ? '$' + (v / 1000) + 'k' : '$' + v) } };
                     const base = { responsive: true, maintainAspectRatio: false, animation: false,
-                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: '#475569', font: { family: 'Inter', size: 11 } } },
+                        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, color: '#475467', font: { family: 'Outfit', size: 11 } } },
                                    tooltip: { callbacks: { label: (c) => ' ' + c.dataset.label + ': ' + (kind === 'status' || kind === 'quarterly' ? c.parsed.y ?? c.parsed : usd(c.parsed.y ?? c.parsed.x)) } } } };
                     const cfg = {
                         categories: () => ({ type: 'bar', data: { labels: d.categories.labels.map(l => l.length > 22 ? l.slice(0, 21) + '…' : l), datasets: [
-                            { label: L[1], data: d.categories.plan, backgroundColor: '#2152C4', borderRadius: 3 },
-                            { label: L[3], data: d.categories.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
+                            { label: L[1], data: d.categories.plan, backgroundColor: '#465FFF', borderRadius: 3 },
+                            { label: L[3], data: d.categories.alloc, backgroundColor: '#12B76A', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
-                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#94A3B8', '#F43F5E', '#0EA5E9', '#5F8BF0', '#2152C4', '#10B981'], borderWidth: 2, borderColor: '#fff' }] },
+                        status: () => ({ type: 'doughnut', data: { labels: d.status.labels, datasets: [{ data: d.status.values, backgroundColor: ['#98A2B3', '#F04438', '#0BA5EC', '#9CB9FF', '#465FFF', '#12B76A'], borderWidth: 2, borderColor: '#fff' }] },
                             options: { ...base, cutout: '68%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.label + ': ' + c.parsed } } } } }),
                         units: () => ({ type: 'bar', data: { labels: d.units.labels, datasets: [
-                            { label: L[1], data: d.units.plan, backgroundColor: '#2152C4', borderRadius: 3 },
-                            { label: L[3], data: d.units.alloc, backgroundColor: '#10B981', borderRadius: 3 } ] },
+                            { label: L[1], data: d.units.plan, backgroundColor: '#465FFF', borderRadius: 3 },
+                            { label: L[3], data: d.units.alloc, backgroundColor: '#12B76A', borderRadius: 3 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
                         execution: () => ({ type: 'bar', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [
-                            { type: 'bar', label: L[7], data: d.execution.executed, backgroundColor: '#2152C4', borderRadius: 3, order: 2 },
-                            { type: 'line', label: L[6], data: d.execution.planned, borderColor: '#94A3B8', borderDash: [5, 4], backgroundColor: '#94A3B8', tension: .25, pointRadius: 2, order: 0 } ] },
+                            { type: 'bar', label: L[7], data: d.execution.executed, backgroundColor: '#465FFF', borderRadius: 3, order: 2 },
+                            { type: 'line', label: L[6], data: d.execution.planned, borderColor: '#98A2B3', borderDash: [5, 4], backgroundColor: '#98A2B3', tension: .25, pointRadius: 2, order: 0 } ] },
                             options: { ...base, scales: { y: moneyAxis, x: { grid: { display: false }, ticks: tick } } } }),
-                        quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#2152C4', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#2152C4' }] },
+                        quarterly: () => ({ type: 'line', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: L[5], data: d.quarterly, borderColor: '#465FFF', backgroundColor: 'rgba(60,80,224,.08)', fill: true, tension: .3, pointRadius: 4, pointBackgroundColor: '#465FFF' }] },
                             options: { ...base, plugins: { ...base.plugins, legend: { display: false }, tooltip: { callbacks: { label: (c) => ' ' + c.parsed.y + '%' } } },
                                 scales: { y: { beginAtZero: true, max: 100, grid, ticks: { ...tick, callback: (v) => v + '%' } }, x: { grid: { display: false }, ticks: tick } } } }),
                     }[kind]();

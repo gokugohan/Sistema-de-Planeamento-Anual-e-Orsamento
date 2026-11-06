@@ -76,12 +76,15 @@ new class extends Component {
         // Filtering logical parents based on classification
         $parentMapping = [
             'National Directorate' => ['General Directorate'],
-            'Department' => ['National Directorate', 'General Directorate'],
-            'Unit' => ['Department', 'National Directorate'],
-            'Regional Office' => ['General Directorate'],
+            // a gabinete and an autonomous body have their own departments and units too
+            'Department' => ['National Directorate', 'General Directorate', 'Directorate General', 'Cabinet', 'Independent'],
+            'Unit' => ['Department', 'National Directorate', 'Cabinet', 'Independent'],
+            'Regional Office' => ['General Directorate', 'Directorate General'],
             'General Directorate' => [], // Top-level
             'Cabinet' => [], // Top-level
+            'Independent' => [], // Top-level
         ];
+        $parentMapping['National Directorate'][] = 'Directorate General'; // the form's name for a directorate-general
 
 
         $allowedParentTypes = $parentMapping[$this->type] ?? [];

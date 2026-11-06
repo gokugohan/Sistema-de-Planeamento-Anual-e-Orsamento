@@ -2851,5 +2851,20 @@
     ":leader to approve the plan": ":leader atu aprova planu",
     "Head": "Xefia",
     "Technical Officer of the unit": "Tékniku unidade nian",
-    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "Xefe unidade iha nivel saida de'it (xefe unidade ka departamentu, diretór, diretór-jerál, xefe gabinete): sertifika, valida ka aprova tuir nivel unidade nian"
+    "The head of a unit at any level (chefe de unidade or departamento, diretor, diretor-geral, chefe de gabinete): certifies, validates or approves by the level of the unit": "Xefe unidade iha nivel saida de'it (xefe unidade ka departamentu, diretór, diretór-jerál, xefe gabinete): sertifika, valida ka aprova tuir nivel unidade nian",
+    "As head of :unit this person is the :title.": "Hanesan xefia :unit nian, ema ida-ne'e mak :title.",
+    "Choose the unit this person heads: its level gives their title and their approval step.": "Hili unidade ne'ebé ema ida-ne'e lidera: ninia nível fó títulu no pasu aprovasaun nian.",
+    "President": "Prezidente",
+    "Autonomous body": "Organizmu autónomu",
+    "Your account is deactivated. Ask the administrator if you need access again.": "Ita-nia konta desativa ona. Husu ba administradór se presiza asesu fali.",
+    "Every status": "Estadu hotu",
+    "Deactivated": "Desativa ona",
+    "since :date": "husi :date",
+    "Reactivate": "Reativa",
+    "Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.": "Desativa konta ida-ne'e? Ema ne'e la bele tama tan; ninia istória hela nafatin. Ita bele reativa iha tempu hotu.",
+    "Delete this account for good? To keep their history, deactivate it instead.": "Hamoos konta ida-ne'e ba nafatin? Atu rai ninia istória, desativa de'it.",
+    "You cannot deactivate your own account.": "Ita la bele desativa ita-nia konta rasik.",
+    "This is the last active administrator: name another one first.": "Ida-ne'e mak administradór ativu ikus: nomeia seluk uluk.",
+    ":email can sign in again.": ":email bele tama fali.",
+    ":email is deactivated and can no longer sign in.": ":email desativa ona no la bele tama tan."
 }

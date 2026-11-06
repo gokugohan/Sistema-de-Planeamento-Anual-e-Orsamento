@@ -132,8 +132,8 @@ new class extends Component {
         $named = ApproverAssignment::whereIn('directorate_id', $this->units()->pluck('id'))->distinct()->pluck('user_id');
 
         return [
-            'units' => $this->units(), 'unit' => $unit, 'lists' => $lists, 'people' => User::orderBy('name')->limit(500)->get(['id', 'name']),
-            'unitPeople' => $unit ? User::where('directorate_id', $unit->id)->orderBy('name')->get(['id', 'name']) : collect(),
+            'units' => $this->units(), 'unit' => $unit, 'lists' => $lists, 'people' => User::whereNull('deactivated_at')->orderBy('name')->limit(500)->get(['id', 'name']),
+            'unitPeople' => $unit ? User::where('directorate_id', $unit->id)->whereNull('deactivated_at')->orderBy('name')->get(['id', 'name']) : collect(),
             'named' => User::whereIn('id', $named)->orderBy('name')->get(['id', 'name']),
         ];
     }

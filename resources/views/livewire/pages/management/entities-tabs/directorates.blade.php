@@ -181,6 +181,7 @@
                             <option value="Unit">{{ __('Unit') }}</option>
                             <option value="Cabinet">{{ __('Cabinet') }}</option>
                             <option value="Regional Office">{{ __('Regional Office') }}</option>
+                            <option value="Independent">{{ __('Autonomous body') }}</option>
                         </select>
                         <x-input-error :messages="$errors->get('type')" />
                     </div>

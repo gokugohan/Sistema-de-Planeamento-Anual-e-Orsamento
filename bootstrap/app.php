@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnforceTwoFactor;
+use App\Http\Middleware\EnsureAccountActive;
 use App\Http\Middleware\ForcePasswordChange;
 use App\Http\Middleware\LogSlowRequests;
 use App\Http\Middleware\SecurityHeaders;
@@ -20,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
             SetLocale::class,
+            EnsureAccountActive::class,
             ForcePasswordChange::class,
             EnforceTwoFactor::class,
             SecurityHeaders::class,

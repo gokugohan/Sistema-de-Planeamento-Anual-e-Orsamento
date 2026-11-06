@@ -398,6 +398,7 @@ It runs `paa:backup` at 02:00 and prunes failed jobs and expired password-reset 
 | Task | Command |
 |---|---|
 | Add an administrator | `php artisan tinker` → create the user and `assignRole('Admin')` |
+| Recover a lost administrator password | `php artisan paa:reset-password admin@institution.tl` (prints a temporary password; `--reactivate`, `--reset-2fa`) |
 | Clear caches after a config change | `php artisan optimize:clear` |
 | Remove all sample data | `php artisan paa:purge-samples` (or *System → Sample Data*) |
 | Register old sample data so it can be purged | `php artisan paa:adopt-samples` |

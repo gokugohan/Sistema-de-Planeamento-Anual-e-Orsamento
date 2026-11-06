@@ -21,7 +21,7 @@ new #[Layout('layouts.guest')] class extends Component
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         $status = Password::sendResetLink(
-            $this->only('email')
+            $this->only('email') + ['deactivated_at' => null] // a deactivated account gets no link
         );
 
         if ($status != Password::RESET_LINK_SENT) {
