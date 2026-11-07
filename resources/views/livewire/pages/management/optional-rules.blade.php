@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\ApproverLists;
 use App\Support\ApprovalRules;
 use App\Support\PlanOptions;
 use Livewire\Volt\Component;
@@ -19,6 +20,7 @@ new class extends Component {
     public string $segregation = ApprovalRules::SEGREGATION_BLOCK;
     public bool $completeBeforeApproval = true;
     public bool $externalReference = false;
+    public bool $approvalLists = false;
     // finance and monitoring
     public bool $financeInstitutionWide = false;
     public bool $budgetDecisions = false;
@@ -45,6 +47,7 @@ new class extends Component {
         $this->parentValidation = $r->parentValidation;
         $this->budgetConfirmation = $r->budgetConfirmation;
         $this->segregation = $r->segregation;
+        $this->approvalLists = $r->approvalLists;
     }
 
     public function save(): void
@@ -61,7 +64,12 @@ new class extends Component {
             $this->externalReference, $this->correctiveActions, $this->baselines, $this->structureAtApproval, $this->completeBeforeApproval,
             $this->budgetDecisions,
         ))->save();
-        (new ApprovalRules($this->parentValidation, $this->budgetConfirmation, $this->segregation))->save();
+        // a list in force cannot be switched away: it would go on deciding with nobody able to see or empty it
+        if (! $this->approvalLists && app(ApproverLists::class)->anyList()) {
+            $this->approvalLists = true;
+            $this->dispatch('toast', message: __('Approval lists stay on while a unit has a list. Empty the lists first.'), type: 'info');
+        }
+        (new ApprovalRules($this->parentValidation, $this->budgetConfirmation, $this->segregation, $this->approvalLists))->save();
 
         $this->dispatch('toast', message: __('Optional rules saved.'), type: 'success');
     }
@@ -110,6 +118,9 @@ new class extends Component {
             @include('livewire.pages.management.partials.rule-switch', ['prop' => 'completeBeforeApproval',
                 'question' => __('Must every activity of a directorate be submitted before its plan is approved?'),
                 'details' => __('The head approves a directorate\'s plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; the approval waits, and the directorate sees why.')])
+            @include('livewire.pages.management.partials.rule-switch', ['prop' => 'approvalLists',
+                'question' => __('Do some units name who prepares, certifies or approves, instead of the usual heads?'),
+                'details' => __('Opens the Approval lists page. Use it only where a step is done by someone other than the head, or where several people sign in order. Without it, the technical officer prepares, the head of the unit certifies and the head of the directorate approves. It stays on while any unit has a list.')])
             @include('livewire.pages.management.partials.rule-switch', ['prop' => 'externalReference',
                 'question' => __('Can a revision need an approval from outside the institution?'),
                 'details' => __('Whoever opens a revision can mark it as needing an outside approval; it can then be approved only once the reference of that approval is recorded.')])

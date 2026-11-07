@@ -311,6 +311,8 @@ Directors keep these for the units they direct; administrators can keep them for
 
 ![Approval lists](manual/img/approval-lists.png)
 
+Most institutions do not need lists: the officer prepares, the head certifies and the head of the directorate approves. An administrator turns lists on in *Optional rules* only where a step is done by someone else, or several people sign in order.
+
 Open **Approvals → Approval lists**, choose a **unit**, and name the people for each step:
 
 - **Prepare**: who prepares and submits the unit's activities;
@@ -321,6 +323,7 @@ Rules:
 
 - A step **with no list** keeps the default rule: the director acts.
 - A unit's list also applies to the units **below** it that have no list of their own; the nearest list above wins.
+- Only the people of the selected unit are offered. To name someone from a unit below, select that unit. A unit with nobody to prepare needs a technical officer of its own (*System Users*).
 - Where a step has a list, only the people on it (and administrators) can act, and the activity says who it is waiting for.
 - The order of the list is the order in which people are named. Move a person with ↑ ↓, or *Remove* them. If a list becomes empty, the default rule applies again.
 

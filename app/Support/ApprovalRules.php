@@ -9,7 +9,8 @@ use App\Models\SystemSetting;
  * (Draft, Submitted, Reviewed, Validated, Approved) because reports, the dashboard and the queries all depend
  * on them. The chain is the same everywhere: the unit prepares, its head certifies, optionally the head of the
  * unit above validates, and the head of the top-level unit (the directorate) approves the plans of its own
- * directorate. Who exactly acts at each step can be named per unit (see ApproverLists).
+ * directorate. Who exactly acts at each step can be named per unit (see ApproverLists), an exception that is off
+ * until an institution asks for it, because a list replaces the default rule for its unit and the units below.
  *
  * What an institution may choose: whether the head of the unit above validates sub-units first, and whether
  * a finance officer confirms the budget of an activity before it is certified. Only a difference from the
@@ -22,6 +23,8 @@ final class ApprovalRules
         public readonly bool $budgetConfirmation = false,
         /** Does the person who prepared an activity also certify or approve it? off: allowed; flag: allowed and marked in the trail; block: refused (an administrator's override is marked). */
         public readonly string $segregation = self::SEGREGATION_BLOCK,
+        /** May units name the people of a step (the Approval lists page)? */
+        public readonly bool $approvalLists = false,
     ) {}
 
     public const SEGREGATION_OFF = 'off';
@@ -56,12 +59,14 @@ final class ApprovalRules
             array_key_exists('parent_validation', $stored) ? (bool) $stored['parent_validation'] : $preset->parentValidation,
             (bool) ($stored['budget_confirmation'] ?? false),
             in_array($stored['segregation'] ?? null, self::SEGREGATION_MODES, true) ? $stored['segregation'] : $preset->segregation,
+            (bool) ($stored['approval_lists'] ?? false),
         );
     }
 
     public function equals(self $other): bool
     {
-        return $this->parentValidation === $other->parentValidation && $this->budgetConfirmation === $other->budgetConfirmation && $this->segregation === $other->segregation;
+        return $this->parentValidation === $other->parentValidation && $this->budgetConfirmation === $other->budgetConfirmation
+            && $this->segregation === $other->segregation && $this->approvalLists === $other->approvalLists;
     }
 
     /** Store these rules, or forget the stored ones when they are exactly the preset. */
@@ -75,6 +80,6 @@ final class ApprovalRules
             return;
         }
 
-        SystemSetting::set('approval_rules', ['parent_validation' => $this->parentValidation, 'budget_confirmation' => $this->budgetConfirmation, 'segregation' => $this->segregation], 'json', 'Approval chain rules that differ from the preset');
+        SystemSetting::set('approval_rules', ['parent_validation' => $this->parentValidation, 'budget_confirmation' => $this->budgetConfirmation, 'segregation' => $this->segregation, 'approval_lists' => $this->approvalLists], 'json', 'Approval chain rules that differ from the preset');
     }
 }

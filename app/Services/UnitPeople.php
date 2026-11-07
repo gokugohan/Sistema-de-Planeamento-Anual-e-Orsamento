@@ -24,7 +24,7 @@ class UnitPeople
         return $base + [
             'show_email' => $admin || (bool) $viewer->seatFor($unit),
             'may_manage' => $admin,
-            'may_lists' => $admin || (bool) $viewer->seatFor($unit),
+            'may_lists' => \App\Support\ApprovalRules::current()->approvalLists && ($admin || (bool) $viewer->seatFor($unit)),
         ];
     }
 

@@ -103,6 +103,7 @@ class RestructuringTest extends TestCase
         $this->appoint($dntt, $new, 'certify'); // already named here: the old one just leaves
         $this->appoint($other, $old, 'approve'); // a unit this director does not keep
 
+        (new \App\Support\ApprovalRules(approvalLists: true))->save();
         Volt::actingAs($head)->test('pages.approvals.approver-lists')->set('replaceOld', (string) $old->id)->set('replaceNew', (string) $new->id)->call('replaceEverywhere')->assertHasNoErrors();
 
         $this->assertTrue(ApproverAssignment::where(['directorate_id' => $dgt->id, 'step' => 'approve', 'user_id' => $new->id])->exists());
@@ -119,6 +120,7 @@ class RestructuringTest extends TestCase
         $this->appoint($dgt, $solo, 'approve');
         $row = ApproverAssignment::where('user_id', $solo->id)->firstOrFail();
 
+        (new \App\Support\ApprovalRules(approvalLists: true))->save();
         Volt::actingAs($head)->test('pages.approvals.approver-lists')->call('remove', $row->id)->assertDispatched('toast');
 
         $activity = $this->activityIn('DNTT', Activity::STATUS_VALIDATED);

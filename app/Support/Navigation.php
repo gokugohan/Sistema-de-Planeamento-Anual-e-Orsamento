@@ -181,6 +181,9 @@ class Navigation
         if (($node['feature'] ?? null) === 'budget_decisions' && ! PlanOptions::current()->budgetDecisions) {
             return false;
         }
+        if (($node['feature'] ?? null) === 'approval_lists' && ! ApprovalRules::current()->approvalLists) {
+            return false;
+        }
 
         return true;
     }

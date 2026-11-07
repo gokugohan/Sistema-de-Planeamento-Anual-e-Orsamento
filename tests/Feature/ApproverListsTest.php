@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Policies\ActivityPolicy;
 use App\Services\ActivityWorkflow;
 use App\Services\ApprovalInbox;
+use App\Support\ApprovalRules;
+use App\Support\Navigation;
 use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -36,6 +38,7 @@ class ApproverListsTest extends TestCase
     {
         parent::setUp();
         (new PlanOptions(completeBeforeApproval: false))->save(); // these tests are about the chain, not the order of the year
+        (new ApprovalRules(approvalLists: true))->save();
         app()->setLocale('en');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         $this->workflow = app(ActivityWorkflow::class);
@@ -211,6 +214,45 @@ class ApproverListsTest extends TestCase
 
         $page()->set('pick.certify', (string) $mine->id)->call('add', 'certify')->assertOk();
         $this->assertSame(1, ApproverAssignment::where(['directorate_id' => $this->unit->id, 'user_id' => $mine->id, 'step' => 'certify'])->count());
+    }
+
+    public function test_a_list_names_neither_people_of_the_units_below_nor_deactivated_people(): void
+    {
+        $below = $this->person();
+        $below->update(['name' => 'Carla Below', 'directorate_id' => $this->unit->id]);
+        $gone = $this->person();
+        $gone->forceFill(['name' => 'Dinis Gone', 'directorate_id' => $this->root->id, 'deactivated_at' => now()])->save();
+
+        $page = fn () => Volt::actingAs($this->admin())->test('pages.approvals.approver-lists')->set('unitId', (string) $this->root->id);
+
+        $page()->assertDontSee('Carla Below')->assertDontSee('Dinis Gone')->assertSee('To name someone from a unit below, select that unit.');
+
+        $page()->set('pick.prepare', (string) $below->id)->call('add', 'prepare')->assertStatus(422);
+        $page()->set('pick.prepare', (string) $gone->id)->call('add', 'prepare')->assertStatus(422);
+        $this->assertSame(0, ApproverAssignment::where('directorate_id', $this->root->id)->whereIn('user_id', [$below->id, $gone->id])->count());
+    }
+
+    public function test_the_page_is_closed_until_the_rule_is_on(): void
+    {
+        (new ApprovalRules)->save();
+        $admin = $this->admin();
+        $menu = fn () => collect(Navigation::groups($admin))->pluck('items')->flatten(1)->pluck('route');
+
+        $this->actingAs($admin)->get(route('approvals.lists'))->assertNotFound();
+        $this->assertNotContains('approvals.lists', $menu());
+
+        (new ApprovalRules(approvalLists: true))->save();
+        $this->actingAs($admin)->get(route('approvals.lists'))->assertOk();
+        $this->assertContains('approvals.lists', $menu());
+    }
+
+    public function test_the_rule_stays_on_while_a_list_is_in_force(): void
+    {
+        $this->appoint($this->unit, $this->person('Director'), ApproverAssignment::CERTIFY);
+
+        Volt::actingAs($this->admin())->test('pages.management.optional-rules')
+            ->assertSet('approvalLists', true)->set('approvalLists', false)->call('save')->assertSet('approvalLists', true);
+        $this->assertTrue(ApprovalRules::current()->approvalLists);
     }
 
     public function test_only_directors_and_administrators_open_the_page(): void

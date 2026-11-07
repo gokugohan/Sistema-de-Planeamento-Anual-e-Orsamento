@@ -29,6 +29,12 @@ class ApproverLists
             ->mapWithKeys(fn ($a) => [$a->directorate_id.'|'.$a->step => true])->all());
     }
 
+    /** Does any unit have a list? */
+    public function anyList(): bool
+    {
+        return $this->unitsWithLists() !== [];
+    }
+
     /** The unit (the one given or the nearest above it) whose list for $step applies, with its people in order. @return array{unit_id: int, people: Collection}|null */
     public function listFor(?int $unitId, string $step): ?array
     {

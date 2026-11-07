@@ -64,7 +64,7 @@ return [
                     'hint' => 'Activities to decide, figures to verify and plans ready to finalize'],
                 ['label' => 'Budget review', 'route' => 'approvals.budget', 'icon' => 'banknote', 'permission' => 'confirm_budget',
                     'hint' => 'Confirm the budget lines of submitted activities'],
-                ['label' => 'Approval lists', 'route' => 'approvals.lists', 'icon' => 'users', 'roles' => ['Admin', 'Director'],
+                ['label' => 'Approval lists', 'route' => 'approvals.lists', 'icon' => 'users', 'roles' => ['Admin', 'Director'], 'feature' => 'approval_lists',
                     'hint' => 'Name who prepares, certifies and approves the activities of a unit'],
                 ['label' => 'Interim approvers', 'route' => 'approvals.delegations', 'icon' => 'user-check', 'roles' => ['Admin', 'Director'],
                     'hint' => 'Someone stands in for a director while they are away'],

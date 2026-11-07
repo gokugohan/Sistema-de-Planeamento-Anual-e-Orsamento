@@ -3,6 +3,7 @@
 use App\Models\ApproverAssignment;
 use App\Models\Directorate;
 use App\Models\User;
+use App\Support\ApprovalRules;
 use Livewire\Volt\Component;
 
 /**
@@ -16,6 +17,7 @@ new class extends Component {
 
     public function mount(): void
     {
+        abort_unless(ApprovalRules::current()->approvalLists, 404);
         abort_unless($this->allowed(), 403);
         $units = $this->units();
         if ($units->isNotEmpty()) {
@@ -27,7 +29,7 @@ new class extends Component {
     {
         $u = auth()->user();
 
-        return $u && ($u->isAdministrator() || $u->isDirector());
+        return $u && ApprovalRules::current()->approvalLists && ($u->isAdministrator() || $u->isDirector());
     }
 
     private function units()
@@ -48,8 +50,8 @@ new class extends Component {
     {
         abort_unless(in_array($step, ApproverAssignment::STEPS, true) && $this->mayEdit((int) $this->unitId), 403);
         $userId = (int) ($this->pick[$step] ?? 0);
-        // only the people of the unit can be named for it
-        abort_unless($userId && User::whereKey($userId)->where('directorate_id', (int) $this->unitId)->exists(), 422);
+        // only the people of the unit, still active: a list reaches the units below, so someone from below would gain the unit and its siblings
+        abort_unless($userId && User::whereKey($userId)->where('directorate_id', (int) $this->unitId)->whereNull('deactivated_at')->exists(), 422);
 
         $exists = ApproverAssignment::where(['directorate_id' => $this->unitId, 'user_id' => $userId, 'step' => $step])->exists();
         if (! $exists) {
@@ -148,6 +150,7 @@ new class extends Component {
             <select id="al-u" wire:model.live="unitId" class="flux-input">
                 @foreach($units as $u)<option value="{{ $u->id }}">{{ $u->code }} — {{ $u->name }}</option>@endforeach
             </select>
+            <p class="mt-2 text-xs text-zinc-500">{{ __('Only the people of this unit are offered. To name someone from a unit below, select that unit.') }}</p>
         </div>
     </x-ui.card>
 

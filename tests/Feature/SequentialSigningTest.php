@@ -163,6 +163,7 @@ class SequentialSigningTest extends TestCase
         $admin->assignRole('Admin');
         $this->actingAs($admin);
 
+        (new \App\Support\ApprovalRules(approvalLists: true))->save();
         $c = Volt::test('pages.approvals.approver-lists')->set('unitId', (string) $this->dgt->id);
         $c->call('toggleSequential', 'approve');
         $this->assertTrue(ApproverAssignment::where(['directorate_id' => $this->dgt->id, 'step' => 'approve'])->get()->every->sequential);

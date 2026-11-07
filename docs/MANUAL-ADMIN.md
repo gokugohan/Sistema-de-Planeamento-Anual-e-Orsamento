@@ -181,7 +181,7 @@ Before a report of the plan is printed or downloaded, the application warns when
 
 ## 6. Approval lists, interim approvers and reorganizations
 
-Approval lists and interim approvers are described in the User manual (Part 6). Directors keep them for their own units; administrators can keep them for **any** unit, and are never held up by a list that signs in order.
+Approval lists are off until you switch them on in *Optional rules*, and stay on while any unit has a list. Approval lists and interim approvers are described in the User manual (Part 6). Directors keep them for their own units; administrators can keep them for **any** unit, and are never held up by a list that signs in order.
 
 Authority is worked out from the unit tree and the lists **at the moment someone acts**; nothing is stored on the activity. So after a reorganization:
 
