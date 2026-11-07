@@ -13,6 +13,9 @@ return [
     // Switched off only for the automated tests (phpunit.xml), whose many scenarios submit without a calendar.
     'submission_needs_dates' => (bool) env('SUBMISSION_NEEDS_DATES', true),
 
+    // Reporting a month or a quarter needs its dates too: without them the period stays closed. Off only for the tests, likewise.
+    'reporting_needs_dates' => (bool) env('REPORTING_NEEDS_DATES', true),
+
     // Where an activity is carried out. Timor-Leste: 12 municipalities, Ataúro and the special
     // administrative region of Oé-Cusse Ambeno (RAEOA); "Nationwide" for activities with no single place.
     'locations' => [

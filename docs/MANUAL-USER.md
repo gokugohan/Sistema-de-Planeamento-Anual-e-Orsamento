@@ -122,7 +122,7 @@ You do not need to memorise this, but everything in the application follows thes
 
 **Revision.** The way to change an approved activity. It needs a reason, and the activity goes back to Draft and through the whole approval chain again. While it does, the version in force stays. When the revision is approved, it becomes the next version.
 
-**Windows.** The dates between which something may be done: submitting the plan, or reporting a month or a quarter. **Submitting the plan needs its dates**: you can prepare your activities at any time, and submit them once the administrator has set the submission dates. The other steps are open when no dates are set.
+**Windows.** The dates between which something may be done: submitting the plan, or reporting a month or a quarter. **Submitting the plan needs its dates**: you can prepare your activities at any time, and submit them once the administrator has set the submission dates. **Reporting needs its dates too**: a month or quarter with no dates stays closed until the administrator sets them. Approval and revisions are open when no dates are set.
 
 **Verified by someone else.** The figures units report (executed amounts, indicator progress) count only after another person verifies them. Nobody verifies their own report.
 

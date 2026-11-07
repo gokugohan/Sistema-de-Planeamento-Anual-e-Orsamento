@@ -102,10 +102,13 @@ function schedule() {
 
 document.addEventListener('DOMContentLoaded', () => {
     scan();
-    new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['type', 'value', 'min', 'max'] });
+    // the root element, not the body: moving between pages with wire:navigate replaces the body, and an observer on the old
+    // one would see nothing more, so an answer from the server would remove the visible fields until the page is reloaded
+    new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['type', 'value', 'min', 'max'] });
 });
 document.addEventListener('livewire:navigated', schedule);
 // after every answer from the server, show what the field now holds (a form that was reset, a value set by the server)
 document.addEventListener('livewire:init', () => {
-    window.Livewire.hook('commit', ({ succeed }) => succeed(() => queueMicrotask(scan)));
+    // (on the next frame: the page and the values are only updated after this hook has run)
+    window.Livewire.hook('commit', ({ succeed }) => succeed(() => setTimeout(schedule)));
 });

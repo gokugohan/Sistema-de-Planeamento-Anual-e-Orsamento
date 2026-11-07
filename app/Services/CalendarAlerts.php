@@ -30,6 +30,14 @@ class CalendarAlerts
                 $alerts[] = ['tone' => 'amber', 'text' => __('Submission of the :year plan has no dates yet. Prepare your activities now; they can be submitted once the administrator sets the dates.', ['year' => $year]), 'url' => route('activities.index'), 'when' => 0];
             }
         }
+        // so does reporting: a year being carried out with no reporting dates at all cannot be reported
+        if ($year === \App\Support\FiscalYear::execution() && $service->reportingNeedsDates() && ! $windows->contains(fn ($w) => in_array($w->period_type, ['month', 'quarter'], true))) {
+            if ($user->isAdministrator()) {
+                $alerts[] = ['tone' => 'amber', 'text' => __('Reporting for :year has no dates yet, so the units cannot report. Fill in the dates in the Calendar.', ['year' => $year]), 'url' => route('management.reporting-windows'), 'when' => 0];
+            } elseif ($this->concerns($user, 'month')) {
+                $alerts[] = ['tone' => 'amber', 'text' => __('Reporting for :year has no dates yet. You can report once the administrator sets them.', ['year' => $year]), 'url' => route('monitoring.report'), 'when' => 0];
+            }
+        }
         if ($windows->isEmpty()) {
             return $alerts;
         }

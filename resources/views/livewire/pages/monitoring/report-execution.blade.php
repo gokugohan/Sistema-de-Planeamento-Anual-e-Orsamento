@@ -217,6 +217,7 @@ new class extends Component {
                         'reopened' => 'border-emerald-300 bg-emerald-50 text-emerald-900',
                         'before' => 'border-indigo-200 bg-indigo-50 text-indigo-900',
                         'free' => 'border-zinc-200 bg-white text-zinc-800',
+                        'undated' => 'border-rose-200 bg-rose-50 text-rose-900',
                         'future' => 'border-zinc-100 bg-zinc-50 text-zinc-400',
                     ];
                     $words = fn (array $c) => match ($c['state']) {
@@ -226,6 +227,7 @@ new class extends Component {
                         'reopened' => __('open until :d', ['d' => \Carbon\Carbon::parse($c['date'])->format('d/m')]),
                         'before' => __('opens :d', ['d' => \Carbon\Carbon::parse($c['date'])->format('d/m')]),
                         'free' => __('no dates: open'),
+                        'undated' => __('no dates: closed'),
                         default => __('not started'),
                     };
                 @endphp

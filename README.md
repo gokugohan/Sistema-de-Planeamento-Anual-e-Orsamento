@@ -31,7 +31,7 @@ The app follows the cycle of the annual action plan. It is shown, for one year a
 
 | # | Step | Where in the app | Who |
 |---|---|---|---|
-| 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates set means open) | *PAA Activities*, window at *System → Reporting windows* | Technical officer / Director |
+| 1 | **Plan submission**: units create, edit and submit their **activities**, each with indicators, an implementation plan and **budget lines**, inside the window set for it (no dates, no submission) | *PAA Activities*, window at *System → Reporting windows* | Technical officer / Director |
 | 2 | **Approval**: each activity moves through the chain of its unit (prepare, certify, approve; named lists and interim approvers where set; finance confirmation of the budget where asked for) until Approved | *Approvals* | Reviewers, final approver |
 | 3 | **Plan finalized**: planning ends per directorate: the head of each top-level unit finalizes the plan of their own directorate (the year ends when every directorate that planned has); only they or an administrator can reopen it, with a remark. Finalizing stops new activities only | *PAA Activities*, *Approvals* | Final approver / Admin |
 | 4 | **Reporting**: units report the executed amount and indicators inside their windows; someone else verifies; directors compile the quarter | *Report execution*, *Compile the quarter*, *Approvals* | Technical officer / Director / Finance |

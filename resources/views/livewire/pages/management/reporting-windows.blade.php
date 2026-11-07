@@ -9,8 +9,8 @@ use Livewire\Volt\Component;
 
 /**
  * The calendar of the year, in the order the year runs: 1 Planning (submission, which needs its dates), 2 Approval and
- * revisions (open unless dated), 3 Reporting (each month and quarter, filled in at once from a rule: due so many days after
- * the period ends). Each row is saved on its own; emptying both dates removes them. When a unit is late, the administrator
+ * revisions (open unless dated), 3 Reporting (each month and quarter, closed until dated, filled in at once from a rule: due
+ * so many days after the period ends). Each row is saved on its own; emptying both dates removes them. When a unit is late, the administrator
  * reopens the period for that unit only, until a date.
  */
 new class extends Component {
@@ -179,6 +179,7 @@ new class extends Component {
 
         return [
             'state' => $state,
+            'reportsNeedDates' => app(ReportingWindows::class)->reportingNeedsDates(),
             'hasReports' => $saved->keys()->contains(fn ($k) => str_starts_with($k, 'month_') || str_starts_with($k, 'quarter_')),
             'late' => app(ReportingWindows::class)->overdue($this->year),
             'reopened' => WindowExtension::where('fiscal_year', $this->year)->whereDate('closes_on', '>=', now()->toDateString())->with('directorate:id,name')->orderBy('closes_on')->get(),
@@ -188,7 +189,7 @@ new class extends Component {
 
 <div class="space-y-6">
     <x-system-tabs />
-    <x-ui.page-header :title="__('Calendar')" :subtitle="__('The dates of the year, in the order it runs. Activities are submitted only between the planning dates, by everybody, administrators included; until then they stay drafts. The other steps are open unless you give them dates, and a late unit can be given more time on its own.')">
+    <x-ui.page-header :title="__('Calendar')" :subtitle="__('The dates of the year, in the order it runs. Activities are submitted only between the planning dates, by everybody, administrators included; until then they stay drafts. Reporting stays closed until it has dates, approval and revisions are open unless you give them dates, and a late unit can be given more time on its own.')">
         <div class="flex items-center gap-2">
             <label for="cal-year" class="whitespace-nowrap text-sm text-zinc-600">{{ __('Fiscal year') }}</label>
             <input id="cal-year" type="number" wire:model.live.debounce.500ms="year" class="flux-input !w-28">
@@ -277,7 +278,7 @@ new class extends Component {
             <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">3</span>
             <div>
                 <h2 class="section-title">{{ __('Reporting') }}</h2>
-                <p class="text-xs text-zinc-500">{{ __('Optional. Each month and quarter can be reported from its first day until its due date; without dates it is always open.') }}</p>
+                <p class="text-xs text-zinc-500">{{ __('Each month and quarter can be reported from its first day until its due date; without dates it stays closed.') }}</p>
             </div>
         </div>
         <form wire:submit="fillReports" class="flex flex-wrap items-end gap-4 border-b border-zinc-200 bg-zinc-50 px-5 py-4">
@@ -293,7 +294,7 @@ new class extends Component {
             </div>
             @if($hasReports)
                 <x-ui.button type="submit" wire:confirm="{{ __('Replace the reporting dates of :year?', ['year' => $year]) }}">{{ __('Fill in the dates for :year', ['year' => $year]) }}</x-ui.button>
-                <x-ui.button type="button" variant="secondary" shadow="none" wire:click="clearReports" wire:confirm="{{ __('Remove every reporting date of :year? Reporting is then always open.', ['year' => $year]) }}">{{ __('Remove them') }}</x-ui.button>
+                <x-ui.button type="button" variant="secondary" shadow="none" wire:click="clearReports" wire:confirm="{{ __('Remove every reporting date of :year? Reporting is then closed.', ['year' => $year]) }}">{{ __('Remove them') }}</x-ui.button>
             @else
                 <x-ui.button type="submit">{{ __('Fill in the dates for :year', ['year' => $year]) }}</x-ui.button>
             @endif
@@ -301,10 +302,10 @@ new class extends Component {
         <details class="group" @if($hasReports) open @endif>
             <summary class="cursor-pointer px-5 py-3 text-sm font-medium text-indigo-700 hover:underline">{{ __('Each month and quarter') }}</summary>
             @foreach(range(1, 12) as $m)
-                @include('livewire.pages.management.partials.calendar-row', ['key' => "month_$m", 'label' => \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F'), 'hint' => null, 'required' => false])
+                @include('livewire.pages.management.partials.calendar-row', ['key' => "month_$m", 'label' => \Carbon\Carbon::create($year, $m, 1)->translatedFormat('F'), 'hint' => null, 'required' => false, 'closedUndated' => $reportsNeedDates])
             @endforeach
             @foreach(range(1, 4) as $q)
-                @include('livewire.pages.management.partials.calendar-row', ['key' => "quarter_$q", 'label' => __('Quarter :q', ['q' => $q]), 'hint' => null, 'required' => false])
+                @include('livewire.pages.management.partials.calendar-row', ['key' => "quarter_$q", 'label' => __('Quarter :q', ['q' => $q]), 'hint' => null, 'required' => false, 'closedUndated' => $reportsNeedDates])
             @endforeach
         </details>
     </x-ui.card>

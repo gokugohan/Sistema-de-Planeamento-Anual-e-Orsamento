@@ -1,4 +1,4 @@
-{{-- One step of the calendar: its dates edited in place and saved on their own. Needs $key, $label, $hint, $required, $state. --}}
+{{-- One step of the calendar: its dates edited in place and saved on their own. Needs $key, $label, $hint, $required, $state; $closedUndated: without dates the step is closed. --}}
 @php $now = $state($key); @endphp
 <div wire:key="cal-{{ $key }}" class="grid gap-3 border-t border-zinc-100 px-5 py-3 first:border-t-0 md:grid-cols-12 md:items-end">
     <div class="md:col-span-4">
@@ -23,6 +23,8 @@
             <span class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium {{ $now[1] }}">{{ $now[0] }}</span>
         @elseif($required)
             <span class="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-medium text-amber-800">{{ __('No dates') }}</span>
+        @elseif($closedUndated ?? false)
+            <span class="inline-flex items-center rounded-full bg-rose-50 px-2.5 py-1 text-xs font-medium text-rose-800">{{ __('Closed') }}</span>
         @else
             <span class="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-700">{{ __('Always open') }}</span>
         @endif

@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\DB;
  * The calendar of the plan: the dates between which the annual plan is submitted (type 'plan'), decided on
  * ('approval') and finalized ('finalize'), a revision of an approved activity is made ('revision'), a month
  * (executed amount, monthly narrative) or a quarter (indicators, quarterly narrative) is reported.
- * A period with no window is open; with a window it is open from its first to its last day, and an
+ * A step with no window is open; with a window it is open from its first to its last day, and an
  * administrator can always act. Verifying is not limited by windows, only reporting is.
+ *
+ * Reporting a month or a quarter is the other way round: with no window it stays closed (not in testing mode), so nobody
+ * reports a period before the administrator has set its dates.
  *
  * Submission is the exception: the annual plan is submitted only between its dates. Without them the units prepare
  * their activities as drafts and submit once the administrator has set the dates (not in testing mode).
@@ -55,7 +58,8 @@ class ReportingWindows
             return true;
         }
         $window = $this->find($year, $type, $period);
-        if (! $window || (now()->startOfDay()->gte($window->opens_on) && now()->startOfDay()->lte($window->closes_on))) {
+        $closedWithoutDates = ! $window && in_array($type, ['month', 'quarter'], true) && $this->reportingNeedsDates();
+        if (! $closedWithoutDates && (! $window || (now()->startOfDay()->gte($window->opens_on) && now()->startOfDay()->lte($window->closes_on)))) {
             return true;
         }
         // an adjustment round that takes new activities opens their submission and approval for its directorates
@@ -100,6 +104,9 @@ class ReportingWindows
             return null;
         }
         $w = $this->find($year, $type, $period);
+        if (! $w) {
+            return __('Reporting for this period has no dates yet. The administrator sets them in the Calendar.');
+        }
         $before = now()->startOfDay()->lt($w->opens_on);
         $on = ['d' => ($before ? $w->opens_on : $w->closes_on)->format('d/m/Y')];
 
@@ -147,6 +154,12 @@ class ReportingWindows
         return __('Submission of the :year plan has no dates yet. Prepare your activities now; they can be submitted once the administrator sets the dates in the Calendar.', ['year' => $year]);
     }
 
+    /** Do the months and quarters stay closed until they have dates? */
+    public function reportingNeedsDates(): bool
+    {
+        return config('paa.reporting_needs_dates', true) && ! \App\Models\SystemSetting::get('enable_paa_testing_mode', false);
+    }
+
     /** Does the year still wait for its submission dates (which submitting needs)? */
     public function submissionUndated(int $year): bool
     {
@@ -168,7 +181,8 @@ class ReportingWindows
 
     /**
      * The reporting calendar of a year for one unit: each month and each quarter with its dates and where it stands today.
-     * States: future (the month has not started), free (no dates set: open), before (not open yet), open, closing (three days
+     * States: future (the month has not started), undated (no dates set: closed), free (no dates set, in testing mode: open),
+     * before (not open yet), open, closing (three days
      * or fewer left), closed, reopened (an administrator gave this unit more time). One cached read of the dates of the year
      * and one query for the unit's extra time; the cache is renewed when the calendar changes.
      *
@@ -194,7 +208,11 @@ class ReportingWindows
                 return ['state' => 'future'];
             }
             if (! $w) {
-                return ['state' => 'free'];
+                return match (true) {
+                    isset($extra[$key]) => ['state' => 'reopened', 'date' => $extra[$key]],
+                    $this->reportingNeedsDates() => ['state' => 'undated'],
+                    default => ['state' => 'free'],
+                };
             }
             if ($today < $w['opens']) {
                 return ['state' => 'before', 'date' => $w['opens']];
