@@ -32,6 +32,8 @@ new class extends Component {
     public $subprogram = '';
     #[Url(as: 'where')]
     public string $location = '';
+    #[Url(as: 'origin')]
+    public string $origin = '';       // '' | baseline | policy
     #[Url(as: 'group')]
     public string $group = '';        // '' | program | unit
 
@@ -49,9 +51,18 @@ new class extends Component {
         if ($name === 'program') {
             $this->subprogram = ''; // another programme has other subprogrammes
         }
-        if (in_array($name, ['tab', 'search', 'unit', 'program', 'subprogram', 'location', 'group'], true)) {
+        if (in_array($name, ['tab', 'search', 'unit', 'program', 'subprogram', 'location', 'origin', 'group'], true)) {
             $this->resetPage();
             $this->selected = [];
+        }
+    }
+
+    /** The × of a filter chip, or "All units". */
+    public function clearFilter(string $name): void
+    {
+        if (in_array($name, ['search', 'unit', 'program', 'subprogram', 'location', 'origin'], true)) {
+            $this->{$name} = '';
+            $this->updated($name);
         }
     }
 
@@ -98,6 +109,9 @@ new class extends Component {
         }
         if ($this->location !== '') {
             $q->where('location', $this->location);
+        }
+        if (isset(Activity::ORIGINS[$this->origin])) {
+            $q->where('origin', $this->origin);
         }
         if ($this->search !== '') {
             $term = '%'.str_replace(['%', '_'], ['\%', '\_'], $this->search).'%';
@@ -205,9 +219,58 @@ new class extends Component {
             'next' => $workflow->next($user, $a),
         ]]);
 
-        $money = fn ($statuses) => (float) \App\Models\LineItem::whereIn('activity_id', $this->visible()->whereIn('status', $statuses)->select('id'))->sum('estimated_amount');
-        $all = (float) \App\Models\LineItem::whereIn('activity_id', $this->visible()->select('id'))->sum('estimated_amount');
+        // the money follows the filters, like the counts; the whole plan's total is shown beside it once a filter is on
+        $money = fn ($q) => (float) \App\Models\LineItem::whereIn('activity_id', $q->select('id'))->sum('estimated_amount');
+        $filtersActive = $this->unit !== '' || $this->program !== '' || $this->subprogram !== '' || $this->location !== '' || $this->origin !== '' || $this->search !== '';
+        $all = $money($this->filtered());
         $previous = Activity::where('fiscal_year', $year - 1)->exists();
+
+        // the list of one unit says whose it is: the unit is the page's heading, with its own figures
+        $unitInfo = null;
+        if ($this->unit !== '' && $shown = Directorate::find((int) $this->unit)) {
+            $ancestors = [];
+            for ($p = $shown->parent, $hops = 0; $p && $hops < 20; $p = $p->parent, $hops++) {
+                array_unshift($ancestors, $p->code);
+            }
+            $byClass = \App\Models\LineItem::whereIn('activity_id', $this->filtered()->select('id'))
+                ->join('economic_classifications', 'economic_classifications.id', '=', 'line_items.economic_classification_id')
+                ->groupBy('economic_classifications.code', 'economic_classifications.name')->orderBy('economic_classifications.code')
+                ->selectRaw('economic_classifications.code as code, economic_classifications.name as name, SUM(line_items.estimated_amount) as amount')
+                ->get()->filter(fn ($c) => (float) $c->amount != 0)->values();
+            $state = match (true) {
+                (bool) app(\App\Services\PlanningWindow::class)->unitEndedBy($year, $shown->id) => ['label' => __('Plan finalized'), 'tone' => 'emerald'],
+                $tabCounts['all'] === 0 => ['label' => __('Nothing planned yet'), 'tone' => 'zinc'],
+                $tabCounts['approved'] === $tabCounts['all'] => ['label' => __('Approved'), 'tone' => 'emerald'],
+                $tabCounts['review'] > 0 => ['label' => __('In review'), 'tone' => 'amber'],
+                default => ['label' => __('Draft'), 'tone' => 'zinc'],
+            };
+            $unitInfo = [
+                'unit' => $shown,
+                'ancestors' => $ancestors,
+                'kind' => $shown->parent_id ? null : ($shown->isAutonomous() ? __('Autonomous body') : __('Ministry services')),
+                'leader' => $shown->director_name ? $shown->leaderTitle().': '.$shown->director_name : null,
+                'byClass' => $byClass,
+                'state' => $state,
+            ];
+        }
+
+        // every other filter shows as a chip, so a shared link says what it shows
+        $chips = [];
+        if ($this->program !== '' && $p = Program::find((int) $this->program)) {
+            $chips['program'] = __('Programme').' '.$p->oge_code;
+        }
+        if ($this->subprogram !== '' && $s = Subprogram::find((int) $this->subprogram)) {
+            $chips['subprogram'] = __('Subprogram').' '.$s->code;
+        }
+        if ($this->location !== '') {
+            $chips['location'] = $this->location === 'Nationwide' ? __('Nationwide') : $this->location;
+        }
+        if (isset(Activity::ORIGINS[$this->origin])) {
+            $chips['origin'] = Activity::originWord($this->origin);
+        }
+        if ($this->search !== '') {
+            $chips['search'] = '“'.$this->search.'”';
+        }
 
         return [
             'year' => $year,
@@ -215,7 +278,8 @@ new class extends Component {
             'flags' => $rowFlags,
             'tabCounts' => $tabCounts,
             'totalPlanned' => $all,
-            'totalApproved' => $money(self::GROUPS['approved']),
+            'totalApproved' => $money($this->filtered()->whereIn('status', self::GROUPS['approved'])),
+            'totalPlan' => $filtersActive ? $money($this->visible()) : null,
             'units' => Directorate::whereNull('parent_id')->orderBy('code')->get(['id', 'code', 'name', 'administration']),
             'programs' => Program::forYear($this->year())->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'subprograms' => Subprogram::query()
@@ -223,11 +287,15 @@ new class extends Component {
                 ->when($this->program !== '', fn ($q) => $q->where('program_id', (int) $this->program))
                 ->orderBy('code')->get(['id', 'program_id', 'code', 'name']),
             'locations' => config('paa.locations'),
+            // the origin filter only shows once the year has an activity that is not an existing service
+            'showOrigin' => $this->origin !== '' || $this->visible()->where('origin', '!=', Activity::ORIGIN_BASELINE)->exists(),
             'canCreate' => $user->can('create', Activity::class),
             'canRoll' => $user->can('create_activities') && $previous && $tabCounts['all'] === 0,
             'locked' => \App\Support\FiscalYear::planningEndedBy($year, $user->isAdministrator() ? null : $user->directorate_id),
             'tabs' => ['all' => __('All'), 'draft' => __('Drafts & returned'), 'review' => __('In review'), 'approved' => __('Approved'), 'mine' => __('Needs my action')],
-            'filtersActive' => $this->unit !== '' || $this->program !== '' || $this->subprogram !== '' || $this->location !== '' || $this->search !== '',
+            'filtersActive' => $filtersActive,
+            'unitInfo' => $unitInfo,
+            'chips' => $chips,
         ];
     }
 }; ?>
@@ -250,7 +318,16 @@ new class extends Component {
 
 {{-- The ticked rows live in the browser (a deferred entangle) and travel with the next action, so ticking a box does not re-render the list. --}}
 <div class="space-y-6" x-data="{ selected: $wire.$entangle('selected') }">
-    <x-ui.page-header :title="__('PAA Activities')" :subtitle="__('Annual Activity Plan :year', ['year' => $year])">
+    @php
+        $org = \App\Models\SystemSetting::getLocalized('org_abbr', '');
+        $headTitle = $unitInfo ? $unitInfo['unit']->name : __('PAA Activities');
+        $headSub = collect([__('Annual Activity Plan :year', ['year' => $year]), $unitInfo['kind'] ?? null, $unitInfo['leader'] ?? null])->filter()->implode(' · ');
+        $eyebrow = $unitInfo ? collect([$org, ...$unitInfo['ancestors'], $unitInfo['unit']->code])->filter()->unique()->implode(' › ') : null;
+    @endphp
+    <x-ui.page-header :title="$headTitle" :subtitle="$headSub" :eyebrow="$eyebrow">
+        @if($unitInfo)
+            <x-ui.button variant="secondary" wire:click="clearFilter('unit')">← {{ __('All units') }}</x-ui.button>
+        @endif
         <x-ui.button variant="secondary" wire:click="export">{{ __('Export CSV') }}</x-ui.button>
         @if($canRoll && ! $locked)
             <x-ui.button variant="secondary" wire:click="rollForward"
@@ -265,12 +342,52 @@ new class extends Component {
 
     <livewire:pages.planning.planning-window :year="$year" :key="'planning-'.$year" />
 
+    @if(count($chips))
+        <div class="-mt-2 flex flex-wrap items-center gap-2" aria-label="{{ __('Filters') }}">
+            @foreach($chips as $name => $text)
+                <button type="button" wire:click="clearFilter('{{ $name }}')" class="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-800 hover:bg-indigo-100"
+                    title="{{ __('Remove this filter') }}">{{ $text }} <span aria-hidden="true">×</span><span class="sr-only">{{ __('Remove this filter') }}</span></button>
+            @endforeach
+        </div>
+    @endif
+
+    @if($unitInfo)
+        {{-- the unit's own figures, for the activities shown --}}
+        @php
+            $share = $totalPlan ? $totalPlanned / $totalPlan * 100 : null;
+            $approvedPct = $totalPlanned > 0 ? min(100, $totalApproved / $totalPlanned * 100) : null;
+            $stateTone = ['emerald' => 'text-emerald-700', 'amber' => 'text-amber-700', 'zinc' => 'text-zinc-900'][$unitInfo['state']['tone']];
+        @endphp
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <x-ui.kpi :label="__('Planned budget')" :value="'$ ' . number_format($totalPlanned)" :sub="__(':n activities', ['n' => $tabCounts['all']])" tone="indigo" />
+            <x-ui.kpi :label="__('Share of the plan')" :value="$share !== null ? number_format($share, 1) . '%' : '—'"
+                :sub="$totalPlan ? __('of $ :t in the whole plan', ['t' => number_format($totalPlan)]) : null" :progress="$share" tone="indigo" />
+            <x-ui.kpi :label="__('Approved')" :value="'$ ' . number_format($totalApproved)"
+                :sub="$approvedPct !== null ? number_format($approvedPct, 0) . '% ' . __('of the planned budget') : null" :progress="$approvedPct" tone="emerald" />
+            <div class="rounded-lg border border-zinc-200 bg-white p-5 shadow-card">
+                <p class="text-sm font-medium text-zinc-500">{{ __('Plan status') }}</p>
+                <p class="mt-2 text-2xl font-semibold {{ $stateTone }}">{{ $unitInfo['state']['label'] }}</p>
+                <p class="mt-1 text-xs text-zinc-500">{{ __(':n in draft', ['n' => $tabCounts['draft']]) }} · {{ $tabCounts['review'] }} {{ __('In review') }} · {{ $tabCounts['approved'] }} {{ __('Approved') }}</p>
+            </div>
+        </div>
+        @if($unitInfo['byClass']->isNotEmpty())
+            <div class="flex flex-wrap gap-x-6 gap-y-2 rounded-lg border border-zinc-200 bg-white px-5 py-3 text-sm shadow-card">
+                <span class="font-medium text-zinc-500">{{ __('By economic category') }}</span>
+                @foreach($unitInfo['byClass'] as $c)
+                    <span class="text-zinc-700"><span class="font-semibold text-zinc-900">{{ $c->code }}</span> {{ $c->name }}
+                        <span class="tabular-nums font-medium text-zinc-900">$ {{ number_format((float) $c->amount) }}</span></span>
+                @endforeach
+            </div>
+        @endif
+    @else
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <x-ui.kpi :label="__('Activities')" :value="number_format($tabCounts['all'])" :sub="__(':n in draft', ['n' => $tabCounts['draft']])" tone="zinc" />
         <x-ui.kpi :label="__('In review')" :value="number_format($tabCounts['review'])" :sub="__('Waiting for a decision')" tone="amber" />
         <x-ui.kpi :label="__('Approved')" :value="number_format($tabCounts['approved'])" :sub="__('Part of the approved plan')" tone="emerald" />
-        <x-ui.kpi :label="__('Planned budget')" :value="'$ ' . number_format($totalPlanned)" :sub="__('Approved: $ :n', ['n' => number_format($totalApproved)])" tone="indigo" />
+        <x-ui.kpi :label="__('Planned budget')" :value="'$ ' . number_format($totalPlanned)"
+            :sub="$totalPlan !== null ? __('Approved: $ :n · of $ :t in the whole plan', ['n' => number_format($totalApproved), 't' => number_format($totalPlan)]) : __('Approved: $ :n', ['n' => number_format($totalApproved)])" tone="indigo" />
     </div>
+    @endif
 
     {{-- Filters --}}
     <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_12rem_14rem_14rem_11rem_9rem]">
@@ -295,6 +412,12 @@ new class extends Component {
             <option value="">{{ __('Everywhere') }}</option>
             @foreach($locations as $loc)<option value="{{ $loc }}">{{ $loc === 'Nationwide' ? __('Nationwide') : $loc }}</option>@endforeach
         </select>
+        @if($showOrigin)
+            <select wire:model.live="origin" class="flux-input" aria-label="{{ __('Existing service or new policy') }}">
+                <option value="">{{ __('Existing services and new policies') }}</option>
+                @foreach(\App\Models\Activity::ORIGINS as $value => $word)<option value="{{ $value }}">{{ __($word) }}</option>@endforeach
+            </select>
+        @endif
         <select wire:model.live="group" class="flux-input" aria-label="{{ __('Group by') }}">
             <option value="">{{ __('No grouping') }}</option>
             <option value="program">{{ __('By programme') }}</option>
@@ -345,6 +468,7 @@ new class extends Component {
                             <span aria-hidden="true">·</span> {{ $a->program->oge_code ?? '—' }}@if($a->subprogram)<span class="text-zinc-400">/</span>{{ $a->subprogram->code }}@endif
                             @php $quarters = collect($a->execution_quarters ?: [$a->quarter]); @endphp
                             @if($a->location)<span aria-hidden="true">·</span> {{ $a->location }}@endif
+                            @if($a->origin && $a->origin !== \App\Models\Activity::ORIGIN_BASELINE)<span aria-hidden="true">·</span> <span class="font-medium text-indigo-700">{{ $a->policy_ref ?: __('New policy priority') }}</span>@endif
                             <span aria-hidden="true">·</span> {{ $quarters->count() === 4 ? 'Q1–Q4' : $quarters->map(fn ($q) => "Q$q")->implode(' ') }}
                             @if($a->priority && ! in_array($a->priority, ['Média', 'Medium'], true))<span aria-hidden="true">·</span> {{ $priority($a->priority) }}@endif
                         </p>

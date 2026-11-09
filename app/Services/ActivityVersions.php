@@ -65,6 +65,7 @@ class ActivityVersions
                 'location' => $activity->location, 'procurement_required' => $activity->procurement_required, 'gender_responsive' => $activity->gender_responsive,
                 'period_type' => $activity->period_type, 'quarter' => $activity->quarter,
                 'external_approval_reference' => $activity->external_approval_reference,
+                'origin' => $activity->origin, 'policy_ref' => $activity->policy_ref,
             ],
             'indicators' => $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'annual_target' => (float) $i->annual_target,

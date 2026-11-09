@@ -29,8 +29,14 @@ new class extends Component {
     {
         $year = \App\Support\FiscalYear::current();
         $attention = app(\App\Services\ApprovalInbox::class)->items(auth()->user(), \App\Support\FiscalYear::isUnusual() ? $year : null); // asked once, used by two panels
-        $dirs = Directorate::get(['id', 'code', 'name', 'type', 'parent_id'])->keyBy('id');
-        $rootOf = fn ($id) => ($dirs[$id]->parent_id ?? null) ?: $id;
+        $dirs = Directorate::get(['id', 'code', 'name', 'type', 'administration', 'parent_id'])->keyBy('id');
+        $rootOf = function ($id) use ($dirs) { // the top-level unit, however deep the unit sits
+            for ($hops = 0; ($parent = $dirs[$id]->parent_id ?? null) && $hops < 20; $hops++) {
+                $id = $parent;
+            }
+
+            return $id;
+        };
         $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name'])->keyBy('id');
 
         $unitIds = $this->unit !== ''
@@ -82,7 +88,7 @@ new class extends Component {
         $planAll = 0.0;
         $plan = 0.0;
         $allocated = 0.0;
-        $planByClass = $allocByClass = [];
+        $planByClass = $allocByClass = $unitClass = [];
         foreach ($base()
             ->leftJoin('line_items', fn ($j) => $j->on('line_items.activity_id', '=', 'activities.id')->where('line_items.is_test_data', false))
             ->leftJoin('adjusted_budgets', 'adjusted_budgets.line_item_id', '=', 'line_items.id')
@@ -107,6 +113,7 @@ new class extends Component {
                 $subStats[$r->sp]['alloc'] = ($subStats[$r->sp]['alloc'] ?? 0) + $r->alloc;
             }
             if ($r->c) {
+                $unitClass[$root][$r->c] = ($unitClass[$root][$r->c] ?? 0) + $r->req;
                 $planByClass[$r->c] = ($planByClass[$r->c] ?? 0) + $r->req;
                 $allocByClass[$r->c] = ($allocByClass[$r->c] ?? 0) + $r->alloc;
             }
@@ -167,6 +174,43 @@ new class extends Component {
         }
         usort($units, fn ($a, $b) => [$b['plan'], $b['n']] <=> [$a['plan'], $a['n']]);
 
+        // ── budget by entity: the institution's own services together, then each autonomous body (indirect
+        //    administration, with its own budget in the State Budget), as the budget books list them ──
+        $entityRow = function ($label, $ids, $unitId = null) use ($unitStats, $unitClass) {
+            $row = ['label' => $label, 'unit_id' => $unitId, 'n' => 0, 'approved' => 0, 'plan' => 0.0, 'alloc' => 0.0, 'classes' => [], 'members' => []];
+            foreach ($ids as $id) {
+                $s = $unitStats[$id] ?? [];
+                foreach (['n', 'approved', 'plan', 'alloc'] as $k) {
+                    $row[$k] += $s[$k] ?? 0;
+                }
+                foreach ($unitClass[$id] ?? [] as $c => $v) {
+                    $row['classes'][$c] = ($row['classes'][$c] ?? 0) + $v;
+                }
+            }
+
+            return $row;
+        };
+        $unitRow = fn ($d) => $entityRow($d->code . ' — ' . $d->name, [$d->id], $d->id);
+        // units with nothing in the year are left out (the "worth a look" panel already names them)
+        $roots = $dirs->filter(fn ($d) => ! $d->parent_id && ($this->unit === '' || $d->id == $this->unit) && ($unitStats[$d->id]['n'] ?? 0) > 0);
+        [$bodies, $own] = $roots->partition(fn ($d) => $d->administration === Directorate::INDIRECT);
+        $entities = [];
+        if ($own->count() === 1) {
+            $entities[] = $unitRow($own->first());
+        } elseif ($own->count() > 1) {
+            $row = $entityRow(SystemSetting::getLocalized('org_abbr', '') ?: __('Own services'), $own->keys());
+            $row['members'] = $own->map($unitRow)->sortByDesc('plan')->values()->all();
+            $entities[] = $row;
+        }
+        $bodyRows = $bodies->map($unitRow)->sortByDesc('plan')->values()->all();
+        $entities = array_merge($entities, $bodyRows);
+        $entityTotals = [
+            'bodies' => count($bodyRows) > 1 ? $entityRow(__('Autonomous bodies'), $bodies->keys()) : null,
+            'all' => $entityRow(__('Total'), $roots->keys()),
+            // only the categories the rows use, so the table stays narrow
+            'classes' => $classes->filter(fn ($c) => collect($entities)->contains(fn ($e) => ($e['classes'][$c->id] ?? 0) != 0))->values(),
+        ];
+
         // ── things worth a look ──
         $watch = [];
         $noLines = $base()->where('activities.status', Activity::STATUS_APPROVED)->doesntHave('lineItems')->count();
@@ -217,6 +261,7 @@ new class extends Component {
             'units' => $units, 'watch' => $watch, 'charts' => $charts, 'exec' => $exec, 'behind' => $behind, 'programs' => $programs, 'progRows' => $progRows,
             'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
             'classes' => $classes,
+            'entities' => $entities, 'entityTotals' => $entityTotals,
         ];
     }
 }; ?>
@@ -342,8 +387,9 @@ new class extends Component {
         $approvedShare = $totalActivities > 0 ? ($byStatus[\App\Models\Activity::STATUS_APPROVED] / $totalActivities * 100) : 0;
     @endphp
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <x-ui.kpi :label="__('Approved plan')" :value="'$ ' . number_format($allocated)"
-            :sub="$planAll > 0 ? __('of $ :planned planned in :n activities', ['planned' => number_format($planAll), 'n' => $totalActivities]) : __('Nothing planned yet')"
+        {{-- the whole plan first (every activity, whatever its stage), then how much of it is approved --}}
+        <x-ui.kpi :label="__('Planned budget')" :value="'$ ' . number_format($planAll)"
+            :sub="$planAll > 0 ? __('Approved: $ :approved (:pct%) · :n activities', ['approved' => number_format($allocated), 'pct' => number_format($approvedPct, 0), 'n' => $totalActivities]) : __('Nothing planned yet')"
             :progress="$approvedPct" tone="indigo" href="{{ route('activities.index') }}" />
         <x-ui.kpi :label="__('Executed')" :value="'$ ' . number_format((float) ($exec['executed'] ?? 0))"
             :sub="($allocated > 0 ? number_format(min(100, (float) ($exec['executed'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan.') . ' ' : '') . __('Entered monthly by the units, counted once verified.')"
@@ -431,6 +477,86 @@ new class extends Component {
             </div>
         </x-ui.card>
     </div>
+
+    {{-- Budget by entity: the institution's own services, then each autonomous body --}}
+    @if(count($entities))
+        @php
+            $cols = $entityTotals['classes'];
+            $cell = fn ($v) => $v != 0 ? number_format($v) : '—';
+            $pct = fn ($e) => $e['plan'] > 0 ? ' (' . number_format(min(100, $e['alloc'] / $e['plan'] * 100), 0) . '%)' : '';
+        @endphp
+        <x-ui.card :title="__('Budget by entity')" :description="__('Planned budget of the own services and of each autonomous body, by economic category')" padding="p-0">
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead class="bg-zinc-50 text-xs font-medium text-zinc-500">
+                        <tr>
+                            <th scope="col" class="px-5 py-2.5 text-left">{{ __('Entity') }}</th>
+                            @foreach($cols as $c)
+                                <th scope="col" class="hidden px-3 py-2.5 text-right align-bottom lg:table-cell">
+                                    <span class="block font-semibold text-zinc-700">{{ $c->code }}</span>
+                                    <span class="block max-w-[9rem] ml-auto font-normal leading-tight">{{ $c->name }}</span>
+                                </th>
+                            @endforeach
+                            <th scope="col" class="px-3 py-2.5 text-right">{{ __('Planned') }}</th>
+                            <th scope="col" class="hidden px-3 py-2.5 text-right sm:table-cell">{{ __('Approved') }}</th>
+                            <th scope="col" class="px-5 py-2.5 text-right">{{ __('Activities') }}</th>
+                        </tr>
+                    </thead>
+                    @foreach($entities as $i => $e)
+                        <tbody x-data="{ open: false }" class="border-t border-zinc-200" wire:key="entity-{{ $i }}-{{ $e['unit_id'] }}">
+                            <tr class="hover:bg-zinc-50">
+                                <th scope="row" class="px-5 py-2.5 text-left font-medium text-zinc-900">
+                                    @if(count($e['members']))
+                                        <button type="button" @click="open = !open" :aria-expanded="open" class="inline-flex items-center gap-1.5 text-left hover:text-indigo-700">
+                                            <svg class="h-3.5 w-3.5 shrink-0 text-zinc-400 transition-transform" :class="open && 'rotate-90'" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.2 14.8a.75.75 0 0 1 0-1.06L10.94 10 7.2 6.26a.75.75 0 1 1 1.06-1.06l4.27 4.27a.75.75 0 0 1 0 1.06l-4.27 4.27a.75.75 0 0 1-1.06 0Z" clip-rule="evenodd"/></svg>
+                                            <span>{{ $e['label'] }}</span>
+                                            <span class="text-xs font-normal text-zinc-500">· {{ trans_choice(':n unit|:n units', count($e['members']), ['n' => count($e['members'])]) }}</span>
+                                        </button>
+                                    @else
+                                        <a href="{{ route('activities.index', ['year' => $year, 'unit' => $e['unit_id']]) }}" wire:navigate class="hover:text-indigo-700">{{ $e['label'] }}</a>
+                                    @endif
+                                </th>
+                                @foreach($cols as $c)
+                                    <td class="hidden px-3 py-2.5 text-right tabular-nums text-zinc-700 lg:table-cell">{{ $cell($e['classes'][$c->id] ?? 0) }}</td>
+                                @endforeach
+                                <td class="px-3 py-2.5 text-right font-semibold tabular-nums text-zinc-900">{{ number_format($e['plan']) }}</td>
+                                <td class="hidden px-3 py-2.5 text-right tabular-nums text-zinc-700 sm:table-cell">{{ number_format($e['alloc']) }}<span class="text-xs text-zinc-500">{{ $pct($e) }}</span></td>
+                                <td class="px-5 py-2.5 text-right tabular-nums text-zinc-700">{{ $e['n'] }}</td>
+                            </tr>
+                            @foreach($e['members'] as $m)
+                                <tr x-show="open" x-cloak class="bg-zinc-50">
+                                    <th scope="row" class="py-2 pl-11 pr-5 text-left font-normal text-zinc-700">
+                                        <a href="{{ route('activities.index', ['year' => $year, 'unit' => $m['unit_id']]) }}" wire:navigate class="hover:text-indigo-700">{{ $m['label'] }}</a>
+                                    </th>
+                                    @foreach($cols as $c)
+                                        <td class="hidden px-3 py-2 text-right tabular-nums text-zinc-600 lg:table-cell">{{ $cell($m['classes'][$c->id] ?? 0) }}</td>
+                                    @endforeach
+                                    <td class="px-3 py-2 text-right tabular-nums text-zinc-700">{{ number_format($m['plan']) }}</td>
+                                    <td class="hidden px-3 py-2 text-right tabular-nums text-zinc-600 sm:table-cell">{{ number_format($m['alloc']) }}<span class="text-xs text-zinc-500">{{ $pct($m) }}</span></td>
+                                    <td class="px-5 py-2 text-right tabular-nums text-zinc-600">{{ $m['n'] }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    @endforeach
+                    @if(count($entities) > 1)
+                        <tfoot class="border-t-2 border-zinc-200">
+                            @foreach(array_filter([$entityTotals['bodies'], $entityTotals['all']]) as $t)
+                                <tr class="{{ $loop->last ? 'bg-zinc-50 font-semibold text-zinc-900' : 'text-zinc-700' }}">
+                                    <th scope="row" class="px-5 py-2.5 text-left {{ $loop->last ? 'font-semibold' : 'font-medium' }}">{{ $t['label'] }}</th>
+                                    @foreach($cols as $c)
+                                        <td class="hidden px-3 py-2.5 text-right tabular-nums lg:table-cell">{{ $cell($t['classes'][$c->id] ?? 0) }}</td>
+                                    @endforeach
+                                    <td class="px-3 py-2.5 text-right tabular-nums">{{ number_format($t['plan']) }}</td>
+                                    <td class="hidden px-3 py-2.5 text-right tabular-nums sm:table-cell">{{ number_format($t['alloc']) }}<span class="text-xs font-normal text-zinc-500">{{ $pct($t) }}</span></td>
+                                    <td class="px-5 py-2.5 text-right tabular-nums">{{ $t['n'] }}</td>
+                                </tr>
+                            @endforeach
+                        </tfoot>
+                    @endif
+                </table>
+            </div>
+        </x-ui.card>
+    @endif
 
     {{-- Status | units --}}
     <div class="grid gap-6 xl:grid-cols-12">

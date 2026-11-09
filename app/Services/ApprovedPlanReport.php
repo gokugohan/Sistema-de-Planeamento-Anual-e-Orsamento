@@ -108,6 +108,20 @@ class ApprovedPlanReport
             ->sortBy('code')
             ->values();
 
+        // Existing services, then each new policy priority: since the 2027 budget the
+        // results of new policies are followed apart from the baseline.
+        $originOrder = array_flip(array_keys(Activity::ORIGINS));
+        $byOrigin = $rows
+            ->groupBy(fn ($r) => ($r['activity']->origin ?: Activity::ORIGIN_BASELINE).'|'.($r['activity']->origin === Activity::ORIGIN_POLICY ? (string) $r['activity']->policy_ref : ''))
+            ->map(function ($g) use ($sum) {
+                $a = $g->first()['activity'];
+                $origin = $a->origin ?: Activity::ORIGIN_BASELINE;
+
+                return ['origin' => $origin, 'policy_ref' => $origin === Activity::ORIGIN_POLICY ? $a->policy_ref : null, 'label' => $a->originLabel()] + $sum($g);
+            })
+            ->sortBy(fn ($o) => sprintf('%d|%s', $originOrder[$o['origin']] ?? 9, str_pad((string) preg_replace('/\D/', '', (string) $o['policy_ref']), 6, '0', STR_PAD_LEFT).$o['policy_ref']))
+            ->values();
+
         // Group by the top of the hierarchy (Direção-Geral / Gabinete), then by unit.
         $byUnit = $rows
             ->groupBy(fn ($r) => $r['activity']->directorate->parent_id ?? $r['activity']->directorate_id)
@@ -162,6 +176,7 @@ class ApprovedPlanReport
             'totals' => $totals,
             'autonomous' => $autonomous,
             'by_program' => $byProgram,
+            'by_origin' => $byOrigin,
             'tree' => $tree,
             'by_unit' => $byUnit,
             'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),
@@ -188,7 +203,7 @@ class ApprovedPlanReport
     {
         $snap = $version->snapshot;
         $a = $snap['activity'] ?? [];
-        foreach (['code', 'description', 'objective', 'priority', 'planned_start', 'planned_end', 'execution_quarters', 'manager_name', 'location', 'quarter'] as $field) {
+        foreach (['code', 'description', 'objective', 'priority', 'planned_start', 'planned_end', 'execution_quarters', 'manager_name', 'location', 'quarter', 'origin', 'policy_ref'] as $field) {
             if (array_key_exists($field, $a)) {
                 $activity->setAttribute($field, $a[$field]);
             }

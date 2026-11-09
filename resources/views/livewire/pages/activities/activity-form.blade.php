@@ -26,6 +26,8 @@ new class extends Component {
     public string $objective = '';
     public string $manager_name = '';
     public string $priority = 'Média';
+    public string $origin = Activity::ORIGIN_BASELINE;
+    public string $policy_ref = '';
     public string $location = '';
     public string $planned_start = '';
     public string $planned_end = '';
@@ -54,6 +56,8 @@ new class extends Component {
             $this->objective = (string) $activity->objective;
             $this->manager_name = (string) $activity->manager_name;
             $this->priority = $activity->priority;
+            $this->origin = $activity->origin ?: Activity::ORIGIN_BASELINE;
+            $this->policy_ref = (string) $activity->policy_ref;
             $this->location = (string) $activity->location;
             $this->planned_start = $activity->planned_start->format('Y-m-d');
             $this->planned_end = $activity->planned_end->format('Y-m-d');
@@ -170,6 +174,9 @@ new class extends Component {
             'manager_name' => ['nullable', 'string', 'max:255'],
             'priority' => ['required', 'in:Alta,Média,Baixa'],
             'location' => ['nullable', 'in:'.implode(',', config('paa.locations'))],
+            'origin' => ['required', 'in:'.implode(',', array_keys(Activity::ORIGINS))],
+            // a new policy priority is named (as the budget statement names it, e.g. PPG 18)
+            'policy_ref' => ['nullable', 'required_if:origin,'.Activity::ORIGIN_POLICY, 'string', 'max:30'],
             'planned_start' => ['required', 'date', "after_or_equal:{$y}-01-01", "before_or_equal:{$y}-12-31"],
             'planned_end' => ['required', 'date', 'after_or_equal:planned_start', "before_or_equal:{$y}-12-31"],
             'quarters' => ['required', 'array', 'min:1'],
@@ -225,6 +232,7 @@ new class extends Component {
             'lines.*.class_id' => __('economic category'), 'lines.*.source_id' => __('funding source'), 'lines.*.amount' => __('amount'),
             'indicators.*.name' => __('indicator name'), 'indicators.*.unit' => __('unit of measure'), 'indicators.*.target' => __('target'),
             'indicators.*.actions.*.text' => __('action'),
+            'policy_ref' => __('policy priority'),
         ]);
 
         // the months of an indicator must fall in the quarters the activity runs in
@@ -281,6 +289,8 @@ new class extends Component {
             'objective' => trim($this->objective) ?: null,
             'manager_name' => trim($this->manager_name) ?: null,
             'priority' => $this->priority,
+            'origin' => $this->origin,
+            'policy_ref' => $this->origin === Activity::ORIGIN_POLICY ? (trim($this->policy_ref) ?: null) : null,
             'location' => $this->location ?: null,
             'planned_start' => $this->planned_start,
             'planned_end' => $this->planned_end,
@@ -474,6 +484,21 @@ new class extends Component {
                         <option value="Baixa">{{ __('Low') }}</option>
                     </select>
                 </div>
+                <div>
+                    <label for="origin" class="block text-sm font-medium text-zinc-700 mb-1">{{ __('Existing service or new policy') }}</label>
+                    <select id="origin" wire:model.live="origin" class="flux-input">
+                        @foreach(\App\Models\Activity::ORIGINS as $value => $word)<option value="{{ $value }}">{{ __($word) }}</option>@endforeach
+                    </select>
+                    <p class="mt-1 text-xs text-zinc-500">{{ __('Most activities continue an existing service. Choose a new policy priority only when the activity is funded by a policy approved for this budget.') }}</p>
+                    @error('origin')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                </div>
+                @if($origin === \App\Models\Activity::ORIGIN_POLICY)
+                    <div>
+                        <label for="policy_ref" class="block text-sm font-medium text-zinc-700 mb-1">{{ __('Policy priority') }}</label>
+                        <input id="policy_ref" type="text" wire:model="policy_ref" class="flux-input" maxlength="30" placeholder="{{ __('e.g. PPG 18') }}">
+                        @error('policy_ref')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                    </div>
+                @endif
             </div>
         </x-ui.card>
 

@@ -127,7 +127,7 @@ class YearAtAGlanceTest extends TestCase
         $this->assertStringContainsString('The figures of each unit and each program are on their own pages', $dashboard);
         $after = explode('</p>', explode('The figures of each unit', $dashboard)[1] ?? '', 2)[1] ?? ''; // after the sentence and its two links
         $this->assertStringNotContainsString('Programs', $after, 'the program table is no longer on the dashboard');
-        $this->assertLessThan(strpos($dashboard, 'Approved plan'), strpos($dashboard, 'Needs your attention'), 'what needs you comes before the figures');
+        $this->assertLessThan(strpos($dashboard, 'Planned budget'), strpos($dashboard, 'Needs your attention'), 'what needs you comes before the figures');
 
         $this->actingAs($this->user('director.udig@gdsc.tl'))->followingRedirects()->get(route('work.home'))->assertOk()->assertSee('The year 2026 at a glance')->assertSee('counts once someone else has verified it');
     }

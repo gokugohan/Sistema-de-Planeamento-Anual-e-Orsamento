@@ -339,6 +339,7 @@ new class extends Component {
                 <div class="flex flex-wrap gap-2 mb-4">
                     @if($activity->location)<x-ui.badge variant="gray">{{ $activity->location === 'Nationwide' ? __('Nationwide') : $activity->location }}</x-ui.badge>@endif
                     <x-ui.badge variant="gray">{{ collect($activity->execution_quarters ?: [$activity->quarter])->map(fn ($q) => 'Q'.$q)->implode(' ') }}</x-ui.badge>
+                    @if($activity->origin && $activity->origin !== \App\Models\Activity::ORIGIN_BASELINE)<x-ui.badge variant="indigo">{{ $activity->originLabel() }}</x-ui.badge>@endif
                     @if($activity->procurement_required)<x-ui.badge variant="gray">{{ __('Procurement') }}</x-ui.badge>@endif
                     @if($activity->gender_responsive)<x-ui.badge variant="indigo">{{ __('Gender-responsive') }}</x-ui.badge>@endif
                 </div>
@@ -1068,6 +1069,11 @@ new class extends Component {
                         @else
                             <p class="text-sm text-zinc-400">{{ __('Not required') }}</p>
                         @endif
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-semibold text-zinc-400 mb-1.5">{{ __('Existing service or new policy') }}</p>
+                        <p class="text-sm font-semibold text-zinc-800">{{ $activity->originLabel() }}</p>
                     </div>
 
                     <div>

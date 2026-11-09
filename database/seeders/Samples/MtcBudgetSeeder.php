@@ -9,6 +9,7 @@ use App\Models\FundingSource;
 use App\Models\Indicator;
 use App\Models\LineItem;
 use App\Models\Program;
+use App\Models\ResultIndicator;
 use App\Models\Subprogram;
 use App\Models\User;
 use App\Services\ActivityVersions;
@@ -55,6 +56,20 @@ class MtcBudgetSeeder extends Seeder
      */
     public const STATES = ['approved', 'halfway', 'draft'];
 
+    /**
+     * The activities of a year funded by a new policy priority, by code prefix. The plan prints them with an "X" in the
+     * code; the budget statement on the policy priorities names the priority and gives the same amounts:
+     *   2027  Elementos Informativos, Volume X (Prioridades Políticas do Governo), Tabela 9 (PPG 3: 1 200 000 USD for
+     *         MTC, programme 502) and Tabela 21 (PPG 18: 2 215 000 USD for MTC, programme A08).
+     * Every other activity continues an existing service.
+     */
+    public const POLICY_PRIORITIES = [
+        2027 => ['50202X' => 'PPG 3', '50203X' => 'PPG 3', 'A0807X' => 'PPG 18'],
+    ];
+
+    /** Short names of the entities: several of them set their own outcome for a programme they share. */
+    public const ENTITY_LABELS = ['025' => 'MTC', '056' => 'APORTIL', '059' => 'TIC Timor', '063' => 'AACTL', '066' => 'ANC'];
+
     private string $state = 'approved';
 
     /** @var array<int, array<int, int>> ids of the activities this run planted, by year (their execution is sampled afterwards) */
@@ -86,6 +101,7 @@ class MtcBudgetSeeder extends Seeder
 
             DB::transaction(function () use ($registry, $year, $data, $units) {
                 $this->loadActivities($registry, $year, $data);
+                $this->loadResults($registry, $year, $data);
                 if ($this->stateOf($year) === 'halfway') {
                     $this->advanceHalfway($year);
                 }
@@ -149,6 +165,65 @@ class MtcBudgetSeeder extends Seeder
         return array_map('strval', array_keys($codes)); // numeric codes such as 510 become integer keys
     }
 
+    /**
+     * The medium-term outcomes (of a programme) and short-term outputs (of a subprogramme) of the year, each with the
+     * indicator, starting point and target the budget book prints (data: entities.*.results). Each entity sets its own
+     * outcome for a programme it shares with the others, so each indicator is named after its entity and code. Only a
+     * programme or subprogramme the loaded activities use gets them; an output also gives its subprogramme the
+     * statement as its objective when the sample made that subprogramme and it has none.
+     */
+    private function loadResults(SampleRegistry $registry, int $year, array $data): void
+    {
+        $programs = Program::forYear($year)->pluck('id', 'oge_code');
+
+        foreach ($data['entities'] as $entity => $e) {
+            $used = collect($e['activities'])->filter(fn ($a) => $a['amounts'])
+                ->map(fn ($a) => ['programme' => (string) $a['programme'], 'subprogramme' => (string) ($a['subprogramme'] ?? '')]);
+
+            foreach ($e['results'] ?? [] as $r) {
+                $code = strtok($r['code'], '.'); // 502.0.3 -> programme 502; 50202.0.0 -> subprogramme 50202
+                if ($r['kind'] === 'outcome') {
+                    if (! isset($programs[$code]) || ! $used->contains('programme', $code)) {
+                        continue;
+                    }
+                    $owner = Program::find($programs[$code]);
+                } else {
+                    $programme = $used->firstWhere('subprogramme', $code)['programme'] ?? null;
+                    $owner = $programme !== null && isset($programs[$programme])
+                        ? Subprogram::where('program_id', $programs[$programme])->where('code', $code)->first() : null;
+                    if (! $owner) {
+                        continue;
+                    }
+                    if (blank($owner->objective) && $r['statement'] !== '' && $registry->isRegistered($owner)) {
+                        $owner->update(['objective' => Str::limit($r['statement'], 1990, '')]);
+                    }
+                }
+
+                $label = self::ENTITY_LABELS[$entity] ?? $entity;
+                $registry->upsert('mtc', ResultIndicator::class, [
+                    'indicatable_type' => $owner->getMorphClass(),
+                    'indicatable_id' => $owner->id,
+                    'name' => Str::limit("{$label} {$r['code']}: ".($r['indicator'] !== '' ? $r['indicator'] : $r['statement']), 495, '…'),
+                ], [
+                    'baseline' => $r['baseline'] !== '' ? Str::limit($r['baseline'], 250, '…') : null,
+                    'target' => $r['target'] !== '' ? Str::limit($r['target'], 250, '…') : null,
+                ]);
+            }
+        }
+    }
+
+    /** @return array{origin: string, policy_ref: ?string} where the money of an official activity comes from (see POLICY_PRIORITIES) */
+    public static function originOf(int $year, string $code): array
+    {
+        foreach (self::POLICY_PRIORITIES[$year] ?? [] as $prefix => $policy) {
+            if (str_starts_with($code, $prefix)) {
+                return ['origin' => Activity::ORIGIN_POLICY, 'policy_ref' => $policy];
+            }
+        }
+
+        return ['origin' => Activity::ORIGIN_BASELINE, 'policy_ref' => null];
+    }
+
     /** @return array<string, array<string, float>> category totals of the plan, per entity */
     private function loadActivities(SampleRegistry $registry, int $year, array $data): array
     {
@@ -197,6 +272,7 @@ class MtcBudgetSeeder extends Seeder
                         'planned_end' => "{$year}-12-31",
                         'procurement_required' => false,
                         'gender_responsive' => false,
+                        ...self::originOf($year, $a['code']),
                         'status' => $this->stateOf($year) === 'approved' ? ($a['status'] ?? Activity::STATUS_APPROVED) : Activity::STATUS_DRAFT,
                         'is_test_data' => false,
                     ] + $this->workflowDates($year, $this->stateOf($year) === 'approved' ? ($a['status'] ?? null) : Activity::STATUS_DRAFT));

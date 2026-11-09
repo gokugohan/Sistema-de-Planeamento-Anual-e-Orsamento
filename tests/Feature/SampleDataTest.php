@@ -6,7 +6,9 @@ use App\Models\Activity;
 use App\Models\Directorate;
 use App\Models\Program;
 use App\Models\ReportingWindow;
+use App\Models\ResultIndicator;
 use App\Models\SampleRecord;
+use App\Models\Subprogram;
 use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\SampleRegistry;
@@ -66,6 +68,31 @@ class SampleDataTest extends TestCase
         $this->assertSame($years[0].'-04-10', $window->closes_on->toDateString());
     }
 
+    public function test_the_2027_plan_carries_the_outcomes_and_outputs_of_the_budget_book(): void
+    {
+        $this->load();
+
+        // each entity sets its own outcome for a programme they share: one indicator each, named after the entity
+        $p502 = Program::forYear(2027)->where('oge_code', '502')->firstOrFail();
+        $outcomes = $p502->resultIndicators->keyBy(fn ($r) => strtok($r->name, ':'));
+        $this->assertEqualsCanonicalizing(['MTC 502.0.0', 'MTC 502.0.1', 'AACTL 502.0.2', 'APORTIL 502.0.3'], $outcomes->keys()->all());
+        $this->assertSame('MTC 502.0.0: Reduzir o tempo de viagem para o usuário, o serviço mais rápido e ou reduzir custos', $outcomes['MTC 502.0.0']->name);
+        $this->assertSame(['894', '900'], [$outcomes['MTC 502.0.1']->baseline, $outcomes['MTC 502.0.1']->target]);
+
+        // an output belongs to its subprogramme, which takes the output's statement as its objective
+        $sub = Subprogram::where('program_id', $p502->id)->where('code', '50202')->firstOrFail();
+        $this->assertSame('Estrutura integrada de transportes terrestres desenvolvida e implementada', $sub->objective);
+        $output = $sub->resultIndicators->sole();
+        $this->assertSame(['MTC 50202.0.0: % de redução em acidentes rodoviários', '10', '8'], [$output->name, $output->baseline, $output->target]);
+
+        // long texts are cut to what the columns hold
+        $this->assertTrue(ResultIndicator::all()->every(fn ($r) => mb_strlen($r->name) <= 500 && mb_strlen((string) $r->baseline) <= 255 && mb_strlen((string) $r->target) <= 255));
+
+        // only the 2027 book has been read for them
+        $this->assertSame(0, Program::forYear(2026)->withCount('resultIndicators')->get()->sum('result_indicators_count'));
+        $this->assertSame(43, ResultIndicator::count(), 'every outcome and output whose programme or subprogramme has a funded activity (one TIC output has none)');
+    }
+
     public function test_purge_removes_all_sample_data_and_resets_branding(): void
     {
         $this->load();
@@ -78,6 +105,7 @@ class SampleDataTest extends TestCase
         $this->assertSame(0, Activity::count() + Directorate::count() + Program::count() + User::count());
         $this->assertSame(0, SampleRecord::count());
         $this->assertSame(0, ReportingWindow::count(), 'the sample calendar goes with the sample');
+        $this->assertSame(0, ResultIndicator::count(), 'the outcome and output indicators go with the sample');
         $this->assertFalse((bool) SystemSetting::get(SampleRegistry::FLAG));
         $this->assertSame('ORG', SystemSetting::getLocalized('org_abbr', '', 'en'));
     }

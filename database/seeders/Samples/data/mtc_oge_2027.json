@@ -1061,6 +1061,170 @@
      },
      "page": 316
     }
+   ],
+   "results": [
+    {
+     "kind": "outcome",
+     "code": "502.0.0",
+     "statement": "Sistema de transporte terrestre em bom funcionamento que contribui a ligar as comunidades, apoiar o desenvolvimento rural, a indústria e o turismo e fornecer acesso ao mercado e apoiar os serviços públicos de fornecimento",
+     "indicator": "Reduzir o tempo de viagem para o usuário, o serviço mais rápido e ou reduzir custos",
+     "baseline": "10",
+     "target": "20",
+     "page": 310
+    },
+    {
+     "kind": "output",
+     "code": "50202.0.0",
+     "statement": "Estrutura integrada de transportes terrestres desenvolvida e implementada",
+     "indicator": "% de redução em acidentes rodoviários",
+     "baseline": "10",
+     "target": "8",
+     "page": 310
+    },
+    {
+     "kind": "output",
+     "code": "50203.0.0",
+     "statement": "Infraestruturas de Transportes Terrestres de qualidade e em utilização",
+     "indicator": "% of the plan bus terminal completed",
+     "baseline": "25%",
+     "target": "27%",
+     "page": 310
+    },
+    {
+     "kind": "output",
+     "code": "50208.0.0",
+     "statement": "tbd",
+     "indicator": "Gerir o atendimento públicos nas Direções Municipais dos Transpontes e Comunicações",
+     "baseline": "0%",
+     "target": "100%",
+     "page": 311
+    },
+    {
+     "kind": "outcome",
+     "code": "502.0.1",
+     "statement": "Sistema de transporte marítimo em funcionamento para apoiar o crescimento económico e atender às demandas da indústria e do frete",
+     "indicator": "Aumentar a carga nacional e internacional",
+     "baseline": "894",
+     "target": "900",
+     "page": 312
+    },
+    {
+     "kind": "output",
+     "code": "50204.0.0",
+     "statement": "Instalações de transporte marítimo em bom funcionamento",
+     "indicator": "% de bom funcionamento de transporte marítimo",
+     "baseline": "100%.",
+     "target": "100%",
+     "page": 312
+    },
+    {
+     "kind": "outcome",
+     "code": "510.0.0",
+     "statement": "Construir confiança no governo",
+     "indicator": "Um Plano Estratégico Aprovado, incluindo plano de médio prazo",
+     "baseline": "0",
+     "target": "Em esboco",
+     "page": 312
+    },
+    {
+     "kind": "output",
+     "code": "51001.0.0",
+     "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+     "indicator": "% de Metas no Plano Anual alcançadas",
+     "baseline": "100%",
+     "target": "100%",
+     "page": 312
+    },
+    {
+     "kind": "output",
+     "code": "51002.0.0",
+     "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+     "indicator": "% de Relatórios Trimestrais de implementação do Plano Anual",
+     "baseline": "100%",
+     "target": "100%",
+     "page": 313
+    },
+    {
+     "kind": "output",
+     "code": "51003.0.0",
+     "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+     "indicator": "O Plano Anual inclui atividades governamentais e de Parceiros de Desenvolvimento",
+     "baseline": "3",
+     "target": "5",
+     "page": 314
+    },
+    {
+     "kind": "outcome",
+     "code": "558.0.0",
+     "statement": "Acesso aos serviços postais de forma eficientes, rápidos e acessíveis",
+     "indicator": "% de aumento de volume de correio",
+     "baseline": "50%",
+     "target": "50%",
+     "page": 314
+    },
+    {
+     "kind": "output",
+     "code": "55801.0.0",
+     "statement": "Quadro integrado de serviços postais desenvolvido e implementado",
+     "indicator": "Número de entregas ocorrem em 7 dias",
+     "baseline": "30.414",
+     "target": "40,000",
+     "page": 314
+    },
+    {
+     "kind": "outcome",
+     "code": "980.0.9",
+     "statement": "A desigualdade de gênero é reduzida",
+     "indicator": "% de homens e mulheres têm acesso e oportunidade iguais em termos de compartilhamento de poder, controle de recursos, tomada de decisões, status socioeconômico, status político e acesso à justiça e segurança",
+     "baseline": "0",
+     "target": "30",
+     "page": 314
+    },
+    {
+     "kind": "output",
+     "code": "98030.0.0",
+     "statement": "Promoção efectiva da participação das mulheres rurais no desenvolvimento económico do país e eliminação de todas as formas de discriminação contra as mulheres rurais",
+     "indicator": "% de mulheres participaram do processo de desenvolvimento econômico e redução da discriminação contra as mulheres.",
+     "baseline": "0",
+     "target": "30",
+     "page": 315
+    },
+    {
+     "kind": "outcome",
+     "code": "A08.0.0",
+     "statement": "Todas as instituições públicas têm acesso a infraestrutura de comunicação de qualidade em todo o país",
+     "indicator": "1. redução do número de paralisações por ano. 2.% de usuário satisfeito",
+     "baseline": "606",
+     "target": "1) 1000; e 2) 100%",
+     "page": 315
+    },
+    {
+     "kind": "output",
+     "code": "A0807.0.0",
+     "statement": "Todas as instituições públicas tem acesso a infraestrutura de comunicação de qualidade em todo o país",
+     "indicator": "% de entidades do governo aseco à cobertura de telecomunicações pela Internet em todo o território de Timor Leste",
+     "baseline": "606",
+     "target": "1000",
+     "page": 316
+    },
+    {
+     "kind": "outcome",
+     "code": "A38.0.0",
+     "statement": "Cidadãos de Timor-Leste informados sobre o clima e o estado do tempo",
+     "indicator": "% de informacao opotuna disponivel para todos os Cidadaos",
+     "baseline": "67%",
+     "target": "100%",
+     "page": 316
+    },
+    {
+     "kind": "output",
+     "code": "A3801.0.0",
+     "statement": "Sistema integrado de gestão de serviços meteorológicos desenvolvido e implementado",
+     "indicator": "% Previsão do tempo com precisão para cada município",
+     "baseline": "67%",
+     "target": "100%",
+     "page": 316
+    }
    ]
   },
   "056": {
@@ -1216,6 +1380,44 @@
       "20": 100000.0
      },
      "page": 34
+    }
+   ],
+   "results": [
+    {
+     "kind": "outcome",
+     "code": "502.0.3",
+     "statement": "Instalações marítimas eficientes e seguras para passageiros e cargas",
+     "indicator": "% Aumento o número de embarcações que utilizam portos nacionais",
+     "baseline": "Facilidades para as embarcações minimas",
+     "target": "Melhoramento das facilidades; garantia de boa segurança e modernização de sistemas uzando as tecnologias de informação",
+     "page": 692
+    },
+    {
+     "kind": "output",
+     "code": "50207.0.0",
+     "statement": "Rede bem conectada de portos nacionais, facilitando a economia de tráfego de passageiros e cargas.",
+     "indicator": "1. número de passageiros. 2. tonelagem de carga",
+     "baseline": "144 circuitos, 34.397 passageiros, 1388 veiculos",
+     "target": "Operação e gestão do navio Nakroma melhorada e aumento de de número de viagens, número de passageiros e cargas, aumentando receitas",
+     "page": 692
+    },
+    {
+     "kind": "outcome",
+     "code": "510.0.0",
+     "statement": "Construir confiança no governo",
+     "indicator": "Um Plano Estratégico Aprovado, incluindo plano de médio prazo",
+     "baseline": "Em 2026 garante o bem estar do Plano Estratégico",
+     "target": "100% Executa plano",
+     "page": 692
+    },
+    {
+     "kind": "output",
+     "code": "51002.0.0",
+     "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+     "indicator": "Um Plano Estratégico Aprovado, incluindo plano de médio prazo",
+     "baseline": "Em 2026 garante o bem estar do Plano Estratégico",
+     "target": "100% Executa plano",
+     "page": 692
     }
    ]
   },
@@ -1445,6 +1647,89 @@
      },
      "page": 51
     }
+   ],
+   "results": [
+    {
+     "kind": "outcome",
+     "code": "510.0.0",
+     "statement": "Construir confiança no governo",
+     "indicator": "1. Apoiu Implementasaun Administrasaun Publiku ho efisiensia, efikas no transparente; 2. Aprovasaun Planu Annual; 3. Desenvolvimentu estratejia no politika relevante ba implementasaun Dijitalizasaun.",
+     "baseline": "1. Hasa'e kapasidade rekursu umanu bazeia ba avaliasaun desenpeñu; 2. Planu Ezekusaun orsamentu haktuir ba Lei Enkuadramentu Orsamentál no Kódigu Aprovizionamentu no Kontratu Públiku 3. Dijitalizasaun iha faze intermediu.",
+     "target": "1. Rekursu Umanu kualifikadu hodi ezerse servisu iha area teknika no non-teknika; 2. PAA ezekuta haktuir ba programa no atinji persentajen máximum no ezekuta haktuir ba Implementasaun no regulamentu Lei Enkuadramentu Orsamentál no Kódigu Aprovizionamentu no Kontratu Públiku foun ne'ebe simples, rigorozu no transparente; 3. Kontinua implementa sistema Dijitalizasaun ba Intituisaun Estadu.",
+     "page": 702
+    },
+    {
+     "kind": "output",
+     "code": "51001.0.0",
+     "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+     "indicator": "1. Kontinua operasionaliza implementasaun Timor dijitál 2032 ba iha Instituisaun Estadu husi Nasional to'o iha Suku; 2.Dezenvolve Politika no Estatejia relevante sira hodi apoiu transformasaun dijital iha Instituisaun Estadu sira hotu, no hadia prestasaun servisu instituisaun publiku sira; 3. Atualiza Politika Internal TIC ninian hodi responde ba necesidade atual no responde ba programa no prioredade IX Governu nian.",
+     "baseline": "1.Estratejia Timor digital 2032 ne'ebe hetan ona aprovosaun husi Konsellu Ministru; 2.Politika TIK 2017-2019 kaduka ona no persija atualiza hodi alina ho programa Governu atual no avansamentu teknolojia. 3.Estudu no avaliasaun sira ba dezenvolvimentu dijitál ne'ebé hala'o husi TIC Timor hatudu katak iha nesesidade atu dezenvolve estratéjia komprensivu hodi orienta transformasaun dijitál iha Timor-Leste; 4. Persiza dezenvolve politika no estratejia transformasaun dijital hodi apoiu implementasaun",
+     "target": "1.Planu Estratejiku TIC TIMOR I.P. dezenvolvidu; 2. Politika Interna no Prosedimentu Diresaun sira TIC TIMOR I.P. implementa haktuir ba kompetensia Diresaun ida-idak nian; 3. Politika TIC Nasional (ICT Policy) aprovadu husi Konsellu Ministru no publika iha jornal repulika; 4. Proposta revizaun estratejia Timor Digital no halo mudansa ba naran husi Timor Digital ba iha Timor Transformasaun Digital ne'ebe sei hetan aprovasaun husi",
+     "page": 702
+    },
+    {
+     "kind": "output",
+     "code": "51002.0.0",
+     "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+     "indicator": "Asegura katak despezas públikas bele realiza ho forma efetiva, efikás, transparente, no akuntabel. Nune'e TIC TIMOR I.P realiza ona fiskalizasaun ba ezekusaun Orsament.",
+     "baseline": "PAA 2023, 2024 no 2025, 2026 ezekuta ona.",
+     "target": "",
+     "page": 704
+    },
+    {
+     "kind": "outcome",
+     "code": "A08.0.5",
+     "statement": "Informações sobre as atividades do Governo são acessíveis e os Serviços Públicos Chave são fornecidos on-line.",
+     "indicator": "Tinan 2027, Instituisaun no Ajência Estadu 139 hetan apoiu servisu teknolojia husi TIC TIMOR I.P. ho persentajem 68%",
+     "baseline": "1. Fornesimentu Formasaun iha Instituisaun no Ajensia Estadu 65, kompostu husi total 139, hetan ona formasaun husi TIC TIMOR I.P iha nivel Nasional to'o iha Munisipiu; 2. Fornesimentu Desenvolvimentu sistema iha Instituisaun no Ajência Estadu inklui Munisipais sira no suku (1), hamutuk 81, kompostu husi total 139, sira nia sistema informasaun baziku desenvolve ona husi TIC TIMOR I.P; 3. Fornesimentu Servisu Rede iha Instituisaun no Ajensia Estadu nian hamutuk 57 hetan ona asesu rede husi TIC TIMOR I.P iha nivel Nasional, Munisipiu,",
+     "target": "1. Kontinua realiza kapasitasaun ba pesoal Instituisaun no Ajensia Estadu nian inklui setor privadu sira; 2. Kontinua desenvolve aplikasaun esensial sira ba prestasaun servisu publiku; 3. Kontinua Fornese no Moderniza konetividade rede husi nivel Nasional, Munisipiu, Balcao Uniku inklui Embaixada sira; 4. Kontinua sentraliza, asegura no fornese servisu hospedajem ba Instituisaun Estadu inklui setor privadu iha Sentru Dadus",
+     "page": 705
+    },
+    {
+     "kind": "output",
+     "code": "A0802.0.1",
+     "statement": "Transformação Digital dos Serviços do Governo para o Apoio de Balcão Único",
+     "indicator": "- Transformasaun digital ba servisu governu atu suporta Balcão Único (One-Stop Service) hodi garantia ba asesu no adosaun digital. ho fornesimentu servisu ba instituisuan estadu hamutuk 81 - Redusaun tempu médiu atendimentu no tempu prosesamentu pedidu sira. Nune’e mós haree kapasidade atu resolve pedidu iha kontaktu dahuluk (first contact resolution). Redusaun prosesu manual no papel mós hatudu nível automasaun iha sistema governu nian. - Kualidade servisu medidu liu husi nível satisfasaun utilizadór, númeru komplaín sira, no taxa erru ka retrabalhu iha prosesu administrativu sira. Tempu resposta ba pedidu no suporta mós sai indikador importante ba efisiénsia no responsividade sistema digital. - Integrasaun no interoperabilidade avalia oinsa sistema governu sira konekta ba malu, inklui númeru instituisaun sira ne’ebé integradu iha plataforma no volume troka dadus automátiku entre entidade sira. Integrasaun ne’ebé aas bele redús duplikasaun dadus no hadi’a koordinasaun entre departamentu sira. - Servisu sira bele asesu liu husi telemóvel, uza iha área urbana no rural, no disponibilidade iha lian barak. Nune’e mós konsidera asesu ba grupu vulnerável sira, atu garante igualdade iha servisu públiku digital. - Seguransa no impaktu institusional avalia proteksaun dadus, númeru incidente seguransa, estabilidade sistema (uptime), no uza autentikasaun digital. Nune’e mós inklui impaktu ekonomiku hanesan redusaun kustu operasional, aumenta efisiénsia administrativu, no tempu entrega servisu públiku ne’ebé liu rápido. Tinan 2027 TIC TIMOR kontinua dijitaliza sistema informasaun ba Instituisaun no",
+     "baseline": "'-TIC TIMOR I.P. desenvolve ona sistema informasaun (Dijitalizasaun) ba Instituisaun no Ajência Estadu nian, hamutuk 81 husi Instituisaun139 - Formação para os formadores servisu hamautuk ho INAP no CFPTIC -TIMOR I.P. fornese ona formasaun ba instituisaun no Ajência estadu nian, hamutuk 68. Total Instituisaun governu inklui Munisipiu hamutuk 139, digitaliza",
+     "target": "- kria pontu asesu úniku, integradu ba servisu governu nian, iha ne'ebé sidadaun no negósiu sira bele asesu servisu sira la presiza vizita eskritóriu oioin ka repete informasaun hanesan iha instituisaun oioin. - hadi'a efisiénsia no velosidade prestasaun servisu nian, hamenus tempu prosesamentu, minimiza prosedimentu manuál sira, no aumenta automatizasaun atu nune'e servisu sira bele fornese lalais liu no ho pasu uitoan liu. - hadi'a kualidade servisu no esperiénsia utilizadór nian, hodi asegura katak sidadaun sira simu servisu sira ne'ebé loos, transparente, no konfiável ho satisfasaun ne'ebé aas liu no keixa sira ne'ebé menus liu. - alkansa interoperabilidade kompletu entre sistema governu nian, hodi permite fahe dadus seguru entre ministériu sira no halakon duplikasaun hatama dadus no baze-dadus ne'ebé fragmentadu. - inkluzaun no asesibilidade, hodi garante katak sidadaun hotu-hotu— inklui sira ne’ebé iha área rurál, grupu vulneravel sira, no komunidade ho lian oioin, bele fasilmente asesu ba servisu governu nian liuhosi kanál dijitál sira. - harii ekosistema governu nian ida ne'ebé seguru, transparente, no bazeia ba dadus, iha ne'ebé identidade dijitál, siberseguransa, no análize dadus iha tempu-reál apoia foti desizaun ne'ebé di'ak liu, hamenus kustu operasionál sira, no hadi'a konfiansa públiku nian iha servisu governu nian. TIC TIMOR I.P. Dijitaliza",
+     "page": 705
+    },
+    {
+     "kind": "output",
+     "code": "A0805.0.0",
+     "statement": "Sustentar desempenho serviços Governamentais",
+     "indicator": "Garantia disponibilidade, continuidade no fiabilidade asesu ba servisu Governu Eletróniku ne'ebé presta hosi TIC TIMOR I.P.",
+     "baseline": "Servisu Governu Eletróniku atualmente depende ba disponibilidade IP Públiku no konektividade Internet atu bele asesivel hosi utilizadór sira, maibé kontinuidade asesu sei vulnerável bainhira renovasaun IP Públiku ka konektividade Internet principal hetan interrupsaun. TIC TIMOR I.P. atualmente",
+     "target": "Garantir disponibilidade no continuidade asesu ba servisu Governu Eletróniku 24 oras loron-loron (24x7), ho disponibilidade no fiabilidade infraestrutura konektividade ne'ebé suporta prestasaun servisu governu.",
+     "page": 707
+    },
+    {
+     "kind": "output",
+     "code": "A0806.0.0",
+     "statement": "Rede pública do Estado",
+     "indicator": "Tinan 2027 Instituisaun no Ajensia estadu hamutuk 20 maka sei halo tan koneksaun mai iha rede governu, hodi asesu ba servisu publiku ne'ebe mak halo hospendajem (hosting) iha Sentru Dadus TIC TIMOR I.P. hanesan Email Services, DNS Services, Hosting System, Co-location nomos Aplikasaun.",
+     "baseline": "1. Ajência Estadu 61 iha Dili ne'ebe hetan koneksaun direta mai iha Sentru Dadus Governu Elektroniku sei aumenta haktuir ba pedidu sira husi instituisaun governu. 2. Halo manutensaun kabu fibra otika terrestiral nasional to munisipiu.",
+     "target": "Tinan 2027, TIC TIMOR I.P. sei moderniza rede backbone iha teritoriu tomak, nune'e mos hasa'e kapasidade hodi akomoda konetividade rede atu prepara no apoia CTL E. P. no mos atualiza ekipamentu rede backbone iha Munisipiu (Fibra Optic National Backbone Terresterial) no rede ponto distribuisaun Nasional hodi fasilita servisu Governu Eletroniku no dijitalizasaun ne'ebe mak seikrese signifikativu iha futuru.",
+     "page": 707
+    },
+    {
+     "kind": "output",
+     "code": "A0815.0.0",
+     "statement": "tbd",
+     "indicator": "1. Implementa sistema seguransa avansadu hodi proteje infraestrutura dijital husi atake sibe; 2. Implementa SOC (Security Operation Center) faz parte ba planu integradu husi Pakote Siberseguransa Nasional no rekezitu husi ACNOC ba presidensia Timor- Leste iha simeira ASEAN 2029; 3. Sertifika Sentrudadus TIC TIMOR tuir padraun Siberseguransa ISO 2700; 4. Kompra aparellu no teknolojia ba Avaliasaun hodi kontinua no aumenta numeru ezekusaun ba avaliasaun Vulnerabilidade no teste penetrasaun ba sistema no aplikasaun",
+     "baseline": "1. TIC TIMOR implementa ona sistema seguransa avansadu iha inisiu 2026. Nune’e, importante atu kontinua extensaun hodi asegura sistema kritiku protejidu husi kualker atake siber;. TIC TIMOR implementa ona sistema monitorizasaun fundamental, maibe importante atu implementa SOC hodi garante monitorizasaun integradu no kordenadu durante tempu iha teritoriu nasional durante 24/7 horas. 2. TIC TIMOR adota ona padraun siberseguransa ho tipu ISO 27001 iha inisiu 2025. Maibe iha limitasaun no presiza atu kompleta rekezitu tekniku haktuir ba resultadu auditoria tekniku; 3.Iha tinan 2026, TIC TIMOR konklui teste avaliasaun vulnerabilidade no teste penetrasaun ba insituisaun 8 uza aparelu teknolojia.",
+     "target": "1.Ho implementasaun seguransa avansadu sei asegura sistema kritiku destaka iha Sentrudadus TIC TIMOR ne’e seguru, protejidu no sustentable. Alende ne’e, SOC implementana ona hanesan rekezitu husi Subkomite 5 ACNOC faz parte ba preparasaun Timor-Leste nia presidensia ba ASEAN iha tinan 2029; 2. Sentrudadus TIC TIMOR priense ona rekezitu tekniku no sertifikadu bazeia ba padraun siberseguransa ISO 2700; 3. Realiza atividade avaliasaun vulnerabilidade no teste penetrasaun ba sistema no aplikasaun husi instituisaun no ajensia governu ne’ebe sentraliza iha",
+     "page": 708
+    },
+    {
+     "kind": "output",
+     "code": "A0816.0.0",
+     "statement": "Servisu governu eletroniku ne'ebe hospedajen iha Sentru Dadus Governu eletroniku sentralizadu ho disponibilidade ne'ebe a'as no asesivel ho diak, fasil no seguru iha Munispiu, Linha Ministreial no Instituisaun Estadu sira.",
+     "indicator": "Modernizasaun infraestrutura, sistema no fasilidade Sentru Dadus TIC TIMOR I.P. atu hasa’e disponibilidade, seguransa, kapasidade no efisiénsia prestasaun servisu Governu Eletróniku. 1. Moderniza infraestrutura Sentru Dadus liuhosi implementasaun Core Network, Web Application Firewall (WAF), Government AI Platform, no",
+     "baseline": "Sentru Dadus atualmente utiliza infraestrutura desde 2017, software/lisensa balun remata iha 2027, no kapasidade presiza modernizasaun. 1. Core Network atualmente uza Cisco Nexus 7700 ne'ebé opera desde 2017; WAF License remata iha 2024;",
+     "target": "Sentru Dadus TIC TIMOR I.P. modernizadu ho infraestrutura, software, lisensa no fasilidade ne'ebé atualiza atu garante disponibilidade, seguransa, kapasidade, reziliénsia operasional no kontinuidade servisu Governu Eletróniku 24x7. 1. Infraestrutura Sentru Dadus modernu, seguru, resiliente no disponivel 24x7 atu suporta",
+     "page": 710
+    }
    ]
   },
   "063": {
@@ -1623,6 +1908,53 @@
       "20": 2000.0
      },
      "page": 64
+    }
+   ],
+   "results": [
+    {
+     "kind": "outcome",
+     "code": "502.0.2",
+     "statement": "Uma rede de aeroportos distritais plenamente operacionais e aeroportos internacionais de padrões modernos",
+     "indicator": "1.% de aeroportos que cumprem as normas internacionais. 2.% de aumento em passageiros aéreo",
+     "baseline": "100%",
+     "target": "90%",
+     "page": 721
+    },
+    {
+     "kind": "output",
+     "code": "50201.0.0",
+     "statement": "Aviação civil bem regulamentada em níveis de padrão internacionais",
+     "indicator": "% da inspeção será aumentada",
+     "baseline": "100%",
+     "target": "90%",
+     "page": 721
+    },
+    {
+     "kind": "outcome",
+     "code": "510.0.0",
+     "statement": "Construir confiança no governo",
+     "indicator": "Melhoramento a transparência e responsabilidade da administração pública",
+     "baseline": "% Qualidade Implementação de Recurso Humanos , % Qualidade de Execução as Normas",
+     "target": "100%",
+     "page": 722
+    },
+    {
+     "kind": "output",
+     "code": "51001.0.1",
+     "statement": "Melhoramento a transparência e responsabilidade da administração pública",
+     "indicator": "% Qualidade Implementação de Recurso Humanos , % Qualidade de Execução as Normas",
+     "baseline": "100%",
+     "target": "100%",
+     "page": 722
+    },
+    {
+     "kind": "output",
+     "code": "51002.0.0",
+     "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+     "indicator": "% da Implementação do Plano Annual",
+     "baseline": "25%",
+     "target": "90%",
+     "page": 723
     }
    ]
   },
@@ -1883,6 +2215,80 @@
       "20": 10200.0
      },
      "page": 77
+    }
+   ],
+   "results": [
+    {
+     "kind": "outcome",
+     "code": "510.0.0",
+     "statement": "Construir confiança no governo",
+     "indicator": "Plano Estratégico aprovado, incluindo o plano de médio prazo",
+     "baseline": "",
+     "target": "",
+     "page": 735
+    },
+    {
+     "kind": "output",
+     "code": "51001.0.0",
+     "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+     "indicator": "% de Metas no Plano Anual alcançadas",
+     "baseline": "70%",
+     "target": "100",
+     "page": 735
+    },
+    {
+     "kind": "output",
+     "code": "51002.0.0",
+     "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+     "indicator": "Relatórios Trimestrais de implementação do Plano Anual",
+     "baseline": "100%",
+     "target": "100%",
+     "page": 735
+    },
+    {
+     "kind": "outcome",
+     "code": "A08.0.3",
+     "statement": "Todo o território nacional terá acesso à internet de alta velocidade confiável, segura e acessível até 2030",
+     "indicator": "A população de Timor-Leste estará conectada entre si e com outros países até 2030",
+     "baseline": "96%",
+     "target": "100%",
+     "page": 735
+    },
+    {
+     "kind": "output",
+     "code": "A0809.0.0",
+     "statement": "Um mercado competitivo que fornece serviços de telecomunicações de qualidade",
+     "indicator": "% da população com acesso à Internet confiável, acessível e de alta velocidade (Meta 2022)",
+     "baseline": "50%",
+     "target": "90",
+     "page": 735
+    },
+    {
+     "kind": "output",
+     "code": "A0810.0.0",
+     "statement": "Uma moderna regulamentação, infra-estrutura e mercado de TIC que promove o crescimento da economia digital",
+     "indicator": "Um ambiente regulatório convergente e uma rede nacional de banda larga para permitir o crescimento da economia digital (plano de 5 anos)",
+     "baseline": "20%",
+     "target": "25%",
+     "page": 736
+    },
+    {
+     "kind": "output",
+     "code": "A0811.0.0",
+     "statement": "Redes de comunicação e serviços para áreas prioritárias",
+     "indicator": "% da população com cobertura da rede de telefonia móvel e uma banda larga estabelecida",
+     "baseline": "20%",
+     "target": "≥96",
+     "page": 736
+    },
+    {
+     "kind": "output",
+     "code": "A0812.0.0",
+     "statement": "Capacidade nacional para proteger infra-estrutura de informação crítica",
+     "indicator": "Métodos e sistemas para proteger o Estado, as empresas e os cidadãos de ataques cibernéticos criados e consciencializados",
+     "baseline": "20%",
+     "target": "100%",
+     "page": 736
     }
    ]
   }

@@ -83,6 +83,9 @@ class ActivityRollForward
                             'manager_name' => $a->manager_name,
                             'location' => $a->location,
                             'priority' => $a->priority,
+                            // a policy priority is funded over several years: its activities keep naming it in the next plan
+                            'origin' => $a->origin ?: Activity::ORIGIN_BASELINE,
+                            'policy_ref' => $a->policy_ref,
                             'quarter' => $a->quarter,
                             'execution_quarters' => $a->execution_quarters,
                             'period_type' => $a->period_type,

@@ -30,3 +30,28 @@ tables of Lei n.º 8/2026.
 `40` minor capital, `50` development capital), `page` in the source PDF.
 
 Activities with no amount are kept in the file and skipped by the seeder.
+
+`results[]` (2027 only, so far): the rows of the plan above the activities. `kind` is `outcome` (the
+medium-term objective of a programme, coded like `502.0.3`) or `output` (the short-term result of a
+subprogramme, coded like `50202.0.0`); `statement` is its text, then `indicator`, `baseline` and
+`target` as printed, and `page`. They were read from Volumes II-A and II-B (Outubro 2026) by column
+position, using the table borders of each page, and every row was checked against the printed page;
+where a cell of the book spills into the next row (the first activity's indicator, a target printed above
+its row, the page footer), the text belongs to the row it is printed for. Long cells are kept whole in
+the file and cut to the database columns (500 characters for the name, 255 for the starting point and
+target) when loaded. A few texts are the book's own: "tbd" as a statement, an English indicator, apostrophes
+printed as `&#39;` (written here as `'`).
+
+The seeder gives each outcome to the year's programme and each output to its subprogramme, as a result
+indicator named after the entity and the code (e.g. "APORTIL 502.0.3: …"): the ministry and its bodies
+each set their own outcome for a programme they share. Only a programme or subprogramme that the loaded
+activities use gets them (in 2027 one TIC output, A0805, has no funded activity and is not loaded).
+
+## New policy priorities (2027)
+
+The 2027 plan prints the activities funded by a new Government Policy Priority with an "X" in the code
+(e.g. `50202X1`). `MtcBudgetSeeder::POLICY_PRIORITIES` marks them as new policies and names the priority,
+from Elementos Informativos Volume X: PPG 3 (six activities, 1 200 000 USD, Tabela 9) and PPG 18 (four
+activities, 2 215 000 USD, Tabela 21). The new activities of APORTIL coded `51002EO`–`51002ER` are not a
+policy priority: Volume X (Tabela 29) gives APORTIL only a saving under the priorities and an increase as an
+estimate variation (additional funding for ongoing work), so they stay existing services.

@@ -88,6 +88,32 @@ class Activity extends Model
         self::STATUS_REJECTED => 'Returned',
     ];
 
+    /**
+     * Whether an activity continues an existing service (the baseline) or carries out a new policy priority approved
+     * for the year's budget. Not who pays: that is the funding source of each budget line. See add_origin_to_activities.
+     */
+    public const ORIGIN_BASELINE = 'baseline';
+
+    public const ORIGIN_POLICY = 'policy';
+
+
+    public const ORIGINS = [
+        self::ORIGIN_BASELINE => 'Existing service (baseline)',
+        self::ORIGIN_POLICY => 'New policy priority',
+    ];
+
+    /** The translated word for an origin (see ORIGINS). */
+    public static function originWord(?string $origin): string
+    {
+        return __(self::ORIGINS[$origin ?? self::ORIGIN_BASELINE] ?? (string) $origin);
+    }
+
+    /** The origin as one label: the policy priority is named when there is one ("New policy priority — PPG 18"). */
+    public function originLabel(): string
+    {
+        return self::originWord($this->origin).($this->origin === self::ORIGIN_POLICY && $this->policy_ref ? ' — '.$this->policy_ref : '');
+    }
+
     /** The translated word for a status (see STATUS_WORDS). */
     public static function statusWord(?string $status): string
     {
@@ -108,6 +134,8 @@ class Activity extends Model
         'manager_name',
         'quarter',
         'priority',
+        'origin',
+        'policy_ref',
         'planned_start',
         'planned_end',
         'status',
@@ -127,6 +155,10 @@ class Activity extends Model
         'budget_confirmed_by',
         'budget_justification',
         'is_test_data',
+    ];
+
+    protected $attributes = [
+        'origin' => self::ORIGIN_BASELINE,
     ];
 
     protected $casts = [

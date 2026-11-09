@@ -205,6 +205,35 @@
 </table>
 <p class="small muted">{{ __('Category columns') }}: {{ $classes->map(fn ($c) => $c->code . ' ' . $c->name)->implode(' · ') }}. {{ __('Amounts in USD.') }}</p>
 
+@if($report['by_origin']->contains(fn ($o) => $o['origin'] !== \App\Models\Activity::ORIGIN_BASELINE))
+<h2>{{ ++$n }}. {{ __('Summary of existing services and new policies') }}</h2>
+<table>
+    <thead><tr>
+        <th>{{ __('Existing service or new policy') }}</th>
+        @foreach($classes as $c)<th class="num">{{ $c->code }}</th>@endforeach
+        <th class="num">{{ __('Total') }}</th>
+        <th class="num" style="width:8%">%</th>
+    </tr></thead>
+    <tbody>
+    @foreach($report['by_origin'] as $o)
+        <tr>
+            <td>{{ $o['label'] }} <span class="muted small">({{ $o['count'] }})</span></td>
+            @foreach($classes as $c)<td class="num">{{ number_format($o['by_class'][$c->id] ?? 0, 0) }}</td>@endforeach
+            <td class="num">{{ number_format($o['total'], 2) }}</td>
+            <td class="num">{{ $grand > 0 ? number_format($o['total'] / $grand * 100, 1) : '0.0' }}%</td>
+        </tr>
+    @endforeach
+    <tr class="total">
+        <td>{{ __('Total') }}</td>
+        @foreach($classes as $c)<td class="num">{{ number_format($report['totals']['by_class'][$c->id] ?? 0, 0) }}</td>@endforeach
+        <td class="num">{{ number_format($grand, 2) }}</td>
+        <td class="num">100.0%</td>
+    </tr>
+    </tbody>
+</table>
+<p class="small muted">{{ __('New policy priorities are funded on top of the existing services and their results are followed separately.') }}</p>
+@endif
+
 <div class="page-break"></div>
 <h2>{{ ++$n }}. {{ __('Summary by organic unit and economic category') }}</h2>
 <table>

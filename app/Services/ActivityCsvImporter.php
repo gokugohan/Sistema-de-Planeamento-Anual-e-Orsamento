@@ -30,6 +30,14 @@ class ActivityCsvImporter
         'planned_start', 'planned_end', 'procurement_required', 'manager_name',
         'indicator_name', 'indicator_type', 'indicator_unit', 'indicator_target',
         'class_code', 'amount',
+        // optional: an existing service (empty) or a new policy, and the policy priority it carries out
+        'origin', 'policy_ref',
+    ];
+
+    /** The words accepted for each origin (Portuguese, Tetum, English, and the stored value). */
+    private const ORIGIN_WORDS = [
+        Activity::ORIGIN_BASELINE => ['baseline', 'base', 'linha de base', 'liña baze', 'existing', 'existing service', 'servico existente', 'serviço existente'],
+        Activity::ORIGIN_POLICY => ['policy', 'ppg', 'gpp', 'politica', 'política', 'nova politica', 'nova política', 'new policy', 'prioridade politica', 'prioridade política'],
     ];
 
     private const PRIORITIES = [
@@ -110,6 +118,8 @@ class ActivityCsvImporter
                     'planned_start' => $a['planned_start'],
                     'planned_end' => $a['planned_end'],
                     'procurement_required' => $a['procurement_required'],
+                    'origin' => $a['origin'] ?? Activity::ORIGIN_BASELINE,
+                    'policy_ref' => $a['policy_ref'] ?? null,
                     'status' => Activity::STATUS_DRAFT,
                 ]);
                 $counts['activities']++;
@@ -251,7 +261,29 @@ class ActivityCsvImporter
             'planned_start' => $start,
             'planned_end' => $end,
             'procurement_required' => in_array(mb_strtolower($r['procurement_required']), ['1', 'sim', 's', 'yes', 'y', 'true'], true),
-        ];
+        ] + $this->origin($line, $r, $errors);
+    }
+
+    /** @return array{origin: string, policy_ref: ?string} */
+    private function origin(int $line, array $r, array &$errors): array
+    {
+        $word = mb_strtolower(trim($r['origin']));
+        $ref = mb_substr(trim($r['policy_ref']), 0, 30) ?: null;
+        $origin = $word === '' ? ($ref ? Activity::ORIGIN_POLICY : Activity::ORIGIN_BASELINE) : null;
+        foreach (self::ORIGIN_WORDS as $value => $words) {
+            $origin ??= in_array($word, $words, true) ? $value : null;
+        }
+
+        if (! $origin) {
+            $errors[] = $this->err($line, "origin \"{$r['origin']}\" is invalid; use baseline or policy (or leave it empty).");
+
+            return ['origin' => Activity::ORIGIN_BASELINE, 'policy_ref' => null];
+        }
+        if ($origin === Activity::ORIGIN_POLICY && ! $ref) {
+            $errors[] = $this->err($line, 'policy_ref is empty: name the policy priority the activity is funded by (e.g. PPG 18).');
+        }
+
+        return ['origin' => $origin, 'policy_ref' => $origin === Activity::ORIGIN_POLICY ? $ref : null];
     }
 
     private function buildIndicator(int $line, array $r, array &$errors): ?array
