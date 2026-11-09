@@ -1,0 +1,470 @@
+{
+ "year": 2027,
+ "code": "123",
+ "name": "Instituto de Geociências de Timor-Leste",
+ "abbr": "IGTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1207,
+   1211
+  ]
+ },
+ "units": [
+  {
+   "code": "GPI",
+   "div": "1230101",
+   "name": "Gabinete Presidente IGTL",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DSC",
+   "div": "1230201",
+   "name": "Divisão de Serviços Corporativos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DCPG",
+   "div": "1230301",
+   "name": "Divisão de Cartografia e Prospeção Geológica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DHEG",
+   "div": "1230401",
+   "name": "Divisão de Hidrogeologia e Engenharia Geológica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DLG",
+   "div": "1230501",
+   "name": "Divisão de Laboratório e Geofisica",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A14": "Estudo teknikos e sientifikus sobre os recursos petroleo e gas no teritorio timor-leste",
+  "A15": "Estudo teknikos e sientifikus sobre os recursos minerais no território de timor-leste",
+  "A16": "Promover e fortalecer estudos geológicos, recursos hidrogeologicos, geotérmico e riscos"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1230101"
+   ],
+   "indicator": "Políticas e procedimentos internos foram elaborados e implementados",
+   "baseline": "O plano anual do ministério e as políticas e procedimentos internos existentes",
+   "target": "Criar, rever e desenvolver as políticas e procedimentos internal do instituto de acordo com as leis aplicáveis e os padrões internacionais",
+   "amounts": {
+    "20": 140879.0
+   },
+   "page": 1207
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1230101"
+   ],
+   "indicator": "Inspeção, fiscalização e auditoria foram realizados",
+   "baseline": "Relatórios anteriores de auditoria interna e externa",
+   "target": "Concluir a auditoria interna e externa do ano fiscal de 2023, e garantir que as demonstrações financeiras cumprem as normas contabilísticas e estão em conformidade com os requisitos legais em vigor",
+   "amounts": {
+    "20": 60000.0
+   },
+   "page": 1207
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "1230101"
+   ],
+   "indicator": "Número dos pareceres jurídicos produzidos",
+   "baseline": "Pareceres jurídicos produzidos em 2023",
+   "target": "Assegurar que todas as decisões foram tomadas de acordo com a base jurídica produzida pelo apoio jurídico",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1207
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1230201"
+   ],
+   "indicator": "Relatórios de desempenho apresentados atempadamente; despesas operacionais anuais foram executadas",
+   "baseline": "Política e procedimento interna do IGTL; Plano estratégico do IGTL do 2025",
+   "target": "Assegurar a execução dos programas do IGTL, de acordo com o plano de ação anual; e assegurar a execução das despesas operacionais",
+   "amounts": {
+    "10": 2299960.0,
+    "20": 819126.0
+   },
+   "page": 1208
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1230201"
+   ],
+   "indicator": "Todos os bens do IGTL estão identificados, registados e foram efectuadas manutenções regulares",
+   "baseline": "Política e procedimento interna sobre gestão do patrimônio do IGTL",
+   "target": "Garantir que todos os património da IGTL estão devidamente identificados, registados e em bom estado de conservação",
+   "amounts": {
+    "20": 35500.0
+   },
+   "page": 1208
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1230201"
+   ],
+   "indicator": "Capacitação e gestão dos recursos humanos foram realizados",
+   "baseline": "Qualificação e nível académico dos recursos humanos existentes no IGTL",
+   "target": "Assegurar que o IGTL possui trabalhadores qualificados e aumentar o número de trabalhadores com nível académico de mestrado e doutoramento",
+   "amounts": {
+    "20": 178185.0
+   },
+   "page": 1208
+  },
+  {
+   "code": "510022U",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Tecnologia de Informacao e Base de Dados",
+   "div": [
+    "1230201"
+   ],
+   "indicator": "Sistema informático seguro e uma base de dados organizada são estabelecidos",
+   "baseline": "Política Interna sobre Tecnologia de Informação e Base de Dados do IGTL",
+   "target": "Assegurar que o IGTL possui um sistema informático seguro e protegido, de modo a proteger as informações contra ciberataques e acessos não autorizados; Garantir que o IGTL possui uma base de dados de geociências bem organizada e acessível ao público para atrair investimentos neste sector",
+   "amounts": {
+    "20": 65000.0
+   },
+   "page": 1208
+  },
+  {
+   "code": "5100443",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Arrendamentos dos Edifícios",
+   "div": [
+    "1230201"
+   ],
+   "indicator": "Contratos dos arrendamentos foram executados",
+   "baseline": "Plano estratégico do IGTL do 2025",
+   "target": "Dispor de um espaço de edifício adequado, seguro e confortável para todos os funcionários, de modo a permitir o IGTL para desempenhar a sua função de acordo com o decreto-lei e o plano estratégico",
+   "amounts": {
+    "20": 535000.0
+   },
+   "page": 1208
+  },
+  {
+   "code": "A140101",
+   "programme": "A14",
+   "subprogramme": "A1401",
+   "subprogramme_name": "Estudo de Petróleo e Gás",
+   "name": "Estudo Petroleo e Gas no Onshore",
+   "div": [
+    "1230301"
+   ],
+   "indicator": "Foram efectuados estudos para identificar zonas potenciais do recurso petróleo e gás no onshore",
+   "baseline": "Estudos e trabalhos anteriores (dados geofísicos áereos)",
+   "target": "Para identificar as áreas potenciais de petróleo e gás no município de Bobonaro, Manufahi, Manatuto e Viqueque. Os resultados do estudos podem ser utilizado como base para a promoção de blocos de petróleo e gás, e também para continuação do serviço prospeção",
+   "amounts": {
+    "20": 19960.0
+   },
+   "page": 1209
+  },
+  {
+   "code": "A140102",
+   "programme": "A14",
+   "subprogramme": "A1401",
+   "subprogramme_name": "Estudo de Petróleo e Gás",
+   "name": "Estudo Petroleo e Gas no Offshore",
+   "div": [
+    "1230301"
+   ],
+   "indicator": "Estudo ''regional play based exploration'' foi implementado",
+   "baseline": "Estudos e trabalhos anterior (dados sísmicos offshore, dados poços offshore, dados palinologia)",
+   "target": "Para identificar as áreas potenciais de petróleo e gás no offshore. Os resultados do estudo podem ser utilizados como base para a promoção de blocos de petróleo e gás no offshore e também para prospeção mais aprofundada",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1209
+  },
+  {
+   "code": "A150101",
+   "programme": "A15",
+   "subprogramme": "A1501",
+   "subprogramme_name": "Estudo do Potência dos Recursos Minerais",
+   "name": "Estudo Potensia Minerais Metálicos",
+   "div": [
+    "1230301"
+   ],
+   "indicator": "Estudos para identificar as zonas potenciais de recursos minerais metálicos foram implementados",
+   "baseline": "Estudos e trabalhos anteriores",
+   "target": "Identificar as áreas potenciais para minerais metálicos com base em dados geoquímicos obtidos de sedimentos de linhas de água em Oecusse, Liquiça, Bobonaro, Manatuto, e Manufahi. Os resultados do estudo podem ser utilizados como base de promoção para atrair investimentos",
+   "amounts": {
+    "20": 20520.0
+   },
+   "page": 1209
+  },
+  {
+   "code": "A150102",
+   "programme": "A15",
+   "subprogramme": "A1501",
+   "subprogramme_name": "Estudo do Potência dos Recursos Minerais",
+   "name": "Estudo Potensia Rochas Ornamentais e Minerais Industriais",
+   "div": [
+    "1230301"
+   ],
+   "indicator": "Estudos para identificar as zonas potenciais de rochas ornamentais e minerais industriais foram implementados",
+   "baseline": "Estudos e trabalhos anteriores",
+   "target": "Identificar as áreas potenciais para rochas ornamentais e minerais industriais em Aileu, Ainaro, Bobonaro, Manatuto, e Liquiça. Os resultados do estudo podem ser utilizados como base de promoção para atrair investimentos",
+   "amounts": {
+    "20": 19200.0
+   },
+   "page": 1210
+  },
+  {
+   "code": "A160102",
+   "programme": "A16",
+   "subprogramme": "A1601",
+   "subprogramme_name": "Estudos Geológicos",
+   "name": "Cartografia Hidrogeologica",
+   "div": [
+    "1230401"
+   ],
+   "indicator": "Serviços cartografia hidrogeológicas nas areas selecionados foram implementados",
+   "baseline": "Estudos e trabalhos anteriores",
+   "target": "Realizar os trabalhos de cartografia hidrogeológica em várias zonas como Dili, Covalima, Manufahi, Ainaro, Manatuto",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1210
+  },
+  {
+   "code": "A160109",
+   "programme": "A16",
+   "subprogramme": "A1601",
+   "subprogramme_name": "Estudos Geológicos",
+   "name": "Aquisição dos Equipamentos do Laboratório e Geofísica",
+   "div": [
+    "1230501"
+   ],
+   "indicator": "Foram adquiridos equipamentos de laboratório e de geofísica",
+   "baseline": "Plano estratégico do IGTL do 2025",
+   "target": "Garantir que o IGTL possui equipamento laboratorial e geofísico para apoiar o seu trabalho",
+   "amounts": {
+    "20": 12000.0
+   },
+   "page": 1210
+  },
+  {
+   "code": "A160201",
+   "programme": "A16",
+   "subprogramme": "A1602",
+   "subprogramme_name": "Estudo Hidrogeologia e Geotérmico",
+   "name": "Estudo da Potencialidade dos Recursos Geotérmicos",
+   "div": [
+    "1230401"
+   ],
+   "indicator": "Estudo da Potencialidade dos Recursos Geotérmicos nas zonas selecionados foram implementados",
+   "baseline": "Estudos e trabalhos anteriores",
+   "target": "Identificar as áreas potenciais para os recursos geotérmicos em várias zonas como Ermera, Aileu, Viqueque, Bobonaro e Ataúro",
+   "amounts": {
+    "20": 11000.0
+   },
+   "page": 1211
+  },
+  {
+   "code": "A160300",
+   "programme": "A16",
+   "subprogramme": "A1603",
+   "subprogramme_name": "Estudo Engenharia Geológica e Riscos Geológicos",
+   "name": "Estudo Riscos Geologicos (E.g. Seismic Hazard)",
+   "div": [
+    "1230401"
+   ],
+   "indicator": "Foram efectuados estudos dos Riscos Geologicos; melhoramento do sistema monitorização do terremoto/sismo",
+   "baseline": "Estudos e trabalhos anteriores",
+   "target": "Realizar os estudos riscos geológicos em várias zonas como Covalima, Manufahi, Ainaro, Manatuto",
+   "amounts": {
+    "20": 50080.0
+   },
+   "page": 1211
+  },
+  {
+   "code": "A160301",
+   "programme": "A16",
+   "subprogramme": "A1603",
+   "subprogramme_name": "Estudo Engenharia Geológica e Riscos Geológicos",
+   "name": "Estudo Geotecnia",
+   "div": [
+    "1230401"
+   ],
+   "indicator": "Serviços cartografia geotécnias nas areas selecionados foram implementados",
+   "baseline": "Estudos e trabalhos anteriores",
+   "target": "Realizar os estudos riscos geológicos em várias zonas como Dili, Covalima, Manufahi, Ainaro, Manatuto",
+   "amounts": {
+    "20": 35480.0
+   },
+   "page": 1211
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "\"(1) % of performance indicators of the Medium (results) and Short Term Goal (outputs) achieved; (2) % of the entity's annual report published.\"",
+   "baseline": "Continua e melhorar funcionamento da instituição",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1207
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "(1) Números políticas e procedimentos produzidos; (2) Números auditoria realizados; (3) Números dos pareceres jurídicos produzidos.",
+   "baseline": "(1) Políticas e procedimentos anteriores; (2) Relatórios anteriores; (3) Pareceres jurídicos produzidos.",
+   "target": "Assegurar que todas as atividades serão alcançados 100%",
+   "page": 1207
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "(1) % do orçamento executado e em obrigações; (2) # de Registo de bens disponível com informação actualizada; (3) # de Plano de gestão de recursos humanos para funcionários alcançado; (4) % do progresso da execução do plano de aprovisionamento; (5) % de Criação de um sistema de arquivo electrónico.",
+   "baseline": "Continua e melhorar a gestão dos serviços corporativos do instituto",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1207
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.2",
+   "statement": "IGTL pode funcionar num espaço de edifício seguro e confortável para melhor desempenhar as suas funções",
+   "indicator": "(1) Contratos dos arrendamentos foram executados; (2) Estudo de viabilidade técnica foi implementado.",
+   "baseline": "Assegurar o espaço de edifício seguro e confortável para melhor desempenhar as suas funções",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1208
+  },
+  {
+   "kind": "outcome",
+   "code": "A14.0.0",
+   "statement": "Reforsa investigasaun iha área geosiénsias ba identifikasaun rekursus petroleo e gás iha territóriu Timor-Leste",
+   "indicator": "Areas potenciais para petróleo e gás no offshore e onshore no território de Timor-Leste foram identificados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1208
+  },
+  {
+   "kind": "output",
+   "code": "A1401.0.0",
+   "statement": "Hein konfirmasaun husi lina ministeriu",
+   "indicator": "Estudo do potencialidade do recurso petróleo e gás no offshore e onshore no território de Timor-Leste foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1209
+  },
+  {
+   "kind": "outcome",
+   "code": "A15.0.0",
+   "statement": "Reforsa investigasaun iha área geosiénsias ba identifikasaun rekursus minerais iha territóriu Timor-Leste",
+   "indicator": "Areas potenciais para recursos minerais no território de Timor-Leste foram identificados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1209
+  },
+  {
+   "kind": "output",
+   "code": "A1501.0.0",
+   "statement": "Hein konfirmasaun husi lina ministeriu",
+   "indicator": "Estudo da potencialidade dos recursos minerais metálicos, rochas ornamentais e minerais industriais no território de Timor-Leste foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1209
+  },
+  {
+   "kind": "outcome",
+   "code": "A16.0.0",
+   "statement": "Reforsa investigasaun iha área geosiénsias ba estudo geologicos, Hidrogeologicos, Geotérmico e Riscos Geológicos iha territóriu",
+   "indicator": "Estudos geológicos, hidrogeológicos, geotérmicos, geotécnicos e riscos geológicos no território de Timor-Leste foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1210
+  },
+  {
+   "kind": "output",
+   "code": "A1601.0.0",
+   "statement": "Hein konfirmasun husi lina ministeriu",
+   "indicator": "Programas de cartografia geológico nas áreas selecionadas, aquisição de equipamento laboratorial e geofísico foram implementados, e conferência de Geociência foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1210
+  },
+  {
+   "kind": "output",
+   "code": "A1601.0.1",
+   "statement": "Implementação de programas de cartografia geológico nas áreas selecionadas, e aquisição de equipamento laboratorial e geofísico",
+   "indicator": "Programas de cartografia geológico nas áreas selecionadas, aquisição de equipamento laboratorial e geofísico foram implementados, e conferência de Geociência foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1210
+  },
+  {
+   "kind": "output",
+   "code": "A1602.0.0",
+   "statement": "Implementação dos programas de cartografia hidrogeológico nas áreas selecionadas, e estudo da potencialidade dos recursos geotérmicos",
+   "indicator": "Programas de cartografia hidrogeológico nas áreas selecionadas, e estudo da potencialidade dos recursos geotérmicos foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1211
+  },
+  {
+   "kind": "output",
+   "code": "A1603.0.0",
+   "statement": "Implementação dos estudos sobre riscos geológicos e geotecnia em território Timor-Leste",
+   "indicator": "Estudos dos Riscos Geologicos nas áreas selecionadas, e cartografia geotécnias foram implementados",
+   "baseline": "Estudos e trabalhos anterior e Plano estratégico do IGTL do 2025",
+   "target": "Os atividades planeados serão alcançados 100%",
+   "page": 1211
+  }
+ ]
+}

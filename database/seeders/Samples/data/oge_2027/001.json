@@ -1,0 +1,889 @@
+{
+ "year": 2027,
+ "code": "001",
+ "name": "Presidência da República",
+ "abbr": "PR",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   5,
+   14
+  ]
+ },
+ "units": [
+  {
+   "code": "GPR",
+   "div": "0010101",
+   "name": "Gabinete do Presidente da República",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "CC",
+   "div": "0010201",
+   "name": "Casa Civil",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CM",
+   "div": "0010301",
+   "name": "Casa Militar",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "162": "Estado de direito democrático",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A01": "Promover a identidade nacional",
+  "A02": "Reforçar as relações e cooperações internacionais",
+  "A35": "Fortalecimento da democracia, constitucionalidade, páz, defesa e segurança",
+  "A36": "Iniciativas de desenvolvimento do presidente da república",
+  "A37": "Desenvolver um sistema de comunicação instituicional"
+ },
+ "activities": [
+  {
+   "code": "1620201",
+   "programme": "162",
+   "subprogramme": "16202",
+   "subprogramme_name": "Promoção dos Direitos Humanos",
+   "name": "Nomeação dos Candidatos para a Atribuição do Prémio Sergio Vierra de Mello",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero Candidatos Nomeados",
+   "baseline": "12 Candidatos Individos / Grupos nomeados em 2025- 2026",
+   "target": "6 Candidatos (Indivíduos / Grupos) nomeados em 2027",
+   "amounts": {
+    "20": 60000.0
+   },
+   "page": 5
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0010101"
+   ],
+   "indicator": "% Elaboração Plano estratégico",
+   "baseline": "25 % Elaboração do Plano estratégico",
+   "target": "Alcançar a meta até ao final do período de implementação.",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 5
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "% de auditorias internas na Presidência da República e os relatórios serão submetidos para tomada de decisões.",
+   "baseline": "75% auditorias internas foram realizadas na Presidência da República entre 2023 e 2026 e os relatórios foram submetidos",
+   "target": "100 % das auditorias internas serão realizadas na Presidência da República em 2027",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Número de reuniões de coordenaçãoserviços corporativos",
+   "baseline": "10 Reuniões de coordenação dos serviços corporativos",
+   "target": "15 Reuniões de coordenação dos serviços corporativos em 2027",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "% de mulheres no total da força de trabalho",
+   "baseline": "27 % de mulheres no total da força de trabalho",
+   "target": "50 % de mulheres no total da força de trabalho em 2027",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Número de documentos regulatórios (PareserJuridico contratos publicos, indultos para reclusos, decreto funebre para os veteranos, e o decreto de funebres para os restos de mortais)",
+   "baseline": "192 pareceres jurídicos, 51 contratos públicos, 19 indultos para reclusos, 58 decretos fúnebres para os veteranos, e 4 decretos de fúnebres para os restos de mortais foram produzidos",
+   "target": "200 pareceres jurídicos, 55 contratos públicos, 25 indultos para reclusos, 60 decretos fúnebre para os veteranos, e 10 decreto de fúnebres para os restos de mortais em 2027",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"Numero de pesquisas e monitorizações Presidência da República \"",
+   "baseline": "10 pesquisas 4 monitorizações e 1 Avaliação na Presidência da República.",
+   "target": "10 monitorizações e 1 Avaliação na Presidência da República em 2027",
+   "amounts": {
+    "20": 1790.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) Numero rekrutamento de funcionários públicos, Agentes da Administração Pública e contratados de termo-certo ii) % A avaliação de desempenho anual dos funcionários públicos e Agentes da Administração Pública \"",
+   "baseline": "i) 0 recrutamento de funcionários públicos, Agentes da Administração Pública e contratados a termo certo ii) 100% A avaliação de desempenho anual dos funcionários públicos e Agentes da Administração Pública",
+   "target": "i) 0 recrutamento de funcionários públicos, Agentes da Administração Pública e contratados a termo certo em 2027 ii) 100% A avaliação de desempenho anual dos funcionários públicos e Agentes da Administração Pública em 2027",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "% Formação funcionários públicos, Agentes da Administração Pública e Funcionários kontratados",
+   "baseline": "70% Formação funcionários públicos, Agentes da Administração Pública e Funcionários contratados",
+   "target": "70% Formação funcionários públicos, Agentes da Administração Pública e",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 6
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero de eventos",
+   "baseline": "5 eventos (Visita de Sua Santidade o Papa, Dia dos Heróis Nacionais, Comemoração de 20 de Maio, Natal do Povo, PPTL)",
+   "target": "4 eventos (Dia dos Heróis Nacionais, Comemoração de 20 de Maio, Natal do Povo, Conferência dos Laureados com o Prémio Nobel da Paz em 2027",
+   "amounts": {
+    "20": 700000.0
+   },
+   "page": 7
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) % O Plano de aprovisionamento da Presidência da República ii) % de processos de aprovisionamento e estabelecimento de contratos \"",
+   "baseline": "i) 100% Os planos de aprovisionamento da Presidência da República ii) 100% Os processos de aprovisionamento e estabelecimento de contratos",
+   "target": "i) 100% Os planos de aprovisionamento da Presidência da República em 2027 ii) 100% Os processos de aprovisionamento e estabelecimento de contratos em 2027",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 7
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) % de manutenção de equipamentos de Tecnologia informática ii) % O desk- support da Unidade de Tecnologia informática as outras unidades \"",
+   "baseline": "i) 100% de manutenção de equipamentos de Tecnologia informática iii) 100% O desk- support da Unidade de Tecnologia informática às outras unidades",
+   "target": "i) 100% de manutenção de equipamentos de Tecnologia informática em 2027 iii) 100% O desk-support da Unidade de Tecnologia informática às outras unidades em 2027",
+   "amounts": {
+    "20": 80900.0
+   },
+   "page": 7
+  },
+  {
+   "code": "5100221",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão financeira",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) % de ezecução orcamento ii) Numeru Retiros de programas anuais da Presidência da República\"",
+   "baseline": "i) 98% de execução do orçamento ii) 1 Retiro de programas anuais da Presidência da República",
+   "target": "i) 90 a 99 % de execução do orçamento em 2027 ii) 1 Retiro de programas anuais da Presidência da República em 2027",
+   "amounts": {
+    "10": 5053746.0,
+    "20": 705936.0,
+    "30": 165000.0
+   },
+   "page": 7
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\" i) % Manutenção de véiculos (Frota Estado) ii) % Manutenção de equipamentos móveis e imóveis iii % Manutenção edificios Publicos\"",
+   "baseline": "i) 100% Manutenção de veículos (Frota Estado) ii) 100% Manutenção de equipamentos móveis e imóveis iii) 100% Manutenção de edifícios (Palácio da Presidência, Palácio Nobre Lahane e Residência S.Exa. PR)",
+   "target": "i) 100% Manutenção de veículos (Frota Estado) em 2027 ii) 100% Manutenção de equipamentos móveis e imóveis em 2027 iii) 100% Manutenção de edifícios (Palácio da Presidência, Palácio Nobre Lahane e Residência S.Exa. PR) em 2027\"",
+   "amounts": {
+    "20": 677840.0
+   },
+   "page": 7
+  },
+  {
+   "code": "A010101",
+   "programme": "A01",
+   "subprogramme": "A0101",
+   "subprogramme_name": "Apoio à promoção da língua Portuguesa e Tetun como línguas para o fortalecimento da coesão do povo de Timor-Leste",
+   "name": "Documentação e Publicidade",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero documento publicitados na Página facebook, website e Média nacional com Programa do Presidente da Repubica",
+   "baseline": "documentos publicitados na Página Face Book 714, Pagina WEBSITE 300,Youtube 1,191, Media Nacional 45",
+   "target": "documentos publicitados na Página Face Book 800 Pagina WEBSITE 500,Youtube 1,500 Media Nacional 100 em 2027",
+   "amounts": {
+    "20": 85000.0
+   },
+   "page": 8
+  },
+  {
+   "code": "A020102",
+   "programme": "A02",
+   "subprogramme": "A0201",
+   "subprogramme_name": "Visita as nações multilaterais",
+   "name": "Visitas de Cortesia dos Chefes de Estado a Timor-Leste",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\" i) Numero de atendimentos protocolares de visitas de Estado, visitas de trabalho e visitas privadas da SE o PR ii) Numero de atendimentos protocolares nas apresentações de credênciais dos embaixadores residentes e não- residentes iii) Numero de atendimentos protocolares nas tomadas de posse e entrega de credênciais dos embaixadores de Timor-Leste para os outros países amigos \"",
+   "baseline": "\"\"\"i) 14 Atendimentos protocolares de Visitas de Estado, Visitas de Trabalho e Visitas Privadas da SE o PR iii) 17 Atendimento nas apresentação de Credênciais dos Embaixadores residentes e Embaixadores não-residentes iii) 5 de atendimentos protocolares nas tomadas de posse e entrega de credênciais dos embaixadores de Timor- Leste para os outros países amigos \"",
+   "target": "\"i) 5 Atendimentos protocolares de Visitas de Estado, Visitas de Trabalho e Visitas Privadas da SE o PR em 2027 iii) 5 Atendimento nas apresentação de Credênciais dos Embaixadores residentes e Embaixadores não-residentes em 2027 iii) 5 de atendimentos protocolares nas tomadas de posse e entrega de credênciais dos embaixadores de Timor- Leste para os outros países amigos em 2027\"",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 8
+  },
+  {
+   "code": "A350101",
+   "programme": "A35",
+   "subprogramme": "A3501",
+   "subprogramme_name": "Fortalecimento da Democracia",
+   "name": "Reuniões regulares do Conselho de Estado com os partidos políticos, reuniões de sensibilização com a sociedade civil e reuniões de sensibilização com personalidades eminentes",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numeru Reuniões regulares do Conselho de Estado com os partidos políticos, reuniões de sensibilização com a sociedade civil e reuniões de sensibilização com personalidades eminentes",
+   "baseline": "'15 Reuniões regulares do Conselho de Estado com os partidos políticos, reuniões de sensibilização com a sociedade civil e reuniões de sensibilização com personalidades eminentes",
+   "target": "20 Reuniões regulares do Conselho de Estado com os partidos políticos, reuniões de sensibilização com a sociedade civil e reuniões de sensibilização com personalidades eminentes em 2027",
+   "amounts": {
+    "20": 60000.0
+   },
+   "page": 9
+  },
+  {
+   "code": "A350102",
+   "programme": "A35",
+   "subprogramme": "A3501",
+   "subprogramme_name": "Fortalecimento da Democracia",
+   "name": "Visitas de Trabalho aos Municípios",
+   "div": [
+    "0010101"
+   ],
+   "indicator": "Numero visitas aos Municípios",
+   "baseline": "5 visitas aos Municípios",
+   "target": "13 visitas aos Municípios em 2027",
+   "amounts": {
+    "20": 250000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A350201",
+   "programme": "A35",
+   "subprogramme": "A3502",
+   "subprogramme_name": "Assegurar a Constitucionalidade",
+   "name": "Condecorações de Medalhas de Honras e de Meritos",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero Condecorações de Medalhas de Honras e de Meritos",
+   "baseline": "150 Condecorações com Medalhas de Honra e de Mérito",
+   "target": "200 Condecorações com Medalhas de Honra e de Mérito em 2027",
+   "amounts": {
+    "20": 300000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A350301",
+   "programme": "A35",
+   "subprogramme": "A3503",
+   "subprogramme_name": "Garantir a Páz, a Defesa e a Segurança Nacional",
+   "name": "Encontros Regulares do Conselho Superior de Defesa e Segurança, Encontros de Orientações com os Comandantes da FFDTL e da PNTL, com as Instituições de Defesa e de Segurança e Encontros com as Visitas da Internacionais de Defesa e de Segurança",
+   "div": [
+    "0010301"
+   ],
+   "indicator": "Numero Encontros Regulares do Conselho Superior de Defesa e Segurança e Instituições de Defesa e de Segurança",
+   "baseline": "3 Encontros Regulares do Conselho Superior de Defesa e Segurança e Instituições de Defesa e de Segurança",
+   "target": "5 Encontros Regulares do Conselho Superior de Defesa e Segurança e Instituições de Defesa e de Segurança em 2027",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A350302",
+   "programme": "A35",
+   "subprogramme": "A3503",
+   "subprogramme_name": "Garantir a Páz, a Defesa e a Segurança Nacional",
+   "name": "Visitas de Trabalho a FFDTL e a PNTL",
+   "div": [
+    "0010301"
+   ],
+   "indicator": "Numero de visitas de trabalho a FFDTL e a PNTL",
+   "baseline": "4 de visitas de trabalho a FFDTL e a PNTL",
+   "target": "10 de visitas de trabalho a FFDTL e a PNTL em 2027",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A350303",
+   "programme": "A35",
+   "subprogramme": "A3503",
+   "subprogramme_name": "Garantir a Páz, a Defesa e a Segurança Nacional",
+   "name": "Guarda de Honra das Visitas Internacionais e de Visitas ao Estrangeiro",
+   "div": [
+    "0010301"
+   ],
+   "indicator": "\"Numero de Guarda de Honras das Visitas de Chefes de Estados estrangeiros, visita de SE o PR ao estrangeiro e apresentações de credenciais \"",
+   "baseline": "\"3 de Guarda de Honras das Visitas de Chefes de Estados estrangeiros, visita de SE o PR ao estrangeiro e apresentações de credenciais \"",
+   "target": "\"5 de Guarda de Honras das Visitas de Chefes de Estados estrangeiros, visita de SE o PR ao estrangeiro e apresentações de credenciais em 2027 \"",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A350304",
+   "programme": "A35",
+   "subprogramme": "A3503",
+   "subprogramme_name": "Garantir a Páz, a Defesa e a Segurança Nacional",
+   "name": "A Defesa e Segurança do Palácio do Presidente e do Palácio Nobre",
+   "div": [
+    "0010301"
+   ],
+   "indicator": "% A Defesa e Segurança do Palácio do Presidente e do Palácio Nobre",
+   "baseline": "100 % A Defesa e Segurança do Palácio do Presidente e do Palácio Nobre",
+   "target": "100 % A Defesa e Segurança do Palácio do Presidente e do Palácio Nobre",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A350305",
+   "programme": "A35",
+   "subprogramme": "A3503",
+   "subprogramme_name": "Garantir a Páz, a Defesa e a Segurança Nacional",
+   "name": "A Implementação da Fraternidade Humana e Reconciliação",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) Numero de encontros e ações de reconciliação ii) Numero diseminação A Implementação da Fraternidade Humana\"",
+   "baseline": "2 de encontros e ações de reconciliação 10 ações de disseminação do Programa Fraternidade Humana e Reconciliação",
+   "target": "2 de encontros e ações de reconciliação 15 ações de disseminação do Programa Fraternidade Humana e Reconciliação",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 10
+  },
+  {
+   "code": "A360101",
+   "programme": "A36",
+   "subprogramme": "A3601",
+   "subprogramme_name": "Iniciativas Sociais",
+   "name": "Atendimento as Comunidades Vulneráveis e tratamentos especiais",
+   "div": [
+    "0010101"
+   ],
+   "indicator": "i) Numero de apoios humanitários para famílias vulneráveis (EhD) Ema ho Defisiensia ii) Numero tratamentos especiais",
+   "baseline": "i) 80 apoios humanitários para famílias vulneráveis e pessoas com deficiência (Ema ho Defisiensia - EhD) ii) 4,489 tratamentos especiais",
+   "target": "i) 100 de apoios humanitários para famílias vulneráveis e pessoas com deficiência (Ema ho Defisiensia - EhD) em 2027 ii) 5000 tratamentos especiais em 2027",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 11
+  },
+  {
+   "code": "A360102",
+   "programme": "A36",
+   "subprogramme": "A3601",
+   "subprogramme_name": "Iniciativas Sociais",
+   "name": "Iniciativas de sensibilização para a nutrição das crianças e das mães, iniciativas educativas centradas na educação da primeira infância, promoção de iniciativas agrícolas e iniciativas &quot;Palacio do Presidente Aberto&quot;",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero crianças têm acessos para Biblioteca Infantil incluindo refeições",
+   "baseline": "90 crianças têm acessos para Biblioteca Infantil incluindo refeições",
+   "target": "150 Crianças têm acessos para Biblioteca Infantil incluindo refeições em 2027",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 12
+  },
+  {
+   "code": "A360103",
+   "programme": "A36",
+   "subprogramme": "A3601",
+   "subprogramme_name": "Iniciativas Sociais",
+   "name": "Iniciativa &quot;Empoderamento da Mulher na Economia&quot;",
+   "div": [
+    "0010101"
+   ],
+   "indicator": "\" Numero femininos receber formaçãoformação e os apois equipamentos e materiais \"",
+   "baseline": "354 mulheres receberam formação e 4 mulheres empreendedoras foram apoiadas com equipamentos e materiais",
+   "target": "500 mulheres a receber formação e 100 mulheres empreendedoras a serem apoiadas com equipamentos e materiais",
+   "amounts": {
+    "20": 60000.0
+   },
+   "page": 12
+  },
+  {
+   "code": "A360105",
+   "programme": "A36",
+   "subprogramme": "A3601",
+   "subprogramme_name": "Iniciativas Sociais",
+   "name": "Implementacao da Iniciativa &quot;Dapur ba Povo&quot;",
+   "div": [
+    "0010101"
+   ],
+   "indicator": "Numero crianças, senhoras em estado de gravidez, e mães subnutridas acessos refeições",
+   "baseline": "824 Crianças acessos refeições dapur ba Povu (Dili total Crianças 524 e RAEOA 300 Criança)",
+   "target": "824 Crianças acessos refeições dapur ba Povu (Dili total Crianças 524 e RAEOA 300 Criança)em 2027",
+   "amounts": {
+    "30": 260500.0
+   },
+   "page": 12
+  },
+  {
+   "code": "A360106",
+   "programme": "A36",
+   "subprogramme": "A3601",
+   "subprogramme_name": "Iniciativas Sociais",
+   "name": "Atendimento as Comunidades vulneráveis",
+   "div": [
+    "0010101"
+   ],
+   "indicator": "Numero de apoios humanitários para comunidade/famílias vulneráveis",
+   "baseline": "5000 apoios humanitários para comunidade/famílias vulneráveis em 2026",
+   "target": "5000 apoios humanitários para comunidade/famílias vulneráveis em 2027",
+   "amounts": {
+    "20": 170400.0,
+    "30": 629600.0
+   },
+   "page": 12
+  },
+  {
+   "code": "A360201",
+   "programme": "A36",
+   "subprogramme": "A3602",
+   "subprogramme_name": "Iniciativas Culturais e Desportivas",
+   "name": "Dili Maratona, Corrida de &quot;Off Road&quot; e Corrida Bicicleta Tour de Timor, Adverture Tour of Timor Island, Pescas tradicionais e competições de Taikondo",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero participantes atletas internacionais, nacional, municipais, representantes das instituições de Estadu, Estudantes e comunidades",
+   "baseline": "\"Um total de 3000 atletas internacionais, nacionais, municipais, representantes das instituições do Estado, estudantes e comunidades participaram na Dili Maratona Internacional em 2024-2026\"",
+   "target": "\"5000 atletas internacionais, nacional, municipais, representantes das instituições de Estadu, Estudantes e comunidades é planeado participará na Dili Maratona Internacional em 2027\"",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 12
+  },
+  {
+   "code": "A360202",
+   "programme": "A36",
+   "subprogramme": "A3602",
+   "subprogramme_name": "Iniciativas Culturais e Desportivas",
+   "name": "Festival de Música e Cultura",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero de participantes de grupos culturais, representantes Municipais, grupos culturais e outros grupos culturais",
+   "baseline": "150 participantes de grupos culturais, representantes Municipais e outros grupos culturais interessados, incluindo",
+   "target": "150 participantes de grupos culturais, incluindo comunidades internacionais em",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 12
+  },
+  {
+   "code": "A370201",
+   "programme": "A37",
+   "subprogramme": "A3702",
+   "subprogramme_name": "Fortalecer as Relações Internacionais Bilaterais",
+   "name": "Fortalecer Relações de visinhança com a Indonésia e a Austrália.",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) Numero de encontros e participações da Presidệncia nos forums entre Indonésia e Timor-Leste ii) Numero visitas oficiais do Governo da Austrália iii) Numero visitas oficiais do Governo da Indonésia\"",
+   "baseline": "5 de encontros e participações da Presidência nos fórum entre Indonésia e Timor-Leste em 2026 ii) 9 visitas oficiais do Governo da Austrália em 2026; iii) 4 visitas oficiais do Governo da Indonésia em 2026.\"",
+   "target": "i) 5 de encontros e participações da Presidência nos fórum entre Indonésia e Timor-Leste em 2027 ii) 9 visitas oficiais do Governo da Austrália em 2027 iii) 2 visitas oficiais do Governo da Indonésia em 2027",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 13
+  },
+  {
+   "code": "A370202",
+   "programme": "A37",
+   "subprogramme": "A3702",
+   "subprogramme_name": "Fortalecer as Relações Internacionais Bilaterais",
+   "name": "Visitas de Estado Bilaterais aos Países de Relações Diplomáticas e Visitas Privadas para Atender Convites das Intituições Globais e Regionais",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero visitas de Estado",
+   "baseline": "15 visitas de Estado, (Vietnam, PRC China, Cambodia, Singapura, Indonésia, Australia, Portugal, Santa se, Bulgária, Malaysia, Guiné-Bissau, Japão, Portugal, Vaticano, Perth",
+   "target": "19 visitas de Estado planeadas para 2026 (Tailândia, Malásia, Laos, Nova Zelândia, Filipinas, EU, São Tomé e Príncipe, Cabo Verde, Corea do Sul, WDC, Vanuatu, Turquia, Ucrania, Rússia, Israel, Sydney) em 2027",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 13
+  },
+  {
+   "code": "A370203",
+   "programme": "A37",
+   "subprogramme": "A3702",
+   "subprogramme_name": "Fortalecer as Relações Internacionais Bilaterais",
+   "name": "Receber Credênciais dos Embaixadores Designados",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"i) Numero Embaixadores de países com Embaixadores Residentes apresentarão as credênciais ii) Numeru Embaixadores Não-residentes apresentarão as credências\"",
+   "baseline": "i) 4 Embaixadores de países com Embaixadas Residentes apresentaram as suas credencias em 2026 (Cambodia, Brasil, Portugal, e UE) ii) 19)Embaixadores Não- residentes apresentaram as credenciais em 2026\"",
+   "target": "i) 4 Embaixadores de países com Embaixadas Residentes apresentarão as suas credenciais em 2027 ii) 15 Embaixadores Não-residentes apresentarão as suas credencias em 2027\"",
+   "amounts": {
+    "20": 205700.0
+   },
+   "page": 13
+  },
+  {
+   "code": "A370204",
+   "programme": "A37",
+   "subprogramme": "A3702",
+   "subprogramme_name": "Fortalecer as Relações Internacionais Bilaterais",
+   "name": "Nomeação e Tomada de Posse dos Embaixadores da RDTL aos Países com Relações Diplomáticas",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) Numero Embaixadores da RDTL para paízes da ASEAN e outros paízes amigos ii) Numero Representantes Permanentes\"",
+   "baseline": "i) 8 Embaixadores da RDTL para países da ASEAN e outros países amigos (Índia, Cambodia, Malaysia, Bélgica, Canadá, México, Mônaco, Angola) ii) 2 Representantes Permanentes (UE e ASEAN)\"",
+   "target": "i) 4 Embaixadores da RDTL para países da ASEAN e outros países amigos em 2027 ii) 1 Representante Permanente em 2027\"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 14
+  },
+  {
+   "code": "A370205",
+   "programme": "A37",
+   "subprogramme": "A3702",
+   "subprogramme_name": "Fortalecer as Relações Internacionais Bilaterais",
+   "name": "Encontros Bilaterais com Delegações de Países com Relações Diplomáticas",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero de encontros bilaterais com as delegações de países com relações diplomáticas",
+   "baseline": "60 encontros bilaterais com as delegações de países com relações diplomáticas",
+   "target": "80 encontros bilaterais com as delegações de países com relações diplomáticas em 2027",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 14
+  },
+  {
+   "code": "A370301",
+   "programme": "A37",
+   "subprogramme": "A3703",
+   "subprogramme_name": "Relações Multilaterias e Assuntos Eminentes",
+   "name": "Fortalecer Relações Diplomáticas com ASEAN, Relações Multilateriais e Participações nos Foruns Regionais",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"\"\"i) Numero ASEAN Summits iii) Numero de encontros de SE o PR com as Delegações para ONU e com Agencia do ONU, WB, WTO e ADB, CPLP, ASEAN, UE, COP, DAVOS, GTF for Nutritons, Human Fraternity, UNGA\"",
+   "baseline": "i) 1 ASEAN Summit ii) 10 encontros de S.Exa. o PR (WB, WTO e ADB, CPLP, ASEAN, UE, DAVOS, GTF for Nutritons, Human Fraternity)",
+   "target": "i) 1 ASEAN Summit 2027 ii) 7 encontros de S.Exa. o PR (CPLP Summits, DAVOS, COP, GTF for Nutritons, Human Fraternity, UNGA, HRC em 2027\"",
+   "amounts": {
+    "20": 248900.0
+   },
+   "page": 14
+  },
+  {
+   "code": "A370303",
+   "programme": "A37",
+   "subprogramme": "A3703",
+   "subprogramme_name": "Relações Multilaterias e Assuntos Eminentes",
+   "name": "Encontros com os Representantes das ONGs internacionais, a ONU, ASEAN e outros",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "\"Numero de encontros Representantes das ONGs internacionais, a ONU, ASEAN e outros \"",
+   "baseline": "20 encontros com Representantes das ONGs internacionais, Agencias da ONU e relacionadas a ASEAN, CEOs, Grupos de Solidariedade, Grupos Culturais e Grupos de Turistas.",
+   "target": "20 encontros Representantes das ONGs internacionais, da ONU, da ASEAN e outros em 2027",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 14
+  },
+  {
+   "code": "A370304",
+   "programme": "A37",
+   "subprogramme": "A3703",
+   "subprogramme_name": "Relações Multilaterias e Assuntos Eminentes",
+   "name": "Visita S.E. PR para Atender Convites da ONU, Intituições Globais e Regionais",
+   "div": [
+    "0010201"
+   ],
+   "indicator": "Numero participações da SE o PR nos eventos da ONU e outras instituições regionais e globais.",
+   "baseline": "1 Participação de S.Exa. o PR nos eventos da COP 29 na República do Azerbaijão em 2026",
+   "target": "3 Participações de SE o PR nos eventos COP 31, Munique Security Confrences, e Global Baku Fórum em 2027",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 14
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "162.0.0",
+   "statement": "Fortalecimento do respeito pela Constituição, da aplicação das leis e desenvolvimento do espírito crítico coletivo",
+   "indicator": "Candidatos para a Atribuição para Grupo/ individu do Prémio Sergio Vierra de Mello",
+   "baseline": "Individos / Grupos nomeados para a Atribuição do Prémio Sergio Vierra de Mello anualmente",
+   "target": "Fortalecimento do respeito pela constitução da aplicaçãodas leis de desenvolvimento do espirito critico coletivo",
+   "page": 5
+  },
+  {
+   "kind": "output",
+   "code": "16202.0.0",
+   "statement": "Reconhecimento do serviço dos individuais e grupos que contribuem ao apoio dos valores de direitos humanos",
+   "indicator": "Candidatos para a Atribuição para Grupo/ individu do Prémio Sergio Vierra de Mello",
+   "baseline": "Individos / Grupos nomeados para a Atribuição do Prémio Sergio Vierra de Mello anualmente",
+   "target": "Reconhecimento do serviço dos individuais e grupos que Contribuem ao apoio dos valores de Direitos Humanos",
+   "page": 5
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Objetivos do Plano de Ação Annual da Presidência alcançados incluindo variância da ezecução orçamentária por Porgrama",
+   "baseline": "O Plano de Ação Annua O Plano de Ação Annual da Presidência 2026 aprovado e executado e de relatório da responsabilização de ezecução de planos e orçamentos submetidos ao Ministério das Finanças trimesteralmente em 2026",
+   "target": "\"O Plano de Ação Annual da Presidência 2026 aprovado e executado e de relatório da responsabilização de ezecução de planos e orçamentos submetidos ao Ministério das Finanças trimesteralmente em 2027",
+   "page": 5
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Variância da execução orçamentária por Porgrama",
+   "baseline": "Plano de Ação Annual da Presidência foram executar com Variância da ezecução orçamentária por Porgramav em 2026",
+   "target": "O plano de Ação Annual da Presidência 2027 e executar com Variância da ezecução orçamentária por Porgrama e de relatório da responsabilização de ezecução de planos e orçamentos submetidos ao Ministério das Finanças trimesteralmente em 2027",
+   "page": 5
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "VVariância da ezecução orçamentária por Porgrama",
+   "baseline": "Plano de Ação Annual da Presidência foram executar com Variância da ezecução orçamentária por Porgramav em 2026",
+   "target": "O plano de Ação Annual da Presidência 2027 executar com Variância da ezecução orçamentária por Porgramav e de relatório da responsabilização de ezecução de planos e orçamentos submetidos ao Ministério das Finanças trimesteralmente em 2027",
+   "page": 6
+  },
+  {
+   "kind": "outcome",
+   "code": "A01.0.0",
+   "statement": "Vir a ser um país com uma sociedade com a sua identidade própria",
+   "indicator": "Apoio à promoção da língua Portuguesa e Tetun como línguas para o fortalecimento da coesão do povo de Timor- Leste",
+   "baseline": "promoção da língua Portuguesa e Tetun para o fortalecimento Institucional",
+   "target": "O setor público em Timor- Leste será fundamental para construir a confiança no governo, que é um pré- requisito para a construção da nação.",
+   "page": 7
+  },
+  {
+   "kind": "output",
+   "code": "A0101.0.0",
+   "statement": "Todos os cidadãos com bom conhecimento nas línguas oficiais de forma a contribuir ao fortalecimento da identidade nacional",
+   "indicator": "Participação Funcionarios na promoção da língua Portuguesa e Tetun",
+   "baseline": "Participanação Funcionarios na promoção da língua Portuguesa e Tetun anualmente",
+   "target": "Todos os cidadãos com bom conhecimento nas línguasoficiais de forma a contribuir ao fortalecimento da identidade nacional",
+   "page": 8
+  },
+  {
+   "kind": "outcome",
+   "code": "A02.0.0",
+   "statement": "Timor-Leste é reconhecido internacionalmente com a afirmação do papel do relacionamento com a CPLP, a ASEAN, a Commonwealth, os países da ONU, o Fórum do Pacífico nos países e regiões vizinhos",
+   "indicator": "Timor-Leste é reconhecido internacionalmente no Fórum do Pacífico nos países e regiões vizinhos",
+   "baseline": "Timor-Leste é reconhecido internacionalmente com a afirmação do papel do relacionamento com a CPLP, a ASEAN, a Commonwealth e os países da ONU",
+   "target": "A nível internacional, iremos proteger e promover os interesses do povo de Timor- Leste e salva guardar e consolidar a independência da nossa nação.",
+   "page": 8
+  },
+  {
+   "kind": "output",
+   "code": "A0201.0.0",
+   "statement": "Acompanhar as convenções, tratados e documentos demais que comprometem Timor-Leste ao Mundo",
+   "indicator": "Convenções, tratados e documentos demais que comprometem Timor- Leste ao Mundo",
+   "baseline": "Acompanhar as convenções, tratados e documentos demais que comprometem Timor-Leste ao Mundo",
+   "target": "Acompanhar as convenções, tratados e documentos demais que comprometem Timor-Leste ao Mundo e o setor público em Timor-Leste será fundamental para construir a confiança no governo, que é um pré- requisito para a construção da nação.",
+   "page": 8
+  },
+  {
+   "kind": "outcome",
+   "code": "A35.0.0",
+   "statement": "A Democracia, a Constitucionalidade, a Paz, a Defesa e a Segurança continuarão a ser asseguradas pelo SE PR através de reuniões, visitas, decisões políticas e constitucionais",
+   "indicator": "A Democracia, a Constitucionalidade, a Paz, a Defesa e a Segurança continuarão a ser asseguradas pelo SE PR",
+   "baseline": "Através de Reuniões,Vizitas, decisões políticas e constitucionais para asegurar Democracia, a Constitucionalidade, a Paz, a Defesa e a Segurança pelo S.E. PR",
+   "target": "Promover sociedades pacíficas e inclusivas para o desenvolvimento sustentável, proporcionar o acesso à justiça para todos e construir instituições eficazes, responsáveis e inclusivas a todos os nívei, A nível internacional, iremos proteger e promover os interesses do povo de Timor- Leste e salvaguardar e consolidar a independência da nossa nação, Adotaremos uma estratégia abrangente para construir o sistema de justiça de Timor-Leste e aumentar a sua capacidade para cumprir o seu papel e funções, O setor público em Timor-Leste será fundamental para construir a confiança no governo, que é um pré-requisito para a construção da nação.",
+   "page": 9
+  },
+  {
+   "kind": "output",
+   "code": "A3501.0.0",
+   "statement": "A democracia em Timor-Leste continuará a ser reforçada pela SE PR através de reuniões, visitas e decisões políticas e constitucionais.",
+   "indicator": "Fortalecimento democracia, a Paz, a Defesa e a Segurança",
+   "baseline": "Através de Reuniões,Vizitas, decisões políticas e constitucionais para asegurar Democracia, a Constitucionalidade, a Paz, a Defesa e a Segurança pelo S.E. PR",
+   "target": "A democracia em Timor-Leste continuará a ser reforçada pela SE PR através de reuniões, visitas e decisões políticas e constitucionais.",
+   "page": 9
+  },
+  {
+   "kind": "output",
+   "code": "A3502.0.0",
+   "statement": "A constitucionalidade em Timor-Leste continuará a ser reforçada pela SE PR através de reuniões, visitas e decisões políticas e constitucionais",
+   "indicator": "Fortalecimento Constitucionalidade, Páz, Defesa e Segurança",
+   "baseline": "Fortalecimento da Democracia, Constitucionalidade, Páz, Defesa e Segurança",
+   "target": "A constitucionalidade em Timor- Leste continuará a ser reforçada pela SE PR através de reuniões, visitas e decisões políticas e constitucionais",
+   "page": 10
+  },
+  {
+   "kind": "output",
+   "code": "A3503.0.0",
+   "statement": "A Paz, a Defesa e a Segurança Nacional em Timor-Leste continuarão a ser reforçadas pelo SE PR através de reuniões, visitas e decisões políticas e constitucionais",
+   "indicator": "Garantir a Páz, a Defesa e a Segurança Nacional",
+   "baseline": "Garantir a Páz, a Defesa e a Segurança Nacional atravez de Encontros Regulares do Conselho Superior de Defesa e Segurança, Instituições de Defesa e de Segurança e Encontros com as Visitas da Internacionais de Defesa e de Segurança",
+   "target": "A Paz, a Defesa e a Segurança Nacional em Timor-Leste continuarão a ser reforçadas pelo SE PR através de reuniões, visitas e decisões políticas e constitucionais",
+   "page": 10
+  },
+  {
+   "kind": "outcome",
+   "code": "A36.0.0",
+   "statement": "Iniciativas de Desenvolvimento do Presidente da República serão realizadas para obter modelos e serão entregues ao executivo para a implementação",
+   "indicator": "Iniciativas de Desenvolvimento do Presidente da República serão realizadas para obter modelos e serão entregues ao executivo para a implementação",
+   "baseline": "Alcançar a igualdade de género e empoderar todas as mulheres e rapariga, Promover sociedades pacíficas e inclusivas para o desenvolvimento sustentável, proporcionar o acesso à justiça para todos e construir instituições eficazes, responsáveis e inclusivas a todos os níveis e Promover o crescimento económico inclusivo e sustentável, o emprego pleno e produtivo e o trabalho digno para todos,",
+   "target": "Timor-Leste será uma nação forte, coesa e progressiva, onde os direitos e interesses dos cidadãos mais vulneráveis são protegidos e o setor público em Timor- Leste será fundamental para construir a confiança no governo, que é um pré- requisito para a construção da nação e Timor-Leste terá um setor vibrante de indústrias criativas que está contribuindo de forma muito significativa para a nossa economia e nosso senso de identidade nacional.",
+   "page": 11
+  },
+  {
+   "kind": "output",
+   "code": "A3601.0.0",
+   "statement": "Apoios socias, de saúde e nutrição, iniciativas educacionais, artes e cultura, empoderamento de mulheres e inclusão social serão providenciadas como modelos de redução da pobreza, empoderamento e diversificação economica dos grupos vulneráveis em Timor-Leste",
+   "indicator": "\"os Apoios humanitários para famílias vulneráveis/ Tratamento especial, As Crianças têm acessos ao Palácio Presidente, os vendedores ambulantes de três rodas têm acesso ao Palácio durante as celebrações nacionais para vender as frutas e outros produtos, refeições para As Crianças, negociantes Femeninas receberm formação para implementar os seus negócios eficientemente, eventos de exibição em para a promoção de produtos locais foram organizadas com a participação de femeninans de negócios pequenas \"",
+   "baseline": "\"os Apoios humanitários para famílias vulneráveis/ Tratamento especial, As Crianças têm acessos ao Palácio Presidente, os vendedores ambulantes de três rodas têm acesso ao Palácio durante as celebrações nacionais para vender as frutas e outros produtos, refeições para As Crianças, negociantes Femeninas receberm formação para implementar os seus negócios eficientemente, eventos de exibição em para a promoção de produtos locais foram organizadas com a participação de femeninans de negócios pequenas \"",
+   "target": "Apoios socias, de saúde e nutrição, iniciativas educacionais, artes e cultura, empoderamento de mulheres e inclusão social serão providenciadas como modelos de redução da pobreza, empoderamento e diversificação economica dos grupos vulneráveis em Timor-Leste",
+   "page": 11
+  },
+  {
+   "kind": "output",
+   "code": "A3602.0.0",
+   "statement": "A continuação da realização de iniciativas de competições desportivas e festivais culturais de SE o Presidente da República em 2024, fortalecer talentos dos atletas e modelos culturais que serão entregues ao Executivo para implementar",
+   "indicator": "Dili Maratona, Corrida de \"Off Road\" e Corrida Bicicleta Tour de Timor, Adverture Tour of Timor Island advanture Festival de Música e Cultura",
+   "baseline": "\"3000 atletas internacionais, nacionais, municipais, representantes das instituições do Estado, estudantes e comunidades participaram na Dili Maratona Internacional em 2024- 2025 e 1500 participantes de grupos culturais, representantes Municipais, grupos culturais e outros grupos culturais interessados, incluindo comunidades internacionais em Timor-Leste,",
+   "target": "A continuação da realização de iniciativas de competições desportivas e festivais culturais de SE o Presidente da República e fortalecer talentos dos atletas e modelos culturais que serão entregues ao Executivo para implementar",
+   "page": 12
+  },
+  {
+   "kind": "outcome",
+   "code": "A37.0.0",
+   "statement": "Comunicação Instituicional do Governo Forte e Profisional",
+   "indicator": "Visitas do estado e visita do travalho S.E PR",
+   "baseline": "Promover a politica do pais Junto dos forums Internasionais , Bilaterais e multilaterais.",
+   "target": "Assegurar o desemvolvimento das relações Politica e economicas entre Timor Leste e os demais paises",
+   "page": 13
+  },
+  {
+   "kind": "output",
+   "code": "A3702.0.0",
+   "statement": "As Relações Internacionais Bilaterais continuarão a ser fortalecidas pelas visitas de Estado, as participações de SE o PR nos encontros bilaterais e as aceitações aos convites bilaterais dos países amigos de Timor-Leste",
+   "indicator": "Fortalecer as Relações Internacionais Bilaterais com todos os Paises com relações Diplomaticas",
+   "baseline": "\"Promover as boas relações de vizinhança com Paises Vizinhos Indonesia e Australia e restantes paises da Região\"",
+   "target": "As Relações Internacionais Bilaterais continuarão a ser fortalecidas pelas visitas de Estado, as participações de SE o PR nos encontros bilaterais e as aceitações aos convites bilaterais dos países amigos de Timor-Leste",
+   "page": 13
+  },
+  {
+   "kind": "output",
+   "code": "A3703.0.0",
+   "statement": "Relações Multilaterias e Assuntos Eminentes continuarão a ser fortalecidas pela participação de SE o PR nos encontros e forums de alto-nivel das Nações Unidas, organizações internacionais, organizações regionais e organizações de páz e fraternidade humana mundiais e regionais",
+   "indicator": "\"Encontros nos foruns da ONU, foruns Regionais da ASEAN e Asia Pasifico e CPLP \"",
+   "baseline": "\"Participação na abertura da Assembleia Geral da ONU e Encontros nos foruns Regionais da ASEAN, Asia Pasifico e CPLP \"",
+   "target": "Relações Multilaterias e Assuntos Eminentes continuarão a ser fortalecidas pela participação de SE o PR nos encontros e forums de alto- nivel das Nações Unidas, organizações internacionais, organizações regionais e organizações de páz e fraternidade humana mundiais e regionais",
+   "page": 14
+  }
+ ]
+}

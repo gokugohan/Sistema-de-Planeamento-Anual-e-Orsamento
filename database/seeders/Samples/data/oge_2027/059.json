@@ -1,0 +1,318 @@
+{
+ "year": 2027,
+ "code": "059",
+ "name": "Tecnologias de Informação e Comunicação I.P.",
+ "abbr": "TIC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   702,
+   711
+  ]
+ },
+ "units": [
+  {
+   "code": "TT",
+   "div": "0590101",
+   "name": "TIC Timor I.P",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A08": "Tecnologia de informação e comunicação"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1.Planu Estratejiku TIC TIMOR I.P - Iha dokumentu Planu Estratejiku ida-ne'ebé aprova no publika ona. - Numeru objetivu estratéjiku sira ne'ebé define ho klaru iha planu. - Frekuénsia husi",
+   "baseline": "Programa IX Governu Dekretu- Lei TIC TIMOR ninian Planu Estratejia Timor Dijital",
+   "target": "1. Planu Estrateziku TIC TIMOR I.P. dezenvolvidu. 2. Politika Interna Diresaun Sira TIC TIMOR I.P. implementa haktuir ba kompetensia diresaun ida-idak nian. 3. Prosedimentu sira TIC",
+   "amounts": {
+    "20": 6000.0
+   },
+   "page": 702
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "Kontinua implementa orsamentu ho efikás, liu husi mekanismu internal, ne'ebe bele asegura ezekusaun orsamentu, tuir siklus aprovisionamentu ne'ebe kumpri nafatin Lei Enkuadramentu Orsamentál foun no Kódigu Aprovizionamentu no Kontratu Públiku foun no determina timeline ezekusaun ne'ebe klaru.",
+   "baseline": "Ezekuta Planu Orsamentu bazeia ba programa IX governu konstitusional",
+   "target": "Ezekuta PAA 2026 ho forma transparante, resposibilidade, efikas no efetiva.",
+   "amounts": {
+    "20": 146050.0
+   },
+   "page": 704
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1. Nivel satisfasaun funsionariu aumenta; 2. Asegura Ben-estar; 3. Rekrutamentu ba pesoal IT espesializadu tuir TIC TIMOR I.P. nia misaun no nesesidade; 4. Ambiente servisu ne'ebe seguru; 5. Atualiza mata dalan rekursu umanus.",
+   "baseline": "1. Ezisti Funsionárius 117 pessoal iha nível Nasional to'o Munisipiu; 2. Pesoal IT seidauk adekuadu atu responde ba servisu dijitalizasaun no apoiu to'o iha nível postu administrativu no regras hodi asegura funsionamentu servisu Ajénsia TIC TIMOR I.P; 3. Sei rekruta tan forsa traballudor ba pesoal téknika ho total 13 pessoas iha Diresaun teknika",
+   "target": "1. Programa atinjidu ho rekursu umanus ne'ebe adekuadu; 2. Implementa sistema rekursu umanu online.",
+   "amounts": {
+    "10": 869667.0
+   },
+   "page": 704
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "Efikasia jestaun servisu no eleva produtividade hodi garante kualidade servisu.",
+   "baseline": "1. Identifika kapasidade funsionariu sira nian, liu husi avaliasaun de dezempeñu anual. 2. Identifika workshop, seminariu haktuir ba konvite husi parseiru sira iha nivel ASEAN no Internasionais;",
+   "target": "1. Identifika formadores ho kualifikadu, funsionariu sira kapasitadu ona iha area jestaun administrativu hodi apoiu funsionamentu ajénsia TIC TIMOR I.P. 2. Funsionariu sira hetan informasaun aktual iha area teknika no non-teknika liu husi workhsop, formasaun no seminariu sira;",
+   "amounts": {
+    "20": 120500.0
+   },
+   "page": 704
+  },
+  {
+   "code": "51002E5",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Re-point of negative 2026 salaries",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1. Nivel satisfasaun funsionariu aumenta; 2. Asegura Ben-estar; 3. Rekrutamentu ba pesoal IT espesializadu tuir TIC TIMOR I.P. nia misaun no nesesidade; 4. Ambiente servisu ne'ebe seguru;",
+   "baseline": "1. Ezisti Funsionárius 117 pessoal iha nível Nasional to'o Munisipiu; 2. Pesoal IT seidauk adekuadu atu responde ba servisu dijitalizasaun no apoiu to'o iha nível postu administrativu no",
+   "target": "1. Programa atinjidu ho rekursu umanus ne'ebe adekuadu; 2. Implementa sistema rekursu umanu online.",
+   "amounts": {
+    "10": 741912.0
+   },
+   "page": 704
+  },
+  {
+   "code": "A080202",
+   "programme": "A08",
+   "subprogramme": "A0802",
+   "subprogramme_name": "Cíclo do Desenvolvimento de Sistemas e Aplicações",
+   "name": "Serviços de Desenvolvimento dos Aplicações e Hospedagem (Hosting Service)",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "Tinan 2027 TIC TIMOR kontinua dijitaliza sistema informasaun ba Instituisaun no Ajência Estadu nian, husi Nasional to Municipio, liuhosi introdusaun plataforma uniku UGRMP (Unified Government Resource Management Platform)",
+   "baseline": "Total Instituisaun governu inklui Munisipiu hamutuk 139, digitaliza ona sira nian sistema informasaun quaze 97(69.78%), liuhosi kolaborasaun ho TIC TIMOR I.P.",
+   "target": "TIC TIMOR I.P. Dijitaliza sistema informasaun prinsipal hamutuk 168 husi Intituisaun no Ajência Estadu nian, hamutuk 107.",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 706
+  },
+  {
+   "code": "A080205",
+   "programme": "A08",
+   "subprogramme": "A0802",
+   "subprogramme_name": "Cíclo do Desenvolvimento de Sistemas e Aplicações",
+   "name": "Capacitação nas áreas de Tecnologia da informação e Comunicação para Instituições do Estado e entidades públicos",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "- Tinan 2027 TIC TIMOR I.P. Kontinua halo kapasitasaun ba líderes, administradores, diretores e funcionários públicos para servisu público ao nível nacionais e munisipais sobre a utilização sistema informática nas áreas da Tecnologia da informação e Comunicação - Halo kapasitasaun ba funcionários públicos para servisu público ao nível Posto Administrativos",
+   "baseline": "- Formação para os formadores servisu hamautuk ho INAP no CFP, hahu ho sosializasaun, no quaze Munisipal sira hetan ona furmasaun, ne'ebe sai nudar porgrama pilotu - Instituisaun Estadu quaze 62 hetan ona formasaun iha varias area, (Website, sistema Rekursu Umanu, Sistema Oficio, Sistema Cloud Governu, Email Ofiisial). Formasaun fornese por pedidu.",
+   "target": "- 1. TIC TIMOR I.P. fornese formasaun ba instituisaun no Ajência estadu hamutuk 82. - 2. Modalidade prinsipal atu eleva literasia dijital hodi apoiu politika implementasaun governu eletroniku.",
+   "amounts": {
+    "20": 5125.0
+   },
+   "page": 707
+  },
+  {
+   "code": "A080604",
+   "programme": "A08",
+   "subprogramme": "A0806",
+   "subprogramme_name": "Infraestrutura da Rede do Governo",
+   "name": "Distribuição da Rede Governamental para apoiar a conectividade a todas as instituições governamentais (pluri anual)",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "Ponto distribuisaun Infraestrutura fibra otika 5 ne'ebe própriu ba Instituisaun no Ajência Estadu sira nian hotu iha Dili inklui konektividade kabu fibra otika ba munisipiu 12.",
+   "baseline": "1. Instituisaun no Ajência Estadu 61 iha Dili ne'ebe hetan koneksaun direta mai iha Sentru Dadus Governu Elektroniku sei aumenta haktuir ba pedidu sira husi instituisaun governu 2. Halo manutensaun kabu fibra otika terrestiral nasional to munis",
+   "target": "Fasilita Instituisaun no Ajência Estadu nian hodi asesu ba servisu dijital, ne'ebé mak sentraliza iha sentru dadus Governu Eletróniku liu husi pontu distribuisaun fibra ótika ne'ebé estabelese ona.",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 708
+  },
+  {
+   "code": "A081501",
+   "programme": "A08",
+   "subprogramme": "A0815",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Realiza verifikasaun vulnerabilidade e teste penetrasaun ba redes, sistema,",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1. Kompra aparellu no teknolojia ba Avaliasaun hodi kontinua no aumenta numeru ezekusaun ba",
+   "baseline": "1. Iha tinan 2026, TIC TIMOR konklui teste avaliasaun vulnerabilidade no teste",
+   "target": "Realiza atividade avaliasaun vulnerabilidade no teste penetrasaun ba sistema no",
+   "amounts": {
+    "20": 27000.0
+   },
+   "page": 708
+  },
+  {
+   "code": "A081502",
+   "programme": "A08",
+   "subprogramme": "A0815",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Implementa teknologia protesaun email e Firewall Analizer",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1. Implementa sistema seguransa avansadu hodi proteje infraestrutura dijital husi atake siber. 2. Implementa SOC (Security Operation Center) faz parte ba planu integradu husi",
+   "baseline": "1. TIC TIMOR implementa ona sistema seguransa avansadu iha inisiu 2026. Nune’e, importante atu kontinua extensaun hodi asegura sistema kritiku protejidu husi",
+   "target": "Ho implementasaun seguransa avansadu sei asegura sistema kritiku destaka iha Sentrudadus TIC TIMOR ne’e seguru, protejidu no sustentable. Alende ne’e, SOC implementana ona",
+   "amounts": {
+    "20": 119750.0
+   },
+   "page": 709
+  },
+  {
+   "code": "A081503",
+   "programme": "A08",
+   "subprogramme": "A0815",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Gradualmente dezenvolve matadalan(guidelines), procedimento, realiza conscientizasaun segurança Cibernetiku inklui mos quadros jurídicos",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1. Sertifika Sentrudadus TIC TIMOR tuir padraun Siberseguransa ISO 27001",
+   "baseline": "1. TIC TIMOR adota ona padraun siberseguransa ho tipu ISO 27001 iha inisiu 2025. Maibe iha limitasaun no presiza atu kompleta rekezitu tekniku haktuir ba resultadu auditoria tekniku.",
+   "target": "Sentrudadus TIC TIMOR priense ona rekezitu tekniku no sertifikadu bazeia ba padraun siberseguransa ISO 27001.",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 710
+  },
+  {
+   "code": "A081600",
+   "programme": "A08",
+   "subprogramme": "A0816",
+   "subprogramme_name": "Infraestrutura para Centro de Dados Nacional do Governo Eletrónico",
+   "name": "Desenvolvimento do Centro de Dados",
+   "div": [
+    "0590101"
+   ],
+   "indicator": "1. Moderniza infraestrutura Sentru Dadus liuhosi implementasaun Core Network, Web Application Firewall (WAF), Government AI Platform, no Critical Power & Electrical Distribution System. 2. Implementa Enterprise Storage Platform, Backup no Disaster Recovery ho redundánsia no expansaun kapasidade armazenamento dadus. 3. Akuizisaun Enterprise Laptop no Monitor ba pesoál tékniku Sentru Dadus. 4. Renovasaun lisensa plataforma kritiku no akuizisaun software legal atu garante kontinuidade operasaun Sentru Dadus.",
+   "baseline": "1. Core Network atualmente uza Cisco Nexus 7700 ne'ebé opera desde 2017; WAF License remata iha 2024; infraestrutura AI seidauk iha; 2 UPS 60kVA opera desde 2017 no distribuisaun energia la balanseadu. 2. Backup atualmente uza Synology, seidauk suporta Real-Time Backup, CDP no Offsite Replication; kapasidade storage existente besik limite. 3. Pesoál foun seidauk iha workstation adekuadu atu suporta atividade téknika no apoiu operasional. 4. Maioria lisensa kritiku (Cisco Firepower, Proxmox, Bitdefender no Nutanix) sei remata iha 2027;",
+   "target": "1. Infraestrutura Sentru Dadus modernu, seguru, resiliente no disponivel 24x7 atu suporta servisu dijitál governu. 2. Storage enterprise implementa, backup automatiku no kapasidade armazenamento aumenta atu suporta kontinuidade servisu governu. 3. Pesoál hotu utiliza equipamento enterprise atu aumenta produtividade no efisiénsia operasional. 4. Plataforma ICT kontinua simu security updates, vendor support no software legal implementa.",
+   "amounts": {
+    "20": 68356.0
+   },
+   "page": 710
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1. Apoiu Implementasaun Administrasaun Publiku ho efisiensia, efikas no transparente; 2. Aprovasaun Planu Annual; 3. Desenvolvimentu estratejia no politika relevante ba implementasaun Dijitalizasaun.",
+   "baseline": "1. Hasa'e kapasidade rekursu umanu bazeia ba avaliasaun desenpeñu; 2. Planu Ezekusaun orsamentu haktuir ba Lei Enkuadramentu Orsamentál no Kódigu Aprovizionamentu no Kontratu Públiku 3. Dijitalizasaun iha faze intermediu.",
+   "target": "1. Rekursu Umanu kualifikadu hodi ezerse servisu iha area teknika no non-teknika; 2. PAA ezekuta haktuir ba programa no atinji persentajen máximum no ezekuta haktuir ba Implementasaun no regulamentu Lei Enkuadramentu Orsamentál no Kódigu Aprovizionamentu no Kontratu Públiku foun ne'ebe simples, rigorozu no transparente; 3. Kontinua implementa sistema Dijitalizasaun ba Intituisaun Estadu. .",
+   "page": 702
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1. Kontinua operasionaliza implementasaun Timor dijitál 2032 ba iha Instituisaun Estadu husi Nasional to'o iha Suku; 2.Dezenvolve Politika no Estatejia relevante sira hodi apoiu transformasaun dijital iha Instituisaun Estadu sira hotu, no hadia prestasaun servisu instituisaun publiku sira; 3. Atualiza Politika Internal TIC ninian hodi responde ba necesidade atual no responde ba programa no prioredade IX Governu nian.",
+   "baseline": "1.Estratejia Timor digital 2032 ne'ebe hetan ona aprovosaun husi Konsellu Ministru; 2.Politika TIK 2017-2019 kaduka ona no persija atualiza hodi alina ho programa Governu atual no avansamentu teknolojia. 3.Estudu no avaliasaun sira ba dezenvolvimentu dijitál ne'ebé hala'o husi TIC Timor hatudu katak iha nesesidade atu dezenvolve estratéjia komprensivu hodi orienta transformasaun dijitál iha Timor-Leste; 4. Persiza dezenvolve politika no estratejia transformasaun dijital hodi apoiu implementasaun Programa IX Governo (2.8 ICT no 6.7 e-Government).",
+   "target": "1.Planu Estratejiku TIC TIMOR I.P. dezenvolvidu; 2. Politika Interna no Prosedimentu Diresaun sira TIC TIMOR I.P. implementa haktuir ba kompetensia Diresaun ida-idak nian; 3. Politika TIC Nasional (ICT Policy) aprovadu husi Konsellu Ministru no publika iha jornal repulika; 4. Proposta revizaun estratejia Timor Digital no halo mudansa ba naran husi Timor Digital ba iha Timor Transformasaun Digital ne'ebe sei hetan aprovasaun husi Konsellu Ministru.",
+   "page": 702
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Asegura katak despezas públikas bele realiza ho forma efetiva, efikás, transparente, no akuntabel. Nune'e TIC TIMOR I.P realiza ona fiskalizasaun ba ezekusaun Orsament.",
+   "baseline": "PAA 2023, 2024 no 2025, 2026 ezekuta ona.",
+   "target": "Subprograma 51002: Desenvolvimento Instituicional",
+   "page": 704
+  },
+  {
+   "kind": "outcome",
+   "code": "A08.0.5",
+   "statement": "Informações sobre as atividades do Governo são acessíveis e os Serviços Públicos Chave são fornecidos on-line.",
+   "indicator": "Tinan 2027, Instituisaun no Ajência Estadu 139 hetan apoiu servisu teknolojia husi TIC TIMOR I.P. ho persentajem 68%",
+   "baseline": "1. Fornesimentu Formasaun iha Instituisaun no Ajensia Estadu 65, kompostu husi total 139, hetan ona formasaun husi TIC TIMOR I.P iha nivel Nasional to'o iha Munisipiu; 2. Fornesimentu Desenvolvimentu sistema iha Instituisaun no Ajência Estadu inklui Munisipais sira no suku (1), hamutuk 81, kompostu husi total 139, sira nia sistema informasaun baziku desenvolve ona husi TIC TIMOR I.P; 3. Fornesimentu Servisu Rede iha Instituisaun no Ajensia Estadu nian hamutuk 57 hetan ona asesu rede husi TIC TIMOR I.P iha nivel Nasional, Munisipiu, Balcao Uniku inklui Embaixada sira; 4.Fornesimentu Servisu Sentru Dadus 65% husi 53 institusaun governo",
+   "target": "1. Kontinua realiza kapasitasaun ba pesoal Instituisaun no Ajensia Estadu nian inklui setor privadu sira; 2. Kontinua desenvolve aplikasaun esensial sira ba prestasaun servisu publiku; 3. Kontinua Fornese no Moderniza konetividade rede husi nivel Nasional, Munisipiu, Balcao Uniku inklui Embaixada sira; 4. Kontinua sentraliza, asegura no fornese servisu hospedajem ba Instituisaun Estadu inklui setor privadu iha Sentru Dadus TIC TIMOR I.P.",
+   "page": 705
+  },
+  {
+   "kind": "output",
+   "code": "A0802.0.1",
+   "statement": "Transformação Digital dos Serviços do Governo para o Apoio de Balcão Único",
+   "indicator": "- Transformasaun digital ba servisu governu atu suporta Balcão Único (One-Stop Service) hodi garantia ba asesu no adosaun digital. ho fornesimentu servisu ba instituisuan estadu hamutuk 81 - Redusaun tempu médiu atendimentu no tempu prosesamentu pedidu sira. Nune’e mós",
+   "baseline": "'-TIC TIMOR I.P. desenvolve ona sistema informasaun (Dijitalizasaun) ba Instituisaun no Ajência Estadu nian, hamutuk 81 husi Instituisaun139 - Formação para os formadores servisu hamautuk ho INAP no CFPTIC -TIMOR I.P. fornese ona formasaun",
+   "target": "- kria pontu asesu úniku, integradu ba servisu governu nian, iha ne'ebé sidadaun no negósiu sira bele asesu servisu sira la presiza vizita eskritóriu oioin ka repete informasaun hanesan iha instituisaun oioin. - hadi'a efisiénsia no velosidade prestasaun servisu nian, hamenus tempu",
+   "page": 705
+  },
+  {
+   "kind": "output",
+   "code": "A0805.0.0",
+   "statement": "Sustentar desempenho serviços Governamentais",
+   "indicator": "Garantia disponibilidade, continuidade no fiabilidade asesu ba servisu Governu Eletróniku ne'ebé presta hosi TIC TIMOR I.P.",
+   "baseline": "Servisu Governu Eletróniku atualmente depende ba disponibilidade IP Públiku no konektividade Internet atu bele asesivel hosi utilizadór sira, maibé kontinuidade asesu sei vulnerável bainhira renovasaun IP Públiku ka konektividade Internet principal hetan interrupsaun.",
+   "target": "Garantir disponibilidade no continuidade asesu ba servisu Governu Eletróniku 24 oras loron-loron (24x7), ho disponibilidade no fiabilidade infraestrutura konektividade ne'ebé suporta prestasaun servisu governu.",
+   "page": 707
+  },
+  {
+   "kind": "output",
+   "code": "A0806.0.0",
+   "statement": "Rede pública do Estado",
+   "indicator": "Tinan 2027 Instituisaun no Ajensia estadu hamutuk 20 maka sei halo tan koneksaun mai iha rede governu, hodi asesu ba servisu publiku ne'ebe mak halo hospendajem (hosting) iha Sentru Dadus TIC TIMOR I.P. hanesan Email Services, DNS Services, Hosting System, Co-location nomos Aplikasaun.",
+   "baseline": "1. Ajência Estadu 61 iha Dili ne'ebe hetan koneksaun direta mai iha Sentru Dadus Governu Elektroniku sei aumenta haktuir ba pedidu sira husi instituisaun governu. 2. Halo manutensaun kabu fibra otika terrestiral nasional to munisipiu.",
+   "target": "Tinan 2027, TIC TIMOR I.P. sei moderniza rede backbone iha teritoriu tomak, nune'e mos hasa'e kapasidade hodi akomoda konetividade rede atu prepara no apoia CTL E. P. no mos atualiza ekipamentu rede backbone iha Munisipiu (Fibra Optic National Backbone Terresterial) no rede ponto distribuisaun Nasional hodi fasilita",
+   "page": 707
+  },
+  {
+   "kind": "output",
+   "code": "A0815.0.0",
+   "statement": "tbd",
+   "indicator": "1. Implementa sistema seguransa avansadu hodi proteje infraestrutura dijital husi atake sibe; 2. Implementa SOC (Security Operation Center) faz parte ba planu integradu husi Pakote Siberseguransa Nasional no rekezitu husi ACNOC ba presidensia Timor- Leste iha simeira ASEAN 2029; 3. Sertifika Sentrudadus TIC TIMOR tuir padraun Siberseguransa ISO 2700; 4. Kompra aparellu no teknolojia ba Avaliasaun hodi kontinua no aumenta numeru ezekusaun ba avaliasaun Vulnerabilidade no teste penetrasaun ba sistema no aplikasaun",
+   "baseline": "1. TIC TIMOR implementa ona sistema seguransa avansadu iha inisiu 2026. Nune’e, importante atu kontinua extensaun hodi asegura sistema kritiku protejidu husi kualker atake siber;. TIC TIMOR implementa ona sistema monitorizasaun fundamental, maibe importante atu implementa SOC hodi garante monitorizasaun integradu no kordenadu durante tempu iha teritoriu nasional durante 24/7 horas. 2. TIC TIMOR adota ona padraun siberseguransa ho tipu ISO 27001 iha inisiu 2025. Maibe iha limitasaun no presiza atu kompleta rekezitu tekniku haktuir ba resultadu auditoria tekniku; 3.Iha tinan 2026, TIC TIMOR konklui teste avaliasaun vulnerabilidade no teste penetrasaun ba insituisaun 8 uza aparelu teknolojia. Iha tinan 2027, sei aumenta numeru teste avaliasaun vulnerabilidade no teste penetrasaun ba insituisaun 20 liuhosi aparelu teknolojia ne’ebe sei kompra ka estende husi teknolojia ne’ebe kompra iha 2026.",
+   "target": "1.Ho implementasaun seguransa avansadu sei asegura sistema kritiku destaka iha Sentrudadus TIC TIMOR ne’e seguru, protejidu no sustentable. Alende ne’e, SOC implementana ona hanesan rekezitu husi Subkomite 5 ACNOC faz parte ba preparasaun Timor-Leste nia presidensia ba ASEAN iha tinan 2029; 2. Sentrudadus TIC TIMOR priense ona rekezitu tekniku no sertifikadu bazeia ba padraun siberseguransa ISO 2700; 3. Realiza atividade avaliasaun vulnerabilidade no teste penetrasaun ba sistema no aplikasaun husi instituisaun no ajensia governu ne’ebe sentraliza iha Sentrudadus TIC TIMOR.",
+   "page": 708
+  },
+  {
+   "kind": "output",
+   "code": "A0816.0.0",
+   "statement": "Servisu governu eletroniku ne&amp;#39;ebe hospedajen iha Sentru Dadus Governu eletroniku sentralizadu ho disponibilidade ne&amp;#39;ebe a&amp;#39;as no asesivel ho diak, fasil no seguru iha Munispiu, Linha Ministreial no Instituisaun Estadu sira.",
+   "indicator": "Modernizasaun infraestrutura, sistema no fasilidade Sentru Dadus TIC TIMOR I.P. atu hasa’e disponibilidade, seguransa, kapasidade no efisiénsia prestasaun servisu Governu Eletróniku.",
+   "baseline": "Sentru Dadus atualmente utiliza infraestrutura desde 2017, software/lisensa balun remata iha 2027, no kapasidade presiza modernizasaun.",
+   "target": "Sentru Dadus TIC TIMOR I.P. modernizadu ho infraestrutura, software, lisensa no fasilidade ne'ebé atualiza atu garante disponibilidade, seguransa, kapasidade, reziliénsia operasional no kontinuidade servisu Governu Eletróniku 24x7.",
+   "page": 710
+  }
+ ]
+}

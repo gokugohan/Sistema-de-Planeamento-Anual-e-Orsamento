@@ -60,10 +60,9 @@ class NavigationTest extends TestCase
             $this->assertNotContains('Audit Log', $this->labels($u));
             $this->assertNotContains('Settings', $this->labels($u));
         }
-        foreach (['Reporting'] as $wide) {
-            $this->assertNotContains($wide, $this->labels($planner), "department users do not get $wide");
-            $this->assertNotContains($wide, $this->labels($viewer), "department users do not get $wide");
-            $this->assertContains($wide, $this->labels($minister));
+        // Reporting is offered to everyone who may see reports: the whole institution for the minister, their own unit for the others
+        foreach ([$planner, $viewer, $minister] as $u) {
+            $this->assertContains('Reporting', $this->labels($u));
         }
     }
 
@@ -127,7 +126,7 @@ class NavigationTest extends TestCase
 
         $this->assertStringContainsString('Go to a page', $html);
         $this->assertStringNotContainsString(route('management.users'), $html);
-        $this->assertStringNotContainsString(route('reports.paa'), $html, 'department users are not offered ministry-wide reports');
+        $this->assertStringContainsString(route('reports.paa'), $html, 'department users get the reports of their own unit');
         $this->assertStringContainsString(route('activities.index'), $html);
     }
 

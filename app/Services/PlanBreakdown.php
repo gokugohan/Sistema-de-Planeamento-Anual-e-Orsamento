@@ -22,6 +22,18 @@ use Illuminate\Support\Facades\DB;
  */
 class PlanBreakdown
 {
+    /** @var array<int, int>|null the units the figures cover (ReportScope), null for every unit */
+    private ?array $units = null;
+
+    /** The same figures for these units only (a unit with those below it); null for every unit. */
+    public function forUnits(?array $ids): static
+    {
+        $copy = clone $this;
+        $copy->units = $ids;
+
+        return $copy;
+    }
+
     /**
      * Planned and approved amount of every unit including the units below it.
      *
@@ -182,6 +194,7 @@ class PlanBreakdown
             ->join('line_items as li', fn ($j) => $j->on('li.activity_id', '=', 'a.id')->where('li.is_test_data', false))
             ->leftJoin('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
             ->where('a.fiscal_year', $year)
-            ->where('a.is_test_data', false);
+            ->where('a.is_test_data', false)
+            ->when($this->units !== null, fn ($q) => $q->whereIn('a.directorate_id', $this->units ?: [0]));
     }
 }

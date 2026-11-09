@@ -1,0 +1,983 @@
+[
+ {
+  "code": "001",
+  "name": "Presidência da República",
+  "abbr": "PR",
+  "kind": "body",
+  "activities": 39,
+  "units": 3,
+  "total": 11858312.0
+ },
+ {
+  "code": "002",
+  "name": "Parlamento Nacional",
+  "abbr": "PN",
+  "kind": "body",
+  "activities": 22,
+  "units": 23,
+  "total": 19240495.0
+ },
+ {
+  "code": "003",
+  "name": "Primeiro Ministro",
+  "abbr": "PM",
+  "kind": "body",
+  "activities": 8,
+  "units": 1,
+  "total": 3711527.0
+ },
+ {
+  "code": "004",
+  "name": "Presidência do Conselho de Ministros",
+  "abbr": "PCM",
+  "kind": "body",
+  "activities": 26,
+  "units": 11,
+  "total": 4982253.0
+ },
+ {
+  "code": "005",
+  "name": "Secretaria de Estado para a Igualdade e Inclusão",
+  "abbr": "SEII",
+  "kind": "secretariat",
+  "activities": 28,
+  "units": 10,
+  "total": 1691929.0
+ },
+ {
+  "code": "007",
+  "name": "Ministério Coordenador dos Assuntos Económicos",
+  "abbr": "MCAE",
+  "kind": "ministry",
+  "activities": 10,
+  "units": 1,
+  "total": 9442870.0
+ },
+ {
+  "code": "008",
+  "name": "Secretaria de Estado da Formação Profissional e Emprego",
+  "abbr": "SEFPE",
+  "kind": "secretariat",
+  "activities": 50,
+  "units": 34,
+  "total": 11204377.0
+ },
+ {
+  "code": "009",
+  "name": "Secretaria de Estado de Cooperativas",
+  "abbr": "SEC",
+  "kind": "secretariat",
+  "activities": 13,
+  "units": 13,
+  "total": 3000097.0
+ },
+ {
+  "code": "012",
+  "name": "Ministério das Finanças",
+  "abbr": "MF",
+  "kind": "ministry",
+  "activities": 83,
+  "units": 69,
+  "total": 19756108.0
+ },
+ {
+  "code": "013",
+  "name": "Dotação Geral do Estado",
+  "abbr": "DGE",
+  "kind": "fund",
+  "activities": 54,
+  "units": 24,
+  "total": 438110576.0
+ },
+ {
+  "code": "014",
+  "name": "Ministério dos Negocios Estrangeiros e Cooperação",
+  "abbr": "MNEC",
+  "kind": "ministry",
+  "activities": 16,
+  "units": 47,
+  "total": 34093776.0
+ },
+ {
+  "code": "015",
+  "name": "Ministério da Justiça",
+  "abbr": "MJ",
+  "kind": "ministry",
+  "activities": 67,
+  "units": 24,
+  "total": 19235351.0
+ },
+ {
+  "code": "016",
+  "name": "Ministério da Administraçao Estatal",
+  "abbr": "MAE",
+  "kind": "ministry",
+  "activities": 37,
+  "units": 33,
+  "total": 22745648.0
+ },
+ {
+  "code": "017",
+  "name": "Ministério da Saúde",
+  "abbr": "MS",
+  "kind": "ministry",
+  "activities": 85,
+  "units": 27,
+  "total": 81063097.0
+ },
+ {
+  "code": "020",
+  "name": "Ministério do Ensino Superior, Ciência e Cultura",
+  "abbr": "MESCC",
+  "kind": "ministry",
+  "activities": 23,
+  "units": 15,
+  "total": 5713653.0
+ },
+ {
+  "code": "021",
+  "name": "Ministério da Solidariedade Social e da Inclusão",
+  "abbr": "MSSI",
+  "kind": "ministry",
+  "activities": 79,
+  "units": 13,
+  "total": 24845325.0
+ },
+ {
+  "code": "022",
+  "name": "Ministério para os Assuntos dos Combatentes da Libertação Nacional",
+  "abbr": "MACLN",
+  "kind": "ministry",
+  "activities": 11,
+  "units": 10,
+  "total": 172411950.0
+ },
+ {
+  "code": "024",
+  "name": "Ministério das Obras Públicas",
+  "abbr": "MOP",
+  "kind": "ministry",
+  "activities": 737,
+  "units": 26,
+  "total": 251129968.0
+ },
+ {
+  "code": "025",
+  "name": "Ministério dos Transportes e Comunicações",
+  "abbr": "MTC",
+  "kind": "ministry",
+  "activities": 57,
+  "units": 33,
+  "total": 14620942.0
+ },
+ {
+  "code": "028",
+  "name": "Ministério da Defesa",
+  "abbr": "MD",
+  "kind": "ministry",
+  "activities": 24,
+  "units": 19,
+  "total": 11994499.0
+ },
+ {
+  "code": "029",
+  "name": "FALINTIL - Forças de Defesa de Timor-Leste (F-FDTL)",
+  "abbr": "F-FDTL",
+  "kind": "body",
+  "activities": 8,
+  "units": 2,
+  "total": 36259390.0
+ },
+ {
+  "code": "030",
+  "name": "Ministério do Interior",
+  "abbr": "MI",
+  "kind": "ministry",
+  "activities": 30,
+  "units": 17,
+  "total": 14735461.0
+ },
+ {
+  "code": "031",
+  "name": "Policia Nacional Timor-Leste",
+  "abbr": "PNTL",
+  "kind": "body",
+  "activities": 21,
+  "units": 11,
+  "total": 52227296.0
+ },
+ {
+  "code": "032",
+  "name": "Ministério do Petróleo e Recursos Minerais",
+  "abbr": "MPRM",
+  "kind": "ministry",
+  "activities": 42,
+  "units": 12,
+  "total": 291753826.0
+ },
+ {
+  "code": "033",
+  "name": "Tribunais",
+  "abbr": "T",
+  "kind": "body",
+  "activities": 11,
+  "units": 4,
+  "total": 9054015.0
+ },
+ {
+  "code": "034",
+  "name": "Procuradoria Geral da República",
+  "abbr": "PGR",
+  "kind": "body",
+  "activities": 6,
+  "units": 5,
+  "total": 6940055.0
+ },
+ {
+  "code": "035",
+  "name": "Provedoria dos Direitos Humanos e Justiça",
+  "abbr": "PDHJ",
+  "kind": "body",
+  "activities": 21,
+  "units": 8,
+  "total": 2177717.0
+ },
+ {
+  "code": "036",
+  "name": "Inspeção-Geral do Estado",
+  "abbr": "IGE",
+  "kind": "body",
+  "activities": 6,
+  "units": 1,
+  "total": 862047.0
+ },
+ {
+  "code": "037",
+  "name": "Polícia Científica de Investigação Criminal",
+  "abbr": "PCIC",
+  "kind": "body",
+  "activities": 5,
+  "units": 1,
+  "total": 2183200.0
+ },
+ {
+  "code": "038",
+  "name": "Autoridade de Proteção Civil",
+  "abbr": "APC",
+  "kind": "body",
+  "activities": 21,
+  "units": 14,
+  "total": 8464074.0
+ },
+ {
+  "code": "039",
+  "name": "Inspeção-Geral do Trabalho",
+  "abbr": "IGT",
+  "kind": "body",
+  "activities": 16,
+  "units": 1,
+  "total": 687050.0
+ },
+ {
+  "code": "040",
+  "name": "Serviço Nacional de Inteligência",
+  "abbr": "SNI",
+  "kind": "body",
+  "activities": 6,
+  "units": 1,
+  "total": 3264240.0
+ },
+ {
+  "code": "043",
+  "name": "Autoridade Municipal de Baucau",
+  "abbr": "AM Baucau",
+  "kind": "municipal",
+  "activities": 113,
+  "units": 28,
+  "total": 15439669.0
+ },
+ {
+  "code": "044",
+  "name": "Autoridade Municipal de Bobonaro",
+  "abbr": "AM Bobonaro",
+  "kind": "municipal",
+  "activities": 102,
+  "units": 26,
+  "total": 13497864.0
+ },
+ {
+  "code": "045",
+  "name": "Autoridade Municipal de Dili",
+  "abbr": "AM Dili",
+  "kind": "municipal",
+  "activities": 77,
+  "units": 25,
+  "total": 21176292.0
+ },
+ {
+  "code": "046",
+  "name": "Autoridade Municipal de Ermera",
+  "abbr": "AM Ermera",
+  "kind": "municipal",
+  "activities": 96,
+  "units": 26,
+  "total": 15317709.0
+ },
+ {
+  "code": "047",
+  "name": "Autoridade Municipal de Aileu",
+  "abbr": "AM Aileu",
+  "kind": "municipal",
+  "activities": 96,
+  "units": 24,
+  "total": 9285266.0
+ },
+ {
+  "code": "048",
+  "name": "Autoridade Municipal de Ainaro",
+  "abbr": "AM Ainaro",
+  "kind": "municipal",
+  "activities": 113,
+  "units": 24,
+  "total": 10185455.0
+ },
+ {
+  "code": "050",
+  "name": "Autoridade Municipal de Covalima",
+  "abbr": "AM Covalima",
+  "kind": "municipal",
+  "activities": 104,
+  "units": 27,
+  "total": 9756737.0
+ },
+ {
+  "code": "051",
+  "name": "Autoridade Municipal de Lautém",
+  "abbr": "AM Lautém",
+  "kind": "municipal",
+  "activities": 72,
+  "units": 26,
+  "total": 10326423.0
+ },
+ {
+  "code": "052",
+  "name": "Autoridade Municipal de Liquiçá",
+  "abbr": "AM Liquiçá",
+  "kind": "municipal",
+  "activities": 91,
+  "units": 24,
+  "total": 9030420.0
+ },
+ {
+  "code": "053",
+  "name": "Autoridade Municipal de Manatuto",
+  "abbr": "AM Manatuto",
+  "kind": "municipal",
+  "activities": 96,
+  "units": 26,
+  "total": 10076259.0
+ },
+ {
+  "code": "055",
+  "name": "Autoridade Municipal de Viqueque",
+  "abbr": "AM Viqueque",
+  "kind": "municipal",
+  "activities": 98,
+  "units": 25,
+  "total": 11227095.0
+ },
+ {
+  "code": "056",
+  "name": "Administração dos Portos de Timor-Leste",
+  "abbr": "APTL",
+  "kind": "body",
+  "activities": 8,
+  "units": 2,
+  "total": 5654460.0
+ },
+ {
+  "code": "057",
+  "name": "Agência de Desenvolvimento Nacional",
+  "abbr": "ADN",
+  "kind": "body",
+  "activities": 11,
+  "units": 4,
+  "total": 3688944.0
+ },
+ {
+  "code": "058",
+  "name": "Agência de Promoção de Investimento e Exportação de Timor-Leste, I.P.",
+  "abbr": "APIETL",
+  "kind": "body",
+  "activities": 15,
+  "units": 1,
+  "total": 1239096.0
+ },
+ {
+  "code": "059",
+  "name": "Tecnologias de Informação e Comunicação I.P.",
+  "abbr": "TIC",
+  "kind": "body",
+  "activities": 12,
+  "units": 1,
+  "total": 2167360.0
+ },
+ {
+  "code": "060",
+  "name": "Agência Nacional para Avaliação e Acreditação Académica",
+  "abbr": "ANAAA",
+  "kind": "body",
+  "activities": 11,
+  "units": 1,
+  "total": 555830.0
+ },
+ {
+  "code": "061",
+  "name": "Arquivo e Museu da Resistência Timorense",
+  "abbr": "AMRT",
+  "kind": "body",
+  "activities": 6,
+  "units": 1,
+  "total": 3153922.0
+ },
+ {
+  "code": "062",
+  "name": "Arquivo Nacional de Timor-Leste",
+  "abbr": "ANTL",
+  "kind": "body",
+  "activities": 9,
+  "units": 1,
+  "total": 577929.0
+ },
+ {
+  "code": "063",
+  "name": "Autoridade Aviação Civil de Timor-Leste",
+  "abbr": "AACTL",
+  "kind": "body",
+  "activities": 8,
+  "units": 8,
+  "total": 897053.0
+ },
+ {
+  "code": "064",
+  "name": "Autoridade de Inspeção Alimentar e Fiscalização da Atividade Económica, Sanitária e Alimentar",
+  "abbr": "AIAFAESA",
+  "kind": "body",
+  "activities": 25,
+  "units": 1,
+  "total": 2002183.0
+ },
+ {
+  "code": "066",
+  "name": "Autoridade Nacional de Comunicações",
+  "abbr": "ANC",
+  "kind": "body",
+  "activities": 14,
+  "units": 1,
+  "total": 1088069.0
+ },
+ {
+  "code": "069",
+  "name": "Centro Logístico Nacional",
+  "abbr": "CLN",
+  "kind": "body",
+  "activities": 22,
+  "units": 10,
+  "total": 3976627.0
+ },
+ {
+  "code": "070",
+  "name": "Centro Nacional Chega! I.P.",
+  "abbr": "CNC",
+  "kind": "body",
+  "activities": 47,
+  "units": 7,
+  "total": 1666473.0
+ },
+ {
+  "code": "071",
+  "name": "Centro Nacional de Emprego e Formação Profissional - Tibar, I.P.",
+  "abbr": "CNEFPT",
+  "kind": "body",
+  "activities": 7,
+  "units": 1,
+  "total": 1753060.0
+ },
+ {
+  "code": "072",
+  "name": "Centro Nacional de Formação Profissional - Becora, I.P.",
+  "abbr": "CNFPB",
+  "kind": "body",
+  "activities": 8,
+  "units": 1,
+  "total": 994313.0
+ },
+ {
+  "code": "073",
+  "name": "Centro Nacional de Reabilitação",
+  "abbr": "CNR",
+  "kind": "body",
+  "activities": 10,
+  "units": 1,
+  "total": 1019645.0
+ },
+ {
+  "code": "074",
+  "name": "Comissão Anti Corrupção",
+  "abbr": "CAC",
+  "kind": "body",
+  "activities": 21,
+  "units": 1,
+  "total": 1989764.0
+ },
+ {
+  "code": "075",
+  "name": "Comissão da Função Pública",
+  "abbr": "CFP",
+  "kind": "body",
+  "activities": 35,
+  "units": 1,
+  "total": 2761102.0
+ },
+ {
+  "code": "076",
+  "name": "Comissão Nacional de Eleições",
+  "abbr": "CNE",
+  "kind": "body",
+  "activities": 11,
+  "units": 1,
+  "total": 8489387.0
+ },
+ {
+  "code": "077",
+  "name": "Conselho de Imprensa",
+  "abbr": "CI",
+  "kind": "body",
+  "activities": 23,
+  "units": 1,
+  "total": 853262.0
+ },
+ {
+  "code": "080",
+  "name": "Fundo Infraestrutura",
+  "abbr": "FI",
+  "kind": "fund",
+  "activities": 1222,
+  "units": 2,
+  "total": 326501569.0
+ },
+ {
+  "code": "081",
+  "name": "Fundo de Desenvolvimento do Capital Humano",
+  "abbr": "FDCH",
+  "kind": "fund",
+  "activities": 7,
+  "units": 2,
+  "total": 26428857.0
+ },
+ {
+  "code": "083",
+  "name": "Fundo Especial de Desenvolvimento Atauro",
+  "abbr": "FEDA",
+  "kind": "fund",
+  "activities": 11,
+  "units": 1,
+  "total": 2296243.0
+ },
+ {
+  "code": "084",
+  "name": "Hospital Nacional Guido Valadares",
+  "abbr": "HNGV",
+  "kind": "body",
+  "activities": 25,
+  "units": 1,
+  "total": 22990045.0
+ },
+ {
+  "code": "085",
+  "name": "Imprensa Nacional de Timor Leste, I.P.",
+  "abbr": "INTL",
+  "kind": "body",
+  "activities": 5,
+  "units": 1,
+  "total": 814009.0
+ },
+ {
+  "code": "086",
+  "name": "Instituto de Apoio ao Desenvolvimento Empresarial",
+  "abbr": "IADE",
+  "kind": "body",
+  "activities": 9,
+  "units": 1,
+  "total": 1186724.0
+ },
+ {
+  "code": "087",
+  "name": "Instituto de Defesa Nacional",
+  "abbr": "IDN",
+  "kind": "body",
+  "activities": 8,
+  "units": 1,
+  "total": 1535123.0
+ },
+ {
+  "code": "089",
+  "name": "Instituto de Pesquisa, Desenvolvimento, Formação do Bambu",
+  "abbr": "IPDFB",
+  "kind": "body",
+  "activities": 15,
+  "units": 1,
+  "total": 889580.0
+ },
+ {
+  "code": "091",
+  "name": "Instituto Nacional da Administração Pública",
+  "abbr": "INAP",
+  "kind": "body",
+  "activities": 3,
+  "units": 1,
+  "total": 1599777.0
+ },
+ {
+  "code": "092",
+  "name": "Instituto Nacional de Ciências e Tecnologia",
+  "abbr": "INCT",
+  "kind": "body",
+  "activities": 9,
+  "units": 1,
+  "total": 719975.0
+ },
+ {
+  "code": "093",
+  "name": "Instituto Nacional de Combate ao HIV-SIDA, I.P.",
+  "abbr": "INCHS",
+  "kind": "body",
+  "activities": 8,
+  "units": 3,
+  "total": 984709.0
+ },
+ {
+  "code": "094",
+  "name": "Instituto Nacional do Desenvolvimento de Mão-de-Obra",
+  "abbr": "INDMO",
+  "kind": "body",
+  "activities": 15,
+  "units": 1,
+  "total": 975531.0
+ },
+ {
+  "code": "096",
+  "name": "Instituto Para a Defesa dos Direitos da Criança, I.P.",
+  "abbr": "IDDC",
+  "kind": "body",
+  "activities": 13,
+  "units": 1,
+  "total": 658734.0
+ },
+ {
+  "code": "097",
+  "name": "Instituto Para a Qualidade de Timor-Leste, I.P.",
+  "abbr": "IQTL",
+  "kind": "body",
+  "activities": 12,
+  "units": 1,
+  "total": 930444.0
+ },
+ {
+  "code": "098",
+  "name": "Instituto Politécnico Betano",
+  "abbr": "IPB",
+  "kind": "body",
+  "activities": 13,
+  "units": 1,
+  "total": 1317070.0
+ },
+ {
+  "code": "100",
+  "name": "Secretariado Técnico da Administração Eleitoral",
+  "abbr": "STAE",
+  "kind": "body",
+  "activities": 4,
+  "units": 1,
+  "total": 2291158.0
+ },
+ {
+  "code": "102",
+  "name": "Serviço de Registo e Verificação Empresarial",
+  "abbr": "SRVE",
+  "kind": "body",
+  "activities": 2,
+  "units": 1,
+  "total": 1510164.0
+ },
+ {
+  "code": "103",
+  "name": "Serviço Nacional de Ambulâncias e Emergência Médica",
+  "abbr": "SNAEM",
+  "kind": "body",
+  "activities": 20,
+  "units": 1,
+  "total": 3968064.0
+ },
+ {
+  "code": "104",
+  "name": "TATOLI - Agência Noticiosa de Timor-Leste, I.P.",
+  "abbr": "TANTL",
+  "kind": "body",
+  "activities": 8,
+  "units": 1,
+  "total": 651608.0
+ },
+ {
+  "code": "105",
+  "name": "Universidade Nacional de Timor-Leste",
+  "abbr": "UNTL",
+  "kind": "body",
+  "activities": 48,
+  "units": 1,
+  "total": 14391374.0
+ },
+ {
+  "code": "106",
+  "name": "Instituto Nacional de Segurança Social",
+  "abbr": "INSS",
+  "kind": "body",
+  "activities": 9,
+  "units": 1,
+  "total": 186205423.0
+ },
+ {
+  "code": "108",
+  "name": "Autoridade RAEOA-ZEESM",
+  "abbr": "ARZ",
+  "kind": "municipal",
+  "activities": 148,
+  "units": 39,
+  "total": 23534854.0
+ },
+ {
+  "code": "109",
+  "name": "Fundo Especial de Desenvolvimento da Região Administrativa Especial de Oe-Cusse Ambeno",
+  "abbr": "FEDRAEOCA",
+  "kind": "fund",
+  "activities": 70,
+  "units": 1,
+  "total": 32571964.0
+ },
+ {
+  "code": "110",
+  "name": "Ministério do Turismo e Ambiente",
+  "abbr": "MTA",
+  "kind": "ministry",
+  "activities": 71,
+  "units": 23,
+  "total": 13390836.0
+ },
+ {
+  "code": "111",
+  "name": "Ministério Coordenador dos Assuntos Sociais",
+  "abbr": "MCAS",
+  "kind": "ministry",
+  "activities": 2,
+  "units": 1,
+  "total": 867154.0
+ },
+ {
+  "code": "112",
+  "name": "Ministério da Educação",
+  "abbr": "ME",
+  "kind": "ministry",
+  "activities": 88,
+  "units": 28,
+  "total": 117835122.0
+ },
+ {
+  "code": "113",
+  "name": "Ministério do Comércio e Indústria",
+  "abbr": "MCI",
+  "kind": "ministry",
+  "activities": 38,
+  "units": 21,
+  "total": 7578816.0
+ },
+ {
+  "code": "114",
+  "name": "Ministério da Agricultura, Pecuária, Pesca e Florestas",
+  "abbr": "MAPPF",
+  "kind": "ministry",
+  "activities": 114,
+  "units": 34,
+  "total": 25197101.0
+ },
+ {
+  "code": "115",
+  "name": "Ministério da Juventude, Desporto, Arte e Cultura",
+  "abbr": "MJDAC",
+  "kind": "ministry",
+  "activities": 59,
+  "units": 20,
+  "total": 10160128.0
+ },
+ {
+  "code": "116",
+  "name": "Ministério do Planeamento e Investimento Estratégico",
+  "abbr": "MPIE",
+  "kind": "ministry",
+  "activities": 21,
+  "units": 14,
+  "total": 3685952.0
+ },
+ {
+  "code": "117",
+  "name": "Ministério do Desenvolvimento Rural e Habitação Comunitária",
+  "abbr": "MDRHC",
+  "kind": "ministry",
+  "activities": 27,
+  "units": 17,
+  "total": 17983860.0
+ },
+ {
+  "code": "118",
+  "name": "Gabinete das Fronteiras Terrestres e Marítimas",
+  "abbr": "GFTM",
+  "kind": "body",
+  "activities": 22,
+  "units": 1,
+  "total": 1672147.0
+ },
+ {
+  "code": "119",
+  "name": "Autoridade Nacional do Petróleo",
+  "abbr": "ANP",
+  "kind": "body",
+  "activities": 50,
+  "units": 1,
+  "total": 11220102.0
+ },
+ {
+  "code": "120",
+  "name": "Unidade de Missão para o Combate ao Stunting",
+  "abbr": "UMCS",
+  "kind": "body",
+  "activities": 7,
+  "units": 1,
+  "total": 298495.0
+ },
+ {
+  "code": "121",
+  "name": "Secretaria de Estado da Comunicação Social",
+  "abbr": "SECS",
+  "kind": "secretariat",
+  "activities": 25,
+  "units": 7,
+  "total": 5627784.0
+ },
+ {
+  "code": "122",
+  "name": "Comissão Nacional de Aprovisionamento",
+  "abbr": "CNA",
+  "kind": "body",
+  "activities": 7,
+  "units": 1,
+  "total": 1786980.0
+ },
+ {
+  "code": "123",
+  "name": "Instituto de Geociências de Timor-Leste",
+  "abbr": "IGTL",
+  "kind": "body",
+  "activities": 17,
+  "units": 5,
+  "total": 4431890.0
+ },
+ {
+  "code": "124",
+  "name": "Vice-Primeiro Ministro para a Área Económica",
+  "abbr": "VPMAE",
+  "kind": "body",
+  "activities": 4,
+  "units": 1,
+  "total": 506320.0
+ },
+ {
+  "code": "125",
+  "name": "Vice-Primeiro Ministro para a Área Social",
+  "abbr": "VPMAS",
+  "kind": "body",
+  "activities": 4,
+  "units": 2,
+  "total": 784732.0
+ },
+ {
+  "code": "126",
+  "name": "Instituto Nacional de Farmácia e Produtos Médicos",
+  "abbr": "INFPM",
+  "kind": "body",
+  "activities": 19,
+  "units": 6,
+  "total": 23226597.0
+ },
+ {
+  "code": "127",
+  "name": "Instituto de Gestão de Equipamento e Apoio ao Desenvolvimento de Infraestrutura",
+  "abbr": "IGEADI",
+  "kind": "body",
+  "activities": 6,
+  "units": 1,
+  "total": 5373498.0
+ },
+ {
+  "code": "129",
+  "name": "Instituto Nacional da Saúde Pública de Timor-Leste",
+  "abbr": "INSPTL",
+  "kind": "body",
+  "activities": 25,
+  "units": 1,
+  "total": 2713149.0
+ },
+ {
+  "code": "130",
+  "name": "Autoridade Administrativa de Ataúro",
+  "abbr": "AAA",
+  "kind": "municipal",
+  "activities": 51,
+  "units": 8,
+  "total": 3370218.0
+ },
+ {
+  "code": "131",
+  "name": "Defensoria Pública",
+  "abbr": "DP",
+  "kind": "body",
+  "activities": 7,
+  "units": 1,
+  "total": 3431074.0
+ },
+ {
+  "code": "132",
+  "name": "Gabinete de Apoio á Sociedade Civil (GASC)",
+  "abbr": "GASC",
+  "kind": "body",
+  "activities": 10,
+  "units": 2,
+  "total": 25130335.0
+ },
+ {
+  "code": "133",
+  "name": "Autoridade Nacional dos Minerais, I.P.",
+  "abbr": "ANM",
+  "kind": "body",
+  "activities": 19,
+  "units": 7,
+  "total": 4900000.0
+ },
+ {
+  "code": "134",
+  "name": "Serviço de Migração (SM)",
+  "abbr": "SM",
+  "kind": "body",
+  "activities": 3,
+  "units": 2,
+  "total": 4417112.0
+ }
+]

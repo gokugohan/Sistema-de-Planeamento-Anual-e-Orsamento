@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PlanBreakdown;
+use App\Support\ReportScope;
 use Illuminate\Http\Request;
 
 class PlanBreakdownController extends Controller
@@ -17,8 +18,11 @@ class PlanBreakdownController extends Controller
             'parent' => ['required', 'string', 'regex:/^[A-Za-z0-9_-]+$/', 'max:80'],
         ]);
 
+        // the same part of the plan as the page: one unit for whoever cannot see the whole institution
+        $scope = ReportScope::for($request->user(), $request->query('unit'));
+
         return view('reports.partials.paa-activity-rows', [
-            'rows' => $breakdown->activities((int) $data['year'], (int) $data['program'], (int) $data['class']),
+            'rows' => $breakdown->forUnits($scope->ids)->activities((int) $data['year'], (int) $data['program'], (int) $data['class']),
             'classRowId' => $data['parent'],
         ]);
     }

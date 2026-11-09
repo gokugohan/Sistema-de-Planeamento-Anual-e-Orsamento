@@ -1,0 +1,302 @@
+{
+ "year": 2027,
+ "code": "083",
+ "name": "Fundo Especial de Desenvolvimento Atauro",
+ "abbr": "FEDA",
+ "kind": "fund",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   914,
+   916
+  ]
+ },
+ "units": [
+  {
+   "code": "FEDA",
+   "div": "0830101",
+   "name": "Fundo Especial de Desenvolvimento Atauro(FEDA)",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "798": "Água e saneamento",
+  "A10": "Infraestrutura conectividade"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "% do orçamento executado sob os princípios legais da administração pública",
+   "baseline": "…%",
+   "target": "80% do OGE executado",
+   "amounts": {
+    "20": 967128.0
+   },
+   "page": 914
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "1) # de funcionario recrutado incluindo termo certo e casual. 2) # de funcionario destacado. 3) Taxa de absentismo dos funcionários;",
+   "baseline": "1) De julho de 2023 a julho de 2024, recrutámos 37 incluindo cargos xefia, asesor nasionais e casual. 2) 1 dirigente destacado. 3) N/A",
+   "target": "1) 4 funcionario recrutado 2) 7 de funcionario destacado. 3) 0%- 0,3%;",
+   "amounts": {
+    "10": 216844.0
+   },
+   "page": 914
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "1) # de funcionários que participaram na ação de formação 2) # de funcionários que obtêm certificações após a conclusão de programas de formação",
+   "baseline": "N/A",
+   "target": "1) 30 formandos incluindo funsionarios Autoridade Atauro 2) 30 funcionários que obtêm certificações após a conclusão de programas de formação",
+   "amounts": {
+    "20": 70000.0
+   },
+   "page": 914
+  },
+  {
+   "code": "510051U",
+   "programme": "510",
+   "subprogramme": "51005",
+   "subprogramme_name": "Edifícios públicos",
+   "name": "Construção de um edifício e fornecimento de equipamentos escolares, laboratório, mobiliário e infraestruturas desportivas para o Ensino Técnico-Vocacional de Ataúro",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 170000.0
+   },
+   "page": 914
+  },
+  {
+   "code": "510051V",
+   "programme": "510",
+   "subprogramme": "51005",
+   "subprogramme_name": "Edifícios públicos",
+   "name": "Construção Edificio FEDA",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 60000.0
+   },
+   "page": 914
+  },
+  {
+   "code": "5106004",
+   "programme": "510",
+   "subprogramme": "51060",
+   "subprogramme_name": "Desenvolvimento capacidade de recurso humanos",
+   "name": "Formação e desenvolvimento de capacidades numa área de especialização",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "1) # de pessoas (formandos) que participaram na ação de formação especializada 2) # de funcionários que obtêm certificações após a conclusão de programas de formação",
+   "baseline": "N/A",
+   "target": "1) 20 formandos incluindo funsionarios Autoridade Atauro 2) 20 funcionários que obtêm certificações após a conclusão de programas de formação",
+   "amounts": {
+    "20": 60022.0
+   },
+   "page": 915
+  },
+  {
+   "code": "7980900",
+   "programme": "798",
+   "subprogramme": "79809",
+   "subprogramme_name": "Gestão das Infraestruturas, Instalações e Serviços de Saneamento",
+   "name": "Instalação de uma canalização de água potável e de um sistema de bombagem solar, a partir da fonte de água de Maquer, para as comunidades de Arlo, Adara, Iliana e Fatu&amp;#39;u",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 172249.0
+   },
+   "page": 915
+  },
+  {
+   "code": "A100100",
+   "programme": "A10",
+   "subprogramme": "A1001",
+   "subprogramme_name": "Estrada e Pontes de Atauro",
+   "name": "Construção de uma nova estrada rural entre Vila Maumeta - Oenan Suco Maquili, Parte Tasi , Ataúro (Continuacao) - Distancia 4 km",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 173333.0
+   },
+   "page": 915
+  },
+  {
+   "code": "A100104",
+   "programme": "A10",
+   "subprogramme": "A1001",
+   "subprogramme_name": "Estrada e Pontes de Atauro",
+   "name": "Construção de uma nova estrada de aldeia Bite a aldeia Berau suco Makadade",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "Quilómetros (km) de estradas rurais construídas",
+   "baseline": "N/A",
+   "target": "7 Quilómetros",
+   "amounts": {
+    "50": 200000.0
+   },
+   "page": 916
+  },
+  {
+   "code": "A100105",
+   "programme": "A10",
+   "subprogramme": "A1001",
+   "subprogramme_name": "Estrada e Pontes de Atauro",
+   "name": "Construção de uma nova estrada da Aldeia Arlo à Aldeia Adara do Suco Beloi",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "Quilómetros (km) de estradas rurais construídas",
+   "baseline": "N/A",
+   "target": "7,5 Quilómetros",
+   "amounts": {
+    "50": 200000.0
+   },
+   "page": 916
+  },
+  {
+   "code": "A100701",
+   "programme": "A10",
+   "subprogramme": "A1007",
+   "subprogramme_name": "Educação em Ataúro",
+   "name": "Construção de uma nova escola ESG em Vila Maumeta",
+   "div": [
+    "0830101"
+   ],
+   "indicator": "% de construção da escola concluída",
+   "baseline": "N/A",
+   "target": "100% de construção da escola concluída",
+   "amounts": {
+    "50": 6667.0
+   },
+   "page": 916
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) # de plano estratégico aprovado. 2) # de plano anual aprovado",
+   "baseline": "N/A",
+   "target": "1) 1. 2) 5",
+   "page": 914
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% ou objetivos do Plano Anual Alcançados",
+   "baseline": "65%",
+   "target": "80%",
+   "page": 914
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21189: A ser _ completado pela FEDA",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 914
+  },
+  {
+   "kind": "output",
+   "code": "51060.0.0",
+   "statement": "Aumentar os conhecimentos e as competências do pessoal para assegurar o crescimento e o desempenho profissionais",
+   "indicator": "A percentagem (%) de funcionários que concluem cursos de desenvolvimento profissional ou programas de formação.",
+   "baseline": "N/A",
+   "target": "",
+   "page": 914
+  },
+  {
+   "kind": "outcome",
+   "code": "798.0.0",
+   "statement": "Os cidadãos de Timor-Leste têm acesso a instalações de saneamento e sistemas que promovem estilos de vida saudáveis",
+   "indicator": "% de agregados familiares com acesso a àgua potável",
+   "baseline": "Nova",
+   "target": "100%",
+   "page": 915
+  },
+  {
+   "kind": "output",
+   "code": "79809.0.0",
+   "statement": "Fornecer aos cidadãos as melhores instalações públicas para saneamento, coleta de águas residuais, reciclagem, tratamento e gerenciamento dos resíduos sólidos",
+   "indicator": "# de estudo de viabilidade realizados",
+   "baseline": "Nova",
+   "target": "1",
+   "page": 915
+  },
+  {
+   "kind": "outcome",
+   "code": "A10.0.0",
+   "statement": "Construção, reabilitação e manutenção de estradas urbanas e rurais de alta qualidade (ou de acordo com critérios internacionais de qualidade)",
+   "indicator": "Quilómetros (km) de estradas e pontes em bom ou bom estado (em 2028): a. # km de estradas e pontes urbanas; b. # km de estradas e pontes rurais",
+   "baseline": "",
+   "target": "",
+   "page": 915
+  },
+  {
+   "kind": "output",
+   "code": "A1001.0.0",
+   "statement": "Assegurar a construção, reabilitação e manutenção de todas as estradas e pontes urbanas e rurais em Ataúro",
+   "indicator": "1) Quilómetros (km) de estradas e pontes urbanas construídas 2) Quilómetros (km) de estradas e pontes rurais construídas",
+   "baseline": "",
+   "target": "",
+   "page": 915
+  },
+  {
+   "kind": "output",
+   "code": "A1007.0.0",
+   "statement": "Assegurar a construção de novas escolas e a renovação das escolas existentes num prazo determinado",
+   "indicator": "Número de novas escolas construídas",
+   "baseline": "",
+   "target": "1 novas escolas construídas",
+   "page": 916
+  }
+ ]
+}

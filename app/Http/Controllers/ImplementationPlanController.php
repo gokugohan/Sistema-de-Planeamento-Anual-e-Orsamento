@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\AuditLog;
 use App\Services\ImplementationPlanReport;
+use App\Services\ImplementationPlanWorkbook;
 use App\Support\FiscalYear;
+use App\Support\SpreadsheetKit;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -41,6 +43,23 @@ class ImplementationPlanController extends Controller
         $canvas->page_text($canvas->get_width() - 90, $canvas->get_height() - 26, __('Page').' {PAGE_NUM} / {PAGE_COUNT}', $dompdf->getFontMetrics()->getFont('DejaVu Sans'), 7, [0.39, 0.45, 0.55]);
 
         return $pdf->download("{$report['reference']}.pdf");
+    }
+
+    /** The same plan as an Excel workbook, in the ministry's form. */
+    public function excel(Request $request, ImplementationPlanWorkbook $workbook)
+    {
+        [$report] = $this->build($request);
+
+        AuditLog::create([
+            'action' => 'report.implementation_plan_xlsx',
+            'user_id' => auth()->id(),
+            'description' => "Implementation plan {$report['reference']} exported as Excel",
+            'metadata' => ['fiscal_year' => $report['year'], 'unit' => $report['unit']?->code, 'reference' => $report['reference'], 'activities' => $report['activities']],
+            'ip_address' => $request->ip(),
+            'user_agent' => mb_substr((string) $request->userAgent(), 0, 255),
+        ]);
+
+        return SpreadsheetKit::download($workbook->build($report), "{$report['reference']}.xlsx");
     }
 
     /** @return array{0: array<string, mixed>, 1: Collection} */

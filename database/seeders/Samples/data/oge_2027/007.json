@@ -1,0 +1,250 @@
+{
+ "year": 2027,
+ "code": "007",
+ "name": "Ministério Coordenador dos Assuntos Económicos",
+ "abbr": "MCAE",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   44,
+   49
+  ]
+ },
+ "units": [
+  {
+   "code": "GMCAE",
+   "div": "0070101",
+   "name": "Gabinete do Ministro Coordenador dos Assuntos Económicos",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Taxa de Execução Orçamental Annual; 2. Grau de Conformidade dos Relatórios Financeiros; 3. Nível de Eficiência Logística.",
+   "baseline": "Gestão administrativa e financeira do Gabinete do MCAE assegurada conforme as normas do regime financeiro público de Timor- Leste e sistemas GRP/FreeBalance.",
+   "target": "Alcançar 100% de execução orçamental e assegurar o suporte logístico pleno a todas as unidades do MCAE.",
+   "amounts": {
+    "20": 212750.0
+   },
+   "page": 44
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Taxa de Regularização Contratual e Administrativa; 2. Nível de Processamento de Salários e Benefícios; 3. Grau de Cumprimento do Plano de Gestão de RH (ou Recursos Humanos).",
+   "baseline": "Total de 236 pessoas (11 Permanentes, 4 Destacados, 24 AAP, 152 Casuais, 31 TA Nacionais, 3 Assessores Internacionais).",
+   "target": "1. 100% dos contratos e estatutos administrativos renovados e regularizados atempadamente. 2. 100% dos salários e benefícios para os 236 funcionários processados e pagos mensalmente sem atrasos. 3. Pelo menos 90% das ações do Plano de Gestão de RH totalmente executadas.",
+   "amounts": {
+    "10": 1724311.0
+   },
+   "page": 44
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "Taxa de capacitação em Línguas Oficiais e de Trabalho; Número de formações específicas e avançadas; Taxa de execução do Plano de Capacitação de RH.",
+   "baseline": "9 funcionários capacitados em língua inglesa; 4 funcionários frequentaram formação na China sobre Gestão e Planeamento; 11 funcionários capacitados em Liderança e Tomada de Decisão.",
+   "target": "10 pessoas capacitadas em inglês e 10 pessoas capacitadas em área específica.",
+   "amounts": {
+    "20": 49837.0
+   },
+   "page": 45
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Taxa de Execução do Plano Anual de Aprovisionamento; 2. Grau de Eficácia na Gestão de Contratos; 3. Tempo Médio de Ciclo de Aquisição.",
+   "baseline": "94% do plano de aquisições implementado",
+   "target": "100%",
+   "amounts": {
+    "20": 601485.0
+   },
+   "page": 45
+  },
+  {
+   "code": "9830102",
+   "programme": "983",
+   "subprogramme": "98301",
+   "subprogramme_name": "Política Económica",
+   "name": "Coordenação política de departamentos ministeriais e agêcias tuteladas",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Número de Reuniões de Coordenação Interministerial; 2. Percentagem de Resolução de Conflitos Regulamentares; 3. Número de Guias de Política Económica Integrada (ou \"Diretrizes de Política Económica Integrada\"); 4. Número de Relatórios de Avaliação do Desempenho da Tutela; 5. Número de Missões de Fiscalização Conjunta; 6. Atualização do Sistema Integrado de Dados; 7. Número de Políticas Públicas e Legislação Aprovadas; 8. Número de Reuniões Bilaterais Estratégicas; 9. Número de Eventos Nacionais e Internacionais, Disseminação e Consulta Pública.",
+   "baseline": "O Gabinete do MCAE realizou com sucesso 12 reuniões de coordenação principais (Q1 e Q2), mobilizou a totalidade dos 20 pontos focais nas plataformas ASEAN/OMC e acelerou quatro (4) reformas legislativas fundamentais: Lei da Concorrência, Lei de Insolvência, Lei de Promoção da Exportação e instrumentos legais do GPA/OMC.",
+   "target": "1. 12 Reuniões por mês (ou \"12 Reuniões mensais\") 2. 100% dos casos de sobreposição de funções ou burocracia institucional que ocorrem entre os ministérios 3. 2 Documentos semestrais 4. 4 Relatórios trimestrais (ou \"4 Relatórios a cada três meses\") 5. 6 Visitas a cada dois meses (ou \"6 Visitas bimestrais\") 6. 12 Atualizações mensais (ou \"12 Atualizações por mês\") 7. 4 Propostas aprovadas 8. 8 Encontros com doadores e parceiros internacionais 9. 6 Eventos (Conferências, seminários ou workshops)",
+   "amounts": {
+    "20": 334853.0,
+    "50": 1666667.0
+   },
+   "page": 46
+  },
+  {
+   "code": "9830110",
+   "programme": "983",
+   "subprogramme": "98301",
+   "subprogramme_name": "Política Económica",
+   "name": "Desenvolvimento, incentivos e capacitação do setor privado na área económica",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Número de Novas Empresas Registadas 2. Número de Novos Empregos Criados 3. Valor do Investimento Privado Atraído 4. Guias ou Regimes de Financiamento para a Economia Sustentável 5. Número de Capacitações e Incentivos",
+   "baseline": ": O MCAE capacitou 44 empresários (28 mulheres rurais), deu formação em QuickBooks à CCI- TL/MPME, reformou tarifas alfandegárias e apoiou 3 grupos locais. Auditou 7 organizações, verificou relatórios da AEMTL/Kafe Timor e monitorizou artesãs em 5 municípios. A execução",
+   "target": "1. 10.000 Novas empresas registadas oficialmente (com foco nas MPMEs). 2. 5.000 - 7.000 Novos empregos criados pelo investimento do setor privado. 3. 20 Milhões de USD de novo investimento nacional e internacional (IDE). 4. 1 Documento de base (Regime/Estratégia) sobre",
+   "amounts": {
+    "20": 28455.0,
+    "30": 150000.0
+   },
+   "page": 46
+  },
+  {
+   "code": "98301X1",
+   "programme": "983",
+   "subprogramme": "98301",
+   "subprogramme_name": "Política Económica",
+   "name": "Training for the management and operation of ICCTL",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Número de pessoal técnico do ICCTL que participa em formações e viagens de estudo no estrangeiro. 2. Número de atividades de formação e capacitação para a gestão e operação do ICCTL. 3. Número de países de destino para formação e estudos comparativos. 4. Percentagem de pessoal participante que concluiu a formação de acordo com o programa. 5. Número de áreas de competência cobertas no programa de formação.",
+   "baseline": "n/a",
+   "target": "1. 116 pessoal técnico do ICCTL que participa em formações e viagens de estudo no estrangeiro. 2. 4 atividades de formação e capacitação para a gestão e operação do ICCTL. 3. 4 países de destino para formação e estudos comparativos. 4. 100% do pessoal participante que concluiu a formação de acordo com o programa. 5. 10 áreas de competência cobertas no programa de formação.",
+   "amounts": {
+    "20": 987898.0
+   },
+   "page": 47
+  },
+  {
+   "code": "98301X2",
+   "programme": "983",
+   "subprogramme": "98301",
+   "subprogramme_name": "Política Económica",
+   "name": "International Convention Centre (ICCTL) - design, feasibility and procurement",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Percentagem dos documentos de BoQ e projeto técnico finalizados e validados 2. Percentagem dos documentos de contratação finalizados e prontos para apoiar o processo de concurso 3. Percentagem dos pagamentos remanescentes relativos aos serviços de BoQ e documentação de contratação efetuados de acordo com o",
+   "baseline": "Em andamento; documentos e serviços ainda não concluídos; existe pagamento remanescente.",
+   "target": "1. Finalizar e validar 100% dos documentos de BoQ e do projeto técnico. 2. Finalizar 100% dos documentos de contratação para apoiar o processo de concurso. 3. Efetuar 100% dos pagamentos remanescentes de acordo com o contrato. 4. Elaborar 1 relatório final abrangendo os",
+   "amounts": {
+    "50": 3344233.0
+   },
+   "page": 47
+  },
+  {
+   "code": "9834701",
+   "programme": "983",
+   "subprogramme": "98347",
+   "subprogramme_name": "Pos-adesão a OMC e Coordenação dos asuntos ASEAN e pilar económicos",
+   "name": "Disseminar e coordenar (Outreach program and activity) com as partes interessadas",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "Número de sessões de sensibilização realizadas, total de reuniões de coordenação organizadas e total de material de divulgação produzido sobre as regras e oportunidades da OMC.",
+   "baseline": "Divulgação Municipal Pós- Adesão à OMC: Realização de sessões de informação em Baucau, Manatuto, Díli e RAEOA (Oecusse), direcionadas a autoridades municipais, líderes comunitários, setor privado, sociedade civil e académicos. Divulgação Académica e Juvenil: Seminário interativo na Universidade da Paz (UNPAZ) com a participação de mais de 500 estudantes para debater os impactos económicos da adesão à OMC.",
+   "target": "4 Sessões de sensibilização, 6 reuniões de coordenação interministerial e 3 materiais de divulgação (brochuras/infográficos) produzidos e distribuídos.",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 48
+  },
+  {
+   "code": "9834704",
+   "programme": "983",
+   "subprogramme": "98347",
+   "subprogramme_name": "Pos-adesão a OMC e Coordenação dos asuntos ASEAN e pilar económicos",
+   "name": "Assegurar e Coordenar sinergias dos serviços para integração na ASEAN no setór da económia, pos adesão a OMC e Apoiar para facilitacão do comércio",
+   "div": [
+    "0070101"
+   ],
+   "indicator": "1. Número de propostas de revisão legislativa elaboradas para alinhar o comércio nacional com as normas internacionais da OMC. 2. Número de documentos técnicos de posição nacional produzidos para o Pilar Económico (AEC). 3. Criação de roteiros (roadmaps) detalhados para o cumprimento dos compromissos no período pós- adesão. 4. Desenvolvimento de guias práticos sobre facilitação do comércio e barreiras",
+   "baseline": "Notificações da OMC e Medidas SPS/TBT: Realização de um workshop nacional de 4 dias sobre Notificações da OMC com peritos de Genebra, além de um workshop temático sobre Medidas Sanitárias e Fitossanitárias (SPS) e Barreiras Técnicas ao Comércio (TBT). Roteiro e Negociações da Comunidade Económica da ASEAN (AEC): Documentos Estratégicos: Elaboração da Análise da Lei de Exportação, do Relatório de Monitorização do Roteiro Nacional ASEAN-AEC (até",
+   "target": "1. 6 Propostas de revisão legislativa. 2. 5 Documentos de posição técnica. 3. 4 Roteiros estratégicos nacionais. 4. 6 Manuais práticos. 5. 12 Reuniões de coordenação. 6. 8 Seminários regionais. 7. 6 Workshops de formação e 100% do pessoal-chave do novo balcão com capacitação específica em Direito da Concorrência e Gestão de Insolvência. 8. 4 Conferências/Fóruns.",
+   "amounts": {
+    "20": 327381.0
+   },
+   "page": 48
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Grau de eficácia e conformidade na gestão dos recursos financeiros, humanos e logísticos do Gabinete.",
+   "baseline": "1) 100% 2) 100% 3) 100%",
+   "target": "1)Presentagem 2) numeru de Atingimento",
+   "page": 44
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Alcançar 100% de execução orçamental e do plano de aprovisionamento, garantindo a gestão administrativa e financeira de 240 funcionários (permanentes e casuais) com total conformidade contratual, complementada pela realização de 6 ações de formação técnica especializada para o fortalecimento das competências internas do Gabineteodo o pessoal da administração",
+   "baseline": "1).100%. 2).100%.3).50%.",
+   "target": "1).100%. 2).100%.3).1 00%.",
+   "page": 44
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.e: As políticas económicas públicas contribuem para o crescimento e diversificação da economia de Timor-Leste",
+   "indicator": "Através de coordenação direta, o MCAE organizará 6 reuniões regulares com instituições-chave, como o SERVE e o TradeInvest, para além de elaborar 4 relatórios trimestrais para monitorizar os ministérios sob a sua tutela. Adicionalmente, serão criadas 2 propostas de diploma jurídico para incentivos económicos. Com estas ações, espera-se que o programa impulsione o crescimento do PIB não petrolífero, aumente o investimento e fortaleça o poder de compra nacional",
+   "baseline": "4.1%",
+   "target": "1. Crescimento do PIB para 5% até 2027. 2. Investimento de 20 milhões de dólares na indústria de transformação produtiva em 2027. 3. Redução do volume de vendas no retalho em 5% até 2027. 4. Reforço do contributo das micro, pequenas e médias empresas (MPME) e cooperativas para o PIB não petrolífero até 2027. 5. Melhoria do ambiente de investimento e da confiança privada em 2027.",
+   "page": 45
+  },
+  {
+   "kind": "output",
+   "code": "98301.0.0",
+   "statement": "As políticas econômicas do governo são consistentes e integradas, para garantir seu alinhamento com os objetivos do governo e seu impacto na economia.",
+   "indicator": "1. Proposta de Legislação sobre Investimento: Harmonizar a base legal para a diversificação económica, cooperativas e PMEs. 2. Monitorização de",
+   "baseline": "Retração da economia (-6.0%) devido a perda da confiança, a diminuição do consumo, dos investimentos privados e das exportações.",
+   "target": "1. Crescimento do PIB para 5% até 2027. (Meta) 2. Investimento de 20 milhões de dólares na indústria transformadora produtiva em 2027.",
+   "page": 45
+  },
+  {
+   "kind": "output",
+   "code": "98347.0.0",
+   "statement": "Apoio Pos Adesão do OMC e Timor-Leste fez progressos tangíveis na integração no sistema do comércio regional",
+   "indicator": "\"Nr. de politicas e inisiativas produzidas e aprovadas; Nr de Consultas, seminarios, conferências e eventos realizados. \"",
+   "baseline": "13a confêrencia Interministerial da OMC em Abu Dhabi e ao mesmo tempo admisão de Timor Leste como membro pleno da OMC",
+   "target": "51",
+   "page": 48
+  }
+ ]
+}

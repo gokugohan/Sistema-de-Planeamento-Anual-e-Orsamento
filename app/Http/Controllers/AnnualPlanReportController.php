@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AuditLog;
 use App\Services\AnnualPlanReport;
+use App\Services\AnnualPlanWorkbook;
 use App\Support\FiscalYear;
+use App\Support\ReportScope;
+use App\Support\SpreadsheetKit;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,7 @@ class AnnualPlanReportController extends Controller
     /** The annual report of the plan on screen, ready to print. */
     public function show(Request $request)
     {
-        return view('reports.annual-plan', ['report' => $this->build($request), 'pdf' => false]);
+        return view('reports.annual-plan', ['report' => $this->build($request), 'pdf' => false, 'unitChoices' => ReportScope::choices($request->user())]);
     }
 
     /** The same report as a PDF document (A4 landscape), with its reference on every page. */
@@ -27,7 +30,7 @@ class AnnualPlanReportController extends Controller
             'action' => 'report.annual_plan_pdf',
             'user_id' => auth()->id(),
             'description' => "Annual plan report {$report['year']} exported as PDF ({$report['reference']})",
-            'metadata' => ['fiscal_year' => $report['year'], 'reference' => $report['reference'], 'planned' => $report['totals']['planned'], 'approved' => $report['totals']['approved']],
+            'metadata' => ['fiscal_year' => $report['year'], 'reference' => $report['reference'], 'unit' => $report['unit']?->code, 'planned' => $report['totals']['planned'], 'approved' => $report['totals']['approved']],
             'ip_address' => $request->ip(),
             'user_agent' => mb_substr((string) $request->userAgent(), 0, 255),
         ]);
@@ -49,11 +52,28 @@ class AnnualPlanReportController extends Controller
         return $pdf->download("{$report['reference']}.pdf");
     }
 
+    /** The same report as an Excel workbook, with the institution's heading and logo. */
+    public function excel(Request $request, AnnualPlanWorkbook $workbook)
+    {
+        $report = $this->build($request);
+
+        AuditLog::create([
+            'action' => 'report.annual_plan_xlsx',
+            'user_id' => auth()->id(),
+            'description' => "Annual plan report {$report['year']} exported as Excel ({$report['reference']})",
+            'metadata' => ['fiscal_year' => $report['year'], 'reference' => $report['reference'], 'unit' => $report['unit']?->code, 'planned' => $report['totals']['planned'], 'approved' => $report['totals']['approved']],
+            'ip_address' => $request->ip(),
+            'user_agent' => mb_substr((string) $request->userAgent(), 0, 255),
+        ]);
+
+        return SpreadsheetKit::download($workbook->build($report), "{$report['reference']}-plan.xlsx");
+    }
+
     private function build(Request $request): array
     {
         $year = (int) $request->query('year', FiscalYear::current());
         abort_if($year < 2020 || $year > 2035, 404);
 
-        return $this->reports->build($year, $request->user());
+        return $this->reports->build($year, $request->user(), ReportScope::for($request->user(), $request->query('unit')));
     }
 }

@@ -1,0 +1,1597 @@
+{
+ "year": 2027,
+ "code": "110",
+ "name": "Ministério do Turismo e Ambiente",
+ "abbr": "MTA",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1054,
+   1074
+  ]
+ },
+ "units": [
+  {
+   "code": "GMTA",
+   "div": "1100101",
+   "name": "Gabinete do Ministro do Turismo e Ambiente",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIAI",
+   "div": "1100102",
+   "name": "Gabinete de Inspeção e Auditoria Interna",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIGJ",
+   "div": "1100103",
+   "name": "Gabinete de Inspeção Geral dos jogos",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DGT",
+   "div": "1100201",
+   "name": "Direção Geral do Turismo",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDT",
+   "div": "1100202",
+   "name": "Direção Nacional de Desenvolvimento Turístico",
+   "type": "National Directorate",
+   "parent": "DGT"
+  },
+  {
+   "code": "DNEAPT",
+   "div": "1100203",
+   "name": "Direção Nacional de Empreendimentos, Atividades e Produtos Turísticos",
+   "type": "National Directorate",
+   "parent": "DGT"
+  },
+  {
+   "code": "DNTCE",
+   "div": "1100206",
+   "name": "Direção Nasional do Turismu Cumunitário e Ecológico",
+   "type": "Unit",
+   "parent": "DGT"
+  },
+  {
+   "code": "DNMTRI",
+   "div": "1100207",
+   "name": "Direção Nasional de Marketing do Turismu e Relações internasionais",
+   "type": "Unit",
+   "parent": "DGT"
+  },
+  {
+   "code": "DGA",
+   "div": "1100301",
+   "name": "Direção-Geral do Ambiente",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNB",
+   "div": "1100302",
+   "name": "Direção Nacional de Biodiversidade",
+   "type": "National Directorate",
+   "parent": "DGA"
+  },
+  {
+   "code": "DNCP",
+   "div": "1100303",
+   "name": "Direção Nacional do Controlo de Polução",
+   "type": "National Directorate",
+   "parent": "DGA"
+  },
+  {
+   "code": "DNAC",
+   "div": "1100304",
+   "name": "Direção Nacional para Alterações Climáticas",
+   "type": "National Directorate",
+   "parent": "DGA"
+  },
+  {
+   "code": "DNPFA",
+   "div": "1100306",
+   "name": "Direção Nacional de Planeamento, Finanças e Administração",
+   "type": "National Directorate",
+   "parent": "DGA"
+  },
+  {
+   "code": "CEIA",
+   "div": "1100308",
+   "name": "Centro da Educação e da Informação Ambiental",
+   "type": "Unit",
+   "parent": "DGA"
+  },
+  {
+   "code": "GPPGPAJPA",
+   "div": "1100501",
+   "name": "Gabinete de política Públicas, Gestão de Programas, Apoio Jurídico e Procedimento Ambiental",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGSC",
+   "div": "1100601",
+   "name": "Gabinete de Direção-Geral dos Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "1100603",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNA",
+   "div": "1100604",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNL",
+   "div": "1100605",
+   "name": "Direção Nacional de Lojística",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNEP",
+   "div": "1100606",
+   "name": "Direção Nacional de Estatística e Pesquisa",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DMA",
+   "div": "1100607",
+   "name": "Direção Municipal de Ainaro",
+   "type": "Unit",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DMB",
+   "div": "1100608",
+   "name": "Direção Municipal de Baucau",
+   "type": "Unit",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DMB-09",
+   "div": "1100609",
+   "name": "Direção Municipal de Bobonaro",
+   "type": "Unit",
+   "parent": "GDGSC"
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "981": "Protecção e conservação do ambiente",
+  "982": "Turismo"
+ },
+ "activities": [
+  {
+   "code": "5100106",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Pesquisa, Planeamento e desenvolvimento",
+   "div": [
+    "1100606"
+   ],
+   "indicator": "#estudos efectuados",
+   "baseline": "#de estudo efectuados, #livro resultado pesquisa produzidos",
+   "target": "Recolha de dados Formação em estatística e elaboração de mapas Elaboração de um mapa turístico abrangendo o território (12 municípios e RAEOA)",
+   "amounts": {
+    "10": 85904.0,
+    "20": 20000.0
+   },
+   "page": 1055
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1100101"
+   ],
+   "indicator": "Plano de Ação Anual, Plano de Aprovisionamento e Plano de Recursos finalizados.",
+   "baseline": "Plano de Ação Anual, Plano de Aprovisionamento e Plano de Recursos.",
+   "target": "Promover o planeamento, o desenvolvimento estratégico e a orientação política.",
+   "amounts": {
+    "10": 368199.0,
+    "20": 638660.0,
+    "30": 50000.0
+   },
+   "page": 1055
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "1100601"
+   ],
+   "indicator": "#Coordenação dos serviços efetuada.",
+   "baseline": "Plano de Ação Anual, Plano de Aprovisionamento e Plano de Recursos.",
+   "target": "Efetuar a coordenação dos serviços com as direções do MTA.",
+   "amounts": {
+    "10": 16796.0,
+    "20": 19000.0
+   },
+   "page": 1055
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "1100501"
+   ],
+   "indicator": "#Coordenação dos serviços efetuada.",
+   "baseline": "Plano de Ação Anual, Plano de Aprovisionamento e Plano de Recursos.",
+   "target": "Efetuar a coordenação dos serviços com as direções do MTA.",
+   "amounts": {
+    "10": 10686.0
+   },
+   "page": 1055
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1100306"
+   ],
+   "indicator": "% do orçamento executado (Obrigações + Execução Real)",
+   "baseline": "100% da gestão orçamental e das atividades administrativas e logísticas executadas.",
+   "target": "100%",
+   "amounts": {
+    "10": 61230.0,
+    "20": 30000.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1100605"
+   ],
+   "indicator": "#Gestão do Património",
+   "baseline": "100% das atividades de gestão do património executadas.",
+   "target": "100%",
+   "amounts": {
+    "10": 173797.0,
+    "20": 1124716.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1100603"
+   ],
+   "indicator": "#Funcionários promovidos",
+   "baseline": "42 funcionários permanentes foram promovidos para vários graus, e 38 agentes da Administração Pública foram promovidos para vários graus.",
+   "target": "No mínimo 20 funcionários permanentes promovidos para vários graus.",
+   "amounts": {
+    "10": 1727663.0,
+    "20": 122000.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1100603"
+   ],
+   "indicator": "#Funcionários capacitados (nas áreas de administração, finanças, aprovisionamento e logística)",
+   "baseline": "50 pessoas participaram numa formação linguística.",
+   "target": "No mínimo 20 pessoas participaram na formação.",
+   "amounts": {
+    "20": 36000.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1100604"
+   ],
+   "indicator": "% de progresso da execução do Plano de Aprovisionamento",
+   "baseline": "Em 2021, contratou 20 companhias fornecedoras servicos",
+   "target": "Em 2021, foram contratadas 20 empresas prestadoras de serviços.",
+   "amounts": {
+    "10": 42991.0,
+    "20": 12000.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "5100236",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Fazer inspeção na avaliação ba servisu corporativo ligar ho execução orcamento e inspeção servico administrativo",
+   "div": [
+    "1100102"
+   ],
+   "indicator": "# inspecionadas",
+   "baseline": "Inspeções de serviços realizadas em 12 municípios.",
+   "target": "Formação temática em cinco áreas específicas para reforçar a capacidade institucional e realização de inspeções de serviços em 12 municípios.",
+   "amounts": {
+    "10": 66378.0,
+    "20": 25000.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "1100607",
+    "1100608",
+    "1100609"
+   ],
+   "indicator": "% de cooperação e parcerias na implementação de atividades de turismo e ambiente",
+   "baseline": "Em 2024, através da Estrutura Orgânica do MTA, foi criado o Serviço Municipal de Turismo e Ambiente",
+   "target": "100% das atividades de turismo e ambiente a nível municipal foram realizadas.",
+   "amounts": {
+    "10": 65416.0,
+    "20": 12000.0
+   },
+   "page": 1056
+  },
+  {
+   "code": "9810206",
+   "programme": "981",
+   "subprogramme": "98102",
+   "subprogramme_name": "Educação ambiental",
+   "name": "Kampanha Nacional &amp;#34;Hau nia tasi, hau nia Timor&amp;#34; (HTHT)",
+   "div": [
+    "1100301"
+   ],
+   "indicator": "#Promoção e Sensibilização sobre o HTHT, #Participantes que participaram na promoção e sensibilização sobre o HTHT",
+   "baseline": "De 2023 a 2025, a campanha nacional HTHT foi realizada nos municípios de Díli, Liquiça, RAEOA e Atauro, envolvendo 1.626 pessoas, e em 2026, a campanha HTHT foi realizada nos municípios de Baucau, Lautém e Viqueque, envolvendo 600 pessoas.",
+   "target": "De 2023 a 2025, a campanha nacional HTHT foi realizada nos municípios de Díli, Liquiçá, RAEOA e Atauro, envolvendo 1.626 pessoas. Em 2026, a campanha HTHT foi realizada nos municípios de Baucau, Lautém e Viqueque, envolvendo 600 pessoas.",
+   "amounts": {
+    "20": 48000.0
+   },
+   "page": 1057
+  },
+  {
+   "code": "9810207",
+   "programme": "981",
+   "subprogramme": "98102",
+   "subprogramme_name": "Educação ambiental",
+   "name": "Prêmio Habali de Meio Ambiente",
+   "div": [
+    "1100301"
+   ],
+   "indicator": "#de Suco e escolas avaliados, #Número de atividades realizadas no âmbito do Dia Mundial do Ambiente",
+   "baseline": "Em 2025, foram atribuídos 25 Prémios Habali Ambiente aos sucos e às escolas vencedoras da competição “Suco e Escola Saudável”.",
+   "target": "Em 2027, serão atribuídos os Prémios Habali Ambiente a 5 sucos, no âmbito da comemoração do Dia Mundial do Ambiente.",
+   "amounts": {
+    "20": 59000.0
+   },
+   "page": 1057
+  },
+  {
+   "code": "9810208",
+   "programme": "981",
+   "subprogramme": "98102",
+   "subprogramme_name": "Educação ambiental",
+   "name": "Recuperar dados de status ambiental",
+   "div": [
+    "1100301"
+   ],
+   "indicator": "#Estado Ambiental Anual, #Relatório Anual sobre o Estado do Ambiente",
+   "baseline": "2026: Foi estabelecida uma cooperação entre a Universidade Udayana e a área do Ambiente para a formação sobre o Estado do Ambiente.",
+   "target": "20 pessoas receberam formação na área de especialização sobre o Estado do Ambiente. Foi publicado o Relatório Anual sobre o Estado do Ambiente de 2026.",
+   "amounts": {
+    "10": 93197.0,
+    "20": 17000.0
+   },
+   "page": 1058
+  },
+  {
+   "code": "9810209",
+   "programme": "981",
+   "subprogramme": "98102",
+   "subprogramme_name": "Educação ambiental",
+   "name": "Criação do Laboratório Ambiental",
+   "div": [
+    "1100308"
+   ],
+   "indicator": "#Funcionários formados na área de Laboratório Ambiental, #Formandos em Técnicas de Laboratório",
+   "baseline": "1. 2 pessoas receberam formação na área de laboratório. 2. Já existem equipamentos de laboratório para a realização de testes de ruído e de poluição do ar.",
+   "target": "Português: 10 pessoas formadas na área de Laboratório Ambiental (5 mulheres e 5 homens).",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1058
+  },
+  {
+   "code": "9810210",
+   "programme": "981",
+   "subprogramme": "98102",
+   "subprogramme_name": "Educação ambiental",
+   "name": "IX Congresso de Educação Ambiental da CPLP",
+   "div": [
+    "1100308"
+   ],
+   "indicator": "#Encontro técnico realizado, #Congresso de Educação Ambiental da CPLP realizado",
+   "baseline": "Em 2025, uma delegação de Timor-Leste participou no Congresso Internacional de Educação Ambiental da CPLP, realizado em Manaus, Brasil.",
+   "target": "Realizou-se o IX Congresso Internacional de Educação Ambiental da CPLP na RAEOA. Realizou-se um encontro técnico de preparação para acolher o IX Congresso Internacional de Educação Ambiental da CPLP.",
+   "amounts": {
+    "20": 68000.0
+   },
+   "page": 1058
+  },
+  {
+   "code": "9810211",
+   "programme": "981",
+   "subprogramme": "98102",
+   "subprogramme_name": "Educação ambiental",
+   "name": "Implementasaun Programa Eskola no Suku &amp;#34;Verde &amp;#38; Azul&amp;#34;",
+   "div": [
+    "1100308"
+   ],
+   "indicator": "#Escolas e sucos que participaram na partilha de boas práticas do Programa Escolas e Sucos Verdes e Azuis #Participantes que participaram na socialização de boas práticas sobre o Programa Escolas e Sucos “Verdes & Azuis” #Voluntários ambientais (Brigadas) recrutados #Voluntários ambientais (Brigadas) formados",
+   "baseline": "Foram estabelecidas 10 Escolas Verdes nos municípios de Liquiçá, Manatuto, Covalima, Bobonaro, Manufahi, Viqueque, Baucau, Aileu, Ainaro e Díli, bem como 4 Sucos Verdes (Suco Dato, Suco Aubeon, Suco Biqueli e Suco Bidau Santa-Ana).",
+   "target": "Criar um jardim verde na escola e no suco.",
+   "amounts": {
+    "10": 56615.0,
+    "20": 55500.0,
+    "30": 10000.0
+   },
+   "page": 1058
+  },
+  {
+   "code": "9810315",
+   "programme": "981",
+   "subprogramme": "98103",
+   "subprogramme_name": "Conservação da Biodiversidade",
+   "name": "Plantar árvores de alto valor económico, fazer campanha pela reflorestação de árvores e criar poeiras de captação de águas pluviais,",
+   "div": [
+    "1100302"
+   ],
+   "indicator": "#Hectares de árvores de elevado valor económico plantadas, #Hectares de buganvílias plantadas, #Estabelecimento de sistemas de captação de água da chuva, #Formação em recursos genéticos, técnicas laboratoriais e bases de dados",
+   "baseline": "No período de 2021–2022, foram plantadas 71.534 árvores de alto valor económico. Em 2026, foram plantadas 200 buganvílias em Cristo Rei.",
+   "target": "Serão plantadas, no mínimo, 75.000 árvores de alto valor económico. Será estabelecido 1 hectare de buganvílias. Serão estabelecidas duas áreas para a captação de água da chuva. Serão criados bancos de sementes para áreas específicas, nomeadamente Atauro, RAEOA e Díli. 4 pessoas participarão em formação sobre recursos genéticos, técnicas laboratoriais e bases de dados.",
+   "amounts": {
+    "20": 64000.0,
+    "30": 10000.0
+   },
+   "page": 1059
+  },
+  {
+   "code": "9810316",
+   "programme": "981",
+   "subprogramme": "98103",
+   "subprogramme_name": "Conservação da Biodiversidade",
+   "name": "Tara Bando",
+   "div": [
+    "1100302"
+   ],
+   "indicator": "#Realização da prática cultural de Tara Bandu em áreas de terra firme. #Foi implementado o Tara Bandu em áreas costeiras para a proteção de ecossistemas específicos, como tartarugas (lenuk) e corais (ahu-ruin).",
+   "baseline": "De 2021 a 2025, foram realizados 18 Tara Bandu em áreas terrestres e 9 em áreas marinhas protegidas. Existem atualmente 9 áreas marinhas protegidas em Timor-Leste.",
+   "target": "No mínimo, 5 sucos realizarão a prática cultural de Tara Bandu em áreas costeiras e terrestres.",
+   "amounts": {
+    "10": 113685.0,
+    "20": 20000.0
+   },
+   "page": 1059
+  },
+  {
+   "code": "9810317",
+   "programme": "981",
+   "subprogramme": "98103",
+   "subprogramme_name": "Conservação da Biodiversidade",
+   "name": "identificação e coleta de dados sobre a riqueza da biodiversidade, incluindo mapeamento de ecossistemas de biodiversidade em terra, no mar, em zonas úmidas e outros ecossistemas de alto risco;",
+   "div": [
+    "1100302"
+   ],
+   "indicator": "#Levantamento de dados sobre o habitat e a movimentação de crocodilos e tartarugas (lenuk), #Levantamento de dados e identificação dos habitats dos veados (rusa), #Sinalização de áreas de risco de crocodilos e locais de mergulho em Timor- Leste, #Controlo da caça ilegal e sensibilização sobre espécies ameaçadas, #Reabilitação de áreas de Ai-parapa realizada #Levantamento de dados sobre áreas críticas, #Sistema de áreas protegidas do Jardim",
+   "baseline": "Entre 2016 e 2023, foram recolhidos 6 crocodilos e mantidos em condições ex situ no Centro de Gestão de Crocodilos de Hera, Posto Administrativo de Cristo Rei, Município de Díli. Em 2015, foi criado um Jardim Botânico para plantas no Posto Administrativo de Remexio, Município de Aileu. Entre 2013 e 2014, foram identificadas áreas de risco de crocodilos em 11 municípios. Entre 2021 e 2023, Timor- Leste participou nas",
+   "target": "Levantamento de dados sobre o habitat e a movimentação de crocodilos em 5 municípios e sobre as áreas de tartarugas (lenuk) em 3 locais. Levantamento de dados e identificação dos habitats de veados (rusa) em Lautém e Manufahi. Sinalização de áreas de risco de crocodilos em 5 municípios e de locais de mergulho em Atauro, Díli e Lautém. Controlo da caça ilegal e sensibilização sobre espécies ameaçadas em 12 municípios. Reabilitação de",
+   "amounts": {
+    "20": 45000.0
+   },
+   "page": 1059
+  },
+  {
+   "code": "98103X1",
+   "programme": "981",
+   "subprogramme": "98103",
+   "subprogramme_name": "Conservação da Biodiversidade",
+   "name": "Flora and Fauna Conservation Centre at Hera (CAFI)",
+   "div": [
+    "1100302"
+   ],
+   "indicator": "#Atividades de Recolha de Dados sobre os Recursos da Biodiversidade e Sensibilização",
+   "baseline": "2027 Centro de Conservação da Flora e Fauna em Hera",
+   "target": "Centro de Conservação da Flora e Fauna em Hera",
+   "amounts": {
+    "50": 300000.0
+   },
+   "page": 1060
+  },
+  {
+   "code": "9810400",
+   "programme": "981",
+   "subprogramme": "98104",
+   "subprogramme_name": "Alteração climática e Ozôno",
+   "name": "Inventário de GEE e instalação de energia alternativa",
+   "div": [
+    "1100304"
+   ],
+   "indicator": "1) #de municípios abrangidos pelas Avaliações Integradas de Vulnerabilidade (IVA) 2) #de formações realizadas sobre adaptação às alterações",
+   "baseline": "1) Entre 2014–2022, foram realizados workshops do Grupo de Trabalho sobre Alterações Climáticas (CC- WG). 2) Em 2022, foi",
+   "target": "1) Realizar o 4.º workshop do CC-WG em 2025. 2) Realizar 4 workshops do CC-WG. 3) Monitorizar a tecnologia limpa (solar PV) no suco de Uacala e",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 1060
+  },
+  {
+   "code": "9810401",
+   "programme": "981",
+   "subprogramme": "98104",
+   "subprogramme_name": "Alteração climática e Ozôno",
+   "name": "Continua implementar o programa de Avaliação de Vulnerabilidade Integrada (AVI) no nível de sucos",
+   "div": [
+    "1100304"
+   ],
+   "indicator": "#de sucos concluídos no programa de Avaliação Integrada de Vulnerabilidade (AVI), #de intervenções de AVI nos sucos",
+   "baseline": "Entre 2017–2025, um total de 112 sucos foram abrangidos pelas atividades de Avaliação Integrada de Vulnerabilidade (AVI).",
+   "target": "1) Realizar AVI em 16 sucos. 2) Implementar projetos de dessalinização de água do mar para obtenção de água potável em Dili (Cristo Rei) e no Suco Mahaquidan, Alas, Manufahi. 3) Instalar bombas de água potável no Suco Ogues, Suai.",
+   "amounts": {
+    "10": 59306.0,
+    "20": 93000.0
+   },
+   "page": 1061
+  },
+  {
+   "code": "9810403",
+   "programme": "981",
+   "subprogramme": "98104",
+   "subprogramme_name": "Alteração climática e Ozôno",
+   "name": "Controlo de Hydro CloroflouroCarbono (HCFC) e HydroFlouroCarbono (HFC)",
+   "div": [
+    "1100304"
+   ],
+   "indicator": "#de inventários de GEE, #de atividades de sensibilização/formação sobre o ozono, #de avaliadores com capacidade reforçada",
+   "baseline": "O Dia Mundial do Ozono é comemorado todos os anos. Entre 2013–2022, foram realizadas formações para funcionários aduaneiros e despachantes aduaneiros, envolvendo um total de 250 participantes. Desde 2014, foram realizadas formações para técnicos de refrigeração e ar condicionado (RAC), envolvendo 150 participantes. Entre 2014–2022, 12 pessoas participaram na Formação de Formadores (ToT) para RAC. Foram distribuídos equipamentos de manutenção para o controlo de HCFC a 14",
+   "target": "1) Desenvolver um BAR para o Inventário de Gases com Efeito de Estufa (GEE). 2) Realizar 8 atividades de sensibilização/formação. 3) Realizar 1 workshop/talk show para a comemoração do Dia Internacional do Ozono. 4) Reforçar a capacidade de 6 pessoas para realizar avaliações de competências de avaliadores do currículo de formação em RAC no CNFP Becora, CFP Don Bosco Comoro e INDMO.",
+   "amounts": {
+    "20": 6000.0
+   },
+   "page": 1061
+  },
+  {
+   "code": "9810700",
+   "programme": "981",
+   "subprogramme": "98107",
+   "subprogramme_name": "Controlo de Polução",
+   "name": "Estabelecer bancos de resíduos e reciclagem",
+   "div": [
+    "1100303"
+   ],
+   "indicator": "#de inspeções e monitorização de resíduos plásticos, #de bancos de resíduos e instalações de reciclagem de resíduos plásticos estabelecidos, #de atividades de sensibilização sobre os impactos dos",
+   "baseline": "1) Em 2022–2023, foram realizados o controlo da poluição e inspeções à implementação da Política de Plástico Zero em 12 municípios e na RAEOA. 2) Em 2024, foi estabelecido um banco de resíduos em Bidau",
+   "target": "1) Realizar inspeções de controlo da poluição em 12 municípios e na RAEOA. 2) Estabelecer bancos de resíduos em Atauro e Dili. 3) Realizar ações nacionais de sensibilização em 7 capitais municipais. 4) Recolher",
+   "amounts": {
+    "20": 19000.0
+   },
+   "page": 1062
+  },
+  {
+   "code": "9810702",
+   "programme": "981",
+   "subprogramme": "98107",
+   "subprogramme_name": "Controlo de Polução",
+   "name": "Centro de tratamento de óleo residual",
+   "div": [
+    "1100303"
+   ],
+   "indicator": "#de centros de gestão de óleo usado",
+   "baseline": "Existe um centro de gestão de óleo usado em Tibar e outro em Alas-Manufahi.",
+   "target": "Reabilitar o muro de proteção do centro de tratamento de óleo usado em Tibar.",
+   "amounts": {
+    "10": 93353.0,
+    "20": 41000.0
+   },
+   "page": 1063
+  },
+  {
+   "code": "9810703",
+   "programme": "981",
+   "subprogramme": "98107",
+   "subprogramme_name": "Controlo de Polução",
+   "name": "Campanha de redução do uso de lenha",
+   "div": [
+    "1100303"
+   ],
+   "indicator": "#de grupos formados para a produção de fugaun rai / fogões economizadores de energia",
+   "baseline": "1) Em 2023, foram realizadas ações de sensibilização sobre a produção e utilização de fugaun rai em 5 municípios: Lautem, Aileu, Bobonaro, Baucau e Viqueque. 2) Em 2024, foram realizadas formações para grupos sobre fugaun rai, incluindo a produção prática de fugaun rai e a construção de fogões para a produção de fugaun rai em Baucau e Viqueque.",
+   "target": "Em 2027, realizar formações para grupos sobre fugaun rai, incluindo a produção prática e a construção de fogões para a produção de fugaun rai em Viqueque.",
+   "amounts": {
+    "20": 22000.0
+   },
+   "page": 1063
+  },
+  {
+   "code": "9810801",
+   "programme": "981",
+   "subprogramme": "98108",
+   "subprogramme_name": "Política Ambiental e Alterações Climáticas",
+   "name": "Formação e treino em Avaliação de Impacto Ambiental (AIA)",
+   "div": [
+    "1100101"
+   ],
+   "indicator": "#de pessoas formadas na área de AIA #de avaliações implementadas",
+   "baseline": "36 pessoas, entre funcionários da ANLA e membros da KAIA (11 mulheres e 25 homens), participaram na formação sobre AIA.",
+   "target": "36 pessoas, entre funcionários da ANLA e membros da KAIA, participarão na formação sobre AIA, sendo 16 mulheres e 20 homens.",
+   "amounts": {
+    "20": 58000.0
+   },
+   "page": 1064
+  },
+  {
+   "code": "9810802",
+   "programme": "981",
+   "subprogramme": "98108",
+   "subprogramme_name": "Política Ambiental e Alterações Climáticas",
+   "name": "Emissão da Licença Ambiental",
+   "div": [
+    "1100101"
+   ],
+   "indicator": "#Licenças Ambientais (LA)",
+   "baseline": "Foram emitidas mais de 150 Licenças Ambientais (LA).",
+   "target": "Emitir mais de 250 Licenças Ambientais (LA) e certificar, no mínimo, 5 consultores de Licenciamento Ambiental (LA).",
+   "amounts": {
+    "10": 164905.0,
+    "20": 62000.0
+   },
+   "page": 1064
+  },
+  {
+   "code": "9820401",
+   "programme": "982",
+   "subprogramme": "98204",
+   "subprogramme_name": "Controlo, regularização e industriazação atividades de jogos recreativos",
+   "name": "Controlo e regularizar actividades jogos em TL",
+   "div": [
+    "1100103"
+   ],
+   "indicator": "#de regulamentos produzidos, #de inspeções de jogos realizadas em todo o território de Timor-Leste.",
+   "baseline": "Já foram produzidos dois (2) regulamentos sobre jogos. Foram realizadas inspeções e ações de fiscalização das atividades de jogo nos 12 municípios e na RAEOA.",
+   "target": "1. Produção de quatro (4) regulamentos. 2. Realização de inspeções e ações de fiscalização das atividades de jogo nos 12 municípios e na RAEOA.",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1065
+  },
+  {
+   "code": "9820402",
+   "programme": "982",
+   "subprogramme": "98204",
+   "subprogramme_name": "Controlo, regularização e industriazação atividades de jogos recreativos",
+   "name": "Consolidação e manutenção sistema digitalização de jogus",
+   "div": [
+    "1100103"
+   ],
+   "indicator": "#Manutenção do sistema de digitalização para as atividades",
+   "baseline": "Foi realizado o processo de concurso público para a",
+   "target": "Em 2027, o sistema de digitalização dos jogos –",
+   "amounts": {
+    "20": 10500.0
+   },
+   "page": 1065
+  },
+  {
+   "code": "9820407",
+   "programme": "982",
+   "subprogramme": "98204",
+   "subprogramme_name": "Controlo, regularização e industriazação atividades de jogos recreativos",
+   "name": "Campanha de sensibilização para o regulamento de jogos",
+   "div": [
+    "1100103"
+   ],
+   "indicator": "#Divulgação das leis e dos procedimentos legais sobre jogos; serviços de apoio à divulgação das leis em todo o território de Timor-Leste.",
+   "baseline": "De 2016 a 2023, foram divulgadas as leis sobre jogos, nomeadamente o Decreto-Lei n.º 6 e o Decreto do Governo n.º 10, nos municípios de Baucau, Atauro e Manatuto.",
+   "target": "Realizar a divulgação das leis e dos procedimentos legais sobre jogos nos 12 municípios, na RAEOA e em Atauro.",
+   "amounts": {
+    "20": 24115.0
+   },
+   "page": 1066
+  },
+  {
+   "code": "9820408",
+   "programme": "982",
+   "subprogramme": "98204",
+   "subprogramme_name": "Controlo, regularização e industriazação atividades de jogos recreativos",
+   "name": "Regulamentação e industrialização da atividade de jogo recreativo",
+   "div": [
+    "1100103"
+   ],
+   "indicator": "1) #de regulamentos revistos. 2) #de regulamentos implementados. 3) Fiscalização dos sistemas de servidores do Toto Bola e das lotarias na Malásia, Filipinas e Camboja. 4) Realização de um estudo comparativo sobre os jogos de casino. 5) Acordo com a Santa Casa assinado.",
+   "baseline": "1. Já foram estabelecidos dois regulamentos sobre jogos. 2. Foram realizadas ações de fiscalização da produção de cupões de lotaria na Indonésia e na China. 3. Em 2023, houve participação nos Fóruns Internacionais da WLA e da CIBELAE, realizados anualmente em Lisboa de 2019 a 2022.",
+   "target": "1. Rever o Decreto-Lei n.º 6/2016, relativo ao regime jurídico do licenciamento, exploração e controlo das diversas atividades de jogos, máquinas e jogos tradicionais; o Decreto do Governo n.º 10/2008, relativo à aprovação da estrutura da Inspeção-Geral de Jogos; e a lei relativa à Agência de Gestão da Participação dos Jogos, incluindo um novo diploma relativo ao regime especial da IGJ. 2. Realizar a fiscalização da produção de cupões de lotaria na Indonésia e na China. 3. Um máximo de 5 pessoas (2 mulheres e 3 homens) participarão anualmente em fóruns internacionais (WLA e CIBELAE). 4. Renovar o acordo entre a IGJ e a Santa Casa da Misericórdia de Lisboa.",
+   "amounts": {
+    "10": 153647.0,
+    "20": 20000.0
+   },
+   "page": 1066
+  },
+  {
+   "code": "9820409",
+   "programme": "982",
+   "subprogramme": "98204",
+   "subprogramme_name": "Controlo, regularização e industriazação atividades de jogos recreativos",
+   "name": "Formação especializada na área dos jogos para inspectores",
+   "div": [
+    "1100103"
+   ],
+   "indicator": "1) #de formandos que participam em formações nas áreas de inspeção, auditoria, assuntos jurídicos, gestão de",
+   "baseline": "1. Em 2025, 8 funcionários participaram em formação sobre auditoria e arquivo eletrónico. 2. Em 2026, 10",
+   "target": "30 pessoas (15 mulheres e 15 homens) formadas e capacitadas nas áreas de auditoria técnica, gestão de",
+   "amounts": {
+    "20": 15839.0
+   },
+   "page": 1066
+  },
+  {
+   "code": "9820502",
+   "programme": "982",
+   "subprogramme": "98205",
+   "subprogramme_name": "Promoção de Timor-Leste como destino turístico",
+   "name": "Sinalização Pontos Turistico",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Sinais nas Áreas Turísticas",
+   "baseline": "49 Unidades de Sinalização na Zona Central",
+   "target": "40 Unidades de Sinalização em Díli e Ataúro",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1067
+  },
+  {
+   "code": "9820504",
+   "programme": "982",
+   "subprogramme": "98205",
+   "subprogramme_name": "Promoção de Timor-Leste como destino turístico",
+   "name": "Participação e organização de feiras, exposições e eventos para promover a cultura e o turismo",
+   "div": [
+    "1100203"
+   ],
+   "indicator": "#Eventos apoiados e Realizada.",
+   "baseline": "8 Eventos apoiados e Realizada.",
+   "target": "9 eventos (carnaval, caravana, tour TimorFestival gastronomia dansa e muzica tradicional)",
+   "amounts": {
+    "20": 130244.0,
+    "30": 15000.0
+   },
+   "page": 1067
+  },
+  {
+   "code": "9820507",
+   "programme": "982",
+   "subprogramme": "98205",
+   "subprogramme_name": "Promoção de Timor-Leste como destino turístico",
+   "name": "Promoção Turismo Cruzeiro",
+   "div": [
+    "1100207"
+   ],
+   "indicator": "#Aumentar o Número de Cruzeiros e Turistas",
+   "baseline": "2025 (6 Cruzeiros que já visitaram Timor-Leste)",
+   "target": "8 Cruzeiros deverão visitar Timor-Leste",
+   "amounts": {
+    "10": 73567.0,
+    "20": 120441.0
+   },
+   "page": 1067
+  },
+  {
+   "code": "98205X1",
+   "programme": "982",
+   "subprogramme": "98205",
+   "subprogramme_name": "Promoção de Timor-Leste como destino turístico",
+   "name": "Trade shows and road shows including Riyadh Expo",
+   "div": [
+    "1100207"
+   ],
+   "indicator": "#Participate in international and national expos and promote Timor-Leste’s",
+   "baseline": "2021: Participação em exposições internacionais",
+   "target": "2021: Participação em exposições internacionais em Dubai",
+   "amounts": {
+    "20": 500000.0
+   },
+   "page": 1068
+  },
+  {
+   "code": "9820602",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Apoiar o desenvolvimento do turismo de base comunitária",
+   "div": [
+    "1100206"
+   ],
+   "indicator": "1) #de locais turísticos desenvolvidos. 2) #de locais turísticos desenvolvidos no âmbito da Jornada Kafé Mambae. 3) #de locais turísticos desenvolvidos no âmbito da Jornada Resistência. 4) #de comunidades beneficiadas. 5) #de pacotes turísticos desenvolvidos em conjunto com outros setores (café, veteranos, etc.).",
+   "baseline": "Em 2026, foi prestado apoio a 15 grupos beneficiários de turismo comunitário nos municípios de Ermera, Manatuto, Baucau, Aileu, Liquiçá, Dili e Bobonaro.",
+   "target": "14 sucos desenvolveram turismo comunitário e 4 sucos desenvolveram turismo ecológico.",
+   "amounts": {
+    "10": 59462.0,
+    "20": 45536.0,
+    "30": 240000.0
+   },
+   "page": 1068
+  },
+  {
+   "code": "9820604",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Formasaun ba Area Turismo Comunitario",
+   "div": [
+    "1100206"
+   ],
+   "indicator": "#de formações técnicas na área do turismo em todo o país, orientadas para os tipos de atividades turísticas na área do turismo comunitário.",
+   "baseline": "Em 2025, 14 pessoas dos grupos beneficiários do turismo comunitário receberam formação em Hospitalidade, Barista, Culinária e Atendimento ao Cliente. Em 2026, outras 14 pessoas receberam formação em Hospitalidade, Barista, Culinária e Atendimento ao Cliente.",
+   "target": "30 pessoas formadas em gestão de locais de turismo comunitário; 30 pessoas formadas em turismo e hospitalidade; 30 pessoas formadas em língua inglesa e portuguesa.",
+   "amounts": {
+    "20": 6000.0
+   },
+   "page": 1068
+  },
+  {
+   "code": "9820609",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Apoio evento turismo cultural",
+   "div": [
+    "1100206"
+   ],
+   "indicator": "#Coordenação e apoio às comunidades na organização de eventos e feiras culturais para promover a cultura e o turismo.",
+   "baseline": "Foram organizados e apoiados eventos de turismo cultural, tais como a Coleta Meci – Lautem, Sae Bua – Atauro, Coleta de Peixe – Wee-Ai Fou, Viqueque, e o Festival Comunitário em Biqueli, Atauro.",
+   "target": "Foram organizados e apoiados 9 eventos de turismo cultural, incluindo: Coleta Meci – Lautem; Sau Batar – Covalima; Sae Bua – Makadade, Atauro; Coleta de Peixe – Wee-Ai Fou, Viqueque; Festival Comunitário em Biqueli, Atauro; Feira de Turismo em comemoração do Dia Mundial da Árvore em Bee Malae, Bobonaro; Festival da Colheita do Arroz em Seloi Kraik, Aileu; Festival Baku Niki em Beacou, Atabae; e Feira de Turismo Marítimo (Dia Nacional do Mar/Dia Mundial dos Oceanos) em Dili.",
+   "amounts": {
+    "20": 21000.0,
+    "30": 194576.0
+   },
+   "page": 1069
+  },
+  {
+   "code": "98206X1",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Community tourism group support - East cluster",
+   "div": [
+    "1100206"
+   ],
+   "indicator": "1) #de locais turísticos desenvolvidos. 2) #de locais turísticos desenvolvidos no âmbito da Jornada Resistência. 3) #de comunidades beneficiadas. 4) #de formações técnicas na área do turismo em todo o país, orientadas para os tipos de atividades turísticas na área do turismo comunitário. 5)#Coordenação e apoio às comunidades na organização de eventos e feiras culturais para promover a cultura e o turismo.",
+   "baseline": "Em 2027, foi prestado apoio a beneficiários de turismo comunitário Zona Oriental",
+   "target": "sucos desenvolveram turismo comunitário e sucos desenvolveram turismo ecológico.",
+   "amounts": {
+    "30": 200000.0
+   },
+   "page": 1069
+  },
+  {
+   "code": "98206X2",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Community tourism group support - West cluster",
+   "div": [
+    "1100206"
+   ],
+   "indicator": "1) #de locais turísticos desenvolvidos. 2) #de locais turísticos desenvolvidos no âmbito da Jornada Resistência. 3) #de comunidades beneficiadas. 4) #de formações técnicas na área do turismo em todo o país, orientadas para os tipos de",
+   "baseline": "Em 2027, foi prestado apoio a beneficiários de turismo comunitário Zona Ocidental",
+   "target": "sucos desenvolveram turismo comunitário e sucos desenvolveram turismo ecológico.",
+   "amounts": {
+    "30": 200000.0
+   },
+   "page": 1069
+  },
+  {
+   "code": "98206X3",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Community tourism group support - Central cluster",
+   "div": [
+    "1100206"
+   ],
+   "indicator": "1) #de locais turísticos desenvolvidos. 2) #de locais turísticos desenvolvidos no âmbito da Jornada Resistência. 3) #de comunidades beneficiadas. 4) #de formações técnicas na área do turismo em todo o país, orientadas para os tipos de atividades turísticas na área do turismo comunitário. 5)#Coordenação e apoio às comunidades na organização de eventos e feiras culturais para promover a cultura e o turismo.",
+   "baseline": "Em 2027, foi prestado apoio a beneficiários de turismo comunitário Zona Central",
+   "target": "sucos desenvolveram turismo comunitário e sucos desenvolveram turismo ecológico.",
+   "amounts": {
+    "30": 200000.0
+   },
+   "page": 1070
+  },
+  {
+   "code": "9820701",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Estabelecimento Autoridade Nacional do Turismo",
+   "div": [
+    "1100201"
+   ],
+   "indicator": "% funcionamento Autoridade Turismo Timor Leste",
+   "baseline": "estabelese ona Autoridade Turismo Timor Leste",
+   "target": "100% estabelecido",
+   "amounts": {
+    "10": 213720.0,
+    "20": 119000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "9820707",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Desenvolver infraestrutura e Gestão de Sitios Turísticos",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Sítios Turísticos Religiosos Reabilitados, #Pousadas Reabilitadas, #Sítios Turísticos Reabilitados Geridos",
+   "baseline": "Construção de 12 Bungalows em Ramelau em 2026",
+   "target": "3 Sítios Turísticos Religiosos, 3 Pousadas Reabilitadas e 1 Sítio Turístico",
+   "amounts": {
+    "10": 232687.0,
+    "20": 727503.0,
+    "50": 195342.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X1",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Seawater desalination - Dili (Cristo Rei)",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "# de Sucos concluídos no programa de Avaliação de Vulnerabilidade Integrada (AVI)",
+   "baseline": "16 sucos sendo cobertos pelo actividade de avaliacao vulnerabilidade integrado (IVA)",
+   "target": "16 Sucos",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X2",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Seawater desalination - Lautem (Jaco)",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "# de Sucos concluídos no programa de Avaliação de Vulnerabilidade Integrada (AVI)",
+   "baseline": "16 sucos sendo cobertos pelo actividade de avaliacao vulnerabilidade integrado (IVA)",
+   "target": "16 Sucos",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X3",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Improvement of food facilities at Loes, Atabae and Batugade",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Sítios Turísticos Reabilitados",
+   "baseline": "2027 Melhoria das instalações alimentares em Loes, Atabae e Batugade.",
+   "target": "Melhoria das instalações alimentares em Loes, Atabae e Batugade.",
+   "amounts": {
+    "50": 80000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X4",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "TBC - source activity description is blank",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X5",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Seloi Kraik bungalows, hall and restaurant",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção de locais turísticos.",
+   "baseline": "2027 Construção de instalações de alojamento, incluindo 8 unidades de bungalows, 1 sala de reuniões, um restaurante, uma área de estacionamento e um gazebo em Seloi Kraik, Aileu.",
+   "target": "Construção de instalações de alojamento, incluindo 8 unidades de bungalows, 1 sala de reuniões, um restaurante, uma área de estacionamento e um gazebo em Seloi Kraik, Aileu.",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X6",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Tutuala Inn - rooms, lounge and pool",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Sítios Turísticos Reabilitados",
+   "baseline": "2027 Construção de quartos de alojamento, uma sala de reuniões e uma piscina na Pousada Tutuala, Lautem.",
+   "target": "Construção de quartos de alojamento, uma sala de reuniões e uma piscina na Pousada Tutuala, Lautem.",
+   "amounts": {
+    "50": 150000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X7",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Renovation of the Pousada and Fort Maubara",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Sítios Turísticos Reabilitados",
+   "baseline": "2027 Melhoria da Pousada e do Forte de Maubara.",
+   "target": "Melhoria da Pousada e do Forte de Maubara.",
+   "amounts": {
+    "50": 200000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X8",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Beach facilities at Caibada, Baucau",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção de locais turísticos.",
+   "baseline": "2027 Melhoria das instalações básicas na Praia de Caibada, Baucau.",
+   "target": "Melhoria das instalações básicas na Praia de Caibada, Baucau.",
+   "amounts": {
+    "50": 100000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207X9",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Kaitehu recreation area",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "1) Estasionamento estabelisido 2) Parke rekreativo ba labarik estabelesido 3) Patio estabelesido",
+   "baseline": "2023 dezenho no BOQ projetu Sitiu Turistiku Praia Kaitehu Liquica hetan ona aprovasaun, iha 2024 tama ona iha prosesu tenderizasaun",
+   "target": "1). 2027 sei iha kontinuasaun Sitiu Turistiku Praia Kaitehu Liquica",
+   "amounts": {
+    "50": 100000.0
+   },
+   "page": 1071
+  },
+  {
+   "code": "98207XA",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Food hut and souvenir shop at the Ramelau Sanctuary",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção de locais turísticos.",
+   "baseline": "2027 Continuação da construção de bancas de alimentação e de uma loja de souvenirs no Santuário do Monte Ramelau, Ainaro.",
+   "target": "Continuação da construção de bancas de alimentação e de uma loja de souvenirs no Santuário do Monte Ramelau, Ainaro.",
+   "amounts": {
+    "50": 155000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XB",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Rest points in Aileu, Ainaro, Manufahi and Covalima",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção de locais turísticos.",
+   "baseline": "2027 Criação de pontos de descanso em Aileu, Ainaro, Manufahi e Covalima.",
+   "target": "Criação de pontos de descanso em Aileu, Ainaro, Manufahi e Covalima.",
+   "amounts": {
+    "50": 150000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XC",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Tourism service centre - Baucau",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#centro de informação turística",
+   "baseline": "estabeleceu centro de informação turística em Díli",
+   "target": "2025 vai construir um centro de informação turística no concelho de Baucau",
+   "amounts": {
+    "50": 375000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XD",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Tourism service centre - Bobonaro (Batugade)",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#centro de informação turística",
+   "baseline": "estabeleceu centro de informação turística em Díli",
+   "target": "2025 vai construir um centro de informação turística no concelho de Bobonaro (Batugade)",
+   "amounts": {
+    "50": 300000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XE",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Tourism service centre - Ainaro (Maubisse)",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#centro de informação turística",
+   "baseline": "estabeleceu centro de informação turística em Díli",
+   "target": "2025 vai construir um centro de informação turística no concelho de Ainaro (Maubessi)",
+   "amounts": {
+    "50": 15000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XF",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Crocodile park at Wemalae Lake, Atabae",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Recolha de dados sobre os recursos da biodiversidade e atividades de sensibilização",
+   "baseline": "em 2013–2014, foram identificadas áreas de idinficação de crocodilo em 11 municípios.",
+   "target": "Recolha de dados sobre os habitats das crocodilo nas zonas costeiras da região norte, abrangendo 6 municípios e a RAEOA.",
+   "amounts": {
+    "50": 30525.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XG",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Basic infrastructure at Mt Matebian site and trekking circuit",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção de locais turísticos.",
+   "baseline": "2027 Infraestruturas básicas nos locais religiosos e históricos no Monte Matebian e ao longo do Circuito de Trekking de Matebian.",
+   "target": "Infraestruturas básicas nos locais religiosos e históricos no Monte Matebian e ao longo do Circuito de Trekking de Matebian.",
+   "amounts": {
+    "50": 200000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XI",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Hot spring facilities at Uaikana, Venilale, Baucau",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção de locais turísticos.",
+   "baseline": "2027 Melhoria das instalações no local turístico das Termas de Uaikana, Venilale, Baucau.",
+   "target": "Melhoria das instalações no local turístico das Termas de Uaikana, Venilale, Baucau.",
+   "amounts": {
+    "50": 100000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XJ",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Hot spring facilities at Marobo, Bobonaro",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Sítios Turísticos Reabilitados",
+   "baseline": "2027 Melhoria das instalações turísticas nas Termas de Marobo, Bobonaro.",
+   "target": "Melhoria das instalações turísticas nas Termas de Marobo, Bobonaro.",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "98207XK",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Training and Music Arts Centre and Pope Francis Monument",
+   "div": [
+    "1100202"
+   ],
+   "indicator": "#Construção do Centro de Formação e Artes Musicais e do Monumento do Papa Francisco.",
+   "baseline": "2027 Construção do Centro de Formação e Artes Musicais e do Monumento do Papa Francisco.",
+   "target": "Construção do Centro de Formação e Artes Musicais e do Monumento do Papa Francisco.",
+   "amounts": {
+    "50": 80000.0
+   },
+   "page": 1072
+  },
+  {
+   "code": "9820802",
+   "programme": "982",
+   "subprogramme": "98208",
+   "subprogramme_name": "Desenvolvimento do Setor Privado na área do turismo",
+   "name": "Inspeção e controlo de estabelecimentos turisticas",
+   "div": [
+    "1100203"
+   ],
+   "indicator": "#Empresas Inspecionadas",
+   "baseline": ".000 empresas de turismo inspecionadas.",
+   "target": ".000 empresas de turismo inspecionadas.",
+   "amounts": {
+    "10": 65572.0,
+    "20": 12500.0
+   },
+   "page": 1073
+  },
+  {
+   "code": "98208X1",
+   "programme": "982",
+   "subprogramme": "98208",
+   "subprogramme_name": "Desenvolvimento do Setor Privado na área do turismo",
+   "name": "Hospitality and tourism training centre support",
+   "div": [
+    "1100203"
+   ],
+   "indicator": "#Formandos Capacitados nos Centros de Formação Apoiados",
+   "baseline": "2027 Formações em Guias Turísticos, Culinária, Barista e Atendimento ao Cliente",
+   "target": "Formações em Guias Turísticos, Culinária, Barista e Atendimento ao Cliente",
+   "amounts": {
+    "20": 195625.0
+   },
+   "page": 1073
+  },
+  {
+   "code": "98208X2",
+   "programme": "982",
+   "subprogramme": "98208",
+   "subprogramme_name": "Desenvolvimento do Setor Privado na área do turismo",
+   "name": "Increasing tourism workforce capacity",
+   "div": [
+    "1100203"
+   ],
+   "indicator": "#Formandos Capacitados nos Centros de Formação Apoiados",
+   "baseline": "2027 Formações em Guias Turísticos, Culinária, Barista e Atendimento ao Cliente",
+   "target": "Formações em Guias Turísticos, Culinária, Barista e Atendimento ao Cliente",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1073
+  },
+  {
+   "code": "9820901",
+   "programme": "982",
+   "subprogramme": "98209",
+   "subprogramme_name": "Política de desenvolvimento turismo TL",
+   "name": "Desenvolvimento Politica no setor Turismo",
+   "div": [
+    "1100201"
+   ],
+   "indicator": "#Documentos de Política e Plano Estratégico",
+   "baseline": "O Plano Estratégico do Turismo foi divulgado na Região Administrativa Especial de Oe-Cusse (RAEOA).",
+   "target": "Foi realizada a divulgação do Plano Estratégico do Turismo em quatro regiões. Produção do livro do Plano Estratégico do Turismo (PET). Supervisão e acompanhamento da implementação dos programas da Direção Técnica no setor do turismo nos municípios,",
+   "amounts": {
+    "10": 49738.0,
+    "20": 104650.0
+   },
+   "page": 1073
+  },
+  {
+   "code": "9820903",
+   "programme": "982",
+   "subprogramme": "98209",
+   "subprogramme_name": "Política de desenvolvimento turismo TL",
+   "name": "Cooperação e parceria na area turismo",
+   "div": [
+    "1100201"
+   ],
+   "indicator": "#Acordos de Cooperação e Parcerias",
+   "baseline": "Produs ona akordu ho UNTL, The Asia Foundation, MDF, USAID, UNWTO, SPTO, PATA, ASEAN, CPLP",
+   "target": "Acordos de cooperação estabelecidos: Foram estabelecidos acordos com a UNTL, The Asia Foundation, MDF, USAID, UNWTO, SPTO, PATA, ASEAN e CPLP. Reforço das parcerias: O MTA reforçou a cooperação com parceiros de desenvolvimento a nível nacional e internacional, incluindo a Embaixada da Nova Zelândia, UNWTO, PATA, SPTO, The Asia Foundation, MDF e USAID, bem como com os ministérios relevantes. Adesão e participação: O MTA aderiu e participou em organizações e redes internacionais de turismo, incluindo a UNWTO, PATA, SPTO e ASEAN. Formação não formal: Foram realizadas atividades de formação não formal em Timor-Leste e no estrangeiro",
+   "amounts": {
+    "20": 82050.0
+   },
+   "page": 1074
+  },
+  {
+   "code": "98209X1",
+   "programme": "982",
+   "subprogramme": "98209",
+   "subprogramme_name": "Política de desenvolvimento turismo TL",
+   "name": "Professional services and studies for tourism development policy",
+   "div": [
+    "1100201"
+   ],
+   "indicator": "#Serviços profissionais e estudos para o desenvolvimento do turismo",
+   "baseline": "2026 Serviços profissionais e estudos para o desenvolvimento do turismo (Consultor do Projeto – Ministério)",
+   "target": "Serviços profissionais e estudos para o desenvolvimento do turismo (Consultor do Projeto – Ministério)",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 1074
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) % de Resultados de desempenho publicados no website do Governo 3) Relatório anual da entidade publicado",
+   "baseline": "Relatório de cinco anos",
+   "target": "100%",
+   "page": 1054
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de inquéritos aos visitantes turísticos internacionais e nacionais realizados. % de habitats de risco de crocodilos identificados que representam uma ameaça aos visitantes. % de sessões de formação realizadas sobre inquéritos estatísticos. Plano de Ação Anual elaborado. % de atividades de cooperação realizadas. Legislação sobre turismo e ambiente elaborada/revista. % de atividades de coordenação realizadas e quadro jurídico e institucional reforçado. % de atividades de inspeção e monitorização dos serviços do MTA realizadas. % de instrumentos jurídicos/diplomas produzidos. Legislação de turismo e ambiente; Coordenação dos serviços efetuada e reforço do quadro institucional e legal; Inspeção e fiscalização dos serviços do MTA; Diplomas legais produzidos",
+   "baseline": "Em 2022, foi realizado um inquérito sobre os estabelecimentos de alojamento, abrangendo um total de 250 estabelecimentos de alojamento em quatro municípios. Em 2014, foi realizado um inquérito para recolher dados sobre os habitats de crocodilos ao longo das zonas costeiras de oito municípios. Plano de Ação Anual do MTA. Em 2024, foram elaborados e implementados o Plano de Ação Anual, o Plano de Aprovisionamento e o Plano de Recursos. De 2019 a 2023, foram realizadas inspeções e atividades de monitorização dos serviços em todos os 13 municípios. A Lei da Biodiversidade e os Decretos-Leis foram elaborados e harmonizados, incluindo a legislação que regulamenta a importação e a produção de sacos de plástico, embalagens e outros produtos de plástico.",
+   "target": "Foram realizados inquéritos sobre o número de turistas em quatro pontos de entrada: Fronteira de Mota Ain, Mota Masin, Sakato e Aeroporto Internacional de Díli. Foram identificadas 25 áreas de risco de crocodilos que representam uma ameaça para os visitantes. Foi elaborado o Plano de Ação Anual. Foi obtida a adesão plena à OMC e à ASEAN, incluindo a implementação dos requisitos das convenções internacionais nas áreas do turismo e do ambiente. Foram elaborados cinco instrumentos legislativos nas áreas do turismo e do ambiente. Foi contratado um especialista para apoiar a elaboração da legislação. Foi realizada a coordenação com as direções do MTA relativamente à implementação das atividades e à execução orçamental. Em 2025, a GIAI realizou inspeções e atividades de monitorização em 12 municípios e na RAEOA. Foi realizada uma formação em investigação em Portugal para cinco",
+   "page": 1054
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) % de execução do orçamento 2) Procedimentos operacionais/orientações padrão para o arquivo e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3)Criação de um sistema de arquivo eletrónico",
+   "baseline": "Relatório Anual de 2022",
+   "target": "100%",
+   "page": 1055
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "#Cooperação e Parcerias",
+   "baseline": "Estabeleceu cooperação na área ambiental com o PNUD, a Blue Ventures, a FAO, a Mercy Corps, o Banco Mundial, a Conservation International e os ministérios relevantes responsáveis pelo setor do ambiente.",
+   "target": "100%",
+   "page": 1056
+  },
+  {
+   "kind": "outcome",
+   "code": "981.0.0",
+   "statement": "A proteção e a conservação ambiental são reforçadas por meio de estratégias eficazes de redução do impacto das alterações",
+   "indicator": "1) % da área territorial nacional sob gestão de proteção ou conservação ambiental 2) Redução no",
+   "baseline": "1. As emissões de gases com efeito de estufa atingiram 0,003 graus Celsius. 2.Conservação in-situ na",
+   "target": "1.Até 2026, compensar todas as emissões de gases com efeito de estufa através da plantação de 1 milhão de",
+   "page": 1056
+  },
+  {
+   "kind": "output",
+   "code": "98102.0.1",
+   "statement": "A consciência ambiental e as práticas sustentáveis nas escolas, sucos e comunidades são reforçadas por meio de programas educativos, brigadas ambientais e atividades de formação.",
+   "indicator": "1. Promoveu a reciclagem através de formações realizadas no âmbito do Programa Escola Verde e do Programa Suco Verde. Entre 2021 e 2023, foram estabelecidas 10 Escolas Verdes nos municípios de Liquiçá, Manatuto, Covalima, Bobonaro, Manufahi, Viqueque, Baucau, Aileu, Ainaro e Dili. 2. Em 2021, foram estabelecidos 2 Suco Verdes (Suco Dato e Suco Aubeon). 3. Até 2023, 450 pessoas adquiriram conhecimentos sobre práticas sustentáveis.",
+   "baseline": "2026: Promover a reciclagem através de formação no âmbito dos programas Escola Verde e Suco Verde, 2025: Aumentar o conhecimento sobre práticas sustentáveis, conservação e proteção ambiental através de, a. Campanha HTHT com 1.000 pessoas dos Suco Verdes e 500 alunos do ensino secundário b.Formação e produção de Fugaun Rai para 150 pessoas, c. Formação em reciclagem para 350 pessoas.",
+   "target": "Redução das emissões de gases com efeito de estufa através da coordenação da plantação de 1 milhão de árvores por ano e da promoção do mercado de carbono, contribuindo para a redução das emissões. Serão aumentadas as áreas, em hectares, de conservação in-situ e ex-situ, com o objetivo de reduzir os ataques de crocodilos a seres humanos e outros animais. Será também reduzida a poluição e a utilização de sacos de plástico de uso único.",
+   "page": 1057
+  },
+  {
+   "kind": "output",
+   "code": "98103.0.0",
+   "statement": "Os ecossistemas críticos e as áreas de biodiversidade são protegidos através do envolvimento da comunidade, monitorização e expansão e gestão eficaz das áreas protegidas e de conservação.",
+   "indicator": "#de hectares abrangidos por uma gestão nova ou melhorada de áreas de conservação/protegidas (ligado ao Indicador CRF 251). #de comunidades que receberam formação em conservação e práticas",
+   "baseline": "1) Ano 2021-2022, plantação de árvores de elevado valor económico num total de 71.534,00 pes 3) Ano 2021-2023: 17 ha de Ai- parapa no Posto Administrativo de Hera, Concelho de Cristu Rei, 5 ha",
+   "target": "Nos anos de 2021–2022, foram plantadas 71.534 árvores de espécies de elevado valor económico. Nos anos de 2021–2023, foram estabelecidos 17 hectares de Ai- parapa no Posto Administrativo de",
+   "page": 1058
+  },
+  {
+   "kind": "output",
+   "code": "98104.0.0",
+   "statement": "As comunidades e instituições estão mais bem preparadas para os riscos climáticos por meio de avaliações de vulnerabilidade climática, ações de adaptação e monitoramento de substâncias que destroem a camada de ozono.",
+   "indicator": "1) #de municípios abrangidos pelas Avaliações Integradas de Vulnerabilidade (IVA) 2) #de formações realizadas sobre adaptação às alterações climáticas, mitigação e redução do risco de catástrofes 3) #de projetos que implementam tecnologias de baixo carbono/amigas da camada de ozono (redução de HCFC/HFC)",
+   "baseline": "Entre 2017 e 2022, a IVA foi implementada em 88 municípios; entre 2014 e 2022, realizou-se a 5.ª Conferência Nacional sobre Alterações Climáticas; entre 2014 e 2022, foram realizados workshops do Grupo de Trabalho sobre Alterações Climáticas; em 2022, foi implementada tecnologia limpa no município de Cairui; em 2022, Timor-Leste participou na COP- 2022, conferência anual da CPLP; e foram implementados os projetos ACSE, PRE e USP-PACRES entre 2016 e 2022.",
+   "target": "IVA em 20 municípios e inventário de GEE, incluindo formação, concluídos",
+   "page": 1060
+  },
+  {
+   "kind": "output",
+   "code": "98105.0.0",
+   "statement": "&amp;#13;&amp;#10;O acesso ao financiamento climático e às oportunidades do mercado de carbono é reforçado por meio de parcerias, atividades de preparação e apresentações técnicas.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1062
+  },
+  {
+   "kind": "output",
+   "code": "98107.0.0",
+   "statement": "A poluição causada por resíduos plásticos, óleo usado e métodos de cozimento ineficientes é reduzida por meio de sistemas de coleta aprimorados, regulamentações e programas de conscientização da comunidade.",
+   "indicator": "1) #Toneladas de óleo usado recolhidas e tratadas com segurança anualmente 2) % de redução do consumo de plástico descartável 3) #de municípios que implementam e monitorizam a Política de Plástico Zero",
+   "baseline": "1) Foram realizadas formações para a produção de fugaun rai nos municípios de Viqueque e Baucau, destinadas a dois grupos, com 100 membros em cada grupo. 2) A instalação de um centro de gestão de óleo usado em Alas está em construção, enquanto o centro em Tibar já está 100% concluído. 3) A Política de Plástico Zero foi implementada através de ações de sensibilização abrangendo 8 municípios, da promoção e instalação de pontos de recolha de resíduos plásticos e do incentivo à reciclagem.",
+   "target": "1) As atividades geológicas provocaram derrames de petróleo em 6 municípios. 2) Continuar a identificação de um local para a gestão de óleo usado em Alas e proceder à reabilitação de 6 instalações de armazenamento de óleo usado e tanques de descarga em Tibar.",
+   "page": 1062
+  },
+  {
+   "kind": "outcome",
+   "code": "981.0.1",
+   "statement": "A proteção e a conservação ambiental são reforçadas através de estratégias eficazes de redução do impacto das alterações climáticas, salvaguarda dos recursos naturais, preservação da biodiversidade, redução da poluição e aplicação de práticas de licenciamento ambiental e desenvolvimento sustentável.",
+   "indicator": "% de redução das emissões de gases com efeito de estufa (GEE) por ano N.º de hectares de áreas de conservação in situ e ex situ N.º de atividades de controlo da poluição abrangendo o solo, a água, o ar e o ruído",
+   "baseline": "As emissões de gases com efeito de estufa atingiram 0,003 graus Celsius. Foi realizada conservação in situ no Lago Welenas, Manufahi, e conservação ex situ em Hera. Em 2022– 2023, foram realizados o controlo da poluição e inspeções para a implementação da Política de Plástico Zero a nível nacional e em 8 municípios.",
+   "target": "Reduzir as emissões de GEE através da coordenação da plantação de 1 milhão de árvores por ano e promover o mercado de carbono para contribuir para a redução das emissões. Aumentar a área, em hectares, de conservação in situ e ex situ para reduzir os ataques de crocodilos a seres humanos e outros animais. Reduzir a poluição e a utilização de sacos de plástico descartáveis.",
+   "page": 1064
+  },
+  {
+   "kind": "output",
+   "code": "98108.0.0",
+   "statement": "O licenciamento ambiental e a aplicação da regulamentação são reforçados para garantir o desenvolvimento sustentável e o cumprimento das normas ambientais.",
+   "indicator": "1) #de licenças ambientais (Categoria A/B/C) emitidas anualmente 2) % de projetos licenciados das Categorias A/B monitorizados pelo menos uma vez por ano 3) #de novos regulamentos, normas ou diretrizes aprovados (poluição, clima, resíduos, biodiversidade)",
+   "baseline": "A ANLA emitiu licenças ambientais para a Categoria A = 8 projetos, Categoria B = 22 projetos e Categoria C = 250 projetos.",
+   "target": "Serão emitidas 300 Licenças Ambientais (LA) aos proponentes e serão certificados, no mínimo, 5 consultores de Licenciamento Ambiental (LA).",
+   "page": 1064
+  },
+  {
+   "kind": "outcome",
+   "code": "982.0.0",
+   "statement": "&#34; Os destinos, produtos e serviços turísticos em Timor-Leste são melhor regulamentados, desenvolvidos,",
+   "indicator": "#de visitantes internacionais: 26.912 chegadas registadas na fronteira e no aeroporto,",
+   "baseline": "Número de visitantes internacionais: 26.912 chegadas registadas na fronteira e no aeroporto,",
+   "target": "Número de visitantes internacionais: 32.500 visitantes na fronteira e no aeroporto, mais 1.500",
+   "page": 1064
+  },
+  {
+   "kind": "output",
+   "code": "98204.0.0",
+   "statement": "&amp;#13;&amp;#10;&amp;#34;Sistema legal, de licenciamento e de fiscalização dos jogos recreativos e lotarias operacional e implementado, garantindo operações seguras e contribuindo para receitas públicas&amp;#34;",
+   "indicator": "#de regulamentos/decretos importantes sobre o jogo revistos e implementados.",
+   "baseline": "1. Em 2026, foram abordados os regulamentos sobre jogos de rua, ao abrigo do Decreto-Lei n.º 6/2016, de 20 de abril, e do Decreto do Governo n.º 10/2008, de 11 de junho. 2. Em 2026, será finalizada a alteração do Decreto- Lei n.º 6/2016, de 20 de abril, e do Decreto do Governo n.º 10/2008, de 11 de junho. Foram emitidas 14 licenças para operadores de jogos. 3. Em 2025, as atividades de jogo geraram US$ 3.788.823,30 de receitas para o Tesouro do Estado. 4. Em 2026, serão realizadas inspeções e ações de fiscalização das atividades de jogo em todo o território de Timor-Leste.",
+   "target": "1. Em 2027, serão implementados regulamentos/decretos em quatro (4) áreas: I. Regime Jurídico dos Jogos (lei-quadro – projeto de decreto-lei); II. Regime Jurídico dos Jogos de Casino (projeto de decreto-lei); III. Nova Estrutura Organizacional da IGJ (projeto de decreto do Governo); IV. Novo Regime Jurídico das Lotarias Estatais (Função Pública) – projeto de decreto-lei. 2. Em 2027, 75% das licenças dos operadores de jogos serão inspecionadas. 3. Em 2027, serão gerados US$ 4.309.604,10 para o Tesouro do Estado. 4. Em 2027, 50% dos esforços serão direcionados para o combate ao jogo ilegal.",
+   "page": 1065
+  },
+  {
+   "kind": "output",
+   "code": "98205.0.0",
+   "statement": "Implementação de planos de acção para a promoção e desenvolvimento do turismo.",
+   "indicator": "1) Site nacional de turismo (timorleste.tl) atualizado e mantido operacional (sim/não; nº de visitas por ano). 2) Nº de feiras/exposições internacionais de turismo frequentadas anualmente. 3) Nº de campanhas de marketing digital implementadas com foco no mergulho, cultura e turismo de aventura. 4) % de aumento do tráfego do website ou do engagement nas redes sociais proveniente dos mercados prioritários.",
+   "baseline": "\"1. 2025, Conteúdo atualizado (2024 número de visitantes na fronteira e aeroporto 26.912 pessoas, 2024 número de visitantes de cruzeiros 1.020 pessoas) 2. 2025 Expo Mundial Osaka Japão 3. 2025 0 4. 2024 website 27.550 sessões únicas 2025 website 30.260 sessões únicas 1. 2025, Conteúdo atualizado (2024 número de visitantes na fronteira e aeroporto 26.912 pessoas, 2024 número de visitantes de cruzeiros 1.020 pessoas) 2. ª Exposição Mundial 2025 Osaka, Japão 3. 2025 0 4. Site de 2024 27.550 sessões únicas, site de 2025 30.260 sessões únicas\"",
+   "target": "1. Redesenho do website em 2026 2. Feiras de turismo: ASEAN Tourism Forum nas Filipinas, ADEX/OZTEK Dive Show em Singapura, SPTO's SPTE nas Fiji, Darwin Fusion na Austrália, Bali & Beyond Travel Fair na Indonésia, PATA Travel Mart na Tailândia, GoDiving na Austrália 3. Gestão e publicidade em redes sociais, email marketing e anúncios Google, website 2026 com 50.000 sessões únicas 1. Site refeito de 2026 2. Feira de turismo ASEAN Tourism Forum nas Filipinas, ADEX/OZTEK Dive Show em Singapura, SPTO's SPTE em Fiji, Darwin Fusion na Austrália, Bali & Beyond Travel Fair na Indonésia, PATA Travel Mart na Tailândia, GoDiving na Austrália 3. Gestão de redes sociais e publicidade, email marketing e anúncios do Google, site de 2026 50.000 sessões únicas",
+   "page": 1067
+  },
+  {
+   "kind": "output",
+   "code": "98206.0.0",
+   "statement": "&amp;#34;Operações de turismo de base comunitária em sucos prioritários são apoiadas e fortalecidas, incluindo formação, melhoria de produtos e gestão local, promovendo experiências turísticas sustentáveis&amp;#34;",
+   "indicator": "1) #de locais de turismo comunitário com iniciativas de turismo comunitário apoiadas ou operacionais 2) #de membros da comunidade formados em gestão de turismo comunitário e serviços turísticos (M/F) 3) #de produtos/pacotes de turismo comunitário desenvolvidos ou melhorados 4) % de locais de turismo comunitário apoiados que cumprem os padrões mínimos de serviço",
+   "baseline": "Apoio em 2024 ao grupo de beneficiários 14 nos municípios de Liquiçá, Ermera, Ainaro, Manatuto, Lautém, Dili, Atauro e RAEOA; apoio em 2025 ao grupo de beneficiários 11 nos municípios de Manufahi, Aileu, Liquiçá e Dili; e apoio em 2026 ao grupo de beneficiários 15 nos municípios de Ermera, Manatuto, Baucau, Aileu, Liquiçá, Dili e Bobonaro.",
+   "target": "Apoio ao Turismo Comunitário 2027: 13 municípios e 15 grupos beneficiários, incluindo a Autoridade Administrativa de Atauro, bem como o desenvolvimento do turismo ecológico nos municípios de Liquiçá, Bobonaro, Dili e Atauro.",
+   "page": 1068
+  },
+  {
+   "kind": "output",
+   "code": "98207.0.0",
+   "statement": "Sítios turísticos e infra-estruturas públicas prioritárias em TL são reabilitados e geridos de acordo com padrões mínimos de segurança, limpeza e serviços para visitantes.",
+   "indicator": "1) # de sítios turísticos prioritários reabilitados ou melhorados 2) # de Jardins Urbanos / áreas públicas de lazer reabilitadas e fechadas 3) % de sítios reabilitados que dispõem de instalações básicas (água, sanitários, gestão de resíduos)",
+   "baseline": "1. 2024, reabilitar e construir 4 equipamentos turísticos nos municípios de Baucau (Watabou), Ainaro (Fleixa, Ramelau e Rabilau), Lospalos e Aileu. 2. Em 2024, disponibilizar sinalização conjunta para 49 áreas na zona Leste, e 3 casas de banho nos municípios de Lospalos, Baucau e Ainaro (Ramelau e Rabilau). 1. 2024, reabilitar e construir 4 equipamentos turísticos nos municípios de Baucau (Watabou), Ainaro (Fleixa, Ramelau e Rabilau), Lospalos e Aileu. Em 2. 2024, disponibilizar sinalização conjunta para 49 zonas da zona Leste, e 3 casas de banho nos",
+   "target": "1. Em 2026, reabilitar e construir unidades turísticas em Aileu Ainaro. 2. Em 2026, implementação de sinalização em conjunto em 49 zonas a oeste, com 2 casas de banho no município 1. Em 2026, reabilitar e construir instalações turísticas em Aileu e Ainaro. 2. Em 2026, implementar sinalização coordenada em 49 zonas ocidentais, com 2 sanitários públicos no concelho",
+   "page": 1070
+  },
+  {
+   "kind": "output",
+   "code": "98208.0.0",
+   "statement": "Trabalhadores da hospitalidade e operadores turísticos possuem competências melhoradas e cumprem requisitos de licenciamento e qualidade",
+   "indicator": "\"\"\"1) nº de trabalhadores de hotelaria (F/M) que concluíram formação certificada por ano 2) Nº de estabelecimentos turísticos e de restauração explorados por ano 3) % de estabelecimentos inspeccionados que possuem licença válida\"",
+   "baseline": "1. A formação em limpeza, recepção, alimentação e bebidas envolveu 100 pessoas, 70 mulheres e 30 homens no município de Manatutos 1. A formação em limpeza, recepção, alimentação e bebidas envolveu 100 pessoas, 70 mulheres e 30 homens no município de Manatuto",
+   "target": "1. A formação em limpeza, recepção, alimentação e bebidas envolveu 100 pessoas, 70 mulheres e 30 homens no município de Aileu 1. A formação em limpeza, recepção, alimentação e bebidas envolveu 100 pessoas, 70 mulheres e 30 homens no município de Aileu",
+   "page": 1073
+  },
+  {
+   "kind": "output",
+   "code": "98209.0.0",
+   "statement": "Sector do turismo é orientado por políticas, leis, normas e sistemas estatísticos actualizados, alinhados com a Estratégia de Turismo 2023–2030 e com boas práticas da ASEAN/UNWTO",
+   "indicator": "\"\"\"1) # de principais diplomas legais e regulamentares de turismo aprovados ou revistos 2) Plano Diretor de Desenvolvimento Turístico 2025–2035 elaborado e aprovado (sim/não) 3) Sistema de estatísticas do turismo e processo para a Conta Satélite do Turismo (TSA) estabelecido 4) # de empresas/operadores que adotam normas/normas de serviço alusivas às Normas de Turismo da ASEAN\"",
+   "baseline": "1. Projeto de decreto-lei de 2025 sobre alojamento turístico, Projeto de Orientações CBT 2. 3ª reunião interministerial de 2023 1. 2025 Projeto de decreto-lei sobre alojamento turístico, Projeto de Orientações CBT 2. 2023 3 reunião interministerial",
+   "target": "1. 2026 Promulgar decreto-lei sobre Alojamento Turístico, criar uma política de TBC e orientações 2. 6 reuniões interministeriais 1. 2026 Promulgar Decreto lae sobre Alojamento Turístico, Criar uma Política e orientações de TBC 2. 6 reunião interministerial",
+   "page": 1073
+  }
+ ]
+}

@@ -1,0 +1,985 @@
+{
+ "year": 2027,
+ "code": "070",
+ "name": "Centro Nacional Chega! I.P.",
+ "abbr": "CNC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   743,
+   753
+  ]
+ },
+ "units": [
+  {
+   "code": "GAOCC",
+   "div": "0700101",
+   "name": "Gabinete Apoiu Orgaun Centro Chega! (GAOCC)",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DREKA",
+   "div": "0700102",
+   "name": "Divizaun Relasaun Externa, Komunikasaun, no Advokasia (DREKA)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DEF",
+   "div": "0700103",
+   "name": "Divizaun Edukasaun no Formasaun (DEF)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DFO",
+   "div": "0700107",
+   "name": "Divizaun Finansas no Operasional (DFO)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DSR",
+   "div": "0700108",
+   "name": "Divizaun Servisu Reparativu(DSR)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DPM",
+   "div": "0700109",
+   "name": "Divizaun Prezervasaun no Memorializasaun(DPM)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DIP-PRU",
+   "div": "0700110",
+   "name": "Divizaun Politika,Planeamentu no Rekursu Umanu(DiP-PRU)",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "024": "Cultura e património",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A26": "Combatente da libertção nacional"
+ },
+ "activities": [
+  {
+   "code": "0242601",
+   "programme": "024",
+   "subprogramme": "02426",
+   "subprogramme_name": "Desenvolver Sítio Consiência e Enquadramento Legal para a Preservação de Sítio Histórico",
+   "name": "Desenvolver Sítio Consiencia",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "\"1) # Mapeamento realizado no Municipio; 2) # de sitio historico sinalizado; 3) # sitio registrado e legalizado; 4) # de Sítio Consiencia dezenvolvido; \"",
+   "baseline": "1)12; 2) 66; 3)2;4)1;",
+   "target": "\"1)1; 2)15; 3) 10; 4)1 \"",
+   "amounts": {
+    "20": 13330.0
+   },
+   "page": 743
+  },
+  {
+   "code": "0242603",
+   "programme": "024",
+   "subprogramme": "02426",
+   "subprogramme_name": "Desenvolver Sítio Consiência e Enquadramento Legal para a Preservação de Sítio Histórico",
+   "name": "Inscrição Património Cultural para Memória Mundial",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "1) # Património Cultural para Memória Mundial registrado",
+   "baseline": "1) 0",
+   "target": "(1) 1",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 743
+  },
+  {
+   "code": "0242701",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Desenvolver Biblioteca Centro Chega!",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "\"1)#visitantes que acessam a biblioteca Chega!; 2) # de livro registrado no sistema KOHA; 3)# Biblioteca mak hetan apoiu Livru husi Centro Chega; (4) #Akizasaun livru ba biblioteka (5)# de eventu discussao regular (trimestral) realizada; (6) # de Feira do livro organizado .\"",
+   "baseline": "\"(1)2103; (2)2050; (3) 35; (4) 120; (5) 12; (6)12.\"",
+   "target": "(1). 800; (2)200; (3) 10; (4)140; (5)4; (6)6.",
+   "amounts": {
+    "20": 8075.0
+   },
+   "page": 744
+  },
+  {
+   "code": "0242702",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Hatutan Memoria",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "(1) # de estudantes que já frequentaram Formação de \"Hatutan Memória e já escreveram a memória dos seus pais , (2) # de Livros de \"Hatutan Memoria\" Produs e Publicado.",
+   "baseline": "(1)603; (2):5.",
+   "target": "(1)80;(2)1.",
+   "amounts": {
+    "20": 65557.0
+   },
+   "page": 744
+  },
+  {
+   "code": "0242703",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Chega! Tour",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "# de estudantes e publicos que já visitaram os sítios históricos turísticos em Timor-Leste;",
+   "baseline": "13321;",
+   "target": "700",
+   "amounts": {
+    "20": 6680.0
+   },
+   "page": 744
+  },
+  {
+   "code": "0242704",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Competição de Certame de Direitos Humanos",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "# de estudantes envolvidos na competição de História e Direitos Humanos",
+   "baseline": "708",
+   "target": "45",
+   "amounts": {
+    "20": 1100.0
+   },
+   "page": 744
+  },
+  {
+   "code": "0242705",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Desenvolver Um Centro de Resolução de Pós-Conflito",
+   "div": [
+    "0700110"
+   ],
+   "indicator": "(1) # de jovens que participaram no programa de Chega! Young Ambassador (CYA); (2 ) # de atividades realizadas (3) # resultado da pesquisa temática sobre a resolução de conflitos em Timor-Leste disponível/adquirido; (4) # rezultadu peskiza divulgada",
+   "baseline": "(1)18; (2)36; (3) 5; (4) 5",
+   "target": "(1) 3; (2)6; (3)2. (4) 2",
+   "amounts": {
+    "20": 50800.0
+   },
+   "page": 744
+  },
+  {
+   "code": "0242706",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Desenvolve Curiculum Ensino &amp;#38; Materia Educativo",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "(1) # Currículo para o Instituto Superior PNTL (Esboco) (2) # Currículo para o Ensino Secundário (esboco) (3) # Materiais didáticos complementares reproduzidos",
+   "baseline": "(1)2; (2)1; (3) 1500.",
+   "target": "(1) 1; (2)1; (3) 400.",
+   "amounts": {
+    "20": 6940.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242707",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Formação Didático para professores &amp;#38; Dosente",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "1) Docentes que participaram no módulo de formação Chega! para o Ensino Superior; 2) Professores que participaram em formação didática;",
+   "baseline": "(1)100; (2) 938;",
+   "target": "(1)20; (2)120",
+   "amounts": {
+    "20": 24120.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242708",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Formação Direitos Humanos e história para Entidade Pública",
+   "div": [
+    "0700103"
+   ],
+   "indicator": "\"(1). # de membros da PNTL que frequentaram formação e adquiriram conhecimentos sobre História de violação dos Direitos Humanos em Timor-Leste entre 1974-1999; (2).# de funcionários públicos que frequentaram formação e adquiriram conhecimentos sobre História de violação dos Direitos Humanos em Timor-Leste entre 1974-1999; (3) # de guardas prisionais que frequentaram formação e adquiriram conhecimentos sobre Direitos Humanos; (4) # de F-FDTL que frequentaram formação e adquiriram conhecimentos sobre Direitos Humanos e Istoria; \"",
+   "baseline": "(1)273;(2)1200;(3)232; (4) 95",
+   "target": "(1)20;(2)160; (3)20; (4)20.",
+   "amounts": {
+    "20": 4981.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242709",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Transmissão Memória à Esperança",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1) # de programas de talkshow transmitidos na RTTL.Ep ; 2)# de publico que acompanhaTransmissão Memória à Esperança atraves plataforma media sosial ;",
+   "baseline": "(1) 39; 2)50000",
+   "target": "(1) 2; (2) 2000",
+   "amounts": {
+    "20": 3280.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242710",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Disseminação Chega! e Per Memoriam Ad Spem no Pais",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "# publicos que participaram na disseminação do Relatório de Chega!, PMAS e papel do Centro Chega!.",
+   "baseline": "29477",
+   "target": "100",
+   "amounts": {
+    "20": 22039.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242711",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Internacionalização de Chega!",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1) # de evento internasional sobre disseminação do Relatório de Chega!, PMAS e o papel do Centro Chega!",
+   "baseline": "56",
+   "target": "10",
+   "amounts": {
+    "20": 12710.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242712",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Prémio Jornalístico de Maria Gorrete",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "# produtos jornalísticos sobre a promoção e proteção de paz e Direitos Humanos submetido; (2) # do Prémio melhor do jornalismo de paz \"Maria Gorete\" atribuido;",
+   "baseline": "(1) 13 (Media Online; Media Impressos; Media de Audiovisual; (2) 13",
+   "target": "(1) 5; (2)3",
+   "amounts": {
+    "20": 5138.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242713",
+   "programme": "024",
+   "subprogramme": "02427",
+   "subprogramme_name": "Integrar o conteúdo de Chega! e Per Memoriam Ad Spem no currículo de ensino",
+   "name": "Conferência ou Seminário Temático",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1)# evento realizado; 2) # participante na conferencia ou seminario tematico",
+   "baseline": "(1) 34; (2) 4200",
+   "target": "(1) 2; (2) 1000",
+   "amounts": {
+    "20": 2354.0
+   },
+   "page": 745
+  },
+  {
+   "code": "0242801",
+   "programme": "024",
+   "subprogramme": "02428",
+   "subprogramme_name": "Preservação e valorização da história",
+   "name": "Gestão de Acesso aos Arquivos",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "(1)# Folder digitalizado:(documentos identificados, organizados e descritos; documentos dos arquivos históricos digitalizados); (2) Documentos no sistema que foram avaliados; (3) novos documentos que foram processados e classificados)| (4) # pessoa que ja acessaram o arquivo historico; (5) # eventos de atividade de disseminação de arquivos realizados) (6) Concurso de escrita de arquivo do Centro Chega! implementado, (7) # Formacao do manual pesquisa arquivista ao docente, pesquisdor e gestor do Museu;",
+   "baseline": "1) 7801; (2) 233; (3) 87 folder;(4)175; (5)10; (6)2; (7) 4",
+   "target": "(1)1,000; (2) 200; (3)200; (4) 50, (5) 2; (6) 1; (7); 2",
+   "amounts": {
+    "20": 4738.0
+   },
+   "page": 746
+  },
+  {
+   "code": "0242802",
+   "programme": "024",
+   "subprogramme": "02428",
+   "subprogramme_name": "Preservação e valorização da história",
+   "name": "Conferência Científica Histórica",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "(1) # evento de conferencia cientifica historica realizado",
+   "baseline": "(1) 6",
+   "target": "(1) 1",
+   "amounts": {
+    "20": 2150.0
+   },
+   "page": 746
+  },
+  {
+   "code": "0242803",
+   "programme": "024",
+   "subprogramme": "02428",
+   "subprogramme_name": "Preservação e valorização da história",
+   "name": "Estabelecer e Fortalecer Instituição de Museu Memorial Municipal",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "(1) # de Museu Memorial Municipal fortalecido; (2) # de Museu Memorial Municipal estabelecido; 3) # Monitoring implementasaun atividade MMM",
+   "baseline": "(1) 8; (2) 8; (3) 4;",
+   "target": "(1) 8; (2) 0; (3) 8",
+   "amounts": {
+    "20": 5140.0,
+    "30": 140000.0
+   },
+   "page": 746
+  },
+  {
+   "code": "0242804",
+   "programme": "024",
+   "subprogramme": "02428",
+   "subprogramme_name": "Preservação e valorização da história",
+   "name": "Aquisição Documento Histórico",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "# documentos historicos que foram recolhidos (incluindo documentos em papeis, vídeos e áudios) de diversas fontes, incluindo a Internet.",
+   "baseline": "643",
+   "target": "200",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 746
+  },
+  {
+   "code": "0242805",
+   "programme": "024",
+   "subprogramme": "02428",
+   "subprogramme_name": "Preservação e valorização da história",
+   "name": "Desenvolver Museu Antigo Comarca Balide (MAC- B)",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "1)# de visitante no Museu Chega!; (2)# evento de atividade educativo realizado; (3) #formacao dezenvolvimentu Museu realizado",
+   "baseline": "\"(1) 7; (2) 0 \"",
+   "target": "\"(1) 2; (2) 1 \"",
+   "amounts": {
+    "20": 7842.0
+   },
+   "page": 747
+  },
+  {
+   "code": "0242806",
+   "programme": "024",
+   "subprogramme": "02428",
+   "subprogramme_name": "Preservação e valorização da história",
+   "name": "Inscrição Património Arquival para Memória Mundial",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "# Património Arquival ja registaram na Memória Mundial",
+   "baseline": "0",
+   "target": "1",
+   "amounts": {
+    "20": 250.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0700101"
+   ],
+   "indicator": "The existence of adequate space to promote collective participation in institutional strategic development: (1) # of Board of Directors plenary sessions held; (2) # of managers' meetings held; (3) # of general staff meetings held; (4) # publication on transitional justice mechanism in Timor-Leste",
+   "baseline": "(1)28; (2)28 ; (3) 24; (4) 0",
+   "target": "(1) 12; (2) 14; (3) 12; (4) 1",
+   "amounts": {
+    "20": 50639.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0700101"
+   ],
+   "indicator": "90% de procedimentos e enquadramentos legais implementados no Centro Chega! e o orçamento executado de forma eficaz, eficiente, economizado, e responsivo;",
+   "baseline": "(1) 2;",
+   "target": "(1) 1;",
+   "amounts": {
+    "20": 4360.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0700101"
+   ],
+   "indicator": "# de pareceres legais e asistência jurídica relacionadas com os trabalhos de divisões do Centro Chega! emitidos e fornecidos;",
+   "baseline": "21",
+   "target": "10",
+   "amounts": {
+    "20": 1250.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100158",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Conselho Assesoria Internacional",
+   "div": [
+    "0700101"
+   ],
+   "indicator": "# de encontro do Conselho da Assesoria intenacional realizado",
+   "baseline": "8",
+   "target": "1",
+   "amounts": {
+    "20": 52388.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100159",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Celebração Aniversário Centro Chega!",
+   "div": [
+    "0700110"
+   ],
+   "indicator": "# de Eventos de celebração do aniversário do Centro Chega! Realizados",
+   "baseline": "9",
+   "target": "1",
+   "amounts": {
+    "20": 6496.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0700107"
+   ],
+   "indicator": "\"1. % de fornecimento de material escritório realizado; 2. # quantidade de combustível disponível para o gerador durante um ano; 3. # viajen lokal hodi monitoriza atividade CNC",
+   "baseline": "1)USD 32,071.39; 2) USD 2,576; 3)0; 4)USD 10,116.03; 5)USD 2,872.67; 6) 70; 7) 2; 8) 2 Unidades;",
+   "target": "1) 100%; 2). USD 2,452; 3) 2; 4) USD 6,000.00 ; 5)",
+   "amounts": {
+    "20": 114268.0
+   },
+   "page": 747
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0700110"
+   ],
+   "indicator": "\"(1) # avaliasaun Trimestral Realizado; (2) # Retiro annual Realizado (3) % dos programas e atividades realizados para atingir os objetivos de forma efetiva; (4) O Plano Anual elaborado baseado no Plano Estratégico do período de 2025-2030 \"",
+   "baseline": "(1) 80%; (2) 24 ; (3)6; (4) 90%; (5) PE 2025-2030 no PAA 2026",
+   "target": "\"1) 80% 2) 4 3) 1 (4) 90% (5)) PAA 2027 aprovado \"",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 748
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0700110"
+   ],
+   "indicator": "# de recursos humanos do Centro Chega! adequados, responsivos que receberam o tratamento digno",
+   "baseline": "72",
+   "target": "72",
+   "amounts": {
+    "10": 566646.0
+   },
+   "page": 748
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0700110"
+   ],
+   "indicator": "(1) # dos funcionários que participaram na formação de Mecanismo da Justiça Transicional; (2)# dos funcionários que já frequentaram formasaun profesional",
+   "baseline": "(1). 75 funcionários participaram na formação de Mecanismo da Justiça Transicional (2) 72 funcionários participaram no formação Tecnico Professional",
+   "target": "(1). 15 funcionários participaram na formação de Mecanismo da Justiça Transicional (2)",
+   "amounts": {
+    "20": 3400.0
+   },
+   "page": 748
+  },
+  {
+   "code": "510020T",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Infraestrutura Chega!",
+   "div": [
+    "0700107"
+   ],
+   "indicator": "\"1. % desenho e/ou construção do progresso físico da construção do jardim nos areadores de Antigo Comarca Balide; 2. % pagamento retenção dos projetos no ambito de Centro Chega!\"",
+   "baseline": "1) 0%; 2) 0%",
+   "target": "1) 100%; 2) 100%",
+   "amounts": {
+    "50": 36000.0
+   },
+   "page": 749
+  },
+  {
+   "code": "510022C",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Chega Empresarial",
+   "div": [
+    "0700107"
+   ],
+   "indicator": "\"1. % de finalização do processo marketing, incluindo a promoção de produtos e serviços através meios de comunicação social; 2. % de execução das atividades de Chega! Shop & Gallery, Chega! Rental Services, e da Chega! Historical Tourism; 3. # de relatório mensal dos serviços de Chega! Empresarial.\"",
+   "baseline": "1) 100%; 2) 100%; 3) 11 Frek.",
+   "target": "1) 100%; 2) 100%; 3) 11 Frek.",
+   "amounts": {
+    "20": 800.0
+   },
+   "page": 749
+  },
+  {
+   "code": "51002EE",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Re-point of negative 2026 salaries",
+   "div": [
+    "0700107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 173203.0
+   },
+   "page": 749
+  },
+  {
+   "code": "A260308",
+   "programme": "A26",
+   "subprogramme": "A2603",
+   "subprogramme_name": "Promover Reconciliação e Paz em Nível Nacional e Internacional",
+   "name": "Intercâmbio Cultural Timor-Leste e Indonésia",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1)# de eventos realizadas.",
+   "baseline": "4",
+   "target": "1",
+   "amounts": {
+    "20": 18605.0
+   },
+   "page": 750
+  },
+  {
+   "code": "A260309",
+   "programme": "A26",
+   "subprogramme": "A2603",
+   "subprogramme_name": "Promover Reconciliação e Paz em Nível Nacional e Internacional",
+   "name": "Diálogo de Prevenção de Conflitos",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1) # de diálogos para a prevenção de conflitos; (2) # Konflitu rezolvidu",
+   "baseline": "(1) 5; (2) 7.",
+   "target": "(1) 1; (2) 1",
+   "amounts": {
+    "20": 64916.0
+   },
+   "page": 750
+  },
+  {
+   "code": "A260310",
+   "programme": "A26",
+   "subprogramme": "A2603",
+   "subprogramme_name": "Promover Reconciliação e Paz em Nível Nacional e Internacional",
+   "name": "Processo Reconciliação Timoroan",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "#A comunidade timorense que reside em Timor Leste participaram no processo da Reconciliacao",
+   "baseline": "4",
+   "target": "4",
+   "amounts": {
+    "20": 47855.0
+   },
+   "page": 750
+  },
+  {
+   "code": "A260400",
+   "programme": "A26",
+   "subprogramme": "A2604",
+   "subprogramme_name": "Pesquisa Histórica",
+   "name": "Pesquisa Temática",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "(1) # de livros tematicos produzidos e publicados; (2) # Mapamento Participacao da Comunidade na Luta Libertacao da Pátria.",
+   "baseline": "\"(1) 7; (2) 0 \"",
+   "target": "\"(1) 2; (2) 1 \"",
+   "amounts": {
+    "20": 6800.0
+   },
+   "page": 751
+  },
+  {
+   "code": "A260401",
+   "programme": "A26",
+   "subprogramme": "A2604",
+   "subprogramme_name": "Pesquisa Histórica",
+   "name": "Pesquisa de &amp;#34;Uma Comunidade - Uma História&amp;#34;",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "(1) # de livrinhos de História dos Sucos produzidos e publicados",
+   "baseline": "(1) 6",
+   "target": "(1) 1",
+   "amounts": {
+    "20": 1200.0
+   },
+   "page": 751
+  },
+  {
+   "code": "A260402",
+   "programme": "A26",
+   "subprogramme": "A2604",
+   "subprogramme_name": "Pesquisa Histórica",
+   "name": "Pesquisa Sobre Violação dos Direitos Humanos (1974-1999) a Nível Municipal",
+   "div": [
+    "0700109"
+   ],
+   "indicator": "(1) # de livrinhos de Perfil da Violação dos Direitos Humanos produzidos e publicados",
+   "baseline": "(1) 1",
+   "target": "(1) 1",
+   "amounts": {
+    "20": 1200.0
+   },
+   "page": 751
+  },
+  {
+   "code": "A260500",
+   "programme": "A26",
+   "subprogramme": "A2605",
+   "subprogramme_name": "Serviço Advocacia",
+   "name": "Monitorização da implementação das Recomendações de Chega! e PMAS",
+   "div": [
+    "0700110"
+   ],
+   "indicator": "Resultado de monitorizacao de implementacao das recomendacao de Chega! e PMAS disponivel e apresentado",
+   "baseline": "8 Relatoriu Annual",
+   "target": "1",
+   "amounts": {
+    "20": 700.0
+   },
+   "page": 751
+  },
+  {
+   "code": "A260501",
+   "programme": "A26",
+   "subprogramme": "A2605",
+   "subprogramme_name": "Serviço Advocacia",
+   "name": "Fortalecimento de Associação de Vítimas no Instituição da Resistência",
+   "div": [
+    "0700108"
+   ],
+   "indicator": "\"(1) # de organizações de sobreviventes beneficiadas pelo apoio de fundos do Centro Chega! (contínuo apoio ) ;(2) # sobreviventes da ASSEPPOL e da AVKP estão registados no Sisvu; (3) # vídeo de memória viva da ASSEPPOL é enviado. \"",
+   "baseline": "1) 2; 2) 1000; 3) 135",
+   "target": "1) 3: 2) 1000; 3) 15",
+   "amounts": {
+    "20": 67990.0
+   },
+   "page": 751
+  },
+  {
+   "code": "A260502",
+   "programme": "A26",
+   "subprogramme": "A2605",
+   "subprogramme_name": "Serviço Advocacia",
+   "name": "Serviço de Produção e Publicação de Informação",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1) #Notisias públika iha mídia | (2) #Design graphics produzidu|(3) # Memoria istoriku A/V Produzidu (4) # dokumentu istóriku Traduzidu; (5) # Publikasaun Memoria Sobrevivente publikadu(Chega! Tour, Komemorasaun & Reunifikasaun)",
+   "baseline": "(1) 2115; (2) 55; (3) 11; (4) 64; (5) 0",
+   "target": "11) 365;2) 10; 3) 1; 4)40; 5) 0 copies",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 752
+  },
+  {
+   "code": "A260503",
+   "programme": "A26",
+   "subprogramme": "A2605",
+   "subprogramme_name": "Serviço Advocacia",
+   "name": "Serviços de Cooperação",
+   "div": [
+    "0700102"
+   ],
+   "indicator": "(1) # de parseiros estratégicos que assinaram Nota de Entendimento para a implementação das recomendações de Chega! e PMAS; (2) # de encontros regulares realizados com parceiros estratégicos; (3) # doador que já apoiaram financeiramente às atividades do Centro Chega!; (4) # de Organização Internacional a que o Centro Chega! aderiu como membro; (5) #Já existe enquadro juridico.",
+   "baseline": "(1) 49; (2) 16; (3) 6; (4) 4; (5) 9 enquadramentu juridico.",
+   "target": "(1) 4; (2) 2; (3) 1; (4) 1; (5) Polítika Nasional Reparasaun, Mekanismu Rekonsiliasa un Timoroan, Rekonesime ntu patriota Libertasaun, Revizaun ba Dekretu-Lei Centro Chega! n.o 48/ 2016, Revizaun polítika edukasaun kona-ba istória no direitus umanus.",
+   "amounts": {
+    "20": 297.0
+   },
+   "page": 752
+  },
+  {
+   "code": "A260600",
+   "programme": "A26",
+   "subprogramme": "A2606",
+   "subprogramme_name": "Promover coesão social, diálogo e resolução de conflito",
+   "name": "Estabelecer e Reforçar o Centro de Aconselhamento",
+   "div": [
+    "0700108"
+   ],
+   "indicator": "(1) # de Centro de Aconselhamento fortalecido ;(2)# de sobreviventes mais vuneráveis beneficiados de apoio de tratamento de saúde; (3) # de sobreviventes",
+   "baseline": "1)1;2)128;3)38; 4)457",
+   "target": "1)1; 2)18; 3)5; 4)18",
+   "amounts": {
+    "20": 14240.0,
+    "30": 1800.0
+   },
+   "page": 752
+  },
+  {
+   "code": "A260601",
+   "programme": "A26",
+   "subprogramme": "A2606",
+   "subprogramme_name": "Promover coesão social, diálogo e resolução de conflito",
+   "name": "Uma Memoria ba Esperansa",
+   "div": [
+    "0700108"
+   ],
+   "indicator": "# de sobreviventes mais vulneráveis beneficiados de apoio de habitação \"Uma memória ba esperança\", casas com as melhores condições para viver, completas com mobiliários e utensílios de necessidades básicas.",
+   "baseline": "27",
+   "target": "(1) 1",
+   "amounts": {
+    "30": 972.0
+   },
+   "page": 753
+  },
+  {
+   "code": "A260602",
+   "programme": "A26",
+   "subprogramme": "A2606",
+   "subprogramme_name": "Promover coesão social, diálogo e resolução de conflito",
+   "name": "Reunificação de Família",
+   "div": [
+    "0700108"
+   ],
+   "indicator": "1)# de pessoas desaparecidas identificadas; 2) # de sobreviventes desaparecidos e separados da família, causados pelo conflito entre 1974- 1999, reunidos; (3)#Narrativa da Memória das Crianças Perdidas Reunificada",
+   "baseline": "1)214; 2)69;(3)1",
+   "target": "1)15; 2)5;(3)1",
+   "amounts": {
+    "20": 5647.0
+   },
+   "page": 753
+  },
+  {
+   "code": "A260603",
+   "programme": "A26",
+   "subprogramme": "A2606",
+   "subprogramme_name": "Promover coesão social, diálogo e resolução de conflito",
+   "name": "Comemoração de Eventos Históricos",
+   "div": [
+    "0700108"
+   ],
+   "indicator": "(1) # de comemoração de eventos históricos realizada e o efeito positivo produzido; (2) # de vítimas que contaram a sua memória passada aos novas gerações; (3) # de monumento memorial de eventos históricos foi Instalado ; 4) #Audénsia Público",
+   "baseline": "(1) 75; (2)150;(3)16; (4)75",
+   "target": "(1) 4; (2) 8; (3)4;(4)4.",
+   "amounts": {
+    "20": 31577.0
+   },
+   "page": 753
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "024.0.6",
+   "statement": "Memória histórica preservada e promovida, entidades públicas e sociedade sensíveis aos valores dos direitos humanos",
+   "indicator": "1.1. # sosiedade Timor-Leste sensível à memória histórica. 1.2. # sosiedade que tem conhecimento e sensível aos valores de direitos humanos. 1.3. % memória histórica (sítios, pessoas, dokumentos, eventos) que são preservados, acessiveis, uteis e promovidos.",
+   "baseline": "Decreto Lei 48/2016, Plano Estratégico 2017- 2021, Plano Estratégico 2018-2022, Plano Estratégico 2021-2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 743
+  },
+  {
+   "kind": "output",
+   "code": "02426.0.0",
+   "statement": "Memória histórica preservada, protegida e acessível",
+   "indicator": "1.2.1. Mapeamento da participação da comunidade n o processo de luta pela libertação da pátria. 1.2.2. Pr odução e publicação de livros temáticos de história. 1. 2.3. Realização de eventos de conferência e seminário científico sobre memória histórica a nível nacional e in ternacional. 1.2.4. Produção e publicação do livro \"Pe rfil de Violência dos Direitos Humanos\" a nível mun icipal.",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018- 2022, Plano Estratégico 2021- 2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 743
+  },
+  {
+   "kind": "output",
+   "code": "02427.0.0",
+   "statement": "Já existem materiais educativos e as facilidades para as entidades públicas e a sociedade aprender história e expressar valores de direitos humanos",
+   "indicator": "1.1.1. Já existem matérias educativas do Relatório Chega! e PMAS para o processo de ensino- aprendizagem no ensino básico, secundário e superior. 1.1.2. # Os supervisores e professores que participaram da formação em matéria de ciências sociais. 1.1.3. # Temas educativos que são produzidos e publicados. 1.1.4. Já existem matérias educativas para a formação de entidades públicas. 1.1.5. Foi estabelecido o Centro de Estudos para a Resolução de Conflitos Pós-Conflito (CRPK). 1.1.6. # Os estudantes que receberam treinamento em conhecimento de memória e escreveram sobre a história de suas mães/pais. 1.1.7. # Os estudantes que visitaram locais históricos em Timor-Leste e aprenderam sobre a história do local. 1.1.8. # Os livros estão classificados de acordo com a Categoria",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018- 2022, Plano Estratégico 2021- 2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 743
+  },
+  {
+   "kind": "output",
+   "code": "02428.0.0",
+   "statement": "Memória histórica preservada, protegida e acessível",
+   "indicator": "# Mapear a participação da comunidade no processo da luta pela liberdade do país. # Produzir e publicar histórias temáticas. 1.2.3 # Realizar evento de",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018-",
+   "target": "20%",
+   "page": 745
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Centro Chega! eficaz, eficiente, transparente e responsável:",
+   "baseline": "85%",
+   "target": "100%",
+   "page": 747
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Centro Chega! possui recursos humanos em quantidade e qualidade adequadas, além de um sistema de controle interno adequado para gerenciar e responder aos riscos.",
+   "baseline": "50%",
+   "target": "`100%",
+   "page": 747
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Centro Chega! tem instalações adequadas (quantidade e qualidade) acessíveis para fornecer atendimento excepcional ao público.",
+   "baseline": "85%",
+   "target": "90%",
+   "page": 747
+  },
+  {
+   "kind": "outcome",
+   "code": "A26.0.0",
+   "statement": "(1) Memória histórica preservada e promovida, entidades públicas e sociedade sensíveis aos valores dos direitos",
+   "indicator": "(1) 1.1. A sociedade de Timor- Leste é sensível à memória histórica. 1.2. A sociedade tem consciência e sensibilida de aos valores dos direitos humanos. 1.3. A memória histórica (lugares, pessoas, do",
+   "baseline": "Decreto Lei 48/2016, Plan o Estratégico 2017- 2021, Plano Estratégico 20 18- 2022, Plano Estratégico 2",
+   "target": "20%",
+   "page": 749
+  },
+  {
+   "kind": "output",
+   "code": "A2603.0.0",
+   "statement": "Existem e têm existido mecanismos eficazes de prevenção de conflitos e de reconciliação",
+   "indicator": "2.2.1. O processo de reconciliação entre timorenses foi realizado. 2.2.2. Foi realizado um diálogo sobre a pr evenção de conflitos. 2.2.3. Um evento foi realizado p ara promover a reconciliação e a resolução de conflitos entre a sociedade relacionada à violação dos direitos h umanos.",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018- 2022, Plano Estratégico 2021- 2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 750
+  },
+  {
+   "kind": "output",
+   "code": "A2604.0.0",
+   "statement": "Memória histórica preservada, protegida e acessível",
+   "indicator": "1.2.1. # Mapeamento da participação da comunidad e no processo de luta pela libertação da pátria. 1.2.2. # Produção e publicação de livros temáticos de históri a. 1.2.3. # Realização de eventos de conferências e se minários científicos sobre a memória histórica em âmb ito nacional e internacional. 1.2.4. # Produção e pub licação do livro Perfil de Violação dos Direitos Hum anos ao nível do município.",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018- 2022, Plano Estratégico 2021- 2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 750
+  },
+  {
+   "kind": "output",
+   "code": "A2605.0.0",
+   "statement": "Serviços de advocacia e rede de cooperação forte",
+   "indicator": "2.1.1. Já existe um enquadramento legal quanto à at ribuição de reconhecimento do estado aos patriotas da libertação nacional e sobreviventes. 2.1.2. Os sobreviv entes são registrados, verificados e atualizados em um sistema integrado, seguro, acessível e responsivo. 2.1.3. As entidades públicas, organizações comunitárias, or ganizações da sociedade civil, nacionais ou internacion ais, estabelecem serviços em parceria com o Centro Ch ega! no programa de reparação. 2.1.4. As entidades p úblicas e organizações da sociedade civil, nacionais e i nternacionais, incorporaram as recomendações da CA VR e da CVA em suas políticas e/ou programas. 2 .1.5. As entidades públicas e/ou organizações da soci edade civil incorporam e/ou implementam o PAN13 25 sobre mulheres, paz e segurança em suas políticas e/ou programas. 2.1.6. As organizações sobreviventes já receberam apoio do Centro Chega! para implement ar programas de reparação. 2.1.7. O material inform ativo é produzido e publicado através do website, Face book e canal do YouTube do Centro Chega!. 2.1.8. A política governamental visa preservar a memória, di gnificar os sobreviventes e promover os direitos humano s.",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018- 2022, Plano Estratégico 2021- 2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 751
+  },
+  {
+   "kind": "output",
+   "code": "A2606.0.0",
+   "statement": "Já existem medidas reparadoras temporárias para os sobreviventes e a coesão social é forte",
+   "indicator": "2.2.1. O processo de reconciliação entre timorenses foi realizado. 2.2.2. Um diálogo sobre a prevenção de con flitos foi realizado. 2.2.3. Um evento foi realizado pa ra promover a reconciliação e a resolução de conflitos n a sociedade relacionados a casos de violação de direitos humanos.",
+   "baseline": "Decreto Lei 48/2016, Plano E stratégico 2017- 2021, Plano Estratégico 2018- 2022, Plano Estratégico 2021- 2025, Relatório Anual 2017- 2024.",
+   "target": "20%",
+   "page": 752
+  }
+ ]
+}

@@ -1,0 +1,1088 @@
+{
+ "year": 2027,
+ "code": "016",
+ "name": "Ministério da Administraçao Estatal",
+ "abbr": "MAE",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   138,
+   168
+  ]
+ },
+ "units": [
+  {
+   "code": "GM",
+   "div": "0160101",
+   "name": "Gabinete do Ministro",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GVM",
+   "div": "0160102",
+   "name": "Gabinete do Vice Ministro",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "UAD",
+   "div": "0160103",
+   "name": "Unidade de Aprovisionamento Descentralizado",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPCS",
+   "div": "0160107",
+   "name": "Unidade de Protocolo e Comunicação Social",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UIT",
+   "div": "0160108",
+   "name": "Unidade de Informática e Tecnologia",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GIGA",
+   "div": "0160202",
+   "name": "Gabinete da Inspeção-Geral e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "SEATOU",
+   "div": "0160601",
+   "name": "Secretário de Estado dos Assuntos Toponímia e Organização Urbana",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SEDR",
+   "div": "0160701",
+   "name": "Secretário de Estado do Desenvolvimento Rural",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GDGSC",
+   "div": "0160801",
+   "name": "Gabinete de Direção-Geral dos Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0160802",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNRH",
+   "div": "0160803",
+   "name": "Direção Nacional dos Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNGPL",
+   "div": "0160804",
+   "name": "Direção Nacional de Gestão do Património e Logística",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNPA",
+   "div": "0160805",
+   "name": "Direção Nacional do Planeamento e de Avaliação",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "GDGDGL",
+   "div": "0160901",
+   "name": "Gabinete de Direção-Geral da Descentralização e do Governo Local",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGL",
+   "div": "0160902",
+   "name": "Direção Nacional do Governo Local",
+   "type": "National Directorate",
+   "parent": "GDGDGL"
+  },
+  {
+   "code": "DNAIPDI",
+   "div": "0160903",
+   "name": "Direção Nacional de Apoio à Implementação do Planeamento e Desenvolvimento Integrado",
+   "type": "National Directorate",
+   "parent": "GDGDGL"
+  },
+  {
+   "code": "DNAAS",
+   "div": "0160904",
+   "name": "Direção Nacional de Apoio à Administração dos Sucos",
+   "type": "National Directorate",
+   "parent": "GDGDGL"
+  },
+  {
+   "code": "DNPFM",
+   "div": "0160905",
+   "name": "Direção Nacional do Planeamento e das Finanças Municipais",
+   "type": "National Directorate",
+   "parent": "GDGDGL"
+  },
+  {
+   "code": "DNAIM",
+   "div": "0160906",
+   "name": "Direção Nacional de Apoio à Instalação dos Municípios",
+   "type": "National Directorate",
+   "parent": "GDGDGL"
+  },
+  {
+   "code": "GDGSMAL",
+   "div": "0161001",
+   "name": "Gabinete de Direção-Geral da Simplificação e Modernização da Administração Local",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNSAPE",
+   "div": "0161002",
+   "name": "Direção Nacional para a Simplificação Administrativa e Plataforma Eletrónica",
+   "type": "National Directorate",
+   "parent": "GDGSMAL"
+  },
+  {
+   "code": "DNMAAL",
+   "div": "0161003",
+   "name": "Direção Nacional de Monitorização e Avaliação da Administração Local",
+   "type": "National Directorate",
+   "parent": "GDGSMAL"
+  },
+  {
+   "code": "DNFC",
+   "div": "0161004",
+   "name": "Direção Nacional para a Formação e a Cooperação",
+   "type": "National Directorate",
+   "parent": "GDGSMAL"
+  },
+  {
+   "code": "GDGTOU",
+   "div": "0161101",
+   "name": "Gabinete de Direção-Geral da Toponímia e da Organização Urbana",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNT",
+   "div": "0161102",
+   "name": "Direção Nacional de Toponímia",
+   "type": "National Directorate",
+   "parent": "GDGTOU"
+  },
+  {
+   "code": "DNSOU",
+   "div": "0161103",
+   "name": "Direção Nacional para os Serviços da Organização Urbana",
+   "type": "National Directorate",
+   "parent": "GDGTOU"
+  },
+  {
+   "code": "DNGHOP",
+   "div": "0161104",
+   "name": "Direção Nacional para a Gestão de Higiene e Ordem Pública",
+   "type": "National Directorate",
+   "parent": "GDGTOU"
+  },
+  {
+   "code": "GDGDL",
+   "div": "0161201",
+   "name": "Gabinete de Direção Geral do Desenvolvimento Local",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNADM",
+   "div": "0161202",
+   "name": "Direção Nacional de Apoio ao Desenvolvimento Municipal",
+   "type": "National Directorate",
+   "parent": "GDGDL"
+  },
+  {
+   "code": "DNADC",
+   "div": "0161203",
+   "name": "Direção Nacional de Apoio ao Desenvolvimento Comunitário",
+   "type": "National Directorate",
+   "parent": "GDGDL"
+  },
+  {
+   "code": "DNPEAL",
+   "div": "0161204",
+   "name": "Direção Nacional para a Promoção da Eficiência da Administração Local",
+   "type": "National Directorate",
+   "parent": "GDGDL"
+  },
+  {
+   "code": "STP",
+   "div": "0161301",
+   "name": "Secretariado Técnico do PNDS",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UCSARA",
+   "div": "0161401",
+   "name": "Unidade de Coordenação de Serviços Administrativos da RAEOA e Ataúro",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "025": "Descentralização administrativa e poder local",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social.",
+  "A23": "Toponímia e organização urbana",
+  "A24": "Desenvolvimento local",
+  "A47": "Reforma administração local e simplificação administrativo do governo local"
+ },
+ "activities": [
+  {
+   "code": "0250100",
+   "programme": "025",
+   "subprogramme": "02501",
+   "subprogramme_name": "Desenvolvimento Local",
+   "name": "Assistência Técnica e Apoio à Gestão do Programa Nacional de Desenvolvimento do Suco (PNDS)",
+   "div": [
+    "0161301"
+   ],
+   "indicator": "1) # de sucos na RAEOA que recebem transferência de subsídios operacionais (# de mulheres, # de homens e # de recipientes com deficiência); 2) # de Participação das comunidades na RAEOA com (# participantes mulheres, # homens e # pessoal com deficiência); 3) # de ES e membros de comunidades capacitados na RAEOA; 4) # de sucos na RAEOA que recebem transferência de subsídios da infraestrutura (# recipientes mulheres, # homens e # recipientes com deficiência); 5) # de projetos construídos na RAEOA; 6) # de trabalhadores empregados no Projeto do PNDS na RAEOA; 7) # de setores privados envolvidos no Projeto do PNDS na RAEOA; 8) # de beneficiários nos Projetos do PNDS na RAEOA; 9) # de funcionários casuais nacionalmente e na RAEOA, contratados; 10) # de funcionários, tanto permanentes, agentes e",
+   "baseline": "1). 20 Sucos; 2). 1.612 participantes; 3). 140 ES e Comunidades; 4). 20 Sucos; 5). 23 projetos; Infraestrutura; Básica (Água Potável, Estradas rurais, Drenagem, Irrigação, Sala de Maternidade, Clínica, Sala de Aula; 6) 600 trabalhadores (cada suco foram empregadas de 30 trabalhadores); 7). 149 setores privados envolvidos nos projetos do PNDS.; 8) 5.682 chefes de família, representando 23.125 pessoas (11.863 mulheres e 11.262 homens) beneficiados; 9). 83 funcionários casuais; 10).153 funcionários permanentes, agentes, casuais; 11). 100% dos projetos avaliados e monitorizados; 12). 100% dos gastos financiados através de subsídio são monitorizados; 13).13 Municipios.",
+   "target": "1) 20 Sucos; 2) 1.055 Pessoas; 3) 140 ES e Comunidade; 4) 20 Sucos; 5) 23 Projetos; 6) 600 trabalhadores; 7) 100 setores privados envolvidos; 8) 8.279 chefes de famílias; 9) 83 funcionários; 10) 153 pessoas capacitadas; 11) 100%; 12) 100%. 13) 13 Municipios.",
+   "amounts": {
+    "10": 351260.0,
+    "20": 91221.0,
+    "30": 1050000.0
+   },
+   "page": 139
+  },
+  {
+   "code": "0250207",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Coordenar e apoiar o Governo Local",
+   "div": [
+    "0160901"
+   ],
+   "indicator": "1) # de apoio às Atividades da Direção Nacional tutelada (coordenação, Avaliação e Monitorização); 2) # de Coordenação e Apoio às Atividades da Eleição Presidencial; 3) # de Coordenação e Apoio às Atividades da Eleição Municipal; 4) # de Atividades",
+   "baseline": "1). 46 apoios às Autoridades Municipais realizados; 2). N.d.; 3). N.d.; 4). N.d.; 5). 12 municípios, AA Atauro e RAEOA realizado; 6). 14 reuniões realizadas com as autoridades municipais e com os dirigentes nacionais; 7). 41 funcionários casuais foram contratados, desagregados por",
+   "target": "1).12 Autoridades Municipais, AA de Atauro e RAEOA; 2) 12 Autoridades Municipais, AA de Atauro e RAEOA; 3) 5 municípios apoiados para Poder Local 4) 12 municípios, AA Atauro e RAEOA; 5) 12 municípios, AA Atauro e RAEOA realizado; 6) 8 Reunioes 7) 2 Técnicos",
+   "amounts": {
+    "10": 177320.0,
+    "20": 159000.0
+   },
+   "page": 140
+  },
+  {
+   "code": "0250208",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio técnica aos Municípios na melhoria de prestação de bens e serviços",
+   "div": [
+    "0160902"
+   ],
+   "indicator": "1) # de municípios e postos administrativos monitorizados e avaliados; 2) # do encontro do Conselho Coordenação Territorial realizado; 3) # de assistência técnica aos Quadros de Demografia e Monografia; 4) # de funcionários casuais contratados; 5) # dos Municípios, Autoridade Administrativa de Atauro e Postos Administrativos apoiados na melhoria de prestação de bens e serviços; 6) # dos municípios implementados segundo as orientações pelos superiores do MAE.",
+   "baseline": "1) Realizado monitorização e avaliação 60 Postos Administrativos; 2) 1 reunião do Conselho de Coordenação Territorial realizada; 3) N.d. 4) 23 Funcionários casuais, desagregados por sexo (15 homens e 8 mulheres) contratados; 5) N.d. 6) N.d.",
+   "target": "1) 14 municípios, incluindo AA Atauro e Oé-Cusse Ambeno e 69 Postos Administrativos; 2) 1 reunião de Coordenação Territorial; 3) 14 Municípios, Autoridade Administrativa de Atauro e 69 Postos Administrativos; 4) 25 funcionários casuais; 5) 14 municípios e 69 postos administrativos realizados; 6) 14 municipios.",
+   "amounts": {
+    "10": 67200.0,
+    "20": 30000.0
+   },
+   "page": 141
+  },
+  {
+   "code": "0250209",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio administrativo do Sucos",
+   "div": [
+    "0160904"
+   ],
+   "indicator": "1) # de sucos monitorizados e avaliados sobre gestão financeira, sucos, administração de sucos, condição de sede de suco e avaliação de desempenho e assistência técnica para funcionamento de administração dos sucos; 2) # de formandos (chefes do Suco eleitos no chefe de Aldeia,",
+   "baseline": "1) Sucos avaliados 226 2).348 participantes foram capacitados no preenchimento do quadro de monografia e de demografia pelos chefes dos Sucos eleitos, Secretários Adm. Sucos, oficiais Adm. Sucos, oficiais de Finanças e oficiais de Social-Economia; 3). N.d. 4).23 funcionários",
+   "target": "1) 50 Sucos monitorizados e 466 Sucos apoiados com assistência técnica para a finalização de monografia, demografia dos Sucos e do Funcionamento do Livro de administração do suco. 2) 2.260 formandos; 3) 513 Sucos; 4) 23 funcionários contratados.",
+   "amounts": {
+    "10": 94666.0,
+    "20": 50000.0
+   },
+   "page": 141
+  },
+  {
+   "code": "0250210",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio Técnico aos Municípios na Área de Planeamento e Gestão Financeira Pública",
+   "div": [
+    "0160905"
+   ],
+   "indicator": "1) # dos beneficiários recebem os fundos obrigatórios (Subsídio de liderança comunitária, fundos de apoio à administração dos Sucos, PNDS e Merenda Escolar); 2) # de assistência técnica na área de Gestão de Finanças Públicas realizados (Serviço Municipal de Finanças e Serviço Municipal de Aprovisionamento); 3) # de Monitorização do sistema de arquivamento eletrônico da frota e ao patrimônio estado dos municípios concluídos; 4) # de Monitorização na área do Programa Merenda Escolar e Concessões escolares realizadas; 5) % do esboço do plano orçamentário por programa, subprograma e atividades para serviços municipais de 2028 concluído; 6) # de técnicas especializadas/Formadores e assistências técnicas Contratadas.",
+   "baseline": "1) 100% realizado assistência para pagamentos os fundus obrigatório aos municípios, posto administrativos e Sucos realizados; 2) 12 Autoridades Municipais e AA de Atauro realizados; 3) 12 Autoridades Municipais e AA de Atauro, concluídos; 4) 12 Autoridades Municipais e AA de Atauro, realizados; 5) 100% realizado; 6) 3 Técnicas Especializadas e 14 funcionarios casuais contratados.",
+   "target": "1). 100% e 12 autoridades municipais, AA de Atauro e RAEOA; 2). 12 Autoridades Municipais, AA de Atauro e RAEOA; 3). 12 Autoridades Municipais, AA de Atauro e RAEOA; 4). 12 Autoridades Municipais e AA de Atauro + RAEOA; 5). 100% finalizado até maio de 2027; 6). 1 técnico especializado e 14 funcionários casuais contratados.",
+   "amounts": {
+    "10": 100360.0,
+    "20": 50000.0
+   },
+   "page": 142
+  },
+  {
+   "code": "0250301",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Apoiar e coordenar o Planeamento Integrado do Desenvolvimento Municipal",
+   "div": [
+    "0160903"
+   ],
+   "indicator": "1 ) # de assistência técnica ao processo de pré-qualificação das empresas do ano de 2027,",
+   "baseline": "1) 12 Autoridades Municipais e Autoridade Administrativa de Atauro; 2) Plano de",
+   "target": "1). 12 autoridades municipais e autoridade administrativa de Atauro. 2). 12 autoridades",
+   "amounts": {
+    "10": 129740.0,
+    "20": 50000.0
+   },
+   "page": 143
+  },
+  {
+   "code": "0250401",
+   "programme": "025",
+   "subprogramme": "02504",
+   "subprogramme_name": "Instalação dos Órgãos do Poder Local",
+   "name": "Preparação de Material e Organização das Sessões relacionadas a educação cívica sobre o Poder Local",
+   "div": [
+    "0160906"
+   ],
+   "indicator": "1) # de estudos e as consultas necessárias para a formulação da política de descentralização administrativa territorial realizados; 2) # de participantes dos municípios e postos administrativos que inteirado sobre o conteúdo dos instrumentos legais de Descentralização Administrativa e Poder Local, (# participante mulheres, homens e as pessoas com deficiência); 3) # de participantes dos cidadãos esclarecidos sobre as questões relacionadas com os processos de desconcentração e de descentralização administrativas territoriais, (# participante mulheres, homens e as pessoas com deficiência); 4) # de Autoridades Municipais e a Autoridade Administrativa de Ataúro na organização das reuniões do conselho geral administrativo de Ataúro, dos conselhos",
+   "baseline": "1.N.d. 2. 13; 3. N.d. 4. 13/65; 5. 22/13/65 realizados; 6. ASPA 53 (2024), 5 (2025); Conselho Consultivo 21 (2024), 4 (2025); Conselho Coordenação 25 (2025) 7. 29 e 2;",
+   "target": "1) 12 Autoridades Municipais e a Autoridade Administrativa de Ataúro, em 69 Postos Administrativos; 2) 502 participantes (237 mulheres e 265 homens) em 13 municípios e 69 postos administrativos; 3) 520 participantes (180 mulheres e 340 homens) em 13 Autoridades Municipais; 4) 12 Autoridades Municipais e a Autoridade Administrativa de Ataúro, em 69 Postos Administrativos, do total de 144 Participantes (36 mulheres e 108 homens); 5) 36 resultados de reuniões ordinárias GTP/GTIM publicados nas mídias sociais do MAE; 6) 312 atas, compostas por 12 conselhos de coordenação municipal (156 atas) por 2 consultivos ordinários (26 atas) e 2 assembleias dos postos administrativos (130 atas) em 13 autoridades municipais de",
+   "amounts": {
+    "10": 98241.0,
+    "20": 50000.0
+   },
+   "page": 145
+  },
+  {
+   "code": "02504X1",
+   "programme": "025",
+   "subprogramme": "02504",
+   "subprogramme_name": "Instalação dos Órgãos do Poder Local",
+   "name": "Management of the Municipal President&#039;s remuneration",
+   "div": [
+    "0160906"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 113260.0
+   },
+   "page": 146
+  },
+  {
+   "code": "02504X2",
+   "programme": "025",
+   "subprogramme": "02504",
+   "subprogramme_name": "Instalação dos Órgãos do Poder Local",
+   "name": "Management of the Municipal Vice-President&#039;s remuneration",
+   "div": [
+    "0160906"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 84945.0
+   },
+   "page": 146
+  },
+  {
+   "code": "02504X3",
+   "programme": "025",
+   "subprogramme": "02504",
+   "subprogramme_name": "Instalação dos Órgãos do Poder Local",
+   "name": "Establishment and operation of the Municipal Assembly",
+   "div": [
+    "0160906"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 1211882.0
+   },
+   "page": 146
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0160101",
+    "0160102",
+    "0161401"
+   ],
+   "indicator": "1). # do progresso no desenvolvimento das leis, políticas e enquadramento institucional da descentralização administrativa e poder local, desenvolvimento rural, eleitoral e preservação dos documentos históricos. 2) # Propostas de Decretos Leis; 3) # propostas de revisão de leis e decretos leis, 4) # Diplomas ministeriais e regulamentos produzidos; 5) # de formação para os funcionários dos quadros do Gabinete nas áreas de Gestão Finanças e preparação de relatórios; 6) # de sessão de consultação dos projetos de Decretos-Lei; 7) # de sessão de socialização das leis aprovadas; 8) # de impressão de materiais de informações e comunicações 1) % Funcionamento Operacional e Gestão institucional; 2) # de contribuições ao progresso no desenvolvimento do processo de descentralização da eficiência e eficácia dos",
+   "baseline": "1) 12 Propostas de Leis, procedidos,5 propostas do projeto de Decretos Leis, e 12 Diplomas Ministerial do MAE publicado, 4 regulamentos produzido e 84 despachos do MAE, publicado; 2) 5 propostas do projeto de Decretos Leis procedidos; 3) 13 propostas de revisão de Leis e Decretos Leis procedidos; 4) 12 Diplomas Ministerial do MAE publicado, 4 regulamentos produzido e 84 despachos do MAE, publicado; 5) N.d. 6). Estrategia de execução Decentralização (RG no 6/2025); 7). Estrategia de execução Decentralização (RG no 6/2025); 8). Estrategia de execução Decentralização (RG no 6/2025) 1) 78% do Orçamento Executado 2) 1. Monitorizar o progresso da edificação das Camaras e Assembleias Municipais, 2. Contribuição para implementação Avaliação condicao minima , 3. Realização TNA em 8",
+   "target": "1) 2 propostas de leis; 2) 9 Propostas de Decretos Leis; 3) 2 Propostas de revisão de leis e decretos leis, 4) 12 diplomas ministeriais e regulamentos produzidos; 5) 4 formações para 20 funcionários; 6) 11 sessões de consultação; 7) 11 Sessões Socialização; 8) 20 Livros, Brochuras e Panfletos 1) 100%; 2) Implementar de acordo com orientações do Senhor Ministro, 100% participação de todos os funcionários financiados pelo Gabinete-Vice MAE; pelo menos 150 funcionários formados e certificados pelo Ministério das Finanças na área de gestão de finanças públicas; 3) 70 Visitas; 4) 20 sessões do trabalho; 5) 2 reuniões internacionais e uma visitas comparativos; 6) 15 Relatórios Produzidos; 7) 150 pessoas formadas e certificadas; 8) 102 funcionários contratados. 1) 10 informações e pareceres; 2) 4 monitorizações nos 20 sucos na RAEOA e 5 sucos na",
+   "amounts": {
+    "10": 1889896.0,
+    "20": 813921.0
+   },
+   "page": 148
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0160202"
+   ],
+   "indicator": "1) # de auditoria implementadas e relatórios produzidos 2) # de inspeções",
+   "baseline": "1) 17 auditorias efetuadas e relatórios de auditorias produzidos; 2) 27 inspeções",
+   "target": "1) 29 auditorias; 2) 29 inspeções; 3) 25 averiguações. 4) 13 municípios do total de",
+   "amounts": {
+    "10": 30940.0,
+    "20": 70000.0
+   },
+   "page": 149
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "0160801"
+   ],
+   "indicator": "1) % do Esboso do Plano e Orçamento do MAE de 2028 preparado; 2) % de indicadores de desempenho implementados pelas direções nacionais integradas na DGSC; 3) % da implementação do PAA e % de Execução Orçamento do MAE controlada; 4) # dos encontros do Conselho Consultivo dos Diretores realizados; 5) # dos funcionários do termo certo contratados.",
+   "baseline": "1) 100% do Esbocço do Plano e Orçamento do MAE de 2026 finalizado; 2) 85% dos indicadores de desempenho nas direçoẽ s nacionais do DGCS implementados. 3) 80,6% do progresso da implementação do PAA e 80,89% da execução do orçamento do MAE foram atingidos. 4) Realizado 1 Conselho Consultivo Municipal. 5) 26 pessoas",
+   "target": "1) 100 % ; 2) 100 %; 3) 90% e 95%; 4) 12 encontros; 5) 33 pessoas.",
+   "amounts": {
+    "10": 155472.0,
+    "20": 86456.0
+   },
+   "page": 150
+  },
+  {
+   "code": "510012K",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Orientação política para a toponímia e a organização urbana",
+   "div": [
+    "0160601"
+   ],
+   "indicator": "1) # de funcionários (apontamento político, assessores nacionais e internacionais, e os funcionários casuais) contratados para assegurar a política do Secretário de Estado para Toponímia e Organização Urbana; 2) # de encontros em nível local (municípios, posto ADM e Sucos) sobre a sensibilização do Decreto-Lei n.° 33/2008 de 27 de agosto da Higiene e Ordem Públicas realizados; 3) # de seminários e workshops realizados em nível nacional sobre política de toponímia e organização",
+   "baseline": "1) 532 funcionários casuais contratados (332 homens e 200 mulheres) . 2) 6 Reuniões sobre Orientação Política de Toponomia no Município de Bobonaro, PA. Balibo no Suco de Batugede, Atauro, Aileu, Ermera, Liquiça e Manatuto em 2026; 3) N.d. 4) N.d. 5) N.d.",
+   "target": "1). 544 funcionários contratados; 2). 13 autoridades municipais e autoridade administrativa de Atauro, 41 postos administrativos do total em 41 sucos do total de 532 participantes; 3). 5 seminários realizados para autoridades municipais, lideranças comunitárias, grupos de juventude, universitários, grupos religiosos e parceiros do desenvolvimento, com o total de 500 participantes; 4). 3 Decretos-Lei Finalizados; 5). 2 formações para 20 pessoas.",
+   "amounts": {
+    "10": 731280.0,
+    "20": 357506.0
+   },
+   "page": 150
+  },
+  {
+   "code": "510012L",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Orientação política para o desenvolvimento comunitário",
+   "div": [
+    "0160701"
+   ],
+   "indicator": "1) # de acompanhamento aos programas na área de desenvolvimento local sob a competência do SEDL; 2) # de implementação sobre as orientações de serviços na competência de SEDL; 3) # do Plano de Desenvolvimento Comunitário elaborado e assegurado conforme o modelo aprovado e procedimentos definidos; 4) # de implementação dos programas para a melhoria da eficiência da administração local ao nível dos municípios e postos administrativos, bem assegurada; 5) # de implementação do Plano do Desenvolvimento Municipal (PDM) e Plano do Desenvolvimento de Autoridade Administrativa Atauro (PDAAA), bem assegurada e rever conforme o modelo aprovado e procedimentos definidos; 6) # de sessão de trabalho a nível municipal na competência do",
+   "baseline": "1) 11 acompanhamentos efetuados pelo SEDL em 11 Autoridades Municipais (Ermera, Baucau, Aileu, Ainaro, Bobonaro, Covalima, Lautém, Liquiça, Manatuto, Manufahi e Viqueque); 2) N.d; 3) N.d.; 4) N.d.; 5) N.d; 6) N.d; 7) 25 lideranças comunitárias; 8) N.d.; 9) 114 funcionários contratados (3 assessores nacionais, 8 técnicos especializados e 103 funcionários casuais)",
+   "target": "1) 12 Autoridades Municipais e Autoridade Administrativa de Ataúro 2) 12 Autoridades Municipais e Autoridade Administrativa de Ataúro 3) 456 Sucos; 4) 12 Autoridades Municipais e Autoridade Administrativa de Ataúro; 5) 12 Autoridades Municipais e Autoridade Administrativa de Ataúro; 6) 3 Reuniões; 7) 25 lideranças comunitárias; 8) 12 Autoridades Municipais, RAEOA e Autoridade Administrativa de Ataúro; 7) 176 pessoas (3 assessores nacionais, 8 técnicos especializados e 165 funcionários casuais)",
+   "amounts": {
+    "10": 541986.0,
+    "20": 229007.0
+   },
+   "page": 151
+  },
+  {
+   "code": "5100160",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, Monitorização e Avaliação e Produção de Relatório",
+   "div": [
+    "0160805"
+   ],
+   "indicator": "1) # do PAA do MAE para 2028 preparado na lógica de estrutura por programas e submetido ao Ministerio das Financas; 2) # de relatórios mensais e de relatórios de desempenho trimestrais e anuais do MAE apresentados atempadamente ao Ministério das Finanças; 3) # dos municípios a receber capacitação sobre o processo de elaboração de PAA, M&A e Relatórios (# de participantes desagregados por sexo e com deficiência); 4) # dos municípios monitorizados e avaliados sobre as atividades; desenvolvidas pelo MAE; 5) # de funcionários casuais contratados.",
+   "baseline": "1) 1 Plano de Ação Anual (PAA) do MAE de 2027 elaborado e submetido ao Ministerio das Financas; 2) 12 relatórios mensais, 4 relatórios trimestrais e 1 relatório anual do MAE de 2025 elaborados e submetidos; 3) 8 municípios realizados em 2025, sobre as assistências técnicas no processo de elaboração do plano de ação anual (PAA) e de relatórios; 4) Realizada a avaliação das atividades do MAE nos 12 municípios; 5) 14 funcionários casuais contratados em 2026 (M:8 e F:6).",
+   "target": "1) 1 PAA do MAE 2028, finalizado e submetido; 2) 12, 4 e 1; 3) 13 autoridades municipais, do total de 250 participantes; 4) 13 AM; 5) 14 pessoas.",
+   "amounts": {
+    "10": 44239.0,
+    "20": 49000.0
+   },
+   "page": 152
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0160803"
+   ],
+   "indicator": "1) # de assistências técnicas efetuadas no âmbito de recrutamento e seleção por mérito das vagas do cargo de Direção e Chefia em Autoridades Municipais, AA Atauro e em RAEOA; 2) # de assistência técnica ao recrutamento de funcionários públicos e agentes da administração pública nas autoridades municipais, e participando da cerimônia de tomada de posse, baseiam-se a proposta, ordem e despachos; 3) # de vagas para o mapa pessoal de agentes da administração pública do MAE ao nível nacional, recrutados; 4) # de disseminação sobre quadro lógico sobre gestão dos recursos humanos ao nível nacional e municípios, e participação nos encontros de JPRU, realizado; 5) # de formação ao nível nacional e estrangeiro sobre quadro lógico sobre gestão dos recursos humanos e formação de línguas, realizados; 6) # de funcionários casuais e técnicos especializados, contratados; 7) # de municípios e postos administrativos no levantamento de dados sobre os funcionários públicos com",
+   "baseline": "1) 4 Assistências técnicas sobre recrutamentos do chefe do serviço local no Município de Ermera (18 vagas), Tomada de posse do cargo de chefes dos Municípios: Ainaro 10 pessoas, Manufahi 20 pessoas e Aileu 34 pessoas, realizados; 2) N.d.; 3) N.d; 4) 10 disseminações nos Postos Administrativos (Hatubelico, Laulara, Tutuala, Lore, Soidaba, Lacluta, Ermera Villa, Liquidoe, Aileu Villa e Ermera Villa ) sobre o Manual de Recursos Humanos, do total de 388 participantes (156 mulheres e 232 homens), realizadas; 5) N.d.; 6) 15 funcionarios casuais recrutados; 7) N.d.",
+   "target": "1) 52 vezes; 2) 12 Autoridades Municipais, Autoridade Administrativa de Ataúro e RAEOA; 3) 336 vagas de agentes da administração pública recrutados; 4) 12 municípios, A.A. Atauro e RAEOA do total participantes de 560 pessoas; 5) 2 em Dili (Lely e INAP) e 2 no estrangeiro (Macau e Malásia); 6) 17 funcionários casuais e 1 técnico especializado contratados; 7) 12 autoridades municipais, Autoridade Administrativa de Ataúro e RAEOA em 69 postos administrativos.",
+   "amounts": {
+    "10": 58608.0,
+    "20": 64750.0
+   },
+   "page": 153
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0160107",
+    "0160802"
+   ],
+   "indicator": "1) # de eventos nacionais organizados; 2) # de Pagina do Ministerio, # de Pacote de Jornadas da Descentralização,e # de Publicações de mensagens sobre dias nacionais, produzidos e publicados. 3) # de relatórios de atividades e de contas relativos aos eventos nacionais e às celebrações oficiais produzidos. 4) % de organizar e gerir o arquivo de informações divulgadas pelos órgãos de comunicação social sobre as atividades do ministério; 5) % de acompanhamento e de preparar as condições no terreno para os membros do Governo e da estrutura do MAE; 6) # de funcionários causais e técnicos especializados, contratados.",
+   "baseline": "1) 4 eventos nacionais realizados (20 de maio, 30 de Agosto, 28 de Novembro e 31 de Dezembro). 2) 365 Paginas do Ministério, 14 Pacotes de Jornadas e 7 Publicações de mensagens; 3) N.d; 4) 85% dos arquivos de informação divulgados pelos órgãos de Comunicação Social sobre as actividades do MAE foram organizados e geridos; 5) 85% dos Serviços Protocolares e Media Comunicação do MAE acompanhados das Coberturas das atividades dos 4 Membros do Governo e da Estrutura do MAE (148 Serviços de Protocolares) foram implementados. 6) 20 funcionários casuais contratados (14 homens e 6 mulheres).",
+   "target": "1) 4 eventos; 2) 365, 14 e 7; 3) 4 relatórios; 4) 100%; 5) 100% ; 6) 20 funcionários casuais e 2 técnicos especializados.",
+   "amounts": {
+    "10": 61984.0,
+    "20": 1147995.0
+   },
+   "page": 154
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0160103"
+   ],
+   "indicator": "1) # do processo de aprovisionamento de 2027, assinado; 2) # dos documentos de pagamento de 2027; 3) # de funcionários casuais a termo certo de 2027, contratados; 4) # municípios no processo de aprovisionamento, assistidos; 5) # de publicação dos documentos de tenderização; 6) # de Formação e Curso a nível nacional realizados; 7) % do processamento relacionado ao pagamento do fim do ano, efetuado.",
+   "baseline": "1) 383 contratos do MAE foram celebrados em 2024; 2) 587 pedidos de pagamento (PRT) foram pagos de janeiro a dezembro de 2024. 3) 20 funcionarios contratados; 4) 12 municípios apoiados; 5) N.d; 6) 15 vezezs. 7) N.d; 8) N.d.",
+   "target": "1) 150; 2) 300; 3) 21 funcionarios casuais; 4) 13 AM; 5) 25; 6) 1 formação em Lely, do total de 20 formandos; 7) 100%.",
+   "amounts": {
+    "10": 96174.0,
+    "20": 24750.0
+   },
+   "page": 154
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0160108"
+   ],
+   "indicator": "1) # de monitorização dos serviços de ICT, melhoramento e instalação de sistema nos municípios, postos administrativos e sucos; 2) # de sistema de gerenciamento dos documentos e livros, como impressão de banners, livrinhos e certificados; 3) % de comunicação de fixas e linhas internet; 4) % de informática e mobiliários bem utilizados; 5) # de funcionários casuais e técnicos especializados contratados.",
+   "baseline": "1) Serviços ITC, melhoramento e instalação de sistema no Território Nacional incluem Oé-Cusse e Atauro; 2) 13 banners, 65 livrinhos e 65 certificados; 3) 100% garantido o funcionamento de conectividade de acesso à utilização de linha Internet; 4) Equipamentos informática bem utilizado e assegurado; 5) 20 Funcionários contratados",
+   "target": "1) 12 AM, AA Atauro, 69 PA e 466 Sucos; 2) 13 banners, 65 livrinhos e 65 certificados; 3) 100%; 4) 100% ; 5) 19 funcionários casuais",
+   "amounts": {
+    "10": 50674.0,
+    "20": 64750.0
+   },
+   "page": 155
+  },
+  {
+   "code": "5100221",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão financeira",
+   "div": [
+    "0160802"
+   ],
+   "indicator": "1) % dos funcionários do MAE permanentes e casuais recebem salários mensais; 2) % do esboço do plano do orçamento do MAE de 2028 preparado; 3) # de assessores, técnicos especializados e casuais contratados; 4) # de assistência técnica e # de monitorização realizados; 5) # de funcionários DNAF a participar na formação; 6) % do orçamento da DNAF executado.",
+   "baseline": "1) 100% do total dos funcionários públicos e agentes da Adm. Pública do MAE receberão salário mensal dentro de 12 meses do ano de 2026; 2).100% Esboço Plano de Orçamento do MAE 2025 promulgado pelo Presidente da República para executar no OGE Ano Fiscal 2026; 3) 134 pessoas contratadas 4) N.a. 5) 12 pessoas participar na formação da língua em 2026 6).90% de execução do orçamento concentrada na DNAF 2026.",
+   "target": "1) 100 %; 2) 100%; 3) 134 Funcionarios contratados; 4) 14 Municipio; 5) 20 pessoas; 6) 100%.",
+   "amounts": {
+    "10": 2726975.0,
+    "20": 5425347.0,
+    "30": 1153705.0
+   },
+   "page": 155
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0160804"
+   ],
+   "indicator": "1) # de assistência técnica sobre Inventarização dos Bens e Móveis e Patrimônio do Estado nos Municípios e do central do MAE, realizado; 2) # de Deliver order, Report and Inspection incluindo registro do patrimônio, realizado; 3) # de manutenção de viaturas e ar- condicionado; 4) # de fornecimentos do material de",
+   "baseline": "1) 6 municípios e 33 divisões do MAE; 2) 3 Delivery orders, RIR e 22 Patrimônios registrados; 3) 128 viaturas e 112 ar-condicionado, foi efetuada a manutenção; 4) 33 divisões do MAE; 5) 50 funcionários casuais foram contratados (45 homens e 5 mulheres) para apoiar as atividades logísticas nos eventos e cerimónias oficiais",
+   "target": "1) 12 AM, AA de Atauro e RAEOA 2) 200; 3) 107 viaturas e 200 Ar- Condicionado; 4) 33 divisões; 5) 50 pessoas; 6) 4 eventos nacionais.",
+   "amounts": {
+    "10": 139620.0,
+    "20": 64750.0
+   },
+   "page": 155
+  },
+  {
+   "code": "9802904",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Coordenação e apoio a Capacitação das autoridades locais e líderes comunitários na area igualdade genero e incluzão social",
+   "div": [
+    "0160801"
+   ],
+   "indicator": "1) # das reuniões regulares do Grupo de Trabalho GEDSI MAE realizadas e com # participantes (% Mulheres, % Homens e % Pessoas com deficiências) nos encontros; 2) # dos postos administrativos",
+   "baseline": "1) 4 reuniões; 2) 3 municipios; 3) N.d.; 4) N.d.; 5) 3 municípios estabelecidas (Liquica, Ermera e Bobonaro) do total de 501 participantes (261 mulheres, 226 homens e",
+   "target": "1) 4 reuniões com 24 participantes (14 mulheres e 10 homens) 2) 6 postos administrativos, do total de 360 participantes (40% de mulheres, 55% de homens e 5% de pessoas com",
+   "amounts": {
+    "20": 60500.0
+   },
+   "page": 156
+  },
+  {
+   "code": "A230101",
+   "programme": "A23",
+   "subprogramme": "A2301",
+   "subprogramme_name": "Toponímia",
+   "name": "Supervização de Servço da Direção Geral da Toponimia e da Organização Urbana",
+   "div": [
+    "0161101"
+   ],
+   "indicator": "1) # de reunião realizada para consulta, coordenação dos serviços com linhas ministeriais, as autoridades municipais, as lideranças comunitárias, os universitários e a Sociedade Civil na área de Toponímia, Organização Urbana e a Gestão de Higiene e Ordem Pública. 2) # de seminários e workshops na área de Toponímia, Organização Urbana e Gestão de Higiene e Ordem Pública, realizados; 3) # de funcionários casuais e do técnico especializado contratado.",
+   "baseline": "1) 8 reuniões realizadas nos municípios de Liquiça, Administrativa de Atauro, Baucau, Bobonaro, Ermera, Lautém, Manatuto e Viqueque; 2) 6 assistências técnicas realizadas nos municípios de Bobonaro, Liquiça e Administrativa de Atauro, Dili, Ermera e RAEOA, foram efetuadas; 3) 19 funcionários casuais (14 homens e 5 mulheres).",
+   "target": "1) 12 Municípios, 67 PA; 2) 12 Municípios, Autoridade Administrativa Atauro e RAEOA; 3) 20 funcionários casuais, 1 assessor jurídico e 2 técnicos especializados.",
+   "amounts": {
+    "10": 83904.0,
+    "20": 149000.0
+   },
+   "page": 159
+  },
+  {
+   "code": "A230102",
+   "programme": "A23",
+   "subprogramme": "A2301",
+   "subprogramme_name": "Toponímia",
+   "name": "Supervizão os Servicos de Direcção Nacional para os Serviços da Organização Urbana",
+   "div": [
+    "0161103"
+   ],
+   "indicator": "1) # de Assistência Técnica para apoiar Autoridades Municipais e a Autoridade Administrativa de Atauro na gestão de mercados, conservação de jardins e parques, cemitérios públicos, venda ambulante, exercício de atividades comerciais não sedentárias, ocupação temporária de vias públicas e licenciamento de afixação de mensagens publicitárias. 2) # de disseminação de quadros legais e o padrão de procedimentos operacionais sobre os Serviços da Organização Urbana para as Autoridades Municipais e a Autoridade Administrativa Atauro; 3) # dos funcionários casuais contratados.",
+   "baseline": "1) 12 municípios e em 67 PA realizados; 2) 1 Disseminação e socialização do DL.NU 31/2017 realizada na Autoridade Municipal de Ermera do PA. Hatolia B e Ermera Villa; 3) 25 funcionários casuais foram contratados (16 homens e 9 mulheres).",
+   "target": "1) 12 Municípios e 30 PA; 2) 12 Municípios, Autoridade Administrativa Atauro e RAEOA em 20 PA; 3) 26 funcionários contratados",
+   "amounts": {
+    "10": 72275.0,
+    "20": 45000.0
+   },
+   "page": 159
+  },
+  {
+   "code": "A230103",
+   "programme": "A23",
+   "subprogramme": "A2301",
+   "subprogramme_name": "Toponímia",
+   "name": "Supervizão os Servicos de Direção Nacional da Toponimia",
+   "div": [
+    "0161102"
+   ],
+   "indicator": "1) # de assistência técnica prestada para apoiar as autoridades municipais e a",
+   "baseline": "1) 13 Autoridades Municipais, Autoridade Administrativa de Atauro em 67 Postos",
+   "target": "1) 12 Municípios, AA Atauro, 67 PA e em 452 Sucos 2) 32 funcionários contratados; 3)",
+   "amounts": {
+    "10": 79584.0,
+    "20": 46000.0
+   },
+   "page": 159
+  },
+  {
+   "code": "A230201",
+   "programme": "A23",
+   "subprogramme": "A2302",
+   "subprogramme_name": "Higiene e Ordem Pública Urbana",
+   "name": "Instalação Placas e Numeracao das Casas",
+   "div": [
+    "0161104"
+   ],
+   "indicator": "1.) # de Assistência Técnica para apoiar as Autoridades Municipais e a Autoridade Administrativa de Atauro na aplicação do regime jurídico da higiene e da ordem pública relativo à implementação de sistemas de recolha e tratamento de resíduos sólidos urbanos e à melhoria dos sistemas de manutenção da higiene e salubridade dos espaços públicos existentes nos aglomerados populacionais. 2) # de funcionários casuais e técnicos especializados contratados; 3) # de participantes na disseminação sobre os quadros legais e o padrão dos procedimentos operacionais e os Serviços de Gestão de Higiene e Ordem Pública para Autoridades Municipais e a Autoridade Administrativa de Atauro. 4) # de participantes na formação de técnica especializada sobre quadros locais na área de Gestão de Higiene e Ordem Pública. 5) # de ToT realizados para formadores na área de Gestão de Higiene e Ordem Pública.",
+   "baseline": "1) 3 Assistências técnicas sobre o programa da Organização Urbana no Município de Liquica. PA. Baubara, Viqueque e Autoridade Administrativa de Atauro; 2) 20 funcionários contratados (8 mulheres e 12 homens) 3) 445 participantes (285 homens e 160 mulheres), realizados em Aileu, Ainaro, Baucau, Bobonaro, Covalima, Ermera, Lautem, Liquica, Manatutu, Manufahi, Viqueque e Atauro; 4) N.d.; 5) N.d.;",
+   "target": "1) 12 municípios, Autoridade Administrativa de Atauro e 67 PA. 2) 25 Pessoas; 3) 100 Participantes 4) 100 Formandos 5) 1 regulamentos para 1 formador",
+   "amounts": {
+    "10": 69000.0,
+    "20": 40000.0
+   },
+   "page": 161
+  },
+  {
+   "code": "A2302X1",
+   "programme": "A23",
+   "subprogramme": "A2302",
+   "subprogramme_name": "Higiene e Ordem Pública Urbana",
+   "name": "Implementation and management of the Dili parking system - SEATOU",
+   "div": [
+    "0161104"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 200000.0
+   },
+   "page": 161
+  },
+  {
+   "code": "A240101",
+   "programme": "A24",
+   "subprogramme": "A2401",
+   "subprogramme_name": "Promoção do Desenvolvimento Local",
+   "name": "Supervisão os Serviços de Desenvolvimento Local",
+   "div": [
+    "0161201"
+   ],
+   "indicator": "1) # dos funcionários Técnico Superior, Técnico Profissional, e Técnico Administrativo recrutados; 2) # de Supervisão e Monitorização,Avaliação e Coordenação das Atividades das Direções Nacionais Tuteladas pela DGDL, Autoridades Municipais e Autoridade Administrativa de Atauro realizadas; 3) # de estudos comparativos sobre Planeamento do Desenvolvimento Municipal, Planeamento do Desenvolvimento Comunitária e Promoção de Eficiência da Administração local, realizadas; 4) # de Seminário ou workshop sobre Promoção do Desenvolvimento Local na área do Planeamento Desenvolvimento Municipal, Planeamento Desenvolvimento Comunitário e Promoção Eficiência da Administração local; 5) # de divulgação das informações sobre o progresso do desenvolvimento local na área do Planeamento e Desenvolvimento Municipal, Planeamento e Desenvolvimento Comunitário e Promoção da Eficiência da Administração local executadas através da rádio e televisão.",
+   "baseline": "1) 24 funcionários casuais recrutados (13 homens e 11 mulheres). 2) 3 direções e 13 autoridades municipais 3) N.d. 4) N.d. 5) N.d.",
+   "target": "1) 33 funcionários contratados 2) 3 Direções, 12 Autoridades Municipais, Autoridade Administrativa Atauro e RAEOA 3) 1 Estudos a nível nacional, municipal e em países da ASEAN, com o total de 21 pessoas; 4) 1 Seminário e 500 Pessoas DG MAE, PAM,Diretores de Serviços Municipais, APA. 5) 2 informações divulgadas",
+   "amounts": {
+    "10": 105560.0,
+    "20": 129000.0
+   },
+   "page": 163
+  },
+  {
+   "code": "A240102",
+   "programme": "A24",
+   "subprogramme": "A2401",
+   "subprogramme_name": "Promoção do Desenvolvimento Local",
+   "name": "Presta e disseminar informação as proposta de Plano Desenvolvimento Local",
+   "div": [
+    "0161203"
+   ],
+   "indicator": "1) # de participantes no intercambio sobre a implementação e avaliação do PDC nos municípios realizado; 2) # de participantes",
+   "baseline": "1) N.d.; 2) 40 funcionários (20 homens e 20 mulheres) dos Municípios e Postos Administrativos participaram na formação sobre a",
+   "target": "1) 70 participantes; 2) 200 participantes; 3) 12 AM, AAA, 69 postos administrativos e 466 sucos; 4) 16 pessoas (1 técnico especializado, 11",
+   "amounts": {
+    "10": 67956.0,
+    "20": 40000.0
+   },
+   "page": 163
+  },
+  {
+   "code": "A240103",
+   "programme": "A24",
+   "subprogramme": "A2401",
+   "subprogramme_name": "Promoção do Desenvolvimento Local",
+   "name": "Conduz, promover e requalifica aos Recucos Humanos para a elaboração Implementação, motorização, avaliação e revisão dos plano desenvolvimento Municipal",
+   "div": [
+    "0161202"
+   ],
+   "indicator": "1) # de funcionários casuais e técnicos especializados recrutados; 2) # de Assistência Técnica realizada nas Autoridades Municipais sobre a Harmonização e Implementação do PDM / PDA e PAA; 3) # de monitorização, avaliação e assistência técnica sobre a harmonização do PDM e PAA nos Municípios e Autoridade Administrativa de Atauro.",
+   "baseline": "1).13 funcionários casuais, desagregados por sexo (8 homens e 5 mulheres), foram contratados; 2).12 Autoridades Municipais e Autoridade Administrativa de Atauro realizados; 3).12 Autoridade Municipal e Autoridade Administrativa de Atauro realizados;",
+   "target": "1). 16 funcionários casuais; 2). 12 Autoridades Municipais e Autoridade Administrativa de Atauro 3). 12 Autoridades Municipais e Autoridade Administrativa de Atauro",
+   "amounts": {
+    "10": 46056.0,
+    "20": 40000.0
+   },
+   "page": 164
+  },
+  {
+   "code": "A240104",
+   "programme": "A24",
+   "subprogramme": "A2401",
+   "subprogramme_name": "Promoção do Desenvolvimento Local",
+   "name": "Elaboração informações, pareceres e relatórios sobre a eficiência da prestação de bens e serviços públicos pela administração local ao nivel dos municípios e dos postos administrativos",
+   "div": [
+    "0161204"
+   ],
+   "indicator": "1) # de funcionários casuais e de técnico superior contratados, para a prestação do serviço da direção ; 2) # de acompanhamento à implementação de boas práticas de gestão públicas locais e avaliar o seu impacto na melhoria da qualidade de serviços prestados pela administração local ao nível",
+   "baseline": "1) 16 funcionários casuais, desagregados por sexo (9 homens e 7 mulheres), foram contratados para apoiar a atividade de direção; 2) 12 municípios, AA-Ataúro e 65 postos administrativos realizados; 3).N.d.; 4) N.d.; 5) N.d.; 6) N.d.; 7) N.d.; 8) N.d.;",
+   "target": "1) 21 funcionários contratados; 2) 12 municípios, AA-Ataúro e 65 postos administrativos; 3) 1 Gião e 1 Documento de Standard Operational Procedure (SOP); 4) 12 municípios, AA-Ataúro e 65 postos administrativos; 5) 1 Guião de avaliação; 6) 12 municípios, AA-Ataúro e 65 postos administrativos; 7) 12",
+   "amounts": {
+    "10": 55008.0,
+    "20": 45000.0
+   },
+   "page": 164
+  },
+  {
+   "code": "A4700X1",
+   "programme": "A47",
+   "subprogramme": "A4700",
+   "subprogramme_name": "Simplificação do Atendimento Público na Administração Local",
+   "name": "Strengthening and management of one-stop shops",
+   "div": [
+    "0161002"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 166
+  },
+  {
+   "code": "A470000",
+   "programme": "A47",
+   "subprogramme": "A4700",
+   "subprogramme_name": "Simplificação do Atendimento Público na Administração Local",
+   "name": "Coordenação e Monitorização da Simplificação e Modernização dos Sistemas Administrativos Locais",
+   "div": [
+    "0161001"
+   ],
+   "indicator": "1) # de assistência técnica para o funcionamento do serviço Balcão Único e Portal Municipal em Autoridade Municipal, Autoridade Administrativa Ataúro e RAEOA, completado e atualizado. 2) # de assistencia tecnica no fortalecimento do serviço da administração local e da avaliação das condições de instalação dos órgãos e serviços do poder local das",
+   "baseline": "1) N.d.; 2) N.d.; 3) N.d.; 4) 2 Coordenações e comunicações com as cidades amigas e ministérios relevantes na integração dos serviços públicos no Balcão Único; 5) 69 funcionarios contratados (38 homens e 31 Mulheres) 6) N.d.",
+   "target": "1) 14 (12 AM, AAA e RAEOA) 2) 13 (12M, 1 AAA); 3) 12 Autoridades Municipais 4) 13 M e AA Atauro); 5) 103 funcionarios contratados e 1 assessora; 6) 14 Balcões Únicos.",
+   "amounts": {
+    "10": 453936.0,
+    "20": 177880.0
+   },
+   "page": 166
+  },
+  {
+   "code": "A470001",
+   "programme": "A47",
+   "subprogramme": "A4700",
+   "subprogramme_name": "Simplificação do Atendimento Público na Administração Local",
+   "name": "Desburocratização dos processos e dos procedimentos administrativos dos Municípios",
+   "div": [
+    "0161002"
+   ],
+   "indicator": "1) # de Balcão Único Funciona e Operacionalizado; 2) # de sistema de base de dados desenvolvido; 3) # de Base de Dados do Portal Municipal atualizadas e disponíveis ao público; 4) # dos funcionários contratados para a prestação de assistência técnica no Balcão Único, IT Nacional, Municípios e Postos Administrativos.",
+   "baseline": "1) 14 Balcões Únicos foram estabelecidos; 2) 3 Aplicações do sistema de atendimento; foram desenvolvidas; 3) 12 Autoridades Municipais, AAA e RAEOA; 4) 82 funcionários contratados (64 funcionários de TI colocados nos postos administrativos) e (18 funcionários apoiados na DNSAPE).",
+   "target": "1). 14 municípios 2). 4 Aplicações; 3). 12 municípios, AA Ataúro no RAEOA atualizado e publicado; 4). 84 funcionários contratados.",
+   "amounts": {
+    "10": 288717.0,
+    "20": 51600.0
+   },
+   "page": 167
+  },
+  {
+   "code": "A470002",
+   "programme": "A47",
+   "subprogramme": "A4700",
+   "subprogramme_name": "Simplificação do Atendimento Público na Administração Local",
+   "name": "Apoio aos municípios na melhoria da prestação de bens e serviços",
+   "div": [
+    "0161003"
+   ],
+   "indicator": "1). # de proposta que vise à melhoria da prestação de bens e serviços públicos pela administração local atualizada e implementada; 2). # de",
+   "baseline": "1).1 Monitorização do funcionamento dos serviços públicos na Administração Municipal foi realizada no Município de Aileu; 2). N.d.;",
+   "target": "1). 12 municípios, AA Atauro; 2). 12 municípios, AA Atauro; 3). 12 municipios; 4). 13 funcionários casuais contratados.",
+   "amounts": {
+    "10": 36530.0,
+    "20": 50020.0
+   },
+   "page": 167
+  },
+  {
+   "code": "A470003",
+   "programme": "A47",
+   "subprogramme": "A4700",
+   "subprogramme_name": "Simplificação do Atendimento Público na Administração Local",
+   "name": "Execução de actividades de capasitação dos Recurso humanos dos municipios e Fortalecimento da Cooperação na Administração local",
+   "div": [
+    "0161004"
+   ],
+   "indicator": "1). # de Encontro e Coordenação no âmbito da governação local, realizado e actualizado 2) # de acordos de cooperação com organizações nacionais e internacionais para apoiar órgãos e serviços poder local, assegurado 3) # de formação e socialização para os funcionários dos quadros nos municípios e na AA Atauro coordenada e realizada. 4) # de assistências técnicas às autoridades municipais e à AA Atauro implementadas; 5). # de funcionarios casuais contratados.",
+   "baseline": "1). 8 Encontros sobre o estabelecimento dos acordos de cooperação nos municípios de Baucau, Ermera, Liquica, Manatuto, Lautem, e Viqueque. 2). 3 Acordos 3). 12 municípios e AA Atauro; 4). 12 municípios e AA Atauro; 5). 14 Funcionarios Contratados;",
+   "target": "1). 5 encontros realizados 2). 5 acordos de cooperação 3). 12 municípios e AA Atauro (1.031 participantes) 4). 12 municípios e AA Atauro (992 participantes) 5). 14 funcionários contratado",
+   "amounts": {
+    "10": 39742.0,
+    "20": 34500.0
+   },
+   "page": 168
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "025.0.0",
+   "statement": "Fortalecimento da governação descentralizada através de um quadro operacional de governo local, possibilitado por (i) instrumentos de implementação para a descentralização e as finanças municipais, (ii) coordenação intergovernamental funcional e (iii) melhoria da capacidade municipal para planear e executar orçamentos baseados em programas",
+   "indicator": "1) % dos instrumentos necessários para a implementação da descentralização/finanças municipais emitidos e operacionais; 2) % dos municípios que cumprem os critérios de «funcionalidade mínima» para a governação municipal; 3) Índice de eficácia da coordenação intergovernamental; 4) # dos municípios que elaboram e executam um plano e orçamento anual baseado em programas, em conformidade com as normas nacionais;",
+   "baseline": "N.d.",
+   "target": "1) 100% de leis e regulamentos relacionados com descentralização aprovados e operacionalizados; 2) 50 % dos municípios com assembleias municipais funcionais e estrutura municipal em funcionamento. 3) 100% dos mecanismos de coordenação intergovernamental criados (GTIM,etc.) que se reúnem regularmente. 4) 12, AA Atauro e RAEOA com capacidade para planear e executar o seu próprio orçamento. \"",
+   "page": 138
+  },
+  {
+   "kind": "output",
+   "code": "02501.0.0",
+   "statement": "Subsídios para infraestruturas comunitárias e desenvolvimento local concedidos através do PNDS, com garantia de qualidade, participação inclusiva e acordos verificados de operação/manutenção",
+   "indicator": "1) # de projetos construídos/implementados a nível de sucos ou aldeias. 2) # de comunidades capacitadas nas áreas de gestão dos projetos na RAEOA. 3) # de trabalhadores empregados no Projeto PNDS na RAEOA; 4) # de setores privados envolvidos no PNDS na RAEOA; 5) # de EJS e membros de comunidades capacitados na RAEOA; 6) # de beneficiários nos Projetos PNDS na RAEOA. 7) # de Coordenação e Apoio às Atividades da Eleição Presidencial; 8) # de Coordenação e Apoio às Atividades da Eleição Municipal; 9) # de fornecimento de Quadros Demografia e Monografia;",
+   "baseline": "1). 19 projetos; Infraestrutura Básica (Água Potável, Estradas rurais, Drenagem, Irrigação, Sala de Maternidade, Clínica, Sala de Aula, Residência aos Professores); 2) 1.055 participação das EJS e comunidades; 3) 540 trabalhadores (cada suco emprega 30 trabalhadores); 4) 100 entidades do setor privado; 5) N.d.; 6) 500 beneficiários nos Projetos PNDS na RAEOA.\" 7). N.d.; 8). N.d.; 9) N.d.; 10) 226 Sucos avaliados; 11) 100% realizado.",
+   "target": "1) 20 de projetos construídos na RAEOA. 2) 1.055 participação das comunidades; 3) 750 trabalhadores; 4) 100 de setores privados; 5) 140 ES e comunidades; 6) 500 beneficiários. 7) 12 Autoridades Municipais, AA de Atauro e RAEOA; 8) 5 municípios apoiados para Poder Local; 9) 14 Municípios, Autoridade Administrativa de Atauro e 69 Postos Administrativos realizado; 10) 50 Sucos monitorizados e 466 Sucos apoiados com assistência técnica; 11) 100% em 12 autoridades municipais, AA de Atauro e RAEOA.",
+   "page": 138
+  },
+  {
+   "kind": "output",
+   "code": "02502.0.0",
+   "statement": "Sistemas administrativos municipais e submunicipais fortalecidos por meio de monitoramento, suporte técnico e adoção de procedimentos padrão de planejamento, relatórios e administração",
+   "indicator": "\"1) # de Formacao de Desentralizacao do Poder Local (Disseminasaun sobre Lei Poder Local, Lei Finansas Municipais, Lei Eleitoral Municipal). 2) # de municipios, postos administrativos e sucos munitorizados e avaliados. 3) # de formados capacitados composto pelos chefes dos Sucos eleito, Secretarios Adm Sucos, official Adm Suco, Official Financas e Official Social Economia; 4) # de Livros da Administração dos Sucos imprimido; 5) # Municípios Mapeados sobre Mapeamento dos Limites Territóriais dos Municípios.\"",
+   "baseline": "\"1) N.d. 2) 12 municipios, 30 postos administirativos e 226 sucos monitorizados e avaliados. 3) N.d. 4) 452 sucos de Livros da Administração dos Sucos imprimido; 5) N.d. \"",
+   "target": "\"1) 12 Municipios, AA-Atauro e RAEOA 2) 12 Municipios, 65 Posto Administrativos e 452 sucos. 3) 2,260 pessoas; 4) 47 Sucos; 5) 2 municipios (Baucau e Ermera).\"",
+   "page": 140
+  },
+  {
+   "kind": "output",
+   "code": "02503.0.0",
+   "statement": "Planos de investimento municipal (PIM) e projetos PDIM entregues com aquisições em conformidade, controlo de",
+   "indicator": "\"1) # de asistencia tecnica ao processo de Pré-Qualificação das empresa do ano 2026 nas Autoridades Municipais e",
+   "baseline": "\"1) 12 Autoridades Municipais e Autoridade Administrativa de Atauro; 2) Plano investimento municipal (PIM) AF de 2024 de",
+   "target": "\"1) 12 AM e AA de Atauro; 2) 12 AM e AA de Atauro; 3) 12 AM e AA de Atauro; 4) 100% 5) 1.090 formados (455",
+   "page": 142
+  },
+  {
+   "kind": "output",
+   "code": "02504.0.0",
+   "statement": "Apoio aos mecanismos locais de governação e consulta (GTP/GTIM e estruturas consultivas municipais) para que funcionem regularmente, produzam decisões",
+   "indicator": "\"1) # das reuniões ordinárias do GTP/GTIM realizadas. 2) # de participantes dos cidadaos esclarecidos sobre as questões relacionadas com os processos de",
+   "baseline": "\"1) 16/6 reuniões ordinárias do GTP/GTIM realizadas; 2) N.d. 3) N.d; 4) realizados 16 reuniões ordinarias do GTP e 6 GTIM reuniões ordinarias realizados; \"",
+   "target": "\"1). 24/12, reunioes ordinarios GTP/GTIM realizados; 2) 520/13; 3) 13 AM, do total de 520 participantes; 4) 26 reuniões (24 GTP e 12 GTIM); \"",
+   "page": 144
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Progresso do desenvolvimento das leis,",
+   "baseline": "Plano Estrategico aprovado",
+   "target": "As Leis sobre Poder Local e da Descentralização",
+   "page": 146
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) # do progresso no desenvolvimento das leis, politicas e enquadramento institucional da descentralização administrativa e poder local,desenvolvimento rural, da promoção da higiene, toponímia e organização urbana, nos domínios da organização e execução dos processos eleitorais e referendários, da classificação e conservação dos documentos oficiais com valor histórico, da promoção do desenvolvimento da Ilha de Ataúro, pelo Instituto Nacional da Administração Pública, pela Autoridade Administrativa de Ataúro e pelo Fundo Especial de Desenvolvimento de Ataúro, os quais ficam sujeitos à superintendência e tutela do Ministro da Administração Estatal. 2) # de sessões de trabalho a nivel municipal na competencia do Vice Ministro; 3) # de formação para os funcionarios dos quadros Gabinete nas areas a serem identificadas atraves de um Training Needs Analysis (TNA) ; 4) # de realização estudos e formulação proposta de melhoria prestação de bens e servicos publicos nas areas de RAEOA e de Atauro; 5) # de auditorias implementadas e",
+   "baseline": "1). Proposta de Revisão à Lei do Poder Local e da Descentralização Administrativa, Finanças Municipais e das Eleições Municipais e Proposta de Lei do Aprovisionamento Municipal e do Patrimonio Municipal; 2) N.d; 3) Workshop Retiro de todos os funcionarios do Gabinete do Vice Ministro realizados; 4) N.d; 5) 8 auditorias efetuadas e os relatórios produzidos; 6) N.D.; 7) N.D.; 8) 12 relatórios mensais, 4 relatórios trimestrais e 1 relatório anual do MAE submetido.",
+   "target": "1) 4 proposta de leis, Propostas de Decretos Leis, Propostas de revisão de leis e decretos leis, Diplomas Ministeriais e regulamentos produzidos; 2) 66 sessões de trabalho organizados; 3) Recrutar um consultor exterior para realizar um Training Needs Analysis (TNA) de 100 funcionários financiados pelo gabinete do Vice Ministro (formação local); 4) 10 informações e paraceres; 5) 58 auditorias; 6) 90%; 7) 5 seminarios realizado para Autoridades Municipais; Liderancas Comunitarios; Grupos Juventude; Universitarios; Grupos Religioso; Parceiras do Desenvolvimento, com o total de 500 participantes; 8) 12 relatorios mensais, 4 reltorios trimestais e 1 relatorio anual do MAE",
+   "page": 147
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) % da execução orçamentária por programa do MAE executado. 2) # do processo de aprovisionamento assinados em 2026. 3) # de municipios e nacional sobre os bens imoveis do estado registrados. 4) # Monitorização dos serviços ICT nos",
+   "baseline": "1) 93% de orcamento executado. 2) 135 dos contratos de aprovisionamento. 3) a nivel nacional e 2 municípios com piloto. 4) Serviços ICT em 13 Municipios monitorizado; 5) N.D.;",
+   "target": "1) 100 % executado. 2) 195 dos contratos de aprovisionamento. 3) A Nacional e 12 municipios registrados. 4) Serviços ICT em 13 municipios monitorizado; 5) 150 funcionarios público e 165 agentes da administração pública.",
+   "page": 152
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "\"1) % de municípios com um mecanismo ativo de coordenação da VBG alinhado com o NAP-GBV 2) % de casos de VBG relatados a nível comunitário com encaminhamento ou via de resolução documentados 3) Número de municípios que realizam pelo menos uma atividade de prevenção/conscientização sobre VBG por ano\"",
+   "baseline": "n.a",
+   "target": "10 % de aumento médio anual em todas as metas de gênero e inclusão, incluindo educação, saúde, justiça, segurança e trabalho decente, e representação em processos de tomada de decisão política e econômica.",
+   "page": 156
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "\"1) Número de reuniões de coordenação GEDSI/NAP-GBV realizadas com decisões documentadas 2) Porcentagem de casos de violência baseada no género relatados com encaminhamento ou resolução documentados ao nível comunitário 3) Tempo médio entre a denúncia do caso de violência baseada no género e o encaminhamento ou ação\"",
+   "baseline": "1) N.d. 2) N.d. 3) N.d.",
+   "target": "1) 6 reuniões de coordenação realizadas a nivel nacional (MAE) 2) 8 Municipios e 8 sucos.",
+   "page": 156
+  },
+  {
+   "kind": "outcome",
+   "code": "A23.0.0",
+   "statement": "Melhoria da governança urbana através de sistemas operacionais de toponímia e endereçamento, e reforço da implementação municipal de normas de higiene e ordem pública urbana",
+   "indicator": "\"1) % de municípios (incluindo AA Atauro) com um registo operacional de toponímia e endereçamento 2) Taxa de cobertura de toponímia em áreas urbanas prioritárias 3) % de edifícios visados com numeração oficial aplicada em zonas prioritárias 4) % de jurisdições que implementam um pacote mínimo de normas de higiene e ordem urbana\"",
+   "baseline": "n.a",
+   "target": "100 % funcionamento da Organização Urbana, Higiene, atribuição de nomes de lugares e Ordem Pública para melhorar as condições urbanas em todo o território de Timor-Leste.",
+   "page": 157
+  },
+  {
+   "kind": "output",
+   "code": "A2301.0.0",
+   "statement": "Sistemas de toponímia e endereçamento estabelecidos/atualizados e aplicados pelos municípios, incluindo decisões documentadas sobre nomenclatura e identificação verificada de ruas/edifícios em áreas prioritárias",
+   "indicator": "\"1) # de seminários e workshops na área de Toponímia, Organização Urbana e Gestão de Higiene e Ordem Pública, realizados. 2) # de Assistência Técnica para apoiar as Autoridades Municipais e a Autoridade Administrativa de Atauro na gestão de mercados, conservação de jardins e parques, cemitérios públicos, venda ambulante, exercício de atividades comerciais não sedentárias, ocupação temporária de vias públicas e licenciamento de afixação de mensagens publicitárias; 3) # de disseminação de quadros legais e o padrão de procedimentos operacionais sobre os Serviços da Organização Urbana para as Autoridades Municipais e a Autoridade Administrativa Atauro; 4) # de assistência técnica prestada para apoiar as autoridades municipais e a Autoridade Administrativa de Atauro nos Serviços de Toponímia, incluindo o registro dos arruamentos e a numeração dos prédios urbanos construídos nos principais aglomerados populacionais de Timor-Leste; 5) # de formação no assunto de Toponímia na prestação de assistência técnica nas Autoridades Municipais, realizado; 6) # de Assistência Técnica para apoiar as Autoridades Municipais e a Autoridade Administrativa de Atauro na implementação de sistemas de recolha e tratamento de resíduos sólidos urbanos.",
+   "baseline": "1) 6 assistências técnicas realizadas nos municípios de Bobonaro, Liquiça e Administrativa de Atauro, Dili, Ermera e RAEOA, foram efetuadas; 2) 12 municípios e em 67 PA realizados; 3) 1 Disseminação e socialização do DL.NU 31/2017 realizada na Autoridade Municipal de Ermera do PA. Hatolia B e Ermera Villa; 4) 13 Autoridades Municipais, Autoridade Administrativa de Atauro em 67 Postos Administrativos; 5) 1 Formação realizada na Autoridade Administrativa de Atauro, do total de 62 participantes (31 homens e 31 mulheres); 6) 3 Assistências técnicas sobre o programa da Organização Urbana no Município de Liquica. PA. Baubara, Viqueque e Autoridade Administrativa de Atauro.",
+   "target": "1) 12 Municípios, Autoridade Administrativa Atauro e RAEOA; 2) 12 Municípios e 30 PA; 3) 12 Municípios, Autoridade Administrativa Atauro e RAEOA em 20 PA; 4) 12 Municípios, AA Atauro, 67 PA e em 452 Sucos; 5) 12 municípios, AA Atauro do total de 1.700 participantes; 6) 12 municípios, Autoridade Administrativa de Atauro e 67 PA.",
+   "page": 158
+  },
+  {
+   "kind": "output",
+   "code": "A2302.0.0",
+   "statement": "Reforço das normas municipais de higiene e ordem pública urbana através da adoção de procedimentos operacionais, inspeções/monitorização de rotina e ações documentadas de fiscalização/apoio em áreas urbanas prioritárias",
+   "indicator": "\"1) # de Assistêcia Técnica realizado para apoiar Autoridades Municipais e á Autoridade Administrativa de Atauro os Serviços Toponimia registo dos arruamentos e de numeração dos prédios urbanos construidos. 2) # de participantes na Assistência Técnica sobre desseminação os quadros legais e o padrão procedimento operacionais sobre os Servicos Gestão de Higene e Ordem Pública para Autoridades Municipais e a Autoridade Administrativa Atauro realizado; 3) # de formação aos Tecnicos Eepecializada quadro logica area Gestão de Higene e Ordem Pública para Técnico Professional no 13 Municipais e Nacional; 4) # ToT",
+   "baseline": "\"1) 13 Municipios,67 PA,452 Sucos. 2) 711 pessoas (M:514 e F: 197) 3) 11 Postos Administrativos 4) D.d\"",
+   "target": "\"1) 13 Municipios, 67 PA, 452 Sucos 2) 100 Participantes 3) 140 Formandos 4) 2 regulamentos para 10 formadores.\"",
+   "page": 160
+  },
+  {
+   "kind": "outcome",
+   "code": "A24.0.0",
+   "statement": "Reforço da capacidade de planeamento e coordenação do desenvolvimento local entre municípios e estruturas comunitárias (sucos), permitindo a prestação prioritária de serviços e infraestruturas locais, em conformidade com os planos de desenvolvimento local aprovados",
+   "indicator": "\"1) % de municípios com um pacote de planos de desenvolvimento local aprovado e atualizado. 2) % de municípios que receberam pelo menos um ciclo de assistência técnica (AT) estruturada para a implementação do planeamento local. 3) Número de planos de desenvolvimento comunitário (PDC) ou instrumentos de planeamento suco apoiados (validados).\"",
+   "baseline": "n.a",
+   "target": "10% a pobreza nas comunidades locais e rurais reduzidos.",
+   "page": 162
+  },
+  {
+   "kind": "output",
+   "code": "A2401.0.0",
+   "statement": "Apoio ao planeamento e coordenação do desenvolvimento local prestado a municípios, postos administrativos e sucos através de assistência técnica, capacitação e produtos de evidência para melhorar a implementação das prioridades de desenvolvimento local",
+   "indicator": "\"1) # de Seminário ou workshop sobre Promoção do Desenvolvimento Local na área do Planeamento Desenvolvimento Municipal, Planeamento Desenvolvimento Comunitário e Promoção Eficiência da Administração local; 2) # de Assistência Técnica realizada nas Autoridades Municipais sobre a Harmonização e Implementação do PDM / PDA e PAA; 3) # de monitorização e avaliação e # assistência técnica na elaboração, execução e avaliação da implementação dos planos de desenvolvimento comunitário na Autoridade Municipal, Autoridade Administrativa de Atauro, Posto Administrativo e Sucos realizados. 4) # de implementação e disseminação de processos administrativos mais eficientes na administração local ao nível dos municípios ou dos postos administrativos.",
+   "baseline": "1) N.d. 2) 12 Autoridades Municipais e Autoridade Administrativa de Atauro realizadas; 3) 12 Autoridades Municipais e Autoridade Administrativa de Atauro e # de participantes Promover a capacitação de recursos humanos para a elaboração, implementação, monitorização, avaliação e revisão dos planos de desenvolvimento municipal; 4) N.d.",
+   "target": "1) 1 Seminário e 500 Pessoas DG MAE, PAM, Diretores de Serviços Municipais, APA; 2) 12 Autoridades Municipais e Autoridade Administrativa de Atauro; 3) 12 AM, AAA, 69 postos administrativos e 466 sucos; 4) 12 municípios, AA-Ataúro e 65 postos administrativos.",
+   "page": 162
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el23872: Melhoria da acessibilidade, _ pontualidade e transparência dos serviços administrativos municipais prioritários através de balcões únicos funcionais (Balcão Único), procedimentos simplificados e padrões mínimos de serviço",
+   "indicator": "\"1) % de Balcões Únicos funcionais em relação a um padrão mínimo de operação 2) Tempo médio de processamento para serviços prioritários selecionados (minutos/dias) 3) % de",
+   "baseline": "1) Estabelesido Balcão Unico em 5 municipios, nomeadamente Manatuto, Baucau, Liquica, Atauro e Manufahi. 2) 7 base de dados atualizados no Portal Municipais. 3) N.d 4) N.d",
+   "target": "1) 14 Balcão Único. 2) 12 Autoridades Municipais, AA de Atauro e RAEOA. 3) 5 Autoridade Municipais. 4) 12 Autoridades Municipais e AA de Atauro.",
+   "page": 165
+  },
+  {
+   "kind": "output",
+   "code": "A4700.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 166
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el23873: _ Desenvolvimento e implementação de processos e ferramentas padronizados para a prestação de serviços municipais, incluindo pacotes operacionais do Balcão Único, SOPs/formulários simplificados, ferramentas de avaliação de condições mínimas e padrões de conteúdo do portal",
+   "indicator": "\"1) Número de pacotes operacionais do Balcão Único implementados 2) Número de procedimentos municipais prioritários simplificados e padronizados 3) Quadro de avaliação das condições mínimas aprovado e aplicado 4) Porcentagem de municípios que cumprem a norma de conteúdo do Portal Municipal 5) Número de funcionários formados e certificados em procedimentos simplificados e operações do Balcão Único\"",
+   "baseline": "1) 5 de Balcão Unico Estabelecido (Manatuto, Baucau, Liquica, Atauro e Dili); 2) 7 base de dados atualizados no Portal Municipais. 3) N.d; 4) 10 cooperações e coordenaçòes entre os parceiros do MAE, foram realizadas; 5) N.d.",
+   "target": "1) 9; 2) 5; 3) 2 (1 DG e 1 DM); 4) 3 parcerias; 5) 14 Balcão Único.",
+   "page": 166
+  }
+ ]
+}

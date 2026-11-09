@@ -14,8 +14,6 @@ class DepartmentScopeTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const MINISTRY_WIDE = ['reports.paa'];
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -43,15 +41,16 @@ class DepartmentScopeTest extends TestCase
             $this->get(route('units.show', $user->directorate_id))->assertOk();
             $this->get(route('activities.index'))->assertOk();
             $this->get(route('monitoring.index'))->assertOk();
-            foreach (self::MINISTRY_WIDE as $route) {
-                $this->get(route($route))->assertForbidden();
+            // the reports open for their own unit only (the Reporting page among them)
+            $this->get(route('reports.paa'))->assertOk()->assertDontSee(__('All units'));
+            $this->get(route('reports.approved-plan'))->assertOk()->assertDontSee(__('All units'));
+            $other = Directorate::whereNotIn('id', Directorate::find($user->directorate_id)->getSelfAndDescendantIds())->first();
+            if ($other) {
+                $this->get(route('reports.approved-plan', ['unit' => $other->id]))->assertForbidden();
             }
-            $this->get(route('reports.approved-plan'))->assertForbidden();
 
             $routes = collect(Navigation::quickLinks($user))->pluck('url')->implode(' ');
-            foreach (self::MINISTRY_WIDE as $route) {
-                $this->assertStringNotContainsString(route($route, absolute: false), $routes, "$role is offered $route in the menu");
-            }
+            $this->assertStringContainsString(route('reports.paa', absolute: false), $routes, "$role is offered the reports of their unit");
         }
     }
 
@@ -59,7 +58,7 @@ class DepartmentScopeTest extends TestCase
     {
         foreach (['Admin', 'Minister'] as $role) {
             $this->as($role);
-            foreach (self::MINISTRY_WIDE as $route) {
+            foreach (['reports.paa'] as $route) {
                 $this->get(route($route))->assertOk();
             }
         }

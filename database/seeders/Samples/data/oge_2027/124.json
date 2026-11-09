@@ -1,0 +1,119 @@
+{
+ "year": 2027,
+ "code": "124",
+ "name": "Vice-Primeiro Ministro para a Área Económica",
+ "abbr": "VPMAE",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1212,
+   1212
+  ]
+ },
+ "units": [
+  {
+   "code": "GVPMAE",
+   "div": "1240101",
+   "name": "Gabinete do Vice-Primeiro Ministro para a Área Económica",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1240101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 262231.0,
+    "20": 24000.0
+   },
+   "page": 1212
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1240101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1212
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1240101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 55901.0
+   },
+   "page": 1212
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "1240101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 144188.0
+   },
+   "page": 1212
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1212
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1212
+  }
+ ]
+}

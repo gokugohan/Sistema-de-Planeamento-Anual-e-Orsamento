@@ -5,15 +5,20 @@ use Database\Seeders\Samples\MtcBudgetSeeder;
 use Database\Seeders\Samples\MtcDirectorateSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
+use Database\Seeders\Samples\OgeCatalog;
+use Database\Seeders\Samples\OgeEntitySampleSeeder;
 use Livewire\Volt\Component;
 
 new class extends Component {
     public ?array $report = null;
 
-    /** 'office' (one directorate/office, the default) or 'ministry' (the whole MTC) */
+    /** 'office' (one directorate/office of MTC, the default), 'ministry' (the whole MTC) or 'entity' (any entity of the State Budget 2027) */
     public string $scope = 'office';
 
     public string $office = MtcOfficeSampleDataSeeder::DEFAULT_OFFICE;
+
+    /** The State Budget entity to load (OgeCatalog) */
+    public string $entity = OgeEntitySampleSeeder::DEFAULT_ENTITY;
 
     /** On purging, keep the sample's units as the institution's own structure */
     public bool $keepUnits = false;
@@ -41,6 +46,7 @@ new class extends Component {
             $this->dispatch('toast', message: __('Sample data cannot be loaded in production.'), type: 'error');
             return;
         }
+        abort_unless($this->scope !== 'entity' || OgeCatalog::has($this->entity), 422);
 
         try {
             // Seeders need the container to inject the registry into their run() methods.
@@ -53,6 +59,8 @@ new class extends Component {
             $years = range($this->fromYear, $this->toYear);
             if ($this->scope === 'ministry') {
                 app(MtcSampleDataSeeder::class)->setContainer(app())->run($this->state, $years);
+            } elseif ($this->scope === 'entity') {
+                app(OgeEntitySampleSeeder::class)->setContainer(app())->run($this->entity, $this->state, $years);
             } else {
                 abort_unless(array_key_exists($this->office, MtcDirectorateSeeder::offices()), 422);
                 app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($this->office, $this->state, $years);
@@ -93,6 +101,8 @@ new class extends Component {
             'loaded' => $registry->hasSamples(),
             'production' => app()->isProduction(),
             'offices' => MtcDirectorateSeeder::offices(),
+            'entities' => OgeCatalog::grouped(),
+            'chosen' => OgeCatalog::index()[$this->entity] ?? null,
         ];
     }
 }; ?>
@@ -101,7 +111,7 @@ new class extends Component {
     <div>
         <h1 class="page-title">{{ __('Sample Data') }}</h1>
         <p class="page-subtitle">
-            {{ __('An optional demo dataset based on the Ministry of Transport and Communications (MTC) of Timor-Leste, for the whole ministry or for a single directorate or office (by default the Gabinete de Digitalização e Segurança Cibernética). The application itself works for any institution; load this only to explore or train, and purge it before going live.') }}
+            {{ __('An optional demo dataset: the Ministry of Transport and Communications (MTC) of Timor-Leste, whole or one of its offices, or any other entity of the State Budget 2027 with its own units and annual plan. The application itself works for any institution; load this only to explore or train, and purge it before going live.') }}
         </p>
     </div>
 
@@ -167,6 +177,29 @@ new class extends Component {
                         <span class="block text-xs text-zinc-500">{{ __('Every unit and autonomous body, with the full annual plans.') }}</span>
                     </span>
                 </label>
+                <label class="flex items-start gap-3 text-sm text-zinc-700">
+                    <input type="radio" wire:model.live="scope" value="entity" class="mt-1">
+                    <span>
+                        <span class="font-medium text-zinc-900">{{ __('Another public entity (State Budget 2027)') }}</span>
+                        <span class="block text-xs text-zinc-500">{{ __('Any ministry, secretariat of state, municipal authority, institute or fund, with the units and the annual plan the State Budget 2027 prints for it.') }}</span>
+                    </span>
+                </label>
+                @if($scope === 'entity')
+                    <div class="ml-7 space-y-1">
+                        <select wire:model.live="entity" aria-label="{{ __('Public entity') }}" class="w-full max-w-md rounded-md border-zinc-300 text-sm">
+                            @foreach($entities as $kind => $group)
+                                <optgroup label="{{ __(\Database\Seeders\Samples\OgeCatalog::KINDS[$kind]) }}">
+                                    @foreach($group as $code => $e)
+                                        <option value="{{ $code }}">{{ $code }} — {{ $e['name'] }}</option>
+                                    @endforeach
+                                </optgroup>
+                            @endforeach
+                        </select>
+                        @if($chosen)
+                            <p class="text-xs text-zinc-500">{{ __(':units units · :n activities · $ :total planned for 2027', ['units' => $chosen['units'], 'n' => $chosen['activities'], 'total' => number_format($chosen['total'])]) }}</p>
+                        @endif
+                    </div>
+                @endif
             </fieldset>
 
             <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
@@ -181,7 +214,11 @@ new class extends Component {
                         <input id="sample-to" type="number" min="2000" max="{{ now()->year + 5 }}" wire:model.live="toYear" class="flux-input !w-32">
                     </div>
                 </div>
+                @if($scope === 'entity')
+                    <p class="text-xs text-zinc-500">{{ __('The State Budget books give the plan of 2027 for every entity: each year you load takes it, with its dates, programs, calendar and reported spending following the year you chose. Years before :current are loaded approved, with their spending reported.', ['current' => now()->year]) }}</p>
+                @else
                 <p class="text-xs text-zinc-500">{{ __('The sample holds the real plans of :years. Each year you load takes the plan of the same year, or of the nearest of these; its dates, programs, calendar and reported spending follow the year you chose. Years before :current are loaded approved, with their spending reported.', ['years' => implode(', ', \Database\Seeders\Samples\MtcBudgetSeeder::YEARS), 'current' => now()->year]) }}</p>
+                @endif
             </fieldset>
 
             <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
@@ -256,14 +293,17 @@ new class extends Component {
             <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
             <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
             <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
+            <li>{{ __('For another public entity: its divisions as the State Budget 2027 prints them (each under its general directorate where the budget codes show one), its programs, demo accounts (a Minister only for a ministry) and its 2027 annual plan, with indicators, outcomes and outputs.') }}</li>
             <li>{{ __('Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>
     <x-confirm-dialog name="confirm-load" :title="__('Load sample data')" :confirm="__('Load sample data')" wire:click="load"
-        :message="$scope === 'ministry'
-            ? __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.')
-            : __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office])" />
+        :message="match ($scope) {
+            'ministry' => __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.'),
+            'entity' => __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $chosen['name'] ?? $entity]),
+            default => __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office]),
+        }" />
 
     <x-confirm-dialog name="confirm-purge" :title="__('Purge sample data')" :confirm="__('Purge sample data')" variant="danger" wire:click="purge"
         :message="$keepUnits

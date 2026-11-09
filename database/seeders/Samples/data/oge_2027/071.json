@@ -1,0 +1,192 @@
+{
+ "year": 2027,
+ "code": "071",
+ "name": "Centro Nacional de Emprego e Formação Profissional - Tibar, I.P.",
+ "abbr": "CNEFPT",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   754,
+   755
+  ]
+ },
+ "units": [
+  {
+   "code": "CNEFPT",
+   "div": "0710101",
+   "name": "Centro Nacional de Emprego e Formação Profissional - Tibar",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100213",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "% do orçamento executado; # funcionários com acesso a qualificação superior",
+   "baseline": "082% execução financeira OGE 24; 113 funcionários",
+   "target": "100% ; 8 funcionários com acesso o ensino superior",
+   "amounts": {
+    "10": 494647.0,
+    "20": 46666.0
+   },
+   "page": 754
+  },
+  {
+   "code": "9831504",
+   "programme": "983",
+   "subprogramme": "98315",
+   "subprogramme_name": "Atividades de formação vocacional",
+   "name": "Organização e execução de ações de formação profissional regulares",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "# de formandos beneficiados",
+   "baseline": "160 formandos beneficiados",
+   "target": "285 formandos com acesso a formação tecnica e profissional de qualidade",
+   "amounts": {
+    "10": 41702.0,
+    "20": 497494.0
+   },
+   "page": 754
+  },
+  {
+   "code": "9831505",
+   "programme": "983",
+   "subprogramme": "98315",
+   "subprogramme_name": "Atividades de formação vocacional",
+   "name": "Organização e execução de ações de formação profissional em parceria com parceiros de desenvolvimento",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "\"# de formandos ou formadores beneficiados \"",
+   "baseline": "783 formandos beneficiados",
+   "target": "173 formandos ou formadores com acesso a formação tecnica e profissional de qualidade",
+   "amounts": {
+    "10": 36400.0,
+    "20": 195729.0
+   },
+   "page": 755
+  },
+  {
+   "code": "9831506",
+   "programme": "983",
+   "subprogramme": "98315",
+   "subprogramme_name": "Atividades de formação vocacional",
+   "name": "Implementação do programa de Formação Móvel - &quot;Mobile Training&quot; nos municípios e estágios profissionais",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "\"1) # de formandos beneficiados 2) # de municipios abrangidos 3) # de estágios profissionais monitorizados e financiados\"",
+   "baseline": "20 estagios profissionais",
+   "target": "\"1) 30 formandos beneficiados por formação móvel 2) 3 municipios abrangidos 3) 46 estágios profissionais monitorizados e financiados\"",
+   "amounts": {
+    "20": 32747.0
+   },
+   "page": 755
+  },
+  {
+   "code": "9831507",
+   "programme": "983",
+   "subprogramme": "98315",
+   "subprogramme_name": "Atividades de formação vocacional",
+   "name": "Criação de Incubadora de Pequenas Empresas [Micro Enterprise Development Incubator (MEDI)]",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "1) # de ex-formandos inseridos no programa; 2) # de negócios/empresas criadas e acompanhadas",
+   "baseline": "fase de revisão de conteudos da formação de empreendedorismo",
+   "target": "1)30 ex.formandos inseridos no programa; 2)4 empresas criadas e monitorizadas",
+   "amounts": {
+    "10": 37095.0,
+    "20": 17080.0
+   },
+   "page": 755
+  },
+  {
+   "code": "9831508",
+   "programme": "983",
+   "subprogramme": "98315",
+   "subprogramme_name": "Atividades de formação vocacional",
+   "name": "Criação e Desenvolvimento da Unidade de Pesquisa, Informação e Comunicação do Centro de Recursos",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "# de áreas de formação e parceiros estratégicos identificados para o desenvolvimento do CNEFP",
+   "baseline": "2 programas de formação desenvolvidos",
+   "target": "4 reuniões de direção; 2 novas parcerias; 1 Feira de formação e emprego realizada com ex formandos",
+   "amounts": {
+    "20": 3500.0
+   },
+   "page": 755
+  },
+  {
+   "code": "98315E1",
+   "programme": "983",
+   "subprogramme": "98315",
+   "subprogramme_name": "Atividades de formação vocacional",
+   "name": "Operating allocation for the Bonsone-Oecusse, STVJ-Comoro and Salele-Suai training centres",
+   "div": [
+    "0710101"
+   ],
+   "indicator": "# de formandos beneficiados",
+   "baseline": "0",
+   "target": "95 beneficiados",
+   "amounts": {
+    "20": 350000.0
+   },
+   "page": 755
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo 2) % do Plano Anual implementado 3) % de plano Estratégico/Médio Prazo Aprovado 4) % do pessoal consciente e envolvido no desenvolvimento do plano estratégico/médio prazo",
+   "baseline": "1).100%. 2).100%.3).100%.4).100%.",
+   "target": "1).100%. 2).100%.3).100%.4).100%.",
+   "page": 754
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) % de execução do orçamento 2) % de Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) % de criação de um sistema de arquivo electrónico",
+   "baseline": "1).100%. 2). 100%. 3). 100%",
+   "target": "1).100%. 2). 100%. 3). 100%",
+   "page": 754
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.4",
+   "statement": "Timor-Leste com pessoas qualificadas que precisamos para continuar a construir a nossa nação",
+   "indicator": "% de graduados que participaram de treinamento e conseguiram o emprego em 1 ano",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 754
+  },
+  {
+   "kind": "output",
+   "code": "98315.0.0",
+   "statement": "As necessidades das habilidades do mercado de trabalho nos campos técnico e profissional são compatíveis e a criação de trabalho por conta própria aumenta",
+   "indicator": "% de graduados que conseguem emprego dentro de um ano após a graduação.",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 754
+  }
+ ]
+}

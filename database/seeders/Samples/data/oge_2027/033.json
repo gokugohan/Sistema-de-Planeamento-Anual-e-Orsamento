@@ -1,0 +1,357 @@
+{
+ "year": 2027,
+ "code": "033",
+ "name": "Tribunais",
+ "abbr": "T",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   354,
+   358
+  ]
+ },
+ "units": [
+  {
+   "code": "TR",
+   "div": "0330101",
+   "name": "Tribunal de Recurso",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CSMJ",
+   "div": "0330102",
+   "name": "Conselho Superior da Magistratura Judicial",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "TD",
+   "div": "0330103",
+   "name": "Tribunais Distritais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "STJ",
+   "div": "0330104",
+   "name": "Supremo Tribunal de Justica",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "171": "Aproximar os serviços dos tribunais da população",
+  "392": "Acesso à justiça",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "1710101",
+   "programme": "171",
+   "subprogramme": "17101",
+   "subprogramme_name": "Tribunal de recurso",
+   "name": "Gestão do Tribunal de recurso",
+   "div": [
+    "0330101",
+    "0330103"
+   ],
+   "indicator": "a supervisão e administração do sistema judicial do país, a fiscalização orçamental transitória e a coordenação de recursos humanos",
+   "baseline": "refere-se ao indicador de desempenho e à taxa de apuramento de processos estabelecidos nos planos anuais e orçamentais",
+   "target": "Controlo Financeiro e Orçamental, Eficiência Processual Capacitação Institucional",
+   "amounts": {
+    "10": 3969.0,
+    "20": 200746.0
+   },
+   "page": 354
+  },
+  {
+   "code": "17101X1",
+   "programme": "171",
+   "subprogramme": "17101",
+   "subprogramme_name": "Tribunal de recurso",
+   "name": "Institutional operation of the Supreme Court of Justice",
+   "div": [
+    "0330101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 1975500.0
+   },
+   "page": 354
+  },
+  {
+   "code": "1710201",
+   "programme": "171",
+   "subprogramme": "17102",
+   "subprogramme_name": "Conselho superior da magistratura judicial",
+   "name": "Gestão do Conselho superior da magistratura judicial",
+   "div": [
+    "0330102"
+   ],
+   "indicator": "consiste na administração, nomeação, colocação, transferência, promoção e disciplina dos magistrados judiciais, além da orientação geral dos tribunais",
+   "baseline": "foca-se no levantamento de pendências processuais, na definição de metas de celeridade e na transparência administrativa.",
+   "target": "gestão centradas na nomeação, colocação, transferência e promoção de juízes, além da fiscalização disciplinar e do reforço da eficiência operacional dos tribunais",
+   "amounts": {
+    "10": 6000.0,
+    "20": 22800.0
+   },
+   "page": 354
+  },
+  {
+   "code": "1710401",
+   "programme": "171",
+   "subprogramme": "17104",
+   "subprogramme_name": "Tribunais distritais",
+   "name": "Gestão de tribunais distritais",
+   "div": [
+    "0330103"
+   ],
+   "indicator": "O indicador de atividade de gestão de tribunais judiciais de primeira instância mede a produtividade e a eficácia processual. Ele serve para avaliar a taxa de resolução, a duração média dos processos e o volume de pendências",
+   "baseline": "A gestão de um Tribunal Judicial de Primeira Instância (TJPI) em Timor-Leste tem como ponto de partida o juiz administrador, nomeado pelo Conselho Superior da Magistratura Judicial por um período de três anos",
+   "target": "A meta anual de gestão para os tribunais judiciais de primeira instância define objetivos de desempenho processual e administrativo, focando na redução da pendência, na celeridade dos julgados e na eficiência na gestão de recursos, sendo estabelecida por órgãos de supervisão superior em articulação com a administração da justiça",
+   "amounts": {
+    "10": 2119886.0,
+    "20": 650552.0,
+    "50": 70000.0
+   },
+   "page": 355
+  },
+  {
+   "code": "1710601",
+   "programme": "171",
+   "subprogramme": "17106",
+   "subprogramme_name": "Edifícios dos tribunais",
+   "name": "Construção edifícios dos tribunais",
+   "div": [
+    "0330101"
+   ],
+   "indicator": "Reliazação ao Espancao do Edifícios dos Tribunais no monicipios e Instalcao Supremo Tribunal de Justica",
+   "baseline": "projetos planeados do constroção Supremo Tribunal de Justiaça ou execução projetos constroção novo edificios TJPI em municípios como Ermera, Viqueque, Baucau e Bobonaro",
+   "target": "Percentagem de conclusão física ou financeira do edifício dos tribunais previsto no plano orçamental",
+   "amounts": {
+    "50": 170666.0
+   },
+   "page": 355
+  },
+  {
+   "code": "1710701",
+   "programme": "171",
+   "subprogramme": "17107",
+   "subprogramme_name": "Recursos Humanos afetos a Prestação de Serviços",
+   "name": "Gestão de Recursos Humanos afetos a Prestação de Serviços",
+   "div": [
+    "0330101",
+    "0330104"
+   ],
+   "indicator": "% de pagamento de Salário e Abonos Regulares e Permanentes",
+   "baseline": "\"Tribunais \"",
+   "target": "100% de pagamento de Salário e Abonos Regulares e Permanentes",
+   "amounts": {
+    "10": 3426147.0
+   },
+   "page": 356
+  },
+  {
+   "code": "3921301",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "Formação dos recursos humanos nas áreas da justiça",
+   "div": [
+    "0330101"
+   ],
+   "indicator": "Levantamento de Necessidades de Treinamento e Capacitação dos funsionarios",
+   "baseline": "Mapeamento de Competências: Identificar o conhecimento técnico atual e o conhecimento técnico ideal necessário para a função",
+   "target": "Diagnóstico e Levantamento de Necessidadesa, Plano de Capacitação e Treinamento e Acompanhamento e Indicadores de Desempenho",
+   "amounts": {
+    "20": 54185.0
+   },
+   "page": 356
+  },
+  {
+   "code": "3921302",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "Formação profissional para os autores de justiça",
+   "div": [
+    "0330101"
+   ],
+   "indicator": "Formação profissional para os autores de justiça (Juzes, Auditores e Oficial de Justica)",
+   "baseline": "Mapeamento de Competências: Identificar o conhecimento técnico atual e o conhecimento técnico ideal necessário para a função",
+   "target": "100 % de pagamento Formação e Palestras e Assisténcia Técnica",
+   "amounts": {
+    "20": 37980.0
+   },
+   "page": 356
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0330101"
+   ],
+   "indicator": "Os indicadores para atividades de inspeção, fiscalização e auditoria servem para medir a eficiência, a produtividade e o impacto real das ações de controle em uma organização ou órgão público",
+   "baseline": "O Ponto de Partida (Baseline) nas atividades de inspeção, fiscalização e auditoria representa o estado inicial ou a linha de base de conformidade contra a qual todo o progresso, desempenho e desvios futuros serão medidos",
+   "target": "A meta anual para a atividade de inspeção, fiscalização e auditoria varia conforme o plano de atividades específico de cada órgão ou município público",
+   "amounts": {
+    "20": 12000.0
+   },
+   "page": 357
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0330101",
+    "0330104"
+   ],
+   "indicator": "para medir a eficiência, a transparência e a celeridade no uso dos recursos públicos e no apoio logístico à atividade jurisdicional",
+   "baseline": "Gestão Financeira e Orçamental, Administração e Recursos Humanos Logística e Património",
+   "target": "objetivo central garantir a eficiência operacional, a transparência fiscal e o suporte físico/tecnológico necessário para que a atividade jurídica ocorra sem interrupções \"",
+   "amounts": {
+    "20": 283568.0
+   },
+   "page": 357
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0330101"
+   ],
+   "indicator": "A cooperação entre os tribunais e as instituições judiciais no âmbito da CPLP (Comunidade dos Países de Língua Portuguesa) e da ASEAN (Associação de Nações do Sudeste Asiático) encontra em Timor-Leste um ponto de ligação fundamental, dado que o país integra a CPLP e caminha para a adesão plena à ASEAN",
+   "baseline": "Ponto de Partida (Baseline) da cooperação e parcerias entre os tribunais no contexto dos Países de Língua Portuguesa (CPLP) e da Associação de Nações do Sudeste Asiático (ASEAN) fundamenta-se na partilha de experiências jurídicas, capacitação institucional e harmonização de boas práticas judiciais.",
+   "target": "Segurança e Combate ao Crime e Capatacitacao recurso Humanos",
+   "amounts": {
+    "20": 20016.0
+   },
+   "page": 358
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "171.0.0",
+   "statement": "As pessoas têm acesso a um sistema de justiça independente, justo, ágil e eficiente, que protege direitos e liberdades, defende e interpreta a lei, resolve disputas de forma pacífica, justa e eficaz e mantém as instituições públicas responsáveis.",
+   "indicator": "Taxa de litigância global (procura dos serviços), isto é, o ratio de processos entrados nos tribunais por cada cem mil habitantes",
+   "baseline": "Redusção do Casos pendentes",
+   "target": "aumento da taxa de litigância",
+   "page": 354
+  },
+  {
+   "kind": "output",
+   "code": "17101.0.0",
+   "statement": "O Judiciário adere ao princípio da legalidade garantindo a interpretação e aplicação uniformes da lei.",
+   "indicator": "Taxa de Apuramento de Casos do Tribunal de Recurso",
+   "baseline": "Aumentar a eficiência do tribunal de recurso na resolução de processos de recurso.",
+   "target": "aumento da taxa de litigância processos de recurso",
+   "page": 354
+  },
+  {
+   "kind": "output",
+   "code": "17102.0.0",
+   "statement": "Os juízes da administração da posição do tribunal aplicam altos padrões de integridade e desempenho.",
+   "indicator": "O órgão responsável pela gestão, nomeação, disciplina e inspeção dos juízes",
+   "baseline": "refere-se à avaliação inicial do estado dos tribunais, à situação dos magistrados e aos dados de desempenho que servem de base para a gestão e fiscalização da justiça",
+   "target": "O plano de inspeções ordinárias aos tribunais e juíze, A atualização anual do quadro de magistrados e O reforço da formação e gestão de recursos humanos",
+   "page": 354
+  },
+  {
+   "kind": "output",
+   "code": "17104.0.0",
+   "statement": "As pessoas têm acesso a um sistema de justiça independente, justo, ágil e eficiente",
+   "indicator": "como a taxa de resolução processual, a pendência de processos e o tempo médio de resposta. Estes dados ajudam a avaliar a eficiência dos tribunais de comarca na administração da justiça",
+   "baseline": "primeiro grau de jurisdição, a porta de entrada do sistema de justiça e o local onde os processos iniciam (Início da Ação, Atuação do Juiz e Decisão (Sentença))",
+   "target": "As metas anuais dos tribunais judiciais de primeira instância definem objetivos processuais específicos, prazos de resolução e indicadores de desempenho",
+   "page": 354
+  },
+  {
+   "kind": "output",
+   "code": "17106.0.0",
+   "statement": "A justiça do Tribunal é entregue em infra-estruturas apropriadas",
+   "indicator": "Espancao do Edifícios dos Tribunais no monicipios e Instalcao Supremo Tribunal de Justica",
+   "baseline": "O principal indicador de desempenho do Subprograma Edifícios dos Tribunais (Subprograma 17106) nos documentos de planejamento e orçamento é a percentagem de conclusão do edifício dos tribunais (% conclusão do edifício dos tribunais), associado ao resultado de curto prazo (output) de que \"a justiça do Tribunal é entregue em infra-estruturas apropriadas",
+   "target": "planos anuais do subsetor dos tribunais, o valor de progresso atual registrado como ponto de partida (baseline) situava-se em 14,57%, com metas associadas ao avanço físico e financeiro de projetos plurianuais geridos em coordenação com o Fundo de Infra-estruturas.",
+   "page": 355
+  },
+  {
+   "kind": "output",
+   "code": "17107.0.0",
+   "statement": "tbd",
+   "indicator": "Rácio de Pessoal por Utente/Serviço, Taxa de Ocupação/Eficiência do Pessoal e Tempo Médio de Atendimento/Resposta",
+   "baseline": "Total de Efetivos por Vínculo e axa de Vacância",
+   "target": "Garantia de Força de Trabalho Qualificada,",
+   "page": 355
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.1",
+   "statement": "1.&#9;Os cidadãos em todos os municípios, especialmente mulheres, jovens e grupos vulneráveis tenham melhor acesso à justiça formal e aos serviços de registo (assistência jurídica, serviços prisionais e de reintegração, registo de terras, registo civil e notarial) que protegem os seus direitos&#13;&#10;2.&#9;Os cidadãos economicamente vulneráveis, especialmente mulheres, populações rurais e outros grupos vulneráveis, têm melhor acesso a assistência jurídica gratuita e de qualidade e podem utilizar eficazmente os serviços judiciais formais&#13;&#10;3.&#9;Todos os cidadãos têm acesso e conhecimento sobre o sistema de justiça",
+   "indicator": "Taxa de resolução por jurisdições, cível e criminal, no TR e nos TJPI - Ratio entre a média de processos findos, por Juiz Conselheiro e por Juiz de Direito e a média de processos entrados, por Juiz Conselheiro e por Juiz de Direito, em cada jurisdição",
+   "baseline": "é uma etapa fundamental no desenvolvimento de políticas públicas e reformas estruturais do setor judiciário",
+   "target": "funcionam como a ferramenta anual para garantir e aprimorar o Acesso à Justiça",
+   "page": 356
+  },
+  {
+   "kind": "output",
+   "code": "39213.0.0",
+   "statement": "Até 2028, os profissionais do setor da justiça serão formados em áreas técnicas prioritárias e destacados para instituições que atendem municípios carentes",
+   "indicator": "% de profissionais jurídicos que receberam treinamentos certificados",
+   "baseline": "O ponto de partida para o Subprograma de Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas baseia-se no levantamento e diagnóstico das carências de competências técnicas e operacionais prioritárias para o setor público ou institucional em causa",
+   "target": "Diagnóstico e Levantamento de Necessidadesa, Plano de Capacitação e Treinamento e Acompanhamento e Indicadores de Desempenho",
+   "page": 356
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "\"Consolidar a administração da justiça, melhorando a capacidade das instituições e a respetiva coordenação \"",
+   "baseline": "o contexto dos Tribunais de Timor-Leste reflete a situação administrativa, orçamental e operacional inicial que serve de base para medir o progresso das reformas e investimentos no setor judiciário",
+   "target": "garantir a eficácia operacional, a eficiência administrativa e a transparência na prestação de serviços públicos.",
+   "page": 357
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados Instalação Supremo Tribunal de Justica e espanção Construção novo Edifisio dos Tribunais Primeira Instacia no Monicipios",
+   "baseline": "Funcionamento Institucional supremu Tribunal de Justica e Tribunais Judicial Primeira Instacia no Monicipios",
+   "target": "Melhoria a Funcionamento Institucional",
+   "page": 357
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Costrução Supremo Tribunal de Justica e espanção Construção novo Edifisio dos Tribunais Primeira Instacia no Monicipios",
+   "baseline": "Melhoria a Funcionamento Institucional",
+   "target": "transparência na prestação de serviços públicos.",
+   "page": 357
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "A cooperação entre os tribunais e as instituições judiciais no âmbito da CPLP (Comunidade dos Países de Língua Portuguesa) e da ASEAN",
+   "baseline": "Ponto de Partida (Baseline) da cooperação e parcerias entre os tribunais no contexto dos Países de Língua Portuguesa (CPLP) e da",
+   "target": "Segurança e Combate ao Crime e Capatacitacao recurso Humanos",
+   "page": 357
+  }
+ ]
+}

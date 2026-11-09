@@ -1,0 +1,351 @@
+{
+ "year": 2027,
+ "code": "089",
+ "name": "Instituto de Pesquisa, Desenvolvimento, Formação do Bambu",
+ "abbr": "IPDFB",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   931,
+   933
+  ]
+ },
+ "units": [
+  {
+   "code": "IPDFPB",
+   "div": "0890101",
+   "name": "Instituto de Pesquisa, Desenvolvimento, Formação e Promoção do bambu",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A39": "Agricultura, horticultura, café e de plantas industriais e anuais"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "1) % de execução orçamentária 2) Procedimentos/diretrizes operacionais padrão para arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) Criação de um sistema de arquivamento eletrônico",
+   "baseline": "97% executado",
+   "target": "100 % Orsamento e programa executada",
+   "amounts": {
+    "20": 20297.0
+   },
+   "page": 931
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "Todas as Património estamos no condições",
+   "baseline": "75% Funciona",
+   "target": "97% Todas as Património Funciona bem",
+   "amounts": {
+    "20": 16859.0
+   },
+   "page": 931
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "# recursos humanos adecuado",
+   "baseline": "92 Foncionarios Contratados Ativos",
+   "target": "94 Foncionarios Contratados Ativos e 3 Novos pessola vai contrtar",
+   "amounts": {
+    "10": 421004.0
+   },
+   "page": 931
+  },
+  {
+   "code": "5100521",
+   "programme": "510",
+   "subprogramme": "51005",
+   "subprogramme_name": "Edifícios públicos",
+   "name": "Desenhar, Constuição, Supervisão para construição e instalações de parede de serviços do BAMBU",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "% Escritorio Do Bambu tem os espaços e condiçõe adecuado para utilizar",
+   "baseline": "50%",
+   "target": "85% rehabilitada",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 931
+  },
+  {
+   "code": "A391100",
+   "programme": "A39",
+   "subprogramme": "A3911",
+   "subprogramme_name": "Desenvolvimento da plantação de Bambu",
+   "name": "Inçentivos finançeiros aos agricultores para a criação de viveiros e plantação de Bambu",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "Inçentivos finançeiros aos agricultores para a criação de viveiros e plantação de Bambu garantidos",
+   "baseline": "Em 2023, 94970 sementes de bambu foram plantadas na area quaze 569.3 hectares. 461 agricultores (384 homens e 77 mulheres) foram envolvidos na plantação e receberão subsídios",
+   "target": "158,000 sementes de bambu foram plantadas. 500 agricultores envolvidos na plantação e receberão subsídios na area de o noso projecto em Liquica, Ermera, Bobonaro, Aileu, Ainaro, Suai, Manantuto, Baucau,Viqueque, Lospalos, Manufahi, no mes de Janeiro ate Junho e mes Outubro ate Dezembro 2025",
+   "amounts": {
+    "20": 71265.0
+   },
+   "page": 932
+  },
+  {
+   "code": "A391101",
+   "programme": "A39",
+   "subprogramme": "A3911",
+   "subprogramme_name": "Desenvolvimento da plantação de Bambu",
+   "name": "Preparação e plantação de sementes de Bambu",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "# sementes de bambu plantadas",
+   "baseline": "95000 sementes de bambu preparados envolvimento do 25 grupos viveiros comunitaria em 2023",
+   "target": "Lospalos, Manufahi para plantar no ano 2026",
+   "amounts": {
+    "20": 6500.0
+   },
+   "page": 932
+  },
+  {
+   "code": "A391102",
+   "programme": "A39",
+   "subprogramme": "A3911",
+   "subprogramme_name": "Desenvolvimento da plantação de Bambu",
+   "name": "Aquisição e Manutenção Equipamentos de Bambu",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "% Aquisição de máquinas e Feramenta de produção de produto do bambu e manutenção",
+   "baseline": "40%",
+   "target": "60% Equipamentos básico adecuado e todas as máquinas de produção de bambu em boas condições",
+   "amounts": {
+    "20": 8500.0
+   },
+   "page": 932
+  },
+  {
+   "code": "A391103",
+   "programme": "A39",
+   "subprogramme": "A3911",
+   "subprogramme_name": "Desenvolvimento da plantação de Bambu",
+   "name": "Plantar o Bambu para Mitigação Estradas e Areas Riscos de Erozão",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "#km mudas de bambu plantadas à beira de estradas rurais em Liquiçá, Ermera e Ainaro",
+   "baseline": "Nenhuma área plantada inicialmente",
+   "target": "60 km mudas de bambu plantadas à beira de estradas rurais e areas erozaun identificados em Liquiçá, Ermera e Ainaro",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 932
+  },
+  {
+   "code": "A391200",
+   "programme": "A39",
+   "subprogramme": "A3912",
+   "subprogramme_name": "Produção e comercialização",
+   "name": "Aquisição de matérias-primas",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "# de tiras de bambu serão compradas de grupos de bambu e # de troncos de bambu de betar",
+   "baseline": "Em 2022, compradas de 393,636 ripas de bambu (au betun) para produção de painéis de bambu e mobiliarios e 3937 troncos (2m) de bambu betar para produção de persianas de bambu",
+   "target": "comprar de 540,000 tiras de bambu (au betun) para produção de painéis de bambu e mobiliarios e 36,000 troncos (2m) de bambu betar para produção de persianas de bambu",
+   "amounts": {
+    "20": 84265.0
+   },
+   "page": 933
+  },
+  {
+   "code": "A391201",
+   "programme": "A39",
+   "subprogramme": "A3912",
+   "subprogramme_name": "Produção e comercialização",
+   "name": "Produção de mobiliários e outras peças em bambu",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "# de peças de bambu produzidas",
+   "baseline": "2022 produzido 1.009m2 tabuas de bambu",
+   "target": "8,193 m2 tabuas de bambu Produzir",
+   "amounts": {
+    "20": 73790.0
+   },
+   "page": 933
+  },
+  {
+   "code": "A391202",
+   "programme": "A39",
+   "subprogramme": "A3912",
+   "subprogramme_name": "Produção e comercialização",
+   "name": "Mercadoria do produto de Bambo",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "feira de produto realisado, ,folhetos preparados, 25% reseitas aumentada",
+   "baseline": "2500 folhetos",
+   "target": "# 1 Feira de de protuto de Bambu seminários # 3000 folhetos de brosouras e catalok",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 933
+  },
+  {
+   "code": "A391203",
+   "programme": "A39",
+   "subprogramme": "A3912",
+   "subprogramme_name": "Produção e comercialização",
+   "name": "Identificacao de Areas Potenciais para a Plantação das Varias Especies de Bambu",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "# hektar Area de Cultivação de sementes de bambu identificados",
+   "baseline": "Area 579,3 hektares identificado",
+   "target": "Areas 900 hektares identificado para cultivo de sementes de bambu",
+   "amounts": {
+    "20": 6000.0
+   },
+   "page": 933
+  },
+  {
+   "code": "A3912E1",
+   "programme": "A39",
+   "subprogramme": "A3912",
+   "subprogramme_name": "Produção e comercialização",
+   "name": "Technical training and machinery spare parts, maintenance and repair",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "1).N.º de funcionários/técnicos que recebem formação técnica em Design Gráfico, Design de Interiores e Ensaios Laboratoriais de Bambu. 2) % de máquinas principais que se encontram em condições operacionais. 3) % de peças sobressalentes críticas disponíveis",
+   "baseline": "1) 0 – Formação técnica específica ainda não realizada. 2) 60% máquinas operasional. 3) 50% peças críticas disponíveis",
+   "target": "1) 10 funcionários/técnicos recebem formação durante o ano. 2) ≥90% máquinas operasional. 3) ≥80% peças críticas disponíveis",
+   "amounts": {
+    "20": 90000.0
+   },
+   "page": 933
+  },
+  {
+   "code": "A3912E2",
+   "programme": "A39",
+   "subprogramme": "A3912",
+   "subprogramme_name": "Produção e comercialização",
+   "name": "CNC and laser machines for bamboo furniture production",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "# de máquinas CNC e Laser adquiridas e instaladas",
+   "baseline": "As máquinas CNC e Laser ainda não foram adquiridas",
+   "target": "Aquisição, instalação e colocação em funcionamento de 2 máquinas (CNC e Laser).",
+   "amounts": {
+    "40": 50000.0
+   },
+   "page": 933
+  },
+  {
+   "code": "A391300",
+   "programme": "A39",
+   "subprogramme": "A3913",
+   "subprogramme_name": "Infraestrutura de Bambu",
+   "name": "Pesquisa, Desenvolver e Inovação do Novos Produtos em Bambu",
+   "div": [
+    "0890101"
+   ],
+   "indicator": "1)# Crescimento de Vendas de Produtos de Bambu. 2) % Cobertura de Distribuição, 3) % Penetração de Mercado",
+   "baseline": "90% da pesquiza do novo produtos bamboo pellet Concluido",
+   "target": "95 % concluido os pesquiozas sobre ( 1. Crescimento de Vendas de Produtos de Bambu. ( 2 . Cobertura de Distribuição,(3. Penetração de Mercado)",
+   "amounts": {
+    "20": 10100.0
+   },
+   "page": 933
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % dos indicadores de desempenho de Médio (resultados) e Curto Prazo (realizações) alcançados 2) % dos Resultados de Desempenho publicados no site do Governo 3) % do relatório anual da entidade publicado",
+   "baseline": "1). 60%. 2) 100%. 3). 100%",
+   "target": "1). 60%. 2) 100%. 3). 100%",
+   "page": 931
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) % de execução orçamentária 2) Procedimentos/diretrizes operacionais padrão para arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) Criação de um sistema de arquivamento eletrônico",
+   "baseline": "97% executado",
+   "target": "100 % Orsamento e programa executada",
+   "page": 931
+  },
+  {
+   "kind": "output",
+   "code": "51005.0.2",
+   "statement": "O funcionamento do edifício público",
+   "indicator": "% Escritorio Do Bambu tem os espaços e condiçõe adecuado para utilizar",
+   "baseline": "50%",
+   "target": "85% rehabilitada",
+   "page": 931
+  },
+  {
+   "kind": "outcome",
+   "code": "A39.0.0",
+   "statement": "Aumenta a produção e produtividade sustentável de culturas prioritárias (arroz, milho, horticultura) e melhora o rendimento rural através do reforço da cadeia de valor do café e plantas industriais.&#13;&#10;",
+   "indicator": "Aumento total de hectares de plantação do bambu cultivada e aumentou da vendas de produto de bambu",
+   "baseline": "2,092 hectares de bambu cultivado em 2010 ate 2022 e gerou 948676.00USD para os cofre do estado com a venda de produtos de bambu em 2017 ate 2023",
+   "target": "2030 Vai atingir 10.900 hektares de bambu cultivados e Vai gerou 1,422,561USD para os cofre do estado e 25% de crecimento com a venda de produtos de bambu , ate 2030",
+   "page": 932
+  },
+  {
+   "kind": "output",
+   "code": "A3911.0.0",
+   "statement": "Apropria os suprimentos de material de bambu em qualidade e quantidade",
+   "indicator": "# Area de Cultivação de sementes de bambu identificados",
+   "baseline": "Area 579,3 hektares identificad",
+   "target": "Areas 1,160 hektares identificado para cultivo de sementes de bambu no ano 2027",
+   "page": 932
+  },
+  {
+   "kind": "output",
+   "code": "A3912.0.0",
+   "statement": "Negócios em crescimento com base em portfólio diversificado de produtos de manufatura",
+   "indicator": "1) # de processamento de matérias- primas de bambu em produtos acabados aumentaram. 2) US$ das",
+   "baseline": "1) 20% de processamento de matérias- primas de bambu em produtos",
+   "target": "1) 30% de processamento de matérias- primas de bambu em produtos acabados aumentaram. 2)US$",
+   "page": 932
+  },
+  {
+   "kind": "output",
+   "code": "A3913.0.0",
+   "statement": "Edifícios de qualidade",
+   "indicator": "1) # da pesquiza sobre comercializasaun, Distribuicaosobre os produtos de bambu",
+   "baseline": "1) uma pesquiza sobre os novo produtos biomassa bamboo pellet (energia renovalvel) concloiuda",
+   "target": "3 variadade da pesquisa sobre comercialização, Distribuicao os produtos de bambu",
+   "page": 933
+  }
+ ]
+}

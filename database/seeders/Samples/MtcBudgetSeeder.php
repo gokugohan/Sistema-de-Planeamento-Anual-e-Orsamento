@@ -86,10 +86,8 @@ class MtcBudgetSeeder extends Seeder
     public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false, string $state = 'approved', ?array $years = null): void
     {
         $this->state = in_array($state, self::STATES, true) ? $state : 'approved';
-        foreach (self::years($years) as $year) {
-            // a year chosen on purpose that the sample has no plan for borrows the nearest one; the sample's own years
-            // (no choice made) load only what the budget books hold
-            $data = self::data($years === null ? $year : self::sourceYear($year, $units, $illustrative), $units, $illustrative);
+        foreach ($this->yearsToLoad($years) as $year) {
+            $data = $this->planFor($year, $years, $units, $illustrative);
 
             if ($units !== null && ! $data['entities']) {
                 continue; // the office has no activities this year
@@ -121,6 +119,40 @@ class MtcBudgetSeeder extends Seeder
                 }
             });
         }
+    }
+
+    /**
+     * The plan a year takes: a year chosen on purpose that the sample has no plan for borrows the nearest one; the
+     * sample's own years (no choice made) load only what the budget books hold. Another dataset (OgeBudgetSeeder)
+     * gives its own plans through this and the hooks below.
+     */
+    protected function planFor(int $year, ?array $years, ?array $units, bool $illustrative): array
+    {
+        return self::data($years === null ? $year : self::sourceYear($year, $units, $illustrative), $units, $illustrative);
+    }
+
+    /** @return array<int, int> */
+    protected function yearsToLoad(?array $years): array
+    {
+        return self::years($years);
+    }
+
+    /** The code of the unit that owns an activity, from its budget divisions. */
+    protected function ownerUnit(string $entity, array $div): string
+    {
+        return MtcCostCentres::ownerUnit($entity, $div);
+    }
+
+    /** The short name of an entity, which names the outcome and output indicators it sets. */
+    protected function entityLabel(string $entity): string
+    {
+        return self::ENTITY_LABELS[$entity] ?? $entity;
+    }
+
+    /** @return array{origin: string, policy_ref: ?string} */
+    protected function originFor(int $year, string $code): array
+    {
+        return self::originOf($year, $code);
     }
 
     /**
@@ -199,7 +231,7 @@ class MtcBudgetSeeder extends Seeder
                     }
                 }
 
-                $label = self::ENTITY_LABELS[$entity] ?? $entity;
+                $label = $this->entityLabel($entity);
                 $registry->upsert('mtc', ResultIndicator::class, [
                     'indicatable_type' => $owner->getMorphClass(),
                     'indicatable_id' => $owner->id,
@@ -239,7 +271,7 @@ class MtcBudgetSeeder extends Seeder
                     continue; // listed in the official plan without any amount: nothing to plan or fund
                 }
 
-                $unit = MtcCostCentres::ownerUnit($entity, $a['div']);
+                $unit = $this->ownerUnit($entity, $a['div']);
                 if (! isset($units[$unit], $programs[$a['programme']])) {
                     $this->command?->warn("Skipping {$year} {$a['code']}: unit {$unit} or programme {$a['programme']} missing.");
 
@@ -272,7 +304,7 @@ class MtcBudgetSeeder extends Seeder
                         'planned_end' => "{$year}-12-31",
                         'procurement_required' => false,
                         'gender_responsive' => false,
-                        ...self::originOf($year, $a['code']),
+                        ...$this->originFor($year, $a['code']),
                         'status' => $this->stateOf($year) === 'approved' ? ($a['status'] ?? Activity::STATUS_APPROVED) : Activity::STATUS_DRAFT,
                         'is_test_data' => false,
                     ] + $this->workflowDates($year, $this->stateOf($year) === 'approved' ? ($a['status'] ?? null) : Activity::STATUS_DRAFT));

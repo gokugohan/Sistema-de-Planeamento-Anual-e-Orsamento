@@ -13,6 +13,7 @@ use App\Models\LineItem;
 use App\Models\PlanBaseline;
 use App\Models\SystemSetting;
 use App\Support\PlanOptions;
+use App\Support\ReportScope;
 use Illuminate\Support\Collection;
 
 /**
@@ -25,14 +26,19 @@ use Illuminate\Support\Collection;
  */
 class ApprovedPlanReport
 {
-    /** With a baseline (an optional rule), the plan as it stood when the baseline was recorded. */
-    public function build(int $year, ?PlanBaseline $baseline = null): array
+    /**
+     * With a baseline (an optional rule), the plan as it stood when the baseline was recorded. With a unit (ReportScope),
+     * only that unit's plan (with the units below it), and the institution's total beside it for its share.
+     */
+    public function build(int $year, ?PlanBaseline $baseline = null, ?ReportScope $scope = null): array
     {
+        $units = $scope?->ids;
         $baseline?->loadMissing('recorder:id,name');
         $classes = EconomicClassification::orderBy('code')->get(['id', 'code', 'name']);
 
         $activities = Activity::query()
             ->where('fiscal_year', $year)
+            ->when($units !== null, fn ($q) => $q->whereIn('directorate_id', $units ?: [0]))
             ->when($baseline, fn ($q) => $q->whereIn('id', array_map('intval', array_keys($baseline->versions))))
             ->unless($baseline, fn ($q) => $q->where(fn ($w) => $w->where('status', Activity::STATUS_APPROVED)->orWhere('version', '>', 0)))
             ->with([
@@ -61,7 +67,7 @@ class ApprovedPlanReport
         foreach ($revising as $a) {
             if ($version = $versions->get($a->id)) {
                 $this->asApproved($a, $version);
-                $inForce[$a->id] = $version->approved_at?->timestamp;
+                $inForce[$a->id] = (int) $version->version;
             }
         }
         $activities = $activities->reject(fn (Activity $a) => ($baseline || $a->status !== Activity::STATUS_APPROVED) && ! isset($inForce[$a->id]))->values();
@@ -154,6 +160,7 @@ class ApprovedPlanReport
 
         $pending = $baseline ? [] : Activity::query()
             ->where('fiscal_year', $year)
+            ->when($units !== null, fn ($q) => $q->whereIn('directorate_id', $units ?: [0]))
             ->where('status', '!=', Activity::STATUS_APPROVED)
             ->where('version', 0)
             ->selectRaw('status, COUNT(*) as n')
@@ -172,6 +179,9 @@ class ApprovedPlanReport
             'year' => $year,
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
             'organization_abbr' => SystemSetting::getLocalized('org_abbr', ''),
+            'unit' => $scope?->unit,
+            // the whole institution's approved plan, for the unit's share of it
+            'institution_total' => $scope?->unit ? (float) (new self)->build($year, $baseline)['totals']['total'] : null,
             'classes' => $classes,
             'totals' => $totals,
             'autonomous' => $autonomous,
@@ -191,9 +201,10 @@ class ApprovedPlanReport
         // trail of each export, so that it is known which version of the plan a document came from.
         $report['fingerprint'] = substr(hash('sha256', json_encode([
             $year,
-            $rows->map(fn ($r) => [$r['activity']->id, $inForce[$r['activity']->id] ?? $r['activity']->updated_at?->timestamp, $r['by_class']])->all(),
+            // the version in force (not a time: an approval and the record it updates may fall in different seconds)
+            $rows->map(fn ($r) => [$r['activity']->id, $inForce[$r['activity']->id] ?? (int) $r['activity']->version, $r['by_class']])->all(),
         ])), 0, 16);
-        $report['reference'] = $baseline ? sprintf('PAA-%d-B%d', $year, $baseline->id) : sprintf('PAA-%d', $year);
+        $report['reference'] = ($baseline ? sprintf('PAA-%d-B%d', $year, $baseline->id) : sprintf('PAA-%d', $year)).($scope?->suffix() ?? '');
 
         return $report;
     }

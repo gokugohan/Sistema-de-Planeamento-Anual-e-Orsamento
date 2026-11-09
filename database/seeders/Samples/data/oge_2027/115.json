@@ -1,0 +1,1325 @@
+{
+ "year": 2027,
+ "code": "115",
+ "name": "Ministério da Juventude, Desporto, Arte e Cultura",
+ "abbr": "MJDAC",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1134,
+   1155
+  ]
+ },
+ "units": [
+  {
+   "code": "GMJDAC",
+   "div": "1150101",
+   "name": "Gabinete do Ministro da Juventude, Desporto, Arte e Cultura",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "1150102",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEAC",
+   "div": "1150201",
+   "name": "Gabinete do Secretário de Estado da Arte e Cultura",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DGAC",
+   "div": "1150401",
+   "name": "Direção-Geral das Artes e da Cultura",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNBM",
+   "div": "1150402",
+   "name": "Direção Nacional de Bibliotecas e Museu",
+   "type": "National Directorate",
+   "parent": "DGAC"
+  },
+  {
+   "code": "DNPC",
+   "div": "1150403",
+   "name": "Direção Nacional do Patriomónio Cultural",
+   "type": "National Directorate",
+   "parent": "DGAC"
+  },
+  {
+   "code": "DNPAC",
+   "div": "1150404",
+   "name": "Direção nacional da promoção das Artes e Culturas",
+   "type": "National Directorate",
+   "parent": "DGAC"
+  },
+  {
+   "code": "GCI",
+   "div": "1150601",
+   "name": "Gabinete de Comunicação e Informação",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNGF",
+   "div": "1150801",
+   "name": "Direção Nacional da Gestão Financeira",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNARH",
+   "div": "1150802",
+   "name": "Direção Nacional da Administração e Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNPC-03",
+   "div": "1150803",
+   "name": "Direção Nacional do Planeamento e Cooperação",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNPLI",
+   "div": "1150804",
+   "name": "Direção Nacional do Património, Logística e Infraestruturas",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "GDGSC",
+   "div": "1150805",
+   "name": "Gabinete de Direção Geral dos Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGJ",
+   "div": "1150901",
+   "name": "Gabinete Direção-Geral da Juventude",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNAJ",
+   "div": "1150902",
+   "name": "Direção Nacional do Associativismo da Juventude",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDJ",
+   "div": "1150903",
+   "name": "Direção Nacional do Desenvolvimento da Juventude",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGD",
+   "div": "1151000",
+   "name": "Gabinete Direção-Geral do Desporto",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNDF",
+   "div": "1151001",
+   "name": "Direção Nacional do Desporto Federado",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDT",
+   "div": "1151002",
+   "name": "Direção Nacional do Desporto para Todos",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "CND",
+   "div": "1151101",
+   "name": "Comissão Nacional do Desporto",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "024": "Cultura e património",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "0242201",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Festival Nasional Interkambiu Fronteira ba Arte no Kultura",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "1] # Partisipantes kulturista husi Munisipiu partisipa Festival Nasional Interkambio ba Arte no Kultura hodi hametin lasus amizade no fraternidade mak forte hodi promove dialogu entre Timor oan sira iha futuru hodi hatutan liman rohan bei-ala sira nia. 2] # Funcionario sira ne'ebé partisipa ona iha reuniaun Koordenasaun,",
+   "baseline": "1] 624 2] 16",
+   "target": "1] 425 2] 16",
+   "amounts": {
+    "20": 5000.0,
+    "30": 80000.0
+   },
+   "page": 1134
+  },
+  {
+   "code": "0242202",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Selebrasaun Loron Nasional ba Kultura (14 de Outubro)",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "1] # Partisipatens Estudante, komunidades no grupu kultural mak partisipa ona iha Loron Nasional ba Kultura 2] # Funcionario sira mak halo monitorizasaun hodi serteza implementasaun atividade tuir planu mak aprovadu.",
+   "baseline": "1] 200 2] 12",
+   "target": "1] 350 2] 14",
+   "amounts": {
+    "20": 3060.0,
+    "30": 22300.0
+   },
+   "page": 1135
+  },
+  {
+   "code": "0242203",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Selebrasaun Loron Nasional ba Tais (14 de Dezembru)",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "1] # Partisipantes Komunidade, estudantes, funsionarius, artista no soru nain sira mak partisipa ona iha loron Nasional ba Tais 2] #Funcionario sira nebe partispa ona iha Monitorizasaun",
+   "baseline": "1] 200 2] 11",
+   "target": "1] 300 2] 15",
+   "amounts": {
+    "20": 22100.0
+   },
+   "page": 1135
+  },
+  {
+   "code": "0242206",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Reforsa asosiasaun artistiku konterporanea",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "1] # Asosiasaun ba artistiku ne'ebe mak hetan ona apoiu finanseiru mak sufisiente hodi halao atividade hanesan: Dansa, Muzika, Teatru, Audio Vizual, Arte Plastiku 2] # Partisipante mak partisipa ka organiza artistiku kontenporanea iha atividade Dansa, Muzika, Teatru, Audio Vizual, Arte Plastiku mak fasilita husi Assosiasaun Artisitiku kontenporanea. 3] # Funcionario sira nebe partisipa ona iha Monitorizasaun, verifikasaun, fiskalizasaun no rekolha relatoriu.",
+   "baseline": "\"1] 25 2] 300 3] 0\"",
+   "target": "1] 26 2] 500 3] 20",
+   "amounts": {
+    "20": 7000.0,
+    "30": 67700.0
+   },
+   "page": 1135
+  },
+  {
+   "code": "0242207",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Realizasaun Manifestasaun Artistiku",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "1] # Asosiasaun/grupu artistiku ne'ebe organiza no partisipa eventu manifestasaun artistiku 2] # Partisipante husi",
+   "baseline": "1] 2 2] 60",
+   "target": "1] 17 2] 8",
+   "amounts": {
+    "30": 25000.0
+   },
+   "page": 1135
+  },
+  {
+   "code": "0242208",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Kompetisaun Poesia nivel Ensino Secundario.",
+   "div": [
+    "1150402"
+   ],
+   "indicator": "\"# Partisipante mak tuir Kompetisaun Poesia nivel Ensino Secundario. # Funcionario sira organiza kompetisaun poesia\"",
+   "baseline": "1] 90 2] 10",
+   "target": "1] 90 2] 10",
+   "amounts": {
+    "20": 9000.0
+   },
+   "page": 1136
+  },
+  {
+   "code": "0242209",
+   "programme": "024",
+   "subprogramme": "02422",
+   "subprogramme_name": "Promover identidade Cultural e Creatividade da Arte",
+   "name": "Kompetisaun diskursu papel foin sae iha mundu biblioteka",
+   "div": [
+    "1150402"
+   ],
+   "indicator": "# Partisipante mak tuir Kompetisaun Diskursu husi Presekundaria nivel Ensino Secundario.",
+   "baseline": "40",
+   "target": "40",
+   "amounts": {
+    "20": 5500.0
+   },
+   "page": 1136
+  },
+  {
+   "code": "0242301",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Realizasaun Formasaun kona-ba Artezaun",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "\"1] # Partisipantes sira ne'ebe mak partisipa iha formasaun artezenatu iha ona koñesimentu mak adekuadu kona-ba homan, soru tais, sanan rai no eskultura. 2] # Funsionarius SEAC mak halo monitorizasaun no fiskalizasaun\"",
+   "baseline": "1] 100 2] 8",
+   "target": "1] 50 2] 8",
+   "amounts": {
+    "20": 2700.0
+   },
+   "page": 1136
+  },
+  {
+   "code": "0242302",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Identifikasaun ba rekursu kutural (Tais Tradisional)",
+   "div": [
+    "1150404"
+   ],
+   "indicator": "1] # Grupu arte (Tais, dansa, muzika, Teatro, Arte Plastik no Grupu industria Kreativu sira",
+   "baseline": "1] 4 2] 4 3] 0",
+   "target": "1] 20 2] 4 3] 6",
+   "amounts": {
+    "20": 10440.0
+   },
+   "page": 1136
+  },
+  {
+   "code": "0242303",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Sensibilizasaun Promove Objetus Kulturais Muzeu",
+   "div": [
+    "1150402"
+   ],
+   "indicator": "1] # Partisipante hosi Lider komunitaria, Lia nain, intelektuias, komunidade, juventude, veteranus partisipa programa Expozisaun promove objetus kulturais iha Museu ' a. Lider Komunitariu, b. Lia Nain, c. Intelektuais, d. Komunidade, e. Juventude, f. Estudantes, g. Veteranus 2] # Formador funsiunarius SEAC mak halo sensibilizasaun hodi promove Objetus Kulturais Muzeu.",
+   "baseline": "1] 200 2] 10",
+   "target": "1] 200 2] 10",
+   "amounts": {
+    "20": 8000.0
+   },
+   "page": 1137
+  },
+  {
+   "code": "0242305",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Sensibiizasaun promove Literasia Biblioteka",
+   "div": [
+    "1150402"
+   ],
+   "indicator": "1] # Estudantes nudar partisipantes no alvu ba programa Sensibiizasaun ba promove Literasia Biblioteka 2] # Funcionario sira nebe partispa ona iha Monitorizasaun(funsiunarius SEAC sei akompanha no monitoriza konaba rpograma sensibilizasaun ba promove Literasia Biblioteka) 3] # Partisipantes Formasaun Responsavel Biblioteka Publiku, Privadu no Professores mak Partisipa ona iha Formasaun Basiko Jestaun Bilbioteka eskola 4] # Funcionario sira ne'ebe partisipa ona iha Monitorizasaun (Formadores husi Funcionario SEAC)",
+   "baseline": "1] 204 2]10 3] 0 4] 0",
+   "target": "1] 204 2]10 3] 156 4] 10",
+   "amounts": {
+    "20": 11404.0
+   },
+   "page": 1137
+  },
+  {
+   "code": "0242306",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Dezenvolvimentu objetus kulturais",
+   "div": [
+    "1150402"
+   ],
+   "indicator": "1] # Objetus Museu kulturais sira iha Munisipiu identifikadu mak hanesan: a. Kolesaun Seramika b. Kolesaun Jeolojia(Identifika no rekolhamento informasaun objetus museu maka hanesan, Kolesaun Seramika no kolesaun jeolojia iha munisipius) 2] # Lia Nain ne'ebe fo informasaun konaba Objeto Kulturais 3] # Funcionario sira nebe partispa ona iha Monitorizasaun(Implementasa un husi Funsiunarius SEAC)",
+   "baseline": "1] 18 2] 10 3] 8",
+   "target": "1]18 2] 10 3] 8",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 1138
+  },
+  {
+   "code": "0242307",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Ratifikasuan Konvensaun UNESCO 1972-2003 no 2005",
+   "div": [
+    "1150401"
+   ],
+   "indicator": "# Partisipantes Lia nain, Estudante, Religiogus, NGO Lokal, Lider Komunitariu no Komunidades ne'ebe maka partisipa iha Programa Sensibilizasaun Konvensaun UNESCO 1972-2003 no 2005.",
+   "baseline": "600",
+   "target": "150",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1138
+  },
+  {
+   "code": "0242308",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Dezelvolvimentu patrimonia kultural material &amp;#38; immaterial",
+   "div": [
+    "1150403"
+   ],
+   "indicator": "1] # Partisipantes husi Komunidade, Lia nain, Estudante, Intelektaul partisipa sensibilizasaun no iha koñesimentu kona-ba importansia salva guarda patrimonia kultural material & immaterial. 2] # Funcionario sira mak partispa ona iha Monitorizasaun no Socializasaun",
+   "baseline": "1] 550 2] 20",
+   "target": "1] 550 2] 20",
+   "amounts": {
+    "20": 15140.0
+   },
+   "page": 1138
+  },
+  {
+   "code": "0242309",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Realizasaun workshop kona- ba integrasaun patrimoniu kultural imaterial Tais",
+   "div": [
+    "1150403"
+   ],
+   "indicator": "1] # Partisipantes ne'ebe mak tuir workshop kona-ba integrasaun patrimoniu kultural imaterial Tais ba kurikulum eskolar mak kompostu husi: Profesores, Dosentes, Intelektuais, NGO's Lokal Nasional no internasional kona-ba prosesu",
+   "baseline": "1] 162 2] 8",
+   "target": "1] 170 2] 8",
+   "amounts": {
+    "20": 8440.0
+   },
+   "page": 1138
+  },
+  {
+   "code": "0242310",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Prezeervasaun no konservasaun SITIUS ISTORIKUS PATRIMONIU KULTURAL",
+   "div": [
+    "1150403"
+   ],
+   "indicator": "1] # Sitius historiku arkeolojiku, etnografiku, Arkitektura tradisional no Arkitektura Modernu mak hetan prezeervasaun, konservasaun no Sinalizasaun iha futuru, - Sinalizasaun - Produsaun Livru - Brosuras 2] # Lia nain no Matadalan ne'ebe hato'o Informasaun Prezeervasaun no konservasaun SITIUS ISTORIKUS PATRIMONIU KULTURAL 3] # Funcionarios ne'ebe partisipa iha atividade prezeervasaun no konservasaun [Sinalizasaun]\"",
+   "baseline": "1] 130 2] 20 3] 24",
+   "target": "1] 50 2] 20 3] 24",
+   "amounts": {
+    "20": 21215.0
+   },
+   "page": 1139
+  },
+  {
+   "code": "0242311",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": ":Levantamentu no identifikasaun dados patrimonio material no imaterial",
+   "div": [
+    "1150403"
+   ],
+   "indicator": "1] # Identifikasaun no Mapeamentu dados patrimonio material no imaterial 2] # Lia nain no Matadalan ne'ebe hato'o Informasaun Prezeervasaun no konservasaun SITIUS ISTORIKUS PATRIMONIU KULTURAL 3] # Funsionariu ne'ebe halo monitorizasaun hodi serteza implementasaun atividade tuir planu mak aprovadu",
+   "baseline": "1] 60 2] 50 3] 4",
+   "target": "'1] 100 2] 50 3] 16",
+   "amounts": {
+    "20": 6730.0,
+    "30": 75000.0
+   },
+   "page": 1139
+  },
+  {
+   "code": "0242313",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Reforsa Inisiativa arte no Patrimonio Kultural",
+   "div": [
+    "1150201"
+   ],
+   "indicator": "\"# Apoiu Inisiativa ba Asosiasaun/Grupu Arte no Patrimonio Kultural # Pratikante artistiku kontenporanea mak organiza no partisipa iha Arte no Patrimonio Kultural.\"",
+   "baseline": "1] 70 2] 1400",
+   "target": "1] 70 2] 1700",
+   "amounts": {
+    "30": 380000.0
+   },
+   "page": 1139
+  },
+  {
+   "code": "0242314",
+   "programme": "024",
+   "subprogramme": "02423",
+   "subprogramme_name": "Dezenvolvimento da Creatividade Arte e Patriomónio Cultural",
+   "name": "Reforsa Agensia Unesco/NATCOM",
+   "div": [
+    "1150401"
+   ],
+   "indicator": "\"# Apoiu Agensia Unesco/NATCOM # Partisipante ne'ebe partisipa",
+   "baseline": "\"1] 1 2] 260\"",
+   "target": "\"1] 1 2] 200\"",
+   "amounts": {
+    "30": 10000.0
+   },
+   "page": 1139
+  },
+  {
+   "code": "0242901",
+   "programme": "024",
+   "subprogramme": "02429",
+   "subprogramme_name": "Desenvolvimento Infraestrutura e Fasilidade na area Arte e Cultura",
+   "name": "Rehabilitasaun Centru Kultural iha Lautem",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Centro Cultural de Reabilitação em Lautém",
+   "baseline": "90%",
+   "target": "90%",
+   "amounts": {
+    "50": 48272.0
+   },
+   "page": 1140
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1150102"
+   ],
+   "indicator": "1] # Inspesaun ba implementasaun programa/projetu MJDAC no Parseiros Implementor mak Justo no kredibel. 2] # Auditoria ba implementasaun programa/projetu MJDAC no Parseiros Implementador mak Justo no Kredibel, kompleta ho Rekomendasoens ba Sua Exa Ministro. 3] # Auditable Unit mak identifikadu ona risku no iha strategia ba mitigasaun risku . 4] # Auditable Unit mak hetan ona asistensia konaba utilizasaun orsamentu adiantamentu (petty cash ho viagem locais) ho efisien no efikas. 5] # Servisu akompañamentu ba armazen hodi asegura utilizasaun",
+   "baseline": "1] 3 2] 3 3] 4 4] 4 5] 4 6] 234",
+   "target": "1] 3 2] 3 3] 4 4] 4 5] 4 6] 100",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1140
+  },
+  {
+   "code": "510012A",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Servico Manutensaun Edifisiu",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "# Manutensaun edifisio, fasilidades Desportivas, AC, Gerador, Manutensaun EDP, Water Supply & Eletrisidade) hodi garante funsionamento instituisional no fasilita treinamento diarea ba atleta sira.",
+   "baseline": "7",
+   "target": "6",
+   "amounts": {
+    "20": 71408.0
+   },
+   "page": 1141
+  },
+  {
+   "code": "510012B",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Konstrusaun Edifisiu MJDAC Servico (Uma Nahe Bite Bo&#039;ot)",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Construção de Edifícios.",
+   "baseline": "95%",
+   "target": "5%",
+   "amounts": {
+    "50": 15000.0
+   },
+   "page": 1141
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1150101",
+    "1150201",
+    "1150401",
+    "1150801",
+    "1150804",
+    "1150805",
+    "1150901",
+    "1151000"
+   ],
+   "indicator": "1] # Cargo Direcsaun no Chefia simu ona pulsa telemovel hodi fasilita servisu operasionais MJDAC (Pulsa Telemovel) 2] # Edificio MJDAC no fasilidade nebe iha ona Energia Eletricidade hodi fasilita servisu operasionais MJDAC 3] # Catering mak fasilita servisu operasional no Funsional iha MJDAC 4] # Representasaun ba servisu operasionais iha MJDCA 5] % Ezekusaun Orsamentu atividade MJDAC 6] # Viazen estranjeiru mak hala'o hosi Ministro, Sekretariu Estadu, Diretur Jeral, Diretur Nasional no staff hodi partisipa iha",
+   "baseline": "1] 82 2] 8 3] 35 4] 11 5] 96 % 6] 19 7] 115 8] 21 9] 12 10] 246 11] 4 12] 50 13] 15",
+   "target": "1]73 2]14 3] 30 4] 12 5] 96 % 6] 19 7] 115 8] 21 9] 12 10] 241 11] 6 12] 30 13] 15",
+   "amounts": {
+    "10": 1399143.0,
+    "20": 548446.0
+   },
+   "page": 1141
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1150803"
+   ],
+   "indicator": "# Divizaun MJDAC iha ona Kalendariu operasional mak banati tuir Planu asaun annual. # Divizaun MJDAC mak implementa atividade tuir planu Asaun Anual. # Avaliasaun trimestral no anual mak realiza tuir planu no iha ona referensia hodi foti desizaun iha futuru. # Relatório trimestral MJDAC mak submete tuir tempu. # Divizaun MJDAC iha ona",
+   "baseline": "1] 22 2] 22 3] 5 4] 4 5] 22",
+   "target": "1] 22 2] 22 3] 5 4] 4 5] 22",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1142
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1150802"
+   ],
+   "indicator": "1] # Força de Trabalho MJDAC mak sufisiente hodi implementa programa/atividades mak banati tuir tarefas de servisu 2] # Funsionariu MJDAC iha mudansas Grau no Eskalaun liu husi Promoção no progresaun 3] # Funsionariu MJDAC mak partisipa formasaun/workshop konaba planeamentu, jestaun finanseira, monitorizasaun no relatoriu. 4] # Funsionariu MJDAC munisipio no postu mak partisipa enkontru/avaliasaun jeral.",
+   "baseline": "1] 320 2] 75 3] 0 4] 98",
+   "target": "1] 320 2] 70 3] 50 4] 98",
+   "amounts": {
+    "10": 961073.0
+   },
+   "page": 1143
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "# Aqusição para facilitar o serviço operacional e funcional no MJDAC.",
+   "baseline": "6",
+   "target": "5",
+   "amounts": {
+    "20": 699328.0
+   },
+   "page": 1143
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "1150601"
+   ],
+   "indicator": "1] A hierarquia superior da MJDAC já recebeu Passaporte Diplomático e Passaporte de Serviço. 2] As atividades da MJDAC foram publicadas. 3] As notícias já foram resumidas. 4] Infográficos já foram produzidos. 5] Encontro de café com a mídia. 6] O perfil já foi produzido. 7] O parceiro de serviço já foi encontrado. 8] A atividade protocolar já recebeu assistência. 9] O jornal já foi distribuído. 10] A mídia já publicou as atividades da MJDAC, incluindo esportes, arte e cultura que foram desenvolvidos.",
+   "baseline": "1] 10 2] 200 3] 520 4] 23 5] 3 6] 6 7] 35 8] 37 9] 4752 10] 4",
+   "target": "] 10 2] 200 3] 520 4] 23 5] 3 6] 6 7] 35 8] 37 9] 4752 10] 4",
+   "amounts": {
+    "20": 20880.0
+   },
+   "page": 1143
+  },
+  {
+   "code": "9807300",
+   "programme": "980",
+   "subprogramme": "98073",
+   "subprogramme_name": "Desenvolver a capacidade organizacional dos jovens e o conhecimento dos jovens",
+   "name": "Apoiu inisiativa juventude",
+   "div": [
+    "1150101"
+   ],
+   "indicator": "# Proposta grupu Juventude mak hetan apoiu",
+   "baseline": "50",
+   "target": "30",
+   "amounts": {
+    "30": 572654.0
+   },
+   "page": 1144
+  },
+  {
+   "code": "9807301",
+   "programme": "980",
+   "subprogramme": "98073",
+   "subprogramme_name": "Desenvolver a capacidade organizacional dos jovens e o conhecimento dos jovens",
+   "name": "Reforsa Organizasaun Juventude",
+   "div": [
+    "1150902"
+   ],
+   "indicator": "1] # Jestor simu ona insentivu no halao ona servisu operasiona ho efisiente, efikasia no responsavel inklui mos (ADTL, ANJHN, ANCTL, APFTL, UNE-TL no CNJTL). 2] # Juventude partisipa ativu formasaun reguler fasilita husi Centru Juventude no organizasaun juventude. 3] # Funsionariu mak halo ona monitorizasaun ba atividade hodi serteza implementasaun atividade tuir planu mak aprovadu. 4] # Eventu nasional iha area juventude mak realiza. 5] # Juventude mak partisipa eventu nasional iha area juventude",
+   "baseline": "1] 84 2] 6000 3] 13 4] 0 5] 0",
+   "target": "1] 123 2] 6000 3] 13 4] 2 5] 76",
+   "amounts": {
+    "20": 7500.0,
+    "30": 274593.0
+   },
+   "page": 1144
+  },
+  {
+   "code": "9807302",
+   "programme": "980",
+   "subprogramme": "98073",
+   "subprogramme_name": "Desenvolver a capacidade organizacional dos jovens e o conhecimento dos jovens",
+   "name": "Gestão Operacional CRAM",
+   "div": [
+    "1150101"
+   ],
+   "indicator": "1] # Fiskalizasaun no Monitorizasaun ba evolusaun pratika OAM 2] # Membru OAM, Komunidade, Autroidade Lokal no Estudante mak partidipa ativu",
+   "baseline": "1] 0 2] 5796 3] 1000 4] 79 5] 37",
+   "target": "1] 4 2] 5000 3] 1000 4] 79 5] 38",
+   "amounts": {
+    "30": 300000.0
+   },
+   "page": 1144
+  },
+  {
+   "code": "9807303",
+   "programme": "980",
+   "subprogramme": "98073",
+   "subprogramme_name": "Desenvolver a capacidade organizacional dos jovens e o conhecimento dos jovens",
+   "name": "Realizasaun no Partisipasaun Eventu Internasional iha area Juventude",
+   "div": [
+    "1150903"
+   ],
+   "indicator": "1] # Juventude mak partisipa atividade no eventu internasional [ ASEAN]iha area juventude 2] # Responsavel ASEAN area Juventude (SOMY, Focal Point, Secretariado) mak partisipa iha atividade ASEAN",
+   "baseline": "1] 24 2] 0",
+   "target": "1] 24 2] 10",
+   "amounts": {
+    "20": 20000.0,
+    "30": 35000.0
+   },
+   "page": 1145
+  },
+  {
+   "code": "9807400",
+   "programme": "980",
+   "subprogramme": "98074",
+   "subprogramme_name": "Dezenvolve Involvimentu no Lideransa Siviku Juventude",
+   "name": "Realiza Jornada Nasional",
+   "div": [
+    "1150903"
+   ],
+   "indicator": "# Juventude Katolika partisipa ona Jornada Nasional mak realiza iha nivel Munisipiu",
+   "baseline": "400",
+   "target": "400",
+   "amounts": {
+    "30": 20000.0
+   },
+   "page": 1145
+  },
+  {
+   "code": "9807401",
+   "programme": "980",
+   "subprogramme": "98074",
+   "subprogramme_name": "Dezenvolve Involvimentu no Lideransa Siviku Juventude",
+   "name": "Formasaun ba Membru PFN Eleitu",
+   "div": [
+    "1150902"
+   ],
+   "indicator": "1] # Membru Parlamentu Foinsa'e eleitu ba Periodu da nen partisipa ona formasaun kona-ba Edukasaun Valor Siviku no Sidadania, Edukasaun Bazika ba Abilidade Moris (LSBE), Jestaun organizasaun, Lideransa, Anti korupasaun,",
+   "baseline": "1] 142 2] 0",
+   "target": "1] 142 2] 22",
+   "amounts": {
+    "30": 183907.0
+   },
+   "page": 1145
+  },
+  {
+   "code": "9807402",
+   "programme": "980",
+   "subprogramme": "98074",
+   "subprogramme_name": "Dezenvolve Involvimentu no Lideransa Siviku Juventude",
+   "name": "Realiza atividade Selebrasaun Loron Nasional Juventude no Komemorasaun Masakre Santa Cruz",
+   "div": [
+    "1150903"
+   ],
+   "indicator": "1] # Jovens iha ona sentimentu solidariu no tane as herois da patria sira nia luta ba libertasaun da patria liu selebrasuan loron nasional juventude no komemorasaun masakre santa cruz. 2] # Funsionariu mak halo ona monitorizasaun ba atividade hodi serteza implementasaun atividade tuir planu mak aprovadu.",
+   "baseline": "1] 1000 2] 0",
+   "target": "1] 3500 2] 13",
+   "amounts": {
+    "20": 5000.0,
+    "30": 100000.0
+   },
+   "page": 1146
+  },
+  {
+   "code": "9800402",
+   "programme": "980",
+   "subprogramme": "98004",
+   "subprogramme_name": "Desenvolvimento na área Desporto",
+   "name": "Participação em eventos internacionais na área do Desporto",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Atleta kualifikadu kompete ona iha eventu internasional 2] # Atleta kualifikadu mak selesionadu iha modalidade prioridade partisipa iha treinamentu kontinuidade 3] # Medallha mak hetan iha eventu internasional",
+   "baseline": "1] 3 2] 67 3] 4 4] 67 5] 4 6] 10 7] 0",
+   "target": "1] 4 2] 55 3] 32 4] 55 5] 32 6] 7 7] 2",
+   "amounts": {
+    "30": 500000.0
+   },
+   "page": 1148
+  },
+  {
+   "code": "9806001",
+   "programme": "980",
+   "subprogramme": "98060",
+   "subprogramme_name": "Promover atividade desporto na sosiedade",
+   "name": "Apoiu inisiativa desportu",
+   "div": [
+    "1150101"
+   ],
+   "indicator": "# Proposta husi grupu desportivas mak hetan ona apoiu",
+   "baseline": "80",
+   "target": "50",
+   "amounts": {
+    "30": 512736.0
+   },
+   "page": 1148
+  },
+  {
+   "code": "9806002",
+   "programme": "980",
+   "subprogramme": "98060",
+   "subprogramme_name": "Promover atividade desporto na sosiedade",
+   "name": "Apoiu fundus ba realiza desportu komunitariu",
+   "div": [
+    "1151002"
+   ],
+   "indicator": "# Modalidade mak realiza desportu komunitaria husi sosiedade. # Partisipantes/ komunidade iha ona lasus amizade, fraternidade forte",
+   "baseline": "1] 4 2] 6000 3] 40 4) 7",
+   "target": "1] 4 2] 8000 3] 40 4) 8",
+   "amounts": {
+    "20": 9840.0,
+    "30": 183400.0
+   },
+   "page": 1148
+  },
+  {
+   "code": "9806101",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Reforsa organizasaun desportivas",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Organizasaun desportivas iha ona kapasidade Institusional hodi jere organizasaun, 2] # Jestor no ajentes desportivas mak hetan insentivu hodi halao servisu operasional ho efisien, efikasia no responsaveis nomos fasilita treinamentu diaria ba pratikante sira 3] # Ajente partisipantes [Treinador no Arbitu] husi modalidade prioridade partisipa iha formasaun konaba treinadores no arbitragem 4] # Pratikante mak partisipa iha atividade mak organiza husi organizasaun desportivas",
+   "baseline": "1] 3 2] 47 3] 72 4] 400",
+   "target": "1] 3 2] 52 3] 56 3] 452",
+   "amounts": {
+    "30": 213092.0
+   },
+   "page": 1149
+  },
+  {
+   "code": "9806102",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Reforsa jestaun Comissão Nacional do Desporto (CND)",
+   "div": [
+    "1151101"
+   ],
+   "indicator": "1] # Plenaria CND (extraordinariu no ordinariu) 2] # Fiskalizasaun mak hala'o ona ba organizasaun desportivas 3] # Monitorizasaun mak hala'o ona ba implementasaun hosi atividade organizasaun desportivas 4] # Organizasaun mak hetan ona atribuisaun konaba utilidade publika desportivas 5] # Rekomendasaun ba organizasaun desportivas konaba rejistu iha notariadu- MJ 6] # Ajentes partisipantes no ajentes desportivas mak partisipa edukasaun kona-ba Promosaun Saúde. 7] # Planu fomentu desportu mak dezenvolve 8] # Atletas medalladu mak hetan premiu no/ka bolsa desportiva 9] # Ekipa tekniku ba atletas medalladu mak hetan premiu",
+   "baseline": "1] 4 2] 2 3] 4 4] 5 5] 2 6] 0 7] 0 8] 13 9] 5",
+   "target": "1] 5 2] 2 3] 4 4] 2 5] 2 6] 100 7] 1 8] 2 9] 2",
+   "amounts": {
+    "20": 17500.0,
+    "30": 19000.0
+   },
+   "page": 1150
+  },
+  {
+   "code": "9806104",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Realizasaun Liga Volibol Timor-Leste (primeiru Divizaun)",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Klubu partisipante mak kompete iha liga voleibol terseiru divizaun iha Munisipiu 13 2] # Atleta kualifikadu husi klubu iha Munisipiu 13 kompete iha liga voleibol terseiru divizaun 3] # Klubu partisipante mak kualifikadu, ultrapasa iha terseiru divizaun kompete iha segundu divizaun 4] # Klubu partisipante mak kualifikadu ultrapasa iha sugundu divizaun hodi kompete iha primeiru divizaun Liga Voleibol Timor-Leste. 5] # Klubu klasifikadu 6] # Atleta kualifikadu husi klubu segundu no primeiru divizaun kompete iha Liga Voleibol 7]",
+   "baseline": "\"1] 104 2] 1772 3] 30 4] 6 5] 8 6] 216 7] 24",
+   "target": "\"1] 130 2] 2000 3] 30 4] 6 5] 8 6] 216 7] 24",
+   "amounts": {
+    "30": 400000.0
+   },
+   "page": 1150
+  },
+  {
+   "code": "9806105",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Realizasaun Liga Futebol Timor-Leste (LFTL)",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Klubu mak prienxe rekezitus, rejistadu iha orgaun Liga kompete ba terseiru divizaun LFTL 2] # Klubu kualifikadu rejistadu iha orgaun Liga kompete ba segundu no primeiru divizaun LFTL 3] # Atleta kualifikadu husi klubu terseriu, segundu no primeiru divizaun kompete iha LFTL 4] # Atletas kualifikadu husi klubu selesionadu partisipa iha treinamentu kontinuidade hodi reprezenta Timor-Leste kompete iha eventu internasional",
+   "baseline": "1] 32 2] 20 3] 750 4] 30",
+   "target": "1] 10 2] 20 3] 750 4] 30",
+   "amounts": {
+    "30": 500000.0
+   },
+   "page": 1151
+  },
+  {
+   "code": "9806108",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Kompetisaun nasional ba modalidade Atletismu",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Kompetisaun nasional mak organiza husi Federasaun Atletismo 2] # Atleta juvenil iha Munisipiu 13 kompete ba kompetisaun atletismu nivel Munisipal 3] # Atleta kualifikadu kompete iha kompetisaun nasional atletismu kategoria senior 4] # Atletas kualifikadu mak selesionadu partisipa iha treinamentu kontinuidade hodi reprezenta Timor-Leste kompete iha eventu internasional",
+   "baseline": "1] 2 2] 100 3] 150 4] 20",
+   "target": "1] 2 2] 100 3] 150 4] 20",
+   "amounts": {
+    "30": 200000.0
+   },
+   "page": 1151
+  },
+  {
+   "code": "9806109",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Kompetisaun nasional ba modalidade Karate",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Kompetisaun nasional mak organiza husi Federasaun karatedo 2] # Atleta kualifikadu kompete ba kompetisaun karatedo junior 3] # Atleta kualifikadu kompete iha kompetisaun",
+   "baseline": "\"1] 2 2] 100 3]192 4] 10",
+   "target": "1] 2 2] 100 3] 192 4] 20",
+   "amounts": {
+    "30": 70000.0
+   },
+   "page": 1151
+  },
+  {
+   "code": "9806110",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Kompetisaun nasional ba modalidade Taekwondo",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Kompetisaun nasional mak organiza husi Federasaun Taekwondo 2] # Atleta kualifikadu kompete ba kompetisaun Taekwondo junior 3] # Atleta kualifikadu kompete iha kompetisaun nasional Taekwondo kategoria senior 4] # Atletas kualifikadu mak selesionadu hodi reprezenta Timor-Leste kompete iha eventu internasional",
+   "baseline": "1] 1 2]100 3]100 4] 10",
+   "target": "1] 1 2]100 3]100 4] 10",
+   "amounts": {
+    "30": 70000.0
+   },
+   "page": 1152
+  },
+  {
+   "code": "9806111",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Kompetisaun nasional Boxing",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Kompetisaun nasional mak organiza husi Federasaun Boxing 2] # Atleta kualifikadu kompete ba kompetisaun nasional Boxe Amadora junior 3] # Atleta kualifikadu kompete iha kompetisaun nasional Boxe Amdora kategoria senior 4] # Atletas kualifikadu mak selesionadu hodi reprezenta Timor-Leste kompete iha eventu internasional",
+   "baseline": "1] 2 2]104 3]100 4] 10",
+   "target": "1] 2 2] 100 3] 100 4] 20",
+   "amounts": {
+    "30": 100050.0
+   },
+   "page": 1152
+  },
+  {
+   "code": "9806112",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Kompetisaun nasional Basketball",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Klubu partisipante mak prienxe rekezitus rejistadu iha Federasaun Nasional Basketbol Timor-Leste kompete iha kompetisaun nasional basketbol (Liga Nasional Basketbol) 2] # Atleta kualifikadu kompete iha Kampionatu Nasional Basketbol (Liga Nasional Basketbol) 3] # Atletas",
+   "baseline": "1] 12 2] 240 3] 20",
+   "target": "1] 12 2] 240 3] 20",
+   "amounts": {
+    "30": 400000.0
+   },
+   "page": 1152
+  },
+  {
+   "code": "9806117",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Realizasaun Copa Juvenil Timor-Leste",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Ekipa Futebol Juvenil iha kada Munisipiu kompete ba Kopa Juvenil nivel Munisipiu 2] # Atleta juvenil ba kada Munisipiu mak kompete iha Kopa Juvenil nivel Munisipiu 3] # Ekipa Futebol Juvenil iha kada Munisipiu kompete ba Kopa Juvenil nivel Regional 4] # Atleta juvenil ba kada Munisipiu mak kompete iha Kopa Juvenil nivel Regional 5] # Atleta juvenil selesionadu hodi reprezenta Regional kompete ba nivel nasional Kopa Juvenil 6] # Atleta selesionadu hodi partisipa iha treinamentu kuntinuidade",
+   "baseline": "1] 84 2] 1512 3] 0 4] 0 5] 0 6] 27",
+   "target": "1] 84 2] 1512 3] 4 4] 432 5] 216 6] 27",
+   "amounts": {
+    "20": 4020.0,
+    "30": 85000.0
+   },
+   "page": 1153
+  },
+  {
+   "code": "9806118",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Festival Nasional Desportu Paralimpiku",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Modalidade kompetitor iha Festival Desportu Paralimpiku 2] # Munisipiu mak kompete iha Festival Desportu Akademiku 3] # Atleta ema ho difisiensia husi kada Munisipiu kompete iha Festival Desportu Paralimpiku 4] # Atleta selesionadu husi kada modalidade mak partisipa iha festival",
+   "baseline": "1] 5 2] 6 3] 100 4] 20",
+   "target": "1] 5 2] 6 3] 100 4] 20",
+   "amounts": {
+    "30": 99950.0
+   },
+   "page": 1153
+  },
+  {
+   "code": "9806119",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Regional Games ba Spesial Olimpiku",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Partisipantes husi kada modalidade mak eziste iha SOTL kompete Rejional Games 2] # Atletas selesionadu husi kada modalidade mak partisipa iha rejional games",
+   "baseline": "1] 42 2] 8",
+   "target": "1] 52 2] 4",
+   "amounts": {
+    "20": 1900.0,
+    "30": 36947.0
+   },
+   "page": 1153
+  },
+  {
+   "code": "9806120",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Reforsa jestaun Timor-Leste National Anti-Doping Organizational (TL- NADO)",
+   "div": [
+    "1151101"
+   ],
+   "indicator": "1] # Jestor TL-NADO mak hala'o ona estudu vizita ba NADO/OA estabelesidu. 2] # Jestor TL-NADO mak partisipa ona iha formasaun konaba NADO Governance. 3] # Ajentes partisipantes no ajentes desportivas mak partisipa ona iha edukasaun anti-doping. 4] # Ajentes partisipantes mak partisipa ona iha teste anti-doping.",
+   "baseline": "1] 2 2] 2 3] 209 4] 6",
+   "target": "1] 1 2] 2 3] 300 4] 8",
+   "amounts": {
+    "20": 21519.0
+   },
+   "page": 1154
+  },
+  {
+   "code": "9806122",
+   "programme": "980",
+   "subprogramme": "98061",
+   "subprogramme_name": "Desenvolver Prestação Atletas na Alta Competição",
+   "name": "Realizasaun Festival Desportu no akademiku",
+   "div": [
+    "1151001"
+   ],
+   "indicator": "1] # Postu Administrativu mak kompete iha Festival Desportu nivel Munisipiu [FDM] 2] # Modalidade prioridade mak kompete ba Festival Desportu nivel Munisipiu [FDM] 3] # Atleta husi Posto Administrativo mak kompete iha Festival Desporto Nivel Munisipal [FDM] 4] # Atleta kualifikadu mak selesionadu husi Festival Desportu nivel Munisipiu reprezenta kada Munisipiu kompete iha Festival Nasional Desportu [FND] 2028",
+   "baseline": "1] 66 2] 4 3] 750 4] 40",
+   "target": "1] 70 2] 7 3] 6.020 4] 1.204",
+   "amounts": {
+    "20": 9720.0,
+    "30": 249230.0
+   },
+   "page": 1154
+  },
+  {
+   "code": "9807200",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Konstrusaun kampu multifunsaun iha Munisipiu Liquiça",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Construção de campo multifunções em Municipio Liquiça",
+   "baseline": "0%",
+   "target": "20%",
+   "amounts": {
+    "50": 33333.0
+   },
+   "page": 1154
+  },
+  {
+   "code": "9807201",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Konstrusaun kampu multifunsaun iha Postu Administrativo Same",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Construção de campo multifunções em Postu Administrativo Same",
+   "baseline": "50%",
+   "target": "50%",
+   "amounts": {
+    "50": 79166.0
+   },
+   "page": 1154
+  },
+  {
+   "code": "9807202",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Konstrusaun kampo futsal multifunsaun iha Posto Administrativo Suai",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Construção de campo multifunções em Postu Administrativo Suai",
+   "baseline": "30%",
+   "target": "70%",
+   "amounts": {
+    "50": 66333.0
+   },
+   "page": 1154
+  },
+  {
+   "code": "9807203",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Konstrusaun kampu multifunsaun iha Postu Administrativu Aileu",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Construção de campo multifunções em Postu Administrativo Aileu",
+   "baseline": "0%",
+   "target": "15%",
+   "amounts": {
+    "50": 33334.0
+   },
+   "page": 1155
+  },
+  {
+   "code": "9807204",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Konstrusaun kampu multifunsaun iha Postu Administrativu Ainaro",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Construção de campo multifunções em Postu Administrativo Ainaro",
+   "baseline": "0%",
+   "target": "50%",
+   "amounts": {
+    "50": 33333.0
+   },
+   "page": 1155
+  },
+  {
+   "code": "9807205",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Konstrusaun kampu Multifunsaun Manleuana-Dili",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Konstrusaun kampu Multifunsaun indoor Manleuana-Dili mak kostrui",
+   "baseline": "0%",
+   "target": "15%",
+   "amounts": {
+    "50": 34459.0
+   },
+   "page": 1155
+  },
+  {
+   "code": "9807206",
+   "programme": "980",
+   "subprogramme": "98072",
+   "subprogramme_name": "Desenvolvimento de infraestruturas e instalações na área do desporto",
+   "name": "Construção de Campo Multifunções em Taibesse",
+   "div": [
+    "1150804"
+   ],
+   "indicator": "% Kampu Multifunções mak konstrui ona",
+   "baseline": "85%",
+   "target": "15%",
+   "amounts": {
+    "50": 64333.0
+   },
+   "page": 1155
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "024.0.5",
+   "statement": "Hametin identidade nasionál, koezaun sosiál, no orgúllu kulturál liu hosi prezervasaun no promosaun patrimóniu kultural no espresaun artístika Timor-Leste nian",
+   "indicator": "\"1) % sidadaun sira ne’ebé relata (manifesta) aumentu kompriensaun no apresiasaun ba patrimóniu kulturál Timor-Leste nian (ne’ebé sukat liuhosi levantamentu konxiénsia kulturál ne’ebé koordena nasionalmente). 2) # espresaun kulturál timoroan ne’ebé ofisialmente hetan apoiu (apoiadas) no apresenta iha plataforma kulturál nivel munisipiu, rejionál ka internasionál (festivál, espozisaun, intercâmbios).\"",
+   "baseline": "\"1] 1770 2] 200 [Entre 2024 to'o 2025]\"",
+   "target": "\"1] 10845 2] 400\"",
+   "page": 1134
+  },
+  {
+   "kind": "output",
+   "code": "02422.0.0",
+   "statement": "Promosaun no valorizasaun efetiva espresoens artístikas Timor-Leste nian, inklui organizasaun eventus kultural, no salvaguarda no promosaun patrimóniu istóriku no kultural",
+   "indicator": "\"1) # Eventu kulturál no artístiku ne’ebé organiza ka hetan apoiu ofisiál husi MJDAC (nasionál no internasionál). 2) # Partisipante sira iha eventu kulturál sira ne'ebé hetan apoiu hosi MJDAC, ne'ebé fahe tuir seksu, grupu, no munisípiu (nasionál no internasionál).\"",
+   "baseline": "\"1] 8 2] 3129\"",
+   "target": "\"1] 8 2] 1659\"",
+   "page": 1134
+  },
+  {
+   "kind": "output",
+   "code": "02423.0.0",
+   "statement": "Aumenta koñesimentu públiku no kapasidade institusionál kona-ba arte no património kultural liu hosi formasaun, inventáriu, preservasaun, no apoiu ba grupu kreativu",
+   "indicator": "\"1] # Formasaun no sensebilizasaun kona-ba importansia arte no patrimonio kultural 2] # Partisipante ne'ebe partisipa iha formasaun no sensebilizasaun arte no Kultural 3] # Sitius historiku arkeolojiku, etnografiku, arkitektura tradisional no Arkitektura Modernu mak hetan prezeervasaun no konservasaun 4] # Objetus museu kulturais mak identifika no rekollá 5] # Asosiasaun no grupu kreativu iha arte no kultural mak hetan apoiu.\"",
+   "baseline": "\"1] 8 2] 4242 3] 120 4] 82 5] 66\"",
+   "target": "\"1] 8 2] 2156 3] 130 4] 78 5] 52\"",
+   "page": 1136
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el532: Konstrui _ no Melhora Instalasaun Publicas ba Fasilidade iha area Arte no Kultura.",
+   "indicator": "# instalações públicas iha arte no kultura mak konstrui no rehabilita ona.",
+   "baseline": "0",
+   "target": "2 instalações públicas aos Artes e Cultura construido e rehabilitado",
+   "page": 1140
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "# Do Plano Estratégico Aprovado, incluindo o plano de médio prazo.",
+   "baseline": "6887",
+   "target": "7788",
+   "page": 1140
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "# de metas do plano anual alcançadas",
+   "baseline": "323",
+   "target": "294",
+   "page": 1140
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "# de objetivos do plano anual alcançados",
+   "baseline": "6559",
+   "target": "7488",
+   "page": 1141
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el200021: Aumenta partisipasaun, _ inkluzaun, lideransa joven sira nian iha dezenvolvimentu nasionál liuhosi polítika sira, Organizasaun juventude sira ne'ebé funsiona ho efetivu, oportunidade ba foinsa’e iha envolvimentu síviku nian no mekanizmu konsultasaun institucionalizados",
+   "indicator": "1] % hosi foin-sa'e sira ne'ebé relata partisipasaun ativa iha atividade sívika no komunitária. 2] # husi partisipante sira iha Parlamentu Foin sa’e Nian. 3] % atividade Planu Asaun Nasional Juventude [PANJ] mak realiza husi liña Ministério responsável sira",
+   "baseline": "1) 51 % 2) 142 3) 28% [Entre 2024 to'o 2025 fulan Janeiru- Juñu]",
+   "target": "1) 49 % 2) 142 3) 72 %",
+   "page": 1144
+  },
+  {
+   "kind": "output",
+   "code": "98073.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1144
+  },
+  {
+   "kind": "output",
+   "code": "98074.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1145
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el200023: Melhoria moris saudavel _ nasional, envolvimentu sosiedade, koezaun sosiál liuhosi partisipasaun ne'ebé luan no profisionalizasaun desportu nian",
+   "indicator": "\"1] % hosi sosiedade no foin-sa'e sira ne'ebé partisipa beibeik iha atividade desportu organizadu sira. 2] # Medalha husi atleta nasionál sira ne’ebé kompete iha kompetisaun rejionál no internasionál sira.\"",
+   "baseline": "\"1] 1% 2] 38 [Entre 2024 to'o 2025 fulan Janeiru-Juñu]\"",
+   "target": "1\"1] 2% 2]22\"",
+   "page": 1146
+  },
+  {
+   "kind": "output",
+   "code": "98004.0.0",
+   "statement": "A organização desportiva já tem capacidade institucional e agentes desportivos existentes em recursos adequados e que podem vir a competir no evento",
+   "indicator": "# de realização Eventos Nacionais e sub Nacionais, # Organização Desportivo, # Gestores e agentes de Organização Desportivas, # Modalidade Desportivas, # Atletas selecionados # Atletas participou nos Eventos Nacionais, # modalidade CPNTL, # Modalidade SOTL, # CTFJTL # Atletas CTFJTL, # Grupos de",
+   "baseline": "33 Eventos Nacionais, 9 Organização Esportiva (Guarda- chuva), 100 Diretores de Organização Esportiva, 4 Modalidade Esporte, Atletismo participou de Eventos Nacionais, 120 Atletismo Selecionado, Grupos de Organização Esportiva Comunitária, 50000 Participaram",
+   "target": "17 Eventos realizado nivel Nacionais e sub nacional, 5 Organização Desportivo apoiados, 313 Gestores e agentes de Organização Desportivas insentivado, 10 Modalidade Desportivas , 295 Atletas Selecionados, 61,453 Atletas participaram nos Eventos Nacionais, 10 Modalidade",
+   "page": 1146
+  },
+  {
+   "kind": "output",
+   "code": "98060.0.0",
+   "statement": "Sosiedade iha koñesementu kona-ba importansia husi atividade desportu no pratika atividade fizika desportivas",
+   "indicator": "\"1) # Programa desportu komunitáriu ka modalidade sira ne'ebé implementa ona 2) # Partisipante sira iha atividade desportu komunitáriu (dezagregadu tuir seksu no munisípiu) 3) # Grupu komunidade ne’ebé hetan apoiu hodi organiza atividade desportu\"",
+   "baseline": "1] 3 2] 8486 3] 76",
+   "target": "1] 3 2] 20963 3] 76",
+   "page": 1148
+  },
+  {
+   "kind": "output",
+   "code": "98061.0.0",
+   "statement": "Organizasaun Desportivas iha kapasidade instiusional hodi dezenvolve no promove pretasaun atleta",
+   "indicator": "\"1] # Organizasaun desportivas iha ona kapasidade rekursus mak sufisiente hodi jere organizasaun ho efisien, efikasia no responsaveis 2] # Ajentes desportivas iha ona kapasidade profesional hodi fasilita treinamentu no diriji iventus desportiva sira. 3] # Pratikante mak partisipa treinamentu diaria ativamente 4] # Atleta mak kompete iha iventu nasional, rejional no internasional\"",
+   "baseline": "\"1] 3 2] 0 3] 1627 4] 1789\"",
+   "target": "\"1] 3 2] 4 3] 1500 4] 6000\"",
+   "page": 1149
+  },
+  {
+   "kind": "output",
+   "code": "98072.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1154
+  }
+ ]
+}

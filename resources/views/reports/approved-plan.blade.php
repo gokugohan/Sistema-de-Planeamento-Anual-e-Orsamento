@@ -6,6 +6,10 @@
     $classes = $report['classes'];
     $grand = $report['totals']['total'];
     $pendingTotal = array_sum($report['pending']);
+    $unit = $report['unit'] ?? null;
+    $u = $unit?->id;
+    // a CSS string (for the page margins when printing): quotes and backslashes escaped, no markup can close the style
+    $cssText = fn (string $t) => '"'.strtr($t, ['\\' => '\\\\', '"' => '\\"', '<' => '\\3C ', "\n" => ' ']).'"';
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -55,7 +59,21 @@
         body.screen .footer { position: static; margin-top: 16px; }
         /* On a phone the fixed A4 sheet scrolls sideways instead of widening the page. */
         @media screen and (max-width: 700px) { .sheet { overflow-x: auto; padding: 8mm; } }
-        @media print { .toolbar { display: none; } .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; } body { background: #fff; } }
+        /* Printing from the browser gives the same document as the PDF: the colours as shown (browsers drop backgrounds
+           unless told otherwise, which left the white title on white), the footer at the bottom of every page, and the
+           page numbers in the margin. dompdf renders with media "screen" and never reads this block. */
+        @media print {
+            .toolbar { display: none; }
+            .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; }
+            body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body.screen { background: #fff; }
+            body.screen .footer { display: none; } /* drawn in the page margin instead, on every page */
+            @page {
+                @bottom-left { content: {!! $cssText($report['reference']) !!}; font-family: Arial, sans-serif; font-size: 7pt; color: #64748B; border-top: 0.5px solid #CBD5E1; }
+                @bottom-center { content: {!! $cssText(__('Generated').' '.$report['generated_at']->format('Y-m-d H:i').' TLT'.($report['generated_by'] ? ' · '.$report['generated_by'] : '')) !!}; font-family: Arial, sans-serif; font-size: 7pt; color: #64748B; border-top: 0.5px solid #CBD5E1; }
+                @bottom-right { content: {!! $cssText(__('Page').' ') !!} counter(page) " / " counter(pages); font-family: Arial, sans-serif; font-size: 7pt; color: #64748B; border-top: 0.5px solid #CBD5E1; }
+            }
+        }
     </style>
 </head>
 <body class="{{ $pdf ? 'pdf' : 'screen' }}">
@@ -73,10 +91,11 @@
                 <option value="complete" @selected($complete)>{{ __('Complete report') }}</option>
                 <option value="summary" @selected(! $complete)>{{ __('Summary report') }}</option>
             </select>
+            <x-report-unit-select :choices="$unitChoices ?? collect()" :scope="$scope" class="" style="padding:6px;border-radius:4px;max-width:22rem" />
         </form>
         @if(($baselines ?? null) !== null)
             <form method="GET" action="{{ route('reports.approved-plan') }}" style="margin:0">
-                <input type="hidden" name="year" value="{{ $report['year'] }}"><input type="hidden" name="mode" value="{{ $mode }}">
+                <input type="hidden" name="year" value="{{ $report['year'] }}"><input type="hidden" name="mode" value="{{ $mode }}">@if($u)<input type="hidden" name="unit" value="{{ $u }}">@endif
                 <select name="baseline" onchange="this.form.submit()" aria-label="{{ __('Baseline') }}">
                     <option value="">{{ __('The plan in force now') }}</option>
                     @foreach($baselines as $b)
@@ -94,7 +113,8 @@
         @endif
         <span style="margin-left:auto"></span>
         <button type="button" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Print anyway?') : '' }}" onclick="if (this.dataset.warn && ! confirm(this.dataset.warn)) return; window.print()">{{ __('Print') }}</button>
-        <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.approved-plan.pdf', array_filter(['year' => $report['year'], 'mode' => $mode, 'baseline' => $report['baseline']['id'] ?? null])) }}">{{ __('Download PDF') }}</a>
+        <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.approved-plan.pdf', array_filter(['year' => $report['year'], 'mode' => $mode, 'baseline' => $report['baseline']['id'] ?? null, 'unit' => $u])) }}">{{ __('Download PDF') }}</a>
+        <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.approved-plan.xlsx', array_filter(['year' => $report['year'], 'mode' => $mode, 'baseline' => $report['baseline']['id'] ?? null, 'unit' => $u])) }}">{{ __('Download Excel') }}</a>
     </div>
     @if(session('status'))<div class="note" style="margin:8px auto;max-width:297mm">{{ session('status') }}</div>@endif
     <div class="sheet">
@@ -115,6 +135,7 @@
     @if($logoUri = \App\Support\Branding::logoDataUri())<div style="text-align:center"><img src="{{ $logoUri }}" alt="" style="height:46px;margin-bottom:4px"></div>@endif
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
+    @if($unit)<div style="font-size:11pt;font-weight:bold;margin-top:4px">{{ $unit->code }} — {{ $unit->name }}</div>@endif
     <div class="title">{{ __('Annual Activity Plan') }} {{ $report['year'] }}</div>
     <div class="muted" style="margin-top:6px">{{ $complete ? __('Complete report') : __('Summary report') }}</div>
 </div>
@@ -122,6 +143,7 @@
 <table class="meta">
     <tr><td style="width:28%" class="muted">{{ __('Document reference') }}</td><td>{{ $report['reference'] }}</td></tr>
     <tr><td class="muted">{{ __('Fiscal year') }}</td><td>{{ $report['year'] }}</td></tr>
+    @if($unit)<tr><td class="muted">{{ __('Unit') }}</td><td>{{ $unit->code }} — {{ $unit->name }} ({{ __('with the units below it') }})</td></tr>@endif
     <tr><td class="muted">{{ __('Scope') }}</td><td>{{ __('Activities approved internally (status Approved)') }}</td></tr>
 </table>
 
@@ -153,7 +175,7 @@
         <td><div class="v">{{ $report['totals']['count'] }}</div><div class="small muted">{{ __('Approved activities') }}</div></td>
         <td><div class="v">{{ $report['by_unit']->sum(fn ($r) => $r['units']->count()) }}</div><div class="small muted">{{ __('Organic units') }}</div></td>
         <td><div class="v">{{ $report['indicator_count'] }}</div><div class="small muted">{{ __('Indicators') }}</div></td>
-        <td><div class="v">{{ $money($grand) }}</div><div class="small muted">{{ __('Total planned resources') }}</div></td>
+        <td><div class="v">{{ $money($grand) }}</div><div class="small muted">{{ __('Total planned resources') }}@if($unit && $report['institution_total'] > 0)<br>{{ __(':pct% of $ :t in the whole plan', ['pct' => number_format($grand / $report['institution_total'] * 100, 1), 't' => number_format($report['institution_total'], 2)]) }}@endif</div></td>
     </tr>
 </table>
 
@@ -298,7 +320,7 @@
         <tr>
             <td><div class="line">{{ __('Prepared by') }}</div></td>
             <td><div class="line">{{ __('Verified by') }}</div></td>
-            <td><div class="line">{{ __('Approved by (Minister)') }}</div></td>
+            <td><div class="line">{{ $unit ? __('Approved by (head of the unit)') : __('Approved by (Minister)') }}</div></td>
         </tr>
     </table>
 </div>

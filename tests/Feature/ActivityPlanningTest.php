@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\FundingSource;
@@ -17,6 +18,7 @@ use App\Support\FiscalYear;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use Tests\TestCase;
 
 class ActivityPlanningTest extends TestCase
@@ -115,7 +117,7 @@ class ActivityPlanningTest extends TestCase
         $dgDirector = $this->as('Director', $this->dg);
         $this->assertSame(Activity::STATUS_APPROVED, $wf->reach($dgDirector, $a->fresh()));
         $this->assertSame(Activity::STATUS_APPROVED, $wf->advance($dgDirector, $a->fresh()), 'the head of the directorate-general gives the final approval');
-        $steps = \App\Models\AuditLog::where('auditable_type', Activity::class)->where('auditable_id', $a->id)->get()
+        $steps = AuditLog::where('auditable_type', Activity::class)->where('auditable_id', $a->id)->get()
             ->map(fn ($l) => $l->new_values['status'] ?? null)->filter()->values()->all();
         $this->assertSame([Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_APPROVED], array_values(array_intersect($steps, [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_APPROVED])), 'every step is in the history');
 
@@ -247,18 +249,20 @@ class ActivityPlanningTest extends TestCase
         $this->assertNull($copy->approved_at);
     }
 
-    public function test_export_has_one_amount_column_per_category_and_neutralises_formulas(): void
+    public function test_export_is_an_excel_workbook_with_one_amount_column_per_category_and_no_formulas_from_text(): void
     {
         $a = $this->activity($this->dn);
         $a->update(['description' => '=HYPERLINK("http://x")']);
+        app()->setLocale('en');
 
-        $out = fopen('php://memory', 'w+');
-        app(ActivityExporter::class)->write($out, Activity::query()->where('fiscal_year', $this->year));
-        rewind($out);
-        $csv = stream_get_contents($out);
+        $book = app(ActivityExporter::class)->workbook(Activity::query()->where('fiscal_year', $this->year), $this->year, ['Unit DNX']);
+        $s = $book->getActiveSheet();
+        $cells = collect($s->toArray(null, true, false, false))->flatten()->filter()->values();
 
-        $this->assertStringContainsString("'=HYPERLINK", $csv);
-        $this->assertStringContainsString('10 Salários', $csv);
-        $this->assertStringContainsString('1000.00', $csv);
+        $this->assertTrue($cells->contains(fn ($v) => is_string($v) && str_starts_with($v, '10 Salários')), 'one column per economic category');
+        $this->assertTrue($cells->contains(fn ($v) => is_string($v) && str_contains($v, 'Filters: Unit DNX')), 'the filters are said under the title');
+        $hyperlink = collect($s->getRowIterator())->map(fn ($r) => $s->getCell('D'.$r->getRowIndex()))->first(fn ($c) => str_contains((string) $c->getValue(), 'HYPERLINK'));
+        $this->assertSame(DataType::TYPE_STRING, $hyperlink->getDataType(), 'a description is text, never a formula');
+        $this->assertTrue($cells->contains(fn ($v) => is_numeric($v) && (float) $v === 1000.0), 'amounts are numbers');
     }
 }

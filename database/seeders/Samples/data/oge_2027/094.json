@@ -1,0 +1,390 @@
+{
+ "year": 2027,
+ "code": "094",
+ "name": "Instituto Nacional do Desenvolvimento de Mão-de-Obra",
+ "abbr": "INDMO",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   940,
+   949
+  ]
+ },
+ "units": [
+  {
+   "code": "INDMO",
+   "div": "0940101",
+   "name": "Instituto Nacional do Desenvolvimento de Mão-de-Obra",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Percentagem de atividades do PAA concluídas; 2) número de relatórios entregues no prazo; 3) número de estudos setoriais/laborais concluídos; 4) percentagem de completude dos dados institucionais.",
+   "baseline": "Em 2026, o INDMO utilizava instrumentos de planeamento e monitorização, mantinha um registo de 71 centros e consolidou o relatório INDMO– UNESCO sobre qualidade do TVET em 30 de julho. A integração dos dados e a medição sistemática da sua completude permaneciam em desenvolvimento.",
+   "target": "Até 31 de dezembro de 2027: concluir pelo menos 90% das atividades do PAA; produzir 4 relatórios trimestrais até 30 dias após cada trimestre e 1 relatório anual até 60 dias após o encerramento.",
+   "amounts": {
+    "10": 79461.0,
+    "20": 14590.0
+   },
+   "page": 942
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de instrumentos jurídicos elaborados ou revistos; 2) percentagem submetida com consulta e parecer técnico; 3) percentagem de pedidos jurídicos respondidos dentro do prazo de serviço.",
+   "baseline": "Quadro vigente: Decretos-Leis n.º 8/2008, 34/2009, 6/2017, 54/2022 e 36/2011. Em 2026, prosseguiram análises sobre padrões, acreditação, certificação, reconhecimento/equiparação e regulação de formadores e avaliadores; os instrumentos complementares permaneciam em preparação.",
+   "target": "Elaborar ou rever 2 instrumentos legais/regulamentares prioritários, realizar consulta técnica e submetê-los à entidade competente até 30 de novembro de 2027; responder a pelo menos 90% dos pedidos jurídicos internos no prazo definido.",
+   "amounts": {
+    "10": 30739.0
+   },
+   "page": 942
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Taxa de execução orçamental; 2) desvio entre plano e execução; 3) percentagem do plano de aprovisionamento concluída no prazo; 4) número de relatórios financeiros e patrimoniais aprovados; 5) percentagem de ativos inventariados.",
+   "baseline": "Em 15 de julho de 2026, o orçamento era USD 868.041 e a execução acumulada USD 355.104,16, equivalente a 40,91%. Os sistemas de gestão financeira, administração, património e logística encontravam-se operacionais, com necessidade de reforçar o acompanhamento periódico da execução e do aprovisionamento.",
+   "target": "Até 31 de dezembro de 2027: executar pelo menos 95% do orçamento aprovado; manter o desvio das principais rubricas dentro de ±10%; concluir pelo menos 90% do plano de aprovisionamento no prazo; produzir 4 relatórios trimestrais e 1 anual; atualizar 100% do inventário patrimonial.",
+   "amounts": {
+    "10": 102851.0,
+    "20": 99091.0
+   },
+   "page": 943
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de acordos com plano de trabalho e pontos focais; 2) número de encontros, conferências e fóruns de TVET, por bloco/região; 3) número de atividades conjuntas concluídas; 4) número de compromissos institucionais acompanhados.",
+   "baseline": "Em 2026, o INDMO cooperou com WorldSkills Asia, ASEAN/SEAMEO, CPLP, países do Pacífico, PAS/SASC, UNESCO, ILO, APTC e outros parceiros. Realizou o workshop INDMO–PAS em 11 de agosto, a reunião INDMO–SASC em 15",
+   "target": "Em 2027: assinar ou operacionalizar 3 acordos com plano de trabalho e pontos focais; realizar ou participar em 12 encontros/conferências de TVET, incluindo pelo menos 2 ASEAN/SEAMEO, 2 CPLP, 2 Pacífico/WorldSkills e 6 com",
+   "amounts": {
+    "10": 8188.0,
+    "20": 62615.0
+   },
+   "page": 943
+  },
+  {
+   "code": "5100416",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Construção de novo edificio do INDMO, I.P",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Percentagem de execução física e financeira; 2) emissão da receção provisória; 3) percentagem de sistemas essenciais testados; 4) percentagem de defeitos críticos com ação corretiva concluída.",
+   "baseline": "A obra em Tibar atingiu cerca de 48% de progresso físico em 26 de agosto de 2026. Prosseguiram reuniões técnicas sobre qualidade, materiais, instalações, variações, pagamentos, aprovisionamento e recursos especializados, com conclusão prevista para janeiro de 2027.",
+   "target": "Até 31 de março de 2027: atingir 100% de execução física; obter receção provisória; testar 100% dos sistemas elétricos, hidráulicos, sanitários, de segurança e TIC; aprovar plano de correção para 100% dos defeitos identificados e iniciar a operação do edifício.",
+   "amounts": {
+    "10": 6825.0
+   },
+   "page": 944
+  },
+  {
+   "code": "51004E1",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Operationalisation of the permanent INDMO headquarters at Tibar",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 150000.0
+   },
+   "page": 944
+  },
+  {
+   "code": "9830201",
+   "programme": "983",
+   "subprogramme": "98302",
+   "subprogramme_name": "Desenvolvimento Padrõs de Competências e Recursos Manuais Complementares",
+   "name": "Desenvolvimento os Padroes das Competencias",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de padrões novos ou revistos e aprovados; 2) percentagem validada pela indústria; 3) percentagem com",
+   "baseline": "Até 31 de julho de 2026, estavam registados cerca de 80 padrões de competências dos níveis I–IV em diferentes setores. O manual",
+   "target": "Até 31 de dezembro de 2027: desenvolver ou rever e aprovar 10 padrões prioritários; validar 100% com representantes da",
+   "amounts": {
+    "10": 60701.0,
+    "20": 35940.0
+   },
+   "page": 945
+  },
+  {
+   "code": "9830206",
+   "programme": "983",
+   "subprogramme": "98302",
+   "subprogramme_name": "Desenvolvimento Padrõs de Competências e Recursos Manuais Complementares",
+   "name": "Desenvolvimento recursos para formação e avaliação da competências",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de pacotes desenvolvidos e aprovados; 2) percentagem alinhada com padrões vigentes; 3) número de pacotes pilotados; 4) percentagem de recomendações do piloto incorporada.",
+   "baseline": "Existia um manual de desenvolvimento e recursos para parte dos padrões vigentes. Em 2026, o INDMO e PAS prepararam áreas de cooperação para padrões, recursos, DACUM e RPL; o inventário completo dos recursos e respetivas lacunas ainda não estava consolidado.",
+   "target": "Até 31 de dezembro de 2027: desenvolver, validar e aprovar 10 pacotes completos de formação e avaliação; assegurar alinhamento de 100% com os padrões vigentes; pilotar pelo menos 5 pacotes e incorporar 100% das recomendações críticas antes da aprovação final.",
+   "amounts": {
+    "10": 39420.0,
+    "20": 10000.0
+   },
+   "page": 946
+  },
+  {
+   "code": "9830303",
+   "programme": "983",
+   "subprogramme": "98303",
+   "subprogramme_name": "Certificação e Reconhecimento de Competência/Qualificação de Mão-de-Obra",
+   "name": "Reconhecimento e Atribiuição certificados Pedagogicos",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de formadores e avaliadores certificados; 2) percentagem de mulheres; 3) percentagem registada no",
+   "baseline": "Até ao final de 2025, tinham sido emitidos cerca de 80 certificados pedagógicos. Em 2026, avançou o desenho de uma via",
+   "target": "Certificar 150 formadores e avaliadores em 2027; assegurar que 100% cumprem os requisitos e estão registados;",
+   "amounts": {
+    "10": 7423.0,
+    "20": 8475.0
+   },
+   "page": 946
+  },
+  {
+   "code": "9830304",
+   "programme": "983",
+   "subprogramme": "98303",
+   "subprogramme_name": "Certificação e Reconhecimento de Competência/Qualificação de Mão-de-Obra",
+   "name": "Certificação, reconhecimento e equiparação das competências e/ou qualificações nacionais",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de certificados emitidos; 2) percentagem com registo completo e verificável; 3) tempo médio de emissão; 4) percentagem de mulheres entre os certificados, desagregada por setor, nível e município.",
+   "baseline": "Até 31 de julho de 2026, tinham sido emitidos aproximadamente 30.000 certificados de competências por meio de centros acreditados. A consolidação por sexo, setor, nível, município e tempo de emissão precisava de ser reforçada.",
+   "target": "Emitir 8.000 certificados em 2027; garantir 100% de registos verificáveis e emissão dentro do padrão de serviço aprovado; publicar dados trimestrais desagregados; avançar progressivamente para 50% de participação feminina.",
+   "amounts": {
+    "10": 5160.0,
+    "20": 12220.0
+   },
+   "page": 947
+  },
+  {
+   "code": "9830305",
+   "programme": "983",
+   "subprogramme": "98303",
+   "subprogramme_name": "Certificação e Reconhecimento de Competência/Qualificação de Mão-de-Obra",
+   "name": "Reconhecimento e equiparação das competências e/ou qualificacões internacionais",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de processos concluídos, por modalidade; 2) percentagem concluída dentro do prazo; 3) percentagem de decisões com evidência e revisão de qualidade; 4) perfil dos beneficiários por sexo, nacionalidade e setor.",
+   "baseline": "O manual de certificação, reconhecimento e equiparação estava aprovado e o serviço encontrava-se operacional. Em 2026, avançaram propostas de cooperação sobre reconhecimento de qualificações e RPL; o total anual de processos concluídos ainda não estava consolidado.",
+   "target": "Concluir 500 processos de reconhecimento, equivalência ou RPL em 2027; finalizar pelo menos 90% dentro do prazo de serviço; assegurar revisão de qualidade e registo verificável em 100% das decisões.",
+   "amounts": {
+    "10": 7020.0,
+    "20": 8325.0
+   },
+   "page": 947
+  },
+  {
+   "code": "9830405",
+   "programme": "983",
+   "subprogramme": "98304",
+   "subprogramme_name": "Avaliação, Licenciamento e Acreditação do Centro de Formações e respetivos de cursos/programas",
+   "name": "Avaliação, licenciamento operacional e acreditação fornesedor formação profissional",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de centros avaliados; 2) número de licenças/acreditações emitidas ou renovadas; 3) número de centros com estatuto válido; 4) percentagem de decisões emitidas no prazo e acompanhadas por plano de melhoria quando necessário.",
+   "baseline": "Em 2026, estavam registados 71 centros: 30 com licença operacional e 41 com acreditação institucional. Persistiam necessidades de renovação, monitorização da validade e expansão da cobertura nos municípios, RAEOA e Ataúro.",
+   "target": "Avaliar 15 centros em 2027; assegurar pelo menos 35 centros com estatuto válido; emitir 90% das decisões dentro do prazo aprovado; estabelecer e acompanhar planos de melhoria para 100% dos centros com não conformidades materiais.",
+   "amounts": {
+    "10": 11269.0,
+    "20": 22810.0
+   },
+   "page": 948
+  },
+  {
+   "code": "9830406",
+   "programme": "983",
+   "subprogramme": "98304",
+   "subprogramme_name": "Avaliação, Licenciamento e Acreditação do Centro de Formações e respetivos de cursos/programas",
+   "name": "Avaliação, licenciamento operacional e acreditação programática",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de programas avaliados; 2) número de acreditações emitidas ou renovadas; 3) número de programas com estatuto válido; 4) percentagem com evidência de procura laboral e participação da indústria.",
+   "baseline": "Em 2026, 26 centros ofereciam programas acreditados. O número consolidado de programas ainda válidos, respetivos níveis, setores e datas de expiração encontrava-se em atualização.",
+   "target": "Avaliar 15 programas em 2027; assegurar pelo menos 55 programas com acreditação válida; exigir evidência de procura laboral e participação da indústria em 100% dos novos processos; emitir 90% das decisões dentro do prazo aprovado.",
+   "amounts": {
+    "10": 9264.0,
+    "20": 22469.0
+   },
+   "page": 948
+  },
+  {
+   "code": "9830407",
+   "programme": "983",
+   "subprogramme": "98304",
+   "subprogramme_name": "Avaliação, Licenciamento e Acreditação do Centro de Formações e respetivos de cursos/programas",
+   "name": "Avaliação, e acreditação centro de avaliação das competências",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de centros avaliados; 2) número de acreditações emitidas ou renovadas; 3) número de centros com estatuto válido; 4) número de áreas/programas de avaliação autorizados; 5) percentagem com moderação e segurança de avaliação verificadas.",
+   "baseline": "Em 2026, estavam registados 26 centros de avaliação de competências acreditados. Era necessário reforçar o controlo da validade, a cobertura de áreas prioritárias, a moderação e a segurança dos instrumentos de avaliação.",
+   "target": "Avaliar 5 centros em 2027; assegurar pelo menos 28 centros com acreditação válida; autorizar pelo menos 10 áreas/programas prioritários; verificar moderação, segurança e rastreabilidade em 100% dos processos avaliados.",
+   "amounts": {
+    "10": 6852.0,
+    "20": 4380.0
+   },
+   "page": 948
+  },
+  {
+   "code": "9834601",
+   "programme": "983",
+   "subprogramme": "98346",
+   "subprogramme_name": "Promoção Aptidões de Mão-de-Obra Timorenses",
+   "name": "Promoção Aptidoes em nivel nacional, regional e global",
+   "div": [
+    "0940101"
+   ],
+   "indicator": "1) Número de competições/eventos organizados ou participados; 2) número de áreas; 3) número de concorrentes, peritos e parceiros; 4) participação feminina; 5) percentagem de recomendações pós-evento integradas no plano seguinte.",
+   "baseline": "De 6 a 9 de julho de 2026, Timor-Leste realizou a 9.ª Competição Nacional de Competências e a 2.ª Competição Internacional Amigável, abrangendo quatro áreas de competência e contando com a participação de competidores de países do Pacífico e da ASEAN. Timor- Leste é membro da WorldSkills Asia desde 2020 e acolherá, em Díli, de 18 a 20 de novembro de 2026, a 10.ª Assembleia Geral da organização.",
+   "target": "Em 2027: organizar ou participar em pelo menos 3 competições/eventos e abranger 6 áreas; registar participantes e resultados por sexo e país; alcançar pelo menos 30% de participação feminina, quando elegível; emitir relatório pós- evento até 30 dias e incorporar 100% das recomendações prioritárias no plano seguinte.",
+   "amounts": {
+    "10": 24443.0,
+    "20": 125000.0
+   },
+   "page": 949
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) Percentagem de atividades do PAA concluídas; 2) número de relatórios entregues no prazo; 3) número de estudos setoriais/laborais concluídos; 4) percentagem de completude dos dados institucionais. 1) Número de auditorias/inspeções baseadas em risco concluídas; 2) percentagem de recomendações prioritárias com plano de ação; 3) percentagem de recomendações vencidas encerradas. 1) Número de instrumentos jurídicos elaborados ou revistos; 2) percentagem submetida com consulta e parecer técnico; 3) percentagem de pedidos jurídicos respondidos dentro do prazo de serviço. 1) Taxa de execução orçamental; 2) desvio entre plano e execução; 3) percentagem do plano de aprovisionamento concluída no prazo; 4) número de relatórios financeiros e patrimoniais aprovados; 5) percentagem de ativos inventariados. 1) Número de acordos com plano de trabalho e pontos focais; 2) número de encontros, conferências e fóruns de TVET, por bloco/região; 3) número de atividades",
+   "baseline": "Em 2026, o INDMO utilizava instrumentos de planeamento e monitorização, mantinha um registo de 71 centros e consolidou o relatório INDMO–UNESCO sobre qualidade do TVET em 30 de julho. A integração dos dados e a medição sistemática da sua completude permaneciam em desenvolvimento. Em 2026, funcionavam mecanismos de acompanhamento administrativo e financeiro, pareceres e fiscalização previstos na orgânica do INDMO. Não existia ainda uma matriz institucional consolidada para classificar, acompanhar e encerrar recomendações. Quadro vigente: Decretos-Leis n.º 8/2008, 34/2009, 6/2017, 54/2022 e 36/2011. Em 2026, prosseguiram análises sobre padrões, acreditação, certificação, reconhecimento/equiparação e regulação de formadores e avaliadores; os instrumentos complementares permaneciam em preparação. Em 15 de julho de 2026, o orçamento era USD 868.041 e a execução acumulada USD 355.104,16, equivalente a 40,91%. Os sistemas de gestão financeira, administração,",
+   "target": "Até 31 de dezembro de 2027: concluir pelo menos 90% das atividades do PAA; produzir 4 relatórios trimestrais até 30 dias após cada trimestre e 1 relatório anual até 60 dias após o encerramento. Concluir 2 auditorias ou inspeções baseadas em risco em 2027; aprovar plano de ação para 100% das recomendações prioritárias até 30 dias após a emissão; encerrar pelo menos 80% das recomendações com prazo até 31 de dezembro de 2027. Elaborar ou rever 2 instrumentos legais/regulamentares prioritários, realizar consulta técnica e submetê-los à entidade competente até 30 de novembro de 2027; responder a pelo menos 90% dos pedidos jurídicos internos no prazo definido. Até 31 de dezembro de 2027: executar pelo menos 95% do orçamento aprovado; manter o desvio das principais rubricas dentro de ±10%; concluir pelo menos 90% do plano de aprovisionamento no prazo; produzir 4 relatórios trimestrais e 1 anual; atualizar 100% do inventário patrimonial.",
+   "page": 940
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) Percentagem de atividades do PAA concluídas; 2) número de relatórios entregues no prazo; 3) número de estudos setoriais/laborais concluídos; 4) percentagem de completude dos dados institucionais. 1) Número de",
+   "baseline": "Em 2026, o INDMO utilizava instrumentos de planeamento e monitorização, mantinha um registo de 71 centros e consolidou o relatório INDMO–UNESCO sobre qualidade do TVET em 30 de julho.",
+   "target": "Até 31 de dezembro de 2027: concluir pelo menos 90% das atividades do PAA; produzir 4 relatórios trimestrais até 30 dias após cada trimestre e 1 relatório anual até 60 dias após o encerramento. Concluir 2",
+   "page": 941
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": ") % Execução do orçamento 2) % de Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) % de Criação de um sistema de arquivo electrónico",
+   "baseline": "1).100%. 2).100%.3).100%.",
+   "target": "1).100%. 2).100%.3).100%.",
+   "page": 943
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "1) Número de acordos com plano de trabalho e pontos focais; 2) número de encontros, conferências e fóruns de TVET, por bloco/região; 3) número de atividades conjuntas concluídas; 4) número de compromissos institucionais acompanhados.",
+   "baseline": "Em 2026, o INDMO cooperou com WorldSkills Asia, ASEAN/SEAMEO, CPLP, países do Pacífico, PAS/SASC, UNESCO, ILO, APTC e outros parceiros. Realizou o workshop INDMO–PAS em 11 de agosto, a reunião INDMO–SASC em 15 de setembro e atividades com UNESCO e SEAMEO VOCTECH. A preparação da 10.ª Assembleia Geral da WorldSkills Asia envolvia 11 países confirmados e 30 delegados em processamento em setembro.",
+   "target": "Em 2027: assinar ou operacionalizar 3 acordos com plano de trabalho e pontos focais; realizar ou participar em 12 encontros/conferências de TVET, incluindo pelo menos 2 ASEAN/SEAMEO, 2 CPLP, 2 Pacífico/WorldSkills e 6 com outros países ou parceiros estratégicos; concluir 6 atividades conjuntas e acompanhar 100% dos compromissos assumidos.",
+   "page": 943
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "1) Percentagem de execução física e financeira; 2) emissão da receção provisória; 3) percentagem de sistemas essenciais testados; 4) percentagem de defeitos críticos com ação corretiva concluída.",
+   "baseline": "A obra em Tibar atingiu cerca de 48% de progresso físico em 26 de agosto de 2026. Prosseguiram reuniões técnicas sobre qualidade, materiais, instalações, variações, pagamentos, aprovisionamento e recursos especializados, com conclusão prevista para janeiro de 2027.",
+   "target": "Até 31 de março de 2027: atingir 100% de execução física; obter receção provisória; testar 100% dos sistemas elétricos, hidráulicos, sanitários, de segurança e TIC; aprovar plano de correção para 100% dos defeitos identificados e iniciar a operação do edifício.",
+   "page": 944
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.0",
+   "statement": "Aumentar o número de trabalhadores qualificados",
+   "indicator": "a) n/os padrões de competências; b) de recursos de n/os padrões de competências; c) n/os de centros e cursos/programas; d) n/os certificados; e) n/o de concursos realizados/participados",
+   "baseline": "a) Cerca de 120 padroes de competencias foram aprovados nos últimos 11 anos em diversas áreas productivas; b) Atribuídos 22,462 certificados de competências; aprovado novo manual de Certificação; c) tribuídos 11 certificados de licenças operacional e 25 certificados de acreditação; d) Realizados",
+   "target": "a) 50 de padrões de competências e seus recursos para formação e avaliação das competências aprovados; c) emitidos mais de 40,000 certificados; d) concedidos 35 licenciamento/acreditação aos centros de formação e 200 licenciamento/acreditação; e) 6 concursos realizados/participados.",
+   "page": 944
+  },
+  {
+   "kind": "output",
+   "code": "98302.0.0",
+   "statement": "Assegurar os padroes de competencias desenvolvidos para antingir os objetivos dea descricao do resultados aprendizagen previsto no quadro de qualificacao nacional e garantir que os padroes sejam orientados a industria (industry-driven competency standards)",
+   "indicator": "1) Número de padrões novos ou revistos e aprovados; 2) percentagem validada pela indústria; 3) percentagem com integração de género, inclusão, competências verdes e digitais, quando aplicável. 1) Número de pacotes desenvolvidos e aprovados; 2) percentagem alinhada com padrões vigentes; 3) número de pacotes pilotados; 4) percentagem de recomendações do piloto incorporada.",
+   "baseline": "Até 31 de julho de 2026, estavam registados cerca de 80 padrões de competências dos níveis I–IV em diferentes setores. O manual de desenvolvimento tinha sido revisto, mas persistiam necessidades de atualização e cobertura de setores prioritários. Existia um manual de desenvolvimento e recursos para parte dos padrões vigentes. Em 2026, o INDMO e PAS prepararam áreas de cooperação para padrões, recursos, DACUM e RPL; o inventário completo dos recursos e respetivas lacunas ainda não estava consolidado.",
+   "target": "Até 31 de dezembro de 2027: desenvolver ou rever e aprovar 10 padrões prioritários; validar 100% com representantes da indústria e prestadores; integrar critérios de género, inclusão e transições verde/digital em 100% dos padrões em que sejam aplicáveis; concluir 4 estudos, incluindo pelo menos 1 estudo de empregabilidade/tracer; alcançar 75% de completude dos dados. Até 31 de dezembro de 2027: desenvolver, validar e aprovar 10 pacotes completos de formação e avaliação; assegurar alinhamento de 100% com os padrões vigentes; pilotar pelo menos 5 pacotes e incorporar 100% das recomendações críticas antes da aprovação final.",
+   "page": 945
+  },
+  {
+   "kind": "output",
+   "code": "98303.0.0",
+   "statement": "a) Aumentar o numero de trabalhadores qualificados no pais; b) harmonizados e alinhados os padroes de competencias de reconhecimento das qualificacoes nivel regional e global",
+   "indicator": "1) Number of certificates issued; 2) percentage with complete and verifiable records; 3) average time to issue; 4) percentage of women among certificate holders, disaggregated by sector, level and municipality. 1) Number of cases completed, by pathway; 2) percentage completed within the service standard; 3) percentage of decisions supported by evidence and quality review; 4) beneficiary profile by sex, nationality and sector. 1) Number of trainers and assessors certified; 2) percentage of women; 3) percentage registered in the national system; 4) percentage meeting all pedagogical and technical requirements.",
+   "baseline": "By 31 July 2026, approximately 30,000 competency certificates had been issued through accredited centres. Reporting by sex, sector, level, municipality and processing time needed strengthening. The certification, recognition and equivalence manual had been approved and the service was operational. In 2026, cooperation proposals on qualification recognition and RPL progressed; the annual total of completed cases had not yet been consolidated. By the end of 2025, approximately 80 pedagogical certificates had been issued. In 2026, a professional pathway for trainers and assessors, from Certificate II to Advanced Diploma, was being designed with partners.",
+   "target": "Issue 8,000 certificates in 2027; ensure 100% have verifiable records and are issued within the approved service standard; publish disaggregated quarterly data; progressively work towards 50% female participation. Complete 500 recognition, equivalence or RPL cases in 2027; finalise at least 90% within the service standard; ensure quality review and a verifiable record for 100% of decisions. Certify 150 trainers and assessors in 2027; ensure 100% meet the requirements and are registered; publish disaggregated results and progressively work towards 50% female participation.",
+   "page": 946
+  },
+  {
+   "kind": "output",
+   "code": "98304.0.0",
+   "statement": "Garantir os centros de formacao sejam credenciados e atendidos pelos padroes nacionais e internacionais",
+   "indicator": "1) Number of centres evaluated; 2) number of licences/accreditations issued or renewed; 3) number of centres with valid status; 4) percentage of decisions issued on time and accompanied by an improvement plan where required. 1) Number of programs evaluated; 2) number of accreditations issued or renewed; 3) number of programs with valid status; 4) percentage supported by evidence of labour demand and industry participation. 1) Number of centres evaluated; 2) number of accreditations issued or renewed; 3) number of centres with valid status; 4) number of approved assessment areas/programs;",
+   "baseline": "In 2026, 71 centres were registered: 30 held operational licences and 41 held institutional accreditation. Renewal, monitoring of validity and expanded coverage in municipalities, RAEOA and Ataúro remained necessary. In 2026, 26 centres offered accredited programs. The consolidated number of programs still valid, and their levels, sectors and expiry dates, was being updated. In 2026, 26 accredited competency assessment centres were registered. Control of validity, coverage of priority areas, moderation and security of assessment instruments needed strengthening.",
+   "target": "Evaluate 15 centres in 2027; ensure at least 35 centres have valid status; issue 90% of decisions within the approved timeframe; establish and monitor improvement plans for 100% of centres with material non- compliance. Evaluate 15 programs in 2027; ensure at least 55 programs have valid accreditation; require evidence of labour demand and industry participation in 100% of new applications; issue 90% of decisions within the approved timeframe. Evaluate five centres in 2027; ensure at least 28 centres have valid accreditation; approve at least 10 priority assessment areas/programs; verify moderation, security and",
+   "page": 947
+  },
+  {
+   "kind": "output",
+   "code": "98346.0.0",
+   "statement": "Atrair a confiança de investimento direto estrangeiro no país e setores públicos e privados timorenses e estrangeiros",
+   "indicator": "1) Número de competições/eventos organizados ou participados; 2) número de áreas; 3) número de concorrentes, peritos e parceiros; 4) participação feminina; 5) percentagem de recomendações pós-evento integradas no plano seguinte.",
+   "baseline": "De 6 a 9 de julho de 2026, Timor- Leste realizou a 9.ª Competição Nacional de Competências e a 2.ª Competição Internacional Amigável, abrangendo quatro áreas de competência e contando com a participação de competidores de países do Pacífico e da ASEAN. Timor- Leste é membro da WorldSkills Asia desde 2020 e acolherá, em Díli, de 18",
+   "target": "In 2027: organise or participate in at least three skills competitions or events covering six skill areas; record participants and results by sex and country; achieve at least 30% female participation where eligible; issue a post-event report within 30 days of each event; and incorporate 100% of priority recommendations into the following Annual Action Plan.",
+   "page": 948
+  }
+ ]
+}

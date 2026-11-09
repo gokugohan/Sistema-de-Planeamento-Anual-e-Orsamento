@@ -1,0 +1,144 @@
+{
+ "year": 2027,
+ "code": "125",
+ "name": "Vice-Primeiro Ministro para a Área Social",
+ "abbr": "VPMAS",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1213,
+   1213
+  ]
+ },
+ "units": [
+  {
+   "code": "VPMAS",
+   "div": "1250101",
+   "name": "Vice-Primeiro Ministro para a Área Social",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CNSSANTLCT",
+   "div": "1250200",
+   "name": "Conselho Nacional de Segurança e Soberania Alimentar e Nutricional de Timor-Leste-CONSSANT-TL",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1250101"
+   ],
+   "indicator": "Número de estratégias e políticas desenvolvidas e/ou revistas % estrutura de planeamento implementada",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 384601.0,
+    "20": 341849.0
+   },
+   "page": 1213
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1250101"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 13000.0
+   },
+   "page": 1213
+  },
+  {
+   "code": "5106600",
+   "programme": "510",
+   "subprogramme": "51066",
+   "subprogramme_name": "Combater insegurança alimentar e a má nutrição",
+   "name": "Realização de formação para o pessoal em matéria de recolha e análise de dados",
+   "div": [
+    "1250200"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 37769.0
+   },
+   "page": 1213
+  },
+  {
+   "code": "5106602",
+   "programme": "510",
+   "subprogramme": "51066",
+   "subprogramme_name": "Combater insegurança alimentar e a má nutrição",
+   "name": "Formulação de políticas abrangentes para uma abordagem integrada de combate à malnutrição",
+   "div": [
+    "1250200"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 7513.0
+   },
+   "page": 1213
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "plano estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 1213
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de Metas no Plano Anual alcançadas",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 1213
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1213
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el6821: Tbc _",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1213
+  }
+ ]
+}

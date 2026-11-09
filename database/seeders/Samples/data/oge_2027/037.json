@@ -1,0 +1,155 @@
+{
+ "year": 2027,
+ "code": "037",
+ "name": "Polícia Científica de Investigação Criminal",
+ "abbr": "PCIC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   371,
+   372
+  ]
+ },
+ "units": [
+  {
+   "code": "PCIC",
+   "div": "0370101",
+   "name": "Polícia Cientítfica de Investigação Criminal",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "392": "Acesso à justiça",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "3921901",
+   "programme": "392",
+   "subprogramme": "39219",
+   "subprogramme_name": "Investigação e prevenção criminal",
+   "name": "Funçionamento do serviço de Piquete e Prevenção Criminal",
+   "div": [
+    "0370101"
+   ],
+   "indicator": "% quadro estrutura da PCIC preenchido, facilitar e garantir o Direito da Cidadão acesso a Justica",
+   "baseline": "Decreto Lei No.15/2014 e Diploma Ministerial No.17/2016",
+   "target": "75%",
+   "amounts": {
+    "10": 1463984.0,
+    "20": 353524.0
+   },
+   "page": 371
+  },
+  {
+   "code": "3921902",
+   "programme": "392",
+   "subprogramme": "39219",
+   "subprogramme_name": "Investigação e prevenção criminal",
+   "name": "Operar serviço de inteligência criminal (vigilância e seguimento)",
+   "div": [
+    "0370101"
+   ],
+   "indicator": "% informação recolhidos apoio investigação criminal; recolha de informação criminal no terreno, vigilância, seguimento e localização do paradeiro.",
+   "baseline": "1. Aumento o número de Flagrante Delicto, apoio fornecimento informação a investigação, aumento número pedido paradeiro e notificação dos intervenientes que solicitado pelo Tribunal. 2. Decreto Lei No.15/2014, artigo 20 e Diploma Ministerial No. 33/2017",
+   "target": "75%",
+   "amounts": {
+    "20": 41000.0
+   },
+   "page": 371
+  },
+  {
+   "code": "3921903",
+   "programme": "392",
+   "subprogramme": "39219",
+   "subprogramme_name": "Investigação e prevenção criminal",
+   "name": "Realizar ações de socialização e divulgação",
+   "div": [
+    "0370101"
+   ],
+   "indicator": "Numero de divulgação e educação cívica na prevenção criminal para os estudantes e comunidades no dois (2) Municípios realizados.",
+   "baseline": "Em 2017, realizou divulgação em Município de Ermera, Posto Administrativo Railaco e Gleno, Munisipio Dili em Posto Administrativo de Atauro.",
+   "target": "",
+   "amounts": {
+    "20": 53350.0
+   },
+   "page": 371
+  },
+  {
+   "code": "39219X1",
+   "programme": "392",
+   "subprogramme": "39219",
+   "subprogramme_name": "Investigação e prevenção criminal",
+   "name": "Acquisition of the National Criminal Information System (SNIC) platform",
+   "div": [
+    "0370101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 20000.0
+   },
+   "page": 372
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0370101"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "4 relatórios",
+   "target": "95%",
+   "amounts": {
+    "20": 251342.0
+   },
+   "page": 372
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "392.0.1",
+   "statement": "1.&#9;Os cidadãos em todos os municípios, especialmente mulheres, jovens e grupos vulneráveis tenham melhor acesso à justiça formal e aos serviços de registo (assistência jurídica, serviços prisionais e de reintegração, registo de terras, registo civil e notarial) que protegem os seus direitos&#13;&#10;2.&#9;Os cidadãos economicamente vulneráveis, especialmente mulheres, populações rurais e outros grupos vulneráveis, têm melhor acesso a assistência jurídica gratuita e de qualidade e podem utilizar eficazmente os serviços judiciais formais&#13;&#10;3.&#9;Todos os cidadãos têm acesso e conhecimento sobre o sistema de justiça",
+   "indicator": "Número de campanhas de socialização para atender ao sistema judiciário de Timor- Leste",
+   "baseline": "",
+   "target": "",
+   "page": 371
+  },
+  {
+   "kind": "output",
+   "code": "39219.0.0",
+   "statement": "Investigação criminal realizada satisfatoriamente",
+   "indicator": "Número de investigações criminais concluídas",
+   "baseline": "0",
+   "target": "0",
+   "page": 371
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "0",
+   "target": "",
+   "page": 372
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "4 relatórios",
+   "target": "",
+   "page": 372
+  }
+ ]
+}

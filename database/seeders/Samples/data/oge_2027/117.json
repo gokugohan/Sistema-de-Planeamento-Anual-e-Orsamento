@@ -1,0 +1,732 @@
+{
+ "year": 2027,
+ "code": "117",
+ "name": "Ministério do Desenvolvimento Rural e Habitação Comunitária",
+ "abbr": "MDRHC",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1169,
+   1173
+  ]
+ },
+ "units": [
+  {
+   "code": "GMDRHC",
+   "div": "1170101",
+   "name": "Gabinete do Ministro do Desenvolvimento Rural e Habitação Comunitária",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGDR",
+   "div": "1170201",
+   "name": "Gabinete de Direção-Geral de Desenvolvimento Rural",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPDRI",
+   "div": "1170202",
+   "name": "Direção Nacional de Politicas de Desenvolvimento Rural Integrado",
+   "type": "National Directorate",
+   "parent": "GDGDR"
+  },
+  {
+   "code": "DNIR",
+   "div": "1170203",
+   "name": "Direção Nacional de Infraestruturas Rurais",
+   "type": "National Directorate",
+   "parent": "GDGDR"
+  },
+  {
+   "code": "DNIPF",
+   "div": "1170204",
+   "name": "Direção Nacional da Inovação, Promoção e Formação",
+   "type": "National Directorate",
+   "parent": "GDGDR"
+  },
+  {
+   "code": "GDGHC",
+   "div": "1170301",
+   "name": "Gabinete do Diretor- Geral de Habitação Comunitária",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNPHC",
+   "div": "1170302",
+   "name": "Direção Nacional de Política de Habitação Comunitária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDHC",
+   "div": "1170303",
+   "name": "Direção Nacional de Desenvolvimento da Habitação Comunitária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNCQH",
+   "div": "1170304",
+   "name": "Direção Nacional de Controlo de Qualidade da Habitação",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGSC",
+   "div": "1170401",
+   "name": "Gabinete de Direção-Geral dos Serviços Corporativo",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNARH",
+   "div": "1170402",
+   "name": "Direção Nacional de Administração e Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNA",
+   "div": "1170403",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNFPL",
+   "div": "1170404",
+   "name": "Direção Nacional de Finanças, Património e Logística",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "UCP",
+   "div": "1170405",
+   "name": "Unidade de Cooperação e Parceria",
+   "type": "Unit",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "GTD",
+   "div": "1170501",
+   "name": "Gabinete de Transformação e Digitalização",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "1170601",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "1170701",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A22": "Revitalização comunitaria",
+  "A27": "Implementação da habitação comunitária digna"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1170101"
+   ],
+   "indicator": "Número de estratégias e políticas desenvolvidas e/ou revistas % estrutura de planeamento implementada",
+   "baseline": "4",
+   "target": "4",
+   "amounts": {
+    "10": 288740.0,
+    "20": 105640.0
+   },
+   "page": 1169
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1170601"
+   ],
+   "indicator": "1) Número de recomendações de inspeção e auditoria aplicadas 2) Número de relatórios de inspeção e de auditoria elaborados 3) Número de inquéritos efectuados 4) Número de fiscalizações efectuadas 5) Número de relatórios elaborados",
+   "baseline": "1) 100% (Inspeção do funcionamento de servico central do MDRHC, 2)100% (Fiscalizacao do funcionamento de servico central do MDRHC, 3) 100% Auditoria Interna do funcionamento de servico central do MDRHC, 4)100 % (Relatório Trimestral e Annualdeinspeção, Fiscalização e Auditoria produzidas) 5) 100% ( Recomendação aplicadas)",
+   "target": "1) inspeção e auditoria aplicadas 20 2) inspeção e auditoria elaborados 20 3) Número de inquéritos efectuados 10 4) fiscalizações efectuadas 20 5) relatórios elaborados 20",
+   "amounts": {
+    "10": 122946.0,
+    "20": 27024.0
+   },
+   "page": 1169
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "1170401"
+   ],
+   "indicator": "Número de reuniões regulares realizadas sobre serviços corporativos",
+   "baseline": "45",
+   "target": "20",
+   "amounts": {
+    "10": 85963.0,
+    "20": 48000.0
+   },
+   "page": 1169
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "1170701"
+   ],
+   "indicator": "1). Número de leis aprovadas 2). Número de pareceres elaborados",
+   "baseline": "1). 1",
+   "target": "1). 2 2). 15",
+   "amounts": {
+    "10": 147003.0,
+    "20": 20669.0
+   },
+   "page": 1169
+  },
+  {
+   "code": "510012R",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenação e gestão dos serviços de desenvolvimento rural",
+   "div": [
+    "1170201"
+   ],
+   "indicator": "Número de reuniões regulares realizadas sobre serviços de desenvolvimento rural",
+   "baseline": "40",
+   "target": "45",
+   "amounts": {
+    "10": 34390.0
+   },
+   "page": 1169
+  },
+  {
+   "code": "510012S",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir os serviços de habitação comunitária",
+   "div": [
+    "1170301"
+   ],
+   "indicator": "Número de reuniões regulares realizadas pelos serviços de habitação comunitária",
+   "baseline": "25",
+   "target": "40",
+   "amounts": {
+    "10": 104316.0,
+    "20": 33221.0
+   },
+   "page": 1169
+  },
+  {
+   "code": "510012T",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Desenvolver e apoiar o portal de transparência do Ministério",
+   "div": [
+    "1170501"
+   ],
+   "indicator": "% Portal da Transparência do MDRHC operacionalizado e atualizado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 160500.0,
+    "20": 15197.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1170404"
+   ],
+   "indicator": "Percentagem de execução orçamental, incluindo obrigações",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 418724.0,
+    "20": 433696.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1170404"
+   ],
+   "indicator": "1) PAA da MDRHC para 2026 Elaborado e submetido atempadamente 2) Número de relatórios mensais e de relatórios de desempenho trimestrais e anuais da MDRHC apresentados atempadamente ao Ministério das Finanças",
+   "baseline": "1). Plano 2026 Submetido 2). 4",
+   "target": "1). Plano 2027 Submetido 2). 16",
+   "amounts": {
+    "10": 111800.0,
+    "20": 166135.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1170402"
+   ],
+   "indicator": "Números de funcionários avaliados e formados.",
+   "baseline": "753",
+   "target": "953",
+   "amounts": {
+    "10": 105174.0,
+    "20": 24752.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1170402"
+   ],
+   "indicator": "Numeru formasaun no kapasitasaun ba ofisial rekursu umanu",
+   "baseline": "20",
+   "target": "2",
+   "amounts": {
+    "20": 6400.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1170403"
+   ],
+   "indicator": "Percentagem de execução do plano de aprovisionamento",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 150300.0,
+    "20": 11400.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "510023O",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Construção cobe house faze II, Jardim e Vedação do MDRHC.",
+   "div": [
+    "1170404"
+   ],
+   "indicator": "% de Progresso físico.",
+   "baseline": "80%",
+   "target": "100%",
+   "amounts": {
+    "50": 150000.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "51002EH",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Institutional development - salaries",
+   "div": [
+    "1170402"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 458357.0
+   },
+   "page": 1170
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "1170405"
+   ],
+   "indicator": "1) Número de protocolos de cooperação assinados; 2) Número de conferências realizadas",
+   "baseline": "4",
+   "target": "6",
+   "amounts": {
+    "10": 116801.0,
+    "20": 72598.0
+   },
+   "page": 1171
+  },
+  {
+   "code": "A220101",
+   "programme": "A22",
+   "subprogramme": "A2201",
+   "subprogramme_name": "Implementação do Quadro Nacional de Planeamento",
+   "name": "Elaboração e preparação técnica do Plano Estratégico e Politica de Desenvolvimento Rural",
+   "div": [
+    "1170201"
+   ],
+   "indicator": "Número de reuniões técnicas interministeriais e também com parceiros de desenvolvimento",
+   "baseline": "4",
+   "target": "4",
+   "amounts": {
+    "10": 66571.0
+   },
+   "page": 1171
+  },
+  {
+   "code": "A220201",
+   "programme": "A22",
+   "subprogramme": "A2202",
+   "subprogramme_name": "Desenvolvimento e implementação de infraestrutura sociais e económicas nas áreas rurais",
+   "name": "Construção e Reabilitação de infraestruturas básicas nas áreas rurais",
+   "div": [
+    "1170203"
+   ],
+   "indicator": "Número de infra-estruturas rurais construídas, reabilitadas e disponíveis para a comunidade",
+   "baseline": "24",
+   "target": "55",
+   "amounts": {
+    "10": 202875.0,
+    "30": 250000.0,
+    "50": 100000.0
+   },
+   "page": 1171
+  },
+  {
+   "code": "A220301",
+   "programme": "A22",
+   "subprogramme": "A2203",
+   "subprogramme_name": "Assegurar um quadro legal e regulamentar que permita iniciativas e projetos nas Comunidades Rurais",
+   "name": "Preparar um quadro regulador para o setor Dezenvolvimentu Rural, com o objetivo de harmonizar o decretu Lei do MDRHC no contexto das prioridades do programa do Ministério",
+   "div": [
+    "1170202"
+   ],
+   "indicator": "Estabelecimento e aprovação do quadro jurídico para o desenvolvimento rural, harmonização dos decretos-lei tendo em conta o contexto",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 168290.0
+   },
+   "page": 1171
+  },
+  {
+   "code": "A220401",
+   "programme": "A22",
+   "subprogramme": "A2204",
+   "subprogramme_name": "Criar um ambiente favorável para o investimento nas áreas rurais",
+   "name": "Criar e Desenvolver as condições necessárias para as iniciativas dos setores produtivos nas áreas rurais",
+   "div": [
+    "1170204"
+   ],
+   "indicator": "Número de aldeias alvos",
+   "baseline": "300",
+   "target": "500",
+   "amounts": {
+    "30": 4750000.0
+   },
+   "page": 1172
+  },
+  {
+   "code": "A220402",
+   "programme": "A22",
+   "subprogramme": "A2204",
+   "subprogramme_name": "Criar um ambiente favorável para o investimento nas áreas rurais",
+   "name": "Promover a formação profissional e capacitar os Grupos Comunitarios no âmbito do negócio familiar",
+   "div": [
+    "1170204"
+   ],
+   "indicator": "Número de grupos comunitários formados",
+   "baseline": "3200",
+   "target": "4518",
+   "amounts": {
+    "10": 1472361.0
+   },
+   "page": 1172
+  },
+  {
+   "code": "A270101",
+   "programme": "A27",
+   "subprogramme": "A2701",
+   "subprogramme_name": "Infraestrutura básicas e Habitação",
+   "name": "Assegurar um modelo de Construção integrado em todo o território",
+   "div": [
+    "1170303"
+   ],
+   "indicator": "Número de construções feitas de forma integrada",
+   "baseline": "140",
+   "target": "268",
+   "amounts": {
+    "10": 369759.0,
+    "20": 43920.0,
+    "50": 444047.0
+   },
+   "page": 1172
+  },
+  {
+   "code": "A270104",
+   "programme": "A27",
+   "subprogramme": "A2701",
+   "subprogramme_name": "Infraestrutura básicas e Habitação",
+   "name": "Assegurar o Controlo das Construções habitacionais",
+   "div": [
+    "1170304"
+   ],
+   "indicator": "Número de inspeções realizadas no terreno em 2025",
+   "baseline": "140",
+   "target": "268",
+   "amounts": {
+    "10": 9750.0,
+    "20": 31705.0
+   },
+   "page": 1172
+  },
+  {
+   "code": "A270105",
+   "programme": "A27",
+   "subprogramme": "A2701",
+   "subprogramme_name": "Infraestrutura básicas e Habitação",
+   "name": "Estudo e desenho para nova construção &amp;#39;&amp;#39;Uma Digno&amp;#39;&amp;#39;",
+   "div": [
+    "1170302"
+   ],
+   "indicator": "\"Numero de Estudo viabilidade e Master Plan \"",
+   "baseline": "1",
+   "target": "3",
+   "amounts": {
+    "20": 190799.0
+   },
+   "page": 1172
+  },
+  {
+   "code": "A2701E1",
+   "programme": "A27",
+   "subprogramme": "A2701",
+   "subprogramme_name": "Infraestrutura básicas e Habitação",
+   "name": "Decent community housing - capital development",
+   "div": [
+    "1170302"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 5943534.0
+   },
+   "page": 1173
+  },
+  {
+   "code": "A270201",
+   "programme": "A27",
+   "subprogramme": "A2702",
+   "subprogramme_name": "Harmonizar todo o quadro legal no âmbito da Política de Habitação",
+   "name": "Rever e harmonizar a Politica Nacional de Habitação",
+   "div": [
+    "1170302"
+   ],
+   "indicator": "Número Leis e Regulamento Produz",
+   "baseline": "1",
+   "target": "2",
+   "amounts": {
+    "10": 269555.0,
+    "20": 46803.0
+   },
+   "page": 1173
+  },
+  {
+   "code": "A270202",
+   "programme": "A27",
+   "subprogramme": "A2702",
+   "subprogramme_name": "Harmonizar todo o quadro legal no âmbito da Política de Habitação",
+   "name": "Desenvolvimento de um modelo de habitação dentro dos padrões técnicos de Construção em conformidade com as boas práticas sustentáveis e integradas na cultura timorense",
+   "div": [
+    "1170304"
+   ],
+   "indicator": "Número Leis e Regulamento de habitação produzido",
+   "baseline": "Esboço da Lei Politica habitação (1)",
+   "target": "2",
+   "amounts": {
+    "10": 151825.0,
+    "20": 16020.0
+   },
+   "page": 1173
+  },
+  {
+   "code": "A270204",
+   "programme": "A27",
+   "subprogramme": "A2702",
+   "subprogramme_name": "Harmonizar todo o quadro legal no âmbito da Política de Habitação",
+   "name": "Introduzir junto da população a Competição Bairro Saudável na promoção da educação",
+   "div": [
+    "1170303"
+   ],
+   "indicator": "Numero de bairos e municipios premiados",
+   "baseline": "5",
+   "target": "10",
+   "amounts": {
+    "10": 24000.0,
+    "20": 12300.0
+   },
+   "page": 1173
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "plano estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "0",
+   "target": "100",
+   "page": 1169
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de Metas no Plano Anual alcançadas",
+   "baseline": "",
+   "target": "100%",
+   "page": 1169
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Relatórios Trimestrais de implementação do Plano Anual",
+   "baseline": "",
+   "target": "100%",
+   "page": 1170
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Numeru de coordenacao para implementasaun planu de atividades",
+   "baseline": "",
+   "target": "10",
+   "page": 1170
+  },
+  {
+   "kind": "outcome",
+   "code": "A22.0.0",
+   "statement": "Combate às desigualdades entre o meio rural e o meio urbano",
+   "indicator": "% desigualidade entre comunidade rural e urbano melhoradu",
+   "baseline": "",
+   "target": "100%",
+   "page": 1171
+  },
+  {
+   "kind": "output",
+   "code": "A2201.0.0",
+   "statement": "Estrategia Nacional para a Politica de Desenvolvimento Rural",
+   "indicator": "% Implementação da política de desenvolvimento rural",
+   "baseline": "",
+   "target": "50",
+   "page": 1171
+  },
+  {
+   "kind": "output",
+   "code": "A2202.0.0",
+   "statement": "Assegurar as infrasturuas básicas nas áreas rurais",
+   "indicator": "Número infraestrutura básicas nas áreas rurais implementadas no território",
+   "baseline": "17",
+   "target": "50",
+   "page": 1171
+  },
+  {
+   "kind": "output",
+   "code": "A2203.0.0",
+   "statement": "Toda a legislação produzida e aprovada",
+   "indicator": "Número de diplomas produzidos e em vigor",
+   "baseline": "",
+   "target": "2",
+   "page": 1171
+  },
+  {
+   "kind": "output",
+   "code": "A2204.0.0",
+   "statement": "Assegurar a capacitação junto dos comerciantes e sua promoção",
+   "indicator": "Número de comerciantes formados e promovidos",
+   "baseline": "80",
+   "target": "80",
+   "page": 1172
+  },
+  {
+   "kind": "outcome",
+   "code": "A27.0.0",
+   "statement": "Assegurar a Habitação digna com condições de higíene mínimas para as comunidades mais vulneráveis",
+   "indicator": "% de comunidade vulneraveis aseguradu com a habitacao digna",
+   "baseline": "",
+   "target": "100%",
+   "page": 1172
+  },
+  {
+   "kind": "output",
+   "code": "A2701.0.0",
+   "statement": "Assegurar a reabilitação das Infraestruturas Habitacionais",
+   "indicator": "Número de infra-estruturas de habitação melhoradas",
+   "baseline": "0",
+   "target": "98",
+   "page": 1172
+  },
+  {
+   "kind": "output",
+   "code": "A2702.0.0",
+   "statement": "Toda a legislação aprovada e em entrada em vigor",
+   "indicator": "pursento de progreso quadro legal e regulamentos para politica habitacao",
+   "baseline": "Esboço",
+   "target": "100%",
+   "page": 1173
+  }
+ ]
+}

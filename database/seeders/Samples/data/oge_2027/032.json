@@ -1,0 +1,1012 @@
+{
+ "year": 2027,
+ "code": "032",
+ "name": "Ministério do Petróleo e Recursos Minerais",
+ "abbr": "MPRM",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   344,
+   353
+  ]
+ },
+ "units": [
+  {
+   "code": "GM",
+   "div": "0320101",
+   "name": "Gabinete do Ministro",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DG",
+   "div": "0320201",
+   "name": "Diretor Geral",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0320202",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNRH",
+   "div": "0320203",
+   "name": "Direção Nacional Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "GIA",
+   "div": "0320207",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": "DG"
+  },
+  {
+   "code": "DNPM",
+   "div": "0320208",
+   "name": "Direção Nacional de Planeamento, Monitorização",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNTI",
+   "div": "0320209",
+   "name": "Direção Nacional de Tecnologia de Informação",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNCRP",
+   "div": "0320210",
+   "name": "Direção Nacional de Comunicação e Relações Públicas",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNA",
+   "div": "0320211",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNLPA",
+   "div": "0320212",
+   "name": "Direção Nacional de Logística, Património e Arquivo",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "STE",
+   "div": "0320301",
+   "name": "Secretariado TL- EITI",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "0320401",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A13": "Desenvolvimento do campo de gás do greater sunrise e assegurar que o gasoduto vem",
+  "A17": "Desenvolver políticas e boas práticas na indústria para assegurar a participação máxima",
+  "A18": "Implementação do projeto tasi mane na costa sul do país",
+  "A19": "Explorar, investigar e desenvolver os recursos petrolíferos, minerais e geológicos no"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "% do progresso de implementação Plano, monitorização e avaliação anual executado",
+   "baseline": "80",
+   "target": "100 % de Plano de monitorização e avaliação executado por tempo determinado relativamente das atividades dos orgaos tutelas do Ministerio no setor de petroleo, gas e mineral",
+   "amounts": {
+    "10": 401153.0,
+    "20": 140000.0
+   },
+   "page": 344
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0320207"
+   ],
+   "indicator": "% de auditorias internas efetuadas",
+   "baseline": "80%",
+   "target": "100%",
+   "amounts": {
+    "10": 66405.0,
+    "20": 76912.0
+   },
+   "page": 344
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "0320201"
+   ],
+   "indicator": "% do progresso dos servicos de administracao atinjidos",
+   "baseline": "100% dos servicos de administracao atingidos",
+   "target": "100% dos servicos de administracao atingidos",
+   "amounts": {
+    "10": 77015.0,
+    "20": 139280.0
+   },
+   "page": 344
+  },
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "% de mulheres e homens treinados em questões de gênero",
+   "baseline": "50 pessoas treinados em questão de género",
+   "target": "100 mulheres e homens treinados em questões de género",
+   "amounts": {
+    "20": 36300.0
+   },
+   "page": 344
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0320401"
+   ],
+   "indicator": "# de diploma legal produzido",
+   "baseline": "Numero 6 legislação, 1 diploma legal produzido, 33 parecer, 126 contratos e 10 Despachos",
+   "target": "Elaboração de contratos, legislação e pareceres conforme necessidade de pedidos da Direção e orientação pelo superior;",
+   "amounts": {
+    "10": 50414.0,
+    "20": 47400.0
+   },
+   "page": 344
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0320202"
+   ],
+   "indicator": "% do orçamento executado e em obrigações",
+   "baseline": "90 %",
+   "target": "100 %",
+   "amounts": {
+    "10": 109170.0,
+    "20": 1395516.0
+   },
+   "page": 345
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0320203"
+   ],
+   "indicator": "# de Plano de gestão de recursos humanos para funcionários alcançado",
+   "baseline": "Gestão de recursos humanos para os funcionários; Recrutamento por mérito (16 vagas); Recrutamento para 14 vagas e Promoção de 36% de Funcionários e Recrutamento para 5 Cargos e Direção Lateral Entry",
+   "target": "Necessita 90 pessoas funcionários para assegurar máquina estado da MPRM",
+   "amounts": {
+    "10": 241639.0,
+    "20": 14960.0
+   },
+   "page": 345
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0320203"
+   ],
+   "indicator": "1) # de formação profissional na área específica 2) # de beneficiários atendidos",
+   "baseline": "— Trinta e um formandos concluíram uma formação em área específica, com duração de duas semanas, em Jacarta, Indonésia; - Dezasseis funcionários concluíram um curso de aprimoramento em língua portuguesa na Universidade de Évora, em Portugal, com duração de três meses. - Dezasseis funcionários concluíram um curso de aprimoramento em língua inglesa, (homestay), na Universidade de Adelaide, na Austrália, com duração de três meses.",
+   "target": "Capacitação dos funcionários em continuidade, incluindo técnicos nas áreas de específico e línguas.",
+   "amounts": {
+    "20": 1024888.0
+   },
+   "page": 345
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0320210"
+   ],
+   "indicator": "Eventos dias nacionais e atividades costa sul , Evaluacao de servicos e planos ; Dessiminacao papel do ministerio e balanco de servico",
+   "baseline": "Foram realizados eventos de socialização do Projeto Costa Sul nos municípios de Covalima, Betano e Manatuto organizou a visita do representante do Greater Sunrise e de Sua Excelência, o Ministro do MPRM, ao",
+   "target": "Retiro anual, eventos dias nacionais e atividades costa sul",
+   "amounts": {
+    "10": 56611.0,
+    "20": 104345.0
+   },
+   "page": 345
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0320211"
+   ],
+   "indicator": "% do progresso da execução do plano de aprovisionamento",
+   "baseline": "80%",
+   "target": "100 % do progresso da execução do plano de aprovisionamento",
+   "amounts": {
+    "10": 70550.0,
+    "20": 119567.0
+   },
+   "page": 346
+  },
+  {
+   "code": "510021D",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestao de sistema informacao e tecnologia",
+   "div": [
+    "0320209"
+   ],
+   "indicator": "% de disponibilidade de serviços informáticos",
+   "baseline": "80%",
+   "target": "100",
+   "amounts": {
+    "10": 61786.0,
+    "20": 445304.0
+   },
+   "page": 346
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0320212"
+   ],
+   "indicator": "1). # de Registo de bens disponível com informação atualizada 2). # e valor dos bens do Governo amortizados e/ou alienados todos os anos",
+   "baseline": "# 2,8673 itens ativos, incluindo veículos, motos e itens eletrónicos registados. Manutenção 70% de 14 veículos/dadus atualizado",
+   "target": "Total de bens disponíveis atualizados para assegurar o funcionamento do Ministério",
+   "amounts": {
+    "10": 119325.0,
+    "20": 244476.0
+   },
+   "page": 346
+  },
+  {
+   "code": "5100245",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Serviços de planeamento, monitorização e avaliação do desenvolvimento da indústria do petróleo e minerais",
+   "div": [
+    "0320208"
+   ],
+   "indicator": "% do progresso de implementação de Plano, monitorização e avaliação anual executado incluído Disseminação dos programas e orçamento em Dili e Município",
+   "baseline": "100% de monitorizado, Avaliado e disseminado",
+   "target": "100 % de Plano de monitorização, avaliação Disseminação executado por tempo determinado relativamente das atividades dos órgãos tutelas do Ministerio no setor de petróleo, gás e mineral",
+   "amounts": {
+    "10": 119969.0,
+    "20": 135304.0
+   },
+   "page": 346
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "# de cooperação e parcerias",
+   "baseline": "15 reuniões virtuais entre companhias petrolíferas e 10 bilaterais; Em Dubai estabelecimento relação entre ministros homologo no setor petróleo, gas e mineral de possibilidade investimento em Timor-Leste",
+   "target": "Negociacao, cooperacao setor petroliferas 3 paises , conferencia de oleo e gas em 2 paises e cooperacao com institutuo para continuacao de formacao de 4 pilotos",
+   "amounts": {
+    "20": 542364.0
+   },
+   "page": 346
+  },
+  {
+   "code": "5100415",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Actividade : Futuro Edificio MPRM",
+   "div": [
+    "0320202"
+   ],
+   "indicator": "Aquização do direito de uso ao futuro escritório do MPM e as instituições tuteladas em Díli",
+   "baseline": "Preparação do conceito para o futuro edificio do MPRM e instituição tutelas.",
+   "target": "Processo de negociação finalizado",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 347
+  },
+  {
+   "code": "5100475",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Construção de escritório temporário para a equipa de implementação do projeto Tasi Mane",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "% de progresso sao bem supervisionado e a contrucao sejam feitos de acordo com desenho tecnico",
+   "baseline": "0",
+   "target": "50% A construção física será concluída.",
+   "amounts": {
+    "50": 25000.0
+   },
+   "page": 347
+  },
+  {
+   "code": "A130101",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Negociações do Código de Exploração Mineira do Petróleo, Regime Fiscal, Contrato de Partilha de Produção (CPP) e relevante legislação para o desenvolvimento do campo do Greater Sunrise e do gasoduto para Timor-Leste",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Os documentos do Código de Exploração Mineira do Petróleo, Regime Fiscal e CPP são negociados.",
+   "baseline": "As cláusulas importantes nestes documentos ainda estão por concordancia entre as partes.",
+   "target": "O Código de Exploração Mineira do Petróleo, Regime Fiscal e CPP são assinados.",
+   "amounts": {
+    "20": 5027300.0
+   },
+   "page": 347
+  },
+  {
+   "code": "A130102",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Os relevantes estudos técnicos, comerciais/jurídicos e financeiros são executados para o desenvolvimento do campo do Greater Sunrise e do gasoduto para Timor- Leste",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Os estudos necessários são implementados",
+   "baseline": "Alguns estudos devem ser atualizados e realizados novamente de acordo com as mudanças de circunstâncias e condições",
+   "target": "Os estudos importantes para assegurar o gasoduto e o desenvolvimento do campo de gás do Greater Sunrise são executados",
+   "amounts": {
+    "10": 543550.0,
+    "20": 1077000.0
+   },
+   "page": 347
+  },
+  {
+   "code": "A130103",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Apoiar o funcionamento do Secretariado para o Conselho de Supervisão do Regime Especial do Greater Sunrise",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Nomeação de um número de representantes do Conselho de Supervisão no âmbito do",
+   "baseline": "Secretariado estabelecido com 2 membros do Conselho",
+   "target": "Nomeação dos representantes do Conselho de Supervisão. Termos de Referência para os membros do secretariado.",
+   "amounts": {
+    "10": 68633.0,
+    "20": 90000.0
+   },
+   "page": 347
+  },
+  {
+   "code": "A1301X1",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Greater Sunrise - technical, commercial and legal-contractual negotiations",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Os documentos do Código de Exploração Mineira do Petróleo, Regime Fiscal e CPP são negociados.",
+   "baseline": "As cláusulas importantes nestes documentos ainda estão por concordancia entre as partes. Foram registados progressos nas discussões e negociações entre os Parceiros da Joint Venture Sunrise (SJV), o Estado de Timor- Leste e a Austrália, relativamente aos documentos jurídicos e fiscais fundamentais da Área do Regime Especial de Greater Sunrise (GSSRA). Estes instrumentos, nomeadamente o Código de Petróleo e Mineração (PMC), o Contrato de Partilha de Produção (PSC), o Regime Fiscal, as competências jurisdicionais, entre outros, constituirão a base legal e fiscal para o desenvolvimento do campo Greater Sunrise, cuja conclusão está prevista para 2026",
+   "target": "O Código de Exploração Mineira do Petróleo, Regime Fiscal e CPP são assinados.",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 348
+  },
+  {
+   "code": "A1301X2",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Greater Sunrise pipeline and downstream technical studies - Natarbora",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Os estudos necessários são implementados",
+   "baseline": "Alguns estudos devem ser atualizados e realizados novamente de acordo com as mudanças de circunstâncias e condições",
+   "target": "\"Os estudos importantes para assegurar o gasoduto e o desenvolvimento do campo de gás do Greater Sunrise são executados \"",
+   "amounts": {
+    "20": 34048249.0
+   },
+   "page": 348
+  },
+  {
+   "code": "A1301X3",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Tasi Mane - SSB supervision of the Suai-Natarbora highway",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Número dos projetos do Programa Tasi Mane monitorados e supervisionados de acordo com desenho tecnicos",
+   "baseline": "0",
+   "target": "Projetos essenciais relacionados com o Projeto Tasi Mane monitorizados e supervisionado",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 348
+  },
+  {
+   "code": "A1301X4",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Kuda Tasi and Jahal field development and Greater Sunrise upstream",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "O Plano de Negócios das entidades comerciais da tutela do setor é apoiado",
+   "baseline": "Plano de Negócios",
+   "target": "Os Planos de Negócios/Atividades são bem definidos e implementados",
+   "amounts": {
+    "30": 193500000.0
+   },
+   "page": 348
+  },
+  {
+   "code": "A1301X5",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Mineral block exploration and development - Murak Rai Timor E.P.",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "O Plano de Negócios das entidades comerciais da tutela do setor é apoiado",
+   "baseline": "Plano de Negócios",
+   "target": "Os Planos de Negócios/Atividades são bem definidos e implementados",
+   "amounts": {
+    "30": 10000000.0
+   },
+   "page": 349
+  },
+  {
+   "code": "A170101",
+   "programme": "A17",
+   "subprogramme": "A1701",
+   "subprogramme_name": "Desenvolvimento de políticas, legislação e regulamentos do setor",
+   "name": "Acompanhamento e monitorização das atividades petrolíferas e minerais no território nacional",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Número de empresas e instituições públicas tuteladas pelo ministério monitorizado e avaliado",
+   "baseline": "Realizada a monitorização às empresas públicas e aos institutos públicos da tutela",
+   "target": "Avaliação e monitorização contínua das empresas e institutos públicos associados ao setor do petróleo e minerais",
+   "amounts": {
+    "10": 78117.0,
+    "20": 52000.0
+   },
+   "page": 349
+  },
+  {
+   "code": "A170102",
+   "programme": "A17",
+   "subprogramme": "A1701",
+   "subprogramme_name": "Desenvolvimento de políticas, legislação e regulamentos do setor",
+   "name": "Desenvolvimento de Propostas Legislativas nos Setores do Petróleo, Mineral",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Número de diplomas relevantes aprovados, incluindo o Código de Exploração Mineira do Petróleo, Captura e Armazenamento de Carbono (CAC) e orgânica do MPRM e dos órgãos de tutela",
+   "baseline": "1. Elaboração de 3/4 diplomas no âmbito da entrada em vigor do Código Mineiro, sujeita a confirmação posterior; 2. Elaboração das proposta de alteração dos diplomas que criam as instituições da tutela",
+   "target": "Aprovação e alteração dos diplomas que criam as instituições da tutela, elaboração da lei da importação de material radioativo e alteração do decreto-lei do downstream, entre outros",
+   "amounts": {
+    "10": 192000.0,
+    "20": 50000.0
+   },
+   "page": 349
+  },
+  {
+   "code": "A170103",
+   "programme": "A17",
+   "subprogramme": "A1701",
+   "subprogramme_name": "Desenvolvimento de políticas, legislação e regulamentos do setor",
+   "name": "Regulamentação do setor do petróleo e minerais",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "O setor do petróleo e mineral está é bem regulado com eficácia",
+   "baseline": "Já havia regulamentos fundamentais",
+   "target": "É necessário aprovar e supervisionar a implementação destes regulamentos",
+   "amounts": {
+    "10": 115500.0
+   },
+   "page": 349
+  },
+  {
+   "code": "A170202",
+   "programme": "A17",
+   "subprogramme": "A1702",
+   "subprogramme_name": "Apoio e reforço das instituições de Tutela",
+   "name": "Apoio à implementação do plano ANM",
+   "div": [
+    "0320202"
+   ],
+   "indicator": "O Plano de Negócios das entidades comerciais da tutela do setor é apoiado",
+   "baseline": "Plano de Atividades",
+   "target": "Os Planos de Atividades são bem definidos e implementados",
+   "amounts": {
+    "30": 4900000.0
+   },
+   "page": 350
+  },
+  {
+   "code": "A170203",
+   "programme": "A17",
+   "subprogramme": "A1702",
+   "subprogramme_name": "Apoio e reforço das instituições de Tutela",
+   "name": "Apoio à implementação do plano de negócios/atividades da TIMOR GAP",
+   "div": [
+    "0320202"
+   ],
+   "indicator": "O Plano de Negócios das entidades comerciais da tutela do setor é apoiado",
+   "baseline": "Plano de Negócios",
+   "target": "Os Planos de Negócios/Atividades são bem definidos e implementados",
+   "amounts": {
+    "30": 16000000.0
+   },
+   "page": 350
+  },
+  {
+   "code": "A170301",
+   "programme": "A17",
+   "subprogramme": "A1703",
+   "subprogramme_name": "Implementação da Iniciativa de Transparência da Indústria Extrativa de Timor-Leste (EITI)",
+   "name": "Elaboração e desenvolvimento do relatório de EITI do ano de 2018 &amp; 2019, estudos de viabilidade sobre a não implementação dos requisitos de ITIE",
+   "div": [
+    "0320301"
+   ],
+   "indicator": "Número relatórios de conciliação de TL-ITIE publicados",
+   "baseline": "— O Relatório de TL-ITIE referente ao ano de 2021 foi publicado; - O Relatório de TL-ITIE referente ao ano de 2022 está em fase de elaboração e será publicado no final do mês de dezembro",
+   "target": "Relatório ITIE para a.f. 2023 publicado",
+   "amounts": {
+    "10": 124114.0,
+    "20": 150000.0
+   },
+   "page": 350
+  },
+  {
+   "code": "A170302",
+   "programme": "A17",
+   "subprogramme": "A1703",
+   "subprogramme_name": "Implementação da Iniciativa de Transparência da Indústria Extrativa de Timor-Leste (EITI)",
+   "name": "Partilha de experiência a nível nacional e internacional",
+   "div": [
+    "0320301"
+   ],
+   "indicator": "Número de programas de disseminação de relatórios TL-EITI publicados a nível regional e municipal",
+   "baseline": "Disseminação do relatório 2021 em quatro municípios",
+   "target": "- Partilha de experiências sobre os novos requisitos de EITI em 2023, entre os membros do MSWG; - A disseminação do relatório referente ao ano fiscal de 2022 a 2023, conforme as normas do Padrão 2023, após concluiu o processo de validaçã",
+   "amounts": {
+    "20": 83000.0
+   },
+   "page": 350
+  },
+  {
+   "code": "A170303",
+   "programme": "A17",
+   "subprogramme": "A1703",
+   "subprogramme_name": "Implementação da Iniciativa de Transparência da Indústria Extrativa de Timor-Leste (EITI)",
+   "name": "Desenvolvimento de capacidades na sociedade civil, governo e setor privado",
+   "div": [
+    "0320301"
+   ],
+   "indicator": "Número de formações para membros de MSWG e funcionários TL-EITI, facultadas através de workshop e seminários ao nível nacional e internacional",
+   "baseline": "#7",
+   "target": "#20 pessoas",
+   "amounts": {
+    "20": 58704.0
+   },
+   "page": 350
+  },
+  {
+   "code": "A180100",
+   "programme": "A18",
+   "subprogramme": "A1801",
+   "subprogramme_name": "Desenvolver as infraestruturas de apoio ao Projeto Tasi Mane (e.g Suai Supply Base e Autoestrda)",
+   "name": "Acompanhamento e monitorização da implementação do projeto Tasi Mane",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Número dos projetos do Programa Tasi Mane monitorados e supervisionados de acordo com desenho tecnicos",
+   "baseline": "0",
+   "target": "Projetos essenciais relacionados com o Projeto Tasi Mane monitorizados e supervisionado",
+   "amounts": {
+    "10": 372000.0,
+    "20": 8249096.0
+   },
+   "page": 351
+  },
+  {
+   "code": "A180112",
+   "programme": "A18",
+   "subprogramme": "A1801",
+   "subprogramme_name": "Desenvolver as infraestruturas de apoio ao Projeto Tasi Mane (e.g Suai Supply Base e Autoestrda)",
+   "name": "Empoderamento e envolvimento da participação da juventude na implementação do projeto Tasi Mane",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "\"Número de jovens beneficiários de formações linguísticas e técnicas relacionadas com o Projeto Tasi Mane.",
+   "baseline": "O",
+   "target": "mais de 500 jovens formados por ano",
+   "amounts": {
+    "20": 2057032.0
+   },
+   "page": 351
+  },
+  {
+   "code": "A180200",
+   "programme": "A18",
+   "subprogramme": "A1802",
+   "subprogramme_name": "Desenvolvimento integrado das instalações de processamento de petróleo e gás natural ( LNG, Refinaria e Petroquimcas/downstream)",
+   "name": "Preparação técnica/de engenharia para gerir e operacionalizar as instalações da indústria de downstream/hidrocarbonetos (GNL, Metanol, Refinaria, Petroquímica, etc.) em Natarbora",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "os futoros operadores tecnicos e engineiros sao identificados e treinados",
+   "baseline": "O",
+   "target": "mais de 50% da atividades sao realizas",
+   "amounts": {
+    "10": 122400.0,
+    "20": 1903685.0
+   },
+   "page": 352
+  },
+  {
+   "code": "A180201",
+   "programme": "A18",
+   "subprogramme": "A1802",
+   "subprogramme_name": "Desenvolvimento integrado das instalações de processamento de petróleo e gás natural ( LNG, Refinaria e Petroquimcas/downstream)",
+   "name": "Rever os estudos e iniciar estudos de atualização e otimizações",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Os relevantes estudos são implementados",
+   "baseline": "Já existem muitos estudos de viabilidades técnica, comercial e financeira, sobretudo, e necessário revê-los e atualizar os estudos de acordo com as mudanças de planos e circunstâncias de mercado",
+   "target": "Os estudos importantes são realizados e os relatórios são usados para efeitos de negociação e contratação com as empresas de construção no futuro",
+   "amounts": {
+    "10": 79200.0
+   },
+   "page": 352
+  },
+  {
+   "code": "A190100",
+   "programme": "A19",
+   "subprogramme": "A1901",
+   "subprogramme_name": "Exploração e desenvolvimento de potenciais blocos de exploração petrolífera no Onshore e Offshore de Timor-Leste",
+   "name": "Estudos e negociações sobre a extenção da produção do campo de Bayu Undan e de outros campos no Mar de Timor",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Estudos e negociações sao implementados",
+   "baseline": "em curso",
+   "target": "Os estudos e as negociações foram implementados.",
+   "amounts": {
+    "10": 52000.0,
+    "20": 4319200.0
+   },
+   "page": 352
+  },
+  {
+   "code": "A190102",
+   "programme": "A19",
+   "subprogramme": "A1901",
+   "subprogramme_name": "Exploração e desenvolvimento de potenciais blocos de exploração petrolífera no Onshore e Offshore de Timor-Leste",
+   "name": "As pesquisas/estudos e investigações de campo no onshore e offshore serão implementadas e, caso sejam bem- sucedidas, avança-se para o desenvolvimento de campo",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Trabalhos de campo associados às pesquisas começam",
+   "baseline": "Alguns estudos e trabalhos estão em curso",
+   "target": "As pesquisas são orientadas para a descoberta de mais potenciais recursos petrolífero",
+   "amounts": {
+    "10": 60000.0,
+    "20": 50000.0
+   },
+   "page": 352
+  },
+  {
+   "code": "A190202",
+   "programme": "A19",
+   "subprogramme": "A1902",
+   "subprogramme_name": "Exploração e desenvolvimento de potenciais blocos de exploração mineira no território nacional",
+   "name": "As pesquisas/estudos e investigações de campo no território serão implementadas e, caso sejam bem-sucedidas, avança-se para o desenvolvimento de blocos minerais",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Trabalhos de campo associados às pesquisas começam",
+   "baseline": "Alguns estudos e trabalhos estão em curso",
+   "target": "As pesquisas são orientadas para a descoberta de mais potenciais recursos minerais",
+   "amounts": {
+    "10": 32000.0,
+    "20": 50000.0
+   },
+   "page": 353
+  },
+  {
+   "code": "A190203",
+   "programme": "A19",
+   "subprogramme": "A1902",
+   "subprogramme_name": "Exploração e desenvolvimento de potenciais blocos de exploração mineira no território nacional",
+   "name": "Gestão contínua dos dados existentes e adquiridos oriundos de explorações",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Os dados existentes e futuramente adquiridos são bem administrados",
+   "baseline": "Alguns estudos e trabalhos estão em curso",
+   "target": "Todos os dados geológicos, sísmicos e de perfurações, entre outros dados relevantes, são bem documentados e administrados",
+   "amounts": {
+    "10": 32000.0,
+    "20": 50000.0
+   },
+   "page": 353
+  },
+  {
+   "code": "A190301",
+   "programme": "A19",
+   "subprogramme": "A1903",
+   "subprogramme_name": "Promover e fortalecer estudos técnicos e científicos de potencias recursos e riscos geológicos",
+   "name": "Estudos geológicos, geotérmicos e de recursos hídricos, entre outros",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Mapas produzidos nas áreas temáticas relevantes e relatórios técnicos e científicos são elaborados",
+   "baseline": "Alguns estudos e trabalhos estão em curso",
+   "target": "A informação sobre os riscos Geológicos, incluindo geohazards e geotécnicos são importantes para o planeamento territorial, urbanização e construção de infraestruturas civils",
+   "amounts": {
+    "10": 31393.0,
+    "20": 50000.0
+   },
+   "page": 353
+  },
+  {
+   "code": "A190302",
+   "programme": "A19",
+   "subprogramme": "A1903",
+   "subprogramme_name": "Promover e fortalecer estudos técnicos e científicos de potencias recursos e riscos geológicos",
+   "name": "Assegurar os dados geológicos e criar um repositório de dados",
+   "div": [
+    "0320101"
+   ],
+   "indicator": "Deter um centro destinado ao repositório de dados técnicos e científicos de exploração petrolífera, mineral e geológica como a \"Geoscience Australia”",
+   "baseline": "Os dados são depositados em vários sítios sem uma centralização eficaz",
+   "target": "Os dados são bem arquivados e documentados, permitindo o acesso às instituições e organizações relevantes",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 353
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) % de Resultados de desempenho publicados no website do Governo 3) % de Relatório anual da entidade publicado",
+   "baseline": "1). 100%. 2). 100%. 3). 100%",
+   "target": "1). 100%. 2). 100%. 3). 100%",
+   "page": 344
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1). % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo 2). % do Plano Anual implementado 3). % de Plano Estratégico/Médio Prazo Aprovado",
+   "baseline": "1). 100%. 2). 100%. 3). 100%",
+   "target": "1). 100%. 2). 100%. 3). 100%",
+   "page": 344
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1). % de Execução do orçamento 2). % de Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3). % de Criação de um sistema de arquivo electrónico",
+   "baseline": "1). 100%. 2). 100%. 3). 100%",
+   "target": "1). 100%. 2). 100%. 3). 100%",
+   "page": 345
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "O Plano Anual inclui atividades governamentais e de Parceiros de Desenvolvimento",
+   "baseline": "15 reunioes virtuais entre companhias petroliferas e 10 bilaterais ; Em Dubai estabelecimento relacao entre ministros homologo no setor petróleo, gas e mineral de posibilidade investimento em Timor Leste",
+   "target": "Negociacao, cooperacao setor petroliferas 3 paises , conferencia de oleo e gas em 2 paises e cooperacao com institutuo para continuacao de formacao de 4 pilotos",
+   "page": 346
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "% de progresso físico da futura construção do edifício do MPRM",
+   "baseline": "0",
+   "target": "100% A construção física será concluída.",
+   "page": 347
+  },
+  {
+   "kind": "outcome",
+   "code": "A13.0.0",
+   "statement": "O gas e petroleo de Greater Sunrise sao produzido e trago receitas ao Timor- Leste",
+   "indicator": "# Volumes de gas e petroleo produzidos",
+   "baseline": "Em curso",
+   "target": "\"mais ou menos 5.1 trillion cubic feet gas (recurcos contigencia) & 226 million barrels of condensate (cecurcos contigencia)\"",
+   "page": 347
+  },
+  {
+   "kind": "output",
+   "code": "A1301.0.0",
+   "statement": "As negociações alusivas ao gasoduto do Greater Sunrise para Timor-Leste estão concluídas &amp; encerradas.",
+   "indicator": "As negociações associadas à legislação, contratos e acordos relevantes ao desenvolvimento do campo de gás do Greater Sunrise estão concluídas e alguns estudos técnicos, comerciais, jurídicos e financeiros são implementados",
+   "baseline": "Em curso",
+   "target": "O Acordo de Desenvolvimento do Greater Sunrise é negociado e assinado",
+   "page": 347
+  },
+  {
+   "kind": "outcome",
+   "code": "A17.0.0",
+   "statement": "Timor-Leste tem um forte setor mineral e petrolífero, com a forte participação dos Timorenses a nível de empregos, participação do setor privado e as populações locais a serem beneficiadas com o desenvolvimento deste setor",
+   "indicator": "% aumento da participação dos Timorenses no fornecimento de bens & serviços e criação de empregos no setor mineral, do petróleo e gás",
+   "baseline": "0",
+   "target": "Continuação da recolha de receitas para o Estado e investimento no bloco 18 e outros setores do petróleo, incluindo minerais",
+   "page": 349
+  },
+  {
+   "kind": "output",
+   "code": "A1701.0.0",
+   "statement": "Leis e Legislação desenvolvidas, disseminadas e implementadas",
+   "indicator": "Número de diplomas relevantes aprovados, incluindo o Código de Exploração Mineira do Petróleo, Captura e Armazenamento de Carbono (CAC) e orgânica do MPRM e dos órgãos de tutela",
+   "baseline": "Elaborados 4 decretos-lei (alteração dos decretos-lei que criam as instituições da tutelas, nomeadamente, a ANPM, IPG, TIMOR GAP e empresa mineira)",
+   "target": "Aprovação do decreto-lei que ainda está a ser elaborado e continuação das duas novas legislações, nomeadamente, o decreto-lei sobre importação e exportação de material radioativo, Captura e Armazenamento de Carbono (CAC) e alteração do decreto-lei do downstream, e outras legislações relevantes",
+   "page": 349
+  },
+  {
+   "kind": "output",
+   "code": "A1702.0.0",
+   "statement": "Os ativos próprios do governo contribuem substancialmente para o valor agregado do setor",
+   "indicator": "As instituições são bem apoiadas e fortalecida a implementação dos seus planos de negócios/atividade",
+   "baseline": "3",
+   "target": "3",
+   "page": 350
+  },
+  {
+   "kind": "output",
+   "code": "A1703.0.0",
+   "statement": "A gestão do Fundo Petrolífero é transparente e alinhada com o mecanismo internacional, nos termos do EITI",
+   "indicator": "Numero de inspeção completa",
+   "baseline": "4",
+   "target": "8",
+   "page": 350
+  },
+  {
+   "kind": "outcome",
+   "code": "A18.0.0",
+   "statement": "Tornar o setor petrolífero nacional numa Indústria Transformadora na Costa Sul do país - &#34;Industrialização do Setor do Petróleo e Gás”",
+   "indicator": "Aumento no valor agregado do setor petrolífero; Recolha de receitas petrolíferas e criação de benefícios socioeconómicos em Timor-Leste",
+   "baseline": "0",
+   "target": "As infraestruturas de apoio à indústria petrolífera e a fábrica de GNL, Refinaria e Complexo Petroquímico são eventualmente realizados no período de médio a longo prazo",
+   "page": 351
+  },
+  {
+   "kind": "output",
+   "code": "A1801.0.0",
+   "statement": "Conclusão dos projetos de infraestruturas de apoio na costa sul",
+   "indicator": "Os projetos de infraestruturas de apoio da costa sul são implementados de acordo com as respetivas etapas",
+   "baseline": "Autoestrada de Suai a Zumalay",
+   "target": "1) A SSB será renegociada ou será lançado um novo concurso – conforme a decisão do Conselho de Ministros; 2) A autoestrada de ligação de Zumalai a Natabora será decidida pelo Conselho de Ministros após a coordenação entre MPRM+ MPIE+MOP, com a devida consulta com o PM; 3) O processo de construção do Novo Bairro de Holbelis começa",
+   "page": 351
+  },
+  {
+   "kind": "output",
+   "code": "A1802.0.0",
+   "statement": "Fábrica de GNL, Refinaria e Complexo Petroquímico, incluindo o gasoduto para Timor-Leste, estão concluídos",
+   "indicator": "Os estudos necessários e negociações para o desenvolvimento dos projetos de Downstream, como o GNL, Refinaria e Complexo Petroquímico, são implementados",
+   "baseline": "Ainda não existe a Fábrica de GNL, Refinaria e Complexo Petroquímico",
+   "target": "Decisões referentes à construção tomadas no final de 2025/2026 e Em 2026/2027, começa a construção da fábrica de GNL ou Refinaria ou indústria petroquímica",
+   "page": 351
+  },
+  {
+   "kind": "outcome",
+   "code": "A19.0.0",
+   "statement": "Timor-Leste detém um forte setor mineral e petrolífero, impulsionando um forte crescimento económico e contribuindo para o aumento de postos de trabalho e fontes de rendimento do Estado",
+   "indicator": "% de aumento no valor agregado do setor mineral, gás e petrolífero",
+   "baseline": "Recolha das receitas petrolíferas e minerais para o Estado",
+   "target": "Continuação da recolha de receitas para o Estado e investimento no bloco 18 e em outros setores do petróleo, incluindo minerais",
+   "page": 352
+  },
+  {
+   "kind": "output",
+   "code": "A1901.0.0",
+   "statement": "Incentivo contínuo de empresas petrolíferas para investir na exploração e, posteriormente, caso sejam bem- sucedidas, no desenvolvimento dos blocos petrolíferos",
+   "indicator": "Mais blocos petrolíferos são adquiridos para fins de exploração/investigação",
+   "baseline": "7",
+   "target": "Mais investidores assinam contratos de exploração; Os interesses de investimento em blocos de exploração são definidos",
+   "page": 352
+  },
+  {
+   "kind": "output",
+   "code": "A1902.0.0",
+   "statement": "Incentivo contínuo de empresas mineiras para investir na exploração/pesquisa e, posteriormente, caso sejam bem- sucedidas, no desenvolvimento dos blocos mineiros",
+   "indicator": "Mais blocos de minerais são adquiridos para fins de exploração/investigação",
+   "baseline": "0",
+   "target": "Mais investidores assinam contratos de exploração; Os interesses de investimento em blocos de exploração são definidos",
+   "page": 352
+  },
+  {
+   "kind": "output",
+   "code": "A1903.0.0",
+   "statement": "Promoção de estudos científicos no domínio da geologia, geotérmico e dos recursos hídricos, entre outros recursos",
+   "indicator": "Mais produtos técnicos e científicos com efeito na pesquisa & desenvolvimento a fim de apoiar negócios & serviços",
+   "baseline": "Tbd",
+   "target": "As instituições da tutela podem dispor de um maior conhecimento sobre os recursos geológicos e podem aproveitar a informação e os dados",
+   "page": 353
+  }
+ ]
+}

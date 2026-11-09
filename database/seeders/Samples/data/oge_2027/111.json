@@ -1,0 +1,104 @@
+{
+ "year": 2027,
+ "code": "111",
+ "name": "Ministério Coordenador dos Assuntos Sociais",
+ "abbr": "MCAS",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1076,
+   1076
+  ]
+ },
+ "units": [
+  {
+   "code": "GMCAS",
+   "div": "1110101",
+   "name": "Gabinete do Ministro Coordenador dos Assuntos Sociais",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A11": "Reforma das políticas nacionais sector social"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1110101"
+   ],
+   "indicator": "% execução do orçamento",
+   "baseline": "100 %",
+   "target": "100 % execução do orçamento",
+   "amounts": {
+    "10": 629419.0,
+    "20": 132945.0
+   },
+   "page": 1076
+  },
+  {
+   "code": "A110103",
+   "programme": "A11",
+   "subprogramme": "A1101",
+   "subprogramme_name": "Reforma das políticas nacionais Sector social",
+   "name": "Rever e hormonizar a legislação do sector social",
+   "div": [
+    "1110101"
+   ],
+   "indicator": "Revisao e harmonização politica e legislação identificado",
+   "baseline": "100 %",
+   "target": "Propostas de revisao e harmonização politica e legislação em processo de analise",
+   "amounts": {
+    "20": 104790.0
+   },
+   "page": 1076
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Identificação Problema no caris Sociais",
+   "baseline": "100 %",
+   "target": "Politica e Estrategia de melhoramento definido",
+   "page": 1076
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% Metas do Plano acção annual MCAS",
+   "baseline": "100 %",
+   "target": "100% alcançado",
+   "page": 1076
+  },
+  {
+   "kind": "outcome",
+   "code": "A11.0.0",
+   "statement": "TBD",
+   "indicator": "Revizaun no harminizasaun politica no legislacao iha setor Sosial",
+   "baseline": "100 %",
+   "target": "Esboco Revizaun e harminizasaun politica legislacao iha setor Sosial finalizado",
+   "page": 1076
+  },
+  {
+   "kind": "output",
+   "code": "A1101.0.0",
+   "statement": "TBD",
+   "indicator": "Revizaun no harminizasaun politica no legislacao iha setor Sosial",
+   "baseline": "100 %",
+   "target": "Esboco Revizaun e harminizasaun politica legislacao iha setor Sosial finalizado",
+   "page": 1076
+  }
+ ]
+}

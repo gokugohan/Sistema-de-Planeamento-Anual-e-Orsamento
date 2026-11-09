@@ -1,0 +1,302 @@
+{
+ "year": 2027,
+ "code": "098",
+ "name": "Instituto Politécnico Betano",
+ "abbr": "IPB",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   957,
+   959
+  ]
+ },
+ "units": [
+  {
+   "code": "IPB",
+   "div": "0980101",
+   "name": "Instituto Politécnico de Betano",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "524": "Ensino superior"
+ },
+ "activities": [
+  {
+   "code": "510014F",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção e auditoria",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "% áreas de risco que são alvos de auditoria em 2026",
+   "baseline": "Areas de risco que foram identificado em 2025",
+   "target": "Assegurar Boa Governação",
+   "amounts": {
+    "20": 1120.0
+   },
+   "page": 957
+  },
+  {
+   "code": "510014G",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão de Serviço de Acadêmico",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1. # de novos Estudantes em 2026; 2. # Graduando em 2026; 3. # Municipio para alvo de socializacao perfil do IPB.",
+   "baseline": "1). 174 Estudantes finalista; 2). 200 vagatura de Novos Estudantes em 2026",
+   "target": "1. 200 Novos Estudantes em ano 2026; 2). 174 Estudantes Graduando em 2025",
+   "amounts": {
+    "20": 34270.0
+   },
+   "page": 957
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1) # de funcionarios e Docentes permanentes em 2025; 2). #Funcionários e Docentes contratados em 2025.",
+   "baseline": "68 de Funcionários permanentes no ano 2025; 2. 66 de Funcionários de contratados em ano 2025",
+   "target": "Garantir prestacao servico Instituicao com eficacia e eficiensia",
+   "amounts": {
+    "10": 684005.0
+   },
+   "page": 957
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "Funcionarios Administrativos e dos Docentes têm acesso de treinamento/workshop são implementados e capacitados",
+   "baseline": "50",
+   "target": "50",
+   "amounts": {
+    "10": 13464.0
+   },
+   "page": 957
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1. % Desenvolvimento de sistema Portal de Transparencia 2026; 2. % Melhoramento de Infraestrutura de sistema 11 e conectividade rede de internet em ano 2026",
+   "baseline": "11 sistema estabelecido em 2022-2024",
+   "target": "1. 100% de sistema Portal de Transparencia desenvolvido em 2026; 2. 100% infraestrutura de melhoramento instalado em 2026",
+   "amounts": {
+    "20": 12120.0
+   },
+   "page": 957
+  },
+  {
+   "code": "510023L",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de Institucional",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1). %Orçamento Instituição executado em ano 2026; 2). % Execução Plano de Aprovisionamento.",
+   "baseline": "97% Orçamento Instituição executado em ano 2025",
+   "target": "100% Orçamento e Plano de Aprovisionamento Instituição executado em ano 2026",
+   "amounts": {
+    "20": 187006.0,
+    "50": 43984.0
+   },
+   "page": 957
+  },
+  {
+   "code": "5240801",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Gestão de Biblioteca",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "# Livros compras em 2026",
+   "baseline": "Limitação de livros em Biblioteca do IPB",
+   "target": "Facilitar os Docentes e Estudantes para garantir a qualidade Educação",
+   "amounts": {
+    "20": 34580.0
+   },
+   "page": 958
+  },
+  {
+   "code": "5240802",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Seminário no Curso de Construção Civil",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1). # Estudantes participar no atividades de seminarios; 2).# Atividades de Seminarios Implementado em 2026",
+   "baseline": "2 programas de seminários que foram implementados em 2025",
+   "target": "1). 2 Programas de Seminários que serão realizados em 2026; 2). Elevar de conhecimento dos Estudantes",
+   "amounts": {
+    "20": 5250.0
+   },
+   "page": 958
+  },
+  {
+   "code": "5240803",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Seminário no Curso de Produção de Animais",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1). # Estudantes participar no atividades de seminarios; 2).# Atividades de Seminarios Implementado em 2026",
+   "baseline": "2 programas de seminários que foram implementados em 2025",
+   "target": "1). 2 Programas de Seminários que serão realizados em 2026; 2). Elevar de conhecimento dos Estudantes",
+   "amounts": {
+    "20": 4150.0
+   },
+   "page": 958
+  },
+  {
+   "code": "5240804",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Pesquisa de Científico",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "# Seminarios resultados de pesquisa",
+   "baseline": "4 topicos de investigação científica que serão realizados em 2025",
+   "target": "4 temas de seminarios que serão realizados em 2026 e publicado de resultado de pesquisa",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 958
+  },
+  {
+   "code": "5240805",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Serviços de extensão da Escola Superior de Engenharia",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1).# de Estudantes que participam de atividades práticas de campo e Estagio profissional em ano 2026; 2). % complementar materiais e equipamentos de pratica",
+   "baseline": "1). 170 de Estudantes que participam de atividades práticas de campo; 2). 56 de Estudantes participam de atividades de Estagio profissional em ano 2026; 3). 320 Estudantes para acesso programa Subsidio de Escolar",
+   "target": "Para Elevar conhecimentos dos Estudantes",
+   "amounts": {
+    "20": 47295.0,
+    "30": 80000.0
+   },
+   "page": 958
+  },
+  {
+   "code": "5240806",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Serviços de extensão da Escola Superior de Agronomia e Zootecnica",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "1).# de Estudantes que participam de atividades práticas de campo e Estagio profissional em ano 2026; 2). %",
+   "baseline": "1). 117 de Estudantes que participam de atividades práticas de campo; 2). 50 de Estudantes participam de",
+   "target": "Para Elevar conhecimentos dos Estudantes",
+   "amounts": {
+    "20": 78976.0,
+    "30": 80000.0
+   },
+   "page": 958
+  },
+  {
+   "code": "5240807",
+   "programme": "524",
+   "subprogramme": "52408",
+   "subprogramme_name": "Ensino Superior Politécnica Betano",
+   "name": "Extracurriculares",
+   "div": [
+    "0980101"
+   ],
+   "indicator": "5 eventos que serão realizados em 2026",
+   "baseline": "2 eventos que serão realizados em 2025",
+   "target": "Para desenvolver de talentos dos Estudantes",
+   "amounts": {
+    "20": 7850.0
+   },
+   "page": 959
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% Administração transparente e responsabilizável, para elevar o IPB a níveis mais altos",
+   "baseline": "50% Administração transparente e responsabilizável em 2024",
+   "target": "100%",
+   "page": 957
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de garantir a qualidade de atendimento com eficácia eficiência, e responsabilidade",
+   "baseline": "70% Qualidade de atendimento com eficácia eficiência, e responsabilidade",
+   "target": "100% atendimento com eficácia eficiência, e responsabilidade em 2025",
+   "page": 957
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% de garantir a qualidade de atendimento com eficácia eficiência, e responsabilidade",
+   "baseline": "70% Qualidade de atendimento com eficácia eficiência, e responsabilidade",
+   "target": "100% atendimento com eficácia eficiência, e responsabilidade em 2025",
+   "page": 957
+  },
+  {
+   "kind": "outcome",
+   "code": "524.0.0",
+   "statement": "Até 2028, o acesso, a qualidade e a relevância do ensino superior para o mercado de trabalho serão melhorados, com mais programas acreditados, parcerias público-privadas mais fortes e melhores resultados académicos para os estudantes timorenses em instituições públicas e privadas&#13;&#10;",
+   "indicator": "% dos instituições de ensino superior são credenciadas de acordo com os padrões legalmente definidos",
+   "baseline": "90% IPB acreditado Institucionalmente",
+   "target": "100% IPB Como Centro De Excêlencia De Ciência E Tecnólogia Aplicável Ao Bem Estar Da Sociedade em 2029",
+   "page": 958
+  },
+  {
+   "kind": "output",
+   "code": "52408.0.0",
+   "statement": "Estabelecidos Institutos Politécnicos em setores estratégicos",
+   "indicator": "% dos instituições de ensino superior são credenciadas de acordo com os padrões legalmente definidos",
+   "baseline": "90% IPB acreditado Institucionalmente",
+   "target": "100% IPB Como Centro De Excêlencia De Ciência E Tecnólogia Aplicável Ao Bem Estar Da Sociedade em 2029",
+   "page": 958
+  }
+ ]
+}

@@ -1,0 +1,616 @@
+{
+ "year": 2027,
+ "code": "020",
+ "name": "Ministério do Ensino Superior, Ciência e Cultura",
+ "abbr": "MESCC",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   191,
+   195
+  ]
+ },
+ "units": [
+  {
+   "code": "GMESCC",
+   "div": "0200101",
+   "name": "Gabinete do Minsitro do Ensino Superior, Ciência e Cultura",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGESC",
+   "div": "0200601",
+   "name": "Gabinete de Direção-Geral do Ensino Superior e Ciência",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNES",
+   "div": "0200602",
+   "name": "Direção Nacional do Ensino Superior",
+   "type": "National Directorate",
+   "parent": "GDGESC"
+  },
+  {
+   "code": "DNL",
+   "div": "0200603",
+   "name": "Direção Nacional de Legalização",
+   "type": "National Directorate",
+   "parent": "GDGESC"
+  },
+  {
+   "code": "DNCT",
+   "div": "0200604",
+   "name": "Direção Nacional de Ciência e Tecnologia",
+   "type": "National Directorate",
+   "parent": "GDGESC"
+  },
+  {
+   "code": "DNCES",
+   "div": "0200605",
+   "name": "Direção Nacional de Currículo do Ensino Superior",
+   "type": "National Directorate",
+   "parent": "GDGESC"
+  },
+  {
+   "code": "UJ",
+   "div": "0200701",
+   "name": "Unidade Jurídica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "URP",
+   "div": "0200801",
+   "name": "Unidade de Relações Públicas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPC",
+   "div": "0200901",
+   "name": "Unidade de Parceiras e Cooperação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0201001",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGPF",
+   "div": "0201101",
+   "name": "Gabinete de Direção-Geral de Planeamento e Finanças",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNFPO",
+   "div": "0201102",
+   "name": "Direção Nacional de Finanças, Planeamento e Orçamento",
+   "type": "National Directorate",
+   "parent": "GDGPF"
+  },
+  {
+   "code": "DNA",
+   "div": "0201103",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "GDGPF"
+  },
+  {
+   "code": "DNRH",
+   "div": "0201104",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGPF"
+  },
+  {
+   "code": "DNLP",
+   "div": "0201105",
+   "name": "Direção Nacional de Logística e Património",
+   "type": "National Directorate",
+   "parent": "GDGPF"
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "524": "Ensino superior"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0200101"
+   ],
+   "indicator": "N.º de reuniões realizadas com unidades orgânicas do Ministério e entidades parceiras",
+   "baseline": "66",
+   "target": "84",
+   "amounts": {
+    "10": 260802.0,
+    "20": 60716.0
+   },
+   "page": 191
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0201001"
+   ],
+   "indicator": "N.º de auditorias internas e externas realizadas anualmente",
+   "baseline": "26",
+   "target": "36",
+   "amounts": {
+    "10": 104317.0,
+    "20": 11000.0
+   },
+   "page": 191
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "0201101"
+   ],
+   "indicator": "N.º de reuniões de coordenação realizadas a nível interno e com entidades relevantes",
+   "baseline": "36",
+   "target": "48",
+   "amounts": {
+    "10": 171347.0,
+    "20": 23000.0
+   },
+   "page": 191
+  },
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "0201101"
+   ],
+   "indicator": "N.º de atividades de promoção e sensibilização da política do género organizadas",
+   "baseline": "3",
+   "target": "4",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 191
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0200701"
+   ],
+   "indicator": "N.º de diplomas, pareceres jurídicos produzidos anualmente e de ações de disseminação de diplomas jurídicos relevantes",
+   "baseline": "95",
+   "target": "120",
+   "amounts": {
+    "10": 140855.0,
+    "20": 60000.0
+   },
+   "page": 191
+  },
+  {
+   "code": "510011R",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Comunicação e divulgação institucional",
+   "div": [
+    "0200801"
+   ],
+   "indicator": "N.º de atividades e eventos do Ministério divulgados no website, jornais, rádio, TV e nas páginas das redes sociais oficiais N.º de boletins, brochuras, videos, banners, cartazes e panfletos produzidos anualmente",
+   "baseline": "122 39",
+   "target": "220 60",
+   "amounts": {
+    "10": 133175.0,
+    "20": 35000.0
+   },
+   "page": 191
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0201105"
+   ],
+   "indicator": "% de bens do Ministério registados e mantido",
+   "baseline": "80%",
+   "target": "85%",
+   "amounts": {
+    "10": 122728.0,
+    "20": 153360.0
+   },
+   "page": 192
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0201103"
+   ],
+   "indicator": "% do plano de aprovisionamento implementado",
+   "baseline": "80%",
+   "target": "85%",
+   "amounts": {
+    "10": 108309.0,
+    "20": 7000.0
+   },
+   "page": 192
+  },
+  {
+   "code": "510021O",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão e Capacitação de recursos humanos",
+   "div": [
+    "0201104"
+   ],
+   "indicator": "% de funcionários abrangidos por processos de desenvolvimento e gestão de desempenho (avaliação e/ou formação)",
+   "baseline": "75%",
+   "target": "80%",
+   "amounts": {
+    "10": 171793.0,
+    "20": 38466.0
+   },
+   "page": 192
+  },
+  {
+   "code": "510022A",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Jestaun Finanseira",
+   "div": [
+    "0201102"
+   ],
+   "indicator": "\"% do orçamento executado (Atual + Obrigações), de acordo com a legislação em vigor\"",
+   "baseline": "85%",
+   "target": "95%",
+   "amounts": {
+    "10": 91182.0,
+    "20": 104000.0
+   },
+   "page": 192
+  },
+  {
+   "code": "510022B",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamentu No Monitorizasaun",
+   "div": [
+    "0201102"
+   ],
+   "indicator": "% de relatórios entregues dentro do prazo em relação ao total previsto",
+   "baseline": "90%",
+   "target": "95%",
+   "amounts": {
+    "10": 25606.0,
+    "20": 31545.0
+   },
+   "page": 192
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0200901"
+   ],
+   "indicator": "N.º total de iniciativas de cooperação institucional realizadas ou participadas pelo Ministério, incluindo reuniões com parceiros e participação em eventos oficiais regionais e internacionais (ASEAN, SEAMEO, CPLP) N.º de eventos oficiais da ASEAN, SEAMEO e CPLP que têm a participação oficial do Ministério",
+   "baseline": "25 3",
+   "target": "35 5",
+   "amounts": {
+    "10": 194682.0,
+    "20": 30000.0
+   },
+   "page": 192
+  },
+  {
+   "code": "5106501",
+   "programme": "510",
+   "subprogramme": "51065",
+   "subprogramme_name": "Desenvolvimentos Infrastruturas",
+   "name": "Construção das novas infraestruturas do ensino superior",
+   "div": [
+    "0201101"
+   ],
+   "indicator": "N.º de ações de supervisão e/ou monitorização das obras de construção/reabilitação",
+   "baseline": "14",
+   "target": "20",
+   "amounts": {
+    "10": 76340.0,
+    "20": 12000.0
+   },
+   "page": 193
+  },
+  {
+   "code": "5240212",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Acompanhamento de estudantes timorenses nos países estrangeiros, através da colocação de Adidos e Assistentes Técnicos",
+   "div": [
+    "0200901"
+   ],
+   "indicator": "N.º de estudantes timorenses (bolseiros e não bolseiros) no estrangeiro que recebem acompanhamento regular por parte dos Adidos da Educação e Assistentes Técnicos",
+   "baseline": "1200",
+   "target": "1500",
+   "amounts": {
+    "10": 531988.0,
+    "20": 155254.0
+   },
+   "page": 193
+  },
+  {
+   "code": "5240213",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Coordenar e gerir programa do ensino superior",
+   "div": [
+    "0200601"
+   ],
+   "indicator": "N.º de reuniões de coordenação realizadas a nível interno e com entidades relevantes",
+   "baseline": "42",
+   "target": "50",
+   "amounts": {
+    "10": 120525.0,
+    "20": 17000.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240214",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Promover e Apoiar o Desenvolvimento do Currículo do Ensino Superior Universitário e Técnico",
+   "div": [
+    "0200605"
+   ],
+   "indicator": "N.º de ações de monitorização e apoio ao desenvolvimento do Currículo Padrão Nacional realizadas junto das Instituições de Ensino Superior",
+   "baseline": "30",
+   "target": "34",
+   "amounts": {
+    "10": 111713.0,
+    "20": 27000.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240215",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Dados Estatísticos do Ensino Superior e Ciência",
+   "div": [
+    "0200604"
+   ],
+   "indicator": "N.º de Instituições de Ensino Superior que apresentam os relatórios anuais, através do Sistema de Gestão de Dados do Ensino Superior",
+   "baseline": "12",
+   "target": "15",
+   "amounts": {
+    "10": 103080.0,
+    "20": 9650.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240216",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Funcionamento da Comissão Coordenadora das Universidades e Institutos Superiores",
+   "div": [
+    "0200601"
+   ],
+   "indicator": "N.º de reuniões realizadas pela CUIS",
+   "baseline": "14 0",
+   "target": "18 3",
+   "amounts": {
+    "10": 144814.0,
+    "20": 21000.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240217",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Implementação de mecanismos de promoção da qualidade do sistema de ensino superior",
+   "div": [
+    "0200602"
+   ],
+   "indicator": "N.º de novos estudantes admitidos na UNTL e IPB N.º de ações de monitorização ao funcionamento das IES públicas e privadas realizadas",
+   "baseline": "4000 (anual) 40",
+   "target": "4500 (anual) 48",
+   "amounts": {
+    "10": 350850.0,
+    "20": 100165.0,
+    "30": 1500000.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240218",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Criação dos Institutos Politécnicos",
+   "div": [
+    "0200602"
+   ],
+   "indicator": "N.º de estudantes a frequentar cursos de natureza politécnica",
+   "baseline": "475",
+   "target": "550",
+   "amounts": {
+    "10": 18135.0,
+    "20": 77850.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240219",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Promoção de atividades nas áreas de Ciência e Tecnologia",
+   "div": [
+    "0200604"
+   ],
+   "indicator": "N.º de atividades realizadas para a promoção da Ciência e Tecnologia, incluindo a celebração do Dia Nacional do Ensino Superior",
+   "baseline": "4",
+   "target": "6",
+   "amounts": {
+    "10": 28715.0,
+    "20": 20875.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240220",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Avaliação e Registo de novos cursos e estabelecimentos, devidamente alinhados com o Sistema Nacional de Qualificações",
+   "div": [
+    "0200603"
+   ],
+   "indicator": "N.º de propostas para avaliação e registo de novos cursos/estabelecimentos",
+   "baseline": "14",
+   "target": "24",
+   "amounts": {
+    "10": 130841.0,
+    "20": 67495.0
+   },
+   "page": 194
+  },
+  {
+   "code": "5240221",
+   "programme": "524",
+   "subprogramme": "52402",
+   "subprogramme_name": "Sistema de coordenação e garantia de qualidade do Ensino Superior",
+   "name": "Implementação dos procedimentos para o reconhecimento de diplomas, graus e equivalências de habilitações de nível superior universitário o técnico",
+   "div": [
+    "0200603"
+   ],
+   "indicator": "N.º de documentos legalizados, de acordo com a legislação em vigor",
+   "baseline": "12000",
+   "target": "17000",
+   "amounts": {
+    "20": 2480.0
+   },
+   "page": 195
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% médio de cumprimento das ações institucionais anuais com foco na transparência, responsabilização e desenvolvimento institucional",
+   "baseline": "65%",
+   "target": "80%",
+   "page": 191
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "N.º total de ações anuais institucionais realizadas, com foco na promoção da transparência, coordenação e cumprimento das normas internas",
+   "baseline": "450",
+   "target": "490",
+   "page": 191
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% médio de execução dos principais indicadores das atividades de desenvolvimento institucional",
+   "baseline": "80%",
+   "target": "85%",
+   "page": 192
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "N.º de reuniões nacionais e internacionais que tiveram a participação do Ministério",
+   "baseline": "4",
+   "target": "7",
+   "page": 192
+  },
+  {
+   "kind": "output",
+   "code": "51065.0.0",
+   "statement": "Hadia Asesu no Kondisaun Ensinu no Aprendijazen nian iha Setor Ensinu Superior",
+   "indicator": "N.º de projetos de infraestruturas em desenvolvimento",
+   "baseline": "",
+   "target": "",
+   "page": 193
+  },
+  {
+   "kind": "outcome",
+   "code": "524.0.0",
+   "statement": "Até 2028, o acesso, a qualidade e a relevância do ensino superior para o mercado de trabalho serão melhorados, com mais programas acreditados, parcerias público- privadas mais fortes e melhores resultados académicos para os estudantes timorenses em instituições públicas e privadas&#13;&#10;",
+   "indicator": "1) Taxa bruta de matrícula no ensino superior. 2) % de programas de ensino superior acreditados ou classificados como «Bons» ou superiores pela ANAAA.",
+   "baseline": "30% 50%",
+   "target": "40% 60%",
+   "page": 193
+  },
+  {
+   "kind": "output",
+   "code": "52402.0.0",
+   "statement": "Os estudantes timorenses matriculados no ensino superior, no país e no estrangeiro, recebem apoio coordenado que melhora a conclusão dos programas e o retorno dos investimentos em bolsas de estudo&amp;#13;&amp;#10;",
+   "indicator": "1) Taxa de conclusão dos estudantes timorenses bolsistas no estrangeiro. 2) % de estudantes bolsistas que regressam e aceitam um emprego ou serviço em Timor-Leste no prazo de X anos (conforme o compromisso da bolsa). 3) # ou % de instituições de ensino superior que enviam relatórios académicos regulares sobre o progresso dos estudantes com e sem bolsa de estudo ao MESCC.",
+   "baseline": "70% 60% 80%",
+   "target": "75% 65% 85%",
+   "page": 193
+  },
+  {
+   "kind": "output",
+   "code": "52402.0.1",
+   "statement": "As intervenções governamentais no ensino superior são coordenadas através de um quadro reforçado de garantia da qualidade e de políticas, assegurando o alinhamento entre o",
+   "indicator": "\"1) # de programas de ensino superior acreditados ou reacreditados anualmente (públicos e privados). 2) % de instituições de ensino superior com unidades internas de garantia da",
+   "baseline": "190 50% 2",
+   "target": "225 60% 4",
+   "page": 193
+  }
+ ]
+}

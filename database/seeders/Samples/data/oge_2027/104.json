@@ -1,0 +1,216 @@
+{
+ "year": 2027,
+ "code": "104",
+ "name": "TATOLI - Agência Noticiosa de Timor-Leste, I.P.",
+ "abbr": "TANTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   969,
+   971
+  ]
+ },
+ "units": [
+  {
+   "code": "TANTL",
+   "div": "1040101",
+   "name": "TATOLI - Agência Noticional de Timor-Leste, I.P",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "439": "Garantir à liberdade de expressão e acesso à informação",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "4390901",
+   "programme": "439",
+   "subprogramme": "43909",
+   "subprogramme_name": "Garantir Acesso à Informação",
+   "name": "Reforsa Funsionamentu Instituisaun",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1) % fucionamento do portal e serviço IT implementado 2) # Aplicaҫão para acesso a publicaҫão do portal da TATOLI 3) # publicidade publicado e receitas recolhido",
+   "baseline": "Em 2024; 1) 75 % de serviços IT implementado 2) 35 publicidade publicado e $ 5,856 receitas recolhido anualmente",
+   "target": "1. 85% fucionamento do portal e serviço IT implementado 2. 3 Aplicaҫão para acesso a publicaҫão do portal da TATOLI 3. 50 publisidade publikadu e total receitas recolhido anualmente.",
+   "amounts": {
+    "10": 28022.0,
+    "20": 65244.0
+   },
+   "page": 969
+  },
+  {
+   "code": "4390903",
+   "programme": "439",
+   "subprogramme": "43909",
+   "subprogramme_name": "Garantir Acesso à Informação",
+   "name": "Reforsa Servisu Redasaun Expande kontiudu no Asegura Kualidade",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1) # Noticias publicado do verções, Tetun, Portugues, Ingles, Indonezia 2) % Qualidade noticiais aumenta padronizado. 3) % o aumento de persentagem da visitante do portal TATOLI.",
+   "baseline": "1). Em 2024, notícias publicadas no portal TATOLI, com o valor total; 11.301 ; 7.824 na versão tétum; 854 na versão portuguesa; 1.140 na versão inglesa e 1.483 na versão indonésia. 2) Aumento de persentagem da visitante do portal TATOLI.",
+   "target": "1. Publicação de notícias no portal TATOLI com o valor total; 10.000; 7.000 na versão tétum; 1.000 na versão portuguesa; 1.000 na versão inglesa; e 1.000 na versão indonésia. 2) 85% Qualidade noticiais aumenta padronizado. 3)15% o aumento de persentagem da visitante do portal TATOLI.",
+   "amounts": {
+    "10": 135818.0,
+    "20": 10000.0
+   },
+   "page": 969
+  },
+  {
+   "code": "4390904",
+   "programme": "439",
+   "subprogramme": "43909",
+   "subprogramme_name": "Garantir Acesso à Informação",
+   "name": "Reforsa Parseria",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1) # Estabelecimento cooperação de Serviços",
+   "baseline": "Em 2024; 1) 4 (Agências Internacional ANTARA-Jakarta,",
+   "target": "1) 4 Estabelecimento cooperação de Serviços",
+   "amounts": {
+    "20": 36447.0
+   },
+   "page": 969
+  },
+  {
+   "code": "4390905",
+   "programme": "439",
+   "subprogramme": "43909",
+   "subprogramme_name": "Garantir Acesso à Informação",
+   "name": "Reforsa Servico Multimedia",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1) # Pakote Especial Produzido e Publicado 2) # Live Streaming Realizado 3) # Infografia, Fotografia Produzido e Publicado.",
+   "baseline": "1). Em 2024; 4.376 fotografias; 760 Vídeos; 333 Infográficos.",
+   "target": "No fim do ano de 2026 ira; 1) 25 pakotes Especiais Produzir e publicar 2) 220 Live Streaming Realizado 3) 350 Infografia; 5,000 Fotografia; Produzido e Publicado.\"",
+   "amounts": {
+    "10": 76206.0
+   },
+   "page": 970
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1) # Relatorio de Inspeção, fiscalização e auditoria produzido;",
+   "baseline": "No fim de ano de 2023 1) 1 inspeҫão realizado, 2 relatorios, 1 relatorio Auditoria de rekurso Financeiro; 1 relatorio de recurso estado",
+   "target": "1) Inspeção, fiscalização e auditoria rutina Realizada da Execução do recurso financeiro cada trimester e anualmente.",
+   "amounts": {
+    "10": 21450.0
+   },
+   "page": 970
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1. % Execução Orçamento Geral Estado e Qualidade de Execução 2. % Funsionamento/Operação regular de transporte e equipamentos 3. Atualizado Lista do Patrimonio Estado Rejistados e atualizados",
+   "baseline": "Em 2024; 1) 98% Execução Orçamento Geral Estado Anual da TATOLI,I.P; 2) 100%",
+   "target": "1). 100% Execução Orçamento Geral Estado e Qualidade de Execução 2).100 % Funsionamento/Operação regular de transporte e equipamentos 3). Atualizado Lista do Patrimonio Estado Rejistados",
+   "amounts": {
+    "20": 52678.0
+   },
+   "page": 970
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1) # Funsionario recebe o salario mensalmente",
+   "baseline": "1) 65 Funsionario recebe o salario mensalmente",
+   "target": "1) Total Funsionario recebe o salario mensalmente 2) Total",
+   "amounts": {
+    "10": 189630.0
+   },
+   "page": 970
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1040101"
+   ],
+   "indicator": "1). # Plano de aquisição aprovado e executado dentro do prazo 2). # Contrato de aquisição de serviços correntes",
+   "baseline": "100% Plano de aquisição aprovado e executado dentro do prazo",
+   "target": "100% Plano de aquisição aprovado e executado dentro do prazo",
+   "amounts": {
+    "20": 36113.0
+   },
+   "page": 971
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "439.0.0",
+   "statement": "Aumento numero população que exerce e expressa os seus opiniões ao governo sobre os assuntos governação, desenvolvimento e outros assunto importantes",
+   "indicator": "1). Aumentar o número de notícias na página TATOLI com a proporção de conteúdos noticiosos nacionais (90%) e internacionais (10%) 2). Melhorar a qualidade das notícias de acordo com os padrões definidos no Decreto- Lei n.º 21/2017",
+   "baseline": "1). Em 2024, notícias publicadas no portal TATOLI, com o valor total; 11.301 ; 7.824 na versão tétum; 854 na versão portuguesa; 1.140 na versão inglesa e 1.483 na versão indonésia. 2). 4.376 fotografias; Vídeo 760; 333 Infográfico.",
+   "target": "1. Publicação de notícias no portal TATOLI com o valor total; 10.000; 7.000 na versão tétum; 1.000 na versão portuguesa; 1.000 na versão inglesa; e 1.000 na versão indonésia. 2.Garante a quantidade de notícias em formato multimédia, como fotos, vídeos e infografias, regularmente.",
+   "page": 969
+  },
+  {
+   "kind": "output",
+   "code": "43909.0.0",
+   "statement": "Informações regulares e precisas disponíveis para os cidadãos",
+   "indicator": "1). % O aumento de porcentagem de Visitante do portal TATOLI; 2). % qualidade noticias; 3). % proporção noticias nacional, municipal, internacional;",
+   "baseline": "1). 15 % do aumento de percentagens vigitantes ao portal TATOLI de cada ano 2). 100% a qualidade de noticias padronizado de acordo com a decreto lei no 21/2017 de 24 de maio. 3). 60% notoicias nacionais, 30 % noticias Municipais, 10% noticias Internacionais.",
+   "target": "1) 15% do aumento de percentagens vigitantes ao portal TATOLI de cada ano 2) 100% a qualidade de noticias padronizado de acordo com a decreto lei no 21/2017 de 24 de maio. 3) 60% notoicias nacionais, 30 % noticias Municipais, 10 noticias Internacionais.",
+   "page": 969
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Objetivos do Plano Annual Alcançados: 1) % Ezekusção annual 2) % Qualidade execução 3) # Relatorio produzido",
+   "baseline": "1) 100 % Execução Orçamento Anual da TATOLI.",
+   "target": "1) 100% Execução Orçamento Anual da TATOLI,I.P 2) 95% Qualidade de execução 3) Relatoriu Produzido",
+   "page": 970
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados: 1) # Relatorio de Inspeção, fiscalização e auditoria produzido; 2) % da qualidade de Execução atinjido;",
+   "baseline": "1) 100% qualidade de Execução Orçamento Anual da TATOLI.",
+   "target": "1) 5 Relatorio de Inspeção, fiscalização e auditoria produzido; 2) 100% da qualidade de Execução atinjido;",
+   "page": 970
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Execução 100% do Orçamento Geral do Estado executado de acordo com o plano e programa",
+   "baseline": "98% Execução Orçamento Geral Estado executado de acordo com o plano e programa da TATOLI,I.P;",
+   "target": "Execução 100% do Orçamento Geral do Estado executado de acordo com o plano e programa",
+   "page": 970
+  }
+ ]
+}

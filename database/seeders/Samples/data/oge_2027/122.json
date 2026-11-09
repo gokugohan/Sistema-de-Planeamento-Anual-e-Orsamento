@@ -1,0 +1,198 @@
+{
+ "year": 2027,
+ "code": "122",
+ "name": "Comissão Nacional de Aprovisionamento",
+ "abbr": "CNA",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1205,
+   1206
+  ]
+ },
+ "units": [
+  {
+   "code": "CNA",
+   "div": "1220101",
+   "name": "Comissão Nacional de Aprovisionamento",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "023": "Gestão das finanças públicas",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "0230207",
+   "programme": "023",
+   "subprogramme": "02302",
+   "subprogramme_name": "Execução Orçamental e Prestação de Contas",
+   "name": "Realizar serviço de compras públicas com valor contratual superior a US$ 1 milhão, projetos de fundos de Infraestrutura e Empréstimo",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "Seleção dos melhores candidatos para a adjudicação de contratos (nacionais e internacionais) com base na relação qualidade/preço.",
+   "baseline": "Conforme os pedidos das linhas ministeriais. os pedidos das linhas ministeriais.",
+   "target": "Avaliar de forma transparente os concorrentes de todos os concursos lançados pela CNA em 2024 (a pedido das linhas ministeriais) e adjudicar os respetivos contratos aos concorrentes com a melhor classificação.",
+   "amounts": {
+    "10": 1465420.0,
+    "20": 57916.0
+   },
+   "page": 1205
+  },
+  {
+   "code": "0230208",
+   "programme": "023",
+   "subprogramme": "02302",
+   "subprogramme_name": "Execução Orçamental e Prestação de Contas",
+   "name": "Fortalecer os serviços da instituição para melhorar a prestação de serviços, aumentar a capacidade de recursos humanos e modernizar o sistema de infraestrutura de informação e tecnologia.",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 85043.0
+   },
+   "page": 1205
+  },
+  {
+   "code": "0230209",
+   "programme": "023",
+   "subprogramme": "02302",
+   "subprogramme_name": "Execução Orçamental e Prestação de Contas",
+   "name": "Realiza workshop ou treinamento de contratos públicos complexos para oficiais da C.NA",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 104000.0
+   },
+   "page": 1205
+  },
+  {
+   "code": "0230210",
+   "programme": "023",
+   "subprogramme": "02302",
+   "subprogramme_name": "Execução Orçamental e Prestação de Contas",
+   "name": "Estabelecer órgão de mecanismo de atendimento de reclamação",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 31223.0
+   },
+   "page": 1205
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "Número e percentagem de aquisições realizadas.",
+   "baseline": "Realização de contratos para os fornecimento de equipamentos informáticos e fornecimento de da aquisição de mobiliário. Computadores portáteis: 8 Unidades; Impressoras DeskJet: 4 Unidades; mobiliários (mesa, cadeiras e armários).",
+   "target": "Aquisições: Computadores portáteis - 8 Unidades; Impressoras DeskJet - 4 Unidades; Mobiliários (mesas, cadeiras e armários). 100% concluídas e implementadas.",
+   "amounts": {
+    "20": 30878.0
+   },
+   "page": 1206
+  },
+  {
+   "code": "5100213",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "Número de equipamentos e materiais que são objeto de manutenção e aquisição por parte da CNA.",
+   "baseline": "Aquisição e manutenção de todos os equipamentos materiais referentes à atividade em questão.",
+   "target": "Aquisições referidas 100% concluídas e implementadas para garantia da qualidade de gestão e da execução de orçamento.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1206
+  },
+  {
+   "code": "510022J",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Realização o retiro anual",
+   "div": [
+    "1220101"
+   ],
+   "indicator": "Realizacao do retiru anual",
+   "baseline": "CNA continua como a instantuicao solida e forte",
+   "target": "Programa IX governo 5.3 e 5.3.3, bem como o bussnes Plan da CNA de 2015",
+   "amounts": {
+    "20": 7500.0
+   },
+   "page": 1206
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "023.0.2",
+   "statement": "Orçamento do Estado e gestão de despesas melhorada.",
+   "indicator": "Numeru de procedimentu de aprovisionamentu executados",
+   "baseline": "Relatórios de avaliação de propostas, relatórios de pós- qualificação.",
+   "target": "Garantir a transparência e a relação qualidade/preço dos projetos a adjudicar; assistência às linhas ministeriais na avaliação da qualidade dos projetos das entidades adjudicatárias.",
+   "page": 1205
+  },
+  {
+   "kind": "output",
+   "code": "02302.0.0",
+   "statement": "1. Melhoria da efetividade das atividades de implementação do Ministério da Financas 2. Melhor taxa de execução do orçamento anual",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1205
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Percentagem dos oficiais nacionais com conhecimento dos procedimentos de aprovisionamento.",
+   "baseline": "Projetos que darão entrada na CNA em 2024 bem como pedidos das linhas ministeriais",
+   "target": "implementar com rigor o Regime Jurídico de Aprovisionamento em vigor em Timor-Leste através da formação contínua a 100% dos oficiais nacionais de Aprovisionamento",
+   "page": 1205
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1206
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.1",
+   "statement": "Serviços da CNA reforçados, com qualidade de infraestruturas, equipamentos e profissionais qualificados",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1206
+  }
+ ]
+}

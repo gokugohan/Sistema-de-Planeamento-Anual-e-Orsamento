@@ -1,0 +1,662 @@
+{
+ "year": 2027,
+ "code": "116",
+ "name": "Ministério do Planeamento e Investimento Estratégico",
+ "abbr": "MPIE",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1156,
+   1168
+  ]
+ },
+ "units": [
+  {
+   "code": "GMPIE",
+   "div": "1160101",
+   "name": "Gabinete de Ministro do Planeamento e Investimento Estratégico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GJ",
+   "div": "1160102",
+   "name": "Gabinete Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "1160204",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGAF",
+   "div": "1160206",
+   "name": "Gabinete Direção-Geral de Administração e Finanças",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNF",
+   "div": "1160207",
+   "name": "Direção Nacional de Finanças",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNA",
+   "div": "1160208",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNLP",
+   "div": "1160209",
+   "name": "Direção Nacional de Logística e Património",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DGOT",
+   "div": "1160301",
+   "name": "Direção Geral de Ordenamento do Território",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPU",
+   "div": "1160302",
+   "name": "Direção Nacional de Planeamento Urbano",
+   "type": "National Directorate",
+   "parent": "DGOT"
+  },
+  {
+   "code": "DNOE",
+   "div": "1160303",
+   "name": "Direção Nacional de Ordenamento Espacial",
+   "type": "National Directorate",
+   "parent": "DGOT"
+  },
+  {
+   "code": "CNDG",
+   "div": "1160305",
+   "name": "Centro Nacional de Dados Geoespaciais",
+   "type": "Unit",
+   "parent": "DGOT"
+  },
+  {
+   "code": "UIE",
+   "div": "1160501",
+   "name": "Unidade de Investimento Estratégico",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "1160601",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "UPI",
+   "div": "1160701",
+   "name": "Unidade de Planeamento Integrado",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "023": "Gestão das finanças públicas",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social.",
+  "984": "Ordenamento do território",
+  "A28": "Planeamento e investimento estratégico"
+ },
+ "activities": [
+  {
+   "code": "0232501",
+   "programme": "023",
+   "subprogramme": "02325",
+   "subprogramme_name": "Banco Nacional de Desenvolvimento de Timor-Leste (BNDTL)",
+   "name": "Promover a criação do Banco de Desenvolvimento de Timor-Leste (BDTL)",
+   "div": [
+    "1160501"
+   ],
+   "indicator": "\"1) % de desenvolvimento do projecto para a criação do BDTL; 2) status de BNDTL \"",
+   "baseline": "\"Programa do IX Governo Constitucional; Plano Estratégico de Desenvolvimento (PED) 2011-2030; Literatura especialoizada na matéria; projectos internacionais de criação de instituições similares \"",
+   "target": "\"1) 100% de desenvolvimento do projecto para a criação do BDTL 2) BNDTL establecido \"",
+   "amounts": {
+    "10": 194550.0,
+    "20": 4520.0
+   },
+   "page": 1156
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1160601"
+   ],
+   "indicator": "N.º relatório sobre a inspeção, fiscalização e auditoria homologado por S. E. o Ministro",
+   "baseline": "Todos os anos, produz sempre relatório sobre inspeção, fiscalização e auditoria, quatro vezes.",
+   "target": "4 relatórios sobre inspeção, fiscalização e auditoria homologados por S.E. O Ministro",
+   "amounts": {
+    "10": 42768.0,
+    "20": 7250.0
+   },
+   "page": 1157
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "1160102"
+   ],
+   "indicator": "1) % de apoio/pareceres jurídicos prestados interna ou externamente dentro do prazo e com qualidade; 2) % / n.º de contratos revistos ou elaborados dentro do prazo.",
+   "baseline": "90% do total de pedidos de parecer jurídico concluídos dentro do prazo",
+   "target": "100% das necessidades de assessoria jurídica do Ministério satisfeitas",
+   "amounts": {
+    "10": 446478.0,
+    "20": 2000.0
+   },
+   "page": 1157
+  },
+  {
+   "code": "510011Q",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "1160206"
+   ],
+   "indicator": "1) #. regras e procedimentos internos para garantir transparencias e responsabilizacao no funcionamneto do MPIE dezenvolvidos, aprovados e implementados 2) #. regras e procedimentos complementares (SOP) internos para facilitar preparacao orcamental e ezecucao orcamento dezenvolvidos, aprovados e implementados",
+   "baseline": "\"Actividades de gestão orçamental desenvolvidas até 2026; documententação e arquivo. \"",
+   "target": "\"Supervisão a 100% das atividades relacionadas com a elaboração, execução e acompanhamento do orçamento; Boa coordenação e bom controlo da execução das dotações orçamentais previstas no OGE para o MPIE; Todos os regulamentos internos prioritários para o bom funcionamento do MPIE desenvolvidos e disseminados/implementados; Desenvolvimento, com boa qualidade, de 100% dos planos anuais e plurianuais de aprovisionamento e do orçamento anual do MPIE; Boa qualidade da avaliação e monitorização dos serviços do MPIE \"",
+   "amounts": {
+    "10": 192443.0,
+    "20": 12500.0
+   },
+   "page": 1157
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1160204"
+   ],
+   "indicator": "1) Plano de mapa pessoal do MPIE elaborado e aprovado; 2) 100% das vagas preenchidas em conformidade com o plano de pessoal; 3) 100% dos programas de capacitação implementados em conformidade com as necessidades do MPIE; 4) Um ambiente de trabalho favorável.",
+   "baseline": "1) O Mapa de Pessoal do MPIE foi elaborado, concluído e aprovado em 2026; 2) Em 2026, 100% das vagas foram preenchidas de acordo com o Mapa de Pessoal; 3) Em 2026, o MPIE enviou funcionários para frequentar formações de acordo com as necessidades; 4) Até ao momento, quase 100% dos funcionários trabalham com as condições necessárias e adequadas.",
+   "target": "1) Monitorização para assegurar a implementação do MAPA Pessoal; 2) manter a qualidade da linha de base de 2026; 3) manter a qualidade da linha de base de 2026; 4) Manter a qualidade da linha de base de 2026.",
+   "amounts": {
+    "10": 62017.0,
+    "20": 17100.0
+   },
+   "page": 1158
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1160208"
+   ],
+   "indicator": "\"1) % / # de processos de aprovisionamento concluídos em conformidade com a lei, os requisitos e os prazos 2) % / # de contratos e de aditamentos contratuais preparados/processados em conformidade com os requisitos e os prazos 3) % / # de pedidos de pagamento processados dentro do prazo, 4) % / # de PO concluídas dentro do prazo, 5) % / # de (R&I) executadas dentro do prazo e em conformidade com os requisitos.\"",
+   "baseline": "1) Em 2026, 80% dos processos de aprovisionamento são concluídos dentro do prazo; 2) em 2026, 80% dos contratos são executados dentro do prazo; 3) em 2026, 100% dos processos de alteração contratual são efetuados com base em justificação e em conformidade com a legislação em vigor; 4) em 2026, 80% dos processos de criação de ordens de compra (PO) para pagamento decorrem dentro do prazo; 5) em 2026, 90% da execução das R&I decorre dentro do prazo e em conformidade com os contratos.",
+   "target": "1) em 2027, 100% dos processos de aprovisionamento concluídos dentro do prazo; 2) 100% dos contratos executados dentro do prazo; 3) manutenção da qualidade da linha de base de 2026; 4) em 2027, 100% das PO criadas dentro do prazo; 5) em 2027, 100% da execução de R&I dentro do prazo e em conformidade com o contrato.",
+   "amounts": {
+    "10": 59668.0,
+    "20": 13000.0
+   },
+   "page": 1158
+  },
+  {
+   "code": "5100221",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão financeira",
+   "div": [
+    "1160207"
+   ],
+   "indicator": "1,)% das necessidades de administração e finanças do MPIE realizadas, 2,)Taxa de execução de orçamento anual alocado, 3,)% de Relatótios de Execução Financeira e Balances Trimestrais submetidos dentro dos prazos establecidos, 4,)",
+   "baseline": "1,)Realização de todas as atividades de administração e finanças, bem como avaliação e monitorização do Plano de Ação Anual e do Orçamento, 2,) Mais do 95% do Orçameto alocato executado, 3,) 100% dos Relatórios e Estados Financeiros",
+   "target": "1,) Necessidades de administração e finanças do MPIE satisfeitas a 100%, 2,) Execução de ate 100% do OGE com eficácia e aficiancia, 3,)100% dos relatórios e esyados Financeiros entrgues nos prazos establecidos e com a qualidade",
+   "amounts": {
+    "10": 106900.0,
+    "20": 572435.0
+   },
+   "page": 1158
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "1160209"
+   ],
+   "indicator": "\"Atas das reuniões; comunicados, notícias nos órgãos de comunicação social e publicações nas redes sociais sobre a atividade do Ministério, relatórios, pareceres e informações; Relatórios de actividades do MPIE. \"",
+   "baseline": "1) Em 2026, 100% dos bens patrimoniais do Estado encontram-se registados e inventariados; 2) em 2026, 10% dos requerentes de viaturas reclamam da indisponibilidade de viaturas quando delas necessitam, apesar de terem apresentado previamente o pedido ou informado a DNLP; 3) em 2026, 0% das viaturas avariadas ficam sem ser comunicadas ao Património do Estado e levadas à oficina; 4) em 2026, 20% da execução de R&I é realizada com atraso e em desconformidade com o contrato.",
+   "target": "1) Em 2027, manter a qualidade do ponto de partida de 2026; 2) 0% de reclamações relativas a faltas; 3) manter a qualidade de 2026; 4) 100% de execução de R&I dentro dos prazos e nos termos do contrato.",
+   "amounts": {
+    "10": 90105.0,
+    "20": 473566.0
+   },
+   "page": 1159
+  },
+  {
+   "code": "5105101",
+   "programme": "510",
+   "subprogramme": "51051",
+   "subprogramme_name": "Coordenar e avaliar as atividades dos órgãos e serviços do Ministério",
+   "name": "Apoiar o Ministro no exercício das suas funções.",
+   "div": [
+    "1160101"
+   ],
+   "indicator": "\"% de reuniões do Conselho Consultivo realizadas; grau de disseminação das atividades do Ministério junto da Sociedade Civil e do setor público; % de",
+   "baseline": "\"Trabalho realizado em 2026 \"",
+   "target": "\"100% das reuniões do Conselho Consultivo realizadas; Actividade do Ministério cabalmente coberta por comunicados, notícias nos",
+   "amounts": {
+    "10": 174125.0,
+    "20": 61648.0
+   },
+   "page": 1159
+  },
+  {
+   "code": "9803017",
+   "programme": "980",
+   "subprogramme": "98030",
+   "subprogramme_name": "Declaração de Maubisse",
+   "name": "Eloborar o instrumento para monitorizar e assegurar os dados coletados da implementação do género nas infraestruturas",
+   "div": [
+    "1160701"
+   ],
+   "indicator": "% Secretarido equldade gênero e inclusão social estabelecido e desempenhas as suas funsões em coordenação com entidades relevantes. % regras e procedimentos infraestructuras públicas foram desssiminados aos mulheres empesarial em",
+   "baseline": "Termo da referências (ToR) do secretariado IGIS/GESI no setor infraesraesrtucturas aprovada quarda parte legal elaborar deliberação para o estabelecimento do secretariado.",
+   "target": "• 100% membro AEMTL participam no workshop e elevam os seus conhecimentos sobre regras e procedimentos aplicavéis nas infraestructuras públicas. • Medidas, farramentas e paraceres técnicas para",
+   "amounts": {
+    "10": 15300.0
+   },
+   "page": 1160
+  },
+  {
+   "code": "9840102",
+   "programme": "984",
+   "subprogramme": "98401",
+   "subprogramme_name": "Desenvolver a política de Ordenamento Território",
+   "name": "Coordenar e apoiar as Direcções Nacionais",
+   "div": [
+    "1160301"
+   ],
+   "indicator": "Percentagem de funcionamento institucional da Direção-Geral e das três Direções Nacionais, de acordo com a estrutura orgânico-funcional aprovada; Estado de aprovação da nova Lei de Bases do Ordenamento do Território (LBOT); Percentagem de desenvolvimento e aprovação do novo Regime Jurídico dos Instrumentos de Planeamento Territorial; Percentagem de desenvolvimento e aprovação do Regime Jurídico das Zonas Especiais de Proteção Ambiental e Ecológica (ZEPAE).",
+   "baseline": "\" Decreto-Lei N.º 46/2023, de 28 de Julho, orgânica do IX Governo Constitucional; Estrutura orgânico-funcional da DGOT estabelecida pelo Diploma Ministerial n.º 26/MPIE/III/2024, encontrando-se em fase de consolidação operacional; Projeto de revisão da Lei de Bases do Ordenamento do Território (Lei nº6/2017, de 19 de Abril) preparado, encontrando-se em tramitação para aprovação; Regime Jurídico dos Instrumentos de Planeamento Territorial atualmente em vigor (Decreto- Lei n.º 35/2021, e 29 de Dezembro), encontrando-se em revisão; Diploma do Regime Jurídico das Zonas Especiais de Proteção Ambiental e Ecológica (ZEPAE) em preparação, sem aprovação final.\"",
+   "target": "Direção-Geral e as três Direções Nacionais a funcionar plenamente (100%), assegurando o cumprimento das respetivas competências; Nova Lei de Bases do Ordenamento do Território aprovada; Revisão concluída (100%) e novo Regime Jurídico dos Instrumentos de Planeamento Territorial aprovado; Desenvolvimento concluído (100%) e diploma das Zonas Especiais de Proteção Ambiental e Ecológica (ZEPAE) aprovado.",
+   "amounts": {
+    "10": 164690.0,
+    "20": 19520.0
+   },
+   "page": 1162
+  },
+  {
+   "code": "9840204",
+   "programme": "984",
+   "subprogramme": "98402",
+   "subprogramme_name": "Desenvolvimento e coordenação da execução dos instrumentos de planeamento urbano",
+   "name": "Desenvolver estudos de apoio ao planeamento urbano",
+   "div": [
+    "1160302"
+   ],
+   "indicator": "Número de estudos técnicos de apoio ao planeamento urbano concluídos.",
+   "baseline": "Os estudos técnicos previstos para apoiar o desenvolvimento dos instrumentos de planeamento urbano em 2027 ainda não foram iniciados, considerando como ponto de partida estudos semelhantes desenvolvidos em anos anteriores e os Planos Municipais de Ordenamento do Território entretanto desenvolvidos e aprovados.",
+   "target": "Pelo menos dois estudos técnicos de apoio ao planeamento urbano concluídos e disponíveis para apoiar a elaboração dos instrumentos de planeamento urbano.",
+   "amounts": {
+    "20": 21206.0
+   },
+   "page": 1163
+  },
+  {
+   "code": "9840205",
+   "programme": "984",
+   "subprogramme": "98402",
+   "subprogramme_name": "Desenvolvimento e coordenação da execução dos instrumentos de planeamento urbano",
+   "name": "Desenvolver e consolidar Instrumentos de planeamento urbano",
+   "div": [
+    "1160302"
+   ],
+   "indicator": "Percentagem de desenvolvimento dos instrumentos de planeamento urbano previstos no Plano Anual de Atividades.",
+   "baseline": "Relatório Técnico (Caracterízação e Diagnóstico Territorial; Modelo de Organização e Desenvolvimento Urbano), Relatório Ambiental, Programa de Ação e Plano de Financiamento, Regulamento e Plantas de Zonamento e de Condicionantes dos Planos de Uso do solo de Gleno e Baucau; Planos Municipais de Ordenamento do Território de Viqueque e Lautem; Documentos de trabalho do Plano Diretor Urbano de Díli (LAPI, 2022); Documentos de trabalho do Plano de Urbanização de Díli (Gertil, 2006).",
+   "target": "\"Conclusão (100%) dos instrumentos de planeamento urbano para Baucau e Gleno; Desenvolvimento de pelo menos 50% dos instrumentos de planeamento urbano para Lospalos, Viqueque e Manatuto; Desenvolvimento da componente de caracterização e diagnóstico territorial para cidade de Dili.\"",
+   "amounts": {
+    "10": 50964.0,
+    "20": 44070.0
+   },
+   "page": 1163
+  },
+  {
+   "code": "9840206",
+   "programme": "984",
+   "subprogramme": "98402",
+   "subprogramme_name": "Desenvolvimento e coordenação da execução dos instrumentos de planeamento urbano",
+   "name": "Prestar apoio administrativo, logístico e técnico",
+   "div": [
+    "1160302"
+   ],
+   "indicator": "% de cobertura do apoio administrativo, logístico e",
+   "baseline": "Apoio administrativo e logístico prestado até 2026",
+   "target": "100% de cobertura do apoio administrativo, logístico e",
+   "amounts": {
+    "10": 47290.0
+   },
+   "page": 1163
+  },
+  {
+   "code": "9840301",
+   "programme": "984",
+   "subprogramme": "98403",
+   "subprogramme_name": "Assegurar planear e propor a política nacional de ordenamento do território e desenvolvimento do território",
+   "name": "Desenvolver estudos de apoio ao Planeamento Territorial",
+   "div": [
+    "1160303"
+   ],
+   "indicator": "\"Número de estudos técnicos de apoio ao planeamento municipal concluídos; Número de ações de formação e assistência técnica em planeamento territorial realizadas para as autoridades municipais. \"",
+   "baseline": "\" Os estudos técnicos previstos para apoiar o desenvolvimento dos instrumentos de planeamento territorial em 2027 ainda não foram iniciados, considerando como ponto de partida estudos semelhantes desenvolvidos em anos anteriores e os Planos territoriais (PNOT-TL e PMOTs) entretanto desenvolvidos e aprovados. Programas de formação, apresentações e materiais de apoio desenvolvidos e utilizados em ações de formação e assistência",
+   "target": "\"Pelo menos dois estudos técnicos de apoio ao planeamento territorial concluídos e disponíveis para apoiar a elaboração dos PMOT. Uma ação de formação e assistência técnica em planeamento territorial realizada para as autoridades municipais de cada um dos municípios de Manufahi, Covalima, Manatuto e Liquiçá (4 ações no total). \"",
+   "amounts": {
+    "10": 105338.0,
+    "20": 5000.0
+   },
+   "page": 1164
+  },
+  {
+   "code": "9840401",
+   "programme": "984",
+   "subprogramme": "98404",
+   "subprogramme_name": "Promover e difundir a informação Geográfica e Cartográfica",
+   "name": "Recolher, organizar, gerir, produzir e disseminar informação geoespacial, geodésica e cartográfica",
+   "div": [
+    "1160305"
+   ],
+   "indicator": "Quantidade, qualidade e abrangência da informação geoespacial, geodésica e cartográfica de base e temática recolhida, organizada, produzida e disseminada.",
+   "baseline": "Informação geoespacial produzida no âmbito do Projeto LiDAR e restante informação geoespacial, geodésica e cartográfica recolhida, organizada e disponibilizada até 2026.",
+   "target": "Informação geoespacial, geodésica e cartográfica de base e temática relevante recolhida, organizada, produzida e disseminada para todos os setores e para todo o território nacional.",
+   "amounts": {
+    "10": 127735.0,
+    "20": 34504.0
+   },
+   "page": 1165
+  },
+  {
+   "code": "9840402",
+   "programme": "984",
+   "subprogramme": "98404",
+   "subprogramme_name": "Promover e difundir a informação Geográfica e Cartográfica",
+   "name": "Instalar e operar o Centro Nacional de Informação Geoespacial (CNIG)",
+   "div": [
+    "1160305"
+   ],
+   "indicator": "Percentagem de instalação e operacionalização doCNDG; Percentagem dos serviços planeados do CNDG disponibilizados aos utilizadores",
+   "baseline": "\"CNDG instalado e operacional em aproximadamente 90%, disponibilizando parte dos serviços previstos \"",
+   "target": "CNDG instalado e plenamente operacional (100%), disponibilizando 100% dos serviços planeados.",
+   "amounts": {
+    "20": 16823.0,
+    "50": 67500.0
+   },
+   "page": 1165
+  },
+  {
+   "code": "9840404",
+   "programme": "984",
+   "subprogramme": "98404",
+   "subprogramme_name": "Promover e difundir a informação Geográfica e Cartográfica",
+   "name": "Desenvolver Legislação para a regulamentação dos dados geoespaciais e da cartografia oficial",
+   "div": [
+    "1160305"
+   ],
+   "indicator": "Percentagem da legislação e regulamentação prioritária sobre informação geoespacial, cartografia e geodesia desenvolvida, aprovada e publicada",
+   "baseline": "Projetos de diplomas legais sobre informação geoespacial e estabelecimento de Agência Nacional de Informação Geoespacial concluídos, regulamentação para a produção cartográfica e para a utilização e gestão do Referencial Geodésico Nacional",
+   "target": "Diplomas legais e regulamentação prioritária sobre informação geoespacial, cartografia, geodesia e utilização e gestão do Referencial Geodésico Nacional desenvolvidos, aprovados e publicados.",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1165
+  },
+  {
+   "code": "A280101",
+   "programme": "A28",
+   "subprogramme": "A2801",
+   "subprogramme_name": "Planeamento Estratégico Sócio-económico",
+   "name": "Propor, coordenar e elabora as estrategias de desenvolvimento estrategico de medio e longo prazo em coordenacao com entidades relevantes",
+   "div": [
+    "1160701"
+   ],
+   "indicator": "o N0 de estratégias de desenvolvimento estratégico de médio e longo prazo elaborada e implementada. o N0 planos desenvolvimento sectoriais elaboradas, aprovadas e implementadas. o N0 de paracer técnicas relativas implementaçao",
+   "baseline": "• o relatório de avaliação do PED e o relatório da monitoriação do PED 2011- 2030 aprovada e publicada. • o plano médio prazo do governo 2027-2030 aprovada e publicada. • o roteiro de",
+   "target": "• 4-6 projeitos de estudo de viabilidade relativas projeitos estratêgicos entre implementada e concluída. • a lei planeamento nacional aprovado pelo parlamento nacional e está em vigor. • Estudos sobre",
+   "amounts": {
+    "10": 237144.0,
+    "20": 62270.0
+   },
+   "page": 1166
+  },
+  {
+   "code": "A280102",
+   "programme": "A28",
+   "subprogramme": "A2801",
+   "subprogramme_name": "Planeamento Estratégico Sócio-económico",
+   "name": "Elaborar o plano estrategico do MPIE inclui develvolver o o sistema electronico Strategic Planing and Investiment Management Information System (SPIMIS)",
+   "div": [
+    "1160701"
+   ],
+   "indicator": "100% desenvolvida o Sistema online Strategic Planning and investment Management System (SPMIS).",
+   "baseline": "O sistema Strategic Planing and Investiment Management Information System (SPIMIS) dezenvolvida.",
+   "target": "Formaçâo aos pontos focais de todas linhas ministerias sobre utilizão do sistema SPMIS.",
+   "amounts": {
+    "10": 56820.0,
+    "20": 19255.0
+   },
+   "page": 1167
+  },
+  {
+   "code": "A280201",
+   "programme": "A28",
+   "subprogramme": "A2802",
+   "subprogramme_name": "Investimento Estratégico",
+   "name": "Estabelecer a Unidade de Gestão do Projeto do Cabo de Fibra Óptica para a ligação de TL através de cabo internacional de fibra óptica",
+   "div": [
+    "1160501"
+   ],
+   "indicator": "Unidade de gestão de projetos estabelecida e a desempenhar as suas funções; Projecto de cabo submarinho implementado segundo o contrato celebrado",
+   "baseline": "Termos de Referência para unidade de gestão de projecto concluídos e aprovados.",
+   "target": "100% da Unidade de gestão de projectos estabelecida e a desempenhar as suas funsões; % pagamento ao projecto do cabo submarinho realizado segundo percentagem de",
+   "amounts": {
+    "10": 55450.0
+   },
+   "page": 1167
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "023.0.3",
+   "statement": "Fortalecimento dos sistemas de financiamento do desenvolvimento e de apoio ao investimento público através da criação de um Banco Nacional de Desenvolvimento, permitindo um financiamento mais eficaz e sustentável de projetos estratégicos de desenvolvimento.&#13;&#10;",
+   "indicator": "\"\"\"1) Quadro legal e institucional do BNDTL estabelecido(Sim/Não; por fases) 2) Percentagem (%) de execução do plano de ação/etapas de criação do BNDTL 3) Mecanismo de coordenação interministerial aprovado e operacionalizado (Sim/Não) \"",
+   "baseline": "\"1) 0% de execução das etapas do projeto do BNDTL 2) Ausência de enquadramento legal e institucional aprovado para o BNDTL 3) Acordos *ad hoc* e desarticulados de financiamento do desenvolvimento\"",
+   "target": "\"1) Quadro jurídico e institucional do BDTL totalmente aprovado e estabelecido 2) Mecanismo de coordenação interministerial (MPIE– MoF–MCAE) aprovado e operacional 3) 100% das etapas do projeto concluídas e BNDTL pronto para a fase de operacionalização\"",
+   "page": 1156
+  },
+  {
+   "kind": "output",
+   "code": "02325.0.0",
+   "statement": "Concluída e validada a conceção técnica, jurídica e institucional para a criação do Banco Nacional de Desenvolvimento de Timor- Leste, incluindo os mecanismos de coordenação interministerial.&amp;#13;&amp;#10;",
+   "indicator": "\"1) % de conclusão do pacote de conceção técnica do BNDTL 2) Elaboração e validação do quadro jurídico do BNDTL (Sim/Não) 3) Aprovação dos TdR interministeriais (Sim/Não) \"",
+   "baseline": "\"Apenas referências conceptuais (IX Programa do Governo, PED) Sem documentos técnicos ou jurídicos validados\"",
+   "target": "\"100% do projeto técnico e institucional do BNDTL concluído Estrutura jurídica preliminar preparada e validada Termos de referência interministeriais aprovados e operacionais\"",
+   "page": 1156
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% de implementação do plano de melhoria e gestão institucional; % de cumprimento das regras e princípios da administração pública",
+   "baseline": "Funcionamento deficiente e carência de recursos do Ministério",
+   "target": "Implementação de 100% do plano de melhoria e gestão institucional; cumprimento a 100% das regras e princípios da administração pública",
+   "page": 1156
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% Implementação do plano anual de inspeção, fiscalização e auditoria; %",
+   "baseline": "\"Funcionamento deficiente e carência de recursos do Ministério \"",
+   "target": "\"Implementação a 100% do plano anual de inspeção, fiscalização e auditoria; Implementação a 100% do",
+   "page": 1156
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.7",
+   "statement": "Unidades e serviços do MPIE a funcionar com eficiência e eficácia; Melhorar os índices de transparência e responsabilização no funcionamento do MPIE; Promover uma preparação e execução adequadas do orçamento anual do MPIE",
+   "indicator": "1) #. regras e procedimentos internos para garantir transparencias e responsabilizacao no funcionamneto do MPIE dezenvolvidos, aprovados e implementados 2) #. regras e procedimentos complementares (SOP) internos para facilitar preparacao orcamental e ezecucao orcamento dezenvolvidos, aprovados e implementados",
+   "baseline": "1) Em 2026, existem procedimentos internos e POP complementares desenvolvidos, aprovados e implementados; 2) em 2026, as unidades e os serviços desempenham e executam o orçamento na ordem de 95%; 3) em 2026, cerca de 30% das unidades e dos serviços solicitam apoio jurídico de natureza ad hoc.",
+   "target": "1) manter a implementação dos procedimentos, das regras e dos Procedimentos Operacionais Padrão (SOP) já existentes ou que venham a ser criados de acordo com as necessidades; 2) as Unidades executam os respetivos orçamentos a 100%; 3) apenas 15% das Unidades solicitam apoio jurídico de natureza ad hoc.",
+   "page": 1157
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"% de implementação do plano anual de administração e finanças \"",
+   "baseline": "\"Plano de administração e finanças para 2026 \"",
+   "target": "Implementação a 100% do plano anual de administração e finanças",
+   "page": 1158
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.2",
+   "statement": "Desenvolvimento sustentavel e diversificação da economia; melhoria da qualidade de vida da população.",
+   "indicator": "\"% de grau de definição, aprovação e implementação das grandes opões estratégicas para o desenvolvimento nacional \"",
+   "baseline": "\"Plano Estratégico de Desenvolvimento 2011-2030 (PED-TL), Plano de recuperação económica, planos estratégicos sectoriais \"",
+   "target": "\"Grandes opões estratégicas para o desenvolvimento nacional concebidas, aprovadas e em implementação \"",
+   "page": 1159
+  },
+  {
+   "kind": "output",
+   "code": "51051.0.0",
+   "statement": "Unidades e serviços do MPO a funcionar com eficiência e eficácia",
+   "indicator": "1) % de necessidades de apoio jurídico, de disseminação de informação, de secretariado e de apoio à prossecução dos objetivos e metas do programa do Governo satisfeitas; % de reuniões do Conselho consultivo realizadas",
+   "baseline": "\"Trabalho realizado em 2026 \"",
+   "target": "Necessidades de apoio jurídico, de disseminação de informação, de secretariado e de apoio à prossecução dos objetivos e metas do programa do Governo supridas a 100%; realização de 100% das reuniões do Conselho Consultivo.",
+   "page": 1159
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "1) % de participação das mulheres rurais em programas de desenvolvimento económico apoiados pelo Governo 2) % dos compromissos prioritários da Declaração de Maubisse implementados (Fase III) 3) Número de setores/programas que integram os compromissos de Maubisse nos instrumentos de planeamento e investimento",
+   "baseline": "100% (Declaração de Maubisse fase 2, Estudos)",
+   "target": "30% participação das mulheres rurais no desenvolvimento económico do pais.",
+   "page": 1160
+  },
+  {
+   "kind": "output",
+   "code": "98030.0.0",
+   "statement": "Promoção efectiva da participação das mulheres rurais no desenvolvimento económico do país e eliminação de todas as formas de discriminação contra as mulheres rurais",
+   "indicator": "1) % do plano de ação da Fase III de Maubisse implementado (anual) 2) Número de ministérios/programas que apresentam relatórios anuais sobre os compromissos de Maubisse 3) Relatório anual de progresso de Maubisse produzido e publicado (Sim/Não) 4) Número de instrumentos políticos ou de planeamento atualizados para refletir os compromissos de Maubisse",
+   "baseline": "100% (Declaração de Maubisse fase 2, Estudos)",
+   "target": "100%",
+   "page": 1160
+  },
+  {
+   "kind": "outcome",
+   "code": "984.0.0",
+   "statement": "O ordenamento territorial e espacial é reforçado através de planos espaciais municipais aprovados, um sistema operacional de endereçamento (toponímia e numeração) e a integração sistemática de critérios de sustentabilidade e ambientais no ordenamento espacial.",
+   "indicator": "\"1) Percentagem de municípios abrangidos por Planos Municipais de Ordenamento do Território (PMOT) aprovados ou em desenvolvimento 2) Percentagem de capitais municipais abrangidoas por Planos de Urbanização (Planos de Uso do Solo) aprovados ou em desenvolvimento 3) Percentagem de desenvolvimento do quadro jurídico e regulamentar prioritário do ordenamento do território e da informação geoespacial 4) Percentagem de operacionalização do Sistema Nacional de Informação Geoespacial através do Centro Nacional de Dados Geoespaciais (CNDG) \"",
+   "baseline": "Estrutura institucional da DGOT estebelecida e operacional; Plano Nacional de Ordenamento do Território (PNOT-TL) e vários Planos Municipais de Ordenamento do Território (PMOT) desenvolvidos ou em desenvolvimento; instrumentos de planeamento urbano (Planos de Uso do Solo) em diferentes fases de elaboração; Informação geoespacial, geodésica e cartográfica organizada e disponibilizada e o Centro Nacional de Dados Geoespaciais instalado e operacional, mantendo-se por concluir parte do quadro jurídico e regulamentar prioritário e dos instrumentos de planeamento previstos",
+   "target": "Direção-Geral e Direções Nacionais plenamente operacionais; quadro jurídico prioritário do ordenamento do território e da informação geoespacial desenvolvido, aprovado e publicado; estudos técnicos estratégicos concluídos; instrumentos de planeamento territorial de âmbito nacional, municipal e urbano desenvolvidos, aprovados e em implementação em todo o território nacional; Centro Nacional de Dados Geoespaciais plenamente operacional e disponibilizando a totalidade dos serviços previstos; informação geoespacial, geodésica e cartográfica de base e temática relevante produzida, organizada, gerida e amplamente disseminada para apoio à governação, ao desenvolvimento e à gestão sustentável do território.",
+   "page": 1161
+  },
+  {
+   "kind": "output",
+   "code": "98401.0.0",
+   "statement": "São desenvolvidos, aprovados e divulgados instrumentos jurídicos",
+   "indicator": "\"1) Percentagem de funcionamento institucional da Direção-Geral e das",
+   "baseline": "\"Direção-Geral e Direções Nacionais com a estrutura orgânico-funcional",
+   "target": "\"Direção-Geral e as três Direções Nacionais a funcionar plenamente",
+   "page": 1161
+  },
+  {
+   "kind": "output",
+   "code": "98402.0.0",
+   "statement": "Os instrumentos de planeamento urbano para Díli e capitais municipais selecionadas são preparados/atualizados, consultados e adotados com orientações de zoneamento e investimento prontas para implementação.&amp;#13;&amp;#10;",
+   "indicator": "\"1) Número de estudos técnicos de apoio ao planeamento urbano concluídos. 2) Percentagem de desenvolvimento dos instrumentos de planeamento urbano previstos no Plano Anual de Atividades. \"",
+   "baseline": "Estudos técnicos para apoiar o desenvolvimento dos instrumentos de planeamento urbano desenvolvidos em anos anteriores; Planos Municipais de Ordenamento do Território desenvolvidos e aprovados; Relatório",
+   "target": "\"Pelo menos mais dois estudos técnicos de apoio ao planeamento urbano concluídos e disponíveis para apoiar a elaboração dos instrumentos de planeamento urbano; conclusão (100%) dos instrumentos de",
+   "page": 1162
+  },
+  {
+   "kind": "output",
+   "code": "98403.0.0",
+   "statement": "O quadro de implementação do Plano Nacional de Ordenamento do Território (PNOT) é consolidado e os planos espaciais municipais (Plano Municipal de Ordenamento do Território [PMOT]) são elaborados e aprovados para os municípios prioritários.&amp;#13;&amp;#10;",
+   "indicator": "\"1) Número de estudos técnicos de apoio ao planeamento territorial concluídos. 2) Número de ações de formação e assistência técnica em planeamento territorial realizadas para as autoridades municipais. 3) Percentagem de desenvolvimento dos Planos Municipais de Ordenamento do Território (PMOT) previstos no Plano Anual de Atividades\"",
+   "baseline": "Estudos técnicos para apoiar o desenvolvimento dos instrumentos de planeamento territorial desenvolvidos em anos anteriores; PNOT-TL e PMOTs desenvolvidos e aprovados;. Programas de formação, apresentações e materiais de apoio desenvolvidos e utilizados em ações de formação e assistência técnica anteriormente realizadas para autoridades municipais; Relatório de Caracterízação e Diagnóstico Territorial, Relatório do Modelo de Organização do território Municipal, Relatório Ambiental, Programa de Ação e Plano de Financiamento, Regulamento, Plantas de Ordenamento e de Condicionantes e Relatório do Plano para os PMOT desenvolvidos",
+   "target": "Pelo menos dois estudos técnicos de apoio ao planeamento territorial concluídos e disponíveis para apoiar a elaboração dos PMOT; uma ação de formação e assistência técnica em planeamento territorial realizada para as autoridades municipais de cada um dos municípios de Manufahi, Covalima, Manatuto e Liquiçá (4 ações no total); conclusão (100%) dos PMOT de Covalima, Manufahi, Aileu, Ainaro, Díli, Manatuto e Liquiçá",
+   "page": 1164
+  },
+  {
+   "kind": "output",
+   "code": "98404.0.0",
+   "statement": "O Centro Nacional de Informação Geoespacial (CNIG) está operacional com um geoportal funcional, conjuntos de dados nacionais prioritários e acordos de partilha de dados que apoiam o planeamento e a prestação de serviços.&amp;#13;&amp;#10;",
+   "indicator": "\"1) Quantidade, qualidade e abrangência da informação geoespacial, geodésica e cartográfica de base e temática recolhida, organizada, produzida e disseminada. 2) Percentagem de instalação e operacionalização do Centro Nacional de Dados Geoespaciais (CNDG). 3) Percentagem dos serviços previstos do CNDG disponibilizados aos utilizadores. 4) Percentagem da legislação e regulamentação prioritária sobre informação geoespacial, cartografia e geodesia desenvolvida, aprovada e publicada.\"",
+   "baseline": "Informação geoespacial , geodésica e cartográfica recolhida, organizada e disponibilizada até 2026; Centro Nacional de Dados Geoespaciais instalado e operacional em aproximadamente 90%, disponibilizando parte dos serviços previstos; Projetos de diplomas legais sobre informação geoespacial e estabelecimento de Agência Nacional de Informação Geoespacial concluídos, regulamentação para a produção cartográfica e para a utilização e gestão do Referencial Geodésico Nacional em preparação",
+   "target": "Informação geoespacial, geodésica e cartográfica de base e temática relevante recolhida, organizada, produzida e disseminada para todo o território nacional; Centro Nacional de Dados Geoespaciais plenamente instalado e operacional (100%), disponibilizando 100% dos serviços previstos; legislação e regulamentação prioritária sobre informação geoespacial, cartografia, geodesia e gestão do Referencial Geodésico Nacional desenvolvidas, aprovadas e publicadas.",
+   "page": 1165
+  },
+  {
+   "kind": "outcome",
+   "code": "A28.0.0",
+   "statement": "O plano nacional de desenvolvimento (PED) e o sistema de gestão do investimento público são reforçados, garantindo que os projetos estratégicos sejam selecionados, monitorizados e avaliados utilizando critérios transparentes para melhorar a entrega pontual, dentro do orçamento e com qualidade dos investimentos públicos.&#13;&#10;",
+   "indicator": "\"1) Revisão do PED concluída e aprovada (Sim/Não + data) 2) Percentagem de projetos estratégicos avaliados utilizando critérios padronizados (% de projetos com avaliação documentada) 3) % de projetos de infraestruturas concluídos dentro do prazo e do orçamento 4) % de melhoria nos padrões de qualidade dos projetos de infraestruturas 5) % de procedimentos de aquisição concluídos dentro dos prazos e orçamentos previstos\"",
+   "baseline": "Programa do IX Governo Constitucional; documentos de política sectoriais; PED 2011-2030; relatórios do trabalho do PED reajustado; relatórios do Fundo de Infraestruturas (FI) e linhas ministeriais",
+   "target": "Conclusão e aprovação do novo PED, após revisão adequada; Acompanhamento e monitorização regular da implementação do novo PED; Processos de Planeamento, selecção, monitorização e avaliação dos projectos estratégicos a funcionar em pleno, permitindo maximizar o impacto socioeconómico do investimento público",
+   "page": 1166
+  },
+  {
+   "kind": "output",
+   "code": "A2801.0.0",
+   "statement": "Plano de Desenvolvimento Estratégico (PED) revisto e um Quadro Integrado de Planeamento e Investimento Estratégico desenvolvido, aprovado e operacionalizado.",
+   "indicator": "Quadro Planeamento Integrado e Investimento Estratégico elaborada e Implementada.",
+   "baseline": "PED 2011-2030; Objectivo Desenvolvimento Sustentável (ODS); Programa do Goveno; Plano quiquinal linhas ministerias. Quandro de planeamento médio e longo prazo",
+   "target": "100% Quadro Planeamento Integrado e Investimento Estratégico elaborada e Implementada.",
+   "page": 1166
+  },
+  {
+   "kind": "output",
+   "code": "A2802.0.0",
+   "statement": "Um sistema padronizado de avaliação e seleção de projetos estratégicos está em funcionamento, apoiado por um pipeline de investimentos plurianual e um sistema de monitorização.",
+   "indicator": "\"1) Manual de avaliação aprovado (Sim/Não) 2) % de projetos estratégicos avaliados utilizando o método padrão 3) Pipeline plurianual produzido e atualizado anualmente (Sim/Não) 4) Projetos estratégicos monitorizados e avaliados com resultados publicados\"",
+   "baseline": "Literatura internacional sobre o processo de selecção de projectos de investimento público, metodologias de monitorização e avaliação de projectos, sistemas de informação para planeamento, monitorização e avaliação de projectos; Listas de projectos de investimento público de anos anteriores; relatórios do Fundo de Infraestruturas (FI) e linhas ministeriais",
+   "target": "Conclusão (100%) de um manual de apoio à selecção de projectos estratégicos de investimento público; Conclusão (100%) do Plano Anual de Investimento Estratégico para 2025; Conclusão (100%) de programa plurianual de investimento público; Conclusão (100%) da metodologia para a monitorização e avaliação de projectos estratégicos de investimento público; Conclusão (100%) da concepção e da instalação do sistema de informação; Alguns projectos estratégicos de investimento público monitorizados, avaliados e inseridos no sistema de informação",
+   "page": 1167
+  }
+ ]
+}

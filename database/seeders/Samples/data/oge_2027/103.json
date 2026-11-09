@@ -1,0 +1,460 @@
+{
+ "year": 2027,
+ "code": "103",
+ "name": "Serviço Nacional de Ambulâncias e Emergência Médica",
+ "abbr": "SNAEM",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   965,
+   968
+  ]
+ },
+ "units": [
+  {
+   "code": "SNAEM",
+   "div": "1030101",
+   "name": "Serviço Nacional de Ambulâncias e Emergência Médica",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "529": "Cuidados de saúde secundários e terciários"
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "% de frequência serviço auditoria, Inspeção, fiscalização e monitorização e avaliação",
+   "baseline": "(100%) 4 vezes por ano",
+   "target": "100%",
+   "amounts": {
+    "20": 22000.0
+   },
+   "page": 965
+  },
+  {
+   "code": "5100130",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Garantia padrão de saúde e controle de qualidade",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "% de politica desenvolver e implementar",
+   "baseline": "50%",
+   "target": "100%",
+   "amounts": {
+    "20": 22000.0
+   },
+   "page": 965
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. % Execucao Orcamento mensal, trimesteral e anual 2. % Servico administracao praticar o gestao de documentacao e arquivo conforme o adrao do Ministerio da Saude 3. % pedido ao apoio de logistica inclui o combustivel responder ao tempo",
+   "baseline": "1. 95% 2. N/A 3. 75%",
+   "target": "1.100% 2. 50% 3. 100%",
+   "amounts": {
+    "20": 58721.0
+   },
+   "page": 965
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. % do bens patrimoniais estado do SNAEM codificados e o inventaria atualizado regularmente 2. % Equipamento de Informatica e tecnologia, Ar- condicionario e os Mobiliarios bem funcionado",
+   "baseline": "1. N/A 2. N/A",
+   "target": "1. 50% 2. 75%",
+   "amounts": {
+    "20": 23160.0
+   },
+   "page": 965
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. % Os funsionarios de saude que obter os seus direitos ao progressao baseando dos",
+   "baseline": "1.25% 2. 50% 3. 103 Pessoas",
+   "target": "1. 75% 2. 75% 3. 100%",
+   "amounts": {
+    "10": 338800.0,
+    "20": 20000.0
+   },
+   "page": 965
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. # Profisionais de saude que obter o certificacao de Quidados Pre-Hospitalar (BLS no BEC) 2. % profesionais de Saude que obter o pacote de formacoes mandatorio",
+   "baseline": "1. N/A 2. N/A",
+   "target": "1. 10 pessoas, 6 (BLS, BEC, ALS, PHTLS, BMOC/EMOC, PALS) 2. 50%",
+   "amounts": {
+    "20": 93240.0
+   },
+   "page": 966
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. % atividades aprovisionamento ezekutar na tempo 2. % execucoes dos contratos regularmente",
+   "baseline": "1. 50% 2. 50%",
+   "target": "1. 75% 2. 75%",
+   "amounts": {
+    "20": 45860.0
+   },
+   "page": 966
+  },
+  {
+   "code": "5100232",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de Veículos Específicos à Saúde",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. % dos veiculos ambulancia disponivel em território Nacional% dos veiculos ambulancia disponivel em território Nacional 2. # Numeru Veículos de operasionais funcionam bem em todas as unidades de SNAEM",
+   "baseline": "1. 46% 2. 8",
+   "target": "1. 62% 2. 8",
+   "amounts": {
+    "20": 180000.0
+   },
+   "page": 966
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "# números de coordenação com Parceria",
+   "baseline": "4",
+   "target": "4",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 966
+  },
+  {
+   "code": "5291601",
+   "programme": "529",
+   "subprogramme": "52916",
+   "subprogramme_name": "Serviço Ambulançia",
+   "name": "Servisu Ambulansia Terestes",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. # Prontidão Unidade Ambulância terestes em todos território 2. # Total numeru de pasiente necesita para emcaminhamento via terestes atendido",
+   "baseline": "1. # 30 (25 Diak, 5 At Bele hadia) Carro de ambulancia 2. Nu. Pasiente 12,454 Pessoas",
+   "target": "1. 40 carro de ambulancia em territorio Nacional 2. 12454 Pessoas",
+   "amounts": {
+    "10": 789153.0,
+    "20": 833220.0,
+    "40": 350000.0
+   },
+   "page": 967
+  },
+  {
+   "code": "5291602",
+   "programme": "529",
+   "subprogramme": "52916",
+   "subprogramme_name": "Serviço Ambulançia",
+   "name": "Servico Ambulancia Aero",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. # Prontidão Unidade Ambulância Aero em todos território 2. # Total Numeru de pasiente necesita para encaminhar via Aero atendido",
+   "baseline": "1. # MAF (2) 2. Nu. Pasiente 228 Pessoas",
+   "target": "1. 1 2. 228 Pessoas",
+   "amounts": {
+    "20": 74485.0,
+    "30": 259400.0
+   },
+   "page": 967
+  },
+  {
+   "code": "5291603",
+   "programme": "529",
+   "subprogramme": "52916",
+   "subprogramme_name": "Serviço Ambulançia",
+   "name": "Servico Ambulancia Maritima",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. # de prontidão Unidade Ambulância Maritima para atender encaminhamento pasiente de Atauro e RAEOA 2. #Total Numeru de pasiente necesita para encaminhar via Maritima atendido",
+   "baseline": "1. 1 2. Nu. Pasiente 89 Pessoas",
+   "target": "1. 1 2. 89 Pessoas",
+   "amounts": {
+    "20": 90550.0
+   },
+   "page": 967
+  },
+  {
+   "code": "5291702",
+   "programme": "529",
+   "subprogramme": "52917",
+   "subprogramme_name": "Servião Emergência Mádica",
+   "name": "Sistema comunicação Situação Urgência e Emergençia medica",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "1. # Nu.de Xamada em situação Urgência é Emergência atendido 2. Resposta da equipe de emergência medika aos casos de emergência (<1 horas) 3.% prontidao ekipamentos de komunikacão disponivel",
+   "baseline": "1. 10,331 Chamada 2. 15-20 minutus 3. 25%",
+   "target": "1. 12445 Chamadas 2. 10-15 minutus 3. 75%",
+   "amounts": {
+    "20": 38000.0,
+    "40": 35000.0
+   },
+   "page": 967
+  },
+  {
+   "code": "52917E1",
+   "programme": "529",
+   "subprogramme": "52917",
+   "subprogramme_name": "Servião Emergência Mádica",
+   "name": "Construction of medical emergency service buildings in Liquica and Lautem",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 340000.0
+   },
+   "page": 967
+  },
+  {
+   "code": "5291707",
+   "programme": "529",
+   "subprogramme": "52917",
+   "subprogramme_name": "Servião Emergência Mádica",
+   "name": "Prestar serviços integrados de gestão dos riscos de saúde pública e das catástrofes",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 53325.0
+   },
+   "page": 968
+  },
+  {
+   "code": "5291708",
+   "programme": "529",
+   "subprogramme": "52917",
+   "subprogramme_name": "Servião Emergência Mádica",
+   "name": "Prevenção e resposta a acidentes graves e catástrofes e a assistência à população",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 88325.0
+   },
+   "page": 968
+  },
+  {
+   "code": "5291709",
+   "programme": "529",
+   "subprogramme": "52917",
+   "subprogramme_name": "Servião Emergência Mádica",
+   "name": "Implementar o plano de contigência para emergências de saúde pública",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 34500.0
+   },
+   "page": 968
+  },
+  {
+   "code": "5291710",
+   "programme": "529",
+   "subprogramme": "52917",
+   "subprogramme_name": "Servião Emergência Mádica",
+   "name": "Estabelecimento do Centro Operacão Emergensia-Saude (H-EOC) em todo o território nacional",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 48325.0
+   },
+   "page": 968
+  },
+  {
+   "code": "5292401",
+   "programme": "529",
+   "subprogramme": "52924",
+   "subprogramme_name": "Fornecemento de produto Farmacêuticos e equipamentos médicos para serviãos Ambulância e emergência médica",
+   "name": "Equipar as ambulâncias com fornecimento de medicamentos e consumíveis",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 968
+  },
+  {
+   "code": "5292402",
+   "programme": "529",
+   "subprogramme": "52924",
+   "subprogramme_name": "Fornecemento de produto Farmacêuticos e equipamentos médicos para serviãos Ambulância e emergência médica",
+   "name": "Equipar as ambulâncias com equipamento médico",
+   "div": [
+    "1030101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0,
+    "40": 65000.0
+   },
+   "page": 968
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% de políticas e procedimentos são totalmente implementados",
+   "baseline": "50%",
+   "target": "100%",
+   "page": 965
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de relatórios trimestrais de implementação do plano anual",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 965
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% de Metas no Plano Anual alcançadas",
+   "baseline": "0%",
+   "target": "100%",
+   "page": 965
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "#Cooperação e parcerias",
+   "baseline": "4",
+   "target": "4",
+   "page": 966
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.0",
+   "statement": "São prestados cuidados hospitalares secundários e terciários seguros, eficazes e de alta qualidade, com um sistema de encaminhamento que funciona bem, a fim de reduzir a mortalidade evitável e melhorar a satisfação dos pacientes",
+   "indicator": "Taxa bruta de mortalidade no hospital para 40/1000, 5% Reduzir encaminhamento médico no extrangeiros",
+   "baseline": "45/1000",
+   "target": "Reduzir",
+   "page": 966
+  },
+  {
+   "kind": "output",
+   "code": "52916.0.0",
+   "statement": "Konservacao a provisão do serviço de Ambulância o território nacional",
+   "indicator": "% de assegurar Prontidão servico Ambulancia em território Nacional",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 967
+  },
+  {
+   "kind": "output",
+   "code": "52917.0.0",
+   "statement": "Asegura e garantia cobertura Servico Emergencia Medica o território nacional",
+   "indicator": "% assegurar e garantir cobertura Servico Emergencia Medica em Território Nacional",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 967
+  },
+  {
+   "kind": "output",
+   "code": "52917.0.1",
+   "statement": "1. Sistema de comunicação confiável e eficiente e resposta",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 967
+  },
+  {
+   "kind": "output",
+   "code": "52924.0.0",
+   "statement": "Garantir apoio de serviços de ambulancias e médicos de emergência de alta qualidade à população",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 968
+  }
+ ]
+}

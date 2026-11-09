@@ -1,0 +1,751 @@
+{
+ "year": 2027,
+ "code": "002",
+ "name": "Parlamento Nacional",
+ "abbr": "PN",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   16,
+   22
+  ]
+ },
+ "units": [
+  {
+   "code": "GPP",
+   "div": "0020101",
+   "name": "Gabinete do Presidente do Parlamento",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "PN",
+   "div": "0020102",
+   "name": "Parlamento Nacional",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "BP",
+   "div": "0020103",
+   "name": "Bancadas Parlamentares",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GSGP",
+   "div": "0020104",
+   "name": "Gabinete do Secretário Geral do Parlamento",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "C",
+   "div": "0020105",
+   "name": "Comissão A",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CB",
+   "div": "0020106",
+   "name": "Comissão B",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CC",
+   "div": "0020107",
+   "name": "Comissão C",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CD",
+   "div": "0020108",
+   "name": "Comissão D",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "C-09",
+   "div": "0020109",
+   "name": "Comissão E",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CF",
+   "div": "0020110",
+   "name": "Comissão F",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CG",
+   "div": "0020111",
+   "name": "Comissão G",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CFSNITL",
+   "div": "0020112",
+   "name": "Conselho de Fiscalização Sistema Nacional Inteligência de Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CCFP",
+   "div": "0020113",
+   "name": "Conselho Consultivo do Fundo Petrolífero",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GMPTL",
+   "div": "0020114",
+   "name": "Grupo de Mulheres Parlamentares de Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DGF",
+   "div": "0020115",
+   "name": "Direção de Gestão Financeira",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DAP",
+   "div": "0020116",
+   "name": "Direção de Apoio Parlamentar",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRHF",
+   "div": "0020117",
+   "name": "Direção Recursos Humanos e Formação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DC",
+   "div": "0020118",
+   "name": "Direção Comunicação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GAI",
+   "div": "0020120",
+   "name": "Gabinete de Auditoria Interna",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DRICP",
+   "div": "0020127",
+   "name": "Divisão de Relações Internacionais, Cooperação e Protocolo",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DA",
+   "div": "0020128",
+   "name": "Divisão de Aprovisionamento",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GEAP",
+   "div": "0020129",
+   "name": "Gabinete de Estudos e Assessoria Parlamentar",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DEA",
+   "div": "0020130",
+   "name": "Divisão de Expediente e Arquivo",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "031": "Fomentar às relações internacionais e de cooperação do parlamento",
+  "159": "Garantir o exercício das funções constitucionais do parlamento",
+  "160": "Promover uma cultura de abertura e transparência no parlamento",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "0310107",
+   "programme": "031",
+   "subprogramme": "03101",
+   "subprogramme_name": "Relações Internacionais",
+   "name": "Promoção do reforço dos laços diplomáticos parlammentares",
+   "div": [
+    "0020101",
+    "0020102",
+    "0020104"
+   ],
+   "indicator": "Encontros /conferências realizados",
+   "baseline": "Necessidade de manter e estabelecer laços diplomáticos",
+   "target": "Reforço dos laços diplomáticos alcançado",
+   "amounts": {
+    "20": 2048296.0,
+    "30": 40000.0
+   },
+   "page": 16
+  },
+  {
+   "code": "0310207",
+   "programme": "031",
+   "subprogramme": "03102",
+   "subprogramme_name": "Cooperação Internacional",
+   "name": "Implementação dos acordos de cooperação que visam o apoio técnico para o desenvolvimento das atividade parlamentares",
+   "div": [
+    "0020117"
+   ],
+   "indicator": "Acordos de Cooperação implementados",
+   "baseline": "Novos acordos de cooperação entre instituições homólogas e outras e o Parlamento Nacional",
+   "target": "Acordo de cooperação entre instituições homólogas e outrase o Parlamento Nacional em implementação",
+   "amounts": {
+    "20": 235438.0
+   },
+   "page": 16
+  },
+  {
+   "code": "1590107",
+   "programme": "159",
+   "subprogramme": "15901",
+   "subprogramme_name": "Fortalecimento da Representação Democrática",
+   "name": "Comunicação dinâmica e permanente entre Deputados e organizações da sociedade civil e público em geral",
+   "div": [
+    "0020103"
+   ],
+   "indicator": "Apoio às bancadas Parlamentares assegurado",
+   "baseline": "Realização das funções das bancadas parlamentares",
+   "target": "Apoio às Bancadas Parlamentares bem executado",
+   "amounts": {
+    "30": 876880.0
+   },
+   "page": 17
+  },
+  {
+   "code": "1590221",
+   "programme": "159",
+   "subprogramme": "15902",
+   "subprogramme_name": "Fortalecimento da Iniciativa e Fiscalização Legislativa",
+   "name": "Realização de pesquisas, estudos, pareceres técnicos, dossiers, notas técnicas sobre iniciativas legislativas (projeto ou proposta da lei) solicitados pelos Deputados, Comissões Parlamentares e Plenário",
+   "div": [
+    "0020129"
+   ],
+   "indicator": "Documentos elaborados com vista à resposta das demandas dos Deputados e dos trabalhos parlamentares",
+   "baseline": "Necessidade de assessoria técnica para o desempenho dos Deputados e para a realização dos trabalhos parlamentares.",
+   "target": "Trabalho dos Deputados executado com qualidade.",
+   "amounts": {
+    "20": 25836.0
+   },
+   "page": 17
+  },
+  {
+   "code": "1590222",
+   "programme": "159",
+   "subprogramme": "15902",
+   "subprogramme_name": "Fortalecimento da Iniciativa e Fiscalização Legislativa",
+   "name": "Apoio aos Deputados no exercício das suas funções",
+   "div": [
+    "0020101",
+    "0020102",
+    "0020105",
+    "0020106",
+    "0020107",
+    "0020108",
+    "0020109",
+    "0020110",
+    "0020111"
+   ],
+   "indicator": "Apoio aos Deputados no exercício das suas funções assegurado.",
+   "baseline": "Realização das funções dos Deputados.",
+   "target": "Apoio fornecido aos Deputados bem executado.",
+   "amounts": {
+    "10": 7982048.0,
+    "20": 785132.0
+   },
+   "page": 17
+  },
+  {
+   "code": "1590223",
+   "programme": "159",
+   "subprogramme": "15902",
+   "subprogramme_name": "Fortalecimento da Iniciativa e Fiscalização Legislativa",
+   "name": "Aproximação do Parlamento Nacional ao cidadão em todo o território nacional",
+   "div": [
+    "0020102"
+   ],
+   "indicator": "Encontros / visitas realizados com organizações da sociedade civil e público em geral",
+   "baseline": "Necessidade de se estabelecer uma comunicação dinâmica e permanente entre os Deputados e organizações da sociedade civil e o público em geral",
+   "target": "Estabelecimento de uma comunicação dinâmica e permanente entre os Deputados e organizações da sociedade civil e o público em geral",
+   "amounts": {
+    "20": 28000.0
+   },
+   "page": 18
+  },
+  {
+   "code": "1590224",
+   "programme": "159",
+   "subprogramme": "15902",
+   "subprogramme_name": "Fortalecimento da Iniciativa e Fiscalização Legislativa",
+   "name": "Realização de atividades de iniciativa legislativa e politica",
+   "div": [
+    "0020105",
+    "0020106",
+    "0020107",
+    "0020108",
+    "0020109",
+    "0020110",
+    "0020111"
+   ],
+   "indicator": "Legislação produzida e propostas de legislação submetidas",
+   "baseline": "Realização das funções de iniciativa legislativa",
+   "target": "As leis e políticas públicas refletem as necessidades dos cidadãos",
+   "amounts": {
+    "20": 175251.0
+   },
+   "page": 18
+  },
+  {
+   "code": "1590225",
+   "programme": "159",
+   "subprogramme": "15902",
+   "subprogramme_name": "Fortalecimento da Iniciativa e Fiscalização Legislativa",
+   "name": "Apoio à prossecução das atividades dos grupos parlamentares de interesse",
+   "div": [
+    "0020112",
+    "0020114"
+   ],
+   "indicator": "Apoio aos grupos parlamentares assegurado",
+   "baseline": "Realização das funções dos grupos parlamentares",
+   "target": "Atividades dos grupos parlamentares realizados",
+   "amounts": {
+    "10": 46934.0,
+    "20": 98759.0
+   },
+   "page": 18
+  },
+  {
+   "code": "1590311",
+   "programme": "159",
+   "subprogramme": "15903",
+   "subprogramme_name": "Fortalecimento da Fiscalização Orçamental e Política",
+   "name": "Realização de ações de fiscalização de execução orçamental",
+   "div": [
+    "0020105",
+    "0020106",
+    "0020107",
+    "0020108",
+    "0020109",
+    "0020110",
+    "0020111"
+   ],
+   "indicator": "Número de ações de fiscalização de execução orçamental",
+   "baseline": "Realização das funções de fiscalização orçamental",
+   "target": "Execução orçamental bem fiscalizada",
+   "amounts": {
+    "20": 379400.0
+   },
+   "page": 18
+  },
+  {
+   "code": "1600122",
+   "programme": "160",
+   "subprogramme": "16001",
+   "subprogramme_name": "Ita Nia Parlamento",
+   "name": "Atribuição do Prémio Liberdade Max Stalh",
+   "div": [
+    "0020102"
+   ],
+   "indicator": "Prémio Liberdade Max Stalh atribuído",
+   "baseline": "Continuadade da premiação da excelência do trabalho jornalístico",
+   "target": "Promover e reconhecer a excelência do trabalho jornalístico",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 19
+  },
+  {
+   "code": "1600123",
+   "programme": "160",
+   "subprogramme": "16001",
+   "subprogramme_name": "Ita Nia Parlamento",
+   "name": "Realização de programas semanais educativos e informativos com a duração de 60 minutos para emissão na televisão pública",
+   "div": [
+    "0020118"
+   ],
+   "indicator": "\"Programas realizados \"",
+   "baseline": "Continuidade da realização e emissão dos programas educativos e informativos",
+   "target": "Promover e reconhecer a excelência do trabalho jornalístico",
+   "amounts": {
+    "20": 15600.0
+   },
+   "page": 19
+  },
+  {
+   "code": "1600126",
+   "programme": "160",
+   "subprogramme": "16001",
+   "subprogramme_name": "Ita Nia Parlamento",
+   "name": "Divulgação de informação sobre os trabalhos parlamentares ao público em geral em todo o território nacional",
+   "div": [
+    "0020118"
+   ],
+   "indicator": "Número de programas e de peças informativas produzidos",
+   "baseline": "Continuidade da realização e emissão dos programas educativos e informativos",
+   "target": "Sociedade civil informada acerca das atividades realizadas pelo PN",
+   "amounts": {
+    "20": 168852.0,
+    "30": 1800.0
+   },
+   "page": 19
+  },
+  {
+   "code": "1600127",
+   "programme": "160",
+   "subprogramme": "16001",
+   "subprogramme_name": "Ita Nia Parlamento",
+   "name": "Apoio à realização do Parlamento dos Jovens",
+   "div": [
+    "0020118",
+    "0020129"
+   ],
+   "indicator": "Atividades do Grupo de Jovens Parlamentares realizadas",
+   "baseline": "Grupo de Jovens Parlamentares já estabelecido",
+   "target": "Grupo de Jovens Parlamentares consolidado e com desempenho em crescimento",
+   "amounts": {
+    "20": 14943.0
+   },
+   "page": 19
+  },
+  {
+   "code": "51001E1",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Solidarity mission to Western Sahara",
+   "div": [
+    "0020127"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 213068.0
+   },
+   "page": 20
+  },
+  {
+   "code": "51001E2",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Quota contributions for annual ASEAN inter-parliamentary participation",
+   "div": [
+    "0020127"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 24626.0
+   },
+   "page": 20
+  },
+  {
+   "code": "51001E3",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Minibuses, computers and water supply equipment",
+   "div": [
+    "0020128"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 497876.0
+   },
+   "page": 20
+  },
+  {
+   "code": "510011H",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Fiscalização Interna das Atividades dos Serviços do Parlamento Nacional",
+   "div": [
+    "0020120"
+   ],
+   "indicator": "Atividades de auditoria e fiscalização interna realizadas",
+   "baseline": "Necessidade de audororia de fiscalização aos serviços do Secretariado",
+   "target": "Serviços do Secretariado auditados e fiscalizados",
+   "amounts": {
+    "20": 10590.0
+   },
+   "page": 20
+  },
+  {
+   "code": "510012C",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Garantir o funcionamento dos serviços do Secretariado do Parlamento Nacional",
+   "div": [
+    "0020115",
+    "0020116",
+    "0020117",
+    "0020118"
+   ],
+   "indicator": "Crescimento da qualidade do funcionamento das unidades orgânicas e não orgânicas do",
+   "baseline": "Unidades orgânicas em funcionamento",
+   "target": "Autonomia, eficiência e eficácia das unidades orgânicas do Secretariado",
+   "amounts": {
+    "20": 1839397.0,
+    "10": 3188023.0,
+    "30": 36500.0
+   },
+   "page": 20
+  },
+  {
+   "code": "510012D",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Atividades de apoio a atos comemorativos e a eventos nacionais e internacionais do Parlamento Nacional",
+   "div": [
+    "0020101",
+    "0020102",
+    "0020104",
+    "0020115",
+    "0020116",
+    "0020117",
+    "0020127",
+    "0020128",
+    "0020129",
+    "0020130"
+   ],
+   "indicator": "Números de ações de apoio realizados",
+   "baseline": "Atividades de comemoração marcadas",
+   "target": "Comemoração das datas celebrativas e efemérides do intereresse parlamentar",
+   "amounts": {
+    "20": 81480.0
+   },
+   "page": 21
+  },
+  {
+   "code": "510012E",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Fortalecimento dos serviços do Secretariado através da atualização dos materiais, equipamento, infraestrutura e serviços de tecnologias",
+   "div": [
+    "0020118"
+   ],
+   "indicator": "Materiais, equipamento, infraestrutura e serviços de tecnologias atualizados",
+   "baseline": "Melhoramentos dos equipamentos e serviços desatualizados e continuacao de segunda faze do sistema sonoro",
+   "target": "Unidades orgânicas com condições adequadas ao seu pleno funcionamento",
+   "amounts": {
+    "20": 75000.0
+   },
+   "page": 21
+  },
+  {
+   "code": "51002ED",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Recruitment of 25 established National Parliament staff",
+   "div": [
+    "0020117"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 75692.0
+   },
+   "page": 21
+  },
+  {
+   "code": "510021T",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Apoio à capacitação e desenvolvimento profissional dos funcionários parlamentares",
+   "div": [
+    "0020116",
+    "0020117",
+    "0020129"
+   ],
+   "indicator": "Funcionários parlamentares capacitados",
+   "baseline": "lacunas de capacitação registadas",
+   "target": "Funcionários parlamentares capacitados para executarem as suas funções com eficiência e eficácia",
+   "amounts": {
+    "20": 260074.0
+   },
+   "page": 22
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "031.0.0",
+   "statement": "Expandir e consolidar a rede parlamentar internacional e contribuir para a paz e a estabilidade nos países com os quais Timor- Leste tem uma relação privilegiada, fortalecendo a democracia parlamentar timorense e contribuindo para a afirmação de Timor-Leste nos níveis regional e internacional",
+   "indicator": "Número de participações em encontros bilaterais e multilaterais",
+   "baseline": "Redes parlamentares estabelecidas",
+   "target": "Reforço das redes parlamentares",
+   "page": 16
+  },
+  {
+   "kind": "output",
+   "code": "03101.0.0",
+   "statement": "Assegurar o reforço da diplomacia parlamentar e a afirmação do papel de Timor-Leste a nível regional e internacional, através da expansão e consolidação da rede parlamentar internacional, bem como da contribuição para a paz e estabilidade de países com os quais Timor-Leste tem um relacionamento privilegiado.",
+   "indicator": "Número de participações em encontros bilaterais e multilaterais",
+   "baseline": "Redes parlamentares estabelecidas",
+   "target": "Reforço das redes parlamentares",
+   "page": 16
+  },
+  {
+   "kind": "output",
+   "code": "03102.0.0",
+   "statement": "Assegurar a eficácia, eficiência, efetividade e complementaridade das parcerias internacionais, garantindo o fortalecimento institucional parlamentar a nível nacional e internacional.",
+   "indicator": "Número de acordos de cooperação estabelecidos e em implementação",
+   "baseline": "Acordos de cooperação estabelecidos",
+   "target": "Implementação eficiente e eficaz dos acordos der cooperação",
+   "page": 16
+  },
+  {
+   "kind": "outcome",
+   "code": "159.0.0",
+   "statement": "As decisões legislativas refletem as necessidades e interesses dos cidadãos. As instituições públicas são responsáveis perante as pessoas. Democracia, direitos humanos e estado de direito são protegidos e fortalecidos em Timor Leste",
+   "indicator": "Número de peças legislativas produzidas",
+   "baseline": "Necessidade de que as decisões legislativas reflitam as necessidades e interesses dos cidadãos timorenses",
+   "target": "Necessidades e interesses dos cidadãos asseguradas através das decições legislativas",
+   "page": 17
+  },
+  {
+   "kind": "output",
+   "code": "15901.0.0",
+   "statement": "Os cidadãos de Timor-Leste são informados e consultados. Os direitos das pessoas, incluindo os direitos humanos, são protegidos e promovidos.",
+   "indicator": "Intervenções do PN a favor dos direitos dos cidadãos",
+   "baseline": "Dever constitucional do PN defender e promover os direitos dos cidadãos",
+   "target": "Direitos dos cidadãos protegidos",
+   "page": 17
+  },
+  {
+   "kind": "output",
+   "code": "15902.0.0",
+   "statement": "O quadro legal é consistente e compatível com a constituição. As mudanças são baseadas em evidências e seguem a consulta pública. O processo legislativo é transparente, simplificado e padronizado.",
+   "indicator": "Número de Legislação Parlamentar aprovada; presença dos deputados do Parlamento",
+   "baseline": "",
+   "target": "",
+   "page": 17
+  },
+  {
+   "kind": "output",
+   "code": "15903.0.0",
+   "statement": "As atividades do governo e dos órgãos públicos, bem como do judiciário, são exercidas de acordo com o sistema estabelecido por lei. O uso do dinheiro público pelo governo é eficiente e transparente. As políticas do governo e o projeto de lei são examinados.",
+   "indicator": "Número de questões colocadas ao executivo / Número do relatório anual examinado pelos comitês",
+   "baseline": "",
+   "target": "",
+   "page": 18
+  },
+  {
+   "kind": "outcome",
+   "code": "160.0.0",
+   "statement": "Público é informado sobre a atividade e decisões do Parlamento Nacional",
+   "indicator": "Número de ações de informação e divulgação das atividades parlamentares",
+   "baseline": "Necessidade de manter os cidadãos informados sobre as atividades parlamentares",
+   "target": "Manter os cidadãos informados sobre as atividades parlamentares",
+   "page": 19
+  },
+  {
+   "kind": "output",
+   "code": "16001.0.0",
+   "statement": "O público é informado sobre mudanças na legislação e nas atividades parlamentares",
+   "indicator": "Número de publicações nas páginas das redes sociais do PN; Número de comunicados enviados à imprensa e publicados no sítio da internet do PN.",
+   "baseline": "Necessidade de atualização da informação das páginas das redes sociais e so sítio da internet do PN",
+   "target": "Manter os cidadãos a par das alterações legislativas e das atividades parlamentares",
+   "page": 19
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "",
+   "target": "",
+   "page": 20
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "",
+   "target": "",
+   "page": 20
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.5",
+   "statement": "Melhorar as condições administrativas e físicas necessárias ao exercício das funções parlamentares, garantindo a gestão autónoma, eficaz, eficiente e efetiva dos recursos humanos, financeiros e patrimoniais, através da atualização da estrutura orgânica e funcional do Parlamento, da adoção de regulamentos, sistemas e mecanismos de planeamento, monitorização, avaliação e auditoria das ações e recursos parlamentares, e da construção e renovação de infraestruturas",
+   "indicator": "Percentagem de execução do PAA; Avaliação e monitorização do desempenho das unidades orgânicas e não orgânicas do PN e dos funcionários a elas afetos",
+   "baseline": "Trabalho e atividades realizados pelas unidades orgânicas e não orgânicas",
+   "target": "Autonomia, eficiência e eficácia das unidades orgânicas do Secretariado",
+   "page": 20
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.8",
+   "statement": "Autonomia crescente do Secretariado do Parlamento Nacional",
+   "indicator": "Percentagem de execução do PAA; Avaliação e monitorização do desempenho das unidades orgânicas e não orgânicas do PN e dos funcionários a elas afetos",
+   "baseline": "Trabalho e atividades realizados pelas unidades orgânicas e não orgânicas",
+   "target": "Autonomia, eficiência e eficácia das unidades orgânicas do Secretariado",
+   "page": 20
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "",
+   "target": "",
+   "page": 21
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.5",
+   "statement": "Melhorar as condições administrativas e físicas necessárias ao exercício das funções parlamentares, garantindo a gestão autónoma, eficaz, eficiente e efetiva dos recursos humanos, financeiros e patrimoniais, através da atualização da estrutura orgânica e funcional do",
+   "indicator": "Número de manuais de procedimentos e de SOPs; Número de ações de capacitação organizadas.",
+   "baseline": "Lacunas no trabalho e nas atividades desenvolvidos pelas unidades orgânicas",
+   "target": "Unidades orgânicas com procedimentos atualizados e com funcionários capacitados para desempenharem as suas funções com eficiência e eficácia",
+   "page": 21
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.7",
+   "statement": "Capacitação dos funcionários parlamentares e produção e/ou atualização dos documentos base de gestão administrativa",
+   "indicator": "Número de manuais de procedimentos e de SOPs; Número de ações de capacitação organizadas.",
+   "baseline": "Lacunas no trabalho e nas atividades desenvolvidos pelas unidades orgânicas",
+   "target": "Unidades orgânicas com procedimentos atualizados e com funcionários capacitados para desempenharem as suas funções com eficiência e eficácia",
+   "page": 22
+  }
+ ]
+}

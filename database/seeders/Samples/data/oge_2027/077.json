@@ -1,0 +1,520 @@
+{
+ "year": 2027,
+ "code": "077",
+ "name": "Conselho de Imprensa",
+ "abbr": "CI",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   794,
+   798
+  ]
+ },
+ "units": [
+  {
+   "code": "CI",
+   "div": "0770101",
+   "name": "Conselho de Imprensa",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "439": "Garantir à liberdade de expressão e acesso à informação",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "4390107",
+   "programme": "439",
+   "subprogramme": "43901",
+   "subprogramme_name": "Estudos para o Desenvolvimento da Comunicação Social em Timor-Leste",
+   "name": "Digitalização e Atualização da Base de Dados e do Sítio Oficial na Internet",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Arquivu dizitalizadu no Atendimentu Publiku liuhosi online",
+   "baseline": "Atualiza ona iha plataforma sira hanesan Facebook, Youtubu, Tweeter, ne'ebe asesu ona liuhosi subscriber 1091; Konten 305; viwers, 165,045 no total vizitor mak 151,207",
+   "target": "Publiku bele asesu baze dadus Conselho de Imprensa iha Sitiu, Publiku bele uza sistema online hodi asesu servisos Conselho de Imprensa",
+   "amounts": {
+    "10": 21716.0,
+    "20": 4807.0
+   },
+   "page": 794
+  },
+  {
+   "code": "4390401",
+   "programme": "439",
+   "subprogramme": "43904",
+   "subprogramme_name": "Desenvolvimento de Competência Profissional, Técnica e Intelectual de Jornalistas",
+   "name": "Estágio, Exame e Atribuição Carteira Profissional",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Meta do Plano Anual alcançadas",
+   "baseline": "284 Cateira Profissional Simu ona (63%, hosi Total Jornalista 450 iha Timor-Leste)",
+   "target": "117 Pessoas Atribuidu",
+   "amounts": {
+    "10": 5874.0,
+    "20": 1050.0
+   },
+   "page": 794
+  },
+  {
+   "code": "4390402",
+   "programme": "439",
+   "subprogramme": "43904",
+   "subprogramme_name": "Desenvolvimento de Competência Profissional, Técnica e Intelectual de Jornalistas",
+   "name": "Premio Conselho de Imprensa",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Premiu Atribuidu",
+   "baseline": "10 Pessoas Simu ona Premiu",
+   "target": "Jornalista 6 no Media 1",
+   "amounts": {
+    "10": 8626.0,
+    "20": 16200.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4390408",
+   "programme": "439",
+   "subprogramme": "43904",
+   "subprogramme_name": "Desenvolvimento de Competência Profissional, Técnica e Intelectual de Jornalistas",
+   "name": "Apresentacao do rezultado monitorizacao e analisa produto jornalistica",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% monitorizasaun ba produtu jornalistiku husi meiu komunikasaun sosial sira ne'ebe rejistadu iha Conselho de Imprensa aprezenta dala-4 anualmente",
+   "baseline": "aprezentasaun relatoriu monitorizasaun no analiza produtu jornalistika gradualmente",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 22379.0,
+    "20": 1670.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4390410",
+   "programme": "439",
+   "subprogramme": "43904",
+   "subprogramme_name": "Desenvolvimento de Competência Profissional, Técnica e Intelectual de Jornalistas",
+   "name": "Desenvolver a Competencia Tecnica e Profissional dos Jornalistas",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% jornalista mak finaliza ona kursu Teknika, Profisional no simu ona karteira profisional tuir nivel kompetensia",
+   "baseline": "Jornalista estajiariu nain-65, hetan ona kompleta formasaun teknika no profisional husi ema nain-10",
+   "target": "1)100%",
+   "amounts": {
+    "10": 7288.0,
+    "20": 78494.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4391001",
+   "programme": "439",
+   "subprogramme": "43910",
+   "subprogramme_name": "Desenvolvimento e Supervisão do Cumprimento do Quadro Legal",
+   "name": "Gerir e Atualizar Base de dados dos Orgãos de Comunicação Social e Organizações de Jornalistas",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Base de dados dos Orgãos de Comunicação Social e Organizações de Jornalistas Atualizado",
+   "baseline": "44 Meiu komunikasaun Social",
+   "target": "100% Atualizado",
+   "amounts": {
+    "20": 2846.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4391004",
+   "programme": "439",
+   "subprogramme": "43910",
+   "subprogramme_name": "Desenvolvimento e Supervisão do Cumprimento do Quadro Legal",
+   "name": "Desenvolvimento ao Quadro Lei, Decreto Lei e Regulamento e Paracer",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Halo Revizaun no Produs Baze Legal 6, no sosializa ona ba ema nain-200",
+   "baseline": "12 13 Quadro Legais Publikadu",
+   "target": "100%",
+   "amounts": {
+    "10": 16580.0,
+    "20": 1064.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4391101",
+   "programme": "439",
+   "subprogramme": "43911",
+   "subprogramme_name": "Desenvolver Mecanismo de Autorregulação, Disseminação e Supervisão",
+   "name": "Serviço de Supervisão e de Resolução a litígios de Comunição Social",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Serbisu entidade komunikasaun sosiál ne’ebé mak iha ona koñesimentu no obedese ba lejislasaun, no regulamentu administrativu sira.",
+   "baseline": "1) Meiu Komunikasaun Sosial 56 hetan ona superviziona.2) keixa hamutuk 3 ba kazu violasaun codigo de etika no lei Komunikasaun sosial",
+   "target": "100% Konkluidu",
+   "amounts": {
+    "10": 7288.0,
+    "20": 1776.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4391102",
+   "programme": "439",
+   "subprogramme": "43911",
+   "subprogramme_name": "Desenvolver Mecanismo de Autorregulação, Disseminação e Supervisão",
+   "name": "Serviço de Divulgação e Socialisação",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Enkuadramentu legál no/ka mekanizmu adekuadu no apropriadu atu superviziona no analiza produtu jornalizmu dezenvolvidu, sosiálizadu no divulgadu",
+   "baseline": "1.Divulga no sosializa ona ba partesipante hamutuk ema 150 iha nivel nasional ba jornalista, media nain no estudante universitariu. 2. Hasae servisu Divulgasaun no Sosializasaun atu garantia",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 5899.0
+   },
+   "page": 795
+  },
+  {
+   "code": "4391203",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Liberdade de Imprensa é o Meu Liberdade",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "# Pakote Informativu, Debate televizivu, dokumentáriu produzidu no publikadu",
+   "baseline": "0",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 32148.0,
+    "20": 17420.0
+   },
+   "page": 796
+  },
+  {
+   "code": "4391204",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Promover o Dialogo com os Operadores de Comunicação Social, a Sociedade e do Orgão de Estado",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Têm o espaço adequado para comunicar e dialogar com os operadores de comunicação social, a sociedade e os Orgãos do Estado",
+   "baseline": "",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 5874.0
+   },
+   "page": 796
+  },
+  {
+   "code": "4391208",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Forum Dialogo de Dili",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Realisação de eventos para promoção de liberdade de expressão e de imprensa em nível nacional, regional e internacional",
+   "baseline": "",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 15114.0,
+    "20": 16264.0
+   },
+   "page": 796
+  },
+  {
+   "code": "4391209",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Forum Editorial",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Realisação de eventos para promoção de liberdade de expressão e de imprensa em nível nacional, regional e internacional",
+   "baseline": "",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 7288.0,
+    "20": 1155.0
+   },
+   "page": 796
+  },
+  {
+   "code": "4391212",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Média Literacia",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "# Os Estudantes têm Conhecimento sobre a média literacia para combater á desinformação",
+   "baseline": "",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 4459.0,
+    "20": 752.0
+   },
+   "page": 796
+  },
+  {
+   "code": "4391215",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Cooperacao e Participacao no Evento Internacional",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% akordo, partesipa iha eventu Nasional no internasional",
+   "baseline": "Akordo ho Parseria Instituisaun, Organizasaun Internasional no Nasional hamutuk-24 (Akordu Internasional: SEAPC-Net, DPI, MPC, Nasional Prees Council of Thailand, Filipin Press, PER, UNDP, UNESCO, ABC.ID, LPDS, IARBI no Nuansa Global, Banku Mundial, Emb. Indonesia, Emb. Nova-Zelandia, Emb. Australia); (Akordu Nasional: PNTL, ANC, SERVE.IP, AJTL, TLPU, UPJTL,RTTL.EP, ARKTL)",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 16924.0,
+    "20": 20440.0
+   },
+   "page": 796
+  },
+  {
+   "code": "4391217",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Selebrar o Dia Nacional da Liberdade de Imprensa",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Realisação de eventos para promoção de liberdade de expressão e de imprensa em nível nacional.",
+   "baseline": "Lansamentu ona iha 16 outobu 2022 no gradualmente komemora ona hahu husi 2022-2026 hamutuk selebra ba dala-5",
+   "target": "1) 100%",
+   "amounts": {
+    "20": 27208.0
+   },
+   "page": 797
+  },
+  {
+   "code": "4391219",
+   "programme": "439",
+   "subprogramme": "43912",
+   "subprogramme_name": "Fortalecer a Gestão Institucional e O Serviço de Advocacia da Mídia",
+   "name": "Divulgar o Manual Reportagem de Jornalística",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "% Iha ona manuál ba serbisu jornalístika ne’ebé mak dezenvolvidu no útil",
+   "baseline": "0",
+   "target": "1) 100%",
+   "amounts": {
+    "10": 7072.0
+   },
+   "page": 797
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Plano estratégico / médio prazo aprovado; Número de deliberasaun produzidos e divulgados",
+   "baseline": "Planu Anual",
+   "target": "100% Planu Implementadu",
+   "amounts": {
+    "10": 22990.0,
+    "20": 32044.0
+   },
+   "page": 797
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Recomendações de auditoria sendo implementadas",
+   "baseline": "Relatoriu Fiskalizasaun tinan ida dala 1",
+   "target": "100% Ezekusaun orsamentu transparante no akuntavel tuir jestaun orsamentu Estadu",
+   "amounts": {
+    "10": 19500.0
+   },
+   "page": 797
+  },
+  {
+   "code": "5100160",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, Monitorização e Avaliação e Produção de Relatório",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Produs ona Planu, Formatu Monitoring, Avaliasaun no Reporting",
+   "baseline": "Planu Estratejiku 2022-2026, Lei Komunikasaun Sosial",
+   "target": "Planu atividade CI implementa 100% ho efikas no efetivu, CI nia dezempenhu iha sistema dalan ba futuru diak",
+   "amounts": {
+    "10": 7800.0
+   },
+   "page": 797
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Orçamento executado",
+   "baseline": "75%",
+   "target": "95% do orçamento executado",
+   "amounts": {
+    "10": 136697.0,
+    "20": 122285.0
+   },
+   "page": 798
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Funcionários recebeu avaliação de desempenho",
+   "baseline": "100%",
+   "target": "Relatórios de desempenho, 100% recebeu salario",
+   "amounts": {
+    "10": 33242.0,
+    "20": 9840.0
+   },
+   "page": 798
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0770101"
+   ],
+   "indicator": "Funcionários recebendo treinamento, jestaun finanseira, planeamentu, monitoring no analiza media",
+   "baseline": "33 Benefisiariu Feto 11 no Mane 21, rai laran no estrajeiru 19 Pessoas Feto 7 Mane 12",
+   "target": "100% Formasaun Implementado, formas100% Formasaun Implementado, formasaun rai laran 8 Pessoas no estrajeiru 15 Pessoas",
+   "amounts": {
+    "20": 93189.0
+   },
+   "page": 798
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "439.0.0",
+   "statement": "Aumento numero população que exerce e expressa os seus opiniões ao governo sobre os assuntos governação, desenvolvimento e outros assunto importantes",
+   "indicator": "Sidadaun sira ezerse ona sira nia liberdade, hodi espresa sira nia opiniaun, no laiha Interferensia hosi Poder Politika no Ekonomia ba Meiu Komunikasaun Sosial",
+   "baseline": "1) Index liberdade Imprensa numeru-1 iha ASEAN no numeru-30 iha nivel mundial. 2). Timor-Leste apresenta um desempenho médio em todas as quatro categorias do Quadro Global do Estado da Democracia. Está entre os 25% melhores países do mundo em Governo Eleito, Liberdade de Expressão, Integridade Pessoal e Segurança e Participação Eleitoral, e entre os 25% piores países em Bem-Estar Básico. Gradualmente Liberdade Espresaun no Imprensa diak, ne'ebe Sidadaun sira ezerse ona sira nia liberdade, hodi espresa sira nia opiniaun",
+   "target": "Planu",
+   "page": 794
+  },
+  {
+   "kind": "output",
+   "code": "43901.0.0",
+   "statement": "A base de dados para o desenvolvimento dos meios de comunicação em Timor-Leste e os módulos para a cobertura dos meios de comunicação e da universidade têm sido úteis",
+   "indicator": "Baze de dadus konkluidu no Manual Produzidu no Sosializadu",
+   "baseline": "Manual Kona-ba Social Media, Manual desinformation, Reportagem Violensia bazeia ba Generu",
+   "target": "100% Implementadu",
+   "page": 794
+  },
+  {
+   "kind": "output",
+   "code": "43904.0.0",
+   "statement": "Jornalistas competentes, profissionais e independentes, respeitando a ética jornalística",
+   "indicator": "% Jornalista maka hala'o ona estajiu no hetan ona kateira",
+   "baseline": "Lei komunikasaun sosial, estatuto CI, Codigo Etika no Deliberasaun interligadu sira",
+   "target": "100% Atividade Implementado",
+   "page": 794
+  },
+  {
+   "kind": "output",
+   "code": "43910.0.0",
+   "statement": "A agência de comunicação forte, com garantia de independência editorial e funcionamento de acordo com o enquadramento legal",
+   "indicator": "propoin Revizaun ba lei no regulamento sira iha area Komunikasaun sosial no atualiza deliberasaun sira",
+   "baseline": "Legislasaun no regulamento hamutuk 2",
+   "target": "100%",
+   "page": 795
+  },
+  {
+   "kind": "output",
+   "code": "43911.0.0",
+   "statement": "Serviço Divulgação, Supervisão e Mecanismo Regulação Desenvolvido e Aplicavel",
+   "indicator": "% A atividade jornalística de acordo com o Code Ética Jornalística e Comprimento da lei e o estatuto Editorial",
+   "baseline": "visando promover padrões profissionais, transparência e responsabilidade institucional",
+   "target": "100%",
+   "page": 795
+  },
+  {
+   "kind": "output",
+   "code": "43912.0.0",
+   "statement": "Gestão Institucional Media, Estudo e Serviço Advocacia Forte",
+   "indicator": "% Exercer o serviço de advocácia para assegurar a politíca de desenvolvimento de capacidade instituicional de média para o bem estar dos Jornalístas",
+   "baseline": "defesa, promoção e proteção do papel da mídia",
+   "target": "100%",
+   "page": 796
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "Estatuto Conselho de Imprensa",
+   "target": "100% Planu Anual Implementadu",
+   "page": 797
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "Organika Conselho de Imprensa, Atribui kompetensia husi Lei Komunikasaun Sosial, Planu Estratejiku CITL, kada tinan plenaria-48, relatoriu Institsional no Kontabilidade Transparate no efisiensia hametin Rede Kooperasaun no Advokasia efetivu",
+   "target": "100%",
+   "page": 797
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "Organika Conselho de Imprensa, Rekursu Umanu Sufisiente ho kualifikadu ba area epesifiku sira, Ezekusaun Orsamentu CI to'o 86,1%, Kargu diresaun, xefia no tekniku sira total ema-54, funsionariu CI 90% hetan ona kapasitasaun.",
+   "target": "100%",
+   "page": 797
+  }
+ ]
+}

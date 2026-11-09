@@ -1,0 +1,240 @@
+{
+ "year": 2027,
+ "code": "029",
+ "name": "FALINTIL - Forças de Defesa de Timor-Leste (F-FDTL)",
+ "abbr": "F-FDTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   322,
+   323
+  ]
+ },
+ "units": [
+  {
+   "code": "QGFF",
+   "div": "0290101",
+   "name": "Quartel Geral da F-FDTL",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "FFDTL",
+   "div": "0290201",
+   "name": "FALINTIL - Força de Defesa Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "388": "Defesa nacional",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "3880601",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Garantir Missão Operacional das F-FDTL",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "Misaun operasional garantido",
+   "baseline": "80% das missões operacionais planeadas receberam apoio total e foram executadas (20 missões operacionais concluídas).",
+   "target": "90% das missões operacionais planeadas receberam apoio total e foram executadas (24 missões operacionais concluídas).",
+   "amounts": {
+    "20": 1135521.0
+   },
+   "page": 322
+  },
+  {
+   "code": "3880606",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Modernizar Infraestrutura e Equipamentos Militares",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "Número de ativos adquiridos",
+   "baseline": "Ativos adquiridos durante o ano anterior.",
+   "target": "assets acquired during the current year",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 322
+  },
+  {
+   "code": "3880607",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Cooperação Defesa e Militar",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "Número de acordos; Número de reuniões",
+   "baseline": "são assinados ou renovados diversos acordos bilaterais, regionais ou internacionais de cooperação em matéria de defesa e são realizadas reuniões",
+   "target": "Maximizar os acordos bilaterais, regionais ou internacionais de cooperação em matéria de defesa são assinados ou renovados e são realizadas reuniões",
+   "amounts": {
+    "20": 425885.0
+   },
+   "page": 322
+  },
+  {
+   "code": "38806E1",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Additional salaries - recruitment backlog and statutory increases",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 2160000.0
+   },
+   "page": 322
+  },
+  {
+   "code": "3880901",
+   "programme": "388",
+   "subprogramme": "38809",
+   "subprogramme_name": "Recursos Humanos afeto à Prestação de Serviços",
+   "name": "Gestao de Recursos Humanos afetos a prestacao de servicos",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "% de pagamento de salários e vencimentos no prazo",
+   "baseline": "pagamento do total previsto para os salários",
+   "target": "pagou salários e complemento ao total do pessoal das FALINTIL- FDTL",
+   "amounts": {
+    "20": 168025.0
+   },
+   "page": 322
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "Plano Anual e base de dadus F- FDTL",
+   "target": "Produzir documentação e proposta de legação de acordo com as orientações das FALINTIL - FDTL (Regulamento Interno, Diretivas, SOP ou NEP para normalizar o funcionamento dos componentes, unidades e órgãos",
+   "amounts": {
+    "20": 1596369.0
+   },
+   "page": 323
+  },
+  {
+   "code": "510021L",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de Recursos Humanos afetos a prestação de serviços F-FDTL",
+   "div": [
+    "0290201"
+   ],
+   "indicator": "% de efetivos da F-FDTL colocados conforme o Quadro Orgânico aprovado",
+   "baseline": "70% dos efetivos distribuídos conforme necessidade institucional F-FDTL",
+   "target": "85% dos efetivos colocados conforme Quadro Orgânico das F-FDTL",
+   "amounts": {
+    "10": 30693590.0
+   },
+   "page": 323
+  },
+  {
+   "code": "9802807",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Socialização para incentivar as mulheres a serem militares e Implementar uma abordagem integrada da igualidade de Género",
+   "div": [
+    "0290101"
+   ],
+   "indicator": "Nú. de mulheres recrutadas e promovidas na F-FDTL.",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "7 vezes (realizado em Quarterg General, Componentes e Unidades",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 323
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "388.0.0",
+   "statement": "As pessoas de Timor-Leste estão seguras e protegidas contra ameaças externas.",
+   "indicator": "Numero de operações da força de defesa, incluindo operações humanitárias",
+   "baseline": "15 operações por ano, sendo 10 operações de segurança e 5 operações humanitárias/de resposta a catástrofes",
+   "target": "30 operações por ano (20 operações de segurança e 10 operações humanitárias/de resposta a catástrofes",
+   "page": 322
+  },
+  {
+   "kind": "output",
+   "code": "38806.0.0",
+   "statement": "As forças armadas de Timor-Leste realizam operações militares eficientes e eficazes no país e no estrangeiro, avançando e defendendo os interesses e objectivos de Timor-Leste.",
+   "indicator": "% de elementos de força sem fraqueza grave ou crítica contra os níveis de preparação necessários em tempo de paz.",
+   "baseline": "70%",
+   "target": "10%",
+   "page": 322
+  },
+  {
+   "kind": "output",
+   "code": "38809.0.0",
+   "statement": "Funcionarios receberam salários de acordo com a lei",
+   "indicator": "% de funcionários receberam pagamentos no prazo",
+   "baseline": "",
+   "target": "",
+   "page": 322
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "0",
+   "target": "",
+   "page": 322
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "",
+   "target": "",
+   "page": 323
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "% de participação plena e efetiva das mulheres e grupos marginalizados e oportunidades iguais de liderança em todos os níveis de tomada de decisão na F- FDTL e no setor da Defesa.",
+   "baseline": "8% de representação em posições de liderança/tomada de decisão",
+   "target": "12% de representação em posições de liderança/tomada de decisão",
+   "page": 323
+  },
+  {
+   "kind": "output",
+   "code": "98028.0.0",
+   "statement": "A participação das mulheres no processo de desenvolvimento e provisão de segurança é aumentada",
+   "indicator": "Nú. das mulheres participa no processo de desenvolvimento e provisão de Defesa que aumento sua capacidade de liderança na F-FDTL e no setor da Defesa.",
+   "baseline": "",
+   "target": "25 pessoas (conformidade) de nomeação para a força feminina) para organizar a formação a cada semestre",
+   "page": 323
+  }
+ ]
+}

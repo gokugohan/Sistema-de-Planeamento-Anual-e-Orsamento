@@ -1,0 +1,1113 @@
+{
+ "year": 2027,
+ "code": "119",
+ "name": "Autoridade Nacional do Petróleo",
+ "abbr": "ANP",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1184,
+   1194
+  ]
+ },
+ "units": [
+  {
+   "code": "ANP",
+   "div": "1190101",
+   "name": "Autoridade Nacional do Petróleo",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A13": "Desenvolvimento do campo de gás do greater sunrise e assegurar que o gasoduto vem para",
+  "A17": "Desenvolver políticas e boas práticas na indústria para assegurar a participação máxima dos",
+  "A18": "Implementação do projeto tasi mane na costa sul do país",
+  "A19": "Explorar, investigar e desenvolver os recursos petrolíferos, minerais e geológicos no"
+ },
+ "activities": [
+  {
+   "code": "510012V",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Garantir a gestão dos recursos humanos",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Reter o colaborador para executar tarefas com base na descrição do cargo",
+   "baseline": "Completar o número total de funcionários da ANP para 145. Atualmente, a organização conta com 131 funcionários.",
+   "target": "Os 14 novos funcionários irão desempenhar as suas funções e cumprir as suas responsabilidades de acordo com as Descrições de Posição (Job Descriptions) em vigor.",
+   "amounts": {
+    "10": 3961599.0,
+    "20": 97650.0
+   },
+   "page": 1184
+  },
+  {
+   "code": "510012W",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Formação profissional na área específica formação na ANP",
+   "baseline": "Quantidade de funcionários da ANP a participar em programas de formação, de acordo com a matriz de competências vigente.",
+   "target": "Os funcionários da ANP participam nos programas de formação e desenvolvimento designados, em conformidade com a matriz de competências e o plano de desenvolvimento profissional vigentes.",
+   "amounts": {
+    "20": 125500.0
+   },
+   "page": 1184
+  },
+  {
+   "code": "510012Z",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Realizar auditoria financeira interna e externa.",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Implementação de uma auditoria interna e também a contratação de auditores externos para efetuar auditorias à instituição.",
+   "baseline": "Número de externos e internos em vigor.",
+   "target": "Realizar 4 auditorias internas e 2 auditorias externas",
+   "amounts": {
+    "20": 55500.0
+   },
+   "page": 1184
+  },
+  {
+   "code": "510013Y",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Melhor Gestão Financeira, Administração e Logística",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Estabelecimento da listas dos véiculos, tipo de combustivel e outros arangamentos administração e Logística",
+   "baseline": "Iniciar processo de aprovisionamento",
+   "target": "Eficazmente apoiar Gestao Financeira, administração e Logística",
+   "amounts": {
+    "20": 607617.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "510015B",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Subscriptions for ANP business Activity",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Membro do subscrições para suportar a atividades da ANP",
+   "baseline": "Iniciar processo de aprovisionamento",
+   "target": "Para as necessidades padrão da instituição",
+   "amounts": {
+    "20": 467169.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "51001X1",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "ANP regulatory activities - staffing",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 300000.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "51001X2",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "ANP regulatory activities - goods and services",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 623000.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "510021D",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestao de sistema informacao e tecnologia",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Sistemas de informação e de comunicação",
+   "baseline": "Realizar a avaliação de risco dos equipamentos existentes em fim de vida útil",
+   "target": "Garantir o cumprimento da norma ISO 27001:2022 na tecnologia emergente e no crescimento das ciberameaças",
+   "amounts": {
+    "20": 87300.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "510023B",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Melhor Gestão da Organização com Padrões Internacional de ISO (International Organization Standard) 27001 e 9001",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Funcionários da ANP participaram na formação as normas da ISO (International Organization Standard) 27001 e 9001 na instituição.",
+   "baseline": "O desenvolvimento de programas da ISO para a ANP.",
+   "target": "Garantir que o pessoal da ANP tenha conhecimentos e competências suficientes para implementar os requisitos da ISO",
+   "amounts": {
+    "20": 36500.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "A130104",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Realizar o Estabelecimento do Contrato de Partilha de Produção (PSC).",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "A execução do contrato de partilha de produção",
+   "baseline": "Em curso",
+   "target": "A negociação está em curso na fase final",
+   "amounts": {
+    "20": 194800.0
+   },
+   "page": 1185
+  },
+  {
+   "code": "A130105",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Conduzir o Código do Estabelecimento de Mineração de Petróleo (PMC)",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Finalização do código da Mineração de Petróleo",
+   "baseline": "Código da Mineração de Petróleo estabelecido.",
+   "target": "Completa um enquadramento Legal para a atividade petrolífera.",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1186
+  },
+  {
+   "code": "A130106",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Finalização do Regime Fiscal do Sunrise.",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Finalização da lei tributaria para a Área de Regime Especial do Greater Sunrise",
+   "baseline": "Em curso",
+   "target": "Entra em vigor a lei tributaria da area de Regime especial do Greater Sunrise.",
+   "amounts": {
+    "20": 592467.0
+   },
+   "page": 1186
+  },
+  {
+   "code": "A130107",
+   "programme": "A13",
+   "subprogramme": "A1301",
+   "subprogramme_name": "Negociações e desenvolver estudos e iniciativas relevantes para assegurar que o gasoduto do Greater Sunrise e outros campos vem para Timor-Leste",
+   "name": "Conclusão das directrizes para a auditoria do Contrato de Partilha de Produção (CPP)",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "As diretrizes em vigor",
+   "baseline": "Discussão",
+   "target": "Consulta às Diretorias relevantes da ANP",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1186
+  },
+  {
+   "code": "A130300",
+   "programme": "A13",
+   "subprogramme": "A1303",
+   "subprogramme_name": "Estabelecimento do enquadramento legal para facilitar a prospecção e aproveitamento do campo Greater Sunrise",
+   "name": "Elaborar projeto de regime especial de trabalho e migração aplicável no GSSRA e na lei fiscal",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "A lei fiscal e o regime laboral e de migração aplicável no GSSRA serão promulgados, promulgados e publicados no diário nacional.",
+   "baseline": "Negociar os termos e condições da legislação fiscal e do regime laboral e migratório aplicável na GSSRA.",
+   "target": "elaboração da lei tributária e do regime trabalhista e de migração aplicável no GSSRA para consulta com a autoridade governamental relevante, a Austrália e o Sunrise Joint Venturer (SJV)",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 1186
+  },
+  {
+   "code": "A130301",
+   "programme": "A13",
+   "subprogramme": "A1303",
+   "subprogramme_name": "Estabelecimento do enquadramento legal para facilitar a prospecção e aproveitamento do campo Greater Sunrise",
+   "name": "Negociação dos termos e condições do Contrato de Partilha de Produção (PSC), do Código de Mineração do Petróleo (PMC), do regulamento GSSRA e do Master Arrangement",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Acordo entre Estados e SJV sobre a versão final do PSC, PMC, regime fiscal e Regulamento GSSRA, incluindo acordo mestre",
+   "baseline": "Negociação dos termos e condições do CPS, do PMC e do regime fiscal através de sessões bilaterais e trilaterais, incluindo sessões de pequenos grupos, tanto jurídicas como fiscais",
+   "target": "O quadro contratual e regulamentar da GSSRA estará concluído até ao final de 2024",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1186
+  },
+  {
+   "code": "A130302",
+   "programme": "A13",
+   "subprogramme": "A1303",
+   "subprogramme_name": "Estabelecimento do enquadramento legal para facilitar a prospecção e aproveitamento do campo Greater Sunrise",
+   "name": "Estabelecer orientações auxiliares relacionadas com a Actividade Petrolífera no GSSRA emitidas ao abrigo do Código Mineiro de Petróleo (PMC) aprovado",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Identificar aspectos das actividades petrolíferas ao abrigo do PMC ou dos Regulamentos que requerem elaboração detalhada sob a forma de directrizes.",
+   "baseline": "Identificar aspectos das actividades petrolíferas ao abrigo do PMC ou dos Regulamentos que requerem elaboração detalhada sob a forma de directrizes.",
+   "target": "Produzir um projeto de diretriz que ajudará a orientar a implementação do aspecto técnico dos regulamentos",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1186
+  },
+  {
+   "code": "A130400",
+   "programme": "A13",
+   "subprogramme": "A1304",
+   "subprogramme_name": "Estabelecimento de enquadramento legal para apoiar o Desenvolvimento do Greater Sunrise",
+   "name": "Conclusão do enquadramento legal para a instalação de processamento de GNL",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "O enquadramento legal está finalizado",
+   "baseline": "Conclusão do enquadramento legal começa com o envolvimento técnico internamente para discutir os conceitos do enquadramento legal antes de envolver qualquer consultor jurídico e discutir o projecto de documento legal.",
+   "target": "Estudo inicial para garantir que existe um quadro legal para regular o Gasoduto",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1187
+  },
+  {
+   "code": "A130401",
+   "programme": "A13",
+   "subprogramme": "A1304",
+   "subprogramme_name": "Estabelecimento de enquadramento legal para apoiar o Desenvolvimento do Greater Sunrise",
+   "name": "Conclusão do enquadramento legal do Gasoduto",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "O enquadramento legal está finalizado",
+   "baseline": "estabelecimento do enquadramento legal começa com o envolvimento técnico internamente para discutir os conceitos do enquadramento legal antes de envolver qualquer consultor jurídico e discutir o projecto de documento legal.",
+   "target": "Estudo inicial para garantir que existe um quadro legal para regular o Gasoduto",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1187
+  },
+  {
+   "code": "A130500",
+   "programme": "A13",
+   "subprogramme": "A1305",
+   "subprogramme_name": "Implementação do quadro jurídico que rege o Conteúdo Local para facilitar a formação e o emprego, a aquisição de G&amp;#38;S durante a exploração e o desenvolvimento do Greater Sunrise e de outro Contrato de Partilha de Produção (CPP)",
+   "name": "Conclusão da inspeção e da auditoria anual do desempenho em matéria de Conteúdo Local (CL) e acompanhamento das conclusões para garantir o cumprimento e a aplicação dos requisitos e compromissos em matéria de conteúdo local no âmbito do Contrat",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Auditoria anual de LC realizada e relatório emitido com resultado da auditoria aos respectivos operadores.",
+   "baseline": "A auditoria de desempenho anual de Conteúdo Local está em vigor.",
+   "target": "A auditoria de desempenho anual de Conteúdo Local está em vigor.",
+   "amounts": {
+    "20": 10500.0
+   },
+   "page": 1187
+  },
+  {
+   "code": "A170400",
+   "programme": "A17",
+   "subprogramme": "A1704",
+   "subprogramme_name": "Estabelecimento de Políticas, Legislação e Regulamentos na Areas Petrolofeiro",
+   "name": "Resolucao de disputas",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Litigacao ou arbitracao protege os interesses do Estado Timor- Leste",
+   "baseline": "implementacao os processos litigacao e arbitracao de acordo com as leis aplicaveis ou regulamentos da arbitracao",
+   "target": "A decisao favorece-se as interesses do Estado de Timor- Leste",
+   "amounts": {
+    "20": 29998.0
+   },
+   "page": 1188
+  },
+  {
+   "code": "A170401",
+   "programme": "A17",
+   "subprogramme": "A1704",
+   "subprogramme_name": "Estabelecimento de Políticas, Legislação e Regulamentos na Areas Petrolofeiro",
+   "name": "Estabelece decreto-lei para a operação petrolífera no upstream.",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "(a). Rever decreto-lei para operações petrolíferas offshore e onshore. (b). revisao regulamento técnico para petróleo e CCS. (c).Revisao Modelo PSC.",
+   "baseline": "Decreto-lei para operações petrolíferas offshore e onshore, regulamento técnico para petróleo e CCS e Modelo PSC estabelecido.",
+   "target": "1 Decreto-Lei para a operação petrolífera em upstream concluída",
+   "amounts": {
+    "20": 70000.0
+   },
+   "page": 1188
+  },
+  {
+   "code": "A170501",
+   "programme": "A17",
+   "subprogramme": "A1705",
+   "subprogramme_name": "Participação da ANP nos activades da EITI",
+   "name": "Fornecer informações sobre as receitas ao auditor para efeitos de reconciliação",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Número relatórios produjido e publicado",
+   "baseline": "11º Relatório conciliação TL- ITIE a/f 2018 publicado em 2020",
+   "target": "Preenche um relatório da EITI",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 1188
+  },
+  {
+   "code": "A170600",
+   "programme": "A17",
+   "subprogramme": "A1706",
+   "subprogramme_name": "Elaboração e alteração de decretos-lei e quadros jurídicos técnicos para o Juiz",
+   "name": "Conclusão Regulamentos Técnicos sobre a atividade de Downstream",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "As regras técnicas estão finalizadas",
+   "baseline": "estabelecimento das normas técnicas inicia-se com a contratação de consultor técnico e jurídico, fiscalização e discussão da minuta do documento.",
+   "target": "Para garantir que existem quadros jurídicos adicionais em vigor para regular as atividades a jusante",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1188
+  },
+  {
+   "code": "A170602",
+   "programme": "A17",
+   "subprogramme": "A1706",
+   "subprogramme_name": "Elaboração e alteração de decretos-lei e quadros jurídicos técnicos para o Juiz",
+   "name": "Conclusão de Licenciamento, Supervisão, Investigação e Monitorização da Atividade Downstream",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Todas as inscrições enviadas são processadas em tempo hábil",
+   "baseline": "Discussões internas sobre o estabelecimento dos Sistemas de Gestão Downstream (DMS)",
+   "target": "Garantir que todas as candidaturas sejam avaliadas e processadas de acordo com os quadros jurídicos em vigor",
+   "amounts": {
+    "20": 109000.0
+   },
+   "page": 1189
+  },
+  {
+   "code": "A170800",
+   "programme": "A17",
+   "subprogramme": "A1708",
+   "subprogramme_name": "Cooperações estabelecidas com instituições judiciárias de TL e a Associação de Negociadores Internacionais de Energia (AIEN)",
+   "name": "Membros da Associação de Negociadores Internacionais de Energia (AIEN) de profissionais e especialistas na indústria energética internacional",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Associação aceita",
+   "baseline": "Iniciar as inscrições/inscrições e participar no evento organizado pela AIEN, incluindo a posterior cooperação entre a AIEN e a universidade católica de Timor-Leste através da criação de um Clube de Estudantes.",
+   "target": "Acesso a informações sobre periódicos on-line, artigos, modelos de contratos, modelos de acordos operacionais conjuntos, workshops e outros materiais relacionados à energia.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1189
+  },
+  {
+   "code": "A170801",
+   "programme": "A17",
+   "subprogramme": "A1708",
+   "subprogramme_name": "Cooperações estabelecidas com instituições judiciárias de TL e a Associação de Negociadores Internacionais de Energia (AIEN)",
+   "name": "Cooperacao institucional no ambito da ASEAN",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Estabelecimento cooperacao institucional no setor energia no ambito da ASEAN",
+   "baseline": "Participacao no encontro do Estado membro da ASEAN",
+   "target": "Implementacao politica da energia na ASEAN",
+   "amounts": {
+    "20": 48004.0
+   },
+   "page": 1189
+  },
+  {
+   "code": "A170802",
+   "programme": "A17",
+   "subprogramme": "A1708",
+   "subprogramme_name": "Cooperações estabelecidas com instituições judiciárias de TL e a Associação de Negociadores Internacionais de Energia (AIEN)",
+   "name": "Secretariado da ANP Parceria Energética",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Estabelecimento cooperacao parceria Energética entre Timor-Leste & Austrália",
+   "baseline": "A parceria apoia visitas de delegados de empresas, instituições e governos entre Timor-Leste e a Austrália",
+   "target": "Partilhar conhecimentos, criar ligações industriais, reforçar as relações empresariais e académicas e desenvolver a capacidade da força de trabalho no sector dos recursos de Timor-Leste.",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 1189
+  },
+  {
+   "code": "A170900",
+   "programme": "A17",
+   "subprogramme": "A1709",
+   "subprogramme_name": "Estabelecemento enquadramento legal adequado para a aplicação e questões relacionadas com a não conformidade",
+   "name": "Conclusão da assistência técnica ao Vice-presidente da ANP no estabelecimento de directrizes de auditoria do Conteúdo Local",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Conclusão de revisão enquadramento legal relacionadas com a não conformidade",
+   "baseline": "Identificar questões relacionadas a questões de compras e de emprego",
+   "target": "Continuar a fornecer apoio jurídico e comercial em diversas questões de aquisição",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1190
+  },
+  {
+   "code": "A170901",
+   "programme": "A17",
+   "subprogramme": "A1709",
+   "subprogramme_name": "Estabelecemento enquadramento legal adequado para a aplicação e questões relacionadas com a não conformidade",
+   "name": "Conclusão da assistência técnica ao Vice-presidente da ANP nas questões de aprovisionamento, treinamento e emprego",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Várias questões de aquisição e questões de emprego são tratadas em conformidade",
+   "baseline": "Identificar questões relacionadas a questões de compras e de emprego",
+   "target": "Continuar a fornecer apoio jurídico e comercial em diversas questões de aquisição",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1190
+  },
+  {
+   "code": "A171000",
+   "programme": "A17",
+   "subprogramme": "A1710",
+   "subprogramme_name": "Auditoria do PSC, controlo do DCR e Promoção de melhores práticas na gestão de receitas",
+   "name": "Conclusão da Auditoria de 10 Contrato de Partilha de Produção (CPP)",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "A auditoria foi concluída e o relatório final da auditoria.",
+   "baseline": "Realizou auditoria aos livros e contas do CPS, trocou informações e prestou confirmações e esclarecimentos.",
+   "target": "Auditoria concluída",
+   "amounts": {
+    "20": 35500.0
+   },
+   "page": 1190
+  },
+  {
+   "code": "A171001",
+   "programme": "A17",
+   "subprogramme": "A1710",
+   "subprogramme_name": "Auditoria do PSC, controlo do DCR e Promoção de melhores práticas na gestão de receitas",
+   "name": "Conclusão da estabelecemento de directrizes DCR",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "DCR é executado para atividades de descomissionamento",
+   "baseline": "Due diligence no programa de trabalho e orçamento para atividades de desmantelamento",
+   "target": "O DCR foi executado corretamente.",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1190
+  },
+  {
+   "code": "A171200",
+   "programme": "A17",
+   "subprogramme": "A1712",
+   "subprogramme_name": "Implementação do quadro jurídico que regem o Conteúdo Local para facilitar a formação e emprego, aquisição de bens e serviços e implementação de projecto de diversificação de Conteúdo Local em todas as fases das operações petrolíferas onshore e offshore",
+   "name": "Comprimentos dos requisitos de conteúdo local sob decretos-lei onshore e offshore",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Os requisitos de Conteúdo Local sob estruturas legais são definidos e adotados em conformidade.",
+   "baseline": "Assim que for assinado o Contrato de Partilha de Produção (CPP).",
+   "target": "Para garantir que existe um enquadramento legal em vigor para evitar implicações legais no futuro",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1190
+  },
+  {
+   "code": "A171202",
+   "programme": "A17",
+   "subprogramme": "A1712",
+   "subprogramme_name": "Implementação do quadro jurídico que regem o Conteúdo Local para facilitar a formação e emprego, aquisição de bens e serviços e implementação de projecto de diversificação de Conteúdo Local em todas as fases das operações petrolíferas onshore e offshore",
+   "name": "Conclusão de estabelecimento de cooperação com a indústria de Petróleo e Gás da região para programas de conteúdo local e implementação de diversificação de projectos",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Cooperações com a indústria de petróleo e gás da região são estabelecidas",
+   "baseline": "Engajamento por meio de MoU",
+   "target": "Envolver-se e estabelecer uma cooperação com a indústria de petróleo e gás para facilitar a implementação do projecto de diversificação de conteúdo local.",
+   "amounts": {
+    "20": 16000.0
+   },
+   "page": 1190
+  },
+  {
+   "code": "A180500",
+   "programme": "A18",
+   "subprogramme": "A1805",
+   "subprogramme_name": "Estabelecimento de enquadramento legal para apoiar Projectos Tasi Mane",
+   "name": "Estabelecimento de um enquadramento legal para sistemas de distribuição de GNL",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "O enquadramento legal está finalizado",
+   "baseline": "Estabelecimento do enquadramento legal começa com o envolvimento técnico internamente para discutir os conceitos do enquadramento legal antes de envolver qualquer consultor jurídico e discutir o projecto de documento legal.",
+   "target": "Para garantir que existe um enquadramento legal para regular os sistemas de distribuição de GNL",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1191
+  },
+  {
+   "code": "A180501",
+   "programme": "A18",
+   "subprogramme": "A1805",
+   "subprogramme_name": "Estabelecimento de enquadramento legal para apoiar Projectos Tasi Mane",
+   "name": "Estabelecimento de um enquadramento legal para o processo de refinação de petróleo bruto",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "O enquadramento legal está finalizado",
+   "baseline": "Estabelecimento do enquadramento legal começa com o envolvimento técnico internamente para discutir os conceitos do enquadramento legal antes de envolver qualquer consultor jurídico e discutir o projecto de documento legal.",
+   "target": "Para garantir que existe um enquadramento legal para regular a atividade de processamento",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1191
+  },
+  {
+   "code": "A180600",
+   "programme": "A18",
+   "subprogramme": "A1806",
+   "subprogramme_name": "Garantir a exploração de oportunidades de Conteúdo Local em todas as fases das operações petrolíferas, tanto onshore como offshore",
+   "name": "A implementação do compromisso de LC Descomissionamento da BU",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "São estabelecidos roteiros claros para compromissos de conteúdo local",
+   "baseline": "O plano do projecto está definido: •Relocalização do helicóptero para Suai •estabelecimento do centro de formação de Petróleo e Gás •Gestão de resíduos da BU no Aterro Sanitário de Tibar •Centro de Serviços de Apoio Empresarial",
+   "target": "Proporcionar conteúdo local, objectivos estratégicos fundamentais para o desenvolvimento económico local em Timor-Leste",
+   "amounts": {
+    "20": 44000.0,
+    "50": 1733698.0
+   },
+   "page": 1191
+  },
+  {
+   "code": "A180601",
+   "programme": "A18",
+   "subprogramme": "A1806",
+   "subprogramme_name": "Garantir a exploração de oportunidades de Conteúdo Local em todas as fases das operações petrolíferas, tanto onshore como offshore",
+   "name": "Envolvimento e Execução das Partes Interessadas e Fornecedores Locais para competir no fornecimento de bens e serviços a todas as operações petrolíferas em Timor-Leste",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Envolvimento e a aplicação da implementação de LC estão concluídos.",
+   "baseline": "Os principais programas de conteúdo local são definidos",
+   "target": "A implementação participativa dos programas de LC é alcançada",
+   "amounts": {
+    "20": 26000.0
+   },
+   "page": 1192
+  },
+  {
+   "code": "A180602",
+   "programme": "A18",
+   "subprogramme": "A1806",
+   "subprogramme_name": "Garantir a exploração de oportunidades de Conteúdo Local em todas as fases das operações petrolíferas, tanto onshore como offshore",
+   "name": "Desenvolver plano estratégico para a implementação de projectos de Diversificação",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "É desenvolvido o plano estratégico para a implementação de projetos de diversificação de LC",
+   "baseline": "A MCM aprovou o plano estratégico do projecto de diversificação.",
+   "target": "Orientação clara para gerenciamento e implementação de projetos de LC.",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1192
+  },
+  {
+   "code": "A180700",
+   "programme": "A18",
+   "subprogramme": "A1807",
+   "subprogramme_name": "Garantir a exploração das oportunidades de Aquisição e Formação e Emprego, e Transferência de conhecimento em todas as fases das operações petrolíferas",
+   "name": "Aplicação da oferta de compras ao abrigo do decreto-lei relevante a todos os operadores e subcontratantes para maximizar a participação dos fornecedores de TL no fornecimento de Bens e Serviços em todas as fases da Actividade Petrolífera",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Acompanhamento trimestral a todos os operadores e seus subcontratantes.",
+   "baseline": "São estabelecidas comunicações formais sobre o escopo do monitoramento.",
+   "target": "Garantir que os operadores e seus subcontratantes cumpram as disposições de Aquisições previstas no decreto-lei.",
+   "amounts": {
+    "20": 7800.0
+   },
+   "page": 1192
+  },
+  {
+   "code": "A180701",
+   "programme": "A18",
+   "subprogramme": "A1807",
+   "subprogramme_name": "Garantir a exploração das oportunidades de Aquisição e Formação e Emprego, e Transferência de conhecimento em todas as fases das operações petrolíferas",
+   "name": "Estabelecimento de Centro de Excelência na indústria de Petróleo e Gás",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Centro de Excelência de Petróleo e Gás é estabelecido",
+   "baseline": "A localização e o projeto conceitual do centro de treinamento são definidos.",
+   "target": "Produzir mão-de-obra qualificada em petróleo e gás, utilizando equipamento legado do Bayu-Undan como início do centro de formação.",
+   "amounts": {
+    "20": 16000.0
+   },
+   "page": 1192
+  },
+  {
+   "code": "A190500",
+   "programme": "A19",
+   "subprogramme": "A1905",
+   "subprogramme_name": "Gestão e regulação da atividade das unidades de exploração, desenvolvimento e produção de petróleo na jurisdição 100% de Timor-Leste",
+   "name": "Conclusão da avaliação e aprovação as submissões de candidaturas técnicas a atividade das unidades de exploração",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "As aplicações técnicas são avaliadas e aprovadas e os programas de trabalho de",
+   "baseline": "Mediante apresentação de candidaturas técnicas",
+   "target": "As atividades de exploração são implementadas de forma eficaz",
+   "amounts": {
+    "20": 64500.0
+   },
+   "page": 1192
+  },
+  {
+   "code": "A190502",
+   "programme": "A19",
+   "subprogramme": "A1905",
+   "subprogramme_name": "Gestão e regulação da atividade das unidades de exploração, desenvolvimento e produção de petróleo na jurisdição 100% de Timor-Leste",
+   "name": "Avaliar e aprovar as submissões de candidaturas técnicas relevantes e monitorizar continuamente a atividade de produção do PSC-TL-SO-T-19-12 e PSC-TL-SO- T-19-13",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "As aplicações técnicas são avaliadas e aprovadas e os programas de trabalho de produção são entregues com sucesso",
+   "baseline": "Mediante apresentação de candidaturas técnicas",
+   "target": "O campo de Bayu-Undan é continuamente produzido até atingir o seu limite económico",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190503",
+   "programme": "A19",
+   "subprogramme": "A1905",
+   "subprogramme_name": "Gestão e regulação da atividade das unidades de exploração, desenvolvimento e produção de petróleo na jurisdição 100% de Timor-Leste",
+   "name": "Avaliar e aprovar as submissões de pedidos técnicos relevantes e monitorar continuamente a atividade de descomissionamento e interface CCS do PSC-TL- SO-T-19-12 e PSC-TL-SO-T-19-13",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "As aplicações técnicas são avaliadas e aprovadas, e os programas de trabalho de descomissionamento e interface CCS são entregues com sucesso",
+   "baseline": "Quando a produção atingir o limite económico e mediante apresentação de pedidos técnicos de descomissionamento ou CCS",
+   "target": "As atividades de descomissionamento e/ou CCS são implementadas de forma eficaz",
+   "amounts": {
+    "20": 360000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190505",
+   "programme": "A19",
+   "subprogramme": "A1905",
+   "subprogramme_name": "Gestão e regulação da atividade das unidades de exploração, desenvolvimento e produção de petróleo na jurisdição 100% de Timor-Leste",
+   "name": "Realizar consulta pública para Procedimento de Licenciamento Ambiental",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "EIA e PGA revisados, incluindo OSCP, são aprovados e uma nova Licença Ambiental é emitida.",
+   "baseline": "Avaliação terá início após a apresentação dos referidos documentos.",
+   "target": "Para garantir a conformidade do operador com as leis, regulamentos e melhores práticas do setor aplicáveis.",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190507",
+   "programme": "A19",
+   "subprogramme": "A1905",
+   "subprogramme_name": "Gestão e regulação da atividade das unidades de exploração, desenvolvimento e produção de petróleo na jurisdição 100% de Timor-Leste",
+   "name": "Conclusão da revisão do plano de desenvolvimento",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Plano de desenvolvimento é revisado e aprovado",
+   "baseline": "Quando o relatório do estudo do Plano de desenvolvimento é revisado e aprovado é submetido",
+   "target": "Plano de desenvolvimento é revisado e aprovado",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190508",
+   "programme": "A19",
+   "subprogramme": "A1905",
+   "subprogramme_name": "Gestão e regulação da atividade das unidades de exploração, desenvolvimento e produção de petróleo na jurisdição 100% de Timor-Leste",
+   "name": "Estabelecimento de plataforma de dados integrada de Ambiente",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "plataforma de dados e approvado e assessivel na ANP website.",
+   "baseline": "plataforma de dados e approvado e assessivel na ANP website.",
+   "target": "Para garantir que todos os dados ambientais existentes sao adquerido e compilados para suportar atividade petrolifera de upstream.",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190600",
+   "programme": "A19",
+   "subprogramme": "A1906",
+   "subprogramme_name": "Avaliação técnica do potencial petrolífero em Timor-Leste",
+   "name": "Realizar avaliação técnica dos recursos e reservas petrolíferas incluindo estudo airborne e seismico",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "A avaliação dos recursos e reservas petrolíferas é realizada",
+   "baseline": "Quando exigido pela diretoria de E&D",
+   "target": "Envio de relatório técnico e dados do projeto, e certificados por terceiros",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190700",
+   "programme": "A19",
+   "subprogramme": "A1907",
+   "subprogramme_name": "Terceira ronda de licenciamento para acreação Onshore, Nearshore e Offshore",
+   "name": "Preparação para Liberação de Área Terrestre, Nearshore e Offshore",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "O pacote de dados e informações é compilado e a",
+   "baseline": "Preparação da definição do bloco do pacote de dados e informações",
+   "target": "Pacote de dados e mapas de área cultivada para área aberta estão disponíveis",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 1193
+  },
+  {
+   "code": "A190701",
+   "programme": "A19",
+   "subprogramme": "A1907",
+   "subprogramme_name": "Terceira ronda de licenciamento para acreação Onshore, Nearshore e Offshore",
+   "name": "Promover e exibir em conferências nacionais e internacionais",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Conferências nacionais e internacionais são assistidas como palestrantes e expositores",
+   "baseline": "Sujeito ao cronograma de conferências nacionais e internacionais",
+   "target": "Envio de relatórios",
+   "amounts": {
+    "20": 270000.0
+   },
+   "page": 1194
+  },
+  {
+   "code": "A190800",
+   "programme": "A19",
+   "subprogramme": "A1908",
+   "subprogramme_name": "Garantir o envolvimento dos mais velhos tradicionais na fase de exploração, desenvolvimento e desmantelamento",
+   "name": "Realizar cerimônias e rituais tradicionais na respectiva comunidade onde estão localizados os blocos do PSC",
+   "div": [
+    "1190101"
+   ],
+   "indicator": "Cerimônias e rituais tradicionais são realizados",
+   "baseline": "Todos os anciãos tradicionais e líderes espirituais relevantes estão alinhados com a cerimónia",
+   "target": "Invocar bênçãos culturais e espirituais para operações seguras",
+   "amounts": {
+    "20": 72000.0
+   },
+   "page": 1194
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "\"1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) % de Resultados de desempenho publicados no website do Governo 3) % de Relatório anual da entidade publicado\"",
+   "baseline": "1). 100%. 2). 100%. 3). 100%",
+   "target": "",
+   "page": 1184
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo 2) % do Plano Anual implementado 3) Plano Estratégico/Médio Prazo Aprovado 4) % do pessoal consciente e envolvido no desenvolvimento do plano estratégico/médio praz",
+   "baseline": "Relatório anual TBA",
+   "target": "100%",
+   "page": 1184
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Gestão Institucional gerida",
+   "baseline": "Relatório anual TBA",
+   "target": "100%",
+   "page": 1185
+  },
+  {
+   "kind": "outcome",
+   "code": "A13.0.0",
+   "statement": "O gas e petroleo de Greater Sunrise sao produzido e trago receitas ao Timor-Leste",
+   "indicator": "Volumes de gas e petroleo produzidos",
+   "baseline": "TBC",
+   "target": "TBC",
+   "page": 1185
+  },
+  {
+   "kind": "output",
+   "code": "A1301.0.0",
+   "statement": "As negociações alusivas ao gasoduto do Greater Sunrise para Timor-Leste estão concluídas &amp; encerradas.",
+   "indicator": "As negociações associadas à legislação, contratos e acordos relevantes ao desenvolvimento do campo de gás do Greater Sunrise estão concluídas e alguns estudos técnicos, comerciais, jurídicos e financeiros são implementados",
+   "baseline": "Em curso",
+   "target": "O Acordo de Desenvolvimento do Greater Sunrise é negociado e assinado",
+   "page": 1185
+  },
+  {
+   "kind": "output",
+   "code": "A1303.0.0",
+   "statement": "Conclusão da estabelecimento do enquadramento legal",
+   "indicator": "Enquadramento legal para facilitar a prospecção e aproveitamento do campo Greater Sunrise estabelecido",
+   "baseline": "A negociação dos respectivos documentos está em andamento",
+   "target": "O Conselho de Governança aprovará o Código Mineiro do Petróleo e o Contrato de Partilha de Produção e o regime fiscal/lei tributária será aprovado pelo Conselho de Ministros e pelo Parlamento",
+   "page": 1186
+  },
+  {
+   "kind": "output",
+   "code": "A1304.0.0",
+   "statement": "Enquadramento legal para apoiar o Desenvolvimento do Greater Sunrise estabelecido",
+   "indicator": "Enquadramento legal para apoiar o Desenvolvimento do Greater Sunrise estabelecido",
+   "baseline": "A negociação dos respectivos documentos está em andamento",
+   "target": "O Conselho de Governança aprovará o Código Mineiro do Petróleo e o Contrato de Partilha de Produção e o regime fiscal/lei tributária será aprovado pelo Conselho de Ministros e pelo Parlamento",
+   "page": 1187
+  },
+  {
+   "kind": "output",
+   "code": "A1305.0.0",
+   "statement": "Comprimento de enquadramento legal para o conteúdo local",
+   "indicator": "Comprimento de enquadramento legal para o conteúdo local",
+   "baseline": "A celebração do Código Mineiro do Petróleo e do contrato de partilha de produção conterá determinadas disposições relacionadas com o conteúdo local, cujos detalhes serão descritos no Plano de Desenvolvimento",
+   "target": "O Conselho de Governança aprovará o Código de Mineração do Petróleo e o Contrato de Partilha de Produção",
+   "page": 1187
+  },
+  {
+   "kind": "outcome",
+   "code": "A17.0.0",
+   "statement": "Timor-Leste tem um forte setor mineral e petrolífero, com a forte participação dos Timorenses a nível de empregos, participação",
+   "indicator": "% aumento da participação dos Timorenses no fornecimento de bens & serviços e criação de",
+   "baseline": "0",
+   "target": "Continuação da recolha de receitas para o Estado e investimento no bloco 18 e",
+   "page": 1187
+  },
+  {
+   "kind": "output",
+   "code": "A1704.0.0",
+   "statement": "Leis e Legislação desenvolvidas, disseminadas e implementadas",
+   "indicator": "Número de diplomas relevantes aprovados, incluindo o Código de Exploração Mineira do Petróleo, Captura e Armazenamento de Carbono (CAC) e orgânica do MPRM e dos órgãos de tutela",
+   "baseline": "Elaborados 4 decretos-lei (alteração dos decretos-lei que criam as instituições da tutelas, nomeadamente, a ANP, IPG, TIMOR GAP e empresa mineira)",
+   "target": "O Acordo de Desenvolvimento do Greater Sunrise é negociado e assinado",
+   "page": 1188
+  },
+  {
+   "kind": "output",
+   "code": "A1705.0.0",
+   "statement": "A gestão do Fundo Petrolífero é transparente e alinhada com o mecanismo internacional, nos termos do EITI",
+   "indicator": "Numero de inspeção completa",
+   "baseline": "Relatório anual 2020",
+   "target": "Promover iniciativas de transparência na indústria extractiva em Timor- Leste",
+   "page": 1188
+  },
+  {
+   "kind": "output",
+   "code": "A1706.0.0",
+   "statement": "Conclusão da alteração dos Decretos-Lei sobre atividade de Downstream e Regulamentos Técnicos",
+   "indicator": "Conclusão da alteração dos Decretos- Lei sobre atividade de Downstream e Regulamentos Técnicos",
+   "baseline": "Conclusão da revisão interna do Decreto-Lei do Downstream e da regulamentação técnica através de consulta interna à direcção relevante da ANP, incluindo partes externas",
+   "target": "O Decreto-Lei Alterado promulgado pelo Conselho de Ministros de Timor- Leste e o Regulamento Técnico aprovado pelo Conselho de Administração da ANP",
+   "page": 1188
+  },
+  {
+   "kind": "output",
+   "code": "A1708.0.0",
+   "statement": "Harmonização do Cooperaçao instituisional no ambito judiciárias de TL e a Associação de Negociadores Internacionais de Energia (AIEN)",
+   "indicator": "Harmonização do Cooperaçao instituisional no ambito judiciárias de TL e a Associação de Negociadores Internacionais de Energia (AIEN)",
+   "baseline": "Conclusão da Assinatura Legal da AIEN",
+   "target": "Acesso ao evento AIEN, incluindo material jurídico relacionado ao petróleo e gás, incluindo contrato modelo e JOA",
+   "page": 1189
+  },
+  {
+   "kind": "output",
+   "code": "A1709.0.0",
+   "statement": "Conclusão de revisão enquadramento legal relacionadas com a não conformidade",
+   "indicator": "Conclusão de revisão enquadramento legal relacionadas com a não conformidade",
+   "baseline": "Conclusão da revisão interna das Diretrizes para conformidade legal a serem emitidas no âmbito das Operações Petrolíferas Onshore e Offshore em Timor-Leste",
+   "target": "As diretrizes serão promulgadas pelo Conselho Diretivo da ANP",
+   "page": 1189
+  },
+  {
+   "kind": "output",
+   "code": "A1710.0.0",
+   "statement": "Conclusão do Auditoria do CPP e controlo do DCR de acordo com enquadromento legal em vigor",
+   "indicator": "Conclusão do Auditoria do CPP e controlo do DCR de acordo com enquadromento legal em vigor",
+   "baseline": "Revisar o relatório de retorno do PSC e criar um plano de auditoria para todos os PSCs, tanto Onshore quanto Offshore",
+   "target": "Auditoria Concluída",
+   "page": 1190
+  },
+  {
+   "kind": "output",
+   "code": "A1712.0.0",
+   "statement": "Comprimentos enqudramento legal sobre o Conteúdo Local",
+   "indicator": "Comprimentos enqudramento legal sobre o Conteúdo Local",
+   "baseline": "Rever o fornecimento de conteúdo local ao abrigo do Decreto-Lei Onshore e Offshore para Operações Petrolíferas em Timor-Leste",
+   "target": "Tanto os Decretos-Lei Onshore como Offshore continham uma disposição clara sobre o conteúdo local que proporciona segurança jurídica e os Decretos-lei serão promulgados pelo Conselho de Ministros",
+   "page": 1190
+  },
+  {
+   "kind": "outcome",
+   "code": "A18.0.0",
+   "statement": "Tornar o setor petrolífero nacional numa Indústria Transformadora na Costa Sul do país",
+   "indicator": "Aumento no valor agregado do setor petrolífero; Recolha de receitas petrolíferas e criação de benefícios",
+   "baseline": "0",
+   "target": "As infraestruturas de apoio à indústria petrolífera e a fábrica de GNL, Refinaria e Complexo Petroquímico são",
+   "page": 1190
+  },
+  {
+   "kind": "output",
+   "code": "A1805.0.0",
+   "statement": "Conclusão de enquadramento legal para apoiar Projectos Tasi Mane",
+   "indicator": "Conclusão de enquadramento legal para apoiar Projectos Tasi Mane",
+   "baseline": "Consulta interna e externa sobre o quadro regulatório de apoio ao Projeto Tasi Mane (como regulamentação sobre Oleoduto, Planta de GNL, Planta de Amônia, Planta de Hélio, etc",
+   "target": "O quadro regulamentar de apoio ao projeto tasi mane aprovado pelo Conselho de Ministros",
+   "page": 1191
+  },
+  {
+   "kind": "output",
+   "code": "A1806.0.0",
+   "statement": "Ótima exploração de oportunidades de Conteúdo Local em todas as fases das operações petrolíferas",
+   "indicator": "Ótima exploração de oportunidades de Conteúdo Local em todas as fases das operações petrolíferas",
+   "baseline": "Procedimentos de tenderização, requisitos padrões são estabelecidos",
+   "target": "Ganhe experiência em processos de aprovisionamento e fornecimento dos bens e serviços para operações petrolíferas",
+   "page": 1191
+  },
+  {
+   "kind": "output",
+   "code": "A1807.0.0",
+   "statement": "Ótima a exploração das oportunidades de Aquisição e Formação e Emprego, e Transferência de conhecimento em todas as fases das operações petrolíferas",
+   "indicator": "Ótima a exploração das oportunidades de Aquisição e Formação e Emprego, e Transferência de conhecimento em todas as fases das operações petrolíferas",
+   "baseline": "A localização e o projeto conceitual do centro de treinamento são definidos",
+   "target": "Produzir mão-de-obra qualificada em petróleo e gás, utilizando equipamento legado do Bayu-Undan como início do centro de formação",
+   "page": 1192
+  },
+  {
+   "kind": "outcome",
+   "code": "A19.0.0",
+   "statement": "Timor-Leste detém um forte setor mineral e petrolífero, impulsionando um forte crescimento económico e contribuindo para o aumento de postos de trabalho e fontes de rendimento do Estado",
+   "indicator": "% de aumento no valor agregado do setor mineral, gás e petrolífero",
+   "baseline": "Recolha das receitas petrolíferas e minerais para o Estado",
+   "target": "Continuação da recolha de receitas para o Estado e investimento no bloco 18 e em outros setores do petróleo, incluindo minerais",
+   "page": 1192
+  },
+  {
+   "kind": "output",
+   "code": "A1905.0.0",
+   "statement": "Comprimentos aos regulamentos da atividades petrolíferas em Timor-Leste",
+   "indicator": "Comprimentos aos regulamentos da atividades petrolíferas em Timor- Leste",
+   "baseline": "Quando exigido pela diretoria de E&D para estabelecer regulamentos tecnicos",
+   "target": "As atividades petrolíferas sao implementadas em acordo com boa pratica de industri petrolifero",
+   "page": 1192
+  },
+  {
+   "kind": "output",
+   "code": "A1906.0.0",
+   "statement": "Conclusão da avaliação técnica do potencial petrolífero em Timor-Leste",
+   "indicator": "Conclusão da avaliação técnica do potencial petrolífero em Timor-Leste",
+   "baseline": "Quando exigido pela diretoria de E&D",
+   "target": "Reprocessar de dados existente ou acquisisar uma nova dados seismico com melhor qualidade, procesar, interporetar, avaliar potencial petrolifero",
+   "page": 1193
+  },
+  {
+   "kind": "output",
+   "code": "A1907.0.0",
+   "statement": "Conclusão da terceira ronda de licenciamento para acreação Onshore, Nearshore e Offshore",
+   "indicator": "Conclusão da terceira ronda de licenciamento para acreação Onshore, Nearshore e Offshore",
+   "baseline": "Anúncio da terceira ronda de concessão de licenças",
+   "target": "A terceira ronda de concessão de licenças está concluída",
+   "page": 1193
+  },
+  {
+   "kind": "output",
+   "code": "A1908.0.0",
+   "statement": "Bênçãos culturais e espirituais para operações seguras",
+   "indicator": "Bênçãos culturais e espirituais para operações seguras",
+   "baseline": "Todos os anciãos tradicionais e líderes espirituais relevantes estão alinhados com a cerimônia",
+   "target": "Invocar bênçãos culturais e espirituais para uma operação segura",
+   "page": 1194
+  }
+ ]
+}

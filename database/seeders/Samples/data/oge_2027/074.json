@@ -1,0 +1,488 @@
+{
+ "year": 2027,
+ "code": "074",
+ "name": "Comissão Anti Corrupção",
+ "abbr": "CAC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   762,
+   778
+  ]
+ },
+ "units": [
+  {
+   "code": "CAC",
+   "div": "0740101",
+   "name": "Comissão Anti-Corrupção",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A43": "Anti-corrupção"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % Planu Asaun Anuál (PAA) ida ne'ebé sistemátiku, realístiku no alinadu ho PECAC 2026-2030; 2) # Enkontru no avaliasaun sira interna nian tantu regular, trimestrál, semestrál no anuál implementadu tuir planu. 3) # Monitorizasaun ba implementasaun programa no ativiadade sira tantu iha Díli no Munisípiu sira 4) # Relatóriu sira trimestrál, semestrál no anuál elaboradu no enkamiñadu ba parte nakait",
+   "baseline": "1) Planu Estratéjiku CAC- PECAC 2026-2030. 2) Relatóriu ezekusaun orsamentu no implementasaun programa, atividade CAC 2025 3) Lista prezensa enkontru sira sobre implementasaun PAA realizadu iha tinan 2025 4) Relatoriu anuál CAC 2025",
+   "target": "1) Iha ona PAA & OGE CAC, no asegura implementasaun PAA & OGE CAC 2027 ho rigor bazeia ba mata-dalan sira ne'ebé iha ona. 2) Realiza ona enkontru no avaliasaun sira tantu regular, trimestral, semestral no anuál, ho objetu atu atualiza progresu implementasaun programa no atividade sira ho ezekusaun orsamentu hodi sukat ninia dezempeñu. 3) Halo ona monitorizasaun ba implementasaun programa no atividade sira CAC nian ne'ebé realiza iha tinan 2027. 4) Iha tinan 2027, prodúz ona relatóriu sira tantu trimestrál, semestral no anuál hodi enkamiña ba parte relevante, atravez dijitais no livru.",
+   "amounts": {
+    "20": 47150.0
+   },
+   "page": 764
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # Gabinete inspesaun no auditoria internal estabelsidu; 2) # Prosediementu ba inspesaun no auditoria internal dezemvolvidu; 3) # Inspesaun no auditoria implementadu tuir planu; 4) # Rezultadu inspesaun no auditoria aprezentadu no enkaminadu ba parte nakait; 5) # EAC partisipa iha formasaun sira relasiona ho inspesaun no auditoria interna nian",
+   "baseline": "1) Versaun Revisaun Organica CAC; 2) DL n.º 23 & 24/2015 loron 29 fulan-jullu.",
+   "target": "1) Gabineti Inspesaun no auditoria internal funsionadu no komtempla ona iha organika CAC; 2) Manuál ka giaun ba inspesaun no auditoria interna nian dezemvolvidu aprovadu no utilizadu iha tinan 2027; 3) Hala'o auditoria interna ba utilizasaun rekursu sira hodi avalia efisiénsia, efikasia no implementa rekomendasaun sira ba optimizasaun nian; 4) 100% Implementa ona rekomendasaun husi rezultadu relatóriu auditoria nian. 5) EAC na'in 6 partisipa ona iha formasaun ba inspesaun no auditoria interna nian tantu iha rai-laran no mós rai-liur iha tinan 2027",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 764
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # Konsultor Nasionál rekrutadu; 2) Regulamentu",
+   "baseline": "1) Planu Rekrutamentu Asesor legal juridiku;",
+   "target": "1) Rekruta ona Konsultor Nasionál L5, hodi Finaliza 70%",
+   "amounts": {
+    "10": 81000.0
+   },
+   "page": 764
+  },
+  {
+   "code": "510011E",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão das Tecnologias de Informação e Comunicação",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) Unidade IT estabelesidu. 2) # module sistema dijitalizasaun CAC dezenvolvidu no utilizadu",
+   "baseline": "1) Server CAC, 2) Ekipamentu ICT CAC 3) Sistema DRBI 4) Sistema Manual Planu no orsamentu CAC, 5) Sistema administrasaun no Rekursu umanu, lojistika, patrimoniu, administrasaun,Case Management System, 6) Kontinuasaun ba dezemvolve sistema sira iha diresaun Investigasaun no Prevensaun nian.",
+   "target": "1) Unidade IT funsionadu iha tinan 2027. 2) Kontinua implementa restante 45% sistema dijitalizasaun ho foku ba manutensaun, atualizasaun sistema, hametin seguransa informasaun, no melhora efisiénsia servisu institusionál. 3) Kontinua implementa restante 45% sistema dijitalizasaun ho foku ba manutensaun, atualizasaun sistema, hametin seguransa informasaun, no melhora efisiénsia servisu institusionál. 4) Kontinua finaliza módulu Sistema Relatóriu Online ba Alegasaun Krime Korrupsaun. 5) Harii plataforma dijitál ida atu monitoriza progresu implementasaun ENAK nian. 6) Integra ferramenta intelijénsia artifisiál (AI) iha sistema dijitál sira hodi ajuda iha análize dadus.",
+   "amounts": {
+    "10": 90000.0,
+    "20": 33304.0
+   },
+   "page": 765
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % funsionariu ne’ebé hala’o servisu tuir padraun/standard servisu instituisaun 2) % prosesu pagamentu salarial tuir tempu;",
+   "baseline": "1) Formatu avaliasaun dezempenu; 2) Pesoal RH CAC neébe ezisti nain 4; 3) EAK sira balun seidauk koloka tuir area konesimentu espesifiku; 4) Ezisti ona Grupu JPRU husi Lina Ministeriu hotu; 5) Submisaun Mapeamentu CAC ba CFP regular tinan-tinan; 6) Preve orsamentu ba Salariu forsa traballu CAC tomak",
+   "target": "1.1) Finaliza 70% SOP sira (ba rekursu u1) Finaliza 70% SOP sira (ba rekursu umanu, IT, finansa, lojístika, aprovizionamentu, mídia, no kooperasaun). 2) Atualiza 100% prosedimentu internu versaun 2016. 3) Asegura Sistema Jestaun Rekursu Umanu 100% operasionál no utilizadu.manu, IT, finansa, lojístika, aprovizionamentu, mídia, no kooperasaun). 2.1) Atualiza 100% prosedimentu internu versaun 2016. 3) 2.1) Asegura Sistema Jestaun Rekursu Umanu 100% operasionál no utilizadu.",
+   "amounts": {
+    "10": 1028821.0,
+    "20": 7092.0
+   },
+   "page": 766
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % finalizasaun kurríkulu formasaun tuir natureza servisu kada klase; 2) % implementasaun/ exekusaun formasaun tuir kurrikulu formasaun;",
+   "baseline": "1) Politika formasaun CAC, 2) EAK balun partisipa ona formasaun sira iha rai liur no rai laran; 3) Ezisti ona sistema SIGAP-NET Sistema baze de dadus CAC nian ba funsionariu hotu; 4) Relatóriu formasaun sira;",
+   "target": "1) Halo revizaun ba polítika formasaun no atualiza kurríkulu atu aliña ho nesesidade operasionál CAC nian iha funsaun investigativa, legál, prevensaun, administrativa, sibernétika, no funsaun relevante sira seluk 2) Kurikulu formasaun implementa gradualmente iha tinan 2027",
+   "amounts": {
+    "20": 62407.0
+   },
+   "page": 766
+  },
+  {
+   "code": "510020P",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do Gabinete do Comissário e dos Comissários Adjuntos",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) Organograma CAC nian aktualizadu no aprezentadu ba Konsellu Ministru. 2) # pesoal sira ne'ebé apoiu Gabineti Komisáriu no Komisáriu Adj. sira rekrutadu no nomeadu. 3) # Despaxu Komisáriu no Komisáriu Adj. sira organizadu no estruturadu. 4) # atta # minuta enkontru sira dezemvolvidu. 5)# Avaliasaun PECAC 2026-2030 6)# Aktualiza no dezenvolve SOP CAC 7)# Hahu konstrusaun edefisiu CAC",
+   "baseline": "1) Organika CAC. 2) Despaxu Komisáriu no Komisáriu Adj. sira 3) Atta no Minuta enkontru sira 4) Dokumentus PECAC no relatoriu annual 5) Draf SOP 6) Dezenhu no BoQ finalizadu no implementadu",
+   "target": "1) Organograma CAC nian aprovadu husi Konsellu Ministru. 2) Gabineti Komisáriu no Komisáriu Adj. sira funsionadu. 3) Despaxu Komisáriu no Komisáriu Adj. sira produzidu no orientadu ba iha parte sira ne'ebé interese. 4) Atta no minuta sira enkontru nian produzidu no aprovadu. 5) PECAC 2026-20230 avaliadu 6) SOP CAC nian aprovadu liu husi konselho CAC 7) Konstrusaun edefisiu CAC atinzi 30%",
+   "amounts": {
+    "10": 63864.0,
+    "20": 6440.0
+   },
+   "page": 766
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % Objetu (projetu) sira sujeita ba prosesu aproviziomentu tinan 2027 nian identifikadu ba iha",
+   "baseline": "1) Lista objetu (projetu)sira ba konkursu nian ne'ebé identifikadu iha tinan 2026; 2) Despaxu",
+   "target": "1) 100% objetu ne'ebé prosesa liu-husi aprovizionamentu indentifikadu ba iha Planu",
+   "amounts": {
+    "20": 1600.0
+   },
+   "page": 766
+  },
+  {
+   "code": "5100221",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão financeira",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # Proposta sira rekollidu no prosesadu 2) # CPV sira prosesadu no ezekutadu 3) % OGE CAC ezekutadu ho rigor tuir Lei no DL ezekusaun orsamentál 4) # Relatóriu sira produzidu no ekaminadu ba parte sira relevante",
+   "baseline": "1) Lista proposta sira ne'ebé rekolla iha tinan 2026. 2) Lista CPV sira ne'ebé prosesa iha tinan 2026 3) Relatóriu progresu Ezekusaun OGE CAC iha tinan anterior relasiona ho: SV: %, BS: % no KM: %",
+   "target": "1) Prosesa hotu ona proposta sira ne'ebé submete husi husi Unidade no Diresaun iha tinan 2027. 2) Halo ona komitmentu ba CPV sira tuir montante alokasaun orsamental nian iha tinan 2027. 3) 100% halo ona ezekusaun ba OGE CAC tuir rubrika orsamental. 4) Optimiza alokasaun rekursu finanseiru no utilizasaun fasilidade ba servisu CAC nian. 5) Halo ona relatóriu sira tantu regular, trimestral, semestral no anuál hodi enkamiña ba parte nakait.",
+   "amounts": {
+    "10": 43277.0
+   },
+   "page": 767
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # Proposta sira produzidu no aprovadu 2) % Fasilidade adekuadu no ekipamentu sira sufisiente no funsioana ho",
+   "baseline": "1) ista proposta akizisaun ba bens no servisu relasionadu tinan 2026. 2) Lista dadus partimoniu CAC tinan 2010-2026; 3) Dadus",
+   "target": "1) Prosesa hotu ona proposta ba akizisaun bens no servisu relasionadu sira. 2) 100% Fasilidade adekuadu no",
+   "amounts": {
+    "20": 161628.0
+   },
+   "page": 767
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # Akordu ho entidade sira ne'ebe planeia ona tantu iha nivel local to'o internasional asinadu. 2) % rekomendasaun husi implementasaun Konvensaun Nasoens Unidas Kontra Korrupsaun (UNCAC-United Nations Convention Against Corruption) implementadu.",
+   "baseline": "1) Existe MoU ho Instituisaun Nasional no International; 2) Timor-Leste halo tiha ona Auto Avaliasaun dahuluk UNCAC nian iha kapitulu III no IV no Iha ona rezultadu relatoriu Avaliasaun UNCAC. No, iha ona esbosu Auto Avaliasaun UNCAC daruak nian iha Kapitulu II no Kapitulu V",
+   "target": "1) Asegura aderénsia 90% ba termu no kondisaun sira ne'ebé estipula iha akordu sira ne'ebé asina ona. 2) Estabelese akordu kooperativu ho pelumenus entidade nasionál ka internasionál ida (1) relevante, ne’ebé aliña ho nesesidade. 3) Hala’o enkontru anuál ho pontu fokál sira hodi informa progresu implementasaun UNCAC nian no relata fali progresu ba Grupu Revizaun Implementasaun. 4) Maximiza utilizasaun mídia (eletróniku, sosiál, konvensionál) ba sensibilizasaun anti- korrupsaun, ho atualizasaun pelumenus fulan-fulan. 5) Lansa website dedikadu ba anti- korrupsaun no plataforma sira mídia sosiál nian 6) Diskusaun ba kompleta relatorio finál UNCAC 2nd cycle review. 7) Asegura Timor-Leste nia partisipasaun iha eventu sira UNCAC nian: Enkontru Mekanizmu Revizaun Implementasaun iha Viena (tinan- tinan). 8) Partisipa iha enkontru anuál ASEAN PAC. 9) Hala’o enkontru anuál (tuir pedidu) ho instituisaun konjénere sira (ACRC Korea, HKU HongKong, MACC Malázia,). 10) Kontinua esforsu atu iha tinan 2027 Timor-Leste bele adere ba rede GlobE Network ne'ebe estabelese husi resoluzasaun ONU.",
+   "amounts": {
+    "10": 39336.0,
+    "20": 52465.0
+   },
+   "page": 769
+  },
+  {
+   "code": "A430300",
+   "programme": "A43",
+   "subprogramme": "A4303",
+   "subprogramme_name": "Prevenção Crime de Corrupção",
+   "name": "Dezemvolve no Implementa Estratéjia Nasionál Anti Korrupsaun (ENAK)",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) ENAK dezenvolvidu no implementadu gradualmente iha instituisaun sira Estadu nian. 2) Sistema sira instituisaun Estadu nian ba prevene risku korrupsaun atualizadu. 3) # diagnostiku ba sistema sira prevene risku korrupsaun iha instituisaun estadu identifikadu no realizadu. 4) Tinan X hahú supervizaun no koordenasaun ba implementasaun no avaliasaun periódika ENAK 5) Tinan X estabelese mekanizmu Relatoriu Bienal hodi halo monitorizasaun ba implementasaun ENAK",
+   "baseline": "1) Diagnosa husi SEFI & CFP, rezultadu workshop CAC, Rezultadu Survey CAC, 2011, 2013, 2015; survey sira Asia Foundation, 2) Relatóriu based line 2019; 3) Rezultadu Konferénsia Nasional, Fevereiru 2020; 4) Konsultasaun Públiku 2021. 5) Termu Referensia no Planu Dezenvolvimentu ENAK.",
+   "target": "1) Finaliza no lansa Estratejia Anti-Korrupsaun (ENAK) 2) Sosializa ENAK ba publiku, setór privadu, Sosiedade sivil, akademia, no parte interesada relevante sira. 3) Halo diagnostiku ba sistema sira ne'ebé iha atu prevene risku korrupsaun iha pelumenus instituisaun estadu rua (2). 4) Hahú supervizaun no koordenasaun ba implementasaun no avaliasaun periódika ba ENAK. 5 ) Estabelese mekanizmu Relatoriu Bienal hodi halo monitorizasaun ba implementasaun ENAK.",
+   "amounts": {
+    "10": 15000.0,
+    "20": 9755.0
+   },
+   "page": 772
+  },
+  {
+   "code": "A430301",
+   "programme": "A43",
+   "subprogramme": "A4303",
+   "subprogramme_name": "Prevenção Crime de Corrupção",
+   "name": "Implementasaun Deklarasaun Rendimentu Bens no Intereses (DRBI)",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) Numeru taxa arolamentu deklarante no agregadu familiar aktualizadu; 2) % Deklarasaun Rendimentu Bens no Interese Rejistradu, analizadu no verifikadu liu-husi husi sistema E- DRBI; 3) % husi infratór sira sansionadu no implementadu; 4) % husi deklarante sira halo ona verifikasaun formal. 5) # Relatóriu sumáriu anuál kona-ba estatístika konformidade DRBI, deskobrimentu auditoria",
+   "baseline": "1) Lista deklarante sira husi kada Instituisaun estadu ne’ebé halo ona iha 2022, 2023, 2024, 2025 no 2026; 2) 100% deklarante sira rejistradu iha tinan 2022 ate 2026; 3) 100% aplikasaun koima iha tinan anterior 2024, 2025, no 2026; 4) 75% verifikasaun formal 2026 ba deklarante sira",
+   "target": "1) 100% Funsionariu korente, remata no funsionariu foun/kargu sira arroladu; 2) 100% utiliza ona E-DRBI; 3) 100% husi Deklarante sira ne'ebé la-halo tuir Lei MPCC implementa ona sansaun; 4) 100% Formulariu DRBI Verifikadu no identifikadu 5) Publika relatóriu sumáriu anuál kona-ba estatístika konformidade DRBI, deskobrimentu auditoria, no asaun ezekusaun ne'ebé foti ona. 6) Integra ferramenta",
+   "amounts": {
+    "10": 9724.0,
+    "20": 23078.0
+   },
+   "page": 772
+  },
+  {
+   "code": "A430302",
+   "programme": "A43",
+   "subprogramme": "A4303",
+   "subprogramme_name": "Prevenção Crime de Corrupção",
+   "name": "Estudu no Avaliasaun Risku Korrupsaun iha Setór Públiku no Privadu",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "\"1) # peskiza no # estudu avaliasaun risku korrupsaun iha área estatejiku realizadu; 2) # relatóriu no rekomendasaun husi estudu produzidu no sosializadu ba iha parte sira nakait hodi toman dezisaun.\"",
+   "baseline": "\"1) Relatóriu diagnosa instituisional 2) Relatoriu survesy persepsaun publiku ba korrupsaun tinan 2011, 2015, 2016, 2018 no 2022 3) survey integridade servidor publiku tinan 2013.\"",
+   "target": "1) Halo levantamentu persesaun públiku kona-ba korrupsaun (kada tinan 5); 2) Halo estudu tolu kona-ba risku korrupsaun iha área/setór ho risku aas, foka ba refinamentu no habelar estratéjia mitigasaun; 3) Implementa estratéjia mitigasaun risku hosi estudu sira 2026 nian iha instituisaun selesionadu ho risku aas, monitoriza sira nia efikásia, no integra pelumenus 50% hosi deskobrimentu sira iha enkuadramentu institusionál sira; 4) Kontribui ba relatóriu anuál CAC nian ho informasaun kona- ba deskobrimentu risku korrupsaun no rekomendasaun polítika sira; 5) Asegura katak pelumenus 50% hosi deskobrimentu hosi estudu nian influensia revizaun polítika sira; 6) Hahú fó formasaun ba funsionáriu internu CAC nian kona-ba téknika avansadu avaliasaun risku nian; 7) Hala’o levantamentu baze komunidade hodi sukat koñesimentu públiku no koñesimentu kona-ba prinsípiu anti-korrupsaun; 8) Halo estudu foun tolu kona-ba risku korrupsaun, foka ba risku emerjente sira ka setór sira ne'ebé seidauk avalia antes;",
+   "amounts": {
+    "20": 41092.0
+   },
+   "page": 773
+  },
+  {
+   "code": "A430303",
+   "programme": "A43",
+   "subprogramme": "A4303",
+   "subprogramme_name": "Prevenção Crime de Corrupção",
+   "name": "Inspesaun no Monitorizasaun ba Implementasaun Rekursu sira Estadu nian",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % Projetu sira ne’ebé finansia husi OGE rekollidu no rejistradu;",
+   "baseline": "1) Lista projetu sira ne'ebe finansia ho OGE 2025 no 2026)",
+   "target": "1) 25% husi projetu sira ne'ebé finansia husi OGE ne'ebé ho",
+   "amounts": {
+    "20": 12520.0
+   },
+   "page": 773
+  },
+  {
+   "code": "A430000",
+   "programme": "A43",
+   "subprogramme": "A4300",
+   "subprogramme_name": "Investigação Crime Corrupção",
+   "name": "Rekolla provas krime korrupsaun",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % X evidénsia relevante ne’ebé rekolla, koresponde duni ho alegasaun sira; 2) % X aseitasaun autor judisiáriu ba atuasaun investigasaun; 3) # Kazu pendenti tinan anterior investigadu 4) # Prejuízu Estadu indentifikadu.",
+   "baseline": "Númeru Kazu delegasaun kompeténsia husi MP.",
+   "target": "Asegura Konformidade SOP: Prosesu investigasaun sira aliñadu ho SOP sira ne'ebé estabelese ona: 1) 100 % evidénsia sira klasifikadu tuir natureza krimi 2) 75% atusaun investigasaun hetan aseitasaun husi autor judisiáriu 3) 100% Numeru kazu pendente tinan anterior investiga ona iha tinan 2027. 4) Identifika ona prezuizu estadu husi kazu krime korrupsaun ne'ebé investiga ona iha tinan 2026",
+   "amounts": {
+    "20": 53900.0
+   },
+   "page": 775
+  },
+  {
+   "code": "A430100",
+   "programme": "A43",
+   "subprogramme": "A4301",
+   "subprogramme_name": "Informação e Segurança",
+   "name": "Haforsa no estabelese redi informasun",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "\"1) % estabelesimentu rede informasaun husi lokál to’o internasionál ho informasaun sira ne’ebé kredivel; 2) # informasaun relasiona ho krime korrupsaun rejístradu no klasifikadu\"",
+   "baseline": "\"1) Redi Informasaun ne'ebé iha ona; 2) Relatóriu sira.\"",
+   "target": "1) Harii Rede Informasaun: Alkansa 10% estabelesimentu rede informasaun nivel munisípiu no liña ministérial. 2) Informasaun sira analizadu no halo ona auto partisipasaun ba Ministériu Públiku-MP iha tinan korrente. 3) 100% denunsiante sira sente seguru hodi hato'o informasaun ba iha CAC",
+   "amounts": {
+    "20": 32639.0
+   },
+   "page": 775
+  },
+  {
+   "code": "A430101",
+   "programme": "A43",
+   "subprogramme": "A4301",
+   "subprogramme_name": "Informação e Segurança",
+   "name": "Jestaun denúnsia krime korrupsaun",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) Iha tinan x, eziste ona mekanizmu ida ne’ebé seguru",
+   "baseline": "Númeru Keixa husi Públiku no Rekolha Informasaun no Auto",
+   "target": "1) Iha ona mekanismu ida ne'ebé seguru hodi asegura denunsiante",
+   "amounts": {
+    "10": 7956.0,
+    "20": 8275.0
+   },
+   "page": 775
+  },
+  {
+   "code": "A430200",
+   "programme": "A43",
+   "subprogramme": "A4302",
+   "subprogramme_name": "Sensibilização, Participação Pública e Promoção de Valores Anti-Corrupção",
+   "name": "Realiza Asaun Sensibilizasaun atu Limita Prátika korrupsaun iha Setór Públiku, Privadu Edukasionál no Grupo Kategorial sira",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # Sensibilizasaun ne'ebé halo ona ba setór públiku no privadu iha tinan 2027; 2) # Formasaun ba jornalista sira ne'ebé hala'o iha tinan 2027; 3) # Realizasaun sensibilizasaun ba eskola sira EBC, Sekundaria no Ensinu Superior 4) # Sensibilizasaun ba Sentru Formasaun, Lider Komunitaria, Partidu Politiku no ONG's realizadu; 5) # Seminariu / Workshop ne'ebé hala'o iha hodi komemora loron eventual sira. 6) # Realiza kompetisaun iha loron komemorativu sira CAC nian",
+   "baseline": "1) Relatóriu sensibilizasaun ba eskola EBC hamutuk 15, tinan 2025; 2) Relatóriu sensibilizasaun ba eskola sekundaria hamutuk 23, tinan 2025; 3) Relatoriu sensibilizasaun ba setor publiku no privadu hamutuk dala 8 iha munisipiu 8 ho nia total partisipantes hamutuk 965. 4) Relatoriu sensibiliasaun ba formador ka administrador eskola sira hamutuk 33, tinan 2025; 5) Relatóriu sensibilizasaun ba Ensinu Superior 2, tinan 2025 6) Relatóriu sensibiizasaun ho Lider komunitária sira iha nivel postu Administrativu hamutuk 7 iha Munisípiu 7 ho nia total partisipantes hamutuk 484, tinan 2025; 7) Relatóriu sensibilizasaun ba sentru formsaun hamutuk 4, tinan 2025",
+   "target": "1) Sensibilizasaun ba setor publiku no privadu pelumenus dala 7 iha Dili no munisipiu 2) Fo formasaun ba jornalista sira dala minimu dala 1 3) Sensibilizasaun ba eskola sira EBC, Sekundaria no ensinu superior minimu 20 4) Sensibilizasaun ba sentru formasaun, lider komunitaria, partidu politiku, ONG's mnimu dala 5 5) Seminariu komemorasaun dala 2 ia Dili no Munisipiu 6) Realiza kompetisaun anti-korrupsaun pelumenus dala 2 iha loron eventual sira",
+   "amounts": {
+    "20": 31001.0
+   },
+   "page": 777
+  },
+  {
+   "code": "A430201",
+   "programme": "A43",
+   "subprogramme": "A4302",
+   "subprogramme_name": "Sensibilização, Participação Pública e Promoção de Valores Anti-Corrupção",
+   "name": "Dezenvolve Materia Anti Korrupsaun tantu ba Públiku no Materia sira Integra iha Prosesu sira Aprendizajen iha Nivel oi-oin",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) # organizasaun sira ne'ebé implementa polítika anti- korrupsaun ka kódigu étika sira. 2) % husi instituisaun edukasionál sira (ensinu báziku, sekundáriu, superiór) ho matéria anti- korrupsaun integradu iha kurríkulu ensinu aprendizajen; 3) % estudante, % populasaun, no % edukadór, (M,F,D) sira ne’ebé hetan formasaun kona-ba prinsípiu anti-korrupsaun liu-hosi kurríkulu no atividade",
+   "baseline": "1) Modulu korrupsaun GIZ; 2) Mata-dalan estratéjiku Edukasaun ba públiku; 3) Modulu prevensaun korrupsaun CAC-Foti CASALS; 4) Modulu Anti korrupsaun husi UNCAC; 5) Manual anti-korrupsaun ba estudante no joventude sira CAC 6) Manual anti-korrupsaun ba funsionariu no Autoridade lokal sira, CAC.",
+   "target": "1) Pilotu ba organizasaun ka instituisaun mais ou menus 5-10 ne'ebé implementa polítika anti- korrupsaun ka kódigu étika sira. 2) Fahe matéria edukasionál anti- korrupsaun ba eskola ensinu baziku central (EBC), sekundária, no ensinu superiór, ne’ebé aliña ho kurríkulu nasionál. 3) Organiza mínimu workshop sensibilizasaun anti-korrupsaun dala-sanulu (10) ho alvu ba Eskola, Universidade, Edukador sira, Populasaun enjerál",
+   "amounts": {
+    "10": 12000.0,
+    "20": 10400.0
+   },
+   "page": 777
+  },
+  {
+   "code": "A430202",
+   "programme": "A43",
+   "subprogramme": "A4302",
+   "subprogramme_name": "Sensibilização, Participação Pública e Promoção de Valores Anti-Corrupção",
+   "name": "Dezamina Informasaun Anti Korrupsaun ba Públiku liu-husi Midia oi-oin",
+   "div": [
+    "0740101"
+   ],
+   "indicator": "1) % aumentu iha diseminasaun matéria anti-korrupsaun liu-hosi mídia konvensionál (ezemplu, TV, rádiu) no plataforma dijitál sira (ezemplu, mídia sosiál, website sira); 2) # plataforma dijitál no kanál foun estabelesidu hodi enkoraja partisipasaun públiku 3) # episódiu podcast Uma Komunikasaun Anti- Korrupsaun ne'ebé produzidu no publika 4) # vizitor úniku ba website anti-korrupsaun iha períodu 2027",
+   "baseline": "1) Website, FB no YouTube CAC. 2) Buletin CAC. 3) Video sira Anti Korrupsaun nian. 4) Livro Kaleidoscopiu CAC",
+   "target": "1) Maximiza utilizasaun mídia (eletróniku, sosiál, konvensionál) ba sensibilizasaun anti- korrupsaun, ho atualizasaun pelumenus fulan-fulan iha plataforma hotu. 2) Lansa website dedikadu ba anti-korrupsaun no plataforma sira mídia sosiál nian (Facebook, Instagram, TikTok, YouTube) ho konteúdu regulár. 3) Estabelese Uma Komunikasaun Anti-Korrupsaun (Podcast Studio) hodi produz konteúdu áudio-vizuál digitál ba deseminasaun informasaun anti- korrupsaun. 4) Produz no transmite video, talkshow, no material edukativu anti- korrupsaun liuhosi RTTL, GmnTV no plataforma sosiál. 5) Aumentu 35–40% iha frekuénsia no kobertura matéria anti- korrupsaun iha mídia konvensionál no dijitál iha períodu 12 fulan.",
+   "amounts": {
+    "20": 3040.0
+   },
+   "page": 778
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % hosi prosesu internu sira ne'ebé rasionaliza liuhosi sistema ne'ebé atualizadu no kompleta tuir prazu ne'ebé estabelese ona, no reflete melloramentu efisiénsia no koordenasaun. 2) % pesoál ne’ebé kumpre kualifikasaun profisionál no kompleta formasaun anuál kona-ba étika, integridade, no dezenvolvimentu profisionál hodi aliña ho CAC nia mandatu. 3) % nível satisfasaun pesoál kona-ba integridade institusionál no ambiente servisu nian, ne'ebé sukat liuhosi levantamentu regulár ba funsionáriu sira. 4) # akordu formál ne’ebé estabelese ka renova ho entidade nasionál no internasionál relevante sira, inklui akordu MLA sira. 5) % atividade planeadu CAC nian ne’ebé kompleta tinan-tinan tuir aliñamentu ho ninia meta estratéjiku sira",
+   "baseline": "1) PAA & OGE CAC 2025 & 2026 2) SoPs internal sira 3) MoU sira ne'ebé realiza ona iha tinan 2025-2026",
+   "target": "A) Sistema Internu 1) Finaliza no lansa 100% SOP operasionál sira, hodi asegura aliñamentu ho lei orgánika no objetivu estratéjiku sira. 2) Lansa programa kapasitasaun ida hodi familiariza funsionáriu sira ho sistema ne'ebé atualizadu, SOP, no padraun institusionál sira. 3) Halo avaliasaun ba implementasaun kódigu konduta CAC nian. 4) Operasionaliza unidade apoiu legál, unidade DRBI, no ekipa koordenasaun ENAK ho rekursu adekuadu. 5) Implementa Sistema Monitorizasaun Dezempeñu Funsionáriu nian ida hodi sukat kumprimentu ba padraun servisu nian no fornese feedback. B) Jestaun Rekursu 1) Hahú programa formasaun bazeia ba kurríkulu atualizadu. 2) Hala’o avaliasaun polítika hodi hadi’a prátika jestaun rekursu no informa revizaun kurríkulu. 3) Atinji progresu konstrusaun edifisiu CAC foun 75%. C) Kooperasaun 1) Asegura aderénsia 90% ba termu no kondisaun ne'ebé estipula iha akordu ne'ebé asina ona. 2) Estabelese akordu kooperativu ho pelumenus entidade relevante nasionál ka internasionál ida (1) ne’ebé aliña ho nesesidade. 3) Hala’o",
+   "page": 762
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% funsionariu ne’ebé hala’o servisu tuir padraun/standard servisu instituisaun",
+   "baseline": "Prosedimentus internál sira ne'ebé halo ona iha tinan 2010-2026",
+   "target": "1) Finaliza no lansa 100% SOP operasionál sira, hodi asegura aliñamentu ho lei orgánika no objetivu estratéjiku sira 2) Lansa programa kapasitasaun ida hodi familiariza funsionáriu sira ho sistema ne'ebé atualizadu, SOP, no padraun institusionál sira 3) Halo avaliasaun ba implementasaun kódigu konduta CAC nian 4) Operasionaliza unidade apoiu legál, unidade DRBI, no ekipa koordenasaun ENAK ho rekursu adekuadu; 5) Implementa Sistema Monitorizasaun Dezempeñu Funsionáriu nian ida hodi sukat",
+   "page": 763
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) % finalizasaun kurríkulu formasaun tuir natureza servisu kada klase; 2) % implementasaun/ezekusaun formasaun tuir kurrikulu formasaun; 3) % prosesu pagamentu salarial tuir tempu; 4) # module sistema dijitalizasaun CAC dezenvolvidu",
+   "baseline": "1) Kurikulu formasaun ba Funsionariu CAC 2) Relatóriu sira formasaun ne'ebé hala'o iha tinan 2025-2026 3) Lista salariu 2025-2026",
+   "target": "1) Lansa programa kapasitasaun ida hodi familiariza funsionáriu sira ho sistema ne'ebé atualizadu, SOP, no padraun institusionál sira 2) Fasilidade sira adekuadu no ekipamentu sira sufisiente 3) 100% funsináriu sira simu salariu no vensimentu tuir tempu 4) Sistema dijitalizasaun sira dezemvolvidu no utilizadu.",
+   "page": 765
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "1) # akordu ho entidade sira ne’ebé planeia ona tantu iha nivel lokál to’o internasionál asinadu; 2) % rekomendasaun husi auto-avaliasuan UNCAC implementadu",
+   "baseline": "1) MoU sira ne'ebé estabelese ona iha 2010-2026 2) Dokumentu auto- avaliasuan UNCAC",
+   "target": "1) Asegura aderénsia 90% ba termu no kondisaun ne'ebé estipula iha akordu ne'ebé asina ona; 2) Estabelese akordu kooperativu ho pelumenus entidade relevante nasionál ka internasionál ida (1) ne’ebé aliña ho nesesidade; 3) Hala’o enkontru anuál ho pontu fokál sira hodi informa progresu implementasaun UNCAC nian no relata fali progresu ba Grupu Revizaun Implementasaun; 3) Maximiza utilizasaun mídia (eletróniku, sosiál, konvensionál) ba sensibilizasaun anti-korrupsaun, ho atualizasaun pelumenus fulan-fulan; 4) Lansa website dedikadu ba anti- korrupsaun no plataforma sira mídia sosiál nian; 5) Diskusaun ba kompleta relatorio finál UNCAC 2nd cycle review.",
+   "page": 768
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el20537: Práticas de administração pública _ alinhadas com os princípios da boa governação",
+   "indicator": "1) Estabelesimentu rede fahe informasaun ida ne’ebé komprensivu no koordenadu ho di’ak atu identifika no",
+   "baseline": "1) Relatóriu Anuál CAC; 2) Rede informasaun ne'ebé estabelese ona 3) Sistema denúnsiate ne'ebé",
+   "target": "1) Rekruta pelumenus Espesialista Forense Informátika ida atu rezolve kompleksidade ne'ebé",
+   "page": 769
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el20574: Sistema _ sira ba prevene risku korrupsaun iha instituisaun Estadu hotu estabelesidu",
+   "indicator": "1) ENAK dezenvolvidu no implementadu gradualmente iha instituisaun sira Estadu nian; 2) Sistema sira intituisaun Estadu nian ba prevene risku korrupsaun atualizadu; 3) Iha supervizaun no monitorizasaun regular ba implementasaun ENAK; 4) Inspesaun ba instituisaun sira ne’ebé mak indentifikadu ho risku korrupsaun 5) # deklarante sira registradu bazeia ba lei; 6) % verifikasaun, % auditoria investigativu; 7) % aplikasaun koima ba infrator sira realizadu; 9) # peskiza no # estudu avaliasaun risku korrupsaun iha área estatejiku realizadu; 10) # relatóriu no rekomendasaun husi estudu produzidu no sosializadu ba iha parte sira nakait hodi toman dezisaun 11) # relatóriu inspensaun no monitorizasaun relasiona ho risku sira korrupsaun, rekomenda no sosializa ba instituisaun relevante; 12) % komprimentu setór públiku no",
+   "baseline": "1) Diagnosa husi SEFI & CFP, rezultadu workshop CAC, Rezultadu Survey CAC, 2011, 2013, 2015; survey sira Asia Foundation, 2) Relatóriu based line 2019; 3) Rezultadu Konferénsia Nasional, Fevereiru 2020; 4) Konsultasaun Públiku 2021. 5) Termu Referensia no Planu Dezenvolvimentu ENAK. 6) Lista deklarante sira husi kada Instituisaun estadu ne’ebé halo ona iha 2022, 2023, 2024, 2025 no 2026; 7) 100% deklarante sira rejistradu iha tinan 2022 ate 2026; 8) 100% aplikasaun koima iha tinan anterior 2024, 2025, no 2026; 9) 75% verifikasaun formal 2026 ba deklarante sira 10) Relatóriu diagnosa instituisional 11) Relatoriu survesy persepsaun publiku ba korrupsaun tinan 2011, 2015, 2016, 2018 no 2022 12) survey integridade servidor publiku tinan 2013. 13) Lista projetu sira",
+   "target": "1) Finaliza no lansa Estratéjia Nasionál Anti-Korrupsaun (ENAK); 2) Sosializa ENAK ba públiku, setór privadu, sosiedade sivíl, akademia, no parte interesada relevante sira; 3) Halo diagnóstiku ba sistema sira ne’ebé iha atu prevene risku korrupsaun iha pelumenus instituisaun estadu rua; 4) Estabelese mekanismu relatoriu bianual hodi halo monitorizasaun ba implementasaun ENAK; 5) Hahú supervizaun no koordenasaun ba implementasaun no avaliasaun periódika ba ENAK; 6) Halo diagnóstiku ba sistema sira ne’ebé iha atu prevene risku korrupsaun iha pelumenus instituisaun estadu rua; 7) Fiskaliza no koordena implementasaun no avaliasaun periódika ba ENAK; 8) Harii plataforma dijitál ida atu monitoriza progresu implementasaun ENAK nian; 9) Atinji kumprimentu rejistu 100% ba funsionariu estadu/públiku hotu-hotu bazeia ba",
+   "page": 770
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el20540: Aumento do conhecimento público _ e da sua participação ativa em iniciativas de luta contra a corrupção, apoiadas por parcerias comunitárias sólidas, instituições transparentes e uma maior confiança do público para promover a responsabilização e boa governação",
+   "indicator": "1) Estabelesimentu rede fahe informasaun ida ne’ebé komprensivu no koordenadu ho di’ak atu identifika no perturba eskema korrupsaun sira; 2) Dezenvolvimentu sistema investigasaun ida ne’ebé integradu hodi aproveita ferramenta no metodolojia avansadu sira hodi analiza informasaun kona-ba korrupsaun no hamosu evidénsia ne’ebé konfiável; 3) Lansamentu ba sistema servisu keixa públika ida ne'ebé amigavel ba utilizadór, seguru, no asesivel iha tinan 2027",
+   "baseline": "1) Relatóriu Anuál CAC; 2) Rede informasaun ne'ebé estabelese ona 3) Sistema denúnsiate ne'ebé dezemvolvidu no atualizadu ona.",
+   "target": "1) Rekruta pelumenus Espesialista Forense Informátika ida atu rezolve kompleksidade ne'ebé aumenta ba beibeik hosi eskema sira korrupsaun nian. 2) Kualidade rezultadu investigasaun aumenta tanba kapasitasaun ba investigadór, pelumenus ida, iha evidénsia eletróniku ka área espesializadu relevante sira seluk. 3) Lansamentu sistema keixa públika ida ne'ebé seguru no amigavel ba utilizadór. 4) Estabelese 20% rede informasaun iha nivel munisípiu no liña ministérial. 5) Implementa kompletamente sistema jestaun denunsiante (100%).",
+   "page": 774
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el20557: Rezultadu _ investigasaun ne’ebé kualidade",
+   "indicator": "1) % evidensia relevante ne’ebé rekolla, koresponde duni ho alegasaun sira; 2)",
+   "baseline": "Relatoriu kazu krimi korrupsaun ne'ebe remesa ba iha Ministeriu",
+   "target": "1) Rekruta pelumenus Espesialista Forense Komputadór ida atu rezolve kompleksidade ne'ebé aumenta ba",
+   "page": 774
+  },
+  {
+   "kind": "output",
+   "code": "A4301.0.0",
+   "statement": "Uma rede de informação organizada com o fornecimento de informação credível e o público te a confiânça e a corragem para reportar informação sobre indícios de corrupção.",
+   "indicator": "1) % estabelesimentu rede informasaun husi lokál to’o internasionál ho informasaun sira ne’ebé kredivel; 2) Iha tinan x, eziste ona mekanizmu ida ne’ebé seguru hodi asegura seguransa ba denunsiante sira; 3) Iha tinan x, eziste ona sistema jestaun denunsia ida ne’ebé mak efetivu.",
+   "baseline": "1) Rede informasaun sira ne'ebe estabelese ona 2) Sistema jestaun denunsia ne'ebe dezemvolve ona iha tinan 2026",
+   "target": "1) Estabelese 20% rede informasaun iha nivel munisípiu no liña ministérial; 2) Lansamentu sistema keixa públika ida ne'ebé seguru no amigavel ba utilizadór; 3) Implementa kompletamente sistema jestaun denunsiante (100%);",
+   "page": 775
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el20559: Aumentu _ iha konxiénsia no kompromisu públiku nian ba prinsípiu sira anti-korrupsaun, adaptasaun ba prátika étika iha setór públiku no aumenta konfiansa ba instituisaun públika sira",
+   "indicator": "1) # kampaña anti-korrupsaun ne’ebé hala’o kada tinan; 2) # sidadaun (M,F,D) ne’ebé partisipa iha programa ka eventu anti-korrupsaun tinan-tinan; 3) % melloria iha avaliasaun konfiansa públiku ba instituisaun governu nian, hanesan sukat liuhosi levantamentu sira; 4) # organizasaun sira ne'ebé implementa polítika anti- korrupsaun ka kódigu étika sira; 5) % populasaun (M,F,D) ne’ebé iha koñesimentu ne’ebé di’ak liu kona-ba prinsípiu anti-korrupsaun, hanesan sukat husi levantamentu sira; 6) % aumentu iha koñesimentu públiku no komprensaun kona-ba valór anti- korrupsaun, sukat liuhosi levantamentu periódiku 7) # matéria ne’ebé tradús ba lian lokál sira hodi garante asesibilidade ba komunidade hotu-hotu; 8) # husi formatu foun no inovativu sira (ezemplu, matéria simulasaun, ferramenta interativu, podcast sira) ne'ebé maka dezenvolve no divulga; 9)% aumentu iha diseminasaun matéria anti-korrupsaun liuhosi mídia konvensionál (ezemplu, TV, rádiu) no plataforma dijitál sira (ezemplu, mídia sosiál, website sira); 10) # plataforma dijitál no kanál sira ne'ebé estabelese hodi enkoraja partisipasaun públiku iha inisiativa anti-korrupsaun.",
+   "baseline": "1) Relatóriu sensibilizasaun ba eskola EBC hamutuk 15, tinan 2025; 2) Relatóriu sensibilizasaun ba eskola sekundaria hamutuk 23, tinan 2025; 3)Relatoriu sensibilizasaun ba setor publiku no privadu hamutuk dala 8 iha munisipiu 8 ho nia total partisipantes hamutuk 965.",
+   "target": "1) Kampaña sensibilizasaun anti- korrupsaun anuál iha nível nasionál durante loron komemorativu sira; 2) Organiza mínimu workshop sensibilizasaun anti-korrupsaun 10 ho alvu ba eskola sira (EBC no sekundaria), ensinu superiór no sentru formasaun sira; 3) Atinji kobertura mínimu ba postu administrativu 5 iha Timor-Leste ho atividade sensibilizasaun anti-korrupsaun; 4) Sensibilizasaun ba grupu kategoria sira (grupu feto, juventude, lider komunitaria, ONG, OSS, partidu politiku) minimu 6 5) Dezenvolve parseria ho organizasaun sosiedade sivíl sira hodi promove integridade institusionál; 6) Fahe matéria edukasionál anti-korrupsaun ba eskola ensinu baziku central (EBC) , sekundária , no ensinu superiór, ne’ebé aliña ho kurríkulu nasionál; 7) Asegura pelumenus 20% disponibilidade matéria anti- korrupsaun iha instituisaun ensinu primáriu, sekundáriu, no superiór; 8) Halo avaliasaun inisiál ba kurríkulu ensinu aprendizajen ne’ebé eziste atu identifika lakuna sira iha edukasaun anti-korrupsaun; 9)% aumentu iha diseminasaun matéria anti-korrupsaun liu-hosi mídia konvensionál (ezemplu, TV, rádiu) no plataforma dijitál sira (ezemplu, mídia sosiál, website sira); 10) # plataforma dijitál no kanál sira",
+   "page": 776
+  }
+ ]
+}

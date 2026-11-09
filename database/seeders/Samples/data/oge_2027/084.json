@@ -1,0 +1,622 @@
+{
+ "year": 2027,
+ "code": "084",
+ "name": "Hospital Nacional Guido Valadares",
+ "abbr": "HNGV",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   917,
+   922
+  ]
+ },
+ "units": [
+  {
+   "code": "HNGV",
+   "div": "0840101",
+   "name": "Hospital Nacional Guido Valadares",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "529": "Cuidados de saúde secundários e terciários",
+  "805": "Saúde"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "Orçamento executado",
+   "baseline": "97%",
+   "target": ">95%",
+   "amounts": {
+    "20": 268000.0
+   },
+   "page": 917
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "Relatório sobre o registro de ativos é feito a cada trimestre",
+   "baseline": "4",
+   "target": "4",
+   "amounts": {
+    "20": 40572.0
+   },
+   "page": 917
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "Implementou o plano de aquisições",
+   "baseline": "75%",
+   "target": "> 90%",
+   "amounts": {
+    "20": 3164565.0,
+    "40": 975000.0
+   },
+   "page": 917
+  },
+  {
+   "code": "5290911",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Serviços de farmácia",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "1. % Disponibilidade de medicamentos no Consumavies . 2. % Item produtu medicamento no Consumaveis nebe jere tuir padraun armajenamento 3. % Pedidu reseitas medicos nebe atende",
+   "baseline": "11%, 18%",
+   "target": "<10%, <10%",
+   "amounts": {
+    "20": 675000.0
+   },
+   "page": 917
+  },
+  {
+   "code": "52914E1",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Rehabilitation and expansion of the MRI machine room",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 53000.0
+   },
+   "page": 918
+  },
+  {
+   "code": "52914E2",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Rehabilitation and expansion of the oxygen building",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 65850.0
+   },
+   "page": 918
+  },
+  {
+   "code": "52914E3",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Rehabilitation and expansion of the generator building",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 70000.0
+   },
+   "page": 918
+  },
+  {
+   "code": "52914E4",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Expansion of 2 wards to reduce overcrowding",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 80000.0
+   },
+   "page": 918
+  },
+  {
+   "code": "52914E5",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Expansion of the car and motorcycle parking area",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 95000.0
+   },
+   "page": 918
+  },
+  {
+   "code": "52914E6",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Rehabilitation and expansion of the document archive warehouse",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 90000.0
+   },
+   "page": 918
+  },
+  {
+   "code": "5291425",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Jestaun Equipamentus Medikus",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 800000.0
+   },
+   "page": 918
+  },
+  {
+   "code": "5291428",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "New open drain behind the emergency building connected to culuhun river",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "% Expansão",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "50": 21950.0
+   },
+   "page": 918
+  },
+  {
+   "code": "5291429",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Administration Building (Adisional Espaso ba fatin Servisu)",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "% Expansão",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "50": 21950.0
+   },
+   "page": 918
+  },
+  {
+   "code": "5291430",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Rehabilitation of exisiting external concrete wall fences including gates (Rehabilitasaun External sira)",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "% Expansão",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "50": 21950.0
+   },
+   "page": 918
+  },
+  {
+   "code": "5291431",
+   "programme": "529",
+   "subprogramme": "52914",
+   "subprogramme_name": "Infraestrutura na Secundária e Terciária",
+   "name": "Parking Area for operational vehicles (Fatin Paragem ba Veiculos)",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "% Expansão",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "50": 21950.0
+   },
+   "page": 918
+  },
+  {
+   "code": "5291901",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Serviços laboratoriais de qualidade",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "1. # de pacientes que receberam resultados de exames laboratoriais em 24 horas 2. % de aumento no número de exames laboratoriais realizados por dia",
+   "baseline": "70%",
+   "target": "> 90%",
+   "amounts": {
+    "20": 175000.0
+   },
+   "page": 919
+  },
+  {
+   "code": "5291902",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Serviços de radiologia",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "1. # of patients received quality of radiological imaging within 24hrs. 2. % Increase in the number of radiological procedures performed per day.",
+   "baseline": "95%",
+   "target": "100%",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 919
+  },
+  {
+   "code": "5291903",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Serviços de banco de sangue",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "1. % Disponibilidade (Stock ) de sangue. 2. # Doasaun voluntario nao orientada",
+   "baseline": "30%",
+   "target": "> 50%",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 919
+  },
+  {
+   "code": "5292901",
+   "programme": "529",
+   "subprogramme": "52929",
+   "subprogramme_name": "Serviços de Apoio aos Cuidados de Saúde",
+   "name": "Serviços de Nutrisaun Klinika",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "% Pasiente nebe hetan ai-han husi rekomendasaun medikas",
+   "baseline": "100%",
+   "target": ">85%",
+   "amounts": {
+    "20": 1023707.0
+   },
+   "page": 919
+  },
+  {
+   "code": "5293001",
+   "programme": "529",
+   "subprogramme": "52930",
+   "subprogramme_name": "Recursos Humanos em Saúde",
+   "name": "Serviços Gestão de Pessoal",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "Salário mensal pago a tempo",
+   "baseline": "100% salário pago no tempo",
+   "target": "100%",
+   "amounts": {
+    "10": 14303443.0
+   },
+   "page": 920
+  },
+  {
+   "code": "5293002",
+   "programme": "529",
+   "subprogramme": "52930",
+   "subprogramme_name": "Recursos Humanos em Saúde",
+   "name": "o serviço extraordinário",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "Horas extras pagas por hora, pagas a tempo",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "10": 618108.0
+   },
+   "page": 920
+  },
+  {
+   "code": "5292501",
+   "programme": "529",
+   "subprogramme": "52925",
+   "subprogramme_name": "Formação Clínica e Investigação na área de Saúde",
+   "name": "Formação clínica e técnica na área da Saúde no exterior",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "# of healthcare personnel participated in the clinical & tecnical training abroad",
+   "baseline": "21",
+   "target": ">20",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 921
+  },
+  {
+   "code": "5292502",
+   "programme": "529",
+   "subprogramme": "52925",
+   "subprogramme_name": "Formação Clínica e Investigação na área de Saúde",
+   "name": "Formação clínica e técnica na área da Saúde no país",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "# of healthcare personnel participated in the in-country clinical & technical training",
+   "baseline": "0",
+   "target": "20>",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 921
+  },
+  {
+   "code": "52925E1",
+   "programme": "529",
+   "subprogramme": "52925",
+   "subprogramme_name": "Formação Clínica e Investigação na área de Saúde",
+   "name": "Clinical capacity building for 60 hospital staff",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 921
+  },
+  {
+   "code": "5292703",
+   "programme": "529",
+   "subprogramme": "52927",
+   "subprogramme_name": "Serviços ambulatórios",
+   "name": "Serviços médicos móveis e atendimento a pacientes em clínicas especializadas",
+   "div": [
+    "0840101"
+   ],
+   "indicator": "Tours de Especialistas em Alcance por ano",
+   "baseline": "12",
+   "target": "16",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 921
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "Plano de 5 anos aprovado",
+   "target": "Revisao Plano cinco anos (2021-2025)",
+   "page": 917
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Objetivos do plano anual alcançados",
+   "baseline": "97%",
+   "target": ">75%",
+   "page": 917
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.0",
+   "statement": "São prestados cuidados hospitalares secundários e terciários seguros, eficazes e de alta qualidade, com um sistema de encaminhamento que funciona bem, a fim de reduzir a mortalidade evitável e melhorar a satisfação dos pacientes",
+   "indicator": "1. Taxa Mortalidade Bruto Hospital (GDR) 2. Taxa Mortalidade Netto Hospital (NDR)",
+   "baseline": "1. Hamenus Taxa Mortalidade Bruto Hospital (GDR) 2. Hamenus Taxa Mortalidade Netto Hospital (NDR)",
+   "target": "1. <45/1000 2. <25/1000",
+   "page": 917
+  },
+  {
+   "kind": "output",
+   "code": "52909.0.0",
+   "statement": "O sistema de aquisição e distribuição de medicamentos e suprimentos médicos funciona de forma eficiente e transparente, reduzindo a falta de estoque e o desperdício em todo o Serviço Nacional de Saúde",
+   "indicator": "1. % Funsionamentu equipamentu mediku tuir padraun 2. # Item equipamento mediku foun nebe kompra",
+   "baseline": "75%",
+   "target": "> 90%",
+   "page": 917
+  },
+  {
+   "kind": "output",
+   "code": "52914.0.0",
+   "statement": "Serviços de apoio para garantir a qualidade do tratamento médico em todos os hospitais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 918
+  },
+  {
+   "kind": "output",
+   "code": "52914.0.2",
+   "statement": "Expansão do Hospital para acomodar a necessidade crescente de serviços médicos especializados e demanda de serviços de saúde",
+   "indicator": "1. # Konstrusaun nebe mak konstruidu 2. # Fasilidade nebe mak halo ona Reabilitasaun no manutensaun 3. % Funsionamentu equipamentu mediku tuir padraun 4. % Funsionamentu equipamentu mediku tuir padraun",
+   "baseline": "0%",
+   "target": "100%",
+   "page": 918
+  },
+  {
+   "kind": "output",
+   "code": "52919.0.0",
+   "statement": "1) Maior disponibilidade e acessibilidade de serviços laboratoriais e de radiologia aos pacientes, levando a tempos de resposta mais rápidos;&amp;#13;&amp;#10;2) Maior capacidade",
+   "indicator": "1. Tempo médio de espera nos serviços laboratoriais e de radiologia. 2. Relação oferta-demanda de transfusão de sangue. 3. Taxa de disponibilidade de medicamentos",
+   "baseline": "55%",
+   "target": "75%",
+   "page": 918
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.1",
+   "statement": "Melhoria da qualidade dos serviços com o objetivo de reduzir a taxa de mortalidade nos Hospitais e também a redução da transferência de pacientes para o exterior / Cuidados de saúde secundários e terciários reduziram a taxa de mortalidade",
+   "indicator": "1. Taxa Mortalidade Bruto Hospital (GDR) 2. Taxa Mortalidade Netto Hospital (NDR)",
+   "baseline": "1. Hamenus Taxa Mortalidade Bruto Hospital (GDR) 2. Hamenus Taxa Mortalidade Netto Hospital (NDR)",
+   "target": "1. <45/1000 2. <25/1000",
+   "page": 919
+  },
+  {
+   "kind": "output",
+   "code": "52929.0.0",
+   "statement": "1. Maior disponibilidade e acessibilidade de serviços laboratoriais e de radiologia aos pacientes, levando a tempos de resposta mais rápidos.&amp;#13;&amp;#10;&amp;#13;&amp;# 10;2. Maior capacidade para satisfazer a procura de transfusões de sangue.&amp;#13;&amp;#10;&amp;#13;&amp;# 10;3. Melhor acesso a medicamentos essenciais para os pacientes.&amp;#13;&amp;#10;&amp;#13;&amp; #10;4. Maior acesso a uma gama abrangente de terapias e serviços de reabilitação.",
+   "indicator": "1. Tempo médio de espera nos serviços laboratoriais e de radiologia. 2. Relação oferta-demanda de transfusão de sangue. 3. Taxa de disponibilidade de medicamentos essenciais. 4. Taxa de utilização do serviço de terapias de reabilitação.",
+   "baseline": "55%",
+   "target": "75%",
+   "page": 919
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.2",
+   "statement": "Fornecimento de tratamento médico seguro para pacientes que necessitam de tratamentos médicos especializados por meio de profissionais de saúde médicos qualificados e um sistema de referência médica eficiente.",
+   "indicator": "1. Taxa Mortalidade Bruto Hospital (GDR) 2. Taxa Mortalidade Netto Hospital (NDR)",
+   "baseline": "1. Hamenus Taxa Mortalidade Bruto Hospital (GDR) 2. Hamenus Taxa Mortalidade Netto Hospital (NDR)",
+   "target": "1. <45/1000 2. <25/1000",
+   "page": 920
+  },
+  {
+   "kind": "output",
+   "code": "52930.0.0",
+   "statement": "Todos os Funcionários recebem vencimentos nos termos da Lei",
+   "indicator": "Todos os funcionários públicos são pagos a tempo, de acordo com os direitos adquirido",
+   "baseline": "100% os funcionários públicos são pagos a tempo, de acordo com os direitos adquirido",
+   "target": "100%",
+   "page": 920
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.3",
+   "statement": "Fornecimento de tratamento médico seguro para pacientes que necessitam de tratamentos médicos especializados por meio de profissionais de saúde médicos qualificados e um sistema de referência médica eficiente.",
+   "indicator": "1. Taxa Mortalidade Bruto Hospital (GDR) 2. Taxa Mortalidade Netto Hospital (NDR)",
+   "baseline": "1. Hamenus Taxa Mortalidade Bruto Hospital (GDR) 2. Hamenus Taxa Mortalidade Netto Hospital (NDR)",
+   "target": "1. <45/1000 2. <25/1000",
+   "page": 920
+  },
+  {
+   "kind": "output",
+   "code": "52925.0.0",
+   "statement": "1. Os profissionais de saúde melhoraram as práticas clínicas e as competências técnicas através das boas práticas internacionais e nacionais.&amp;#13;&amp;#10;2. Iniciativas de investigação melhoram o desenvolvimento de soluções, tecnologias e metodologias no domínio dos cuidados de saúde, do diagnóstico e do tratamento dos pacientes.",
+   "indicator": "1. # of healthcare personnel increased proficiency in clinical practices and technical skills. 2. # of research outputs implemented in clinical practice.",
+   "baseline": "50%",
+   "target": "Mais",
+   "page": 920
+  },
+  {
+   "kind": "output",
+   "code": "52926.0.0",
+   "statement": "Fornecer qualidade médica nos serviços aos pacientes para reduzir a taxa de mortalidade hospitalar e melhorar a eficiência do serviço hospitalar",
+   "indicator": "Taxa de mortalidade líquida (NDR)",
+   "baseline": "Taxa de Morte Líquida(NDR) 24",
+   "target": "< 26/1000",
+   "page": 921
+  },
+  {
+   "kind": "output",
+   "code": "52927.0.0",
+   "statement": "Melhorar os serviços médicos especializados no serviço de saúde comunitário (OPD + Emergência + Extensão)",
+   "indicator": "Consultas ambulatoriais per capita",
+   "baseline": "11%",
+   "target": "%",
+   "page": 921
+  },
+  {
+   "kind": "output",
+   "code": "52928.0.0",
+   "statement": "Melhorar a prontidão para a resposta de emergência e serviços de referência médica",
+   "indicator": "Rever os critérios clínicos para encaminhamento para o exterior",
+   "baseline": "1",
+   "target": "Revisar e aprovar critérios clínicos para referências no exterior",
+   "page": 921
+  },
+  {
+   "kind": "outcome",
+   "code": "805.0.2",
+   "statement": "Melhoria da qualidade dos serviços com o objetivo de reduzir a taxa de mortalidade nos Hospitais e também a redução da",
+   "indicator": "Taxa de satisfação dos pacientes",
+   "baseline": "87%",
+   "target": "Mais de 90%",
+   "page": 921
+  },
+  {
+   "kind": "output",
+   "code": "80538.0.0",
+   "statement": "MoU com um hospital implementado",
+   "indicator": "Acordo implementa",
+   "baseline": "1",
+   "target": "MoU's assinados implementados",
+   "page": 922
+  }
+ ]
+}

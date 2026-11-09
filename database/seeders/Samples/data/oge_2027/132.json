@@ -1,0 +1,301 @@
+{
+ "year": 2027,
+ "code": "132",
+ "name": "Gabinete de Apoio á Sociedade Civil (GASC)",
+ "abbr": "GASC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1246,
+   1254
+  ]
+ },
+ "units": [
+  {
+   "code": "DNAFP",
+   "div": "1320101",
+   "name": "Direcão Nacional de Administração, Financas no Planeamentu",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNP",
+   "div": "1320102",
+   "name": "Direção Nacional de Programasaun",
+   "type": "National Directorate",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "510012M",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Estandarizasaun ba Atendementu Publiku (Kordena, Jere, Komunika, Supervizaun, Monitorizasaun no Avaliasaun)",
+   "div": [
+    "1320101"
+   ],
+   "indicator": "1.). Atendementu: # Simu no Organiza propostas, Koordena no Selesaun Proposta, Publikasaun, Asistensia Revizaun Proposta, Introdusaun Rekezitus ezekusaun, Selebra Kontratu, Kordenasaun ho Obras Publiku, ADN ba projetu fiziku, Levantamentu projetu Infrastrutura, Prosesu Pagamentus, Monitorizasaun, Asistensia ba elaborasaun Relatoriu Narativu no Finansas, Enkontru regular, Pre avaliasaun no avaliasaun, Verifikasaun Relatoriu 50%, 100% no sertifika relatoriu final,Lansamentu projetu, Inagurasaun projetu, Arkivu dokumentus. 2). Produs Esbosu Akordu CET, Diskuasaun no Finalizasaun Esbosu, Organiza no Selebra Akordu, Enkontru Regular ho CET, Asistensia Projetu CET (Dioseze Dili, Baucau, Maliana) ba Obras Publika no ADN, Monitroizasaun no Avaliasaun projetu CET (Sekretariadu CET, Dioseze Dili, Baucau no Maliana), presta asistensia relatoriu Narativu no Finanseiru (Sekretariadu CET, Dioseze Dili, Baucau, Maliana). 3). Atividade internal GASC: # Rekrutamentu, Reativa Kontratu, Pagamentu salariu mensal, Prosesu Aprovizionamentu nesesidade",
+   "baseline": "1). Total Funsionariu hamutuk 41 pesoas (Funsionariu Publiku 4, Kontratadu Regime Jeral 25, Kontratadu termu certo 8, Kargu politika 2, Asesora internasionl ida, Asesora Nasional ida), planu rekruta nain 5, Ekipamentu Transporte unidade 4, 2). Kareta ida la iha kondisaun operasional ho nia depresiasaun ultra pasa 10 anos, 3). Ekipamentu Informatika no Mobiliariu (Komputador, Ekipamentu elektroniku (Tape record, Kamera, Hardisk), Kadeira, Meja, Armariu) la iha kondisaun komputador desktop 9 no avaria 9 no la sufisiente atu apoiu servisu administrasaun GASC, 4). Sala Servisu no arkivamentu la sufisiente.",
+   "target": "1. 46 funsionariu ejerse servisu Profisional no Responsavel. 2). 80% projetu finansiadu pela GASC kumpri tempu terminadu, 3). Satisfasaun Parseiru 95% ba servisu GASC.",
+   "amounts": {
+    "10": 448868.0,
+    "20": 131467.0
+   },
+   "page": 1247
+  },
+  {
+   "code": "9806801",
+   "programme": "980",
+   "subprogramme": "98068",
+   "subprogramme_name": "Cooperação com o CET nas áreas educação, sosial, eclesiástica e Administração",
+   "name": "Apoio ba Atividade Edukasaun, Formasaun, Kapasitasaun, Konstrusuan, Saude, Reforsa Instituisaun no Administrasaun",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "% para a educação (escola Católica), % para apoio social, % para eclesial e % para custos administrativos.",
+   "baseline": "Planu asaun annual bazeia ba nesesidade Sekretariadu CET, Dioseze Dili, Baucau no Maliana. Instituisaun paralelu iha kapasidade ezekusaun orsamentu. Linhas koordenasaun diak entre parte interesada.",
+   "target": "40% para Asunto Educação, 30% para Asunto Social, 20% para Guverno Eclesiál, 10% para custos de administração.",
+   "amounts": {
+    "30": 15000000.0
+   },
+   "page": 1250
+  },
+  {
+   "code": "9806301",
+   "programme": "980",
+   "subprogramme": "98063",
+   "subprogramme_name": "Dezenvolver Parcerias e promover Tolerância, paz, Dignidade humano nacional, Regional e Internacional",
+   "name": "Apoiu inisiativas Humanitaria Organizasaun Sosiedade civil",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "# Organização hetan apoio",
+   "baseline": "CVTL e Fundação Clínica Bairopite implementa atividade na área de serviços comuntaria, saúde comunitária no konsensializasaun ba juventude, Moras Kontajiozu",
+   "target": "1) 10 Organizações hetan apoiu, 2). 90% membru FONGTIL iha programa humanitaria submete proposta.",
+   "amounts": {
+    "30": 1450000.0
+   },
+   "page": 1251
+  },
+  {
+   "code": "9806302",
+   "programme": "980",
+   "subprogramme": "98063",
+   "subprogramme_name": "Dezenvolver Parcerias e promover Tolerância, paz, Dignidade humano nacional, Regional e Internacional",
+   "name": "Apoiu no Partisipa Ativu iha forum no eventus Sosiedade Civil CPLP no ASEAN no Regional",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "1. # Participar regularmente de encontros da CPLP; 2. # Participar de organizações no Fórum da CPLP; 3. # Participar de uma organização no Fórum Popular da ASEAN.",
+   "baseline": "Apoiu a FONGTIL e outras organizações que fasilitam na questão da ASEAN, CPLP e PIANGO.",
+   "target": "2 Organizações hetan apoiu",
+   "amounts": {
+    "30": 200000.0
+   },
+   "page": 1252
+  },
+  {
+   "code": "9806303",
+   "programme": "980",
+   "subprogramme": "98063",
+   "subprogramme_name": "Dezenvolver Parcerias e promover Tolerância, paz, Dignidade humano nacional, Regional e Internacional",
+   "name": "Apoiar inicitivas Boa Governasaun hosi Organizasaun Sosiedade Civil",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "# Proposta hetan apoiu.",
+   "baseline": "1). Simu proposta hosi Organizasaun sosiedade civil hamutuk 16. 2). 25 organizasaun implementa atividade Boa Governasaun Rejistradu iha FONGTIL.",
+   "target": "1) 10 Organizações, 2). 70% membru FONGTIL iha programa Boa Governasaun submete proposta",
+   "amounts": {
+    "30": 300000.0
+   },
+   "page": 1252
+  },
+  {
+   "code": "9806304",
+   "programme": "980",
+   "subprogramme": "98063",
+   "subprogramme_name": "Dezenvolver Parcerias e promover Tolerância, paz, Dignidade humano nacional, Regional e Internacional",
+   "name": "Apoiu inisiativas Edukasaun Civika hosi Organizasaun Sosiedade Civil",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "# Proposta hetan Apoiu",
+   "baseline": "1). Simu proposta hosi Organizasaun sosiedade civil hamutuk 75. 2). 75 organizasaun implementa atividade Edukasaun Civika Rejistradu iha FONGTIL.",
+   "target": "1) 40 Organizações hetan apoiu, 2). 90% membru FONGTIL iha programa Edukasaun Civika submete proposta.",
+   "amounts": {
+    "30": 800000.0
+   },
+   "page": 1252
+  },
+  {
+   "code": "9806306",
+   "programme": "980",
+   "subprogramme": "98063",
+   "subprogramme_name": "Dezenvolver Parcerias e promover Tolerância, paz, Dignidade humano nacional, Regional e Internacional",
+   "name": "Apoiu inisiativas Haforsa Instituisaun Organizasaun Sosiedade civil",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "# Proposta hetan apoiu",
+   "baseline": "1). Simu proposta hosi Organizasaun sosiedade civil hamutuk 20. 2). 25 organizasaun implementa atividade Haforsa Institusional Rejistradu iha FONGTIL.",
+   "target": "1) 10 Organizações hetan apoiu, 2). 90% membru FONGTIL iha programa haforsa institusional submete proposta.",
+   "amounts": {
+    "30": 500000.0
+   },
+   "page": 1252
+  },
+  {
+   "code": "9806307",
+   "programme": "980",
+   "subprogramme": "98063",
+   "subprogramme_name": "Dezenvolver Parcerias e promover Tolerância, paz, Dignidade humano nacional, Regional e Internacional",
+   "name": "Apoiu Inisiativa Empoderamentu Komunitaria hosi OSC",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "# Proposta hetan apoiu",
+   "baseline": "1). Simu proposta hosi Organizasaun sosiedade civil hamutuk 90. 2). 120 organizasaun implementa atividade Empoderamentu Rejistradu iha FONGTIL",
+   "target": "1) 40 Organizações hetan apoiu, 2). 90% membru FONGTIL iha programa empoderamentu submete proposta.",
+   "amounts": {
+    "30": 800000.0
+   },
+   "page": 1253
+  },
+  {
+   "code": "9806402",
+   "programme": "980",
+   "subprogramme": "98064",
+   "subprogramme_name": "Konfição religioso não Católico recebem apoio para as suas iniciativas",
+   "name": "Apoio às insiativas religiões não católica",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "1) # Confisoesn relijioju naun catolico submete proposta. 2).# Confisoesn relijioju naun catolico Admitidu proposta.",
+   "baseline": "Simu Proposta hosi konfisoens relijioju naun katoliku.",
+   "target": "1) 10 Organização",
+   "amounts": {
+    "30": 1000000.0
+   },
+   "page": 1253
+  },
+  {
+   "code": "9807001",
+   "programme": "980",
+   "subprogramme": "98070",
+   "subprogramme_name": "Apoiu Iniciativas para as Congregações e Ordem Religiosas",
+   "name": "Apoiu kongregasoens no fundasaun Relijioju Catolico",
+   "div": [
+    "1320102"
+   ],
+   "indicator": "1). A congregação e a fundação religiosa receberam a atribuição. 2). As congregações e as fundações católicas tiveram as suas propostas aprovadas.",
+   "baseline": "Simu Proposta 85 por ano",
+   "target": "85% proposta ba Prosesu selesaun",
+   "amounts": {
+    "30": 4500000.0
+   },
+   "page": 1254
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "\"O Governo irá, contribuir para a melhoria das capacidades, iniciativas e ações da Sociedade Civil, promovendo assim também a tolerância, a paz e a dignidade humana e mantendo o Estado responsável pelas suas ações e promovendo soluções alternativas e progressistas para o País.\"",
+   "baseline": "Funsionamentu Pesoais tuir tarefas no responsabilidade ne'ebe atribui",
+   "target": "1. Iha kualidade de Atendementu no menus reklamasaun hosi publiku. 2. Hetan apresiasaun pozitivu hosi parseirus no parseirus kumpri kontratu no regras administrativas.",
+   "page": 1246
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1). Aplicação dos critérios das subvenções públicas. 2). Padronização dos mecanismos de atribuição de subvenções. 3). Receção de propostas de candidatura de 250 organizações da sociedade civil (OSC). 4). 80% das propostas são selecionadas/aprovadas. 5). Realização de, no mínimo, duas visitas de acompanhamento a cada parceiro. 6). Celebração de contratos ou acordos entre o GASC e os parceiros. 7). Realização de pagamentos aos parceiros de acordo com os acordos e as regras estabelecidas. 8). Prestação de atendimento às organizações da sociedade civil. 9). As organizações da sociedade civil recebem atendimento. 10). 80% das propostas registadas são selecionadas pela equipa e aprovadas de acordo com os procedimentos; as organizações parceiras implementam as atividades de acordo com as",
+   "baseline": "1.Departamentu sira ne’e funsiona tuir enkuadramentu administrativu no programa. 2.Dialogu no enkontru regular ho parte relevante sira atu monitoriza no avalia projetu sira ne’ebé simu fundus hosi transferénsia públika (GASC).",
+   "target": "1).Fortaleser quadro legal que viabilize as possibilidades de atuação das organizações da sociedade civil na vida económica, social e política do País, incluindo a definição de áreas prioritárias de intervenção; 2) Realizar um estudo e averiguar a sustentabilidade financeira de atribuição de fundos e incentivos fiscais às organizações da sociedade civil, por forma a ajudar o Estado na tomada de decisões acertadas nesta matéria; 3) Melhorar o apoio à implementação das atividades da sociedade civil, incluindo a melhor coordenação e diálogo com o Governo; 4). Promover e dinamizar a cooperação entre as sociedades civis de vários países ou grupos de países (nomeadamente através da CPLP e da ASEAN), com o objetivo de explorar oportunidades de desenvolvimento económico, cultural, social, religioso e político, bem como ações de solidariedade e de defesa dos direitos humanos;",
+   "page": 1246
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.e: Uma sociedade civil forte e diversificada contribui para o desenvolvimento de Timor-Leste.",
+   "indicator": "1). A organização da sociedade civil aplica transparência interna e externa. 2). A organização da sociedade civil aplica um funcionamento de gestão organizacional saudável.",
+   "baseline": "A existência do CET contribui para melhorar a qualidade da educação, a qualidade de vida, a qualidade da infraestrutura, do atendimento e do funcionamento institucional.",
+   "target": "A maioria das escolas católicas funciona bem e oferece ensino de qualidade; a prática religiosa tende a melhorar as relações sociais e humanas, assim como a melhorar as condições de vida e a saúde pública.",
+   "page": 1248
+  },
+  {
+   "kind": "output",
+   "code": "98068.0.0",
+   "statement": "1. Educação 1.1) Promover a educação católica interdiocesana nas áreas social, eclesial e de administração. 1.2) Promover a educação católica nacional nas áreas social, eclesial e de administração católica nas três dioceses (Díli, Baucau e Maliana). 1.3) Promover formação categorial interdiocesana. 1.4) Desenvolver infraestruturas interdiocesanas. 2. Social 2.1) Existência de instituições religiosas para responder às questões sociais a nível interdiocesano. 3. Governo Eclesial 3.1) Realizar comunicação interna para melhorar a articulação das atividades interdiocesanas. 3.2) Implementar medidas de proteção para o clero. 3.3) Desenvolver esforços integrados para fortalecer o conhecimento sobre a liturgia. 4. Administração 4.1) Assegurar o funcionamento organizacional com base numa gestão administrativa e financeira adequada. Dioceses: 3 (Díli, Baucau e Maliana) 1 – Educação 1). Desenvolver esforços integrados para a qualificação dos recursos humanos. 2). Reunir condições para facilitar o funcionamento das instituições. 3). Melhorar a gestão do património e a gestão administrativa e financeira das dioceses. 2 – Questões Sociais Assegurar o funcionamento das instituições religiosas na área social. Output 3 – Governo Eclesial 3.1) Realizar comunicação interna para melhorar a articulação das atividades. 3.2) Assegurar alojamento para o clero. 3.3) Desenvolver esforços integrados para fortalecer o conhecimento sobre a liturgia. 4 – Administração 4.1) Assegurar o funcionamento organizacional com base numa gestão administrativa e financeira adequada.",
+   "indicator": "1.1.1) 4 instituições paralelas recebem apoio financeiro. 1.1.2) Realização de formação para o clero duas vezes por ano. 1.1.3) O processo de aprendizagem é realizado de acordo com o currículo existente. 1.2.1) 75% do funcionamento da CONECTIL cumpre os requisitos de atendimento. 1.2.2) 388 professores participam em formação contínua. 1.2.3) Elaboração e impressão de manuais, distribuídos por 365 escolas. 1.2.4) Um total de 54.148 alunos recebem manuais de religião para escolas católicas e públicas. 1.3.1) Realização de duas formações anuais e uma reunião eclesial por ano. 1.4.1) Construção e reabilitação de todas as obras da CET. 2.1) 3 instituições de intervenção social de proximidade e de resposta a situações de vulnerabilidade (Caritas Timor-Leste, JPIC e COMSOS). 3.1.1) Uniformização das práticas religiosas e reforço da assertividade. 3.1.2) 75% do clero tem acesso a tratamento. 3.1.3) Formação regular para catequistas e ampla divulgação da liturgia. 4.1) O Secretariado funciona diariamente, dispõe de uma estrutura funcional adequada às necessidades e apresenta anualmente relatórios narrativos e financeiros. Dioceses: 3 (Díli, Baucau e Maliana) 1.1) Número de escolas, número de professores e número de alunos. 1.2) 20% de educação qualificada e inclusiva, contribuindo para complementar/substituir as escolas públicas. 2.1) 90% das instalações encontram-se em condições adequadas para o funcionamento. 2.2) 90% dos equipamentos são modernizados. 3.1) O Secretariado funciona diariamente, dispõe de uma estrutura funcional adequada às necessidades e apresenta anualmente relatórios narrativos e financeiros. 2.1) 3 instituições de intervenção social de proximidade e de resposta a situações de vulnerabilidade (Caritas Timor- Leste, Clínicas, RTK, JPIC e COMSOS). 2.2) 90% das construções das instituições religiosas são adequadas às necessidades. 3.1) Uniformização das práticas religiosas e reforço da assertividade. 3.1.2) O clero dispõe de condições adequadas para o exercício das suas funções. 3.1.3) Formação regular para catequistas e ampla divulgação da liturgia. 4.1) O Secretariado funciona diariamente, dispõe de uma estrutura funcional adequada às",
+   "baseline": "Sekretariado da CET no Dioseze 3 (Dili, Baucau, Maliana) asumi responsabilidade ba funsionamentu eskola katolika, Seminariu (menor, Maior, ano propedeutico, ISFIT), UCT, klinikas no infrastrutura (Kapelas, Igreja, Rezidensia, Kartoriu, Salaun, Eskolas) ne'ebe iha kondisaun minimu de funsionamentu. Sekretariadu CET no dioseze konstituidu com varius departamentus que funsionar regularmente a nivel de formasaun ecomenica e relijioja.",
+   "target": "Intervenção secretariado da CET e diocese Dili, Baucau, Maliana na sua planificação e intervenção no âmbito do financiamento do governo.",
+   "page": 1248
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.k: Garantir às mulheres e outros componentes mais vulneráveis direitos iguais de acesso aos recursos económicos, acesso e controle sobre os recursos, bem como garantir a participação plena e efetiva das mulheres e outros componentes mais vulneráveis oportunidades iguais no nível de tomada de decisão",
+   "indicator": "Melhoramento da vida da comunidade em áreas remotas e aumento da consciência da sensibilidade, criticidade e envolvimento da sociedade no controle social.",
+   "baseline": "1. Ezisténsia organizasaun sosiedade sivil kontinua dezenvolve kuantitativamente iha setor intervensaun komunidade no sosiál sira. 2. Selesiona Propostas kumpri os regras e aprezentam rezultados sustentavel e prolongados. 3. Planifikasaun organizasional hodi promove Formasaun humanu no relijioza, formasaun edukativa no apoiu sosial.",
+   "target": "1. Dezenvolve mekanizmu ba atendementu no sensibilizasaun kona-ba matadalan, formatu relatoriu no kumprimentu regras sira, atu garante projetu sira iha kualidade no sustentabilidade. 2.Qualidade da proposta, qualidade da intervenção, resultado com mudança de condições e comportamentos 3. Promover boas condições para a prática religiosa e fomentar a fraternidade inter-religiosa, melhorando as condições de vida da sua comunidade.",
+   "page": 1250
+  },
+  {
+   "kind": "output",
+   "code": "98063.0.0",
+   "statement": "1). Envolvimento positivo na consolidação dos direitos cívicos e humanos. 2). Implementação da coordenação e do diálogo com o Governo para uma cooperação eficaz e normativa. 3). Os parceiros dispõem de recursos financeiros suficientes para os seus programas. 4). Dinamização das redes de cooperação entre organizações da sociedade civil de vários países da CPLP e da ASEAN.",
+   "indicator": "1.1) Receção de 60 propostas, das quais 60% das propostas de qualidade obtêm financiamento. 1.2) 60% dos materiais e módulos são adequados. 1.3) 70% dos parceiros cumprem os procedimentos e as normas, com resultados práticos positivos. 1.4) 90% demonstram uma apreciação positiva em relação ao atendimento. 1.5) 90% colaboram na apresentação dos resultados dos",
+   "baseline": "1. Iha varius organizasaun sosiedade civil ne'ebe sensivel ba boa governasaun, edukasaun sivika, humanitaria, reforsa institusional no empoderamentu komunitaria. 2. Consideração das organizações da sociedade civil, cuja maioria está concentrada em Díli e desenvolve propostas em áreas definidas ou categorias específicas, mas existe um número de",
+   "target": "1. Propostas selecionadas cumprem regras fundamentais no âmbito da inclusão social. 2. A organização da sociedade civil torna-se uma parceira excelente do governo ao demonstrar capacidade para mobilizar, organizar, aumentar a criatividade e a inovação, promovendo a introdução de tecnologias alternativas e a participação comunitária no desenvolvimento rural.",
+   "page": 1250
+  },
+  {
+   "kind": "output",
+   "code": "98063.0.1",
+   "statement": "1). As organizações da sociedade civil dispõem de mecanismos e abordagens apropriados para as comunidades rurais. 2). Os grupos comunitários são formados, capacitados, fortalecidos e independentes, e mobilizam ações comunitárias.",
+   "indicator": "1.1) A maioria das organizações da sociedade civil dispõe de manuais/módulos de formação. 1.2) A maioria dos parceiros possui conhecimentos nas suas áreas de intervenção. 1.3) Recorrem a técnicos profissionais para intervenções em diferentes áreas. 2.1) Realizam-se encontros regulares para discutir questões de interesse público. 2.2) Multiplicação de boas práticas e modelos entre diferentes grupos. 2.3) Criação de um sistema de economia circular entre os grupos.",
+   "baseline": "1.Iha varius organizasaun sosiedade civil ne'ebe sensivel ba boa governasaun, edukasaun sivika, humanitaria, reforsa institusional no empoderamentu komunitaria.",
+   "target": "Propostas selecionadas cumprem regras fundamentais no âmbito da inclusão social",
+   "page": 1252
+  },
+  {
+   "kind": "output",
+   "code": "98064.0.0",
+   "statement": "1). Melhoria das condições das denominações religiosas. 2). As confissões religiosas dispõem de condições adequadas para cumprir a sua missão religiosa. 3). Fortalecimento das redes de cooperação entre doutrinas semelhantes no âmbito da CPLP, da ASEAN e a nível regional.",
+   "indicator": "\"1) Inisiativas 10 proposta no admitidu 5 proposta. 2). Kondisaun adekuadu ba sira nia misaun. 3). Partisipasaun ativa na enkontru, reuniaun, konferensia, seminariu, asembleia jeral entre estadu membro.",
+   "baseline": "1. A denominação protestante é constituída por pequenos grupos de praticantes diferenciados. Os muçulmanos também possuem vários grupos divergentes, assim como os hindus, budistas e seguidores do confucionismo. 2. Planifikasaun organizasional hodi promove Formasaun humanu no relijioza, formasaun edukativa no apoiu sosia",
+   "target": "1. Define o apoio com base no número mínimo de comunidades de praticantes. 2. Promover boas condições para a prática religiosa e fomentar a fraternidade inter- religiosa, melhorando as condições de vida da sua comunidade.",
+   "page": 1253
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.m: Hasae Partisipasaun sociedade civil Hodi Kontribui ba mudansa Sosial iha Timor-Leste.",
+   "indicator": "\"1). Organizasaun Sosiedade Civil aplika transparansia internal no eksternal. 2). Organizasaun sosiedade civil aplika funsionamentu jestaun organizasaun saudavel\"",
+   "baseline": "As congregaçoes religiosas existem integradas nas comunidades, apoiando a melhoria de vida das populacoes, em particular criancas e jovens. Promovem a melhoria de infraestruturas.",
+   "target": "Promover a qualidade de vida das criancas, jovens e adultos bem como asegura a cidadania que refletem tolerancia, harmonia e boa convivencia comunitaria.",
+   "page": 1253
+  },
+  {
+   "kind": "output",
+   "code": "98070.0.0",
+   "statement": "1). As instalações religiosas reúnem condições adequadas. 2). Participação na construção e reabilitação de edifícios e equipamentos religiosos. 3). Participação em conferências, seminários nacionais e internacionais e reuniões eclesiais. 4). Profissionalização de técnicos e formandos. 5). Melhoria das condições de saúde da comunidade. 6). Estabelecimento de condições para aumentar a produção agrícola em Fatumaka.",
+   "indicator": "1.1) 80% dos projetos são aprovados. 1.2) 90% dos internos concluem o curso. 2.1) 80% das construções de edifícios religiosos encontram-se em boas condições. 2.2) A frequência das missas é ativa e contínua. 3.1) 20% das congregações participam em eventos nacionais e internacionais. 4.1) Aumentam os conhecimentos técnicos. 4.2) 80% concluem a formação técnico-profissional. 4.3)",
+   "baseline": "80% proposta aprovadu",
+   "target": "75% Propostas que cumprem regras fundamentais efetuam intervenções e respondem às necessidades.",
+   "page": 1253
+  }
+ ]
+}

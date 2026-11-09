@@ -1,0 +1,4132 @@
+{
+ "year": 2027,
+ "code": "108",
+ "name": "Autoridade RAEOA-ZEESM",
+ "abbr": "ARZ",
+ "kind": "municipal",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   994,
+   1041
+  ]
+ },
+ "units": [
+  {
+   "code": "GPA",
+   "div": "1080101",
+   "name": "Gabinete do Presidente Autoridade da RAEOA (GPA)",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DORSOAAHR",
+   "div": "1080102",
+   "name": "Directorate of Regional Service of Administration and Human Resources",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOF",
+   "div": "1080103",
+   "name": "Regional Directorate of Finance",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOPAL",
+   "div": "1080104",
+   "name": "Regional Directorate of Patrimony and Logistics",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOPS",
+   "div": "1080105",
+   "name": "Regional Directorate of Procurement Service",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOSTNGOAC",
+   "div": "1080106",
+   "name": "Regional Directorate of Support to Non‐Governmental Organizations and Community Organizations",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOE",
+   "div": "1080107",
+   "name": "Regional Directorate of Education",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOH",
+   "div": "1080108",
+   "name": "Regional Directorate of Health",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOFS",
+   "div": "1080109",
+   "name": "Regional Directorate of Food Security",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOPW",
+   "div": "1080110",
+   "name": "Regional Directorate of Public Works",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOT",
+   "div": "1080111",
+   "name": "Regional Directorate of Transport",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOWSAE",
+   "div": "1080112",
+   "name": "Regional Directorate of Water, Sanitation and Environment",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOA",
+   "div": "1080113",
+   "name": "Regional Directorate of Agriculture",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOMMAT",
+   "div": "1080114",
+   "name": "Regional Directorate of Market Management and Tourism",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOSA",
+   "div": "1080115",
+   "name": "Regional Directorate of Social Action",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOCPANDM",
+   "div": "1080116",
+   "name": "Regional Directorate of Civil Protection and Natural Disaster Management",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDORAN",
+   "div": "1080117",
+   "name": "Regional Directorate of Registries and Notary",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOCAI",
+   "div": "1080118",
+   "name": "Regional Directorate of Commerce and Industry",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RDOLAP",
+   "div": "1080119",
+   "name": "Regional Directorate of Land and Properties",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EDOIPAD",
+   "div": "1080120",
+   "name": "egional Directorate of Integrated Planning and Development",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RADOP",
+   "div": "1080121",
+   "name": "Regional Agency Directorate of Planning",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RADOI",
+   "div": "1080122",
+   "name": "Regional Agency Directorate of Inspection",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AONAP",
+   "div": "1080123",
+   "name": "Administration of Nitibe Administrative Post",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AOOAP",
+   "div": "1080124",
+   "name": "Administration of Oesilo Administrative Post",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AOPMAP",
+   "div": "1080125",
+   "name": "Administration of Pante Macasar Administrative Post",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DOPAP",
+   "div": "1080126",
+   "name": "dministration of Pasabe Administrative Post",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GDGR",
+   "div": "1080900",
+   "name": "Gabinete Diresaun-Geral Regional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DRA",
+   "div": "1080901",
+   "name": "Diresaun Regional da Administração",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRPA",
+   "div": "1080902",
+   "name": "Diresaun Regional de Planeamento e Aprovisionamento",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRF",
+   "div": "1080903",
+   "name": "Diresaun Regional das Finanças",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRS",
+   "div": "1080904",
+   "name": "Diresaun Regional da Saúde",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRESS",
+   "div": "1080905",
+   "name": "Diresaun Regional da Educação e Solidariedade Social",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRA-06",
+   "div": "1080906",
+   "name": "Diresaun Regional da Agricultura",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DCI",
+   "div": "1080907",
+   "name": "DiresaunRegional do Comércio e Indústria",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRTC",
+   "div": "1080909",
+   "name": "Diresaunr Regional de Transportes e Comunicações",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRJD",
+   "div": "1080910",
+   "name": "Diresaun Regional da Juventude e Desporto",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRTAC",
+   "div": "1080911",
+   "name": "Diresaun Regional do Turismo, Arte e Cultura",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DRTP",
+   "div": "1080912",
+   "name": "Diresaun Regional de Terras e Propriedades",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GZEEDOCA",
+   "div": "1081000",
+   "name": "Gabinete Zona Económica Especial de Desenvolvimento de Oe-Cusse Ambeno",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "024": "Cultura e património",
+  "028": "Desenvolvimento rural e urbano",
+  "366": "Segurança nacional",
+  "392": "Acesso à justiça",
+  "502": "Transportes",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "520": "Educação pré-escolar",
+  "521": "Ensino básico",
+  "522": "Ensino secundário geral e tecnico vocacional",
+  "523": "Ensino recorrente",
+  "528": "Cuidado de saúde primários",
+  "529": "Cuidados de saúde secundários e terciários",
+  "798": "Água e saneamento",
+  "867": "Dezenvolvimento e reforço de zonas com tratamento administrativo e económico",
+  "980": "Inclusão social.",
+  "982": "Turismo",
+  "983": "Investimento e diversificação económica",
+  "A39": "Agricultura, horticultura, café e de plantas industriais e anuais",
+  "A40": "Pecuária, veterinária e tecnologia",
+  "A41": "Pescas, aquicultura e gestão de recursos aquatícos",
+  "A42": "Gestão sustentável dos recursos florestais"
+ },
+ "activities": [
+  {
+   "code": "0241104",
+   "programme": "024",
+   "subprogramme": "02411",
+   "subprogramme_name": "Património Cultural Tangível e Intangível de Timor-Leste",
+   "name": "Preservação, Conservação e Promoção do Património Cultural Tangível e Intangível de Timor-Leste",
+   "div": [
+    "1080114",
+    "1080911"
+   ],
+   "indicator": "# de exposições para promover os produtos culturais e tradicionais de Timor-Leste realizadas",
+   "baseline": "1",
+   "target": "1",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 994
+  },
+  {
+   "code": "0241003",
+   "programme": "024",
+   "subprogramme": "02410",
+   "subprogramme_name": "Artes e Indústrias Criativas Culturais",
+   "name": "Promover o apoio a Atividades dos Grupos Culturais",
+   "div": [
+    "1080114",
+    "1080911"
+   ],
+   "indicator": "# de Grupos Culturais apoiados que melhoram as suas capacidades na promoção de produtos culturais e tradicionais de Timor-Leste",
+   "baseline": "6",
+   "target": "10",
+   "amounts": {
+    "20": 3080.0
+   },
+   "page": 994
+  },
+  {
+   "code": "0280301",
+   "programme": "028",
+   "subprogramme": "02803",
+   "subprogramme_name": "Organização Urbana",
+   "name": "Desenvolver e implementar o sistema de toponomia",
+   "div": [
+    "1080110",
+    "1080912"
+   ],
+   "indicator": "% da Criação de uma base de dados para o registo dos arruamentos e de numeração dos prédios urbanos construídos dos principais aglomerados urbanos, na RAEOA",
+   "baseline": "50%",
+   "target": "65%",
+   "amounts": {
+    "20": 24200.0
+   },
+   "page": 995
+  },
+  {
+   "code": "0280303",
+   "programme": "028",
+   "subprogramme": "02803",
+   "subprogramme_name": "Organização Urbana",
+   "name": "Gerir e elaborar políticas, pareceres e informações nas áreas do planeamento e ordenamento territorial iha RAEOA",
+   "div": [
+    "1080110",
+    "1080912"
+   ],
+   "indicator": "% do Plano Diretor de Ordenamento do Território (PDOT) da RAEOA aprovado e devidamente atualizado, fundamentando pareceres, opinioes tecnicas de \"Policy briefs\" e/ou \"White papers\"",
+   "baseline": "40%",
+   "target": "50%",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 995
+  },
+  {
+   "code": "0280305",
+   "programme": "028",
+   "subprogramme": "02803",
+   "subprogramme_name": "Organização Urbana",
+   "name": "Sensibilizacao da populacao da RAEOA para a legislacao do ordenamento do territorio",
+   "div": [
+    "1080110",
+    "1080912"
+   ],
+   "indicator": "# partisipantes de membros da Autoridade, funcionários públicos, lideranças comunitárias e comunidade",
+   "baseline": "100",
+   "target": "300",
+   "amounts": {
+    "20": 4100.0
+   },
+   "page": 995
+  },
+  {
+   "code": "3921401",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Registo e cadastro de terras e propriedades",
+   "div": [
+    "1080119",
+    "1080912"
+   ],
+   "indicator": "# Parselas nebe hetan ona Sertidaun Titulu Nain ba Rai",
+   "baseline": "234",
+   "target": "284",
+   "amounts": {
+    "20": 37700.0
+   },
+   "page": 996
+  },
+  {
+   "code": "3921501",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Gestão do património imobiliário do Estado",
+   "div": [
+    "1080119",
+    "1080912"
+   ],
+   "indicator": "# arendatariu propriedade estadu",
+   "baseline": "28",
+   "target": "78 arendatariu",
+   "amounts": {
+    "20": 34580.0,
+    "30": 1000000.0
+   },
+   "page": 997
+  },
+  {
+   "code": "3921802",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "Gestão de sistemas de informação dos Registos Civis",
+   "div": [
+    "1080117",
+    "1080912"
+   ],
+   "indicator": "# de actos notariais emitidos para legalização/escrita, autenticação e procuração",
+   "baseline": "a. Autentikasaun Copies 510 b. Por Semelhense 104 c. Assinatura prezensial 0 d. Eskritoriu Publiko 27 e. Sertifikadu Tradusaun 67 f. Termu Autentikasaun 3",
+   "target": "a. Autentikasaun Copies 1.010 b. Por Semelhense 204 c. Assinatura prezensial 5 d. Eskritoriu Publiko 57 e. Sertifikadu Tradusaun 142 f. Termu Autentikasaun 13",
+   "amounts": {
+    "20": 9600.0
+   },
+   "page": 997
+  },
+  {
+   "code": "5020211",
+   "programme": "502",
+   "subprogramme": "50202",
+   "subprogramme_name": "Gerir a integração da Segurança e Desenvolvimento Regional do Transporte Terrestres",
+   "name": "Coordenação e gestão dos transportes e das comunicações",
+   "div": [
+    "1080111",
+    "1080909"
+   ],
+   "indicator": "% Todos os veículos a circular na RAEOA se encontram devidamente registados; Todos os condutores se encontram devidamente munidos de cartas de condução; Todas as microletes a operarem na RAEOA seguem regras e rotas pré-estabelecidas; Plano de otimização de paragens de transportes públicos em nas rodovias preparado; Paragens de transportes públicos no centro da cidade identificadas, propostas e quantificadas;",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "20": 65800.0
+   },
+   "page": 998
+  },
+  {
+   "code": "5100106",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Pesquisa, Planeamento e desenvolvimento",
+   "div": [
+    "1080102",
+    "1080107",
+    "1080901",
+    "1080905",
+    "1080906"
+   ],
+   "indicator": "Plano Anual implementado %",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "20": 28160.0
+   },
+   "page": 998
+  },
+  {
+   "code": "5100107",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar proteção social e Inclusão",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "Número de Atividades de Socialização, Sensibilização, Mediação e Proteção comunitária.",
+   "baseline": "4 Socializasaun em Postos na RAEOA",
+   "target": "4",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 999
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "% Execução e Realização da Inspeção, fiscalização e auditoria por Inspetoria Escolar nas Escolas em RAEOA.",
+   "baseline": "75%",
+   "target": "90%",
+   "amounts": {
+    "20": 11500.0
+   },
+   "page": 999
+  },
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "\" # demonstrasaun ba komunida LGBT \"",
+   "baseline": "100",
+   "target": "150",
+   "amounts": {
+    "20": 2700.0
+   },
+   "page": 999
+  },
+  {
+   "code": "5100153",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, monitorização e Avaliacao da RAEOA",
+   "div": [
+    "1080102",
+    "1080107",
+    "1080108",
+    "1080113",
+    "1080119",
+    "1080900",
+    "1080901",
+    "1080902",
+    "1080904",
+    "1080905",
+    "1080906",
+    "1080912"
+   ],
+   "indicator": "% Execução da atividade de Planeamento, monitorização e Avaliacao da DRESS",
+   "baseline": "95%",
+   "target": "100%",
+   "amounts": {
+    "20": 30500.0
+   },
+   "page": 1000
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1080101",
+    "1080102",
+    "1080103",
+    "1080104",
+    "1080105",
+    "1080106",
+    "1080107",
+    "1080108",
+    "1080109",
+    "1080111",
+    "1080112",
+    "1080113",
+    "1080114",
+    "1080115",
+    "1080116",
+    "1080117",
+    "1080118",
+    "1080119",
+    "1080120",
+    "1080121",
+    "1080122",
+    "1080900",
+    "1080901",
+    "1080903",
+    "1080904",
+    "1080905",
+    "1080906",
+    "1080910",
+    "1080912",
+    "1081000"
+   ],
+   "indicator": "% de implementação/ execução do PAA",
+   "baseline": "75%",
+   "target": "100%",
+   "amounts": {
+    "20": 1923060.0
+   },
+   "page": 1001
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1080101",
+    "1080102",
+    "1080104",
+    "1080107",
+    "1080108",
+    "1080119",
+    "1080901",
+    "1080903",
+    "1080904",
+    "1080905",
+    "1080912"
+   ],
+   "indicator": "\"1) # do patrimônio de estado rejistrado 2) % de ativos disponíveis ka funciona\"",
+   "baseline": "\"1. 3217 2. 75%\"",
+   "target": "\"1) 4000 do Patrimonio 2)90 % de Ativos\"",
+   "amounts": {
+    "20": 1099712.0,
+    "40": 498000.0
+   },
+   "page": 1002
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% de implementação/ execução do PAA",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1003
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1080101",
+    "1080102",
+    "1080103",
+    "1080104",
+    "1080105",
+    "1080106",
+    "1080107",
+    "1080108",
+    "1080109",
+    "1080110",
+    "1080111",
+    "1080112",
+    "1080113",
+    "1080114",
+    "1080115",
+    "1080116",
+    "1080117",
+    "1080118",
+    "1080119",
+    "1080120",
+    "1080121",
+    "1080122",
+    "1080123",
+    "1080124",
+    "1080125",
+    "1080126",
+    "1080900",
+    "1080905",
+    "1081000"
+   ],
+   "indicator": "% funcionários recebem avaliação desempenho e recrutamento novos funcionarios",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "10": 9211073.0,
+    "20": 4020.0
+   },
+   "page": 1003
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1080101",
+    "1080102",
+    "1080103",
+    "1080107",
+    "1080113",
+    "1080118",
+    "1080119",
+    "1080901",
+    "1080903",
+    "1080905",
+    "1080906",
+    "1080907",
+    "1080912",
+    "1081000"
+   ],
+   "indicator": "\"1. # de funcionários (F/M) recebem o treinamento; 2. Tipos Formacao;\"",
+   "baseline": "\"1) 0 2) 0",
+   "target": "\"1) 38 Pessoas 2) 4\"",
+   "amounts": {
+    "20": 93665.0
+   },
+   "page": 1004
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "1080102",
+    "1080103",
+    "1080107",
+    "1080108",
+    "1080109",
+    "1080901",
+    "1080903",
+    "1080904",
+    "1080905",
+    "1080906"
+   ],
+   "indicator": "% de implementação/ execução do PAA",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "20": 247960.0
+   },
+   "page": 1005
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1080101",
+    "1080102",
+    "1080105",
+    "1080107",
+    "1080108",
+    "1080112",
+    "1080113",
+    "1080119",
+    "1080901",
+    "1080902",
+    "1080904",
+    "1080905",
+    "1080906",
+    "1080912"
+   ],
+   "indicator": "\"1.# de contratos celebrados 2. # Equipamentos 3. # Servicos\"",
+   "baseline": "\"1) 0 2) Patromonio Moveis: Carros: 4, Desktop: 14, Printer: 3, CPU: 3, WIFI: 2, Reciver WIFI: 4, Scan: 1 e Vintunha 1\"",
+   "target": "\"1) 3 2) 2 Makinas 3) 1\"",
+   "amounts": {
+    "20": 1669827.0
+   },
+   "page": 1006
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "1080103",
+    "1080107",
+    "1080108",
+    "1080113",
+    "1080903",
+    "1080904",
+    "1080905",
+    "1080906"
+   ],
+   "indicator": "% de implementação/ execução do PAA",
+   "baseline": "N.A",
+   "target": "100%",
+   "amounts": {
+    "20": 54818.0
+   },
+   "page": 1006
+  },
+  {
+   "code": "51002EF",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "RAEOA management of the National Suco Development Programme",
+   "div": [
+    "1080902"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 11931.0
+   },
+   "page": 1007
+  },
+  {
+   "code": "51002EG",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Prepaid electricity meters for the RAEOA territory",
+   "div": [
+    "1080101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 840000.0
+   },
+   "page": 1007
+  },
+  {
+   "code": "5100312",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Apoio financeiros para sociedade civil, associações de produtores e cooperativa",
+   "div": [
+    "1081000"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 350000.0
+   },
+   "page": 1007
+  },
+  {
+   "code": "5102101",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Apoiar e Coordenar sub- regiões com os processos da Política Administrativa de Descentralização na transformação em Municipio",
+   "div": [
+    "1080102",
+    "1080901"
+   ],
+   "indicator": "# ema nebe partisipa formasaun iha Sub-Regiaun 4",
+   "baseline": "1. implemeta ona formasaun ba iha posto Administtrativu 4 kada posto hamutuk partisipantes 150 ho total partisipantes hamutuk 600",
+   "target": "Kontinua implementa formasaun ba posto 4 no kada postu sei partisipa hamutuk partisipante 150 no total hamutuk 600",
+   "amounts": {
+    "20": 10600.0
+   },
+   "page": 1007
+  },
+  {
+   "code": "5102102",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Transformação de Quatro Sub-Região ao dois Municipios",
+   "div": [
+    "1080102",
+    "1080901"
+   ],
+   "indicator": "\" % do processo de preparação e de consulta à população concluídas",
+   "baseline": "25%",
+   "target": "60%",
+   "amounts": {
+    "20": 10900.0
+   },
+   "page": 1007
+  },
+  {
+   "code": "5102103",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Estabelecimento de Novo Aldeia e Suco",
+   "div": [
+    "1080102",
+    "1080901"
+   ],
+   "indicator": "",
+   "baseline": "15% em 2025",
+   "target": "85%",
+   "amounts": {
+    "20": 4600.0
+   },
+   "page": 1007
+  },
+  {
+   "code": "5102104",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Subsídio aos Líderanças Comunitárias",
+   "div": [
+    "1080106"
+   ],
+   "indicator": "\"# de líderes comunitários que recebem subsídio/incentivo a que têm direito nos termos da lei",
+   "baseline": "Realiza no exekuta ona subsidius/insentivus ba Lideransa Komunitariu ba Suku 20, Aldeia 64 ho total benefisiarius hamutuk 344 iha 2025",
+   "target": "\"Kontinua Realiza no exekuta subsidius/insentivus ba Lideransa Komunitariu ba Suku 29, Aldeia 94 ho total benefisiarius hamutuk 464 iha 2026 \"",
+   "amounts": {
+    "30": 800000.0
+   },
+   "page": 1008
+  },
+  {
+   "code": "5102109",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Subsídio aos Postos Administrativos",
+   "div": [
+    "1080123",
+    "1080124",
+    "1080125",
+    "1080126"
+   ],
+   "indicator": "# de líderes comunitários aos postos Adminitrativos que recebem subsídio/incentivo a que têm direito nos termos da lei",
+   "baseline": "N.A",
+   "target": "Realiza no exekuta subsidius/insentivus ba Lideransa Komunitariu ba postos administrativos 9, hamutuk 63 benefisiarius iha 2026",
+   "amounts": {
+    "30": 200000.0
+   },
+   "page": 1008
+  },
+  {
+   "code": "5201603",
+   "programme": "520",
+   "subprogramme": "52016",
+   "subprogramme_name": "Merenda Escolar",
+   "name": "Fornecimento de merenda escolar a nivel pré-escolar",
+   "div": [
+    "1080107"
+   ],
+   "indicator": "\"1) # dos alunos do EPE que recebem refeições; 2) # de monitorizações trimestralmente da implementação do programa de merenda escolar e relatórios produzidos\"",
+   "baseline": "\"1). 833 alunos que recebem refeições em 2025 2) 53 monitorizações em 2025\"",
+   "target": "\"1). 1100 2). 75\"",
+   "amounts": {
+    "30": 69300.0
+   },
+   "page": 1008
+  },
+  {
+   "code": "5201704",
+   "programme": "520",
+   "subprogramme": "52017",
+   "subprogramme_name": "Formação dos educadores Pre-escolar",
+   "name": "Formação contínua dos professores do Pre-escolar sobre os conteúdos curriculares",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de professores do ensino pré-escolar que participaram em sessões de formação sobre conteúdos curriculares, acções de formação sobre o processo de ensino- aprendizagem de alunos com necessidades educativas especiais e a disciplina de Língua Portuguesa",
+   "baseline": "35 Professores em 2025",
+   "target": "40",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 1009
+  },
+  {
+   "code": "5201705",
+   "programme": "520",
+   "subprogramme": "52017",
+   "subprogramme_name": "Formação dos educadores Pre-escolar",
+   "name": "Formação especializada em administração e gestão escolar para dirigentes e inspectores escolares",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de dirigentes e os inspectores do ensino pré- escolar que receberam formação especializada em administração e gestão escolar",
+   "baseline": "20 dirigentes e os inspectores em 2025",
+   "target": "25",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1009
+  },
+  {
+   "code": "5202101",
+   "programme": "520",
+   "subprogramme": "52021",
+   "subprogramme_name": "Gestão e Políticas na Educação Pré-Escolar",
+   "name": "Implementação de conceções (subsídios) escolares ao nível pré- escolar",
+   "div": [
+    "1080107"
+   ],
+   "indicator": "# de alunos das escolas EPE recebem conceções escolares",
+   "baseline": "833 estudantes do EPE em 2025",
+   "target": "1.100",
+   "amounts": {
+    "30": 24200.0
+   },
+   "page": 1009
+  },
+  {
+   "code": "5211702",
+   "programme": "521",
+   "subprogramme": "52117",
+   "subprogramme_name": "Merenda Escolar",
+   "name": "Fornecimento de merenda escolar a nivel do ensino básico",
+   "div": [
+    "1080107"
+   ],
+   "indicator": "1). # dos alunos do EB que recebem refeições; 2). # de monitorizações da implementação do programa de merenda escolar e relatórios produzidos\"",
+   "baseline": "1). 18.441 alunos que recebem refeições em 2025 2). 53 monitorizações em 2025\"",
+   "target": "\"1) 19.500 2) 100\"",
+   "amounts": {
+    "30": 1638000.0
+   },
+   "page": 1010
+  },
+  {
+   "code": "5211902",
+   "programme": "521",
+   "subprogramme": "52119",
+   "subprogramme_name": "Formação dos educadores do Ensino Basico",
+   "name": "Formação contínua para Professores do Ensino Básico (EB) sobre conteúdos curriculares",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "\"1) # de professores do 1º e 2º ciclos do ensino básico que frequentaram acções de formação sobre conteúdos curriculares de Alfabetização- Fonética, Matemática e Ciências Naturais e o processo de ensino- aprendizagem de alunos com necessidades educativas especiais. 2) # de professores do ensino básico que frequentaram formação sobre a disciplina de Língua Portuguesa - Níveis A2 e B1 (Projeto PRO-Português - Fase II)\"",
+   "baseline": "\"1) 240 Professores participar na Formação baseada currículo nacional implementados 2025 2) 44 professores frequentaram formação sobre a disciplina de Língua Portuguesa em 2025\"",
+   "target": "1) 200 2) 100\"",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1010
+  },
+  {
+   "code": "5211906",
+   "programme": "521",
+   "subprogramme": "52119",
+   "subprogramme_name": "Formação dos educadores do Ensino Basico",
+   "name": "Formação especializada em administração e gestão escolar para dirigentes e inspectores escolares",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "\"1) # de dirigentes das escolas do ensino básico que recebem formação especializada em administração e gestão escolar 2) # de inspectores escolares do ensino básico e secundário com formação",
+   "baseline": "\"1) 181 em 2025 2) 9 em 2025\"",
+   "target": "\"1) 200 2) 12\"",
+   "amounts": {
+    "20": 2475.0
+   },
+   "page": 1010
+  },
+  {
+   "code": "5212011",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Instalação de equipamentos para o ensino básico",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# (Quantidade) dos Equipamentos fornecido para Escolas",
+   "baseline": "2680 unidades mobiliários em 2024",
+   "target": "3000",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1011
+  },
+  {
+   "code": "5212012",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Fornecimento de material didático para o ensino básico",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de ensino básico que recebem material didático",
+   "baseline": "108 escolas em 2025",
+   "target": "125",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 1011
+  },
+  {
+   "code": "5212102",
+   "programme": "521",
+   "subprogramme": "52121",
+   "subprogramme_name": "Tecnologias de Informação e Comunicação (TIC) para a educação e aprendizagem no Ensino Básico",
+   "name": "Formação em tecnologias da informação e da comunicação no ensino básico",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "1\"1) # Participante do estudante em formação TIC 2) # Participante do Professores em formação TIC\"",
+   "baseline": "\"1) 1.692 estudantes que participam em formação TIC em 2025 2) 23 em 2025\"",
+   "target": "\"1) 2.000 2) 30\"",
+   "amounts": {
+    "20": 3240.0
+   },
+   "page": 1011
+  },
+  {
+   "code": "5212203",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Realização do Exame Nacional do Ensino Basico",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de estudante do EB, que participaram no Exame Nacional",
+   "baseline": "1.602 Estudantes do EB participam no Exame Nacional em 2025",
+   "target": "1,650",
+   "amounts": {
+    "20": 14400.0
+   },
+   "page": 1011
+  },
+  {
+   "code": "5212204",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Actividades extracurriculares do ensino básico",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# Ensino Basico na RAEOA que implementam atividades extra-curriculares",
+   "baseline": "19 EBC",
+   "target": "19 EBC",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1011
+  },
+  {
+   "code": "5212209",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Criação de bibliotecas nas escolas",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de Livros fornecidos em Biblioteca Escolar",
+   "baseline": "N.A",
+   "target": "1.500 Livros",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 1011
+  },
+  {
+   "code": "5212302",
+   "programme": "521",
+   "subprogramme": "52123",
+   "subprogramme_name": "Gestao e Politicas do ensino basico",
+   "name": "Implementação de conceções (subsídios) escolares para o ensino básico",
+   "div": [
+    "1080107"
+   ],
+   "indicator": "# de alunos das escolas Ensino Basico recebem conceções escolares",
+   "baseline": "18.441 alunos do Ensino Básico em 2025",
+   "target": "19,500",
+   "amounts": {
+    "30": 429000.0
+   },
+   "page": 1012
+  },
+  {
+   "code": "5212303",
+   "programme": "521",
+   "subprogramme": "52123",
+   "subprogramme_name": "Gestao e Politicas do ensino basico",
+   "name": "Coordenar e gerir programas de ensino básica",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de encontro essenciais com Dirigentes da Escola do EB",
+   "baseline": "5 Encontros",
+   "target": "5 Encontros",
+   "amounts": {
+    "20": 4400.0
+   },
+   "page": 1012
+  },
+  {
+   "code": "5212402",
+   "programme": "521",
+   "subprogramme": "52124",
+   "subprogramme_name": "Comunidades educativos dos educação ensino Basico",
+   "name": "Implementacao sobre funcionamento do GTP e GTL na agrupamentos EIEB",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# professor tem acesso a GTL e GTP",
+   "baseline": "245 em 2025",
+   "target": "250",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 1012
+  },
+  {
+   "code": "5212404",
+   "programme": "521",
+   "subprogramme": "52124",
+   "subprogramme_name": "Comunidades educativos dos educação ensino Basico",
+   "name": "Reforço na implementação da Associação de pais nas escolas básicas (manual das APP e disseminação e implementação)",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de membros da KIARE recebem formação sobre o manual das KIARE l",
+   "baseline": "108 membros em 2025",
+   "target": "110",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1012
+  },
+  {
+   "code": "5221401",
+   "programme": "522",
+   "subprogramme": "52208",
+   "subprogramme_name": "Uso das Tecnologias de Informação e Comunicação (TIC) para a educação e aprendizagem",
+   "name": "Formação em tecnologias da informação e da comunicação no ensino secundário geral e tecnico vocacional",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# Participante do estudante em formação TIC",
+   "baseline": "2.394 estudantes que participam em formação TIC em 2024",
+   "target": "2.500 estudantes que participam em formação TIC em 2025",
+   "amounts": {
+    "20": 1200.0
+   },
+   "page": 1013
+  },
+  {
+   "code": "5221202",
+   "programme": "522",
+   "subprogramme": "52212",
+   "subprogramme_name": "Formação dos educadores Ensino secundario",
+   "name": "Formação contínua para Professores do Ensino Secundário Geral (ESG)",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "\"a) N.º de professores do ESG que recebem formação sobre metodologia de ensino; b) # de Professores do ESG recebem formação no âmbito do do Curso de Língua Portuguesa\"",
+   "baseline": "\"1). 48 Professores em 2025 2). 22 Professores em 2025\"",
+   "target": "1) 50; 2) 50",
+   "amounts": {
+    "20": 4800.0
+   },
+   "page": 1013
+  },
+  {
+   "code": "5221203",
+   "programme": "522",
+   "subprogramme": "52212",
+   "subprogramme_name": "Formação dos educadores Ensino secundario",
+   "name": "Formação continua para Professores do Ensino Secundário Técnico Vocacional (ESTV)",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "\"a) # de professores do ESG que recebem formação sobre metodologia de ensino; b) # de Professores do ESG recebem formação no âmbito do do Curso de Língua Portuguesa\"",
+   "baseline": "\"1) 40 Professores em 2025 2) 22 Professores em 2025\"",
+   "target": "1). 50; 2). 50",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1013
+  },
+  {
+   "code": "5221502",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Coordenação e gestão de programas educativos para o ensino secundário geral e técnico-profissional",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de reuniões de cordenação e gestão de programas de Educação ESG por trimestre Escolares",
+   "baseline": "3 reuniões de cordenadas",
+   "target": "3 reuniões de cordenadas",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 1014
+  },
+  {
+   "code": "5221508",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Conceções escolares ESG",
+   "div": [
+    "1080107"
+   ],
+   "indicator": "# de alunos das escolas públicas recebem conceções escolares",
+   "baseline": "3.257 estudantes do Ensino Secundario em Abril 2024",
+   "target": "3.500 estudantes do Ensino Secundario em Abril 2025",
+   "amounts": {
+    "30": 77000.0
+   },
+   "page": 1014
+  },
+  {
+   "code": "5221509",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Conceções escolares do ESTV",
+   "div": [
+    "1080107"
+   ],
+   "indicator": "# de alunos das escolas ESTV recebem conceções escolares",
+   "baseline": "1.332 Ensino Secundario Teknico Vocacional em Abril 2024",
+   "target": "1.500 Ensino Secundario Teknico Vocacional em Abril 2025",
+   "amounts": {
+    "30": 37400.0
+   },
+   "page": 1014
+  },
+  {
+   "code": "5221601",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Realização do Exame Nacional do Ensino Secundário Geral e Técnico-Vocacional",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de alunos do ESG e ESTV que realizaram o Exame Nacional",
+   "baseline": "1.511 alunos do ESG e ESTV que realizaram o Exame Nacional em 2025",
+   "target": "1,600",
+   "amounts": {
+    "20": 7500.0
+   },
+   "page": 1014
+  },
+  {
+   "code": "5221603",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Implementação de atividades extracurriculares do Ensino Secundário Tecnico Vocacional",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# de estudantes que participam na atividade Extracurricular",
+   "baseline": "4",
+   "target": "8",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 1014
+  },
+  {
+   "code": "5221606",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Implementação de atividades extracurriculares do Ensino Secundário Geral",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "Numero de estudantes que participam na atividade Extracurricular",
+   "baseline": "5",
+   "target": "10",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 1014
+  },
+  {
+   "code": "5230803",
+   "programme": "523",
+   "subprogramme": "52308",
+   "subprogramme_name": "Fortalecimento dos Centros de Aprendizagem Comunitários",
+   "name": "Implementação do programa nacional de equivalência ao ensino básico",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "# estudantes que participa na aprendijazem realizado",
+   "baseline": "145 Estudantes em 2025",
+   "target": "150 Alunos em 2025",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1015
+  },
+  {
+   "code": "5230804",
+   "programme": "523",
+   "subprogramme": "52308",
+   "subprogramme_name": "Fortalecimento dos Centros de Aprendizagem Comunitários",
+   "name": "Implementação do Alfabetização e Centro de Aprendizagem Comunitária (CCA)",
+   "div": [
+    "1080107",
+    "1080905"
+   ],
+   "indicator": "\"1). # estudantes que participa na aprendijazem realizado; 2). # CCA que realizam aprendijazem\"",
+   "baseline": "\"1). 91 estudantes que participa na aprendijazem realizado em 2025 2). 4 CCA em 2025\"",
+   "target": "\"1). 100 2). 5\"",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1015
+  },
+  {
+   "code": "5280208",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Gestão de saúde ambiental",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % Suco deklara ALFA (Area La Soe Fo’er bo’ot Arbiru) 2) % Suco deklara Ijieniku (Area uza latrina melloradu no fasilidade fase liman ho sabaun) 3) % Fasilidade kuidadus saúde ho Bee Saneamentu no Ijiene (BESI/WASH) no jestaun lixu ho seguru 4) % Uma ho",
+   "baseline": "\"1) 0% 2) 0% 3) 78% Fasilidades Saude 4) 100% Uma ho tanke bee identifikadu hetan tratamentu kontrola vetor\"",
+   "target": "\"1) Suku 5 identifikadu deklara ALFA 2) Suku 2 deklara Ijieniku 3) 90% fasilidades saude implementa jestaun lixu tuir padraun 4) 100%\"",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 1015
+  },
+  {
+   "code": "5280209",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Programa Integrado Saúde (SISCA e Saúde na Familia)",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % uma kain ne'ebe hetan visita regular minimu dala ida tinan ida husi ekipa Saude na Familia 2) # outreach espesilizasaun medika hala'o iha komunidade 3) % Suco ne'ebe hala'o atividade SISCa regular husi Profesionais Saude\"",
+   "baseline": "\"1) 50% 2) 5 3) 80%\"",
+   "target": "\"1) 75% 2) 10 3) 100% (kobertura husi atividade SISCa)\"",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 1016
+  },
+  {
+   "code": "5280210",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Fornecimento de um pacote abrangente de serviços básicos a diversas unidades de cuidados de saúde primários",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) # Targeto Consultas ambulatórias por capital e por ano em cada unidade de saúde, 2) % de unidades de saúde que preenchem os requisitos mínimos Prontidão das facilidades de saúde 3) % kazu referal medika iha fasilidade saude KSP ne'ebe prienche padraun referensia medika\"",
+   "baseline": "\"1) 3.5 2) 78% facilidades de saúde 3) 80%\"",
+   "target": "\"1) 4 2) 100% facilidades de saúde 3) 100% \"",
+   "amounts": {
+    "20": 250.0
+   },
+   "page": 1016
+  },
+  {
+   "code": "5280404",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Serviços de nutrição",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % Labarik fulan 6 to 59 simu Micronutriente (Vit A no MNP), desparasitação (Albendazole) 2) % das crianças com <59 meses cobertos pela atividade de controle de peso 3) % Labarik ho idade 0-59 meses ne'ebe maka identifika ho",
+   "baseline": "\"1) 63% labarik fulan 6-59 simu Micronutriente (Vit A no MNP), 2) 49% labarik fulan 12-59 simu desparasitação (Albendazole), 3) 51% das crianças com <59 meses cobertos pela atividade de controle de peso, 4) 66% Labarik ho idade 0-59 meses ne'ebe maka identifika ho",
+   "target": "\"1) 80% labarik fulan 6-59 simu Micronutriente (Vit A no MNP), 2) 80% labarik fulan 12-59 simu desparasitação (Albendazole), 3) 80% das crianças com <59 meses cobertos pela atividade de controle de peso, 4) 75% Labarik ho idade 0-59 meses ne'ebe maka identifika ho",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 1016
+  },
+  {
+   "code": "5280405",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Abordagem do Programa Integrado de Nutrição na Comunidade",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % Cobertura de amamentação exclusiva, 2) % aldeia estabelecida Grupo de apoio nutricional\"",
+   "baseline": "\"1) 51% Cobertura de amamentação exclusiva, 2) 63 aldeias\"",
+   "target": "\"1) 80% Cobertura de amamentação exclusiva, 2) 85% aldeia estabelecida Grupo de apoio nutricional\"",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1017
+  },
+  {
+   "code": "5280506",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Imunização",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % Labarik idade 0-6 anos hetan imunizasaun kompletu tuir kalendariu vasinasaun iha RAEOA 2) % Feto ho idade 11-14 anos hetan vasinasaun HPV iha RAEOA 3) % Unidade kuidadu saude primaria ne'ebe sistema korente malirin funsiona iha RAEOA\"",
+   "baseline": "\"1) 60% Labarik idade 0-6 anos hetan imunizasaun kompletu tuir kalendariu vasinasaun iha RAEOA 2) 75% Feto ho idade 11-14 anos hetan vasinasaun HPV iha RAEOA 3) 75% Unidade kuidadu saude primaria ne'ebe sistema korente malirin funsiona iha RAEOA\"",
+   "target": "\"1) 90% Labarik idade 0-6 anos hetan imunizasaun kompletu tuir kalendariu vasinasaun, 2) 85% Feto ho idade 11-14 anos hetan vasinasaun HPV, 3) 100% Unidade kuidadu saude primaria ne'ebe sistema korente malirin funsiona",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 1017
+  },
+  {
+   "code": "5280508",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Saúde Materna e Neonatal",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % de mulheres grávidas que tiveram a sua primeira consulta pré-natal no primeiro trimestre (até às 42 semanas) 2) % de mulheres e bebés pós-natais que receberam pelo menos 4 consultas/contactos pós- natais após o nascimento 3) % de recém-nascidos que receberam o início precoce do aleitamento materno (partos normais) 4) % Nível de rapidez no atendimento Cuidados Básicos de Emergência Obstrética 5) % de partos assistidos por",
+   "baseline": "\"1) 90% de mulheres grávidas que tiveram a sua primeira consulta pré-natal no primeiro trimestre (até às 42 semanas) 2) 66% de mulheres e bebés pós-natais que receberam pelo menos 4 consultas/contactos pós- natais após o nascimento, 3) 75% de recém-nascidos que receberam o início precoce do aleitamento materno (partos normais) 4) 25% Nível de rapidez no atendimento Cuidados Básicos de Emergência Obstrética\"",
+   "target": "\"1) 100% de mulheres grávidas que tiveram a sua primeira consulta pré-natal no primeiro trimestre (até às 42 semanas) 2) 75% de mulheres e bebés pós-natais que receberam pelo menos 4 consultas/contactos pós- natais após o nascimento, 3) 90% de recém-nascidos que receberam o início precoce do aleitamento materno (partos normais), 4) 50% Nível de rapidez no atendimento Cuidados Básicos de Emergência Obstrética",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1017
+  },
+  {
+   "code": "5280512",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Prestação de um serviço essencial à Violencia Bazeia Generu (VBG)",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) # Fasilidade saude ne'ebe iha fatin espesifiku hodi fornese servisu Violencia Bazeia Generu (VBG/VBJ) 2) # de sobreviventes que recebem o primeiro socorro na facilidade de saúde\"",
+   "baseline": "\"1) N/A 2) 19 sobreviventes que recebem primeiro socorro \"",
+   "target": "\"1) 1 fatin espesifiku ka seguru ba vitima 2) 50 \"",
+   "amounts": {
+    "20": 100.0
+   },
+   "page": 1018
+  },
+  {
+   "code": "5280605",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Malária e Outro Controle de Doenças Transmitidas por Vetores (Dengue)",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % Mantém ou reduz casos indígenas de malária em Região, RAEOA; 2) % Evolução dos casos endógenos de malária na Região; 3) % Taxa de mortalidade (CFR) dos pacientes vítimas de dengue\"",
+   "baseline": "\"1) 0% Mantém ou reduz casos indígenas de malária em Região, RAEOA; 2) 3% Evolução dos casos endógenos de malária na Região; 3) 0% Taxa de mortalidade (CFR) dos pacientes vítimas de dengue;\"",
+   "target": "\"1) 0% Mantém ou reduz casos indígenas de malária em Região, RAEOA; 2) 0% Evolução dos casos endógenos de malária na Região; 3) 0% Taxa de mortalidade (CFR) dos pacientes vítimas de dengue;\"",
+   "amounts": {
+    "20": 1250.0
+   },
+   "page": 1018
+  },
+  {
+   "code": "5280606",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controle da tuberculose",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % de detecção de casos; 2) % de Susesu tratamentu TBC;\"",
+   "baseline": "\"1) 93% de detecção de casos; 2) 89% de Susesu tratamentu TBC;\"",
+   "target": "\"1) 95% de detecção de casos; 2) 90% de Susesu tratamentu TBC;\"",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1018
+  },
+  {
+   "code": "5280607",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controlo de HIV(AIDS) e DST",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) # Teste HIV e DST ba populasaun; 2) % Pasiente positivu HIV-SIDA ne'ebe hetan tratamentu;\"",
+   "baseline": "\"1) 1,131 Teste HIV e DST ba populasaun; 2) 0.17% Pasiente positivu HIV-SIDA ne'ebe hetan tratamentu;\"",
+   "target": "\"1) 1,150 Teste HIV e DST ba populasaun; 2) 0.10% Pasiente positivu HIV-SIDA ne'ebe hetan tratamentu;\"",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 1018
+  },
+  {
+   "code": "5280610",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Lepra e Outras Doenças Tropicais Negligenciadas",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% Libertação do paciente com lepra do tratamento/RFT;",
+   "baseline": "76% Libertação do paciente com lepra do tratamento/RFT;",
+   "target": "80% Libertação do paciente com lepra do tratamento/RFT;",
+   "amounts": {
+    "20": 600.0
+   },
+   "page": 1018
+  },
+  {
+   "code": "5280615",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Servicos Saúde Oral",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % eskola ne'ebe hetan visita hosi profesional saude",
+   "baseline": "\"1) 25 % eskola ne'ebe hetan visita hosi profesional saude",
+   "target": "\"1) 50% eskola ne'ebe hetan visita hosi profesional saude",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1018
+  },
+  {
+   "code": "5280616",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Oftalmologia/Cuidados com os olhos",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % caso de oftalmologia diagnosticado no hetan tratamento adequado (tratado adequadamente); 2) # ema ne'ebe hetan screening oftalmologia;\"",
+   "baseline": "\"1) 65% caso de oftalmologia diagnosticado no hetan tratamento adequado (tratado adequadamente); 2) 374 ema ne'ebe hetan screening oftalmologia;\"",
+   "target": "\"1) 70% caso de oftalmologia diagnosticado no hetan tratamento adequado (tratado adequadamente); 2) 450 ema ne'ebe hetan screening oftalmologia;\"",
+   "amounts": {
+    "20": 50.0
+   },
+   "page": 1019
+  },
+  {
+   "code": "5280617",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Saúde do idoso e saúde dos veteranos",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) # atividade screening ne'ebe halao ba komunidade idozos no veteranos; 2) % pasiente Idosos e veteranos ne'ebe refere ba nivel fasilidade saude a'as liu;\"",
+   "baseline": "\"1) 0 atividade screening ne'ebe halao ba komunidade idozos no veteranos; 2) 0.14% pasiente Idosos e veteranos ne'ebe refere ba nivel fasilidade saude a'as liu;\"",
+   "target": "\"1) 50 atividade screening ne'ebe halao ba komunidade idozos no veteranos; 2) 25% pasiente Idosos e veteranos ne'ebe refere ba nivel fasilidade saude a'as liu;\"",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 1019
+  },
+  {
+   "code": "5280618",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Saúde mental e epilepsia",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) # pasiente saude mental ne'ebe registrado no hetan tratamentu; 2) % pasiente saude mental ne'ebe refere ba nivel fasilidade saude a'as liu;\"",
+   "baseline": "\"1) 106 pasiente saude mental ne'ebe registrado no hetan tratamentu; 2) 0.8% pasiente saude mental ne'ebe refere ba nivel fasilidade saude a'as liu;\"",
+   "target": "\"1) 150 pasiente saude mental ne'ebe registrado no hetan tratamentu; 2) 1% pasiente saude mental ne'ebe refere ba nivel fasilidade saude a'as liu;\"",
+   "amounts": {
+    "20": 300.0
+   },
+   "page": 1019
+  },
+  {
+   "code": "5290202",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Internamento de pacientes, incluindo serviços médicos especializados",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) BOR (Valor Ideal 60- 85%) Utiliza Kama iha",
+   "baseline": "\"1) BOR: 80% 2) TOI: 4 3) BTO: 81 4) ALOS: 6-9 dias",
+   "target": "\"1) BOR: 80% 2) TOI: 3 3) BTO: 45 4) ALOS: 6 dias 5)",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1019
+  },
+  {
+   "code": "5290203",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Fortalecimento Serviço Gestão e nutrição clínica",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% Fornesimentu Hahan ba pasiente tuir padraun Nutrisaun klinika",
+   "baseline": "100% Fornesimentu Hahan ba pasiente tuir padraun Nutrisaun klinika",
+   "target": "100% Fornesimentu Hahan ba pasiente tuir padraun Nutrisaun klinika",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 1020
+  },
+  {
+   "code": "5290208",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Serviço de Unidade de Cuidados Intensivos (UCI / ICU)",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% Kuidadus Intensiva",
+   "baseline": "50% Kuidadus Intensiva",
+   "target": "100% Kuidadus Intensiva",
+   "amounts": {
+    "20": 150.0
+   },
+   "page": 1020
+  },
+  {
+   "code": "5290709",
+   "programme": "529",
+   "subprogramme": "52907",
+   "subprogramme_name": "Emergéncia Médica",
+   "name": "Serviços integrados de emergência médica e de ambulância",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "# pasientes hetan referencia ambulatorio",
+   "baseline": "1000 pasiente hetan referencia ambulatorio",
+   "target": "750 pasiente fasilitadu ba apoiu referencia ambulatorio",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1020
+  },
+  {
+   "code": "5290906",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Controlo de Qualidade de Produtos Farmacêuticos",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% Unidade Enfermaria iha SSROA no HRO jere medikamentus tuir padraun armajenamentu nasional",
+   "baseline": "Unidade Enfermaria iha SSROA no HRO jere medikamentus tuir padraun armajenamentu nasional 100%",
+   "target": "Unidade Enfermaria iha SSROA no HRO jere medikamentus tuir padraun armajenamentu nasional 100%",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1020
+  },
+  {
+   "code": "5290907",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Gestão do armazém",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "\"1) % Armazen farmacia ne'ebe prienche prontidaun tuir standard Good Pharmacy Practice 2) # fasilidade saude ne'ebe utiliza LMIS electroniku\"",
+   "baseline": "\"1) 100% Armazen farmacia ne'ebe prienche prontidaun tuir standard Good Pharmacy Practice 2) 26 fasilidade saude ne'ebe utiliza LMIS electroniku (Posto Saude 20, SSK 5 no Hospital 1\"",
+   "target": "\"1) 100% Armazen farmacia ne'ebe prienche prontidaun tuir standard Good Pharmacy Practice 2) 29 fasilidade saude ne'ebe utiliza LMIS electroniku ( Posto Saude 23, SSK 5 no Hospital 1 )\"",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "5290910",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Aquisição de medicamentos e de consumíveis médicos",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% fasilidade saude actualiza stock aimoruk",
+   "baseline": "100% husi fasilidade saude 6 actualiza relatorio stock aimoruk kada fulan (SSK 5 no Hospital 1",
+   "target": "100% fasilidades saude 6 ( Hospital 1 no SSK 5)",
+   "amounts": {
+    "20": 600075.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "5290911",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Serviços de farmácia",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% stock aimoruk disponivel iha fasilidade saude",
+   "baseline": "stock aimoruk disponivel iha fasilidade saude 100%",
+   "target": "stock aimoruk disponivel iha fasilidade saude 100%",
+   "amounts": {
+    "20": 10500.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "5291901",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Serviços laboratoriais de qualidade",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% Unidade Laboratoriu iha ospital funsiona tuir padraun servisu laboratoriu nian",
+   "baseline": "100% Unidade Laboratoriu iha ospital funsiona tuir padraun servisu laboratoriu nian",
+   "target": "Unidade Laboratoriu iha ospital funsiona tuir padraun servisu laboratoriu nian 100%",
+   "amounts": {
+    "20": 600.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "5291903",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Serviços de banco de sangue",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "# kliente doasaun sangue voluntariu",
+   "baseline": "kliente nain 75 oferese doasaun ran voluntario",
+   "target": "kliente nain 150 oferese doasaun ran voluntario",
+   "amounts": {
+    "20": 400.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "5291904",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Serviços de reabilitação",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% pasiente rejistadu hetan rehabilitasaun mediku regular",
+   "baseline": "pasiente rejistadu hetan rehabilitasaun mediku regular 60%",
+   "target": "85 % pasiente rejistadu hetan rehabilitasaun mediku regular",
+   "amounts": {
+    "20": 150.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "5291905",
+   "programme": "529",
+   "subprogramme": "52919",
+   "subprogramme_name": "Serviços de apoio aos cuidados de saúde",
+   "name": "Gestão da saúde ambiental",
+   "div": [
+    "1080108",
+    "1080904"
+   ],
+   "indicator": "% Unidade jestaun lixo funciona tuir padraun",
+   "baseline": "Unidade jestaun lixo funciona tuir padraun 100%",
+   "target": "Unidade jestaun lixo funciona tuir padraun 100%",
+   "amounts": {
+    "20": 300.0
+   },
+   "page": 1021
+  },
+  {
+   "code": "7981106",
+   "programme": "798",
+   "subprogramme": "79811",
+   "subprogramme_name": "Gestão de Saneamento",
+   "name": "Gestão comunitária da água",
+   "div": [
+    "1080101",
+    "1080112"
+   ],
+   "indicator": "% de implementação/ execução do PAA",
+   "baseline": "Implementação/ execução do PA 100%",
+   "target": "Implementação/ execução do PA 100%",
+   "amounts": {
+    "20": 110800.0
+   },
+   "page": 1022
+  },
+  {
+   "code": "8670101",
+   "programme": "867",
+   "subprogramme": "86701",
+   "subprogramme_name": "Gestao dos serviãos prestados pela RAEOA",
+   "name": "Coordenar e gerir servicos do sector da Infranestructure",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "Número de ates de encontros de acompanhamento com membros da Autoridade \"1. # visitas/ monitorizacao projecto ih terenu 2. #",
+   "baseline": "1. 60x 2. 23 projetus",
+   "target": "1. 80x 2. 23 projectus 3. 23 dokumentus teknik produs no submete ba prosesu aprovisionamento",
+   "amounts": {
+    "20": 45246.0
+   },
+   "page": 1022
+  },
+  {
+   "code": "8670103",
+   "programme": "867",
+   "subprogramme": "86701",
+   "subprogramme_name": "Gestao dos serviãos prestados pela RAEOA",
+   "name": "Coordenar e gerir obras públicas",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "1. # visitas/ monitorizacao projecto ih terenu 2. # levantamentu dadus projecto 2026 3. # desenho,BOQ teknik produze apresentado",
+   "baseline": "dadus seidauk iha",
+   "target": "1. 38x 2. 5 projectus 3. 5 dokumentus teknik kompletu e submete ba Prosesu aprovisionamento",
+   "amounts": {
+    "20": 4160.0
+   },
+   "page": 1023
+  },
+  {
+   "code": "8670202",
+   "programme": "867",
+   "subprogramme": "86702",
+   "subprogramme_name": "Construção, Reabilitação, Manutenção de Infraestruturas Rodoviárias, Pontes e Controlo de Cheias na RAEOA",
+   "name": "Construir, reabilitar e melhorar as estradas municipais.",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "\"1. # visitas/ monitorizacao projecto ih terenu 2. # levantamentu dadus projecto 2026 3. # desenho,BOQ teknik produz e apresentado\"",
+   "baseline": "N.A",
+   "target": "1. 80 x 2. 22 projectus 3. 22 dokumentus teknik completu e submete ba prosesu aprovisionamento",
+   "amounts": {
+    "20": 3300.0
+   },
+   "page": 1023
+  },
+  {
+   "code": "8670301",
+   "programme": "867",
+   "subprogramme": "86703",
+   "subprogramme_name": "Gestão, Manutenção e operação de Equipamentos Pesados da RAEOA",
+   "name": "Manutenção de equipamentos pesados",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "\"1.# equipamentus pesados fornesido 2.% de planu ezekutado 3. % de Aquizasaun pesas ba manuntensaun equipamentus pesados\"",
+   "baseline": "\"1. foun 2. 68% 3. 100%\"",
+   "target": "\"1. 6 unidade equipamentus pesadus 2. 80% 3. 100%\"",
+   "amounts": {
+    "20": 225689.0
+   },
+   "page": 1023
+  },
+  {
+   "code": "8670304",
+   "programme": "867",
+   "subprogramme": "86703",
+   "subprogramme_name": "Gestão, Manutenção e operação de Equipamentos Pesados da RAEOA",
+   "name": "Planear e executar obras de emergencia ou de necessidade imediata",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "1. # de litros combustivel ezekutado 2. # de pedido emergencia mak responde ona",
+   "baseline": "Total 55.000 Litros combustivel fornesido e utilizado, no loke dalan hamutuk 45 KM",
+   "target": "Total 60.000 Litros combustivel",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1023
+  },
+  {
+   "code": "8670401",
+   "programme": "867",
+   "subprogramme": "86704",
+   "subprogramme_name": "Gestão e Operação de Portos na RAEOA",
+   "name": "Gestão e operacao de infraestruturas portuárias",
+   "div": [
+    "1080101",
+    "1080111"
+   ],
+   "indicator": "% Servico atendemento portu Kitahara Mahata funsionado",
+   "baseline": "80%",
+   "target": "100%",
+   "amounts": {
+    "20": 3100.0
+   },
+   "page": 1023
+  },
+  {
+   "code": "8670502",
+   "programme": "867",
+   "subprogramme": "86705",
+   "subprogramme_name": "Licenciamento, Fiscalização e Controlo de Qualidade de Edifício publico na RAEOA",
+   "name": "Inspecionar materiais e construção",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "1. # visita/monitorizasaun material construcao 2. # visitas /supervisaun projecto konstrucao ih terenu",
+   "baseline": "Servisu edifikasaun funsiona 100%",
+   "target": "Servisu edifikasaun funsiona 100%",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1024
+  },
+  {
+   "code": "8671108",
+   "programme": "867",
+   "subprogramme": "86711",
+   "subprogramme_name": "Produzir, Distribuir e Comercializar Eletricidade de Qualidade, Contínuo, Regular e Justa na RAEOA",
+   "name": "Modernizar, desenvolver, operar e manter o sistema de distribuição",
+   "div": [
+    "1080101",
+    "1080110"
+   ],
+   "indicator": "\"1. # manuntencao ba linha electricidade 2. % de aquizasaun material electricidade 3. % de fungsionamento distribusaun energia electridadeic 4. % de quexa/pedido mak hetan responde\"",
+   "baseline": "\"1. 20 X 2. 100% 3, 97% 4. 95 %\"",
+   "target": "\"1. 25 X 2. 100% 3, 97% 4. 95 %\"",
+   "amounts": {
+    "20": 197880.0
+   },
+   "page": 1024
+  },
+  {
+   "code": "8671600",
+   "programme": "867",
+   "subprogramme": "86716",
+   "subprogramme_name": "Projetus plurianual de caráter social e economia",
+   "name": "Financiamento de projectos plurianuais caracer social e económico na REAOA",
+   "div": [
+    "1080110"
+   ],
+   "indicator": "% Pagamento Projecto pendentes husi 2017 ate 2023",
+   "baseline": "Pagamento Projecto 34,46% to'o iha fin de desembro 2025",
+   "target": "Kompleta pagamento 85% ba Projectos hamutuk 136 iha 2026",
+   "amounts": {
+    "50": 951391.0
+   },
+   "page": 1024
+  },
+  {
+   "code": "8671900",
+   "programme": "867",
+   "subprogramme": "86719",
+   "subprogramme_name": "Promover o desenvolvimento económico sustentável em Oe-Cusse Ambeno",
+   "name": "Hafanu, Hamoris no Aselera Cresimento Rejiaun",
+   "div": [
+    "1080101",
+    "1081000"
+   ],
+   "indicator": "\"Aumento Produção do setor produtivos: 1. # Industria Comunitaria; 2. # trabalhador colocado em cada industria comunitaria (F/M) 3. $ Rendimento cada industria comunitaria 4. # Cooperativa multi sectoral 5. # produtos diversificados\"",
+   "baseline": "\"1) 4 Grupos (Tizolo:2, Bamboo:2) 2) 0 3) $ 4) 0 5) 0\"",
+   "target": "\"1) 0 2) 0 3) $ 4) 0 5) 0\"",
+   "amounts": {
+    "20": 4120.0
+   },
+   "page": 1025
+  },
+  {
+   "code": "9801205",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "celebração dia mundial das pessoas portadores da dificiência",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "# de participantes portadores de deficiência que participam nas comemorações do Dia mundial das pessoas portadores da deficiência",
+   "baseline": "200 Participantes nos seminário realizada em 2024",
+   "target": "200",
+   "amounts": {
+    "20": 8290.0
+   },
+   "page": 1025
+  },
+  {
+   "code": "9801206",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Desenvolver Plano Nacional de Ação para Promoção e Proteção dos Direitos das Pessoas com Deficiência",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "# Realização dos Enconto para Desenvolvimento Plano Nacional de Ação para Promoção e Proteção dos Direitos das Pessoas com Deficiência",
+   "baseline": "4 encontro realizada anualmente em 2024",
+   "target": "4",
+   "amounts": {
+    "20": 1800.0
+   },
+   "page": 1025
+  },
+  {
+   "code": "9803901",
+   "programme": "980",
+   "subprogramme": "98039",
+   "subprogramme_name": "Serviço de carros funerários e caixões",
+   "name": "Apoio a famílias enlutadas",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "# de caixões atribuídos às famílias enlutadas a título de apoio",
+   "baseline": "Apoio com 6 caixões em 2025.",
+   "target": "6",
+   "amounts": {
+    "20": 4500.0
+   },
+   "page": 1026
+  },
+  {
+   "code": "9804001",
+   "programme": "980",
+   "subprogramme": "98040",
+   "subprogramme_name": "Bolsa da Mãe",
+   "name": "Bolsa da Mãe (subsídio de apoio condicional)",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "# Acompanhamento ao realização programa Bolsa da Mãe",
+   "baseline": "1",
+   "target": "1",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 1026
+  },
+  {
+   "code": "9804101",
+   "programme": "980",
+   "subprogramme": "98041",
+   "subprogramme_name": "Assistência Social/humanitário",
+   "name": "Ajuda humanitária (imediata e atempada)",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "# Total grupos/familias vulneráveis da RAEOA que recebem apoio assistência humanitária pontual (orfanatos, grupo deficientes e instituições religiosas)",
+   "baseline": "150",
+   "target": "150",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1026
+  },
+  {
+   "code": "9802604",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "Desenvolver o Programa de Serviços Sociais e Bem-Estar Social",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "# de encontros realizados com vista à promoção do desenvolvimento do Programa de Serviços Sociais e Bem-estar Social junto da comunidade da RAEOA",
+   "baseline": "2",
+   "target": "2",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1027
+  },
+  {
+   "code": "9800201",
+   "programme": "980",
+   "subprogramme": "98002",
+   "subprogramme_name": "Desenvolvimento desportivo da Juventude na RAEOA",
+   "name": "Realização eventos regional na área juventude",
+   "div": [
+    "1080101",
+    "1080910"
+   ],
+   "indicator": "1). Quantidade de modalidades desportivas abrangidas em eventos desportivos na área da juventude; 2). Numero Comemorar data festival juventude em 12 de Novembro\"",
+   "baseline": "\"1). 6 modalidades realizadas em 2020; 2). N.A",
+   "target": "\"1). 8 modalidades; 2). 1 (Comemorar data festival juventude em 12 de Novembro)\"",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1027
+  },
+  {
+   "code": "9803802",
+   "programme": "980",
+   "subprogramme": "98038",
+   "subprogramme_name": "Desenvolvimento da Área da Juventude",
+   "name": "Desenvolvimento das capacidades de recursos humanos nos jovens",
+   "div": [
+    "1080101",
+    "1080910"
+   ],
+   "indicator": "\"1). Quantidade de jovens formados (em Informática, Inglês e Língua Portuguesa), na RAEOA; 2). % Apoio Equipamentos Drum band, material deportivo ba modalidade hotu, formasaun no apoio operasional ba modalidade hotu-hotu",
+   "baseline": "\"1). 100 Jovens Formandos; 2). N.A \"",
+   "target": "100",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 1028
+  },
+  {
+   "code": "9802817",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Realizacao e facilitacao de encontros de mediacao e reconsiliacao comunitariav",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "# de realizasaun enkontru no medisaun realizadu",
+   "baseline": "1",
+   "target": "1",
+   "amounts": {
+    "20": 1080.0
+   },
+   "page": 1028
+  },
+  {
+   "code": "9802818",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Empoderamento de funcionarias publicas e contratadas na RAEOA",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "# de sensibilizasaun VBJ ba funsionario publico no kontratadu realizadu iha RAEAO",
+   "baseline": "50 funsionario publico no kontratadu ne'ebe hetan ona sensibilizasaun VBJ iha RAEAO",
+   "target": "Kontinua realiza sensibilizasaun VBJ ba partisipantes funsionario publico no kontratadu hamutuk nain 50 iha 2026",
+   "amounts": {
+    "20": 3400.0
+   },
+   "page": 1028
+  },
+  {
+   "code": "9802921",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Advokasia ba Saúde Sexual Reprodutiva iha RAEOA",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "# advokasia saude sexsual reprodutivo realizadu",
+   "baseline": "Realiza ona advokasia ba eskola 2 iha RAEOA",
+   "target": "Kontinua Realiza advokasia saude sexual ba eskola 7 iha 2026",
+   "amounts": {
+    "20": 740.0
+   },
+   "page": 1028
+  },
+  {
+   "code": "9802923",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Advocacia contra a violência baseada no género na RAEOA",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "Kontinua Realiza tan Advokasia kona-ba Violência",
+   "amounts": {
+    "20": 90.0
+   },
+   "page": 1028
+  },
+  {
+   "code": "9803013",
+   "programme": "980",
+   "subprogramme": "98030",
+   "subprogramme_name": "Declaração de Maubisse",
+   "name": "Empoderamento economico das mulheres na RAEOA",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "# Grupu feto nebe mak hetan ona kapasitasaun",
+   "baseline": "8 Grupu",
+   "target": "20 Grupu",
+   "amounts": {
+    "20": 880.0
+   },
+   "page": 1029
+  },
+  {
+   "code": "9804711",
+   "programme": "980",
+   "subprogramme": "98047",
+   "subprogramme_name": "Abordagem de Gênero",
+   "name": "Promova a igualdade de gênero no nível da comunidade",
+   "div": [
+    "1080101"
+   ],
+   "indicator": "# Partisipantes ba sosializasaun Promosaun ba Igualdade Generu realizadu",
+   "baseline": "500 Participantes ba suku 5",
+   "target": "700 Partisipantes ba suku 7",
+   "amounts": {
+    "20": 4050.0
+   },
+   "page": 1029
+  },
+  {
+   "code": "9803201",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "Monitorização e avaliação (M &amp; A) da implementação dos compromissos de género e inclusão social",
+   "div": [
+    "1080115"
+   ],
+   "indicator": "# de monitorizasaun (enkontru no intervensaun direta iha base) realizados",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 750.0
+   },
+   "page": 1030
+  },
+  {
+   "code": "9801702",
+   "programme": "980",
+   "subprogramme": "98017",
+   "subprogramme_name": "Proteção dos Direitos das Crianças",
+   "name": "Protecao, acompanhamento e acesso a justica das criancas vitimas de violencia.",
+   "div": [
+    "1080115",
+    "1080905"
+   ],
+   "indicator": "1). Acompanhamento Crianças Vitima de Violencia; 2). Reintegração Vitima ao Comunidade.\"",
+   "baseline": "\" 1). 75 criancas vitimas Acompanhadas em 2025 2). 75 vitimas reintegradas em 2025\"",
+   "target": "\" 1). 60 2). 60",
+   "amounts": {
+    "20": 2550.0
+   },
+   "page": 1030
+  },
+  {
+   "code": "9801705",
+   "programme": "980",
+   "subprogramme": "98017",
+   "subprogramme_name": "Proteção dos Direitos das Crianças",
+   "name": "Campanha Nacional - Dia Internacional da Criança 1 de junho",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "# Celebração ba loron Mundial ba direitos labarik celebradu",
+   "baseline": "1",
+   "target": "1",
+   "amounts": {
+    "20": 4950.0
+   },
+   "page": 1030
+  },
+  {
+   "code": "9801802",
+   "programme": "980",
+   "subprogramme": "98018",
+   "subprogramme_name": "Socialização e sensibilização",
+   "name": "Sensibilização educacao sobre os diretos das criancas.",
+   "div": [
+    "1080101",
+    "1080115"
+   ],
+   "indicator": "# de atividades das campanhas de sensibilização implementadas na RAEOA",
+   "baseline": "4",
+   "target": "Aumenta implementasaun ba dala 6 atividades de campanhas de sensibilização ba Sub-regiaun 4",
+   "amounts": {
+    "20": 1340.0
+   },
+   "page": 1030
+  },
+  {
+   "code": "9800404",
+   "programme": "980",
+   "subprogramme": "98004",
+   "subprogramme_name": "Desenvolvimento na área Desporto",
+   "name": "Realizado evento nacional na area desporto",
+   "div": [
+    "1080101",
+    "1080910"
+   ],
+   "indicator": "\"1). Número de modalidades desportivas abrangidas na Competição Copa ZEESM e em Desporto Comunitário; 2). Numero Evento Desporto na Regiao, 20 de Maio, de 30 de Agosto e 28 de Novembro \" 2). Numero Evento Desporto na Regiao, 20 de Maio, de 30 de Agosto e 28 de Novembro",
+   "baseline": "\"1). Realização de 2 modalidades na Competição da Copa ZEESM e de 10 Modalidades em Desporto Comunitário; 2). 3 Eventos\"",
+   "target": "\"1). N.A; 2). 3 Eventos\"",
+   "amounts": {
+    "20": 2500.0
+   },
+   "page": 1031
+  },
+  {
+   "code": "9820504",
+   "programme": "982",
+   "subprogramme": "98205",
+   "subprogramme_name": "Promoção de Timor-Leste como destino turístico",
+   "name": "Participação e organização de feiras, exposições e eventos para promover a cultura e o turismo",
+   "div": [
+    "1080114",
+    "1080911"
+   ],
+   "indicator": "# de eventos promocionais (exposições / feiras / festivais) destinados a promover a cultura, o turismo e os produtos lokais;",
+   "baseline": "3 eventos ne'ebe procionadus iha tinan 2025",
+   "target": "Kontinua halo promosaun 3 eventos iha tinan 2026",
+   "amounts": {
+    "20": 14640.0
+   },
+   "page": 1031
+  },
+  {
+   "code": "9820602",
+   "programme": "982",
+   "subprogramme": "98206",
+   "subprogramme_name": "Desenvolvimento do turismo de base comunitário",
+   "name": "Apoiar o desenvolvimento do turismo de base comunitária",
+   "div": [
+    "1080114",
+    "1080911"
+   ],
+   "indicator": "# de locais turisticos devidamente dotados de infraestruturas de apoio aos utilizadores/visitantes",
+   "baseline": "5 locais turisticos devidamente dotados de infraestruturas de apoio aos utilizadores/visitantes iha 2025",
+   "target": "Aumenta 2 locais turisticos devidamente dotados de infraestruturas atu apoio utilizadores/visitantes iha RAEOA",
+   "amounts": {
+    "20": 4150.0
+   },
+   "page": 1032
+  },
+  {
+   "code": "9820707",
+   "programme": "982",
+   "subprogramme": "98207",
+   "subprogramme_name": "Desenvolvimento e gestão de instalações turísticas em TL",
+   "name": "Desenvolver infraestrutura e Gestão de Sitios Turísticos",
+   "div": [
+    "1080114",
+    "1080911"
+   ],
+   "indicator": "# de locais turisticos devidamente dotados de infraestruturas de apoio aos utilizadores/visitantes",
+   "baseline": "5 lokais turistikus ne'ebe instaladu no utulizadu",
+   "target": "Kontinua halo instalasaun ba fatin turistiku foun 2 mak hanesan Cussi, Ban-Afi no Cruz Santo Antonio-Passabe,",
+   "amounts": {
+    "20": 6120.0
+   },
+   "page": 1032
+  },
+  {
+   "code": "9831901",
+   "programme": "983",
+   "subprogramme": "98319",
+   "subprogramme_name": "Estratégia Nacional de Emprego (ENE)",
+   "name": "Aumentar a procura do mercado de trabalho",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "# Aumento da procura de mercado em total",
+   "baseline": "148 clientes em 2025",
+   "target": "200",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 1032
+  },
+  {
+   "code": "9832204",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Supervisionar, monitorizar e avaliar os projectos de criação de emprego",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "#Acompanhamento ao Grupos criados em RAEOA",
+   "baseline": "4 acompanhamento ao grupo criado",
+   "target": "4 acompanhamento ao grupo criado",
+   "amounts": {
+    "20": 400.0
+   },
+   "page": 1033
+  },
+  {
+   "code": "9832208",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Divulgação e aconselhamento profissional",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "# de alunos do ensino secundário que têm acesso a informações sobre oportunidades de emprego dentro e fora do país",
+   "baseline": "248 alunos participantes em 2025",
+   "target": "300",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1033
+  },
+  {
+   "code": "9832305",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Implementar um programa nacional de estágio por via de centros de formação profissional",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "# de estagiários a apoiar anualmente na área de especialidade",
+   "baseline": "24 estagiados Annualmente em 2025",
+   "target": "30",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1033
+  },
+  {
+   "code": "9831601",
+   "programme": "983",
+   "subprogramme": "98316",
+   "subprogramme_name": "Prevenir trabalho infantil e trabalho forçado",
+   "name": "Prevenir o trabalho infantil e o trabalho forçado",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "# Participantes em Seminario realizados",
+   "baseline": "10 pessoas formandos em 2023",
+   "target": "20 pessoas formandos em 2025",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1033
+  },
+  {
+   "code": "9831602",
+   "programme": "983",
+   "subprogramme": "98316",
+   "subprogramme_name": "Prevenir trabalho infantil e trabalho forçado",
+   "name": "Comemorações oficiais - Dia Mundial do Trabalho Infantil",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "# de crianças participantes na Realização Jornada Mundial sobre trabalho infantil",
+   "baseline": "50 criancas participantes",
+   "target": "100",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 1033
+  },
+  {
+   "code": "9831701",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Divulgar as leis e estatutos existentes relevantes para trabalhadores e empregadores",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "# Participantes da Socializasaun Lei Seguransa Saude dos Trabalhadores em RAEOA",
+   "baseline": "100 participantes",
+   "target": "100 participantes",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1034
+  },
+  {
+   "code": "9831406",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Facilitar atividades de exportação e importação",
+   "div": [
+    "1080118",
+    "1081000"
+   ],
+   "indicator": "1) % exportações & Nu. Varios produtos 2) $ exportações Varios produtos",
+   "baseline": "1) 0% 2) $",
+   "target": "1) 25% 2) $ 5,000",
+   "amounts": {
+    "20": 37745.0
+   },
+   "page": 1034
+  },
+  {
+   "code": "9832601",
+   "programme": "983",
+   "subprogramme": "98326",
+   "subprogramme_name": "Apoio ao Desenvolvimento de Negócios (IADE)",
+   "name": "Formação e Assistência de Consultoria aos empresários",
+   "div": [
+    "1080101"
+   ],
+   "indicator": "# de empresários e empreendedores que recebem formação e beneficiam de assistência de consultoria",
+   "baseline": "80 beneficiários formados receberao assistência de consultoria providenciada aos empreendedores",
+   "target": "200 beneficiários formados receberao assistência de consultoria providenciada aos empreendedores",
+   "amounts": {
+    "20": 7508.0
+   },
+   "page": 1034
+  },
+  {
+   "code": "9830503",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Comemorações oficiais - Dia Mundial do Trabalhador",
+   "div": [
+    "1080101",
+    "1080905"
+   ],
+   "indicator": "",
+   "baseline": "150 Participantes nos seminário realizada em 2023",
+   "target": "150 Participantes nos seminário realizada em 2025",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 1034
+  },
+  {
+   "code": "A390200",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Implementar e Desenvolver Culturas de Horticultura Comunitária",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# de Unidade Identifikados",
+   "baseline": "5",
+   "target": "10",
+   "amounts": {
+    "20": 18266.0
+   },
+   "page": 1035
+  },
+  {
+   "code": "A390207",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Estabelecimento de uma agricultura integrada em zonas potencialmente irrigadas",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# de Zonas Irrigadas Identificados e Proteger",
+   "baseline": "2",
+   "target": "3",
+   "amounts": {
+    "20": 885.0
+   },
+   "page": 1035
+  },
+  {
+   "code": "A390208",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Subsídios aos agricultores para o arroz, o milho e os produtos hortícolas",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# de familia Beneficiaram",
+   "baseline": "3000",
+   "target": "4000",
+   "amounts": {
+    "20": 58000.0
+   },
+   "page": 1036
+  },
+  {
+   "code": "A390302",
+   "programme": "A39",
+   "subprogramme": "A3903",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Café e de Plantas Industriais e Anuais",
+   "name": "Operacionalizar os Centros de Viveiros de Plantas Industriais",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# Ai-Oan ba Centru Veiveirus 4",
+   "baseline": "Produs Ona Ai Oan 88.000 Pes",
+   "target": "12.000 Pes",
+   "amounts": {
+    "20": 52360.0
+   },
+   "page": 1036
+  },
+  {
+   "code": "A390601",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Desenvolvimento Metodologia de Estensão Agrícola",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). # de metode metodologias de extensão agrícola desenvolvida; 2). # pilotos de demonstação desenvolvidas e # de escola campo (FFS) realizado.\"",
+   "baseline": "1). 1 2). 12 pilotos de demonstação desenvolvidas;",
+   "target": "\"1). 2; 2). 16 \"",
+   "amounts": {
+    "20": 22860.0
+   },
+   "page": 1036
+  },
+  {
+   "code": "A390602",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Melloramento da Gestão e Funções de Estensão Agrícola",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "% gestão e funções de extensão agrícola melhorada.",
+   "baseline": "100 % Melhoramentu Crop Cutting em 2025",
+   "target": "100 %",
+   "amounts": {
+    "20": 2500.0
+   },
+   "page": 1036
+  },
+  {
+   "code": "A390603",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Desenvolver e Produzir as Informações Técnicas Agrícolas",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "1. # de vareidades produtu agrícolas (haree, batar no ai- farina); 2. # ha produsaun de agrikola.",
+   "baseline": "1. 3 de vareidades produtu agrícolas (haree, batar no ai- farina) em 2025;",
+   "target": "1. 4 de vareidades produtu agrícolas (haree, batar, ai- farina no foremunggu) ;",
+   "amounts": {
+    "20": 10500.0
+   },
+   "page": 1036
+  },
+  {
+   "code": "A390607",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Pesquisa de adaptação das culturas para o arroz, o milho, a batata-doce, a mandioca, o amendoim, o trigo e outras culturas locais",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). # de novas Investigação agrícolas (horticultura, criação de gado, recursos haliêuticos, produção de cereais e variedades de sementes desenvolvido; 2). # de pesquisas lanxados.\"",
+   "baseline": "1). 0,5 de novas Investigação agrícolas (horticultura, criação de gado, recursos haliêuticos, produção de cereais e variedades de sementes desenvolvido; 2). 0 de pesquisas lanxados.",
+   "target": "1. 0,75 de novas Investigação agrícolas (horticultura, criação de gado, recursos haliêuticos, produção de cereais e variedades de sementes desenvolvido; 2. 1 pesquisas lanxados em 2026.",
+   "amounts": {
+    "20": 600.0
+   },
+   "page": 1037
+  },
+  {
+   "code": "A390608",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Reprodução de plantas e conservação de recursos genéticos",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# multiplika Variedades Agrikolas ne'ebe maka produktivus introdusionados lokalmente.",
+   "baseline": "Realiza no iha ona Variedades Agrikolas 2 nebe maka produtivus lokalmente (lis mean no lis mutin).",
+   "target": "Aumenta Variedade Agrikolas foun 1 nebe maka produtivus lokalmente (hare metan) iha 2026.",
+   "amounts": {
+    "20": 3810.0
+   },
+   "page": 1037
+  },
+  {
+   "code": "A390903",
+   "programme": "A39",
+   "subprogramme": "A3909",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Gestão e utilização da água na agricultura",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). # de pescadores artesanais capacitados em técnicas e artes de pesca adequadas e sustentáveis; 2). # Grupo Pescadores iha RAEOA hetan benefisiu\"",
+   "baseline": "\"1). 5 gropus pescadores; 2). 20 pessoas husi 5 Grupo Pescadores iha RAEOA hetan ona benefisiu iha 2025\"",
+   "target": "\"1). 4 grupos peskadores no okumuladu 9 gropus peskadores iha 2026; 2). Aumenta 16 pessoas husi 4 Grupo Pescadores iha RAEOA no okumuladu ba 36 pessoas no 9 gropus iha 2026\"",
+   "amounts": {
+    "20": 1800.0
+   },
+   "page": 1037
+  },
+  {
+   "code": "A390904",
+   "programme": "A39",
+   "subprogramme": "A3909",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Desenvolvimento de um sistema de armazenamento de água para a agricultura",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# Potenciar ba dezenvolvimentu no manutensaun agri-turizmu iha área protejida sira liuhosi dezenvolvimentu sistema armazenamentu bee infiltrasaun.",
+   "baseline": "12 potensia agro-turismu iha area protezidas",
+   "target": "16 potensia agro-turismu iha area protezidas",
+   "amounts": {
+    "20": 4500.0
+   },
+   "page": 1037
+  },
+  {
+   "code": "A390905",
+   "programme": "A39",
+   "subprogramme": "A3909",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Manutenção e reabilitação das infra-estruturas agrícolas na RAEOA",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# Maquina Incubasaun",
+   "baseline": "N.A",
+   "target": "Iha tinan 2026 produz manu oan 1.200 cabesas.",
+   "amounts": {
+    "20": 74208.0
+   },
+   "page": 1037
+  },
+  {
+   "code": "A400201",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Estabelecimento de Pastagem Comunitária",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). # ha de pastagem comunitária ne’ebé estabelese ona; 2). # grupu ne’ebé estabelese ona; 3). # # ha ai han animal (Turi, lamtoro, ai-kafe, gamal no kinggrass).\"",
+   "baseline": "1.219",
+   "target": "1.719",
+   "amounts": {
+    "20": 7500.0
+   },
+   "page": 1038
+  },
+  {
+   "code": "A400300",
+   "programme": "A40",
+   "subprogramme": "A4003",
+   "subprogramme_name": "Controlo de Doenças de Animais",
+   "name": "Tratamento Geral dos Animais (búfalos, vacas, suínos, cabras, galinhas, etc.)",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). % husi total bufalus no karau vaka ne’ebé hetan vasinasaun no nível mortalidade no morbilidade balada no karau redus ba %; 2) % husi totál fahi ne’ebé hetan vasinasaun no nível mortalidade no morbilidade husi fahi redús ba %; 3) % husi totál manu-tolun ne’ebé atu hetan vasinasaun no nível",
+   "baseline": "\"1). 9,3% husi total bufalus no karau vaka ne’ebé hetan vasinasaun no nível mortalidade no morbilidade bufalus no karau vaka redus até 0% iha 2025; 2). % husi totál fahi ne’ebé hetan vasinasaun no nível mortalidade no morbilidade husi fahi redús ba até 0 %; 3). 0,3% husi totál manu",
+   "target": "\"1). 26% husi total bufalus no karau vaka atu hetan vasinasaun no nível mortalidade no morbilidade bufalus no karau vaka redus até 0,5% iha 2026; 2). 0% do total de suínos vacinados e nível mortalidade e morbilidade de suínos reduzido até 0 %; 3). 10,3% husi totál manu ne’ebé atu",
+   "amounts": {
+    "20": 82970.0
+   },
+   "page": 1038
+  },
+  {
+   "code": "A410101",
+   "programme": "A41",
+   "subprogramme": "A4101",
+   "subprogramme_name": "Produção e Produtividade de Pesqueira e Aquacultura",
+   "name": "Apoiar e Modernizar a Pesca Artesanal",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). # de pescadores artesanais capacitados em técnicas e artes de pesca adequadas e sustentáveis; 2). # Grupo Pescadores iha RAEOA hetan benefisiu\"",
+   "baseline": "\"1). 5 grupos peskadores 2). 20 pessoas husi 5 Grupo Pescadores \"",
+   "target": "\"1). 4 grupos peskadores no okumuladu 9 gropus peskadores 2). Aumenta 16 pessoas husi 4 Grupo Pescadores iha RAEOA no okumuladu ba 36 pessoas no 9 gropus iha 2026\"",
+   "amounts": {
+    "20": 28000.0
+   },
+   "page": 1039
+  },
+  {
+   "code": "A410102",
+   "programme": "A41",
+   "subprogramme": "A4101",
+   "subprogramme_name": "Produção e Produtividade de Pesqueira e Aquacultura",
+   "name": "Desenvolvimento Integrado das áreas costeiras e do mar",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "# ha de area costeiros que atinjidu na RAEOA",
+   "baseline": "0,2 ha de area costeiros atinjidu",
+   "target": "0,4 ha area costeiros",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1039
+  },
+  {
+   "code": "A420203",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Estabelecimento de Linhas de Perímetro Provisórias e Permanentes dos Limites de Áreas Protegidas",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "\"1). # de pilares produzidas e instalados; 2). # ha da área protegida identificado; 3). # quadro de informação produzidas e instaladas em 44 Áreas Protegidas e Parques Nacionais; 4). # de pessoas nas Áreas Protegidas e Parque Nacional sensibilizadas. \"",
+   "baseline": "\"1). 60 2). 15.100 ha área protegida 3). # quadro de informação produzidas e instaladas em 44 Áreas Protegidas e Parques Nacionais; 4). 6 Areas protezidas levantadu no halo ona mapamentu 2 \"",
+   "target": "\"1). Produs no instala 25 pilares 2). 700 ha ba área protegida 3). # quadro de informação produzidas e instaladas em 44 Áreas Protegidas e Parques Nacionais; 4). 6 Areas protezidas levantadu no halo tan mapamentu 1 iha 2026\"",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 1040
+  },
+  {
+   "code": "A420206",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Desenvolver um Sistema de Agro-floresta",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "1). # ha ba sistema agro- floresta aumentadu; 2). # ha manutenção combinação agro-floresta realizadu; 3). # ha agro-floresta completa manutenção dentro 3 anos; 4). # pés de plantas floresta cultivado; 5). # pés de plantas a crescer dentro do periodo de manutenção; 6). # seminario de melhoramento do produto de agrofloresta realizado.",
+   "baseline": "1). 0; 2). 0; 3). 8 ha ; 4). 30.600 pés; 5). 22,600 pés; 6). 1",
+   "target": "1). 1; 2). 1 ha; 3). 9 ha; 4). 20.000 pés ; 5). 15.000 pés ; 6). 1",
+   "amounts": {
+    "20": 9200.0
+   },
+   "page": 1040
+  },
+  {
+   "code": "A420208",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Reflorestação e Reabilitação das Áreas Degradadas",
+   "div": [
+    "1080113",
+    "1080906"
+   ],
+   "indicator": "1). # ha área reflorestação implementado; 2). # ha área reflorestação em manutenção; 3). # ha reflorestação completa manutenção dentro de 3 anos; 4). # ha de reabilitação implementado nas áreas degradadas; 5). % área degradasdas reduzido",
+   "baseline": "1). 6 ha ; 2). 5 ha; 3). 5 ha; 4). 3 ha ba áreas degradadas; 5). 100% área degradasdas reduzido",
+   "target": "1). 1 ha; 2). 1 ha; 3). 3 ha; 4). 2 ha; 5). 10%",
+   "amounts": {
+    "20": 6250.0
+   },
+   "page": 1041
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "024.0.2",
+   "statement": "Reconhecimento nacional e internacional das artes e cultura de Timor- Leste, provando ser um recurso importante para o sector do turismo no país",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 994
+  },
+  {
+   "kind": "output",
+   "code": "02411.0.0",
+   "statement": "Identificação e divulgação do potencial cultural tangível e intangível de Timor-Leste",
+   "indicator": "# Promoção e Conservação Cultura de Timor Leste",
+   "baseline": "6",
+   "target": "10",
+   "page": 994
+  },
+  {
+   "kind": "outcome",
+   "code": "024.0.5",
+   "statement": "Hametin identidade nasionál, koezaun sosiál, no orgúllu kulturál liu hosi prezervasaun no promosaun patrimóniu kultural no espresaun artístika Timor-Leste nian",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 994
+  },
+  {
+   "kind": "output",
+   "code": "02410.0.0",
+   "statement": "Identificados novos cidadãos e grupos culturais com talento e capacidades intelectuais e artísticas relevantes",
+   "indicator": "# de Identifica e desenvolve os Grupos Culturais Existentes em RAEOA",
+   "baseline": "6",
+   "target": "10",
+   "page": 994
+  },
+  {
+   "kind": "outcome",
+   "code": "028.0.0",
+   "statement": "Desenvolver e promover o funcionamento da Organização Urbana, Higiene, atribuição de nomes de lugares e Ordem Pública para melhorar as condições urbanas em todo o território de Timor- Leste.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 994
+  },
+  {
+   "kind": "output",
+   "code": "02803.0.0",
+   "statement": "1. O sistema de designação dos Topónimos concluídos e a criação do sistema de atribuição de nomes de lugares em todas as Ruas de Timor-Leste e a numeração de casas e edifícios públicos estabelecidos. 2. Sistema de rua (Avenida, Rua, Travessa, Beco, e nome dos jardins, largo, parque (placa e rotunda), espaço) estipulado.",
+   "indicator": "\"1. # da polisia (Numeru Uma) nebe mak monta ona iha zona urbana Pante Makasar 2. # toponimia ne'ebe mak estipuladu \"",
+   "baseline": "\"1. Monta ona numeru uma ba Uma priv: 2.454, Edifisiu Publiku 13 no okumuladu 2.467. 2. toponimia ne'ebe mak estipuladu: avenida:4; rua/estrada: 87; travessa: 43; Beco: 29; ponte :9",
+   "target": "\"1. Kontinua Monta tan numeru uma ba Uma priv: 702, Edifisiu Publiku 10 no okumula 712 2. Halo ona levantamentu dadus toponimia husi 1. Suco Abani: avenida:0; rua/estrada: 12; travessa: 16; Beco: 6no ponte :0; 2. Suco Malelat : Avenida:0; Rua:3; travessa:5; Beco:5; Ponte:0; 3. Suco Lifau: avenida:0; Rua:19; Travessa:16; Beco:10; Ponte:2; 4. Suco Naimeco: Avenida :0 Rua:8, Travessa 12, beco 10, ponte 0; 5.Suco Suni- Ufe: Avenida 0, Rua:8, travessa 3, beco 5 ponte 0; 6. Suco Usi- Tasae; Avenida 0, Rua 8, Travessa 3, Beco 3, ponte 0; 7. Suco Usi-Taqueno: avenioda 0, rua 6, travessa 1, beco 4 ponte0; 8. Suco Taiboco: avenida 0, rua 15, travessa 8, beco 3 ponte 0; 9. Suco Bene-ufe: Avenida 0, rua 13, travessa 21, beco 5 ponte 0;",
+   "page": 995
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.0",
+   "statement": "Diminuição da criminalidade geral, profissionalização das forças e serviços de segurança bem como a proteção e alívio da população",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 996
+  },
+  {
+   "kind": "output",
+   "code": "36624.0.0",
+   "statement": "Os sistemas de prevenção e gestão de desastres naturais respondem de forma eficiente e atempada às necessidades das populações mais afetadas",
+   "indicator": "\"1) # Divulgação dos sistemas de prevenção e gestão de desastres naturais aos populações que ficam nas areas de Risco de Desastres. 2) % Atendimento aos Populações que afetam Desastres Naturais.\"",
+   "baseline": "\"1) 4 vezes annualmente 2) 75%\"",
+   "target": "\"1) 4 2) 100%\"",
+   "page": 996
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.2",
+   "statement": "Toda a terra em Timor-Leste é registada e os bens do Estado são bem mantidos e geridos",
+   "indicator": "Número de campanhas de socialização para atender ao sistema judiciário de Timor-Leste",
+   "baseline": "0",
+   "target": "0",
+   "page": 996
+  },
+  {
+   "kind": "output",
+   "code": "39214.0.0",
+   "statement": "Até 2028, um cadastro sistemático e atualizado abrangerá uma parcela cada vez maior de terrenos e municípios",
+   "indicator": "# Parsela rai hotu-hotu ne'ebé rejista ona",
+   "baseline": "1. Privadu: 301 parselas 2. Estadu: 58 Parselas 3. Alargamentu Estrada 539 parselas",
+   "target": "1. Privadu: 501 parselas 2. Estadu: 118 Parselas 3. Alargamentu Estrada :1063 parselas",
+   "page": 996
+  },
+  {
+   "kind": "output",
+   "code": "39215.0.0",
+   "statement": "Até 2028, o portfólio de bens imóveis do Estado estará totalmente inventarizado, registado, digitalizado e gerido num sistema transparente, responsável e atualizado",
+   "indicator": "# propriedade estadu",
+   "baseline": "545",
+   "target": "645",
+   "page": 997
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.3",
+   "statement": "Todos os cidadãos inscritos nos serviços de Registo e Notariado e têm o direito de aceder à sua informação.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 997
+  },
+  {
+   "kind": "output",
+   "code": "39218.0.0",
+   "statement": "Até 2028, a cobertura do registo de nascimentos, casamentos e óbitos e a emissão de Bilhete de identidade e passaportes aumentam significativamente, incluindo em todos os municípios",
+   "indicator": "\"a)# da população timorense (RAEOA) por nascimento registada anualmente b) # da população timorense (RAEOA) por estado civil registada anualmente c) # da população timorense (RAEOA) por mortalidade registada anualmente\"",
+   "baseline": "\"a. Registu Nasimentu 4340 pessoas b. Registu Casamentu 258 par c. Registu Obitu 286 d. Atribuisaun Nasionalidade 49 e. BI foun 4173, renova 1951 f. Registu Kriminal foun 2786, renova 3790 g. Passaporte 2575 h. Passa fronteira 0\"",
+   "target": "\"a. 6840 b. 458 c. 486 d. 76 e. Foun 9173, renova 3951 f. Foun 5786, renova 7790 g. 5075\"",
+   "page": 997
+  },
+  {
+   "kind": "outcome",
+   "code": "502.0.0",
+   "statement": "Sistema de transporte terrestre em bom funcionamento que contribui a ligar as comunidades, apoiar o desenvolvimento rural, a indústria e o turismo e fornecer acesso ao mercado e apoiar os serviços públicos de fornecimento",
+   "indicator": "Reduzir o tempo de viagem para o usuário, o serviço mais rápido e ou reduzir custos",
+   "baseline": "10",
+   "target": "20",
+   "page": 997
+  },
+  {
+   "kind": "output",
+   "code": "50202.0.1",
+   "statement": "Melhoria dos parques de estacionamento para aliviar o congestionamento do tráfego, aumentar a segurança e cumprir os regulamentos em todos os municípios, incluindo a RAEOA",
+   "indicator": "\"1) % de redução em acidentes rodoviários 2) Gestão do estacionamento efetivamente implementada em todos os municípios 3) % de lugares de estacionamento disponíveis que estão atualmente ocupados\"",
+   "baseline": "10",
+   "target": "8",
+   "page": 998
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 998
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% do Plano Anual Alcançados",
+   "baseline": "75%",
+   "target": "85%",
+   "page": 998
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Plano Asaun Annual Alcancados",
+   "baseline": "65%",
+   "target": "85%",
+   "page": 1001
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "% Plano Asaun Annual Alcancados",
+   "baseline": "0%",
+   "target": "100%",
+   "page": 1007
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "510.0.h: Garantir a implementação efetiva da descentralização administrativa e do poder local.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1007
+  },
+  {
+   "kind": "output",
+   "code": "51021.0.0",
+   "statement": "Capacidade institucional para a descentralização administrativa alcançada",
+   "indicator": "% do Plano Asaun Annual Alcancados",
+   "baseline": "75%",
+   "target": "100%",
+   "page": 1007
+  },
+  {
+   "kind": "outcome",
+   "code": "520.0.0",
+   "statement": "Aumentar o acesso, a participação e a prontidão escolar das crianças dos 3 aos 5 anos, garantindo que mais crianças, especialmente nas zonas rurais, recebem ou participam em programas pré-escolares de qualidade que as preparem para a educação básica obrigatória",
+   "indicator": "Taxa preparação das crianças com idades as três e os cinco anos",
+   "baseline": "28%",
+   "target": "60%",
+   "page": 1008
+  },
+  {
+   "kind": "output",
+   "code": "52016.0.1",
+   "statement": "1. Fornecer refeições ou lanches aos alunos durante o dia escolar &amp;#13;&amp;#10;2. Melhoram rapidamente a saúde física das crianças, que se tornam mais felizes, menos esfomeadas, mais activas e entusiasmadas com a aprendizagem",
+   "indicator": "\"1) # de Todas as escolas implementam programas de almoço escolar 2) % dos alunos concentram-se mais e participam ativamente nas aulas\"",
+   "baseline": "\"1) 16 Escolas de EPE em RAEOA 2) 100%\"",
+   "target": "\"1) 20 2) 100%\"",
+   "page": 1008
+  },
+  {
+   "kind": "output",
+   "code": "52017.0.0",
+   "statement": "Todos os educadores pre-escolares obtiviram qualificações minimas e de competência exigida por leis",
+   "indicator": "% de educadores do ensino pré- escolar que obtiveram as qualificações e competências mínimas exigidas por lei",
+   "baseline": "90% em 2025",
+   "target": "95%",
+   "page": 1009
+  },
+  {
+   "kind": "output",
+   "code": "52021.0.0",
+   "statement": "Melhorar a qualidade do ensino, manter as instalações e melhorar a gestão das escolas",
+   "indicator": "1) % de estudantes que melhoraram a qualidade do seu ensino 2) # Número de inspecções à concessão de subsídios escolares realizadas",
+   "baseline": "\"1) 100% 2) 20 \"",
+   "target": "\"1) 100% 2) 20 \"",
+   "page": 1009
+  },
+  {
+   "kind": "outcome",
+   "code": "521.0.0",
+   "statement": "Até 2028, o acesso, a participação, a permanência (continuidade) e a conclusão do ensino básico (do 1º ao 9º ano) aumentarão, incluindo a literacia e a literacia matemática básica para os alunos.",
+   "indicator": "Aumento da taxa de matrícula líquida e aprovação final",
+   "baseline": "85%",
+   "target": "85% e 95%",
+   "page": 1009
+  },
+  {
+   "kind": "output",
+   "code": "52117.0.0",
+   "statement": "Os alunos do ensino básico recebem refeições escolares",
+   "indicator": "1) # Todas as escolas implementam programas de almoço escolar 2) # Menu do almoço",
+   "baseline": "\"1) 79 Escolas do EB em RAEOA 2) Menu Aprovado e Adaptado de ME 3) 100%\"",
+   "target": "\"1) 79 Escolas do EB em RAEOA 2) Menu Aprovado e Adaptado de ME 3) 100%\"",
+   "page": 1009
+  },
+  {
+   "kind": "output",
+   "code": "52119.0.0",
+   "statement": "Os professores do ensino primário cumprem as qualificações nacionais e os padrões profissionais através de preparação inicial e formação contínua em literacia, matemática, educação inclusiva e pedagogia centrada na criança",
+   "indicator": "% de professores (educadores) do ensino pré-escolar que obtiveram as qualificações e competências mínimas exigidas por lei",
+   "baseline": "90%",
+   "target": "95%",
+   "page": 1010
+  },
+  {
+   "kind": "output",
+   "code": "52120.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1011
+  },
+  {
+   "kind": "output",
+   "code": "52121.0.0",
+   "statement": "As escolas têm acesso a instalações de tecnologias da informação e da comunicação (TIC), incluindo computadores, acesso à Internet, software e outras ferramentas digitais que apoiam o ensino e a aprendizagem.",
+   "indicator": "% de Escola que têm acesso a tecnologia Informatica e a comunicacao (TIC)",
+   "baseline": "50%",
+   "target": "75%",
+   "page": 1011
+  },
+  {
+   "kind": "output",
+   "code": "52122.0.0",
+   "statement": "O Currículo Nacional para o Ensino Básico (do 1º ao 9º ano) está totalmente implementado, com o TAIS e outros conteúdos nacionais integrados, e são fornecidos materiais didáticos de qualidade suficiente a todas as escolas.",
+   "indicator": "% alunos aprovados",
+   "baseline": "98%",
+   "target": "99%",
+   "page": 1011
+  },
+  {
+   "kind": "output",
+   "code": "52123.0.0",
+   "statement": "Os sistemas de gestão e governação escolar garantem que as escolas primárias são bem geridas, recebem apoio financeiro e são responsáveis pela aprendizagem.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1012
+  },
+  {
+   "kind": "output",
+   "code": "52124.0.0",
+   "statement": "Os pais e as comunidades apoiam ativamente a aprendizagem e a permanência das crianças no ensino básico através de uma estrutura funcional entre a comunidade e a escola e de atividades regulares de informação, educação e comunicação (IEC).",
+   "indicator": "# Desenvolvimento e Capacitação dos Professores no envolvimento dos Grupos de Trabalhos dos Professores e Liderensas",
+   "baseline": "245 membro em 2025",
+   "target": "300",
+   "page": 1012
+  },
+  {
+   "kind": "outcome",
+   "code": "522.0.0",
+   "statement": "Até 2028, o acesso, a participação, a permanência e a conclusão do ensino secundário geral melhoraram, com resultados de aprendizagem mais sólidos que preparam os alunos para estudos futuros e para a aprendizagem ao longo da vida.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1012
+  },
+  {
+   "kind": "output",
+   "code": "52208.0.0",
+   "statement": "As escolas secundárias de ensino técnico e profissional utilizam as TIC e as ferramentas digitais para apoiar a aprendizagem técnica, o empreendedorismo e as competências ligadas às plataformas digitais.",
+   "indicator": "1.% de escolas tem acesso as TIC",
+   "baseline": "45%",
+   "target": "60%",
+   "page": 1013
+  },
+  {
+   "kind": "outcome",
+   "code": "522.0.1",
+   "statement": "Até 2028, o acesso, a participação, a conclusão e a empregabilidade dos alunos do ensino técnico e profissional de nível secundário serão melhorados através de programas acreditados e alinhados com o mercado de trabalho, que reforcem as competências práticas e a preparação para o mercado de trabalho.",
+   "indicator": "1.# rehabilitasaun sala de aulas ensino sekundaria rehabilita 2.% de matricula iha ensino sekundario Jeral no Tekniku vocasional 3.% graduado nebe iha abildade tekniku nebe responde ba merkadu trabalhu aumentu (agrikultura,indústria, mekánika, eletrónika, konstrusaun sivíl, nsst)",
+   "baseline": "",
+   "target": "",
+   "page": 1013
+  },
+  {
+   "kind": "output",
+   "code": "52212.0.0",
+   "statement": "Profesór no formadór sira ensino secundário profissional e técnico nian iha kualifikasaun profisionál no relevante ba setor industrial ne&amp;#39;ebé maka presiza no simu formasaun téknika no pedagójika kontínua.",
+   "indicator": "% de professores do ensino secundário que obtiveram qualificação e competências mínimas exigidas por lei",
+   "baseline": "80%",
+   "target": "85%",
+   "page": 1013
+  },
+  {
+   "kind": "output",
+   "code": "52215.0.0",
+   "statement": "Eskola sekundária TVET sira jere ho efetivu no mantein parseria ativu ho empregadór sira no komunidade sira hodi apoia aprendizajen iha servisu fatin no empregabilidade ba graduadu sira.",
+   "indicator": "# Estabelecimentos de ensino Secundario têm acesso a subsídios escolares",
+   "baseline": "7",
+   "target": "7",
+   "page": 1014
+  },
+  {
+   "kind": "output",
+   "code": "52216.0.0",
+   "statement": "Os currículos do ensino secundário profissional e técnico são baseados em competências, alinhados com o Quadro Nacional de Qualificações e com as necessidades do mercado de trabalho, sendo que os programas são acreditados e têm a qualidade assegurada.",
+   "indicator": "\"1) % alunos Aprovados 2) % Desenvolvimento das capacidades dos Estudantes atraves aulas informais",
+   "baseline": "1) 99% em 2024 2) 90%",
+   "target": "\"1) 100% 2) 95%\"",
+   "page": 1014
+  },
+  {
+   "kind": "outcome",
+   "code": "523.0.1",
+   "statement": "Até 2028, o acesso, a participação e a conclusão de programas de educação para jovens e adultos aumentarão, permitindo que os jovens e adultos fora da",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1014
+  },
+  {
+   "kind": "output",
+   "code": "52308.0.0",
+   "statement": "Os Centros de Aprendizagem Comunitária (CLCs) são funcionais, bem geridos e oferecem programas acessíveis de alfabetização, equivalência e desenvolvimento de competências para a vida para jovens e adultos.",
+   "indicator": "% de aumento da taxa de participação",
+   "baseline": "90%",
+   "target": "85%",
+   "page": 1015
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "Taxa Mortalidade Inan Taxa Mortalidade Oan Taxa Stunting(Raes badak)",
+   "baseline": "GDR 27/1000 NDR1.195/100000 LB 2. 50.5/1000 3. 47.1% 13,4/1000",
+   "target": "1.85/100000 Lb 2.30/1000. 3. 30%",
+   "page": 1015
+  },
+  {
+   "kind": "output",
+   "code": "52802.0.0",
+   "statement": "Prestação de um pacote abrangente de serviços de cuidados de saúde primários (consulta, prevenção, tratamento básico e encaminhamento) com qualidade e equidade em todas as unidades de saúde, incluindo áreas remotas",
+   "indicator": "# Consultas ambulatoriais por capital por ano a cada unidade de saúde",
+   "baseline": "1.3",
+   "target": "2.7",
+   "page": 1015
+  },
+  {
+   "kind": "output",
+   "code": "52804.0.0",
+   "statement": "Prevenção, deteção e tratamento da desnutrição ao nível comunitário e nas unidades de cuidados de saúde primários, com foco nas crianças e nas mães, de acordo com as normas nacionais de nutrição",
+   "indicator": "\"% deTaxa: 1. Desperdício 2. Baixo peso 3. Excesso de peso\"",
+   "baseline": "\"1. - 2. Total Labarik ho idade 0-59 mezes nebe mai tetu ho todan menus 359 (4%) 3. Total Labarik ho idade 0-59 Mezes nebe tetu fulan-fulan ho Alvu Populasaun 8322, nebe ho atinji 8148 (97%)\"",
+   "target": "\"1. - 2. < 2% Labarik mai tetu ho todan menus 3. 80% Labarik mai tetu fulan - fulan \"",
+   "page": 1016
+  },
+  {
+   "kind": "output",
+   "code": "52805.0.0",
+   "statement": "Prestação de serviços de saúde materno-infantil (RMNCH) de qualidade, incluindo imunização e planeamento familiar ao nível dos cuidados de saúde primários, com um sistema de referência obstétrica funcional para melhorar a segurança da gravidez e do parto",
+   "indicator": "\"1) Taxa de mortalidade materna 2) Taxa de mortalidade infantil 3) Taxa de mortalidade de crianças com menos de 5 anos\"",
+   "baseline": "\"1) mortalidade materna (1) 2) mortalidade infantil (7) 3) mortalidade de crianças com menos de 5 anos (1)\"",
+   "target": "\"1) 195/100.000NV 2) 22/1000NV 3) 33/1000NV\"",
+   "page": 1017
+  },
+  {
+   "kind": "output",
+   "code": "52806.0.0",
+   "statement": "A prevenção, deteção, tratamento e encaminhamento de doenças transmissíveis e condições crónicas prioritárias são implementados ao nível dos cuidados de saúde primários, apoiados pela vigilância e educação para a saúde",
+   "indicator": "\"Taxa de incidência e prevelencia de doenças: 1. Moras hadaet 2. Moras la hadaet\"",
+   "baseline": "\" 1. Moras hadaet ( 456) 2. Moras la hadaet \"",
+   "target": "\" 1. Moras hadaet 2. Moras la hadaet",
+   "page": 1018
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.0",
+   "statement": "São prestados cuidados hospitalares secundários e terciários seguros, eficazes e de alta qualidade, com um sistema de encaminhamento que funciona bem, a fim de reduzir a mortalidade evitável e melhorar a satisfação dos pacientes",
+   "indicator": "1) Taxa Mortalidade Bruto Hospital (Gross Death Rate / GDR) 2) Taxa Mortalidade Netto Hospital (Net Death Rate/NDR)",
+   "baseline": "GDR 27/1000 NDR 13,4/1000",
+   "target": "GDR <25/1000 NDR <10/1000",
+   "page": 1019
+  },
+  {
+   "kind": "output",
+   "code": "52902.0.0",
+   "statement": "Os serviços de referência e os hospitais municipais prestam cuidados hospitalares seguros e eficientes, com uma gestão funcional dos leitos e o cumprimento das normas mínimas de qualidade e de prevenção e controlo de infecções",
+   "indicator": "\" BOR (Bed Occupancy Rate), TOI (Turn Over Interval) BTO (Bed Turn Over ( no ALOS (Average Length of Stay) \"",
+   "baseline": "\"BOR 80% TOI Loron 4 BTO 81 ALOS loron 6\"",
+   "target": "\"BOR 80% TOI Menus Loron 3 BTO 45 ALOS Menus loron 6\"",
+   "page": 1019
+  },
+  {
+   "kind": "output",
+   "code": "52907.0.0",
+   "statement": "Os serviços médicos de emergência e os sistemas de transferência de pacientes funcionam com tempos de resposta adequados, e a preparação para responder a emergências de saúde pública é garantida",
+   "indicator": "% asaun responde emergensia saude publik ne'ebe implementa",
+   "baseline": "60%",
+   "target": "85%",
+   "page": 1020
+  },
+  {
+   "kind": "output",
+   "code": "52909.0.0",
+   "statement": "O sistema de aquisição e distribuição de medicamentos e suprimentos médicos funciona de forma eficiente e transparente, reduzindo a falta de estoque e o desperdício em todo o Serviço Nacional de Saúde",
+   "indicator": "% Stock la Disponivel Aimoruk no insumu mediku nivel nasional no RAEOA",
+   "baseline": "5%",
+   "target": "2%",
+   "page": 1020
+  },
+  {
+   "kind": "output",
+   "code": "52919.0.0",
+   "statement": "1) Maior disponibilidade e acessibilidade de serviços laboratoriais e de radiologia aos pacientes, levando a tempos de resposta mais rápidos;&amp;#13;&amp;#10;2) Maior capacidade para satisfazer a procura de transfusões de sangue;&amp;#13;&amp;#10;3) Melhor acesso a medicamentos essenciais para os pacientes;&amp;#13;&amp;#10;4) Maior acesso a uma gama abrangente de terapias e serviços de reabilitação",
+   "indicator": "\"1) Tempo médio de espera nos serviços laboratoriais e de radiologia. 2) Relação oferta- demanda de transfusão de sangue. 3) Taxa de disponibilidade de medicamentos essenciais. 4) Taxa de utilização do serviço de terapias de reabilitação. \"",
+   "baseline": "\"1) 100% Tempo médio de espera nos serviços laboratoriais e de radiologia. 2) # kliente 75 Relação oferta-demanda de transfusão de sangue. 3) 100% Taxa de disponibilidade de medicamentos essenciais. 4) 60 % Taxa de utilização do serviço de terapias de reabilitação. \"",
+   "target": "\"1) 100% Tempo médio de espera nos serviços laboratoriais e de radiologia. 2) # kliente 150 Relação oferta-demanda de transfusão de sangue. 3) 100% Taxa de disponibilidade de medicamentos essenciais. 4) 85% Taxa de utilização do serviço de terapias de reabilitação. \"",
+   "page": 1021
+  },
+  {
+   "kind": "outcome",
+   "code": "798.0.2",
+   "statement": "Acesso sustentável e equitativo a água potável e saneamento básico melhorados por meio de uma gestão eficaz dos recursos hídricos e prestação de serviços confiáveis&#13;&#10;",
+   "indicator": "1) Acesso a água potável para todos os cidadãos 2) % dos agregados familiares têm acesso a fontes de água melhoradas 3) % de agregados familiares com acesso a saneamento melhorado",
+   "baseline": "",
+   "target": "",
+   "page": 1022
+  },
+  {
+   "kind": "output",
+   "code": "79811.0.0",
+   "statement": "Serviços de saneamento básico implementados e geridos de acordo com a Política Nacional de Saneamento, melhorando as condições de saúde pública&amp;#13;&amp;#10;",
+   "indicator": "\"1) Classificações globais satisfatórias do desempenho da BTL avaliadas 2) % de utilizadores da BTL que pagam as contas\"",
+   "baseline": "80%",
+   "target": "100%",
+   "page": 1022
+  },
+  {
+   "kind": "outcome",
+   "code": "867.0.0",
+   "statement": "A região de Oé-Cusse Ambeno será um exemplo para a nação timorense de uma economia social de mercado de sucesso, onde os cidadãos podem aceder a serviços de saúde, educação e serviços básicos de qualidade e a oportunidades de desenvolvimento económico sustentável num ambiente urbano e rural.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1022
+  },
+  {
+   "kind": "output",
+   "code": "86701.0.0",
+   "statement": "Melhoria dos servicos prestados aos cidadaos",
+   "indicator": "% melhora servico de atendementu publik",
+   "baseline": "60%",
+   "target": "75%",
+   "page": 1022
+  },
+  {
+   "kind": "output",
+   "code": "86702.0.0",
+   "statement": "Melhoria das assessibilidades na RAEOA",
+   "indicator": "% melhora servico de atendementu publik",
+   "baseline": "55%",
+   "target": "70%",
+   "page": 1023
+  },
+  {
+   "kind": "output",
+   "code": "86703.0.0",
+   "statement": "Assegurar a disponibilidade dos equipamentos pesados para situacoes de emergencia ou necessidades na RAEOA",
+   "indicator": "% de asegurasaun disponibilidade equipamentus para responde situasaun",
+   "baseline": "65%",
+   "target": "80%",
+   "page": 1023
+  },
+  {
+   "kind": "output",
+   "code": "86704.0.0",
+   "statement": "Facilitar a mobilidade dos cidadaos e das mercadorias para o desenvolvimento da RAEOA",
+   "indicator": "% do Plano Asaun Annual Alcancados",
+   "baseline": "80%",
+   "target": "100%",
+   "page": 1023
+  },
+  {
+   "kind": "output",
+   "code": "86705.0.0",
+   "statement": "Melhorar a qualidade do edificado publico construido ou reabilitado",
+   "indicator": "\"1.% projecto nebee finaliza ho qualidade tuir padraun 2. % de projecto hetan certifikasaun ba pagamento\"",
+   "baseline": "\"1.60% 2.40%\"",
+   "target": "\"1. 80 % 2. 70 %\"",
+   "page": 1024
+  },
+  {
+   "kind": "output",
+   "code": "86706.0.0",
+   "statement": "Apoiar a boa governacao e o desenvolvimento economico e social da RAEOA",
+   "indicator": "# Acompanhamento, verificação e atualização de dados relativos ao pagamento semestral da \"Bolsa da Mãe\" totalmente concluída",
+   "baseline": "2",
+   "target": "2",
+   "page": 1024
+  },
+  {
+   "kind": "output",
+   "code": "86711.0.0",
+   "statement": "Melhoria dos servicos prestados aos cidadaos (fornesementu energia eletrisidade)",
+   "indicator": "% asegurar fungsionamento fornesementu energia electricidade",
+   "baseline": "95%",
+   "target": "97%",
+   "page": 1024
+  },
+  {
+   "kind": "output",
+   "code": "86716.0.0",
+   "statement": "Hein tekniko REAOA fornese informasaun sobre OUTPUT/Resultado imediate",
+   "indicator": "1. % de Projectu nebe'e hetan ona certifikasaun\"",
+   "baseline": "34,46 %",
+   "target": "85%",
+   "page": 1024
+  },
+  {
+   "kind": "output",
+   "code": "86719.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1024
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.1",
+   "statement": "Cidadãos com deficiência têm o mesmo direito e são protegidos como outro cidadão",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1025
+  },
+  {
+   "kind": "output",
+   "code": "98012.0.0",
+   "statement": "Pessoas com deficiência são protegidas pela política e legislação",
+   "indicator": "# Todos as Pessoas com Pessoas com deficiência são protegidas pela política e legislação atraves da sencibilização",
+   "baseline": "200 pessoas em 2024",
+   "target": "250",
+   "page": 1025
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.3",
+   "statement": "1) Os sobreviventes e as vítimas de guerra e todas os cidadãos que se encontra na situação de vulnerabilidade têm acesso aos serviços e oportunidades básicos e recebem apoio de assistência social, direitos econômicos e direito à vida, não passam fome e um padrão de vida adequado para que possam gozar dos seus direitos fundamentais e realizar o seu potencial em condições de igualdade com",
+   "indicator": "Populações em situação de vulnerabilidade foram recebidos o apoio de assintência social",
+   "baseline": "",
+   "target": "",
+   "page": 1025
+  },
+  {
+   "kind": "output",
+   "code": "98039.0.0",
+   "statement": "Garantir o acesso a carros funerários, caixões e transporte para as famílias vulneráveis",
+   "indicator": "\"1) # de famílias vulneráveis apoiadas 2) % de famílias vulneráveis com acesso a serviços funerários\"",
+   "baseline": "\"1) 6 familias apoiadas 2) 95% \"",
+   "target": "\"1) 6 2) 100%\"",
+   "page": 1026
+  },
+  {
+   "kind": "output",
+   "code": "98040.0.0",
+   "statement": "Todas as crianças de famílias vulneráveis receberam subsídio do Bolsa da Mãe",
+   "indicator": "# de Todas as Criancas de Familias Vulneraveis sao veirificados e apoiodos",
+   "baseline": "1 verificação annualmente",
+   "target": "1",
+   "page": 1026
+  },
+  {
+   "kind": "output",
+   "code": "98041.0.0",
+   "statement": "População em situação vulnerabilidade e afetado de desastre naturais irão recebera o apoio de assistência humanitária",
+   "indicator": "# Total grupos/familias vulneráveis da RAEOA que recebem apoio assistência humanitária pontual (orfanatos, grupo deficientes e instituições religiosas)",
+   "baseline": "150 familias/grupos em 2025",
+   "target": "150",
+   "page": 1026
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.4",
+   "statement": "Pessoas vulneráveis e pessoas em risco de violência e outros riscos sociais são protegidos",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1027
+  },
+  {
+   "kind": "output",
+   "code": "98026.0.0",
+   "statement": "Os cidadãos em risco são apoiados pelo Estado",
+   "indicator": "# Todos os cidadãos são sensibilizados sobre assunto sociais",
+   "baseline": "2",
+   "target": "2",
+   "page": 1027
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.5",
+   "statement": "Aumenta partisipasaun, inkluzaun, lideransa joven sira nian iha dezenvolvimentu nasionál liuhosi polítika sira, Organizasaun juventude sira ne'ebé funsiona ho efetivu, oportunidade ba foinsa’e iha envolvimentu síviku nian no mekanizmu konsultasaun institucionalizados",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1027
+  },
+  {
+   "kind": "output",
+   "code": "98002.0.0",
+   "statement": "Desenvolvimento desportivo da Juventude na RAEOA",
+   "indicator": "\"1). Quantidade de modalidades desportivas abrangidas em eventos desportivos na área da juventude; 2). Numero Comemorar data festival juventude em 12 de Novembro\"",
+   "baseline": "\"1). 6 modalidades realizadas em 2020; 2). N.A",
+   "target": "\"1). 8 modalidades; 2). 1 (Comemorar data festival juventude em 12 de Novembro)\"",
+   "page": 1027
+  },
+  {
+   "kind": "output",
+   "code": "98038.0.0",
+   "statement": "Organização juventude forte e jovens com conhecimento na habilidade das áreas de desenvolvimento próprias,",
+   "indicator": "\"1). Quantidade de jovens formados (em Informática, Inglês e Língua Portuguesa), na RAEOA; 2). % Apoio",
+   "baseline": "\"1). 100 Jovens Formandos; 2). N.A",
+   "target": "1. 100 2. 1",
+   "page": 1027
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1028
+  },
+  {
+   "kind": "output",
+   "code": "98028.0.0",
+   "statement": "A participação das mulheres no processo de desenvolvimento e provisão de segurança é aumentada",
+   "indicator": "% de Partisipasaun Feto iha desenvolvimentu seguransa Aumentado",
+   "baseline": "60%",
+   "target": "80%",
+   "page": 1028
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "% redusaun Violensia baseia ba Generu realizadu",
+   "baseline": "70%",
+   "target": "80%",
+   "page": 1028
+  },
+  {
+   "kind": "output",
+   "code": "98030.0.0",
+   "statement": "Promoção efectiva da participação das mulheres rurais no desenvolvimento económico do país e eliminação de todas as formas de discriminação contra as mulheres rurais",
+   "indicator": "% de partisipasaun feto rural sira aumentadu",
+   "baseline": "50%",
+   "target": "80%",
+   "page": 1029
+  },
+  {
+   "kind": "output",
+   "code": "98047.0.0",
+   "statement": "Sensibilizar e institucionalizar a incorporação da perspetiva de gênero nas políticas e programas de saúde",
+   "indicator": "% de konsiensia inkorporasaun institusionaliza perspektiva jeneru nian iha politika no programa saude.",
+   "baseline": "20%",
+   "target": "40%",
+   "page": 1029
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.i: Aumento na taxa de matrícula e alfabetização de todas as crianças, incluindo crianças com deficiência, crianças economicamente desfavorecidas e mães adolescentes, igualdade de acesso e oportunidades de aprendizagem em todos os níveis das escolas, melhoria acessibilidade nas instalações escolares e salas de aula incluindo acesso a materiais e estruturas pedagógicas e a redução na taxa de abandono, violência baseada ao género incluindo bullying and corporal punishment em todos os níveis das escolas, bem como gravidez na adolescência.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1029
+  },
+  {
+   "kind": "output",
+   "code": "98032.0.0",
+   "statement": "garantir que todos os programas baseados em gênero implementados pelos Ministérios e órgãos autônomos",
+   "indicator": "% de programa nebe implementada baseia ba Igualdade jeneru realizadu",
+   "baseline": "20%",
+   "target": "30%",
+   "page": 1029
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.n: Fim 2028 Labarik sira Goza sira nia direitu Tomak ba Identidade, Saude, Nutrisaun, Edukasaun ho Kualidade, Protesaun husi violencia, Abuzu, kastigu korporal, Diskriminasaun, Trafiku, Kaben sedu no servisu iha risku no reakiza sira nia Direitu ba Partisipasaun ho Livre.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1030
+  },
+  {
+   "kind": "output",
+   "code": "98017.0.0",
+   "statement": "Todas as crianças têm direitos de proteção",
+   "indicator": "# de Todas as criancas são protejidos",
+   "baseline": "75 Criancas em 2025",
+   "target": "70",
+   "page": 1030
+  },
+  {
+   "kind": "output",
+   "code": "98018.0.0",
+   "statement": "Socialização dos direitos da criança à sociedade civil",
+   "indicator": "# labarik ne'ebe partisipa iha sosializasaun lei das criancas",
+   "baseline": "100 participantes",
+   "target": "100 participantes",
+   "page": 1030
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el200023: Melhoria moris saudavel _ nasional, envolvimentu sosiedade, koezaun sosiál liuhosi partisipasaun ne'ebé luan no profisionalizasaun desportu nian",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1030
+  },
+  {
+   "kind": "output",
+   "code": "98004.0.0",
+   "statement": "A organização desportiva já tem capacidade institucional e agentes desportivos existentes em recursos adequados e que podem vir a competir no evento",
+   "indicator": "\"1). #de modalidades desportivas abrangidas na Competição Copa ZEESM e em Desporto Comunitário; 2). # Evento Desporto na Regiao, 20 de Maio, de 30 de Agosto e 28 de Novembro \"",
+   "baseline": "\"1). Realização de 2 modalidades na Competição da Copa ZEESM e de 10 Modalidades em Desporto Comunitário; 2). 3 Eventos\"",
+   "target": "\"1). N.A; 2). 3 Eventos\"",
+   "page": 1030
+  },
+  {
+   "kind": "outcome",
+   "code": "982.0.0",
+   "statement": "&#34; Os destinos, produtos e serviços turísticos em Timor-Leste são melhor regulamentados, desenvolvidos, comercializados e geridos de forma sustentável, com uma maior participação das comunidades e do setor privado, resultando em aumentos mensuráveis na atividade dos visitantes e nas despesas com turismo.",
+   "indicator": "1) Receitas do sector do turismo (em % do PIB) 2) # de postos de trabalho no sector do turismo: i. postos de trabalho sazonais & ii. Empregos permanentes 3) # de turistas internacionais que entram no país todos os anos 4) % do rendimento das comunidades locais proveniente das actividades turísticas",
+   "baseline": "",
+   "target": "",
+   "page": 1031
+  },
+  {
+   "kind": "output",
+   "code": "98205.0.0",
+   "statement": "Implementação de planos de acção para a promoção e desenvolvimento do turismo.",
+   "indicator": "# de locais turísticos promovidos através de campanhas turísticas, por ex. fontes termais (Marobo), Jacó, Ataúro e outros locais turísticos a nível municipal espesial iha RAEOA",
+   "baseline": "24 lokais turísticos ne'ebe promovidos através kria infraestrutura baziku no pontu sinalizasaun iha nível municipal espesial iha RAEOA.",
+   "target": "Kontinua promove 5 lokais turísticos atu promove liu husi kria infraestrutura baziku no pontu sinalizasaun iha nível municipal espesial iha 2026.",
+   "page": 1031
+  },
+  {
+   "kind": "output",
+   "code": "98206.0.0",
+   "statement": "&amp;#34;Operações de turismo de base comunitária em sucos prioritários são apoiadas e fortalecidas, incluindo formação, melhoria de produtos e gestão local, promovendo experiências turísticas sustentáveis&amp;#34;",
+   "indicator": "\"1) # formasaun iha area turismu kumunitaria no ekoturismu 2) # koordenasaun entre orgaun esbelesido no funsiona 3) # de socialização e mobilização comunitária em atividades de turismo de base comunitária\"",
+   "baseline": "\"1) 4 formasoens ne'ebe realizadu iha area turismu kumunitaria no setor privadus 2) koordenasaun dala 4 entre orgaun estabelesido no funsionadu 3) 4 vezes socialização e mobilização comunitária ba atividades turismo no base comunitária\"",
+   "target": "\"1) Kontinua estabelese 1 formasoens atu realiza iha area turismu kumunitaria no setor privadus iha RAEOA 2) Kontinua realiza Koordenasaun dala 1 entre orgaun estabelesido no funsionadu 3) Kontinua realiza uma (1) socialização e mobilização comunitária ba atividades turismo no base comunitária iha 2026\"",
+   "page": 1032
+  },
+  {
+   "kind": "output",
+   "code": "98207.0.0",
+   "statement": "Sítios turísticos e infra-estruturas públicas prioritárias em TL são reabilitados e geridos de acordo com padrões mínimos de segurança, limpeza e serviços para visitantes.",
+   "indicator": "# lokais turistiku instaladu no bem administrada",
+   "baseline": "5 lokais turistikus ne'ebe instaladu no utulizadu",
+   "target": "Kontinua halo installasaun ba 2 lokais turistikus iha 2026",
+   "page": 1032
+  },
+  {
+   "kind": "output",
+   "code": "98210.0.0",
+   "statement": "Timor-Leste é colocado em rotas turísticas internacionais como um destino turístico",
+   "indicator": "# destinu turistiku iha RAEOA kolokadu ba turistiku internasionais",
+   "baseline": "Destinu turistiku 1 iha RAEOA ne'ebe koloka sai hanesan turistiku internasionais",
+   "target": "Destinu turistiku 1 iha RAEOA nafatin koloka sai hanesan turistiku internasionais",
+   "page": 1032
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.0",
+   "statement": "Aumentar o número de trabalhadores qualificados",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1032
+  },
+  {
+   "kind": "output",
+   "code": "98319.0.0",
+   "statement": "Minimiza de desemprego",
+   "indicator": "# Aumento da procura de mercado aos desempregos",
+   "baseline": "148 clientes em 2025",
+   "target": "200",
+   "page": 1032
+  },
+  {
+   "kind": "output",
+   "code": "98322.0.0",
+   "statement": "Emprego criado",
+   "indicator": "# Digulvacão das informacão sobre emprego",
+   "baseline": "248 participantes",
+   "target": "300",
+   "page": 1033
+  },
+  {
+   "kind": "output",
+   "code": "98323.0.0",
+   "statement": "Garantir que os centros de treinamento sejam credenciados e atendidos pelos padrões nacionais",
+   "indicator": "# Garantia da qualidade de formacão professional acreditado",
+   "baseline": "24 estagiados",
+   "target": "30",
+   "page": 1033
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.2",
+   "statement": "Promover as condições dignas para os trabalhadores",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1033
+  },
+  {
+   "kind": "output",
+   "code": "98316.0.0",
+   "statement": "Diminuir o número de crianças no campo de trabalho e trabalho forcado.",
+   "indicator": "# sencbilizacão sobre diminuicão das criancas no trabalho e trabalho forcado",
+   "baseline": "60",
+   "target": "120",
+   "page": 1033
+  },
+  {
+   "kind": "output",
+   "code": "98317.0.0",
+   "statement": "Condições Dignas no Local de Trabalho são garantidas.",
+   "indicator": "# Todos os Trabalhadores tem condicão digno no local de trabalho",
+   "baseline": "100 trabalhadores são socializados sobre Lei de Seguransa Saude",
+   "target": "100",
+   "page": 1033
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.5",
+   "statement": "Aumentar a contribuição do setor comercial para o crescimento econômico",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1034
+  },
+  {
+   "kind": "output",
+   "code": "98314.0.0",
+   "statement": "Suporte técnico e treinamento bem fornecidos",
+   "indicator": "1) Crescimento anual das exportações 2) Crescimento anual das importação",
+   "baseline": "1) 0% 2) 0%",
+   "target": "\"1) 25% 2) 25%\"",
+   "page": 1034
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.a: O IADE visa promover, formar, coordenar e desenvolver, através do Centro para o Desenvolvimento das Empresas (CDEs), o Sector Privado e Cooperativo, contribuindo para a promoção e fortalecimento das atividades económicas do país e para o desenvolvimento económico de Timor-Leste.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1034
+  },
+  {
+   "kind": "output",
+   "code": "98326.0.0",
+   "statement": "Aumentar a pequena e média empresa",
+   "indicator": "# de empresários e empreendedores que recebem formação e beneficiam de assistência de consultoria",
+   "baseline": "80",
+   "target": "200",
+   "page": 1034
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.f: Promover condições dignas para os trabalhadores e assegurar a harmonização das relações de trabalho",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1034
+  },
+  {
+   "kind": "output",
+   "code": "98305.0.0",
+   "statement": "Deveres e direitos dos empregadores e trabalhadores garantidos",
+   "indicator": "# Dignificar os Trabalhadores",
+   "baseline": "150 Participantes nos seminário realizada em 2025",
+   "target": "150",
+   "page": 1034
+  },
+  {
+   "kind": "outcome",
+   "code": "A39.0.0",
+   "statement": "Aumenta a produção e produtividade sustentável de culturas prioritárias (arroz, milho, horticultura) e melhora o rendimento rural através do reforço da cadeia de valor do café e plantas industriais.&#13;&#10;",
+   "indicator": "1). % Aumento da produção de arroz da utilização deSistemas de Intensificação do Arroz (SRI) e de Gestão Integrada de Culturas (ICM) e técnica hibrida 2). % Redução da insegurança alimentar 3). % Penetração em nicho de mercado",
+   "baseline": "1). 30% 2). 15%% 3). 27.5%",
+   "target": "1). 50% 2). 25% 3). 32.5%",
+   "page": 1035
+  },
+  {
+   "kind": "output",
+   "code": "A3902.0.0",
+   "statement": "Aumento da produção e da produtividade do arroz, milho, leguminosas e culturas hortícolas através da intensificação sustentável e da expansão controlada da área cultivada.",
+   "indicator": "1). # Hectares arroz cultivada e produzido de utilizando o SRI e o ICM, as técnicas híbridas e convencionais (area/productividade); 2). # Hectares milho cultivada e produzido através de um sistema de intensificação e expandir a reserva de terras (area/productividade); 3). # expansão de legumes (soja, feijão- mungo, amendoim) e horticolas (vegetais, batata europa ect)(area/productividade).\"",
+   "baseline": "\"1). 26,150.88 ha cultivado e productividade 3.6 tons/hektares; 2). 34,565.42 ha de milho Intensificado e expandido e productividade 2.7 tons/hectares; 3). 1,068.61 ha de feijão cultivado e productividade 1 ton/ha; 3,680.80 de amendoim cultivado e productividade 1.8 tons/ha; 58.33 ha de soja cultivado e productividade 3.8 tons/ha; ervilha; 3.69 tons/ha de productividade repolho; 5 tons/ha de productividade tomate; 5.6 tons/ha de produktividade senoura. \"",
+   "target": "\"\"\"1). 70,000 he area arroz cultivo e productividade 6.00 tons/ha de arroz produzido; 2). 76,500 ha de milho Intensificado e expandido e productividade 2.7 tons/hectares; 3).1,068.61 ha de feijão cultivado e productividade 1 ton/ha; 3,680.80 de amendoim cultivado e productividade 1.8 tons/ha; 58.33 ha de soja cultivado e productividade 3.8 tons/ha; ervilha; 3.69 tons/ha de productividade repolho; 5 tons/ha de productividade tomate; 5.6 tons/ha de produktividade senoura. \"\" \"",
+   "page": 1035
+  },
+  {
+   "kind": "output",
+   "code": "A3903.0.0",
+   "statement": "Melhoria da produtividade, qualidade e acesso ao mercado do café e das culturas industriais orientadas para nichos de mercado de exportação.",
+   "indicator": "\"1) # Produtividade do café e produção orientada para o mercado especializado (niche market); 2) # area de Expansão da plantação de café (área e mudas) 3) # area de rehabilitacao de plantação de café (área e mudas) 4) Expansão da plantação de Plantas industriais (área e mudas)\"",
+   "baseline": "1) # Produtividade do café e produção orientada para o mercado especializado (niche market); 2) # area de Expansão da plantação de café (área e mudas) 3) # area de rehabilitacao de plantação de café (área e mudas)",
+   "target": "\"1). 0.68 tons/ha da productividade de café e 35,628 toneladas exportado o mercado especializado (niche market) 2). 400 ha/461,600 pes 3). 79,753 ha/210,46 pes\"",
+   "page": 1036
+  },
+  {
+   "kind": "output",
+   "code": "A3906.0.0",
+   "statement": "Fortalecimento dos serviços de extensão agrícola para apoiar a adoção de tecnologias melhoradas",
+   "indicator": "\"1) # novas tecnologias introduzidas; 2) # estensionistas capacitados sobre boas práticas de agricultura e 3) # grupos capacitados na área da gestão de grupos.\"",
+   "baseline": "\"1) 0.68 tons/ha da productividade de café e 35,628 toneladas exportado o mercado especializado (niche market); 2). ... 3) 400 ha / 461,600 pes 4) 79,753 ha/210,46 pes\"",
+   "target": "\"1). 0.68 tons/ha da productividade de café e 35,628 toneladas exportado o mercado especializado (niche market); 2)……. 3). 400 ha/461,600 pes 4). 79,753 ha/210,46 pes\"",
+   "page": 1036
+  },
+  {
+   "kind": "output",
+   "code": "A3909.0.0",
+   "statement": "Melhoria do acesso e gestão eficiente da água de irrigação para permitir a dupla colheita e a resiliência produtiva.&amp;#13;&amp;#10;",
+   "indicator": "\"1) % parcelas de terrenos irrigados aumento; 2). # de facilidade de uma dupla colheita onde os recursos de água são assegurados; 3). % Serviços de emergencia nos munícipios apoiados.\"",
+   "baseline": "\"1). 25%; 2). 5; 3). 100%\"",
+   "target": "\"1). 75% parcelas de terrenos irrigados aumento; 2). 5 facilidade de uma dupla colheita onde os recursos de água são assegurados; 3). 100% Serviços de emergencia nos munícipios apoiados.\"",
+   "page": 1037
+  },
+  {
+   "kind": "outcome",
+   "code": "A40.0.0",
+   "statement": "Aumento da produção e produtividade sustentáveis da pecuária, com melhoria da saúde animal e da segurança alimentar, contribuindo para um maior abastecimento interno de carne, leite e ovos.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1038
+  },
+  {
+   "kind": "output",
+   "code": "A4002.0.0",
+   "statement": "Melhoria das práticas de criação e alimentação do gado adotadas pelos produtores, aumentando o desempenho dos rebanhos e a produção comercializada",
+   "indicator": "\"1) % Sistema tradisionál ne’ebé uza hodi hasa’e populasaun no hadi’a jestaun manu domestikus, fahi, pato, bibi, no bibi; 2) # husi populasaun karau ne'ebé aumenta prátika foun ba jestaun produsaun na'an nian maka introdús.\"",
+   "baseline": "90%",
+   "target": "75%",
+   "page": 1038
+  },
+  {
+   "kind": "output",
+   "code": "A4003.0.0",
+   "statement": "Serviços preventivos de saúde animal reforçados através da vacinação, vigilância, diagnóstico e resposta a surtos.",
+   "indicator": "\"1). % das doenças de Animais dos programa vacinação prevenidos e erradicados; 2). # mangga de vacinação; 3). # grupo beneficiario; 4). # amostra de animais recolhidos e analizados\"",
+   "baseline": "\"1). 19%, 71%, 5%; 2). 9 unidade mangga de vacinação; 3). 40 grupo beneficiario; 4). 2531 amostra recolhido.\"",
+   "target": "\"1). 60%, 80%, 50%; 2). 40 unidade mangga de vacinação; 3). 25 grupo beneficiario; 4). 4150 amostra recolhido.\"",
+   "page": 1038
+  },
+  {
+   "kind": "outcome",
+   "code": "A41.0.0",
+   "statement": "Aumento sustentável da produção pesqueira e aquícola e melhoria do consumo nacional de peixe, apoiados por uma governação e conformidade reforçadas no setor das pescas.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1039
+  },
+  {
+   "kind": "output",
+   "code": "A4101.0.0",
+   "statement": "Aumento da captura marinha e da produção aquícola através da adoção de tecnologias melhoradas e práticas de cogestão sustentáveis.&amp;#13;&amp;#10;",
+   "indicator": "\" 1). # tonelada Produção pesqueira de captura marinha; 2) # Tecnologias inovadoras e tecnologias e práticas de SFCM (sustentável co-gestão das pescas) adopta; 3) % pescadores artesanais adopta tecnologias inovadoras e tecnologias e práticas de SFCM; 4) # alevinhos produzido; 5) # toneladas Produção aquícola; \"",
+   "baseline": "\"1). 8,000 toneladas; 2). 5; 3). 42%; 4). 602,390 alevinhos; 5).160 toneladas\"",
+   "target": "\"1). 800 toneladas; 2). 7; 3). 100%; 4). 4,178,315 alevinhos; 5) 1,114 toneladas\"",
+   "page": 1039
+  },
+  {
+   "kind": "outcome",
+   "code": "A42.0.0",
+   "statement": "Os recursos florestais são restaurados, protegidos e geridos de forma sustentável e produtiva, aumentando a cobertura florestal e reduzindo a desflorestação, ao mesmo tempo que se expandem os produtos florestais baseados na comunidade e orientados para o mercado.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1040
+  },
+  {
+   "kind": "output",
+   "code": "A4202.0.0",
+   "statement": "As paisagens florestais e bacias hidrográficas degradadas são restauradas e protegidas de forma eficaz através da gestão comunitária, ações em áreas protegidas e melhoria da fiscalização.",
+   "indicator": "\"1). # ha de áreas degradadas recuperadas; 2). # áreas de ecoturismo desenvolvidas e demarcadas as linhas perimetrais no total de # km em 3 áreas protegidas; 3). # sucos fazendo a gestão de bacias hidrográficas potenciais, e # ha de floresta desenvolvida e gerida. \"",
+   "baseline": "\"1). Expansão 500 ha área florestas desenvolvida; 2). Demarcação área protejidas; 3). áreas potenciais de bacia hidrográfica Raumoco-Lospalos, Belulik-Ainaro, Loes-Bobonaro, e Tono-Oecusse desenvolvido\"",
+   "target": "\"1). 615 ha de áreas degradadas recuperadas; 2). 3 áreas de ecoturismo desenvolvidas e demarcadas as linhas perimetrais no total de 52 km em 3 áreas protegidas; 3). 6 sucos fazendo a gestão de bacias hidrográficas potenciais, e 300 ha de floresta desenvolvida e gerida. \"",
+   "page": 1040
+  }
+ ]
+}

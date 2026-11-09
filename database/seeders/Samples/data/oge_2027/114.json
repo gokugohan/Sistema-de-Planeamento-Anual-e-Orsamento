@@ -1,0 +1,2537 @@
+{
+ "year": 2027,
+ "code": "114",
+ "name": "Ministério da Agricultura, Pecuária, Pesca e Florestas",
+ "abbr": "MAPPF",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1107,
+   1132
+  ]
+ },
+ "units": [
+  {
+   "code": "GMAPPF",
+   "div": "1140101",
+   "name": "Gabinete do Ministro da Agricultura, Pecuária, Pesca e Florestas",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEP",
+   "div": "1140201",
+   "name": "Gabinete Secretario de Estado da Pescas",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEP-01",
+   "div": "1140301",
+   "name": "Gabinete do Secretário de Estado da Pecúaria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEF",
+   "div": "1140401",
+   "name": "Gabinete do Secretário de Estado da Floresta",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGSC",
+   "div": "1140501",
+   "name": "Gabinete do Direção Geral dos Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "1140502",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNA",
+   "div": "1140503",
+   "name": "Direção Nacional de Aprovisionamento (DNA)",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNLP",
+   "div": "1140504",
+   "name": "Direção Nacional de Logística e Património (DNLP)",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNRHAJ",
+   "div": "1140508",
+   "name": "Direção Nacional de Recursos Humanos e Apoio Jurídico",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNPE",
+   "div": "1140509",
+   "name": "Direção Nacional de Pesquisa e Estatística",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNPPMA",
+   "div": "1140510",
+   "name": "Direção Nacional de Política, Planeamento, Monitorização e Avaliação",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "GDGPV",
+   "div": "1140701",
+   "name": "Gabinete Direção Geral de Pecuária e Veterinária",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNV",
+   "div": "1140702",
+   "name": "Direção Nacional de Veterinária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNP",
+   "div": "1140703",
+   "name": "Direção Nacional de Pecuária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNTPPP",
+   "div": "1140704",
+   "name": "Direção Nacional de Tecnologia e Processamento dos Produtos da Pecuária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGF",
+   "div": "1141201",
+   "name": "Gabinete Direção-Geral das Florestas",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNGFBHAM",
+   "div": "1141202",
+   "name": "Direção Nacional de Gestão das Florestas, Bacias Hidrográficas e Áreas Mangais",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNCFDE",
+   "div": "1141203",
+   "name": "Direção Nacional de Conservação das Florestas e Desenvolvimento do Ecoturismo",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDFC",
+   "div": "1141204",
+   "name": "Direção Nacional de Desenvolvimento da Floresta Comunitária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPGF",
+   "div": "1141205",
+   "name": "Direção Nacional de Proteção e Guarda Florestal",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGACPI",
+   "div": "1141301",
+   "name": "Gabinete Direção-Geral de Agricultura, Café e Plantas Industriais",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNAHPP",
+   "div": "1141302",
+   "name": "Direção Nacional de Agricultura e Horticultura e Proteção das Plantas",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNEFA",
+   "div": "1141303",
+   "name": "Direção Nacional de Extensão e Formação Agrícola",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNIGUA",
+   "div": "1141304",
+   "name": "Direção Nacional de Irrigação e Gestão da Utilização de Água",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNCPI",
+   "div": "1141305",
+   "name": "Direção Nacional do Café e Plantas Industriais",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGPAGRA",
+   "div": "1141401",
+   "name": "Gabinete da Direção-Geral de Pescas, Aquicultura e Gestão de Recursos Aquáticos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNIP",
+   "div": "1141402",
+   "name": "Direção Nacional de Inspeção das Pescas",
+   "type": "National Directorate",
+   "parent": "GDGPAGRA"
+  },
+  {
+   "code": "DNFETPA",
+   "div": "1141403",
+   "name": "Direção Nacional de Formação e Estudos Técnicos das Pescas e Aquicultura",
+   "type": "National Directorate",
+   "parent": "GDGPAGRA"
+  },
+  {
+   "code": "DNA-04",
+   "div": "1141404",
+   "name": "Direção Nacional de Aquicultura",
+   "type": "National Directorate",
+   "parent": "GDGPAGRA"
+  },
+  {
+   "code": "DNP-05",
+   "div": "1141405",
+   "name": "Direção Nacional das Pescas",
+   "type": "National Directorate",
+   "parent": "GDGPAGRA"
+  },
+  {
+   "code": "DNPEMGRA",
+   "div": "1141406",
+   "name": "Direção Nacional de Planeamento Espacial do Mar e Gestão dos Recursos Aquáticos",
+   "type": "National Directorate",
+   "parent": "GDGPAGRA"
+  },
+  {
+   "code": "GIFA",
+   "div": "1141501",
+   "name": "Gabinete de Inspeção, Fiscalização e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "UASAC",
+   "div": "1141601",
+   "name": "Unidade de Agrocomércio, Segurança Alimentar e Cooperação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UQB",
+   "div": "1141701",
+   "name": "Unidade de Quarentena e Biossegurança",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A39": "Agricultura, horticultura, café e de plantas industriais e anuais",
+  "A40": "Pecuária, veterinária e tecnologia",
+  "A41": "Pescas, aquicultura e gestão de recursos aquatícos",
+  "A42": "Gestão sustentável dos recursos florestais"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1140510"
+   ],
+   "indicator": "1) Plano de Acção Annual 2)Plano de Aprovisionamento e Plano de Recursos finalizados",
+   "baseline": "1) 100%, 2) 5",
+   "target": "1) 100%, 2) 5",
+   "amounts": {
+    "20": 4800.0
+   },
+   "page": 1107
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1141501"
+   ],
+   "indicator": "1) Nº de inspeções. 2). # de auditorias realizadas.",
+   "baseline": "1) 7. 2). 2",
+   "target": "1) 7. 2). 2",
+   "amounts": {
+    "20": 101944.0
+   },
+   "page": 1107
+  },
+  {
+   "code": "510014R",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Desenvolvimento de um sistema de monitoramento sustentável para uso e cobertura de terras agrícolas",
+   "div": [
+    "1140510"
+   ],
+   "indicator": "1). # uso e cobertura dos terrenos agrícolas nos Municípios actualizado; 2). # de AWS mantenha a precisão dos dados da AWS.",
+   "baseline": "nd",
+   "target": "1). 10 Municipios; 2). 23 AWS.",
+   "amounts": {
+    "20": 6320.0
+   },
+   "page": 1107
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1140502"
+   ],
+   "indicator": "% do orçamento executado e em obrigações",
+   "baseline": "80% dos pagamentos processados num prazo de 30 dias",
+   "target": "80%",
+   "amounts": {
+    "20": 73721.0
+   },
+   "page": 1108
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1140504"
+   ],
+   "indicator": "# de registo de bens disponível com informação actualizada",
+   "baseline": "1.328 ativos, incluindo veículos, motos e itens eletrônicos registrados. Manutenção 70% de 30 veículos",
+   "target": "1.328 ativos, incluindo veículos, motos e itens eletrônicos registrados. Manutenção 70% de 30 veículos",
+   "amounts": {
+    "20": 327036.0
+   },
+   "page": 1108
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1140510"
+   ],
+   "indicator": "1) Plano de Acção Anual, Plano de Aprovisionamento e Plano de Recursos finalizados 2) # de monitorização 3) # de estudos estatísticos produzidos e publicados",
+   "baseline": "\"1) Plano de Acção Anual, Plano de Aprovisionamento e Plano de Recursos finalizados 2) Relatorio monitorização produzido \"",
+   "target": "100%",
+   "amounts": {
+    "20": 53039.0
+   },
+   "page": 1108
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1140101",
+    "1140201",
+    "1140301",
+    "1140401",
+    "1140501",
+    "1140502",
+    "1140503",
+    "1140504",
+    "1140508",
+    "1140510",
+    "1141501",
+    "1141601",
+    "1141701"
+   ],
+   "indicator": "# de plano de gestão de recursos humanos para funcionários alcançado",
+   "baseline": "450 funcionários públicos, incluindo funcionários administrativos e trabalhadores informais",
+   "target": "450 funcionários públicos, incluindo funcionários administrativos e trabalhadores informais",
+   "amounts": {
+    "10": 4447390.0
+   },
+   "page": 1108
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1140508"
+   ],
+   "indicator": "# de formação profissional na área específica",
+   "baseline": "450 funcionarios capacitando",
+   "target": "450 funcionarios capacitando",
+   "amounts": {
+    "20": 13720.0
+   },
+   "page": 1109
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1140503"
+   ],
+   "indicator": "% progresso da execução do plano de aprovisionamento",
+   "baseline": "94% do plano de aprovisionamento implementado",
+   "target": "100%",
+   "amounts": {
+    "20": 19955.0
+   },
+   "page": 1109
+  },
+  {
+   "code": "5100213",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "1140101",
+    "1140201",
+    "1140301",
+    "1140401",
+    "1140501",
+    "1140508",
+    "1140509",
+    "1140510",
+    "1140701",
+    "1140702",
+    "1140703",
+    "1140704",
+    "1141201",
+    "1141202",
+    "1141203",
+    "1141204",
+    "1141205",
+    "1141301",
+    "1141302",
+    "1141303",
+    "1141304",
+    "1141305",
+    "1141401",
+    "1141402",
+    "1141403",
+    "1141404",
+    "1141405",
+    "1141406",
+    "1141501",
+    "1141601",
+    "1141701"
+   ],
+   "indicator": "% de serviços da administração apoiados",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 2579928.0,
+    "30": 30600.0
+   },
+   "page": 1109
+  },
+  {
+   "code": "510023H",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Controlar os serviços de inspeção dos produtos agrícolas",
+   "div": [
+    "1141701"
+   ],
+   "indicator": "% dos serviços de inspeção aos produtos agrícolas sirculado através dos postos de entrada e saída do país controlado.",
+   "baseline": "sd",
+   "target": "75% dos serviços de inspeção aos produtos agrícolas sirculado através dos postos de entrada e saída do país controlado.",
+   "amounts": {
+    "10": 146661.0,
+    "20": 10000.0
+   },
+   "page": 1110
+  },
+  {
+   "code": "510023I",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Emmisao de certificado dos produtos exportados e importados (medidads de controlo sanitario e fitossanitario)",
+   "div": [
+    "1141701"
+   ],
+   "indicator": "1). % de medidas quarentena das plantas e animais (terrestres e aquáticos) estabelecidas e harmonizadas com as regras, padrão e recomendação internacional com outros países; 2). % manual de estandarização dos procedimentos operacionais da quarentena (SOPQ) estabelecido e melhorado.",
+   "baseline": "1). 70% de medidas quarentena das plantas e animais (terrestres e aquáticos) estabelecidas e harmonizadas com as regras, padrão e recomendação internacional com outros países; 2). 70% manual de estandarização dos procedimentos operacionais",
+   "target": "1). 70% de medidas quarentena das plantas e animais (terrestres e aquáticos) estabelecidas e harmonizadas com as regras, padrão e recomendação internacional com outros países; 2). 70% manual de estandarização dos procedimentos operacionais",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 1110
+  },
+  {
+   "code": "A390100",
+   "programme": "A39",
+   "subprogramme": "A3901",
+   "subprogramme_name": "Força de Trabalho para Pestação de Serviços em Terreno",
+   "name": "Forca de Trabalho para Atividades Prestação de Serviços no Terreno",
+   "div": [
+    "1140509",
+    "1141301",
+    "1141302",
+    "1141303",
+    "1141304",
+    "1141305"
+   ],
+   "indicator": "% de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente. % de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente. % de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente. % de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente.",
+   "baseline": "Salários e vencimentos mensais serão pagos 100%. Salários e vencimentos mensais serão pagos 100%. Salários e vencimentos mensais serão pagos 100%.",
+   "target": "Salários e vencimentos mensais serão pagos 100%.",
+   "amounts": {
+    "10": 1180032.0
+   },
+   "page": 1111
+  },
+  {
+   "code": "A390200",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Implementar e Desenvolver Culturas de Horticultura Comunitária",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "1). # ha da área de horticultura desenvolvidos; 2). # ha da área de fruticulutra desenvolvidos; 3). # tons produto horticula produzido; 4). # tons produto fruiticula produzido; 5). # beneficiaro.",
+   "baseline": "1). 650 hectares; 2). 201 hectares (base line 2018); 3). 1,950 to tons;",
+   "target": "1). 60 hectares; 2). 119 hectares; 3). 190,3 toneladas husi 60 ha no 164 toneladas husi 119 hektares",
+   "amounts": {
+    "20": 120000.0
+   },
+   "page": 1112
+  },
+  {
+   "code": "A390201",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Subsídios de Inputs Agrícolas (arroz, milho e hortícolas) -",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "\"1). # tons de sementes de arroz distribuidas; 2). # tons de sementes de milho distribuidas; 3). # tons de sementes de horticolas distribuidas; 4). # ltrs/kg adubos organica distribuidas; 5). # ltrs/kg pestisida adquiridas; 6). # de equipamento horticola e proteção das plantas distribuidas. \"",
+   "baseline": "\"\"\"1). 880 tons (BS 2015- 2023); 2). 606 tons (BS 2018- 2023); 3). 8.667 tons (BS 2018-2023); 4). Adubus POPNASA: 23,700 ltrs, SUPER NASSA: 23,700 ltrs, HORMONIC: 26,566 ltrs, AMO: 0 (zero); 5). n/d 6). 3,484 unidades. \"\" \"",
+   "target": "1). 195 tons; 2). 125 tons; 3). 1.604 tons; 4). Adubus POPNASA: 6,000 kg, SUPER NASSA: 4,000 ltrs, HORMONIC: 8,000 ltrs, AMO: 2,400 pack; 5). 2,000 kg; 6). 2,100 unidades.\"\"",
+   "amounts": {
+    "20": 1347000.0
+   },
+   "page": 1112
+  },
+  {
+   "code": "A390202",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Implementar e Desenvolver Outras Culturas Alimentares (soja, feijão mungo, amendoim, etc) e promover boas práticas agrícolas",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "1). # tons de legumes (soja, feijão mungo, amendoim, etc) distribuidas; 2). # pés/stack de sementes fruiticultura distribuidas; 3). # tons de batata europa local distribuidas; 4). # kg de cebola distribuidas; 5). # ltrs de adubos organico (EM4) disribuidas.",
+   "baseline": "1). 1.5 tons (BS 2023); 2). 72,240 pés (BS 2018-2023); 3). 38,5 tons (BS 2020 e 2022);",
+   "target": "1). 10 tons; 2). 15,000 pés; 3). 5 tons; 4). 2,000 kg; 5). 2,160 ltrs.",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 1112
+  },
+  {
+   "code": "A390210",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Implementação Hidroponico (cultivação sem solo)",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "# de green house estabelecido",
+   "baseline": "nd",
+   "target": "5 green house piloto estabelecido",
+   "amounts": {
+    "20": 18000.0
+   },
+   "page": 1113
+  },
+  {
+   "code": "A390211",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Estabelecimento Centro Multiplicação de Parasitoit",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "# Centro Multiplicação de Parasitoid . # capacitação dos técnico no beneficiarios na áreaMultiplicação de Parasitoid",
+   "baseline": "nd",
+   "target": "1) 1 2) 14 agricultores , 4 funcionarios teknikus",
+   "amounts": {
+    "20": 18000.0
+   },
+   "page": 1113
+  },
+  {
+   "code": "A390212",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Estabelecimento Demploto para Controlo de Doenças e Pragas de batata europa",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "1). # demploto (1-5 ha) de aplicação de fungisida para controlo doenças estabelecido; 2). % de doenças de batata europa controlado.",
+   "baseline": "nd",
+   "target": "1). 2 demplotos estabelecido; 2). 100% doenças e pragas de batata europa controlado.",
+   "amounts": {
+    "20": 18000.0
+   },
+   "page": 1113
+  },
+  {
+   "code": "A390214",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Mobilizar Grupos ou Associações de Agricultores para Multiplicar Sementes Certificados e Comerciais de culturas alimentares (arroz, milho, legumes e tubérculos) -",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "1). # kg de sementes de clase breeder produzidas; 2). # kg/stek de sementes de clase fundação produzidas; 3). # kg/stek de sementes de clase certificado produzidas; 4). # tons/stek de sementes de clase comericial produzidas; 5). # associação ou grupo produtor de sementes estabelecido; 6). # de recomendação emitidos para a qualidade sementes produzidas;",
+   "baseline": "1). Milho: 1,750 kg; 2). Arroz: 1,750 kg, Milho:1,750 kg, Mandioka: 500,000 stek, Batata Doce: 600,000 stek, Feijão Mungo:1,750 kg, Amendoim: 4,200 kg; 3). Arroz: 44,000 kg, Milho: 37,000 kg, Feijão Mungo: 7,100 kg, Amendoim: 19,000 kg; 4). Arroz: 908.83 tons, Milho: 822.54 tons, Feijão Mungo: 17.48 tons, Amendoim: 23.34 tons; 5). Classe Fundação: 12; Classe Certificado:11, Classe Comercial: 70; 6). 93 inspeções; 7). 93 recomendações.",
+   "target": "1). Milho: 50 kg; 2). Arroz: 750 kg, Milho: 750 kg, Mandioka: 50,000 stek, Batata Doce: 200,000 stek, Feijão Mungo: 750 kg, Amendoim: 1,000 kg; 3). Arroz: 12,000 kg, Milho: 12,000 kg, Feijão Mungo: 1,500 kg, Amendoim: 4,000 kg; 4). Arroz: 180 tons, Milho: 164 tons, Feijão Mungo: 3.49 tons, Amendoim: 4.66 tons; 5). Classe Fundação: 3; Classe Certificado: 2; Classe Comercial: 0 (zero); 6). 98 inspeções; 7). 98 recomendações",
+   "amounts": {
+    "20": 150500.0
+   },
+   "page": 1113
+  },
+  {
+   "code": "A3902X1",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Multiplication of superior climate-resilient seed",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1113
+  },
+  {
+   "code": "A3902X2",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Seed adaptation and purification, technology packages and group training",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1113
+  },
+  {
+   "code": "A390300",
+   "programme": "A39",
+   "subprogramme": "A3903",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Café e de Plantas Industriais e Anuais",
+   "name": "Reabilitar, Expandir, Diversificar e Intensificar a Produção das Plantações de Café",
+   "div": [
+    "1141305"
+   ],
+   "indicator": "1). # ha plantação de café reabilitado; 2). # ha plantação de café expandido; 3). # ha plantação de café diversificado; 4). # ha plantação de café intensificado; 5). # ha plantação de café reabilitado obtevem apoio de manutenção; 6). # ha plantação de café expandido obtevem apoio de manutenção; 7). # ha plantação de café intensificado obtevem apoio de manutenção; 8). # de agricultores beneficiados.",
+   "baseline": "1). 10,258 ha plantação de café reabilitado; 2). 441 ha plantação de café expandido; 3). 0 (zero) ha plantação de café diversificado; 4). 25 ha plantação de café intensificado; 5). 1,768 ha plantação de café reabilitado obtevem apoio de manutenção; 6). 441 ha plantação de café expandido obtevem apoio de manutenção; 7). 25 ha plantação de café intensificado obtevem apoio de manutenção; 8). 10,724 cefecultores (M=4,289 e H=6,435) beneficiados.",
+   "target": "1). 250 ha plantação de café reabilitado; 2). 10 ha plantação de café expandido; 3). 50 ha plantação de café diversificado; 4). 10 ha plantação de café intensificado; 5). 1,868 ha plantação de café reabilitado obtevem apoio de manutenção; 6). 451 ha plantação de café expandido obtevem apoio de manutenção; 7). 0 ha plantação de café intensificado obtevem apoio de manutenção; 8). 1,230 cefecultores (M=492 e H=738) beneficiados.",
+   "amounts": {
+    "20": 116500.0
+   },
+   "page": 1114
+  },
+  {
+   "code": "A390301",
+   "programme": "A39",
+   "subprogramme": "A3903",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Café e de Plantas Industriais e Anuais",
+   "name": "Reabilitar, Expandir, Diversificar e Intensificar a Produção das Plantações Pereniais e Anuais",
+   "div": [
+    "1141305"
+   ],
+   "indicator": "1). # ha das plantações de plantas pereniais e anuais reabilitadas; 2). # ha das plantações de plantas pereniais e anuais expandidos; 3). # ha das plantações de plantas pereniais e anuais diversificadas; 4). # da familia de cafeicultores beneficiados.",
+   "baseline": "0 (zero) ha das plantações de plantas pereniais e anuais reabilitadas; 2). 417 ha das plantações de plantas pereniais e anuais expandidos; 3). 50 ha das plantações de plantas pereniais e anuais diversificadas; 4). 467 familias (M=186 e H=281) beneficiados.",
+   "target": "1). 0 (zero) ha das plantações de plantas pereniais e anuais reabilitadas; 2). 32 ha das plantações de plantas pereniais e anuais expandidos (Caju 5 ha, Baunila 2 ha, Cravinho 10 ha, Nu 5 ha, kami’i 5 ha no Cacau 5 ha); 3). 17 ha das plantações de plantas pereniais e anuais diversificadas; 4). 34 familias (M=20 e H=14) beneficiados.",
+   "amounts": {
+    "20": 46300.0
+   },
+   "page": 1114
+  },
+  {
+   "code": "A390302",
+   "programme": "A39",
+   "subprogramme": "A3903",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Café e de Plantas Industriais e Anuais",
+   "name": "Operacionalizar os Centros de Viveiros de Plantas Industriais",
+   "div": [
+    "1141305"
+   ],
+   "indicator": ". # pés / mudas de café e de sombreamento; 2). # pés / mudas de plantas industriais produzido nos centros de viveiros.",
+   "baseline": "40,000 pés / mudas de café e plantas industriais produzido.",
+   "target": "1). 25,000 mudas de café e de sombreamento; 2). 15,000 mudas de plantas industriais produzido nos centros de viveiros.",
+   "amounts": {
+    "20": 5095.0
+   },
+   "page": 1114
+  },
+  {
+   "code": "A390303",
+   "programme": "A39",
+   "subprogramme": "A3903",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Café e de Plantas Industriais e Anuais",
+   "name": "Conservação das Plantações Pereniais e Anuais",
+   "div": [
+    "1141305"
+   ],
+   "indicator": "1). # ha das plantações pereniais e anuais conservado; 2). # de famílias beneficiados.",
+   "baseline": "1). 5 ha das plantações pereniais e anuais conservado; 2). 5 famílias beneficiados.",
+   "target": "1). 12 ha das plantações pereniais e anuais conservado; 2). 12 famílias beneficiados.",
+   "amounts": {
+    "20": 36394.0
+   },
+   "page": 1114
+  },
+  {
+   "code": "A390400",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Manutenção e operação dos seguintes esquemas de irrigação : (Maliana I, Maliana II, Mautalo, Marco, Atabae Loes, Lotan, Caraulun, Oebaba, Raibere, Laclo, Buluto, Bebui, Saketo, Belia, Kumoli, Waibati, Tebabui, Faularan, e Larisula, Waidasu, Wailia",
+   "div": [
+    "1141304"
+   ],
+   "indicator": "1) # de esquemas reapropriado e # esquemas de retenção; 2). # de esquemas reabilitado.",
+   "baseline": "100% canal da irrigação reabilitado e construido.",
+   "target": "33 esquemas de irrigação operacionalizado (reapropriação: 5 esquemas, manutenção: 17 esquemas e reabilitação: 13 esquemas).",
+   "amounts": {
+    "50": 196096.0
+   },
+   "page": 1115
+  },
+  {
+   "code": "A390401",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Estudo Viabilidade das Esquemas de Irrigação",
+   "div": [
+    "1141304"
+   ],
+   "indicator": "# de estudos de viabilidade de esquemas da irrigação concluido.",
+   "baseline": "nd",
+   "target": "Estudo viabilidade de 5 esquemas da irrigação (Laclo, Tulawake, Fatucai, Auraba, Luca) concluido.",
+   "amounts": {
+    "20": 1348000.0
+   },
+   "page": 1115
+  },
+  {
+   "code": "A390500",
+   "programme": "A39",
+   "subprogramme": "A3905",
+   "subprogramme_name": "Investigação Agrícolas na Área de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Pesquisa de Adaptação às Culturas de Arroz, Milho, Batata Doce, Mandioca, Amendoins, Trigo e Outras Culturas Locais",
+   "div": [
+    "1140509"
+   ],
+   "indicator": "1). # de novas Investigação agrícolas (horticultura, criação de gado, recursos haliêuticos, produção de cereais e variedades de sementes desenvolvido; 2). # de pesquisas lanxados.",
+   "baseline": "1). 183 de novas Investigação agrícolas (horticultura, criação de gado, recursos haliêuticos, produção de cereais e variedades de sementes desenvolvido; 2). 29 pesquisas recomendados através da cerimonia de lançamento.",
+   "target": "1). 183 de novas Investigação agrícolas (horticultura, criação de gado, recursos haliêuticos, produção de cereais e variedades de sementes desenvolvido nos centros de pesquisas; 2). 3 pesquisas recomendados através da cerimonia de lançamento.",
+   "amounts": {
+    "20": 207141.0
+   },
+   "page": 1115
+  },
+  {
+   "code": "A390501",
+   "programme": "A39",
+   "subprogramme": "A3905",
+   "subprogramme_name": "Investigação Agrícolas na Área de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Continuação Identificação Solo Produtivo de Cada Produto Agricola",
+   "div": [
+    "1140509"
+   ],
+   "indicator": "1). # de Municipios e RAEOA identificados; 2). % do relatório elaborado e publicado.",
+   "baseline": "1). 7 Municipios (Ainaro, Baucau, Bobonaro, Covalima, Ermera, Manufahi e Viqueque) identificados; 2). 0 (zero) % do relatório elaborado e publicado.",
+   "target": "1). 6 Municipios (Aileu, Dili, Lautem, Liquiçá, Manatuto e RAEOA) identificados; 2). 100% do relatório elaborado e publicado.",
+   "amounts": {
+    "20": 97240.0
+   },
+   "page": 1115
+  },
+  {
+   "code": "A390502",
+   "programme": "A39",
+   "subprogramme": "A3905",
+   "subprogramme_name": "Investigação Agrícolas na Área de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Estabelecimento Sistema Nacional de Estatísticas Alimentares e Agrícolas",
+   "div": [
+    "1140509"
+   ],
+   "indicator": "% do sistema nacional de estatísticas alimentares e agrícolas estabelecido.",
+   "baseline": "nd",
+   "target": "100%",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390600",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Capacitação aos Pessoal de Extensão Agrícola",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "# de formandos participam na formação.",
+   "baseline": "300 extensionistas capacitados em 2023",
+   "target": "520 extensionistas capacitados.",
+   "amounts": {
+    "20": 32940.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390601",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Desenvolvimento Metodologia de Estensão Agrícola",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "1). % metodologias de extensão agrícola desenvolvida; 2). # pilotos de demonstação dsenvolvidas; 3). # de escola campo (FFS) realizado.",
+   "baseline": "nd",
+   "target": "\"1). 100% metodologias de extensão agrícola desenvolvida; 2). 65 pilotos de demonstação dsenvolvidas; 3). 2 escolas campo (FFS) realizado.\"",
+   "amounts": {
+    "20": 190385.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390602",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Melloramento da Gestão e Funções de Estensão Agrícola",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "% gestão e funções de extensão agrícola melhorada.",
+   "baseline": "nd",
+   "target": "100% Gestão e funções de extensão agrícola melhorada.",
+   "amounts": {
+    "20": 8400.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390603",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Desenvolver e Produzir as Informações Técnicas Agrícolas",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "# de informações técnicas agrícolas desenvolvidas e produzidas.",
+   "baseline": "nd",
+   "target": "# de informações técnicas agrícolas desenvolvidas e produzidas.",
+   "amounts": {
+    "20": 72835.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390604",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Melhorar a Gestão e Funções de Centro de Formação Profissional Agrícolas",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "% gestão e funções de extensão agrícola melhorada",
+   "baseline": "nd",
+   "target": "100% Gestão e funções de extensão agrícola melhorada.",
+   "amounts": {
+    "20": 30067.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390605",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Capacitação aos Jovens Profesionais Agrícolas",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "# de formandos participam na formação.",
+   "baseline": "397 (AICAT)",
+   "target": "326 formandos (56 formandos no estrangeiro, 120 formandos no centro de formação profissional agrícolas e 150 na AICAT).",
+   "amounts": {
+    "20": 30180.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A3906X1",
+   "programme": "A39",
+   "subprogramme": "A3906",
+   "subprogramme_name": "Revitalização dos Serviços de Extensão Agrícola",
+   "name": "Good Agricultural Practice manuals for all sub-sectors",
+   "div": [
+    "1141303"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1116
+  },
+  {
+   "code": "A390900",
+   "programme": "A39",
+   "subprogramme": "A3909",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Implementar e Desenvolver Agricultura Integrada nas áreas irrigadas potenciais",
+   "div": [
+    "1141302"
+   ],
+   "indicator": "1). # aumento ha da área cultivo; 2). # tons de arroz produzido; 3). # de agricultores serem beneficiados; 4). # ha perdas por razão mudança climatica.",
+   "baseline": "1). 1,800 hectares; 2). 7,200 tons (@ 4 tons/ha; 3). 2,283 pessoas; 4). ND.",
+   "target": "1). 2,240 hectares; 2). 8,960 tons (value added); 3). 4,480 pessoas; 4). to be define.",
+   "amounts": {
+    "20": 520000.0
+   },
+   "page": 1117
+  },
+  {
+   "code": "A390901",
+   "programme": "A39",
+   "subprogramme": "A3909",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Implementação dos Serviços de Normalização e Proteção nas Facilidades Agrícolas",
+   "div": [
+    "1141304"
+   ],
+   "indicator": "% facilidades agrícolas normalizado e protegido.",
+   "baseline": "100% facilidades agrícolas normalizado e protegido.",
+   "target": "100% facilidades agrícolas normalizado e protegido.",
+   "amounts": {
+    "20": 313280.0
+   },
+   "page": 1117
+  },
+  {
+   "code": "A390902",
+   "programme": "A39",
+   "subprogramme": "A3909",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Atendimento aos Serviços de Emergencia nos Munícipios",
+   "div": [
+    "1141304"
+   ],
+   "indicator": "% dos serviços de emergencia nos Munícipios apoiados.",
+   "baseline": "100% Serviços de emergencia nos Munícipios apoiados.",
+   "target": "100% Serviços de emergencia nos Munícipios apoiados.",
+   "amounts": {
+    "20": 83412.0
+   },
+   "page": 1117
+  },
+  {
+   "code": "A400100",
+   "programme": "A40",
+   "subprogramme": "A4001",
+   "subprogramme_name": "Força de Trabalho para Pestação de Serviços em Terreno",
+   "name": "Forca de Trabalho para Atividades Prestação de Serviços no Terreno",
+   "div": [
+    "1140701",
+    "1140702",
+    "1140703",
+    "1140704"
+   ],
+   "indicator": "\"1) (%) Cobertura vacinal para doenças prioritárias - bovinos/búfalos 2) (%) Cobertura vacinal - suínos 3) (%) Cobertura vacinal - aves",
+   "baseline": "\"1). 19%, 71%, 5%; 2). 9 unidade mangga de vacinação; 3). 40 grupo beneficiario; 4). 2531 amostra recolhido.\"",
+   "target": "\"1). 60%, 80%, 50%; 2). 40 unidade mangga de vacinação; 3). 25 grupo beneficiario; 4). 4150 amostra recolhido.\"",
+   "amounts": {
+    "10": 292800.0
+   },
+   "page": 1117
+  },
+  {
+   "code": "A400201",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Estabelecimento de Pastagem Comunitária",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "1). # ha de pastagem comunitária estabelecidos; 2). # de grupos estabelecidos; 3). # tons de legumes produzidas.",
+   "baseline": "1). 141 ha de pastagem comunitária estabelecidos; 2). 60 grupos estabelecidos; 3). 2,256 tons de legumes produzidos.",
+   "target": "12 hektares de pastagem comunitária estabelecidos nos Municípios de Baucau , Bobonaro, Covalima, Lautem, Manatuto, Manufahi e Viqueque (2 ha e 1) lugares) cada municipio; 2). 7 grupos estabelecidos; 3). # tons de legumes produzidos",
+   "amounts": {
+    "20": 21715.0
+   },
+   "page": 1118
+  },
+  {
+   "code": "A400202",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Promover e Melhorar a Gestão de Produção dos Animais",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "1). # de animal distribuidos; 2). # de vacas, suinos e cabras redistribuidos; 3). # grupos de agricultores treinados.",
+   "baseline": "1). 159 vacas engordas, 371 vacas para reprodução, 283 cabras , 409 suinos, 2,080 aves locais, 2,154 bicos de aves marecos distribuidos; 2). 28 cabras Etawa, 0 suinos e 7 vacas redistribuidos; 3). 96 grupos de agricultores beneficiados.",
+   "target": "1). 40 vacas engordas, 60 vacas para reprodução, 6 suinos reprodutores (boar); 2). 20 vacas, 30 suinos e 30 cabras redistribuidos; 3). 48 grupos de agricultores beneficiados.",
+   "amounts": {
+    "20": 117500.0
+   },
+   "page": 1118
+  },
+  {
+   "code": "A400203",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Melhoramento do Funcionamento de CDTP Dotik, Lactos, Pato, Baricafa, Macelap e Lacluta",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "1). # de galpão de vacas estabelecidos; 2). # de trench silo para produzir silagem e armazem estabelecidos. 3) # kg de rações/concentratos adquiridas; 4). # kg de rações formulados no CDDTP produzidos",
+   "baseline": "1). 0 (zero) de galpão de vacas estabelecidos; 2). 0 (zero) trench silo para produzir silagem e armazem estabelecidos.",
+   "target": "1). 2 unidades de galpão de vacas em Pato e Raitahu; 2). 2 trench silo para produzir silagem e armazem em 2 Centros estabelecidos. 3). 15,650 kg; 4). 18,120 kg;",
+   "amounts": {
+    "20": 123212.0
+   },
+   "page": 1118
+  },
+  {
+   "code": "A400204",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Introdusir Modelo de Produção de Leite através de Bufalo (karau metan)",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "1). # de Bufalo adqueridas; 2). # de ha de forageras e concentrados estabelesidas;",
+   "baseline": "1). 0 (zero) Bufalo distribuidas; 2). 6 ha de forageras e consentrado em Dotik, 10 ha em Pato, 5 ha",
+   "target": "1). 60 cabeças em 5 centros (Pato, Dotik, Ratahu, Nartabora e Corluli); 2). 150 ha (Kinggrass: 50 ha e tree",
+   "amounts": {
+    "20": 132330.0
+   },
+   "page": 1118
+  },
+  {
+   "code": "A4002X1",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Study of livestock potential in Timor-Leste",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1119
+  },
+  {
+   "code": "A4002X2",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Construction of dairy cattle pens at Pato, Raitahu and Natarbora",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1119
+  },
+  {
+   "code": "A4002X3",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Drilling, piping and clean water installation at livestock centres",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 100000.0
+   },
+   "page": 1119
+  },
+  {
+   "code": "A400300",
+   "programme": "A40",
+   "subprogramme": "A4003",
+   "subprogramme_name": "Controlo de Doenças de Animais",
+   "name": "Tratamento Geral dos Animais (búfalos, vacas, suínos, cabras, galinhas, etc.)",
+   "div": [
+    "1140702"
+   ],
+   "indicator": "1). % do total de # búfalos e vacas vacinados e nível mortalidade e morbilidade de búfalos e vacas reduzido até %; 2). % do total de # suínos vacinados e nível mortalidade e morbilidade de suínos reduzido até %; 3). % do total de # aves a ser vacinados e nivel mortalidade e morbilidade de aves reduzido até %; 4). Desempenho dos serviços técnicos de veterinária melhorados e crescimento dos animais alistado no banco de dados.",
+   "baseline": "\"1). 19% do total de 350,029 búfalos e vacas vacinados e nível mortalidade e morbilidade de búfalos e vacas reduzido até 19%; 2). 71% do total de 928,806 bicos aves a ser vacinados e nivel mortalidade e morbilidade de aves reduzido até 71%; 3). 5% do total de 419,169 cabecas de Suinos vacinados e a nivel de mortalidade e morbilidade de suinos reduzido até 5%; 4). Desempenho dos serviços técnicos de veterinária melhorados e crescimento dos animais alistado no banco de dados.\"",
+   "target": "1). Vacina SE de 19% (66,667 doze) adquiridas e no mínimo 66,667 búfalos e vacas vacinados e nível de mortalidade e morbilidade dos animais reduzido até 19%; 2). Vacina CSF de 19% (90,909 doze) adquiridas e no minimo 90,909 suínos vacinados e nível de mortalidade e morbilidade dos animais reduzido até 19%; 3). Vacina ND de 63% (583,334 doze) adquiridas e no minimo 583,334 /3 bicos de galinhas vacinados e nivel de mortalidade e morbilidade dos animais reduzido até 63%; 4). Medicamentos de veterinária de 8,000 unidades",
+   "amounts": {
+    "20": 1372422.0,
+    "40": 334200.0
+   },
+   "page": 1119
+  },
+  {
+   "code": "A400401",
+   "programme": "A40",
+   "subprogramme": "A4004",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pecuária e Veterinária",
+   "name": "Konstrusaun ba Expansaun Laboratoriu diagnostico veterinaria Caicoli",
+   "div": [
+    "1140702"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 471000.0
+   },
+   "page": 1120
+  },
+  {
+   "code": "A400402",
+   "programme": "A40",
+   "subprogramme": "A4004",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pecuária e Veterinária",
+   "name": "Konstrusaun mini armajen iha Laboratoriu diagnostico veterinaria Caicoli",
+   "div": [
+    "1140702"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 73620.0
+   },
+   "page": 1120
+  },
+  {
+   "code": "A400500",
+   "programme": "A40",
+   "subprogramme": "A4005",
+   "subprogramme_name": "Industrialização e Comercialização dos Produtos de Animais",
+   "name": "Melhorar o Funcionamento de Matadouro Nacional Tibar e acompanhamento aos Talhos e Mercado de Pecuária",
+   "div": [
+    "1140704"
+   ],
+   "indicator": "# de matadouros reabilitados e modernizado; 2). # tons de produtos pecuária (carne) fornecido; 3). # de mercado e comercio de animal e os produtos estabelecido",
+   "baseline": "1 Matadouro estabelecido; 2). 175 tons de carne fornecido; 3). 0 (zero) mercado e comercio de animal e os produtos estabelecido",
+   "target": "1). 1 Matadouro modernizado; 2). 175 tons (carcaça no non karakasa) fornecido; 3). 4 mercado de produtos pecuária estabelecido.",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 1120
+  },
+  {
+   "code": "A400501",
+   "programme": "A40",
+   "subprogramme": "A4005",
+   "subprogramme_name": "Industrialização e Comercialização dos Produtos de Animais",
+   "name": "Tranformação Resíduos Agrícolas (conservação resíduos agrícolas) para rações de animais -",
+   "div": [
+    "1140703"
+   ],
+   "indicator": "1). # de varios resíduos agrícolas examinados as suas qualidade; 2). # de manual técnico elaborado e implementado nos centros; 3). # técnicos de pecuários treinados.",
+   "baseline": "nd",
+   "target": "1). 4 varios resíduos agrícolas (batar kain, hare kain, sorgum e legumenosa) examinados; 2). 8 manual técnico elaborado e implementado nos centros; 3). 20 técnicos de pecuários treinados.",
+   "amounts": {
+    "20": 5200.0
+   },
+   "page": 1120
+  },
+  {
+   "code": "A410101",
+   "programme": "A41",
+   "subprogramme": "A4101",
+   "subprogramme_name": "Produção e Produtividade de Pesqueira e Aquacultura",
+   "name": "Apoiar e Modernizar a Pesca Artesanal",
+   "div": [
+    "1141405"
+   ],
+   "indicator": "1). # artes de pesca adquirida; 2). # rehabilitação Lotas de Pesca realizado; 3). # maquina de pesca obtevem manutenção; 4). # diario de bordo produzido.",
+   "baseline": "1). 5,100 Pc; 2). 0 (zero); 3). 48 maquinas de pesca; 4). 0 (zero).",
+   "target": "1). 5,500 Pc (470 unidades); 2). 2 lotas de pescas; 3). 20 maquinas de pesca; 4). 2,500 diario de bordo produzido.",
+   "amounts": {
+    "20": 86781.0
+   },
+   "page": 1121
+  },
+  {
+   "code": "A410102",
+   "programme": "A41",
+   "subprogramme": "A4101",
+   "subprogramme_name": "Produção e Produtividade de Pesqueira e Aquacultura",
+   "name": "Desenvolvimento Integrado das áreas costeiras e do mar",
+   "div": [
+    "1141406"
+   ],
+   "indicator": "1). # quadro de avizo sobre informação na área marinha protegida; 2). # Sensibilizção sobre área marinha protegida em Municipios foram estabelecidos; 3). # formação a metodologia Line Intersept transect (LIT) e Capacitação de merguilho aos grupos de concervação e Minitorização biologicos; 4). # grupos de",
+   "baseline": "1). 0 (zero); 2). 0 (zero); 3). 18 grupos; 4). 0 (zero); 5). 0 (zero).",
+   "target": "1). 12 Quadro de Avizo; 2). 12 sensibilizção realizada; 3). 9 grupos; 4). 5 grupos; 5). 10 Sitios/Areas.",
+   "amounts": {
+    "20": 23255.0
+   },
+   "page": 1121
+  },
+  {
+   "code": "A410103",
+   "programme": "A41",
+   "subprogramme": "A4101",
+   "subprogramme_name": "Produção e Produtividade de Pesqueira e Aquacultura",
+   "name": "Apoio aos Aquicultores de Agua Doce, Salobra, Mar e Salicultura",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "1). # familias de aquacultores apoiados; 2). # novas familias de aquicultores de água salobra apoiado; 3). # familias de aquacultores asistido; (market middle man); 4). # grupo/individo de aquacultores identificada.",
+   "baseline": "1). 0 (zero); 2). 0 (zero); 3). 0 (zero); 4). 0 (zero).",
+   "target": "1). 265 familias de aquicultor de água doce apoiados; 2). 15 familias de aquacultor novas de água salobra, 50 familias de aquacultor de salicultura apoiado; 3). 6 familias de aquacultor de água salobra, grupo água marinha asistido; 4). Aquacultor de água doce: 1,710 individo, Aquacultor de água salobra: 10 grupos, aquacultor de água marinha: 430 grupos, aquacultor de salicultura: 126 grupos e 71 individo.",
+   "amounts": {
+    "20": 95280.0
+   },
+   "page": 1122
+  },
+  {
+   "code": "A410200",
+   "programme": "A41",
+   "subprogramme": "A4102",
+   "subprogramme_name": "Controla Saúde de Peixe, Ambiente Aquático para Aquacultura",
+   "name": "Capacitação e sensibilização aos Aquicultores e oficiais",
+   "div": [
+    "1141403"
+   ],
+   "indicator": "1). % Oficiais do centros viveiros de peixe capacitado 2). % Aquacultores capacitado",
+   "baseline": "1). 0% 2). 0%",
+   "target": "1). 10% de oficiais capacitado 2). 1% de Aquacultores capacitado",
+   "amounts": {
+    "20": 19800.0
+   },
+   "page": 1122
+  },
+  {
+   "code": "A410201",
+   "programme": "A41",
+   "subprogramme": "A4102",
+   "subprogramme_name": "Controla Saúde de Peixe, Ambiente Aquático para Aquacultura",
+   "name": "Diagnósticas as pragas e doenças de peixe nas áreas cultivação dos Aquicultures",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1122
+  },
+  {
+   "code": "A4102X1",
+   "programme": "A41",
+   "subprogramme": "A4102",
+   "subprogramme_name": "Controla Saúde de Peixe, Ambiente Aquático para Aquacultura",
+   "name": "Maintenance of Tenu fisheries laboratory and water installation",
+   "div": [
+    "1141403"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 45000.0
+   },
+   "page": 1122
+  },
+  {
+   "code": "A4102X2",
+   "programme": "A41",
+   "subprogramme": "A4102",
+   "subprogramme_name": "Controla Saúde de Peixe, Ambiente Aquático para Aquacultura",
+   "name": "Construction of a perimeter wall for the Tenu laboratory",
+   "div": [
+    "1141403"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 200000.0
+   },
+   "page": 1122
+  },
+  {
+   "code": "A410300",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Desenvolver as Infraestruturas de Aquacultura e Operacionalizar os Centros de Viveiros de Peixe",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "1). # metros canal de acesso de água para tanques de Salobra; 2). # tanques de peixe de água doce reabilitado; 3). # cazerna e casa de banho nos centros de viveiro de peixe construido; 4). # tons rações de peixe adqueridas; 5). # novo centro de viveiros de peixe (Tilapia Mono Sex) estabelecido.",
+   "baseline": "1). 800 metros canal de acesso de água para tanques de Salobra; 2). 18 tanques de peixe de água doce reabilitado; 3). 3 cazerna e 3 casa de banho nos centros de viveiro de peixe construido; 4). 94.65 tons rações de peixe adqueridas; 5). 2 novos centros de viveiros de peixe (Tilapia Mono Sex) estabelecido.",
+   "target": "1). 300 metros canal de acesso de água para tanques de Salobra; 2). 9 tanques de peixe de água doce reabilitado; 3). 3 cazerna e 3 casa de banho nos centros de viveiro de peixe construido; 4). 100 tons rações de peixe adqueridas; 5). 2 novos centros de viveiros de peixe (Tilapia Mono Sex) estabelecido.",
+   "amounts": {
+    "20": 277739.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X1",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Community consultation and land compensation - Metinaro semi- industrial fishing port",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X2",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Maintenance of perimeter wall of the fisheries building in Com",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X3",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Maintenance of fish markets in Covalima and Bobonaro",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X4",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Studies and BoQ design for new fish market sites",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X5",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Establishment of two freshwater hatcheries - equipment",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 350000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X6",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Construction of a fish market in Tenu, Lautem",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X7",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Construction of fish market, dormitory and perimeter wall in Ainaro-Bonuk",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 120000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X8",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Establishment of two freshwater hatcheries - construction",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 800000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103X9",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Establishment of marine fish fry breeding sites",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 500000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A4103XA",
+   "programme": "A41",
+   "subprogramme": "A4103",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Pescas e Aquicultura",
+   "name": "Establishment of fish ponds (5-10 ha)",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 150000.0
+   },
+   "page": 1123
+  },
+  {
+   "code": "A410401",
+   "programme": "A41",
+   "subprogramme": "A4104",
+   "subprogramme_name": "Investigação dos Especies Aquáticos",
+   "name": "Planemento Espacial do Mar",
+   "div": [
+    "1141406"
+   ],
+   "indicator": "1). # atividades comerciais e não comerciais na área costeira e do mar identificado; 2). # sensibilização de informação sobre Marine Spacial Planning realizados.",
+   "baseline": "nd",
+   "target": "1). 2 atividades comerciais e não comerciais na área costeira e do mar identificado; 2). 180 sensibilização de informação sobre Marine Espacial Planning realizados.",
+   "amounts": {
+    "20": 18592.0
+   },
+   "page": 1124
+  },
+  {
+   "code": "A4104X1",
+   "programme": "A41",
+   "subprogramme": "A4104",
+   "subprogramme_name": "Investigação dos Especies Aquáticos",
+   "name": "Marine Spatial Planning baseline data, GIS mapping and licensing modernisation",
+   "div": [
+    "1141406"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 1124
+  },
+  {
+   "code": "A4104X2",
+   "programme": "A41",
+   "subprogramme": "A4104",
+   "subprogramme_name": "Investigação dos Especies Aquáticos",
+   "name": "Scientific research on fish stocks and technical capacity building",
+   "div": [
+    "1141406"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 500000.0
+   },
+   "page": 1124
+  },
+  {
+   "code": "A4104X3",
+   "programme": "A41",
+   "subprogramme": "A4104",
+   "subprogramme_name": "Investigação dos Especies Aquáticos",
+   "name": "Acquisition of equipment for Marine Spatial Planning activities",
+   "div": [
+    "1141406"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 150000.0
+   },
+   "page": 1124
+  },
+  {
+   "code": "A410500",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Promover o Desenvolvimento de Pesca Industriál",
+   "div": [
+    "1141405"
+   ],
+   "indicator": "1). # construção de embarcação de pesca com arqueação bruto de 5 GT construido; 2). % continuação de construção de embarcação de Pescas Industrial 350 GT Tipo Long Line; 3). % dezenho de construção de",
+   "baseline": "1). 0 (zero); 2). 27.5%; 3). 0 (zero) %.",
+   "target": "1). 6 unidades; 2). 72.5%; 3). 100%.",
+   "amounts": {
+    "20": 35000.0
+   },
+   "page": 1124
+  },
+  {
+   "code": "A410501",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Promover os Produtos de Peixe e Algas Marinha aos Mercados Comerciais",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "1). # ha área criação de algas marinha; 2). # Instalação tanques tradisionais de água salobra; 3). # produção em tons de algas marinha, peixe água salobra, e água doce.",
+   "baseline": "nd",
+   "target": "1). 2 ha área criação de algas marinha; 2). 5 Instalação tanques tradisionais de água salobra; 3). 100 tons de algas marinha produzido.",
+   "amounts": {
+    "20": 2400.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A410502",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Desenvolver a Produção de Alevinhos de Peixe da água doce, salobra, marinha e Salicultura",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "1). # de alevinhos produzido; 2). # de alevinhos distribuida; 3). # de peixe casal produtivo (broodstock); 4). # candidato casal produzido; 5). # candidato casal distribuida; 6). # tons de sal produzido.",
+   "baseline": "1). 602,390 alevinhos produzido; 2). 148,800 alevinhos distribuida; 3). 11,700 casal de peixe produtivo; 4). 40,600 candidato casal produzido; 5). 32,700 candidato casal distribuida; 6). 30 tons de sal produzido.",
+   "target": "1). 835,663 alevinhos produzido; 2). 230,410 alevinhos distribuida; 3). 15,900 casal de peixe produtivo; 4). 40,600 candidato casal produzido; 5). 38,700 candidato casal distribuida; 6). 60 tons de sal produzido.",
+   "amounts": {
+    "20": 61531.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A410503",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Reidentificação área potenciais aquicultura e recolha dados de produção de Peixe e Alga Marinha em 7 Municipios",
+   "div": [
+    "1141404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 6720.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A4105X1",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Capacity building for fisheries technicians, fishers and traders",
+   "div": [
+    "1141405"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A4105X2",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Acquisition of ice makers for fish markets",
+   "div": [
+    "1141405"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 25000.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A4105X3",
+   "programme": "A41",
+   "subprogramme": "A4105",
+   "subprogramme_name": "Industrialização e Comercialização dos Peixes, Mariscos e Algas marinhas",
+   "name": "Acquisition of freezers for fish markets, fishers and traders",
+   "div": [
+    "1141405"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 300000.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A410601",
+   "programme": "A41",
+   "subprogramme": "A4106",
+   "subprogramme_name": "Conservação e Gestão de Recursos Marinhas e das Áreas Costeiras",
+   "name": "Controlar a Movimentação das Embarcações de Pescas",
+   "div": [
+    "1141402"
+   ],
+   "indicator": "1). % de Inspecção aos atividades de pesca e aquacultura realizado; 2). % Inspecção da equipa conjunta interministerial realizado; . 3). # Relatorio MCS",
+   "baseline": "1). 100% de Inspecção aos atividades de pesca e aquacultura realizado; 2). 100% Inspecção da equipa conjunta interministerial realizadodo; . 3). 12",
+   "target": "1). 100% de Inspecção aos atividades de pesca e aquacultura realizado; 2). 100% Inspecção da equipa conjunta interministerial realizadodo; 3). 12 relatorios",
+   "amounts": {
+    "20": 66582.0
+   },
+   "page": 1125
+  },
+  {
+   "code": "A4106X1",
+   "programme": "A41",
+   "subprogramme": "A4106",
+   "subprogramme_name": "Conservação e Gestão de Recursos Marinhas e das Áreas Costeiras",
+   "name": "Acquisition of one 1,500 HP speedboat",
+   "div": [
+    "1141402"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 100000.0
+   },
+   "page": 1126
+  },
+  {
+   "code": "A410700",
+   "programme": "A41",
+   "subprogramme": "A4107",
+   "subprogramme_name": "Força de Trabalho para Pestação de Serviços em Terreno",
+   "name": "Forca de Trabalho para Atividades Prestação de Serviços no Terreno",
+   "div": [
+    "1141401",
+    "1141402",
+    "1141403",
+    "1141404",
+    "1141405",
+    "1141406"
+   ],
+   "indicator": "% de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente",
+   "baseline": "Salários e vencimentos mensais serão pagos 100%.",
+   "target": "Salários e vencimentos mensais serão pagos 100%.",
+   "amounts": {
+    "10": 644328.0
+   },
+   "page": 1126
+  },
+  {
+   "code": "A420101",
+   "programme": "A42",
+   "subprogramme": "A4201",
+   "subprogramme_name": "Produção e Gestão de Produtos Florestais (Madeiras e Não Madeiras)",
+   "name": "Promover o Investimento no Setor de Floresta (sândalo) e demarcar as plantações de sândalo",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "1). # ha novo área plantações de sândalo cultivada; 2). # ha plantações de sândalo manutenção; 3). # mudas de sândalo cultivada; 4). # pés de sândalo entra em 5 anos; 5). # pés de sândalo entra em 13 anos; 6). # pés de sândalo está em produção (20 anos); 7). # distancia em mtrs de linha prevenção do incendio.",
+   "baseline": "1). 175 hectares; 2). 175 hectares; 3). 95,000 pés; 4). 40,000 pés; 5). 0 (zero) pés; 6). 0 (zero) pés; 7). 19,200 metros (Atabae: 12,600 metros, Zulo: 6,600 metros).",
+   "target": "1). 175 hectares; 2). 175 hectares; 3). 95,000 pés; 4). 40,000 pés; 5). 0 (zero) pés; 6). 0 (zero) pés; 7). 19,200 metros (Atabae: 12,600 metros, Zulo: 6,600 metros).",
+   "amounts": {
+    "20": 35240.0
+   },
+   "page": 1127
+  },
+  {
+   "code": "A4201X1",
+   "programme": "A42",
+   "subprogramme": "A4201",
+   "subprogramme_name": "Produção e Gestão de Produtos Florestais (Madeiras e Não Madeiras)",
+   "name": "Study and mapping of sandalwood",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1127
+  },
+  {
+   "code": "A4201X2",
+   "programme": "A42",
+   "subprogramme": "A4201",
+   "subprogramme_name": "Produção e Gestão de Produtos Florestais (Madeiras e Não Madeiras)",
+   "name": "Basic infrastructure for the sandalwood nursery at Atabae",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1127
+  },
+  {
+   "code": "A4201X3",
+   "programme": "A42",
+   "subprogramme": "A4201",
+   "subprogramme_name": "Produção e Gestão de Produtos Florestais (Madeiras e Não Madeiras)",
+   "name": "Basic infrastructure for the commercial timber nursery",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1127
+  },
+  {
+   "code": "A420202",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Desenvolver e Melhorar a Implementação do Jardim Botânico",
+   "div": [
+    "1141203"
+   ],
+   "indicator": "1). # ha do Jardim Botanico obtiveram o apoio de manutenção; 2). # ha Arboretum plantado e # ha obtiveram o apoio de",
+   "baseline": "1). 12 ha Jardim Botanico plantado com varies especies e Manutenção de 26 ha; 2). 2 ha Arboretum plantado e 2 ha obtiveram o apoio de",
+   "target": "1). 12 ha Jardim Botanico plantado; 2). 10 ha Arboretum plantado e 2 ha obtiveram o apoio de manutenção; 3). 20,000 ltrs de",
+   "amounts": {
+    "20": 30600.0
+   },
+   "page": 1127
+  },
+  {
+   "code": "A420203",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Estabelecimento de Linhas de Perímetro Provisórias e Permanentes dos Limites de Áreas Protegidas",
+   "div": [
+    "1141203"
+   ],
+   "indicator": "\"1). # de pilares produzidas e instalados; 2). # km da área protegida identificado; 3). # quadro de informação produzidas e instaladas em 44 Áreas Protegidas e Parques Nacionais; 4). # de pessoas nas Áreas Protegidas e Parque Nacional sensibilizadas. \"",
+   "baseline": "1). 5.025 pilares produzidas e instalados; 2). 815 km da área protegida mensuradas; 3). 0 (zero); 4). 0 (zero).",
+   "target": "\"1). 553 pilares produzidas e instalados; 2). 52 km da área protegida mensuradas; 3). 176 quadro de informação produzidas e instaladas; 4). 450 pessoas (9 Sucos) sensibilizadas. \"",
+   "amounts": {
+    "20": 79266.0
+   },
+   "page": 1128
+  },
+  {
+   "code": "A420204",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Estabelecimento de Landscapes e Desenvolver INFRA-estruturas de Eco-tourismo em PNNKS, Jardim Botanico e Arboretum",
+   "div": [
+    "1141203"
+   ],
+   "indicator": "1). # de objectos de ecoturismo / turismo ecologico nas áreas protegidas desenvolvidos; 2). # das áreas protegidas potenciais para o turismo identificado; 3). # grupos de Jovens (Mulheres e Homens) identificado e apoiados; 4). # pacotes de apoio ao Comissão da Gestão Parque Nacional identificados.",
+   "baseline": "1). Manutenção de 1 objecto ecoturismo (Jeju) realizado; 2). 3 áreas protegidas potenciais para o turismo (Natarbora=0, Lautem=4 e Atauro=1) identificado; 3). 2 grupos de Turismo Comunitária (Aubeon e Gugleur); 4). 1 Comissão da Gestão Parque Nacional Nino Konis Santana estabelecido.",
+   "target": "1). 1 ha iha Jeju Maubara; 2). 2 áreas protegidas potenciais para o turismo (4 Sucos); 3). 2 grupos de Turismo Comunitária (Ramelau e Irabere) estabelecido; 4). 1 Man and Biosphere nivel Nacional estabelecido.",
+   "amounts": {
+    "20": 17850.0
+   },
+   "page": 1128
+  },
+  {
+   "code": "A420205",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Gerir e Proteger as Florestas",
+   "div": [
+    "1141205"
+   ],
+   "indicator": "1). # patrulhamento rotinas realizado; 2). # caso sirculação dos produtos florestais ilegal identificados; 3). # evidencia sobre cortes ilegais confiscado; 4). # guarda floresta capacitada na formação especializada; 5). # facilidades de captiveiro estabelicido.",
+   "baseline": "1). 336 patrulhamento rotinas realizado; 2). 178 casos de sirculação dos produtos florestais ilegal identificados; 3). 72,991 evidencias sobre cortes ilegais confiscado; 4). 222 guarda floresta capacitada na formação especializada; 5). 0 (zero).",
+   "target": "1). 336 patrulhamento rotinas realizados; 2). 100 casos sirculação dos produtos florestais ilegal identificados; 3). 50 evidencias sobre cortes ilegais confiscado; 4). 50 guarda floresta capacitada na formação especializada; 5). 1 facilidade de captiveiro estabelicido.",
+   "amounts": {
+    "20": 107600.0
+   },
+   "page": 1128
+  },
+  {
+   "code": "A420206",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Desenvolver um Sistema de Agro-floresta",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "\"1). # ha do sistema de agro- floresta aumentado; 2). # ha",
+   "baseline": "\"1). 19 hectares; 2). 19 hectares; 3). 19 hectares; 4).",
+   "target": "\"1). 25 ha (Municipio de Bobonaro, Dili/Metinaro,",
+   "amounts": {
+    "20": 9507.0
+   },
+   "page": 1128
+  },
+  {
+   "code": "A420207",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Operacionalizar os Centros de Viveiros Permanentes Maubara, Viveiros Permanente Comunitários das Florestas e Viveiros de Mangais (ai-parapa) -",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "1). # mudas categoria florestas de produção; 2). # mudas categoria florestas conservação; 3). # mudas categoria florestas urbana produzido nos centros de viveiros; 4). # mudas categoria plantas fruteiras produzido nos centros de viveiros; 5). # mudas distribuidas; 6). % taxa natalidade post- distribuição depois de 6 meses.",
+   "baseline": "\"1). 1,086,000 pés produzido (base line from 2017 - 2023); 2). 678,750 pés produzido; 3). 135,750 pés produzido; 4). 814,500 pés produzido; 5). 2,715,000 pés distribuidas; 6). 0 (zero) % taxa.\"",
+   "target": "\"1). 400,000 pés produzido; 2). 250,000 pés produzido; 3). 50,000 pés produzido; 4). 300,000 pés produzido; 5). 1,000,000 pés distribuidas; 6). 70% taxa.\"",
+   "amounts": {
+    "20": 146800.0
+   },
+   "page": 1129
+  },
+  {
+   "code": "A420208",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Reflorestação e Reabilitação das Áreas Degradadas",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "\"1). # ha área reflorestação implementado; 2). # ha área reflorestação em manutenção; 3). # ha reflorestação completa manutenção dentro de 3 anos; 4). # ha de reabilitação implementado nas áreas degradadas. 5). % área degradasdas reduzido \"",
+   "baseline": "\"1). 63 hectares; 2). 25 hectares; 3). 38 hectares; 4). 0 (zero) ha 5). 0.25 % (degraded area 14,933.98 ha (ratio 1.7% area 8,78,469.41) - - area cover 63 ha). \"",
+   "target": "\"1). 155 hectares; 2). 4 hectares; 3). 63 hectares 4). 4 hectares; 5). 0.42%. \"",
+   "amounts": {
+    "20": 14052.0
+   },
+   "page": 1129
+  },
+  {
+   "code": "A420209",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Promover a Expansão do Programas de Gestão de Recursos Naturais com Base Comunitária",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "\"1). # grupo obteram opoio continuação do programa CBNRM; 2). # novo grupo do program CBNRM estabelecido; 3). # grupo",
+   "baseline": "\"1). 18 grupos obteram opoio continuação do programa CBNRM; 2). 0 (zero) grupo; 3). 6 grupos obteram auto-",
+   "target": "1). 12 grupos obteram opoio continuação do programa CBNRM; 2). 6 novos grupos do program CBNRM estabelecido; 3). 2 grupos",
+   "amounts": {
+    "20": 12125.0
+   },
+   "page": 1129
+  },
+  {
+   "code": "A420210",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Conservação Água e Solo Através de Estabelecimento Mini Barragem, Posso de Infiltração e Lagoa Artificial",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "\"1). # mini barragem; 2). # posso de infiltração; 3). # lagoa artificial estabelecido; 4). # facilidades de conservação de água e solo obteram apoio de manutenção; 5). # ltrs de água conservado/capturado; 6). # pés das plantas de conservação cultivada. \"",
+   "baseline": "1). 280 mini barragem (2022- 2023); 2). 2 possos de infiltração; 3). 4 lagoa artificial estabelecido; 4). 0 (zero); 5). 120,000 ltrs de água conservado/capturado/ano; 6). 10,792 pés das plantas de conservação cultivada.",
+   "target": "\"1). 300 mini barragem; 2). 10 possos de infiltração; 3). 4 lagoa artificial estabelecido; 4). 4 facilidades de conservação de água e solo obteram apoio de manutenção; 5). 0 (zero); 6). 11,000 pés das plantas de conservação cultivada. \"",
+   "amounts": {
+    "20": 14080.0
+   },
+   "page": 1130
+  },
+  {
+   "code": "A420211",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Desenvolvimento das Áreas Costeiras e Mangais",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "\"1). # pés de mangais e outras plantas produzido; 2). # pés de mangais distribuidas; 3). # metros do serco das áreas de mangais estabelicido; 4). # ha área mangais estabelicida; 5). # pés de mangais cultivada; 6). # ha de mangais obteram apoio de manutenção. \"",
+   "baseline": "\"1). 133,000 pés de mangais e outras plantas produzido; 2). 63,000 pés de mangais distribuidas; 3). 32,328 metros do serco das áreas de mangais estabelicido; 4). 17 ha área mangais estabelicida; 5). 170,000 pés de mangais cultivada; 6). 17 ha de mangais obteram apoio de manutenção. \"",
+   "target": "\"1). 120,000 pés de mangais e outras plantas produzido; 2). 60,000 pés de mangais distribuidas; 3). 15,000 metros do serco das áreas de mangais estabelicido; 4). 10 ha área mangais estabelicida; 5). 100,000 pés de mangais cultivada; 6). 4 ha de mangais obteram apoio de manutenção. \"",
+   "amounts": {
+    "20": 25030.0
+   },
+   "page": 1130
+  },
+  {
+   "code": "A420212",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Fortalecimento Gestão Combate Incendio nas Áreas Florestais",
+   "div": [
+    "1141205"
+   ],
+   "indicator": "\"1). # Municipio com risco de incendio identificado; 2). # formandos capacitados na área de combate incendio; 3). # SOP sobre combate incendio elaboradodo; 4). # equipamento remote sensing (drone, EPP) adquirida. \"",
+   "baseline": "0",
+   "target": "1). 4 Municipio com risco de incendio identificado; 2). 10 formandos capacitados na area de combate incendio; 3). 1 SOP sobre combate incendio elaboradodo; 4). 2 equipamentos remote sensing (drone, EPP) adquirida.",
+   "amounts": {
+    "20": 44300.0
+   },
+   "page": 1130
+  },
+  {
+   "code": "A420213",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Extensão Florestais",
+   "div": [
+    "1141205"
+   ],
+   "indicator": "1)# ToT dos técnicos capacitados na área especializada (UP-UPSA 2); 2). # módulo sobre Extensão Florestais produzido; 3). # grupo florestais capacitados na área de boa práctica e gestão florestais",
+   "baseline": "1). 0 (zero); 2). 0 (zero); 3). 0 (zero)",
+   "target": "1). 17 ToT dos técnicos capacitados na área especializada (UP-UPSA 2); 2). 6 módulos sobre Extensão Florestais produzido; 3). 4 grupos (4x20 pesoas) florestais capacitados na área de boa práctica e gestão florestais. (4x20 pesoal)",
+   "amounts": {
+    "20": 42511.0
+   },
+   "page": 1130
+  },
+  {
+   "code": "A4202X1",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Potential study and mapping of mangrove and coastal areas",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 400000.0
+   },
+   "page": 1130
+  },
+  {
+   "code": "A4202X2",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Design of national mangrove information centre and eco-tourism site",
+   "div": [
+    "1141203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A4202X3",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Development of legislation on mangrove and coastal areas",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A4202X4",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Comparative study and training for local authorities and communities",
+   "div": [
+    "1141202"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A4202X5",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Boundary pillars and posts for protected areas",
+   "div": [
+    "1141205"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 50000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A4202X6",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Facilities and equipment for protected area rangers and fire control",
+   "div": [
+    "1141205"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 500000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A4202X7",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Entrance gates and checkpoints for Nino Konis Santana and Kay Rala national parks",
+   "div": [
+    "1141203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 100000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A4202X8",
+   "programme": "A42",
+   "subprogramme": "A4202",
+   "subprogramme_name": "Conservação e Proteção dos Recursos Florestais",
+   "name": "Perimeter wall and entrance gate at the Francisco Xavier do Amaral Arboretum",
+   "div": [
+    "1141203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A420300",
+   "programme": "A42",
+   "subprogramme": "A4203",
+   "subprogramme_name": "Industrialização e Comercialização dos Produtos Florestais",
+   "name": "Promover o Investimento no Setor de Floresta (plantações comerciais: saria, teca, mahoni e pau rosa)",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "1). # ha novo área plantações comerciais cultivada; 2). # ha plantações comerciais manutenção; 3). # mudas de plantações comerciais plantado; 4). # pés de plantações comerciais entra em 5 anos; 5). # pés de plantações comerciais entra em 13 anos; 6). # pés plantações comerciais está em produção (20 anos); 7). #",
+   "baseline": "1). 150 hectares; 2). 12 hectares; 3). 60,000 pés; 4). 40,000 pés; 5). 0 (zero) pés; 6). 0 (zero) pés; 7). 13,200 (Ahic: 9,900 metros, Zulo: 3,300 metros).",
+   "target": "1). 50 hectares (Ahic); 2). 30 hectares (Ahic : 20 ha, Zulo : 10 ha); 3). 20,000 pés (espanção 50 ha); 4). 40,000 pés; 5). 0 (zero) pés; 6). 0 (zero) pés; 7). 13,200 (Ahic: 9,900 metros, Zulo: 3,300 metros).",
+   "amounts": {
+    "20": 32000.0
+   },
+   "page": 1131
+  },
+  {
+   "code": "A420301",
+   "programme": "A42",
+   "subprogramme": "A4203",
+   "subprogramme_name": "Industrialização e Comercialização dos Produtos Florestais",
+   "name": "Gestão Operacional Produção Mudas Especializado para Plantas de Investimento Comercial",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "1). # mudas de sândalo prodozido; 2). # mudas de plantas comercias prodozido; 3). # distribuição mudas",
+   "baseline": "1). 95,000 pés de sândalo prodozido; 2). 80,000 pés de plantas comercias prodozido; 3).175,000 pés de mudas distribuidas.",
+   "target": "1). 42,000 pés de sândalo prodozido; 2). 32,000 pés de plantas comercias prodozido; 3). 74,000 pés de mudas distribuidas.",
+   "amounts": {
+    "20": 25494.0
+   },
+   "page": 1132
+  },
+  {
+   "code": "A420302",
+   "programme": "A42",
+   "subprogramme": "A4203",
+   "subprogramme_name": "Industrialização e Comercialização dos Produtos Florestais",
+   "name": "Melhoramento a Gestão de Produção e Utilizasção do Produto Florestias",
+   "div": [
+    "1141204"
+   ],
+   "indicator": "1). # licenças utilização produto florestais emitido; 2). # total rendimento de licença utilização produto florestais; 3). # total rendimento de coimas de produto florestais confiscado; 4). # total produtos florestais indentificado; 5). # total rendimento produtos florestais identificado.",
+   "baseline": "1). 1,267 licenças; 2). 495,220.27 US$; 3). 20,770.48 US$; 4). 10,111,738 m3; 5). 44,555.00 US$.",
+   "target": "1). 1,500 licenças; 2). 1,000,000 US$; 3). 50,000 US$; 4). 2023,1780 m3; 5). 100,000.00 US$.",
+   "amounts": {
+    "20": 10080.0
+   },
+   "page": 1132
+  },
+  {
+   "code": "A420401",
+   "programme": "A42",
+   "subprogramme": "A4204",
+   "subprogramme_name": "Força de Trabalho para Pestação de Serviços em Terreno",
+   "name": "Forca de Trabalho para Atividades Prestação de Serviços no Terreno",
+   "div": [
+    "1141201",
+    "1141202",
+    "1141203",
+    "1141204",
+    "1141205"
+   ],
+   "indicator": "% de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente.",
+   "baseline": "Salários e vencimentos mensais serão pagos 100%.",
+   "target": "Salários e vencimentos mensais serão pagos 100%.",
+   "amounts": {
+    "10": 450648.0
+   },
+   "page": 1132
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) % de Resultados de desempenho publicados no website do Governo",
+   "baseline": "1).100%. 2).100%.",
+   "target": "1",
+   "page": 1107
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo 2) % do Plano Anual implementado 3) Plano Estratégico/Médio Prazo Aprovado 4) % do pessoal consciente e envolvido no desenvolvimento do plano estratégico/médio prazo",
+   "baseline": "1).100%. 2).100%.3).100%",
+   "target": "1).100%. 2).100%.3).100%",
+   "page": 1107
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) 1) % of Budget Executed 2) % de procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) % de criação",
+   "baseline": "1.) 100%. 2.) 100%.1.) 100%. 3.) 100%",
+   "target": "1.) 100%. 2.) 100%.1.) 100%. 3.) 100%",
+   "page": 1107
+  },
+  {
+   "kind": "outcome",
+   "code": "A39.0.0",
+   "statement": "Aumenta a produção e produtividade sustentável de culturas prioritárias (arroz, milho, horticultura) e melhora o rendimento rural através do reforço da cadeia de valor do café e plantas industriais.&#13;&#10;",
+   "indicator": "1) Produção de arroz (toneladas) 2) Produção de milho (toneladas) 3) % de famílias rurais com segurança alimentar 4) Volume de exportação de café (toneladas) ou valor de exportação (US$) (escolha UM e padronize)",
+   "baseline": "",
+   "target": "100%",
+   "page": 1111
+  },
+  {
+   "kind": "output",
+   "code": "A3901.0.0",
+   "statement": "Prestação eficiente e atempada de serviços administrativos e operacionais que apoiam a implementação de atividades agrícolas no terreno.",
+   "indicator": "% das informações mensais de folha de pagamento enviadas dentro do prazo",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 1111
+  },
+  {
+   "kind": "output",
+   "code": "A3902.0.0",
+   "statement": "Aumento da produção e da produtividade do arroz, milho, leguminosas e culturas hortícolas através da",
+   "indicator": "1) Área de arroz cultivado com práticas melhoradas (ha) 2) Produtividade média de arroz (t/ha) 3) Área de milho cultivado",
+   "baseline": "\"1). 26,150.88 ha cultivado e productividade 3.6 tons/hektares; 2). 34,565.42 ha de milho Intensificado e expandido e",
+   "target": "\"\"\"1). 70,000 he area arroz cultivo e productividade 6.00 tons/ha de arroz produzido; 2). 76,500 ha de milho Intensificado e",
+   "page": 1111
+  },
+  {
+   "kind": "output",
+   "code": "A3903.0.0",
+   "statement": "Melhoria da produtividade, qualidade e acesso ao mercado do café e das culturas industriais orientadas para nichos de mercado de exportação.",
+   "indicator": "1) Produtividade média do café (t/ha) 2) Área de café reabilitada/expandida (ha) 3) Volume de exportação de café",
+   "baseline": "\"1).# Produtividade do café e produção orientada para o mercado especializado (niche market); 2) # area de Expansão da plantação de",
+   "target": "\"1). 0.68 tons/ha da productividade de café e 35,628 toneladas exportado o mercado especializado (niche market)3).",
+   "page": 1113
+  },
+  {
+   "kind": "output",
+   "code": "A3904.0.0",
+   "statement": "Reabilitação e operacionalização de infraestruturas agrícolas e de irrigação para apoiar aumentos sustentáveis na produção.",
+   "indicator": "\"\"\"1) # de sistemas de irrigação reabilitados 2) % de sistemas operacionais após a reabilitação 3) # de estudos de viabilidade concluídos\"",
+   "baseline": "1). 33 de esquemas da irrigação existentes reabilitados ou ampliados; 2). 100% estudos de viabilidade concluidos e adotados; 3). % das facilidades adequados construidos.",
+   "target": "1). 33 esquemas da irrigação existentes reabilitados ou ampliados; 2). 100% estudos de viabilidade concluidos e adotados; 3). 100% das facilidades adequados construidos.",
+   "page": 1115
+  },
+  {
+   "kind": "output",
+   "code": "A3905.0.0",
+   "statement": "Capacidade reforçada de investigação agrícola e tecnologias adaptadas disponibilizadas aos produtores.&amp;#13;&amp;#10;",
+   "indicator": "\"\"\" 1) % do Instituto de Investigação e Desenvolvimento Agrícola de Timor-Leste (TLARDI) operacional 2) # de tecnologias testadas e validadas 3) # de tecnologias transferidas para extensão\"",
+   "baseline": "1). 50% TLARDI totalmente funciona para pesquisa, treinamento e extensão agrícola; 2). 183 tecnologias e praticas adotadas por agricultores, criador de gado, pescadores e usúarios florestais.",
+   "target": "1). 100% TLARDI totalmente funciona para pesquisa, treinamento e extensão agrícola; 2). 30 tecnologias e praticas adotadas por agricultores, criador de gado, pescadores e usúarios florestais.",
+   "page": 1115
+  },
+  {
+   "kind": "output",
+   "code": "A3906.0.0",
+   "statement": "Fortalecimento dos serviços de extensão agrícola para apoiar a adoção de tecnologias melhoradas",
+   "indicator": "\"1) # de tecnologias promovidas 2) # de extensionistas treinados 3) # de grupos de agricultores apoiados\"",
+   "baseline": "1). 3 novas tecnologias introduzidas; 2). 300 estensionistas capacitados sobre boas práticas de agricultura e 390 grupos capacitados na área da gestão de grupos.",
+   "target": "1). 3 novas tecnologias introduzidas; 2). 300 estensionistas capacitados sobre boas práticas de agricultura e 390 grupos capacitados na área da gestão de grupos.",
+   "page": 1116
+  },
+  {
+   "kind": "output",
+   "code": "A3909.0.0",
+   "statement": "Melhoria do acesso e gestão eficiente da água de irrigação para permitir a dupla colheita e a resiliência produtiva.&amp;#13;&amp;#10;",
+   "indicator": "\"1) Área adicional irrigada (ha) 2) Número de sistemas que permitem a dupla colheita 3) Percentagem (%) de Associações de Usuários de Água (WUAs) funcionais\"",
+   "baseline": "1). 25%; 2). 5; 3). 100%",
+   "target": "1). 75% parcelas de terrenos irrigados aumento; 2). 5 facilidade de uma dupla colheita onde os recursos de água são assegurados; 3). 100% Serviços de emergencia nos munícipios apoiados.",
+   "page": 1116
+  },
+  {
+   "kind": "outcome",
+   "code": "A40.0.0",
+   "statement": "Aumento da produção e produtividade sustentáveis da pecuária, com melhoria da saúde animal e da segurança alimentar, contribuindo para um maior abastecimento interno de carne, leite e ovos.",
+   "indicator": "\"1) Crescimento da população pecuária (cabeças) - por espécies principais 2) Cobertura vacinal para doenças prioritárias - por espécie (%) 3) Taxa de produtividade pecuária (proxy de rendimento de leite/carne) 4) Instalações veterinárias/centros de serviços pecuários construídos ou modernizados \"",
+   "baseline": "\"1). 40% da produção de animal (suinos, bufalo, cabras, galinhas, ect.) aumentado; 2). 12% do consumo de de carne fresco, leite, ovos, ect. aumentado; 3). 19% de búfalos e vacas, 71 % de galinhas, 5% de Suinos vasinado 4). 1 unidade de infraestrutura abastecimento, triajen, processamento e embalajen (ka falun) dos produtos de animais estabelecido.\"",
+   "target": "\"1). 20% da produção de animal (suinos, bufalo, cabras, galinhas, ect.) aumentado; 2). 10% do consumo de carne fresco, leite, ovos, ect. aumentado; 3).100 % de búfalos e vacas, 100 % de galinhas, 50% de Suinos vasinado 4). 1 unidade de infraestrutura abastecimento, triajen, processamento e embalajen (ka falun) dos produtos de animais estabelecido.\"",
+   "page": 1117
+  },
+  {
+   "kind": "output",
+   "code": "A4001.0.0",
+   "statement": "Prestação de serviços de apoio administrativo e operacional oportunos e eficientes para permitir a implementação no terreno de atividades pecuárias e veterinárias.",
+   "indicator": "% de documentos relativos à folha de pagamentos mensal apresentados dentro do prazo",
+   "baseline": "1). 10; 2). 85%.",
+   "target": "1). 10; 2). 85%.",
+   "page": 1117
+  },
+  {
+   "kind": "output",
+   "code": "A4002.0.0",
+   "statement": "Melhoria das práticas de criação e alimentação do gado adotadas pelos produtores, aumentando o desempenho dos rebanhos e a produção comercializada",
+   "indicator": "\"1) % de produtores pecuários que adotaram práticas de alimentação melhoradas 2) Hectares de parcelas de forragem/ração estabelecidas (ha) 3) Número (#) de produtores que receberam um pacote completo de apoio à pecuária \"",
+   "baseline": "1). 10; 2). 85%.",
+   "target": "1). 10; 2). 85%.",
+   "page": 1118
+  },
+  {
+   "kind": "output",
+   "code": "A4003.0.0",
+   "statement": "Serviços preventivos de saúde animal reforçados através da vacinação, vigilância, diagnóstico e resposta a surtos.",
+   "indicator": "\"1) (%) Cobertura vacinal para doenças prioritárias - bovinos/búfalos 2) (%) Cobertura vacinal - suínos 3) (%) Cobertura vacinal - aves 4) (#) Número de animais tratados\"",
+   "baseline": "\"1). 19%, 71%, 5%; 2). 9 unidade mangga de vacinação; 3). 40 grupo beneficiario; 4). 2531 amostra recolhido.\"",
+   "target": "\"1). 60%, 80%, 50%; 2). 40 unidade mangga de vacinação; 3). 25 grupo beneficiario; 4). 4150 amostra recolhido.\"",
+   "page": 1119
+  },
+  {
+   "kind": "output",
+   "code": "A4004.0.0",
+   "statement": "Melhoramento das facilidades adequados.",
+   "indicator": "%de facilidades adequados construidos e operacionalizado.",
+   "baseline": "nd",
+   "target": "100% facilidades construidos e operacionalizado.",
+   "page": 1120
+  },
+  {
+   "kind": "output",
+   "code": "A4005.0.0",
+   "statement": "Fortalecimento das cadeias de valor da pecuária de pequena escala por meio da melhoria do processamento, da cadeia de frio e do acesso ao mercado, aumentando a proporção de produtos manuseados em condições seguras e higiênicas.",
+   "indicator": "\"1) Número (#) de unidades funcionais de processamento/cadeia de frio estabelecidas ou modernizadas (#) 2) Volume de produtos animais manuseados em instalações inspecionadas (toneladas/ano) 3) Número (#) de MPMEs/cooperativas apoiadas com tecnologia pós- colheita/processamento (#)\"",
+   "baseline": "1). 0(zero); 2). 1; 3). 0(zero)",
+   "target": "1). 0(zero); 2). 1; 3). 0(zero)",
+   "page": 1120
+  },
+  {
+   "kind": "outcome",
+   "code": "A41.0.0",
+   "statement": "Aumento sustentável da produção pesqueira e aquícola e melhoria do consumo nacional de peixe, apoiados por uma governação e conformidade reforçadas no setor das pescas.",
+   "indicator": "\"Port: \"\"1) Produção pesqueira anual (toneladas) 2) Produção aquícola (toneladas) 3) População que consome ≥10 kg de peixe/pessoa/ano (%) 4) % de embarcações de pesca licenciadas monitorizadas através de sistemas de monitorização, controlo e vigilância (MCS) \"\"\"",
+   "baseline": "\"1). 8,901 tons de crescimento anual da produção de pescado e produtos de aquacultura; 2). 6.1 kg consumo per capita de peixe, marisco e algas marinhas; 3). 2.21% Taxa de utilização sustentável de recursos aquáticos. 4) ND 5) 0 6) 0 \"",
+   "target": "\"1). 18,000 tons de crescimento anual da produção de pescado e produtos de aquacultura; 2). 10 kg consumo per capita de peixe, marisco e algas marinhas; 3). 6.05% de utilização sustentável de recursos aquáticos. 4)700 toneladas 5)10 6) 2 \"",
+   "page": 1121
+  },
+  {
+   "kind": "output",
+   "code": "A4101.0.0",
+   "statement": "Aumento da captura marinha e da produção aquícola através da adoção de tecnologias melhoradas e práticas de cogestão sustentáveis.&amp;#13;&amp;#10;",
+   "indicator": "\"1) Desembarques de captura marinha apoiados por intervenções do programa (toneladas) 2) Produção aquícola de explorações apoiadas (toneladas) 3) Número de alevins produzidos/distribuídos (e % de sobrevivência até ao repovoamento) 4) % de pescadores artesanais que adotam práticas de cogestão sustentável das pescas (SFCM) \"",
+   "baseline": "\"1). 8,000 toneladas; 2). 5; 3). 42%. 4). 602,390 alevinhos 5).160 toneladas\"",
+   "target": "\"1). 8,000 toneladas; 2). 5; 3). 42%. 4). 602,390 alevinhos 5).160 toneladas\"",
+   "page": 1121
+  },
+  {
+   "kind": "output",
+   "code": "A4102.0.0",
+   "statement": "Redução das perdas na aquicultura através da melhoria da gestão da saúde dos peixes, da biossegurança e da sensibilização dos aquicultores para os riscos ambientais.",
+   "indicator": "\"1) Taxa média de mortalidade na aquicultura (%) nos locais apoiados 2) Número de produtores aquícolas formados em saúde e biossegurança dos peixes 3) % de explorações formadas que aplicam o pacote mínimo de biossegurança\"",
+   "baseline": "\"1). 15 %; 2). 300; 3). 0.13%.\"",
+   "target": "\"1). 10%; 2). 1500; 3). 0.65 %. \"",
+   "page": 1122
+  },
+  {
+   "kind": "output",
+   "code": "A4103.0.0",
+   "statement": "Instalações prioritárias de pesca e aquicultura",
+   "indicator": "\"1) Número de instalações de pesca/aquicultura construídas ou",
+   "baseline": "0",
+   "target": "10 facilidades construidos e operacionalizado.",
+   "page": 1122
+  },
+  {
+   "kind": "output",
+   "code": "A4104.0.0",
+   "statement": "Melhoria da base de dados sobre pesca e aquicultura",
+   "indicator": "\"1) Número de espécies prioritárias avaliadas (stocks/biologia) com relatório",
+   "baseline": "\"1a). 0 1b). 0 1c. 0% 2a). 178,624 Ha 2b). 3 muncipios 2c). 150 comunidade\"",
+   "target": "\"1a). 1 especies 1b). 3 especies indemic 1c). 2 novas tecnologia",
+   "page": 1123
+  },
+  {
+   "kind": "output",
+   "code": "A4105.0.0",
+   "statement": "Fortalecimento das cadeias de valor da pesca e das algas marinhas através da organização dos produtores, melhoria do manuseamento pós-colheita e expansão do acesso ao mercado.",
+   "indicator": "\"1) Número de grupos/cooperativas de produtores funcionais ligados a compradores formais 2) Porcentagem de locais de desembarque/mercado apoiados que utilizam cadeia de frio/padrões de manuseamento 3) Algas marinhas comercializadas por produtores apoiados (toneladas) 4) Número de pequenas embarcações de pesca entregues e operacionais (5 toneladas brutas)\"",
+   "baseline": "\"1a). 5 grupos prestador serviço local (PSL) estabelecido; 1b) 1 grupo importir Racões de Peixe; e 1c) 3 Lojas de peixe do Aquicultor. 2a). 0 Barcos 5 GT, 2b). 0 navio 350 GT (tipu longline) construido 3a). 400 toneladas alga marinha 3b). 8144.3 toneladas de peixe\"",
+   "target": "\"1a). 5 de grupos ou associações de aquicultura estabelecidos\"\", 1b) 1 grupo importir racao de peixe, 1c) 3 Lojas de peixe do aquacultores 2a). 4 unidades 5 GT Barcos construídos, 2b). 1 unidade 350 GT (tipu longline) construido 3a).100 toneladas de algas marinhas\"\" 3b). 13,900 toneladas de peixes colhidos\"\"\"",
+   "page": 1124
+  },
+  {
+   "kind": "output",
+   "code": "A4106.0.0",
+   "statement": "Reforço da gestão dos recursos marinhos e costeiros, incluindo sistemas operacionais de monitorização, controlo e vigilância (MCS) para reduzir a pesca ilegal, não declarada e não regulamentada (IUU) e apoiar a utilização sustentável.",
+   "indicator": "1) Área marinha/costeira sob gestão ou proteção formal. 2) Número de patrulhas/inspeções MCS realizadas (mar + locais de desembarque);",
+   "baseline": "\"1) Area Costeiras: 44; area marinha: 2; 2) 3: (CTC, ATSEA & CI) ; 3) 0; 4) Sim (em proceso estabeleshemento).\"",
+   "target": "\"1). Areas Costeiras: 44; area marinha: 23; 2)3; 3) 3; 4). Sim, (MCS totalmente operacional e atualizado). \"",
+   "page": 1125
+  },
+  {
+   "kind": "output",
+   "code": "A4107.0.0",
+   "statement": "Prestação de serviços de apoio administrativo e operacional oportunos e eficientes para permitir a implementação no terreno das atividades de pesca e aquicultura.",
+   "indicator": "% da documentação relativa à folha de pagamentos mensal apresentada dentro do prazo",
+   "baseline": "\"100% \"",
+   "target": "\"100% \"",
+   "page": 1126
+  },
+  {
+   "kind": "outcome",
+   "code": "A42.0.0",
+   "statement": "Os recursos florestais são restaurados, protegidos e geridos de forma sustentável e produtiva, aumentando a cobertura florestal e reduzindo a desflorestação, ao mesmo tempo que se expandem os produtos florestais baseados na comunidade e orientados para o mercado.",
+   "indicator": "\"1) Área florestal como % da área total do território 2) Hectares de floresta e manguezais replantados anualmente 3) Redução anual da taxa de desflorestação 4) Aumento percentual na comercialização de produtos florestais sustentáveis \"",
+   "baseline": "\"1) 2) 20% 3) nd 4)nd 5)\"",
+   "target": "\"1) 2) 80% 3) 25% 4)18% 5)\"",
+   "page": 1126
+  },
+  {
+   "kind": "output",
+   "code": "A4201.0.0",
+   "statement": "As áreas prioritárias para a produção florestal de madeira e não madeira são identificadas e abastecidas com mudas de qualidade para plantação e expansão agroflorestal.",
+   "indicator": "\"1) Hectares de área de produção prioritária identificada/demarcada (ha) 2) Número de mudas de qualidade produzidas e distribuídas (por espécie) 3) Taxa de sobrevivência das mudas após 6–12 meses (%)\"",
+   "baseline": "1). 200 ha áreas potenciais para o desenvolvimento das florestas madeiros e não madeiros identificado; 2). 50,000 mudas florestais madeiros e não madeiros produzido anualmente.",
+   "target": "1). 200 ha áreas potenciais para o desenvolvimento das florestas madeiros e não madeiros identificado; 2). 50,000 mudas florestais madeiros e não madeiros produzido anualmente.",
+   "page": 1127
+  },
+  {
+   "kind": "output",
+   "code": "A4202.0.0",
+   "statement": "As paisagens florestais e bacias hidrográficas degradadas são restauradas e protegidas de forma eficaz através da gestão comunitária, ações em áreas protegidas e melhoria da fiscalização.",
+   "indicator": "\"1) Hectares de floresta degradada restaurados/replantados (ha) 2) Km de limites de áreas protegidas demarcados/mantidos (km) 3) Número de dias de patrulhamento de fiscalização realizados + número de casos ilegais investigados\"",
+   "baseline": "1). Expansão 500 ha área florestas desenvolvida; 2). Demarcação área protejidas; 3). áreas potenciais de bacia hidrográfica Raumoco-Lospalos, Belulik-Ainaro, Loes-Bobonaro, e Tono-Oecusse desenvolvido",
+   "target": "\"1). 615 ha de áreas degradadas recuperadas; 2). 3 áreas de ecoturismo desenvolvidas e demarcadas as linhas perimetrais no total de 52 km em 3 áreas protegidas; 3). 6 sucos fazendo a gestão de bacias hidrográficas potenciais, e 300 ha de floresta desenvolvida e gerida. \"",
+   "page": 1127
+  },
+  {
+   "kind": "output",
+   "code": "A4203.0.0",
+   "statement": "A valorização e o acesso ao mercado de produtos florestais sustentáveis, madeireiros e não madeireiros, são ampliados por meio do apoio a empresas, tecnologias de processamento e vínculos entre produtores e mercados.",
+   "indicator": "\"1) Valor das vendas de produtos florestais sustentáveis (em dólares americanos) 2) Número de PMEs/grupos de produtores florestais apoiados e em operação 3) Número de tecnologias de processamento adotadas (funcionais) 4) Número de produtores que relatam aumento na renda proveniente de produtos florestais (%)\"",
+   "baseline": "1). 6; 2). 4; 3). 4",
+   "target": "1). 6; 2). 4; 3). 4",
+   "page": 1131
+  },
+  {
+   "kind": "output",
+   "code": "A4204.0.0",
+   "statement": "Serviços de apoio administrativo e operacional prestados de forma oportuna e eficiente para permitir a implementação no terreno das atividades florestais",
+   "indicator": "% de envios mensais da folha de pagamentos dentro do prazo",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 1132
+  }
+ ]
+}

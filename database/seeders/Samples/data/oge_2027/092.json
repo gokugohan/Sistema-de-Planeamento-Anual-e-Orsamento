@@ -1,0 +1,252 @@
+{
+ "year": 2027,
+ "code": "092",
+ "name": "Instituto Nacional de Ciências e Tecnologia",
+ "abbr": "INCT",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   936,
+   937
+  ]
+ },
+ "units": [
+  {
+   "code": "INCT",
+   "div": "0920101",
+   "name": "Instituto Nacional de Ciências e Tecnologia",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "524": "Ensino superior"
+ },
+ "activities": [
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Emissão de Despachos Assegurado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 17816.0
+   },
+   "page": 936
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Orçamento Executado e plano de aquisições implementado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 85162.0,
+    "40": 3300.0
+   },
+   "page": 936
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Plano estratégico do INCT Executado; Encontros realizados",
+   "baseline": "5%; 12",
+   "target": "12.5%; 12.",
+   "amounts": {
+    "20": 5310.0
+   },
+   "page": 936
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Número de Funcionário Capacitado",
+   "baseline": "0",
+   "target": "10",
+   "amounts": {
+    "10": 316806.0,
+    "20": 7000.0
+   },
+   "page": 936
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "1) Número de acordos estabelecido; 2) Número de atividades de coperação realizado",
+   "baseline": "1) 12; 2) 2.",
+   "target": "1) 5; 2) 2.",
+   "amounts": {
+    "20": 13120.0
+   },
+   "page": 936
+  },
+  {
+   "code": "5100412",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Construção edifícios",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Orçamento para Construção do futuro Edificio do INCT Assegurado para o ano fiscal de 2027",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "10": 8125.0
+   },
+   "page": 936
+  },
+  {
+   "code": "5242501",
+   "programme": "524",
+   "subprogramme": "52425",
+   "subprogramme_name": "Ciências e Tecnologia",
+   "name": "Inventário e registo da produção científica nacional",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Produção científica nacional Registrados no Repositório Digital;",
+   "baseline": "68",
+   "target": "12",
+   "amounts": {
+    "20": 2120.0
+   },
+   "page": 937
+  },
+  {
+   "code": "5242502",
+   "programme": "524",
+   "subprogramme": "52425",
+   "subprogramme_name": "Ciências e Tecnologia",
+   "name": "Pesquisas, estudos de investigação e análise de ciências aplicadas",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "Número de estudos cientificos realizados;",
+   "baseline": "12",
+   "target": "13",
+   "amounts": {
+    "20": 228500.0
+   },
+   "page": 937
+  },
+  {
+   "code": "5242503",
+   "programme": "524",
+   "subprogramme": "52425",
+   "subprogramme_name": "Ciências e Tecnologia",
+   "name": "Promover e divulgação de conhecimento científico e Tecnológico",
+   "div": [
+    "0920101"
+   ],
+   "indicator": "1) Número de Produção cientificos divulgados; 2) Número de eventos realizados",
+   "baseline": "1) 12; 2) 6;",
+   "target": "1) 12; 2) 8",
+   "amounts": {
+    "10": 8242.0,
+    "20": 24474.0
+   },
+   "page": 937
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico Implementado",
+   "baseline": "5%",
+   "target": "12.5%",
+   "page": 936
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Melhor transparência do sistema e responsabilização da administração",
+   "baseline": "30%",
+   "target": "50%",
+   "page": 936
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Metas do plano anual atingidas",
+   "baseline": "30%",
+   "target": "50%",
+   "page": 936
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "% de Plano Anual inclui atividades governamentais e de Parceiros de Desenvolvimento",
+   "baseline": "5%",
+   "target": "25%",
+   "page": 936
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "% de edifícios construídos",
+   "baseline": "5%",
+   "target": "10%",
+   "page": 936
+  },
+  {
+   "kind": "outcome",
+   "code": "524.0.1",
+   "statement": "Sistema de ensino superior de qualidade, abrangente e integrado, para instituições públicas e privadas com fortes relações e parcerias com o setor privado.",
+   "indicator": "As instituições de ensino superior são credenciadas de acordo com os padrões legalmente definidos",
+   "baseline": "30%",
+   "target": "50%",
+   "page": 937
+  },
+  {
+   "kind": "output",
+   "code": "52425.0.0",
+   "statement": "Desenvolvidas as atividades do INCT, no âmbito de estudos de investigação e análise de ciências aplicadas",
+   "indicator": "Repositórios Digitais",
+   "baseline": "1",
+   "target": "1",
+   "page": 937
+  }
+ ]
+}

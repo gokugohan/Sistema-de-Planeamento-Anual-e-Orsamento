@@ -1,0 +1,136 @@
+{
+ "year": 2027,
+ "code": "100",
+ "name": "Secretariado Técnico da Administração Eleitoral",
+ "abbr": "STAE",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   960,
+   961
+  ]
+ },
+ "units": [
+  {
+   "code": "STAE",
+   "div": "1000101",
+   "name": "Secretariado Técnico da Administração Eleitoral",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1000101"
+   ],
+   "indicator": "\"1) % de execução orçamental atingida - Total \"",
+   "baseline": "2025: % ___",
+   "target": "1) 100%",
+   "amounts": {
+    "20": 502354.0
+   },
+   "page": 960
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1000101"
+   ],
+   "indicator": "\"1) Número de oficiais recrutados (agentes) 2) Número de contratados recrutados (apoio)\"",
+   "baseline": "\"1) 2025: 43 2) 2025: 69\"",
+   "target": "\"1) 2026: 69 2) 2026: 272\"",
+   "amounts": {
+    "10": 1574336.0
+   },
+   "page": 960
+  },
+  {
+   "code": "5104901",
+   "programme": "510",
+   "subprogramme": "51049",
+   "subprogramme_name": "Administração Eleitoral",
+   "name": "Resenseamentu Eleitoral",
+   "div": [
+    "1000101"
+   ],
+   "indicator": "1) # Eleitores recenseados 2) # Eleitores actualizados (Sistema Biometrico) 3) # Novos Eleitores 4) % de implementação do sistema biometrico 5) Participação na socialização do sistema biometrico as nivel do Posto Admiistrativo : # de",
+   "baseline": "1) 924 000 2) 28 000 3) 2023 : 16147 4) 65% 5) 0 6) 0",
+   "target": "1) 933 000 2) 220 000 3) 16 000 4) 100% 5) 69 6) 2070",
+   "amounts": {
+    "20": 212368.0
+   },
+   "page": 960
+  },
+  {
+   "code": "5104902",
+   "programme": "510",
+   "subprogramme": "51049",
+   "subprogramme_name": "Administração Eleitoral",
+   "name": "Edukasaun Eleitoral",
+   "div": [
+    "1000101"
+   ],
+   "indicator": "1) # Participante educação eleitoral 2) # Eventos Educação eleitoral realizado",
+   "baseline": "1) 2024: 1500 2) 2024 : 15 eventos",
+   "target": "1) 1500 2) 30 eventos",
+   "amounts": {
+    "20": 2100.0
+   },
+   "page": 961
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico e plano de médio prazo aprovado",
+   "baseline": "",
+   "target": "",
+   "page": 960
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 960
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.1",
+   "statement": "Desenvolver, promover e assegurar a oportunidade de participação democrática dos cidadãos a nível local, como forma de demonstrar os seus direitos democráticos.",
+   "indicator": "1) % da população que participa em eleições 2) Aumenta Kualidade Gestaun Elisaun sira ne'ebe diakliu 3) Administra eleisaun ida demokratiku no tuir padraun internasional",
+   "baseline": "",
+   "target": "",
+   "page": 960
+  },
+  {
+   "kind": "output",
+   "code": "51049.0.0",
+   "statement": "Diretrizes e mecanismos legais relativos a eleições municipais devidamente elaboradas",
+   "indicator": "1) Baze de dadus atualizadu 2) # de eleitores recenseados para votar (ka uza %)",
+   "baseline": "",
+   "target": "",
+   "page": 960
+  }
+ ]
+}

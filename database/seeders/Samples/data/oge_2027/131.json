@@ -1,0 +1,208 @@
+{
+ "year": 2027,
+ "code": "131",
+ "name": "Defensoria Pública",
+ "abbr": "DP",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1243,
+   1245
+  ]
+ },
+ "units": [
+  {
+   "code": "DP",
+   "div": "1310101",
+   "name": "Defensoria Pública",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "392": "Acesso à justiça",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "39201X1",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Salary increase for public defender management posts",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 386769.0
+   },
+   "page": 1243
+  },
+  {
+   "code": "39201X2",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Current services for public defenders and justice officials",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 350000.0
+   },
+   "page": 1243
+  },
+  {
+   "code": "3920104",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Gestão Financeira da descentralização dos Municípios da Defensoria Publica",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "% de execução dos recursos financeiras em forma de alocação de fundos periódicos para as delegações territóriais da Defensoria Pública.",
+   "baseline": "80% de execução dos recursos financeiras em forma de alocação de fundos periódicos para as delegações territóriais da Defensoria Pública.",
+   "target": "100% de execução dos recursos financeiras em forma de alocação de fundos periódicos para as delegações territóriais da Defensoria Pública.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1244
+  },
+  {
+   "code": "3920108",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Campanhas de sensibilização jurídica para os cidadãos.",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "1) Número de sessões de sensibilização jurídica sobre a violência baseada no género e o papel da defensoria pública para os cidadãos 2) Número de participantes que participaram em sessões de sensibilização jurídica sobre a violência baseada no género e o papel da defensoria pública para os cidadãos",
+   "baseline": "Em 2023: 550 participantes em acções de informação através da socialização jurídica sobre a violência baseada no género em 8 postos administrativos em todos os territórios apoiados pelo PNUD (UNDP)",
+   "target": "1) 15 de sessões em 15 posto administrativos de sensibilização jurídica sobre a violência baseada no género e o papel da defensoria pública para os cidadãos 2) 1500 participantes que participaram em sessões de sensibilização jurídica sobre a violência baseada no género e o papel da defensoria pública para os cidadãos",
+   "amounts": {
+    "20": 20600.0
+   },
+   "page": 1244
+  },
+  {
+   "code": "3920109",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Assistência jurídica, Judicial e extrajudicial de modo integral e gratuito",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "Número (#) de serviços de consulta jurídica gratuitos prestados aos cidadãos",
+   "baseline": "Em 2023: 2.000 cidadãos recebem assistência jurídica gratuita (total de 2.354 casos); Até setembro de 2024: 2.300 cidadãos recebem aconselhamento jurídico gratuito (2.411 casos).",
+   "target": "2.500 pessoas de serviços de consulta jurídica gratuita prestados aos cidadãos",
+   "amounts": {
+    "10": 1920736.0,
+    "20": 118064.0
+   },
+   "page": 1244
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "1) Número (#) de reuniões do Conselho Superior da Defensoria Pública, 2) Número (#) de visitas aos municípios e 3) Número (#) de directivas, ordens, instruções e resoluções emitidas",
+   "baseline": "1) 4 de reuniões do Conselho Superior da Defensoria Pública, 2) 24 de visitas aos municípios e 3) 143 directivas,15 ordens, 20 instruções e 10 resoluções emitidas",
+   "target": "1) 12 de reuniões do Conselho Superior da Defensoria Pública, 2) (28)de visitas aos municípios e 3) 150 directivas, 20 ordens, 30 instruções e 15 resoluções emitidas",
+   "amounts": {
+    "20": 8000.0
+   },
+   "page": 1245
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1310101"
+   ],
+   "indicator": "1) % do orçamento executado 2) % dos activos disponíveis ou funcionais 3) % de contratos aprovados e executados",
+   "baseline": "1) 68% do orçamento divisionário da Defensoria Pública executado 2) 70% do património disponível ou funcional 3) N/A",
+   "target": "1) 85% de execução orçamental em conformidade com as regras e procedimentos financeiros 2) 75% de disponibilidade ou funcionalidade dos activos 3) 100% de contratos aprovados e executados",
+   "amounts": {
+    "20": 471905.0,
+    "50": 150000.0
+   },
+   "page": 1245
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "392.0.1",
+   "statement": "1.&#9;Os cidadãos em todos os municípios, especialmente mulheres, jovens e grupos vulneráveis tenham melhor acesso à justiça formal e aos serviços de registo (assistência jurídica, serviços prisionais e de reintegração, registo de terras, registo civil e notarial) que protegem os seus direitos&#13;&#10;2.&#9;Os cidadãos economicamente vulneráveis, especialmente mulheres, populações rurais e outros grupos vulneráveis, têm melhor acesso a assistência jurídica gratuita e de qualidade e podem utilizar eficazmente os serviços judiciais formais&#13;&#10;3.&#9;Todos os cidadãos têm acesso e conhecimento sobre o sistema de justiça",
+   "indicator": "\"1) % de cidadãos elegíveis que recebem assistência jurídica gratuita quando solicitada 2) # de municípios onde a Defensoria Pública presta serviços regulares (delegações ou assistência jurídica móvel) 3) % de cidadãos que relatam ter acesso a assistência jurídica gratuita e compreender como utilizar os serviços de justiça 4) Impacto no género e na vulnerabilidade (Maubisse III e NAP-GBV)",
+   "baseline": "0",
+   "target": "\"\"\"1) Target 2028: 75 / 80% 2) Target 2028: All 13 municipalities + RAEOA 3) Target 2028: Improve perception score by +15 percentage points Target 2028: ≥ 55% of beneficiaries from vulnerable groups\"",
+   "page": 1243
+  },
+  {
+   "kind": "output",
+   "code": "39201.0.0",
+   "statement": "Até 2028, os cidadãos especialmente nas áreas rurais, receberão informações acessíveis sobre direitos e procedimentos judiciais por meio de campanhas regulares de divulgação em linguagens compreensíveis.",
+   "indicator": "\"\"\"1) # de cidadãos que recebem assistência jurídica judicial e extrajudicial gratuita por ano, desagregado por sexo e município (e RAEOA). 2) % de candidatos elegíveis que recebem assistência jurídica gratuita. 3) # de municípios e RAEOA onde o Defensor Público presta serviços regulares (delegações ou clínicas móveis). 4) # de sobreviventes de violência de género que receberam assistência jurídica \"",
+   "baseline": "\"\"\"1) Baseline 2023: 2.000 cidadãos assistidos (2.354 casos). Baseline 2024: 2024: 2.300 cidadãos (janeiro a cdezenbro = 3358 casos; 2) Baseline 2024: 50% 3)2025; Baseline 2025: 75%-80% ci 4) 2025 idadãos assistidos no processo criminal 4669 e 2277 cidadãos assistidos no processo civil. atuacao no 5 munisipius e RAEOA)(Presiza prienxe dadus) \"",
+   "target": "\"\"\"1) Meta para 2026: ≥ 3.200 cidadãos assistidos Meta para 2028: ≥ 3.500 cidadãos assistidos. 2) Target 2026: 60% ; Target 2028: 85–90%\"",
+   "page": 1243
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el304525: Os cidadãos economicamente _ vulneráveis recebem assistência jurídica gratuita, oportuna e de qualidade (judicial e extrajudicial) em todos os municípios e RAEOA",
+   "indicator": "\"\"\"1) # de cidadãos que recebem assistência jurídica judicial e extrajudicial gratuita por ano, desagregado por sexo e município (e RAEOA). 2) % de candidatos elegíveis que recebem assistência jurídica gratuita. 3) # de municípios e RAEOA onde o Defensor Público presta serviços regulares (delegações ou clínicas móveis). 4) # de sobreviventes de violência de género que receberam assistência jurídica \"",
+   "baseline": "",
+   "target": "",
+   "page": 1243
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados",
+   "baseline": "….%",
+   "target": "100%",
+   "page": 1244
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de relatórios de desempenho trimestrais e anuais apresentados a tempo;",
+   "baseline": "N/A",
+   "target": "100%",
+   "page": 1244
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% do plano anual executado",
+   "baseline": "N/A",
+   "target": "100%",
+   "page": 1245
+  }
+ ]
+}

@@ -1,0 +1,373 @@
+{
+ "year": 2027,
+ "code": "057",
+ "name": "Agência de Desenvolvimento Nacional",
+ "abbr": "ADN",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   694,
+   697
+  ]
+ },
+ "units": [
+  {
+   "code": "GDE",
+   "div": "0570101",
+   "name": "Gabinete do Direitor Executivo",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "UGA",
+   "div": "0570102",
+   "name": "Unidade de Gestão Administrativa",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UCVQ",
+   "div": "0570104",
+   "name": "Unidade de Controlo e Validação de Qualidade",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UEDC",
+   "div": "0570105",
+   "name": "Unidade de Estudos e Desenvolvimento de Competências",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "028": "Desenvolvimento rural e urbano",
+  "304": "Formação profissional",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "528": "Cuidado de saúde primários",
+  "980": "Inclusão social.",
+  "A30": "Controlar a qualidade de projetos públicos"
+ },
+ "activities": [
+  {
+   "code": "0281101",
+   "programme": "028",
+   "subprogramme": "02811",
+   "subprogramme_name": "Implementação de Projetos dos Ministérios Sectorias que Trabalham em Coordenação com a Agência de Desenvolvimento Nacional",
+   "name": "Adjudicação, reapropriação e retenção de projetos, incluindo a implementação de novos projetos especiais contratados pela AND",
+   "div": [
+    "0570104"
+   ],
+   "indicator": "N.º de projetos LM concluídos",
+   "baseline": "5 projetos em 2022.",
+   "target": "o",
+   "amounts": {
+    "50": 20000.0
+   },
+   "page": 694
+  },
+  {
+   "code": "3040313",
+   "programme": "304",
+   "subprogramme": "30403",
+   "subprogramme_name": "Desemvolvimento de capacidades nas areas de arquitectura, projetos e enginheiras.",
+   "name": "Formar e capacitor aos professionais na area de arquiectura , enginheira e fiscalização das obras incluindo Capacitacao aos profissionais da administração",
+   "div": [
+    "0570101",
+    "0570105"
+   ],
+   "indicator": "Nº dos funcionarios que frequentam formação profissional",
+   "baseline": "35 Técnicos formandos nas diversas áreas em 2026",
+   "target": "30 formandos",
+   "amounts": {
+    "20": 181045.0
+   },
+   "page": 694
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0570102"
+   ],
+   "indicator": "N.º do património sob a manutenção e completar",
+   "baseline": "Manutenção e fornecimento de 33 veiculos, 17 printer, 80 leptops, destops 120, Ups 50, maquina fotocopias 11, AC 87, Trac server 2, sound system 1, handdican 1, dascham 7",
+   "target": "100%",
+   "amounts": {
+    "20": 582110.0
+   },
+   "page": 695
+  },
+  {
+   "code": "51002ES",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Acquisition of 6 operational vehicles",
+   "div": [
+    "0570102"
+   ],
+   "indicator": "N.º do património do veiculo civil completaram",
+   "baseline": "-",
+   "target": "6 Unidades de veiclos",
+   "amounts": {
+    "40": 228000.0
+   },
+   "page": 695
+  },
+  {
+   "code": "5280914",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Construção e reabilitação das instalações de saúde nos Municípios",
+   "div": [
+    "0570104"
+   ],
+   "indicator": "N.º de projectos de construção e reabilitação das instalações de saúde nos Municípios",
+   "baseline": "3 projectos não continuados ate 2026",
+   "target": "1 projectos em retidos",
+   "amounts": {
+    "50": 23151.0
+   },
+   "page": 695
+  },
+  {
+   "code": "9803020",
+   "programme": "980",
+   "subprogramme": "98030",
+   "subprogramme_name": "Declaração de Maubisse",
+   "name": "Capacitar as empresas de construção civil lideradas pelos mulheres em colaboração com SEII e AEMTL incluindo",
+   "div": [
+    "0570102"
+   ],
+   "indicator": "N.º de partisipação das emprezas lideradas pelas mulheres na atividade de construção civil",
+   "baseline": "150",
+   "target": "50",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 695
+  },
+  {
+   "code": "A300101",
+   "programme": "A30",
+   "subprogramme": "A3001",
+   "subprogramme_name": "Controlo de evolução e implementação das obras de construção civil e respectiva validação",
+   "name": "Fiscalizar e inspecionar periodicamente a evolução e progresso das obras no terreno antes de emitir a certificação do pagamento do projeto",
+   "div": [
+    "0570102"
+   ],
+   "indicator": "Nº de projetos inspecionados e supervisionados",
+   "baseline": "990 projetos fiscalizados e inspecionados em 2026",
+   "target": "1,000 projetos serão fiscalizar e inspecionar",
+   "amounts": {
+    "20": 66734.0
+   },
+   "page": 696
+  },
+  {
+   "code": "A300102",
+   "programme": "A30",
+   "subprogramme": "A3001",
+   "subprogramme_name": "Controlo de evolução e implementação das obras de construção civil e respectiva validação",
+   "name": "Reforçar a equipa técnica especializadas para prestar serviços de verificação, fiskalização e certificação",
+   "div": [
+    "0570102"
+   ],
+   "indicator": "Nº de projetos verificados e recomendados",
+   "baseline": "715 projecto verificados em 2026",
+   "target": "750 projetos serão verificados",
+   "amounts": {
+    "10": 2208431.0
+   },
+   "page": 696
+  },
+  {
+   "code": "A300104",
+   "programme": "A30",
+   "subprogramme": "A3001",
+   "subprogramme_name": "Controlo de evolução e implementação das obras de construção civil e respectiva validação",
+   "name": "Coordenar, avaliar, promover e gerir os servicos do instituto",
+   "div": [
+    "0570101"
+   ],
+   "indicator": "% de desempenho institucional",
+   "baseline": "90,7%",
+   "target": "Varios Deliverações de CAFI, acordos cooperações e reuniões selebrados",
+   "amounts": {
+    "10": 167940.0
+   },
+   "page": 696
+  },
+  {
+   "code": "A300201",
+   "programme": "A30",
+   "subprogramme": "A3002",
+   "subprogramme_name": "Avaliação de projetos públicos de arquitectura e de enginharia do ponto de vista técnica e financeira",
+   "name": "Modernizar equipamentos teknicos para apoiar prestação de serviços da inspecão , fiscalização afim de garantir a qualidade de projetos",
+   "div": [
+    "0570104"
+   ],
+   "indicator": "Nº fasilidades de edifícios, instalações e equipamentos",
+   "baseline": "100% calibrados os equimanetos laboratorio • 2 projectos concluidos, 3 projectos em curso • 20 Unidades de Desktop • 10 Unidades de Laptop",
+   "target": "• 100% calibrados os equimanetos laboratorio • 2 projectos novos, 3 projectos reapropriados e 1 projeto em retidos • 6 Unidades de veiclos • 10 Unidades de Desktop • 10 Unidades de Laptop",
+   "amounts": {
+    "20": 20200.0,
+    "50": 183333.0
+   },
+   "page": 696
+  },
+  {
+   "code": "A300301",
+   "programme": "A30",
+   "subprogramme": "A3003",
+   "subprogramme_name": "Estudos e investigações na área de projetos e de obras de construção",
+   "name": "Promover e desenvolver o estudos e pesquisas no âmbito de enginheira e construção civil a nível nacional e internaçional para elaboração e estabelecimento dos próprios padrões",
+   "div": [
+    "0570105"
+   ],
+   "indicator": "Nº de estudos e pesquisas sobre as normas de estandarização nacionais e internacionais",
+   "baseline": "O livro do padrão TL-SUP atualizados e públicados",
+   "target": "Os livros do padrão TL-SMM, Mapa Quary atualizados e públicados",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 697
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "028.0.5",
+   "statement": "O sector privado será a principal fonte de crescimento do rendimento e emprego nas zonas rurais de Timor-Leste",
+   "indicator": "% da implementação do projeto de infraestruturas do PDIM, LM",
+   "baseline": "103 Projectos do PDIM e LM",
+   "target": "100%",
+   "page": 694
+  },
+  {
+   "kind": "output",
+   "code": "02811.0.0",
+   "statement": "Implementação, verificação, inspeção de qualidade e recomendação relativa ao pagamento de todos os projectos das LM",
+   "indicator": "% de numero dos projetos de LM concluídos",
+   "baseline": "6 Projectos colcluidos em 2022",
+   "target": "100%",
+   "page": 694
+  },
+  {
+   "kind": "outcome",
+   "code": "304.0.0",
+   "statement": "Formação profissional com qualidade disponível",
+   "indicator": "% das recomendações documentos de verificação e inspeção de acordo com as normas técnicaso e no prazo",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 694
+  },
+  {
+   "kind": "output",
+   "code": "30403.0.0",
+   "statement": "As habilidades e qualificações profissionais dos jovens desenvolvidos",
+   "indicator": "% dos recursos humanos da ADN ter acesso a formação profissional",
+   "baseline": "326 Técnicos formandos nas diversas áreas em 2026",
+   "target": "75% do total funçionarios",
+   "page": 694
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% do plano annual implementado com regras da administração pública",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 694
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% das facilidades públicas adquiridas",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 695
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "Taxa bruta de mortalidade no hospital para 40/1000, 5% Reduzir encaminhamento médico no extrangeiros",
+   "baseline": "45/1000 Taxa bruta de mortalidade no hospital.",
+   "target": "5%Reduzir encaminhamento médico no estrangeiros",
+   "page": 695
+  },
+  {
+   "kind": "output",
+   "code": "52809.0.0",
+   "statement": "Prestar serviços de saúde de elevada qualidade, acessíveis e equitativos para responder eficazmente às necessidades e aos desafios da população.",
+   "indicator": "% edifícios de saúde preencheram os critérios de padrões",
+   "baseline": "25 projetos concluidos em 2023",
+   "target": "100%",
+   "page": 695
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "% desigualdade de gênero é reduzida",
+   "baseline": "100% (Declaração de Maubisse fase 2, Estudos )",
+   "target": "10% Contribuindo no iguaidade e incluzão Social",
+   "page": 695
+  },
+  {
+   "kind": "output",
+   "code": "98030.0.0",
+   "statement": "Promoção efectiva da participação das mulheres rurais no desenvolvimento económico do país e eliminação de todas as formas de discriminação contra as mulheres rurais",
+   "indicator": "% de participação igualitária e equitativa para mulheres, homens e pessoas vulneráveis na atividade de construção civil",
+   "baseline": "Concluindo SOP sobre Declaração de Maubisse fase 2 e 100 pessoas participaram na atividade kapasitasaun",
+   "target": "5 a 10% contribuindo na Decaração de Maubisse",
+   "page": 695
+  },
+  {
+   "kind": "outcome",
+   "code": "A30.0.0",
+   "statement": "O Plano Estratégico de Desenvolvimento e os grandes projetos de infraestruturas serão implementados da maneira mais econômica e eficiente possível.",
+   "indicator": "% do número de projetos que foram recomendados",
+   "baseline": "Ate final de 2025, 11,598 projetos analisados pela ADN, I.P., foram considerado de qualidade técnica adequada",
+   "target": "100%",
+   "page": 696
+  },
+  {
+   "kind": "output",
+   "code": "A3001.0.0",
+   "statement": "Projectos implemetados com qualidade na base nos estudos e investigação",
+   "indicator": "% do número de projetos que foram verificados e inspecionados",
+   "baseline": "Progresso Avançado, 2012 ate 2025 analisando e aprovados 6,390 projetos, dos quais 5,208 projetos foram certificados de pagamentos.",
+   "target": "100%",
+   "page": 696
+  },
+  {
+   "kind": "output",
+   "code": "A3002.0.0",
+   "statement": "Até 2028 garantir todos os projectos públicos implementados com qualidades obedece aos critérios técnicos e boas práticas internacional.",
+   "indicator": "% de fasilidades de edifício, instalações e equipamentos",
+   "baseline": "13 edificios completaram com fasilidades adquiridas",
+   "target": "100%",
+   "page": 696
+  },
+  {
+   "kind": "output",
+   "code": "A3003.0.0",
+   "statement": "Até 2028 todos as infraestruturas públicas construer com qualidade, moderna e assecível",
+   "indicator": "% do número doS livros estandarisações atualisados publicados",
+   "baseline": "5 Livros estandarisações (TLSMM, TLSUP, Billing Rate, Dietance e Quary) concluidos e públicados",
+   "target": "Desenvolvimento dos varios padrões sobre estandarisação das infraestrutura",
+   "page": 697
+  }
+ ]
+}

@@ -1,0 +1,1595 @@
+{
+ "year": 2027,
+ "code": "109",
+ "name": "Fundo Especial de Desenvolvimento da Região Administrativa Especial de Oe-Cusse Ambeno",
+ "abbr": "FEDRAEOCA",
+ "kind": "fund",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1042,
+   1053
+  ]
+ },
+ "units": [
+  {
+   "code": "FEDRAEOCA",
+   "div": "1090101",
+   "name": "Fundo Especial de Desenvolvimento da Região Administrativa Especial de Oe-Cusse Ambeno",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "026": "Estradas e pontes",
+  "314": "Bolsas de estudo",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "520": "Educação pré-escolar",
+  "521": "Ensino básico",
+  "528": "Cuidado de saúde primários",
+  "798": "Água e saneamento",
+  "802": "Eléctricidade",
+  "809": "Aeroporto",
+  "867": "Dezenvolvimento e reforço de zonas com tratamento administrativo e económico",
+  "979": "Educação e formação",
+  "982": "Turismo",
+  "983": "Investimento e diversificação económica",
+  "A39": "Agricultura, horticultura, café e de plantas industriais e anuais"
+ },
+ "activities": [
+  {
+   "code": "0260300",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Rehabilitasaun no Konstrusaun foun Estrada Oenunu - Usi taco, Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# KM de estradas rural oenuno-usitaco halo ona rehabilitacao",
+   "baseline": "foun",
+   "target": "13 km husi ttl 13 km",
+   "amounts": {
+    "50": 166792.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260344",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Rehabilitation of Emergency Road Neof Nua-Usmeta, Taiboco, Pante- Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# Km de estradas rural Neof nua-usmeta halo ona rehabilitacao",
+   "baseline": "foun",
+   "target": "5,5 km husi 11 km",
+   "amounts": {
+    "50": 47075.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260345",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Rehabilitation of Emergency Road, Kutete-Nun-Ana, Mone-Meco, Pante- Macassar, RAEOA.",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas rural kutete- nun ana rehabilita ona",
+   "baseline": "foun",
+   "target": "9,6 km",
+   "amounts": {
+    "50": 292579.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260346",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Rehabilitation of Emergency Road, Bihala-Quinat, Pante-Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas rural Bihala- kinat rehabilita ona",
+   "baseline": "foun",
+   "target": "3,69 km",
+   "amounts": {
+    "50": 449541.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260347",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Rehabilitation of Emergency Road, Roti-Tulica, Lifau, Pante-Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas regional roti- lifau rehabilita ona",
+   "baseline": "sedauk iha dadus",
+   "target": "9,7 km",
+   "amounts": {
+    "50": 8343.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260348",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Rehabilitation of Emergency Road Maunaben - Qiupanaf - Sonamnasi and Wall Protection (Cyclop) (Sta. 06+900 - 08+000 Right Side / 1,100 km)",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas rural Maunaben-Qiupanaf lrehabilita ona",
+   "baseline": "foun",
+   "target": "8,3 km",
+   "amounts": {
+    "50": 49222.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260349",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Project Of Emergency Road Oenunu, Suco Bene-Ufe - Bona, Suco Usi Taco, Posto Administrativu Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas Nasional halo ona rehabilitasaun",
+   "baseline": "foun",
+   "target": "8 km",
+   "amounts": {
+    "50": 22586.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260350",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Road Construction Bona - Nuni, Suco Usi Taco - Bene Ufe, Posto Administrativu Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas Nasional Bona- Beneufe halo ona rehabilitasaun",
+   "baseline": "foun",
+   "target": "8 km",
+   "amounts": {
+    "50": 21409.0
+   },
+   "page": 1042
+  },
+  {
+   "code": "0260323",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Fiscalização e Construção da Estrada Nacional Pante Macassar - Citrana, Pacote A (Noefefan - Oenuno)",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% estradas Nasional Noefefan- Oenuno rehabilitar ou konstruido",
+   "baseline": "basea ba dadus husi Dep, Estradas konstrucao refere too tinan 2025 atinji ona 56.39 %",
+   "target": "70%",
+   "amounts": {
+    "50": 6859391.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0260324",
+   "programme": "026",
+   "subprogramme": "02603",
+   "subprogramme_name": "Infraestruturas de estradas, pontes e controlo de cheias",
+   "name": "Fiscalização e Construção da Estrada Nacional Pante Macassar - Oesilo",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% estradas Nasional Noefefan- Oenuno rehabilitar ou konstruido",
+   "baseline": "basea ba dadus husi Dep, Estradas konstrucao refere too tinan 2025 atinji ona 49.79 %",
+   "target": "Porcentagem Alvo para 2025 - 36.3%.Total Porcentagem Acumulado 80%",
+   "amounts": {
+    "50": 7771897.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261702",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Construção de uma nova estrada municipal/regional de Oelete - Usitaco, Nitibe, Oé-Cusse Ambeno",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# Kilometrazen Konstrusaun Estrada Rejional Oelete ba Usitaco konstruido",
+   "baseline": "N.A",
+   "target": "12,3 km",
+   "amounts": {
+    "50": 1446650.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261703",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Construção de uma nova estrada municipal/regional de Nunheno, Pante Macassar - Fatubena, Nitibe, Oé-Cusse Ambeno",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# Kilometrazen Konstrusaun Estrada Rejional Nunuheno ba Fatubena Nitibe konstruido",
+   "baseline": "N.A",
+   "target": "14,21 KM",
+   "amounts": {
+    "50": 1423637.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261706",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Konstrusaun de Uma Nova Estrada Regional Hau-Ana Tumin, Oesilo, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# Kilometrazen Konstrusaun Estrada Rejional hau-ana- tumin konstruido",
+   "baseline": "N.A",
+   "target": "13 km",
+   "amounts": {
+    "50": 127169.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261707",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Konstrusan moru protesaun mota kiukole A, Naimeco, Pantemakasar",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km de konstrucao moru protecao konkluido",
+   "baseline": "N.A",
+   "target": "6,4 km",
+   "amounts": {
+    "50": 19475.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261708",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Konstrusan moru protesaun mota kiukole B, Naimeco, Pantemakasar",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km de konstrucao moru protecao konkluido",
+   "baseline": "seauk iha dadus",
+   "target": "6,4 km",
+   "amounts": {
+    "50": 15445.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261709",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Konstrusaun Foun Kazernas PNTL Eskuadra Passabe",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% konstrucao kazernas PNTL Pasabe konkluido",
+   "baseline": "N.A",
+   "target": "100%",
+   "amounts": {
+    "50": 9499.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261710",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Konstrusaun Moru Protesaun Mota Bitopa A, Buqui, Usitasae, Oesilo",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km de konstrucao moru protecao konkluido",
+   "baseline": "N.A",
+   "target": "1,86 km",
+   "amounts": {
+    "50": 138390.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261712",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Konstrusaun Ponte Paut no Moru, Gabioes, Oebaha, Bobometo, Oesilo",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de konstrucao ponte paut no moru gabion konkluido",
+   "baseline": "N.A",
+   "target": "100%",
+   "amounts": {
+    "50": 39864.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261713",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Rehabilitasaun Estrada Oesilo Huabenais - Bnokobeno, Oesilo, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km rehabilitacao estradas rural konkluido",
+   "baseline": "N.A",
+   "target": "6,6 km",
+   "amounts": {
+    "50": 455973.0
+   },
+   "page": 1043
+  },
+  {
+   "code": "0261714",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Rehabilitasaun no Manutensaun Estrada Fatukenfua Lamase, Nitibe",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# km estradas rural fatukenfua-lamasi rehabilita ona",
+   "baseline": "N.A",
+   "target": "6,7 km",
+   "amounts": {
+    "50": 18617.0
+   },
+   "page": 1044
+  },
+  {
+   "code": "0261715",
+   "programme": "026",
+   "subprogramme": "02617",
+   "subprogramme_name": "Construção de estradas e pontes",
+   "name": "Rehabilitasaun no Manutensaun Estrada Oesilo - Passabe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# estradas regional Oesilo- Pasabe rehabilita ona",
+   "baseline": "N.A",
+   "target": "15 km husi ttl 19 km",
+   "amounts": {
+    "50": 23010.0
+   },
+   "page": 1044
+  },
+  {
+   "code": "3143801",
+   "programme": "314",
+   "subprogramme": "31438",
+   "subprogramme_name": "Bolsas de estudo em ciências formais e factuais",
+   "name": "Bolsas de Estudo para o Setor da Saúde",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# Pessoal na continuação de Programa de Bolsas de Estudo para Cuba # As pessoas que recebem bolsas de estudo continuam os seus estudos em universidades TRISAKTI, # As pessoas que recebem bolsas de estudo continuam os seus estudos em universidades DIT, # As pessoas que recebem bolsas de estudo continuam os seus estudos em universidades DIT",
+   "baseline": "2 Médicos - Segundo ano de estudos - 2024,",
+   "target": "Para o caminho de Terceiro Ano - 2026 ba 2 alunos, TRISAKTI 6 pessoas Licensiatura e 5 pessoas Mestrado, UPAZ Licensiatura 10 pessoas, DIT Licensiatura 10 pessoas",
+   "amounts": {
+    "30": 170000.0
+   },
+   "page": 1044
+  },
+  {
+   "code": "3144001",
+   "programme": "314",
+   "subprogramme": "31440",
+   "subprogramme_name": "Formação especializada em vários domínios",
+   "name": "Formação dos técnicos afetos as infra-estruturas aeroportuárias",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# Pessoal atender a Formação",
+   "baseline": "25 Pessoas Foram atender a Formação em 2023; 2024 está a prever 23 Pessoas p/ 2024",
+   "target": "Número Pessoal prevé para 2025 são 40. Total Acumulados 88 Pessoas no 64 pessoas ba 2026.",
+   "amounts": {
+    "20": 42218.0
+   },
+   "page": 1044
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Implementação/ Execução do PAA",
+   "baseline": "Implementação/ Execução do PAA 100%",
+   "target": "Implementação/ Execução do PAA 100%",
+   "amounts": {
+    "10": 320814.0
+   },
+   "page": 1045
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "\"1) # Acordo Cooperação e Parceria com outras Instituições e País; 2) % do tranferencia para o Grupos Bambo e Tizolu, etc. 3)# Beneficiario (F/M)\"",
+   "baseline": "\"1) 0 2) Grupps 4 (Bamboo 2 Grupos, Tizolu 2 Grupos) 3) 44 Beneficiarios (F:8, M:36)\"",
+   "target": "\"1) 3 2) 100% 3) 100 Pessoas\"",
+   "amounts": {
+    "30": 265000.0
+   },
+   "page": 1045
+  },
+  {
+   "code": "5102107",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Rehabilitação do Recidencia Regional Administrativo Oe-Cusse Ambeno (Building No.I), Sta. Roza, Oe-Sono, Costa, Pante-Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do progreso rehabilitasaun rezidensia administrativo Oe- Cusse",
+   "baseline": "Foun",
+   "target": "100%",
+   "amounts": {
+    "50": 48596.0
+   },
+   "page": 1045
+  },
+  {
+   "code": "5102108",
+   "programme": "510",
+   "subprogramme": "51021",
+   "subprogramme_name": "Decentralização Administrativa",
+   "name": "Rehabilitação do Recidencia Regional Administrativo Oe-Cusse Ambeno (Building No.II), Sta. Roza, Costa, Pante- Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do progreso rehabilitasaun rezidensia administrativo Oe- Cusse",
+   "baseline": "Foun",
+   "target": "100%",
+   "amounts": {
+    "50": 13402.0
+   },
+   "page": 1045
+  },
+  {
+   "code": "5201803",
+   "programme": "520",
+   "subprogramme": "52018",
+   "subprogramme_name": "Infraestrutura e Facilidade Pre-escolar",
+   "name": "Construção do novo edifício da encino pre escolar, Fatubena, Suco Usitaco, Nitibe, Oé-Cusse Ambeno",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "1. # de Sala de Aula construídas 2. % Construsaun ba edifisiu foun",
+   "baseline": "\"1. 3 2. 70%\"",
+   "target": "1. 3 2. 100%",
+   "amounts": {
+    "50": 6542.0
+   },
+   "page": 1046
+  },
+  {
+   "code": "5212008",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Construção do novo edifício escolar da EBF (salas de aula) em Poasbot, Suco Usitaco, Nitibe, Oé-Cusse Ambeno",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do pagamento retensaun projetu Sala de Aulas Construidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 2891.0
+   },
+   "page": 1046
+  },
+  {
+   "code": "5212009",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Construção do novo edifício escolar da EBF (salas de aula) em Quiupanaf, Suco Cunha, Pante Macassar, Oé-Cusse Ambeno",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do pagamento retensaun projetu Sala de Aulas Construidas",
+   "baseline": "35%",
+   "target": "100%",
+   "amounts": {
+    "50": 3166.0
+   },
+   "page": 1046
+  },
+  {
+   "code": "5212010",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Reabilitação do edifício escolar da EBF (salas de aula) em Noapai, Suco Cunha, Pante Macassar, Oé-Cusse Ambeno",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do pagamento retensaun projetu Sala de Aulas Reabilitadas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 14400.0
+   },
+   "page": 1046
+  },
+  {
+   "code": "5280917",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Construção de posto de saúde em Lamase, Suco Beneufe, Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 8588.0
+   },
+   "page": 1047
+  },
+  {
+   "code": "5280918",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Construção de posto de saúde em Kutete, Pante Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 8596.0
+   },
+   "page": 1047
+  },
+  {
+   "code": "5280919",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Construção de residência para o pessoal de saúde em Mahata, Lelaufe, Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# de Prontidaun fasilidade saude estabelese iha sub regional Nitibe",
+   "baseline": "5 Prontidaun fasilidade saude estabelese ona iha sub regional Nitibe",
+   "target": "7 de Prontidaun fasilidade saude estabelese iha sub regional Nitibe",
+   "amounts": {
+    "50": 2821.0
+   },
+   "page": 1047
+  },
+  {
+   "code": "7981004",
+   "programme": "798",
+   "subprogramme": "79810",
+   "subprogramme_name": "Desenvolvimento e Manutenção de Sistemas de Abastecimento de Água em Áreas Rurais e Urbanas",
+   "name": "Construção canalização sistema bee moos utiliza Bomba no Gravitasaun iha Bairro Fatukenfua, Suco Usitaco, Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 5714.0
+   },
+   "page": 1047
+  },
+  {
+   "code": "7981005",
+   "programme": "798",
+   "subprogramme": "79810",
+   "subprogramme_name": "Desenvolvimento e Manutenção de Sistemas de Abastecimento de Água em Áreas Rurais e Urbanas",
+   "name": "Reabilitasaun sistema bee moos Oele&amp;#39;u, Baonana, Suco Beneufe, Nitibe, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# de uma kain iha bairo Oeleu asesu ba Be'mos aumenta",
+   "baseline": "\"1. 127 uma kain asesu ba be'e mos husi 180 uma kain tuir relatorio 2025 \"",
+   "target": "52 uma kain",
+   "amounts": {
+    "50": 23630.0
+   },
+   "page": 1047
+  },
+  {
+   "code": "7981006",
+   "programme": "798",
+   "subprogramme": "79810",
+   "subprogramme_name": "Desenvolvimento e Manutenção de Sistemas de Abastecimento de Água em Áreas Rurais e Urbanas",
+   "name": "Reabilitasaun sistema bee moos Oelnipsan, Qiubiselo, Suco Bobometo, Oesilo, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# de uma kain iha bairo quibiselo asesu ba Be'mos aumenta",
+   "baseline": "140 Uma kain asesu ba be,e mos husi 165 uma kain tuir relatorio 2025",
+   "target": "25 uma kain",
+   "amounts": {
+    "50": 20316.0
+   },
+   "page": 1047
+  },
+  {
+   "code": "8023301",
+   "programme": "802",
+   "subprogramme": "80233",
+   "subprogramme_name": "Gestão, Operação e manutenção da Central Elétrica Inur Sakato",
+   "name": "Contrato de fornecimento de combustível e consumíveis para a Central elétrica",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "\"1.% supply baseia ba standar kualitas tuir kontratu 2.% stock minimun iha Storage tank PLN 3.% supply komvustivel tuir tempu nebee hatuur ona iha Kontratu 4. # volume fornesementu Komvustivel tuir Kontratu\"",
+   "baseline": "\"1.95 % 2.90% 3. 90% 3. < 5%\"",
+   "target": "\"1.95 % 2.90% 3. 90% 3. < 5%\"",
+   "amounts": {
+    "20": 6048759.0
+   },
+   "page": 1048
+  },
+  {
+   "code": "8023400",
+   "programme": "802",
+   "subprogramme": "80234",
+   "subprogramme_name": "Produzir, Distribuir e Comercializar Eletricidade de Qualidade, Contínuo, Regular e Justa na RAEOA",
+   "name": "Projecto no Instalasaun Solar Panel (Street Ligth) iha Oesilo, Passabe no Nitibe",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Imstalacao solar panel conkluido",
+   "baseline": "foun",
+   "target": "100%",
+   "amounts": {
+    "50": 38349.0
+   },
+   "page": 1048
+  },
+  {
+   "code": "8090701",
+   "programme": "809",
+   "subprogramme": "80907",
+   "subprogramme_name": "Gestão, manutenção e exploração do Aeroporto Internacional de Oe-Cusse Ambeno Rota do Sandalo",
+   "name": "Gestão, Operação e Exploração da Infra estrutura Aeroportuária da RAEOA/ZEESM",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Funcionamento Aeroportuária da RAEOA",
+   "baseline": "Funcionamento Aeroportuária da RAEOA baseline 2025 receita própria = 50%",
+   "target": "70%",
+   "amounts": {
+    "20": 1181399.0
+   },
+   "page": 1048
+  },
+  {
+   "code": "8090702",
+   "programme": "809",
+   "subprogramme": "80907",
+   "subprogramme_name": "Gestão, manutenção e exploração do Aeroporto Internacional de Oe-Cusse Ambeno Rota do Sandalo",
+   "name": "Conceção e criação da entidade operadora aeroportuária regional configurada como empresa Pública",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% ba prosesu Aeroporto atu sai hanesan empresa publiku",
+   "baseline": "40% atinjido",
+   "target": "50%",
+   "amounts": {
+    "20": 66949.0
+   },
+   "page": 1048
+  },
+  {
+   "code": "8090709",
+   "programme": "809",
+   "subprogramme": "80907",
+   "subprogramme_name": "Gestão, manutenção e exploração do Aeroporto Internacional de Oe-Cusse Ambeno Rota do Sandalo",
+   "name": "Apoio AERO Dili",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# apoio subsidio ba Aviaun durante voo iha tinan ida nia laran",
+   "baseline": "72",
+   "target": "144",
+   "amounts": {
+    "30": 1000000.0
+   },
+   "page": 1048
+  },
+  {
+   "code": "8090801",
+   "programme": "809",
+   "subprogramme": "80908",
+   "subprogramme_name": "Gestão, Operação e Exploração da(s) aeronave(s) pertencente(s) à RAEOA/ZEESM",
+   "name": "Gestão, Operação e Exploração da(s) aeronave (s) pertencente (s) à RAEOA/ZEESM",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "\"1. % Rezolusaun Disputa ho Kenn Borek Air no Manutensaun ba Aeronave Concluido, 2. % Prosesu negosiasaun atu hetan operador (AOC) foun hodi reativa voo Operasaun Aviaun Twin Otter .\"",
+   "baseline": "\"1. 60%. 2. Foun\"",
+   "target": "\"1. 100% 2. Konklui kontratu Operador foun.\"",
+   "amounts": {
+    "20": 739220.0
+   },
+   "page": 1049
+  },
+  {
+   "code": "8090802",
+   "programme": "809",
+   "subprogramme": "80908",
+   "subprogramme_name": "Gestão, Operação e Exploração da(s) aeronave(s) pertencente(s) à RAEOA/ZEESM",
+   "name": "Concepção e criação da entidade operadora certificada (AOC) de transporte aéreo da RAEOA/ZEESM configurada como companhia aérea pública regional.",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% Progresso de Certifikasaun Operador (AOC) ba aviaun Twin Otter.",
+   "baseline": "foun",
+   "target": "Estabelesimento Operador Transporte Aereo RAEOA - targeto concluido 2027, % Progresso de Certifikasaun Operador (AOC) ba aviaun Twin Otter 2026 60%",
+   "amounts": {
+    "20": 318526.0
+   },
+   "page": 1049
+  },
+  {
+   "code": "8670401",
+   "programme": "867",
+   "subprogramme": "86704",
+   "subprogramme_name": "Gestão e Operação de Portos na RAEOA",
+   "name": "Gestão e operacao de infraestruturas portuárias",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 6779.0
+   },
+   "page": 1049
+  },
+  {
+   "code": "8671019",
+   "programme": "867",
+   "subprogramme": "86710",
+   "subprogramme_name": "Planeamento e Desenvolvimento de Obras Publicas na RAEOA",
+   "name": "Contract ICB/009/ZEESM- TL-2016, 22 -07 - 2016, For Construction of Administrative Complex in Pante Makasar, Oé-",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 2000000.0
+   },
+   "page": 1049
+  },
+  {
+   "code": "8671700",
+   "programme": "867",
+   "subprogramme": "86717",
+   "subprogramme_name": "Infraestruturas e facilidade públicos na RAEOA",
+   "name": "Konstrusaun Foun Cede do Suco Costa",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do progreso konstrusaun sede Suco Costa",
+   "baseline": "60%",
+   "target": "100%",
+   "amounts": {
+    "50": 4170.0
+   },
+   "page": 1050
+  },
+  {
+   "code": "8671701",
+   "programme": "867",
+   "subprogramme": "86717",
+   "subprogramme_name": "Infraestruturas e facilidade públicos na RAEOA",
+   "name": "Construção do edifício Masacre Tumin, Suco Bobometo, Oesilo, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 148069.0
+   },
+   "page": 1050
+  },
+  {
+   "code": "8671702",
+   "programme": "867",
+   "subprogramme": "86717",
+   "subprogramme_name": "Infraestruturas e facilidade públicos na RAEOA",
+   "name": "Construção da sala de arquivo Secretario Regional Financas (SRF) na Oebau, Suco Costa, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Construcao de sala arquivo Secretario Regional Financas (SRF) na Oebau concluidas",
+   "baseline": "foun",
+   "target": "100%",
+   "amounts": {
+    "50": 2889.0
+   },
+   "page": 1050
+  },
+  {
+   "code": "8671703",
+   "programme": "867",
+   "subprogramme": "86717",
+   "subprogramme_name": "Infraestruturas e facilidade públicos na RAEOA",
+   "name": "Construção do edifício de escritórios do IGE em Banoco, Lalisuk RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% Construção do edifício de escritórios do IGE em Banoco concluidas",
+   "baseline": "foun",
+   "target": "100%",
+   "amounts": {
+    "50": 5354.0
+   },
+   "page": 1050
+  },
+  {
+   "code": "8671705",
+   "programme": "867",
+   "subprogramme": "86717",
+   "subprogramme_name": "Infraestruturas e facilidade públicos na RAEOA",
+   "name": "Kosntrusaun Foun Kapela Santa Reliquia Citrana, Beneufe, Nitibe",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do progreso konstrusaun kapela Santa Reliqui, Beneufe, Nitibe",
+   "baseline": "Foun",
+   "target": "100%",
+   "amounts": {
+    "50": 6628.0
+   },
+   "page": 1050
+  },
+  {
+   "code": "8672002",
+   "programme": "867",
+   "subprogramme": "86720",
+   "subprogramme_name": "Dezenvolvimento Agricultura e Indústria",
+   "name": "Produtividade Industria Exportasaun Agrofloresta",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "\"1) # Tonaladas Produs (Nehek ten) 2) # Comprador\"",
+   "baseline": "\"1) 190 toneladas 2) 3\"",
+   "target": "\"1) 10 ton 2) 5\"",
+   "amounts": {
+    "20": 40306.0
+   },
+   "page": 1051
+  },
+  {
+   "code": "8672003",
+   "programme": "867",
+   "subprogramme": "86720",
+   "subprogramme_name": "Dezenvolvimento Agricultura e Indústria",
+   "name": "Cross Border Special Economic Zone",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "\"1) # Estudu Viabilidade Completa 2) # Acordo CBSEZ \"",
+   "baseline": "\"1) 0 2) 0\"",
+   "target": "\"1) 1 2) 1\"",
+   "amounts": {
+    "20": 148175.0
+   },
+   "page": 1051
+  },
+  {
+   "code": "9793502",
+   "programme": "979",
+   "subprogramme": "97935",
+   "subprogramme_name": "Infraestruturas do Ensino Básico",
+   "name": "Reabilitação e construção de estabeleçimentos do EB",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 117828.0
+   },
+   "page": 1051
+  },
+  {
+   "code": "9821305",
+   "programme": "982",
+   "subprogramme": "98213",
+   "subprogramme_name": "Infraestruturas e equipamentos turísticos",
+   "name": "Construção de um sinal de sítio turístico em Oecusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "# de acessos a locais turísticos intervencionados e melhorados; Quantidade de",
+   "baseline": "Intervenção em 10 fatin turistica mak hanesan Fonte- Sagrada/Oefoco, Oepoto-",
+   "target": "10 locais turísticos em 4 Sub- Regiões",
+   "amounts": {
+    "50": 13814.0
+   },
+   "page": 1051
+  },
+  {
+   "code": "9831417",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Konstrusaun Emergensia Fatin Corrida de Cavalo, Ume Noah, Cunha, Pante-Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% do progresu konstrusaun emergensia fatin korida cavalo",
+   "baseline": "30%",
+   "target": "100%",
+   "amounts": {
+    "50": 40449.0
+   },
+   "page": 1052
+  },
+  {
+   "code": "9833928",
+   "programme": "983",
+   "subprogramme": "98339",
+   "subprogramme_name": "Desenvolvimento Infrastruturas fisicas de Comércio",
+   "name": "Konstrusaun Merkado Nunbey, Costa, Pante Macassar, RAEOA",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 7929.0
+   },
+   "page": 1052
+  },
+  {
+   "code": "A390429",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau free-level intake (water intake) iha Oebaha, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 32539.0
+   },
+   "page": 1052
+  },
+  {
+   "code": "A390430",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau free-level intake (water intake) iha Sonamnasi, Cunha, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 16269.0
+   },
+   "page": 1052
+  },
+  {
+   "code": "A390431",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau kanal irrigasaun (Primer) iha Maen-Ana, Usapibela, Lalisuk, Oé- Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 44153.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390432",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau kanal irrigasaun (primer) iha Samnaz, Suniufe, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 46154.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390433",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau kanal irrigasaun (secunder) iha Betbanae-tuan, Costa, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Construcao Concluidas",
+   "baseline": "foun",
+   "target": "Construcao conclui 100%",
+   "amounts": {
+    "50": 26081.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390434",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau kanal irrigasaun (secunder) iha Faela-Panan, Oebaha, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 10779.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390435",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusau kanal irrigasaun (secunder) iha Tetumnanu-Naek, Lalisuk, Oé- Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 11030.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390436",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusaun alargamento garazem iha centro manutensaun trator iha Aemat, Lalisuk, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Construcao Concluidas",
+   "baseline": "foun",
+   "target": "Construcao conclui 100%",
+   "amounts": {
+    "50": 17937.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390437",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusaun lutu haleu area Lotas de Pescas iha Oesono, Costa, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Construcao Concluidas",
+   "baseline": "foun",
+   "target": "Construcao conclui 100%",
+   "amounts": {
+    "50": 13288.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390438",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Konstrusaun mini barazem iha Letefoho, Lalisuk, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 18480.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390439",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Perfuração bee ba area Hortikultura iha Noepapa, Usitasae, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 2857.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390440",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Perfuração bee ba area Pastagem Maquelab, Taiboco, Oé-Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% de Construcao Concluidas",
+   "baseline": "foun",
+   "target": "100%",
+   "amounts": {
+    "50": 33447.0
+   },
+   "page": 1053
+  },
+  {
+   "code": "A390441",
+   "programme": "A39",
+   "subprogramme": "A3904",
+   "subprogramme_name": "Desenvolvimento das Infraestruturas de Agricultura, Horticultura, Café e de Plantas Industriais e Anuais",
+   "name": "Reabilitasaun kanal irrigasaun (primer) iha Panite-Naek, Lalisuk, Oé- Cusse",
+   "div": [
+    "1090101"
+   ],
+   "indicator": "% pagamentu detensaun do projetu de Construcao Concluidas",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "50": 100.0
+   },
+   "page": 1053
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "026.0.0",
+   "statement": "Maior conectividade nacional e regional por meio de infraestruturas rodoviárias e pontes seguras, resistentes às alterações climáticas e bem conservadas, em conformidade com as normas internacionais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1042
+  },
+  {
+   "kind": "output",
+   "code": "02603.0.0",
+   "statement": "Todas as estradas, pontes nacioanal e regionais completamente construídas de acordo com os padrões internacionais até 2028",
+   "indicator": "1. % estradas ho ninia infrasetruktur ne'ebe ho kondisaun diak 2. % pontes ne'ebe iha kondisaun serve atu utiliza",
+   "baseline": "foun",
+   "target": "1. 65,79 km estradas rehabilita E Konstruido",
+   "page": 1042
+  },
+  {
+   "kind": "output",
+   "code": "02603.0.1",
+   "statement": "Todas as estradas RAEOA totalmente reabilitadas segundo padrões internacionais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1043
+  },
+  {
+   "kind": "output",
+   "code": "02617.0.1",
+   "statement": "Assegurar a construção de todas as estradas e pontes municipais, urbanas e rurais nos municípios, incluindo a RAEOA",
+   "indicator": "1.# km estradas foun nebee konstrui ona 2.# km moru protecao nebee konstrui",
+   "baseline": "foun",
+   "target": "1. 90,61 km 2. 14,6 km",
+   "page": 1043
+  },
+  {
+   "kind": "outcome",
+   "code": "314.0.0",
+   "statement": "Recursos Humanos com conhecimentos e habilitações necessárias para participar no desenvolvimento económico e social do pais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1044
+  },
+  {
+   "kind": "output",
+   "code": "31438.0.0",
+   "statement": "Graduado com alta qualidade",
+   "indicator": "Objetivo do Plano Asaun Annual Alcancado",
+   "baseline": "2 Médicos - Segundo ano de estudos - 2024",
+   "target": "Para o caminho de Terceiro Ano - 2026 ba 2 alunos",
+   "page": 1044
+  },
+  {
+   "kind": "output",
+   "code": "31440.0.0",
+   "statement": "Os participantes aumentam os seus conhecimentos e competências",
+   "indicator": "Plano Asaun Annual Alcancado",
+   "baseline": "50%",
+   "target": "75%",
+   "page": 1044
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1044
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Porcentagem de Implementação/ Execução do PAA",
+   "baseline": "Implementação/ Execução do PAA 100%",
+   "target": "Implementação/ Execução do PAA 100%",
+   "page": 1045
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Objetivo do Plano Asaun Annual",
+   "baseline": "75%",
+   "target": "100%",
+   "page": 1045
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "510.0.h: Garantir a implementação efetiva da descentralização administrativa e do poder local.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1045
+  },
+  {
+   "kind": "output",
+   "code": "51021.0.0",
+   "statement": "Capacidade institucional para a descentralização administrativa alcançada",
+   "indicator": "% do progreso rehabilitasaun rezidensia administrativo Oe-Cusse",
+   "baseline": "Foun",
+   "target": "100%",
+   "page": 1045
+  },
+  {
+   "kind": "outcome",
+   "code": "520.0.0",
+   "statement": "Aumentar o acesso, a participação e a prontidão escolar das crianças dos 3 aos 5 anos, garantindo que mais crianças, especialmente nas zonas rurais, recebem ou participam em programas pré-escolares de qualidade que as preparem para a educação básica obrigatória",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1045
+  },
+  {
+   "kind": "output",
+   "code": "52018.0.0",
+   "statement": "As escolas de educação pré-escolar públicas existentes foram renovadas e modernizadas, incluindo salas de aula, instalações sanitárias, áreas de recreio e mobiliário básico, para cumprir os padrões nacionais de ambientes de aprendizagem inclusivos e adequados às crianças.",
+   "indicator": "# Konstrusaun salas de aulas do EPE para prosesu aprendijazem",
+   "baseline": "3",
+   "target": "3",
+   "page": 1046
+  },
+  {
+   "kind": "outcome",
+   "code": "521.0.0",
+   "statement": "Até 2028, o acesso, a participação, a permanência (continuidade) e a conclusão do ensino básico (do 1º ao 9º ano) aumentarão, incluindo a literacia e a literacia matemática básica para os alunos.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1046
+  },
+  {
+   "kind": "output",
+   "code": "52120.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1046
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1046
+  },
+  {
+   "kind": "output",
+   "code": "52809.0.0",
+   "statement": "Prestar serviços de saúde de elevada qualidade, acessíveis e equitativos para responder eficazmente às necessidades e aos desafios da população.",
+   "indicator": "# de prestar servisu saude de elevada qualidade",
+   "baseline": "5",
+   "target": "7",
+   "page": 1046
+  },
+  {
+   "kind": "outcome",
+   "code": "798.0.2",
+   "statement": "Acesso sustentável e equitativo a água potável e saneamento básico melhorados por meio de uma gestão eficaz dos recursos hídricos e prestação de serviços confiáveis&#13;&#10;",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1047
+  },
+  {
+   "kind": "output",
+   "code": "79810.0.0",
+   "statement": "Sistemas de abastecimento de água urbanos e rurais construídos, reabilitados e operacionais, em conformidade com o Plano Diretor de Água&amp;#13;&amp;#10;",
+   "indicator": "1. # de pontus rekursus be,e melhoria 2. % de uma kain nebee aumenta tan ba asesu Aqua potavel",
+   "baseline": "1. unidade 1 halao manuntencao ih 2025 2. ba tinan 2025 sedauk aumenta % no mantein 77,9%",
+   "target": "\"1. aumenta unidade 2 2. 19,7 % \"",
+   "page": 1047
+  },
+  {
+   "kind": "outcome",
+   "code": "802.0.0",
+   "statement": "Acesso confiável, acessível e sustentável à eletricidade ampliado e mantido para as famílias em todo o Timor-Leste por meio do fortalecimento da rede, regulamentação e soluções de energia renovável&#13;&#10;",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1047
+  },
+  {
+   "kind": "output",
+   "code": "80233.0.0",
+   "statement": "A central elétrica de Sacato é efetiva e eficientemente gerida para cobrir a manutenção e o fornecimento de combustível",
+   "indicator": "% de fungsionamento energia electricidade fungsiona",
+   "baseline": "Consumida a central eletrica 100%",
+   "target": "100%",
+   "page": 1048
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21877: _ Melhoria dos servicos prestados aos cidadaos (fornesementu energia eletrisidade)",
+   "indicator": "% de instalacoes solar panel fungsiona",
+   "baseline": "foun",
+   "target": "80%",
+   "page": 1048
+  },
+  {
+   "kind": "outcome",
+   "code": "809.0.0",
+   "statement": "Uma rede de aeroportos distritais plenamente operacionais e aeroportos internacionais de padrões modernos",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1048
+  },
+  {
+   "kind": "output",
+   "code": "80907.0.0",
+   "statement": "Um operador de aeroporto com certificação internacional é contratado para operar o aeroporto",
+   "indicator": "% progressu preparativu ba sertifikasaun Aeroportu Internacional Rota do Sandalo",
+   "baseline": "70%",
+   "target": "100%",
+   "page": 1048
+  },
+  {
+   "kind": "output",
+   "code": "80908.0.0",
+   "statement": "Um operador de aeroporto com certificação internacional é contratado para operar o aeroporto",
+   "indicator": "# aluga kompanhia operadora Internacional certificada (AOC) de transporte aéreo da RAEOA/ZEESM",
+   "baseline": "1 Kompanhia Ken Borek halo ona operasaun ba Aviaun Twin Otter",
+   "target": "kria negosiasaun ho kompanhia seluk atu hetan (AOC)",
+   "page": 1049
+  },
+  {
+   "kind": "outcome",
+   "code": "867.0.0",
+   "statement": "A região de Oé-Cusse Ambeno será um exemplo para a nação timorense de uma economia social de mercado de sucesso, onde os cidadãos podem aceder a serviços de saúde, educação e serviços básicos de qualidade e a oportunidades de desenvolvimento económico sustentável num ambiente urbano e rural.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1049
+  },
+  {
+   "kind": "output",
+   "code": "86704.0.0",
+   "statement": "Facilitar a mobilidade dos cidadaos e das mercadorias para o desenvolvimento da RAEOA",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1049
+  },
+  {
+   "kind": "output",
+   "code": "86710.0.0",
+   "statement": "Melhoria dos servicos prestados aos cidadaos",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1049
+  },
+  {
+   "kind": "output",
+   "code": "86717.0.0",
+   "statement": "Assegurar que as infra-estruturas e instalações públicas satisfazem as necessidades da comunidade de forma eficaz e sustentável",
+   "indicator": "Objetivo do Plano Asaun Annual Alcancado",
+   "baseline": "N.A",
+   "target": "100%",
+   "page": 1050
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el304499: _ Dinamizasaun ekonomia Regiaun Oé-Cusse nebe fo benefisiu ba kualidade vida populasaun Oé-Cusse nian",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1050
+  },
+  {
+   "kind": "outcome",
+   "code": "979.0.1",
+   "statement": "Todas as crianças completaram com sucesso um curso completo de educação básica de qualidade para progredir para o ensino médio (página 226 PED 2030).",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1051
+  },
+  {
+   "kind": "output",
+   "code": "97935.0.0",
+   "statement": "Qualidade das infraestruturas de ensino básico",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1051
+  },
+  {
+   "kind": "outcome",
+   "code": "982.0.0",
+   "statement": "&#34; Os destinos, produtos e serviços turísticos em Timor-Leste são melhor regulamentados, desenvolvidos, comercializados e geridos de forma sustentável, com uma maior participação das comunidades e do setor privado, resultando em aumentos mensuráveis na atividade dos visitantes e nas despesas com turismo.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1051
+  },
+  {
+   "kind": "output",
+   "code": "98213.0.0",
+   "statement": "As Infraestrutra e instalações turísticas adequado em cada local turistico sao autorizada e bem geridas",
+   "indicator": "# infraestrutura no instalasaun turistikas adekuadu iha lokal turistiku",
+   "baseline": "10",
+   "target": "20",
+   "page": 1051
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.5",
+   "statement": "Aumentar a contribuição do setor comercial para o crescimento econômico",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1052
+  },
+  {
+   "kind": "output",
+   "code": "98314.0.0",
+   "statement": "Suporte técnico e treinamento bem fornecidos",
+   "indicator": "% do progresu konstrusaun emergensia fatin korida cavalo",
+   "baseline": "30%",
+   "target": "100%",
+   "page": 1052
+  },
+  {
+   "kind": "output",
+   "code": "98339.0.0",
+   "statement": "As atividades de negócios são facilitando e organizado",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1052
+  },
+  {
+   "kind": "outcome",
+   "code": "A39.0.0",
+   "statement": "Aumenta a produção e produtividade sustentável de culturas prioritárias (arroz, milho, horticultura) e melhora o rendimento rural através do reforço da cadeia de valor do café e plantas industriais.&#13;&#10;",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1052
+  },
+  {
+   "kind": "output",
+   "code": "A3904.0.0",
+   "statement": "Reabilitação e operacionalização de infraestruturas agrícolas e de irrigação para apoiar aumentos sustentáveis na produção.",
+   "indicator": "% do progresu konstrusaun da infraestrutura Agrikultura, hortikultura ba plantas industriais e Annual Alcancado",
+   "baseline": "50%",
+   "target": "100%",
+   "page": 1052
+  }
+ ]
+}

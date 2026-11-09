@@ -1,0 +1,775 @@
+{
+ "year": 2027,
+ "code": "014",
+ "name": "Ministério dos Negocios Estrangeiros e Cooperação",
+ "abbr": "MNEC",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   110,
+   117
+  ]
+ },
+ "units": [
+  {
+   "code": "GM",
+   "div": "0140101",
+   "name": "Gabinete do Ministro",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "OOTVM",
+   "div": "0140102",
+   "name": "Office of the Vice Minister",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GEEAC",
+   "div": "0140301",
+   "name": "Gabinete de Enviado Especial para Alteração Climática",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0140401",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "SG",
+   "div": "0140601",
+   "name": "Secretário Geral",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DGAMR",
+   "div": "0140801",
+   "name": "Direção Geral para os Assunto Multilaterais e Regionais",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DGACP",
+   "div": "0140901",
+   "name": "Direção Geral dos Assuntos Consulares e Protocolo",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "MPNI",
+   "div": "0141001",
+   "name": "Missão Permanente em Nova Iorque",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EL",
+   "div": "0141101",
+   "name": "Embaixada - Lisboa",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EJ",
+   "div": "0141201",
+   "name": "Embaixada - Jacarta",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CGD",
+   "div": "0141301",
+   "name": "Consulado - Geral de Denpasar",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CK",
+   "div": "0141401",
+   "name": "Consulado - Kupang",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EW",
+   "div": "0141501",
+   "name": "Embaixada - Washington",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EC",
+   "div": "0141601",
+   "name": "Embaixada - Canberra",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CGS",
+   "div": "0141701",
+   "name": "Consulado Geral em Sidney",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CD",
+   "div": "0141801",
+   "name": "Consulado - Darwin",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EKL",
+   "div": "0141901",
+   "name": "Embaixada - Kuala Lumpur",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EB",
+   "div": "0142001",
+   "name": "Embaixada - Bruxelas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EB-01",
+   "div": "0142101",
+   "name": "Embaixada - Banguecoque",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ET",
+   "div": "0142201",
+   "name": "Embaixada - Tóquio",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EP",
+   "div": "0142301",
+   "name": "Embaixada - Pequim",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EM",
+   "div": "0142401",
+   "name": "Embaixada - Maputo",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EH",
+   "div": "0142501",
+   "name": "Embaixada - Havana",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EM-01",
+   "div": "0142601",
+   "name": "Embaixada - Manila",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "MPG",
+   "div": "0142701",
+   "name": "Missão Permanente em Genebra",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EV",
+   "div": "0142801",
+   "name": "Embaixada - Vatican",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EB-012",
+   "div": "0142901",
+   "name": "Embaixada - Brasilia",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ES",
+   "div": "0143001",
+   "name": "Embaixada- Seoul",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "MPCU",
+   "div": "0143101",
+   "name": "Missão Permanente para CPLP e Unesco",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ES-01",
+   "div": "0143201",
+   "name": "Embaixada - Singapore",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EV-01",
+   "div": "0143301",
+   "name": "Embaixada - Vietnam",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ACA",
+   "div": "0143401",
+   "name": "Agência Consular Atambua",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EL-01",
+   "div": "0143501",
+   "name": "Embaixada London",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ENZ",
+   "div": "0143601",
+   "name": "Embaixada Nova Zelandia",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EL-012",
+   "div": "0143701",
+   "name": "Embaixada Laos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EM-012",
+   "div": "0143801",
+   "name": "Embaixada Myanmar",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EC-01",
+   "div": "0143901",
+   "name": "Embaixada Cambodia",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "EB-0123",
+   "div": "0144001",
+   "name": "Embaixada Brunei",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GVMAA",
+   "div": "0144101",
+   "name": "Gabinete da Vice Ministra para os Assuntos da ASEAN",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGABAO",
+   "div": "0144201",
+   "name": "Gabinete do Direção-Geral para Assuntos Bilaterais da Ásia e Oceânia",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGABAEA",
+   "div": "0144301",
+   "name": "Gabinete do Direção-Geral para os Assuntos Bilaterais das Américas, Europa e África",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGAA",
+   "div": "0144401",
+   "name": "Gabinete do Direção-Geral para os Assuntos da ASEAN",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "MPA",
+   "div": "0144501",
+   "name": "Missão Permanente da ASEAN",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ERAD",
+   "div": "0144601",
+   "name": "Embaixada da RDTL em Abu Dhabi",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ERA",
+   "div": "0144701",
+   "name": "Embaixada da RDTL em Angola",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ERI",
+   "div": "0144801",
+   "name": "Embaixada da RDTL em India",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CGRIN",
+   "div": "0144901",
+   "name": "Consulado Geral da RDTL na Irlanda do Norte",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "400": "Política externa de timor-leste",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "4000101",
+   "programme": "400",
+   "subprogramme": "40001",
+   "subprogramme_name": "Defender e promover os interesses de Timor-Leste no estrangeiro",
+   "name": "Representação de Timor Leste a nível Bilateral Regional e Multilateral",
+   "div": [
+    "0141001",
+    "0141101",
+    "0141201",
+    "0141301",
+    "0141401",
+    "0141501",
+    "0141601",
+    "0141701",
+    "0141801",
+    "0141901",
+    "0142001",
+    "0142101",
+    "0142201",
+    "0142301",
+    "0142401",
+    "0142501",
+    "0142601",
+    "0142701",
+    "0142801",
+    "0142901",
+    "0143001",
+    "0143101",
+    "0143201",
+    "0143301",
+    "0143401",
+    "0143501",
+    "0143601",
+    "0143701",
+    "0143801",
+    "0143901",
+    "0144001",
+    "0144501",
+    "0144601",
+    "0144701",
+    "0144801",
+    "0144901"
+   ],
+   "indicator": "1) Participação ativa nos encontros e eventos organizados pelo Pais anfitrião, missoẽ s diplomáticas de países acreditados e, em eventos e encontros organizados a nível internacional e regional - Maior visibilidade de Timor-Leste junto da Comunidade Internacional; 2) Promovidas as potencialidades para investimento e partilhada informacoes sobre o desenvolvimento economico, social, cultural, recursos naturais",
+   "baseline": "1) Estabelecimento de boas relaçoẽ s diplomáticas e visibilidade de Timor Leste; 2) Estratégias de política externa bem definidas e prosseguidas de forma articulada e com consistência pelos agentes diplomáticos; 3) processo de implementacao de uma diplomacia económica adequada;",
+   "target": "1) Maior visibilidade de Timor- Leste junto da Comunidade Internacional e alargadas áreas de cooperaca̧ ̃o com os país receptores e organizaçoẽ s nacionais e internacionais para ganhar apoio a ̀adesão de Timor- Leste como membro das Organizaçoẽ s Internacionais e Regionais; 2) Ser membro de pleno direito da ASEAN; 3) Fortalecer relações entre Povos no ambito de intercâmbios culturais, sócio-económicos, etc.",
+   "amounts": {
+    "20": 9072259.0
+   },
+   "page": 110
+  },
+  {
+   "code": "4000403",
+   "programme": "400",
+   "subprogramme": "40004",
+   "subprogramme_name": "Coordenação de Assuntos Bilaterais e Multilaterais",
+   "name": "Visitas de Estado, Visitas Oficiais e Visitas de Trabalho",
+   "div": [
+    "0140901"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 274642.0
+   },
+   "page": 112
+  },
+  {
+   "code": "4000709",
+   "programme": "400",
+   "subprogramme": "40007",
+   "subprogramme_name": "Cooperação regional e ASEAN",
+   "name": "Implementar o Roteiro para a adesao a ASEAN",
+   "div": [
+    "0144401"
+   ],
+   "indicator": "1) Preenchimento de requisitos essenciais ao processo de adesão; 2) No. de participação nas reuniões da ASEAN e outras reuniões relacionadas e",
+   "baseline": "1) Presença ativa de TL nas reuniões e eventos da ASEAN; 2) Estabelecido alinhamento dos programas de caracter internacional e regional.",
+   "target": "Timor-Leste como membro de Pleno Direito da ASEAN com Estruturas nacionais relevantes (estatais, organizacoes de sociedade civil, privados e",
+   "amounts": {
+    "20": 207875.0
+   },
+   "page": 112
+  },
+  {
+   "code": "4001103",
+   "programme": "400",
+   "subprogramme": "40011",
+   "subprogramme_name": "Facilitação e coordenação institucional na execução da política externa",
+   "name": "Gestão e enquadramento do regime de carreira diplomática e técnico- administrativo",
+   "div": [
+    "0140601"
+   ],
+   "indicator": "1) Transitação de funcionários do MNEC do regime geral ao regime de carreira diplomática concluidos; 2) Esboco do Regime remuneratorio e Revisao do Regime da Carreira Diplomatica concluidos; 3) Estabelecidos a definicao e no de postos nos Serviços Perifericos Externos.",
+   "baseline": "Numero e funções de postos nas missões diplomaticas definidos adequadamente",
+   "target": "Colocação de diplomatas e tecnicos administrativos de acordo com as necessidades e postos existentes nas representacoes diplomaticas",
+   "amounts": {
+    "10": 16398450.0,
+    "20": 550487.0
+   },
+   "page": 113
+  },
+  {
+   "code": "4001104",
+   "programme": "400",
+   "subprogramme": "40011",
+   "subprogramme_name": "Facilitação e coordenação institucional na execução da política externa",
+   "name": "Coordenação e Assistencia aos Serviços Perifericos Externos",
+   "div": [
+    "0140601"
+   ],
+   "indicator": "1) Disponibilização de meios adequados para a implementação dos planos previstos; 2) Diplomatas colocados possuem conhecimentos adequados na implementação da politica externa",
+   "baseline": "36 Representações Diplomaticas",
+   "target": "Representações Diplomatacas dispõe de meios adequados na persecucao das atividades inerentes as suas funçõesDiplomatacas dispõe de meios adequados na persecucao das atividades inerentes as suas funções",
+   "amounts": {
+    "20": 701893.0
+   },
+   "page": 113
+  },
+  {
+   "code": "4001201",
+   "programme": "400",
+   "subprogramme": "40012",
+   "subprogramme_name": "Reforçar e fortalecer a gestão e representação dos assuntos de caráter multilateral e regional",
+   "name": "Participar ativamente nas atividades das Nações Unidas, regionais e internacionais",
+   "div": [
+    "0140801"
+   ],
+   "indicator": "1) Assegurada a participação de TL nas operações de manutenção de paz e coordenação de assuntos de natureza politica - Maior visibilidade de TL junto da",
+   "baseline": "1) Mobilização de recursos técnicos dos parceiros para apoiar o processo de adesão a organizacoes regionais e internacionais; 2) Capacitação de funcionários do MNEC para",
+   "target": "Salvaguardar os interesses estrategicos de TL",
+   "amounts": {
+    "20": 301640.0
+   },
+   "page": 113
+  },
+  {
+   "code": "4001205",
+   "programme": "400",
+   "subprogramme": "40012",
+   "subprogramme_name": "Reforçar e fortalecer a gestão e representação dos assuntos de caráter multilateral e regional",
+   "name": "Representar Timor-Leste e os Paises menos desenvolvidos nos forums multilaterais e nas discucões sobre perdas e estragos relacionados à mudanças climáticas",
+   "div": [
+    "0140301"
+   ],
+   "indicator": "Participação ativa nos foruns multilaterais e nas discussões sobre perdas e estragos relacionados a mudanças climáticas",
+   "baseline": "1) Existencia de um gabinete e nomeação de um embaixador para assuntos de mudanças climáticas; 2) Participação ativa nas discussões e atividades sobre mudanças climáticas",
+   "target": "Visibilidade de Timor-Leste nos forums sobre Minimizar o impacto das mudancas climaticas e elevar a conservacao da bio diversidade em Timor-Leste",
+   "amounts": {
+    "20": 63170.0
+   },
+   "page": 114
+  },
+  {
+   "code": "4001401",
+   "programme": "400",
+   "subprogramme": "40014",
+   "subprogramme_name": "Gestão da Coordenação dos Assuntos Bilaterais da ÁSIA e OCEÂNIA",
+   "name": "Realizar visitas de Estado, Oficias e de Trabalho e assegurar a coordenação de assuntos de natureza político-diplomática e a execução da política externa da RDTL no plano das relações bilaterais da ÁSIA e OCEÂNIA",
+   "div": [
+    "0144201"
+   ],
+   "indicator": "1) Realizacao recíproca de visitas de Estado, oficiais e de trabalho; 2) Coordenação interministerial na identificação das areas e atividades prioritarias no ambito da cooperação bilateral; 3)Classificação das Representações diplomaticas de acordo com as prioridades definidas e Finalizada a negociação para trocas de terreno com as embaixadas sediadas em Dili (reciprocidade);",
+   "baseline": "1) Relações bilaterais e cooperação reciprocas existentes; 2) Contactos regulares com parcerias na promoção do interesse nacional; 3) facilitadas meios a cidadãos nacionais em situacões precarias.",
+   "target": "Fortalecimento das relacoes bilaterais",
+   "amounts": {
+    "20": 295973.0
+   },
+   "page": 114
+  },
+  {
+   "code": "4001403",
+   "programme": "400",
+   "subprogramme": "40014",
+   "subprogramme_name": "Gestão da Coordenação dos Assuntos Bilaterais da ÁSIA e OCEÂNIA",
+   "name": "Viabilizar e estabelecer mecanismos de encontros regulares e técnicos e assegurar respetiva implementação, inclusive a instalação e manuteção de marcos de fronteira e quadros de aviso",
+   "div": [
+    "0144201"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 179618.0
+   },
+   "page": 114
+  },
+  {
+   "code": "4001501",
+   "programme": "400",
+   "subprogramme": "40015",
+   "subprogramme_name": "Gestão da Coordenação dos Assuntos Bilaterais das AMERICAS, EUROPA e AFRICA",
+   "name": "Realizar visitas de Estado, oficias e de trabalho e assegurar coordenação de assuntos de natureza político-diplomática e a execução da política externa da RDTL no plano das relações bilaterais das AMERICA , EUROPA e AFRICA",
+   "div": [
+    "0144301"
+   ],
+   "indicator": "1) Realizacao recíproca de visitas de Estado, oficiais e de trabalho; 2) Coordenação interministerial na identificação das areas e atividades prioritarias no ambito da cooperação bilateral; 3)Classificação das Representações diplomaticas de acordo com as prioridades definidas e Finalizada a negociação para trocas de terreno com as embaixadas sediadas em Dili (reciprocidade);",
+   "baseline": "1) Relações bilaterais e cooperação reciprocas existentes; 2) Contactos regulares com parcerias na promoção do interesse nacional; 3) facilitadas meios a cidadãos nacionais em situacões precarias.",
+   "target": "Fortalecimento das relacoes bilaterais",
+   "amounts": {
+    "20": 258318.0
+   },
+   "page": 115
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0140101",
+    "0140102",
+    "0144101"
+   ],
+   "indicator": "1) Plano anual e plano de Orçamento com base no plano de Governação em consonância com o PEDN; 2) Regulação e Controle de Qualidade, e apoio juridico 3) Implementada a paridade de género na politica geral do MNEC",
+   "baseline": "1) Implementação da política externa definidas no plano quinquenal; 2) Monitorização da execução do programa anual e financeiro do MNEC, e revisão e elaboração de novos esboços legislativos; 3) Aproximadamente 40% de mulheres em posições de chefia e de direção",
+   "target": "1) Plano anual e plano de Orçamento implementadas em consonância com o PEDN; 2) Regulação e Controle de Qualidade, e apoio juridico 3) Manter a paridade de género na politica geral do MNEC",
+   "amounts": {
+    "10": 1175121.0,
+    "20": 200000.0
+   },
+   "page": 115
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0140601"
+   ],
+   "indicator": "1) Plano de Acao e Plano de Orçamento Anual estabelecidas com base nas prioridades dos Governo e pesquisa de custos; 2) Monitorizadas a execução e atualizadas o orçamento de acordo com as necessidades imprevistas",
+   "baseline": "Planos de Ação Annual e Plano de Orcamento dos anos anteriores; 2) Continua monitorização sobre a execuca̧ õ",
+   "target": "Estabelecimento de Planos de Acao Annual e Planos de Orcamento em conformidade com as metas predefinidas no PEDN e politicas do governo",
+   "amounts": {
+    "20": 378090.0
+   },
+   "page": 116
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0140601"
+   ],
+   "indicator": "(1) Gestão efectiva, Enquadramento e mapeamento de funcionários da carreira diplomática e administrativa do MNEC; (2) Recrutamento de 47 novos funcionários; 3) Capacitacao em areas relevantes as funcoes do MNEC",
+   "baseline": "1) Posições de acordo com a organica preenchidas; 2) Processo de enquadramento dos funcionarios do MNEC a carreira diplomatica e administrativa; 3) 49 vagas ainda não preenchidas; 4) Continua capacitação do funcionários do MNEC, no estrangeiro e em TImor-Leste;",
+   "target": "1) Funcionarios de carreira diplomatica e funcionarios administrativos do MNEC com elevado grau de profissionalismo e responsabilidade; 2) Preenchimento de vagas para responder as necessidades do MNEC;",
+   "amounts": {
+    "10": 2323575.0,
+    "20": 190600.0
+   },
+   "page": 116
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0140601"
+   ],
+   "indicator": "(1) gestão efetivo dos equipamentos de informação, e tecnologia e Asseguradas a rede conectividade de inter/intra net; 2) Gestao de da media e partilha de informacoes sobre atividades do MNEC",
+   "baseline": "1) Gestão adequada de equipamentos de ITC e da media e partilha de informacoes sobre atividades do MNEC",
+   "target": "Gestao efetiva e eficiente de meios para garantir a operacionalidade da Instituicao e partilha de informacoes",
+   "amounts": {
+    "20": 289911.0
+   },
+   "page": 116
+  },
+  {
+   "code": "5100213",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "0140601"
+   ],
+   "indicator": "1) Prestaca̧ ̃o de serviços administrativos e financeiros na Sede e aos serviços periféricos externos; 2) Gestao de meios para garantir a operacionalidade da instituicao",
+   "baseline": "1) Coordenação e apoio administrativo, financeiro contínuos aos orgãos do MNEC. 2) Meios para a operacionalidade da instituicao tais como viaturas, materiais de escritorio, equipamentos e materiais de escritorio asseguradas; 3) Servicos de Limpeza, seguranca e manutenca;o 4) Base de dados sobre do patrimonio do Estado afetos ao MNEC;",
+   "target": "Gestao administrativa e financeira efetiva e eficiente de meios para garantir a operacionalidade da Instituicao",
+   "amounts": {
+    "20": 1154460.0
+   },
+   "page": 116
+  },
+  {
+   "code": "5102001",
+   "programme": "510",
+   "subprogramme": "51020",
+   "subprogramme_name": "Regulação e Controlo de Qualidade",
+   "name": "Regulação e Controlo de Qualidade",
+   "div": [
+    "0140401"
+   ],
+   "indicator": "1) Analisadas a execução financeira do Orçamento assim como inspecionadas as actividades correntes do MNEC; 2) Apresentada Relatorios para consideracao superior; 3) Registadas o nível de risco (Baixo, Médio, Alto) na Sede e nos Serviços Periféricos Externos;",
+   "baseline": "1) Inspeção e auditoria regular na prevenção de ações irregulares; 2) Encaminhamento e acompanhamento de processos disciplinares; 3) Realização de auditorias administrativas financeiras na Sede e nos SPE e propostas para devidas aplicação de sanções",
+   "target": "Acompanhamento e monitorizacao das atividades em conformidade com as metas estabelecidas no PAA e Plano de Orcamento; Cumprimento dos procedimentos legais em vigor",
+   "amounts": {
+    "20": 77694.0
+   },
+   "page": 117
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "400.0.0",
+   "statement": "Os interesses nacionais da RDTL são defendidos e promovidos no exterior, bem como fortalecidas as relações diplomáticas e recíprocas.",
+   "indicator": "1) Timor-Leste participa em assuntos internacionais (ONU, OMS, etc.) e Embaixadas representam o país no exterior 2) Aumento de Programas de cooperação e fortalecimento de relações diplomáticas; 3) Contribuição ativa para o desenvolvimento nacional e paz e estabilidade na região e no mundo",
+   "baseline": "Implementação do plano de politica Externa em conformidade com o PED 2011-2030",
+   "target": "1) Assegurar a visibiladade de Timor-Leste em assuntos internacionais (ONU, OMS, etc.) 2) Expandir programas de cooperação e fortalecimento de relações diplomáticas para o beneficio de Timor-Leste 3) Contribuir para o desenvolvimento nacional e paz e estabilidade na região e no mundo",
+   "page": 110
+  },
+  {
+   "kind": "output",
+   "code": "40001.0.0",
+   "statement": "Os interesses nacionais de Timor-Leste são protegidos e promovidos no estrangeiro",
+   "indicator": "1) Execução de atividades em conformidade com as políticas definidas a nível Bilateral, Regional, Multilateral e Protocolares 2) Protecao e assistência às necessidades imprevistas e urgentes dos cidadãos nacionais no exterior; 3) Iniciativas desenvolvidas pelas representações diplomáticas e consulares para promoção ou defesa dos interesses nacionais",
+   "baseline": "Uma politica externa mais abrangente e continuo reforço de representação de Timor-Leste a nível bilateral, multilateral, regional e internacional",
+   "target": "1) Assegurar a implementação da política definidas a nível Bilateral, Regional, Multilateral e Protocolares 2) Assegurar a protecao e assistência às necessidades imprevistas e urgentes dos cidadãos nacionais no exterior; 3) Representações diplomáticas e consulares mais ativas na promoção e defesa dos interesses nacionais",
+   "page": 110
+  },
+  {
+   "kind": "output",
+   "code": "40004.0.0",
+   "statement": "A cooperação bilateral é ampliada e fortalecida",
+   "indicator": "1) Prestadas assistencia Protocolar a altos dignatarios do Estado e Acompanhamento nas deslocacoes oficiais e de trabalho; 2) Observadas e garantidas devidas honras de Estado e adequada assistência protocolar de acordo com a Precedências protocolar. 3) Assegurada a assistencia consular aos cidadaos timorenses no estrangeiro e disponibilizada assistencia humanitaria a comunidade timorense na diaspora, em situações especificas;",
+   "baseline": "Aplicação por precedencia e praticas diplomaticas comuns.",
+   "target": "1) Garantia de coordenacao e sucesso das cerimonias oficiais; 2) Garantia de assistencia protocolar de acordo com a Convencao de Viena",
+   "page": 112
+  },
+  {
+   "kind": "output",
+   "code": "40007.0.0",
+   "statement": "Cooperação da ASEAN em segurança económica, sociocultural e política e fortalecida",
+   "indicator": "% do plano de adesão à ASEAN implementado",
+   "baseline": "Timor Lestes como membro observador da ASEAN",
+   "target": "Adesao de Timor-Leste como membro de pleno Direito",
+   "page": 112
+  },
+  {
+   "kind": "output",
+   "code": "40011.0.0",
+   "statement": "tbd",
+   "indicator": "% da tarefa administrativa relacionada com a política externa executada.",
+   "baseline": "Servicos Perifericos Externos dotados de meios administrativos-financeiros, diplomatas e tecnicos na persecucao das atividades inerentes as suas funções",
+   "target": "Contribuir para o melhoramento e estabilidade das atividades de politica externa",
+   "page": 113
+  },
+  {
+   "kind": "output",
+   "code": "40012.0.0",
+   "statement": "A cooperação bilateral é amplificada e fortalecida",
+   "indicator": "Nú. de Acordos Políticos Diplomáticos e de Cooperação para o Desenvolvimento e Promoção da Língua Portuguesa implementado de forma eficaz e em benefício de todos os cidadãos Timorenses.",
+   "baseline": "",
+   "target": "",
+   "page": 113
+  },
+  {
+   "kind": "output",
+   "code": "40014.0.0",
+   "statement": "A cooperação bilateral é amplificada e fortalecida",
+   "indicator": "Nú. de Acordos Políticos Diplomáticos e de Cooperação para o Desenvolvimento e Promoção da Língua Portuguesa implementado de forma eficaz e em benefício de todos os cidadãos Timorenses.",
+   "baseline": "Cooperacoes bilaterais estabelecidas e ampliadas",
+   "target": "Reforcadas e expandidas as relacoes bilaterais com os paises vzinhos e outros parceiros bilaterais.",
+   "page": 114
+  },
+  {
+   "kind": "output",
+   "code": "40015.0.0",
+   "statement": "A cooperação bilateral é amplificada e fortalecida",
+   "indicator": "Nú. de Acordos Políticos Diplomáticos e de Cooperação para o Desenvolvimento e Promoção da",
+   "baseline": "Cooperacoes bilaterais estabelecidas e ampliadas",
+   "target": "Reforcadas e expandidas as relacoes bilaterais com os paises vzinhos e outros parceiros bilaterais.",
+   "page": 114
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados",
+   "baseline": "Melhoramento da administracao publica",
+   "target": "Uma administracao Publica mais eficaz e eficiente",
+   "page": 115
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 115
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Desenvolvimento Institucional",
+   "baseline": "Dar a continuidade ao processo",
+   "target": "",
+   "page": 115
+  },
+  {
+   "kind": "output",
+   "code": "51020.0.0",
+   "statement": "Program implementations are traceable",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 116
+  }
+ ]
+}

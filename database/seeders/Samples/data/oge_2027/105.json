@@ -1,0 +1,1059 @@
+{
+ "year": 2027,
+ "code": "105",
+ "name": "Universidade Nacional de Timor-Leste",
+ "abbr": "UNTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   972,
+   988
+  ]
+ },
+ "units": [
+  {
+   "code": "UNTL",
+   "div": "1050101",
+   "name": "Universidade Nacional de Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "524": "Ensino superior",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "1. Elaborar planos de médio e longo prazo 2. Fortalecer os acordos de cooperação nacionais e internacionais 3. Serviços de Gestão Institucional regularizados",
+   "baseline": "Plano Estratégico da UNTL 2011-2030, Plano Operacionais Institucionais, Plano de Ação Anual, Plano de Estabelecimento do Memorando de Entendimento com instituições internas e externas",
+   "target": "Para garantir o qualidade de planeamento alinha com o PED, ODS, Plano Operacional da UNTL e Plano de Cooperação para atingir objetivo principal na futuru Univercidade",
+   "amounts": {
+    "20": 324455.0
+   },
+   "page": 972
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Melhoramento o sistema de controlo de qualidade da universidade",
+   "baseline": "Atividades de inspeção, supervisão e fiscalisação para todos actividades (três pilares universidade, serviços pedagogical, serviços de administração finanças e serviços físicos implementados) com base no plano",
+   "target": "Para garantir a qualidade da implementação com base nas recomendações dos auditores internas universidade",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 972
+  },
+  {
+   "code": "5100121",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Avaliação e acreditação",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estrutura organizacional, Capacidade docente,Infraestrutura e recursos,Sistema de gestão e transparência, Acreditação institucional e programática",
+   "baseline": "1. Servicos do estagio pedagogico do docentes e funcionarios avaliado e implementado, 2. Serviços de acreditação e programáticos melhorado e Implementado do ensino superior são processos institucionais e regulatórios essenciais para certificar a qualidade dos cursos e das universidades. O processo garante o reconhecimento oficial de diplomas, avaliando infraestrutura, corpo docente e currículo, assegurando um",
+   "target": "Garantir e promover a qualidade, a transparência e a melhoria contínua das instituições de ensino. Ela assegura que os cursos atendam a padrões acadêmicos rigorosos, conferindo credibilidade aos diplomas e protegendo os interesses dos estudantes e da sociedade de acordo com os padrões de existência institucional para atingir o objetivo de acreditação.",
+   "amounts": {
+    "20": 4740.0
+   },
+   "page": 972
+  },
+  {
+   "code": "5100194",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Avaliação e Certificação de Docentes e Acumulação Crédito,",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Serviços de promoção de grau dos docentes indicados para promoção de acordo com os requisitos adotados",
+   "baseline": "O número de Docentes que promoção Graus, Certificação e Créditos Acumulados participaram no processo de aPara os Docentes que recebem graus de promoção e certificação, de forma a acumular créditos para participar no processo de avaliação, de acordo com a base legal publicada no Diário da República.",
+   "target": "O número de Docentes qualificados em diversas áreas profissionais será pro Avalia o número de Docentes qualificados em diversas áreas profissionais será promovido na promoção de graus aplicados para atingir o número de alvoas práticas didáticas, o profissionalismo e a eficácia pedagógica em sala de aula. é garantir e elevar a qualidade do ensino central é promover a progressão e promoção na carreira, além da diferenciação remuneratória, baseadas no mérito, na formação contínua e no desempenho do profissional e qualificações académicas.",
+   "amounts": {
+    "20": 2220.0
+   },
+   "page": 973
+  },
+  {
+   "code": "510012F",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Formação dos docentes das unidades curriculares de conteúdo institucional",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Formação dos docentes atraves da novos curriculares de conteúdo institucional O mundo e as tecnologias estão em constante mudança. A formação contínua permite que o professor recicle seus conhecimentos e utilize ferramentas modernas para tornar o aprendizado menos monótono Melhoria do Ensino- Aprendizagem",
+   "baseline": "Formação dos docentes das unidades curriculares de conteúdo institucional em especialmente os que lecciona a lingua portuguesa",
+   "target": "Atualização de conteúdo silabos da unidade curricular língua portuguesa, considerada a base para a formação de todos os acadêmicos, independentemente de sua especialidade. Essencialmente, esta disciplina é muito trabalhada, pois desenvolve habilidades essenciais, como a escrita e leitura, o que contribui para o seu desempenho profissional, são essenciais para o desenvolvimento pessoal e profissional, servindo como",
+   "amounts": {
+    "20": 25500.0
+   },
+   "page": 973
+  },
+  {
+   "code": "5100200",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gerenciar projetos de construção de infra-estrutura",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Retenção de 10%, Reapropriação projeto em curso, Manutenção de edifícios, Pavimentação, Construção de muro proteção, jardim",
+   "baseline": "Reapropriação de projetos em curso, edifícios INL, laboratórios centrais e a novos planos de construção para pavimentação, moru de proteção FECT, FAGRI e edifícios da reitoria.",
+   "target": "A gestão de projetos de construção de infraestrutura é um processo que envolve as entidades afiliadas da instituição para garantir os projetos, supervisionando, controlando, monitorando e avaliando todos os processos de acordo com o plano de oé essencial para garantir segurança estrutural, eficiência energética e adequação às normas modernas, Um novo edifício administrativo centraliza processos e desburocratiza a universidade, impulsionando a eficiência. Isso otimiza o atendimento aos estudantes, eleva a qualidade da gestão de recursos e cria um ambiente de trabalho mais produtivo para os servidores, modernizando a infraestrutura institucional para toda a comunidade académica",
+   "amounts": {
+    "20": 1000.0,
+    "50": 239111.0
+   },
+   "page": 974
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Gestão Financeira Logística",
+   "baseline": "Manutenção; Combustível, Fotocópias, Impressão e Encadernação de Livros, Serviço de Segurança, Serviço de Limpeza, Materiaais Operacional e de Escritório, Pequenas Obras como despesas obrigatorios da universidades",
+   "target": "é responsável por planejar, controlar e tomar decisões relacionadas ao uso do dinheiro dentro de uma instituição que funcionam como os pilares interligados de qualquer instituição. A área financeira cuida dos recursos e orçamentos; a administração",
+   "amounts": {
+    "20": 1024314.0
+   },
+   "page": 974
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Gestão, patrimonio e bens conservação, controle e utilização dos ativos pelo administracao central da Universidade",
+   "baseline": "Inventarizasaun de dadus patrimonio (bens e moveis da universidade) A gestão de patrimônio é o gerenciamento estratégico de bens—físicos, financeiros ou intangíveis—com o objetivo de proteger, organizar, valorizar e controlar os recursos.",
+   "target": "Registo de dados para garantir: • Transparência de gestão • Responsabilidade dados • Eficiência da gestão • Planeamento orçamentário • Segurança dos dados ativos, Ela é vital para a sustentabilidade financeira a longo prazo, garantindo segurança contra riscos e um crescimento sustentável. garante a eficiência operacional, a sustentabilidade financeira e o controle adequado dos ativos físicos e intangíveis da Universidade. Esse processo é essencial para prevenir desperdícios, minimizar custos, evitar perdas e orientar tomadas de decisão estratégicas.",
+   "amounts": {
+    "20": 105580.0
+   },
+   "page": 975
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "1. Plano orçamento alocado; 2. Monitoriza execução do orçamento alocado para que os devem medir o nível de execução dos planos, a qualidade do acompanhamento das atividades e a produção de informações estatísticas para apoiar a tomada de decisões pelos Unidades da Universidade",
+   "baseline": "Planeamento, Monitorização e Estatísticas corresponde à situação inicial dos indicadores antes da implementação do plano ou das ações de melhoria atraves da relatorios trimestrais e anuais cada ano e como alcancar os recursos e objetivos",
+   "target": "Garantir que a instituicao planeie melhor, acompanhe a execução das suas atividades, utilize dados confiáveis para tomar decisões e melhore continuamente o seu desempenho e os resultados institucionais, e tambem orçamento alocado implementa e produz relatórios trimestrais e anuais, além de garantir uma monitorização eficaz e transparência para assegurar",
+   "amounts": {
+    "20": 32200.0
+   },
+   "page": 975
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Servico de Gestao de RH para medir a eficiência da administração de pessoal, o desenvolvimento dos colaboradores pelos Docentes, funcionarios permanentes,contratados para o bom desempenho da universidade",
+   "baseline": "Gestão de Recursos Humanos representa a situação atual da instituição antes da implementação de novas ações ou do plano de melhoria como ser os funsionarios atualmente de 387 Pessoas Funcionarios Permanente, 420 Pessoas Docentes Permanentes, 106 Funcionários contratados, 159 Docentes contratados. (Vagas Avaliações de desempenho Cumprimento do plano de formação)",
+   "target": "Servico de Gestao de RH para medir a eficiência da administração de pessoal melhoram o climada Universidade e o bem-estar, que tem o papel estratégico no planejamento e implementação destas novas práticas humanizadas de gestão de pessoas, sendo capaz de fomentar o processo que tem um pilar fundamental para o sucesso que os funsionarios numeru atual Permanentes 380 Pessoa, Numeru atual Docentes Permanentes 418 Pessoas,numeru atual Funcionários contratados 120, numeru atual 148 Docentes contratados para ter o processo de avaliacao desempenho.",
+   "amounts": {
+    "10": 3760975.0,
+    "20": 4000.0
+   },
+   "page": 976
+  },
+  {
+   "code": "5100208",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Comunicações e divulgação corporativa",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Formação e Divulgação de acordo com o nosso Regulamento Interno da UNTL, A maioria dos públicos-alvo são alunos, professores, ex-alunos e empregadores que utilizam os nossos produtos (ex-alunos), por exemplo: escolas, fábricas etc. (Ensino Secundaria Geral e Vocasional 12 Municipios)",
+   "baseline": "comunicação e divulgação corporativa é o planejamento estratégico da organização, que define os objetivos, o público- alvo, as mensagens, os canais de comunicação e a identidade institucional para as 125 escolas de Ensino Secundário Geral e Vocasional que indicar para implementação de atividades de disseminação sobre o acesso à UNTL;",
+   "target": "O objetivo fundamental da comunicação corporativa e da divulgação é \"Informar para gerar influência positiva\", de forma a construir relações sólidas, baseadas na confiança, com todos os públicos. O objetivo é formar os docentes dos departamentos e funcionários da DNAA-GQI ou IQA sobre como identificar a presença de Relatórios SAR e também divulgar informação",
+   "amounts": {
+    "20": 22140.0
+   },
+   "page": 976
+  },
+  {
+   "code": "510020A",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gerir e registar alunos",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "A gestão e o registo de estudantes universitários envolvem o acompanhamento de toda a vida académica. Este processo é geralmente gerido através de um Sistema Integrado de Gestão Académica para os novos candidatos estudantes, estudantes ativos, estudantes não ativos",
+   "baseline": "É nesse momento que são recolhidos e registados os dados do estudante, permitindo à instituição gerir a sua vida académica, incluindo: os número de novos estudantes actual 4,068 pessoas e total de alunos ativos atualmente matricula 20,839 pessoas. Disseminação é o processo de divulgar, difundir ou distribuir informações, conhecimentos ou resultados a um público-alvo, de forma que essas informações cheguem às pessoas de maneira clara e eficaz.",
+   "target": "Garantir o registo correto e a gestão eficiente das informações académicas e administrativas dos estudantes, desde a admissão até à conclusão do curso, assegurando um acompanhamento adequado da sua trajetória universitária. Registar os dados dos estudantes de forma correta, Gerir matrículas e inscrições,Manter os registos académicos atualizados, Apoiar a emissão de documentos académicos (históricos, declarações, certificados e diplomas). os números alvo estudantes para universidade 43,985 pessoas (novos estudantes 4000 e numeru total estudantes registos e não registos 39,985 pessoas a aparte disso tornar se a Disseminação para divulgar, difundir ou distribuir informações, conhecimentos ou resultados a um público-alvo, de forma que essas informações cheguem às pessoas de maneira clara e eficaz para os estudantes, docentes e funcionários, divulgar regulamentos, partilhae e Promover a transparência e a comunicação da instituição ou da Universidade UNTL.",
+   "amounts": {
+    "20": 22000.0
+   },
+   "page": 977
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O aprovisionamento e a gestão de contratos englobam o ciclo completo de aquisições de bens e serviços do Plano de aquisições; Pedido de cotações (RFQ e NCB), Construção da competitividade internacional (ICB)",
+   "baseline": "aprovisionamento e da gestão de contratos é a identificação da necessidade de adquirir bens, serviços ou obras pa o Plano de aquisições implementado",
+   "target": "Garantir a aquisição de bens, serviços e obras de forma eficiente, transparente, económica e em conformidade com as normas, bem como assegurar que os contratos sejam executados corretamente até à sua conclusão e o Processo de preparação de concurso e abertura de concurso ao público e celebrar contratos de acordo com as regras e procedimentos e plano de aprovisionamento Assegurar o fornecimento de bens e serviços necessários,Obter a melhor relação entre qualidade, custo e prazo, Cumprir a legislação e os procedimentos aplicáveis.",
+   "amounts": {
+    "20": 2140.0
+   },
+   "page": 978
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Sistema de Administração Académica e Financeira instalado e operacionalizado;",
+   "baseline": "Estabelece sistema de webside universidade, sistema de registo estudantes, sistema de aceso biblioteca, sistema de registo patrimonio",
+   "target": "Garantir a administração do sistema de base de dados, disponibilizar acesso à internet e cartões de recarga, gerir e manter os server.",
+   "amounts": {
+    "20": 306960.0
+   },
+   "page": 978
+  },
+  {
+   "code": "510022Y",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de Receitas da Universidade",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Coleção de receitas universitárias",
+   "baseline": "Receitas próprias universidade; propinas estudantes, facturas de documentos, serviços gráficos e gestão Polo.",
+   "target": "Desenvolver fluxos de receitas em todas as áreas para contribuir e aumentar as receitas da universidade",
+   "amounts": {
+    "20": 2100.0
+   },
+   "page": 978
+  },
+  {
+   "code": "51002EC",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Additional funding for ongoing UNTL construction projects",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 160000.0
+   },
+   "page": 978
+  },
+  {
+   "code": "5240902",
+   "programme": "524",
+   "subprogramme": "52409",
+   "subprogramme_name": "Pós-graduação em educação e pesquisa",
+   "name": "Realizar investigação em áreas prioritárias",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Atividade de investigação em áreas prioritárias",
+   "baseline": "Número de pesquisas com títulos recomendados de acordo com o cronograma de pesquisa",
+   "target": "O título da pesquisa apresentada com base nos requisitos estabelecidos",
+   "amounts": {
+    "20": 1960.0
+   },
+   "page": 979
+  },
+  {
+   "code": "5240903",
+   "programme": "524",
+   "subprogramme": "52409",
+   "subprogramme_name": "Pós-graduação em educação e pesquisa",
+   "name": "Prática do Trabalho de PPGP",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Internacionalização da Pesquisa da UNTL",
+   "baseline": "Realização de conferência nacional e internacional com topico identificado em 2026 e Resultado publicação 2026",
+   "target": "Número de conferência recomendado pela PPGP e Publicação",
+   "amounts": {
+    "20": 3500.0
+   },
+   "page": 979
+  },
+  {
+   "code": "5241001",
+   "programme": "524",
+   "subprogramme": "52410",
+   "subprogramme_name": "Instituto Nacional de Linguística",
+   "name": "Realizar investigação em áreas prioritárias",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Atividade de pesquisa sobre ortografia padronizada da língua Tétum oficial e Publicação dos resultados de pesquisas",
+   "baseline": "1 Títulos da pesquisa sobre Ortografia de Padronizada da Lingua Official Tetun e Publicação",
+   "target": "2 Titulos recomendado sobre Ortografia de Padronizada da Lingua Official Tetun",
+   "amounts": {
+    "20": 4500.0
+   },
+   "page": 979
+  },
+  {
+   "code": "5241101",
+   "programme": "524",
+   "subprogramme": "52411",
+   "subprogramme_name": "Centro Nacional de Investigação Científica",
+   "name": "Realizar investigação em áreas prioritárias",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Pesquisa científica sobre ciência com base na natureza do título recomendado pelo cliente de pesquisa",
+   "baseline": "Número de pesquisa e publicação de artigos cientifico",
+   "target": "Número targeto de pesquisas e publicações de artigos científicos",
+   "amounts": {
+    "20": 125920.0
+   },
+   "page": 980
+  },
+  {
+   "code": "5241201",
+   "programme": "524",
+   "subprogramme": "52412",
+   "subprogramme_name": "Assistência Estudantes",
+   "name": "Atividades extracurriculares",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Atividades extracurriculares implementados",
+   "baseline": "Desportos academicos e intercambio nacionais e internacionais",
+   "target": "Competição de modalidade desportiva, estudante amante da natureza, debate público, exposição etc.",
+   "amounts": {
+    "20": 5240.0
+   },
+   "page": 980
+  },
+  {
+   "code": "5241202",
+   "programme": "524",
+   "subprogramme": "52412",
+   "subprogramme_name": "Assistência Estudantes",
+   "name": "Aconselhamento e promoção do bem-estar",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Atividades de Aconselhamento e promoção do bem-estar",
+   "baseline": "Atividades a orientação e acompanhamento para os Estudantes em educaςão inclusiva (Retiro e refleção, Peregrinação da CIVITAS ACADEMICA na lugar de historico, campus menistry)",
+   "target": "Promover ações de caridade para estudantes e como ter um sentimento de pertencimento à comunidade carente, Civitas Academica e Sociedade",
+   "amounts": {
+    "20": 1440.0
+   },
+   "page": 980
+  },
+  {
+   "code": "5241301",
+   "programme": "524",
+   "subprogramme": "52413",
+   "subprogramme_name": "Gestão de Bibliotecas",
+   "name": "Gestão de biblioteca",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes acesso ao biblioteca virtual e digital",
+   "baseline": "Livros existe na bibliotecas, sistema de atendimento manual e digital",
+   "target": "Número de estudantes ativos 20,839",
+   "amounts": {
+    "20": 1260.0
+   },
+   "page": 980
+  },
+  {
+   "code": "5241401",
+   "programme": "524",
+   "subprogramme": "52414",
+   "subprogramme_name": "Centro de Conservação e Desenvolvimento de Artes e Cultura",
+   "name": "Realizar eventos, seminários e workshops nacionais e internacionais",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Desenvolver e expandir o programa de artes e cultura de acordo com o plano de implementação por meio de eventos e continuar a abordar para promover os valores das artes e da cultura, criar seminarios e workshop sobre eventuais e investigação científica",
+   "baseline": "Promover os valores significativos das artes e da cultura na universidade entre os estudantes e estender e expandir para o ensino secundário identificado para a implementação e condução de pesquisas sobre artes e cultura",
+   "target": "1. Realizar eventos de arte e cultura sobre música cultural e moderna, 2. Visitas a escolas de ensino médio e escolas técnicas profissionais que tenham sido identificadas para abordar e ampliar informações sobre arte e cultura, 3. Realizar eventus",
+   "amounts": {
+    "20": 4200.0
+   },
+   "page": 981
+  },
+  {
+   "code": "5241508",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes participam em atividades de estágio e prática pedagogico",
+   "baseline": "500 pessoas número estudantes da FEAH efectivamente para atividades de estágio pedagogico e prática em 13 Municípios",
+   "target": "600 pessoas número de estudantes",
+   "amounts": {
+    "20": 39900.0
+   },
+   "page": 981
+  },
+  {
+   "code": "5241509",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Extracurriculares",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Atividades extracurriculares planeadas e implementadas",
+   "baseline": "Implementar a semana da Ciencias, Artes, Culturas, Desporto, Debate Científico,etc.)",
+   "target": "Atividades desportivas e culturais (Badminton, Tênis de Mesa, Xadrez, Futsal, Voleibol, Ginástica e apresentações de dança cultural, música, teatro e debate público)",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 981
+  },
+  {
+   "code": "5241510",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Desenvolvimento de Ensino e Aprendizagem de Artes e Humanidades",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Desenvolver habilidades de análise, crítica, comunicação, criatividade e pensamento complexo, preparando os estudantes para a vida social e profissional.",
+   "baseline": "Número de docentes ativos 106 pessoas para responder ao ensino e à aprendizagem com estudantes ativos 5062 pessoas (M:1558/F:3594)",
+   "target": "Número de graduação para obtenção de diploma universitário",
+   "amounts": {
+    "10": 2044946.0
+   },
+   "page": 981
+  },
+  {
+   "code": "5241602",
+   "programme": "524",
+   "subprogramme": "52416",
+   "subprogramme_name": "Faculdade de Economia e Gestão",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudante da Faculdade de Economia e Gestão",
+   "baseline": "200 estudantes da FEG atualmente prepare-se para participar do ESS no município",
+   "target": "247 alunos finalistas que estão se preparando para participar deste evento.",
+   "amounts": {
+    "20": 29000.0
+   },
+   "page": 982
+  },
+  {
+   "code": "5241603",
+   "programme": "524",
+   "subprogramme": "52416",
+   "subprogramme_name": "Faculdade de Economia e Gestão",
+   "name": "Desenvolvimento Ensinu aprendizasen área Economia",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O indicador para o salário atribuído à Faculdade de Economia e Gestão é; Professor Permanente e Professor Contratado",
+   "baseline": "48 Todos os professores permanentes e contratados da FEG lecionam na FEG.",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 581522.0
+   },
+   "page": 982
+  },
+  {
+   "code": "5241701",
+   "programme": "524",
+   "subprogramme": "52417",
+   "subprogramme_name": "Faculdade de Ciencias Sociais",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes participam em atividades de estágio e serviço Soçial e pratica no campo",
+   "baseline": "150 estudantes finalista",
+   "target": "200 estudantes finalista",
+   "amounts": {
+    "20": 30820.0
+   },
+   "page": 982
+  },
+  {
+   "code": "5241703",
+   "programme": "524",
+   "subprogramme": "52417",
+   "subprogramme_name": "Faculdade de Ciencias Sociais",
+   "name": "Desenvolvimento Ensinu aprendizasen de Ciencias Sociais",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O desenvolvimento do ensino e aprendizagem nas Ciências Sociais envolve a promoção de uma aprendizagem mais ativa, participativa e contextualizada, com foco na construção de conhecimentos e habilidades que permitam aos estudantes analisar e interagir com o mundo social de forma crítica e reflexiva.",
+   "baseline": "64 docentes ativos para responder ao ensino e à aprendizagem da FCSP",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 1322192.0
+   },
+   "page": 982
+  },
+  {
+   "code": "5241802",
+   "programme": "524",
+   "subprogramme": "52418",
+   "subprogramme_name": "Faculdade de Engenharia Ciencias e Tecnologia",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Total estudante finalista registado no sistema informacao academica (SIA) no ano de 2026 composto por 545, de departamento mecanico em total 100 estudantes, de departamento Civil total 110 estudantes, de departamento Electro Electronic total 100, de departamento Informatico total 130 e departamento Geologia Petroleum em total 105 estudantes finalista.",
+   "baseline": "Número estudante finalista registado no SIA no ano de 2026 composto por 545",
+   "target": "Número estudante finalista registado no SIA no ano de 2027 composto por 500",
+   "amounts": {
+    "20": 35000.0
+   },
+   "page": 983
+  },
+  {
+   "code": "5241803",
+   "programme": "524",
+   "subprogramme": "52418",
+   "subprogramme_name": "Faculdade de Engenharia Ciencias e Tecnologia",
+   "name": "Desenvolvimento Ensino Aprendizagem de Engenharia Ciência e Tecnologia",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "os salarios alocados a Faculdades FECT (Docente perm. Contratados e funcionario administracao). O desenvolvimento do ensino e aprendizagem em ciência e tecnologia envolve a integração de tecnologias digitais e metodologias de ensino inovadoras para criar um ambiente de aprendizagem mais interativo e dinâmico.",
+   "baseline": "72 docentes ativos para responder ao ensino e à aprendizagem da FECT",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 1377948.0
+   },
+   "page": 983
+  },
+  {
+   "code": "5241902",
+   "programme": "524",
+   "subprogramme": "52419",
+   "subprogramme_name": "Faculdade de Medicine e Ciencias da Saude",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Número estudantes participa de estágios comunitários, práticas clínicas, práticas de campo e",
+   "baseline": "800 estudantes ativos",
+   "target": "1000 estudantes ativos",
+   "amounts": {
+    "20": 35000.0
+   },
+   "page": 983
+  },
+  {
+   "code": "5241903",
+   "programme": "524",
+   "subprogramme": "52419",
+   "subprogramme_name": "Faculdade de Medicine e Ciencias da Saude",
+   "name": "Desenvolvimento Ensino Aprendizagem Medicina e Ciências da Saúde",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O desenvolvimento do ensino- aprendizagem em medicina e ciências da saúde está a evoluir, com foco na aprendizagem ativa, interdisciplinaridade e integração ensino-serviço. Metodologias como a educação baseada em problemas e a prática supervisionada em ambientes reais de atendimento são cada vez mais utilizadas.",
+   "baseline": "Número de docentes ativos 56 pessoas para responder ao ensino e à aprendizagem com estudantes ativos 4664 pessoas (M:1230/F:3434)",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 867203.0
+   },
+   "page": 984
+  },
+  {
+   "code": "5242001",
+   "programme": "524",
+   "subprogramme": "52420",
+   "subprogramme_name": "Faculdade de Agricultura",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "300 alunos finalistas compostos por 150 homens e 150 mulheres do Departamento de Agronomia, Economia Agro- Social e Agricultura, DPSM, Solo, Silvicultura podem seguir o estágio para completar",
+   "baseline": "1 Título de pesquisa recomendado pelo Faculdade",
+   "target": "2 Título de pesquisa recomendado pelo Faculdade",
+   "amounts": {
+    "20": 34162.0
+   },
+   "page": 984
+  },
+  {
+   "code": "5242003",
+   "programme": "524",
+   "subprogramme": "52420",
+   "subprogramme_name": "Faculdade de Agricultura",
+   "name": "Desenvolvimento Ensinu aprendizajen de Agricultura",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O desenvolvimento do ensino e da aprendizagem na agricultura, em nível formal ou informal, é crucial para a formação de profissionais conscientes da importância da produção de alimentos, da sustentabilidade e do futuro do planeta. É um processo que envolve a transmissão de conhecimento, o desenvolvimento de habilidades práticas, a promoção de valor e",
+   "baseline": "Número de docentes ativos 56 pessoas para responder ao ensino e à aprendizagem com estudantes ativos 2263 pessoas (M:1221/F:1022)",
+   "target": "Número de graduação para obtenção de diploma universitário",
+   "amounts": {
+    "10": 1184048.0
+   },
+   "page": 984
+  },
+  {
+   "code": "5242102",
+   "programme": "524",
+   "subprogramme": "52421",
+   "subprogramme_name": "Faculdade de Direto",
+   "name": "Desenvolvimento Ensinu aprendizasen de Direto",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O desenvolvimento do ensino e aprendizagem de Direito envolve diversos aspectos, desde a metodologia utilizada em sala de aula até a forma como os alunos interagem com a matéria. A busca por uma educação jurídica mais eficaz e relevante passa por um entendimento das necessidades dos alunos, a utilização de ferramentas pedagógicas inovadoras e a promoção de um ambiente de aprendizagem que estimule o pensamento crítico e a reflexão",
+   "baseline": "Número de docentes ativos 604 pessoas para responder ao ensino e à aprendizagem com estudantes ativos 2263 pessoas (M:2981/F:398)",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 153788.0
+   },
+   "page": 985
+  },
+  {
+   "code": "5242103",
+   "programme": "524",
+   "subprogramme": "52421",
+   "subprogramme_name": "Faculdade de Direto",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes participam em atividades de estágio e prática. Oferece aos estudantes a oportunidade de aplicar o conhecimento teórico em situações práticas, como a",
+   "baseline": "Existência de 100 estudantes FD curricularmente preparados para realizar atividades praticas em tribunais da 3 Municípios",
+   "target": "150 estudantes ativos",
+   "amounts": {
+    "20": 5680.0
+   },
+   "page": 985
+  },
+  {
+   "code": "5242202",
+   "programme": "524",
+   "subprogramme": "52422",
+   "subprogramme_name": "Faculdade de Filosofia",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes participam em atividades de estágio e serviço Soçial e prática no campo",
+   "baseline": "20 estudantes da FFCH preparados curricularmente para participar na ESS",
+   "target": "40 estudantes ativos",
+   "amounts": {
+    "20": 7780.0
+   },
+   "page": 986
+  },
+  {
+   "code": "5242203",
+   "programme": "524",
+   "subprogramme": "52422",
+   "subprogramme_name": "Faculdade de Filosofia",
+   "name": "Desenvolvimento Ensinu aprendizasen de Filosofia",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "O ensino e aprendizagem em Filosofia e Ciências Humanas visa desenvolver o pensamento crítico, a reflexão e a compreensão da realidade, promovendo a autonomia intelectual e a capacidade de analisar e questionar o mundo. A Filosofia, com seus fundamentos teóricos, auxilia a compreensão da aprendizagem, enquanto as Ciências Humanas abordam a prática e o desenvolvimento humano, enriquecendo o processo de ensino-aprendizagem.",
+   "baseline": "Número de docentes ativos 7 pessoas para responder ao ensino e à aprendizagem com estudantes ativos 770 pessoas (M:370/F:400)",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 134757.0
+   },
+   "page": 986
+  },
+  {
+   "code": "5242300",
+   "programme": "524",
+   "subprogramme": "52423",
+   "subprogramme_name": "Faculdade de Ciências de Exatas",
+   "name": "Desenvolvimento do Ensino e Aprendizagem das Ciências Exatas",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "número de professores, permanentes, convidados e tempo parcial na faculdade de ciências exatas e naturais",
+   "baseline": "11 Número docente ativos na FCEN",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 63000.0
+   },
+   "page": 986
+  },
+  {
+   "code": "5242301",
+   "programme": "524",
+   "subprogramme": "52423",
+   "subprogramme_name": "Faculdade de Ciências de Exatas",
+   "name": "Investigar áreas prioritárias",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Areas prioritárias de pesquisa para o país, incluindo quimica e",
+   "baseline": "2 título de pesquisa recomendado pelo Faculdade",
+   "target": "4 número da pesquisa próximo",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 986
+  },
+  {
+   "code": "5242302",
+   "programme": "524",
+   "subprogramme": "52423",
+   "subprogramme_name": "Faculdade de Ciências de Exatas",
+   "name": "Serviços de extensão",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes de Ciências Exatas participam de práticas pedagógicas em indústrias",
+   "baseline": "20 estudantes ativos",
+   "target": "40 estudantes ativos",
+   "amounts": {
+    "20": 6880.0
+   },
+   "page": 987
+  },
+  {
+   "code": "5242400",
+   "programme": "524",
+   "subprogramme": "52424",
+   "subprogramme_name": "Faculdade de Turismo Arte, Industria e Ciencia Cultura",
+   "name": "Desenvolvimento Ensinu aprendiz da Faculdade de Turismo, Artes, Indústrias, Indústrias, Criativas e Culturais",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Departamento Comercio e Turismo,Gestão de Arte e Producao coltural, numero de professores convidados e tempu parcial FTAIC",
+   "baseline": "15 docentes ativos da FTAICC",
+   "target": "Para garantir o funcionamento do ensino e da aprendizagem em todos os anos lectivo",
+   "amounts": {
+    "10": 227253.0
+   },
+   "page": 987
+  },
+  {
+   "code": "5242403",
+   "programme": "524",
+   "subprogramme": "52424",
+   "subprogramme_name": "Faculdade de Turismo Arte, Industria e Ciencia Cultura",
+   "name": "Serviços de extensão do FTAICC",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Estudantes participam em atividade de estágio e serviço social, estágio profisional e pratica do campo",
+   "baseline": "150 estudantes ativos",
+   "target": "200 estudantes ativos",
+   "amounts": {
+    "20": 6340.0
+   },
+   "page": 987
+  },
+  {
+   "code": "9802918",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Desenvolvimento de um módulo",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "Conteúdo de conferências, seminários e workshops",
+   "baseline": "Alunos, corpo docente e funcionários",
+   "target": "Número total de participação ativas",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 987
+  },
+  {
+   "code": "9802920",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Realizar investigação em áreas prioritárias",
+   "div": [
+    "1050101"
+   ],
+   "indicator": "1. Número da pesquisas relacionadas à Inclusão Social e",
+   "baseline": "2 Números da pesquisa sobre Violência Baseada em Gênero",
+   "target": "3 Números da pesquisa sobre Violência Baseada em Gênero",
+   "amounts": {
+    "20": 6200.0
+   },
+   "page": 987
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Estratégico Aprovado, incluindo plano de médio prazo",
+   "baseline": "75% aprovados e implementados",
+   "target": "100%",
+   "page": 972
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Elaborar relatórios de trimestrais de implementação do plano annual",
+   "baseline": "O quarto relatório produzido (Relatoiro trimestral e Anual)",
+   "target": "Quatro relatórios trimestrais, relatório annual, outro relatório de atividades da unidade, faculdade e direção",
+   "page": 972
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.2",
+   "statement": "Formação sobre as leis, regras e procedimentos para aprovisionamento de bens, obras e serviços de consultoria em vigor em Timor- Leste, na Concursos Competitivos Nacionais (NCB), para os departamentos de aprovisionamento das Linhas Ministeriais e autoridades municipais, são concluídas com resultados satisfatórios.",
+   "indicator": "O sistema da UNTL para melhorar e desenvolver a transparência nos serviços públicos começou a desenvolver-se melhor através da burocracia adoptada na governação",
+   "baseline": "Implementação varios sistema na universidade",
+   "target": "Implementação Sistema Freebalance (GRP), Sistema de Planejamento, Monitorização e Avaliação (DBFTL), Sistema Acadêmico e Sistema de Biblioteca",
+   "page": 973
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Implementação de serviços de desenvolvimento institucional alcançada",
+   "baseline": "Eleva a qualidade da implementação de serviços físicos e não físicos da instituição",
+   "target": "Recursos adequados para gerir serviços importantes porque os recursos também são um fator determinante para atingir os objetivos de realização",
+   "page": 974
+  },
+  {
+   "kind": "outcome",
+   "code": "524.0.0",
+   "statement": "Até 2028, o acesso, a qualidade e a relevância do ensino superior para o mercado de trabalho serão melhorados, com mais programas acreditados, parcerias público-privadas mais fortes e melhores resultados académicos para",
+   "indicator": "Instituições de Ensino Superior são credenciadas de acordo com os padrões legalmente definidos",
+   "baseline": "Como instituição pública que tem autonomia e está sujeita à supervisão e avaliação governamental",
+   "target": "O processo de acreditação de instituições públicas é uma garantia de que estas cumprem os padrões de qualidade e funcionamento definidos na legislação, para assegurar a qualidade única",
+   "page": 978
+  },
+  {
+   "kind": "output",
+   "code": "52409.0.0",
+   "statement": "Aumentar a quantidade de produção bibliográfica científica nacional e o nível de qualidade em publicações de investigação",
+   "indicator": "A pós-graduação e a pesquisa têm um papel fundamental na construção de conhecimento e na formação de profissionais de excelência. A pós- graduação, especialmente a stricto sensu (mestrado e doutorado), é o espaço ideal para o aprofundamento do conhecimento, a especialização em áreas específicas e a produção de novas informações, através da pesquisa científica.",
+   "baseline": "Formação de pesquisadores, Produção de conhecimento, Aprofundamento e especialização, Qualidade e qualificação da formação",
+   "target": "Estudos de Pós-Graduação e Pesquisa são uma parte essencial do desenvolvimento da ciência e da sociedade. A pesquisa é a força motriz da pós-graduação e a pós-graduação é o espaço ideal para realizar pesquisas e formar excelentes profissionais.",
+   "page": 979
+  },
+  {
+   "kind": "output",
+   "code": "52410.0.0",
+   "statement": "Melhoria das habilidades linguísticas",
+   "indicator": "Eventos serão implementados para contribuir para a melhoria da comunicação entre a comunidade universitária; e Número de alunos que completam cursos de línguas",
+   "baseline": "Eventos implementados para contribuir e para melhorar a comunicação dentro da comunidade universitária",
+   "target": "Alvos de implementação cursos de acordo com a força do financiamento",
+   "page": 979
+  },
+  {
+   "kind": "output",
+   "code": "52411.0.0",
+   "statement": "Recursos e materiais publicados são oferecidos ao público",
+   "indicator": "Implementação de pesquisa científica e aplicação de sistemas de pesquisa baseados em padrões e criação de sistemas de repositório de pesquisa online para fornecer aos acesso público",
+   "baseline": "Area definida de pesquisa que atende aos requisitos para produs a resultados de pesquisa",
+   "target": "Os resultados de pesquisas publicadas que têm impacto imediato na sociedade e fornecendo recursos que implicam na área definitiva",
+   "page": 980
+  },
+  {
+   "kind": "output",
+   "code": "52412.0.0",
+   "statement": "apoio físico, intelectual e psicológico aos alunos",
+   "indicator": "Apoio social integral à sociedade, comunidade académica e entidades públicas",
+   "baseline": "Desenvolver talentos e promover a criatividade dos alunos por meio de atividades extracurriculares e sociais e realizar ações cariedade e social em prol de comunidades carentes por meio de aconselhamento.",
+   "target": "Criação de eventos colaborativo desportos, artes e cultura, exposições e outros",
+   "page": 980
+  },
+  {
+   "kind": "output",
+   "code": "52413.0.0",
+   "statement": "Funcionamento da Biblioteca",
+   "indicator": "As bibliotecas universitárias fornecem acesso a uma vasta gama de materiais, incluindo livros, artigos científicos, periódicos, bases de dados e recursos eletrônicos, que são essenciais para o processo de ensino e pesquisa.",
+   "baseline": "Número de alunos visitando em qualquer momento, todos os dias, semanas e último mês",
+   "target": "Número alvo de estudantes ativos no próximo ano",
+   "page": 980
+  },
+  {
+   "kind": "output",
+   "code": "52414.0.0",
+   "statement": "O património cultural de Timor-Leste e o desenvolvimento das artes são encorajados e priorizados pela UNTL",
+   "indicator": "Produzir atividades artísticas e culturais na universidade por meio de eventos eventuais",
+   "baseline": "Várias atividades realizadas conforme o plano",
+   "target": "Incentivar a criatividade dos alunos para preservar os valores culturais e motivá-los no processo de estudos em nível universitário.",
+   "page": 981
+  },
+  {
+   "kind": "output",
+   "code": "52415.0.0",
+   "statement": "Produzir qualidade do profissional de artes e humanidades",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo de graduação",
+   "page": 981
+  },
+  {
+   "kind": "output",
+   "code": "52416.0.0",
+   "statement": "produzir qualidade econômica e gestão",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de Alvo",
+   "page": 981
+  },
+  {
+   "kind": "output",
+   "code": "52417.0.0",
+   "statement": "Produzir qualidade do profissional de ciências sociais",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 982
+  },
+  {
+   "kind": "output",
+   "code": "52418.0.0",
+   "statement": "Produzir qualidade de engenharia, ciência e tecnologia profissional",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 982
+  },
+  {
+   "kind": "output",
+   "code": "52419.0.0",
+   "statement": "Produzir qualidade de médicos, enfermeira, parteira profissional",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 983
+  },
+  {
+   "kind": "output",
+   "code": "52420.0.0",
+   "statement": "Produzir Qualidade do Profissional Agrícola",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 984
+  },
+  {
+   "kind": "output",
+   "code": "52421.0.0",
+   "statement": "Produzir qualidade do profissional legal",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 985
+  },
+  {
+   "kind": "output",
+   "code": "52422.0.0",
+   "statement": "Produzir Qualidade de Filosofia Profissional",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 986
+  },
+  {
+   "kind": "output",
+   "code": "52423.0.0",
+   "statement": "Produzir pesquisa de qualidade e profissional de serviço de extensão",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 986
+  },
+  {
+   "kind": "output",
+   "code": "52424.0.0",
+   "statement": "Produzir a qualidade Turismo Arte, Industria e Ciencia Cultura",
+   "indicator": "Estudantes a atingir níveis de qualificação",
+   "baseline": "Número Estudantes a atingir níveis de qualificação",
+   "target": "Número de alvo atingir níveis de qualificação proximo",
+   "page": 987
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "Homens e Mulheres têm igual acesso e oportunidade em termos de compartilhamento de poder, controle de recursos, tomada de decisões, status econômico social, status político e acesso à justiça e segurança",
+   "baseline": "Número de balansu de gênero",
+   "target": "Número envolvimento gênero no Programa",
+   "page": 987
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "Proporcionar o máximo envolvimento para a participação equilibrada de gênero no local de trabalho por meio da melhoria da prestação de serviços para promoção na carreira.",
+   "baseline": "Número balansu generu",
+   "target": "Os números balansu de gênero estão aumentando de acordo com o plano de envolvimento",
+   "page": 987
+  }
+ ]
+}

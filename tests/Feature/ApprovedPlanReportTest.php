@@ -14,6 +14,8 @@ use App\Services\ActivityVersions;
 use App\Services\ApprovedPlanReport;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Tests\TestCase;
 
 class ApprovedPlanReportTest extends TestCase
@@ -228,5 +230,52 @@ class ApprovedPlanReportTest extends TestCase
         $pdf = $this->get(route('reports.approved-plan.pdf', ['year' => 2027]));
         $pdf->assertOk();
         $this->assertStringStartsWith('%PDF', $pdf->getContent());
+    }
+
+    public function test_the_excel_download_has_the_same_figures_as_the_report(): void
+    {
+        $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 1000], [$this->capital, 4000]]);
+        $tricky = $this->activity(Activity::STATUS_APPROVED, [[$this->goods, 500]]);
+        $tricky->update(['description' => '=HYPERLINK("http://example.test","click")']);
+        $this->activity(Activity::STATUS_DRAFT, [[$this->goods, 99999]]); // not in the plan
+        $this->actingAs($this->user('Minister'));
+        app()->setLocale('en');
+
+        $this->get(route('reports.approved-plan', ['year' => 2027]))->assertSee('Download Excel');
+
+        $response = $this->get(route('reports.approved-plan.xlsx', ['year' => 2027]));
+        $response->assertOk()->assertDownload('PAA-2027-complete.xlsx');
+        $file = tempnam(sys_get_temp_dir(), 'paa').'.xlsx';
+        file_put_contents($file, $response->streamedContent());
+        $book = IOFactory::load($file);
+        @unlink($file);
+
+        $this->assertSame(['Cover', 'Plan of approved activities', 'Summaries'], $book->getSheetNames());
+        $plan = $book->getSheetByName('Plan of approved activities');
+        $rows = $plan->toArray(null, true, false, false); // formulas calculated
+        $total = collect($rows)->first(fn ($r) => ($r[1] ?? null) === 'TOTAL');
+        $this->assertEquals(5500, end($total), 'the grand total (a formula) adds up the approved plan only');
+        $program = collect($rows)->first(fn ($r) => str_contains((string) ($r[1] ?? ''), ' 002: Transportes'));
+        $this->assertEquals(5500, end($program), 'the programme band sums its activities once');
+
+        // a text from the database stays text, never a formula
+        $cell = collect($plan->getRowIterator())->map(fn ($row) => $plan->getCell('B'.$row->getRowIndex()))
+            ->first(fn ($c) => str_contains((string) $c->getValue(), 'HYPERLINK'));
+        $this->assertSame(DataType::TYPE_STRING, $cell->getDataType());
+
+        $summary = $book->getSheetByName('Summaries')->toArray(null, true, false, false);
+        $this->assertTrue(collect($summary)->contains(fn ($r) => ($r[0] ?? null) === 'DGT — Direção-Geral dos Transportes' && ($r[3] ?? null) == 5500)); // code, 20, 50, total
+        $this->assertDatabaseHas('audit_logs', ['action' => 'report.approved_plan_xlsx']);
+
+        // the summary report has no plan sheet
+        $summaryBook = $this->get(route('reports.approved-plan.xlsx', ['year' => 2027, 'mode' => 'summary']));
+        $summaryBook->assertDownload('PAA-2027-summary.xlsx');
+    }
+
+    public function test_the_excel_download_needs_the_same_permission_as_the_report(): void
+    {
+        $this->actingAs($this->user('Viewer'));
+        $allowed = $this->get(route('reports.approved-plan', ['year' => 2027]))->getStatusCode() === 200;
+        $this->assertSame($allowed ? 200 : 403, $this->get(route('reports.approved-plan.xlsx', ['year' => 2027]))->getStatusCode());
     }
 }

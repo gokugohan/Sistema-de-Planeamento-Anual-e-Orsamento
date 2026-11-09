@@ -1,0 +1,568 @@
+{
+ "year": 2027,
+ "code": "129",
+ "name": "Instituto Nacional da Saúde Pública de Timor-Leste",
+ "abbr": "INSPTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1222,
+   1227
+  ]
+ },
+ "units": [
+  {
+   "code": "INSPTL",
+   "div": "1290101",
+   "name": "Instituto Nacional da Saúde Pública de Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "528": "Cuidado de saúde primários"
+ },
+ "activities": [
+  {
+   "code": "510014C",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Servicios do Conselho Diretivo INSP-TL",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "# Decisão Conselho INSP-TL",
+   "baseline": "11 Decisão Conselho INSP-TL",
+   "target": "8 Decisão Conselho INSP-TL",
+   "amounts": {
+    "20": 2920.0
+   },
+   "page": 1222
+  },
+  {
+   "code": "510012N",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Desenvolvimento estratégico e orientação política, Monitorização no Juridico",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # de relugamentu desenvolvidas, aprovado e publicado 2. # de pareser juridiku realizado",
+   "baseline": "1. 0 de relugamentu desenvolvidas, aprovado e publicado 2. 9 de pareser juridiku realizado",
+   "target": "1. 4 de relugamentu desenvolvidas, aprovado e publicado 2. 16 de pareser juridiku realizado",
+   "amounts": {
+    "20": 6660.0
+   },
+   "page": 1222
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1.# Priencimento de log book dos vehiculos e distribuição das senhas de combustivel correto; 2. % Uzu de combustivel correto",
+   "baseline": "1. 168 Priencimento de log book dos vehiculos e distribuição das senhas de combustivel correto; 2. 90 % Uzu de combustivel correto",
+   "target": "180 Priencimento de log book dos vehiculos e distribuição das senhas de combustivel e 90 % Uzu de combustivel correto",
+   "amounts": {
+    "20": 240858.0
+   },
+   "page": 1222
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # FP e AAP tem Termo de referencia relevante a sua espesialidade; 2. % Avaliação desempenho de trabalho com clasificado muito bom cada funcionario no fim do ano; 3. # Recrutamento Funcionarios Permanente e Agente",
+   "baseline": "1. 199 FP e AAP tem Termo de referencia relevante a sua espesialidade; 2.100 % Avaliação desempenho de trabalho com clasificado muito bom cada funcionario no fim do ano; 3.212 Recrutamento Funcionarios Permanente e",
+   "target": "1.236 FP e AAP tem Termo de referencia relevante a sua espesialidade; 2.100 % Avaliação desempenho de trabalho com clasificado muito bom cada funcionario no fim do ano; 3. 24 Recrutamento Funcionarios Permanente e Agente",
+   "amounts": {
+    "10": 1407080.0,
+    "20": 19689.0
+   },
+   "page": 1222
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "2. # Publicação dos projetos realizado 3.# Contratos Publicos realizado",
+   "baseline": "85% Implementação do Plano de Aquisições do OGE e Fundo Externo 114 Publicação dos projetos realizado 114 Contratos Publicos realizado",
+   "target": "90 % Implementação do Plano de Aquisições do OGE e Fundo Externo 75 Publicação dos projetos realizado 75 Contratos Publicos realizado",
+   "amounts": {
+    "20": 7960.0
+   },
+   "page": 1223
+  },
+  {
+   "code": "510022D",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento e Gestao Finananceiro",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1.% Execução do Orsamento Geral do Estado; 2. % Execução do Orsamento Parceria 3. % Receitas Fiscais e Nao Fiscais",
+   "baseline": "1.70 % Execução do Orsamento Geral do Estado; 2. 0 % Execução do Orsamento Fundo externo 3. 81% Receitas Fiscais e Nao Fiscais",
+   "target": "1. 85 % Execução do Orsamento Geral do Estado; 2. 85 % Execução do Orsamento Fundo externo 3. 80 % Receitas Fiscais e Nao Fiscais",
+   "amounts": {
+    "20": 14675.0
+   },
+   "page": 1223
+  },
+  {
+   "code": "510022E",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Patrimonio do estado movies & imovies são mantido; 2. % de actualização base de dadus do Património",
+   "baseline": "20 Patrimonios de estado Foram mantido 60 % a base de dados de Patrimonio foi atualizado",
+   "target": "22 Patrimonio do estado sao mantido, 80% actualisacao base de dadus do patrimonio",
+   "amounts": {
+    "20": 2460.0
+   },
+   "page": 1223
+  },
+  {
+   "code": "510023F",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Sistema de Tecnologia e informação de Saúde",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # de Estabelecimento do sistema digitalisação de informação; 2. % de ICT e do sistemas existente são mantido;",
+   "baseline": "3 sistema digitalizasaun foram estabelecidos 80% de ICT e do sistema ezistente foram mantidos",
+   "target": "4 sistema digitalizasaun foram estabelecidos 100 % de ICT e sistema ezistente sao mantidos",
+   "amounts": {
+    "20": 166676.0,
+    "40": 10000.0
+   },
+   "page": 1223
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # de Cooperação com Parcerias e Acordo Técnicos com outras Instituições; 2. # de políticas e estrategias desenvolvidas, aprovado e publicado; 3, # de informações de coberturas realizado; 4. # produção de bulletin",
+   "baseline": "6 Cooperação com Parcerias e Acordo Técnicos com outras Instituições, 0 de políticas e estrategias desenvolvidas, aprovado e publicado, 20 informações de coberturas realizado, 2 produção de bulletin",
+   "target": "6 Cooperação com Parcerias e Acordo Técnicos com outras Instituições, 2 de políticas e estrategias desenvolvidas, aprovado e publicado, 20 informações de coberturas realizado, 4 produção de bulletin",
+   "amounts": {
+    "20": 16485.0
+   },
+   "page": 1223
+  },
+  {
+   "code": "5281902",
+   "programme": "528",
+   "subprogramme": "52819",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos para responder às exigências da força de trabalho da saúde",
+   "name": "Formação Contínua para os profesionais da Saúde na área de Administração e Gestão Liderança em Saúde",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Avaliação nesesidade formação na area na area de administração e gestão liderança 2. # Desenvolvimento pacote formação na area de administração e gestão liderança 3. # de Formandos na area na area de administração e gestão liderança",
+   "baseline": "1 Avaliação nesesidade formação na area de administração e gestão liderança, 1 Desenvolvimento pacote formação na area de administração e gestão liderança, 65 de Formandos na area de administração e gestão liderança",
+   "target": "2 Avaliação nesesidade formação na area de administração e gestão liderança, 2 Desenvolvimento pacote formação na area de administração e gestão liderança, 120 de Formandos na area de administração e gestão liderança",
+   "amounts": {
+    "20": 19642.0
+   },
+   "page": 1224
+  },
+  {
+   "code": "5281903",
+   "programme": "528",
+   "subprogramme": "52819",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos para responder às exigências da força de trabalho da saúde",
+   "name": "Formação Contínua para os professionais na área de intervenção Saúde Públca",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Avaliação nesesidade formação área de intervenção Saúde Públca 2. # Desenvolvimento pacote formação área de intervenção Saúde Públca 3. # de formandos na area área de intervenção Saúde Públca",
+   "baseline": "1 Avaliação nesesidade formação área de intervenção Saúde Públca, 2 Desenvolvimento pacote formação área de intervenção Saúde Públca, 377 de formandos área de intervenção Saúde Públca",
+   "target": "1 Avaliação nesesidade formação área de intervenção Saúde Públca, 2 Desenvolvimento pacote formação área de intervenção Saúde Públca, 350 de formandos área de intervenção Saúde Públca",
+   "amounts": {
+    "20": 18900.0
+   },
+   "page": 1225
+  },
+  {
+   "code": "5281904",
+   "programme": "528",
+   "subprogramme": "52819",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos para responder às exigências da força de trabalho da saúde",
+   "name": "monitorização e acompanhamento após a formação",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1.% de formandos Avaliados / Follow up after training (FUAT) 2.% de formandos que aplica padrão de competencias.",
+   "baseline": "14% de formandos Avaliados / Follow up after training (FUAT) 10% de formandos que aplica padrão de competencias.",
+   "target": "40% de formandos Avaliados / Follow up after training (FUAT) 30% de formandos que aplica padrão de competencias.",
+   "amounts": {
+    "20": 4980.0
+   },
+   "page": 1225
+  },
+  {
+   "code": "5282001",
+   "programme": "528",
+   "subprogramme": "52820",
+   "subprogramme_name": "Pesquisa e desenvolvimento da saúde",
+   "name": "pesquisa e desenvolvimento area Klinica no Mikrobiologica",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Proposta investigcao cientifico desenvolvida; 2. # investigcao cientifico realizada e conclui; 3. # de investigcao cientifico publicada no Jornal cientifico reconhesido;",
+   "baseline": "1. 4 Proposta investigcao cientifico desenvolvida; 2. 4 investigcao cientifico realizada e conclui; 3. 1 de investigcao cientifico publicada no Jornal cientifico reconhesido;",
+   "target": "1. 10 Proposta investigcao cientifico desenvolvida; 2.8 investigcao cientifico realizada e conclui; 3. 2 de investigcao cientifico publicada no Jornal cientifico reconhesido;",
+   "amounts": {
+    "20": 19700.0
+   },
+   "page": 1225
+  },
+  {
+   "code": "5282002",
+   "programme": "528",
+   "subprogramme": "52820",
+   "subprogramme_name": "Pesquisa e desenvolvimento da saúde",
+   "name": "Pesquisa e desenvolvimento Saúde Pública",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Proposta pesquisa desenvolvida 2. # Pesquisa realizada e conclui 3. # de Pesquisa publicada no Jornal cientifico reconhesido",
+   "baseline": "1. 2 Proposta pesquisa desenvolvida 2. 2 Pesquisa realizada e conclui 3. 1 de Pesquisa publicada no Jornal cientifico reconhesido",
+   "target": "1. 4 Proposta pesquisa desenvolvida 2. 4 Pesquisa realizada e conclui 3. 2 de Pesquisa publicada no Jornal cientifico reconhesido",
+   "amounts": {
+    "20": 12000.0
+   },
+   "page": 1225
+  },
+  {
+   "code": "5282003",
+   "programme": "528",
+   "subprogramme": "52820",
+   "subprogramme_name": "Pesquisa e desenvolvimento da saúde",
+   "name": "pesquisa e desenvolvimento Gestão",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Proposta investigcao cientifico desenvolvida; 2. # investigcao cientifico realizada e conclui; 3. # de investigcao cientifico publicada no Jornal cientifico reconhesido;",
+   "baseline": "1. 1 Proposta investigcao cientifico desenvolvida; 2. 1 investigcao cientifico realizada e conclui; 3. 0 de investigcao cientifico publicada no Jornal cientifico reconhesido;",
+   "target": "1. 2 Proposta investigcao cientifico desenvolvida; 2. 2 investigcao cientifico realizada e conclui; 3. 1 de investigcao cientifico publicada no Jornal cientifico reconhesido;",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1225
+  },
+  {
+   "code": "5282101",
+   "programme": "528",
+   "subprogramme": "52821",
+   "subprogramme_name": "Saúde Pública e Investigasaun Rapida ba Surtu",
+   "name": "Gestão integrado de Informação de Saúde Pública",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # análise da situação de saúde saúde pública; 2. # de",
+   "baseline": "1. 8 análise da situação de saúde saúde pública; 2. 8 de",
+   "target": "1. 10 análise da situação de saúde saúde pública; 2. 10 de",
+   "amounts": {
+    "20": 4760.0
+   },
+   "page": 1225
+  },
+  {
+   "code": "5282102",
+   "programme": "528",
+   "subprogramme": "52821",
+   "subprogramme_name": "Saúde Pública e Investigasaun Rapida ba Surtu",
+   "name": "Investigacao de surtus",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # de Identificação surtus 2. # de Investigacao surtus",
+   "baseline": "8 de Identificação surtos 8 de Investigacao surtos",
+   "target": "10 de Identificação surtos 10 de Investigacao surtos",
+   "amounts": {
+    "20": 3310.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "52821E1",
+   "programme": "528",
+   "subprogramme": "52821",
+   "subprogramme_name": "Saúde Pública e Investigasaun Rapida ba Surtu",
+   "name": "Pandemic Fund laboratory system - diagnostic capacity and biosafety",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 473047.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "52821E2",
+   "programme": "528",
+   "subprogramme": "52821",
+   "subprogramme_name": "Saúde Pública e Investigasaun Rapida ba Surtu",
+   "name": "Pandemic Fund laboratory system - equipment",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 20000.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "5282201",
+   "programme": "528",
+   "subprogramme": "52822",
+   "subprogramme_name": "Serviço de vigilância Sanitária",
+   "name": "Teste Laboratório Toxicologia",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Teste toxicologia das amostras análise de alimentos, bebidas, medicamentos e cosmetica, forensic texicologia bazea o pedido e/ou ezizensia Saúde Público",
+   "baseline": "500 amostras",
+   "target": "750 amostras",
+   "amounts": {
+    "20": 2940.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "5282202",
+   "programme": "528",
+   "subprogramme": "52822",
+   "subprogramme_name": "Serviço de vigilância Sanitária",
+   "name": "Teste Laboratório de Água",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Teste de água e ambiente bazea o pedido e/ou ezizensia Saúde Público",
+   "baseline": "500 amostras",
+   "target": "750 amostras",
+   "amounts": {
+    "20": 2940.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "5282301",
+   "programme": "528",
+   "subprogramme": "52823",
+   "subprogramme_name": "Serviços de apoio clínico diagnóstico e laboratório",
+   "name": "Servisu Patologia, Clínica e Microbiologia",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1.% de Teste de Patologia, Clínica e Microbiologia Realizadas bazea com pedido rutina, vizilancia no pesquisa; 2. % de resultado teste Patologia, Clínica e Microbiologia;",
+   "baseline": "1. % de external quality Assurance Implementada; 1.95 % de Teste de Patologia, Clínica e Microbiologia Realizadas bazea com pedido rutina, vizilancia no pesquisa; 2. 95 % de resultado teste Patologia, Clínica e Microbiologia;",
+   "target": "1.95 % de Teste de Patologia, Clínica e Microbiologia Realizadas bazea com pedido rutina, vizilancia no pesquisa; 2. 95 % de resultado teste Patologia, Clínica e Microbiologia;",
+   "amounts": {
+    "20": 4960.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "5282302",
+   "programme": "528",
+   "subprogramme": "52823",
+   "subprogramme_name": "Serviços de apoio clínico diagnóstico e laboratório",
+   "name": "Controlo de Qualidade e apoio aos Laboratórios do Serviço Nacional de Saúde",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. % de external quality Assurance Implementada; % funsionamentu equipamentu laboratorio baze com padrão;",
+   "baseline": "75 % de external quality Assurance Implemented 80 % funsionamentu equipamentu laboratorio baze com Padrão",
+   "target": "80 % de external quality Assurance Implemented 95 % funsionamentu equipamentu laboratorio baze com Padrão",
+   "amounts": {
+    "20": 204411.0
+   },
+   "page": 1226
+  },
+  {
+   "code": "5282401",
+   "programme": "528",
+   "subprogramme": "52824",
+   "subprogramme_name": "Serviços de apoio Saúde Pública",
+   "name": "Garantia padrão de saúde e controlo de qualidade",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # de guia e protocolo verifcadas; 2. # de guia e protocolo implementada de acordo padrao;",
+   "baseline": "1. 0 de guia e protocolo verifcadas; 2. 0 de guia e protocolo implementada de acordo padrao;",
+   "target": "1. 3 de guia e protocolo verifcadas; 2. 3 de guia e protocolo implementada de acordo padrao;",
+   "amounts": {
+    "20": 6260.0
+   },
+   "page": 1227
+  },
+  {
+   "code": "5282402",
+   "programme": "528",
+   "subprogramme": "52824",
+   "subprogramme_name": "Serviços de apoio Saúde Pública",
+   "name": "Etica para a Pesquisa e Desenvolvimento",
+   "div": [
+    "1290101"
+   ],
+   "indicator": "1. # Avaliação e Aprovação dos Proposta investigcao cientico; 2. . % implementacao investigcao cientifico aprovados de acordo com padrão Ética Peskiza",
+   "baseline": "80 Avaliação e Aprovação dos Proposta investigcao cientico; 95% implementacao investigcao cientifico aprovados de acordo com padrão Ética Pesquisa",
+   "target": "75 Avaliação e Aprovação dos Proposta investigcao cientico; 85% implementacao investigcao cientifico aprovados de acordo com padrão Ética Peskiza",
+   "amounts": {
+    "20": 9836.0
+   },
+   "page": 1227
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Regulamentu Interno e Plano Estratégico Aprovado, incluindo pela Programa de médio prazo Plano Estratégico Aprovado, incluindo pla de médio prazo",
+   "baseline": "100% Plano estratégico Aprovado",
+   "target": "90%",
+   "page": 1222
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1. # Decisão Conselho INSP-TL 2. # de relugamentu desenvolvidas, aprovado e publicado 3. # de pareser juridiku realizado",
+   "baseline": "1. 11 Decisão Conselho INSP-TL 2. 0 de relugamentu desenvolvidas, aprovado e publicado 3. 9 de pareser juridico realizado",
+   "target": "1. 8 Decisão Conselho INSP-TL 2. 4 de relugamentu desenvolvidas, aprovado e publicado 3. 16 de pareser juridico realizado",
+   "page": 1222
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.9",
+   "statement": "Regulamento Interno e Plano Estratégico do INSP-TL Aprovado, incluindo plano de médio prazo",
+   "indicator": "1. # Decisão Conselho INSP-TL 2. # de relugamentu desenvolvidas, aprovado e publicado 3. # de pareser juridiku realizado",
+   "baseline": "33% Plano estratégico Aprovado",
+   "target": "90%",
+   "page": 1222
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Metas do plano anual alcançados",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 1222
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "# Cordenação Anual inclui atividades governamentais e de Parceiros de Desenvolvimento",
+   "baseline": "6 de Cooperação com Parceria e 4 de Reuniões e Seminários",
+   "target": "6 Acordos tecnicos, 10 de Reuniões, 20 informaçoes de coberturas e 4 produção de buletin",
+   "page": 1223
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "Objetivu Médiu Prazu (Outcome) 528.0.0: Melhorar os serviços de saúde em Timor-Leste através da provisão de Cuidados de Saúde Primários abrangentes",
+   "baseline": "6 Nesesidade formação realizado 26 Desenvolvimento pacote formação 1758 de Formandos na area Clínica e de apóio diagnóstico e",
+   "target": "25 Nesesidade formação realizado 25 Desenvolvimento pacote formação 8000 de Formandos na area Clínica e de apóio diagnóstico e",
+   "page": 1223
+  },
+  {
+   "kind": "output",
+   "code": "52819.0.0",
+   "statement": "Recursos humanos adequados com competência profissional para prestar serviços de saúde à comunidade",
+   "indicator": "1. # Avaliasaun nesesidade formação realizado 2. # Desenvolvimento pakote formação 3. # de Formandos na area Clínica e de apóio diagnóstico 4.% Formandos Avaliados 5. .% de formandos que aplica padrão de competencias",
+   "baseline": "5 Nesesidade formação realizado, 4 Desenvolvimento pacote formação, 1,403 de Formandos na area Clínica e de apóio diagnóstico, 14% de formandos Avaliados / Follow up after training (FUAT), 10% de formandos que aplica padrão de competencias,",
+   "target": "12 Nesesidade formação realizado, 7 Desenvolvimento pacote formação, 1,570 de Formandos na area Clínica e de apóio diagnóstico, 40% de formandos Avaliados / Follow up after training (FUAT), 30% de formandos que aplica padrão de competencias",
+   "page": 1224
+  },
+  {
+   "kind": "output",
+   "code": "52820.0.0",
+   "statement": "Plano de atividades de pesquisa e novas políticas desenvolvida",
+   "indicator": "\"# Pesquiza realizado bazea ba M&E framework",
+   "baseline": "7 de Pesquisa realizado 7 investigcao cientifico realizada e conclui; 2 de investigcao cientifico publicada no Jornal cientifico reconhesido",
+   "target": "16 de Pesquisa realizado 14 investigcao cientifico realizada e conclui; 5 de investigcao cientifico publicada no Jornal cientifico reconhesido",
+   "page": 1225
+  },
+  {
+   "kind": "output",
+   "code": "52821.0.0",
+   "statement": "Identificação percose do surto, investigação realizadas para melhoria de Saúde Pública",
+   "indicator": "# de caso identificação percose do surto, investigação realizadas para melhoria de Saúde Pública",
+   "baseline": "32 de caso identificação percose do surto, investigação realizadas para melhoria de Saúde Pública",
+   "target": "40 de caso identificação percose do surto, investigação realizadas para melhoria de Saúde Pública",
+   "page": 1225
+  },
+  {
+   "kind": "output",
+   "code": "52822.0.0",
+   "statement": "Fornecer serviços analíticos e de aconselhamento ao Ministério da Saúde e à AIFAESA sobre segurança alimentar, medicamentos e outros produtos relacionados com a saúde",
+   "indicator": "# de análize realizadas e notificados",
+   "baseline": "1000 amostras",
+   "target": "1500 amostras",
+   "page": 1226
+  },
+  {
+   "kind": "output",
+   "code": "52823.0.0",
+   "statement": "Fornecimento contínuo de testes laboratoriais para assegurar qualidade em todos os laboratórios públicos",
+   "indicator": "1. % prontindão serviços de apoio clínico diagnóstico e laboratório 2. % prontindão serviços laboratorio Saúde ser Acreditado internasionalmente",
+   "baseline": "100% prontindão serviços de apoio clínico diagnóstico e laboratório 64% prontindão serviços laboratorio Saúde Acreditado internasionalmente",
+   "target": "100% prontindão serviços de apoio clínico diagnóstico e laboratório 80% prontindão serviços laboratorio Saúde Acreditado internasionalmente",
+   "page": 1226
+  },
+  {
+   "kind": "output",
+   "code": "52824.0.0",
+   "statement": "Politicas e Padrões disponiveis para garantir a Qualidade dos serviços de apoio à Saúde Pública e Éticas para pesquisas aprovada",
+   "indicator": "1. # de Guia e protocolo verifcadas 2. # de Guia e protocolo implementada de acordo padrao; 3. % de Avaliação e Aprovação dos Proposta investigcao cientico; 4. % de Implementacao investigcao cientifico aprovados de acordo com padrão Ética Peskiza;",
+   "baseline": "0 de guia e protocolo verifcadas 0 de guia e protocolo implementada de acordo padrao; 80% de avaliação e Aprovação dos Proposta investigcao cientico; 95 % de implementacao investigcao cientifico aprovados de acordo com padrão Ética Peskiza;",
+   "target": "3 de guia e protocolo verifcadas 3 de guia e protocolo implementada de acordo padrao; 75 %de avaliação e Aprovação dos Proposta investigcao cientico; 85 % de implementacao investigcao cientifico aprovados de acordo com padrão Ética Peskiza;",
+   "page": 1227
+  }
+ ]
+}

@@ -12,7 +12,11 @@
     $stateWarning = app(App\Services\PlanStatus::class)->reportWarning(auth()->user(), $selectedYear);
 
     // Every figure on this page is added up by the database (see PlanBreakdown), never in loops over records.
-    $breakdown = app(App\Services\PlanBreakdown::class);
+    // the whole institution, or one unit with those below it (always one for whoever cannot see the whole plan)
+    $scope = \App\Support\ReportScope::for(auth()->user(), request('unit'));
+    $unitChoices = \App\Support\ReportScope::choices(auth()->user());
+    $u = $scope->param();
+    $breakdown = app(App\Services\PlanBreakdown::class)->forUnits($scope->ids);
     $unitTotals = $breakdown->unitTotals($selectedYear);
     $full = request()->boolean('full');
     $programmes = $breakdown->programmes($selectedYear, withActivities: $full);
@@ -29,12 +33,13 @@
                         <option value="{{ $yr }}" @selected((string) $selectedYear === (string) $yr)>{{ $yr }}</option>
                     @endforeach
                 </select>
+                <x-report-unit-select :choices="$unitChoices" :scope="$scope" />
             </form>
-            <x-ui.button variant="secondary" size="md" shadow="none" onclick="withFullReport('export')">{{ __('Export Data') }}</x-ui.button>
-            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', ['year' => $selectedYear]) }}">
+            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.annual-plan.xlsx', array_filter(['year' => $selectedYear, 'unit' => $u])) }}" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)">{{ __('Download Excel') }}</x-ui.button>
+            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', array_filter(['year' => $selectedYear, 'unit' => $u])) }}">
                 {{ __('Final plan report') }}
             </x-ui.button>
-            <x-ui.button variant="primary" size="md" href="{{ route('reports.annual-plan.pdf', ['year' => $selectedYear]) }}" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)">{{ __('Print Report') }}</x-ui.button>
+            <x-ui.button variant="primary" size="md" href="{{ route('reports.annual-plan.pdf', array_filter(['year' => $selectedYear, 'unit' => $u])) }}" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)">{{ __('Print Report') }}</x-ui.button>
         </x-ui.page-header>
 
         {{-- Official header: printed pages only --}}
@@ -42,6 +47,7 @@
             <div class="text-xs font-semibold text-zinc-500 mb-2">República Democrática de Timor-Leste</div>
             <h1 class="page-title">{{ \App\Models\SystemSetting::getLocalized('org_name', config('app.name')) }}</h1>
             <div class="mt-3 text-sm font-medium text-zinc-700">{{ __('Annual Activity Plan Report (PAA)') }} — {{ $selectedYear }}</div>
+            @if($scope->unit)<div class="mt-1 text-sm text-zinc-700">{{ $scope->unit->code }} — {{ $scope->unit->name }}</div>@endif
         </div>
 
         @php
@@ -49,7 +55,8 @@
             // One query for the whole tree; each unit's children are attached in memory.
             $byParent = App\Models\Directorate::all()->groupBy(fn ($d) => $d->parent_id ?? 0);
             $byParent->flatten()->each(fn ($d) => $d->setRelation('children', $byParent->get($d->id, collect())));
-            $rootDirectorates = $byParent->get(0, collect());
+            // one unit's report starts at that unit
+            $rootDirectorates = $scope->unit ? collect([$byParent->flatten()->firstWhere('id', $scope->unit->id)])->filter() : $byParent->get(0, collect());
             $emptyTotal = ['planned' => 0.0, 'approved' => 0.0];
 
             $chevron = '<svg class="transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
@@ -107,7 +114,7 @@
                 <x-ui.table :headers="[__('Unit / Directorate Structure'), __('Planned resources ($)'), __('Approved plan ($)'), __('Utilization (%)')]" :right="[1, 2, 3]" class="text-sm">
                     {!! $unitRows !!}
                     <tr class="border-t-2 border-zinc-300 bg-zinc-50 font-semibold text-zinc-900">
-                        <td class="px-5 py-3 text-sm">{{ __('Consolidated Institutional Totals') }}</td>
+                        <td class="px-5 py-3 text-sm">{{ $scope->unit ? __('Total') : __('Consolidated Institutional Totals') }}</td>
                         <td class="px-5 py-3 num text-sm">$ {{ number_format($globalPlanned, 2) }}</td>
                         <td class="px-5 py-3 num text-sm">$ {{ number_format($globalApproved, 2) }}</td>
                         <td class="px-5 py-3 num text-sm">{{ number_format($globalPlanned > 0 ? ($globalApproved / $globalPlanned) * 100 : 0, 1) }}%</td>
@@ -166,7 +173,7 @@
                             @endphp
 
                             <tr id="{{ $classRowId }}" data-parent="{{ $progRowId }}"
-                                @unless($full) data-activities-url="{{ route('reports.paa.activities', ['year' => $selectedYear, 'program' => $program->id, 'class' => $classId, 'parent' => $classRowId]) }}" @endunless
+                                @unless($full) data-activities-url="{{ route('reports.paa.activities', ['year' => $selectedYear, 'program' => $program->id, 'class' => $classId, 'parent' => $classRowId, 'unit' => $u]) }}" @endunless
                                 class="tree-row hidden hover:bg-zinc-50 print:table-row">
                                 <td class="py-3 pr-5" style="padding-left: 3rem;">
                                     <div class="flex items-center gap-2">
@@ -212,22 +219,6 @@
     </div>
 
     <script>
-        const fullReport = @json($full);
-
-        // Export and print need every activity on the page: reopen the report in full mode and do it there.
-        function withFullReport(action) {
-            if (fullReport) return action === 'print' ? window.print() : exportToCSV();
-            const url = new URL(window.location.href);
-            url.searchParams.set('full', '1');
-            url.searchParams.set('do', action);
-            window.location.href = url.toString();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const action = new URLSearchParams(window.location.search).get('do');
-            if (fullReport && action) setTimeout(() => action === 'print' ? window.print() : exportToCSV(), 300);
-        });
-
         // A category's activities are fetched the first time it is expanded.
         async function loadActivities(row) {
             if (!row.dataset.activitiesUrl || row.dataset.loaded) return;
@@ -268,29 +259,6 @@
             };
 
             toggleChildren(rowId, !isExpanded);
-        }
-
-        function exportToCSV() {
-            let csv = [];
-            const rows = document.querySelectorAll("table tr");
-
-            for (const row of rows) {
-                const cols = row.querySelectorAll("td, th");
-                const rowData = [];
-                for (const col of cols) {
-                    let text = col.innerText.replace(/"/g, '""').replace(/\s+/g, ' ').trim();
-                    rowData.push('"' + text + '"');
-                }
-                csv.push(rowData.join(","));
-            }
-
-            const csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
-            const downloadLink = document.createElement("a");
-            downloadLink.download = "relatorio_paa_" + new Date().toISOString().slice(0, 10) + ".csv";
-            downloadLink.href = window.URL.createObjectURL(csvFile);
-            downloadLink.style.display = "none";
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
         }
     </script>
 </x-app-layout>

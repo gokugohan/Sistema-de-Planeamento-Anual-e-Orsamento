@@ -1,0 +1,103 @@
+{
+ "year": 2027,
+ "code": "102",
+ "name": "Serviço de Registo e Verificação Empresarial",
+ "abbr": "SRVE",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   962,
+   964
+  ]
+ },
+ "units": [
+  {
+   "code": "SRVE",
+   "div": "1020101",
+   "name": "Serviço de Registo e Verificação Empresarial",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1020101"
+   ],
+   "indicator": "% do orçamento executado e em obrigações",
+   "baseline": "Orçamento total para a Atividade 5100202: Gestão Financeira, Administração e Logística = 318.319, dividido em: 1. Energia elétrica = 12.000,00; executado = 5.186,24; em compromisso = 6.813,56; percentagem = 43,22% 2. Material de escritório = 74.000,00; executado = 55.397,50; em compromisso = 12.717,50; percentagem = 92,00% 3. Combustível para veículos = 100% Limpeza e higiene = 50% Manutenção de viaturas = em compromisso (100%) Manutenção de equipamentos de ar condicionado = 56,6% Comunicação fixa = 10,96%",
+   "target": "100%",
+   "amounts": {
+    "20": 283402.0
+   },
+   "page": 962
+  },
+  {
+   "code": "9833206",
+   "programme": "983",
+   "subprogramme": "98332",
+   "subprogramme_name": "Registro de empresas e licenciamento de atividades económicas",
+   "name": "Estabelecimento de serviços bancários e operacionalização do balcão único",
+   "div": [
+    "1020101"
+   ],
+   "indicator": "1) # de empresas registadas 2) % dos municipios com cobertura dos servicos da SERVE 3) Sistema informático em",
+   "baseline": "1. O número de empresas registadas até junho de 2026 atingiu as 72.812. 2.º O SERVE, I.P. está estabelecido em todos os",
+   "target": "100% Melhorar o funcionamento da Instituição para prestar melhores serviços públicos em 2026",
+   "amounts": {
+    "10": 1226762.0
+   },
+   "page": 963
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) # e % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) # de Resultados de desempenho publicados no website do Governo 3) Relatório anual da entidade publicado",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 962
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "1) % Execução do orçamento 2) Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) Criação de um sistema de arquivo electrónico",
+   "baseline": "1.º A execução orçamental até 30/07/2026 atingiu os 57,30%. 2.º Participação em formação do Ministério das Finanças sobre o arquivo eletrónico de documentos utilizando o sistema Free Balance (GRP). 3.º O SERVE, I.P. implementou, em 2024, um sistema de arquivo eletrónico para a unidade de registo de empresas, denominado REGINET.",
+   "target": "As facilidades operacionais são necessárias para um melhor funcionamento do desenvolvimento institucional e para um sistema integrado de registo comercial com método online.",
+   "page": 962
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.b: Fazer negócios em Timor-Leste é mais fácil e a obtenção da licença setorial é mais clara e fácil",
+   "indicator": "Pontuação de iniciar um negócio (0-100): [Doing Business 2020] 1) Procedimentos (número) 2) Tempo (dias) 3) Custo (número)",
+   "baseline": "Pontuação para a abertura de empresa (0-100): 70 [Doing Business 2026] 1) Procedimentos (número): 6 2) Tempo (dias): 13 3) Custo (número): 0,7",
+   "target": "50 % a 70%",
+   "page": 963
+  },
+  {
+   "kind": "output",
+   "code": "98332.0.0",
+   "statement": "Registro de negócios eficiente e eficaz",
+   "indicator": "Aumento em % no numero de empresas registradas",
+   "baseline": "Foram registadas 72.812 empresas e companhias comerciais entre 2013 e junho de 2026.",
+   "target": "Entre 2013 e junho de 2026, foram registadas 72.812 empresas e sociedades comerciais, tendo o SERVE, I.P. emitiu 72.812 Certificados e Certificados de Registo Comercial (CRCs), bem como declarações preliminares para o início das atividades.",
+   "page": 963
+  }
+ ]
+}

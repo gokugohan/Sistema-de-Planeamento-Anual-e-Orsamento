@@ -1,0 +1,1988 @@
+{
+ "year": 2027,
+ "code": "017",
+ "name": "Ministério da Saúde",
+ "abbr": "MS",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   170,
+   189
+  ]
+ },
+ "units": [
+  {
+   "code": "GMS",
+   "div": "0170101",
+   "name": "Gabinete da Ministra/o de Saúde",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGSC",
+   "div": "0170301",
+   "name": "Gabinete de Direção Geral dos Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "0170304",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNALGP",
+   "div": "0170305",
+   "name": "Direção Nacional de Administração, Logística e Gestão Patrimônio",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNOGF",
+   "div": "0170306",
+   "name": "Direção Nacional de Orçamento e Gestão Financeira",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "GVMFI",
+   "div": "0170501",
+   "name": "Gabinete do Vice-Ministro para o Fortalecimento Institucional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GLRAS",
+   "div": "0170505",
+   "name": "Gabinete de Licenciamento e Registo das Atividades de Saúde",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GVMOH",
+   "div": "0170601",
+   "name": "Gabinete do Vice-Ministro para a Operacionalização dos Hospitais",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNSMI",
+   "div": "0170701",
+   "name": "Direção Nacional de Saúde Materno- Infantil",
+   "type": "National Directorate",
+   "parent": "SADGCSP"
+  },
+  {
+   "code": "DNEPS",
+   "div": "0170702",
+   "name": "Direção Nacional da Educação e Promoção de Saúde",
+   "type": "National Directorate",
+   "parent": "SADGCSP"
+  },
+  {
+   "code": "DNPCD",
+   "div": "0170703",
+   "name": "Direção Nacional de Prevenção e Controlo de Doenças",
+   "type": "National Directorate",
+   "parent": "SADGCSP"
+  },
+  {
+   "code": "DNN",
+   "div": "0170704",
+   "name": "Direção Nacional de Nutrição",
+   "type": "National Directorate",
+   "parent": "SADGCSP"
+  },
+  {
+   "code": "SADGCSP",
+   "div": "0170705",
+   "name": "Secretariado de Apoio à Direção-Geral de Cuidados de Saúde Primários",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNASH",
+   "div": "0170801",
+   "name": "Direção Nacional de Apoio aos Serviços Hospitalares",
+   "type": "National Directorate",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "DNFM",
+   "div": "0170802",
+   "name": "Direção Nacional de Farmácia e Medicamentos",
+   "type": "National Directorate",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "DNEM",
+   "div": "0170803",
+   "name": "Direção Nacional de Equipamentos Médicos",
+   "type": "National Directorate",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "SADGSH",
+   "div": "0170804",
+   "name": "Secretariado de Apoio à Direção-Geral dos Serviços Hospitalares",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "HREXB",
+   "div": "0170805",
+   "name": "Hospital Regional Eduardo Ximenes - Baucau",
+   "type": "Unit",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "HRM",
+   "div": "0170806",
+   "name": "Hospital Referal Maliana",
+   "type": "Unit",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "HRM-07",
+   "div": "0170807",
+   "name": "Hospital Referal Maubisse",
+   "type": "Unit",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "HRS",
+   "div": "0170808",
+   "name": "Hospital Referal Suai",
+   "type": "Unit",
+   "parent": "SADGSH"
+  },
+  {
+   "code": "UAC",
+   "div": "0170901",
+   "name": "Unidade de Aprovisionamento Central",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UGPS",
+   "div": "0171001",
+   "name": "Unidade de Gestão de Projetos da Saúde",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GEDGQ",
+   "div": "0171101",
+   "name": "Gabinete de Ética Deontológica e Garantia de Qualidade",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GPPCDS",
+   "div": "0171201",
+   "name": "Gabinete de Política, Planeamento, Cooperação e Desenvolvimento da Saúde",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "0171301",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIAS",
+   "div": "0171401",
+   "name": "Gabinete de Inspeção e Auditoria da Saúde",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "528": "Cuidado de saúde primários",
+  "529": "Cuidados de saúde secundários e terciários"
+ },
+ "activities": [
+  {
+   "code": "5100106",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Pesquisa, Planeamento e desenvolvimento",
+   "div": [
+    "0170304",
+    "0171101"
+   ],
+   "indicator": "Numero pesquisa em saúde implementada com base em plano aprovado",
+   "baseline": "3",
+   "target": "4",
+   "amounts": {
+    "20": 11040.0
+   },
+   "page": 170
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0170101",
+    "0170301",
+    "0170304",
+    "0170306",
+    "0170501",
+    "0170601",
+    "0170705",
+    "0171201"
+   ],
+   "indicator": "Numero estratégias e políticas desenvolvidas e / ou revistas",
+   "baseline": "30 Políticas e saúde estratégica revisadasdas",
+   "target": "50",
+   "amounts": {
+    "10": 1209520.0,
+    "20": 1138198.0
+   },
+   "page": 170
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0171101",
+    "0171301",
+    "0171401"
+   ],
+   "indicator": "% Inspeção de saúde e auditoria interna implementada de acordo com o plano aprovado",
+   "baseline": "80% das auditorias implementadas; 20 inspeções de saúde",
+   "target": "100%",
+   "amounts": {
+    "20": 53186.0
+   },
+   "page": 170
+  },
+  {
+   "code": "5100116",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Financiamento da Saúde",
+   "div": [
+    "0170306",
+    "0171001"
+   ],
+   "indicator": ") % Orçamento Geral do Estado de Timor-Leste atribuído ao sector da saúde, 2) Aumento para 8% do",
+   "baseline": "7%",
+   "target": "8%",
+   "amounts": {
+    "20": 75630.0
+   },
+   "page": 170
+  },
+  {
+   "code": "5100130",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Garantia padrão de saúde e controle de qualidade",
+   "div": [
+    "0170101",
+    "0170501",
+    "0170601",
+    "0170705",
+    "0170804",
+    "0171101",
+    "0171401"
+   ],
+   "indicator": "1) Numero Código de Conduta do Profissional de Saúde e dos procedimentos operacionais padrão relacionados à saúde desenvolvidos, 2) % de instituição de saúde estabeleceu Unidade de garantia qualidade de saúde",
+   "baseline": "1) 0, 2) 10%",
+   "target": "1) 4, 2)25%",
+   "amounts": {
+    "20": 97681.0
+   },
+   "page": 171
+  },
+  {
+   "code": "5100131",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Regulamento do setor da saúde",
+   "div": [
+    "0170101",
+    "0171301",
+    "0171401"
+   ],
+   "indicator": "Numero regulamentos desenvolvidos e revisados",
+   "baseline": "15 dos regulamentos de saúde desenvolvidos e revisados",
+   "target": "20",
+   "amounts": {
+    "20": 40718.0
+   },
+   "page": 171
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0170101",
+    "0170301",
+    "0170304",
+    "0170305",
+    "0170306",
+    "0170501",
+    "0170505",
+    "0170601",
+    "0170801",
+    "0170802",
+    "0170803",
+    "0170804",
+    "0170901",
+    "0171001",
+    "0171101",
+    "0171201",
+    "0171301",
+    "0171401"
+   ],
+   "indicator": "1) % Profissionais de saúde têm um termo de referência adequado em sua área de trabalho, 2) % dos profissionais de saúde têm uma pontuação excelente em sua avaliação de desempenho, 3) % das instituições de saúde têm base de dados de pessoal adequada em vigor",
+   "baseline": "1) 100%, 2) 90%, 60) 0%",
+   "target": "1) 100%, 95%, 3) 70%",
+   "amounts": {
+    "10": 2490157.0
+   },
+   "page": 171
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0170901",
+    "0171001"
+   ],
+   "indicator": "% Plano de aquisição aprovado e executado",
+   "baseline": "60%",
+   "target": "95%",
+   "amounts": {
+    "20": 14020.0
+   },
+   "page": 172
+  },
+  {
+   "code": "510021D",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestao de sistema informacao e tecnologia",
+   "div": [
+    "0170305"
+   ],
+   "indicator": "% Sistema Informatiku teknolojia sira funsiona ho diak Numeru sistema digitalizasaun saude registo iha TICTIMOR Numeru sistema digitalizasaun saude ne'ebe funsiona no interoperabilidade (RSE-TL, TLHIS/DHIS2, M-Supply, Liga Inan, Skylab, etc)",
+   "baseline": "3 2 5%",
+   "target": "7 5 <20%",
+   "amounts": {
+    "20": 445060.0
+   },
+   "page": 172
+  },
+  {
+   "code": "5100221",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão financeira",
+   "div": [
+    "0170306",
+    "0170901",
+    "0171001"
+   ],
+   "indicator": "1) % execução Orçamentária Anual do Ministério da Saúde, 2) 0% do pagamento",
+   "baseline": "1) 85%, 2) 5%",
+   "target": "1) 97%, 2) 3%)",
+   "amounts": {
+    "20": 331701.0
+   },
+   "page": 172
+  },
+  {
+   "code": "5100222",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração e Arquivamento",
+   "div": [
+    "0170304",
+    "0170305",
+    "0170306",
+    "0170901"
+   ],
+   "indicator": "% Funcionalidade da Documentação Central de Saúde do governo atualizados a cada 6 meses (Financas, Aprovisionamento, Patrimonio, Rekursus Humanus e Politica da Saude)",
+   "baseline": "25%",
+   "target": "50%",
+   "amounts": {
+    "20": 52080.0
+   },
+   "page": 173
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0170305",
+    "0170805",
+    "0170806",
+    "0170807",
+    "0170808",
+    "0170901"
+   ],
+   "indicator": "1) % serviços de saúde dos Pacotes de Serviços Básicos tem água limpa e eletricidade, 2) 0% dos ativos são codificados e o inventário é atualizado regularmente; 3) % do transporte regular funciona bem",
+   "baseline": "1) 50%; 60%; 70%",
+   "target": "1) 50%, 2) 80%, 90%",
+   "amounts": {
+    "20": 1789134.0
+   },
+   "page": 173
+  },
+  {
+   "code": "5100224",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Informação, Monitorização e Avaliação em Saúde",
+   "div": [
+    "0170301",
+    "0170705",
+    "0170804",
+    "0171201"
+   ],
+   "indicator": "1) Numeru Suco implementar o Monitoramento Baseado na Comunidade, 2) % dos indicadores no Plano Anual de Ação relatados regular para o escritório do Primeiro Ministro,",
+   "baseline": "11) 2, 2) 70%, 3) 70%",
+   "target": "1) 7, 2) 85%, 3) 85%",
+   "amounts": {
+    "20": 73274.0
+   },
+   "page": 173
+  },
+  {
+   "code": "510022F",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão da força de trabalho em saúde",
+   "div": [
+    "0170301",
+    "0170304",
+    "0170305",
+    "0170306",
+    "0170505",
+    "0170802",
+    "0170803",
+    "0170804",
+    "0170901",
+    "0171001",
+    "0171101",
+    "0171201",
+    "0171301",
+    "0171401"
+   ],
+   "indicator": "% Funsionariu rejime espesial ne'ebe hetan promosaun no progresaun ba kareira % Funsionariu Publiku no kontratadu rejistradu ona iha baze de dadus Rekursu Umanu % Fasilidade Saude prienche ona padraun minimu mapamentu pesoal saude tuir",
+   "baseline": "44% 50% n.a",
+   "target": "95% 100% 45%",
+   "amounts": {
+    "10": 1674396.0
+   },
+   "page": 173
+  },
+  {
+   "code": "510022G",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Desenvolver políticas e planeiamento de recursos humanos no setor da saúde",
+   "div": [
+    "0170304"
+   ],
+   "indicator": "Numeru bolsu estudu espesializasaun ne'ebe realiza tuir planu Numeru Profesionais Saude nebe hetan formasaun espesifiku % Funsionariu permanente Ministeriu Saude ne'ebe hetan formasaun Minimu 40 horas ba tinan ida",
+   "baseline": "150 10 10",
+   "target": "300 60 60",
+   "amounts": {
+    "20": 23102.0
+   },
+   "page": 174
+  },
+  {
+   "code": "5100232",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de Veículos Específicos à Saúde",
+   "div": [
+    "0170305"
+   ],
+   "indicator": "% Veículos de Ambulância e Multifunções funcionam bem em todas as unidades de saúde",
+   "baseline": "60%",
+   "target": "90%",
+   "amounts": {
+    "20": 1297370.0
+   },
+   "page": 174
+  },
+  {
+   "code": "51002E1",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Pandemic Fund project management - personnel",
+   "div": [
+    "0171001"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 100000.0
+   },
+   "page": 174
+  },
+  {
+   "code": "51002E2",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "One Health workforce development",
+   "div": [
+    "0170304"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 174
+  },
+  {
+   "code": "51002E3",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Pandemic Fund project management - operating costs",
+   "div": [
+    "0171001"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 260000.0
+   },
+   "page": 174
+  },
+  {
+   "code": "51002E4",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Pandemic Fund project management equipment",
+   "div": [
+    "0171001"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 66000.0
+   },
+   "page": 174
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0170501",
+    "0170601",
+    "0171001",
+    "0171201"
+   ],
+   "indicator": "% Parceiros de desenvolvimento registados implementados de acordo com as directrizes e protocolos do Ministério da Saúde",
+   "baseline": "60%",
+   "target": "80%",
+   "amounts": {
+    "20": 79660.0
+   },
+   "page": 175
+  },
+  {
+   "code": "51003E1",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Pandemic Fund governance and coordination",
+   "div": [
+    "0171001"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 175
+  },
+  {
+   "code": "5100702",
+   "programme": "510",
+   "subprogramme": "51007",
+   "subprogramme_name": "Suporta descentralização da saúde",
+   "name": "Gestão da descentralização",
+   "div": [
+    "0170301",
+    "0170304",
+    "0170306",
+    "0170501"
+   ],
+   "indicator": "% Centros Comunitários de Saúde implementaram orçamento baseado em desempenho",
+   "baseline": "0%",
+   "target": "85%",
+   "amounts": {
+    "20": 141030.0
+   },
+   "page": 175
+  },
+  {
+   "code": "5100801",
+   "programme": "510",
+   "subprogramme": "51008",
+   "subprogramme_name": "Registo de Serviço de Saúde",
+   "name": "Realizar registro profissional de saúde",
+   "div": [
+    "0170505",
+    "0171101"
+   ],
+   "indicator": "% Profissional de saúde registrado",
+   "baseline": "25%",
+   "target": "50%",
+   "amounts": {
+    "20": 55703.0
+   },
+   "page": 175
+  },
+  {
+   "code": "5100802",
+   "programme": "510",
+   "subprogramme": "51008",
+   "subprogramme_name": "Registo de Serviço de Saúde",
+   "name": "Registo Clínicas privadas e farmácia",
+   "div": [
+    "0170505"
+   ],
+   "indicator": "Clínicas privadas e farmácias registradas com base em regulamentação de saúde",
+   "baseline": "50%",
+   "target": "100%",
+   "amounts": {
+    "20": 28350.0
+   },
+   "page": 175
+  },
+  {
+   "code": "5106301",
+   "programme": "510",
+   "subprogramme": "51063",
+   "subprogramme_name": "Infraestruturas no Setór de Saúde",
+   "name": "Manutensaun fasilidade saude e Edifisiu Saude (PG. 2.2.4)",
+   "div": [
+    "0170305",
+    "0171001"
+   ],
+   "indicator": "% Edifisiu saude % Fasilidade saude",
+   "baseline": "1% 4%",
+   "target": "80% 60%",
+   "amounts": {
+    "20": 550000.0
+   },
+   "page": 176
+  },
+  {
+   "code": "5106302",
+   "programme": "510",
+   "subprogramme": "51063",
+   "subprogramme_name": "Infraestruturas no Setór de Saúde",
+   "name": "Construção de novo posto de saúde em áreas rurais",
+   "div": [
+    "0170901",
+    "0171001"
+   ],
+   "indicator": "Numero Postu Saude, Residensia profesional saude ne'ebe konstrui iha nivel Suco",
+   "baseline": "345",
+   "target": "20",
+   "amounts": {
+    "20": 23220.0
+   },
+   "page": 176
+  },
+  {
+   "code": "5106303",
+   "programme": "510",
+   "subprogramme": "51063",
+   "subprogramme_name": "Infraestruturas no Setór de Saúde",
+   "name": "Construção e ampliação de Centros de Saúde, Laboratório de Emergência e Saúde",
+   "div": [
+    "0170901",
+    "0171001"
+   ],
+   "indicator": "Numeru Pakote Infrastrutura SSK ne'ebe konstrui",
+   "baseline": "72",
+   "target": "2",
+   "amounts": {
+    "20": 13220.0
+   },
+   "page": 176
+  },
+  {
+   "code": "5106304",
+   "programme": "510",
+   "subprogramme": "51063",
+   "subprogramme_name": "Infraestruturas no Setór de Saúde",
+   "name": "Infraestruturas de saúde",
+   "div": [
+    "0170305",
+    "0170901",
+    "0171001"
+   ],
+   "indicator": "Numero Konstrusaun Edifisiu Saude iha Saude Munisipal Numeru Infrastrutura Klinika Sub- Espesializadu Mediku ne'ebe establese no extensaun Hospital Regional",
+   "baseline": "3 3",
+   "target": "3 9",
+   "amounts": {
+    "20": 153840.0,
+    "50": 288333.0
+   },
+   "page": 176
+  },
+  {
+   "code": "51063E1",
+   "programme": "510",
+   "subprogramme": "51063",
+   "subprogramme_name": "Infraestruturas no Setór de Saúde",
+   "name": "Surveillance and early warning facilities",
+   "div": [
+    "0171001"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 307000.0
+   },
+   "page": 177
+  },
+  {
+   "code": "5280208",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Gestão de saúde ambiental",
+   "div": [
+    "0170702",
+    "0170705"
+   ],
+   "indicator": "1. % Suco deklara ALFA (Area La Soe Fo’er bo’ot Arbiru) 2. % Suco deklara Ijieniku (Area uza latrina melloradu no fasilidade fase liman ho sabaun) 3. % Fasilidade kuidadus saúde ho Bee Saneamentu no Ijiene (BESI/WASH) no jestaun lixu ho seguru 4. % Uma ho tanke bee hetan tratamentu kontrola vetor (Abate/Fomigasaun/inspesa un ba knuk vetor)",
+   "baseline": "75% 50%",
+   "target": "85% 60%",
+   "amounts": {
+    "20": 257095.0
+   },
+   "page": 178
+  },
+  {
+   "code": "5280209",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Programa Integrado Saúde (SISCA e Saúde na Familia)",
+   "div": [
+    "0170501",
+    "0170601",
+    "0170705"
+   ],
+   "indicator": "% uma kain ne'ebe hetan visita regular minimu dala ida tinan ida husi ekipa Saude na Familia Numeru outreach espesilizasaun medika hala'o iha komunidade % Suco ne'ebe hala'o atividade SISCa regular husi Profesionais Saude",
+   "baseline": "50% 3 68%",
+   "target": "50% 24 80%",
+   "amounts": {
+    "20": 628280.0
+   },
+   "page": 178
+  },
+  {
+   "code": "5280210",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Fornecimento de um pacote abrangente de serviços básicos a diversas unidades de cuidados de saúde primários",
+   "div": [
+    "0170701",
+    "0170702",
+    "0170703",
+    "0170704",
+    "0170705",
+    "0171201"
+   ],
+   "indicator": "Consultas ambulatoriais por capital por ano a cada unidade de saúde, % unidade saude prience requisitos minimos prontindao da Facilidade Saude",
+   "baseline": "4 n.a",
+   "target": "4.5 75%",
+   "amounts": {
+    "10": 24566338.0,
+    "20": 1398215.0,
+    "30": 150000.0
+   },
+   "page": 178
+  },
+  {
+   "code": "52802E1",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Primary health care salary gap in the 2027 forward estimate",
+   "div": [
+    "0170705"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 1686231.0
+   },
+   "page": 178
+  },
+  {
+   "code": "52802E2",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Vehicles, X-ray machines, beds and mattresses for primary health facilities",
+   "div": [
+    "0170705"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 1977018.0
+   },
+   "page": 178
+  },
+  {
+   "code": "5280403",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Abordagem Institucional e Sectoriais Politika e estrategia Programa Nutrição",
+   "div": [
+    "0170704",
+    "0170705"
+   ],
+   "indicator": "% Labarik fulan 0-59 tetu todan ba idade % Eskola ne'ebe oferese merenda eskolar tuir padaraun menu hahan ne'ebe Ministeriu Saude Aprova",
+   "baseline": "647% 452%",
+   "target": "80% 80%",
+   "amounts": {
+    "20": 95403.0
+   },
+   "page": 179
+  },
+  {
+   "code": "5280404",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Serviços de nutrição",
+   "div": [
+    "0170704",
+    "0170705"
+   ],
+   "indicator": "% Labarik fulan 6 to 59 simu Micronutriente (Vit Ano MNP), desparasitação (Albendazole) % das crianças com <59 meses cobertos pela atividade de controle de peso",
+   "baseline": "Vit A 95%; Albendazole 42%; MNP 45% 61%",
+   "target": "Vit A 80%, Albendozele 80% MNP 70%",
+   "amounts": {
+    "20": 217351.0
+   },
+   "page": 179
+  },
+  {
+   "code": "5280405",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Abordagem do Programa Integrado de Nutrição na Comunidade",
+   "div": [
+    "0170704",
+    "0170705"
+   ],
+   "indicator": "Numero Cobertura de amamentação exclusiva, % aldeia estabelecida Grupo de apoio nutricional",
+   "baseline": "64% 452%",
+   "target": "70% 80%",
+   "amounts": {
+    "20": 66830.0
+   },
+   "page": 179
+  },
+  {
+   "code": "5280406",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Fortalecimento Serviço Gestão de Cadeia Nutrição na Comunidade",
+   "div": [
+    "0170704"
+   ],
+   "indicator": "% Stockout suplementu nutrisaun % suplementu nutrisaun ne'ebe expire no a'at",
+   "baseline": "n.a n.a",
+   "target": "<5% <5%",
+   "amounts": {
+    "20": 22155.0,
+    "30": 300000.0
+   },
+   "page": 179
+  },
+  {
+   "code": "5280506",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Imunização",
+   "div": [
+    "0170701",
+    "0170705",
+    "0170803"
+   ],
+   "indicator": "% Labarik tinan 2 ne'ebe simu imunizasaun kompleto % Kobertura imunizasaun BCG % Kobertura imunizasaun DPT-HepB- HIB3",
+   "baseline": "60% 60% 66%",
+   "target": "80% 80% 60% 95% 60% MM 100% MP 70%",
+   "amounts": {
+    "20": 36427.0
+   },
+   "page": 180
+  },
+  {
+   "code": "5280507",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Gestaun Integrado Doencas ba Labarik (IMCI)",
+   "div": [
+    "0170701",
+    "0170705"
+   ],
+   "indicator": "Numeru fasilidade saude ne'ebe utiliza padroes IMCI",
+   "baseline": "20%",
+   "target": "45%",
+   "amounts": {
+    "20": 12921.0
+   },
+   "page": 180
+  },
+  {
+   "code": "5280508",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Saúde Materna e Neonatal",
+   "div": [
+    "0170701",
+    "0170705"
+   ],
+   "indicator": "% Tempu vizita Antenatal dahuluk persentase inan -isin sira ne'ebe halo vizita antenatal dahuluk iha trimester dahuluk (molok semana 12 husi isin -rua % of postnatal women receiving atleast 4 postnatal consultations/contacts after birth % of newborns received early initiation of breastfeeding (Normal deliveries) % Births attended by skilled health personnel % Coverage of facility delivery % mortalidade materna no perinatal reve husi komisaun MPDSR",
+   "baseline": "60% 53% MM 71% MP 16%",
+   "target": "80% 80% 60% 95% 60% MM 100% MP 70%",
+   "amounts": {
+    "20": 160878.0,
+    "30": 8000.0
+   },
+   "page": 180
+  },
+  {
+   "code": "5280509",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Serviços de saúde reprodutiva",
+   "div": [
+    "0170701",
+    "0170705"
+   ],
+   "indicator": "% Tempu vizita Antenatal dahuluk persentase inan -isin sira ne'ebe halo vizita antenatal dahuluk iha trimester dahuluk (molok semana 12 husi isin -rua % of postnatal women receiving atleast 4 postnatal consultations/contacts after",
+   "baseline": "35 10 n.a",
+   "target": "80% 20% 80%",
+   "amounts": {
+    "20": 25878.0
+   },
+   "page": 180
+  },
+  {
+   "code": "5280510",
+   "programme": "528",
+   "subprogramme": "52805",
+   "subprogramme_name": "Saúde Materna e Infantil",
+   "name": "Planeiamento familiar",
+   "div": [
+    "0170701",
+    "0170705"
+   ],
+   "indicator": "% Contraceptive prevalence rate Couple Years Protection Couple Year Protection (CYP)",
+   "baseline": "23% n.a",
+   "target": "30% 3321 (10%)",
+   "amounts": {
+    "20": 17389.0
+   },
+   "page": 181
+  },
+  {
+   "code": "5280604",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Prevensaun seguransa, Saude okupasional no asidenti rodaviariu",
+   "div": [
+    "0170702"
+   ],
+   "indicator": "% asidente trabalho no trafiku rejista no hetan atendementu mediku iha Fasilidade Saude no Hospitais Numeru desiminasaun no sosializasaun traballu siguru ne'ebe realiza ba instituisaun relevantes",
+   "baseline": "n.a n.a",
+   "target": "80% 12",
+   "amounts": {
+    "20": 28500.0
+   },
+   "page": 181
+  },
+  {
+   "code": "5280605",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Malária e Outro Controle de Doenças Transmitidas por Vetores (Dengue)",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "Mantém ou reduz casos indígenas de malária em Timor-Leste",
+   "baseline": "0%",
+   "target": "0%",
+   "amounts": {
+    "20": 19156.0
+   },
+   "page": 181
+  },
+  {
+   "code": "5280606",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controle da tuberculose",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% de detecção de casos % kobertura TPT (TB Preventive Therapy)",
+   "baseline": "85% 30%",
+   "target": "100% 75%",
+   "amounts": {
+    "20": 16415.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280607",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controlo de HIV(AIDS) e DST",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "Numeru teste HIV no Hepatitis ba populasaun targetu % Testu ba Viral load",
+   "baseline": "74080 40%",
+   "target": "85000 90%",
+   "amounts": {
+    "20": 18385.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280608",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Combater outras doenças transmissíveis",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% kazu Diarreia no IRA ne'ebe hetan tratamentu medika adekuadu iha fasilidade saude % kazu Diarreia no IRA ne'ebe refere ba nivel fasilidade saude a'as",
+   "baseline": "IRA 21% Diarreia 0.14% n.a",
+   "target": "IRA 15% Diarreia <0.1% <10%",
+   "amounts": {
+    "20": 64273.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280609",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controle de Doenças da Pele",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% Doenças de pele relatadas receberam tratamento adequado das unidades de saúde % Doenças de pele refere ba nivel fasilidade saude ne'ebe a'as liu",
+   "baseline": "0.7% n.a",
+   "target": "<0.1% <10%",
+   "amounts": {
+    "20": 13720.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280610",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Lepra e Outras Doenças Tropicais Negligenciadas",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% Distribuisaun Albendazole husi idade 6-13 % Libertação do paciente com lepra do tratamento/RFT",
+   "baseline": "n.a 85%",
+   "target": "70% 95%",
+   "amounts": {
+    "20": 15360.0,
+    "30": 2400.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280611",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controle de saúde nas fronteiras",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "Numeru Ponto de Entrada funsiona i implementa Regulamento Internacional de saude (2005)",
+   "baseline": "5",
+   "target": "10",
+   "amounts": {
+    "20": 6530.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280612",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Serviços Deficiência",
+   "div": [
+    "0170703"
+   ],
+   "indicator": "% Ema difisiente ne'ebe hetan atendementu saude iha Fasilidade saude i Uma kain",
+   "baseline": "n.a",
+   "target": "n.a",
+   "amounts": {
+    "20": 5995.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280613",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Tabaco, Álcool, Drogas e Saúde e Segurança no Trabalho",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "Numeru Munisipiu ne'ebe estabelese sentru hapara Fuma",
+   "baseline": "6",
+   "target": "12",
+   "amounts": {
+    "20": 16030.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280614",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Controle da Doença Cardíaca Crônica, Diabetes, Insuficiência Renal e Câncer",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% Casos registrados de doença cardíaca crônica, diabetes, insuficiência renal e câncer receberam atendimento médico adequado tuir padraun %",
+   "baseline": "35% n.a n.a",
+   "target": "50% <10% 90%",
+   "amounts": {
+    "20": 46575.0
+   },
+   "page": 182
+  },
+  {
+   "code": "5280615",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Servicos Saúde Oral",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% eskola nebe hetan visita hosi profesional saude pelumenos dala ida tinan ida % Fasilidade Saude ne'ebe prienche ona prontidaun servisu saude oral",
+   "baseline": "n.a 30%",
+   "target": "80% 50%",
+   "amounts": {
+    "20": 18040.0
+   },
+   "page": 183
+  },
+  {
+   "code": "5280616",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Oftalmologia/Cuidados com os olhos",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% kazu oftalmolojia ne'ebe diagnosticado no hetan tratamento adequado Numeru ema ne'ebe hetan screening oftalmologia",
+   "baseline": "n.a n.a",
+   "target": "80% 60%",
+   "amounts": {
+    "20": 20055.0
+   },
+   "page": 183
+  },
+  {
+   "code": "5280617",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Saúde do idoso e saúde dos veteranos",
+   "div": [
+    "0170703"
+   ],
+   "indicator": "Numeru atividade screening ne'ebe halao ba komunidade idozos no veterano sira % pasiente Idosos e veteranos ne'ebe refere ba nivel fasilidade saude a'as iu",
+   "baseline": "n.a n.a",
+   "target": "24000 10%",
+   "amounts": {
+    "20": 3970.0
+   },
+   "page": 183
+  },
+  {
+   "code": "5280618",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Saúde mental e epilepsia",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "% pasiente saude mental no epilepsia ne'be registrado no hetan tratamentu % pasiente saude mental no epilepsia ne'ebe refere ba nivel fasilidade saude a'as iu",
+   "baseline": "70% n.a",
+   "target": "90% <10%",
+   "amounts": {
+    "20": 26561.0
+   },
+   "page": 183
+  },
+  {
+   "code": "52806E1",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "One Health integrated surveillance and early warning system",
+   "div": [
+    "0170703"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1050600.0
+   },
+   "page": 183
+  },
+  {
+   "code": "52806E2",
+   "programme": "528",
+   "subprogramme": "52806",
+   "subprogramme_name": "Controla de Doenças",
+   "name": "Surveillance and early warning equipment",
+   "div": [
+    "0170703"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 900000.0
+   },
+   "page": 183
+  },
+  {
+   "code": "5281401",
+   "programme": "528",
+   "subprogramme": "52814",
+   "subprogramme_name": "Promoção da Educação para a saúde",
+   "name": "Involvementu Komunidade iha Promosaun no Edukasaun Saude (PSF, GSI &amp;#38; MBKS)",
+   "div": [
+    "0170702",
+    "0170705"
+   ],
+   "indicator": "Numeru Suco ne'ebe estabelese ona Monitorizasaun ho Base Komunitaria ba Saude (MBKS) % Eskola implementa programa saude eskolar no grupu espesifik iha komunidade % Promotor Saude Familia/voluntario saude komunitaria no Grupu Suporta Inan ne'ebe ativu iha komunidade",
+   "baseline": "15 65% 100%",
+   "target": "30 80% 100%",
+   "amounts": {
+    "20": 54870.0
+   },
+   "page": 184
+  },
+  {
+   "code": "5281402",
+   "programme": "528",
+   "subprogramme": "52814",
+   "subprogramme_name": "Promoção da Educação para a saúde",
+   "name": "Utilizasaun Media komunikasaun (Elektroniku e Sosial ba Programa Promosaun Edukasaun Saude)",
+   "div": [
+    "0170702",
+    "0170705"
+   ],
+   "indicator": "% Programa ne'ebe divulga promosaun no eduksaun saude liu husi Media elektronik ho media masa % Media komunikasaun ne'ebe maka publika programa promosaun no edukasaun saude",
+   "baseline": "45% n.a",
+   "target": "65% 75%",
+   "amounts": {
+    "20": 88459.0
+   },
+   "page": 184
+  },
+  {
+   "code": "5281403",
+   "programme": "528",
+   "subprogramme": "52814",
+   "subprogramme_name": "Promoção da Educação para a saúde",
+   "name": "Educação e Promoção da Saúde Programa Tematica Saúde (Eletroniku e Social ba Programa Promosaun Edukasaun Saude))",
+   "div": [
+    "0170702",
+    "0170705"
+   ],
+   "indicator": "Numeru eventu programatiku ne'ebe implementa iha area tematikas inklui kampanha saude % Fasilidade saude ne'ebe implementa LIDUN Promosaun Edukasaun Saude",
+   "baseline": "50 35%",
+   "target": "80 25%",
+   "amounts": {
+    "20": 49650.0
+   },
+   "page": 184
+  },
+  {
+   "code": "52814E1",
+   "programme": "528",
+   "subprogramme": "52814",
+   "subprogramme_name": "Promoção da Educação para a saúde",
+   "name": "Community engagement for grassroots surveillance",
+   "div": [
+    "0170702"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 466019.0
+   },
+   "page": 184
+  },
+  {
+   "code": "5290202",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Internamento de pacientes, incluindo serviços médicos especializados",
+   "div": [
+    "0170804",
+    "0170805",
+    "0170806",
+    "0170807",
+    "0170808"
+   ],
+   "indicator": "Numeru enkontru jestaun cliniku kada hospital",
+   "baseline": "n.a",
+   "target": "24 enkontru",
+   "amounts": {
+    "30": 5200000.0,
+    "10": 4710236.0,
+    "20": 964775.0
+   },
+   "page": 185
+  },
+  {
+   "code": "5290203",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Fortalecimento Serviço Gestão e nutrição clínica",
+   "div": [
+    "0170805",
+    "0170806",
+    "0170807",
+    "0170808"
+   ],
+   "indicator": "% Fornesimentu Hahan ba pasiente tuir padraun Nutrisaun klinika",
+   "baseline": "n.a",
+   "target": "90%",
+   "amounts": {
+    "20": 831100.0
+   },
+   "page": 185
+  },
+  {
+   "code": "5290204",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Serviços médicos móveis e atendimento a pacientes",
+   "div": [
+    "0170801",
+    "0170804",
+    "0170805",
+    "0170806"
+   ],
+   "indicator": "",
+   "baseline": "n.a",
+   "target": "3",
+   "amounts": {
+    "20": 54795.0
+   },
+   "page": 185
+  },
+  {
+   "code": "5290205",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Clínicas de Especialidade Ambulatoria (Policlínica)",
+   "div": [
+    "0170801",
+    "0170804",
+    "0170805",
+    "0170806"
+   ],
+   "indicator": "% Paciente nebe halo konsulatasaun iha klinika Sub-espesializadu medika Kada Tinan",
+   "baseline": "n.a",
+   "target": "10%",
+   "amounts": {
+    "20": 35952.0
+   },
+   "page": 186
+  },
+  {
+   "code": "5290206",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Serviços emergência médica no Nivel Hospitalares",
+   "div": [
+    "0170801",
+    "0170806"
+   ],
+   "indicator": "Numeru Pesoal Saude treinadu iha Area Hospital Emergency Critical Care % pasiente ne'ebe refere iha rai laran % Hospital no Sentru Saude Komunitaria ne'ebe iha prontidaun asistensia emergensia medika Numeru pasiente ne'ebe refere ba Hospital rai liur",
+   "baseline": "150 n.a n.a 261",
+   "target": "300 <10% 75% 250",
+   "amounts": {
+    "20": 42630.0
+   },
+   "page": 186
+  },
+  {
+   "code": "5290207",
+   "programme": "529",
+   "subprogramme": "52902",
+   "subprogramme_name": "Serviço Hospital Referais e Municipais",
+   "name": "Serviço de Apoiuo Diagnostic Medica",
+   "div": [
+    "0170803"
+   ],
+   "indicator": "% pedido diagnostiku mediku responde tuir tempu",
+   "baseline": "n.a",
+   "target": "90%",
+   "amounts": {
+    "20": 60000.0
+   },
+   "page": 186
+  },
+  {
+   "code": "5290307",
+   "programme": "529",
+   "subprogramme": "52903",
+   "subprogramme_name": "Serviço Terciário e Médico Especializado",
+   "name": "Tratamentu medica iha rai liur",
+   "div": [
+    "0170801"
+   ],
+   "indicator": "Numeru Pasiente ne'ebe refere ba rai liur",
+   "baseline": "261",
+   "target": "250",
+   "amounts": {
+    "30": 16230000.0
+   },
+   "page": 186
+  },
+  {
+   "code": "5290308",
+   "programme": "529",
+   "subprogramme": "52903",
+   "subprogramme_name": "Serviço Terciário e Médico Especializado",
+   "name": "Estabelesimentu Servisu Espesializadu Medika",
+   "div": [
+    "0170803",
+    "0170804"
+   ],
+   "indicator": "Numeru servisu Sub- espesializado medika ne'ebe Funsiona",
+   "baseline": "1",
+   "target": "4",
+   "amounts": {
+    "20": 13360.0
+   },
+   "page": 187
+  },
+  {
+   "code": "52903X1",
+   "programme": "529",
+   "subprogramme": "52903",
+   "subprogramme_name": "Serviço Terciário e Médico Especializado",
+   "name": "Systems and instruments for tertiary and specialised medical services",
+   "div": [
+    "0170804"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 187
+  },
+  {
+   "code": "5290607",
+   "programme": "529",
+   "subprogramme": "52906",
+   "subprogramme_name": "Pacote Serviços Abrangente Cuidados Saúde Hospitalar",
+   "name": "Apoiu Jestaun Hospitalares",
+   "div": [
+    "0170803",
+    "0170804"
+   ],
+   "indicator": "% Hospital ne'ebe iha ona Guia/ Prosedimentu Operasional Tratamentu Medika Numeru Orientasaun Sobre Pakote Servisu Hospitalares realiza",
+   "baseline": "n.a 4",
+   "target": "75% 4",
+   "amounts": {
+    "20": 17720.0
+   },
+   "page": 187
+  },
+  {
+   "code": "5290608",
+   "programme": "529",
+   "subprogramme": "52906",
+   "subprogramme_name": "Pacote Serviços Abrangente Cuidados Saúde Hospitalar",
+   "name": "Estabelesementu Sistema Referensia Medika",
+   "div": [
+    "0170804"
+   ],
+   "indicator": "% Dezenvolvimentu Estrategia no Manual sistema referensia medika",
+   "baseline": "0",
+   "target": "100%",
+   "amounts": {
+    "20": 10800.0
+   },
+   "page": 187
+  },
+  {
+   "code": "5290705",
+   "programme": "529",
+   "subprogramme": "52907",
+   "subprogramme_name": "Emergéncia Médica",
+   "name": "Epidemiologia emergente / reemergente e de vigilância",
+   "div": [
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "Numeru Rubella no caso do sarampo mantém / menos",
+   "baseline": "0 n.a",
+   "target": "0 100%",
+   "amounts": {
+    "20": 13410.0
+   },
+   "page": 187
+  },
+  {
+   "code": "5290706",
+   "programme": "529",
+   "subprogramme": "52907",
+   "subprogramme_name": "Emergéncia Médica",
+   "name": "Emergência Médica no Nível de Atenção Primária à Saúde",
+   "div": [
+    "0170703",
+    "0170804"
+   ],
+   "indicator": "Resposta da equipa de referência de emergência aos casos de emergência (<24 horas)",
+   "baseline": "n.a",
+   "target": "80%",
+   "amounts": {
+    "20": 12075.0
+   },
+   "page": 188
+  },
+  {
+   "code": "5290707",
+   "programme": "529",
+   "subprogramme": "52907",
+   "subprogramme_name": "Emergéncia Médica",
+   "name": "Preparasaun e Responde Emergencia Saude Publika",
+   "div": [
+    "0170301",
+    "0170702",
+    "0170703",
+    "0170705"
+   ],
+   "indicator": "Numeru unidade responde emergensia saude publika ne'ebe estabelece iha fasilidade saude no Hospital",
+   "baseline": "13",
+   "target": "16",
+   "amounts": {
+    "20": 325992.0
+   },
+   "page": 188
+  },
+  {
+   "code": "5290904",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Produsaun Medikamentus e Insumu Mediku Domestika",
+   "div": [
+    "0170802"
+   ],
+   "indicator": "% estudu viabilidade produsaun medikamentus e insumu mediku domestika realizado",
+   "baseline": "n.a",
+   "target": "100%",
+   "amounts": {
+    "20": 8515.0
+   },
+   "page": 188
+  },
+  {
+   "code": "5290905",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Gestão da cadeia de suprimentos médicos",
+   "div": [
+    "0170802"
+   ],
+   "indicator": "% SSK no Hospital ne'ebe relata konsumu aimoruk, insumu mediku mai Servisu Sentrais MS % Aimoruk no insumu mediku ne'ebe expire iha Fasilidade Saude",
+   "baseline": "75% n.a",
+   "target": "100% <5%",
+   "amounts": {
+    "20": 5172.0
+   },
+   "page": 188
+  },
+  {
+   "code": "5290906",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Controlo de Qualidade de Produtos Farmacêuticos",
+   "div": [
+    "0170802"
+   ],
+   "indicator": "% Produto farmaceutiku ne'ebe failla teste kualidade husi total numeru amostra ne'ebe halo teste",
+   "baseline": "n.a",
+   "target": "<2%",
+   "amounts": {
+    "20": 27625.0
+   },
+   "page": 188
+  },
+  {
+   "code": "5290907",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Gestão do armazém",
+   "div": [
+    "0170802"
+   ],
+   "indicator": "% Armazen farmacia ne'ebe prienche prontidaun tuir",
+   "baseline": "n.a n.a",
+   "target": "50% 80%",
+   "amounts": {
+    "20": 10310.0
+   },
+   "page": 188
+  },
+  {
+   "code": "5290908",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Conduza a Farmacovigilância Regular",
+   "div": [
+    "0170802"
+   ],
+   "indicator": "% item medikamentus, insumu mediku hamosu reasaun adverse ba pasiente % Item medikamentu no insumu mediku ne'ebe mak deskonfia falsu ka sub- standard",
+   "baseline": "n.a n.a",
+   "target": "<10% <10%",
+   "amounts": {
+    "20": 9235.0
+   },
+   "page": 189
+  },
+  {
+   "code": "5290912",
+   "programme": "529",
+   "subprogramme": "52909",
+   "subprogramme_name": "Gestão e Distribuição do Medicamento e Equipamento Médico",
+   "name": "Padronizasaun ekipamentu mediku",
+   "div": [
+    "0170803"
+   ],
+   "indicator": "1) % Desenvolve padraun no regulamentu ba ekipamentu mediku iha servisu nasional de Saude 2) % Ekipamentus saude ne'ebe funciona iha fasilidade saude (ospital,sentru saude no posto saude ) 3) # pesoal ne'ebe simu formasaun ba utilizasaun ba ekipamentus medikus 4) % Ekipamentus medikus ne'ebe halo manutensaun no kalibrasaun rutina",
+   "baseline": "1) 20% 2) 75% 3) 300 4) 20%",
+   "target": "1) 100% 2) 90% 3) 600 4) 80%",
+   "amounts": {
+    "20": 28800.0,
+    "40": 4600000.0
+   },
+   "page": 189
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Procedimentos de saúde totalmente implementados",
+   "baseline": "Plano Estratégico de Saúde Aprovado",
+   "target": "Políticas",
+   "page": 170
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Relatórios Trimestrais de implementação do Plano Annual",
+   "baseline": "4 Relatorios Trimestrais",
+   "target": "4",
+   "page": 170
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Metas no Plano Anual alcançadas",
+   "baseline": "75%",
+   "target": "90%",
+   "page": 171
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Acordos de Parceria e / ou Memorando de Entendimento são implementados de acordo com os termos acordados",
+   "baseline": "90%",
+   "target": "90%",
+   "page": 175
+  },
+  {
+   "kind": "output",
+   "code": "51007.0.0",
+   "statement": "Todo contrato interorganizacional de decentralização implementado em todos Municípios",
+   "indicator": "Municipios Implementou a descentralização Inter-orgânica com sucesso",
+   "baseline": "10",
+   "target": "14",
+   "page": 175
+  },
+  {
+   "kind": "output",
+   "code": "51008.0.0",
+   "statement": "Profissionais da Saúde, Farmácia Privada, Clínicas Privadas e outras atividades de saúde registradas pelo Ministério da Saúde",
+   "indicator": "Profissionais de saúde registrados receberam certificação profissional de saúde, 75% das clínicas de saúde privadas e farmácias privadas foram registradas receberam certificação adequada",
+   "baseline": "50%, 100%",
+   "target": "70%, 100%",
+   "page": 175
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "510.0.j: Instalações de saúde funcionais, seguras e adequadamente equipadas, prontas para apoiar a prestação de serviços de saúde de qualidade em todos os níveis",
+   "indicator": "\"\"\"1) % de instalações de saúde que cumprem os padrões mínimos de prontidão funcional (infraestrutura, água, energia, saneamento, equipamentos essenciais) 2) % de instalações de saúde com serviços essenciais interrompidos por falhas de infraestrutura\"",
+   "baseline": "23",
+   "target": "44",
+   "page": 176
+  },
+  {
+   "kind": "output",
+   "code": "51063.0.0",
+   "statement": "Infraestruturas de saúde construídas, reabilitadas e mantidas de acordo com padrões nacionais de prontidão e segurança",
+   "indicator": "\"\"\"1) % de instalações de saúde que cumprem os padrões mínimos de prontidão funcional (infraestrutura, água, energia, saneamento, equipamentos essenciais) 2) % de instalações de saúde com serviços essenciais interrompidos por falhas de infraestrutura\"",
+   "baseline": "70%",
+   "target": "90%",
+   "page": 176
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "\"\"\"1) % das unidades de cuidados de saúde primários que cumprem os padrões mínimos de prontidão dos serviços de cuidados de saúde primários (pacote de cuidados de saúde primários + WASH/IPC + medicamentos essenciais). 2) Consultas ambulatórias per capita por ano (cuidados de saúde primários) (atribuíveis aos cuidados de saúde primários). 3) Rácio de mortalidade materna (RMM) 4) Taxa de mortalidade de crianças menores de 5 anos 5) Prevalência de atraso no crescimento (Stunting prevalence)\"",
+   "baseline": "\"1.195/100000 LB 2. 50.5/1000 3. 47.1%\"",
+   "target": "\"1.85/100000 Lb 2.30/1000. 3. 30%\"",
+   "page": 177
+  },
+  {
+   "kind": "output",
+   "code": "52802.0.0",
+   "statement": "Prestação de um pacote abrangente de serviços de cuidados de saúde primários (consulta, prevenção, tratamento básico e encaminhamento) com qualidade e equidade em todas as unidades de saúde, incluindo áreas remotas",
+   "indicator": "\"\"\"1) Consultas ambulatórias per capita por ano (cuidados de saúde primários) 2) % de unidades de cuidados de saúde primários que prestam o pacote completo de cuidados de saúde primários essenciais (disponibilidade de serviços) 3) % de unidades de cuidados de saúde primários com taxa de ruptura de estoque <5% para medicamentos essenciais rastreáveis\"\"\"",
+   "baseline": "4",
+   "target": "4.5",
+   "page": 177
+  },
+  {
+   "kind": "output",
+   "code": "52804.0.0",
+   "statement": "Prevenção, deteção e tratamento da desnutrição ao nível comunitário e nas unidades de cuidados de saúde primários, com foco nas crianças e nas mães, de acordo com as normas nacionais de nutrição",
+   "indicator": "\"\"\"1) % de crianças de 6 a 59 meses tratadas por desnutrição aguda grave (SAM) de acordo com o protocolo (cobertura tratada/curada) 2) % de crianças menores de cinco anos que recebem monitoramento regular do crescimento (mensal/trimestral, conforme definido) 3) % de taxa de ruptura de estoque de produtos nutricionais essenciais (RUTF, MNP, vitamina A, albendazol)\"",
+   "baseline": "75%",
+   "target": "80%",
+   "page": 179
+  },
+  {
+   "kind": "output",
+   "code": "52805.0.0",
+   "statement": "Prestação de serviços de saúde materno-infantil (RMNCH) de qualidade, incluindo imunização e planeamento familiar ao nível dos cuidados de saúde primários, com um sistema de referência obstétrica funcional para melhorar a segurança da gravidez e do parto",
+   "indicator": "\"\"\" 1) % de partos assistidos por profissionais de saúde qualificados (ou % de partos em instalações de saúde) 2) % de mulheres grávidas que completaram ANC4+ (ou % de ANC1 antes das 12 semanas) 3) % de crianças totalmente",
+   "baseline": "\"MM 8 MP 592\"",
+   "target": "\"MM 0 MP \"",
+   "page": 179
+  },
+  {
+   "kind": "output",
+   "code": "52806.0.0",
+   "statement": "A prevenção, deteção, tratamento e encaminhamento de doenças transmissíveis e condições crónicas prioritárias são implementados ao nível dos cuidados de saúde primários, apoiados pela vigilância e educação para a saúde",
+   "indicator": "\"\"\"1) Taxa de deteção de casos de TB ou taxa de sucesso do tratamento da TB (escolha uma opção de forma consistente) 2) % de pessoas elegíveis que vivem com VIH em tratamento (ou % de EMHIV que iniciam o tratamento) 3) % de unidades de cuidados de saúde primários que implementam o pacote de rastreio de DNT prioritárias (hipertensão/diabetes) com vias de encaminhamento funcionais\"",
+   "baseline": "\"79% 91%\"",
+   "target": "1. 300/100,000 2. 2500 3. 60% 4. 238 5. 80% 6. 0,40%",
+   "page": 181
+  },
+  {
+   "kind": "output",
+   "code": "52814.0.0",
+   "statement": "Mecanismos eficazes de promoção da saúde e envolvimento da comunidade (interfaces",
+   "indicator": "\"\"\"1) Número de sucos com mecanismos funcionais de monitorização da saúde baseados na comunidade (MBKS), de",
+   "baseline": "1.3",
+   "target": "2.7",
+   "page": 183
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.0",
+   "statement": "São prestados cuidados hospitalares secundários e terciários seguros, eficazes e de alta qualidade, com um sistema de encaminhamento que funciona bem, a fim de reduzir a mortalidade evitável e melhorar a satisfação dos pacientes",
+   "indicator": "\"\"\" 1) Taxa líquida de mortalidade (NDR) – pacientes internados 2) Taxa bruta de mortalidade (GDR) – pacientes internados 3) % de pacientes encaminhados que chegam com a documentação de encaminhamento completa (conformidade do encaminhamento)\"",
+   "baseline": "\"GDR 47/1000 NDR 27/1000\"",
+   "target": "\"GDR <25/1000 NDR <10/1000\"",
+   "page": 185
+  },
+  {
+   "kind": "output",
+   "code": "52902.0.0",
+   "statement": "Os serviços de referência e os hospitais municipais prestam cuidados hospitalares seguros e eficientes, com uma gestão funcional dos leitos e o cumprimento das normas mínimas de qualidade e de prevenção e controlo de infecções",
+   "indicator": "\"\"\"1) Bed Occupancy Rate (BOR) / Taxa de ocupação de leitos 2) Average Length of Stay (ALOS) / Tempo médio de permanência 3) (Optional) Turnover Interval (TOI) / Intervalo de rotatividade \"",
+   "baseline": "\"BOR 101% TOI Loron 0 ALOS loron 6\"",
+   "target": "\"BOR 85% TOI Menus Loron 4 ALOS Menus loron 3\"",
+   "page": 185
+  },
+  {
+   "kind": "output",
+   "code": "52903.0.0",
+   "statement": "Serviços de subespecialidades prioritárias (cardiologia, oncologia, hemodiálise, neurologia) são estabelecidos e operados de acordo com as normas, reduzindo a necessidade de encaminhamentos médicos para o exterior",
+   "indicator": "\"\"\"1) Pontuação de prontidão dos serviços de subespecialidades prioritárias em relação às normas nacionais do pacote de serviços 2) # de serviços de subespecialidades prioritárias em funcionamento (definição mínima de serviço cumprida) 3) # de encaminhamentos para o exterior para condições cobertas pelos serviços de subespecialidades estabelecidos\"",
+   "baseline": "n/a",
+   "target": "75%",
+   "page": 186
+  },
+  {
+   "kind": "output",
+   "code": "52906.0.0",
+   "statement": "O pacote nacional de serviços hospitalares secundários e terciários é implementado nos hospitais de acordo com as normas nacionais (serviços essenciais, pessoal, procedimentos e requisitos de qualidade)",
+   "indicator": "\"\"\"1) % de hospitais que cumprem os requisitos mínimos do pacote (pontuação de conformidade do pacote secundário/terciário). 2) % de serviços de diagnóstico essenciais disponíveis (disponibilidade/tempo de funcionamento de laboratórios/imagiologia)\"\"\"",
+   "baseline": "n/a",
+   "target": "75%",
+   "page": 187
+  },
+  {
+   "kind": "output",
+   "code": "52907.0.0",
+   "statement": "Os serviços médicos de emergência e os sistemas de transferência de pacientes funcionam com tempos de resposta adequados, e a preparação para responder a emergências de saúde pública é garantida",
+   "indicator": "\"\"\"1) % de encaminhamentos de emergência atendidos dentro do tempo padrão (por exemplo, <24 horas para transferência entre instalações) 2) % de hospitais com planos funcionais de preparação para emergências testados pelo menos uma vez por ano (simulação realizada) 3) % de instalações de saúde que enviam relatórios de vigilância em tempo hábil (indicadores relevantes para emergências)\"",
+   "baseline": "n/a",
+   "target": "85%",
+   "page": 187
+  },
+  {
+   "kind": "output",
+   "code": "52909.0.0",
+   "statement": "O sistema de aquisição e distribuição de medicamentos e suprimentos médicos funciona de forma eficiente e transparente, reduzindo a falta de estoque e o desperdício em todo o Serviço Nacional de Saúde",
+   "indicator": "\"\"\"1) % de falta de estoque de medicamentos essenciais rastreáveis (nível nacional) 2) % de instalações que relatam o consumo de medicamentos através do LMIS dentro do prazo 3) % de medicamentos vencidos como parte do valor total do inventário\"",
+   "baseline": "15%",
+   "target": "<10%",
+   "page": 188
+  },
+  {
+   "kind": "output",
+   "code": "52909.0.1",
+   "statement": "Os medicamentos essenciais e os equipamentos médicos estão disponíveis, são seguros e funcionais nos hospitais, de acordo com as normas aprovadas para os pacotes de serviços",
+   "indicator": "\"1) % de medicamentos genéricos essenciais não expirados disponíveis 2) % de equipamentos médicos disponíveis e funcionais de acordo com as normas do pacote 3) % de medicamentos e insumos médicos que cumprem as normas de qualidade e seguran\"",
+   "baseline": "\"1) 89% 2) 50% 3) 85.7%\"",
+   "target": "\"1) 90% 2) 80% 3) 100%\"",
+   "page": 189
+  }
+ ]
+}

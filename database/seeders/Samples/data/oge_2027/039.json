@@ -1,0 +1,378 @@
+{
+ "year": 2027,
+ "code": "039",
+ "name": "Inspeção-Geral do Trabalho",
+ "abbr": "IGT",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   379,
+   388
+  ]
+ },
+ "units": [
+  {
+   "code": "IGT",
+   "div": "0390101",
+   "name": "Inspeção Geral do Trabalho",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "“Número de Leis/Decretos- Lei, Resoluções, Despachos e procedimentos elaborados e aprovados.”",
+   "baseline": "“3.ª Alteração do Decreto-Lei da IGT, Diploma Ministerial e Decreto-Lei sobre Segurança, Saúde e Higiene no Trabalho aprovados.” O ponto de partida demonstra a situação existente antes do início da atividade anual. Neste caso, a IGT já possui alguns processos ou resultados jurídicos, incluindo: • processo da 3.ª",
+   "target": "a) Alteração da Decisão n.º 232 para Diploma Ministerial – proceder à revisão e alteração da Decisão n.º 232, de modo a transformar ou atualizar a sua base jurídica para Diploma Ministerial, de acordo com as necessidades legais e o procedimento de aprovação; b) Continuação da 3.ª Alteração do Decreto-Lei sobre o Estatuto da",
+   "amounts": {
+    "10": 12000.0
+   },
+   "page": 380
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Percentagem (%) do orçamento executado (obrigações + execução real); 2. Percentagem (%) de implementação das atividades financeiras e administrativas; 3. Número de reuniões/encontros da ASEAN e CPLP em que a IGT participa, de acordo com o calendário estabelecido.",
+   "baseline": "• As novas atividades foram implementadas em 2025, após a aprovação do OGE 2025; • Os relatórios trimestrais e anuais de 2025 foram apresentados; • O Relatório Anual de 2026 está em processo de finalização e submissão dentro do prazo determinado.",
+   "target": "a) Atingir 100% de execução do orçamento anual, de acordo com o orçamento aprovado e as regras de execução orçamental; b) Atingir 100% de implementação das atividades financeiras e administrativas previstas no plano anual; c) Participar em reuniões/encontros da ASEAN e CPLP, de acordo com o calendário oficial e as oportunidades de participação",
+   "amounts": {
+    "20": 18135.0
+   },
+   "page": 381
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Percentagem (%) do orçamento executado (Obrigações + Execução Real); 2. Percentagem (%) de implementação do registo do património do Estado.",
+   "baseline": "a) 100% de execução do OGE 2025; b) 50% das metas planeadas para 2026 já foram alcançadas e os restantes 50% encontram-se em processo de implementação e finalização, de acordo com o prazo determinado.",
+   "target": "a) Atingir 100% de execução do Orçamento Anual, de acordo com o orçamento aprovado; b) Atingir 100% de implementação do registo do património do Estado, garantindo o registo, atualização e organização do património do Estado de acordo com os procedimentos estabelecidos.",
+   "amounts": {
+    "20": 73500.0
+   },
+   "page": 382
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Percentagem (%) do orçamento executado (Obrigações + Execução Real); 2. Percentagem (%) de implementação e gestão de recursos humanos.",
+   "baseline": "a) 94% de execução do OGE 2025; b) 50% das metas planeadas para 2026 já foram alcançadas e os restantes 50% encontram-se em processo de implementação e finalização, de acordo com o prazo determinado.",
+   "target": "a) Atingir 100% de execução do Orçamento Anual, de acordo com o orçamento aprovado; b) Atingir 100% de implementação da gestão de recursos humanos, garantindo a distribuição, gestão e utilização dos recursos humanos adequados às necessidades institucionais.",
+   "amounts": {
+    "10": 202020.0
+   },
+   "page": 382
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "Número de Inspetores do Trabalho e funcionários que possuem capacidade para aplicar os conhecimentos e competências adquiridos através das atividades de formação e capacitação no desempenho das suas funções.",
+   "baseline": "• As novas atividades serão implementadas em 2025, após a aprovação do OGE 2025; • 100% das metas planeadas para 2025 já foram alcançadas, e os restantes 5% encontram-se em processo de implementação e finalização, de acordo com o prazo determinado.",
+   "target": "• Aumentar o conhecimento, as competências e a capacidade profissional dos Inspetores do Trabalho e funcionários da IGT; • Garantir que os Inspetores do Trabalho e funcionários que participam nas atividades de formação tenham capacidade para aplicar os conhecimentos e competências adquiridos no exercício das suas funçoẽ s; • Reforçar a formação contínua e o desenvolvimento de competências específicas, de acordo com as necessidades institucionais da IGT.",
+   "amounts": {
+    "20": 9150.0
+   },
+   "page": 382
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Percentagem (%) do orçamento executado (Obrigações + Execução Real); 2. Percentagem (%) de implementação das atividades de aprovisionamento e gestão de contratos.",
+   "baseline": "a) 83% de execução do OGE 2025; b) 6% das metas planeadas para 2024 foram alcançadas, enquanto os restantes 94% se encontram em processo de implementação e finalização, de acordo com o prazo determinado.",
+   "target": "a) Atingir 100% de execução do Orçamento Anual, de acordo com o orçamento aprovado; b) Atingir 100% de implementação das atividades de aprovisionamento e gestão de contratos, garantindo o cumprimento dos procedimentos e normas estabelecidos para os processos de aquisição e contratação.",
+   "amounts": {
+    "20": 44079.0
+   },
+   "page": 383
+  },
+  {
+   "code": "9831601",
+   "programme": "983",
+   "subprogramme": "98316",
+   "subprogramme_name": "Prevenir trabalho infantil e trabalho forçado",
+   "name": "Prevenir o trabalho infantil e o trabalho forçado",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de participantes que recebem informação e conhecimento sobre a prevenção do trabalho infantil e do trabalho forçado; 2. Número de participantes do Governo, Sindicatos e Empregadores que possuem capacidade para aplicar os conhecimentos adquiridos no seu trabalho; 3. Número de trabalhadores que recebem salário de acordo com a lei e os regulamentos laborais aplicáveis.",
+   "baseline": "Foram realizados 2 seminários/sessões de sensibilização sobre a prevenção do trabalho infantil em 2025.",
+   "target": "a) Realizar 2 campanhas de sensibilização sobre a prevenção do trabalho infantil, com o respetivo número total de participantes; b) Aumentar o conhecimento e a consciência dos participantes sobre a prevenção do trabalho infantil e do trabalho forçado; c) Reforçar a capacidade dos participantes do Governo, Sindicatos e Empregadores para aplicar os conhecimentos adquiridos no seu trabalho.",
+   "amounts": {
+    "20": 1360.0
+   },
+   "page": 384
+  },
+  {
+   "code": "9831602",
+   "programme": "983",
+   "subprogramme": "98316",
+   "subprogramme_name": "Prevenir trabalho infantil e trabalho forçado",
+   "name": "Comemorações oficiais - Dia Mundial do Trabalho Infantil",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "Número de crianças com idade inferior a 18 anos e membros da",
+   "baseline": "137 crianças com idade inferior a 18 anos e membros da",
+   "target": "Realizar 1 (uma) atividade de Comemoração do Dia Mundial",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 384
+  },
+  {
+   "code": "9831604",
+   "programme": "983",
+   "subprogramme": "98316",
+   "subprogramme_name": "Prevenir trabalho infantil e trabalho forçado",
+   "name": "Implementação plano acção nacional do trabalho infantil",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de casos de trabalho infantil reduzidos; 2. Número de participantes e partes interessadas que recebem informação e conhecimento sobre a implementação do Plano de Ação Nacional sobre o Trabalho Infantil.",
+   "baseline": "• Foram realizados 2 seminários sobre a implementação do Plano de Ação Nacional sobre o Trabalho Infantil, com 100 participantes; • As partes interessadas receberam informação e conhecimento sobre a prevenção e o combate ao trabalho infantil.",
+   "target": "1. Realizar 1 atividade/seminário sobre a implementação do Plano de Ação Nacional sobre o Trabalho Infantil; 2. Aumentar a informação, o conhecimento e a consciência das partes interessadas sobre a prevenção e eliminação do trabalho infantil; 3. Apoiar os esforços para reduzir os casos de trabalho infantil através da implementação das atividades previstas no Plano de Ação Nacional.",
+   "amounts": {
+    "20": 1360.0
+   },
+   "page": 385
+  },
+  {
+   "code": "9831701",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Divulgar as leis e estatutos existentes relevantes para trabalhadores e empregadores",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de atividades de sensibilização sobre as Leis e Estatutos relevantes para trabalhadores e empregadores, com cobertura no território nacional; 2. Número de funcionários casuais que recebem o seu salário; 3. Número de",
+   "baseline": "• Foram realizados 3 seminários/sessões de sensibilização sobre a Lei do Trabalho, Lei de Segurança, Saúde e Higiene no Trabalho, Lei da Greve e legislação complementar em 2025; • Em 2026, foi implementado 1",
+   "target": "a) Realizar 3 seminários/sessões de sensibilização sobre a Lei do Trabalho, Lei de Segurança, Saúde e Higiene no Trabalho, Lei da Greve e legislação complementar no território nacional; b) Imprimir documentos/Leis nas seguintes",
+   "amounts": {
+    "20": 5720.0
+   },
+   "page": 385
+  },
+  {
+   "code": "9831702",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Inspeções de trabalho",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de visitas de inspeção do trabalho realizadas no território nacional e respetiva cobertura; 2. Número de Inspetores do Trabalho que recebem salário de acordo com os direitos e benefícios estabelecidos na lei; 3. Número de participantes do Governo que possuem capacidade para aplicar os conhecimentos adquiridos no seu trabalho.",
+   "baseline": "1. 1.269 visitas de inspeção do trabalho foram realizadas no território nacional em 2025; 2. 35 Inspetores do Trabalho recebem salário de acordo com os direitos e benefícios estabelecidos na lei.",
+   "target": "a) Realizar 1.200 visitas de inspeção do trabalho no território nacional; b) Garantir o pagamento de salário a 35 Inspetores do Trabalho, de acordo com os direitos e benefícios estabelecidos; c) Nomear 7 Inspetores do Trabalho Delegados; e) Assegurar alojamento para 7 Inspetores do Trabalho Delegados; f) Promover 11 Inspetores do Trabalho de acordo com o grau e os procedimentos estabelecidos.",
+   "amounts": {
+    "10": 271944.0,
+    "20": 16810.0
+   },
+   "page": 386
+  },
+  {
+   "code": "9831703",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Emissão de autorizações de trabalho",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de autorizações de trabalho para trabalhadores e empregadores estrangeiros emitidas e legalizadas; 2. Número de funcionários casuais que recebem salário.",
+   "baseline": "9.693 autorizações de trabalho para trabalhadores e empregadores estrangeiros foram emitidas e legalizadas em 2025.",
+   "target": "a) Emitir e legalizar 4.500 autorizações de trabalho para trabalhadores e empregadores estrangeiros, de acordo com a lei e os procedimentos aplicáveis; b) Garantir o pagamento de salário a 2 funcionários casuais, de acordo com os direitos e procedimentos estabelecidos.",
+   "amounts": {
+    "10": 4500.0
+   },
+   "page": 386
+  },
+  {
+   "code": "9831705",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Aplicar multa para infrator do Lei Trabalho e Legislação complementar",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de infratores que violam a Lei do Trabalho e a legislação complementar e montante total das multas que contribuem para a receita do Estado; 2. Número de funcionários casuais que recebem salário.",
+   "baseline": "326 empresas foram multadas, no montante total de US$ 114.270,00, por infrações contra a Lei do Trabalho e a legislação complementar.",
+   "target": "a) Arrecadar US$ 220.000,00 provenientes de multas para contribuir para a receita do Estado, de acordo com o plano de receitas determinado; b) Garantir o pagamento de salário a 2 funcionários casuais, de acordo com os direitos e procedimentos estabelecidos.",
+   "amounts": {
+    "10": 3432.0
+   },
+   "page": 386
+  },
+  {
+   "code": "9831706",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Comemorar dias da Inspeção do Trabalho",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de empregadores e trabalhadores que recebem informação e conhecimento sobre segurança e saúde no trabalho e contribuem para a redução de acidentes de trabalho; 2. Número de publicações da Lei do Trabalho e da Lei de Segurança, Saúde e Higiene no Trabalho (SSHT) em 4 línguas no RTTL; 3. Número de brochuras de SSHT impressas e distribuídas; 4. Celebração/Comemora ção do Dia da Inspeção-Geral do Trabalho realizada.",
+   "baseline": "• Foi realizada 1 (uma) comemoração do Dia Mundial da Segurança e Saúde no Trabalho em 2025, com um total de 82 participantes; • A comemoração do Dia da Inspeção-Geral do Trabalho e a avaliação do progresso anual dos serviços encontram-se em processo e serão realizadas de acordo com o prazo determinado.",
+   "target": "a) Realizar 1 (uma) comemoração do Dia Mundial da Segurança e Saúde no Trabalho, para aumentar a consciência dos empregadores e trabalhadores sobre segurança e saúde no local de trabalho, com um total de 100 participantes; b) Realizar 1 (uma) comemoração do Dia da Inspeção-Geral do Trabalho e avaliação do progresso anual dos serviços; c) Realizar 1 (uma) publicação sobre a Lei do Trabalho e Segurança, Saúde e Higiene no Trabalho em 4 línguas no RTTL; d) Imprimir e distribuir 500 brochuras de SSHT para divulgar informação sobre segurança, saúde e higiene no trabalho.",
+   "amounts": {
+    "20": 7280.0
+   },
+   "page": 387
+  },
+  {
+   "code": "9831707",
+   "programme": "983",
+   "subprogramme": "98317",
+   "subprogramme_name": "Promoção de Condições Dignas no Local de Trabalho",
+   "name": "Iniciar e estebelecer sistema tecnologia informático",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "1. Número de empregadores, trabalhadores e comunidades que têm acesso a informação sobre os serviços da Inspeção-Geral do Trabalho (IGT); 2. Número de funcionários casuais que recebem salário.",
+   "baseline": "As novas atividades serão implementadas em 2026 e a implementação será realizada de acordo com o prazo determinado, encontrando-se atualmente em processo.",
+   "target": "a) Estabelecer um sistema de informação e tecnologia para facilitar o acesso de empregadores, trabalhadores e comunidades à informação e aos serviços da IGT; b) Garantir o pagamento de salário a 2 funcionários/agentes casuais, de acordo com os direitos e procedimentos estabelecidos.",
+   "amounts": {
+    "10": 2760.0
+   },
+   "page": 387
+  },
+  {
+   "code": "9834303",
+   "programme": "983",
+   "subprogramme": "98343",
+   "subprogramme_name": "Promoção de condiçoes dignas no local do Trabalho",
+   "name": "Comprar equipamento escritorio (Capital Minor)",
+   "div": [
+    "0390101"
+   ],
+   "indicator": "Número e disponibilidade de materiais informáticos, equipamentos de escritório, mobiliário e veículos suficientes e adequados às necessidades dos serviços da IGT.",
+   "baseline": "As novas atividades serão implementadas em 2024 e a implementação será realizada de acordo com o prazo determinado, encontrando-se atualmente em processo e atividades não foram implementadas em 2026, após o OGE 2026 não ter sido aprovado.",
+   "target": "Realizar a aquisição de equipamentos de escritório (Capital Menor), conforme segue: 1. Equipamentos informáticos e de escritório: • 5 computadores portáteis (laptops); • 2 computadores desktop; • 1 Projector;",
+   "amounts": {
+    "40": 10000.0
+   },
+   "page": 388
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "“Reforçar a confiança do Governo e dos parceiros de desenvolvimento na capacidade e na prestação de serviços da IGT.”",
+   "baseline": "• Garantir efetivamente o funcionamento e a prestação de serviços pelos Delegados Territoriais e Inspetores; • Recrutar e integrar 18 funcionários casuais para agentes administrativos novos, recrutar 5 funcionários casuais e 9 inspetores do trabalho estagiários; • Recrutar e garantir o funcionamento de um assessor jurídico nacional (1 Assessor Nacional); • Apoiar o processo de elaboração, aprovação e publicação dos regulamentos relativos à Lei de Segurança, Saúde e Higiene no Trabalho, Decreto-Lei n.º 17/2022, Diploma Ministerial n.º 40/2022, Deliberação da Lei sobre Acidentes de Trabalho e Decisão n.º 232 para Diploma Ministerial; • Implementar a promoção de grau para 5 Inspetores do Trabalho; • Implementar a promoção de 7 funcionários administrativos permanentes, conforme os casos e as necessidades institucionais; • Nomear 8 titulares de cargos de Direção e Chefia e estabelecer Inspetores do Trabalho Delegados; • Realizar formação e capacitação para funcionários do regime geral e do regime",
+   "target": "• Garantir o cumprimento e a implementação efetiva das leis e regulamentos em vigor na área laboral; • Reforçar o programa de formação e desenvolvimento de capacidades e competências específicas dos funcionários da IGT; • Recrutar e integrar novos funcionários e inspetores do trabalho estagiários/trainees, de acordo com as necessidades e o planeamento institucional; • Reforçar o sistema de monitorização e avaliação da implementação do Plano Estratégico da IGT a nível central e regional; • Reforçar e melhorar os serviços regionais, garantindo uma prestação eficaz dos serviços de inspeção do trabalho; • Reforçar o apoio técnico, administrativo e financeiro para apoiar a implementação dos serviços de inspeção do trabalho; • Reforçar a coordenação e colaboração entre as unidades da IGT e os parceiros relevantes, de modo a aumentar a confiança do Governo e dos parceiros de desenvolvimento.",
+   "page": 379
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1. Número de relatórios trimestrais e anuais sobre o desempenho submetidos dentro do prazo determinado. 2. Percentagem (%) do Plano Anual implementado. 3. Percentagem (%) das metas do Plano Anual alcançadas.",
+   "baseline": "1. Os relatórios trimestrais e anuais de 2025 foram submetidos à UMAD dentro do prazo. 2. Os relatórios trimestrais e anuais de 2026 são preparados e submetidos de acordo com o calendário/prazos determinados. 3. Implementação do Plano Anual de acordo com as prioridades e atividades planeadas.",
+   "target": "1. Continuar a garantir a submissão dos relatórios trimestrais e anuais sobre o desempenho dentro do prazo determinado. 2. Garantir 100% de implementação do Plano Anual de Atividades (PAA), de acordo com as atividades e prioridades aprovadas. 3. Garantir o alcance das metas definidas no Plano Anual. 4. Reforçar a monitorização e avaliação da implementação do Plano Anual, garantindo que as atividades sejam realizadas de acordo com o planeamento e os resultados determinados.",
+   "page": 380
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"1) % Budget Execution 2) Standard operating procedures/guidelines for filing and archiving developed, disseminated and implemented by all administration staff 3) Electronic filing system establish\"",
+   "baseline": "100%",
+   "target": "\"1) Continuar a apresentar o relatório trimestral e anual dentro de prazo 2) PAA 2024 a ser implementado 100%\"",
+   "page": 381
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "N/A – Novo. O indicador será determinado de acordo com o progresso da implementação das atividades de infraestrutura.",
+   "baseline": "N/A – Novo. Esta atividade é nova e ainda não possui dados de referência de períodos anteriores.",
+   "target": "1. Construir novo edifício/escritório para o funcionamento da Inspeção-Geral do Trabalho a nível nacional; 2. Garantir que as obras de construção e manutenção sejam realizadas de acordo com o plano, as especificações técnicas e as normas aplicáveis.",
+   "page": 383
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.2",
+   "statement": "Promover as condições dignas para os trabalhadores",
+   "indicator": "1. Número de crianças e comunidades que recebem informação sobre formas apropriadas de prevenir o trabalho infantil e o trabalho forçado durante o período 2027–2031; 2. Número de trabalhadores e empregadores que recebem informação sobre formas apropriadas de cumprir as Leis e Estatutos divulgados através de",
+   "baseline": "1. 2.000 participantes já participaram em campanhas e atividades de sensibilização sobre a prevenção do trabalho infantil e do trabalho forçado; 2. 1.000 trabalhadores e empregadores já receberam informação sobre formas apropriadas de cumprir as Leis e Estatutos divulgados; 3. Foram realizadas 8.090 visitas de inspeção do",
+   "target": "1. 1.500 participantes participarão em campanhas e atividades de sensibilização sobre a prevenção do trabalho infantil e do trabalho forçado; 2. 500 trabalhadores e empregadores receberão informação sobre formas apropriadas de cumprir as Leis e Estatutos, através de 10 seminários realizados nos municípios; 3. Realizar 6.000",
+   "page": 383
+  },
+  {
+   "kind": "output",
+   "code": "98316.0.0",
+   "statement": "Diminuir o número de crianças no campo de trabalho e trabalho forcado.",
+   "indicator": "1. Número de visitas de inspeção do trabalho realizadas no território nacional; 2. Número de atividades de sensibilização sobre trabalho infantil e trabalho forçado realizadas e número de participantes abrangidos no território nacional; 3. Número de autorizações de trabalho para trabalhadores e empregadores estrangeiros emitidas e legalizadas.",
+   "baseline": "400 participantes participaram em campanhas e atividades de sensibilização sobre a prevenção do trabalho infantil e do trabalho forçado, o Plano de Ação Nacional sobre Trabalho Infantil e a comemoração do Dia Mundial contra o Trabalho Infantil.",
+   "target": "400 participantes participarão em campanhas e atividades de sensibilização sobre a prevenção do trabalho infantil e do trabalho forçado, o Plano de Ação Nacional sobre Trabalho Infantil e a comemoração do Dia Mundial contra o Trabalho Infantil.",
+   "page": 384
+  },
+  {
+   "kind": "output",
+   "code": "98317.0.0",
+   "statement": "Condições Dignas no Local de Trabalho são garantidas.",
+   "indicator": "1. Número de visitas de inspeção do trabalho realizadas; 2. Número de trabalhadores, empregadores e partes relevantes abrangidos pelas atividades de sensibilização sobre o trabalho no território nacional; 3. Número de autorizações de trabalho para trabalhadores e empregadores estrangeiros emitidas e legalizadas.",
+   "baseline": "1. Foram realizadas 5.959 visitas de inspeção do trabalho; 2. 70.403 trabalhadores/beneficiários foram abrangidos por atividades de sensibilização, inspeção e fiscalização do trabalho no território nacional e regional; 3. Foram emitidas e legalizadas 18.671 autorizações de trabalho para trabalhadores e empregadores estrangeiros.",
+   "target": "1. Realizar 6.000 visitas de inspeção do trabalho no território nacional e regional; 2. Abranger 70.000 trabalhadores, empregadores e partes relevantes através de atividades de sensibilização, inspeção e fiscalização do trabalho no território nacional e regional; 3. Emitir e legalizar 18.000 autorizações de trabalho para trabalhadores e empregadores estrangeiros.",
+   "page": 385
+  },
+  {
+   "kind": "output",
+   "code": "98343.0.0",
+   "statement": "Promover crecimento economico inclusivo e ssutentavel emprego produtivo e trabalho digna para todos",
+   "indicator": "1. Número de visitas de inspeção do trabalho realizadas; 2. Número de trabalhadores, empregadores e partes relevantes abrangidos pelas atividades de sensibilização sobre o trabalho no território nacional; 3. Número de autorizações de trabalho para trabalhadores e empregadores estrangeiros emitidas e legalizadas.",
+   "baseline": "1. Foram realizadas 5.959 visitas de inspeção do trabalho; 2. 70.403 trabalhadores/beneficiários foram abrangidos por atividades de sensibilização, inspeção e fiscalização do trabalho no território nacional e regional; 3. Foram emitidas e legalizadas 18.671 autorizações de trabalho para trabalhadores e empregadores estrangeiros.",
+   "target": "1. Realizar 6.000 visitas de inspeção do trabalho no território nacional e regional; 2. Abranger 70.000 trabalhadores, empregadores e partes relevantes através de atividades de sensibilização, inspeção e fiscalização do trabalho no território nacional e regional; 3. Emitir e legalizar 18.000 autorizações de",
+   "page": 387
+  }
+ ]
+}

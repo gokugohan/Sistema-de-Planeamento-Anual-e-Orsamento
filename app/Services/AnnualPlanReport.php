@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Directorate;
 use App\Models\SystemSetting;
 use App\Models\User;
+use App\Support\ReportScope;
 
 /**
  * The annual report of the plan for printing: planned and approved amounts by unit (rolled up the structure) and by
@@ -16,9 +17,10 @@ class AnnualPlanReport
     public function __construct(private PlanBreakdown $breakdown, private PlanStatus $status) {}
 
     /** @return array<string, mixed> */
-    public function build(int $year, User $user): array
+    public function build(int $year, User $user, ?ReportScope $scope = null): array
     {
-        $totals = $this->breakdown->unitTotals($year);
+        $breakdown = $this->breakdown->forUnits($scope?->ids);
+        $totals = $breakdown->unitTotals($year);
         $byParent = Directorate::query()->orderBy('code')->get(['id', 'parent_id', 'code', 'name'])->groupBy(fn ($d) => $d->parent_id ?? 0);
 
         $units = [];
@@ -36,7 +38,8 @@ class AnnualPlanReport
             }
         };
         $planned = $approved = 0.0;
-        foreach ($byParent->get(0, collect()) as $root) {
+        // one unit's report starts at that unit
+        foreach ($scope?->unit ? collect([$scope->unit]) : $byParent->get(0, collect()) as $root) {
             $walk($root, 0, []);
             $planned += ($totals[$root->id]['planned'] ?? 0);
             $approved += ($totals[$root->id]['approved'] ?? 0);
@@ -47,10 +50,11 @@ class AnnualPlanReport
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
             'units' => $units,
             'totals' => ['planned' => $planned, 'approved' => $approved, 'usage' => $planned > 0 ? $approved / $planned * 100 : 0.0],
-            'programmes' => $this->breakdown->programmes($year, withActivities: true),
-            'subprogrammes' => $this->breakdown->subprogrammes($year),
+            'programmes' => $breakdown->programmes($year, withActivities: true),
+            'subprogrammes' => $breakdown->subprogrammes($year),
+            'unit' => $scope?->unit,
             'warning' => $this->status->reportWarning($user, $year),
-            'reference' => sprintf('PAA-%d', $year),
+            'reference' => sprintf('PAA-%d', $year).($scope?->suffix() ?? ''),
             'generated_at' => now(), 'generated_by' => $user->name,
         ];
     }

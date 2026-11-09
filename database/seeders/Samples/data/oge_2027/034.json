@@ -1,0 +1,228 @@
+{
+ "year": 2027,
+ "code": "034",
+ "name": "Procuradoria Geral da República",
+ "abbr": "PGR",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   359,
+   361
+  ]
+ },
+ "units": [
+  {
+   "code": "PGR",
+   "div": "0340101",
+   "name": "Procuradoria-Geral da República",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PDB",
+   "div": "0340201",
+   "name": "Procuradoria Distrital de Baucau",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PDS",
+   "div": "0340301",
+   "name": "Procuradoria Distrital de Suai",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PDOC",
+   "div": "0340401",
+   "name": "Procuradoria Distrital de Oe-Cusse",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PRPID",
+   "div": "0340501",
+   "name": "Procuradoriua Republica Primeira Instancia Dili",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "392": "Acesso à justiça",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "3920402",
+   "programme": "392",
+   "subprogramme": "39204",
+   "subprogramme_name": "Edifícios Públicos",
+   "name": "Construção de Edifício Procuradoria distritais",
+   "div": [
+    "0340101"
+   ],
+   "indicator": "% de execução física e financeira do projeto de construção de 11 edifícios em Dili, Baucau, Suai, Liquica, Oecusse, e Mantutu englobando 8 residência para Magistrdos, 4 residência para Oficiais de Justiça e 4 edifício para alojar os serviços da PGR",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "50": 55200.0
+   },
+   "page": 359
+  },
+  {
+   "code": "3920505",
+   "programme": "392",
+   "subprogramme": "39205",
+   "subprogramme_name": "Gestão de Processos Crimes",
+   "name": "Notificações e participações em Julgamento criminais móveis, com especial realce para os crimes contra crianças e de violência com base no género.",
+   "div": [
+    "0340101",
+    "0340201",
+    "0340301",
+    "0340401",
+    "0340501"
+   ],
+   "indicator": "1) Número de julgamentos móveis realizados 2) Número de notificações entregues",
+   "baseline": "1) 7.000; 2) 12.000",
+   "target": "1) 7.000; 2) 12.000",
+   "amounts": {
+    "20": 96640.0
+   },
+   "page": 360
+  },
+  {
+   "code": "3921303",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "Formação profissional na area da justica",
+   "div": [
+    "0340101",
+    "0340201",
+    "0340301"
+   ],
+   "indicator": "1) Número de Agentes de Justiça que participam em sessões de formação profissional da área da justiça; 2) Número de elementos dos órgãos de polícia criminal (PNTL, PCIC, Rede Proteção e Autoridade local) que participam em sessões de formação profissional da área da justiça 3) Procurador Republica participou de uma sessão de treinamento. 4. A equipe do Serviço de Apoio Técnico Administrativo (SATA) participou de uma sessão de treinamento.",
+   "baseline": "1.) 100 oficiais de justiça 2.) 150, autoridades locais 3.) 89 magistrados do MP 4.) 44 funcionários da SATA",
+   "target": "1.) 129 oficiais de justiça 2.) 150, autoridades locais 3.) 100 magistrados do MP 4.) 89 funcionários da SATA",
+   "amounts": {
+    "20": 318686.0
+   },
+   "page": 360
+  },
+  {
+   "code": "39213X1",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "International travel for magistrate and justice official training",
+   "div": [
+    "0340101"
+   ],
+   "indicator": "1) Número de magistrados, oficiais judiciais e membros do SATA que participaram do treinamento 2) Número de áreas prioritárias de treinamento abordadas 3) Número de bolsas de estudo",
+   "baseline": "1) 100, Magistrados, oficiais de justiça e SATA 2) 20, área específica de treinamento 3) 0%",
+   "target": "1) 150 – Magistrado, oficial de justiça e SATA 2) 25 – Área de formação específica 3) 20 pessoas – Magistrado, oficial de justiça e SATA",
+   "amounts": {
+    "20": 450000.0
+   },
+   "page": 360
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0340101",
+    "0340201",
+    "0340301",
+    "0340401",
+    "0340501"
+   ],
+   "indicator": "1. Taxa de Execução S&V 2. Taxa de Execução B&S 3. Taxa de Execução K&M",
+   "baseline": "1) 90%; 2) 100% 3.) 100%",
+   "target": "1) 90%; 2) 100% 3.) 100%",
+   "amounts": {
+    "10": 4852516.0,
+    "20": 817013.0
+   },
+   "page": 361
+  },
+  {
+   "code": "51002X3",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Vehicles, CCTV and photocopiers for magistrates and justice officials",
+   "div": [
+    "0340101"
+   ],
+   "indicator": "100% O equipamento funciona perfeitamente e não impacta o serviço do MP.",
+   "baseline": "1) Plano de Aprovisionamento aprovado; 2) 100% dos contratos",
+   "target": "1) Plano de Aprovisionamento aprovado; 2) 100%",
+   "amounts": {
+    "40": 350000.0
+   },
+   "page": 361
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "392.0.1",
+   "statement": "1.&#9;Os cidadãos em todos os municípios, especialmente mulheres, jovens e grupos vulneráveis tenham melhor acesso à justiça formal e aos serviços de registo (assistência jurídica, serviços prisionais e de reintegração, registo de terras, registo civil e notarial) que protegem os seus direitos&#13;&#10;2.&#9;Os cidadãos economicamente vulneráveis, especialmente mulheres, populações rurais e outros grupos vulneráveis, têm melhor acesso a assistência jurídica gratuita e de qualidade e podem utilizar eficazmente os serviços judiciais formais&#13;&#10;3.&#9;Todos os cidadãos têm acesso e conhecimento sobre o sistema de justiça",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 359
+  },
+  {
+   "kind": "output",
+   "code": "39204.0.0",
+   "statement": "Ampliação do espaço físico necessário ao adequado desenvolvimento das atividades.",
+   "indicator": "% de conclusão",
+   "baseline": "",
+   "target": "",
+   "page": 359
+  },
+  {
+   "kind": "output",
+   "code": "39205.0.0",
+   "statement": "A segurança pública aumentou à medida que o direito dos indivíduos é protegido e o princípio do estado de direito é aplicado, e como o promotor está servindo ao interesse público e age com integridade e julgamento equilibrado tanto por buscar as acusações criminais apropriadas de severidade apropriada, e exercendo a discrição para não",
+   "indicator": "Razão de condenações / casos acusados",
+   "baseline": "",
+   "target": "",
+   "page": 359
+  },
+  {
+   "kind": "output",
+   "code": "39213.0.0",
+   "statement": "Até 2028, os profissionais do setor da justiça serão formados em áreas técnicas prioritárias e destacados para instituições que atendem municípios carentes",
+   "indicator": "% de profissionais legais formando pela PGR",
+   "baseline": "50% de magistrados e 50 % de oficiais de justiça e SATA 50%",
+   "target": "50% de magistrados e 50 % de oficiais de justiça e SATA 50%",
+   "page": 360
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "0",
+   "target": "",
+   "page": 361
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "0",
+   "target": "",
+   "page": 361
+  }
+ ]
+}

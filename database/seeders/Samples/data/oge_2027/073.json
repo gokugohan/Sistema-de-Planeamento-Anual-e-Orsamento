@@ -1,0 +1,259 @@
+{
+ "year": 2027,
+ "code": "073",
+ "name": "Centro Nacional de Reabilitação",
+ "abbr": "CNR",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   759,
+   761
+  ]
+ },
+ "units": [
+  {
+   "code": "CNR",
+   "div": "0730101",
+   "name": "Centro Nacional de Reabilitação",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "% Jestaun Administasaun, Finansas no Logistika implementa ho efisiensia ho transparansia tuir prosedimentu.",
+   "baseline": "\"100% Registradu Patrimonio Estadu, Realiza Material Escritorio, Manutesaun, Komunikasaun 75% SOP Desenvolvidu\"",
+   "target": "\"100% 100% SOP \"",
+   "amounts": {
+    "20": 134537.0
+   },
+   "page": 759
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "Implementasaun recrutamentu, jestaun forsa traballu no dezenvolvimentu kapasidade rekursu umanu iha CNR realiza ona.",
+   "baseline": "Iha CNR, iha funsionáriu permanente na’in 2 no funsionáriu kontratadu na’in 112. Tékniku profesionais na’in 25 remata ona estudu iha área espesializasaun 4, no pessoal na’in 40 hetan ona formasaun não-formál iha área espesializasaun 8",
+   "target": "Forsa traballu iha CNR hamutuk ema na’in 130. Rekursu umanu espesializadu aumenta liuhusi formasaun formál ba ema na’in 10 no formasaun não-formál ba ema na’in 42.",
+   "amounts": {
+    "10": 125564.0,
+    "20": 15024.0
+   },
+   "page": 759
+  },
+  {
+   "code": "51002E6",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Re-point of negative 2026 salaries",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 220049.0
+   },
+   "page": 759
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "Numeru Akordu Parseria (MoU) kona-ba defisiénsia sira ne'ebé implementa tuir kontratu nia laran.",
+   "baseline": "5 Akordu Estabeleshe",
+   "target": "4 Akordu",
+   "amounts": {
+    "20": 13792.0
+   },
+   "page": 759
+  },
+  {
+   "code": "9802301",
+   "programme": "980",
+   "subprogramme": "98023",
+   "subprogramme_name": "Serviços especializados para cidadãos deficientes",
+   "name": "Prestação e monitorização de serviços especializados de reabilitação (áreas clínicas)",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "% Monitorizasaun no avaliasaun , kliente tuan no foun, Utentes sira ne'ebé hela iha dormitóriu simu tratamentu klíniku, forsa traballu iha Diresaun Kliniku melloradu.",
+   "baseline": "30%, M&E 40 % tratamento Utentes tuan no foun 100%, iha Dormitorio 60 % Forsa de trabalho iha Klinika .",
+   "target": "40% ME, 30% tratamento 100 % Dormitorio 70% Forsa de Trabalho areia klinik",
+   "amounts": {
+    "10": 174829.0,
+    "20": 73840.0
+   },
+   "page": 760
+  },
+  {
+   "code": "9802302",
+   "programme": "980",
+   "subprogramme": "98023",
+   "subprogramme_name": "Serviços especializados para cidadãos deficientes",
+   "name": "Serviços através do programa SRIKAR",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "% Asegurado Kliente sira partisipa iha servisu liuhosi programa SRIKAR, Identifikasaun ba Kliente foun sira ne’ebé partisipa ona.",
+   "baseline": "20%",
+   "target": "35%",
+   "amounts": {
+    "20": 18240.0
+   },
+   "page": 760
+  },
+  {
+   "code": "9802303",
+   "programme": "980",
+   "subprogramme": "98023",
+   "subprogramme_name": "Serviços especializados para cidadãos deficientes",
+   "name": "Empoderamento para apoiar pessoas com deficiência",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "4 Grupu defisiente sira iha munisípiu Kapasitadu",
+   "baseline": "2",
+   "target": "2",
+   "amounts": {
+    "20": 1920.0
+   },
+   "page": 760
+  },
+  {
+   "code": "98023E1",
+   "programme": "980",
+   "subprogramme": "98023",
+   "subprogramme_name": "Serviços especializados para cidadãos deficientes",
+   "name": "Baucau National Rehabilitation Centre, mobile services and rehabilitation equipment",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "Atividade 9802301: Prestação e monitorização de serviços especializados de reabilitação (áreas clínicas)",
+   "baseline": "2,678 Utentes rejistadu iha baze de dadus CNR husi Municipio ha’at (4) parte leste",
+   "target": "Numeru Ema ho Defisiensia no Ema seluk nebe presiza reabilitasaun hetan ona atendementu rehabilitasaun, ekipamentus mobilidade, asistensia despozitivu no komunidade iha ona konsensia ba asuntus Ema ho Defisiensia",
+   "amounts": {
+    "20": 47340.0
+   },
+   "page": 760
+  },
+  {
+   "code": "9802401",
+   "programme": "980",
+   "subprogramme": "98024",
+   "subprogramme_name": "sensibilização e promoção da reabilitação para pessoas com deficiência",
+   "name": "Socialização sobre a prestação de serviços do CNR",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "% Ema ho Defisiensia, familia komunidade no Autoridade sira hetan ona kapasitasaun no informasaun iha area servisu CNR nian iha Postu Administrativu no Municipio sira implementado",
+   "baseline": "60%",
+   "target": "20%",
+   "amounts": {
+    "20": 15230.0
+   },
+   "page": 760
+  },
+  {
+   "code": "9802402",
+   "programme": "980",
+   "subprogramme": "98024",
+   "subprogramme_name": "sensibilização e promoção da reabilitação para pessoas com deficiência",
+   "name": "Materiais de apoio e equipamentos para pessoas incapacitadas",
+   "div": [
+    "0730101"
+   ],
+   "indicator": "Numeu Ema ho defisiénsia sira simu ekipamentu mobilidade, labarik ho defisiénsia sira",
+   "baseline": "687 Ekipamentu mobilidade simu liu hosi SRIKAR, IMORP,",
+   "target": "800",
+   "amounts": {
+    "20": 179280.0
+   },
+   "page": 760
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Planu Estratéjiku aprovadu, inklui planu médiu prazu",
+   "baseline": "Planu Kuinkenal aprovadu",
+   "target": "Planu",
+   "page": 759
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"% Formasaun rekursu umanu espesializada, guiaun, rekursu materiál adekuadu no Digitalizasaun sistema atendementu.",
+   "baseline": "Planu anual 2025",
+   "target": "50%",
+   "page": 759
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Numeru Akordu Parseria (MoU) kona-ba defisiénsia sira ne'ebé implementa tuir kontratu nia laran.",
+   "baseline": "5 Akordu Estabeleshe",
+   "target": "10 Akordu",
+   "page": 759
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.1",
+   "statement": "Cidadãos com deficiência têm o mesmo direito e são protegidos como outro cidadão",
+   "indicator": "% Ema ho defisiénsia simu tratamentu hosi CNR.",
+   "baseline": "3,00% simu ona tratamentu",
+   "target": "100%",
+   "page": 759
+  },
+  {
+   "kind": "output",
+   "code": "98023.0.0",
+   "statement": "A qualidade e o acesso a serviços relacionados com deficiência aumentaram em Díli e estão disponíveis para um maior número de população nas municipalidades.",
+   "indicator": "% Ema ho defisiénsia (kliente foun) simu tratamentu husi CNR, aumentu iha númeru kuartu ba kliente, aumentu servisu atendimentu ba ema ho defisiénsia sira.",
+   "baseline": "Husi totál ema ho defisiénsia varios tipu hamutuk 17,061 iha Timor-Leste, ema na'in 9,153 mak hetan tratamentu husi CNR.",
+   "target": "10%",
+   "page": 760
+  },
+  {
+   "kind": "output",
+   "code": "98024.0.0",
+   "statement": "Pessoas com deficiência terão melhores oportunidades e inclusão social",
+   "indicator": "Numeru Komunidade sira iha munisípiu sira hetan informasaun, konsensializadu no grupu defisiénsia sira identifika ona.",
+   "baseline": "40 Postu Administrativu partisipa iha atividade sensibilizasaun inklui promosaun servisu reabilitasaun ba ema ho defisiénsia sira.",
+   "target": "3",
+   "page": 760
+  }
+ ]
+}

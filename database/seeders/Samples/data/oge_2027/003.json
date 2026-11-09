@@ -1,0 +1,242 @@
+{
+ "year": 2027,
+ "code": "003",
+ "name": "Primeiro Ministro",
+ "abbr": "PM",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   23,
+   24
+  ]
+ },
+ "units": [
+  {
+   "code": "GAPM",
+   "div": "0030101",
+   "name": "Gabinete de Apoio ao Primeiro-Ministro",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A21": "Liderar a estrategia politica do governo e a politica nacional"
+ },
+ "activities": [
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "% de diplomas legais e pareceres produzidos em tempo útil, conforme solicitado",
+   "baseline": "Todas as opiniões legais, resultados legislativos e relatórios produzidos são entregues dentro dos prazos requeridos. Relatorio de Desempenho 2020 e 2021",
+   "target": "100%",
+   "amounts": {
+    "10": 320256.0
+   },
+   "page": 23
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "84% (2020); 85.1% (2021)",
+   "target": "95%",
+   "amounts": {
+    "10": 902222.0,
+    "20": 1639218.0
+   },
+   "page": 23
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "% do plano de aquisições implementado",
+   "baseline": "85%",
+   "target": "100%",
+   "amounts": {
+    "20": 638655.0
+   },
+   "page": 23
+  },
+  {
+   "code": "A210102",
+   "programme": "A21",
+   "subprogramme": "A2101",
+   "subprogramme_name": "Delimitação de Fronteiras Terrestres e Maritimas",
+   "name": "Orientar a politica geral do Governo nas suas relações externas e representar o Governo perante a comunidade internacional",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "Número de reuniões realizadas",
+   "baseline": "",
+   "target": "2 de reuniões realizadas",
+   "amounts": {
+    "20": 78672.0
+   },
+   "page": 24
+  },
+  {
+   "code": "A210201",
+   "programme": "A21",
+   "subprogramme": "A2102",
+   "subprogramme_name": "Planeamento estratégico para o desenvolvimento",
+   "name": "Revisão do Plano Estratégico de Desenvolvimento (2011-2030)",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "Percentagem (%) de análise e avaliação dos trabalhos relativos ao Plano de Desenvolvimento Estratégico",
+   "baseline": "",
+   "target": "80 % de análise e avaliação dos trabalhos relativos ao Plano de Desenvolvimento Estratégico",
+   "amounts": {
+    "20": 27200.0
+   },
+   "page": 24
+  },
+  {
+   "code": "A210301",
+   "programme": "A21",
+   "subprogramme": "A2103",
+   "subprogramme_name": "Liderar e coordenar o desenvolvimento do projeto &quot;Tasi-Mane&quot;",
+   "name": "Liderar o processo negocia relative ao modelo desenvolvimento do campo do “Greater Sunrise&quot;",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "Número de reuniões de alto nível realizadas",
+   "baseline": "",
+   "target": "4 de reuniões de alto nível realizadas",
+   "amounts": {
+    "20": 33200.0
+   },
+   "page": 24
+  },
+  {
+   "code": "A210302",
+   "programme": "A21",
+   "subprogramme": "A2103",
+   "subprogramme_name": "Liderar e coordenar o desenvolvimento do projeto &quot;Tasi-Mane&quot;",
+   "name": "Liderar a execuçâo do projeto “Tasi Mane”",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "Percentagem de decisões relacionadas com a legislação, contratos e acordos relevantes para o projeto Tasi Mane",
+   "baseline": "",
+   "target": "80 % de decisões relacionadas com a legislação, contratos e acordos relevantes para o projeto Tasi Mane",
+   "amounts": {
+    "20": 24600.0
+   },
+   "page": 24
+  },
+  {
+   "code": "A210401",
+   "programme": "A21",
+   "subprogramme": "A2104",
+   "subprogramme_name": "Economia azul",
+   "name": "Liderar e coordenar o desenvolvimento e a implementação da política da &quot;Economia Azul",
+   "div": [
+    "0030101"
+   ],
+   "indicator": "Número de reuniões intersectoriais realizadas;",
+   "baseline": "",
+   "target": "4 de reuniões intersectoriais realizadas;",
+   "amounts": {
+    "20": 47504.0
+   },
+   "page": 24
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) # e % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados; 2) # de Resultados de desempenho publicados no website do Governo; 3) Relatório anual da entidade publicado",
+   "baseline": "15%",
+   "target": "25%",
+   "page": 23
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo; 2) % do Plano Anual implementado; 3) Plano Estratégico/Médio Prazo Aprovado; 4) % do pessoal consciente e envolvido no desenvolvimento do plano estratégico/médio prazo",
+   "baseline": "1) 100%; 2) ; 3) ; 4)",
+   "target": "1) 100%; 2) ; 3) ; 4)",
+   "page": 23
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% do orçamento executado",
+   "baseline": "84% (2020)",
+   "target": "90",
+   "page": 23
+  },
+  {
+   "kind": "outcome",
+   "code": "A21.0.0",
+   "statement": "Reforço da estratégia política e das políticas nacionais do IX Governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 23
+  },
+  {
+   "kind": "output",
+   "code": "A2101.0.1",
+   "statement": "Timor – Leste ira ainda conduzir uma politica esterna que fomente a cooperação bilateral, regional e multilateral, potenciando parceriais economicas, sociais e culturais com outros países, essenciais a captação de investimento e a capacitacao das instituições e recursos humanos do país",
+   "indicator": "\"1) Negociações concluídas relativamente às fronteiras terrestres e marritimas 2). Assinatura de um acordo entre os dois países.\"",
+   "baseline": "",
+   "target": "",
+   "page": 24
+  },
+  {
+   "kind": "output",
+   "code": "A2102.0.0",
+   "statement": "Melhoria Planeamento estratégico para o desenvolvimento",
+   "indicator": "Plano de desenvolvimento estratégico revisto",
+   "baseline": "",
+   "target": "",
+   "page": 24
+  },
+  {
+   "kind": "output",
+   "code": "A2103.0.0",
+   "statement": "Assegurar o projeto Tasi Mane na costa sul do país",
+   "indicator": "Percentagem de decisões relacionadas com o projeto Tasi Mane",
+   "baseline": "",
+   "target": "",
+   "page": 24
+  },
+  {
+   "kind": "output",
+   "code": "A2104.0.0",
+   "statement": "Promover o crescimento da economia azul",
+   "indicator": "\"1. Número de conteúdos e notas para discussão no âmbito da economia azul; 2. % da comunidade de Timor-Leste sensibilizada para as questões de conservação, proteção e promoção do mar e recursos marinhos\"",
+   "baseline": "",
+   "target": "",
+   "page": 24
+  }
+ ]
+}

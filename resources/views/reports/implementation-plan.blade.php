@@ -66,6 +66,7 @@
     <span style="margin-left:auto"></span>
     <button type="button" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Print anyway?') : '' }}" onclick="if (this.dataset.warn && ! confirm(this.dataset.warn)) return; window.print()">{{ __('Print') }}</button>
     <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.implementation-plan.pdf', array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'status' => $report['approved_only'] ? null : 'all'])) }}">{{ __('Download PDF') }}</a>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.implementation-plan.xlsx', array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'status' => $report['approved_only'] ? null : 'all'])) }}">{{ __('Download Excel') }}</a>
 </div>
 <div class="sheet">
 @endunless

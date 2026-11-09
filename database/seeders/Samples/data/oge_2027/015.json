@@ -1,0 +1,1582 @@
+{
+ "year": 2027,
+ "code": "015",
+ "name": "Ministério da Justiça",
+ "abbr": "MJ",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   118,
+   137
+  ]
+ },
+ "units": [
+  {
+   "code": "GMJ",
+   "div": "0150101",
+   "name": "Gabinete do Ministro da Justiça",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSETP",
+   "div": "0150103",
+   "name": "Gabinete do Secretário de Estado das Terras e Propriedades",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0150104",
+   "name": "Gabinete de Inspecção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "CFJJ",
+   "div": "0150301",
+   "name": "Centro de Formação Jurídica e Judiciária",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DGTP",
+   "div": "0150501",
+   "name": "Direção Geral de Terras e Propriedades",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGTP",
+   "div": "0150502",
+   "name": "Direção Nacional de Gestão Terras e Propriedades",
+   "type": "National Directorate",
+   "parent": "DGTP"
+  },
+  {
+   "code": "DNSC",
+   "div": "0150503",
+   "name": "Direção Nacional dos Serviços Cadastrais",
+   "type": "National Directorate",
+   "parent": "DGTP"
+  },
+  {
+   "code": "DNIG",
+   "div": "0150504",
+   "name": "Direção Nacional da Informação Geoespacial",
+   "type": "National Directorate",
+   "parent": "DGTP"
+  },
+  {
+   "code": "DGSRN",
+   "div": "0150701",
+   "name": "Direção-Geral dos Serviços de Registos e Notariado (DGSRN)",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRN",
+   "div": "0150702",
+   "name": "Direção Nacional de Registos e do Notariado (DNRN)",
+   "type": "National Directorate",
+   "parent": "DGSRN"
+  },
+  {
+   "code": "DNICRC",
+   "div": "0150703",
+   "name": "Direção Nacional de Identificação Civil e Registo Criminal",
+   "type": "National Directorate",
+   "parent": "DGSRN"
+  },
+  {
+   "code": "CTP",
+   "div": "0150801",
+   "name": "Comissão de Terras e Propriedades",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GVMFI",
+   "div": "0150901",
+   "name": "Gabinete do Vice-Ministro para o Fortalecimento Institucional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGPJ",
+   "div": "0151001",
+   "name": "Gabinete de Direção Geral de Política da Justica",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAJL",
+   "div": "0151002",
+   "name": "Direção Nacional de Assessoria Jurídica e Legislação",
+   "type": "National Directorate",
+   "parent": "GDGPJ"
+  },
+  {
+   "code": "DNDHC",
+   "div": "0151003",
+   "name": "Direção Nacional dos Direitos Humanos da Cidadania",
+   "type": "National Directorate",
+   "parent": "GDGPJ"
+  },
+  {
+   "code": "DNSPRS",
+   "div": "0151004",
+   "name": "Direção Nacional dos Serviços Prisionais e da Reinserção Social",
+   "type": "National Directorate",
+   "parent": "GDGPJ"
+  },
+  {
+   "code": "UPCS",
+   "div": "0151005",
+   "name": "Unidade de Protocolo e Comunicação Social",
+   "type": "Unit",
+   "parent": "GDGPJ"
+  },
+  {
+   "code": "GDGA",
+   "div": "0151101",
+   "name": "Gabinete de Direção-Geral da Administração",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0151102",
+   "name": "Direção Nacional de Administração e Financas",
+   "type": "National Directorate",
+   "parent": "GDGA"
+  },
+  {
+   "code": "DNRH",
+   "div": "0151103",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGA"
+  },
+  {
+   "code": "DNA",
+   "div": "0151104",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "GDGA"
+  },
+  {
+   "code": "DNTI",
+   "div": "0151105",
+   "name": "Direção Nacional de Tecnologia Informática",
+   "type": "National Directorate",
+   "parent": "GDGA"
+  },
+  {
+   "code": "UABIE",
+   "div": "0151201",
+   "name": "Unidade de Arrendamento de Bens Imóveis do Estado",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "029": "Reformas do estado",
+  "392": "Acesso à justiça",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "0290200",
+   "programme": "029",
+   "subprogramme": "02902",
+   "subprogramme_name": "Quadro Legal",
+   "name": "Pesquisar, analisar e concepção o quadro legal",
+   "div": [
+    "0151002"
+   ],
+   "indicator": "\"Nr. de pesquisa, elaboração/concepção do quadro legal. \"",
+   "baseline": "Em 2021 foram pesquisar 2 (1. Lei do Zona Proteção Comunitaria, 2. Lei Nacionalidade); 3 leis na fase da consultação pública (Lei sobre Cibernética, lei liberdade religiosa e Lei Ordem dos Advogados).",
+   "target": "Elaboração, aprovação e promulgação 9 propostas de legislação da Terras; Lei da Liberdade religiosa e registo da pessoa coletiva de religiosa; Lei de Justiça Tradicional; Lei da Mediação; Código Registo Civil; Lei Cibercrime; Lei Proteção Dados Pessoal; Lei Ordem Advogado de Timor- Leste; Lei de Adoção e primeira Alteração da Lei da Nacionalidade.",
+   "amounts": {
+    "10": 194017.0
+   },
+   "page": 118
+  },
+  {
+   "code": "3920101",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Disseminação da sleis em vigor e dos direitos e deveres de cidadania",
+   "div": [
+    "0151003"
+   ],
+   "indicator": "Nr. das leis e participantes que são alvo da disseminação das leis em vigor.",
+   "baseline": "Em 2024-2025 foram realizada a Disseminação das leis designadamente : Lei N°.13/2017 sobre Regime Especial Titulares Bens Imoveis, Lei N°.8/2017 sobre Expropriação por Utilidade Publica e Lei N°.9/2002 sobre Nacionalidade, Decreto Lei N°.5/2020 Organização funcionamento comissão Terras Propriedade, Decreto Lei N°.65/2022. Imformação Cadastro Perdial, Decreto Lei N°.19/2004 Regime Jurídico dos Bens Imóveis: Afectação Oficial e Arrendamento de Bens Imóveis do Domínio Privado do Estado, Decreto Lei N°.15/2024 Estatuto PCIC, Decreto Lei N°.21/2023 Estatuto Defensoria Publica, em 9 Sucos 7 do Posto Administrativo Lospalos Posto",
+   "target": "\"Meta: 2,000 participantes na disseminação das leis em vigor. Lei N°.13/2017 sobre Regime Especial para a Definição da Titularidade dos Bens Imóveis. Lei N°.8/2017 sobre Expropriação por Utilidade Publica Lei N°.9/2002 sobre Nacionalidade, DL N°.5/2020 Organização funcionamento CTP DL N°.65/2022. Informação Cadastro Perdial. DL N°.19/2004 Regime Jurídico dos Bens Imóveis: Afectação Oficial e Arrendamento de Bens Imóveis do Domínio Privado do Estado. DL N°.15/2014 Orgânica da Polícia Científica e de Investigação Criminal DL N°.21/2023 Estatuto da Defensoria Pública. em Municipio Baucau Postu administrativo Venilale, Postu",
+   "amounts": {
+    "20": 12085.0
+   },
+   "page": 119
+  },
+  {
+   "code": "3920103",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Serviços de tradução e interpretação dos diplomas legislativos",
+   "div": [
+    "0151002"
+   ],
+   "indicator": "Nr.de diplomas legislativos publicados no Jornal do República dos projetos/propostas normativos.",
+   "baseline": "10 diplomas legislativos traduzidos e publicados.",
+   "target": "\"3 Legislação será traduzidos \"",
+   "amounts": {
+    "20": 10200.0
+   },
+   "page": 120
+  },
+  {
+   "code": "3920105",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Prevenção e Combate Crime Tráfico Humanos, Prosecução do Caso de Tráfico Humano e Reforsa Institucional",
+   "div": [
+    "0151001"
+   ],
+   "indicator": "1) % Prevenção e combate ao crime tráfico de pessoas. 2) # de prosecução do caso de tráfico de Pessoas. 3) Reforço institucional",
+   "baseline": "\"Lei n.º 3/2017 de 25 de Janeiro \"\"Lei da prevencao e Luta Contra o Trafico de Pessoas\"\" e do Decreto-Lei n.º 9/2021, de 30 de Junho Comissão de Luta Contra o Tráfico de Pessoas; Apreciação e Aprovação em Conselho de Ministros, de 25 de julho de 2025, Plano de Ação Nacional do Tráfico de Pessoas (PAN) para prevenção e combate ao crime tráfico de pessoas 2026- 2030 aprovado \"",
+   "target": "\"12 prevenção combate ao crime tráfico de Pessoas Implementou medidas de prevenção através da divulgação da Lei n.º 3/2017 de 25 de Janeiro \"\"Lei da Prevenção e Luta Contra o Tráfico de Pessoas\"\" e do Decreto-Lei n.º 9 de 30 de Junho de 2021, Comissão de Luta Contra o Tráfico de Pessoas, tendo como alvo um total de 3.581 participantes, com dados registados de 1.593 mulheres (45%) e 1.988 homens (55%). 12 Municípios, incluindo a RAEOA, e 8 postos administrativos nos Municípios de Covalima, Ainaro e Bobonaro., 5 prosecução do caso tráfico de pessoas. e 1 reforma",
+   "amounts": {
+    "10": 29900.0,
+    "20": 10086.0
+   },
+   "page": 120
+  },
+  {
+   "code": "3920106",
+   "programme": "392",
+   "subprogramme": "39201",
+   "subprogramme_name": "Acesso à justiça",
+   "name": "Cooperação, Monitorização e Avaliação da Crime Tráfico Humano",
+   "div": [
+    "0151001"
+   ],
+   "indicator": "1) # de Cooperação. 2) # de monitorização. 3) # de avaliação do Crime Tráfico de Pessoas",
+   "baseline": "\"Aprovado o Decreto Lei Nú.9/2021, 30 de Junho Comissão de Luta Contra o Tráfico de Pessoas; Apreciação e Aprovação em Conselho de Ministros, de 25 de Julho de 2025, Plano de Ação Nacional do Tráfico de Pessoas (PAN) para prevenção e combate ao crime tráfico de pessoas 2026-2030 aprovado \"",
+   "target": "\"5 ações de cooperação e 12 ações de monitorização dos Serviços de Segurança nas medidas de prevenção do combate ao crime tráfico de pessoas na zona de fronteira, em 12 Municípios, incluindo a RAEOA e oito (8) Postos Administrativos Bobonaro, Cailaco, Balibo e Atabae do Município de Bobonaro, seguidamente nos postos administrativos de Hatu-Udo e Maubisse do Município de Ainaro, e em seguida nos postos administrativos de Fatuberliu e Turiscai do Município de Manufahi. \"",
+   "amounts": {
+    "10": 1500.0,
+    "20": 9203.0
+   },
+   "page": 121
+  },
+  {
+   "code": "3921301",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "Formação dos recursos humanos nas áreas da justiça",
+   "div": [
+    "0150301"
+   ],
+   "indicator": "Nr. dos funcionários do MJ, do CFJJ e dos oficiais de justiça participar na formação nas áreas técnicas",
+   "baseline": "\"Foi Concluído o 7ª Curso de formação para Megistrados e Defensores Públicos na faze teoria e pratica, ( Masculino-17 Feminino 6, Concluído 3ª curso formação para Conservadores e Notarios faze teoria são 33 formandos, (",
+   "target": "\" Formação Inicial de 8ª Curso Formação para Magistrados e Defensores Publicos- 45 Formandos, Formação Especializada para 78 formandos nemeadamente : Magistrados Judicial, Magistrados Ministério Publico",
+   "amounts": {
+    "10": 146890.0
+   },
+   "page": 121
+  },
+  {
+   "code": "3921302",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "Formação profissional para os autores de justiça",
+   "div": [
+    "0150301"
+   ],
+   "indicator": "Nr. de Magistrados e Defensores Públicos e formadores que recrutados e formados",
+   "baseline": "Realizado o concurso de ingresso aos 716 candidatos dos Megistrados e Defensores Públicos para 7ª curso de formação são seguites: 217 Juizes (F-87 e M-130), 234 Procuradores (F-86 e M-148), e 265 Defensores Publico (F- 90 e M-175), e concurso de ingresso aos Conservadores e Notarios para 3ª curso formação são 30 candidatos.",
+   "target": "50 funcionários e oficiais de justiça participaram no curso de língua portuguesa nomeadamente funcionários MJ, CFJJ, CTP, oficiais de justiça dos Tribunais, do Ministério Público e da Defensoria Pública, funcionarios CTP e CAC.",
+   "amounts": {
+    "20": 954490.0
+   },
+   "page": 122
+  },
+  {
+   "code": "3921304",
+   "programme": "392",
+   "subprogramme": "39213",
+   "subprogramme_name": "Desenvolvimento de Recursos Humanos em áreas Técnicas Específicas",
+   "name": "Formação especializada nas áreas de inspeção e auditoria",
+   "div": [
+    "0150104"
+   ],
+   "indicator": "Nr. de funcionários técnicos que participar na formação",
+   "baseline": "Em 2024, 7 funcionários participaram de treinamento sobre Efective Report for Internal Audit, 1 funcionário participou de treinamento básico para o título de QIA; Em 2025, 6 funcionários participaram de treinamento sobre Procurament Audit, 7 funcionários participaram de treinamento sobre Integrated Governance , Risk and Compilance; 3 funcionários participaram do seminário sobreAuditoria Interna.",
+   "target": "25 formandos participar na formação especializada nas areas internal audit for new internal Auditor (5 pessoas, Qualitiy assessment: Evaluating Internal Audit Effectiviness Fraud Risk Management Program para 10 pessoas e Finance and Acounting for Non Finance and Accountung Bacground para 10 pessoas)",
+   "amounts": {
+    "20": 14371.0
+   },
+   "page": 122
+  },
+  {
+   "code": "3922301",
+   "programme": "392",
+   "subprogramme": "39223",
+   "subprogramme_name": "Gestão de Regularização de Direito dos Bens Imóveis",
+   "name": "Garantir o funcionamento de gestão de Bens Imóveis",
+   "div": [
+    "0150103"
+   ],
+   "indicator": "Nr. de Bens Imóveis registados e regularizados.",
+   "baseline": "Foram atribuídos 572 certificados de títulos de direito de propriedades de bens imóveis, designadamente em 2022 com total de 39 parcelas, em 2024 são 33 parcelas e em 2025 no total de 500 parcelas.",
+   "target": "Serão atribuidos cerca de 800 certificados de titulos do direito de propriedade.",
+   "amounts": {
+    "10": 151385.0,
+    "20": 34800.0
+   },
+   "page": 123
+  },
+  {
+   "code": "3921101",
+   "programme": "392",
+   "subprogramme": "39211",
+   "subprogramme_name": "Reinserção social",
+   "name": "Promoção da reinserção social",
+   "div": [
+    "0151004"
+   ],
+   "indicator": "Nr. de reclusos que tiveram reinserção social com sucesso na comunidade. Meta : 110 reclusos.",
+   "baseline": "Em 2026 foram recolhidos 110 dados dos reclusos do relatorio social para a liberdade condicional",
+   "target": "110 reclusos será reinserção social",
+   "amounts": {
+    "20": 16100.0
+   },
+   "page": 123
+  },
+  {
+   "code": "3921202",
+   "programme": "392",
+   "subprogramme": "39212",
+   "subprogramme_name": "Serviços prisionais",
+   "name": "Desenvolvimentos dos serviços prisionais",
+   "div": [
+    "0151004"
+   ],
+   "indicator": "\"Nr. de refeições atribuidas aos Guardas Prisionais e",
+   "baseline": "\"\"\"Situacao Actual Juridico, em 3 prisoes, com total",
+   "target": "Fornsecimento refeições ou alimentação aos 305 Guardas",
+   "amounts": {
+    "10": 1130568.0,
+    "20": 1236207.0,
+    "50": 115000.0
+   },
+   "page": 123
+  },
+  {
+   "code": "3921203",
+   "programme": "392",
+   "subprogramme": "39212",
+   "subprogramme_name": "Serviços prisionais",
+   "name": "Gestão Financeira da descentralização dos Municípios da DNSPRS",
+   "div": [
+    "0151004"
+   ],
+   "indicator": "% de execução do orçamento dos recursos financeiros em forma de alocação fundos periódicos para os serviços descentralizados nas Prisões de Gleno, Suai e Díli ( Becora).",
+   "baseline": "\"70% da execução do orçamento dos recursos financeiros em forma de alocação fundos periódicos para os serviços descentralizados nas Prisões de Gleno, Suai e Díli ( Becora). \"",
+   "target": "100% de execução do orçamento atribuídos trimestralmente é de 31.155$ sendo 10.385$ para a Prisão de Suai, 10.385$ para a Prisão de Gleno e 10.385$ para a Prisão de Becora, por trimestral.",
+   "amounts": {
+    "20": 37000.0
+   },
+   "page": 124
+  },
+  {
+   "code": "39212X1",
+   "programme": "392",
+   "subprogramme": "39212",
+   "subprogramme_name": "Serviços prisionais",
+   "name": "Purchase of 3 prisoner transport and 2 operational vehicles",
+   "div": [
+    "0151004"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 244900.0
+   },
+   "page": 124
+  },
+  {
+   "code": "39212X2",
+   "programme": "392",
+   "subprogramme": "39212",
+   "subprogramme_name": "Serviços prisionais",
+   "name": "Training furniture, air conditioners and masonry equipment for prisons",
+   "div": [
+    "0151004"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 1000000.0
+   },
+   "page": 124
+  },
+  {
+   "code": "3921401",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Registo e cadastro de terras e propriedades",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "Nr. de parcelas registadas e levantadas atravéz de levantamento cadastral esporádico.",
+   "baseline": "Cerca de 326.111 parcelas foram registadas atravéz do projecto sistema nacional de cadastro (SNC) e 1,523 parcelas foram levantadas atravéz de levantamento cadastral esporádico.",
+   "target": "Reverificação de 650 parcelas registadas e publicadas através do projecto sistema nacional de cadastro (SNC) para fins de atribuição certificados de títulos e 500 parcelas cadastradas através do levantamento cadastral",
+   "amounts": {
+    "20": 43015.0
+   },
+   "page": 124
+  },
+  {
+   "code": "39214X1",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Maintenance of IT, cadastral survey instruments and generators",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 210000.0
+   },
+   "page": 125
+  },
+  {
+   "code": "39214X2",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Fuel and office supplies for cadastral field teams",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 110000.0
+   },
+   "page": 125
+  },
+  {
+   "code": "39214X3",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Cadastral field infrastructure - boundary markers and geodetic pillars",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 125
+  },
+  {
+   "code": "39214X4",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Logistics and field materials for deployment to 13 municipalities",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 78610.0
+   },
+   "page": 125
+  },
+  {
+   "code": "39214X5",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Training and professional development for 72 surveyors",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 133475.0
+   },
+   "page": 125
+  },
+  {
+   "code": "39214X6",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Purchase of IT and survey equipment - GNSS/RTK, total stations, tablets",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 800000.0
+   },
+   "page": 125
+  },
+  {
+   "code": "39214X7",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Maintenance of the National Cadastral System (SNC) database",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 250000.0
+   },
+   "page": 125
+  },
+  {
+   "code": "3921501",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Gestão do património imobiliário do Estado",
+   "div": [
+    "0150501",
+    "0151201"
+   ],
+   "indicator": "Nr. de contratos celebrados (novos ou renovados) com o Estado sobre as propriedades, notificações e de despejos administrativos efetuados aos ocupantes das terras e propriedades do Estado por falta de cumprimento contratual ou decisão máxima.",
+   "baseline": "\"1.542 novos contratos de arrendamento e 1,826 contratos foram renovados, 737 notificação, 8 despejos administrativos e 137 propriedades Estado foram atribuidos \"",
+   "target": "500 novos contratos de arrendamento e 1000 contratos renovados, 70 notificação, 3 despejos administrativos e 25 propriedades Estado será realizado. Arrecada arrendamento sao USD 5,000, 000",
+   "amounts": {
+    "20": 30091.0,
+    "10": 22772.0
+   },
+   "page": 125
+  },
+  {
+   "code": "3921502",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Gestão de mediação de Disputas/ Conflitos no âmbitos de Terras e Propriedades",
+   "div": [
+    "0150502"
+   ],
+   "indicator": "Nr. de registos de casos de mediação de conflitos/disputas.",
+   "baseline": "973 casos foram registados, 201 casos foram rezolvidos, 546 casos em processos, 196 casos pendetes e 4 casos foram recomendam ao Tribunal.",
+   "target": "\" 100 casos será registados e rezolvidos. \"",
+   "amounts": {
+    "20": 10100.0
+   },
+   "page": 126
+  },
+  {
+   "code": "3921503",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Gestão Financeira da descentralização dos Municípios da DNTPSC",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "% de execução do orçamento das sub-alocações atribuidas trimestrais aos serviços para assegurar o bom funcionamento e um atendimento de qualidade às populações.",
+   "baseline": "Apenas foram atribuidos sub- alocação aos 12 Municipios em 2024 no montante de $11,976.00 ($998.00 x 12 municipios x 1 Trimestre) e em 2025 no montante de $ 7,997.40 ($666.45 x 12 municipios x 1 Trimestre).",
+   "target": "100% de execução do orçamento fundo sub-alocação no montante de $120,000.00 para 4 trimestres aos Serviços da Direção de Terras e Propriedades de 12 Municipais, ($2,500.00 x 12 municipios x 4 Trimestre).",
+   "amounts": {
+    "20": 100600.0
+   },
+   "page": 126
+  },
+  {
+   "code": "3921504",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Garantir ao dezenvolvimento e funcionamento geral dos seviços da terras e propriedades",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "\" % de execução do orçamento dos serviços para assegurar o bom funcionamento e um atendimento de qualidade às populações. \"",
+   "baseline": "95% de Execução do orçamentos alocado",
+   "target": "95% o orçamentos alocado será executado",
+   "amounts": {
+    "10": 1655186.0,
+    "20": 112900.0
+   },
+   "page": 126
+  },
+  {
+   "code": "3921505",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "identificação do pontos de referências ordem 4",
+   "div": [
+    "0150503"
+   ],
+   "indicator": "Nr. dos pontos de referências de ordem 4 identificados",
+   "baseline": "\"Foram identificados 1000 pontos de referencias de ordem 4 no Município de Dili através do porjecto do SNC. \"",
+   "target": "\"1000 pontos de referências de ordem 4 serão identificados, observados e estabelecidos em todo o terrítorio de Timor- Leste. \"",
+   "amounts": {
+    "20": 37900.0
+   },
+   "page": 126
+  },
+  {
+   "code": "3921506",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Promoção a resolução e garantir a imparcialidade da resoluçao dos casos em disputa no âmbito do processo de reconhecimento e atribuição dos direitos de propriedades",
+   "div": [
+    "0150801"
+   ],
+   "indicator": "\"Nr. de Promoção a resolução e garantir a imparcialidade da resoluçao dos casos em disputa no âmbito do processo de reconhecimento e atribuição dos direitos de propriedades \"",
+   "baseline": "\"973 casos foram registados, 201 casos foram rezolvidos, 546 casos em processos, 196 casos pendetes e 4 casos foram recomendam ao Tribunal. \"",
+   "target": "\"Garantia transferência 4000 casos de disputa no SNC para o sistema base de dados CTP e 500 casos registodo pelas partes interesantes , 4000 casos verificado e 500 casos será apreciado e publicado \"",
+   "amounts": {
+    "10": 378250.0,
+    "20": 35100.0
+   },
+   "page": 126
+  },
+  {
+   "code": "39215X1",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Secondment of national staff to land and property services",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 207923.0
+   },
+   "page": 126
+  },
+  {
+   "code": "39215X2",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Advisory services - cadastral, geospatial, IT and property law",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 136500.0
+   },
+   "page": 126
+  },
+  {
+   "code": "39215X3",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "UABIE revenue system - digitalisation of State property contracts",
+   "div": [
+    "0151201"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 250000.0
+   },
+   "page": 126
+  },
+  {
+   "code": "39215X4",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Vehicle maintenance and contingency hire for the cadastral fleet",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 126
+  },
+  {
+   "code": "39215X5",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Legal preparation and community engagement for land collection areas",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 29250.0
+   },
+   "page": 126
+  },
+  {
+   "code": "39215X6",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "TBC - UABIE minor capital, items not yet specified",
+   "div": [
+    "0151201"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 150000.0
+   },
+   "page": 127
+  },
+  {
+   "code": "39215X7",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Furniture and equipment for national and 13 municipal buildings",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 200000.0
+   },
+   "page": 127
+  },
+  {
+   "code": "39215X8",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Purchase of 10 Hilux 4WD vehicles and 15 motorcycles",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 300000.0
+   },
+   "page": 127
+  },
+  {
+   "code": "39215X9",
+   "programme": "392",
+   "subprogramme": "39215",
+   "subprogramme_name": "Gestão de Terras e Propriedades",
+   "name": "Rehabilitation of 13 STPSCM buildings and the National Cadastral Services building",
+   "div": [
+    "0150501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 300000.0
+   },
+   "page": 127
+  },
+  {
+   "code": "3921602",
+   "programme": "392",
+   "subprogramme": "39216",
+   "subprogramme_name": "Gestão de Informação Geoespacial",
+   "name": "Gestão de informaçao Geospacial",
+   "div": [
+    "0150504"
+   ],
+   "indicator": "Nr. de pontos de referências de ordem I, II e III que foram concluidos o levantamento e de manutenção.",
+   "baseline": "\"Foram identificados 10 pontos de referências de ordem I: 114 pontos de ordem II e 235 pontos de ordem III. \"",
+   "target": "\"60 pontos de referências de ordem I,II e III serão lavantados e 50 pontos de referências serão conluidos de manutenção. \"",
+   "amounts": {
+    "20": 35650.0
+   },
+   "page": 127
+  },
+  {
+   "code": "39216X1",
+   "programme": "392",
+   "subprogramme": "39216",
+   "subprogramme_name": "Gestão de Informação Geoespacial",
+   "name": "Publication of claimant maps and issuance of collective property titles",
+   "div": [
+    "0150504"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 15773.0
+   },
+   "page": 127
+  },
+  {
+   "code": "3921701",
+   "programme": "392",
+   "subprogramme": "39217",
+   "subprogramme_name": "Registos e Notariado",
+   "name": "Gestão dos Serviços de Cartórios Notariais",
+   "div": [
+    "0150702"
+   ],
+   "indicator": "Nr. de emissão de actos notariais no âmbito de legalização/escrituras, autenticação e Procuração",
+   "baseline": "474 escrituras; 78.802 documentos Legalização; e 202 Procurações.",
+   "target": "\"15.000 escrituras, 79.000 documentos Legalização e 5.000 procurações emitidos aos populações intervenientes, \"",
+   "amounts": {
+    "20": 35100.0
+   },
+   "page": 127
+  },
+  {
+   "code": "3921801",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "Gestão dos serviços de Registo Civil e Criminal",
+   "div": [
+    "0150703"
+   ],
+   "indicator": "Nr. de documentos emitidos de bilhetes de identidade, Passaportes, registos criminais.",
+   "baseline": "\"47.586 bilhetes de identidade, 56.717 emissão cadernetas de passaporte e recolha taxa de passaporte $ 4,119.400.00 e emissão de Registo criminal 114.214 \"",
+   "target": "125.000 bilhetes em sistema online nos 6 Munícipios, 75.000 passaportes e 50.000 certificados registos criminais emitidos.",
+   "amounts": {
+    "20": 20150.0
+   },
+   "page": 128
+  },
+  {
+   "code": "3921802",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "Gestão de sistemas de informação dos Registos Civis",
+   "div": [
+    "0150703"
+   ],
+   "indicator": "Nr. de emissão de actos notariais no âmbito de Legalização, Escrituras e Procuração.",
+   "baseline": "474 escrituras; 78.802 documentos autenticados; e 202 Procurações.",
+   "target": "\"15.000 escrituras, 79.000 documentos Legalização e 5.000 procurações. \"",
+   "amounts": {
+    "20": 13725.0
+   },
+   "page": 128
+  },
+  {
+   "code": "3921803",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "Gestão Financeira da descentralização dos Registos Civis e Criminal nos Municípios",
+   "div": [
+    "0150701"
+   ],
+   "indicator": "% de execução financeira da sub-alocações atribuida trimestralmente aos serviços para assegurar o bom funcionamento e atendimento de qualidade às populações.",
+   "baseline": "Foi atribuidas sub-alocação dos 12 Municipios de montante $43,695 (ano)",
+   "target": "100% de orçamento atribuído, por trimestral executado de acordo com a necessidade de atendimento.",
+   "amounts": {
+    "20": 26610.0
+   },
+   "page": 128
+  },
+  {
+   "code": "3921804",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "Garantir ao desenvolvimento e funcionamento geral dos serviços de registos e notariado",
+   "div": [
+    "0150701"
+   ],
+   "indicator": "% de execução do Orçamento da Direção Geral dos Serviços de Registos e Notariado para aquisição de bens e serviços, a deslocações dos funcionários, outros despezas operacionais, aquisições dos equipamentos de capital menór e rehabilitação do edificio central DGSRN de capital desenvolvimento de forma a assegurar e garantir o bom funcionamento dos serviços operacionais, administrativas e técnicas da Direção-Geral.",
+   "baseline": "100% de execução orçamental de acordo com as regras e procedimento de gestão financeira",
+   "target": "100 % de dotação orçamento atribuído executado e os serviços de Registos e Notariado prestar ao público continuaram assegurado, garantido e bem funcionado.",
+   "amounts": {
+    "10": 1481395.0,
+    "20": 71250.0,
+    "50": 40196.0
+   },
+   "page": 128
+  },
+  {
+   "code": "3921806",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "Atos de registos, notariado e identificação civil na diáspora",
+   "div": [
+    "0150701"
+   ],
+   "indicator": "Nr de emissão dos atos de Registos Civil e Identificação Civil",
+   "baseline": "Foram emitidas as certidões de nascimento 75 (M= 42 e F=33), cadernetas de passaportes comuns, 2.224",
+   "target": "52.000 emissao dos atos de Registos do Notariado e Identificação Civil",
+   "amounts": {
+    "10": 657700.0,
+    "20": 17400.0
+   },
+   "page": 128
+  },
+  {
+   "code": "39218X1",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "SIDU Unique Digital Identity System - IT specialist recruitment",
+   "div": [
+    "0150701"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 80000.0
+   },
+   "page": 129
+  },
+  {
+   "code": "39218X2",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "IT support and printed materials for passports, ID cards and certificates",
+   "div": [
+    "0150701"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 129
+  },
+  {
+   "code": "39218X3",
+   "programme": "392",
+   "subprogramme": "39218",
+   "subprogramme_name": "Identificação Civil e Registo Criminal",
+   "name": "IT equipment, network, registry software and passport printing machines",
+   "div": [
+    "0150701"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 650000.0
+   },
+   "page": 129
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0150101",
+    "0150901"
+   ],
+   "indicator": "Plano Estrategico/ Medico Prazo Aprovados; Nr. de POP Produzidos e Divulgados",
+   "baseline": "\"Deslocação ba Exterior/visita trabalho ( Vietnam) Asean, Viagen lokal nos 13 Autoridades Municipais e RAEOA ba Xefi Gabinete no funcionários na visita Vice- Ministro ba Autoridades dos Munisipio e RAEOA e Comemorativas dias Nacionais nas Autoridades Municipais e RAEOA\"",
+   "target": "20 visitas de trabalho regulares em Municipios, e diplomas Aprovados, 50 Audencias com quixosos, 4 Manuais de procedimentos internos Aprovados, 20 despcahos internos que comfigueram instrumentos de gestao; 1000 Titulos se propriedades homologados; Publicacao livro curso registo e Notariado, Minutas do Curso de Registo e Notarios Volume I-II",
+   "amounts": {
+    "10": 830228.0,
+    "20": 55488.0
+   },
+   "page": 129
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0150104"
+   ],
+   "indicator": "\"15 de processo de Inspeção, fiscalização e auditoria Interna realizados e implementados, Frequência de Inspeção, fiscalização e auditoria a serviços de Registos e Notariado nos serviços centrais, Municipais e Cartório",
+   "baseline": "\"13 processo de Inspeção, fiscalização e auditoria Interna; ( 4 processo de Auditorias, 4 processo de Inspeções e 5 processo de Averiguações) \"",
+   "target": "\"12 Processos de Inspeção, fiscalização e auditoria Interna em 12 municipios incluiido RAEOA \"",
+   "amounts": {
+    "10": 136196.0,
+    "20": 11050.0
+   },
+   "page": 129
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "0151101"
+   ],
+   "indicator": "\"Nr. De aprovação do pagamento, contratos dos funcionário casuais, contratos dos serviços pelas empresas, alteração orçamental, Homologação da avaliação desempenho dos funcionarios permanentes \"",
+   "baseline": "\"Foram aprovados 87 pagamentos, 285 funcionários casuais, 35 contratos com a empresas fornecedoras, 17 alterações orçamentais,366 Homologação da avaliação desempenho dos funcionarios permanentes \"",
+   "target": "\"98 pagamentos, 285 funcionários casuais, 40 contratos com as empresas, 19 alterações orçamentais,366 Homologação da avaliação desempenho dos funcionarios permanentes \"",
+   "amounts": {
+    "10": 34596.0,
+    "20": 14000.0
+   },
+   "page": 130
+  },
+  {
+   "code": "510015A",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Modernização do Plano Estratégico do Setor Justiça",
+   "div": [
+    "0151001"
+   ],
+   "indicator": "\"Nr. de Ações e reuniões com vários intervenientes e o Ponto Contacto Corespondênsia CMJPLOP Setor da Justiça entre Países CPLP; 1 Grupo de Trabalho Técnico Interno do Ministério da Justiça estabelecido para a Revisão do PESJ 2025-2030; Número de reuniões do Conselho Consultivo do Ministério da Justiça identificadas. \"",
+   "baseline": "\" Aprovado Diploma Ministerial N.º 35/2023 de 30 de Junho \"ORGÂNICA DA DIREÇÃO GERAL DA POLÍTICA DE JUSTIÇA\"",
+   "target": "\"8 reuniões, 3 Seminários/wokshop e Campanha de lançamento dos resultados da revisão do Plano Estratégico do Setor da Justiça; 12 reuniões do Conselho Consultivo do MJ e 12 atas de reuniões aprovadas. \"",
+   "amounts": {
+    "20": 1450.0
+   },
+   "page": 130
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0151102"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "98% de execução orçamental de acrodo com as regras e procedimento de gestão financeira",
+   "target": "\"100% executado o orçamental de acrodo com as regras e procedimento de gestão financeira \"",
+   "amounts": {
+    "10": 185049.0,
+    "20": 978172.0
+   },
+   "page": 130
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0151001"
+   ],
+   "indicator": "Número de relatórios trimestrais publicados no tempo; % do relatório de desempenho trimestral apresentado a tempo para a UPMA",
+   "baseline": "100% submissão o relatório do desepenho antepadamente",
+   "target": "4 relatórios trimestrais submetidos e 100% relatórios trimestral e anual realizados e publicados",
+   "amounts": {
+    "10": 103531.0,
+    "20": 22800.0
+   },
+   "page": 130
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0151103"
+   ],
+   "indicator": "% de posições não preenchidas; # de ajuste retroativo; % de funcionários com desempenho insatisfatório",
+   "baseline": "\"Foram homologado avaliação do desempenho dos funcionários 584 em regime geral e Renovação dos contratos 254 funcionarios",
+   "target": "\"100% Gestão dos recursos humanos será melhorar do desempenho instituição \"",
+   "amounts": {
+    "10": 82799.0,
+    "20": 10200.0
+   },
+   "page": 130
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0151104"
+   ],
+   "indicator": "Nr.deselebração dos constratos aprovados e realizados",
+   "baseline": "Execução do Direcao Nacional de Aprovisionamento relativamente a aquisição de Alimentares, Aquisicao de Refeicoes. construcao de muro, bens para o escritório, outros despesas operacionais incluido capital menor e o Ministerio da Justica que celebrado 40 comtratos com empressa Publico sao seguintes; 6 concurso, 17 Solicitacao de Quotacoes e 17 Ajuste Direto.",
+   "target": "50 contratos aprovados",
+   "amounts": {
+    "10": 112208.0,
+    "20": 20000.0
+   },
+   "page": 131
+  },
+  {
+   "code": "510021M",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Melhoramento as infraestruturas de rede e sistema",
+   "div": [
+    "0151105"
+   ],
+   "indicator": "% de públicação de noticias no portal oficial e públicação normas legais no jornal da república; % de funcionamento e-mail oficial do Ministério da Justiça",
+   "baseline": "Estabelesimento do sistema informática no Ministério da Justiça",
+   "target": "95% Garantir a disponibilidade dos sistemas digitais com um tempo de atividade (upteim) médio",
+   "amounts": {
+    "10": 107300.0
+   },
+   "page": 131
+  },
+  {
+   "code": "510021N",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Garantir a conetividade de rede e sistema de internet nos municípios",
+   "div": [
+    "0151105"
+   ],
+   "indicator": "\"Nr. de municípios que acesso o serviços digital para o atendimento público \"",
+   "baseline": "13 municípios foram conectados ao sistema informação e DMIS atraves do rede de Telemor e DNIC- MTC.",
+   "target": "Alargamento de conexão de rede para o sistema PETL nos 13 municípios; Garantir a disponibilidade dos sistemas informática nos municípios.",
+   "amounts": {
+    "20": 20587.0
+   },
+   "page": 131
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0150101"
+   ],
+   "indicator": "Nr. de reuniões intersetoriais",
+   "baseline": "\"Participaram os varios reuniões sobre a",
+   "target": "\"20 veses de encontros ou reuniões com vários",
+   "amounts": {
+    "20": 33850.0
+   },
+   "page": 131
+  },
+  {
+   "code": "5100346",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Gestão dos serviços de protocolares e comunicação social do MJ",
+   "div": [
+    "0151005"
+   ],
+   "indicator": "\"Nr. de serviços de protocolares e comuncação social realizados \"",
+   "baseline": "Executar servForam efetuadas um total de cento e quarenta e seis (146) atividades no Ministério da Justiça (atividade vizita internacional 8, evento nacional 8 e outros atividades e eventos são 138). Foram rejistada um total de oitenta",
+   "target": "80 audiências de S.E Ministro, S.E. Vice-Ministro Fortalecimento Institucional e S.E. Secretário de Estado de Terras e Propriedades, 10 publicações da atividade do Ministério da Justiça, 50 cobertura e organização das",
+   "amounts": {
+    "10": 39844.0,
+    "20": 12800.0
+   },
+   "page": 132
+  },
+  {
+   "code": "5104001",
+   "programme": "510",
+   "subprogramme": "51040",
+   "subprogramme_name": "Direitos humanos",
+   "name": "Garantia de cumprimento dos direitos humanos e tratados internacionais",
+   "div": [
+    "0151003"
+   ],
+   "indicator": "\"Nr. de participantes são alvo de formacão de Diretos Humanos para os autoriedades comunitario e autoridades local no Posto Administrativo nos municípios; Nr. da conferência internacionais sobre os Assuntos dos",
+   "baseline": "Baseia ao Diploma Ministeria No. 35/2023 Sobre Orgânica do Direção-Geral de Política da Justiça do Ministério da Justiça: 1. Formação de Direitos Humanos com as seguintes matérias: Conseito Básico de Direitos Humanos,",
+   "target": "\"160 Participantes na Formação de Direitos Humanos nos 4 Postos Administrativos, nomeadamente: Município de Manufahi, Posto Administrativo de Turicai; Município de Aileu, Posto",
+   "amounts": {
+    "10": 225815.0,
+    "20": 10695.0
+   },
+   "page": 133
+  },
+  {
+   "code": "9802801",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Implementação de acções ou reuniões para implementação de políticas de igualde de género.",
+   "div": [
+    "0151001"
+   ],
+   "indicator": "Nr. de Ações e reuniões com vários intervenientes e o Secretário de Estado Inclusão Social (SEII) no âmbito da política de igualdade de género e outras ações para apuramento das recomendações do SEII.",
+   "baseline": "foram realizadas 3 reuniões sobre a implementação da política de igualidade de género. realizadas 3 reuniões sobre a implemetação da politica de igualidade de género.",
+   "target": "3 reuniões sobre a implementação da política de igualidade de género realizado",
+   "amounts": {
+    "20": 550.0
+   },
+   "page": 135
+  },
+  {
+   "code": "9802802",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Diálogos com mulheres no nível da comunidade sobre práticas tradicionais, incluindo barlake",
+   "div": [
+    "0151003"
+   ],
+   "indicator": "\"Nr. de participantes que são alvo de diálogos com mulheres no nível da comunidade sobre práticas tradicionais, incluindo barlaque. Nr. de participantes nos 5 postos administrativos e sucos mais remotas. \"",
+   "baseline": "\"Em 2024-2025 foram realizada a Disseminação das leis designadamente : Efeito de pratica tradicional barlaque em Timor-Leste 1. Barlaqueado 2. Convenção CEDAW 3. Lei Contra Violencia Domestica em 3 do Posto Administrativo: -Posto Administrativu de Remexio do Municipio de Aileu -Posto Administrativo de Atabae do Municipio de Bobonaro - Posto Administrativo de Bazartete do Municipio de Liquiça com total participantes 188 pessoas M= 103 pss e F=85 pss, Pessoas com Dificiencia =1.\"",
+   "target": "\"300 mulheres no nível comunidade que são alvos da disseminação das leis em vigor e diálogos sobre práticas tradicionais incluíndo barlaque nos 5 Postos Administrativos e Sucos mais remotos, nomeadamente: 1. Posto administrativo de Tutuala, Município de Lautém; 2. Posto Administrativo de Laga Município de Baucau; 3. Posto Administrativo de Cailaco Município de Bobonaro; 4. Posto Administrativo de Atsabe Município de Ermera e 5. Município de Ataúro.\"",
+   "amounts": {
+    "20": 2400.0
+   },
+   "page": 135
+  },
+  {
+   "code": "9802906",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Participação no encontro coordenação do PAA e VBG e monitorização do cumprimento das recomendações.",
+   "div": [
+    "0151001"
+   ],
+   "indicator": "Nr. de Participações no encontro coordenação do PAA e VBG.",
+   "baseline": "4 participações nos encontros de coordenação PAN 1325 e PAN VBG",
+   "target": "4 encontros realizados",
+   "amounts": {
+    "20": 550.0
+   },
+   "page": 136
+  },
+  {
+   "code": "9802907",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Promover reformas ao enquadramento legal nacional para melhorar e proteger as mulheres e crianças, incluindo alterações ao Código Penal e LCVD",
+   "div": [
+    "0151002"
+   ],
+   "indicator": "\"% de Promover reformas ao enquadramento legal nacional para melhorar e proteger as mulheres e crianças, incluindo alterações ao Código Penal e LCVD \"",
+   "baseline": "\"80% Promover reformas ao enquadramento legal nacional para melhorar e proteger as mulheres e crianças, incluindo alterações ao Código Penal e LCVD \"",
+   "target": "\"100% Promover reformas ao enquadramento legal nacional para melhorar e proteger as mulheres e crianças, incluindo alterações ao Código Penal e LCVD \"",
+   "amounts": {
+    "20": 6100.0
+   },
+   "page": 136
+  },
+  {
+   "code": "9802908",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Formação profissional para os autores de justiça ( Juízes e Magistrados) sobre violência baseada no género, enquadramento legal, Procedimentos Operacionais Padronizados, Processos Referência e Proteção contra as vitimas VBJ.",
+   "div": [
+    "0150301"
+   ],
+   "indicator": "Nr. de Advogados e Magistrados aumentaram conhecimentos nas seguintes áreas: violência baseada no género, enquadramento legal, Procedimentos Operacionais Padronizados, Processos Referência e Proteção contra a VBG",
+   "baseline": "\" 217 Juizes (F-87 e M-130), 234 Procuradores (F-86 e M- 148), e 265 Defensores Publico (F-90 e M-175), e concurso de ingresso aos Conservadores e Notarios para 3ª curso formação são 30 candidatos participado formação \"",
+   "target": "\"100 Advogados e Magistrados aumentaram conhecimentos nas seguintes áreas: violência baseada no género, enquadramento legal, Procedimentos Operacionais Padronizados, Processos Referência e Proteção contra a VBG \"",
+   "amounts": {
+    "20": 1100.0
+   },
+   "page": 136
+  },
+  {
+   "code": "9804601",
+   "programme": "980",
+   "subprogramme": "98046",
+   "subprogramme_name": "Implementação da Declaração Maubisse II",
+   "name": "Awareness and dissemination Law on Land and Property in rural areas (priority for women)",
+   "div": [
+    "0151003"
+   ],
+   "indicator": "Numero de participantes que são alvo de deseminação sobre lei da terras e propriedade na",
+   "baseline": "\"Em 2024-2025 foram realizada a disseminação das leis designadamente:",
+   "target": "300 participantes das mulheres no nível comunidade são alvos a disseminação das leis de",
+   "amounts": {
+    "20": 670.0
+   },
+   "page": 136
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "029.0.1",
+   "statement": "O quadro jurídico e institucional central do setor da justiça é coerente, atualizado e alinhado com a Constituição, as normas em matéria de direitos humanos e as necessidades de desenvolvimento de Timor- Leste",
+   "indicator": "\"1) % das leis e códigos prioritários em matéria de justiça revistos e aprovados 2) % das ações legislativas prioritárias do Roteiro para a Justiça concluídas ou em fase de implementação\"",
+   "baseline": "",
+   "target": "100%",
+   "page": 118
+  },
+  {
+   "kind": "output",
+   "code": "02902.0.0",
+   "statement": "Até 2028, o pacote prioritário de leis e códigos judiciais identificados no Roteiro da Justiça e no IX Programa do Governo será redigido, consultado e submetido para aprovação, resultando num regime jurídico setorial coerente",
+   "indicator": "\"\"\"1) # das leis e códigos prioritários redigidos e submetidos ao Conselho de Ministros/Parlamento (por ano) 2) # das leis e códigos prioritários aprovados e promulgados (cumulativo)\"",
+   "baseline": "0",
+   "target": "",
+   "page": 118
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.1",
+   "statement": "1.&#9;Os cidadãos em todos os municípios, especialmente mulheres, jovens e grupos vulneráveis tenham melhor acesso à justiça formal e aos serviços de registo (assistência jurídica, serviços prisionais e de reintegração, registo de terras, registo civil e notarial) que protegem os seus",
+   "indicator": "\"1) % da população que afirma ter acesso a serviços formais de justiça quando necessário 2) % de crianças com menos de 5 anos com registo de nascimento (registo civil) 3) % de parcelas de terra registadas",
+   "baseline": "0",
+   "target": "",
+   "page": 118
+  },
+  {
+   "kind": "output",
+   "code": "39201.0.0",
+   "statement": "Até 2028, os cidadãos especialmente nas áreas rurais, receberão informações acessíveis sobre direitos e procedimentos judiciais por meio de campanhas regulares de divulgação em linguagens compreensíveis.",
+   "indicator": "\"\"\"1) # de campanhas de informação jurídica por ano, por município e idioma (tetum, português, línguas locais). 2) # estimado de pessoas alcançadas, com % de mulheres e jovens. 3) % de municípios que recebem pelo menos uma campanha por ano.\"",
+   "baseline": "0",
+   "target": "0",
+   "page": 119
+  },
+  {
+   "kind": "output",
+   "code": "39213.0.0",
+   "statement": "Até 2028, os profissionais do setor da justiça serão formados em áreas técnicas prioritárias e destacados para instituições que atendem municípios carentes",
+   "indicator": "\"\"\"1) # de juízes, procuradores, defensores públicos, funcionários judiciais, conservadores, notários e técnicos de registo formados nas áreas prioritárias do Roteiro (direito fundiário, registos, TIC, justiça juvenil, etc.). 2) % dos formados destacados para municípios fora de Díli.\"",
+   "baseline": "",
+   "target": "",
+   "page": 121
+  },
+  {
+   "kind": "output",
+   "code": "39223.0.0",
+   "statement": "Até 2028, os direitos formais sobre bens imóveis dos cidadãos e do Estado serão reconhecidos e registados",
+   "indicator": "\"\"\"1) # de títulos de propriedade privada emitidos por ano 2) # (e %) de propriedades do Estado inventarizadas e registadas. 3) Existência de uma sistema operacional de registo de bens do Estado (0/1)\"",
+   "baseline": "",
+   "target": "",
+   "page": 123
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.2",
+   "statement": "Toda a terra em Timor-Leste é registada e os bens do Estado são bem mantidos e geridos",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 123
+  },
+  {
+   "kind": "output",
+   "code": "39211.0.0",
+   "statement": "Até 2028, os reclusos condenados terão acesso a programas de formação profissional e reintegração",
+   "indicator": "\"1) % de reclusos que participam em programas de formação profissional ou atividades «prisionais produtivas» 2) Taxa de reintegração nos dois anos após a libertação\"",
+   "baseline": "0",
+   "target": "",
+   "page": 123
+  },
+  {
+   "kind": "output",
+   "code": "39212.0.0",
+   "statement": "Até 2028, as prisões estarão em conformidade com os padrões mínimos de capacidade, separação de categorias e condições básicas de direitos humanos",
+   "indicator": "\"\"\"1) Taxa de ocupação prisional (reclusos/capacidade oficial) 2) % de prisões com separação de: homens/mulheres; menores/adultos; detidos em prisão preventiva/reclusos condenados. 3) # de inspeções prisionais por ano e % de recomendações implementadas\"",
+   "baseline": "0",
+   "target": "",
+   "page": 123
+  },
+  {
+   "kind": "output",
+   "code": "39214.0.0",
+   "statement": "Até 2028, um cadastro sistemático e atualizado abrangerá uma parcela cada vez maior de terrenos e municípios",
+   "indicator": "\"\"\"1) # (e %) de parcelas de terra com dados cadastrais completos no SNC 2) # de municípios onde levantamentos cadastrais sistemáticos estão em andamento ou concluídos.\"",
+   "baseline": "",
+   "target": "",
+   "page": 124
+  },
+  {
+   "kind": "output",
+   "code": "39215.0.0",
+   "statement": "Até 2028, o portfólio de bens imóveis do Estado estará totalmente inventarizado, registado, digitalizado e gerido num sistema transparente, responsável e atualizado",
+   "indicator": "\"\"\"1) # dos Bens Imóveis do Estado conhecidos inventarizados no registo nacional de ativos 2) # dos bens do Estado Inventarizados legalmente registados no Registo Predial Nacional (Registo Predial) 3) # dos Bens do Estado inventarizados mapeados e digitalizados no Sistema de Informação Geoespacial de Ativos (SIIG / base de dados Geoespacial)\"",
+   "baseline": "0",
+   "target": "",
+   "page": 125
+  },
+  {
+   "kind": "output",
+   "code": "39216.0.0",
+   "statement": "Até 2028, uma base de dados geoespacial e de ativos estará operacional e será utilizada pelo Ministério da Justiça e pelos municípios",
+   "indicator": "\"\"\"1) Base de dados geoespacial operacional (sim/não) e número de instituições que a utilizam ativamente. 2) # de pedidos de informação geoespacial tratados por ano.\"",
+   "baseline": "0",
+   "target": "",
+   "page": 127
+  },
+  {
+   "kind": "output",
+   "code": "39217.0.0",
+   "statement": "Até 2028, um sistema eletrônico de registo e notariado será implementado e interoperável com outros sistemas públicos essenciais",
+   "indicator": "\"\"\"1) % de cartórios e escritórios de notariado que utilizam o sistema eletrônico 2) Tempo médio para registrar atos (dias), por tipo de ato 3) Nível de interoperabilidade com outros sistemas governamentais (escala de 0 a 3).\"",
+   "baseline": "",
+   "target": "",
+   "page": 127
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.3",
+   "statement": "Todos os cidadãos inscritos nos serviços de Registo e Notariado e têm o direito de aceder à sua informação.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 127
+  },
+  {
+   "kind": "output",
+   "code": "39218.0.0",
+   "statement": "Até 2028, a cobertura do registo de nascimentos, casamentos e óbitos e a emissão de Bilhete de identidade e passaportes aumentam significativamente, incluindo em todos os municípios",
+   "indicator": "\"1) # de nascimentos, casamentos e óbitos registados. 2)# das crianças com menos de 5 anos com nascimento registados. 3) % da população com identificação nacional válida. 4)# de Bilhete de Identidade e Passaportes emitidos\"",
+   "baseline": "0",
+   "target": "",
+   "page": 128
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "0",
+   "target": "",
+   "page": 129
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "0",
+   "target": "",
+   "page": 129
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "0",
+   "target": "",
+   "page": 130
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Número de reuniões intersetoriais",
+   "baseline": "",
+   "target": "",
+   "page": 131
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.5",
+   "statement": "1. Cumpriu as obrigações do Pacto Internacional sobre os Direitos Civis, Políticos, Económicos, Sociais e Culturais. 2. Conhecimento e Consciência da Comunidade sobre os princípios e valores dos direitos humanos",
+   "indicator": "Número de campanhas de socialização sobre os direitos humanos com os cidadãos",
+   "baseline": "n.d",
+   "target": "",
+   "page": 133
+  },
+  {
+   "kind": "output",
+   "code": "51040.0.0",
+   "statement": "Promover a proteção efetiva dos direitos humanos fundamentais",
+   "indicator": "% dos cidadãos timorenses, especialmente mulheres, meninas, pessoas com deficiência e grupos marginalizados, aumentaram seus conhecimentos e compreensão sobre seus direitos fundamentais",
+   "baseline": "n.d",
+   "target": "",
+   "page": 133
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "\"\"\"1) % de mulheres rurais (com mais de 15 anos) com identidade legal própria (bilhete de identidade nacional ou passaporte) 2) % de mulheres rurais que declaram ter acesso a serviços judiciais formais, se necessário\"",
+   "baseline": "",
+   "target": "",
+   "page": 134
+  },
+  {
+   "kind": "output",
+   "code": "98028.0.0",
+   "statement": "A participação das mulheres no processo de desenvolvimento e provisão de segurança é aumentada",
+   "indicator": "\"\"\"1) % de cargos de liderança no Ministério da Justiça e nas instituições judiciais (tribunais, Ministério Público, Defensoria Pública, cartórios) ocupados por mulheres. 2) # de funcionários do setor da justiça (juízes, procuradores,",
+   "baseline": "",
+   "target": "",
+   "page": 134
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 135
+  },
+  {
+   "kind": "output",
+   "code": "98046.0.0",
+   "statement": "tbd",
+   "indicator": "\"\"\"1) % de mulheres rurais (maiores de 15 anos) em municípios- alvo com identificação civil válida e registo civil básico (nascimento, casamento). 2) # de mulheres rurais cujos direitos à terra e à propriedade foram formalizados (os seus nomes constam em títulos de propriedade ou registos de propriedade) através de serviços ou campanhas do Ministério da Justiça. 3) # de municípios onde o Ministério da Justiça, em conjunto com o SEI/MSSI, opera regularmente «clínicas Maubisse» móveis ou multifuncionais, combinando identidade legal, aconselhamento sobre terras/propriedades e serviços de assistência jurídica/violência baseada no género.\"",
+   "baseline": "",
+   "target": "",
+   "page": 136
+  }
+ ]
+}

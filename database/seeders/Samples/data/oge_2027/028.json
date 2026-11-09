@@ -1,0 +1,662 @@
+{
+ "year": 2027,
+ "code": "028",
+ "name": "Ministério da Defesa",
+ "abbr": "MD",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   318,
+   321
+  ]
+ },
+ "units": [
+  {
+   "code": "GMD",
+   "div": "0280101",
+   "name": "Gabinete do Ministro do Defesa",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GJ",
+   "div": "0280201",
+   "name": "Gabinete Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGRD",
+   "div": "0280601",
+   "name": "Gabinete Direção Geral de Recursos da Defesa",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0280602",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "0280603",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNA",
+   "div": "0280604",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNLIP",
+   "div": "0280605",
+   "name": "Direção Nacional de Logistica, Infraestruturas e Património",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGGED",
+   "div": "0280701",
+   "name": "Gabinete Direção Geral da Gestão Estratégica da Defesa",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNOPDM",
+   "div": "0280702",
+   "name": "Direção Nacional de Orientação Política da Defesa Militar",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNETF",
+   "div": "0280704",
+   "name": "Direção Nacional de Ensino, Treino e Formação",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDGPDN",
+   "div": "0280801",
+   "name": "Gabinete Direção Geral de Política de Defesa Nasional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNCIA",
+   "div": "0280802",
+   "name": "Direção Nacional de Cooperação Interministerial e Agências",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNREMD",
+   "div": "0280803",
+   "name": "Direção Nacional dos Recursos, Equipamentos e Materiais da Defesa",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNITC",
+   "div": "0280804",
+   "name": "Direção Nacional de Informação, Tecnologia e Comunicação",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "IGD",
+   "div": "0280901",
+   "name": "Inspeção-Geral da Defesa",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GAMNA",
+   "div": "0281101",
+   "name": "Gabinete de Autoridade Marítima Nacional–AMN",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNPDN",
+   "div": "0281201",
+   "name": "Direção Nacional de Politica da Defesa Nacional",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNEPEM",
+   "div": "0281301",
+   "name": "Direção Nacional de Estudo e Planeamento Estratégico Militar",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNSMAS",
+   "div": "0281401",
+   "name": "Direção Nacional de Saúde Militar e Asuntos Sociais",
+   "type": "National Directorate",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "388": "Defesa nacional",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "3880607",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Cooperação Defesa e Militar",
+   "div": [
+    "0280101",
+    "0280802"
+   ],
+   "indicator": "Número de acordos; Número de reuniões",
+   "baseline": "Relatorio Annual",
+   "target": "1) Nu. acordos; 2) Nu. reuniões",
+   "amounts": {
+    "20": 751701.0,
+    "10": 973605.0
+   },
+   "page": 318
+  },
+  {
+   "code": "3880608",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Desenvolver Sistema de Comando e Controle",
+   "div": [
+    "0280804"
+   ],
+   "indicator": "% Sistema de Comando e Controle desenvolvido",
+   "baseline": "O sistema de comunicação está funcionando",
+   "target": "% Estabelecer Redes de Área Local em teritorio Timor Leste",
+   "amounts": {
+    "10": 30897.0,
+    "20": 56900.0
+   },
+   "page": 318
+  },
+  {
+   "code": "3880609",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Desenvolver e Capacitar Sistema Autoridade Maritima",
+   "div": [
+    "0281101"
+   ],
+   "indicator": "1) % sistema Autoridade Maritima desenvolvido. 2) # de funcionários formados no sistema Autoridade Marítima",
+   "baseline": "100% Estabilizador funciona",
+   "target": "60 Pessoas funcionários formados no sistema Autoridade Marítima",
+   "amounts": {
+    "10": 143445.0,
+    "20": 318845.0
+   },
+   "page": 318
+  },
+  {
+   "code": "3880610",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Construção Novas infra- estruturas Defesa e Militar.",
+   "div": [
+    "0280605"
+   ],
+   "indicator": "1) % Novas infra-estruturas Defesa e Militar construídas 2) Nº de relatório de estudo viabilidade produzido; 3) % famílias indiminizadas",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "% famílias indiminizadas",
+   "amounts": {
+    "20": 350000.0,
+    "50": 127899.0
+   },
+   "page": 318
+  },
+  {
+   "code": "3880611",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Aquisição de Equipamentos e Materiais para os Militares",
+   "div": [
+    "0280803"
+   ],
+   "indicator": "1) % Equipamentos e materiais para os militares são comprados",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "% Equipamentos e materiais comprados",
+   "amounts": {
+    "10": 19381.0,
+    "20": 1276000.0
+   },
+   "page": 318
+  },
+  {
+   "code": "3880612",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Reparação e Manutenção de infraestruturas, equipamentos e Armamentos militares",
+   "div": [
+    "0280605"
+   ],
+   "indicator": "1) # de infraestruturas são reabilitadas 2) % of de equipamentos e Armamentos militares são reabilitadas.",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "1 edificio MD e F-FDTL, 1 Residensia Ministru",
+   "amounts": {
+    "20": 608700.0
+   },
+   "page": 318
+  },
+  {
+   "code": "3880614",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Assistência Saúde Militares",
+   "div": [
+    "0281401"
+   ],
+   "indicator": "1) # militares das F-FDTL tem benefício Assistência Saúde",
+   "baseline": "base dados ministério",
+   "target": "Numeru militár sira hetan benefísiu husi Estudos Hospital Militar",
+   "amounts": {
+    "10": 349054.0,
+    "20": 100000.0
+   },
+   "page": 319
+  },
+  {
+   "code": "3880615",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Cooperação Civil-Militar na área da assistência humanitária e de apoio à população",
+   "div": [
+    "0280701",
+    "0280801",
+    "0281401"
+   ],
+   "indicator": "Cooperação Civil-Militar reforçada",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "Nu. População hetan benefisiu husi Assistencia humanitaria.",
+   "amounts": {
+    "10": 41749.0,
+    "20": 332201.0
+   },
+   "page": 319
+  },
+  {
+   "code": "3880616",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Elaborar projeto das Jornadas da Juventude no âmbito de segurança e desenvolvimento nacional",
+   "div": [
+    "0280701",
+    "0280702"
+   ],
+   "indicator": "Reforça segurança e desenvolvimento nacional",
+   "baseline": "Plano Annual",
+   "target": "Nu. dezemvolve Joventude husi aktividades kultural, desporto",
+   "amounts": {
+    "10": 19381.0
+   },
+   "page": 319
+  },
+  {
+   "code": "3880617",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Desenvolver Character Cidadania e Cívica",
+   "div": [
+    "0281201"
+   ],
+   "indicator": "# de cooperação militar com a sociedade civil",
+   "baseline": "Plano Annual",
+   "target": "Número de sociedade civil",
+   "amounts": {
+    "10": 32796.0,
+    "20": 40000.0
+   },
+   "page": 319
+  },
+  {
+   "code": "38806X1",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Fuel for naval vessels",
+   "div": [
+    "0281101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 319
+  },
+  {
+   "code": "38806X2",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Land compensation at Hera Naval Base and the Military Hospital",
+   "div": [
+    "0280605"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 588141.0
+   },
+   "page": 319
+  },
+  {
+   "code": "38806X3",
+   "programme": "388",
+   "subprogramme": "38806",
+   "subprogramme_name": "Defesa Militar",
+   "name": "Modernisation of equipment and operational mobility including search and rescue",
+   "div": [
+    "0280803"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 1500000.0
+   },
+   "page": 319
+  },
+  {
+   "code": "3880701",
+   "programme": "388",
+   "subprogramme": "38807",
+   "subprogramme_name": "Formação e desenvolvimento de recursos humanos na área de defesa e segurança",
+   "name": "Formação e capacitação recursos humanos MD e F-FDTL",
+   "div": [
+    "0280704"
+   ],
+   "indicator": "Número de funcionários que recebem treinamento; % de pessoal qualificado",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "Nu. funcionários e forca Armada que recebem treinamento;",
+   "amounts": {
+    "10": 19381.0,
+    "20": 255509.0
+   },
+   "page": 319
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0280101"
+   ],
+   "indicator": "1)% Plano estratégico / médio prazo implementado;",
+   "baseline": "Plano estratégico / médio prazo aprovado 2023-2028",
+   "target": "1)50% Plano estratégico / médio prazo implementado; 2) 0",
+   "amounts": {
+    "10": 750739.0,
+    "20": 85000.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0280901"
+   ],
+   "indicator": "% de recomendações de auditoria sendo implementadas",
+   "baseline": "Plano de Auditoria Interna parcialmente implementado em 100%",
+   "target": "100%",
+   "amounts": {
+    "10": 36804.0,
+    "20": 71200.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0280201"
+   ],
+   "indicator": "Número de documentos regulatórios produzidos",
+   "baseline": "60% Todas as opiniões legais, resultados legislativos e relatórios produzidos são entregues dentro dos prazos exigidos",
+   "target": "5 Leis e 50 Parecer Jurídico",
+   "amounts": {
+    "10": 293722.0,
+    "20": 10000.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0280602"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "Plano Annual e base dados ministério",
+   "target": "100%",
+   "amounts": {
+    "10": 70493.0,
+    "20": 115600.0,
+    "30": 500000.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0280605"
+   ],
+   "indicator": "% de ativos disponíveis ou funcionais",
+   "baseline": "Plano Annual e base dados DNGP",
+   "target": "100%",
+   "amounts": {
+    "10": 129673.0,
+    "20": 381800.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0281301"
+   ],
+   "indicator": "Número de relatórios trimestrais publicados no tempo; % do relatório de desempenho trimestral apresentado a tempo para a UPMA",
+   "baseline": "Relatorio orçamento executado.",
+   "target": "4 Relatório",
+   "amounts": {
+    "10": 19381.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0280603"
+   ],
+   "indicator": "% de posições não preenchidas; # de ajuste retroativo; % de funcionários com desempenho insatisfatório",
+   "baseline": "Plano Annual e base dados DNRH",
+   "target": "1) 100%, 2) 0, 3)128 pessoas",
+   "amounts": {
+    "10": 60702.0,
+    "20": 35000.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0280601"
+   ],
+   "indicator": "# eventos realizados",
+   "baseline": "2021: 2 eventos realizados",
+   "target": "2 eventos",
+   "amounts": {
+    "10": 32082.0,
+    "20": 348750.0
+   },
+   "page": 320
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0280604"
+   ],
+   "indicator": "% de compras ($) que são competitivas; % de contratos com alteração",
+   "baseline": "proposta Aquisições e plano Aprovisionamento",
+   "target": "1)100%; 2) 100%",
+   "amounts": {
+    "10": 62968.0,
+    "20": 10000.0
+   },
+   "page": 320
+  },
+  {
+   "code": "9802806",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Promove Leaderança no capaçidade Mulher no FFDTL",
+   "div": [
+    "0280101"
+   ],
+   "indicator": "1) Nú. de mulheres participaram no treinamento de habilidades de liderança e gestão. 2) Nú. de mulheres participaram nas operações de consolidação da paz e demonstrando consciência de proteção civil com perspectiva de género.",
+   "baseline": "Relatorio Annual, Base de dadus Ministeiro",
+   "target": "Nu. Pesoas capacitado",
+   "amounts": {
+    "20": 45000.0
+   },
+   "page": 321
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "388.0.0",
+   "statement": "As pessoas de Timor-Leste estão seguras e protegidas contra ameaças externas.",
+   "indicator": "Número de operações da força de defesa, incluindo operações humanitárias",
+   "baseline": "",
+   "target": "",
+   "page": 318
+  },
+  {
+   "kind": "output",
+   "code": "38806.0.0",
+   "statement": "As forças armadas de Timor-Leste realizam operações militares eficientes e eficazes no país e no estrangeiro, avançando e defendendo os interesses e objectivos de Timor-Leste.",
+   "indicator": "% de elementos de força sem fraqueza grave ou crítica contra os níveis de preparação necessários em tempo de paz.",
+   "baseline": "",
+   "target": "",
+   "page": 318
+  },
+  {
+   "kind": "output",
+   "code": "38807.0.0",
+   "statement": "Os funcionários da MD e da F-FDTL têm qualificações e competências apropriadas para proteger os interesses e civis de Timor-Leste.",
+   "indicator": "% de pessoal bem sucedido no teste de competência; % de funcionários recebendo treinamento",
+   "baseline": "",
+   "target": "",
+   "page": 319
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "0",
+   "target": "Um",
+   "page": 319
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "",
+   "target": "",
+   "page": 319
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "variância da execução orçamentária por programal",
+   "baseline": "",
+   "target": "",
+   "page": 320
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "% de participação plena e efetiva das mulheres e grupos marginalizados e oportunidades iguais de liderança em todos os",
+   "baseline": "",
+   "target": "",
+   "page": 320
+  },
+  {
+   "kind": "output",
+   "code": "98028.0.0",
+   "statement": "A participação das mulheres no processo de desenvolvimento e provisão de segurança é aumentada",
+   "indicator": "Nú. das mulheres participa no processo de desenvolvimento e provisão de Defesa que aumento sua capacidade de liderança na F- FDTL e no setor da Defesa.",
+   "baseline": "",
+   "target": "",
+   "page": 321
+  }
+ ]
+}

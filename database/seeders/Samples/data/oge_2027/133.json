@@ -1,0 +1,501 @@
+{
+ "year": 2027,
+ "code": "133",
+ "name": "Autoridade Nacional dos Minerais, I.P.",
+ "abbr": "ANM",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1255,
+   1257
+  ]
+ },
+ "units": [
+  {
+   "code": "PO",
+   "div": "1330101",
+   "name": "President Office",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SA",
+   "div": "1330102",
+   "name": "Single Auditor",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CS",
+   "div": "1330103",
+   "name": "Corporate Service",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "T",
+   "div": "1330104",
+   "name": "Technical",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "LCATA",
+   "div": "1330105",
+   "name": "Local Content and Title Administration",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "MAMRM",
+   "div": "1330106",
+   "name": "Marketing and Mineral Royalty Management",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GRAP",
+   "div": "1330107",
+   "name": "Governance Relation and promotion",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A17": "Desenvolver políticas e boas práticas na indústria para assegurar a participação máxima",
+  "A19": "Explorar, investigar e desenvolver os recursos petrolíferos, minerais e geológicos no"
+ },
+ "activities": [
+  {
+   "code": "51001A1",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Rent a building for the ANM office in Dili",
+   "div": [
+    "1330103"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 440000.0
+   },
+   "page": 1255
+  },
+  {
+   "code": "51001A2",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Information system management and technology",
+   "div": [
+    "1330103"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 229000.0,
+    "40": 134000.0
+   },
+   "page": 1255
+  },
+  {
+   "code": "51001A3",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Sound Financial Management, Administration, Procurment and Logistics",
+   "div": [
+    "1330103"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 404260.0,
+    "40": 10000.0
+   },
+   "page": 1255
+  },
+  {
+   "code": "51001A5",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "To ensure the management of human resources.",
+   "div": [
+    "1330103"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 2090538.0,
+    "20": 138845.0
+   },
+   "page": 1255
+  },
+  {
+   "code": "51002A1",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Training and development of human resources",
+   "div": [
+    "1330103"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 404000.0
+   },
+   "page": 1255
+  },
+  {
+   "code": "51002A2",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "To ensure that Internal and external audits or inspections undertaken are accurately coordinated and audits findings and recommendations are effectively monitored and followed-up",
+   "div": [
+    "1330102"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 82000.0
+   },
+   "page": 1255
+  },
+  {
+   "code": "A170105",
+   "programme": "A17",
+   "subprogramme": "A1701",
+   "subprogramme_name": "Desenvolvimento de políticas, legislação e regulamentos do setor",
+   "name": "Develop strategic plan and policy for implementing Diversification project at Mining Industry",
+   "div": [
+    "1330101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A170106",
+   "programme": "A17",
+   "subprogramme": "A1701",
+   "subprogramme_name": "Desenvolvimento de políticas, legislação e regulamentos do setor",
+   "name": "Engage with relevant entities to acquire technical, commercial and legal advices with respect to the mining activities",
+   "div": [
+    "1330101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A190901",
+   "programme": "A19",
+   "subprogramme": "A1909",
+   "subprogramme_name": "Socialization and Engagement with Stakeholders and Mineral Rights Holders",
+   "name": "Local Engagement for Mineral Sector Development",
+   "div": [
+    "1330101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191101",
+   "programme": "A19",
+   "subprogramme": "A1911",
+   "subprogramme_name": "International Mining Engagement for Strategic Investment",
+   "name": "International Mining Conference, events and ASEAN activities",
+   "div": [
+    "1330101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 93000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191201",
+   "programme": "A19",
+   "subprogramme": "A1912",
+   "subprogramme_name": "Promotion and relationshiip",
+   "name": "Enhance global awareness of Timor-Leste’s mineral potential and attract high-quality investment into the mining sector through strategic international promotion",
+   "div": [
+    "1330107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 125000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191202",
+   "programme": "A19",
+   "subprogramme": "A1912",
+   "subprogramme_name": "Promotion and relationshiip",
+   "name": "Strengthen Timor- Leste&#039;s Participation in ASEAN Minerals Cooperation Frameworks",
+   "div": [
+    "1330107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 45000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191203",
+   "programme": "A19",
+   "subprogramme": "A1912",
+   "subprogramme_name": "Promotion and relationshiip",
+   "name": "Strengthen Timor-Leste’s engagement and effective participation in CCOP programs for mineral sector development.",
+   "div": [
+    "1330107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 62000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191204",
+   "programme": "A19",
+   "subprogramme": "A1912",
+   "subprogramme_name": "Promotion and relationshiip",
+   "name": "Strengthen Strategic Partnerships with China, Consolidate Ongoing Cooperation with Australia, and explore cooperation opportunities with other region.",
+   "div": [
+    "1330107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 23000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191205",
+   "programme": "A19",
+   "subprogramme": "A1912",
+   "subprogramme_name": "Promotion and relationshiip",
+   "name": "Enhance collaboration and foster strong, sustainable relationships with relevant government entities, line ministries, institutional stakeholders, and civil society members to support effective governance and development in the mineral sector",
+   "div": [
+    "1330107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 35000.0
+   },
+   "page": 1256
+  },
+  {
+   "code": "A191206",
+   "programme": "A19",
+   "subprogramme": "A1912",
+   "subprogramme_name": "Promotion and relationshiip",
+   "name": "Organize and Conduct Regular Consultattion Meeting With mining industry stakeholder",
+   "div": [
+    "1330107"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50157.0
+   },
+   "page": 1257
+  },
+  {
+   "code": "A191301",
+   "programme": "A19",
+   "subprogramme": "A1913",
+   "subprogramme_name": "Compliance and technical inspection",
+   "name": "Perform the inspection and audit activities",
+   "div": [
+    "1330106"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 26000.0
+   },
+   "page": 1257
+  },
+  {
+   "code": "A191302",
+   "programme": "A19",
+   "subprogramme": "A1913",
+   "subprogramme_name": "Compliance and technical inspection",
+   "name": "Implement proactive and reactive monitoring and supervision of mining activities",
+   "div": [
+    "1330104"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 180000.0
+   },
+   "page": 1257
+  },
+  {
+   "code": "A191401",
+   "programme": "A19",
+   "subprogramme": "A1914",
+   "subprogramme_name": "Promate Local Content",
+   "name": "Promote Local content in Mineral Sector",
+   "div": [
+    "1330105"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 128200.0
+   },
+   "page": 1257
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1255
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1255
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1255
+  },
+  {
+   "kind": "outcome",
+   "code": "A17.0.0",
+   "statement": "Timor-Leste tem um forte setor mineral e petrolífero, com a forte participação dos Timorenses a nível de empregos, participação do setor privado e as populações locais a serem beneficiadas com o desenvolvimento deste setor",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1255
+  },
+  {
+   "kind": "output",
+   "code": "A1701.0.0",
+   "statement": "Leis e Legislação desenvolvidas, disseminadas e implementadas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1255
+  },
+  {
+   "kind": "outcome",
+   "code": "A19.0.0",
+   "statement": "Timor-Leste detém um forte setor mineral e petrolífero, impulsionando um forte crescimento económico e contribuindo para o aumento de postos de trabalho e fontes de rendimento do Estado",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1256
+  },
+  {
+   "kind": "output",
+   "code": "A1909.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1256
+  },
+  {
+   "kind": "output",
+   "code": "A1911.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1256
+  },
+  {
+   "kind": "output",
+   "code": "A1912.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1256
+  },
+  {
+   "kind": "output",
+   "code": "A1913.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1257
+  },
+  {
+   "kind": "output",
+   "code": "A1914.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1257
+  }
+ ]
+}

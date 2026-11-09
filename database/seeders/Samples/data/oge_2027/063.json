@@ -1,0 +1,267 @@
+{
+ "year": 2027,
+ "code": "063",
+ "name": "Autoridade Aviação Civil de Timor-Leste",
+ "abbr": "AACTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   721,
+   723
+  ]
+ },
+ "units": [
+  {
+   "code": "GACA",
+   "div": "0630101",
+   "name": "Gabinete Apoio ao Conselho da Administração",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNA",
+   "div": "0630102",
+   "name": "Direção Navegação Aerea",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DIA",
+   "div": "0630103",
+   "name": "Direção Infraestrutura Aeroportuaria",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DSO",
+   "div": "0630104",
+   "name": "Direção de Seguranca Operacional",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DFS",
+   "div": "0630105",
+   "name": "Direção de Fasilitação e Segurança",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DLAM",
+   "div": "0630106",
+   "name": "Direção de Licenciamento e Acesso ao Mercado",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DAF",
+   "div": "0630107",
+   "name": "Direção de Administração Finanças",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SA",
+   "div": "0630108",
+   "name": "Serviços de Aprovisionamento",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "502": "Transportes",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5020101",
+   "programme": "502",
+   "subprogramme": "50201",
+   "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+   "name": "Certificar os Aeroportos, Vigiar, Auditar, Fiscalizar e aprovar as Infraestruturas Aeroportuariar no teritorio de Timor-Leste",
+   "div": [
+    "0630103"
+   ],
+   "indicator": "1) Numero Certificação, 2). % vizilancia e inspecção, 3) Numero de auditoria aeroporto, 4) Numero fiscaliza e aprova as infraestrutura aeroportuaria 5) Numeru de Regulamentos. 6) Socialização Instrumento de Serviço as infraestrutura aeroportuaria 7) % participação e proativo em conferência e encontro Assembleia Geral - ICAO",
+   "baseline": "1). 0; 2). 35% vizilancia ao aeroporto Baucau e Dili; 3).1 inicial auditoria ao PNLIA; 4).2 aprovações sinais aeroportuaria e Bombeiros categoria VI PNLIA; 5) 0; 6) 0; 7) 100% Virtual Online",
+   "target": "1).3 Certificação do aeroporto; 2). 100% vizilancia; 3). auditoria para aeroportuaria; 4).3 aprovacao ao infraestruturas aeroportuaria; 5). 1 Regulamentos para infraestruturas aeroportuaria; 6) Socialização Direita; 7) 100%",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 721
+  },
+  {
+   "code": "5020102",
+   "programme": "502",
+   "subprogramme": "50201",
+   "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+   "name": "Certificar, Auditar, Vigiar e Fiscalizar os Serviços de Trafego Aéreo, Navegação e Sistema e Facilidade de Navegação no Teritorio Timor-leste",
+   "div": [
+    "0630102"
+   ],
+   "indicator": "1). Numero de aprovação Sistema Naveagação; 2) Numero de Emição e Validação Licença do Contoloador Trafego Aereo; 3. % Visilancia ao 3 Aeroportos (Dili, Oecusse e Suai); 4. Numero de Regulamentos, 5) % participação e proativo em conferência e encontro Assembleia Geral -ICAO",
+   "baseline": "1. Uma (1) Aprovação Sistema de Navegação PBN (Performance Based Navigation) 2).Certifica e Valida Licencas do Contoloador Trafego Aero 3). Visilancia Regular aos 3 aeroportos (Dili, Oecusse e Suai); 4) ….. 5) 100%",
+   "target": "1. Uma (1) Aprovação Sistema de Navegação PBN (Performance Based Navigation) 2).Certifica e Valida Licencas do Contoloador Trafego Aero 3). Visilancia Regular aos 3 aeroportos (Dili, Oecusse e Suai); 4) ….. 5) 100%",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 721
+  },
+  {
+   "code": "5020103",
+   "programme": "502",
+   "subprogramme": "50201",
+   "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+   "name": "Operacionalizar a segurança de Opreçoens de Voo, Pessoal de Auranâutica e Aeronavegabilidade, e Assistência em Escala",
+   "div": [
+    "0630104"
+   ],
+   "indicator": "1) % aprovação de voo e Aeronave Piloto; 2) Numero Validacao Lisenca Pessoal Aeroneutica, 3) Emite Sertificado Aeronavegabilidade, 4) Emite Numero Certificado assistencia em Escala, 5)",
+   "baseline": "1). 100%, 2.) 25 Validação Lisenca Pessoal Aeroneutica, 1 Sertificado Aeronavegabilidade (Aero Dili), 2 Sertificado assistencia em eskala (Bollore, STAT), 6) 100%",
+   "target": "1). 100%, 2.) 25 Validação Lisenca Pessoal Aeroneutica, 1 Sertificado Aeronavegabilidade (Aero Dili), 2 Sertificado assistencia em eskala (Bollore, STAT), 6) 100%",
+   "amounts": {
+    "20": 4000.0,
+    "30": 25000.0
+   },
+   "page": 721
+  },
+  {
+   "code": "5020104",
+   "programme": "502",
+   "subprogramme": "50201",
+   "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+   "name": "Implementar, Aprovacao, Vigilância e Dezenvolvimento de Facilitação e Seguranca de Transportes Aéros",
+   "div": [
+    "0630105"
+   ],
+   "indicator": "1. Numero de aprovação Programa Segurança Operadores Aviação, 2. Numero de Visilancia Operadores Aviacao, 3. Implementacao Facilitacao e Segurança; Numero de Aprovação dos Regulamentos Operacionais. 4) % participação e proativo em conferência e encontro Assembleia Geral - ICAO",
+   "baseline": "1. Aprovação parcial Programa Seguranca Aeroportu PNLIA; 2. 25% visilancia no Aeroporto Dili e Baucau; 3. Mantida Socialização Implementação Facilitação e Segurança; 4) 100% Virtual Online",
+   "target": "3 Aprovação do Programa Segurança Operadores de Aviacao; 100% visilancia Operadores de Aviacao; Uma (1) Implementação de Facilitacao e Segurança; Duas(2) aprovacoes dos Regulamentos Operacionais, 4). 100%",
+   "amounts": {
+    "20": 4000.0,
+    "30": 20000.0
+   },
+   "page": 722
+  },
+  {
+   "code": "5020105",
+   "programme": "502",
+   "subprogramme": "50201",
+   "subprogramme_name": "Regulamentação e Gestão de Forma Eficaz e Eficiente da Aviação Civil",
+   "name": "Recolha Receitas e Verifica os requisitos Operadores, Supervisionado de Empresas Licenciadas de Transporte Aero",
+   "div": [
+    "0630106"
+   ],
+   "indicator": "1). % de Receitas, 2). Avaliar e dar recomendações para empresas registada em SERVE, 3). Numeru regulamento Taxas/Receitas 4)% participação e proativo em conferência e encontro Assembleia Geral -ICAO",
+   "baseline": "1). 100% Receitas; 2). Registrado na Sistema SERVE; 3) 2 regulamentos administrativos de receitas e Multa (Penalty) 4) 100%",
+   "target": "1). 100% Receitas; 2). Registrado na Sistema SERVE; 3) 2 regulamentos administrativos de receitas e Multa (Penalty) 4) 100%",
+   "amounts": {
+    "20": 2831.0
+   },
+   "page": 722
+  },
+  {
+   "code": "5100165",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação das actividades juridicao AACTL",
+   "div": [
+    "0630101"
+   ],
+   "indicator": "% de orientação da política.",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 45870.0
+   },
+   "page": 722
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0630107"
+   ],
+   "indicator": "% Melhoramento de condições e Prestação de Serviços",
+   "baseline": "0% em condições de prestação de serviços;",
+   "target": "100%",
+   "amounts": {
+    "10": 645658.0,
+    "20": 131744.0,
+    "50": 7950.0
+   },
+   "page": 723
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0630108"
+   ],
+   "indicator": "% de plano aprovisionamento e contratos concluídos",
+   "baseline": "100%",
+   "target": "90% em contratos concluídos.",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 723
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "502.0.2",
+   "statement": "Uma rede de aeroportos distritais plenamente operacionais e aeroportos internacionais de padrões modernos",
+   "indicator": "1.% de aeroportos que cumprem as normas internacionais. 2.% de aumento em passageiros aéreo",
+   "baseline": "100%",
+   "target": "90%",
+   "page": 721
+  },
+  {
+   "kind": "output",
+   "code": "50201.0.0",
+   "statement": "Aviação civil bem regulamentada em níveis de padrão internacionais",
+   "indicator": "% da inspeção será aumentada",
+   "baseline": "100%",
+   "target": "90%",
+   "page": 721
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Melhoramento a transparência e responsabilidade da administração pública",
+   "baseline": "% Qualidade Implementação de Recurso Humanos , % Qualidade de Execução as Normas",
+   "target": "100%",
+   "page": 722
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.1",
+   "statement": "Melhoramento a transparência e responsabilidade da administração pública",
+   "indicator": "% Qualidade Implementação de Recurso Humanos , % Qualidade de Execução as Normas",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 722
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% da Implementação do Plano Annual",
+   "baseline": "25%",
+   "target": "90%",
+   "page": 723
+  }
+ ]
+}

@@ -1,0 +1,403 @@
+{
+ "year": 2027,
+ "code": "009",
+ "name": "Secretaria de Estado de Cooperativas",
+ "abbr": "SEC",
+ "kind": "secretariat",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   70,
+   72
+  ]
+ },
+ "units": [
+  {
+   "code": "GSEC",
+   "div": "0090101",
+   "name": "Gabinete do Secretário de Estado de Cooperativas",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0090201",
+   "name": "Gabinete de Inspeção e de Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0090501",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAL",
+   "div": "0090502",
+   "name": "Direção Nacional de Aprovisionamento e Logística",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGRH",
+   "div": "0090503",
+   "name": "Direção Nacional de Gestão dos Recursos Humanos",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPP",
+   "div": "0090504",
+   "name": "Direção Nacional de Plano e Programa",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPIPGC",
+   "div": "0090505",
+   "name": "Direção Nacional de Planeamento Integrados de Produção e de Gestão de Cooperativas",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDC",
+   "div": "0090506",
+   "name": "Direção Nacional de Desenvolvimento de Cooperativas",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPPC",
+   "div": "0090507",
+   "name": "Direção Nacional de Promoção dos Produtos de Cooperativas",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPRCGC",
+   "div": "0090508",
+   "name": "Direção Nacional de Política de Reforma e Capacitação em Gestão de Cooperativas",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "GDG",
+   "div": "0090509",
+   "name": "Gabinete Direção-Geral",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DM",
+   "div": "0090510",
+   "name": "Delegações Municipais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "0090601",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "028": "Desenvolvimento rural e urbano",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "0281201",
+   "programme": "028",
+   "subprogramme": "02812",
+   "subprogramme_name": "Promover e desenvolvimento produtos Cooperativas",
+   "name": "Gestao das atividades cooperativas territoriais",
+   "div": [
+    "0090510"
+   ],
+   "indicator": "\"# Melhoramento do funcionamento das atividades cooperativas",
+   "baseline": "\"Novo \"",
+   "target": "\"12 Municipios + RAEOA \"",
+   "amounts": {
+    "20": 63400.0
+   },
+   "page": 70
+  },
+  {
+   "code": "0281202",
+   "programme": "028",
+   "subprogramme": "02812",
+   "subprogramme_name": "Promover e desenvolvimento produtos Cooperativas",
+   "name": "Promover e desenvolver Produtos cooperativas",
+   "div": [
+    "0090507"
+   ],
+   "indicator": "\"# produtos / commodities dos membros cooperativas promovidos \"",
+   "baseline": "\"2 tipos de produtos cooperativas promovidos",
+   "target": "\"Todos os tipos de produtos das cooperativas a serem promovidos",
+   "amounts": {
+    "20": 45040.0
+   },
+   "page": 70
+  },
+  {
+   "code": "0280106",
+   "programme": "028",
+   "subprogramme": "02801",
+   "subprogramme_name": "Promover e estabelecer cooperativas",
+   "name": "Desenvolver a capacidade dos recursos humanos das cooperativas",
+   "div": [
+    "0090508"
+   ],
+   "indicator": "\"#números dirigentes cooperativas tendo conhecimento sobre cooperativas.",
+   "baseline": "4.085 dirigentes das cooperativas formados e treinados",
+   "target": "457 dirigentes das cooperativas serão formados e treinados",
+   "amounts": {
+    "20": 58611.0
+   },
+   "page": 70
+  },
+  {
+   "code": "0280107",
+   "programme": "028",
+   "subprogramme": "02801",
+   "subprogramme_name": "Promover e estabelecer cooperativas",
+   "name": "Consolidação e estalecimento cooperativas",
+   "div": [
+    "0090506"
+   ],
+   "indicator": "Aumento # membros das cooperativas",
+   "baseline": "41.000 Membros Cooperativas",
+   "target": "14.500 Membros Cooperativa",
+   "amounts": {
+    "20": 52256.0
+   },
+   "page": 70
+  },
+  {
+   "code": "0280110",
+   "programme": "028",
+   "subprogramme": "02801",
+   "subprogramme_name": "Promover e estabelecer cooperativas",
+   "name": "Desenhar,construir e supervisão para construção e instalações de centro corperativos comunal",
+   "div": [
+    "0090505"
+   ],
+   "indicator": "Plano de construção de edifícios de Centros de Processamento e Distribuição implementados",
+   "baseline": "2 Centros",
+   "target": "5 Centros",
+   "amounts": {
+    "20": 144855.0
+   },
+   "page": 70
+  },
+  {
+   "code": "0280112",
+   "programme": "028",
+   "subprogramme": "02801",
+   "subprogramme_name": "Promover e estabelecer cooperativas",
+   "name": "Promover e desenvolvimento estratégico Cooperativas",
+   "div": [
+    "0090509"
+   ],
+   "indicator": "% de orientações, politicas cooperativas estabelecidas",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 102642.0
+   },
+   "page": 70
+  },
+  {
+   "code": "5100106",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Pesquisa, Planeamento e desenvolvimento",
+   "div": [
+    "0090504"
+   ],
+   "indicator": "\"1) # de estudos realizados e publicados 2) Plano de Acção Anual, Plano de Aprovisionamento e Plano de Recursos finalizados\"",
+   "baseline": "1). 274 cooperative data updated. 2). %",
+   "target": "80%",
+   "amounts": {
+    "20": 54000.0
+   },
+   "page": 71
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0090101"
+   ],
+   "indicator": "% de Plano de Acção Anual, Plano de Aprovisionamento e Plano de Recursos finalizados",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 99095.0,
+    "20": 145955.0
+   },
+   "page": 71
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0090201"
+   ],
+   "indicator": "% de auditorias internas efetuadas",
+   "baseline": "100%",
+   "target": "70%",
+   "amounts": {
+    "20": 52560.0
+   },
+   "page": 71
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0090601"
+   ],
+   "indicator": "1).Elaboração da Lei Orgânica; 2) Nr. de regulamentos, leis, regimes criados e adotados;",
+   "baseline": "Relatório anual 2018",
+   "target": "100",
+   "amounts": {
+    "20": 17000.0
+   },
+   "page": 71
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0090501"
+   ],
+   "indicator": "% do orçamento executado (Obrigações+Real)",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 188650.0
+   },
+   "page": 72
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0090503"
+   ],
+   "indicator": "% de plano de gestão de recursos humanos para funcionários alcançado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 1456662.0,
+    "20": 22800.0
+   },
+   "page": 72
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0090502"
+   ],
+   "indicator": "% progresso da execução do plano de aprovisionamento",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 496571.0
+   },
+   "page": 72
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "028.0.0",
+   "statement": "Desenvolver e promover o funcionamento da Organização Urbana, Higiene, atribuição de nomes de lugares e Ordem Pública para melhorar as condições urbanas em todo o território de Timor-Leste.",
+   "indicator": "\"% de rendas das familias membros cooperativas foram aumentado e aumentado padroes de vida. \"",
+   "baseline": "2,97% do total populacao",
+   "target": "1% do total populacao",
+   "page": 70
+  },
+  {
+   "kind": "output",
+   "code": "02812.0.0",
+   "statement": "Casas acessíveis construídas em centros urbanos de acordo com bons padrões de construção e os projetos padrão regionais",
+   "indicator": "\"# de rendas das familias membros cooperativas foram aumentado e aumentado padroes de vida. \"",
+   "baseline": "\"Novo \"",
+   "target": "\"2% por Ano \"",
+   "page": 70
+  },
+  {
+   "kind": "outcome",
+   "code": "028.0.2",
+   "statement": "Aumento número dos empregos através estabelecimento cooperativas",
+   "indicator": "% de redução no nível de desemprego",
+   "baseline": "18%",
+   "target": "17%",
+   "page": 70
+  },
+  {
+   "kind": "output",
+   "code": "02801.0.0",
+   "statement": "Recursos humanos de cooperativas nas áreas de especialização desenvolvidos",
+   "indicator": "# de cooperativas que foram treinadas pela SECOOP",
+   "baseline": "54%",
+   "target": "75%",
+   "page": 70
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) # e % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) # de Resultados de desempenho publicados no website do Governo 3) Relatório anual da entidade publicado",
+   "baseline": "Plano Estratégico aprovado",
+   "target": "100%",
+   "page": 71
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "\"1) % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo 2) % do Plano Anual implementado 3) Plano Estratégico/Médio Prazo Aprovado 4) % do pessoal consciente e envolvido no desenvolvimento do plano estratégico/médio prazo \"",
+   "baseline": "\"1).100%. 2).100%. 3).100%. 4).100%.\"",
+   "target": "\"1).100%. 2).100%. 3).100%. 4).100%.\"",
+   "page": 71
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"1) % Execução do orçamento 2) Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) Criação de um sistema de arquivo electrónico\"",
+   "baseline": "\"1).100%. 2).100%. 3).100%\"",
+   "target": "\"1).100%. 2).100%. 3).100%\"",
+   "page": 71
+  }
+ ]
+}

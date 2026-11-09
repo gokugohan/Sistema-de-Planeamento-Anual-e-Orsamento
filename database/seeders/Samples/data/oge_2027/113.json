@@ -1,0 +1,973 @@
+{
+ "year": 2027,
+ "code": "113",
+ "name": "Ministério do Comércio e Indústria",
+ "abbr": "MCI",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1101,
+   1106
+  ]
+ },
+ "units": [
+  {
+   "code": "GMCI",
+   "div": "1130101",
+   "name": "Gabinete do Ministro do Comércio e Indústria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GVMCI",
+   "div": "1130201",
+   "name": "Gabinete do Vice-Ministro do Comércio e Indústria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIAI",
+   "div": "1130202",
+   "name": "Gabinete de Inspeção e Auditoria Interna",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DGI",
+   "div": "1130301",
+   "name": "Direção Geral da Industria",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNADMPME",
+   "div": "1130302",
+   "name": "Direção Nacional de Apoio e Desenvolvimento das Micro, Pequenas e Médias Empregas",
+   "type": "National Directorate",
+   "parent": "DGI"
+  },
+  {
+   "code": "DNIM",
+   "div": "1130303",
+   "name": "Direção Nacional da Industria Manufatureira",
+   "type": "National Directorate",
+   "parent": "DGI"
+  },
+  {
+   "code": "DNDI",
+   "div": "1130304",
+   "name": "Direção Nacional de Desenvolvimento Industrial",
+   "type": "National Directorate",
+   "parent": "DGI"
+  },
+  {
+   "code": "DGCAFP",
+   "div": "1130401",
+   "name": "Direção Geral de Coordenação, Administração, Finanças e Planeamento",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNCSP",
+   "div": "1130403",
+   "name": "Direção Nacional de Coordenação de Serviços e Planeamento",
+   "type": "National Directorate",
+   "parent": "DGCAFP"
+  },
+  {
+   "code": "DNRH",
+   "div": "1130404",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "DGCAFP"
+  },
+  {
+   "code": "DNF",
+   "div": "1130405",
+   "name": "Direção Nacional de Finanças",
+   "type": "National Directorate",
+   "parent": "DGCAFP"
+  },
+  {
+   "code": "DNA",
+   "div": "1130406",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "DGCAFP"
+  },
+  {
+   "code": "DNPE",
+   "div": "1130407",
+   "name": "Direção Nacional de Pesquisa e Estatística",
+   "type": "National Directorate",
+   "parent": "DGCAFP"
+  },
+  {
+   "code": "DNLP",
+   "div": "1130408",
+   "name": "Direção Nacional de Logística e Patrimonial",
+   "type": "National Directorate",
+   "parent": "DGCAFP"
+  },
+  {
+   "code": "DGC",
+   "div": "1130501",
+   "name": "Direção Geral do Comércio",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNCE",
+   "div": "1130502",
+   "name": "Direção Nacional do Comércio Externo",
+   "type": "National Directorate",
+   "parent": "DGC"
+  },
+  {
+   "code": "DNCI",
+   "div": "1130503",
+   "name": "Direção Nacional do Comércio Interno",
+   "type": "National Directorate",
+   "parent": "DGC"
+  },
+  {
+   "code": "DNM",
+   "div": "1130504",
+   "name": "Direção Nacional de Marketing",
+   "type": "National Directorate",
+   "parent": "DGC"
+  },
+  {
+   "code": "DNRCPC",
+   "div": "1130505",
+   "name": "Direção Nacional de Regulação Comercial e Proteção dos Consumedores",
+   "type": "National Directorate",
+   "parent": "DGC"
+  },
+  {
+   "code": "GCPR",
+   "div": "1130601",
+   "name": "Gabinete de Cooperação, Parceira e Reformas",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "1130701",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100106",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Pesquisa, Planeamento e desenvolvimento",
+   "div": [
+    "1130407"
+   ],
+   "indicator": "\"1).Número de estudos efectuados; 2).Número livros resultado pesquisa prozudos.\"",
+   "baseline": "2 estudos e 1 livros",
+   "target": "\"1). 1 estudo. 2). 1 livro\"",
+   "amounts": {
+    "10": 71311.0,
+    "20": 56335.0
+   },
+   "page": 1101
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1130101",
+    "1130201"
+   ],
+   "indicator": "% da implementasaun do quadro de planeamento",
+   "baseline": "100% alcançado",
+   "target": "100% alcançado",
+   "amounts": {
+    "10": 847417.0,
+    "20": 252758.0
+   },
+   "page": 1101
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1130202"
+   ],
+   "indicator": "% do progresso de auditorias internas efetuadas",
+   "baseline": "100% alcançado",
+   "target": "100% alcançado",
+   "amounts": {
+    "10": 77861.0,
+    "20": 65000.0
+   },
+   "page": 1101
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "1130401"
+   ],
+   "indicator": "Número de encontros, Número de ações de supervisão, e manutenção edificio de serviços municipais.",
+   "baseline": "\"1). 12 encontros. 2). 4 ações de supervisão / trimestral).\"",
+   "target": "1). 6 encontros. 2). 4 ações de supervisão / trimestral), e manutenção edificio de serviços municipais.",
+   "amounts": {
+    "10": 613029.0,
+    "20": 214125.0
+   },
+   "page": 1101
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "1130701"
+   ],
+   "indicator": "% de pareceres jurídicos são entregues dentro dos prazos exigidos",
+   "baseline": "100% parecer legal/opinião legal, resultados legislativos e relatórios produzidos são entregues dentro dos prazos exigidos",
+   "target": "100% pareceres jurídicos são entregues dentro dos prazos exigidos",
+   "amounts": {
+    "10": 86635.0,
+    "20": 55000.0
+   },
+   "page": 1101
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1130405"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "98.7% execução do orçamento",
+   "target": "99% execução do orçamento",
+   "amounts": {
+    "10": 68114.0,
+    "20": 238328.0
+   },
+   "page": 1101
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1130408"
+   ],
+   "indicator": "% Registo de Património estado",
+   "baseline": "100% registado",
+   "target": "100% registado",
+   "amounts": {
+    "10": 55606.0,
+    "20": 330050.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1130403"
+   ],
+   "indicator": "1). Número do Plano de ação anual elaborado. 2). Número de monitorização e avaliação 3). Número de relatorio trimestral produzido.",
+   "baseline": "2 Planeamento e 1 relatorio annual/4 trimestral & 2 monitorização e avaliação",
+   "target": "1 Planeamento e 1 relatorio annual/4 trimestral & 2 monitorização e avaliação",
+   "amounts": {
+    "10": 64246.0,
+    "20": 67800.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1130404"
+   ],
+   "indicator": "% de funcionários recebeu avaliação de desempenho",
+   "baseline": "75% de funcionários recebeu avaliação de desempenho",
+   "target": "100% de funcionários recebeu avaliação de desempenho",
+   "amounts": {
+    "10": 54448.0,
+    "20": 209000.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1130404"
+   ],
+   "indicator": "Numero de formação e funcionários formando (50% homen & 50% mulher)",
+   "baseline": "2022: 4 formação e 125 funcionários formandos 2024: 7 formação e 174 funcionários formandos",
+   "target": "1). 1 formação. 2). 12 formando",
+   "amounts": {
+    "20": 39600.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1130406"
+   ],
+   "indicator": "% Implemenção o plano de aquisições e tenderização",
+   "baseline": "100% implementado",
+   "target": "100% implementado",
+   "amounts": {
+    "10": 62754.0,
+    "20": 139000.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "1130401"
+   ],
+   "indicator": "% estabelecemento Cooperação e parcerias",
+   "baseline": "100% estabelecido",
+   "target": "100% Cooperação e parcerias estabelecido",
+   "amounts": {
+    "20": 37347.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "9831202",
+   "programme": "983",
+   "subprogramme": "98312",
+   "subprogramme_name": "Regulamentação, Controlo, Inspeção e Monitorização das atividades económicas",
+   "name": "Certificação e licenciamento comercial",
+   "div": [
+    "1130503"
+   ],
+   "indicator": "Número de Acções vistoria das Empresas registadas (women- owened and men-owened businesses registered) em Municípios e Oecusse + Atauro.",
+   "baseline": "Vistoria 325 das empresas em 6 municipios (Covalima, Manufahi, Ainaro, Aileu, Lautem e Baucau)",
+   "target": "Acções vistoria / dados das empresas em 6 municipios, RAEOA e Atauro;",
+   "amounts": {
+    "10": 67555.0,
+    "20": 56000.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "9831203",
+   "programme": "983",
+   "subprogramme": "98312",
+   "subprogramme_name": "Regulamentação, Controlo, Inspeção e Monitorização das atividades económicas",
+   "name": "Base de dados sobre o funcionamento de mercado",
+   "div": [
+    "1130503"
+   ],
+   "indicator": "% de sistema base de dados estabelecido",
+   "baseline": "Dados / lista de mercados",
+   "target": "100% estabelecido e funcionado.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1102
+  },
+  {
+   "code": "9831204",
+   "programme": "983",
+   "subprogramme": "98312",
+   "subprogramme_name": "Regulamentação, Controlo, Inspeção e Monitorização das atividades económicas",
+   "name": "Controlo e regularização das atividades comerciais informais",
+   "div": [
+    "1130505"
+   ],
+   "indicator": "Número de acções controlo realizadas",
+   "baseline": "4 acções de controlo / trimestralmente",
+   "target": "4 acções de controlo / trimestralmente",
+   "amounts": {
+    "10": 77345.0,
+    "20": 77585.0
+   },
+   "page": 1103
+  },
+  {
+   "code": "9831205",
+   "programme": "983",
+   "subprogramme": "98312",
+   "subprogramme_name": "Regulamentação, Controlo, Inspeção e Monitorização das atividades económicas",
+   "name": "Proteção de direito dos consumidores",
+   "div": [
+    "1130505"
+   ],
+   "indicator": "1). Número de acções sensibilização realizadas. 2). Número de controlo efectuadas.",
+   "baseline": "1). 2 de acções sensibilização. 2). Controlo efectuada mensalmente (12 vezes).",
+   "target": "1). 1 de acções sensibilização. 2). Controlo efectuada mensalmente (4 vezes).",
+   "amounts": {
+    "20": 42415.0
+   },
+   "page": 1103
+  },
+  {
+   "code": "9831301",
+   "programme": "983",
+   "subprogramme": "98313",
+   "subprogramme_name": "Desenvolvimento Políticas Económicas e do Comércio",
+   "name": "Coordenar os serviços no sector comercial",
+   "div": [
+    "1130501"
+   ],
+   "indicator": "1). Número de reuniões, grau e qualidade da participação realizada . 2). Número de accões supervisão realizada",
+   "baseline": "4 reuniões / supervisão nos 11 municipios realizada",
+   "target": "2 reuniões / supervisão nos 8 municipios",
+   "amounts": {
+    "10": 159684.0,
+    "20": 20000.0
+   },
+   "page": 1103
+  },
+  {
+   "code": "9831302",
+   "programme": "983",
+   "subprogramme": "98313",
+   "subprogramme_name": "Desenvolvimento Políticas Económicas e do Comércio",
+   "name": "Elaboração Politica Nacional do Comércio",
+   "div": [
+    "1130501",
+    "1130601"
+   ],
+   "indicator": "1). Número Documento de política / plano estratégico e sensivel ao género (considera estrategias para promover a produção das micro-pequenas empresas). 2). Número de socialização / Divulgação.",
+   "baseline": "Esboço de Politica Comerciais, equipa de trabalho para a elaboração de Politica Comercial estabelecida",
+   "target": "Politica nacional comercio finalizado / 3 socializado / Divulgado.",
+   "amounts": {
+    "10": 30484.0,
+    "20": 143300.0
+   },
+   "page": 1103
+  },
+  {
+   "code": "9831303",
+   "programme": "983",
+   "subprogramme": "98313",
+   "subprogramme_name": "Desenvolvimento Políticas Económicas e do Comércio",
+   "name": "Cooperação e parceria na area comércio",
+   "div": [
+    "1130501",
+    "1130502",
+    "1130601"
+   ],
+   "indicator": "1). Número de acordo estabelecidas. 2). Número de encontro. 3). Número de Adidos de comercio e Secretario de Assunto Economico para ASEAN.",
+   "baseline": "1). 2 acordos. 2). 6 encontros. 3). 3 Adidos",
+   "target": "1). 2 acordos. 2). 20 encontros. 3). 7 Adidos",
+   "amounts": {
+    "20": 534600.0,
+    "10": 580981.0
+   },
+   "page": 1103
+  },
+  {
+   "code": "9831402",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "organizar e gerir os mercados",
+   "div": [
+    "1130503"
+   ],
+   "indicator": "Número de atividades comerciais (bazar barato)",
+   "baseline": "2 bazar barato",
+   "target": "2 bazar barato",
+   "amounts": {
+    "20": 70000.0
+   },
+   "page": 1103
+  },
+  {
+   "code": "9831403",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Construção de Facilidades Comerciais",
+   "div": [
+    "1130503"
+   ],
+   "indicator": "Número de facilidades construidos (mercados municipais) e Estudo Desenho Engenario Detalho (municipais: Aileu, Viqueque, Oecusse e Atauro)",
+   "baseline": "Desenhos e BoQ de centro comercial, mercados municipais",
+   "target": "Construção mercados municipais Ainaro, Bobonaro, Covalima e Manufahi. E realizar Estudo DED mercados municipais (Aileu, Viqueque, Oecusse e Atauro)",
+   "amounts": {
+    "10": 11324.0,
+    "20": 18000.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9831404",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Apoio técnico e formação para o setor privado na area do comércio",
+   "div": [
+    "1130503"
+   ],
+   "indicator": "Número de formando e beneficiarios (1 formação e 10 benefiarios (50% mulheres, 50% homens))",
+   "baseline": "2 training and 51 beneficiaries (78% women, 22% men)",
+   "target": "1 formação e 10 benefiarios (50% mulheres, 50% homens)",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9831406",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Facilitar atividades de exportação e importação",
+   "div": [
+    "1130502"
+   ],
+   "indicator": "1). Número de certificados licenciamento emitidas. 2). Número de seminários;",
+   "baseline": "1). 146 certificados licenciamento exim emitidas. 2). 3 seminários",
+   "target": "2 seminário nacionais; e Dados exim atualizado",
+   "amounts": {
+    "10": 106381.0,
+    "20": 41000.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9831407",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Promoção e marketing dos produtos nacionais",
+   "div": [
+    "1130504"
+   ],
+   "indicator": "Número de Eventos Promoção (expo / feiras / festival) & Numero produtos promovidos & Actualiza dados na portal comercial",
+   "baseline": "Programa continuados (expo/feiras comercial e festival produtos potenciais/feira nacionais realizada), e atualização dados na portal",
+   "target": "3 expo/feira; 1 festival; 5 produtos promovido; & actualiza dados produtos na portal comercia.",
+   "amounts": {
+    "10": 56814.0,
+    "20": 347004.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9831415",
+   "programme": "983",
+   "subprogramme": "98314",
+   "subprogramme_name": "Desenvolver e promover actividades comerciais",
+   "name": "Estabelesimentu Sentru Komersial / Estabelecimento Centro Comerciais / Commercial Center Establishment",
+   "div": [
+    "1130503"
+   ],
+   "indicator": "Numéro de realizar estudo estabelecimento centro de comercial (estudo DED)",
+   "baseline": "1 estudo Viabilidade finalizado",
+   "target": "1 estudo DED",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9833913",
+   "programme": "983",
+   "subprogramme": "98339",
+   "subprogramme_name": "Desenvolvimento Infrastruturas fisicas de Comércio",
+   "name": "Estabelecimento Armagen tranzito / integrado nas areas fronteiras terrestres",
+   "div": [
+    "1130502"
+   ],
+   "indicator": "% de armazém trânsito / integrado establecido",
+   "baseline": "1 estudo Viabilidade finalizado",
+   "target": "1 estudo DED",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9830901",
+   "programme": "983",
+   "subprogramme": "98309",
+   "subprogramme_name": "Apoio ao Desenvolvimento das industrias nacionais",
+   "name": "Apoio e Desenvolvimento das Micro, Pequenas e Medias Empresas",
+   "div": [
+    "1130302"
+   ],
+   "indicator": "Número de MPMEs beneficiadas com ações de formação, capacitação e atualização de dados.",
+   "baseline": "2 formação e 147 beneficiários",
+   "target": "2 formação e 50 beneficiários e atualização de dados MPMEs.",
+   "amounts": {
+    "10": 60480.0,
+    "20": 252743.0
+   },
+   "page": 1104
+  },
+  {
+   "code": "9830903",
+   "programme": "983",
+   "subprogramme": "98309",
+   "subprogramme_name": "Apoio ao Desenvolvimento das industrias nacionais",
+   "name": "Levantamento de dados das indústrias em Timor-Leste",
+   "div": [
+    "1130304"
+   ],
+   "indicator": "Numero empresas Industriais em territorio TL",
+   "baseline": "1326 Grupos/empresas industriais",
+   "target": "Dados groups/companies industriais",
+   "amounts": {
+    "10": 80168.0,
+    "20": 15000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9830905",
+   "programme": "983",
+   "subprogramme": "98309",
+   "subprogramme_name": "Apoio ao Desenvolvimento das industrias nacionais",
+   "name": "Promoção de produtos industriais para o mercado interno",
+   "div": [
+    "1130303"
+   ],
+   "indicator": "Número de eventos realizadas (Expo/festival)",
+   "baseline": "1 feira de promoção produtos industrial",
+   "target": "2 expo/festival",
+   "amounts": {
+    "20": 88750.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9830906",
+   "programme": "983",
+   "subprogramme": "98309",
+   "subprogramme_name": "Apoio ao Desenvolvimento das industrias nacionais",
+   "name": "Apoio técnico e formação ao sector das indústrias transformadoras",
+   "div": [
+    "1130303"
+   ],
+   "indicator": "Número de formação e beneficiários (4 grupos em 4 Municípios)",
+   "baseline": "6 formação e 150 beneficiários",
+   "target": "4 formação e 60 beneficiários (4 grupos em 4 Municípios)",
+   "amounts": {
+    "10": 89881.0,
+    "20": 162460.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9830907",
+   "programme": "983",
+   "subprogramme": "98309",
+   "subprogramme_name": "Apoio ao Desenvolvimento das industrias nacionais",
+   "name": "Apoiar desenvolvimento industrial estratégico",
+   "div": [
+    "1130304"
+   ],
+   "indicator": "1). Número de apoio de grupos indústriais sal em municipios (Contribuição para a melhoria da nutrição de crianças e adultos); 2). Establecer Uma- tais;",
+   "baseline": "2 grupos sal (Atabae, e Liquiça)",
+   "target": "1 grupo indústria sal em 1 municipio, e Uma-tais estabelecido.",
+   "amounts": {
+    "20": 14000.0,
+    "50": 70000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831001",
+   "programme": "983",
+   "subprogramme": "98310",
+   "subprogramme_name": "Criação de Centro de Desenvolvimento Industrial",
+   "name": "Estabeleçimento centros das industrias",
+   "div": [
+    "1130304"
+   ],
+   "indicator": "Numero de centros (1 centro estabelecido).",
+   "baseline": "1 centro (CIAT)",
+   "target": "1 centro industria",
+   "amounts": {
+    "20": 26000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831002",
+   "programme": "983",
+   "subprogramme": "98310",
+   "subprogramme_name": "Criação de Centro de Desenvolvimento Industrial",
+   "name": "Estabelecer Parque e Zonas industriais",
+   "div": [
+    "1130304"
+   ],
+   "indicator": "Numero de Parque / Zonas industriais",
+   "baseline": "Estudo Realizado",
+   "target": "1 Zona/Parque Industrial",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831102",
+   "programme": "983",
+   "subprogramme": "98311",
+   "subprogramme_name": "Desenvolver Política Nacional de Indústria",
+   "name": "Supervicao e coordenação do sector indústrial",
+   "div": [
+    "1130301"
+   ],
+   "indicator": "Número de Supervição dos Serviços das Industrias",
+   "baseline": "2 vezes / ano dos 13 municipios",
+   "target": "2 vezes / ano dos 13 municipios",
+   "amounts": {
+    "10": 205614.0,
+    "20": 15000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831103",
+   "programme": "983",
+   "subprogramme": "98311",
+   "subprogramme_name": "Desenvolver Política Nacional de Indústria",
+   "name": "Cooperação e parceria na area indústria",
+   "div": [
+    "1130301"
+   ],
+   "indicator": "1). Número de acordos. 2). Número de encontros.",
+   "baseline": "3 de acordos e 8 encontros",
+   "target": "1). 2 acordos. 2). 8 encontros.",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831104",
+   "programme": "983",
+   "subprogramme": "98311",
+   "subprogramme_name": "Desenvolver Política Nacional de Indústria",
+   "name": "Desenvolvimento politicas industrial",
+   "div": [
+    "1130301"
+   ],
+   "indicator": "1). Número de politicas elaborados e adotados. 2). Número de leis industriais Divulgados.",
+   "baseline": "Politica industria, legislação industria / Programa continuados",
+   "target": "1). 1 politicas produzido. 2). 2 leis divulgado.",
+   "amounts": {
+    "10": 31484.0,
+    "20": 60000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831106",
+   "programme": "983",
+   "subprogramme": "98311",
+   "subprogramme_name": "Desenvolver Política Nacional de Indústria",
+   "name": "Controlo e regularização das atividades Industrial",
+   "div": [
+    "1130304"
+   ],
+   "indicator": "1). Número de Serviços de Vistoria e monotorização para garantida a qualidade de produção industria nacionais. 2).",
+   "baseline": "2 vezes / ano dos 13 municipios",
+   "target": "2 vezes / ano dos 13 municipios e Dados industriais actualizado.",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1105
+  },
+  {
+   "code": "9831101",
+   "programme": "983",
+   "subprogramme": "98311",
+   "subprogramme_name": "Desenvolver Política Nacional de Indústria",
+   "name": "Estabelecimento Instituto para Propriedade Industrial",
+   "div": [
+    "1130301"
+   ],
+   "indicator": "% de Instituto para Propriedade Industrial establecido",
+   "baseline": "Aprovação da Lei da Propriedade Industrial e criação do Secretariado Provisório de Propriedade Intelectual (IP)",
+   "target": "Propriedade Industrial establecido",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 1106
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Numero Plano Estratégico MCI 2024-2030 Aprovado, incluindo plano de médio prazo",
+   "baseline": "1 Plano estratégico e 4 relatorios",
+   "target": "1 Plano estratégico e 4 relatorios",
+   "page": 1101
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "N.º de estudos, livros e supervisões municipais, e % de execução do planeamento, auditorias e pareceres no prazo",
+   "baseline": "Número 2 estudos/2 livros, 12 encontros, 4 ações de supervisão realizado e % planu desenvolvimento, Inspeção & auditoria, e opinião legal alcançado",
+   "target": "Número 1 estudos/1 livro, 6 encontros, 4 ações de supervisão realizado e % planeamnto, Inspeção & auditoria, e opinião legal alcançado",
+   "page": 1101
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Número e persentazen (%) Plano Anual implementado",
+   "baseline": "2 planeamento/1 relatorio annual & 2 monitorização, 7 capacitação funcionario e % registo património, gestão de contrato, e Cooperação e parcerias implementado",
+   "target": "% executado e número de plano acção annual MCI implementado",
+   "page": 1101
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "% Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "baseline": "100% estabelecido",
+   "target": "abordagem sectorial para coordenar a implementação dos Planos de Actividades estabelecido",
+   "page": 1102
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.5",
+   "statement": "Aumentar a contribuição do setor comercial para o crescimento econômico",
+   "indicator": "% aumento do PIB não petrolífero",
+   "baseline": "4% aumento do PIB não petrolífero",
+   "target": "4% aumento do PIB não petrolífero",
+   "page": 1102
+  },
+  {
+   "kind": "output",
+   "code": "98312.0.0",
+   "statement": "As atividades de negócios são bem regulamentadas, controladas e monitorizadas",
+   "indicator": "N.º de vistorias empresariais nos municípios, % da base de dados estabelecida, e N.º de ações de controlo, fiscalização e sensibilização realizadas",
+   "baseline": "100% (3 regulamentos (controlo regular)",
+   "target": "Garante 100% de base de dados funcional, vistorias em 6 municípios, RAEOA e Ataúro, 4 controlos trimestrais e ações mensais de sensibilização e fiscalização",
+   "page": 1102
+  },
+  {
+   "kind": "output",
+   "code": "98313.0.0",
+   "statement": "a regulamentação do comércio é desenvolvida e aplicada",
+   "indicator": "Executar reuniões, supervisões, políticas para MPMEs e parcerias ASEAN, medindo o desempenho através do N.º de sessões realizadas, documentos aprovados e acordos estabelecidos",
+   "baseline": "Esboço de política comercial",
+   "target": "Realizar 2 reuniões/supervisões nos 8 municípios, finalizar 1 Política Nacional do Comércio (com 3 socializações), e concretizar 2 acordos, 20 encontros e a colocação de Adidos de Comércio",
+   "page": 1103
+  },
+  {
+   "kind": "output",
+   "code": "98314.0.0",
+   "statement": "Suporte técnico e treinamento bem fornecidos",
+   "indicator": "Número de empresas recebem suporte técnico e treinamentos",
+   "baseline": "Desenhos e BoQ de centro comercial, mercados municipais e armazen tranzito",
+   "target": "Concluir a construção de 4 mercados e 5 estudos DED; executar 2 bazares baratos, 3 feiras, 1 festival e promover 5 produtos no portal; capacitar 10 beneficiários (50% F/M); e realizar 2 seminários nacionais com atualização dos dados EXIM",
+   "page": 1103
+  },
+  {
+   "kind": "output",
+   "code": "98339.0.0",
+   "statement": "As atividades de negócios são facilitando e organizado",
+   "indicator": "Numéro de Infraestruturas fisicas de comércio estabelecido",
+   "baseline": "Estudo Viabilidade finalizado",
+   "target": "Estudo DED realizado",
+   "page": 1104
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.7",
+   "statement": "Melhorar o controle das importações e aumentar a produção local",
+   "indicator": "% de redução na importação de alimentos",
+   "baseline": "Redução de 2% na importação de alimentos",
+   "target": "Redução de 2% na importação de alimentos",
+   "page": 1104
+  },
+  {
+   "kind": "output",
+   "code": "98309.0.0",
+   "statement": "Recursos humanos para a indústria de manufatura bem apoiados",
+   "indicator": "N.º de MPMEs no empresas industriais, N.º de expos/festivais, N.º de formações (4 grupos/4 municípios), apoio ba grupos do sal no estabelecimento da Uma-Tais",
+   "baseline": "1 feira / 10 produtos & 8 formação e 297 beneficiarios",
+   "target": "Executar 6 formações para 110 beneficiários em total, atualizar dados de MPMEs e empresas industriais, realizar 2 expos/festivais, apoiar 1 grupo de sal em 1 município e estabelecer a Uma-Tais",
+   "page": 1104
+  },
+  {
+   "kind": "output",
+   "code": "98310.0.0",
+   "statement": "Centros industriais estabelecidos e funcionados",
+   "indicator": "Número de centro industrial estabelecido",
+   "baseline": "1 centro e Estudo Realizado",
+   "target": "1 Centro Incubadora da Indústria",
+   "page": 1105
+  },
+  {
+   "kind": "output",
+   "code": "98311.0.0",
+   "statement": "1) Políticas de desenvolvimento industrial e regulamentação elaborada 2. Estabelecimento de cooperação industrial",
+   "indicator": "N.º de supervisões industriais, N.º de acordos e encontros, N.º de políticas/leis divulgadas, e N.º de vistorias de qualidade com autorizações industriais registadas",
+   "baseline": "Política industrial",
+   "target": "Executar supervisão e vistoria 2 vezes/ano nos 13 municípios, celebrar 2 acordos, realizar 8 encontros, produzir 1 política, divulgar 2 leis e manter os dados industriais atualizados",
+   "page": 1105
+  },
+  {
+   "kind": "output",
+   "code": "98311.0.1",
+   "statement": "Orienta implementasaun politika industrial &amp; regulariza atividades industriais",
+   "indicator": "Nível (%) de consolidação e entrada em funcionamento do Instituto para a Propriedade Industrial",
+   "baseline": "Lei de propriedade industrial",
+   "target": "Alcançar 100% do estabelecimento formal e funcionamento do Instituto para a Propriedade Industrial.",
+   "page": 1106
+  }
+ ]
+}

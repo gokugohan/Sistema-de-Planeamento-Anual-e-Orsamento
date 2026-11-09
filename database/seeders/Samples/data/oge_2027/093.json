@@ -1,0 +1,220 @@
+{
+ "year": 2027,
+ "code": "093",
+ "name": "Instituto Nacional de Combate ao HIV-SIDA, I.P.",
+ "abbr": "INCHS",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   938,
+   939
+  ]
+ },
+ "units": [
+  {
+   "code": "UASG",
+   "div": "0930101",
+   "name": "Unidade de Administração e Serviços Gerais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPCM",
+   "div": "0930102",
+   "name": "Unidade do Plano, Cooperação e Monitorização",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPPC",
+   "div": "0930103",
+   "name": "Unidade de Promoção, Prevenção e Communicação",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0930101"
+   ],
+   "indicator": "% Melhorado Servisu Administrativu no Logistika",
+   "baseline": "Exekusaun 100 % ba orsamentu INCSIDA,IP - Sei halo Pagamento Salario ba Funsionario sira - Sei dezenvolve diak liu tan funsionamento Instituisaun nian - Gestaun Orsamento ba funsionamento INCSIDA, IP - Funsionamento servisu no operasionais",
+   "target": "100% exekusaun orsamentu INCSIDA,IP",
+   "amounts": {
+    "20": 48442.0
+   },
+   "page": 938
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0930102"
+   ],
+   "indicator": "1). % de Plano Ação Anual (PAA) produzido e aprovado. 2) % Relatório Trimestral e Annual produzido e aprovado. 3) Atividade Monitorização",
+   "baseline": "Sei halo atividade Monitorizasaun ba implemetsaun atividade sensibilizasaun informasaun kona ba HIV-SIDA, no monitorizasaun ba Sentru Saude Munisipio sira hodi hare diretamente difikuldade atendimentu ba EMHIV iha teritorio Timor Laran tomak",
+   "target": "100 % sei halo Monitorizasaun iha teritorio Timor laran tomak",
+   "amounts": {
+    "10": 15179.0,
+    "20": 9000.0
+   },
+   "page": 938
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0930101"
+   ],
+   "indicator": "1) Lateral Entry recrutado. 2) Agente Administrasaun Publika Rekrutadu. 3. Kazuais kontratadus",
+   "baseline": "- % Gestaun Rekursu Humanu Realizado - Sei garante pagamentu Salario ba Funsionariu hamutuk 77 Ps inklui ho Presidente",
+   "target": "100 % rekrutadu realiza ona",
+   "amounts": {
+    "10": 289404.0
+   },
+   "page": 938
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0930101"
+   ],
+   "indicator": "# de formação e capacitação de recursos humanos implementado",
+   "baseline": "Sei Koordena ho Funsaun Publika ho INAP hodi fo formasaun ba funsonario INCSIDA,IP kona ba",
+   "target": "100 % sei realiza formasaun ba Funsionario sira",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 938
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0930101"
+   ],
+   "indicator": "% de aprovisionamento e gestão de contratos garantido",
+   "baseline": "Nova",
+   "target": "100%",
+   "amounts": {
+    "20": 22434.0
+   },
+   "page": 939
+  },
+  {
+   "code": "9805601",
+   "programme": "980",
+   "subprogramme": "98056",
+   "subprogramme_name": "Promoção, Prevenção e Communicação",
+   "name": "Deziminação Informação",
+   "div": [
+    "0930103"
+   ],
+   "indicator": "# de cidadão Timor-Leste com idade produtiva ter conhecimento sobre prevenção e transmissão HIV-SIDA",
+   "baseline": "Sei halo atividade sensibilizasaun informasaun kona ba HIV-SIDA iha teritorio timor laran tomak hanesan: - Kampanha ba estudantes sira - Seminario ba komunidade jeral - Sei halo publikasaun Banner no Bilboard - Talk show",
+   "target": "10000 partisipantes",
+   "amounts": {
+    "20": 501250.0
+   },
+   "page": 939
+  },
+  {
+   "code": "9805602",
+   "programme": "980",
+   "subprogramme": "98056",
+   "subprogramme_name": "Promoção, Prevenção e Communicação",
+   "name": "Kuidadu no Apoiu ba Ema Moris ho HIV-SIDA",
+   "div": [
+    "0930103"
+   ],
+   "indicator": "# de pessoas infectadas com HIV-AIDS receberam cuidados de saúde com seguro",
+   "baseline": "- Sei fo atendimento ba Ema ho HIV-SIDA nebe deskansa iha Casa de Recuperação Saude Tibar ( CRS-Tibar ) - Apoio alimentasaun ba Ema ho HIV- SIDA nebe vulneravel - Akompanha Ema ho HIV-SIDA halo tratamento - Fo formasaun ba pessoal saude sira",
+   "target": "150 pessoas",
+   "amounts": {
+    "20": 24000.0
+   },
+   "page": 939
+  },
+  {
+   "code": "98056E1",
+   "programme": "980",
+   "subprogramme": "98056",
+   "subprogramme_name": "Promoção, Prevenção e Communicação",
+   "name": "HIV/AIDS prevention campaigns and monitoring",
+   "div": [
+    "0930103"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 939
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) % de Resultados de desempenho publicados no website do Governo 3) % de Relatório anual da entidade publicado",
+   "baseline": "1) 100% (MSSI) 2) Nova. 3) 100%",
+   "target": "1) 100%(MSSI). 2) 100%. 3) 100%",
+   "page": 938
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% de execução orçamento por programa executado",
+   "baseline": "Nova",
+   "target": "100%",
+   "page": 938
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.b: Os Cidadão Timorense já se encontra livre de Vírus HIV",
+   "indicator": "% todos cidadão receber tratamento com equal e digno",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 939
+  },
+  {
+   "kind": "output",
+   "code": "98056.0.0",
+   "statement": "Cidadaun Timorense livre husi Transmisaun foun ba Virus HIV-SIDA",
+   "indicator": "1) # de promoção. 2). # de prevenção. 3). % de comunicação",
+   "baseline": "1)#. 2). # 3).%",
+   "target": "1)#. 2). # 3).%",
+   "page": 939
+  }
+ ]
+}

@@ -1,0 +1,260 @@
+{
+ "year": 2027,
+ "code": "062",
+ "name": "Arquivo Nacional de Timor-Leste",
+ "abbr": "ANTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   717,
+   720
+  ]
+ },
+ "units": [
+  {
+   "code": "ANTL",
+   "div": "0620101",
+   "name": "Arquivo Nacional de Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "024": "Cultura e património",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "0241501",
+   "programme": "024",
+   "subprogramme": "02415",
+   "subprogramme_name": "Gestão Documental",
+   "name": "Formação de Gestão Documental e Disseminação de políticas Nacionais do arquivo público e arquivo privado",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) # dos funcionarios da Administração Pública para LM, Nacional, Municipal e RAEOA Capacitados (Monitorização, Formação no asistencia arquivamento, diseminação politica nacional arquivo). 2) # dos funcionarios ANTL capacitado iha area sistema arquivamento.\"",
+   "baseline": "\"1) 2021 (219 Pessoas dos funcionarios públicos casuais e estagiados capacitados. 2) N/A \"",
+   "target": "\"1) 250 capacitados 2) 25 funcionarios tecnico ANTL capacitados. \"",
+   "amounts": {
+    "10": 22380.0
+   },
+   "page": 717
+  },
+  {
+   "code": "0241601",
+   "programme": "024",
+   "subprogramme": "02416",
+   "subprogramme_name": "Preservação e Conservação",
+   "name": "Heginização, Classificação e Registro dos documentos históricos e oficias do pais",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) # dos documentos histórico e officiais do pais recoperado, Organizado, Clasificado e Armazenado. 2) #Numero docomentos historico Mição ONU iha TL (UNAMET, UNTAET ,UNMISET no UNMIT) ,",
+   "baseline": "\"1) 2020 (159,6 MI ou 1.140 Caixa dos documentos histórico do fundos da Administração Indonesia clasificado e Inventariado no total de 1.496.14 ML (Metro Lineares). 2) 145 Caixas ou 47,25 ML do Fundo Administração UNTAET e",
+   "target": "\"1) 2.000 caixas de documentos dos fundos da Adm.Indonesia clasificado e Inventariado. 2) 40 caixas de documentos transitorio e documentos privado Organizado, Clasificado e Armazenado 3) 3 Municipio assesimento documentos historica",
+   "amounts": {
+    "10": 10380.0
+   },
+   "page": 717
+  },
+  {
+   "code": "0241602",
+   "programme": "024",
+   "subprogramme": "02416",
+   "subprogramme_name": "Preservação e Conservação",
+   "name": "Digitalização e Restauração dos documentos históricos",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) # de documentos históricos dos fundos da administração Portuguesa Assegurados e digitalizados. 2) # livros de metereolgia, mapa e plantas restauradas e recuperadas. 3) Fornecemento Equipamento digitalização e Materiais preservação realizado. \"",
+   "baseline": "\"1) 2020 (15,355 ML ou 37 Caixas dos documentos fundos da Administração Portuguesa recuperados e Digitalizados no total de 1.748 ML. 2) N/A 3) N/A\"",
+   "target": "\"1) 50 Caixas recuperados e digitalizados, 2) 100 livros de meterelogia, mapa e plantas restauradas e recuperadas. 3) Realizado\"",
+   "amounts": {
+    "10": 9240.0
+   },
+   "page": 718
+  },
+  {
+   "code": "0241701",
+   "programme": "024",
+   "subprogramme": "02417",
+   "subprogramme_name": "Acesso e Difusão do Acervo",
+   "name": "Realizar Exposição Interna",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "Participação nas exposicões dias nacionais (dias internacional do Arquivo, 20 de Maio, 30 de Augusto e 28 Novembro)",
+   "baseline": "1",
+   "target": "\"Realizado \"",
+   "amounts": {
+    "10": 9240.0
+   },
+   "page": 718
+  },
+  {
+   "code": "0241702",
+   "programme": "024",
+   "subprogramme": "02417",
+   "subprogramme_name": "Acesso e Difusão do Acervo",
+   "name": "Catalogação e publicação dos documentos Historicos e oficiais do estado, para Facilitar o Atendimento Público",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) # Caixas fundo documentos portugues catálogado 2) # de visitantes e Pesquizadores (Nacional no Internacional) acesso aos documentos Historicos. 3) Elabora Manual de pesquiza 4) # Brosura profilu do ANTL produzido \"",
+   "baseline": "\"1) 5 Caixas catalogado 2) 92 e visitantes e Pesquizadores 3) N/A 4) N/A\"",
+   "target": "\"1) 20 caixas dos documentos portugues catálogado 2) 100 visitantes, Pesquizadores acesso aos documentos Historicos. 3) Elaborado e produzido 4) 100 exemplar Brosura profilu do ANTL produzido\"",
+   "amounts": {
+    "10": 10380.0
+   },
+   "page": 718
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) # Termo de Referencia e Lista espesificacão materiais,",
+   "baseline": "\"1) 18 Termo de Referencia e Lista espesificacão produzido 2)",
+   "target": "\"1) 20 Termo de Referencia e Lista espesificacão dos materiais,",
+   "amounts": {
+    "10": 17760.0,
+    "20": 129820.0
+   },
+   "page": 718
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) % Mapa pessoal Forca do Trabalho produzido e submetido ao CFP e MdF 2) # dos Recrutamento funcionarios cazuais 3) # do Recrutamento Tecnico Espesializada 4) # ToR para recrutamento Tecnico Espesilizada, cazuais Preenchidos. 5) % do Lista de prezensa Funcionarios publico e contratado nacional submetido ao CFP 6) % dados de Funcionarios ANTL (promoção escalão e Grau em sistema CFP) actualizado 7) % Avaliação de desempenho submetido ao CFP 8) % dados de seguranca social Funcionarios ANTL actualizado.\"",
+   "baseline": "\"1) 100% Preenchidos e submetido 2) 64 funcionarios cazuais recrutado 3) 1 Tecnico Espesilaizado recrutado 4) 65 ToR para recrutamento Tecnico Espesilizada, cazuais Preenchidos. 5) 100% submetido 6) 100% Actualizado 7) 100% submetido 8) 100% Actualizado \"",
+   "target": "\"1) 100% Mapa pessoal do ANTL Preenchidos e submetido 2) 50 funcionarios cazuais recrutado 3) 1 Tecnico Espesilaizado recrutado 4) 51 ToR para recrutamento Tecnico Espesilizada, cazuais Preenchidos. 5) 100% Lista prezensa Funcionario publico submetido. 6) 100 % dados Funcionarios actualizado 7) 100% submetido 8) 100% Actualizado \"",
+   "amounts": {
+    "10": 250560.0
+   },
+   "page": 719
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"1) # dos Funcionarios ANTL,I.P. Capacitados em nivel nacionais e internacionais 2) # dos Estagiados/estagiadas capacitado em ANTL\"",
+   "baseline": "\"1) 14 Funcionarios ANTL capacitado 2) 34 Estagiados/estagiadas capacitado em ANTL\"",
+   "target": "\"1) 20 Funcionarios ANTL,I.P. Capacitado 2) 50 Estagiados/estagiadas capacitado em ANTL\"",
+   "amounts": {
+    "10": 4620.0,
+    "20": 15000.0
+   },
+   "page": 719
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0620101"
+   ],
+   "indicator": "\"A. Cooperação Nacionais 1) Cooperacão com Agencia (TIC) TIMOR, I.P para melhorar o sistema do arquivamento digital B. Cooperação Internacionais 1) Cooperação com ANRI- Indonesia, 2) Cooperação com NAM-Malaysia, 3) Estabelece MoU com Torre de Tombo- Portugal 4) Cooperação com ANB-Brazil 5) Cooperacão com Agencia Internacional (UNESCO, UNICEF e KOICA) \"",
+   "baseline": "\"A. Cooperação Nacionais 1) MoU Estabelecido B. Cooperação Internacionais 1) MoU Etabelecido . 2) Continuado. 3) Continuado. 4) Continuado. 5) Continuado\"",
+   "target": "\"A. Cooperação Nacionais 1) Sistema do arquivamento digital finalizado B. Cooperação Internacionais 1) Continuado 2) Continuado. 3) Etabelecido . 4) Continuado. 5) Continuado \"",
+   "amounts": {
+    "20": 98549.0
+   },
+   "page": 720
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "024.0.0",
+   "statement": "Promover o orgulho à história e cultura de Timor- Leste através de de documentos históricos.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 717
+  },
+  {
+   "kind": "output",
+   "code": "02401.0.0",
+   "statement": "Melhorar o acesso Construção Novu edificio do ANTL: Levantamento dadus, indeminização, construção edificio do ANTL actualizado",
+   "indicator": "Edificio Atual do ANTL Rehabilitado",
+   "baseline": "",
+   "target": "",
+   "page": 717
+  },
+  {
+   "kind": "output",
+   "code": "02415.0.0",
+   "statement": "Os documentos officiais do Estado esta organizado em conformidade com o enquadramento Legal",
+   "indicator": "# dos documentos históricos e oficiais do país recoperado, Organizados, Clasificados e Armazenados.",
+   "baseline": "",
+   "target": "",
+   "page": 717
+  },
+  {
+   "kind": "output",
+   "code": "02416.0.0",
+   "statement": "Documentos que tem valor histórico Serão Preservado e Conservado",
+   "indicator": "# dos documentus histórico Preservado e Conservado",
+   "baseline": "",
+   "target": "",
+   "page": 717
+  },
+  {
+   "kind": "output",
+   "code": "02417.0.0",
+   "statement": "O acesso físico e intelectual do Património Documental do Arquivo Nacional",
+   "indicator": "% de propostas aos pedidos do acesso aprovados",
+   "baseline": "",
+   "target": "90%",
+   "page": 718
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 718
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 718
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 719
+  }
+ ]
+}

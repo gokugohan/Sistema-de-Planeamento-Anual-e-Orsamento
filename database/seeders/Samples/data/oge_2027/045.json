@@ -1,0 +1,2000 @@
+{
+ "year": 2027,
+ "code": "045",
+ "name": "Autoridade Municipal de Dili",
+ "abbr": "AM Dili",
+ "kind": "municipal",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   442,
+   459
+  ]
+ },
+ "units": [
+  {
+   "code": "SMF",
+   "div": "0450101",
+   "name": "Serviço Municipal de Finanças",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMS",
+   "div": "0450201",
+   "name": "Serviços Municipal de Saúde",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SME",
+   "div": "0450301",
+   "name": "Serviços Municipal de Educação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMA",
+   "div": "0450401",
+   "name": "Serviços Municipal de Agricultura",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMOPT",
+   "div": "0450501",
+   "name": "Serviços Municipal de Obras Públicas e Transportes",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMASBA",
+   "div": "0450601",
+   "name": "Serviços Municipal de Água, Saneamento Básico e Ambiente",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMGMT",
+   "div": "0450701",
+   "name": "Serviços Municipais de Gestão Mercados e Turismo",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMRNC",
+   "div": "0450801",
+   "name": "Serviços Municipal de Registos, Notariado e Cadastrais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMPCGDN",
+   "div": "0450901",
+   "name": "Serviço Municipal de Proteção Civil e Gestão de Desastres Naturais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMSA",
+   "div": "0451001",
+   "name": "Serviços Municipais de Segurança Alimentar",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMAS",
+   "div": "0451201",
+   "name": "Serviços Municipal de Ação Social",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMPID",
+   "div": "0451301",
+   "name": "Serviço Municipal de Planeamento Integrado e Desenvolvimento",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AMP",
+   "div": "0451401",
+   "name": "Agência Municipal de Planeamento",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMARH",
+   "div": "0451501",
+   "name": "Serviço Municipal de Administração e Recursos Humanos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMPL",
+   "div": "0451604",
+   "name": "Serviço Municipal de Património e Logistica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMAPNDS",
+   "div": "0451701",
+   "name": "Serviço Municipal de Apoio ao Programa Nacional de Desenvolvimento dos Sucos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMA-01",
+   "div": "0451801",
+   "name": "Serviço Municipal de Aprovisionamento",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GPAM",
+   "div": "0451900",
+   "name": "Gabinete do Presidente da Autoridade Municipal",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "APACR",
+   "div": "0452000",
+   "name": "Administração do Posto Administrativo Cristo Rei",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "APANF",
+   "div": "0452100",
+   "name": "Administração do Posto Administrativo Nain Feto",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "APAVC",
+   "div": "0452200",
+   "name": "Administração do Posto Administrativo Vera Cruz",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "APAM",
+   "div": "0452300",
+   "name": "Administração do Posto Administrativo Metinaro",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "APADA",
+   "div": "0452400",
+   "name": "Administração do Posto Administrativo Dom Aleixo",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AMF",
+   "div": "0452500",
+   "name": "Agência Municipal de Fiscalização",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SMAONGOC",
+   "div": "0452600",
+   "name": "Serviço Municipal de Apoio às Organizações Não Governamentais e às Organizações Comunitárias",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "025": "Descentralização administrativa e poder local",
+  "026": "Estradas e pontes",
+  "366": "Segurança nacional",
+  "392": "Acesso à justiça",
+  "502": "Transportes",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "520": "Educação pré-escolar",
+  "521": "Ensino básico",
+  "523": "Ensino recorrente",
+  "528": "Cuidado de saúde primários",
+  "798": "Água e saneamento",
+  "980": "Inclusão social.",
+  "982": "Turismo",
+  "983": "Investimento e diversificação económica",
+  "A39": "Agricultura, horticultura, café e de plantas industriais e anuais",
+  "A40": "Pecuária, veterinária e tecnologia"
+ },
+ "activities": [
+  {
+   "code": "0250102",
+   "programme": "025",
+   "subprogramme": "02501",
+   "subprogramme_name": "Desenvolvimento Local",
+   "name": "Gestão do Programa Nacional de Desenvolvimento dos Sucos (PNDS)",
+   "div": [
+    "0451701"
+   ],
+   "indicator": "\"1). # de suco que recebem transferência de subsídios operacionais (# resipiente mulheres, # homens e # resipiente com deficiência); 2). # de suco que recebem transferência de subsídios da infraestruturas (# resipiente mulheres, # homens e # resipiente com deficiência); 3). # de projetos construído; 4).# de Sede Sucos construído; 5). % progresso dos projetos da comunidade a nível sucos são monitorizados e avaliados; 6). % gastos",
+   "baseline": "1). 18 sucos que recebem transferência de subsídios operacionais 2).18sucos que recebem transferência de subsídios da infraesturas 3). 30 projetos construído; 4).0 Sede Sucos construído; 5). 80% progresso dos projetos monitorizados e avaliados; 6). 80% gastos subsídios sucos monitorizados; 7). 75% participação das comunidades. 8). 45 de funcionário Casuais Empregado; 9). 45 funcionário casuais são",
+   "target": "1). 31 sucos que recebem transferência de subsídios operacionais 2).31 sucos que recebem transferência de subsídios da infraesturas 3). 57 projetos construído; 4).4 Sede Sucos construído; 5). 100% progresso dos projetos monitorizados e avaliados; 6). 100% gastos subsídios sucos monitorizados; 7). 75% participação das comunidades. 8). 45 de funcionário Casuais Empregado; 9). 45 funcionário casuais são",
+   "amounts": {
+    "20": 46518.0,
+    "30": 1189955.0
+   },
+   "page": 442
+  },
+  {
+   "code": "0250223",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio Administracao para Posto Administrativo Cristo Rei",
+   "div": [
+    "0452000"
+   ],
+   "indicator": "1) # de Postos Administrativos recebem verbas administrativas; 2) # encontro da Asembleia posto administrativa Realizados",
+   "baseline": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "target": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "amounts": {
+    "20": 12037.0
+   },
+   "page": 443
+  },
+  {
+   "code": "0250224",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio Administracao para Posto Administrativo Nain Feto",
+   "div": [
+    "0452100"
+   ],
+   "indicator": "1) # de Postos Administrativos recebem verbas administrativas; 2) # encontro da Asembleia posto administrativa Realizados",
+   "baseline": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadass",
+   "target": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "amounts": {
+    "20": 12037.0
+   },
+   "page": 443
+  },
+  {
+   "code": "0250225",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio Administracao para Posto Administrativo Vera Cruz",
+   "div": [
+    "0452200"
+   ],
+   "indicator": "1) # de Postos Administrativos recebem verbas administrativas; 2) # encontro da Asembleia posto administrativa Realizados",
+   "baseline": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "target": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "amounts": {
+    "20": 12231.0
+   },
+   "page": 443
+  },
+  {
+   "code": "0250226",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio Administracao para Posto Administrativo Metinaro",
+   "div": [
+    "0452300"
+   ],
+   "indicator": "1) # de Postos Administrativos recebem verbas administrativas; 2) # encontro da Asembleia posto administrativa Realizados",
+   "baseline": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "target": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "amounts": {
+    "20": 12037.0
+   },
+   "page": 444
+  },
+  {
+   "code": "0250227",
+   "programme": "025",
+   "subprogramme": "02502",
+   "subprogramme_name": "Descentralização Administrativa",
+   "name": "Apoio Administracao para Posto Administrativo Dom Aleixo",
+   "div": [
+    "0452400"
+   ],
+   "indicator": "1) 4 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "baseline": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadass",
+   "target": "1) 6 verbas administrativas recebem pelo Posto Administrativo 2) 4 encontro realizadas",
+   "amounts": {
+    "20": 11843.0
+   },
+   "page": 444
+  },
+  {
+   "code": "02503H3",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "KONSTRUSAUN ARMAGEM SMASA IHA TIBAR",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 15384.0
+   },
+   "page": 444
+  },
+  {
+   "code": "02503K4",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "KONSTRUSAUN KAMPO MULTIFUNSAUN MINI FUTSAL&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 4102.0
+   },
+   "page": 444
+  },
+  {
+   "code": "02503N9",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Rehabilitasaun Sede Suku, Moru Hale&#039;u no aumenta sala Suku Caicoli",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "",
+   "target": "1) 100% implementacao 2) 1",
+   "amounts": {
+    "50": 53213.0
+   },
+   "page": 444
+  },
+  {
+   "code": "02503O1",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Kontrusaun Edefisio Edukasaun Municipio Dili",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "",
+   "target": "1) 100% implementacao 2) 1",
+   "amounts": {
+    "50": 269121.0
+   },
+   "page": 444
+  },
+  {
+   "code": "02503O2",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Kontrusaun mercado Bekora no moru protesaun",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "",
+   "target": "1) 100% implementacao 2) 1",
+   "amounts": {
+    "50": 78812.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503O3",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Kontrusaun Mercado no Moru protesaun iha Hera",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 105984.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503O4",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun sede Suco Kampo Alor",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "",
+   "target": "1) 100% implementacao 2) 1",
+   "amounts": {
+    "50": 77060.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503O5",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Kontrusaun Moru protesaun ba sede Suco Sabuli",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 50534.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503O6",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Kontrusaun moru no Paving, iha Aldeia nu&#039;u badak Suku Akaderu hun",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "",
+   "target": "1) 100% implementacao 2) 1",
+   "amounts": {
+    "50": 31823.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q1",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun Centru komunitario ba Aldeia Haslaran, Mantelolao no lebutun",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 60248.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q2",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun moru, Bareira no Paving, iha Aldeia nu&#039;u badak Suku Akaderu hun",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 27617.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q3",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun Edifisiu Posto Administrativo Dom Aleixo no moru Haleu",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 270897.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q4",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun Edifisiu Posto Administrativo Metinaro",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 153655.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q5",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun sede Suco Kampo Alor no Paving Blok",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 91854.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q6",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Kontrusaun Moru Haleu no kampu multi Funsaun iha Sede Suco Bairropite",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 92297.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q7",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun centro evakuasaun iha Suku Sabuli, Posto Metinaro",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 114514.0
+   },
+   "page": 445
+  },
+  {
+   "code": "02503Q8",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Konstrusaun Kampo Multifungsaun iha Suku Lahane Ocidental",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 58318.0
+   },
+   "page": 445
+  },
+  {
+   "code": "0250307",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Monitorização e assistência técnica para a implementação do Plano de Investimento Municipal (PIM)",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "# de Monitorização e assistência técnica para a implementação do Plano de Investimento Municipal (PIM)",
+   "baseline": "96 Monitorização e assistência técnica",
+   "target": "288 Monitorização e assistência técnica",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 446
+  },
+  {
+   "code": "0250336",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Reabilitasaun Estrada no konstrusaun husi aldeia Namalai ba aldeia Darlau, liga ba estrada público Lebuhua suku Becora",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "1)100% implementacao 2) 1 projeto",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 100000.0
+   },
+   "page": 446
+  },
+  {
+   "code": "0250346",
+   "programme": "025",
+   "subprogramme": "02503",
+   "subprogramme_name": "Planeamento de Desenvolvimento Integrado Municipal (PDIM)",
+   "name": "Construsaun Posto Saude Lebutun",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 12087.0
+   },
+   "page": 446
+  },
+  {
+   "code": "0260205",
+   "programme": "026",
+   "subprogramme": "02602",
+   "subprogramme_name": "Obras Públicas",
+   "name": "Gestão do pessoal das Obras Públicas",
+   "div": [
+    "0450501"
+   ],
+   "indicator": "1)Taxa de absentismo dos funcionários;",
+   "baseline": "95%",
+   "target": "95% absentismo dos funcionários",
+   "amounts": {
+    "20": 20038.0
+   },
+   "page": 447
+  },
+  {
+   "code": "0260224",
+   "programme": "026",
+   "subprogramme": "02602",
+   "subprogramme_name": "Obras Públicas",
+   "name": "KONSTRUSAUN KAMPO MULTIFUNSAUN MINI FUTSAL&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)%Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)#de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 4102.0
+   },
+   "page": 447
+  },
+  {
+   "code": "3662413",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Fornecimento de apoio de emergència as populações afetadas pela ocorrência de desastres naturais",
+   "div": [
+    "0450901"
+   ],
+   "indicator": "# ou Persentazen da população afetada beneficiando do apoio de emergência",
+   "baseline": "95% da população",
+   "target": "95% da população",
+   "amounts": {
+    "20": 22049.0
+   },
+   "page": 448
+  },
+  {
+   "code": "3662414",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Distribuição de apoio de recuperação as populações afetadas pela ocorrência de desastres naturais",
+   "div": [
+    "0450901"
+   ],
+   "indicator": "1) # ou Persentazen Informação sobre áreas territoriais de alto risco para ocorrência de desastres naturais, identificada e/ou regularmente atualizada; 2) # de sessões de disseminação de informação realizadas.",
+   "baseline": "1) 95% Informação sobre áreas territoriais 2) 5 sessões de disseminação",
+   "target": "1) 95% Informação sobre áreas territoriais 2) 7 sessões de disseminação",
+   "amounts": {
+    "20": 25800.0
+   },
+   "page": 448
+  },
+  {
+   "code": "3921403",
+   "programme": "392",
+   "subprogramme": "39214",
+   "subprogramme_name": "Serviços Cadastrais",
+   "name": "Identificação dos prédios rústicos e prédios urbanos pertencentes ao Estado e promoçãoda respetiva regularização",
+   "div": [
+    "0450801"
+   ],
+   "indicator": "# dos prédios rústicos e prédios urbanos identificados",
+   "baseline": "N/A",
+   "target": "2 prédios rústicos e prédios urbanos identificados",
+   "amounts": {
+    "20": 3800.0
+   },
+   "page": 448
+  },
+  {
+   "code": "50202X4",
+   "programme": "502",
+   "subprogramme": "50202",
+   "subprogramme_name": "Gerir a integração da Segurança e Desenvolvimento Regional do Transporte Terrestres",
+   "name": "Digital parking meters - Dili",
+   "div": [
+    "0450501"
+   ],
+   "indicator": "1)# de Digital Parking 2)% de rekolhamento taxa estasionamento",
+   "baseline": "N/A",
+   "target": "1)4 2)100%",
+   "amounts": {
+    "40": 100000.0
+   },
+   "page": 449
+  },
+  {
+   "code": "5020210",
+   "programme": "502",
+   "subprogramme": "50202",
+   "subprogramme_name": "Gerir a integração da Segurança e Desenvolvimento Regional do Transporte Terrestres",
+   "name": "Gestãos dos parques de estacionamento",
+   "div": [
+    "0450501"
+   ],
+   "indicator": "1) # de parques de estacionamento geridos; 2) Montante de cobrança dos parques de estacionamento.",
+   "baseline": "1) 7 parques 2) $ 25,000",
+   "target": "1) 13 parques 2) $ 50,000",
+   "amounts": {
+    "10": 265188.0,
+    "20": 140000.0
+   },
+   "page": 449
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0451900"
+   ],
+   "indicator": "1) # de Encontros Conselho Coordenacao Realizados 2) # de Encontros Conselho Consultivo Realizados 2) # de instrumentos de gestão Produzidos e homologados",
+   "baseline": "1) 12 Encontros Conselho Coordenacao Realizados 2) 3 Encontros Conselho Consultivo Realizados 3) 4 de instrumentos de gestão Produzidos",
+   "target": "1) 12 Encontros Conselho Coordenacao Realizados 2) 3 Encontros Conselho Consultivo Realizados 3) 4 instrumentos de gestão Produzidos",
+   "amounts": {
+    "20": 8000.0
+   },
+   "page": 449
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0452500"
+   ],
+   "indicator": "1) # de Inspeção,fiscalização e auditoria realizada realizada",
+   "baseline": "1) 19 Inspeções, fiscalizações e auditorias realizadas",
+   "target": "1) 45 Inspeções, fiscalizações e auditorias realizadas",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 449
+  },
+  {
+   "code": "5100145",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Reforçar o funcionamento das administração suco",
+   "div": [
+    "0452600"
+   ],
+   "indicator": "1) # de Sucos recebem verbas administrativas; 2) % do plano de formação e reforço das capacidades dos líderes comunitários e outros recursos humanos realizados.",
+   "baseline": "1)31 sucos ; 2) 90% plano de formação",
+   "target": "1)6 verbas 31 sucos ; 2) 100% plano de formação",
+   "amounts": {
+    "20": 32711.0,
+    "30": 65153.0
+   },
+   "page": 449
+  },
+  {
+   "code": "5100146",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Subsidiu ao lideranças comunitárias",
+   "div": [
+    "0452600"
+   ],
+   "indicator": "1) # de Líderes Comunitários recebem subsídios; 2) % das organizações comunitárias beneficiam dos incentivos.",
+   "baseline": "1)914 Líderes Comunitários 2) 90% organizações comunitárias",
+   "target": "1)914 Líderes Comunitários 2) 100% organizações comunitárias",
+   "amounts": {
+    "30": 999020.0
+   },
+   "page": 449
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0451401"
+   ],
+   "indicator": "1) # do plano de desenvolvimento municipal; 2) # de monitorizações, pareceres técnicos e relatórios trimestrais/anual produzidos.",
+   "baseline": "1) 1 plano de desenvolvimento municipal; 2) 4 monitorizaçõe",
+   "target": "1) 1 plano de desenvolvimento municipal; 2) 4 monitorizaçõe",
+   "amounts": {
+    "20": 2750.0
+   },
+   "page": 450
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0450101",
+    "0451501"
+   ],
+   "indicator": "1) # de vagas de pessoal preenchidas; 2) # de concurso interno, de transferência ou de destacamento de funcionários ou agentes da Administração Pública; 3) Taxa de absentismo dos funcionários; 4) # de formação em Recursos humanos.",
+   "baseline": "1)1328 vagas de pessoal preenchidas; 2) 17 destacamento de funcionários ou agentes da Administração Pública; 3) 90% Taxa de absentismo 4) 4 formações",
+   "target": "1)1319 vagas de pessoal preenchidas; 2) 17 destacamento de funcionários ou agentes da Administração Pública; 3) 90% Taxa de absentismo 4) 20 formações",
+   "amounts": {
+    "10": 4903970.0,
+    "20": 50664.0,
+    "30": 17576.0
+   },
+   "page": 450
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0450101"
+   ],
+   "indicator": "# de eventos nacionais organizados e realizados.",
+   "baseline": "6 eventus",
+   "target": "4 eventus",
+   "amounts": {
+    "20": 55000.0
+   },
+   "page": 450
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0451801"
+   ],
+   "indicator": "# de contratos públicos assinados",
+   "baseline": "30 contratos públicos assinados",
+   "target": "30celebrasaun contrato assinados",
+   "amounts": {
+    "20": 28800.0
+   },
+   "page": 450
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0451604"
+   ],
+   "indicator": "1) % do património móvel e imóvel inventariado e regularmente atualizado; 2) % do património imóvel e móvel em bom funcionamento; 3) % de expedientes e arquivos organizados; 4) % das instalações do município seguras e limpas.",
+   "baseline": "1) 95% património móvel e imóvel 2) 95% património imóvel e móvel 3) 95% expedientes e arquivos organizados; 4) 95% instalações do município seguras e limpas",
+   "target": "1) 95% património móvel e imóvel 2) 100% património imóvel e móvel 3) 95% expedientes e arquivos organizados; 4) 95% instalações do município seguras e limpas",
+   "amounts": {
+    "20": 180982.0,
+    "40": 27500.0
+   },
+   "page": 450
+  },
+  {
+   "code": "510022X",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão da administração e das finanças",
+   "div": [
+    "0450101"
+   ],
+   "indicator": "1) % da execução orçamental; 2) % de pagamentos atrasados;",
+   "baseline": "1)82% execução orçamental 2) 0 pagamentos atrasados",
+   "target": "1) 95% execução orçamental 2) 0,02% pagamento atrasado",
+   "amounts": {
+    "20": 287146.0
+   },
+   "page": 450
+  },
+  {
+   "code": "5201603",
+   "programme": "520",
+   "subprogramme": "52016",
+   "subprogramme_name": "Merenda Escolar",
+   "name": "Fornecimento de merenda escolar a nivel pré-escolar",
+   "div": [
+    "0450301"
+   ],
+   "indicator": "1). # de refeições fornecidas; 2). % de alunos malnutridos reduzidos 3) # de Monitorizasaun realizadas",
+   "baseline": "1). 6510 refeições fornecidas; 2). 0.02 % alunos malnutridos reduzidos 3)5 Monitorizasaun realizadas",
+   "target": "1). 6510 refeições fornecidas; 2). 0.02 % alunos malnutridos reduzidos 3)150 Monitorizasaun realizadas",
+   "amounts": {
+    "30": 470282.0
+   },
+   "page": 451
+  },
+  {
+   "code": "5202101",
+   "programme": "520",
+   "subprogramme": "52021",
+   "subprogramme_name": "Gestão e Políticas na Educação Pré-Escolar",
+   "name": "Implementação de conceções (subsídios) escolares ao nível pré- escolar",
+   "div": [
+    "0450301"
+   ],
+   "indicator": "1) # Estudante registados baseia no. emis 2) # Relatorio produzidos",
+   "baseline": "1)6510 Estudante registados baseia no. emis 2) 3 Relatorio produzidos",
+   "target": "1)6510 Estudante registados baseia no. emis 2) 3 Relatorio produzidos",
+   "amounts": {
+    "30": 53708.0
+   },
+   "page": 451
+  },
+  {
+   "code": "5211701",
+   "programme": "521",
+   "subprogramme": "52117",
+   "subprogramme_name": "Merenda Escolar",
+   "name": "Efetivação do processo de ensino e aprendizagem a nivel do ensino básico",
+   "div": [
+    "0450301"
+   ],
+   "indicator": "1) # de estabelecimentos de ensino básico em pleno funcionamento; 2) Taxa de absentismo; 3) Taxa de bom aproveitamento escolar",
+   "baseline": "1) 91 estabelecimentos de ensino básico 2) 95% Taxa de absentismo; 3) 95%Taxa de bom aproveitamento escolar",
+   "target": "1) 98 scestabelecimentos de ensino básico 2) 95% Taxa de absentismo; 3) 98%Taxa de bom aproveitamento escolar",
+   "amounts": {
+    "10": 1500.0,
+    "20": 46649.0,
+    "30": 1248960.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5211702",
+   "programme": "521",
+   "subprogramme": "52117",
+   "subprogramme_name": "Merenda Escolar",
+   "name": "Fornecimento de merenda escolar a nivel do ensino básico",
+   "div": [
+    "0450301"
+   ],
+   "indicator": "1). # de refeições fornecidas; 2). % de alunos malnutridos reduzidos 3) # de Monitorizasaun realizadas",
+   "baseline": "1). 65459 refeições fornecidas; 2). 0.05% alunos malnutridos reduzidos 3) 50 Monitorizasaun realizadas",
+   "target": "1). 65459 refeições fornecidas; 2). 0.05% alunos malnutridos reduzidos 3) 80 Monitorizasaun realizadas",
+   "amounts": {
+    "30": 4728758.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5212540",
+   "programme": "521",
+   "subprogramme": "52125",
+   "subprogramme_name": "Desenvolvimento de infraestruturas escolares básicas a nível municipal",
+   "name": "Kontrusaun Escola EBF no moru protesaun Fatumeta Suku Bairopite, Posto Dom Aleixo",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 93145.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5212524",
+   "programme": "521",
+   "subprogramme": "52125",
+   "subprogramme_name": "Desenvolvimento de infraestruturas escolares básicas a nível municipal",
+   "name": "REHABLITASAUN EBC METINARO&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto\"",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 21794.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5212525",
+   "programme": "521",
+   "subprogramme": "52125",
+   "subprogramme_name": "Desenvolvimento de infraestruturas escolares básicas a nível municipal",
+   "name": "KONSTRUSAUN ESCOLA EBF IDA IHA ALDEIA MOTA ULUN, SUKU BEKORA&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto\"",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 51279.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5212526",
+   "programme": "521",
+   "subprogramme": "52125",
+   "subprogramme_name": "Desenvolvimento de infraestruturas escolares básicas a nível municipal",
+   "name": "REHABILITASAUN ESCOLA EBC MANLEUANA &amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto\"",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 51279.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5212527",
+   "programme": "521",
+   "subprogramme": "52125",
+   "subprogramme_name": "Desenvolvimento de infraestruturas escolares básicas a nível municipal",
+   "name": "REHABLITASAUN ESCOLA EBF FOMENTO SUKU COMORO&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto\"",
+   "target": "1) 100% implementacao 2) 1 projeto\"",
+   "amounts": {
+    "50": 10256.0
+   },
+   "page": 452
+  },
+  {
+   "code": "5280211",
+   "programme": "528",
+   "subprogramme": "52802",
+   "subprogramme_name": "Pacote Abrangente de Serviços de Cuidados de Saúde Primária",
+   "name": "Realização dos cuidados primários de saúde a nivél do agregado familiar",
+   "div": [
+    "0450201"
+   ],
+   "indicator": "% de famílias visitadas anualmente",
+   "baseline": "40% famílias visitadas anualmente",
+   "target": "45% famílias visitadas anualmente",
+   "amounts": {
+    "20": 44400.0
+   },
+   "page": 453
+  },
+  {
+   "code": "5280801",
+   "programme": "528",
+   "subprogramme": "52808",
+   "subprogramme_name": "Administração e Apoio Logístico",
+   "name": "Gestão do pessoal de saúde",
+   "div": [
+    "0450201"
+   ],
+   "indicator": "1) Rácio Médico/população; 2)Taxa de absentismo do pessoal de saúde; 3) # de pessoal saúde participando em formação continua.",
+   "baseline": "1)N/A 2) 100% taxa de absentismo 3) 30 pessoal saúde",
+   "target": "1)N/A 2) 100% taxa de absentismo 3) 35 pessoal saúde",
+   "amounts": {
+    "20": 45588.0
+   },
+   "page": 454
+  },
+  {
+   "code": "5280802",
+   "programme": "528",
+   "subprogramme": "52808",
+   "subprogramme_name": "Administração e Apoio Logístico",
+   "name": "Apoio logistico as atividades de prestação de saúde",
+   "div": [
+    "0450201"
+   ],
+   "indicator": "# de reclamações sobre falta de apoio logistico",
+   "baseline": "3 reclamações",
+   "target": "3 reclamações",
+   "amounts": {
+    "20": 228000.0
+   },
+   "page": 454
+  },
+  {
+   "code": "528091H",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Konstrusaun Centru maternidade SSI Vera Cruz",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 102086.0
+   },
+   "page": 454
+  },
+  {
+   "code": "528091I",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Konstrusaun Centru komunitario ba Aldeia Haslaran, Mantelolao no lebutun",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 47308.0
+   },
+   "page": 454
+  },
+  {
+   "code": "5280984",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "KONSTRUSAUN EDIFISIU BA DOTOR IHA KLINIKA BALIBAR.&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "\"1) 100% implementacao 2) 1 projeto",
+   "target": "\"1)N/A 2) N/A",
+   "amounts": {
+    "50": 14358.0
+   },
+   "page": 454
+  },
+  {
+   "code": "5280985",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "KONTRUSAUN MORU HALEU POSTO SAUDE MANLEUANA&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "",
+   "target": "\"1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 7692.0
+   },
+   "page": 454
+  },
+  {
+   "code": "5280986",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "REHABILITASAUN POSTO SAUDE MALOA SUKU BAIRO PITE(TROKA KALEN NO PLAFON)&amp;#13;&amp;#10;",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) 100% implementacao 2) 1 projeto",
+   "target": "\"1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 7692.0
+   },
+   "page": 454
+  },
+  {
+   "code": "52809A7",
+   "programme": "528",
+   "subprogramme": "52809",
+   "subprogramme_name": "Infraestruturas de Prestação de Cuidados Primários de Saúde",
+   "name": "Konstrusaun Centru maternidade SSI Vera Cruz",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "1)% Implementasaun do plano de Desenvolvimento Integrado Municipal (PDIM) 2)# de projetos implementasaun",
+   "baseline": "1) N/A 2) N/A",
+   "target": "1) 100% implementacao 2) 1 projeto",
+   "amounts": {
+    "50": 140368.0
+   },
+   "page": 454
+  },
+  {
+   "code": "5281404",
+   "programme": "528",
+   "subprogramme": "52814",
+   "subprogramme_name": "Promoção da Educação para a saúde",
+   "name": "Realização de campanhas de promoção e prevenção de doenças contagiosas e não cotagiosas",
+   "div": [
+    "0450201"
+   ],
+   "indicator": "1) # de campanhas realizadas; 2) # de ocorrencia de surto",
+   "baseline": "1) # N/A 2)5 Centros de Saude",
+   "target": "1) # N/A 2)5 Centros de Saude",
+   "amounts": {
+    "20": 4600.0
+   },
+   "page": 455
+  },
+  {
+   "code": "7980403",
+   "programme": "798",
+   "subprogramme": "79804",
+   "subprogramme_name": "Saneamento",
+   "name": "Limpeza dos epaços públicos, incluindo as praias e zonas balneares",
+   "div": [
+    "0450601"
+   ],
+   "indicator": "% de espaços públicos limpos",
+   "baseline": "100% espaços públicos limpos",
+   "target": "100% espaços públicos limpos",
+   "amounts": {
+    "10": 284002.0,
+    "20": 2151359.0,
+    "40": 700000.0
+   },
+   "page": 455
+  },
+  {
+   "code": "9800101",
+   "programme": "980",
+   "subprogramme": "98001",
+   "subprogramme_name": "Ação Social",
+   "name": "Concessão de apoio alimentar e não alimentar á população mais vulnerável",
+   "div": [
+    "0451201"
+   ],
+   "indicator": "# de concessões efetuadas",
+   "baseline": "1,132 concessões ,efetuadas",
+   "target": "300 concessões ,efetuadas",
+   "amounts": {
+    "20": 19000.0
+   },
+   "page": 456
+  },
+  {
+   "code": "9803903",
+   "programme": "980",
+   "subprogramme": "98039",
+   "subprogramme_name": "Serviço de carros funerários e caixões",
+   "name": "Realização do serviço funerário público",
+   "div": [
+    "0451201"
+   ],
+   "indicator": "# de serviços funerários fornecidos ao público",
+   "baseline": "250 serviços funerários fornecidos",
+   "target": "250 serviços funerários fornecidos",
+   "amounts": {
+    "10": 5000.0,
+    "20": 20935.0,
+    "30": 35000.0,
+    "40": 45000.0
+   },
+   "page": 456
+  },
+  {
+   "code": "9800409",
+   "programme": "980",
+   "subprogramme": "98004",
+   "subprogramme_name": "Desenvolvimento na área Desporto",
+   "name": "Desportu comunitária",
+   "div": [
+    "0450101"
+   ],
+   "indicator": "# Grupos de Organizações desportivas Comunitária, # Organização Joventude, # Jestores e agentes, # jovens participantes",
+   "baseline": "1 Grupo de Organização desportivas Comunitária, N/A, N/A, N/A",
+   "target": "1 Grupo de Organização desportivas Comunitária, N/A, N/A, N/A",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 456
+  },
+  {
+   "code": "9820101",
+   "programme": "982",
+   "subprogramme": "98201",
+   "subprogramme_name": "Turismo",
+   "name": "Promoção dos locias de interesse turistico",
+   "div": [
+    "0450701"
+   ],
+   "indicator": "# de promoções realizadas",
+   "baseline": "4 promoções realizadas.",
+   "target": "4 promoções realizadas.",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 457
+  },
+  {
+   "code": "9820521",
+   "programme": "982",
+   "subprogramme": "98205",
+   "subprogramme_name": "Promoção de Timor-Leste como destino turístico",
+   "name": "Konstrusaun moru, Pavin no posto siguransa iha Edificio Posto Cristo rei",
+   "div": [
+    "0451301"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 33451.0
+   },
+   "page": 457
+  },
+  {
+   "code": "9831211",
+   "programme": "983",
+   "subprogramme": "98312",
+   "subprogramme_name": "Regulamentação, Controlo, Inspeção e Monitorização das atividades económicas",
+   "name": "Gestão dos mercados e autorização de feiras",
+   "div": [
+    "0450701"
+   ],
+   "indicator": "1)# de mercados geridos segundo as normas em vigor 2) # de feiras autorizadas",
+   "baseline": "1) 2 mercados geridos 2) 1 feira autorizada",
+   "target": "1) 2 mercados geridos 2) 2 feiras autorizadas",
+   "amounts": {
+    "10": 5000.0,
+    "20": 53478.0,
+    "40": 100000.0
+   },
+   "page": 457
+  },
+  {
+   "code": "A390204",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Promoção do cultivo dos terrenos baldios e introdução de novas culturas",
+   "div": [
+    "0450401"
+   ],
+   "indicator": "% de terreno fértil cultivado",
+   "baseline": "4% terreno fértil cultivado",
+   "target": "4% terreno fértil cultivado",
+   "amounts": {
+    "10": 1000.0,
+    "20": 33038.0
+   },
+   "page": 458
+  },
+  {
+   "code": "A390205",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Coordenação das atividades de extensão e mecanização agricola",
+   "div": [
+    "0450401"
+   ],
+   "indicator": "1) % de extensionistas ativos nos respetivos locais de trabalho; 2) Hectares de terreno lavrado mediante mecanização agrícola.",
+   "baseline": "1) 3% extensionistas ativos 2) 50 Hectares de terreno lavrado",
+   "target": "1) 4% extensionistas ativos 2) 150 Hectares de terreno lavrado",
+   "amounts": {
+    "20": 4970.0
+   },
+   "page": 458
+  },
+  {
+   "code": "A390206",
+   "programme": "A39",
+   "subprogramme": "A3902",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Agricultura e Horticultura",
+   "name": "Promoção de iniciativas agroindustriais",
+   "div": [
+    "0450401"
+   ],
+   "indicator": "# de iniciativas agroindustriais",
+   "baseline": "2 iniciativas agroindustriais",
+   "target": "2 iniciativas agroindustriais",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 458
+  },
+  {
+   "code": "A390305",
+   "programme": "A39",
+   "subprogramme": "A3903",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Café e de Plantas Industriais e Anuais",
+   "name": "Gestão de viveiros de plantas agricolas e plantas florestais",
+   "div": [
+    "0450401"
+   ],
+   "indicator": "# de viveiros produzindo plantas agrícolas e plantas florestais.",
+   "baseline": "6 viveiros produzindo",
+   "target": "8 viveiros produzindo",
+   "amounts": {
+    "20": 9530.0
+   },
+   "page": 458
+  },
+  {
+   "code": "A390701",
+   "programme": "A39",
+   "subprogramme": "A3907",
+   "subprogramme_name": "Implementação da Política de Segurança Alimentar",
+   "name": "Efetivação da fiscalização da merenda escolar nas escolas",
+   "div": [
+    "0451001"
+   ],
+   "indicator": "# das merendas escolares fiscalizadas nas escolas",
+   "baseline": "30merendas 30 merendas escolares fiscalizadas",
+   "target": "60 merendas escolares fiscalizadas",
+   "amounts": {
+    "20": 11900.0
+   },
+   "page": 459
+  },
+  {
+   "code": "A390702",
+   "programme": "A39",
+   "subprogramme": "A3907",
+   "subprogramme_name": "Implementação da Política de Segurança Alimentar",
+   "name": "Realização periodica de análise da agua no abastecimento público e agua engarrafada",
+   "div": [
+    "0451001"
+   ],
+   "indicator": "# de análises realizadas",
+   "baseline": "6 análises realizadas",
+   "target": "14 análises realizadas",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 459
+  },
+  {
+   "code": "A390800",
+   "programme": "A39",
+   "subprogramme": "A3908",
+   "subprogramme_name": "Abastecimento Sustentável de Água à Agricultura e Melhor Eficiência no Uso da Água",
+   "name": "Aproveitamento dos recursos hidricos para fins agricolas",
+   "div": [
+    "0450401"
+   ],
+   "indicator": "1) # de irrigações construídas, conservadas ou reparadas; 2) % de irrigações em bom funcionamento.",
+   "baseline": "1) 572 irrigações construídas 2)28% irrigações",
+   "target": "1)165 irrigações construídas (underground water) 2) 30% irrigações",
+   "amounts": {
+    "20": 3500.0
+   },
+   "page": 459
+  },
+  {
+   "code": "A400205",
+   "programme": "A40",
+   "subprogramme": "A4002",
+   "subprogramme_name": "Produção e Produtividade dos Produtos de Animais",
+   "name": "Promoção e instalação de centros de produção pecuária",
+   "div": [
+    "0450401"
+   ],
+   "indicator": "# de centros de produção pecuária instalados",
+   "baseline": "4 centros Comunitario de produção pecuária instalados",
+   "target": "6 centros Comunitario de produção pecuária instalados",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 459
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "025.0.0",
+   "statement": "Fortalecimento da governação descentralizada através de um quadro operacional de governo local, possibilitado por (i) instrumentos de implementação para a descentralização e as finanças municipais, (ii) coordenação intergovernamental funcional e (iii) melhoria da capacidade municipal para planear e executar orçamentos baseados em programas",
+   "indicator": "Acordos e legislação em vigor para a descentralização administrativa",
+   "baseline": "",
+   "target": "",
+   "page": 442
+  },
+  {
+   "kind": "output",
+   "code": "02501.0.0",
+   "statement": "Subsídios para infraestruturas comunitárias e desenvolvimento local concedidos através do PNDS, com garantia de qualidade, participação inclusiva e acordos verificados de operação/manutenção",
+   "indicator": "1) # de suco que recebem transferência de subsídios operacionais e de subsídios da infraestruturas. 2) # de projetos construidos / implementados a nivel sucos ou aldeias. 3) # de comunidades capacitados nas areas de gestao dos projetos. 4) # de setores privados envolvidos no PNDS.",
+   "baseline": "1) 31 sucos que recebem transferência de subsídios operacionais e de subsídios da infraestruturas. 2) 4 projetos construidos / implementados a nivel sucos ou aldeias. 3) 75% comunidades capacitados nas areas de gestao dos projetos. 4) 18 setores privados envolvidos no PNDS.",
+   "target": "1) 18 sucos que recebem transferência de subsídios operacionais e de subsídios da infraestruturas. 2) 10 projetos construidos / implementados a nivel sucos ou aldeias. 3) 75% comunidades capacitados nas areas de gestao dos projetos. 4) 18 setores privados envolvidos no PNDS.",
+   "page": 442
+  },
+  {
+   "kind": "output",
+   "code": "02502.0.0",
+   "statement": "Sistemas administrativos municipais e submunicipais fortalecidos por meio de monitoramento, suporte técnico e adoção de procedimentos padrão de planejamento, relatórios e administração",
+   "indicator": "1) # de municipios, postos administrativos e sucos munitorizados e avaliados. 2) # de Postos Administrativos que recebem fundos administrativos",
+   "baseline": "1) 1Municipio ,5 postos administrativos e 31 sucos monitorizados e avaliados",
+   "target": "1) 1Municipio ,5 postos administrativos e 31 sucos monitorizados e avaliados",
+   "page": 443
+  },
+  {
+   "kind": "output",
+   "code": "02503.0.0",
+   "statement": "Planos de investimento municipal (PIM) e projetos PDIM entregues com aquisições em conformidade, controlo de qualidade e monitorização de rotina para garantir infraestruturas municipais oportunas e de alta qualidade",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 444
+  },
+  {
+   "kind": "output",
+   "code": "02503.0.1",
+   "statement": "1) Assegurar a qualidade da gestão e execução do plano do projeto com base nas políticas, procedimentos e",
+   "indicator": "1) # do desenvolvimento do sector privado local atraves da participação no programa do",
+   "baseline": "1) 10 desenvolvimento do sector privado local atraves da participação no programa do",
+   "target": "1) 24 desenvolvimento do sector privado local atraves da participação no programa do",
+   "page": 445
+  },
+  {
+   "kind": "outcome",
+   "code": "026.0.0",
+   "statement": "Maior conectividade nacional e regional por meio de infraestruturas rodoviárias e pontes seguras, resistentes às alterações climáticas e bem conservadas, em conformidade com as normas internacionais",
+   "indicator": "2) Quilómetros (km) de estradas e pontes em bom ou bom estado (em 2028): a. # km de via rápida, b. # km de estrada e pontes nacional, c. # km de estrada e pontes municipal, d. # km de estradas e pontes urbanas e. # km de estradas e pontes rurais",
+   "baseline": "",
+   "target": "",
+   "page": 447
+  },
+  {
+   "kind": "output",
+   "code": "02602.0.0",
+   "statement": "Hein informasaun husi MAE hodi atualiza output",
+   "indicator": "Quilómetros (km) de estradas e pontes rurais construídas",
+   "baseline": "25 Quilometros, 28 pontes,10 Quilómetros",
+   "target": "25 Quilometros, 28 pontes,10 Quilómetros",
+   "page": 447
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.0",
+   "statement": "Diminuição da criminalidade geral, profissionalização das forças e serviços de segurança bem como a proteção e alívio da população",
+   "indicator": "a) redução do impacto de grandes acidentes e desastres; b) capacidade de resposta e mitigação dos acidentes e desastres; c) prevenção dos acidentes e desastres.",
+   "baseline": "",
+   "target": "",
+   "page": 447
+  },
+  {
+   "kind": "output",
+   "code": "36624.0.0",
+   "statement": "Os sistemas de prevenção e gestão de desastres naturais respondem de forma eficiente e atempada às necessidades das populações mais afetadas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 448
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.2",
+   "statement": "Toda a terra em Timor-Leste é registada e os bens do Estado são bem mantidos e geridos",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 448
+  },
+  {
+   "kind": "output",
+   "code": "39214.0.0",
+   "statement": "Até 2028, um cadastro sistemático e atualizado abrangerá uma parcela cada vez maior de terrenos e municípios",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 448
+  },
+  {
+   "kind": "outcome",
+   "code": "502.0.0",
+   "statement": "Sistema de transporte terrestre em bom funcionamento que contribui a ligar as comunidades, apoiar o desenvolvimento rural, a indústria e o turismo e fornecer acesso ao mercado e apoiar os serviços públicos de fornecimento",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 448
+  },
+  {
+   "kind": "output",
+   "code": "50202.0.0",
+   "statement": "Estrutura integrada de transportes terrestres desenvolvida e implementada",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 448
+  },
+  {
+   "kind": "output",
+   "code": "50202.0.1",
+   "statement": "Melhoria dos parques de estacionamento para aliviar o congestionamento do tráfego, aumentar a segurança e cumprir os regulamentos em todos os municípios, incluindo a RAEOA",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 449
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 449
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo",
+   "baseline": "ate 2023:75% dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo",
+   "target": "100% dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo",
+   "page": 449
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "ate 2023 % do Plano Anual implementado",
+   "baseline": "ate 2023:87.2% Plano Anual implementado",
+   "target": "95% Plano Anual implementado",
+   "page": 450
+  },
+  {
+   "kind": "outcome",
+   "code": "520.0.0",
+   "statement": "Aumentar o acesso, a participação e a prontidão escolar das crianças dos 3 aos 5 anos, garantindo que mais crianças, especialmente nas zonas rurais, recebem",
+   "indicator": "1).Taxa preparação das crianças com idades as três e os cinco anos; 2).Total númeru labarik idade 3-5 anos partisipa iha",
+   "baseline": "1).85% 2).6361 labarik idade 3-5 anos partisipa iha programa intensivo; 3).438 labarik 3-5 iha área rurais",
+   "target": "1).90% 2).6393 labarik idade 3-5 anos partisipa iha programa intensivo; 3).438 labarik 3-5 iha área rurais",
+   "page": 450
+  },
+  {
+   "kind": "output",
+   "code": "52016.0.1",
+   "statement": "1. Fornecer refeições ou lanches aos alunos durante o dia escolar &amp;#13;&amp;#10;2. Melhoram rapidamente a saúde física das crianças, que se tornam mais felizes, menos esfomeadas, mais activas e entusiasmadas com a aprendizagem",
+   "indicator": "1) Todas as escolas implementam programas de almoço escolar 2) % dos alunos concentram-se mais e participam ativamente nas aulas",
+   "baseline": "1) 51 escolas implementam programas de almoço escolar 2) 98.93% dos alunos concentram-se mais e participam ativamente nas aulas",
+   "target": "1) 51 escolas implementam programas de almoço escolar 2) 98.93% dos alunos concentram-se mais e participam ativamente nas aulas",
+   "page": 451
+  },
+  {
+   "kind": "output",
+   "code": "52021.0.0",
+   "statement": "Melhorar a qualidade do ensino, manter as instalações e melhorar a gestão das escolas",
+   "indicator": "1) % de estudantes que melhoraram a qualidade do seu ensino 2) # Número de inspecções à concessão de subsídios escolares realizadas",
+   "baseline": "1) 95% de estudantes que melhoraram a qualidade do seu ensino 2) 4inspecções à concessão de subsídios escolares realizadas",
+   "target": "1) 98% de estudantes que melhoraram a qualidade do seu ensino 2) 4inspecções à concessão de subsídios escolares realizadas",
+   "page": 451
+  },
+  {
+   "kind": "outcome",
+   "code": "521.0.0",
+   "statement": "Até 2028, o acesso, a participação, a permanência (continuidade) e a conclusão do ensino básico (do 1º ao 9º ano) aumentarão, incluindo a literacia e a literacia matemática básica para os alunos.",
+   "indicator": "1.Aumento da taxa de matrícula líquida; 2. Taxa aprovação final; 3. Total no alunos 9 ano de EB.",
+   "baseline": "",
+   "target": "",
+   "page": 451
+  },
+  {
+   "kind": "output",
+   "code": "52117.0.0",
+   "statement": "Os alunos do ensino básico recebem refeições escolares regulares e nutritivas que contribuem para a participação/frequência, concentração e aprendizagem.",
+   "indicator": "1) Todas as escolas implementam programas de almoço escolar 2) % dos alunos concentram-se mais e participam ativamente nas aulas",
+   "baseline": "1) Todas as escolas implementam programas de almoço escolar 2) 95% dos alunos concentram-se mais e participam ativamente nas aulas",
+   "target": "1) Todas as escolas implementam programas de almoço escolar 2) 98% dos alunos concentram-se mais e participam ativamente nas aulas",
+   "page": 451
+  },
+  {
+   "kind": "output",
+   "code": "52125.0.0",
+   "statement": "Infra- estruturas escolares básicas construídas, reabilitadas ou alargadas a nível municipal para melhorar o acesso a um ensino seguro e de qualidade",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 452
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el22109: _ Infra-estruturas escolares básicas construídas, reabilitadas ou alargadas a nível municipal para melhorar o acesso a um ensino seguro e de qualidade",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 452
+  },
+  {
+   "kind": "outcome",
+   "code": "523.0.1",
+   "statement": "Até 2028, o acesso, a participação e a conclusão de programas de educação para jovens e adultos aumentarão, permitindo que os jovens e adultos fora da escola, especialmente as mulheres, alcancem a literacia, as competências numéricas e as competências para a vida.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 453
+  },
+  {
+   "kind": "output",
+   "code": "52308.0.1",
+   "statement": "Máximo usufruto dos Centros de Aprendizagem Comunitários",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 453
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "Taxa Mortalidade Inan Taxa Mortalidade Oan Taxa Stunting(Raes badak)",
+   "baseline": "",
+   "target": "",
+   "page": 453
+  },
+  {
+   "kind": "output",
+   "code": "52802.0.0",
+   "statement": "Prestação de um pacote abrangente de serviços de cuidados de saúde primários (consulta, prevenção, tratamento básico e encaminhamento) com qualidade e equidade em todas as unidades de saúde, incluindo áreas remotas",
+   "indicator": "Consultas ambulatoriais por capital por ano a cada unidade de saúde,",
+   "baseline": "",
+   "target": "",
+   "page": 453
+  },
+  {
+   "kind": "output",
+   "code": "52808.0.0",
+   "statement": "Assegura o funcionamento eficaz dos centros de saúde",
+   "indicator": "Percentagem (%) de centros de saúde comunitários, incluindo",
+   "baseline": "",
+   "target": "",
+   "page": 453
+  },
+  {
+   "kind": "output",
+   "code": "52809.0.0",
+   "statement": "Prestar serviços de saúde de elevada qualidade, acessíveis e equitativos para responder eficazmente às necessidades e aos desafios da população.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 454
+  },
+  {
+   "kind": "output",
+   "code": "52814.0.0",
+   "statement": "Mecanismos eficazes de promoção da saúde e envolvimento da comunidade (interfaces PSF/MBKS/SISCa e campanhas temáticas) que aumentam a adoção de práticas saudáveis",
+   "indicator": "Numeru konsulta kada populasaun kada tinan % de envolvimentos activos da comunidade em iniciativas relacionadas com a saúde realizadas anualmente.",
+   "baseline": "",
+   "target": "",
+   "page": 455
+  },
+  {
+   "kind": "outcome",
+   "code": "798.0.2",
+   "statement": "Acesso sustentável e equitativo a água potável e saneamento básico melhorados por meio de uma gestão eficaz dos recursos hídricos e prestação de serviços confiáveis&#13;&#10;",
+   "indicator": "Acesso a água potável para todos os cidadãos",
+   "baseline": "",
+   "target": "Todas as comunidades têm acesso abastecimento de água potável e o saneamento básico",
+   "page": 455
+  },
+  {
+   "kind": "output",
+   "code": "79804.0.0",
+   "statement": "Hein informasaun husi MAE hodi atualiza nia Output",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 455
+  },
+  {
+   "kind": "output",
+   "code": "79811.0.1",
+   "statement": "1) Implementação da Política Nacional de Saneamento Básico&amp;#13;&amp;#10;2) Expectativas de serviço dos clientes de água e saneamento satisfeitas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 455
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.3",
+   "statement": "1) Os sobreviventes e as vítimas de guerra e todas os cidadãos que se encontra na situação de vulnerabilidade têm acesso aos serviços e oportunidades básicos e recebem apoio de assistência social, direitos econômicos e direito à vida, não passam fome e um padrão de vida adequado para que possam gozar dos seus direitos fundamentais e realizar o seu",
+   "indicator": "Populações em situação de vulnerabilidade foram recebidos o apoio de assintência social",
+   "baseline": "",
+   "target": "",
+   "page": 455
+  },
+  {
+   "kind": "output",
+   "code": "98001.0.0",
+   "statement": "Output hein informasaun husi MAE",
+   "indicator": "1) # de famílias vulneráveis apoiadas 2) % de famílias vulneráveis com acesso a serviços funerários",
+   "baseline": "",
+   "target": "",
+   "page": 456
+  },
+  {
+   "kind": "output",
+   "code": "98039.0.0",
+   "statement": "Garantir o acesso a carros funerários, caixões e transporte para as famílias vulneráveis",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 456
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el200023: Melhoria moris saudavel _ nasional, envolvimentu sosiedade, koezaun sosiál liuhosi partisipasaun ne'ebé luan no profisionalizasaun desportu nian",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 456
+  },
+  {
+   "kind": "output",
+   "code": "98004.0.0",
+   "statement": "A organização desportiva já tem capacidade institucional e agentes desportivos existentes em recursos adequados e que podem vir a competir no evento",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 456
+  },
+  {
+   "kind": "outcome",
+   "code": "982.0.0",
+   "statement": "&#34; Os destinos, produtos e serviços turísticos em Timor-Leste são melhor regulamentados, desenvolvidos, comercializados e geridos de forma sustentável, com uma maior participação das comunidades e do setor privado, resultando em aumentos mensuráveis na atividade dos visitantes e nas despesas com turismo.",
+   "indicator": "% de aumenta da receitas domesticas do turismo, #destinasaun turistico, #atrasaun turistico, #visitor turistica e exploracao cultural dos timorenses",
+   "baseline": "",
+   "target": "",
+   "page": 457
+  },
+  {
+   "kind": "output",
+   "code": "98201.0.0",
+   "statement": "Hein informasaun husi MAE fornese output",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 457
+  },
+  {
+   "kind": "output",
+   "code": "98205.0.0",
+   "statement": "Implementação de planos de acção para a promoção e desenvolvimento do turismo.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 457
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.5",
+   "statement": "Aumentar a contribuição do setor comercial para o crescimento econômico",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 457
+  },
+  {
+   "kind": "output",
+   "code": "98312.0.1",
+   "statement": "Garante a conformidade com os regulamentos nos setores industriais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 457
+  },
+  {
+   "kind": "outcome",
+   "code": "A39.0.0",
+   "statement": "Aumenta a produção e produtividade sustentável de culturas prioritárias (arroz, milho, horticultura) e melhora o rendimento rural através do",
+   "indicator": "% de informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente.",
+   "baseline": "100% informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente.",
+   "target": "100% informações mensais para pagamento (folhas de horas/ folhas de ausência) entregues ao MF atempadamente.",
+   "page": 457
+  },
+  {
+   "kind": "output",
+   "code": "A3902.0.0",
+   "statement": "Aumento da produção e da produtividade do arroz, milho, leguminosas e culturas hortícolas através da intensificação sustentável e da expansão controlada da área cultivada.",
+   "indicator": "1). # Hectares arroz cultivada e produzido de utilizando o SRI e o ICM, as técnicas híbridas e convencionais (area/productividade); 2). # Hectares milho cultivada e produzido através de um sistema de intensificação e expandir a reserva de terras (area/productividade); 3). # expansão de legumes (soja, feijão- mungo, amendoim) e horticolas (vegetais, batata europa ect)(area/productividade).",
+   "baseline": "1). 17 Hectares arroz cultivada e produzido de utilizando o SRI e o ICM, as técnicas híbridas e convencionais (area/productividade); 2). # Hectares milho cultivada e produzido através de um sistema de intensificação e expandir a reserva de terras (area/productividade); 3). # expansão de legumes (soja, feijão- mungo, amendoim) e horticolas (vegetais, batata europa ect)(area/productividade).",
+   "target": "1). 45 Hectares arroz cultivada e produzido de utilizando o SRI e o ICM, as técnicas híbridas e convencionais (area/productividade); 2). 150 Hectares milho cultivada e produzido através de um sistema de intensificação e expandir a reserva de terras (area/productividade); 3).80 expansão de legumes (soja, feijão- mungo, amendoim) e horticolas (vegetais, batata europa ect)(area/produatividade).",
+   "page": 458
+  },
+  {
+   "kind": "output",
+   "code": "A3903.0.0",
+   "statement": "Melhoria da produtividade, qualidade e acesso ao mercado do café e das culturas industriais orientadas para nichos de mercado de exportação.",
+   "indicator": "1).# Produtividade do café e produção orientada para o mercado especializado (niche market); 2) # area de Expansão da plantação de café (área e mudas) 3) # area de rehabilitacao de plantação de café (área e mudas) 4).Expansão da plantação de Plantas industriais (área e mudas)",
+   "baseline": "1.N/A 2.47 area de Expansão da plantação de café (área e mudas) 3. N/A 4.2",
+   "target": "1) 10 Produtividade do café e produção orientada para o mercado especializado (niche market); 2) 49.5 Expansão da plantação de café (área e mudas) 3) 2 area de rehabilitacao de plantação de café (área e mudas ) 4) 2 Expansão da plantação de Plantas industriais (área e mudas)",
+   "page": 458
+  },
+  {
+   "kind": "output",
+   "code": "A3907.0.0",
+   "statement": "Assegurar a Implementação da Política de Segurança Alimentar",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 459
+  },
+  {
+   "kind": "output",
+   "code": "A3908.0.0",
+   "statement": "1) Aumento do número de parcelas de terrenos irrigados; &amp;#13;&amp;#10;2) Facilitação de uma dupla colheita onde os recursos de água são assegurados; &amp;#13;&amp;#10;3) Desenvolvimento apropriado de mecanismos institucionais do local para uma gestão eficiente dos sistemas de irrigação.&amp;#34;",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 459
+  },
+  {
+   "kind": "outcome",
+   "code": "A40.0.0",
+   "statement": "Aumento da produção e produtividade sustentáveis da pecuária, com melhoria da saúde animal e da segurança alimentar, contribuindo para um maior abastecimento interno de carne, leite e ovos.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 459
+  },
+  {
+   "kind": "output",
+   "code": "A4002.0.0",
+   "statement": "Melhoria das práticas de criação e alimentação do gado adotadas pelos produtores, aumentando o desempenho dos rebanhos e a produção comercializada",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 459
+  }
+ ]
+}

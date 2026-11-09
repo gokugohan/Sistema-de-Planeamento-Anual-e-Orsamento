@@ -1,0 +1,2181 @@
+{
+ "year": 2027,
+ "code": "012",
+ "name": "Ministério das Finanças",
+ "abbr": "MF",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   73,
+   100
+  ]
+ },
+ "units": [
+  {
+   "code": "GMF",
+   "div": "0120101",
+   "name": "Gabinete do Ministro das Finanças",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GVM",
+   "div": "0120201",
+   "name": "Gabinete de Vice Ministro",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DGSC",
+   "div": "0120301",
+   "name": "Direção Geral de Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "0120302",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNPOAD",
+   "div": "0120303",
+   "name": "Direção Nacional de Planeamento, Orçamento e Avaliação de Desempenho",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNAGA",
+   "div": "0120308",
+   "name": "Direção Nacional de Administração e Gestão de Arquivo",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNAGC",
+   "div": "0120309",
+   "name": "Direção Nacional de Aprovisionamento e Gestão de Contratos",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNF",
+   "div": "0120310",
+   "name": "Direção Nacional de Finanças",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNLMGP",
+   "div": "0120311",
+   "name": "Direção Nacional de Logística, Manutenção e Gestão de Projetos",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DGPO",
+   "div": "0120401",
+   "name": "Direção-Geral de Planeamento e Orçamento",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNO",
+   "div": "0120402",
+   "name": "Direção Nacional do Orçamento",
+   "type": "National Directorate",
+   "parent": "DGPO"
+  },
+  {
+   "code": "DNPE",
+   "div": "0120403",
+   "name": "Direção Nacional de Políticas Económicas",
+   "type": "National Directorate",
+   "parent": "DGPO"
+  },
+  {
+   "code": "DNP",
+   "div": "0120404",
+   "name": "Direção Nacional do Pleaneamento",
+   "type": "National Directorate",
+   "parent": "DGPO"
+  },
+  {
+   "code": "DGT",
+   "div": "0120501",
+   "name": "Direção-Geral do Tesouro",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNCNC",
+   "div": "0120502",
+   "name": "Direção Nacional de Contabilidade e Normalização Contabilística",
+   "type": "National Directorate",
+   "parent": "DGT"
+  },
+  {
+   "code": "DNMDF",
+   "div": "0120504",
+   "name": "Direção Nacional Monitorização da Decentralização Financeira",
+   "type": "National Directorate",
+   "parent": "DGT"
+  },
+  {
+   "code": "DNGTDP",
+   "div": "0120506",
+   "name": "Direção Nacional de Gestão da Tesouraria e da Dívida Pública",
+   "type": "National Directorate",
+   "parent": "DGT"
+  },
+  {
+   "code": "DNPADGE",
+   "div": "0120507",
+   "name": "Direção Nacional de Pagamentos e Administração da Dotação Geral do Estado",
+   "type": "National Directorate",
+   "parent": "DGT"
+  },
+  {
+   "code": "GCAT",
+   "div": "0120602",
+   "name": "Gabinete Comissário da Autoridade Tributária",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNRD",
+   "div": "0120603",
+   "name": "Direção Nacional de Receitas Domésticas",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRPM",
+   "div": "0120604",
+   "name": "Direção Nacional de Receitas Petrolíferas e Minerais",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNJT",
+   "div": "0120605",
+   "name": "Direção Nacional de Justiça Tributária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAIT",
+   "div": "0120606",
+   "name": "Direção Nacional de Auditoria e Inspeção Tributária",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNIVA",
+   "div": "0120607",
+   "name": "Direção Nacional do Imposto sobre o Valor Acrescentado",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0120608",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "UPT",
+   "div": "0120609",
+   "name": "Unidade de Preços de Transferência",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UAI",
+   "div": "0120610",
+   "name": "Unidade de Auditoria Interna",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "URH",
+   "div": "0120611",
+   "name": "Unidade de Recursos Humanos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UJ",
+   "div": "0120612",
+   "name": "Unidade Jurídica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "USIRC",
+   "div": "0120613",
+   "name": "Unidade de Sistemas de Informação e Registo de Contribuintes",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GR",
+   "div": "0120614",
+   "name": "Gabinete de Recurso",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "URIT",
+   "div": "0120615",
+   "name": "Unidade de Relações Internacionais Tributárias",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UCRP",
+   "div": "0120616",
+   "name": "Unidade de Comunicação e Relações Públicas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GCAA",
+   "div": "0120702",
+   "name": "Gabinete Comissário da Autoridade Aduaneira",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNO-03",
+   "div": "0120703",
+   "name": "Direção Nacional de Operações",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGR",
+   "div": "0120704",
+   "name": "Direção Nacional de Gestão de Risco",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGCA",
+   "div": "0120705",
+   "name": "Direção Nacional de Gestão e Conformidade Aduaneira",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAFL",
+   "div": "0120706",
+   "name": "Direção Nacional de Administração, Finanças e Logística",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "UAIE",
+   "div": "0120707",
+   "name": "Unidade de Auditoria Interna e Ética",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UJ-08",
+   "div": "0120708",
+   "name": "Unidade Jurídica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UR",
+   "div": "0120709",
+   "name": "Unidade de Recurso",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "URIC",
+   "div": "0120710",
+   "name": "Unidade de Relações Institucionais e Comunicações",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UIEA",
+   "div": "0120711",
+   "name": "Unidade de Informática e Estatística Aduaneira",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UGRHF",
+   "div": "0120712",
+   "name": "Unidade de Gestão de Recursos Humanos e Formação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CGPIF",
+   "div": "0120713",
+   "name": "Comissão Gestão do Posto Integrado Fronteira",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GDGPE",
+   "div": "0121201",
+   "name": "Gabinete de Direção-Geral do Património de Estado",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNABM",
+   "div": "0121204",
+   "name": "Direção Nacional de Alienação de Bens Móveis",
+   "type": "National Directorate",
+   "parent": "GDGPE"
+  },
+  {
+   "code": "DNGVE",
+   "div": "0121205",
+   "name": "Direção Nacional de Gestão de Veículos do Estado",
+   "type": "National Directorate",
+   "parent": "GDGPE"
+  },
+  {
+   "code": "DNPGIPE",
+   "div": "0121206",
+   "name": "Direção Nacional de Política, Gestão e Inventário do Património do Estado",
+   "type": "National Directorate",
+   "parent": "GDGPE"
+  },
+  {
+   "code": "GDGGMRE",
+   "div": "0121301",
+   "name": "Gabinete de Direção-Geral do Gestão e Mobilização de Recursos Externos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGEMAE",
+   "div": "0121302",
+   "name": "Direção Nacional de Gestaun da Eficácia e Mobilização da Ajuda Externa",
+   "type": "National Directorate",
+   "parent": "GDGGMRE"
+  },
+  {
+   "code": "DNPPP",
+   "div": "0121303",
+   "name": "Direção Nacional da Parceria Público-Privada",
+   "type": "National Directorate",
+   "parent": "GDGGMRE"
+  },
+  {
+   "code": "DNPME",
+   "div": "0121304",
+   "name": "Direção Nacional de Política e Mobilização de Empréstimos",
+   "type": "National Directorate",
+   "parent": "GDGGMRE"
+  },
+  {
+   "code": "UMAD",
+   "div": "0121701",
+   "name": "Unidade de Monitorização e Avaliação Desempenho",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UCRP-01",
+   "div": "0121801",
+   "name": "Unidade de Comunicação e Relações Públicas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CCGFP",
+   "div": "0121901",
+   "name": "Centro de Capacitação em Gestão das Finanças Públicas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UAJ",
+   "div": "0122001",
+   "name": "Unidade de Apoio Jurídico",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPGFP",
+   "div": "0122101",
+   "name": "Unidade de Política e Gestão do Fundo Petrolífero",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "USIIGF",
+   "div": "0122201",
+   "name": "Unidade de Sistemas Integrados de Informação de Gestão Financeira",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UIG",
+   "div": "0122401",
+   "name": "Unidade de Inspeção-Geral",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPRGFP",
+   "div": "0122601",
+   "name": "Unidade da Política de Reforma da Gestão das Finanças Públicas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GINETL",
+   "div": "0122701",
+   "name": "Gabinete Instituto Nacional de Estatística de Timor-Leste, I.P",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNSC",
+   "div": "0122702",
+   "name": "Direção Nacional Serviços Corporativos",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNM",
+   "div": "0122703",
+   "name": "Direção Nacional Metodologia",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAJ",
+   "div": "0122704",
+   "name": "Direção Nacional de Apoio Jurídico",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNEE",
+   "div": "0122705",
+   "name": "Diresaun Nacional Estatísticas Económicas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DESD",
+   "div": "0122706",
+   "name": "Direção de Estatísticas Sociais e Demográficas",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DNSR",
+   "div": "0122707",
+   "name": "Direção Nacional de Sistemas e Reporte",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNERM",
+   "div": "0122708",
+   "name": "Direção Nacional Estatística Regionais e Municipais",
+   "type": "National Directorate",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "023": "Gestão das finanças públicas",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "02323X1",
+   "programme": "023",
+   "subprogramme": "02323",
+   "subprogramme_name": "Gestão património do Estado",
+   "name": "DGGPE non-financial asset management - data survey and system establishment",
+   "div": [
+    "0121201"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 73
+  },
+  {
+   "code": "0232301",
+   "programme": "023",
+   "subprogramme": "02323",
+   "subprogramme_name": "Gestão património do Estado",
+   "name": "Jestão de a alineação bens e moveis do estado",
+   "div": [
+    "0121201",
+    "0121204"
+   ],
+   "indicator": "\"1. Bens Moveis ne'ebe prenxe ona rekezitus Alineasaun identifikadu, klasifikadu no Organiza ho diak 2. Lista Bens Moveis ba Leilaun preparadu no submetidu 3. Salva guarda Bens Moveis Estadu no hetan reseitas minimu ba Estadu 4. Relatoriu receitas leilaun submetidu \"",
+   "baseline": "\"1. Bens Moveis ne'ebe prenxe ona rekezitus Alineasaun identifikadu, klasifikadu no Organiza ho diak tinan 2025. 2. Lista Bens Moveis ba Leilaun preparadu no submetidu tinan 2025. 3. Salva guarda Bens Moveis Estadu no hetan reseitas minimu ba Estadu 4. Relatoriu receitas leilaun submetidu \"",
+   "target": "\"1. Bens Moveis ne'ebe prenxe ona rekezitus Alineasaun identifikadu, klasifikadu no Organiza ho diak tinan 2027. 2. Lista Bens Moveis ba Leilaun preparadu no submetidu 3. Salva guarda Bens Moveis Estadu no hetan reseitas minimu ba Estadu 4. Relatoriu receitas leilaun submetidu \"",
+   "amounts": {
+    "10": 259487.0,
+    "20": 31000.0
+   },
+   "page": 74
+  },
+  {
+   "code": "0232304",
+   "programme": "023",
+   "subprogramme": "02323",
+   "subprogramme_name": "Gestão património do Estado",
+   "name": "Jestaun no Administrasaun Veikulu Estadu",
+   "div": [
+    "0121205"
+   ],
+   "indicator": "\"1. % Verifikasaun no análize ba Relatóriu Manutensaun Téknika ba veíkulu Estadu nian husi entidade públika sira. 2. lista numeru Limite veiculo Estadu preparadu no verifkadu 3. Asistensia Teknika no Inspesaun Fizika ba Veikulu Estadu realizadu 4. Sevisu Manutensaun Frota Nacional realizadu. 5.# Servisu manutensaun no reparasaun veiculo estadu tuir entidade Publiku Sira. \"",
+   "baseline": "\"1. 100% Verifka no analiza Relatoriu Jestaun Tekniku Kareta Estadu entidade publik. 2. lista numeru Limite veiculo Estadu preparadu no verifkadu 3. Asistensia Teknika no Inspesaun Fizika ba Veikulu Estadu realizadu. 4. atendementu Frota Nacional realiza 5. 880 atendementu manutensaun no reparasaun veiculo estadu tuir entidade publiku. \"",
+   "target": "To'o 31 Dezembru 2027, 100% hosi entrega sira ne'ebé aprova ona ba \"Manutensaun no Administrasaun ba Veíkulu Estadu nian\" kompleta ona iha data vensimentu sira, aseguradu ho kualidade, aseita formalmente, no hetan apoiu hosi rejistu sira ne'ebé bele verifika.",
+   "amounts": {
+    "10": 69124.0
+   },
+   "page": 74
+  },
+  {
+   "code": "0232306",
+   "programme": "023",
+   "subprogramme": "02323",
+   "subprogramme_name": "Gestão património do Estado",
+   "name": "Inventariza no valorizasaun patrimonio Estadu",
+   "div": [
+    "0121206"
+   ],
+   "indicator": "\"1). #Sistema komputadorizadu ba inventáriu patrimóniu nian—estudu",
+   "baseline": "\"1). 85%Sistema komputadorizadu ba inventáriu patrimóniu nian—estudu",
+   "target": "\"1). Estudu atualizadu kona-ba sistema inventáriu imobiliáriu ba patrimóniu estadu nian 2).",
+   "amounts": {
+    "10": 133640.0,
+    "20": 10500.0
+   },
+   "page": 74
+  },
+  {
+   "code": "0232307",
+   "programme": "023",
+   "subprogramme": "02323",
+   "subprogramme_name": "Gestão património do Estado",
+   "name": "Reforsa monitorizasaun no fiskalizasaun ba uzu patrimoniu estadu",
+   "div": [
+    "0121201",
+    "0121205"
+   ],
+   "indicator": "\"1. Ezekusaun rigorozu ba sansaun ba irregularidade sira iha utilizasaun patrimóniu estadu nian ne’ebé la tuir regra no prosedimentu ne’ebé estabelese ona 2. Halo fiskalizasaun regulár kona-ba utilizasaun patrimóniu estadu nian 3. Utilizasaun patrimóniu estadu nian ne’ebé efisiente no efetivu \"",
+   "baseline": "\"1. Ezekusaun rigorozu ba sansaun ba irregularidade sira iha utilizasaun patrimóniu estadu nian ne’ebé la tuir regra no prosedimentu ne’ebé estabelese ona 2025 2. Halo fiskalizasaun regulár kona-ba utilizasaun patrimóniu estadu nian 2026 3. Utilizasaun patrimóniu estadu nian ne’ebé efisiente no efetivu 2026 \"",
+   "target": "\"To'o 31 Dezembru 2027, 100% hosi rezultadu sira ne'ebé aprova ona ba \"\"Hametin monitorizasaun no fiskalizasaun ba utilizasaun patrimóniu estadu nian\"\" kompleta ona iha data vensimentu sira, aseguradu ho kualidade, aseita formalmente, no hetan apoiu hosi rejistu sira ne'ebé bele verifika. \"",
+   "amounts": {
+    "20": 9000.0
+   },
+   "page": 75
+  },
+  {
+   "code": "0232603",
+   "programme": "023",
+   "subprogramme": "02326",
+   "subprogramme_name": "Política e gestão do fundo petrolífero",
+   "name": "Jere no administra Fundu Petrolifero tuir Lei FP atu garante transparénsia, investimentu prudente no governansa forte",
+   "div": [
+    "0122101"
+   ],
+   "indicator": "\"\"\"1. Akordu no polítika sira Fundu Mina-rai nian hodi klarifika matadalan investimentu nian no kontribui ba sustentabilidade Fundu nian; 2. Fiskalizasaun no monitorizasaun ba Fundu Mina-rai nia dezempeñu, tuir implementasaun, submete, no publikasaun. 3. Partisipasaun iha enkontru Konsellu Konsultivu ba Investimentu; 4. Partisipasaun iha enkontru no sesaun formasaun ne’ebé organiza hosi autoridade nasionál no internasionál iha área investimentu no jestaun Fundu Petrolíferu (n.e., IFSWF); 5. Monitorizasaun ba merkadu finanseiru sira no estudu esternu sira (terminal Bloomberg).\"\"\"",
+   "baseline": "\"\"\"1. Lei n.º 9/2005, conforme alterada pela Lei n.º 12/2011 - Lei do Fundo Petrolífero 2.º Anexo 1 (atualizado em 2024) do Acordo de Gestão Operacional de 2009 3.º Projeto de Declaração de Política de Investimento de 2022 4. Revisão Independente do Fundo Petrolífero de 2022\"\"\"\" \"\"\"",
+   "target": "\"1. Dokumentu xave sira kona- ba Polítika Investimentu (ezemplu, AAE/SAA, OMA, CMA) atualizadu, no nota téknika relevante sira finalizadu no distribui ona; 2. Relatóriu trimestrál 4 no relatóriu anuál 1 hatama no publika ona; 3. Partisipasaun 12 iha enkontru no sesaun traballu Konsellu Konsultivu ba Investimentu (dala rua); 5. 2 partisipasaun (semináriu, workshop, fórum formasaun pesoál) iha eventu nasionál no internasionál sira ne’ebé relasiona ho investimentu no jestaun Fundu Petrolíferu (n.e., IFSWF); 6. Regularmente asesu no uza Bloomberg no estudu esternu sira hodi monitoriza merkadu finanseiru pelumenus semana ida dala ida no prodús nota téknika relevante sira. \"\"\"",
+   "amounts": {
+    "10": 339670.0,
+    "20": 42500.0
+   },
+   "page": 76
+  },
+  {
+   "code": "0232803",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Publikasaun Ruitna : Timor- Leste no Munisipius en Numeros; Estatistika Komersiu, Estatistika Kriminal, Kontas Nasionais; Quarterly Statistics Indicators; Produce Price Index",
+   "div": [
+    "0122702",
+    "0122704",
+    "0122707"
+   ],
+   "indicator": "\"\"\"1. Levantamentu Negósiu 2027 2. #Monitorizasaun ba Atividade sira Levantamentu Negósiu nian 2026 3. #Diseminasaun ba Dadus Levantamentu Negósiu 2025\"\"\"",
+   "baseline": "\"1. Peskiza Emprezarial 2025 2. Monitorizasaun ba aktividades Peskiza Emprezarail 2025 3. Desiminasaun dados Peskiza Emprezraial 2025 \"",
+   "target": "\"\"\"1. Fó dadus hodi kontribui ba ekonomia nasionál no kresimentu GDP (P) 2. 4 Monitoriza pesoal munisipiu ne’ebe halibur dadus folin iha merkadu no supermerkadu ne’ebe halo parte amostra 3. 8 Divulga dadus Índise Folin",
+   "amounts": {
+    "10": 407332.0,
+    "20": 61996.0
+   },
+   "page": 76
+  },
+  {
+   "code": "0232810",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Jere, kolekta, analiza no produs dadus estatistikas nasionais",
+   "div": [
+    "0122701",
+    "0122703",
+    "0122705",
+    "0122706",
+    "0122708"
+   ],
+   "indicator": "\"1. Peskiza Emprezarial 2025 Kolektadu/ konfirmadu 2. Analizadu husi dadus imposto, SERVE no Treasury tuir sample ne'ebe halo anualmente hodi kontribui ba GDP/Publika GDP annual no BAS annual; 2. Dados Indise Presu Konsumidores Mensal 2025(dados inflasaun no deflasaun iha merkadoria) Kolektadu 3. Registo Land Account 2026 \"",
+   "baseline": "",
+   "target": "\"1. Peskiza Emprezarial 2025 Kolektadu/ konfirmadu 2. Analizadu husi dadus imposto, SERVE no Treasury tuir sample ne'ebe halo anualmente hodi kontribui ba GDP/Publika GDP annual no BAS annual; 2. Dados Indise Presu Konsumidores Mensal 2025(dados inflasaun no deflasaun iha merkadoria) Kolektadu 3. Registo Land Account 2026 \"",
+   "amounts": {
+    "10": 955698.0,
+    "20": 38000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X1",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "External audit - verification of tax collection and fiscal law compliance",
+   "div": [
+    "0120606"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 300000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X2",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Taxpayer education - national tax awareness campaign",
+   "div": [
+    "0120602"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X3",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "ATO technical secondment - Australia-Timor-Leste specialists",
+   "div": [
+    "0120615"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X4",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "ITAS Integrated Tax Administration System - implementation support",
+   "div": [
+    "0120613"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X5",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Customs risk management - entry point controls and trade analysis",
+   "div": [
+    "0120705"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X6",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Trade education - capacity building for trade and customs operators",
+   "div": [
+    "0120705"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X7",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Modernisation of the digital customs system - paperless policy",
+   "div": [
+    "0120711"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 200000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "02331X8",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Border infrastructure - construction and modernisation of customs posts",
+   "div": [
+    "0120706"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 250000.0
+   },
+   "page": 77
+  },
+  {
+   "code": "0233100",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Melhoria dezenvolvimentu infraestrutura adekuadu ba kobransa Aduaneira",
+   "div": [
+    "0120607",
+    "0120706",
+    "0120711"
+   ],
+   "indicator": "\"1. Konstroi edifisiu AA no dormitoriu iha Com, Laga, Vemase, Beasu, Betanu, Iliomar, Suai Loro, Migir, Beakou, no Atauru. 2. Konstroi armazem ba merkadoria aprendidas iha Dili, Bobonaru Covalima no Baucau.\"",
+   "baseline": "Edifisiu no dormitoriu iha Batugade no Salele (dormitoriu laiha), Tunubibi , Baucau, Maliana.",
+   "target": "Edifisiu no dormitoriu konstruidu iha 2028.",
+   "amounts": {
+    "10": 129582.0,
+    "20": 69000.0
+   },
+   "page": 78
+  },
+  {
+   "code": "0233101",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Jestaun efikasia no mobilizasaun ajudu externu",
+   "div": [
+    "0121301",
+    "0121302"
+   ],
+   "indicator": "\"1. Enkuadramentu legál ba polítika ajuda esterna nian hetan revizaun 2. Fundu ajuda estranjeiru sira ne'ebé identifika, koordena, no mobiliza 3. Enkontru ho parseiru dezenvolvimentu sira koordena, organiza, no realiza 4. Fundu ajuda estranjeiru atualiza iha sistema ATP (Portál Transparénsia Ajuda) 5. Relatóriu ajuda estranjeiru ba Orsamentu Jerál Estadu (OGE) prepara ona 6. Diseminasaun, monitorizasaun, no avaliasaun ba projetu sira ne’ebé finansia husi parseiru dezenvolvimentu sira ne’ebé hala’o 7. Relatóriu regulár kona-ba fundu ajuda esterna no asisténsia téknika ne’ebé fó\"",
+   "baseline": "\"\"\"1.% Kuadru legal ba politika ajudu externa tinan 2019 2. # Fundus apoiu externu tinan 2022 3. # Reuniaun ho parcerius dezenvolvimentu tinan 2022 4. %Fundus apoiu externu atualizadu iha sistema ATP (Aid Transparancy Portal) tinan 2022 5. %Livrus ajudu externu ba OGE tinan 2023. 6. %Divulgasaun, monitorizasaun no avaliasaun projetu finansiadu husi parceriu dezenvolvimentu tinan 2023 7.% Relatoriu regular kona ba fundus ajudus externu no assistencia teknika tinan 2022\"\" \"",
+   "target": "\"To'o 31 Dezembru 2027, 100% hosi entregavel sira ne'ebé aprova ona ba \"\"Jestaun efetivu hosi mobilizasaun ajuda esterna\"\" kompleta ona iha data vensimentu sira, aseguradu ho kualidade, aseitadu formalmente, no hetan apoiu hosi rejistu sira ne'ebé bele verifika. \"",
+   "amounts": {
+    "10": 225571.0
+   },
+   "page": 78
+  },
+  {
+   "code": "0233102",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Jestaun no Mobilizasaun Emprestimu Externa",
+   "div": [
+    "0121304"
+   ],
+   "indicator": "\"1. #Lei Dívida Públika Alterada 2. Garante dívida públika mantein iha nivel",
+   "baseline": "\"1. 1 Lei divida publika alteradu 2. Asegura divida publika iha nivel sustentavel 3.",
+   "target": "\"1. 2 Lei kona-ba dívida públika hetan alterasaun 2. Dívida públika mantein iha",
+   "amounts": {
+    "10": 102583.0
+   },
+   "page": 78
+  },
+  {
+   "code": "0233103",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Jestaun Investimentu Parseria Publika Privada",
+   "div": [
+    "0121303"
+   ],
+   "indicator": "\"\"\"1. %Kuadru legal ba politika Invesimentu Parseria Publika Privada revizadu 2. %Investores ho modalidade PPP koordenadu no mobilizadu sujeitu ba desizaun Governu 3. # Investimentu setor publiku ba PPP aseguradu, tuir aprovasaun Governu 4. Reuniaun ho linha ministeriu ba preparasaun projetu PPP realizadu 5. Investimentu setor Privadu durante periodu fecho financeiro (Financial Closed) mobilizadu 7. # Staff foun ba DNPPP Rekrutadu\"\" \"",
+   "baseline": "\"\"\"1. Kuadro Legal PPP Existi 2014 2. Projetu PPP Portu Tibar iha faze O&M no lista PPP existente hein desizaun 3. Divulgasaun informasaun no Estudu komparativu 4. Unidade Jestaun Projetu ba Portu Tibar no PNLIA funsiona ho diak \"\" \"",
+   "target": "\"\"\"1. 50% Kuadru legal ba politika Invesimentu Parseria Publika Privada revizadu 2. 100%Investores ho modalidade PPP koordenadu no mobilizadu sujeitu ba desizaun Governu. Projetu 1 3. Investimentu setor publiku ba PPP aseguradu, tuir aprovasaun Governu. Investimentu 1 4. Ekipa Projetu PPP estabelsidu ( PET, IMWG, IMC no PMU) sujetu ba Governu aprova procede ho modalidade PPP 5. Investimentu setor Privadu durante periodu fecho financeiro (Financial Closed) mobilizadu 7. 2 Staff foun ba DNPPP Rekrutadu\"\" \"",
+   "amounts": {
+    "10": 165558.0
+   },
+   "page": 79
+  },
+  {
+   "code": "0233104",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Administrasaun no kobransa imposto Tributaria tuir lei",
+   "div": [
+    "0120603",
+    "0120604",
+    "0120614",
+    "0120616"
+   ],
+   "indicator": "\"1. % husi reseita fiskál (doméstiku, petrolíferu, no",
+   "baseline": "\"1. 100% Reseitas Imposto domestica $88.1 milloes tinan",
+   "target": "\"1. Hasa’e impostu doméstiku, petrolíferu, no minarai ho 6%.",
+   "amounts": {
+    "10": 192209.0,
+    "20": 1000.0
+   },
+   "page": 79
+  },
+  {
+   "code": "0233105",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Kobransa direitus aduaneirus importasaun tuir lei",
+   "div": [
+    "0120702",
+    "0120703",
+    "0120704",
+    "0120710"
+   ],
+   "indicator": "\"1. % taxa kobransa aduaneira base ba tinan anterior; 2. # Inspeksaun regular ba merkadoria importasaun no exportasaun (fraude, penalidade, nsst.) 3. # auditoria/post clearance audit (PCA) regular ba merkadoria importasaun no exportasaun (fraude..) 4. # Seletividade ba profile empreza importadores nian \"",
+   "baseline": "\"1. Mantein registu no kobransa reseitas aduaneira base ba tinan 2024 no 2025; 2. Inspeksaun no auditoria aduaneira regular tinan 2024 no 2025\"",
+   "target": "\"1. % Taxa kobransa aduaneira base ba tinan anterior; 2. # Inspeksaun regular ba merkadoria importasaun no exportasaun (fraude, penalidade, nsst.) 3. # Auditoria/Post Clearance Audit (PCA) regular ba merkadoria importasaun no exportasaun (fraude..) 4. # Seletividade ba profile empreza importadores nian \"",
+   "amounts": {
+    "20": 40500.0,
+    "10": 885321.0
+   },
+   "page": 80
+  },
+  {
+   "code": "0233106",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Administrasaun kobransa direitus aduaneirus importasaun",
+   "div": [
+    "0120704",
+    "0120705",
+    "0120706"
+   ],
+   "indicator": "\"1. % Seletividade ba profile empreza importadores sira 2. % Aplikasaun violasaun administrativu Aduaneira 3. # Disemina no publika obrigasaun prosedimentu Aduaneira sira (sistema informatika, billboard inklui elektronika no jornais); 4. # Enkontro regular nivel nasional no internasional ba asuntus aduaneira\"",
+   "baseline": "\"1. Seletividade ba profile empreza importadores nian iha tinan 2025 2. Aplikasaun violasaun administrativu Aduaneira iha tinan 2025 3. Disemina no publika obrigasaun prosedimentu Aduaneira sira (sistema informatika, billboard inklui elektronika no jornais) iha tinan 2025 4. Enkontro regular nivel nasional no internasional ba asuntus aduaneira iha tinan 2025 \"",
+   "target": "\"1. 100% Seletividade ba profile empreza importadores nian 2. 100% Aplikasaun violasaun administrativu Aduaneira 3. 4 Disemina no publika obrigasaun prosedimentu Aduaneira sira (sistema informatika, billboard inklui elektronika no jornais) 4. Enkontro regular nivel nasional no internasional ba asuntus aduaneira\"",
+   "amounts": {
+    "10": 88355.0,
+    "20": 215500.0
+   },
+   "page": 80
+  },
+  {
+   "code": "0233108",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Jere no kontrolo Postos Integradus Fronteiras (PIF)",
+   "div": [
+    "0120713"
+   ],
+   "indicator": "\"1) % movimentu merkadoria no ema iha flornteira nebe detekta tuir padraun hotu tuir tempo 2) # merkadoria nebe detektadu kontraria lei 3) # ema no merkadoria nebe ilegal \"",
+   "baseline": "",
+   "target": "\"1) % Movimentu merkadoria no pesoa iha flornteira nebe detekta hotu tuir tempo 2) # Merkadoria nebe detektadu kontraria lei 3) # Ema no merkadoria nebe ilegal \"",
+   "amounts": {
+    "10": 185820.0
+   },
+   "page": 81
+  },
+  {
+   "code": "0233109",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Elobara Nota konsetu no kuadru legal ba Espansaun base Tributaria",
+   "div": [
+    "0120603",
+    "0120604",
+    "0120605",
+    "0120612"
+   ],
+   "indicator": "\"1. #Koordena no ezekuta kobransa divida tributária ho ajénsia no instituisaun relevante sira (CAC, MP, PSIC). 2. #Nota konseitu jurídiku no enkuadramentu jurídiku ne'ebé trasa ona.\"",
+   "baseline": "\"1.Nota konseitu esbosu(revizasaun 2) 2.kuadro legal :Lei 8/2008 Lei tributaria, Draft IV, draft regime jeral taxa\"",
+   "target": "\"1. Koordena no ezekuta kazu dívida fiskál hamutuk 4 ho ajénsia relevante sira (CAC, MP, PSIC). 2. Nota pareser legál 10 no enkuadramentu legál 3 ne'ebé aprova iha 2027.\"",
+   "amounts": {
+    "10": 125760.0
+   },
+   "page": 81
+  },
+  {
+   "code": "0233110",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Melhoria administrasaun Tributaria no automatizasaun sistema kobransa reseitas tributaria",
+   "div": [
+    "0120607",
+    "0120608",
+    "0120613"
+   ],
+   "indicator": "\"1. % Integrasaun sistema tributáriu ho sistema bankáriu ba pagamentu sira funsiona ona 2. % Automatizasaun ba sistema pagamentu ba atividade komersiál sira. 3. Konsolida dadus pagamentu IVA iha sistema nia laran.\"",
+   "baseline": "\"1. 50% Integrasaun sistema tributáriu ho sistema bankáriu ba pagamentu sira funsiona ona 2026 2. 50% Automatizasaun ba sistema pagamentu ba atividade komersiál sira. 3. Konsolida dadus pagamentu IVA iha sistema nia laran.\"",
+   "target": "\"1. Integrasaun 100% ba sistema tributáriu ho sistema pagamentu;\"\" 2. Automatizasaun 50% ba sistema pagamentu ba atividade komersiál sira.\"",
+   "amounts": {
+    "10": 145122.0,
+    "20": 674851.0
+   },
+   "page": 81
+  },
+  {
+   "code": "0233111",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Reforsa Rekursu Humanos no Formasaun Adekuadu",
+   "div": [
+    "0120602",
+    "0120606",
+    "0120609",
+    "0120611",
+    "0120615"
+   ],
+   "indicator": "\"1) #funcionario foun rekrutadu 2) #funcinario partisipa iha Formasaun no nivel konhesementu iha area Tributaria. 3)%Funcionario nebe qualifikadu ho valor minumu iha area Tributaria.\"",
+   "baseline": "1.Rekrutamentu foun",
+   "target": "\"1) 80 funcionario foun rekrutadu. 2) 100 funcinario partisipa iha Formasaun no nivel konhesementu iha area Tributaria. 3)60% Funcionario nebe qualifikadu ho valor minumu iha area Tributaria.\"",
+   "amounts": {
+    "10": 604844.0
+   },
+   "page": 81
+  },
+  {
+   "code": "0233112",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Reforsa Auditoria no inspeksaun Tributaria",
+   "div": [
+    "0120606",
+    "0120610"
+   ],
+   "indicator": "\"1) #Auditoria interna no inspesaun ba departamentu servisu no eskritóriu impostu munisipál sira ne’ebé hala’o. 2) #Monitorizasaun ba rezultadu auditoria no inspesaun ne'ebé hala'o ona.\"\" 3. #Halo auditoria ba negósiu sira. 4. Kontratu ne’ebé asina ho empreza auditoria esterna.\"",
+   "baseline": "\"1) 3 Auditoria Tributaria Realizadu 2) 4 inspeksaunTributaria Realizadu.\"\" \"",
+   "target": "\"1) 4 Auditoria Tributaria Realizadu 2) 4 inspeksaunTributaria Realizadu.\"",
+   "amounts": {
+    "10": 184713.0,
+    "20": 2000.0
+   },
+   "page": 82
+  },
+  {
+   "code": "0233113",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Promove Deciminasaun no publisidade obrigasaun Fiscais ba kontribuintes no Operadores Ekonomia",
+   "div": [
+    "0120604",
+    "0120614",
+    "0120615",
+    "0120616"
+   ],
+   "indicator": "\"1) #Deciminasaun informasaun fiskais realizadu 2) #Publisidade obrigasaun Fiskais Publikadu.\"",
+   "baseline": "\"\"\"1) 4 Deciminasaun informasaun fiskais realizadu 2) 1 Publisidade obrigasaun Fiskais Publikadu.\"\" \"",
+   "target": "\"1) 4 Deciminasaun informasaun fiskais realizadu 2) 2 Publisidade obrigasaun Fiskais Publikadu.\"",
+   "amounts": {
+    "10": 18508.0,
+    "20": 6000.0
+   },
+   "page": 82
+  },
+  {
+   "code": "0233114",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Elobara Nota konsetu no kuadru legal ba Diretro Aduaneira Importasaun",
+   "div": [
+    "0120708",
+    "0120709"
+   ],
+   "indicator": "\"1) % Revizaun ba Dekretu- Lei No. 2/2020 kona-ba Estrutura Organizasionál Administrasaun Aduaneira no Regulamentu Funsionál Administrasaun Aduaneira 2) % Revizaun ba Dekretu-Lei No. 14/2017 kona-ba Kódigu Aduaneiru 3) % Kódigu Alfándega ne’ebé hadi’ak no aprova ona\"",
+   "baseline": "\"1) 75% Revizaun ba Decreto Lei Estrutura Organica AA No2/2020 no Diploma Funsional AA 2) 75% Revizaun ba Decreto Lei Codigo Aduaneira No. 14/2017 3). 18 pareser ba rekursu ka prosedimentu ne'ebe indintifika depende ba keixa/kazu produzidu\"",
+   "target": "\"1) Revizaun 100% ba Dekretu-Lei No. 2/2020 kona- ba Estrutura Organizasionál AA nian no Regulamentu Funsionál AA nian 2) Revizaun 100% ba Dekretu-Lei No. 14/2017 kona-ba Kódigu Aduaneiru 3) Kódigu Alfándega ne’ebé Hadi’a no Aprova 100%\"",
+   "amounts": {
+    "10": 25339.0,
+    "20": 7500.0
+   },
+   "page": 82
+  },
+  {
+   "code": "0233115",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Melhoria administrasaun Aduaneira no automatizasaun sistema kobransa reseitas aduaneira",
+   "div": [
+    "0120706",
+    "0120711"
+   ],
+   "indicator": "\"1) % Hadi’a sistema ASYCUDA iha termu interligasaun ho entidade relevante sira liuhosi Portál Janela Únika 2) % Janela Únika ASEAN nian 3) % Pagamentu Eletróniku sira\"",
+   "baseline": "\"1.Revizaun organika AA. 2. 3.Interligasaun sistema imformatika kobransa diretos aduaneiras 4. %Pagamentu Elektroniku \"",
+   "target": "\"1) Melloramentu 100% ba sistema ASYCUDA iha termu integrasaun ho entidade relevante sira liuhosi Portál Janela Únika 2) 100% Indonesia Single Window 3) Pagamentu Eletróniku 100%\"",
+   "amounts": {
+    "20": 1319239.0,
+    "10": 36734.0
+   },
+   "page": 82
+  },
+  {
+   "code": "0233116",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Reforsa Rekursu Humanos no Formasaun Adekuadu ba kobransa Reseitas Aduaneira no PIF",
+   "div": [
+    "0120702",
+    "0120707",
+    "0120710",
+    "0120712",
+    "0120713"
+   ],
+   "indicator": "\"1) #funcionario foun AA no PIF rekrutadu 2) #funcinario partisipa iha Formasaun no nivel konhesementu iha area Aduaneira no PIF. 3) %Funcionario nebe qualifikadu",
+   "baseline": "1.Rekrutamentu foun",
+   "target": "\"1) 80 funcionario foun rekrutadu. 2) 100 funcinario partisipa iha Formasaun no nivel konhesementu iha area Aduaneira 3) 60% Funcionario",
+   "amounts": {
+    "10": 1182408.0,
+    "20": 35000.0
+   },
+   "page": 82
+  },
+  {
+   "code": "0233117",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Reforsa Auditoria no inspeksaun direitu Aduaneira importasaun",
+   "div": [
+    "0120707"
+   ],
+   "indicator": "\"1) #Auditoria Aduaneira Realizadu 2) # inspeksaun Aduaneira Realizadu.\"",
+   "baseline": "\"\"\"1) 3 Auditoria Aduaneira Realizadu 2) 4 inspeksaun Aduaneira Realizadu.\"\" \"",
+   "target": "\"1) 4 Auditoria AduaneiraRealizadu 2) 4 inspeksaun Aduaneira Realizadu.\"",
+   "amounts": {
+    "10": 36422.0,
+    "20": 6000.0
+   },
+   "page": 83
+  },
+  {
+   "code": "0233118",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Promove Diseminasaun no publisidade ba materia aduaneira",
+   "div": [
+    "0120703",
+    "0120704",
+    "0120706",
+    "0120710",
+    "0120712"
+   ],
+   "indicator": "\"1. #Deciminasaun informasaun fiskais realizadu 2. #Publisidade obrigasaun Fiskais Publikadu.\"",
+   "baseline": "\"\"\"1. 3 Deciminasaun informasaun fiskais realizadu 2. 2 Publisidade obrigasaun Fiskais Publikadu.\"\" \"",
+   "target": "\"1. 4 Deciminasaun informasaun fiskais realizadu 2. 2 Publisidade obrigasaun Fiskais Publikadu.\"",
+   "amounts": {
+    "10": 17454.0,
+    "20": 11000.0
+   },
+   "page": 83
+  },
+  {
+   "code": "0233119",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Realiza analiza kuantitativa no senariu modeling atu reve Estratéjika Alokasaun Ativus (EAA/SAA), hodi garante alinamentu ho objetivu sustentabilidade fiskal no retornu-adjustadu ba risku",
+   "div": [
+    "0122101"
+   ],
+   "indicator": "\"1. Kompleta ona analize kuantitativa no senariu modeling ba AAE/SAA no submetidu ba KAI no MF hodi aprova 2. Alinamentu ho objetivus sustentabilidade fiskal 3. % senariu modeling elaboradu no implementadu\"",
+   "baseline": "\"1. Dokumentu AAE/SAA resentes 2. Analize konaba sustentabilidade resentes 3. Esbosu senariu modeling retornu investimentu\"",
+   "target": "\"1. AAE/SAA ho simulasaun risku-retornu no senariu fiskál analizadu no dokumentadu no submetidu ba KAI no MF hodi aprova 2. Nota analitiku konaba AAE/SAA apoia sustentabilidade fiskál mediu- prazu no hadiak retornu-risku ajustadu produzidu. 3. % senariu modeling elaboradu no implementadu\"",
+   "amounts": {
+    "20": 4400.0
+   },
+   "page": 83
+  },
+  {
+   "code": "0233120",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Melhora enkuadramentu legal ba mobilizasaun ajudus esternu",
+   "div": [
+    "0121302",
+    "0121304"
+   ],
+   "indicator": "\"Enkuandramentu legal ba mobilzasaun ajudus esternu: 1) SOP ba Koordenasaun mobilzasaun ajudus esternu 2) SOP ba mobilzasaun konta partida 3) SOP ba pagamentu bank fees 4) xxx\"",
+   "baseline": "\"Kuadru legal ba politika ajudu externa. 1. 75% SOP Kordenasaun Mobilizasaun Ajudus Esternu kordenadu. 2. 50% SOP ba Mobilizasaun Konta Partida elaboradu no implementadu. 3. 85% SOP ba pagamentu Banks Fees elaboradu.\"",
+   "target": "\"1. 100% SOP Kordenasaun Mobilizasaun Ajudus Esternu kordenadu no implementadu. 2. 100% SOP ba Mobilizasaun Konta Partida elaboradu no implementadu. 3. 100% SOP ba pagamentu Banks Fees elaboradu. \"",
+   "amounts": {
+    "20": 18500.0
+   },
+   "page": 83
+  },
+  {
+   "code": "0233121",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Reforsa rekursu humanu ba mobilizasaun ajudus esternu",
+   "div": [
+    "0121301"
+   ],
+   "indicator": "\"1) # funsionariu rekrutadu 2) # funsionariu hetan kapasitasaun\"",
+   "baseline": "\"1) 6 funsinariu publiku ezistente; funsionariu ezistente 2) kapasitasaun dala 2\"",
+   "target": "\"1) Rekruta funsionariu kontratadu 4 no TA Nasional 1 2)Funsionariu hetan kapasitasaun dala 2\"",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 83
+  },
+  {
+   "code": "0233122",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Reforsa rekursu humanu ba mobilizasaun PPP",
+   "div": [
+    "0121303"
+   ],
+   "indicator": "\"# funsionariu rekrutadu # funsionariu hetan kapasitasaun\"",
+   "baseline": "\"funsinariu publiku 4 no TA Nasional 4 ezistente; funsionariu ezistente hetan kapasitasaun dala 2\"",
+   "target": "\"Rekruta funsionariu publiku 4 no kontratadu 1 (JP) no TA Nasional 1 Rekruta TA Internasional ba asuntu legal 1 Funsionariu hetan kapasitasaun dala 2\"",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 84
+  },
+  {
+   "code": "0233123",
+   "programme": "023",
+   "subprogramme": "02331",
+   "subprogramme_name": "Cobrança Reseitas e Mobiilização de Financiamento",
+   "name": "Emisaun Titlu tesouro",
+   "div": [
+    "0120501"
+   ],
+   "indicator": "\"1.% elaborasaun lei emisaun titlu tesouru aprova 2.% estrutura tekniku estabelecidu 3.%Sisitema emisaun titlu tesouro update\"",
+   "baseline": "\"\"\"1.85% elaborasaun lei emisaun titlu tesouru aprova 2.85% estrutura tekniku estabelecidu 3.25%Sisitema emisaun titlu tesouro update\"\"\"",
+   "target": "\"1. 100% elaborasaun lei emisaun titlu tesouru aprova 2. 100% estrutura tekniku estabelecidu 3. 50% isitema emisaun titlu tesouro update\"",
+   "amounts": {
+    "10": 88031.0
+   },
+   "page": 84
+  },
+  {
+   "code": "02332X1",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Training and capacity building for planning and budgeting",
+   "div": [
+    "0120401"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 84
+  },
+  {
+   "code": "0233200",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Koordena no elabora planu asaun annual ba entidade sira iha setór publiku administrativu",
+   "div": [
+    "0120401",
+    "0120404"
+   ],
+   "indicator": "\"1. Numeru Planu Asaun Anual entidade kordenadu no elaboradu 2. Konsulta sidadaun, orgaun soberania no",
+   "baseline": "\"1. 107 Planu Asaun Anual entidade analiza no verifika ona husi MF-DGPO 2. Relatoriu konsulta sidadania",
+   "target": "\"1. 109 Planu Asaun Anual entidade analiza no verifika ona husi MF-DGPO 2. Relatoriu konsulta sidadania",
+   "amounts": {
+    "10": 113397.0,
+    "20": 10326.0
+   },
+   "page": 84
+  },
+  {
+   "code": "0233201",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Elaborasaun Orsamentu Jeral Estadu (OJE) no akompanha nia ezekusaun",
+   "div": [
+    "0120402"
+   ],
+   "indicator": "\"1. OGE elaboradu 2. # husi relatóriu analize ezekusaun reseita no despeza trimestrál ne'ebé publika ona 3. # husi relatóriu trimestrál kona-ba virement orsamentu ne'ebé produz ona 4. Realizasaun Jornada Orsamental 5. Revizaun Despezas Públika Sectorial produzidu \"",
+   "baseline": "\"1. OGE 2024 2. Relatoriu Semestral ba Analize despezas tinan 2023 3. Jornada Orsamental 2023 realizadu 4. Relatoriu ikus iha tinan 2021 (koopersaun ho Banku Mundial) \"",
+   "target": "\"1. OGE 2027 2. 4 Relatoriu analize ezekusaun 3. 4 Relatóriu virement 4. Jornada Orsamental 2027 realizadu 5. Revizaun Despezas Públika Sectorial produzidu\"",
+   "amounts": {
+    "10": 96576.0,
+    "20": 22236.0
+   },
+   "page": 85
+  },
+  {
+   "code": "0233202",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Analize makroekonomiku, fiskal no socioekonomiku",
+   "div": [
+    "0120403"
+   ],
+   "indicator": "\"1. # Atualizasaun ba modelu makroekonómiku no previzaun sira bazeia ba senáriu anuál komprensivu 2. Relatóriu trimestrál sira kona- ba indikadór ekonómiku sira ne’ebé prodús ona 3. # Pareser tékniku sira ho implikasaun finanseira ba polítika públika ne'ebé prodús\"",
+   "baseline": "\"\"\"1. Modelu makroekonómiku ka previzaun bazeia ba senáriu ne'ebé kompleta ona 2. 4 Relatoriu Trimestral ba indikador ekonomiku produzidu 3. 4 Pareser tekniku ne'ebe fo implikasaun finanseira ba politika publika produzidu \"\"\"",
+   "target": "\"1. Modelu no previzaun makroekonómiku bazeia ba senáriu anuál komprensivu 2. 4 Relatóriu trimestrál kona-ba indikadór ekonómiku sira ne’ebé prodús 3. 4 opiniaun téknika ho implikasaun finanseira ba polítika públika ne’ebé prodús\"",
+   "amounts": {
+    "10": 168668.0,
+    "20": 1730.0
+   },
+   "page": 85
+  },
+  {
+   "code": "0233203",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Dezenvolve no atualiza modelu makroekonómiku no senáriu fiskál sira hodi apoia planeamentu no previzaun orsamentu nian",
+   "div": [
+    "0120401"
+   ],
+   "indicator": "\"1) # husi atualizasaun modelu makroekonómiku ka previzaun sira bazeia ba senáriu anuál sira \"",
+   "baseline": "1) 2 relatorio husi atualizasaun modelu makroekonómiku ka previzaun bazeia ba senáriu ne'ebé kompleta tinan-tinan",
+   "target": "1) 2 husi atualizasaun sira ba modelu makroekonómiku ka previzaun sira bazeia ba senáriu anuál sira ne'ebé komprensivu",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "0233204",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Dezenvolve enkuardamentu tekniku ba planeamentu, orsamentu no politika makro fiskal",
+   "div": [
+    "0120401",
+    "0120403"
+   ],
+   "indicator": "\"1) # Dokumentu orientasaun finalizadu (Manual Orsamentu, MTP, no metodolojia MTBF) kompleta ona no submete ona ba Ministériu Finansas hodi hetan endosu 2) # Sesaun sosializasaun ne'ebé hala'o.\"",
+   "baseline": "\" 1) Númeru ferramenta/kuadru tékniku sira: 3 2) Númeru sesaun sosializasaun nian: 2\"",
+   "target": "\" 1) Númeru ferramenta/kuadru tékniku sira:3 2) Númeru sesaun sosializasaun nian: 2\"",
+   "amounts": {
+    "20": 106499.0
+   },
+   "page": 86
+  },
+  {
+   "code": "0233205",
+   "programme": "023",
+   "subprogramme": "02332",
+   "subprogramme_name": "Planeamento, Orçamento e Politica Económica",
+   "name": "Formasaun nasionál kona-ba orsamentu ho baze ba programa, análize makroekonómiku, no planeamentu",
+   "div": [
+    "0120401"
+   ],
+   "indicator": "\" 1) % husi funsionáriu sira ne'ebé hetan formasaun ne'ebé relata aumentu komprensaun kona-ba orsamentasaun bazeia ba programa no enkuadramentu fiskál sira. \"",
+   "baseline": "1. N/A",
+   "target": "1) Pelumenus 50% oficial planeamentu no orsamento entidade orsamental.",
+   "amounts": {
+    "20": 13000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "02333X1",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Budget execution - public expenditure control and monitoring system",
+   "div": [
+    "0120506"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "02333X2",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Treasury Single Account - modernisation of the State Treasury",
+   "div": [
+    "0120506"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "02333X3",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Government debt securities - management of securities and bonds",
+   "div": [
+    "0120506"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "02333X4",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Receipts - digitalisation of the state revenue collection system",
+   "div": [
+    "0120506"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "02333X5",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Non-Tax Revenue gateway - non-tax fee integration system",
+   "div": [
+    "0120506"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "02333X6",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Municipalities - budget and accounting support",
+   "div": [
+    "0120504"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 86
+  },
+  {
+   "code": "0233300",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Kordena ho entidade publika hotu hotu ba implementasaun reforma JFP",
+   "div": [
+    "0122601"
+   ],
+   "indicator": "\"1. 90% Implementasaun programa reforma JFP integradu no monitorizadu; 2. 100% Apoio doadores alinha ho estratégia Reforma ba Jestão de Finanças Públicas no prioriedades IX Governo \"",
+   "baseline": "\"1. Implementasaun programa reforma JFP seidauk integradu no monitorizadu (iha hela faze dejenha regras no procedimentus implementasaun reforma); 2. Apoio parseiru desenvolvimentu seidauk alinha ho estratégia Reforma ba Jestão de Finanças Públicas no prioriedades IX Governo.\"",
+   "target": "\"1. Reforma Jestaun das Finansas Públikas ne’ebé kompreensiva, koordenada iha área finasas públikas, hodi aumenta reseitas ba Estadu, hodi hametin no promove transparénsia no responsabilidade iha polítika fiskál no jestaun finanseira. 2. Apoio Parseiru Desenvolvimentu tuir ona Timor-Leste Aid Policy (country own, country lead and country systems)\"",
+   "amounts": {
+    "10": 9066.0
+   },
+   "page": 87
+  },
+  {
+   "code": "0233301",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Jestaun Pagamentus no Administrasaun Dotasoen Jeral do Estado",
+   "div": [
+    "0120507"
+   ],
+   "indicator": "\"1. Pagamentu renumerasaun funsionariu no kontratadus sira tuir tempu 2. Relatoriu pagamentu iha sistema informatika jestaun finansas publika rejistadu no elaboradu 3. Pagamentu orsamentu iha ambitu Tezouru legalmente aseguradu 4. Pagamentu despezas publika no movimentu operasaun tezouru iha area pagamentu kordenadu no supervisionadu 5. Pedidu ba utilizasaun dotasaun jeral estadu kordenadu no analizadu 6. Transferensia fundu reserva kontijensia verifikadu no autorizadu 7. Akizasaun software ba rejistu baze de dadus ba pensaun vitalisa 8. Interligasaun sistema informatika SIGAP no GRP ba payroll 9. Dezenvolve padraun ba Utilizasaun Kartaun Kreditu\"",
+   "baseline": "\"1. Pagamentu renumerasaun funsionariu no kontratadus sira tuir tempu 2023 2. Relatoriu pagamentu iha sistema informatika jestaun finansas publika 2023 3. Pagamentu orsamentu iha ambitu Tezouru legalmente 2023 4. Pagamentu despezas publika no movimentu operasaun tezouru 2023 6. Kapasitasaun ba funsionariu DNAPDTG 7. Pedidu ba utilizasaun dotasaun jeral estadu 2023 8. Transferensia fundu reserva kontijensia 2023 9. Akizasaun software ba rejistu baze de dadus ba pensaun vitalisa 2023 8. 10nterligasaun sistema informatika SIGAP no GRP ba payroll iha faze diskusaun 11. Akordu estabelsidu no loke ona konta bankaria ba kartaun kreditu iha 2023\"",
+   "target": "\"1. Pagamentu renumerasaun funsionariu no kontratadus sira tuir tempu 2. Relatoriu pagamentu Tesouru iha sistema informatika jestaun finansas publika submetidu no publikadu iha site MoF 3. Pagamentu orsamentu iha ambitu Tezouru legalmente aseguradu 4. Pagamentu despezas publika no movimentu operasaun tezouru kordenadu no supervisionadu 5. Pedidu ba utilizasaun dotasaun jeral estadu kordenadu no analizadu 6. Kapasitasaun Iha Area Treasury Management: Analysis of Budget Execution and Monitoring & Evaluation realizadu 7. Transferensia fundu reserva kontijensia verifikadu no autorizadu 8. Akizasaun software ba rejistu baze de dadus ba pensaun vitalisa rekijitadu no",
+   "amounts": {
+    "10": 192460.0,
+    "20": 30000.0
+   },
+   "page": 87
+  },
+  {
+   "code": "0233302",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Monitorizasaun no Avaliasaun Desentralizasaun Finanseira ba Entidades Publiku Administrativu Inklui Municipiua no RAEOA",
+   "div": [
+    "0120504"
+   ],
+   "indicator": "\"1. Padraun ba Monitorizasaun no Avaliasaun Ezekusaun OGE iha entidade setor publiku administrativu inklui Munisipius no RAEOA Elavoradu. 2. Monitoriza no Avalia Ezekusaun OGE iha entidade setor publiku administrativu inklui Munisipius no RAEOA implementadu, relatoriu ba Gabinete Ezekutivu submetidu no Publikadu iha Website MF 3. Transferensia orsamental ba Autoridade munisipais no orgaun poder local monitorizadu 4. Kontabilidade no relatoriu husi apoiu externa iha entidade setor publiku administrativu inklui Munisipius elaboradu no inkluidu iha Konta Jeral Estadu 5. Koordena hodi realiza Formasaun ba Ofisial Finansas Entidade setor publiku administrativu inklui Munisipius sobre regras no procedimentus pagamentus, Kontabilidade no relatoriu 6. Hasae kapasidade Rekursu humanu iha monitorizasaun, avaliasaun no Lideransa realizadu \"",
+   "baseline": "\"1. Planu Monitorizasaun no Avaliasaun Ezekusaun OGE iha entidade setor publiku administrativu inklui Munisipius Preparadu hahu 2023 2. Monitoriza no Avaliasaun Ezekusaun OGE iha entidade setor publiku administrativu inklui Munisipius realizadus 2023 2. Kontabilidade no relatoriu husi entidade setor administrativu publiku 2023 3. Transferensia orsamental ba Autoridade munisipais no orgaun poder local 2023 4. Kontabilidade no relatoriu husi apoiu externa iha entidade setor publiku administrativu 2023 5.Formasaun ba Ofisial Finansas Entidade setor publiku administrativu inklui Munisipius sobre regras no procedimentus pagamentus, Kontabilidade no relatoriu realizada 2023 5. N/A (Seidauk iha)\"",
+   "target": "\"1. Dezenvolve Planu Monitorizasaun no Avaliasaun Ezekusaun OGE iha entidade setor publiku administrativu inklui Munisipius dezenvolvisu no implementadu 2. Ezekusaun OGE iha entidade setor publiku administrativu inklui Munisipius Monitorizadu no Avaliadu 2. Kontabilidade no relatoriu husi entidade setor administrativu publiku apresentadu no publikadu 3. Transferensia orsamental ba Autoridade munisipais no orgaun poder local monitorizasau no transferedu 4. Kontabilidade no relatoriu husi apoiu externa iha entidade setor publiku administrativu avaliadu no reportadu 5. Ofisial Finansas Entidade setor publiku administrativu inklui Munisipius sobre regras no procedimentus pagamentus, Kontabilidade no relatoriu Treinadu no reportadu 6. Funsionariu iha kuinesimentu adekuadu hodi halao monitorizaun no Avaliasaun\"",
+   "amounts": {
+    "10": 47726.0,
+    "20": 4157.0
+   },
+   "page": 88
+  },
+  {
+   "code": "0233303",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Jestaun Tezouraria no Divida Publika",
+   "div": [
+    "0120501",
+    "0120506"
+   ],
+   "indicator": "\"1. monitorizasaun ba fluzu kaixa Divida Publika, reseita",
+   "baseline": "\"1. monitorizasaun ba fluzu kaixa Divida Publika, reseita",
+   "target": "\"1. monitorizasaun ba fluzu kaixa Divida Publika, reseita",
+   "amounts": {
+    "20": 4499.0,
+    "10": 85605.0
+   },
+   "page": 88
+  },
+  {
+   "code": "0233304",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Monitorizasaun no Avaliasaun Dezenpenhu ezekusaun orsamentu ba entidade setor publika administrativu",
+   "div": [
+    "0121701"
+   ],
+   "indicator": "\"1. Polítika padraun sira ba monitorizasaun no avaliasaun dezempeñu hetan ona revizaun 2. Konformidade ba programa orsamentál no prioridade dezenvolvimentu estratéjiku ba entidade setór administrasaun públika hetan monitorizasaun no avaliasaun 3. Sistema informasaun integradu ba planeamentu, orsamentu, monitorizasaun, no avaliasaun 4. Relatóriu regulár sira kona- ba monitorizasaun no avaliasaun ba ezekusaun Orsamentu Estadu ne’ebé prodús ona\"",
+   "baseline": "\"\"\"1. Polítika padraun sira ba monitorizasaun no avaliasaun dezempeñu hetan ona revizaun tinan 2024 2. Konformidade ba programa orsamentál no prioridade dezenvolvimentu estratéjiku ba entidade setór administrasaun públika hetan monitorizasaun no avaliasaun tinan 2024 3. Sistema informasaun integradu ba planeamentu, orsamentu, monitorizasaun, no avaliasaun interligadu tinan 2024 4. Relatoriu regular ba monitorizasaun no avaliasaun ezekusaun OGE produzidu tinan 2024\"\" \"",
+   "target": "\"1. Polítika padraun sira ba monitorizasaun no avaliasaun dezempeñu hetan ona revizaun 2. Konformidade ba programa orsamentál no prioridade dezenvolvimentu estratéjiku ba entidade setór administrasaun públika hetan monitorizasaun no avaliasaun 3. Sistema informasaun integradu ba planeamentu, orsamentu, monitorizasaun, no avaliasaun 4. Relatóriu regulár sira kona- ba monitorizasaun no avaliasaun ba ezekusaun Orsamentu Estadu ne’ebé prodús ona\"",
+   "amounts": {
+    "10": 84750.0,
+    "20": 50000.0
+   },
+   "page": 89
+  },
+  {
+   "code": "0233305",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Monitorizasaun, Avaliasaun no Relatoriu Dezenpenhu ezekusaun orsamentu ba entidade setor publika administrativu",
+   "div": [
+    "0120504",
+    "0121701"
+   ],
+   "indicator": "\"1. Polítika padraun sira ba monitorizasaun no avaliasaun dezempeñu hetan ona revizaun 2. Konformidade ba programa orsamentál no prioridade dezenvolvimentu estratéjiku ba entidade setór administrasaun",
+   "baseline": "\"1. Polítika padraun sira ba monitorizasaun no avaliasaun dezempeñu hetan ona revizaun tinan 2024 2. Konformidade ba programa orsamentál no prioridade dezenvolvimentu estratéjiku ba entidade setór",
+   "target": "\"1. Politika padraun ba monitorizasaun no avaliasaun dezenpenhu dezaminadu 2. Kumprimentu programa orsamentais no prioridade estratejiku dezenvolvimentu ba entidade setor administrasaun",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 89
+  },
+  {
+   "code": "0233306",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Automatiza prosesu aprovisionamentu iha setor publiku administrativo",
+   "div": [
+    "0120504",
+    "0122201"
+   ],
+   "indicator": "\"1. Sistema informatika ba aprovisionamentu konfiguradu \"",
+   "baseline": "",
+   "target": "\"1.100%sistema informatika ba aprovisionamentu konfiguradu \"",
+   "amounts": {
+    "20": 1697.0
+   },
+   "page": 90
+  },
+  {
+   "code": "0233307",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Moderniza sistema tesoraria estadu no jestaun divida publika",
+   "div": [
+    "0120506"
+   ],
+   "indicator": "\"1. Sistema informatika jestaun tesoraria atualizadu 2. Sistema informatika ba jestaun divida publika konfiguradu 3. Estratejia Mediu Prazu ba Gestaun Divida Publiku (MTDS/Medium Term Debt Management Strategy) desenvolvidu\"",
+   "baseline": "",
+   "target": "\"1. Sistema informatika jestaun tesoraria atualizadu 2. Sistema informatika ba jestaun divida publika konfiguradu 3. Estratejia Mediu Prazu ba Gestaun Divida Publiku (MTDS/Medium Term Debt Management Strategy) desenvolvidu\"",
+   "amounts": {
+    "20": 14000.0
+   },
+   "page": 90
+  },
+  {
+   "code": "0233308",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Moderniza sistema kontabilistika nasional",
+   "div": [
+    "0120502"
+   ],
+   "indicator": "\"1. % Enkuadramentu legais no tekniku ba Kontabilidade Nasional Aprovadu. 2. Sistema informatika Kontabilidade Nasional Setor Publiku atualizadu. 3. Relatoriu",
+   "baseline": "\"\"\"1. 85% Enkuadramentu legais no tekniku ba Kontabilidade Nasional Aprovadu tinan 2026 2. Modul Sistema informatika Kontabilidade Nasional Setor",
+   "target": "\"1. Enkuadramentu legál no tékniku 100% ba Kontabilidade Nasionál aprova ona. 2. Konfigurasaun Sistema Nasionál Informasaun Kontabilidade Setór Públiku",
+   "amounts": {
+    "10": 155844.0,
+    "20": 12000.0
+   },
+   "page": 90
+  },
+  {
+   "code": "0233309",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Investimentu tesoraria ba tempo badak",
+   "div": [
+    "0120504"
+   ],
+   "indicator": "1. % realiza Investimentu exesu likides",
+   "baseline": "",
+   "target": "1) 25% realiza Investimentu exesu likides",
+   "amounts": {
+    "20": 13500.0
+   },
+   "page": 91
+  },
+  {
+   "code": "0233310",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Estabelese Tezouro Regional",
+   "div": [
+    "0120504",
+    "0120507"
+   ],
+   "indicator": "\"1. Nota konseitu no kuadru legal elaboradu. 2. # Estabelesimentu Tezouru Rejional\"",
+   "baseline": "",
+   "target": "\"1) Nota konseitu no kuadru legal elaboradu. 2) 2 Estabelesimentu Tezouru Rejional\"",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 91
+  },
+  {
+   "code": "0233311",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Elabora manual tesouraria hodi harmoniza prosesu",
+   "div": [
+    "0120501"
+   ],
+   "indicator": "\"% manual tesouru aprova % desemina manual ba entidades \"",
+   "baseline": "",
+   "target": "\"100% manual tesouru aprova 50% entidades desemina \"",
+   "amounts": {
+    "20": 3500.0
+   },
+   "page": 91
+  },
+  {
+   "code": "0233312",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Estabelese sistema previsaun fluxa",
+   "div": [
+    "0120506",
+    "0120507"
+   ],
+   "indicator": "\"%sistema funsiona iha entidades prinsipais sira % Deseminasaun no formasaun halo ona \"",
+   "baseline": "",
+   "target": "\"100 % sistema funsiona iha entidades prinsipais sira 100 % Deseminasaun no formasaun konklui\"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 91
+  },
+  {
+   "code": "0233313",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Dezenu no desemvolve enkuadramentu/sistema ba monitorizasaun no avaliasaun (M&amp;#38;A) ba governu tomak",
+   "div": [
+    "0121701"
+   ],
+   "indicator": "\"1) % alinamentu enkunadramentu monitorizasaun no avaliasaun UMAD nian (rezultadu no indikadores) ho Programa IX",
+   "baseline": "N/A",
+   "target": "\"1) 100 % alinamentu enkunadramentu monitorizasaun no avaliasaun UMAD nian (rezultadu no indikadores) ho Programa IX",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 91
+  },
+  {
+   "code": "0233314",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Haforsa kapasidade lina ministeriu sira atu elabora planeamentu, monitorizasaun, avaliasaun no relatoriu desempenu sira",
+   "div": [
+    "0121701"
+   ],
+   "indicator": "\"1) # ofisiál governu nian (husi LM) ne’ebé hetan formasaun iha M&E; 2) Taxa satisfasaun entre partisipante treinamentu sira; 3) Mudansa persentajen iha partisipante sira-nia koñesimentu; 4) # ministériu ne’ebé hetan asisténsia hodi hametin sira-nia MTP no AAP\"",
+   "baseline": "\"1) 1 ofisiál governu nian (husi LM) ne’ebé hetan formasaun iha M&E; 2) Taxa satisfasaun entre partisipante treinamentu sira; 3) Mudansa persentajen iha partisipante sira-nia koñesimentu; 4) 25 ministériu ne’ebé hetan asisténsia hodi hametin sira-nia MTP no AAP\"",
+   "target": "\"1) Sesaun Treinamentu 1 ba funsionariu governu (husi LM) kona-ba M&A; 2) klasifikasaun média satisfasaun 4/5; 3) 20% mudansa iha partisipante sira- nia koñesimentu; 4) Ministériu 25 hetan asisténsia hodi hametin sira-nia MTP no AAP\"",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 92
+  },
+  {
+   "code": "0233315",
+   "programme": "023",
+   "subprogramme": "02333",
+   "subprogramme_name": "Execução orçamental, gestão de tesouraria, auditoria e de monitorização e avaliação de desempenho",
+   "name": "Melhoria servisus Audiatoria",
+   "div": [
+    "0122401"
+   ],
+   "indicator": "\"1. % husi padraun auditoria internu no esternu ne'ebé dezenvolve ona 2. Sistema IT hodi analiza dadus auditoria nian ne'ebé instala ona no iha utilizasaun 3. Númeru auditor internu ne’ebé rekruta tuir faze 4. Auditor internu lubuk ida husi LM no IP hetan ona koñesimentu ne’ebé sufisiente kona-ba metodolojia auditoria interna hodi hala’o atividade auditoria tuir padraun husi Institutu Auditor Internu (IIA) hanesan hatuur iha Padraun Auditoria Interna Globál (GIAS)\"",
+   "baseline": "\"1. 75% Padraun auditoria Intena no Externa elaboradu 2026 2. Sistema informatika analiza dadus auditoria instaladu no utilizadu 3. 2 auditor internu fazeadamente rekrutadu 2026 4. 3 auditor internu husi LM no IP iha konhecimentu diak konaba metologia auditoria internu hodi kondus atividade auditoria tuir padraun Internasional Institute Internal of Auditor (IIA) ne'ebe intrudus iha Global Internal Auditor Standard (GIAS) \"",
+   "target": "\"1. 100% padraun auditoria interna no esterna dezenvolve ona 2. Sistema IT ida atu analiza dadus auditoria nian instala ona no uza hela 3. Auditor internu nain 5 rekruta tiha ona tuir faze 4. Auditor internu nain 5 husi LM no IP iha kompriensaun diak kona-ba metodolojia auditoria interna hodi halao atividade auditoria tuir padraun husi Institutu Internasional Auditor Internu (IIA), hanesan hatur ona iha Padraun Auditoria Interna Global (GIAS) \"",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 92
+  },
+  {
+   "code": "510013A",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Fornecer apoio do jurídico",
+   "div": [
+    "0122001"
+   ],
+   "indicator": "\"1. Numeru legislasaun iha area Jestaun Finansas Publika 2. Akordu no kontratus sira dezenvolvidus 3. Realiza Desiminasaun no formasaun konaba legislasaun iha area Jestaun Finansas Publika 4. Numeru pareser juridiku emitidu \"",
+   "baseline": "\"1. legislasaun iha area Jestaun Finansas Publika identifika ona husi kada area iha dokumentu ida ne'e 2. Akordu walu (8) no Kontratus pesoais no publikus lima-nulu (50) tinan 2023 3. Realiza 6 diseminasaun no 10 formasaun konaba legislasaun iha area Jestaun Finansas Publika tinan 2023 4. Emisaun pareser juridiku to'o fulan outubru 2023 hamutuk 252 \"",
+   "target": "\"1. Numeru legislasaun iha area Jestaun Finansas Publika aprovadu no publikadu 2024 2. Akordu no kontratus sira elaboradu 2024 3. Socializasaun no formasaun konaba legislasaun iha area Jestaun Finansas Publika realizadu 2024 4. Numeru pareser juridiku emitidu 2024",
+   "amounts": {
+    "10": 140267.0,
+    "20": 2500.0
+   },
+   "page": 93
+  },
+  {
+   "code": "510013E",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Aprovisionamentu no Jestaun Kontratu",
+   "div": [
+    "0120309"
+   ],
+   "indicator": "\"1. Planu aprovisionamentu dezenvolvidu 2. Servisu operasoens aprovisionamentu aseguradu 3. Numeru dokumentu ba prosedimentu aprovisionamentu elabora no publikadu 4. Padraun Prosedimentu Operasionais (SOP) ba aprovisionamentu no Jestaun Kontratu Revizidu 5. Numeru lista dados dezempenhu fornesedores atualizadu 6. Kontratu publiku verifika no elabora tuir rekezitus. 7. Numeru kontratus publiku ba akizasaun bens, prestasaun servisu no ezekusaun de obra elaboradu \"",
+   "baseline": "\"1. Mekanizmu planu aprovisionamentu tinan 2023 2. Lei Aprovisionamentu no.22/2022, Lei Ezekusaun no LEO 2023 3. Dokumentu submisaun proposta husi dono do projetu 4. SOP aprovisionamentu 2016 5. Jestaun baze de dados dezenpenhu fornesedores tinan 2023 6. Lista rekezitus ba elaborasaun kontratu dokumentu aprovisionamentu tinan 2023 7. Lista kontratus publiku ba akizasaun bens, prestasaun servisu no ezekusaun de obra tinan 2023\"",
+   "target": "\"1. Planu aprovisionamentu Aprovadu 2. Servisu operasoens aprovisionamentu aprovadu 3. 100% Dokumentu ba prosedimentu aprovisionamentu implementadu 4.SoP Aprovisionamentu Aprova no sirkuladu 5. 100% Lista dados dezenpenhu fornesedores atualizadu 6. Rrekezitus ba elaborasaun kontratu asseguradu 7. 100% Kontratus publiku ba akizasaun bens, prestasaun servisu no ezekusaun de obra finalizadu \"",
+   "amounts": {
+    "10": 149221.0,
+    "20": 6000.0
+   },
+   "page": 93
+  },
+  {
+   "code": "510013F",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Jestaun no Ezekusaun Orsamentu Ministeriu Finansas",
+   "div": [
+    "0120310"
+   ],
+   "indicator": "\"1. Formulariu assunsaun komprimisiu prensidu 2. Pedidu pagamentu produzidu 3. Relatoriu adiantamentu no likidasaun elaboradu 4.",
+   "baseline": "\"1. Bazeia ba formulariu assunsaun komprimisiu tinan 2023 2. Submisaun pedidu pagamentu atual 3. Relatoriu kona ba adiantamentu no",
+   "target": "\"1. Formulariu assunsaun komprimisiu aprovadu no implementadu 2. 100% Pagamentu aprovadu no ezekutadu 3. 100% Relatoriu",
+   "amounts": {
+    "10": 94831.0,
+    "20": 49275.0
+   },
+   "page": 93
+  },
+  {
+   "code": "510013G",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoiu Lojistika, manutensaun ekipamentu no jestaun de projetu (RUTINA)",
+   "div": [
+    "0120311"
+   ],
+   "indicator": "\"1. Apoiu Lojistika ba unidade trabalhu MF Fornesidu 2. Numenru veikulu estadu ba MF jeridu no monitorizadu 3. Padraun ba uzu no manutensaun veikulu elaboradu 4. Ekipamentu eskritoriu jeridu no distribuidu 5. Manutensaun ekipamentu no edifisiu garantidu 6. Numeru bens moveis no imoveis jeridu 7. Lista numeru projetu fisiku foun MF dezenhadu \"",
+   "baseline": "\"1. Apoiu lojistika ba unidade trabalhu MF tinan 2023 2 .Lista ezistente veikulu estadu ba MF tinan 2023 3. Esbosu padraun bauzu no manutensaun veikulu tinan 2023 4. Ekipamentu eskritoriu tinan 2023 5. Manutensaun ekipamentu no edifisiu tinan 2023 6. Lista bens moveis no imoveis tinan 2023 7. Prosesu inisiu projetu husi tinan 2023 \"",
+   "target": "\"1. Apoiu lojistika ba unidade trabalhu MF jeridu 2. 100% Veikulu estadu ba MF jeridu no monitorizadu 3. Padraun ba uzu no manutensaun aprovadu no implementadu 4. Ekipamentu eskritoriu jeridu no distribuidu 5. Manutensaun ekipamentu no edifisiu garantidu 6.100% bens moveis no imoves utilizadu 7. 100% lista Projetu fisiku iha MF Implementadu \"",
+   "amounts": {
+    "10": 221537.0,
+    "20": 4007807.0,
+    "40": 277980.0,
+    "50": 100000.0
+   },
+   "page": 94
+  },
+  {
+   "code": "510013H",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamentu, Orsamentu no Avaliasaun Dezenpenhu",
+   "div": [
+    "0120303"
+   ],
+   "indicator": "\"1. Planu anual Ministeriu Finansas analizadu liu husi mekanizmu SWOT analysis 2. Planu orsamentasaun bazea ba programa definidu 3. Planu Asaun Annual MF kordenadu no elaboradu 4. Avaliasaun dezenpenhu ba ezekusaun orsamentu kada diresoens identifikadu 5. Relatoriu trimestral no anual MF produzidu\"",
+   "baseline": "\"1. Bazeia ba planu atividades 2023 (Inisiativa foun) 2. Politika planu orsamentasaun bazea ba programa 2023 3. Planu Asaun Annual MF tinan fiskal 2023 4. Avaliasaun dezenpenhu ba ezekusaun orsamentu kada diresoens tinan fiskal 2023 5. Relatoriu trimestral no anual MF 2023\"",
+   "target": "\"1. Kualidade planu atividades MF definidu no garantidu bazeia ba mekanizmu SWOT 2. Planu orsamentasaun bazea ba programa promulgadu 3. Planu Asaun Annual MF promulgadu 4. Avaliasaun dezenpenhu ba ezekusaun orsamentu kada diresoens publikadu iha sistema DBFTL 5. Relatoriu trimestral no anual MF publikadu\"",
+   "amounts": {
+    "10": 55423.0,
+    "20": 336225.0
+   },
+   "page": 94
+  },
+  {
+   "code": "510013I",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Jestaun rekursu humanu",
+   "div": [
+    "0120301",
+    "0120302"
+   ],
+   "indicator": "\"1. Politikas, Leis, Regras, no Prosedimentu soclializadu no diseminadu 2. politika no implementasaun ba retensaun ba funsionariu kontratadu potensial iha MF aseguradu 3. Dezenpenhu forsa trabalhu MF avaliadu 4. Tarefas no",
+   "baseline": "\"1. Politikas, Leis, Regras, no Prosedimentu (Dekretu Lei FP, Dekretu Lei MF, Diploma Ministerial, Diretriz, Sirkular, SOPs no Sirkular inklui mos Indusaun) 2. Politika no implementasaun ba retensaun ba funsionariu kontratadu",
+   "target": "\"1. Politikas, Leis, Regras, no Prosedimentu minimun iha 6 socializadu ou diseminadu 2. Retensaun ba funsionariu kontratadu potensial iha MF aseguradu 3. Dezenpenhu forsa trabalhu MF kordenadu no submetidu 4.100% Tarefas",
+   "amounts": {
+    "10": 84849.0,
+    "20": 117000.0
+   },
+   "page": 94
+  },
+  {
+   "code": "510014Z",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Atendimentu Administrasaun no jestaun arkivu",
+   "div": [
+    "0120308"
+   ],
+   "indicator": "\"1. Padraun Prosedimentu Operasiona ba Jestaun utilizasaun Auditorium MF preparadu 2. Padraun ba Fornesimentu Jestaun Administrasaun ba MF revizidu 3. Numeru atendimentu ba kliente iha MF identifikadu bazeia ba lista. 4. Numeru submisaun pedidu Invoce husi kompania verifikadu; 5.Numeru arkivu ativu no inativu identifikadu; 6. Destroisaun ba arkivu liu prazu definidu; 7. Instalasaun Biblioteka dezenvolvidu; 8. Padraun Prosedimentu Operasional Biblioteka preparadu; 9. Fornesimentu",
+   "baseline": "\"1. Seidauk iha Padraun Prosedimentu Operasiona ba Jestaun ba utilizasaun auditorium MF; 2. Padraun ba fornesimentu Jestaun Administratsaun 2019; 3 .Relatoriu regular trimestral no annual servisus atendementu; 4. Invoice husi kompania bazeia ba fornesimentu pedidu; 5. Lista arkivu ativu no inativu 2024; 6. Arkivus antigu sira nebe liu ona prazu 2003; 7. Instalasaun fisiku Biblioteka iha edifisio MF Piso 2 2016; 8. Deze volve Padraun Prosedimentu Operasional Bibliotema foun N/A; 9. Instalasaun ekipamentus instala ona maibe seidauk kompletu.",
+   "target": "\"1. Padraun Prosedimentu Operasiona ba Jestaun utilizasaun Auditorium MF preparadu 2. Padraun ba Fornesimentu Jestaun Administrasaun ba MF revizidu 3. Numeru atendimentu ba kliente iha MF identifikadu bazeia ba lista. 4. Numeru submisaun pedidu Invoce husi kompania verifikadu; 5.Numeru arkivu ativu no inativu identifikadu; 6. Destroisaun ba arkivu liu prazu definidu; 7. Instalasaun Biblioteka dezenvolvidu; 8. Padraun Prosedimentu Operasional Biblioteka preparadu; 9. Fornesimentu",
+   "amounts": {
+    "10": 83243.0,
+    "20": 172276.0
+   },
+   "page": 95
+  },
+  {
+   "code": "510021E",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formulação de políticas públicas de finanças",
+   "div": [
+    "0120101",
+    "0120201"
+   ],
+   "indicator": "\"1. Implementasaun planeamentu no orsamentu aseguradu 2. Kontrolu no monitorizasaun iha ambitu Finansas Publika aseguradu\"",
+   "baseline": "N/A",
+   "target": "\"1. Asegura ona Implementasaun planeamentu no orsamentu 2. Asegura ona Kontrolu no monitorizasaun iha ambitu Finansas Publika\"",
+   "amounts": {
+    "10": 335429.0,
+    "20": 20000.0
+   },
+   "page": 96
+  },
+  {
+   "code": "510022K",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Jestaun no administrasaun sistema de informatica financeira integradu",
+   "div": [
+    "0122201"
+   ],
+   "indicator": "\"Amplifikasaun Talento: Rekruta Technical Assistants (TAs) hamutuk nain ha'at ho Recen Graduados hamutuk nain 6 ba IFMISU, hodi hametin kapasidade gestaun ba FMIS no Infraestrutura IT nian.\"",
+   "baseline": "\"Objetivu Amplifikasaun Talento: Atualmente, laiha ema hodi substitui Technical Assistants (TAs) dahuluk iha IFMISU no recen graduados sira nebe resigna ona atu halo jestaun ba FMIS no Infraestrutura IT.\"",
+   "target": "\" Objetivu Amplifikasaun Talento: Rekruta no simu iha ekipa Technical Assistants (TAs) haat iha IFMISU no recen graduados hamutuk nain 6 iha trimistre oin mai atu haforsa kapasidade gestaun FMIS no Infraestrutura IT nian.\"",
+   "amounts": {
+    "10": 543847.0,
+    "20": 19080.0
+   },
+   "page": 96
+  },
+  {
+   "code": "510022L",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Dezenvolvimentu rekursu humanu",
+   "div": [
+    "0120302"
+   ],
+   "indicator": "\" 1. Bolsa estudu iha area Jestaun Finansas Publika kordenadu no implementadu 2. Planu kapasitasaun individual MF elaboradu no implementadu 3. Planu rekrutamentu forsa trabalho MF planeadu no rekrutadu tuir nesesidade 4. Assegura sistema baze de dados ba forsa trabalho MF atualizadu \"",
+   "baseline": "\"1. Bolsa estudu iha area Jestaun Finansas Publika tinan 2015 & 2018 iha area espesifika kontabilidade, finansas, komersiu, rekursus humanos, IT no estatistika) 2. Planu kapasitasaun Insitutisaun MF tinan 2023 - Planu no materias (outline) Formasaun aprovadu 2023 tuir kada diresaun servisu iha MF 3. Planu rekrutamentu forsa trabalho MF tinan 2023",
+   "target": "\" 1. 80% Bolsa estudu iha area Jestaun Finansas Publika kordenadu no implementadu 2. 75% Planu kapasitasaun nivel institusional MF elaboradu no implementadu 3.100% Planu rekrutamentu forsa trabalho MF planeadu no rekrutadu tuir nesesidade. 4. Prosesu rekrutamentu implementadu 65% husi HRIS 5. 100% Assegura sistema baze de",
+   "amounts": {
+    "10": 104960.0
+   },
+   "page": 96
+  },
+  {
+   "code": "510022M",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Auditoria Interna e Inspecao",
+   "div": [
+    "0122401"
+   ],
+   "indicator": "\"1. Atividade auditoria interna ezekutadu tuir planu auditoria annual ne'ebe baze ba risku no kontempla iha Planu Operasional Anual UIG 2024 2. Atividade Inspesaun ezekutadu tuir Planu Operasional Anual UIG 2024 \"",
+   "baseline": "1. Audit Universu elaboradu iha 2023 2. Risk Assesment Framework finalizadu no relatoriu submetidu iha 2023 3. SoP Auditori Interno, inspesaun, investigasaun no outros guidelines UIG office inklui matrix trabalho auditoria internu elaboradu no atualizadu iha 2023 4. Manual Auditoria interno elaboradu no publikadu iha 2023",
+   "target": "1. Numerus Jestaun kontrolo no jestaun risku ne'ebe efetivu iha prosesu ezekusaun orsamentu estadu no patrimonial hetan melhoramentu. 2. Numerus konfirmidade ba regras no legislasaun sira hotu ne'ebe nakait ba ezekusaun orsamentu Estadu no patrimonial hetan melhoramentu.",
+   "amounts": {
+    "10": 96743.0,
+    "20": 5000.0
+   },
+   "page": 97
+  },
+  {
+   "code": "510022O",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Desenvolve padraun formasaun Jestaun Finansas Públikas",
+   "div": [
+    "0121901"
+   ],
+   "indicator": "\"1. Kurikulu formasaun JFP bazeia ba Padraun Kompetensia JFP realizadu; 2. CCGFP akreditadu ba unidades kompetensia 4 (Planeamentu, Orsamentu, Pagamentu/ Jestaun Tesouro no Jestaun Patrimonio inklui metodologia pedagógika no andragógika) husi INDMO; 3. Módulos formasaun JFP iha área 6 (planeamento, orçamento, Aprovisionamento no kontratasaun publika, ppagamentu/ jestaun tesouraria, jestaun patrimonio do Estado, kontabilidade no relatorius dezenvolvidu no atualizadu; 4. % quadros akreditasaun existi ba",
+   "baseline": "\"1. Kurrículo formasaun no Padraun Kompetensia JFP nebe desenvolve iha 2015 desatualizadu; 2. CCGFP akreditadu husi INDMO iha 2022 ba unidades kompetensia 2 (aprovisionamnto no kontratasaun públikas no kontabilidade no relatorios) . 3. Módulos formasaun JFP iha área 6 (planeamento, orçamento, Aprovisionamento no kontratasaun publika, ppagamentu/ jestaun tesouraria, jestaun patrimonio do Estado, kontabilidade no relatorius desatualizadu tuir kurrículo formasaun; 4. Quadros akreditasaun ba profissionais iha área",
+   "target": "\"1. 100% Kurrículo formasau padraun formasaun JFP desenvolvidu, nebe bele gia processu aprendizazen/ formasaun profesional ho validade ba próximos 5 anos; 2. Centro Kpacitação Jestão Finanças Públikas totalmente sei kredenciado husi INDMO ba área kompetencias 6 nebe kualifikadu hodi produs kualidade formandus para haforsa desentralizasaun. 3. Iha ona módulos formasaun JFP nbe atualizadu no koresponde ho regras no recedimentus JFP nebe ho validade ba próximos 5 anos; 4. 100% Iha ona matadalan nebe atualizadu hodi akredita professionais JFP sira",
+   "amounts": {
+    "20": 142466.0
+   },
+   "page": 97
+  },
+  {
+   "code": "510022P",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Promove atividades formasaun iha area Jestaun Finansas Públikas",
+   "div": [
+    "0121901"
+   ],
+   "indicator": "\"1. Formasaun regular ba total oficiais 1,500 (250 oficiais kada área JFP 6, nomeadamente: planeamento, orçamento, aprovisionamnto no kontratasaun públikas, jestaun tesouraria/ pagamentu, jestaun patrimonio do Estado, kontabilidade no relatorios), ba Servisu no Entidade Setor Públiku Administrativu, realizadu; 2. Formadores nain 5 husi target formadores nai 15 realiza formasaun intensiva atu hetan certifikasaun nudar formador qualifikdu (certifickadu formação noavaliação 3 no 4); 3. Formasaun intensivu nivel 2 iha área JFP inklui on-the-job training (pagamentu, kontabilidade no relatorios) ba 11 Servisu no Entidade Setor Públiku Administrativu nebe sai pilotu ho total oficiais 66 realizadu; 4. Avaliasaun pós-",
+   "baseline": "\"1. Formasaun regular iha área JFP 6 realiza iha 2023, nomeadamente: planeamento, orçamento, aprovisionamnto no kontratasaun públikas, jestaun tesouraria/ pagamentu, jestaun patrimonio do Estado, kontabilidade no relatorios) ho total formandus 1,085 mai husi Servisu no Entidade Setor Públiku Administrativu; 2. Iha 2023, total formadores JFP permanente nain 2 no formador nomeadu hanesan subject matter expert ka especialista ba assuntu hamotuk 20 maibe nain 15 deit maka ativu, no entre sira seidauk tuir formasaun intensiva atu hetan certifikasaun nudar formador qualifikdu (certifickadu formação noavaliação 3 no 4); 3. Formasaun intensivu nivel 1 iha área JFP inklui on-the-job training (pagamentu,",
+   "target": "\"1. Oficiais husi Servisu no Entidade Setor Públiku Administrativ kualifikadu no bele opera sitema JFP ho kualidade, garante transparensia, efifazia, efisiensia akuntabilidade; 2. CCGFP iha ona formadores kualifikadu, nune'e bele produs kualifikadu formandus no bele ona koresponde ba demanda formasaun JFP nebe tinan ba tinan aumenta; 3. Servisu no Entidade Setor Públiku Administrativu 11 nebe sai pilotu bele ona halo pagamentu mesak no produs relatoriu mesak tuir rekomendasaun CdC; 4. Ho (Post Training Assessment), bele sukat kualidade individu profesionais JFP nebe hamahan iha Servisu no Entidade Setor Públiku Administrativu; 5. Iha ona sasukat husi rejultadu (Training Needs Assessment) nune'e,",
+   "amounts": {
+    "10": 153386.0
+   },
+   "page": 98
+  },
+  {
+   "code": "510022R",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Komunikasaun no relasaun publika",
+   "div": [
+    "0121801"
+   ],
+   "indicator": "\"1. Padraun komunikasaun media MF aprovadu 2. Informasaun konaba atividades MF Publikadu 3. Relasaun MF no media komunikasaun sosial kordenadu \"",
+   "baseline": "\"1. Padraun komunikasaun media MF tinan 2023 2. Informasaun konaba atividades MF Publikadu tinan 2023 3. Relasaun MF no media komunikasaun sosial kordenadu tinan 2023\"",
+   "target": "\"1. Padraun komunikasaun media MF aprovadu 2. Informasaun konaba atividades MF Publikadu 3. Relasaun MF no media komunikasaun sosial kordenadu \"",
+   "amounts": {
+    "10": 35056.0,
+    "20": 5000.0
+   },
+   "page": 99
+  },
+  {
+   "code": "5100451",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Konstrusaun Dormitorio Ba Postu intergrado salele",
+   "div": [
+    "0120311"
+   ],
+   "indicator": "\"1.% Konstrusaun Dormetorio Posto Integrado Salele 2. # monitorizasaun \"",
+   "baseline": "\"68% Konstrusaun Dormetorio Posto Integrado Salele 2024 2. # monitorizasaun\"",
+   "target": "\"Konstrusaun Posto Integrado Salele atinji ona 100% 2025 2.2 monitorizasaun realizadu\"",
+   "amounts": {
+    "50": 15200.0
+   },
+   "page": 99
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "023.0.7",
+   "statement": "Até 2028, os principais sistemas de gestão das finanças públicas de Timor-Leste serão mais sustentáveis, eficientes, transparentes e responsáveis do ponto de vista fiscal, o que se demonstra por uma maior mobilização de receitas internas, uma execução orçamental mais fiável e atempada, uma gestão prudente da dívida e das reservas, e uma gestão transparente das aquisições, dos fundos soberanos e dos ativos do Estado.",
+   "indicator": "\"1. Reseita doméstika naun- petrolíferu hanesan persentajen husi PIB 2. Persentajen hosi kontribuinte sira ne'ebé rejistadu ne'ebé hatama no selu tuir tempu 3. Persentajen hosi prosesu sentrál impostu/alfándega nian ne'ebé opera liuhosi fluxu serbisu dijitál padronizadu ne'ebé aprova ona 4. Reseita adisionál ne'ebé avalia ona ne'ebé rekolla hosi intervensaun sira kumprimentu nian \"",
+   "baseline": "\"\"\"1) Aumentu anuál iha reseita doméstika (la'ós petrolíferu) hanesan 7% hosi PIB (alvu ≥15% to'o 2028). (CRF PDF pajina 131) 2) Taxa ezekusaun orsamentu (gastu aktual vs orsamentu anual aprovadu). (CRF PDF pajina 132) 3) Redusaun 3% iha dívida públika nu’udar proporsaun husi PIB (anuál). 4) 75% husi prosedimentu aprovizionamentu públiku kompleta tuir prazu no orsamentu ne’ebé planeadu.\"\" \"",
+   "target": "\"1) Aumentu anuál iha reseita doméstika (la’ós petrolíferu) ba 8% hosi PIB (alvu ≥15% to’o 2028). (CRF PDF pájina 131) 2) Taxa ezekusaun orsamentu (gastu aktual vs. orsamentu anual aprovadu). (CRF PDF pájina 132) 3) Redusaun 3% iha dívida públika nu’udar proporsaun husi PIB (anuál). 4) 100% husi prosedimentu aprovizionamentu públiku kompleta tuir prazu no orsamentu ne’ebé planeia ona. \"",
+   "page": 73
+  },
+  {
+   "kind": "output",
+   "code": "02323.0.0",
+   "statement": "1. Inventariza no jere patrimoniu estadu ho forma reduz despezas publika no jera reseitas estadu",
+   "indicator": "Melhoria gestão partimonio estadu liu husi baze de dados atu asegura patrimonio móveis no imóveis.",
+   "baseline": "Konfigurasaun sistema GRP Asset Module Aprovado",
+   "target": "1). Levantamento dadus ba Beins Moveis ; 2). Mirgasaun data husi Exel ba sistema; 3)Entering no Autualizasaun Regular.; 4) kordenasaun ba inventarizasaun beins imoveis.",
+   "page": 73
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el24310: Até _ 2028, o Sistema Nacional de Gestão de Ativos estará totalmente operacional e será utilizado para registar, verificar e atualizar todos os bens móveis do Estado, garantindo uma gestão transparente e eficiente dos ativos públicos.",
+   "indicator": "\"1. % hosi patrimóniu móvel sira iha ámbitu ne'ebé rejista no atuál iha Sistema Jestaun Patrimóniu Nasionál 2. % entidade sira ne’ebé kompleta inventáriu fíziku anuál tuir padraun nasionál 3. % husi manutensaun veíkulu preventivu ne'ebé maka kompleta tuir tempu 4. % patrimóniu obsoletu/la utilizadu ne’ebé identifika ona ne’ebé rezolve iha prazu ne’ebé prevee ona \"",
+   "baseline": "\"1. 75% hosi patrimóniu móvel sira iha ámbitu ne'ebé rejista no atuál iha Sistema Jestaun Patrimóniu Nasionál 2. 50% entidade sira ne’ebé kompleta inventáriu fíziku anuál tuir padraun nasionál 3. 50% husi manutensaun veíkulu preventivu ne'ebé maka kompleta tuir tempu 4. 75% patrimóniu obsoletu/la utilizadu ne’ebé",
+   "target": "\"1. 100% husi patrimóniu móvel ne’ebé rejista ona iha Sistema Patrimóniu Nasionál 2. 70% husi ministériu/ajénsia sira ne’ebé kompleta inventáriu fíziku anuál ida uza padraun nasionál sira 3. 100% husi patrimóniu ne’ebé marka hanesan “obsoletu/la uza” ne’ebé kompleta ona prosedimentu nesesáriu iha fulan 12 nia laran 4. 100% hosi rejistu ativu sira ne'ebé",
+   "page": 73
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el24311: Até _ 2028, a gestão de inventário e a gestão da frota de veículos do Estado estarão padronizadas e em pleno funcionamento, com manutenção atempada e registos atualizados para melhorar a utilização dos bens móveis do governo.",
+   "indicator": "\"1. % hosi patrimóniu móvel sira iha ámbitu ne'ebé rejista no atuál iha Sistema Jestaun Patrimóniu Nasionál 2. % entidade sira ne’ebé kompleta inventáriu fíziku anuál tuir padraun nasionál 3. % husi manutensaun veíkulu preventivu ne'ebé maka kompleta tuir tempu 4. # patrimóniu obsoletu/la utilizadu ne’ebé identifika ona ne’ebé rezolve iha prazu ne’ebé prevee ona \"",
+   "baseline": "\"1. 75% hosi patrimóniu móvel sira iha ámbitu ne'ebé rejista no atuál iha Sistema Jestaun Patrimóniu Nasionál 2026 2. 50% entidade sira ne’ebé kompleta inventáriu fíziku anuál tuir padraun nasionál 3. 85% husi manutensaun veíkulu preventivu ne'ebé maka kompleta tuir tempu 2026 4. 2 patrimóniu obsoletu/la utilizadu ne’ebé identifika ona ne’ebé rezolve iha prazu ne’ebé prevee ona 2026 \"",
+   "target": "\"\"\"1. 95% husi ministériu sira ne’ebé uza módulu no prosedimentu tuir padrão de inventário de ativos 2. 85% husi veíkulu Estadu nian ne’ebé simu/halo manutensaun preventiva tuir tempu 3. 100% mediu Taxa ba utilizasaun veíkulu Estadu nian (loron/fulan iha uzu) 4. 1# husi instrumentu legál/regulatóriu foun ka revizaun ne’ebé adota ba jestaun patrimóniu no frota Estadu nian.\"\" \"",
+   "page": 74
+  },
+  {
+   "kind": "output",
+   "code": "02326.0.0",
+   "statement": "Até 2028, a governação, a política de investimento e os mecanismos de reporte do Fundo Petrolífero serão reforçados e totalmente implementados, garantindo uma gestão transparente, em conformidade com as normas e eficaz do Fundo.",
+   "indicator": "\"1. % relatóriu estatutáriu Fundu Mina-rai nian ne’ebé publika to’o prazu legál 2. % hosi karteira ne'ebé maka hela iha risku aprovadu no limite sira desviasaun- referénsia nian 3. # instrumentu governasaun ka polítika- investimentu ne'ebé aprova no tau iha vigór 4. # pesoál nasionál ne'ebé kompleta formasaun investimentu/jestaun-risku ne'ebé rekoñesidu \"",
+   "baseline": "\"1. 50% relatóriu estatutáriu Fundu Mina-rai nian ne’ebé publika to’o prazu legál 2. 65% hosi karteira ne'ebé maka hela iha risku aprovadu no limite sira desviasaun-referénsia nian 3. 2 instrumentu governasaun ka polítika-investimentu ne'ebé aprova no tau iha vigór 4. 2 pesoál nasionál ne'ebé kompleta formasaun investimentu/jestaun-risku ne'ebé rekoñesidu \"",
+   "target": "\"\"\"1. Relatóriu Fundu Petrolíferu publika tuir tempu 2. 85% husi karteira Fundu Petrolíferu nian mantein iha limite sira ne’ebé aprova ona ba akompañamentu erru no desviasaun husi índise referénsia durante tinan fiskál tomak. 3. Dokumentu rua governu nian kona- ba polítika investimentu Fundu Petrolíferu nian ne’ebé atualiza ona, aprova ona, no implementa ona 4. Funsionáriu nasionál na'in rua ne'ebé sertifikadu ka formadu iha investimentu Fundu Petrolíferu no jestaun risku\"\".\"",
+   "page": 75
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el24323: Até _ 2028, estatístika ekonómiku, sosiál no fiskál ho kualidade aas no oportunas serão regularmente produzidas, valida no divulga beibeik, no pesquisas nasionál prioridade sira hala&#039;o atu apoia elaborasaun polítika bazeia ba evidénsia",
+   "indicator": "\"1. % hosi produtu estatístiku ofisiál sira ne'ebé maka publika ona iha data lansamentu ne'ebé maka aprova ona 2. % husi produtu publikadu sira ne'ebé liu validasaun kualidade dokumentadu 3. # polítika prioridade ka prosesu peskiza ne'ebé fornese ho estatístika ofisiál \"",
+   "baseline": "\"1. 85% hosi produtu estatístiku ofisiál sira ne'ebé maka publika ona iha data lansamentu ne'ebé maka aprova ona 2026 2. 100% husi produtu publikadu sira ne'ebé liu validasaun kualidade dokumentadu iha 2026 3. 3 polítika prioridade ka prosesu peskiza ne'ebé fornese ho estatístika ofisiál \"",
+   "target": "To'o 31 Dezembru 2027, instrumentu planeadu ne'e trasa ona, konsulta ona, hetan garantia ba kualidade, hetan aprovasaun hosi autoridade kompetente, divulga ona, no akompaña ho asaun implementasaun inisiál sira ne'ebé dokumentadu ona.",
+   "page": 76
+  },
+  {
+   "kind": "output",
+   "code": "02331.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 77
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el23987: Até _ 2028, os sistemas de mobilização de receitas internas e de financiamento público serão reforçados e modernizados — incluindo a administração fiscal e aduaneira, a gestão do fundo soberano, a mobilização de assistência externa, os instrumentos de financiamento do tesouro e a alienação de",
+   "indicator": "\"1. Reseita doméstika naun- petrolífera hanesan persentajen husi PIB 2. Persentajen hosi kontribuinte sira ne'ebé rejistadu ne'ebé hatama no selu tuir tempu 3. Persentajen hosi prosesu sentrál impostu/alfándega nian ne'ebé opera",
+   "baseline": "\"\"\"1) 100% de declarações fiscais e aduaneiras processadas dentro do prazo utilizando SIGTAS e ASYCUDA 2) 95% de conformidade da carteira de investimentos do Fundo Petrolífero com os limites de referência e de erro",
+   "target": "\"1) 100% ba deklarasaun impostu no alfandega prosesa tuir tempu uza SIGTAS no ASYCUDA 2) 100% kumprimentu karteira investimentu Fundu Petrolíferu nian ho referénsia aprovadu no limite erru akompañamentu. 3) Asisténsia",
+   "page": 77
+  },
+  {
+   "kind": "output",
+   "code": "02332.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 84
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el24186: Até _ 2028, os processos anuais de planeamento e orçamentação serão reforçados e institucionalizados, com todas as entidades orçamentais a prepararem PAA alinhados e com garantia de qualidade, e o Orçamento Geral do Estado e os relatórios macroeconómicos a serem produzidos atempadamente, utilizando a estrutura nacional do orçamento- programa.&amp;#13;&amp;#10;",
+   "indicator": "\"1. % hosi entidade orsamentál sira ne’ebé submete Planu Asaun Anuál sira ne’ebé asegura ho kualidade to’o prazu 2. % proposta orsamentál ne’ebé kumpri enkuadramentu orsamentál bazeia ba programa 3. # instrumentu planeamentu no orsamentasaun médiu prazu ne’ebé aprova ona ne’ebé uza iha siklu orsamentál 2028 nian\"",
+   "baseline": "\"1) 70% husi Entidade Orsamentál sira ne'ebé submete PAA sira uza modelu ne'ebé aprova ona no aliña ho estrutura programa nian 2) 100% (Loos / Yes) OGE 2025 & 2026 Orsamentu Jerál Estadu submete ba Konsellu Ministru tuir prazu ne'ebe determina 3) 3# husi relatóriu makroekonómiku sira ne'ebé produz tinan-tinan (ezemplu, MTFF, Perspetiva Makroekonómiku, Estratéjia Fiskál nia input sira) 4) 50% husi PAA sira ne'ebé valida hanesan \"\"kumpri kualidade / quality compliant\"\" uza lista verifikasaun kualidade MoF nian (MoF Quality Checklist).\"",
+   "target": "\"1) 90% hosi entidade orsamentál sira 2027 nian hatama ona sira-nia Planu Orsamentu Anuál (PAA) iha Q2; 2) 100% (Sim: Tinan- tinan ka OGE 2027) Orsamentu Jerál Estadu (OJE) 2027 nian submete ba Konsellu Ministru ho estrutura orsamentu bazeia ba programa; Deklarasaun Estratéjia Orsamentu 2027 nian submete ona. 3) 3 hosi relatóriu makroekonómiku sira ne'ebé produz tinan-tinan (ezemplu, MTFF, Perspetiva Makroekonómiku, input sira ba Estratéjia Fiskál) 4) 80% hosi dokumentu sira PAA 2028 nian konsidera \"\"kumpri ho kualidade\"\" uza Lista Verifikasaun Kualidade MoF nian.\"",
+   "page": 84
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el24335: Até _ 2028, enkuadramentu orsamentu médiu prazu padronizadu (inklui Manuál Orsamentu ho guia Orsamentu Programa, modelu makroekonómiku, no ferramenta Enkuadramentu Fiskál no Orsamentu Médiu Prazu), dezenvolve, aprova, disemina, no uza ho efetivu atu orienta jestaun finanseira públika ne’ebé bazeia ba estratéjiku no dezempeñu.",
+   "indicator": "\"1) # husi ferramenta/kuadru JFP padronizadu (ezemplu, Manuál Orsamentu inklui manuál orsamentasaun programa, MTBF, MTP, modelu makro-fiskál ne'ebé dezenvolve no aprova 2) % hosi entidade orsamentál sira ne'ebé hetan formasaun ka orientadu kona-ba utilizasaun hosi ferramenta no enkuadramentu foun sira JFP nian 3) % hosi funsinariu DGPO hetan formasaun/atende workshop 4) # reuniaun partisipadu (nasional no internasional). 5. % entidade sira ne’ebé hatudu/demonstra ona kumprimentu ba estrutura orsamentu por programa iha submisaun PAA/OJE. \"",
+   "baseline": "\"1) 2025: 1 ferramenta parcialmente desenvolvida 2) 40% osi entidade orsamentál sira ne'ebé hetan formasaun ka orientadu kona-ba utilizasaun hosi ferramenta no enkuadramentu foun sira JFP nian 3) Utiliza modelu makroekonómiku versaun ezistente (baziku) 4) N/A 5) 70% entidade sira ne’ebé hatudu/demonstra ona kumprimentu ba estrutura orsamentu por programa iha submisaun PAA/OJE.\"",
+   "target": "\"1) 2027: 4 ferramentas aprovadas 2) 2027: 100% Entidade Orsamentál sira aplika ona ferramenta manual orsamentu no MTBF. 3) 2027: 100% ka atualizado kada tinan 4) 2027: 100% ferramentas, manual desimina ona ba Entidade Orsamentál sira 5) 2027: 100% entidade sira hatudu/demonstra ona kumprimentu ba estrutura orsamentu por programa iha submisaun PAA/OJE \"",
+   "page": 85
+  },
+  {
+   "kind": "output",
+   "code": "02333.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 86
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el200020: Até _ 2028, a execução orçamental, as operações de tesouraria e os processos de gestão de caixa serão melhorados e automatizados, garantindo pagamentos, controlo de compromissos e relatórios financeiros pontuais, eficientes e em conformidade.",
+   "indicator": "\"1. %Taxa ezekusaun orsamentál agregadu, relata separadu ba despeza rekorrente no kapitál 2. % pedidu pagamentu válidu ne’ebé prosesa iha padraun servisu nia laran 3. %Diferensa entre previzaun no saldu osan mensál loloos 4. % hosi relatóriu sira",
+   "baseline": "\"1. 85%Taxa ezekusaun orsamentál agregadu, relata separadu ba despeza rekorrente no kapitál 2. 100% pedidu pagamentu válidu ne’ebé prosesa iha padraun servisu nia laran 3. 95% Diferensa entre previzaun no saldu osan mensál loloos 4. 85% hosi relatóriu",
+   "target": "\"1) 100% husi pagamentu sira ne’ebé prosesa iha prazu legál nia laran. 2) 100% husi entidade sira ne'ebé uza prosesu kompromisu no pagamentu automatizadu 3) 100% husi planu fluxu osan mensál ne'ebé hatama no ezekuta tuir previzaun 4) 100% husi rekonsiliasaun",
+   "page": 86
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el24218: Até _ 2028, o controlo interno, a auditoria interna, as normas contabilísticas e os sistemas de monitorização do desempenho serão reforçados e institucionalizados, apoiados por uma contabilidade do Tesouro modernizada, quadros jurídicos e ferramentas digitais.&amp;#13;&amp;#10;",
+   "indicator": "\"1. % husi planu auditoria interna bazeia ba risku ne’ebé kompleta ona 2. % rekomendasaun auditoria ne’ebé konkorda ona ne’ebé implementa to’o data vensimentu 3. % hosi entidade sira iha ámbitu ne'ebé hatama relatóriu finanseiru no dezempeñu ne'ebé kumpri tuir tempu 4. % hosi marku sira modernizasaun sistema nian ne'ebé aseita ona\"",
+   "baseline": "\"1. 50% husi planu auditoria interna bazeia ba risku ne’ebé kompleta ona 2. 75% rekomendasaun auditoria ne’ebé konkorda ona ne’ebé implementa to’o data vensimentu 3. 85% hosi entidade sira iha ámbitu ne'ebé hatama relatóriu finanseiru no dezempeñu ne'ebé kumpri tuir tempu 4. 85% hosi marku sira modernizasaun sistema nian ne'ebé aseita ona\"",
+   "target": "To'o 31 Dezembru 2027, instrumentu planeadu ne'e trasa ona, konsulta ona, hetan garantia ba kualidade, hetan aprovasaun hosi autoridade kompetente, divulga ona, no akompaña ho asaun implementasaun inisiál sira ne'ebé dokumentadu ona.",
+   "page": 90
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "O atual plano de 5 anos está desatualizado e precisa ser revisado e alinhado com as prioridades e a estrutura do novo governo.",
+   "target": "Melhorar o desempenho do sector público, especialmente do sector público é o principal motor do crescimento económico nacional",
+   "page": 92
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.10",
+   "statement": "Assegura funcionamentu prestasaun servisu MF no atendimentu publiku",
+   "indicator": "Planu Estratéjiku ne'ebé aprova ona, inklui planu ida ba médiu prazu",
+   "baseline": "Planu Estratéjiku ne'ebé aprova ona, inklui planu ida ba médiu prazu",
+   "target": "To'o 31 Dezembru 2027, 100% hosi entregavel sira ne'ebé aprova ona ba \"Hari'i konfiansa iha governu\" kompleta ona iha data vensimentu sira, aseguradu ho kualidade, aseitadu formalmente, no hetan apoiu hosi rejistu sira ne'ebé bele verifika.",
+   "page": 93
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.4",
+   "statement": "Políticas Financeiras Públicas estabelecidas e implementadas por instituições públicas.",
+   "indicator": "# implementação de políticas, leis, regras e procedimentos melhorados",
+   "baseline": "# utilização de sistemas HRIS baseados em normas Disseminadas em 2024",
+   "target": "90% de utilização do sistema HRIS baseado em normas garantida em 2025",
+   "page": 96
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.8",
+   "statement": "Melhoria infraestrutura MF no kapasidade rekursu humanu",
+   "indicator": "\"1. % pozisaun prioridade sira ne'ebé prenxe ona 2. % hosi funsionáriu sira ne'ebé simu avaliasaun dezempeñu anuál ne'ebé kompleta ona 3. % husi deskrisaun serbisu prioridade atuál no aprovadu 4. % hosi planu dezenvolvimentu- kapasidade anuál ne'ebé kompleta ona \"",
+   "baseline": "\"1. 75% pozisaun prioridade sira ne'ebé prenxe ona 2. 85% hosi funsionáriu sira ne'ebé simu avaliasaun dezempeñu anuál ne'ebé kompleta ona 3.85 % husi deskrisaun serbisu prioridade atuál no aprovadu 4. 50% hosi planu dezenvolvimentu-kapasidade anuál ne'ebé kompleta ona \"",
+   "target": "\"90% utilizasaun sistema HRIS baseia padraun aseguradu 2025 \"",
+   "page": 96
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "% Reahabilitasaun no Kontrusaun ba Edificio INETL no Aduaneira",
+   "baseline": "90% Reahabilitasaun no Kontrusaun ba Edificio INETL no Aduaneira 2024.",
+   "target": "100%Reahabilitasaun no Kontrusaun ba Edificio INETL no Aduaneira 2025.",
+   "page": 99
+  }
+ ]
+}

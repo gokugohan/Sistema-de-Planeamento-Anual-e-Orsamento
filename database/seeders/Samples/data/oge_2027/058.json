@@ -1,0 +1,393 @@
+{
+ "year": 2027,
+ "code": "058",
+ "name": "Agência de Promoção de Investimento e Exportação de Timor-Leste, I.P.",
+ "abbr": "APIETL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   698,
+   701
+  ]
+ },
+ "units": [
+  {
+   "code": "TITL",
+   "div": "0580101",
+   "name": "Trade Invest Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social.",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "\"N.º de auditoria interna realizada e efetuada\"",
+   "baseline": "N/A",
+   "target": "\"4 relatórios de auditoria interno realizados e efetuados\"",
+   "amounts": {
+    "20": 8000.0
+   },
+   "page": 698
+  },
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "1). N.º Ação sensibilizado;",
+   "baseline": "2025: 2 Ação sensibilizado",
+   "target": "Mulheres e homens facilitados na área de sensibilização de género",
+   "amounts": {
+    "20": 2500.0
+   },
+   "page": 698
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "1) N.º de funcionários formados (Área especializadas, Línguas,IT & Multimédia, etc.; 2) N.º de sessões de trabalho realizados",
+   "baseline": "1) 1 funcionário participou num simpósio Te Tiri Whakaaro: NZELTO Hui 2025 realizado em Ha Noi, Vietname. 2) 1 funcionária participou no Young ASEAN Trade and Economic Study Tour na Nova Zelândia 3) 2 funcionários participaram numa ação de formação da Northern Territory Government – TradeInvest Intership program. 4) 1 funcionária participou no Training Course no Japão sobre \"Export Promotion/Marketing Strategies targeting Global Markets (A)\". 2025 5) 2 funcionários participaram em Training Course TITL'S for participating in working session- co-designing Timor-Leste digital services in Switzerland (Geneva), 2025, 6) 1 Funcionário participou",
+   "target": "\"1) 43 funcionários formados (Área especializadas, línguas, informação ITC, etc.); 2) 4 sessões de trabalho realizados (Os procedimentos de RH e regras de execução orçamentais e planeamento)\"",
+   "amounts": {
+    "20": 23129.0
+   },
+   "page": 698
+  },
+  {
+   "code": "5100213",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "% de orçamento executado",
+   "baseline": "2025: 78.7%",
+   "target": "85% do orçamento executado",
+   "amounts": {
+    "10": 171900.0,
+    "20": 258962.0
+   },
+   "page": 699
+  },
+  {
+   "code": "510023Y",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de informação e tecnologia, e comunicação",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 699
+  },
+  {
+   "code": "9803006",
+   "programme": "980",
+   "subprogramme": "98030",
+   "subprogramme_name": "Declaração de Maubisse",
+   "name": "Desenvolve pacote de informação investimento setorial",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 699
+  },
+  {
+   "code": "9832701",
+   "programme": "983",
+   "subprogramme": "98327",
+   "subprogramme_name": "Promover as exportações",
+   "name": "Facilitar o crescimento das exportações em 4 setores principais",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 75396.0,
+    "20": 11250.0
+   },
+   "page": 699
+  },
+  {
+   "code": "9832702",
+   "programme": "983",
+   "subprogramme": "98327",
+   "subprogramme_name": "Promover as exportações",
+   "name": "Apoiar à construção da capacidade do exportador",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 31500.0
+   },
+   "page": 699
+  },
+  {
+   "code": "9832703",
+   "programme": "983",
+   "subprogramme": "98327",
+   "subprogramme_name": "Promover as exportações",
+   "name": "Post-Care Services ba atividade exportação",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 8300.0
+   },
+   "page": 700
+  },
+  {
+   "code": "9832904",
+   "programme": "983",
+   "subprogramme": "98329",
+   "subprogramme_name": "Parceria Eficaz",
+   "name": "Cooperação e Parcerias",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "\"1) N.º de parcerias estabelecidas; 2) N.º de atividades fortalecidos com parceiros; 3) N.º de delegação empresarial facilitado.\"",
+   "baseline": "\"2025: 1) 4 parcerias estabelecidas; 2) 4 parcerias fortalecidas; 3) 4 delegações empresariais facilitados.\"",
+   "target": "1) 4 acordos de parcerias estabelecidos; 2) 2 delegações empresariais facilitados.",
+   "amounts": {
+    "10": 59796.0,
+    "20": 29894.0
+   },
+   "page": 700
+  },
+  {
+   "code": "9833001",
+   "programme": "983",
+   "subprogramme": "98330",
+   "subprogramme_name": "Promover os Investimentos Privados",
+   "name": "Facilitar e promover o crescimento dos investimentos em 4 setores principais",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 109356.0,
+    "20": 14313.0
+   },
+   "page": 700
+  },
+  {
+   "code": "9833002",
+   "programme": "983",
+   "subprogramme": "98330",
+   "subprogramme_name": "Promover os Investimentos Privados",
+   "name": "Monitorização a eficácia do investimento privadas",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 7500.0
+   },
+   "page": 700
+  },
+  {
+   "code": "9834101",
+   "programme": "983",
+   "subprogramme": "98341",
+   "subprogramme_name": "Politica Advocacia",
+   "name": "Advocacia Politica de Promoção Investimento e exportação",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 225677.0,
+    "20": 107260.0
+   },
+   "page": 700
+  },
+  {
+   "code": "9834202",
+   "programme": "983",
+   "subprogramme": "98342",
+   "subprogramme_name": "Promoção de investimentos e exportações atraves de networking e marketing",
+   "name": "Promover investimentos e exportações através de networking",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "N.º de eventos de networking organizados e atendidos.",
+   "baseline": "\"2025: 1) 6 eventos participados e 2 eventos organizados\"",
+   "target": "7 eventos participados e 3 eventos organizados",
+   "amounts": {
+    "20": 70513.0
+   },
+   "page": 700
+  },
+  {
+   "code": "9834203",
+   "programme": "983",
+   "subprogramme": "98342",
+   "subprogramme_name": "Promoção de investimentos e exportações atraves de networking e marketing",
+   "name": "Promover investimentos e exportações através de materiais de marketing",
+   "div": [
+    "0580101"
+   ],
+   "indicator": "\"1. N.º de publicidades de informacao divulgados através dos meios de comunicação; 2. N.º de Produção ou Impressão de Material de Marketing. 3. N.º de atividades e eventos publicados\"",
+   "baseline": "29 materiais publicados",
+   "target": "\"1. 6 atividades realizada nos meios de comunicação; 2. 10 tipos de materiais produzidos; 3. 150 atividades e eventos publicados.\"",
+   "amounts": {
+    "20": 8850.0
+   },
+   "page": 700
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "N.º de relatório de desempenho e relatório financeiro anual publicado.",
+   "baseline": "1 relatório de desempenho anual e 1 relatório financeiro anual submetidos",
+   "target": "1 relatório de desempenho e 1 relatório financeiro anual submetidos",
+   "page": 698
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de índices de transparência e responsabilização no funcionamento da administração pública melhorado.",
+   "baseline": "78,1% executados",
+   "target": "85% de índices de transparência e responsabilização no funcionamento da administração pública melhorado.",
+   "page": 698
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"N.º de plano de Ação anual implementado\"",
+   "baseline": "2 Programas, 7 sub programas e 14 atividades",
+   "target": "43 ações das 14 atividades anuais implementadas",
+   "page": 698
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 699
+  },
+  {
+   "kind": "output",
+   "code": "98030.0.0",
+   "statement": "Promoção efectiva da participação das mulheres rurais no desenvolvimento económico do país e eliminação de todas as formas de discriminação contra as mulheres rurais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 699
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.c: O ambiente de negócios para investidores e exportadores melhorou.",
+   "indicator": "\"1) Valor de capital de investimento direto nacional e estrangeiro executados 2) Valor de exportações realizados 3) N.º de postos de trabalho criados\"",
+   "baseline": "\"2025: 1) USD $20 milhões de investimentos executados através de monitorização de 19 beneficiários 2) USD $17 milhões de exportações realizados 3) 2,795 Postos de trabalho criados através dos projetos de investimento e atividades de exportação\"",
+   "target": "\"Estimativa Ano 2027-2029: 1) USD $21,8 milhões de investimentos executados; 2) USD $30,5 milhões de exportações realizados; 3) 3,095 postos de trabalho criados;\"",
+   "page": 699
+  },
+  {
+   "kind": "output",
+   "code": "98327.0.0",
+   "statement": "Os números de exportadores aumentam",
+   "indicator": "\"N.º de exportadores potenciais e volume de exportação aumentam\"",
+   "baseline": "\"4 novos exportadores aumentam\"",
+   "target": "\"5 novos exportadores potenciais e volume de exportação aumentam\"",
+   "page": 699
+  },
+  {
+   "kind": "output",
+   "code": "98329.0.1",
+   "statement": "Melhor eficácia de parceria",
+   "indicator": "\"1) N.º de parcerias pontenciais estabelecidas; 2) N.º de parcerias fortalecidas\"",
+   "baseline": "10 parcerias estabelecidas e fortalecidas",
+   "target": "15 parcerias potenciais estabelecidas e fortalecidas",
+   "page": 700
+  },
+  {
+   "kind": "output",
+   "code": "98330.0.0",
+   "statement": "os valores do novo investimento privado da economia não petrolífera aumentam",
+   "indicator": "\"Aumento do valor de capital de investimento executados\"",
+   "baseline": "\"2025: Aumento de $20 milhões de capital de investimento\"",
+   "target": "\"$ 27 milhões de capital de investimentos executados\"",
+   "page": 700
+  },
+  {
+   "kind": "output",
+   "code": "98341.0.0",
+   "statement": "Melhoramento e reforma a politica sobre investimentos e exportações",
+   "indicator": "\"N.º de melhoramento e reforma implementados sobre a ação de advocacia politica e técnica.\"",
+   "baseline": "1 advocacia polïtica sobre a Lei das Exportações",
+   "target": "3 advocacias polïticas sobre a reforma do ambiente de investimento melhorados",
+   "page": 700
+  },
+  {
+   "kind": "output",
+   "code": "98342.0.0",
+   "statement": "Atrair os Investidores e exportadores",
+   "indicator": "N.º de eventos e participantes (investidores e exportadores) atingidos.",
+   "baseline": "8 eventos realizados e 500 participantes (investidores e exportadores) atingidos.",
+   "target": "\"1) 10 eventos e 700 participantes (investidores e exportadores) atingidos; 2) 7 eventos participados e 3 eventos organizados\"",
+   "page": 700
+  }
+ ]
+}

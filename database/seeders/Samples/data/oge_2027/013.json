@@ -1,0 +1,1463 @@
+{
+ "year": 2027,
+ "code": "013",
+ "name": "Dotação Geral do Estado",
+ "abbr": "DGE",
+ "kind": "fund",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   101,
+   108
+  ]
+ },
+ "units": [
+  {
+   "code": "FC",
+   "div": "0130102",
+   "name": "Fundo de Contingência",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PSL",
+   "div": "0130104",
+   "name": "Provisão para Serviços Legais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PFPRCSS",
+   "div": "0130106",
+   "name": "Provisão para Fundo de Pensões do Regime Contributivo Segurança Social",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "POMVG",
+   "div": "0130107",
+   "name": "Provisão para Oficina de Manutenção de Veículos do Governo",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PPE",
+   "div": "0130108",
+   "name": "Provisão para pagamento de Empréstimos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PAA",
+   "div": "0130112",
+   "name": "Provisão Para a Adesão de ASEAN",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "POSS",
+   "div": "0130113",
+   "name": "Provisão para o Orçamento da Segurança Social",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ETL",
+   "div": "0130114",
+   "name": "Eleições Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PPTBDTG",
+   "div": "0130115",
+   "name": "Provisão para Pagamento Taxa da Bancaria e Despesa todo o Governo",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PHA",
+   "div": "0130116",
+   "name": "Provisão para Habilitação Accesivel",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "FC-18",
+   "div": "0130118",
+   "name": "Fundo Contrapartida",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ARCPLP",
+   "div": "0130119",
+   "name": "Apoio às Reuniões da Comunidade dos Países de Língua Portuguesa",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "QII",
+   "div": "0130120",
+   "name": "Quotas para Instituições Internacionais",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PG",
+   "div": "0130121",
+   "name": "Provisão para G7+",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PBTP",
+   "div": "0130123",
+   "name": "Porto Baia Tibar- PPP",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CTL",
+   "div": "0130125",
+   "name": "Censo Timor Leste",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AFI",
+   "div": "0130127",
+   "name": "Apoio Financeiro Internacional",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PCSPPTL",
+   "div": "0130129",
+   "name": "Padrão Contabilidade Setor Público e Privado de Timor-Leste",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "ARAEOA",
+   "div": "0130130",
+   "name": "Provisão para Autoridade Região Administrativa Especial de Oe-cusse Ambeno (ARAEOA)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "AG",
+   "div": "0130131",
+   "name": "Auditoria e Garantia",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PJ",
+   "div": "0130201",
+   "name": "Política da Justiça",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "IC",
+   "div": "0130301",
+   "name": "Intercambio Cultural",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "PPFO",
+   "div": "0130401",
+   "name": "Provisão para projeto de fibra ótica",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "BNDTL",
+   "div": "0130700",
+   "name": "Banco Nacional de Desemvolvimento Timor Leste",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "023": "Gestão das finanças públicas",
+  "028": "Desenvolvimento rural e urbano",
+  "148": "Contingência",
+  "392": "Acesso à justiça",
+  "400": "Política externa de timor-leste",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "867": "Dezenvolvimento e reforço de zonas com tratamento administrativo e económico",
+  "980": "Inclusão social.",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "0232001",
+   "programme": "023",
+   "subprogramme": "02320",
+   "subprogramme_name": "Fundo Contrapartida",
+   "name": "Fundo Contrapartida",
+   "div": [
+    "0130118"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Até 2023: pagamento efetuada 15.42%",
+   "target": "100%",
+   "amounts": {
+    "20": 2196783.0
+   },
+   "page": 101
+  },
+  {
+   "code": "0232901",
+   "programme": "023",
+   "subprogramme": "02329",
+   "subprogramme_name": "Parcerias Público-Privadas",
+   "name": "A Operação e manutenção do Porto Baía Tibar",
+   "div": [
+    "0130123"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "10": 25090.0,
+    "20": 12000.0
+   },
+   "page": 101
+  },
+  {
+   "code": "0231104",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Custo pagamento bancária",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Até 2023: pagamentu efetuada 94.78%",
+   "target": "100%",
+   "amounts": {
+    "20": 1440257.0
+   },
+   "page": 101
+  },
+  {
+   "code": "0231105",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Despesa todo o Governo",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 101
+  },
+  {
+   "code": "0231108",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Provizaun Reforma funsionariu publiku",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1535924.0
+   },
+   "page": 101
+  },
+  {
+   "code": "0231109",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Provizaun Manutensaun ba Santuariu Tasi Tolu",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 306000.0
+   },
+   "page": 101
+  },
+  {
+   "code": "02311E1",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "EDTL electricity debts 2020-2026 for municipalities",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 2025654.0
+   },
+   "page": 101
+  },
+  {
+   "code": "02311E2",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Public fuel subsidy for the national territory",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 15000000.0
+   },
+   "page": 101
+  },
+  {
+   "code": "02311E3",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "National energy fuel stocks for EDTL, RAEOA, Hera and Betano",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 15000000.0
+   },
+   "page": 101
+  },
+  {
+   "code": "02311E4",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Public administration reform - resolution of salary issues",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 5000000.0
+   },
+   "page": 101
+  },
+  {
+   "code": "02311E5",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Ministry of Health debts for overseas treatment including late-payment penalties",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 2750000.0
+   },
+   "page": 102
+  },
+  {
+   "code": "02311E6",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Inauguration ceremony of the President of the RDTL, 20 May 2027",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 102
+  },
+  {
+   "code": "02311E7",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Provision for new Ministry of Health vacancies",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 7560108.0
+   },
+   "page": 102
+  },
+  {
+   "code": "02311E8",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Provision for new Ministry of Education vacancies",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 14790914.0
+   },
+   "page": 102
+  },
+  {
+   "code": "02311E9",
+   "programme": "023",
+   "subprogramme": "02311",
+   "subprogramme_name": "Dotação Todo o Governo",
+   "name": "Provision for retroactive payments of the 319 security guards of the Guarda Lorosae",
+   "div": [
+    "0130115"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1500000.0
+   },
+   "page": 102
+  },
+  {
+   "code": "0230801",
+   "programme": "023",
+   "subprogramme": "02308",
+   "subprogramme_name": "Gestão de Empréstimos",
+   "name": "Reembolso do Empréstimo e Juros",
+   "div": [
+    "0130108"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Até 2023: pagamentu efetuada 100%",
+   "target": "100%",
+   "amounts": {
+    "30": 30858832.0
+   },
+   "page": 102
+  },
+  {
+   "code": "0230701",
+   "programme": "023",
+   "subprogramme": "02307",
+   "subprogramme_name": "Gestão de Ativos Móveis",
+   "name": "Gerir e manter veículos do estado de forma eficaz e eficiente",
+   "div": [
+    "0130107"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023: pagamentu efutuada 87.97%",
+   "target": "100%",
+   "amounts": {
+    "10": 245560.0,
+    "20": 1710800.0
+   },
+   "page": 102
+  },
+  {
+   "code": "0233001",
+   "programme": "023",
+   "subprogramme": "02330",
+   "subprogramme_name": "Melhoramento de Sistema Contabilística",
+   "name": "Efetuar o Padrão Contabilidade do Setor Público e Privado de Timor Leste",
+   "div": [
+    "0130129"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "20": 300000.0
+   },
+   "page": 102
+  },
+  {
+   "code": "0232807",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Crop Cutting (Survey Agrikultura)",
+   "div": [
+    "0130125"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 20940.0,
+    "20": 248500.0
+   },
+   "page": 103
+  },
+  {
+   "code": "0232808",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Civil Registratin and Vital Statistics (CRVS)",
+   "div": [
+    "0130125"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 44707.0,
+    "20": 120675.0
+   },
+   "page": 103
+  },
+  {
+   "code": "0232809",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Household Consumption Survey",
+   "div": [
+    "0130125"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 19880.0,
+    "20": 222920.0
+   },
+   "page": 103
+  },
+  {
+   "code": "0232811",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Land Cover Ground Truth Survey",
+   "div": [
+    "0130125"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 16752.0,
+    "20": 180550.0
+   },
+   "page": 103
+  },
+  {
+   "code": "0232812",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Pilot Censos Economic",
+   "div": [
+    "0130125"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 25316.0,
+    "20": 96300.0
+   },
+   "page": 103
+  },
+  {
+   "code": "0232813",
+   "programme": "023",
+   "subprogramme": "02328",
+   "subprogramme_name": "Recolhamento de dados",
+   "name": "Satelite Account Survey",
+   "div": [
+    "0130125"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 8160.0,
+    "20": 62720.0
+   },
+   "page": 103
+  },
+  {
+   "code": "0280639",
+   "programme": "028",
+   "subprogramme": "02806",
+   "subprogramme_name": "Desenvolvimento Urbano e Rural",
+   "name": "Habilitação Accesivel",
+   "div": [
+    "0130116"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 39000.0,
+    "20": 5000.0
+   },
+   "page": 103
+  },
+  {
+   "code": "1480101",
+   "programme": "148",
+   "subprogramme": "14801",
+   "subprogramme_name": "Fundo de contingência",
+   "name": "Fundo de Resposta a Emergências",
+   "div": [
+    "0130102"
+   ],
+   "indicator": "1) % dos fundos processados com base em pedidos de promoção de nível; 2) % de propostas de actividades de emergência imprevistos e inevitáveis atendidas e processadas em tempo útil",
+   "baseline": "Ate 2023: kontribui ba retifikativu 66%, transferensia efetuada 3%",
+   "target": "1) 100% 2) 100%",
+   "amounts": {
+    "20": 60565776.0
+   },
+   "page": 104
+  },
+  {
+   "code": "14801E1",
+   "programme": "148",
+   "subprogramme": "14801",
+   "subprogramme_name": "Fundo de contingência",
+   "name": "El Nino response including food security",
+   "div": [
+    "0130102"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 2000000.0
+   },
+   "page": 104
+  },
+  {
+   "code": "3922001",
+   "programme": "392",
+   "subprogramme": "39220",
+   "subprogramme_name": "Reforço do Sector da Justiça",
+   "name": "Reforço do sector da justiça",
+   "div": [
+    "0130201"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "10": 1200000.0,
+    "20": 200000.0
+   },
+   "page": 104
+  },
+  {
+   "code": "4000704",
+   "programme": "400",
+   "subprogramme": "40007",
+   "subprogramme_name": "Cooperação regional e ASEAN",
+   "name": "Adesão ao ASEAN",
+   "div": [
+    "0130112"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023: pagamento efutuada 47.44%",
+   "target": "100%",
+   "amounts": {
+    "10": 414000.0,
+    "20": 2533716.0
+   },
+   "page": 105
+  },
+  {
+   "code": "40007X1",
+   "programme": "400",
+   "subprogramme": "40007",
+   "subprogramme_name": "Cooperação regional e ASEAN",
+   "name": "Timor-Leste ASEAN Chairmanship 2029 - preparation",
+   "div": [
+    "0130112"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 5132690.0
+   },
+   "page": 105
+  },
+  {
+   "code": "4001105",
+   "programme": "400",
+   "subprogramme": "40011",
+   "subprogramme_name": "Facilitação e coordenação institucional na execução da política externa",
+   "name": "Intercambio Cultural de Influência de Comunidade Português",
+   "div": [
+    "0130301"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "20": 250000.0
+   },
+   "page": 105
+  },
+  {
+   "code": "4001206",
+   "programme": "400",
+   "subprogramme": "40012",
+   "subprogramme_name": "Reforçar e fortalecer a gestão e representação dos assuntos de caráter multilateral e regional",
+   "name": "Apoio às Reuniões da Comunidade dos Países de Língua Portuguesa",
+   "div": [
+    "0130119"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023: Pagamentu efetuada 98.34%",
+   "target": "100%",
+   "amounts": {
+    "20": 350000.0
+   },
+   "page": 105
+  },
+  {
+   "code": "4001207",
+   "programme": "400",
+   "subprogramme": "40012",
+   "subprogramme_name": "Reforçar e fortalecer a gestão e representação dos assuntos de caráter multilateral e regional",
+   "name": "Quotas de Membro de Instituições Internacionais",
+   "div": [
+    "0130120"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "30": 10000000.0
+   },
+   "page": 105
+  },
+  {
+   "code": "4001208",
+   "programme": "400",
+   "subprogramme": "40012",
+   "subprogramme_name": "Reforçar e fortalecer a gestão e representação dos assuntos de caráter multilateral e regional",
+   "name": "Contribuicao Cooperação e parcerias G7+",
+   "div": [
+    "0130121"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023: Pagamentu efetuada 100%",
+   "target": "100%",
+   "amounts": {
+    "30": 2000000.0
+   },
+   "page": 105
+  },
+  {
+   "code": "4001601",
+   "programme": "400",
+   "subprogramme": "40016",
+   "subprogramme_name": "Apoio Internacional",
+   "name": "Apoio Solidaridade Internacional",
+   "div": [
+    "0130127"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 1000000.0
+   },
+   "page": 105
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0130131"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023, pagamentu efetuada 26.14%",
+   "target": "100%",
+   "amounts": {
+    "20": 1450000.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51001X5",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Increase in support for legal services",
+   "div": [
+    "0130104"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 2000000.0
+   },
+   "page": 106
+  },
+  {
+   "code": "510011I",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Serviços Legais e Sentenças de Tribunais",
+   "div": [
+    "0130104"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023, pagamentu efetuada 66.12%",
+   "target": "100%",
+   "amounts": {
+    "20": 12700000.0
+   },
+   "page": 106
+  },
+  {
+   "code": "5101108",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "Eleição Presidencial",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 4000000.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X1",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "CNE - 2027 presidential and municipal elections, oversight staffing",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 819778.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X2",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "STAE - 2027 elections preparation and implementation, staffing",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 2417435.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X3",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "Logistical and diplomatic support for out-of-country voting",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1419190.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X4",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "CNE - 2027 elections oversight and administration, goods and services",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 3690513.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X5",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "STAE - 2027 elections preparation, goods and services",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 11601392.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X6",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "STAE - 2027 elections, transfer to implementing administration",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 350000.0
+   },
+   "page": 106
+  },
+  {
+   "code": "51011X7",
+   "programme": "510",
+   "subprogramme": "51011",
+   "subprogramme_name": "Realização Actos Eleitorais",
+   "name": "CNE - 2027 elections, equipment",
+   "div": [
+    "0130114"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 50000.0
+   },
+   "page": 106
+  },
+  {
+   "code": "8671801",
+   "programme": "867",
+   "subprogramme": "86718",
+   "subprogramme_name": "Transferência orçamental para a RAEOA",
+   "name": "Transferência orçamental para a RAEOA",
+   "div": [
+    "0130130"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "30": 37830535.0
+   },
+   "page": 107
+  },
+  {
+   "code": "9802100",
+   "programme": "980",
+   "subprogramme": "98021",
+   "subprogramme_name": "Transferência Orçamento Segurança Social",
+   "name": "Para Financiamento da Garantia do Valor Mínimo da Pensão",
+   "div": [
+    "0130113"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 250000.0
+   },
+   "page": 107
+  },
+  {
+   "code": "9802101",
+   "programme": "980",
+   "subprogramme": "98021",
+   "subprogramme_name": "Transferência Orçamento Segurança Social",
+   "name": "Transferência para regime transitório de segurança social",
+   "div": [
+    "0130113"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023, pagamentu efetuada 100%",
+   "target": "100%",
+   "amounts": {
+    "30": 16388400.0
+   },
+   "page": 107
+  },
+  {
+   "code": "9802102",
+   "programme": "980",
+   "subprogramme": "98021",
+   "subprogramme_name": "Transferência Orçamento Segurança Social",
+   "name": "Transferência para regime não contributivo de segurança social",
+   "div": [
+    "0130113"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023, pagamentu efetuada 100%",
+   "target": "100%",
+   "amounts": {
+    "30": 103653487.0
+   },
+   "page": 107
+  },
+  {
+   "code": "9802103",
+   "programme": "980",
+   "subprogramme": "98021",
+   "subprogramme_name": "Transferência Orçamento Segurança Social",
+   "name": "Transferência para Administração do Sistema de Segurança Social",
+   "div": [
+    "0130113"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "Ate 2023, pagamentu efetuada 100%",
+   "target": "100%",
+   "amounts": {
+    "30": 3464322.0
+   },
+   "page": 107
+  },
+  {
+   "code": "9802201",
+   "programme": "980",
+   "subprogramme": "98022",
+   "subprogramme_name": "Contribuição de Estado para o regime contributivo de Segurança Social",
+   "name": "Contribuição do Estado para o Regime Contributivo de Segurança Social (na qualidade de entidade empregadora)",
+   "div": [
+    "0130106"
+   ],
+   "indicator": "1) % dos beneficiários do regime contributivo analisados e processados em tempo útil; 2) # de prestações sociais do RTTS transferidas para o INSS; 3) # de prestaçõess sociais RGGS transferidas para o INSS",
+   "baseline": "Ate 2023, pagamentu efetuada 96.29%",
+   "target": "100%",
+   "amounts": {
+    "10": 21000000.0
+   },
+   "page": 108
+  },
+  {
+   "code": "9833612",
+   "programme": "983",
+   "subprogramme": "98336",
+   "subprogramme_name": "Diversificação Económica",
+   "name": "Previsão relativa à criação de uma autoridade de gestão da fibra ótica",
+   "div": [
+    "0130401"
+   ],
+   "indicator": "% dos fundos transferidos com base em pedidos",
+   "baseline": "N/A",
+   "target": "100%",
+   "amounts": {
+    "20": 5000000.0
+   },
+   "page": 108
+  },
+  {
+   "code": "9833614",
+   "programme": "983",
+   "subprogramme": "98336",
+   "subprogramme_name": "Diversificação Económica",
+   "name": "Capitalização do Banco Nacional de Desenvolvimento de Timor-Leste",
+   "div": [
+    "0130700"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 20000000.0
+   },
+   "page": 108
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "023.0.0",
+   "statement": "TBD",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 101
+  },
+  {
+   "kind": "output",
+   "code": "02320.0.0",
+   "statement": "TBD",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 101
+  },
+  {
+   "kind": "output",
+   "code": "02329.0.0",
+   "statement": "Melhorar a gestão da dívida e das parcerias público- privadas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 101
+  },
+  {
+   "kind": "outcome",
+   "code": "023.0.2",
+   "statement": "Orçamento do Estado e gestão de despesas melhorada.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 101
+  },
+  {
+   "kind": "output",
+   "code": "02311.0.0",
+   "statement": "Gestão eficaz, processamento, contabilidade e relatório de orçamento do Dotação Todo Governo.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 101
+  },
+  {
+   "kind": "outcome",
+   "code": "023.0.4",
+   "statement": "Coordenação promovida entre Parceiros de Desenvolvimento e LM's",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 102
+  },
+  {
+   "kind": "output",
+   "code": "02308.0.0",
+   "statement": "Gestão Efetiva do Empréstimo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 102
+  },
+  {
+   "kind": "outcome",
+   "code": "023.0.5",
+   "statement": "Lei do Fundo Petrolífero e modelo de alocação estratégica revisto",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 102
+  },
+  {
+   "kind": "output",
+   "code": "02307.0.0",
+   "statement": "Reforço da monitorização da gestão de todos os bens móveis do estado.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 102
+  },
+  {
+   "kind": "outcome",
+   "code": "023.0.6",
+   "statement": "Desconcentração das funções do tesouro",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 102
+  },
+  {
+   "kind": "output",
+   "code": "02330.0.0",
+   "statement": "TBD",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 102
+  },
+  {
+   "kind": "outcome",
+   "code": "023.0.7",
+   "statement": "Até 2028, os principais sistemas de gestão das finanças públicas de Timor- Leste serão mais sustentáveis, eficientes, transparentes e responsáveis do ponto de vista fiscal, o que se demonstra por uma maior mobilização de receitas internas, uma execução orçamental mais fiável e atempada, uma gestão prudente da dívida e das reservas, e uma gestão transparente das aquisições, dos fundos soberanos e dos ativos do Estado.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 103
+  },
+  {
+   "kind": "output",
+   "code": "02328.0.0",
+   "statement": "1. Utilizasaun dados iha politika publika",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 103
+  },
+  {
+   "kind": "outcome",
+   "code": "028.0.3",
+   "statement": "Area Urbana & rural desenvolve",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 103
+  },
+  {
+   "kind": "output",
+   "code": "02806.0.0",
+   "statement": "TBD",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 103
+  },
+  {
+   "kind": "outcome",
+   "code": "148.0.0",
+   "statement": "TBD",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 103
+  },
+  {
+   "kind": "output",
+   "code": "14801.0.0",
+   "statement": "TBD",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 104
+  },
+  {
+   "kind": "outcome",
+   "code": "392.0.1",
+   "statement": "1.&#9;Os cidadãos em todos os municípios, especialmente mulheres, jovens e grupos vulneráveis tenham melhor acesso à justiça formal e aos serviços de registo (assistência jurídica, serviços prisionais e de reintegração, registo de terras, registo civil e notarial) que protegem os seus direitos&#13;&#10;2.&#9;Os cidadãos economicamente vulneráveis, especialmente mulheres, populações rurais e outros grupos vulneráveis, têm melhor acesso a assistência jurídica gratuita e de qualidade e podem utilizar eficazmente os serviços judiciais formais&#13;&#10;3.&#9;Todos os cidadãos têm acesso e conhecimento sobre o sistema de justiça",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 104
+  },
+  {
+   "kind": "output",
+   "code": "39220.0.0",
+   "statement": "O sistema de justiça desempenha um papel fundamental na luta contra várias formas de injustiça em todos os sectores",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 104
+  },
+  {
+   "kind": "outcome",
+   "code": "400.0.0",
+   "statement": "Os interesses nacionais da RDTL são defendidos e promovidos no exterior, bem como fortalecidas as relações diplomáticas e recíprocas.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 105
+  },
+  {
+   "kind": "output",
+   "code": "40007.0.0",
+   "statement": "Cooperação da ASEAN em segurança económica, sociocultural e política e fortalecida",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 105
+  },
+  {
+   "kind": "output",
+   "code": "40011.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 105
+  },
+  {
+   "kind": "output",
+   "code": "40012.0.0",
+   "statement": "A cooperação bilateral é amplificada e fortalecida",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 105
+  },
+  {
+   "kind": "output",
+   "code": "40016.0.0",
+   "statement": "TBC",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 105
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 105
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 106
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.6",
+   "statement": "Garante despesas públicas baseadas na lei, contratos públicos, acordos internacionais e decisões judiciais para assegurar a eficácia e eficiência da prestação de serviços",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 106
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.1",
+   "statement": "Desenvolver, promover e assegurar a oportunidade de participação democrática dos cidadãos a nível local, como forma de demonstrar os seus direitos democráticos.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 106
+  },
+  {
+   "kind": "output",
+   "code": "51011.0.0",
+   "statement": "Implementa Eleisaun ida ne&#039;ebe Universal, Livre, Diretu, Segredu, Periodiku no Sufraziu Universal",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 106
+  },
+  {
+   "kind": "outcome",
+   "code": "867.0.0",
+   "statement": "A região de Oé-Cusse Ambeno será um exemplo para a nação timorense de uma economia social de mercado de sucesso, onde os cidadãos podem aceder a serviços de saúde, educação e serviços básicos de qualidade e a oportunidades de desenvolvimento económico sustentável num ambiente urbano e rural.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 107
+  },
+  {
+   "kind": "output",
+   "code": "86718.0.0",
+   "statement": "Assegurar que todas as transferências são verificadas e justificadas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 107
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.f: Sistema de segurança social universal e sustentável, através do qual são garantidas respostas sociais adequadas a todos os cidadãos (progressivamente alargadas)",
+   "indicator": "Sistema de Segurança Social está em vigor; taxa cobertura setor formal; taxa cobertura regime cidadania",
+   "baseline": "70%; 100%",
+   "target": "80%; 100%",
+   "page": 107
+  },
+  {
+   "kind": "output",
+   "code": "98021.0.0",
+   "statement": "O Estado contribui, como fonte de receita, para a sustentabilidade do sistema de segurança social (financiamento dos regimes não cotnributivos e administração)",
+   "indicator": "Peso do financiamento da Administração Central nas receitas efetivas do OSS (%)",
+   "baseline": "55%",
+   "target": "52%",
+   "page": 107
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.g: Sistema de proteção social integral e universal integrado para alcançar a Proteção Social Nacional e reduzir a pobreza",
+   "indicator": "Sistema de Proteção Social está em vigor; taxa cobertura do setor público",
+   "baseline": "80%",
+   "target": "100%",
+   "page": 108
+  },
+  {
+   "kind": "output",
+   "code": "98022.0.0",
+   "statement": "O regime contributivo de Segurança Social funciona de forma eficaz e garante a realização dos direitos aos trabalhadores e respetivas famílias",
+   "indicator": "Numero trabalhadores do Estado integrados no regime contributivo de segurança social",
+   "baseline": "50,774 trabalhadores do setor público",
+   "target": "50 mil trabalhadores do setor público",
+   "page": 108
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.e: As políticas económicas públicas contribuem para o crescimento e diversificação da economia de Timor-Leste",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 108
+  },
+  {
+   "kind": "output",
+   "code": "98336.0.0",
+   "statement": "As atividades econômicas em vários setores expandiram-se",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 108
+  }
+ ]
+}

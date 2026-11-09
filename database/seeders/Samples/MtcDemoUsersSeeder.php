@@ -20,12 +20,18 @@ class MtcDemoUsersSeeder extends Seeder
     /**
      * @param  ?string  $office  code of the single office being loaded. There is no Minister then: the
      *                           head of the office (a Director, "Chefe") gives the final approval.
+     * @param  ?array  $head  another institution's head account (email, name, role), or [] for none; null: the MTC Minister
      */
-    public function run(SampleRegistry $registry, ?string $office = null): void
+    public function run(SampleRegistry $registry, ?string $office = null, ?array $head = null): void
     {
         $hash = Hash::make('password'); // hashed once; the same demo password for every account
 
-        if ($office === null) {
+        if ($head !== null) {
+            if ($head !== []) {
+                $account = $registry->upsert('mtc', User::class, ['email' => $head['email']], ['name' => $head['name'], 'password' => $hash]);
+                $this->assignRole($registry, $account, $head['role']);
+            }
+        } elseif ($office === null) {
             $head = $registry->upsert('mtc', User::class, ['email' => 'ministro@gdsc.tl'], [
                 'name' => 'Ministro dos Transportes e Comunicações',
                 'password' => $hash,
@@ -38,7 +44,9 @@ class MtcDemoUsersSeeder extends Seeder
                 'directorate_id' => $unit->id,
             ]);
         }
-        $this->assignRole($registry, $head, $office === null ? 'Minister' : 'Director');
+        if ($head instanceof User) {
+            $this->assignRole($registry, $head, $office === null ? 'Minister' : 'Director');
+        }
 
         foreach (Directorate::all() as $dir) {
             if (! $registry->isRegistered($dir)) {

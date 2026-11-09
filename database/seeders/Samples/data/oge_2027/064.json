@@ -1,0 +1,521 @@
+{
+ "year": 2027,
+ "code": "064",
+ "name": "Autoridade de Inspeção Alimentar e Fiscalização da Atividade Económica, Sanitária e Alimentar",
+ "abbr": "AIAFAESA",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   724,
+   734
+  ]
+ },
+ "units": [
+  {
+   "code": "AIAFAESA",
+   "div": "0640101",
+   "name": "Autoridade de Inspeção Alimentar e Fiscalização da Atividade Económica,Sanitária e Alimentar",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % O pagamento é efetuado de acordo com os procedimentos de execução orçamental existentes e de acordo com as boas práticas de gestão das finanças públicas. 2. % O processo de aquisição de bens e serviços é efetuado de acordo com as boas práticas de gestão das finanças públicas. 3. % Os activos do Estado são geridos de acordo com as boas práticas e procedimentos em vigor. 4.º Número de auditorias internas realizadas de acordo com o plano aprovado. 5. Número de monitorizações realizadas das actividades operacionais em Díli e nos municípios. 6. % O processo de recrutamento de",
+   "baseline": "1) mais de 75% do pagamento é efetuado de acordo com o procedimento de execução orçamental em vigor e segue as práticas de gestão das finanças públicas. 2) Mais de 85% do processo de aquisição de bens e serviços é realizado de acordo com as boas práticas de gestão das finanças públicas. 3) mais 75% dos bens do Estado são geridos de acordo com as boas práticas e procedimentos em vigor. 4) Mínimo de 2 auditorias internas realizadas de acordo com o plano aprovado. 5) 80 acções de monitorização realizadas para as actividades operacionais em Díli e nos municípios. 6) 100% do",
+   "target": "1) Mais de 95% dos pagamentos são efetuados de acordo com o procedimento de execução orçamental em vigor e seguem as práticas de gestão das finanças públicas. 2) Mais de 95% do processo de aquisição de bens e serviços é realizado de acordo com as boas práticas de gestão das finanças públicas. 3) Mais de 75% dos bens do Estado são geridos de acordo com as boas práticas e procedimentos em vigor. 4) Mínimo de 2 auditorias internas realizadas de acordo com o plano aprovado. 5) 100 acções de monitorização realizadas para as actividades operacionais em Díli e nos municípios. 6) 100% do",
+   "amounts": {
+    "20": 17728.0
+   },
+   "page": 724
+  },
+  {
+   "code": "510014Q",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Monitoramento e Avaliação dos Serviços Gerais da AIFAESA",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) % Avaliação do trabalho de cada departamento que ocorre no Trimestre para ver os resultados de todo o trabalho 2) % para ver o alcance da execução do Programa e orçamento",
+   "baseline": "1) 25% 2) 75%",
+   "target": "4 principais trabalhos monitorizados e avaliados",
+   "amounts": {
+    "20": 21700.0
+   },
+   "page": 725
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % Mapa de pessoal destacado 2. % Funcionários da AIFAESA receberam classificação Muito Bom 3. % de todos os colaboradores em ToR aprovados, 4. % Base de dados de colaboradores da AIFAESA atualizada, 5. % de trabalhadores contratados transformados em trabalhadores permanentes (Promoção)",
+   "baseline": "1) 25% do mapa pessoal preenchido, 2). 60% dos colaboradores receberam avaliações muito boas, 3). 25% dos colaboradores aprovaram os Termos de Referência, 4). 50% da base de dados atualizada 5). 60% dos colaboradores foram promovidos a cargos permanentes",
+   "target": "1) 50% dos mapas impressos pessoalmente 2) 95% dos colaboradores da AIFAESA receberam a classificação \"Muito Bom\"; 3) 50% dos colaboradores aprovaram os Termos de Responsabilidade; 4) 50% da base de dados atualizada; 5) 100% dos colaboradores contratados foram transformados em colaboradores permanentes (Promoção).",
+   "amounts": {
+    "10": 1137768.0
+   },
+   "page": 725
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. Número de colaboradores da AIFAESA formados em diferentes áreas 2. % dos colaboradores da AIFAESA recebem formação com mais de",
+   "baseline": "1. 50 colaboradores da AIFAESA receberam formação em diferentes áreas 2. 50% dos colaboradores da AIFAESA recebem formação, para além de",
+   "target": "1) 100 colaboradores da AIFAESA receberam formação em diferentes áreas 2) 100% dos funcionários da AIFAESA receberam formação, mais 40",
+   "amounts": {
+    "20": 24172.0
+   },
+   "page": 725
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % das necessidades de compra foram identificadas e transferidas para o plano máximo de compras até 45 dias após o início do novo ano 2. % das atividades de compras realizadas de acordo com o plano aprovado 3. % dos contratos executados dentro do prazo e em contratos completos 4.º Número máximo de relatórios trimestrais de compras enviados",
+   "baseline": "1. 60% das necessidades de compras foram identificadas e transferidas para o plano máximo de compras até 45 dias após o início do novo ano. 2. 75% das atividades de compras foram executadas de acordo com o plano aprovado. 3. 70% dos contratos executados dentro do prazo foram concluídos. 4. Número de relatórios trimestrais de atividades de compras e 4 enviados e aprovados.",
+   "target": "1. 90% das necessidades de compras foram identificadas e transferidas para o plano máximo de compras até 45 dias após o início do ano. 2. 95% das atividades de compras foram executadas de acordo com o plano aprovado. 3. 90% dos contratos executados no prazo encontram-se na sua totalidade. 4. Número de relatórios trimestrais de atividades de compras enviados e máximo de 4.",
+   "amounts": {
+    "20": 62983.0
+   },
+   "page": 726
+  },
+  {
+   "code": "510023R",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planejamento e Orçamento",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. Número de Planos de Ação Anuais e Planos Orçamentais apresentados dentro do prazo 2. % de Recursos Transferidos (ambiente) por ano, por categoria, 3. % de Indicadores do Plano de Ação Anual alcançados de acordo com a meta aprovada, 4. % de Execução Orçamental Anual",
+   "baseline": "1. 1 Plano de Ação Anual e Plano Orçamental TF 2026 submetidos 2. 10% de transferência de rendimentos ao ano, 3. 75% dos indicadores implementados de acordo com a meta aprovada",
+   "target": "1) 1 Plano de Ação Anual e Plano Orçamental TF 2026 submetidos dentro do prazo 2) 20% de Transferência de Fundos (ambiente) por ano por categoria 3) 100% do Indicador do Plano de Ação Anual atingido de acordo com a meta aprovada",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 727
+  },
+  {
+   "code": "510023S",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira e Contábil",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % de pagamentos efetuados em menos de 10 dias após o pedido de pagamento 2. % de documentos de pagamento documentados de acordo com as normas de apresentação 3. % de adiantamentos pendentes e fundos de gestão por trimestre 4. Número de relatórios contabilísticos apresentados ao Ministério das Finanças dentro do prazo",
+   "baseline": "1) 75% do pagamento efetuado em menos de 10 dias após o pedido de pagamento 2) 65% do documento de pagamento documentado de acordo com as normas arquivísticas 3) Menos 1% do adiantamento pendente e dos fundos de gestão por trimestre 4) 3 relatórios contabilísticos, 4 dos quais foram submetidos ao Ministério das Finanças dentro do prazo",
+   "target": "1) 95% do pagamento é efetuado em menos de 10 dias após o pedido de pagamento 2) 75% do documento de pagamento documentado de acordo com as normas arquivísticas 3) Menos 1% do adiantamento pendente e dos fundos de gestão por trimestre 4) O relatório contabilístico nº 4 foi enviado ao MF dentro do prazo",
+   "amounts": {
+    "20": 26140.0
+   },
+   "page": 727
+  },
+  {
+   "code": "510023T",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Serviços de Administração, Logística e Gestão de Ativos na AIFAESA",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % dos arquivos administrativos são geridos de acordo com os padrões de arquivo existentes 2. % dos veículos da AIFAESA funcionam bem para apoiar as equipas técnicas e cumprir as normas nacionais de gestão de frotas 3. % dos tipos de bens móveis e imóveis registados e atualizados na base de dados 4. % da exploração do edifício da AIFAESA",
+   "baseline": "1. Mais de 75% dos ficheiros administrativos são geridos de acordo com as normas de arquivo existentes. 2. Mais de 70% dos veículos da AIFAESA funcionam bem para apoiar as equipas técnicas e cumprir as normas nacionais de gestão de frotas. 3. 70% dos tipos de bens móveis e imóveis são registados e atualizados na base de dados. 4. Mais de 80% da operação do edifício da AIFAESA.",
+   "target": "1. Mais de 75% dos ficheiros administrativos são geridos de acordo com as normas de arquivo existentes. 2. Mais de 90% dos veículos da AIFAESA funcionam bem para apoiar a equipa técnica e cumprir as normas nacionais de gestão de frotas. 3. 100% dos tipos de bens móveis e imóveis registados e atualizados na base de dados. 4. Mais de 90% do funcionamento do edifício da AIFAESA.",
+   "amounts": {
+    "20": 269544.0
+   },
+   "page": 727
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) Número de reuniões de coordenação intersectorial realizadas 2) Número de acordos intersetoriais e bilaterais celebrados 3) Proposta de criação do Conselho Nacional de Controlo das Actividades Económicas, Sanitárias e dos Produtos Alimentares submetida ao Gabinete do Vice-Primeiro- Ministro 4) No.Reuniões regionais e internacionais",
+   "baseline": "1. 4 reuniões de coordenação intersectorial realizadas 2. 2 acordos intersetoriais bilaterais estabelecidos 3. n.a. 4. 10 reuniões de nível regional e 2 reuniões de nível internacional",
+   "target": "1) Foram realizadas 4 reuniões de coordenação intersectorial a nível regional e internacional. 2) Foram estabelecidos 6 acordos intersetoriais e bilaterais. 3) Foi instituído o Conselho Nacional de Controlo da Atividade Económica, Sanitária e dos Produtos Alimentares.",
+   "amounts": {
+    "20": 75898.0
+   },
+   "page": 728
+  },
+  {
+   "code": "9833400",
+   "programme": "983",
+   "subprogramme": "98334",
+   "subprogramme_name": "Controlo da Qualidade de Produtos Alimentares",
+   "name": "Promoção e Educação da AIFAESA (no setor alimentar e não alimentar)",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. Número de eventos promocionais e educativos realizados para grupos específicos de comerciantes 2. Número de divulgações de informação ao público sobre práticas de gestão alimentar e não alimentar 3. Nº. Reportar reclamações de consumidores e entidades relevantes",
+   "baseline": "1. Evento 4 2. 1000 beneficiários com acesso a informação sobre práticas de gestão alimentar segura no mercado 3. 250 reclamações reportadas por consumidores e entidades relevantes",
+   "target": "1. 4 eventos promocionais e educativos realizados para grupos específicos de comerciantes 2. 1.000 pessoas acedem a informação sobre práticas de gestão alimentar seguras no mercado 3. 250 reportam queixas de consumidores e entidades relevantes",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 728
+  },
+  {
+   "code": "9833401",
+   "programme": "983",
+   "subprogramme": "98334",
+   "subprogramme_name": "Controlo da Qualidade de Produtos Alimentares",
+   "name": "Gestão de Laboratório de Segurança alimentares e nao alimentares",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) % de prontidão das instalações laboratoriais da AIFAESA 2) Número de colaboradores da AIFAESA que receberam formação adequada 3) Número de amostras recolhidas e analisadas 4) Número de",
+   "baseline": "1. 50% das instalações laboratoriais instaladas 2. 10 funcionários participaram na formação 3. 100 amostras colidiram 4) N.A.",
+   "target": "1) Mais de 80% das instalações laboratoriais da AIFAESA já estão prontas 2) O número de funcionários do laboratório da AIFAESA, num total de 12 pessoas, recebeu formação adequada 3) 100 amostras",
+   "amounts": {
+    "20": 55000.0
+   },
+   "page": 728
+  },
+  {
+   "code": "9833402",
+   "programme": "983",
+   "subprogramme": "98334",
+   "subprogramme_name": "Controlo da Qualidade de Produtos Alimentares",
+   "name": "Análise de riscos alimentares",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) Número de estabelecimentos comerciais para o produto alimentar avaliado, 2) Número de relatórios de análise de risco alimentar e recomendações submetidos à unidade responsável para processamento na fase seguinte",
+   "baseline": "1) 250 estabelecimentos avaliados 2) Relatório de atividades 4 submetidos",
+   "target": "1) 250 estabelecimentos comerciais avaliados 2) O relatório de análise de risco alimentar 4 e as recomendações foram submetidos à unidade responsável para processamento na fase seguinte.",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 729
+  },
+  {
+   "code": "9833405",
+   "programme": "983",
+   "subprogramme": "98334",
+   "subprogramme_name": "Controlo da Qualidade de Produtos Alimentares",
+   "name": "Estabelecer a garantia de qualidade do serviço AIFAESA",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) Número de relatórios sobre a duração dos procedimentos de gestão e áreas técnicas submetidos 2) Número de inspetores da AIFAESA com certificação profissional 3) % Serviços laboratoriais e equipamentos de normalização. A AIFAESA recebeu certificação de qualidade nacional, regional ou internacional. 4) Reivindicações atuais relacionadas com os serviços da AIFAESA.",
+   "baseline": "1) Relatório sobre a duração dos procedimentos de gestão e áreas técnicas da AIFAESA, num total de 2, submetido ao superior hierárquico máximo. 2) 5 inspetores da AIFAESA receberam certificação profissional de instituições nacionais/internacionais. 3) 50% dos serviços laboratoriais e equipamentos de normalização da AIFAESA receberam certificação de qualidade nacional, regional ou internacional.",
+   "target": "1) Relatório sobre a duração dos procedimentos de gestão e áreas técnicas da AIFAESA, num total de 2, submetido ao superior hierárquico máximo. 2) 5 inspetores da AIFAESA receberam certificação profissional de instituições nacionais/internacionais. 3) 50% dos serviços laboratoriais e equipamentos de normalização da AIFAESA receberam certificação de qualidade nacional, regional ou internacional.",
+   "amounts": {
+    "20": 8259.0
+   },
+   "page": 729
+  },
+  {
+   "code": "98334E1",
+   "programme": "983",
+   "subprogramme": "98334",
+   "subprogramme_name": "Controlo da Qualidade de Produtos Alimentares",
+   "name": "Support for essential services and institutional operating goods",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % de disponibilidade de bens e serviços essenciais para o funcionamento institucional 2. % de satisfação das necessidades operacionais das unidades 3. % de unidades/serviços com suporte operacional 4. % de atividades institucionais com suporte de bens e serviços 5. % de execução orçamental para apoio em bens e serviços 6. % de fornecimento de bens/serviços em tempo útil 7. % de disponibilidade de materiais administrativos e operacionais essenciais",
+   "baseline": "1. 80% 2. 80% 3. 85% 4. 80% 5. 81% 6. 75% 7. 80%",
+   "target": "1. ≥90% Fornecer bens e serviços essenciais para apoiar as operações diárias da AIFAESA, I.P. 2. ≥90% Atender às requisições de materiais, consumíveis e serviços operacionais de acordo com as necessidades aprovadas 3. 100% Apoiar as unidades e serviços biológicos com os bens e serviços necessários 4. ≥90% Fornecer apoio operacional às atividades planeadas de acordo com o programa e o plano anual 5. ≥90% Executar as despesas de acordo com a dotação orçamental e o plano aprovado",
+   "amounts": {
+    "20": 96636.0
+   },
+   "page": 729
+  },
+  {
+   "code": "9833500",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Supervisão e Inspeção de Produtos Alimentares e Não Alimentares no Mercado (Pré-Mercado e Pós-Mercado)",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % Armazenamento de produtos alimentares e não alimentares de acordo com os instrumentos/normas legais em vigor 2. % Meios de transporte de produtos alimentares em conformidade com os instrumentos/normas legais em vigor 3. % Produtos alimentares e não alimentares comercializados em mercados ou lojas que não cumprem os instrumentos/normas legais em vigor 4. % das irregularidades identificadas foram remetidas para a unidade de controlo",
+   "baseline": "1. 50% dos Operadores Económicos cumprem as normas básicas de armazenamento de alimentos e não alimentos. 2.º N.A. 3. 50% dos operadores económicos conseguem garantir produtos seguros aos consumidores. 4. 75% dos estabelecimentos identificados como infractores foram encaminhados para o Departamento Jurídico.",
+   "target": "1. Mais de 80% da indústria alimentar cumpre os padrões de boas práticas da indústria alimentar 2. Mais de 80% da indústria alimentar cumpre as normas sanitárias 3. 100% dos casos identificados foram encaminhados para a unidade jurídica. 4. 75 casos submetidos à parte jurídica.",
+   "amounts": {
+    "20": 22044.0
+   },
+   "page": 730
+  },
+  {
+   "code": "9833501",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Inspeção e Fiscalização das Atividades Económicas",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % de estabelecimentos da indústria alimentar que são regularmente inspeccionados pela AIFAESA, de acordo com os instrumentos legais/normas em vigor 2. % dos casos identificados foram encaminhados para a unidade jurídica 3. % da base de dados de estabelecimentos atualizada 4. % de produtores agrícolas que são regularmente inspeccionados pela AIFAESA, de acordo com",
+   "baseline": "1. 75% da Indústria Alimentar é inspecionada de acordo com as normas em vigor 2,75% dos estabelecimentos identificados como infractores foram submetidos a DAJC 3. 50% das bases de dados atualizadas 4. E 5. E, 5. Foram aprovados 50% dos Portos e Aeroportos que cumprem as normas AIFAESA, 6) 20% das Inspeções e Monitorizações Não Planeadas (de Emergência) realizadas 7)",
+   "target": "1. Mais de 75% dos produtos alimentares armazenados cumprem as normas aprovadas 2. Mais de 75% dos meios de transporte dos produtos alimentares cumprem as normas 3. Mais de 75% dos alimentos vendidos em mercados ou lojas cumprem as normas de segurança alimentar 4. Mais de 75% dos casos identificados foram encaminhados para a unidade jurídica 5. Mais de 75%",
+   "amounts": {
+    "20": 4800.0
+   },
+   "page": 730
+  },
+  {
+   "code": "9833502",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Gestão de Contraordenações",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1). % Notificar o Auto de Notícia aos Infratores no prazo de 30 dias, a partir do qual o Infrator exige o pagamento voluntário. 2). % Notificar a Decisão Final do Inspetor-Geral sobre o processo de infração no prazo de 10 dias para os infratores. 3). % Certificar o processo de desobediência do infractor ao Ministério Público para que este proceda à execução coerciva, identifique o domicílio e proceda à penhora de bens contra o infractor, de acordo com a ordem judicial.",
+   "baseline": "1). 40% Notificar a Notificação de Infração ao Processo de Contraordenação registado no DAJK em 2025 e prosseguir no ano. 2). 40% Notificar a Decisão Final Assinada pelo Inspetor- Geral. 3). 20% Identificar a residência e o penhor do imóvel com base na ordem judicial, de acordo com o número de processos que a AIFAESA certificou em 2025 e prosseguir em 2026.",
+   "target": "1000 notificações, 500 notificações de 30 dias sobre a audição da empresa e do infractor e 400 notificações de 10 dias sobre a decisão final imediata do inspector-geral ao infractor que cometeu a infracção incluindo despachos do Ministério Público com 100 processos",
+   "amounts": {
+    "20": 19872.0
+   },
+   "page": 731
+  },
+  {
+   "code": "9833503",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Divulgação de Informação",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) % Divulgação do papel da AIFAESA 2) % Divulgação das leis que regulam a actividade económica em TL",
+   "baseline": "1) 50% da dizimação do papel da AIFAESA e 2) 50% das leis que regulam a atividade comercial em TL",
+   "target": "Socializar 10 legislações para os operadores económicos face às atividades empresariais que praticam de acordo com a lei",
+   "amounts": {
+    "20": 13628.0
+   },
+   "page": 731
+  },
+  {
+   "code": "9833506",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Servicu Desconsentrados",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. Nº. Serviço desconcentrado da AIFAESA estabelecido 2. Nº. Pessoal de serviço desconcentrado da AIFAESA destacado",
+   "baseline": "1. A Região 4 estabelece serviços desconcentrados 2. 24 Funcionários distraídos e distantes",
+   "target": "1. A Região 4 estabelece serviços desconcentrados, 2. 24 colaboradores distraídos e desmotivados",
+   "amounts": {
+    "20": 28410.0
+   },
+   "page": 731
+  },
+  {
+   "code": "9833507",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Supervisão e Fiscalização de Centros Turísticos e Agências de Viagens",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % de centros turísticos que foram inspecionados e supervisionados e cumprem as normas aprovadas pela AIFAESA 2. % de agências de viagens que foram inspecionadas",
+   "baseline": "1. 75% dos operadores económicos da área do turismo cumprem as normas básicas em vigor. 2. 75% das agências de viagens realizam as suas atividades de acordo com a base",
+   "target": "1. Mais de 75% dos centros turísticos foram inspecionados e supervisionados e cumprem as normas aprovadas pela AIFAESA. 2. Mais de 90% das agências de viagens foram",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 731
+  },
+  {
+   "code": "9833508",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Elaboração do plano de atividades integradas de inspeção e supervisão da AIFAESA",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) O Plano de Números das diversas áreas de serviço do IFAESA foi elaborado e aprovado pelos superiores no máximo 45 dias após o início do ano. 2) Número de monitorizações e avaliações das atividades operacionais. 3) Número de mapas das atividades operacionais.",
+   "baseline": "1) Plano 4 2) 24 Atividade 3) Produs mapa 4",
+   "target": "1) O Plano de 12 áreas de serviço do IFAESA foi elaborado e aprovado pelos superiores hierárquicos no máximo 45 dias após o início do novo ano. 2) 24 acções de monitorização e avaliação realizadas no território de Timor-Leste. 3) Mapeamento de 4 estabelecimentos comerciais no território de Timor-Leste.",
+   "amounts": {
+    "20": 8000.0
+   },
+   "page": 732
+  },
+  {
+   "code": "9833509",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Inspeção e Supervisão do cumprimento das normas metrológicas (Calibração) e normalização",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) Número de estabelecimentos económicos inspecionados e supervisionados na área da metrologia e normalização (constituído pelo número de estabelecimentos económicos que utilizam dispositivos de medição; Número de estabelecimentos económicos que comercializam/fornecem/produ zem produtos embalados para o setor alimentar e não alimentar; que comercializam/fornecem/produ zem materiais ou bens de natureza mensurativa (medição), considerando o padrão de medida e o sistema de unidades de medida legal). 2) Número de casos de irregularidades",
+   "baseline": "1) 4.000 estabelecimentos económicos inspecionados e supervisionados (frequentemente); 2) 20 processos submetidos ao DAJK; 3) 1.000 aparelhos de medição inspeccionados e supervisionados; 4) 50% da base de dados de metrologia e normalização atualizada.",
+   "target": "1) 4.000 estabelecimentos económicos inspecionados e supervisionados (frequentemente); 2) 100 casos de irregularidades submetidos ao DAJK. 3) 2.000 aparelhos de medição inspeccionados e supervisionados; 4) Base de dados de metrologia e normalização 100% atualizada.",
+   "amounts": {
+    "20": 16243.0
+   },
+   "page": 732
+  },
+  {
+   "code": "9833510",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Promoção e educação em metrologia e normalização",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1.) Número de eventos realizados (workshops, seminários, divulgações, campanhas e exposições) 2.) Número de beneficiários que acedem a informação sobre os serviços de metrologia e normalização.",
+   "baseline": "1) 4 eventos realizados (Workshop, Seminário, Divulgação, Campanha e Exposição), 2) 1000 beneficiários que acedem a informação sobre os serviços de Metrologia e Normalização.",
+   "target": "1) 10 eventos realizados (Workshop, Seminário e Divulgação, campanha e exposição), 2) 5.000 beneficiários que acedem a informação sobre os serviços de Metrologia e Normalização.",
+   "amounts": {
+    "20": 10335.0
+   },
+   "page": 733
+  },
+  {
+   "code": "9833511",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Gestão de sistemas de controle de qualidade para serviços de metrologia e padronização",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1) % Manuais técnicos, normas operacionais, orientações, relatórios técnicos e correções técnicas produzidos; 2) % Inspetores da AIFAESA recebem certificação profissional; 3) % Os serviços laboratoriais e os equipamentos de normalização da AIFAESA receberam certificação de qualidade nacional, regional ou internacional. 4) % Edifício instalado, 5) % Aquisição de equipamento standard e suporte de serviços operacionais; 6) Número de participações e contributos para a conceção e acreditação da manutenção das normas nacionais e internacionais.",
+   "baseline": "1) 10% Manuais técnicos, normas operacionais, orientações, relatórios técnicos e correções técnicas produzidos; 2) 25% Inspetores da AIFAESA receberam certificação na área de Metrologia e Normalização Profissional de instituições nacionais/internacionais; 3) 10% Serviços laboratoriais e equipamentos de normalização A AIFAESA recebeu a certificação de qualidade nacional, regional ou internacional; 4) 5% Edifícios instalados; 5) 5% Aquisição de equipamentos de normalização e suporte de serviços operacionais; 6) Número de participações e contributos para a conceção e acreditação da manutenção das normas nacionais e internacionais",
+   "target": "1) 50% dos manuais técnicos, normas operacionais, orientações, relatórios técnicos e correções técnicas produzidos; 2) 50% dos inspetores da AIFAESA receberam certificação profissional de instituições nacionais/internacionais; 3) 50% dos serviços laboratoriais e equipamentos de normalização da AIFAESA receberam certificação de qualidade nacional, regional ou internacional; 4) 100% dos edifícios instalados; 5) 100% da aquisição de equipamentos standard e suporte de serviços operacionais; 6) Número de participações e contributos para a conceção e acreditação da manutenção das normas nacionais e internacionais.",
+   "amounts": {
+    "20": 4023.0
+   },
+   "page": 733
+  },
+  {
+   "code": "98335E1",
+   "programme": "983",
+   "subprogramme": "98335",
+   "subprogramme_name": "Controle de atividades económicas",
+   "name": "Inspection equipment - computers, printers and cameras",
+   "div": [
+    "0640101"
+   ],
+   "indicator": "1. % de equipamentos de inspeção disponíveis e em funcionamento 2. % das unidades de inspeção que possuíam os equipamentos",
+   "baseline": "1. 70% 2. 70% 3. 60% 4. 70% 5. 60%",
+   "target": "1. Aquisição e disponibilização a 100% de computadores, impressoras e câmaras para apoio às atividades de inspeção da AIFAESA, I.P. 2.",
+   "amounts": {
+    "40": 50000.0
+   },
+   "page": 733
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "\"1) # e % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) # de Resultados de desempenho publicados no website do Governo 3) Relatório anual da entidade publicado \"",
+   "baseline": "75% Plano Estratégico aprovado, incluindo plano de médio prazo",
+   "target": "100% Plano Estratégico aprovado, incluindo plano de médio prazo",
+   "page": 724
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "\"1) % dos relatórios trimestrais e anuais de desempenho apresentados dentro do prazo 2) % do Plano Anual implementado 3) Plano Estratégico/Médio Prazo Aprovado 4) % do pessoal consciente e envolvido no desenvolvimento do plano estratégico/médio prazo \"",
+   "baseline": "\"50% de transparencia no funcionamento do administracao publico \"",
+   "target": "75% de transparencia no funcionamento do administracao publico",
+   "page": 724
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"1) % Execução do orçamento 2) Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) Criação de um sistema de arquivo electrónico\"",
+   "baseline": "70% do progresso da implementacao do plano annual",
+   "target": "90 % do progresso da implementacao do plano annual",
+   "page": 725
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "# de cooperacao internas e externas efetuadas",
+   "baseline": "10 cooperacao internas e 1 externas efetuadas",
+   "target": "6 cooperacao internas e 2 externas efetuadas",
+   "page": 727
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.9",
+   "statement": "O controlo de qualidade da atividade económica, sanitária e alimentar é melhorado e qualquer risco para a saúde da população timorense é diminuído / mitigado.",
+   "indicator": "% dos operadores económicos cumprem as regras estabelecidas",
+   "baseline": "64.49% operadores económicos cumprem as regras estabelecidas, 81,65% do total das atividades económicas inspecionados & fiscalizadas",
+   "target": "75% dos operadores económicos cumprem as regras estabelecidas",
+   "page": 728
+  },
+  {
+   "kind": "output",
+   "code": "98334.0.0",
+   "statement": "Qualidade e risco de alimentos e itens não alimentares são avaliados em relação ao padrão nacional.",
+   "indicator": "% de aumento no número de análises de qualidade realizadas",
+   "baseline": "1,03% de aumento no número de análises de qualidade realizadas",
+   "target": "10% de aumento no número de análises de qualidade realizadas",
+   "page": 728
+  },
+  {
+   "kind": "output",
+   "code": "98335.0.0",
+   "statement": "As atividades econômicas estão em conformidade com os regulamentos sanitários e de qualidade",
+   "indicator": "% de empresas inspecionadas que estão em conformidade com a qualidade e regulamentação sanitária",
+   "baseline": "74,15 % dos operadores económicos inspecionados, 7.50% operadores económicos socializados e 67.63% de processos de contraordenação instruídos",
+   "target": "15% de empresas inspecionadas que estão em conformidade com a qualidade e regulamentação sanitária",
+   "page": 730
+  }
+ ]
+}

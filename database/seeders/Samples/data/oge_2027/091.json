@@ -1,0 +1,112 @@
+{
+ "year": 2027,
+ "code": "091",
+ "name": "Instituto Nacional da Administração Pública",
+ "abbr": "INAP",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   935,
+   935
+  ]
+ },
+ "units": [
+  {
+   "code": "INAP",
+   "div": "0910101",
+   "name": "Instituto Nacional da Administração Pública",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0910101"
+   ],
+   "indicator": "1. kontrstu assesor Internasional nain 2 hodi halo peskiza no kurikulum formasaun 2. kontrstu assesor nain 2 hodi hslo ba revisaun DL.INAP ho regime formador",
+   "baseline": "100%",
+   "target": "4 asessor",
+   "amounts": {
+    "10": 23576.0
+   },
+   "page": 935
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0910101"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "100%",
+   "target": "100% Annual Plan alcançado",
+   "amounts": {
+    "10": 39600.0,
+    "20": 947988.0
+   },
+   "page": 935
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0910101"
+   ],
+   "indicator": "Empregados receberam avaliação de desempenho",
+   "baseline": "100%",
+   "target": "12 Meses Informações do folha de pagamento mensal entrega ao MF no prazo",
+   "amounts": {
+    "10": 527651.0,
+    "20": 60962.0
+   },
+   "page": 935
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "0",
+   "target": "",
+   "page": 935
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "",
+   "target": "",
+   "page": 935
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 935
+  }
+ ]
+}

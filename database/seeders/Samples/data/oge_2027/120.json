@@ -1,0 +1,199 @@
+{
+ "year": 2027,
+ "code": "120",
+ "name": "Unidade de Missão para o Combate ao Stunting",
+ "abbr": "UMCS",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1195,
+   1196
+  ]
+ },
+ "units": [
+  {
+   "code": "UMCS",
+   "div": "1200101",
+   "name": "Unidade de Missão para o Combate ao Stunting",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "528": "Cuidado de saúde primários"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "% da execução orçamental",
+   "baseline": "0%",
+   "target": "OGE 2025 ezekutadu maximu/Orçamento Geral do Estado de 2025 será executado ao máximo",
+   "amounts": {
+    "10": 209220.0,
+    "20": 12418.0
+   },
+   "page": 1195
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "1) # de vagas de pessoal preenchidas; 2) # de formação em Recursos humanos.",
+   "baseline": "Numeru formasaun implementadu Número de treinamentos implementado",
+   "target": "O treinamento ainda está em fase de planeamento O conhecimento dos funcionários ainda é baixo",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1195
+  },
+  {
+   "code": "5280408",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Sensibilizar e disseminar informação para prevenir a malnutrição",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "% komunidade sira informadu konaba aihan nutritivu no prevensaun malnutrisaun",
+   "baseline": "47 % kazu malnutrisaun iha Ita nia rai",
+   "target": "materia hasae kuinesementu komunidade ninia konaba aihan nutritivu nomos prevensaun ba malnutrisaun",
+   "amounts": {
+    "20": 8870.0
+   },
+   "page": 1195
+  },
+  {
+   "code": "5280409",
+   "programme": "528",
+   "subprogramme": "52804",
+   "subprogramme_name": "Nutrição",
+   "name": "Realização de um seminário sobre as causas da malnutrição",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "# seminário / workshop sira realiza ona",
+   "baseline": "N/A",
+   "target": "Parseiru dezenvovimentu no instituisaun relevantes konsege",
+   "amounts": {
+    "20": 10880.0
+   },
+   "page": 1195
+  },
+  {
+   "code": "5282500",
+   "programme": "528",
+   "subprogramme": "52825",
+   "subprogramme_name": "Implementação do PANKOS",
+   "name": "Implementar um programa de alimentação para mulheres grávidas e crianças (0-5 anos) [S: Específico]",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "Hasae dezenvolvimentu saude inan isin rua, inan fo susu no labarik husi 0-5 anos ho 2%",
+   "baseline": "47% taxa malnutrisaun iha timor leste nebe infrenta husi inan isin rua, inan fo susu no labarik sira",
+   "target": "haforsa inan isin rua, inan fo susu no labarik sira ninia saude hodi prevene mal nutrisaun nune'e bele hatun taxa malnutrisaun husi 47% ba iha 45%",
+   "amounts": {
+    "20": 9020.0,
+    "30": 30000.0
+   },
+   "page": 1196
+  },
+  {
+   "code": "5282501",
+   "programme": "528",
+   "subprogramme": "52825",
+   "subprogramme_name": "Implementação do PANKOS",
+   "name": "Monitorizar a Implementacao de PANKOS [S: Específico]",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "# atividade realizada",
+   "baseline": "47% taxa malnutrisaun iha timor leste nebe infrenta husi inan isin rua, inan fo susu no labarik sira",
+   "target": "Parseiru dezenvovimentu no instituisaun relevantes konsege identifika problema no fo mos solusaun ba servisu UNMICS",
+   "amounts": {
+    "20": 11000.0
+   },
+   "page": 1196
+  },
+  {
+   "code": "5282502",
+   "programme": "528",
+   "subprogramme": "52825",
+   "subprogramme_name": "Implementação do PANKOS",
+   "name": "Criação e Manutenção do Sistema de Informação (rastreamento) PANKOS [S:Específico]",
+   "div": [
+    "1200101"
+   ],
+   "indicator": "# tarefa manutensaun",
+   "baseline": "47% taxa malnutrisaun iha timor leste nebe infrenta husi inan isin rua, inan fo susu no labarik sira",
+   "target": "a eficácia das operações e do gerenciamento de manutenção do sistema informacao",
+   "amounts": {
+    "20": 5087.0
+   },
+   "page": 1196
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "funcionamentu e desenvolvimento intituisional estabelesidu no aseguradu",
+   "baseline": "Decreto-Lei N.º 91/2022 no diploma ministerial no. 003/ 28 dezembru 2023",
+   "target": "funcionamentu administrativa, finansas, patrimoniu no rekursus humanus lao diak",
+   "page": 1195
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "funcionamentu e desenvolvimento intituisional estabelesidu no aseguradu",
+   "baseline": "Decreto-Lei N.º 91/2022 no diploma ministerial no. 003/ 28 dezembru 2023",
+   "target": "funcionamentu administrativa, finansas, patrimoniu no rekursus humanus lao diak",
+   "page": 1195
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "hatun taxa malnutrisaun iha ita ninia rai husi 47% ba iha 45%",
+   "baseline": "47% taxa malnutrisaun iha timor leste nebe infrenta husi inan isin rua, inan fo susu no labarik sira",
+   "target": "haforsa inan isin rua, inan fo susu no labarik sira ninia saude hodi prevene mal nutrisaun nune'e bele hatun taxa malnutrisaun husi 47% ba iha 45%",
+   "page": 1195
+  },
+  {
+   "kind": "output",
+   "code": "52804.0.0",
+   "statement": "Prevenção, deteção e tratamento da desnutrição ao nível comunitário e nas unidades de cuidados de saúde primários, com foco nas crianças e nas mães, de acordo com as normas nacionais de nutrição",
+   "indicator": "hasae dezenvolvimentu saude inan isin rua, inan fo susu no labarik husi 0-5 anos ho 2%",
+   "baseline": "47% taxa malnutrisaun iha timor leste nebe infrenta husi inan isin rua, inan fo susu no labarik sira",
+   "target": "haforsa inan isin rua, inan fo susu no labarik sira ninia saude hodi prevene mal nutrisaun nune'e bele hatun taxa malnutrisaun husi 47% ba iha 45%",
+   "page": 1195
+  },
+  {
+   "kind": "output",
+   "code": "52825.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1196
+  }
+ ]
+}

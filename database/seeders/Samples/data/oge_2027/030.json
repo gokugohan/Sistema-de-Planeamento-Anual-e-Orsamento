@@ -1,0 +1,761 @@
+{
+ "year": 2027,
+ "code": "030",
+ "name": "Ministério do Interior",
+ "abbr": "MI",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   324,
+   333
+  ]
+ },
+ "units": [
+  {
+   "code": "GMI",
+   "div": "0300101",
+   "name": "Gabinete do Ministro do Interior",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGAF",
+   "div": "0300301",
+   "name": "Gabinete do Director Geral Administração e Finanças",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNFO",
+   "div": "0300302",
+   "name": "Direção Nacional de Finanças e Orçamento (DNFO)",
+   "type": "National Directorate",
+   "parent": "GDGAF"
+  },
+  {
+   "code": "DNLGPA",
+   "div": "0300303",
+   "name": "Direção Nacional Logística Gestão Património e Arquivo",
+   "type": "National Directorate",
+   "parent": "GDGAF"
+  },
+  {
+   "code": "DNA",
+   "div": "0300304",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "GDGAF"
+  },
+  {
+   "code": "DNRH",
+   "div": "0300305",
+   "name": "Direção Nacional de Recursos Humanos (DNRH)",
+   "type": "National Directorate",
+   "parent": "GDGAF"
+  },
+  {
+   "code": "DNAP",
+   "div": "0300306",
+   "name": "Direção Nacional de Administração e Planeamento",
+   "type": "National Directorate",
+   "parent": "GDGAF"
+  },
+  {
+   "code": "GDGSPC",
+   "div": "0300401",
+   "name": "Gabinete de Direção-Geral de Segurança e Prevenção de Conflitos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNSPP",
+   "div": "0300402",
+   "name": "Direção Nacional de Segurança do Património Público",
+   "type": "National Directorate",
+   "parent": "GDGSPC"
+  },
+  {
+   "code": "DNPCC",
+   "div": "0300403",
+   "name": "Direção Nacional de Prevenção de Conflitos Comunitários",
+   "type": "National Directorate",
+   "parent": "GDGSPC"
+  },
+  {
+   "code": "DNSR",
+   "div": "0300404",
+   "name": "Direção Nacional de Segurança Rodoviária",
+   "type": "National Directorate",
+   "parent": "GDGSPC"
+  },
+  {
+   "code": "GAAJ",
+   "div": "0300501",
+   "name": "Gabinete de Assessoria e Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GS",
+   "div": "0300601",
+   "name": "Gabinete de Segurança",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEPC",
+   "div": "0300701",
+   "name": "Gabinete do Secretario de Estado para a Proteção Civil",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GPE",
+   "div": "0300801",
+   "name": "Gabinete de Planeamento Estratégico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "SM",
+   "div": "0300901",
+   "name": "Serviço de Migração",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0301001",
+   "name": "Gabinete da Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "366": "Segurança nacional",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "3661504",
+   "programme": "366",
+   "subprogramme": "36615",
+   "subprogramme_name": "Segurança do Património do Estado",
+   "name": "Garantir a segurança dos edifcios e instalações públicas",
+   "div": [
+    "0300402"
+   ],
+   "indicator": "1. # Guarda vijilansia operacionais recrutados 2. # pessoas de seguranca foram destacados em nacional e 12 municipios, RAEOA incluindo Autoridade Administrativos de Atauro 3. # posto vizilansia asegurado",
+   "baseline": "1) 1,852 pessoas de seguranca foram destacados em nacional e 13 municipios incluindo RAEOA. 2) 359 postos segurado e 141 nao segurado",
+   "target": "1) 300 recrutado e 319 Transferência da guarda Loro Sae 2) 2,471 pessoas de seguranca foram destacados em nacional e 12 municipios, RAEOA incluindo Autoridade Administrativos de Atauro 3) 500 posto vigilancia segurado",
+   "amounts": {
+    "20": 180303.0
+   },
+   "page": 324
+  },
+  {
+   "code": "3661505",
+   "programme": "366",
+   "subprogramme": "36615",
+   "subprogramme_name": "Segurança do Património do Estado",
+   "name": "Supervisionar, inspecionar e coordenar o serviço",
+   "div": [
+    "0300402"
+   ],
+   "indicator": "# supervisão, inspeção e coordenação de serviços.",
+   "baseline": "4 vezes supervisões, 3 vezes de inspeções e 8 vezes de coordenação de serviços. Em 2026",
+   "target": "4 vezes supervisões, 3 vezes de inspeções e 8 vezes de coordenação de serviços para garante a prestação do serviço de segurança do património.",
+   "amounts": {
+    "20": 53954.0
+   },
+   "page": 324
+  },
+  {
+   "code": "3661508",
+   "programme": "366",
+   "subprogramme": "36615",
+   "subprogramme_name": "Segurança do Património do Estado",
+   "name": "Gestão dos recursos humanos afectos à prestação de serviços de segurança do património público",
+   "div": [
+    "0300402",
+    "0300901"
+   ],
+   "indicator": "% pagamento atempado dos salários e vencimentos",
+   "baseline": "100% pagamento atempado dos salários evencimentos",
+   "target": "Pagamento atempado de todos os salários vencimentos.",
+   "amounts": {
+    "10": 8725126.0,
+    "20": 104500.0
+   },
+   "page": 324
+  },
+  {
+   "code": "3661509",
+   "programme": "366",
+   "subprogramme": "36615",
+   "subprogramme_name": "Segurança do Património do Estado",
+   "name": "Autorização, Supervisão, Inspeção para Empresa que presta Serviços de Segurança Privada",
+   "div": [
+    "0300402"
+   ],
+   "indicator": "1). # empresas de seguranca privada registadas em fiscalizadas e parecer produzidos e atribuido 2). # funcionários das empresas de segurança privada capasitado;;",
+   "baseline": "1) 16 empresas privadas (registadas) e 24 empresas privadas preenchem os requisitos do (DL n.º 32/2014, 19 de novembro) 2) 150 capacitado (2025)",
+   "target": "1) 16 Empresas Privadas devidamente registrado de acordo com o disposto no DL n.º 32/2014, 19 de novembro; 2.) 100 funcionários das empresas de segurança privada capasitado \"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 325
+  },
+  {
+   "code": "3662107",
+   "programme": "366",
+   "subprogramme": "36621",
+   "subprogramme_name": "Prevenção de conflitos comunitários e construção da paz",
+   "name": "Formação e disseminação informação sobre prevenção e resolução de conflitos",
+   "div": [
+    "0300403"
+   ],
+   "indicator": "1. # Causa do conflito identificados e providenciar soluções. 2. # Participantes que receberam informação e aumentaram a sua sensibilização sobre prevenção de conflitos 3. # Participantes que participaram na formação de prevenção de conflitos",
+   "baseline": "Total de casos identificados: 531 (dados do ano de 2025) - Um total de 1.473 pessoas (870 mulheres e 603 homens) participaram e alargaram os seus conhecimentos sobre a prevenção de conflitos através de atividades de diálogo comunitário. - Um total de 1.226 pessoas (701 homens e 525 mulheres) receberam informação sobre prevenção e resolução de conflitos através de actividades de formação em 12",
+   "target": "- # Causa do conflito identificada - Seminário de Prevenção de Conflitos realizado 7 vezes com 700 participantes (H=350 e M=350). - 12 vezes as formação realizados com 600 beneficiarios (H=300,M=300) - Reuniões comunitárias realizadas 7 vezes com 600 participantes (H=300 e M=300)",
+   "amounts": {
+    "20": 16700.0
+   },
+   "page": 325
+  },
+  {
+   "code": "3662109",
+   "programme": "366",
+   "subprogramme": "36621",
+   "subprogramme_name": "Prevenção de conflitos comunitários e construção da paz",
+   "name": "Melhorar os serviços de prevenção e resolução de conflitos nas áreas urbanas e rurais",
+   "div": [
+    "0300403"
+   ],
+   "indicator": "1. # Reunião trimestral RNM e RNPC realizada 2. # decisões em reunião 3. # acordo de cooperação estabelecido 4. Sistema de base de dados digital instalado",
+   "baseline": "'1. A reunião da RNM foi realizada uma vez e a reunião da RNPC, uma vez. 2. Um Sistema de base de dados Manual",
+   "target": "1). 4 vezes encontro RNM e 4 vezes encontro RNPC realizado 2). # decisões em reunião 3). # acordo de cooperação estabelecido 4). 100 % Sistema de base de dados digital instalado",
+   "amounts": {
+    "20": 15000.0
+   },
+   "page": 326
+  },
+  {
+   "code": "3662110",
+   "programme": "366",
+   "subprogramme": "36621",
+   "subprogramme_name": "Prevenção de conflitos comunitários e construção da paz",
+   "name": "Implementação do PAN 1325 FPS da fase segundo, 2023-2027",
+   "div": [
+    "0300403"
+   ],
+   "indicator": "1. # de atividade de sensibilização realizadas 2. # Formador do PAN 1325 formado 3. # mulheres a melhorar os seus conhecimentos e competências de liderança 4. # de participantes alcançados. 5. # Reuniões regulares da estrutura de Implementação do PAN 1325 (Autores-chaves, Grupos de trabalho e Equipa de monitorização e avaliação) 6. # Relatório de avaliacao submetidos\"",
+   "baseline": "1. A sensibilização foi realizada 11 vezes com 716 participantes (316 mulheres e 400 homens). 2. 20 Formador (M=13, F=7) 3. Formação de liderança transformativa com total de 41 pessoas (31 mulheres e 10 homens). 4.Treinamento diretrizes de mediação com perspectiva de gênero com total de 205 participantes (Mulheres =67 e Homen=138) 5. Reunião da equipa de Monitoramento e Avaliação realizada 1 vez com 30 participantes (10 mulheres e 20 homens).",
+   "target": "1. 10 vezes atividade de sensibilização realizadas com 500 participantes 2.2 atividades de Formacao para formador realizado com 50 participantes 3. 2 atividade de Formacao de liderança realizados com 50 participantes 4. Realizou-se quatro (4) vezes encontro de avaliação e 2 vezes da relatório de avaliacao submetidos",
+   "amounts": {
+    "20": 16460.0
+   },
+   "page": 326
+  },
+  {
+   "code": "3662111",
+   "programme": "366",
+   "subprogramme": "36621",
+   "subprogramme_name": "Prevenção de conflitos comunitários e construção da paz",
+   "name": "Gestão dos recursos humanos afectos à prestação de serviços comunitários de prevenção de conflitos",
+   "div": [
+    "0300403"
+   ],
+   "indicator": "% pagamento atempado dos salários e vencimentos",
+   "baseline": "100% pagamento atempado dos salários e vencimentos",
+   "target": "100% pagamento atempado dos salários e vencimentos",
+   "amounts": {
+    "10": 859159.0,
+    "20": 48855.0
+   },
+   "page": 326
+  },
+  {
+   "code": "3662112",
+   "programme": "366",
+   "subprogramme": "36621",
+   "subprogramme_name": "Prevenção de conflitos comunitários e construção da paz",
+   "name": "Coordenar dos serviços de segurança do patrimônio público, rodoviaria e prevenção de conflitos comonitaria",
+   "div": [
+    "0300401"
+   ],
+   "indicator": "24 Coordenações dos serviços de segurança do património público, rodoviária e prevenção de conflitos comunitários com",
+   "baseline": "24 encontros dos cargos de direção e chefia.",
+   "target": "Monitorização dos serviços de segurança do patrimônio público, rodoviaria e prevenção de conflitos comunitários.",
+   "amounts": {
+    "10": 86017.0,
+    "20": 20020.0
+   },
+   "page": 326
+  },
+  {
+   "code": "3662114",
+   "programme": "366",
+   "subprogramme": "36621",
+   "subprogramme_name": "Prevenção de conflitos comunitários e construção da paz",
+   "name": "Estabelecimento Programa Nacional de Educacao Civica para a paz e o desenvolvimento nacional",
+   "div": [
+    "0300403"
+   ],
+   "indicator": "1. Estrutura organica da Comissão Nacional de Educação Cívica para a paz e desenvolvimento nacional estabelecida e aprovado; 2. Plano de Ação Nacional de Educação Cívica aprovado e Numero atividades Consulta das linhas ministeriais realizadas 3. # participante que receberam informação sobre programas de educação cívica sobre a paz e o desenvolvimento. 4. # Formador foram capacitadas em educação cívica para a paz e o desenvolvimento.",
+   "baseline": "200 participante que receberam informação sobre programas de educação cívica sobre a paz e o desenvolvimento.",
+   "target": "1. Estrutura CNEC esta estabelecido e aprovado 2. Plano de Ação Nacional de Educação Cívica aprovadoNumero atividades Consulta das linhas ministeriais realizadas 3. 1500 pessoas eceberam informação sobre programas de educação cívica sobre a paz e o desenvolvimento. 4. 20 Formador capacitadas em educação cívica para a paz e o desenvolvimento.",
+   "amounts": {
+    "20": 135968.0
+   },
+   "page": 327
+  },
+  {
+   "code": "3661610",
+   "programme": "366",
+   "subprogramme": "36616",
+   "subprogramme_name": "Serviço de Migração",
+   "name": "Gestão de Recursos Humanos afetos a prestação de Serviços de Migração",
+   "div": [
+    "0300901"
+   ],
+   "indicator": "1) Estabelecimento e implementade um Sistema de Gestão de Recursos Humanos. 2) Processo de Pagamento de Salários e Vencimentos a 100%; 3) Aprovação novo Estatuto da Carreira do Servico de Migração.\" 4) # Rekrutamentu foun Migrasaun",
+   "baseline": "1). Funcionamento efetivo de um sistema de gestão de recursos humanos. 2). Pagamento dos salários de forma correta e dentro do prazo legalmente definido; 3). Estatuto de pessoal do SM revisto e redefinido. 4) 0",
+   "target": "1). Funcionamento efetivo de um sistema de gestão de recursos humanos. 2). Pagamento dos salários de forma correta e dentro do prazo legalmente definido; 3). Melhoria do funcionamento do Estatuto de pessoal do SM. \" 4) 100 pessoas",
+   "amounts": {
+    "20": 120.0
+   },
+   "page": 328
+  },
+  {
+   "code": "3661705",
+   "programme": "366",
+   "subprogramme": "36617",
+   "subprogramme_name": "Segurança rodoviária",
+   "name": "Melhorar as políticas de trânsito e de segurança e prevenção rodoviária",
+   "div": [
+    "0300404"
+   ],
+   "indicator": "1) # documentos finalizados e submetidos para execução; 2) # fiscalização e contra ordinario realizado 3) # Numero acordo com parceiro nacional e internacional sobre assegura",
+   "baseline": "1 Já existe um projeto de lei sobre o código da estrada e um plano nacional de segurança rodoviária; 2. Relatorio fiscalização e contraordenação submetid (Ainaro, Dili, Covalima,",
+   "target": "1. 2 documentos legais revistos (Código da estrada e regulamento implementado) 2. 52 fiscalização e contraordenações do Município implementada, 3. 6 acordos com parceiros nacionais Internacionais",
+   "amounts": {
+    "20": 1350.0
+   },
+   "page": 328
+  },
+  {
+   "code": "3661706",
+   "programme": "366",
+   "subprogramme": "36617",
+   "subprogramme_name": "Segurança rodoviária",
+   "name": "Promover e apoiar iniciativas cívicas de promoção de uma cultura de segurança e prevenção rodoviária e de boas práticas de condução",
+   "div": [
+    "0300404"
+   ],
+   "indicator": "1). # campanha publico de seguranca rodoviária para estudante e comunidade realizada annualmente; 2). # producao panfletos e sticker sobre prevencao seguranca rodoviária; 3). # participantes que receberam informação e aumentaram a sua sensibilização sobre seguranca e prevenção rodoviária e de boas práticas de condução",
+   "baseline": "1. 4 Campanha Publico em Dili realizado e 6 Campanha em curso 2. Producao panfletos e stiker em processo 3. 876 participante foram formados e sensibilizados",
+   "target": "1). 10 campanhas públicas realizadas; 2). 3000 panfletos produzidos; 3). 2500 participantes composto por comunidade e estudantes;",
+   "amounts": {
+    "20": 28100.0
+   },
+   "page": 329
+  },
+  {
+   "code": "3661707",
+   "programme": "366",
+   "subprogramme": "36617",
+   "subprogramme_name": "Segurança rodoviária",
+   "name": "Acompanhamento do plano nacional de segurança e prevenção rodoviária",
+   "div": [
+    "0300404"
+   ],
+   "indicator": "1). # atividades chave monitorizadas; 2). # relatorios submetido; 3). # reuniões de avaliação com parceiros institucionais realizadas.",
+   "baseline": "1). 8 atividades chave monitorizadas; 2). 3 relatorios elaborado e submetido; 3). 4 reuniões de avaliação com parceiros institucionais realizadas.",
+   "target": "1) 26 Actividades monitorizadas; 2) 15 Relatórios elaborados e submetido; 3) 4 X reuniões com parceiros institucionais realizadas.",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 329
+  },
+  {
+   "code": "3661708",
+   "programme": "366",
+   "subprogramme": "36617",
+   "subprogramme_name": "Segurança rodoviária",
+   "name": "Gestão dos recursos humanos afectos à prestação de serviços de prevenção e segurança rodoviária",
+   "div": [
+    "0300404"
+   ],
+   "indicator": "% Pagamento salario e Vencimento",
+   "baseline": "100%",
+   "target": "100% de pagamento atempado dos salários e vencimentos",
+   "amounts": {
+    "10": 79456.0
+   },
+   "page": 329
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0300101",
+    "0300701"
+   ],
+   "indicator": "# de Acordos Internacionais ou MoU assinado com programas Internacionais, bilateral ou Organizacao Internacionais.",
+   "baseline": "A1 Acordos internacionais e Memorandos de Entendimento (MOU) com países parceiros no domínio da Proteção Civil assinados e implementados. (2026)",
+   "target": "Aumentar o numero de Acordos Internacionais ou Memorandos de Entendimento assinado com programas internacionais; Assinatura de acordos bilateriais ou com uma Organização Internacional parceira de desenvolvimento.",
+   "amounts": {
+    "10": 789440.0,
+    "20": 151092.0
+   },
+   "page": 330
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0301001"
+   ],
+   "indicator": "'a) # Auditorias,Inspeções e Fiscalizações para controlar e monitorizar o funcionamento dos serviços do MI. b) % de recomendações de auditoria sendo",
+   "baseline": "a) 7 Auditorias; 4 Inspeções; 1 Fiscalizações (2025) b) 100 % (2025)",
+   "target": "a) # Auditorias; # Inspeções, #Fiscalizações realizadas conforme solicitado b) 100% de recomendações de auditoria sendo implementadas",
+   "amounts": {
+    "10": 136192.0,
+    "20": 24972.0
+   },
+   "page": 330
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0300501"
+   ],
+   "indicator": "a) # de diploma legais aprovados; b) # de diplomas ministeriais aprovados; c) # de pareceres, despachos, Resoluções do Governo, Decretos lei, Proposta de lei",
+   "baseline": "a) DL nº 6/2026, de 11 de fevereiro, primeira alteração ao DL nº 73/2023, de 14 de Setembro, Orgânico do Ministro do Interior, aprovada e concretizada. b) Diploma Ministerial em processo de aprovação. c) 48 de pareceres, 23 despachos, 172 oficios, 4 Diploma Ministerias, 4 Resoluções do Governo, 2 Decretos lei.",
+   "target": "a) Diplomas ministeriais aprovados e implementado b) # de pareceres, despachos, Ofícios, Diplomas Ministerias, Resoluções do Governo, Decretos lei, Proposta de lei conforme solicitado",
+   "amounts": {
+    "10": 89330.0,
+    "20": 540.0
+   },
+   "page": 330
+  },
+  {
+   "code": "510014E",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Servicos de relaçâo publica e media",
+   "div": [
+    "0300501"
+   ],
+   "indicator": "1). # Informação recolhida, documentada e divulgada; 2). # Impressão Bulletin e Calendario, 3). # Camera digital e capital minor aquizado",
+   "baseline": "a) Recolha e divulgação de informaçâo 1800; b) 0 c) 0",
+   "target": "1). Recolha e divulgação de informaçâo 2.000; 2). Impressão 1.200 (Buletins e calendários, 3). 4 aquisicao camera digital e computador 4 aquizado.",
+   "amounts": {
+    "20": 16460.0
+   },
+   "page": 330
+  },
+  {
+   "code": "510014V",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Estabelecimento de politicas publicas em materia de segurança interna no Ministério do Interior",
+   "div": [
+    "0300601"
+   ],
+   "indicator": "1) Atualização dos equipamentos sensíveis da PNTL para garantir a eficácia operacional das forças de segurança (# aquisição de equipamento, viaturas especiais e embarcações para garantir o reforço da capacidade de vigilância marítima) 2) Aumentar a capacidade operacional da",
+   "baseline": "1) 90% (2026) 2) Soma de todos os tempos de resposta a incidentes de emergência 60 minutos ÷ Número total de incidentes de emergência respondidos 5,292) x 100 = 1,13 horas; 3) 0 4) 80% disponibilidade do sistema PNTL operasionaliza; 80%",
+   "target": "1) 100% o plano de aquisição de equipamento implementado 2) Resposta em caso de emergência ≤ 30 minutos 3) 4 Acordos establicido e implementa por trimestral 4) 85% disponibilidade do sistema PNTL operasionaliza; 85 kobertura da komunikasaun 5) Segunda fase",
+   "amounts": {
+    "10": 139878.0,
+    "20": 60660.0
+   },
+   "page": 330
+  },
+  {
+   "code": "51001X3",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Purchase of PNTL uniforms for 800 new cadets",
+   "div": [
+    "0300601"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1000000.0
+   },
+   "page": 331
+  },
+  {
+   "code": "51001X4",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Travel and civic education training - legal support office",
+   "div": [
+    "0300501"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 200000.0
+   },
+   "page": 331
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0300306"
+   ],
+   "indicator": "1). Plano de acção anual elaborado, 2). 10 vezes monitorização da atividade de direção e tutela no Ministerio do Interior , 3). 4 relatório de desempenho da direção e tutela do Ministerio do Interior; 4) 20 documento de informação recolhida.",
+   "baseline": "Novo",
+   "target": "\" 1) Planeamento das atividades do MI com base nas estatísticas; 2) Relatórios de Progresso Entregues; 3) Recolha de informação no ambito das atribuições do MI; 4) dispor de um relatório estatístico sobre as informações recolhidas para base do planeamento das atividades do MI.\"",
+   "amounts": {
+    "10": 54677.0,
+    "20": 50010.0
+   },
+   "page": 331
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0300303",
+    "0300305"
+   ],
+   "indicator": "1) % digitalização do sistema de controlo de assiduidade dos trabalhadores públicos do Ministério do Interior; 2) # Prenchimento das vagas dos cargos de direção e chefias; 3) # Progressão e promoção dos funcionários públicos do MI; 4) # Recrutamento de pessoal para o MI; 5) # Avaliação de",
+   "baseline": "1) não está a ser otimizado. 2) Total 119 Cargos de direção e chefias 3) Promosaun Por Antiguidade 2025 Total : 333 Pessoas 4) Elaboração e atualização da base de dados de 2,712 pessoas (931 funcionários permanentes e 1,026 Agente Administrativos (2026)",
+   "target": "1) 100% digitalização do sistema de controlo de assiduidade dos Funcionarios públicos do Ministério do Interior; 3) 64 Progressões e 957 promoções. 4) Recrutamento de 288 funcionários Publico; 5) 2,712 Funcionários do MI com avaliação para o desempenho",
+   "amounts": {
+    "10": 342281.0,
+    "20": 12500.0
+   },
+   "page": 331
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0300305"
+   ],
+   "indicator": "# de funcionários recebendo treinamento",
+   "baseline": "1) 287 pessoas recebeu formação sobre a Lei Orgânica do Ministério do Interior. (2025) 2) 200 pessoas recebeu formação em Gestão de Escritório",
+   "target": "1). Continuação da Formação Básica de Liderança para 150 pessoas; 2) Continuação da Formação em Gestão Administrativa para 200 colaboradores a nível nacional; 3) Socialização do Sistema DRBI (CAC) para cargos de chefia no MI e na Segurança Social, e divulgação da Lei da Função Pública para cargos de chefia e funcionários do MI.",
+   "amounts": {
+    "20": 27500.0
+   },
+   "page": 332
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0300304"
+   ],
+   "indicator": "1) % Plano Aprovisionamento executado. 2) # de contratos de aquisição 3) # de projetos (construcão) construidos",
+   "baseline": "1). 6 Postos de Integrado 50 % 2). 41 Postos de Vigilancia 100% 3). A Nova Construção da Komando PNTL, Comando Municipio, Postos em prosesu DED 4). O esquadrão tipo C incluindo 4 quartéis da PNTL assinaram contratos. 5) 99% Plano Aprovisionamento executado. (2025) 6) 52 contratos executados.(2025)",
+   "target": "1). 6 Postos de Integrado 100% Finaliza 2). O DED para o novo Comando do PNTL, Comando Municipal e Posto de Construção foi finalizado e aprovado. 4) # O esquadrão tipo C incluindo # quartéis em todos os postos, foi construído. 5) Bairros da PNTL em 7 municípios foi construído. 6) # O esquadrão tipo B em todos os Município incluindo os Posto de Maubise e Laleia foi construído. 7) 3 (três) Esquadrões Tipo A em Cristo Rei, Nain Feto e Veracruz foi construído",
+   "amounts": {
+    "10": 360999.0,
+    "20": 30000.0
+   },
+   "page": 332
+  },
+  {
+   "code": "5100213",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração Geral",
+   "div": [
+    "0300301"
+   ],
+   "indicator": "1). Coordenação e supervisão dos serviços administrativos gerais realizados semanalmente. 2). # Reunião de avaliação",
+   "baseline": "24 encontros dos cargo direção e chefia.",
+   "target": "Coordenação e supervisão dos serviços gerais de administração realizados semanalmente (24 vezes por ano)",
+   "amounts": {
+    "10": 139395.0,
+    "20": 16799.0
+   },
+   "page": 332
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "0300303"
+   ],
+   "indicator": "1. Elaboração do plano de aquisição e distribuição de bens móveis e imóveis; 2. Base de dados do património e logística atualizada.",
+   "baseline": "1. Plano de aquisição de bens móveis e imóveis 2027. 2. Base de dados o ano de 2027 100% atualizada 3. 8 Relatório R&I 2026 relatado.",
+   "target": "1). Plano de aquisição e distribuição de bens móveis e imóveis para o ano de 2028 finalizado e aprovado. 2). Base de dados do património e logística para o ano de 2028 100%",
+   "amounts": {
+    "20": 40420.0
+   },
+   "page": 332
+  },
+  {
+   "code": "510022X",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão da administração e das finanças",
+   "div": [
+    "0300302"
+   ],
+   "indicator": "100% do plano financeiro",
+   "baseline": "100 %",
+   "target": "\"Implementação do plano financeiro do MI aprovado para o ano de 2026. \"",
+   "amounts": {
+    "10": 267000.0,
+    "20": 81291.0
+   },
+   "page": 333
+  },
+  {
+   "code": "510023N",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, Monitorização e Avaliação",
+   "div": [
+    "0300801"
+   ],
+   "indicator": "1).# pessoa que recebeu informação sobre o Plano Estratégico de Segurança Interna 2026-2040 2 ) # pessoa com formação em Planeamento, Monitorização e Avaliação 3) # Atividades de monitoramento no Ministério do Interior em nível nacional e municipal. 4). Plano de ação anual da MI baseado em estatísticas elaborado 5).# relatório de desempenho trimestral Ministerio do Interior apresentado a tempo.",
+   "baseline": "1). 0 (2026) 2). 50 pessoas receberam formação básica. (2026) 3).13 vezes monitorização 4).Plano de ação annual elaborado e aprovado (2026) 5).20 documento de informações coletadas e 4 relatório de desempenho (2026)",
+   "target": "1). 600 Pessoas 2). 50 pessoas continuaram a participar na formação em Planeamento, Monitorização e Avaliação. 3). # monitorização realizadas conforme solicitado 4). Plano de ação annual 2027 elaborado e aprovado 5). 20 documento de informações coletadas e 4 relatório de desempenho submetido",
+   "amounts": {
+    "10": 262267.0,
+    "20": 59170.0
+   },
+   "page": 333
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "366.0.0",
+   "statement": "Diminuição da criminalidade geral, profissionalização das forças e serviços de segurança bem como a proteção e alívio da população",
+   "indicator": "- O nível de confiança da comunidade na segurança aumenta e % das comunidades a nível local (Suco e Postu)",
+   "baseline": "'- 87% da comunidade a nível local (Suku no Postu) sentia-se segura (Dados de Matadalan Survey & Research Institute) - O total de casos de crimes atingiu os 4.704 em 2025.",
+   "target": "'- 100% em 2030 - Alcançar progressivamente uma redução anual significativa de pelo menos ≤ 2,352 (50% redução) em todos os tipos de crime até 2030;",
+   "page": 324
+  },
+  {
+   "kind": "output",
+   "code": "36615.0.0",
+   "statement": "Regime Jurídico e Regulamentos de Segurança da Propriedade do Estado é estabelecido, consolidado e implementado",
+   "indicator": "a) # posto vizilansia asegurado b) % do total de agentes de segurança civil a nível nacional e municipal receberam formação básica; c) O regime Jurídico e Regulamentos de Segurança da Propriedade do Estado é estabelecido, consolidado e implementado",
+   "baseline": "a) 359 postos segurado b) 51 % agentes de segurança civil a nível nacional e municipal receberam formação básica; c) O Decreto-Lei das Sociedades Comerciais (DL n.º 32/2014, de 19 de novembro) está pronto e o certificado Albara e os regulamentos para a tabela de preços da empresa estão a ser elaborados.",
+   "target": "a) 500 posto vigilancia segurado b) 78 % o total de agentes de segurança civil a nível nacional e municipal receberam formação básica c) O quadro legal e os regulamentos internos para garantir o funcionamento da DNSPP foram concluídos e totalmente implementados;",
+   "page": 324
+  },
+  {
+   "kind": "output",
+   "code": "36621.0.0",
+   "statement": "Uma estratégia apropriada de prevenção de conflitos foi desenvolvida e implementada, resultando em uma redução nos conflitos dentro das comunidades.",
+   "indicator": "'a) % dos requisitos mínimos relacionados às condições e à prestação de serviços de prevenção e resolução de conflitos. b) Os potenciais conflitos são identificados e resolvidos precocemente através de um sistema de alerta precoce. c) Contribuição pública para a paz e estabilidade. d) Diálogo e mediação – fóruns comunitários para tratar as queixas antes que se agravem. e) A consciencialização e a responsabilidade dos cidadãos pela paz \" \"",
+   "baseline": "a) 50% b) Foram resolvidos 298 casos de um total de 531 casos identificados em 2025. c) A contribuição pública para a paz e o desenvolvimento é menor. d) A sensibilização dos cidadãos para o uso do diálogo para resolver conflitos será menor e) A consciência e a responsabilidade dos cidadãos pela paz diminuirão",
+   "target": "'a) Concluir progressivamente os requisitos mínimos atingir pelo menos 100% em 2030. b) 145 casos de conflito no processo de reaproximação foram resolvidos. c) As contribuições públicas para a paz e a estabilidade estão aumentando. d) Cidadãos conscientes utilizam o diálogo para resolver conflitos e) A conscientização e a responsabilidade dos cidadãos em relação à paz estão aumentando.",
+   "page": 325
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.1",
+   "statement": "Melhoria da segurança e da confiança pública através de uma força policial profissional, responsável e de aproximação orientada a comunidade",
+   "indicator": "1) Atividades de policiamento comunitário; 2) Desenvolvimento das acções psicossociais.",
+   "baseline": "Todos os cidadãos de Timor- Leste viverão em paz e liberdade, sem medo, e viverão tranquilamente em uma comunidade progressiva onde poderão contribuir livremente para o desenvolvimento nacional.",
+   "target": "1) Redução no número de incidentes criminais; 2) Sentimento de todos os cidadãos de Timor-Leste de vida em paz e liberdade, sem medo, tranquilamente numa comunidade onde poderão contribuir livremente para o desenvolvimento nacional; 3) Fomentar uma comunidade envolvida com o policiamento comunitário.",
+   "page": 327
+  },
+  {
+   "kind": "output",
+   "code": "36616.0.0",
+   "statement": "O movimento de cidadãos estrangeiros dentro e fora do país é controlado e inspecionado",
+   "indicator": "a) MIDAS system update and expansion b) Implementation of electronic gates and electronic visas c) Entry and exit records a) Atualização e expansão do sistema MIDAS b) Implementação de portões eletrónicos e vistos eletrónicos c) Registos de entrada e saída d) Modernização de equipamentos e) Janela única eletrónica totalmente operacional f) % de viagens com recurso a sistemas digitais",
+   "baseline": "a) Midas e o sistema de vistos ainda não estão sincronizados. b) A implementação de portões eletrónicos e vistos eletrónicos ainda não foi concluída. C) API e PNR ainda não estabelecidos e) Janelas únicas eletrónicas em fase inicial de operação. f) Autocolante Visa 100%",
+   "target": "a) Os sistemas Midas e de vistos estão sincronizados. b) O E-Gate e o E- Visa estão implementados e totalmente operacionais. c) API e PNR totalmente implementados. d) Aplicação E-Vissa totalmente implementada. e) Janela Única Eletrónica operacional. f) A maioria das viagens (80-90%) utiliza sistemas digitais.",
+   "page": 327
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.2",
+   "statement": "Comunidade são seguras e protegidas",
+   "indicator": "a) Redução do número de acidentes rodoviários. b) diminuição do número de pessoas afetadas pelos acidentes rodoviários e Redução de acidentes rodoviários.",
+   "baseline": "\"a). Implementação do sistema nacional de prevenção de acidentes e desastres; b). Aprimoramento da capacidade de resposta e redução de acidentes e desastres graves.\"",
+   "target": "\"\"a) Implementação do sistema nacional de prevenção e segurança rodoviária. b) Sensibilização e educação para a cidadania rodoviária.\"",
+   "page": 328
+  },
+  {
+   "kind": "output",
+   "code": "36617.0.1",
+   "statement": "Assegurar a implementação da política nacional de prevenção e segurança rodoviária",
+   "indicator": "a) % dos requisitos mínimos para uma política nacional de prevenção e segurança rodoviária desenvolvido b) Projeto de lei sobre código de trânsito e regulamentação da sinalização viária aprovado e implementado. c) Redução do número de acidentes rodoviários; d) Diminuição do numero de feridos ligeiros, graves e obitos em acidentes rodoviarios.",
+   "baseline": "a) 25 % b) Projeto de lei sobre o código de trânsito e regulamento da sinalização rodoviária em fase de elaboração. c) Acidentes registados no IMS (PNTL) com um total de 2,869 vítimas (377 feridos graves, 2,395 feridos ligeiros e 97 morto.",
+   "target": "a) Concluir progressivamente os requisitos mínimos atingir 75% até 2030. b) Projeto de lei sobre código de trânsito e regulamentação da sinalização viária aprovado e implementado. c) Progressivamente alcançar uma redução anual consistente dos acidentes e das fatalidades no trânsito até 2030",
+   "page": 328
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "100%",
+   "target": "Aprovado e 100% implementado",
+   "page": 329
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1). 100 % o Plano Estratégico de Segurança Interna foi atualizado e três (3) prioridades políticas foram implementadas. 2). # Auditorias; # Inspeções, #Fiscalizações realizadas conforme solicitado 3). Plano de auditoria interna concluído e",
+   "baseline": "1) 100 % 2) Realizamos 7 auditorias, 4 inspeções e 1 inspeção.(2025) 3) Plano de auditoria para 2025 aprovado e implementado. 4) 37 kestaun nebe levanta (2025)",
+   "target": "1). 100 % o Plano Estratégico de Segurança Interna fo atualizado e três (3) prioridades políticas foram implementadas. 2). # Auditorias; # Inspeções, #Fiscalizações realizadas conforme solicitado 3). Plano de auditoria interna concluído e",
+   "page": 329
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "objetivos previstos no Plano de Acção Anual em materia de desenvolvimento instituciona.",
+   "baseline": "100%",
+   "target": "100% atingiu todos os objetivos previstos no Plano de Ação Anual para o desenvolvimento institucional.",
+   "page": 331
+  }
+ ]
+}

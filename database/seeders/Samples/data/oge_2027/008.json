@@ -1,0 +1,1299 @@
+{
+ "year": 2027,
+ "code": "008",
+ "name": "Secretaria de Estado da Formação Profissional e Emprego",
+ "abbr": "SEFPE",
+ "kind": "secretariat",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   50,
+   69
+  ]
+ },
+ "units": [
+  {
+   "code": "SENE",
+   "div": "0080101",
+   "name": "Secretariado da Estrategia Nacional de Emprego",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CIMT",
+   "div": "0080102",
+   "name": "Center de Informação do Mercado de Trabalho",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DA",
+   "div": "0080103",
+   "name": "Direção de Ataúro",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SACNTCAT",
+   "div": "0080104",
+   "name": "Secretariado de Apoio ao Conselho Nacional do Trabalho e&#13;&#10;ao Conselho de Arbitragem do Trabalho",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GPCC",
+   "div": "0080105",
+   "name": "Gabinete de Protocolo, Comunicação e Cooperação",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DOCA",
+   "div": "0080106",
+   "name": "Direção de Oe-Cusse Ambeno",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0080201",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "0080301",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEFPE",
+   "div": "0080401",
+   "name": "Gabinete da Secretaria de Estado da Formação Profissional e Emprego",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DMB",
+   "div": "0080402",
+   "name": "Direção Municipal de Baucau",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMB-03",
+   "div": "0080403",
+   "name": "Direção Municipal de Bobonaro",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMM",
+   "div": "0080404",
+   "name": "Direção Municipal de Manufahi",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMC",
+   "div": "0080405",
+   "name": "Direção Municipal de Covalima",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMV",
+   "div": "0080406",
+   "name": "Direção Municipal de Viqueque",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMA",
+   "div": "0080407",
+   "name": "Direção Municipal de Aileu",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMA-08",
+   "div": "0080408",
+   "name": "Direção Municipal de Ainaro",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DME",
+   "div": "0080409",
+   "name": "Direção Municipal de Ermera",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DML",
+   "div": "0080410",
+   "name": "Direção Municipal de Lautém",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DML-11",
+   "div": "0080411",
+   "name": "Direção Municipal de Liquiçá",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMM-12",
+   "div": "0080412",
+   "name": "Direção Municipal de Manatuto",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DMD",
+   "div": "0080413",
+   "name": "Direção de Municipal de Dili (DMD)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DGPFPE",
+   "div": "0080501",
+   "name": "Direção-Geral da Política de Formação Profissional e Emprego",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPFP",
+   "div": "0080502",
+   "name": "Direção Nacional da Política de Formação Profissional",
+   "type": "National Directorate",
+   "parent": "DGPFPE"
+  },
+  {
+   "code": "DNRT",
+   "div": "0080504",
+   "name": "Direção Nacional das Relações de Trabalho",
+   "type": "National Directorate",
+   "parent": "DGPFPE"
+  },
+  {
+   "code": "ATCS",
+   "div": "0080505",
+   "name": "Adido do Trabalho na Coreia do Sul",
+   "type": "Unit",
+   "parent": "DGPFPE"
+  },
+  {
+   "code": "ATA",
+   "div": "0080506",
+   "name": "Adido do Trabalho na Australia",
+   "type": "Unit",
+   "parent": "DGPFPE"
+  },
+  {
+   "code": "DNE",
+   "div": "0080508",
+   "name": "Direção Nacional de Emprego",
+   "type": "National Directorate",
+   "parent": "DGPFPE"
+  },
+  {
+   "code": "DNEE",
+   "div": "0080509",
+   "name": "Direção Nacional de Emprego no Estrangeiro",
+   "type": "National Directorate",
+   "parent": "DGPFPE"
+  },
+  {
+   "code": "DGSC",
+   "div": "0080701",
+   "name": "Direção-Geral de Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "0080702",
+   "name": "Direção Nacional dos Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNAF",
+   "div": "0080703",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNA",
+   "div": "0080704",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNPMA",
+   "div": "0080705",
+   "name": "Direção Nacional de Planeamento, Monitorização&#13;&#10;e Avaliação",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  },
+  {
+   "code": "DNTI",
+   "div": "0080706",
+   "name": "Direção Nacional de Tecnologia e Informática",
+   "type": "National Directorate",
+   "parent": "DGSC"
+  }
+ ],
+ "programmes": {
+  "028": "Desenvolvimento rural e urbano",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social.",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "0280202",
+   "programme": "028",
+   "subprogramme": "02802",
+   "subprogramme_name": "Reforçar os serviços do SEFOPE (em municípios e no exterior)",
+   "name": "Serviços descentralizados em municipíos",
+   "div": [
+    "0080103",
+    "0080106",
+    "0080402",
+    "0080403",
+    "0080404",
+    "0080405",
+    "0080406",
+    "0080407",
+    "0080408",
+    "0080409",
+    "0080410",
+    "0080411",
+    "0080412",
+    "0080413"
+   ],
+   "indicator": "1) # Konsellu Karreira Profisionál ba Joven no Estudante Finalista sira, Rejistu baze-dadus ba Joven sira ne'ebe buka servisu no formasaun 2) # Grupu Auto Empregu, Empregu temporariu no Sentru Formasaun hetan monitorizasaun no avaliasaun 3) # Levantamentu dadus ba kompanhia, Mediasaun no konsiliasaun ba konflitu servisu 4) # Akompanhamentu ba Estajiariu Profissional 5) # Koordenasaun ho Autoridade Administrativu Lokál Sira Kona-ba Programa SEFOPE",
+   "baseline": "1) Estudantes 27000 Finalista Rejistradu 2) Grupus Auto Empregu 193 Ne'ebe Halo ona Monitorizasaun no Avaliasaun 3) Rekolha ona dadus kompania 340, rejistu keixa disputa laboral 47 4) Grupo Auto Emprego 200 Liga Traballador Retorno Programa PALM Ne'ebe Halo ona Monitorizasaun no Avaliasaun 5) Koordenasaun (Autoridade Munisipal, Postus no Sukus) realizadu",
+   "target": "1) Konsellu Karreira Profisionál 20470 ba Joven no Estudante Finalista sira, Rejistu baze-dadus 5675 ba Joven sira ne'ebe buka servisu no formasaun 2) Grupu Auto Empregu 40, Empregu temporariu 31 no Sentru Formasaun 42 Ne'ebe sei halo monitorizasaun no avaliasaun 3) Levantamentu dadus ba kompanhia 337, Mediasaun no konsiliasaun ba konflitu servisu 74 4) Akompanhamentu ba Estajiariu Profissional Ema nain 522 5) Koordenasaun (Autoridade Munisipal, Postus no Sukus) realizadu",
+   "amounts": {
+    "10": 485034.0,
+    "20": 168000.0
+   },
+   "page": 50
+  },
+  {
+   "code": "5100105",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar as políticas de emprego, formação profissional e promoção de relações de trabalho",
+   "div": [
+    "0080501"
+   ],
+   "indicator": "# Akompanhamentu no Koordenasaun intersetoriál Konaba implementasaun programa formasaun profesional, empregu, relasaun traballu no Kooperasaun Internaionais",
+   "baseline": "Realiza ona 200 Akompanhamentu, Koordenasaun ba Koperasaun Nacional no Internasional Iha Area Formasaun Profissional, Empregu no Traballu",
+   "target": "100 Akompanhamentu, Koordenasaun ba Koperasaun Nacional no Internacional Iha Area Formasaun Profissional, Empregu no Traballu Nebe Sei Realiza",
+   "amounts": {
+    "10": 27720.0,
+    "20": 63494.0
+   },
+   "page": 51
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0080401",
+    "0080701"
+   ],
+   "indicator": "1) % Polítika no estratejia ba promosaun empregu, formasaun no traballu 2) % Diseminasaun polítika ba promosaun empregu, formasaun no traballu 3) %",
+   "baseline": "1) 100% Polítika no estratejia ba promosaun empregu, formasaun no traballu 2) 100% Diseminasaun polítika ba promosaun empregu, formasaun no traballu 3) 100%",
+   "target": "1) 100% Polítika no estratejia ba promosaun empregu, formasaun no traballu 2) 100% Diseminasaun polítika ba promosaun empregu, formasaun no traballu 3) 100%",
+   "amounts": {
+    "10": 393828.0,
+    "20": 336800.0
+   },
+   "page": 51
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0080201"
+   ],
+   "indicator": "1) # Deseminasaun Regras ba implementasaun no promove governasaun di'ak 2) # Inspesaun no fiskalizasaun ba funcionamentu Governasaun 3) % Relatóriu ezekusaun orsamentál 4) # Auditoria Interna ne'ebé hala'o 5) # Inspesaun no fiskalizasaun ba Benefisiariu nebe Asesu ba programa Estajiu profisional",
+   "baseline": "1) Partisipa ona 200 seminariu iha 14 municipiu Inklui Dili 2) Halo ona Inspesaun no fiskalizasaun 200 ba funcionamentu Governasaun no trabalhadores Retorno 3) 100% Ezekuta ona Relatoriu Ezekusaun Orsamental 4) Hala'o ona inspesaun supreja 5 ba eirro no despacho urjente 5) Inspesaun no fiskalizasaun 14 ona ba Benefisiariu nebe Asesu ba programa Estajiu profisional",
+   "target": "1) 200 partisipa seminariu iha 13 municipiu Inklui Dili 2) 4 Inspesaun no fiskalizasaun ba funsionamentu Governasaun 3) 100% 4) 5 inspesaun supreja ba erru no despashu urjente 5) Inspesaun no fiskalizasaun ba Benefisiariu nebe Asesu 580 ba programa Estajiu profisional, 40 Auto Empregu, 31 Empregu Temporariu, Sentru 12 Formasaun Reguler no Fortalesimentu Institusional ba Sentru Formasaun Profisional",
+   "amounts": {
+    "10": 72108.0,
+    "20": 30000.0
+   },
+   "page": 52
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0080301"
+   ],
+   "indicator": "1) # Diploma legáis ne'ebé prodús 2) # Sosializa lei no regulamentus neebe aprova ona 3) # Akordu no kontratu ne'ebé finaliza 4) # Paresér legáis ne'ebé hato'o ona",
+   "baseline": "1) Aprova ona 10 Diploma Legais no Regulamentu alkansa 2) Diploma no regulamentu Sosializada 4 3) Finaliza ona Akordu no kontratu 8 4) Paresér legáis ne'ebé 8 hato'o ona",
+   "target": "1)10 Diploma Legais no Regulamentu alkansa no aprova 2) 4 Diploma no regulamentu Sosializada 3) 8 Akordu no kontratu ne'ebé finaliza 4) 8 Paresér legáis ne'ebé hato'o ona",
+   "amounts": {
+    "10": 33708.0,
+    "20": 20000.0
+   },
+   "page": 52
+  },
+  {
+   "code": "510013Z",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, Orcamento e Estatistica",
+   "div": [
+    "0080705"
+   ],
+   "indicator": "1) % Reuniaun koordenasaun Diresaun Nacional no Munisipal Sira konaba Elaborasaun Planu Asaun Anual no Orsamentu 2) % Dezenvolve no halo Revizasaun ba Planu Asaun Anual (PAA) 3) % Elaborasaun Proposta Orsamentu Jeral Estadu (OJE) 4) % Ajustamentu Planu",
+   "baseline": "1) Foun 2) 100% Dezenvolve no Halo ona Revizaun ba Planu Asaun Anaul Tinan 2026 3) 100% Orsmentu Jeral Estadu Tinan 2026 Ne'ebe Hetan ona Aprovasaun no Promulgasaun 4) 100% Ajustamentu ona Planu Asaun Anual no Orsamentu Tinan 2026 ba Sisitema Dalan Ba Futuru",
+   "target": "1) 100% Reuniaun no Koordenasaun ho Diresuan Nacional no Municipal ba Elaborasaun Planu Asaun Anual no Orsamentu 2) 100% Planu Asaun Anual Tinan 2027 Hetan Aprovasaun, Submete ba Ministeriu Finansas 3) 100% Prepara Orsamentu Jeral Estadu Tinan 2027, Submete ba Ministeriu Finansas hodi",
+   "amounts": {
+    "20": 66115.0
+   },
+   "page": 52
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0080703"
+   ],
+   "indicator": "1) # Diseminsaun ba Lei Ezekusaun Orsamentu 2) % Prosesu pagamentu no kontrolu orsamentu ezekuta tuir padraun ezekusaun aplikavel 3) % Sistema Kontrolu no jestaun ba Arquivamentu",
+   "baseline": "1) Halo ona Diseminsaun ba Lei Ezekusaun Orsamentu 15 2) 100% Relatorio excecução OGE 2025 produzida no realizadas 3) 100% Sistema Kontrolu ba jestaun no Arquivamentu",
+   "target": "1) Deseminasaun ba Lei Ezekusaun Orsamentu iha Nasional no Munisipiu 13 2) 100% 3) 95% Sistema Kontrolu Jestaun no Arquivamentu",
+   "amounts": {
+    "10": 242468.0,
+    "20": 196149.0
+   },
+   "page": 53
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0080703"
+   ],
+   "indicator": "# Rejistu Patrimoniu ne'ebe ativu",
+   "baseline": "Rejista ona 1700 patrimoniu ne'ebe Ativu",
+   "target": "Rejista 810 Patrimoniu ne'ebe ativu",
+   "amounts": {
+    "20": 443564.0
+   },
+   "page": 53
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0080702"
+   ],
+   "indicator": "1) # kontratasaun ba funsionarius 2) # Promosaun Grau ba Funcionarius 3) # Mudansa eskalaun ba Funsionarius",
+   "baseline": "1) Kontrata ona funsionariu kazual hamutuk 20 ho diferenti grau 2) Funsionariu nain 7 mak promovidu ona. 3) Halo ona Mudansa eskalaun ba funsionariu 67",
+   "target": "1) Sei halo rekrutamentu ba funsionariu permanente Promove Ajenti Administrasaun Publiku (AAP) hamutuk 127 ba permanente, rekrutamentu Asesor Nasional hodi apoiu ba servisu mobilidade laboral Portugal no",
+   "amounts": {
+    "10": 229314.0,
+    "20": 111822.0
+   },
+   "page": 53
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0080702"
+   ],
+   "indicator": "1) # Formasaun profisionál ba funsionariu sira 2) # Formasaun no Palestra",
+   "baseline": "1) 100 funsionariu tuir ona Formasaun profisionál iha área Administrasaun Jeral-INAP, Publik Speaking - INAP, Aplikasaun eskritoriu-INAP, Lingua Ingles-LELI 2) 2 Realiza ona Seminariu",
+   "target": "1) 125 Funsionariu partisipa /tuir formasaun profisional jenerika iha area Lingua Ingles - LELI (Kontinuasaun 45 Funcionarius no Klase foun 2 Funcionarius, nivel elementary 30 Funcionarius, formasaun karater ba kargu Xefia 25, indusaun Jeral 25 funsionariu no protokolu 25 Funsionariu no Kargu Xefia. Nune'e Total Funcionarius Ne'ebe Sei tuir Formasaun ba Kapasitasaun ho total 277 2) 100 Funsionariu sei partisipa iha Seminariu ka workshop konaba Prosesu Dixiplinar",
+   "amounts": {
+    "20": 47118.0
+   },
+   "page": 54
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0080704"
+   ],
+   "indicator": "1) # Gestaun Kontratu 2) # Supervisaun ba Projetu",
+   "baseline": "1) Estabelesimentu Kontratu ba Emprezas hamutuk 18 2) Supervisaun ba Projetu iha Teritoriu Nasional no Munisipiu",
+   "target": "1) Estabelese kontratu ho emprezas hamutuk 18 kompostu husi Bens Servisu hamutuk 16 no Kapital Dezenvolvimentu hamutuk 2 2) 12 Supervisaun ba Projetu sira iha Nasional no Munisipiu",
+   "amounts": {
+    "10": 59888.0,
+    "20": 16575.0
+   },
+   "page": 54
+  },
+  {
+   "code": "510023C",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Garantia no Asegura sobre Publikasaun atividades SEFOPE",
+   "div": [
+    "0080706"
+   ],
+   "indicator": "# Elabora informasaun no publikasaun kona ba implementasaun programa no atividades SEFOPE",
+   "baseline": "Publikasaun ba Implementasaun 57 atividades SEFOPE",
+   "target": "Publikasaun ba Implementasaun: 200 husi ; programa 4, Subprograma 11 no atividades 39 iha SEFOPE,",
+   "amounts": {
+    "20": 15980.0
+   },
+   "page": 54
+  },
+  {
+   "code": "510023D",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planificação de Aprovisionamento",
+   "div": [
+    "0080704"
+   ],
+   "indicator": "1) # Disseminasaun konaba PAA no Regras",
+   "baseline": "1) Disemina Informasaun Konaba Planu",
+   "target": "1) Dissiminasaun konaba Planu Aprovizionamentu",
+   "amounts": {
+    "20": 13425.0
+   },
+   "page": 54
+  },
+  {
+   "code": "510023E",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Melhorar e mantem infraestrutura informatica e desenvolvimento sistema baze de dados website",
+   "div": [
+    "0080706"
+   ],
+   "indicator": "# Asegura funsionamentu base dadus SIMUWEB, Identifika no halo manutensaun ba Ekipamentus ICT iha Munisipiu",
+   "baseline": "Asegura Funsionamentu base dadus SIMUWEB, Identifika no halo manutensaun ba Ekipamentus ICT em 14 Munisipius inklui RAEOA no Atauro",
+   "target": "Manutensaun ba ekipamentus ICT 500 Unidades",
+   "amounts": {
+    "10": 50556.0,
+    "20": 14020.0
+   },
+   "page": 55
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0080105"
+   ],
+   "indicator": "# Koperasaun no parseria desenvolvimento entre parceiros nacionais no internacionais",
+   "baseline": "4 Asina MOU no MOC, 21 liña koordenasaun entre parseiru nasionál no internasionál 2 vizita ba rai liur",
+   "target": "Enkontru dala 6 ho parseria Nacional no Internacional",
+   "amounts": {
+    "10": 28968.0,
+    "20": 12806.0
+   },
+   "page": 55
+  },
+  {
+   "code": "5100348",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Serviços de Protocolo e Comunicação",
+   "div": [
+    "0080105"
+   ],
+   "indicator": "# Komunikasaun, Kordenasaun, no akompanhamentu",
+   "baseline": "100 Komunikasaun, Kordenasaun, no akompanamentu",
+   "target": "70 Komunikasaun, 15 Koordenasaun no 25 Akompaniamentu ho parserias",
+   "amounts": {
+    "20": 17194.0
+   },
+   "page": 55
+  },
+  {
+   "code": "9802902",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Promover e criar emprego para os jovens (homens e mulheres) para garantir a igualdade de género",
+   "div": [
+    "0080701"
+   ],
+   "indicator": "11) # Fo apoiu ba vitima sira ne'ebe hetan asistensia husi (MSSI, Rede Feto, ka VPU) ne'ebe partisipa ona formasaun ruma 2) # Apoiu formasaun ba feto ho defisiensia no feto ba xefi familia no LGBTIQ 3) # Formasaun ba grupu feto auto empregu ne'ebe ho atensaun espesial (portador defisiensia vulneravel) 4) % Superviziona ba Implementasaun Programa hodi Garante Igualdade Jeneru",
+   "baseline": "1) 2 Vitima sira ne'ebe hetan asistensia husi (MSSI, Rede Feto, ka VPU) ne'ebe partisipa ona formasaun profissional hetan apoiu finanseiru ba kria empregu ba an rasik. 2) 10 Feto ho defisiensia, feto xefi ba familia no LGBTIQ 3) 7 Grupu Auto empregu ne'ebe hetan atensaun espesial(portador defisiensia,Vulneravel)partisipa iha formasaun jestaun negosiu 4) Foun",
+   "target": "1) 2 Vitima sira ne'ebe hetan asistensia husi (MSSI, Rede Feto, ka VPU) ne'ebe partisipa ona formasaun profissional hetan apoiu finanseiru ba kria empregu ba an rasik. 2) 10 Feto ho defisiensia, feto xefi ba familia no LGBTIQ 3) 7 Grupu Auto empregu ne'ebe hetan atensaun espesial(portador defisiensia,Vulneravel)partisipa iha formasaun jestaun negosiu 4)100 % Superviziona ba Implementasaun Programa hodi Garante Igualdade Jeneru",
+   "amounts": {
+    "20": 19430.0
+   },
+   "page": 56
+  },
+  {
+   "code": "9802903",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Melhorar o entendimento do servidor público na SEPFOPE sobre CEDAW e o convenção da CEDAW",
+   "div": [
+    "0080701"
+   ],
+   "indicator": "# Formasaun ba Grupu Traballu Jeneru (GTJ)",
+   "baseline": "5 Grupu traballu Jeneru partisipa iha formasaun Lideransa",
+   "target": "Grupu 2 traballu Jeneru partisipa iha formasaun Lideransa",
+   "amounts": {
+    "20": 18156.0
+   },
+   "page": 56
+  },
+  {
+   "code": "9831901",
+   "programme": "983",
+   "subprogramme": "98319",
+   "subprogramme_name": "Estratégia Nacional de Emprego (ENE)",
+   "name": "Aumentar a procura do mercado de trabalho",
+   "div": [
+    "0080101"
+   ],
+   "indicator": "1) # parseria sira hodi identifika projetu no oportunidade sira ne'ebé estabelese ona 2) % husi Indikadór Xave Dezempeñu (KPI) ne'ebé atinji ona",
+   "baseline": "1) 5000 raballadores nebe mak ba Australia 1,500, traballadores ba Korea du Sul, 10 traballadores mak ba Japaun no 100 Trabalhador ba Novazelandia 2) 55% Prokura Merkadu Traballu nian",
+   "target": "1) Estabelese parseria ho Instituisaun Relevantes sira hamutuk 27 (tarjeitu 6000) 2) 100% kriasaun servisu husi Instituisaun no Parseria",
+   "amounts": {
+    "10": 46092.0,
+    "20": 7930.0
+   },
+   "page": 56
+  },
+  {
+   "code": "9831902",
+   "programme": "983",
+   "subprogramme": "98319",
+   "subprogramme_name": "Estratégia Nacional de Emprego (ENE)",
+   "name": "Melhorar a oferta do mercado de trabalho",
+   "div": [
+    "0080101"
+   ],
+   "indicator": "1) # Koordenasaun no Rekolla Dadus Nebe Fornese Husi Parseria konaba Formasaun nebe Edukativa 2) # Graduadu sira ne'ebé oferese iha Merkadu Traballu",
+   "baseline": "1) Gradua 1.000 husi Sentru formasaun akreditadu, ensinu superiór 4.000, eskola téknika sekundária 3.000 2) 1,000 graduadu sira iha Oferta Merkadu Traballu nian",
+   "target": "1) 4 Koordenasaun, 500 Gradua husi Sentru formasaun akreditadu, ensinu superiór 4.000, eskola téknika sekundária 3.000 2) 6000 graduadu sira iha Oferta Merkadu Traballu nian",
+   "amounts": {
+    "20": 1844.0
+   },
+   "page": 57
+  },
+  {
+   "code": "9831903",
+   "programme": "983",
+   "subprogramme": "98319",
+   "subprogramme_name": "Estratégia Nacional de Emprego (ENE)",
+   "name": "Continuar a Fortalecer as instituiçoẽ s do mercado de trabalho",
+   "div": [
+    "0080101"
+   ],
+   "indicator": "1) # Identifikasaun ba projetu husi parseria ba oportunidade merkadu servisu ne'ebe estabelese 2) % Implementa estratéjia polítika nasionál ne'ebé uza 3) # Revee Polítika Estratéjia Empregu Nasionál (ENE 2017-2030)",
+   "baseline": "1) 365 identifikasaun ba projeitu husi parseria ba oportunidade merkadu traballu ne'ebe estabelese 2) 100% implementasaun polítika estratéjia nasionál empregu 3) Reve Politica Estratejia Nacional Emprego (ENE 2017-2030)",
+   "target": "1) 27 Kontinua hametin parseria ba oportunidade Servisu 2) 100% implementasaun polítika estratéjia nasionál empregu 3) Desiminasaun ba atualizasaun Politika ENE 2025-2028 husi Politika ENE 2017-2030 iha 14 munisipius",
+   "amounts": {
+    "20": 10626.0
+   },
+   "page": 57
+  },
+  {
+   "code": "9832103",
+   "programme": "983",
+   "subprogramme": "98321",
+   "subprogramme_name": "Informações nacionais sobre mão-de-obra e mercado",
+   "name": "Pesquisas e estudos sobre o mercado de trabalho",
+   "div": [
+    "0080102"
+   ],
+   "indicator": "1) # Rekolla no integrasaun dadus administrativu merkadu traballu husi instituisaun relevantes 2) # Levantamentu dadus Empreza no Abilidade iha setor Turismu, Agrikultura no Peska iha Munisipiu 14 3) # Produs info-grafiku oferta no prokura merkadu traballu 4) # Promosaun no Diseminasaun Sistema Informasaun Merkadu Traballu iha nivel Nasional no Munisipal 5) # Publikasaun",
+   "baseline": "1) Levantementu ona 400 Kompañia ba kapasidade empreza iha munisípiu 2) Uma-kain 7,500 ne'ebe hetan Amostrajen levantamentu forsa traballu ba Agregadu Família 3) Instituisaun fornesedór 8 Merkadu traballu oferta no prokura 4) Diseminasaun ona informasaun 10 kona-ba sistema no merkadu traballu",
+   "target": "1) Rekolla no integrasaun dadus administrativu merkadu traballu husi 10 instituisaun relevantes 2) Levantamentu dadus 350 Empreza no Abilidade iha setor Turizmu, Agrikultura no Peska iha Munisipiu 14 3) 4 Produs info- grafiku oferta no prokura merkadu traballu 4) 8 Promosaun no Diseminasaun Sistema Informasaun Merkadu Traballu iha nivel Nasional no",
+   "amounts": {
+    "10": 74448.0,
+    "20": 35240.0
+   },
+   "page": 57
+  },
+  {
+   "code": "9832203",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Criar emprego aos desempregados através de incentivos ao empreendedorismo",
+   "div": [
+    "0080508"
+   ],
+   "indicator": "1) # Asesmentu ba kandidatu grupu auto empregu 2) # Akompaniamentu ba grupu auto empregu 3) # Formasaun konaba Jestaun Negosiu ba grupu Auto Empregu",
+   "baseline": "1) 42 proposta grupu komunidade graduando no inklui 2 proposta husi grupo ema ho defisiensia ho ninia benefisiariu hamutuk 171 kompostu Mane 114 Feto 57 neébe aprovadu 2) Akompanhamentu ba grupu auto empregu hamutuk 275 ho ninia benefisiariu hamutuk 1287 kompostu Mane 876 Feto 201 neébe asesu ona fundu subvensaun 3) Foun",
+   "target": "1) 45 Proposta Apoiu grupu komunidade graduandu 38 proposta. husi grupu ema ho defisiensia 3, LGBTIQ 2 ho Vunerabel 2 ho ninia benefisiariu hamutuk 165 neébe aprovadu Mane 125 Feto 40 2) Akompanhamentu ba grupu auto empregu hamutuk 315 ho ninia benefisiariu hamutuk 1458 neébe asesu ona fundu subvensaun 3) 45 Grupu Auto Empregu",
+   "amounts": {
+    "10": 203208.0,
+    "20": 81134.0,
+    "30": 125500.0
+   },
+   "page": 58
+  },
+  {
+   "code": "9832208",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Divulgação e aconselhamento profissional",
+   "div": [
+    "0080508"
+   ],
+   "indicator": "1) #% Dezenvolve politika promosaun empregu 2) # Akonselamentu kareira profesional 3) # Expozisaun kareira profissional",
+   "baseline": "1) 100% vizita empreza hamutuk 20 2) 8,000 pessoas rejistu no akonselamentu kareira profesional iha Sentru Empregu Nasional, sentru formasaun 6, ESG, ETV 10 3) Expozisaun kareira profesional ba 20.000 estudante finalista husi eskola sekundariu jeral no sekundariu tekniku vokasional",
+   "target": "1) 100% vizita empreza hamutuk 30 2) 15,000 pessoas rejistu no akonselhamentu kareira profesional iha Sentru Empregu Nasional, sentru formasaun 10, ESG, ETV 36 no Joventude 13 3) Expozisaun kareira profesional ba 15.000 estudante finalista husi eskola sekundariu jeral no sekundariu tekniku vokasional",
+   "amounts": {
+    "20": 258233.0
+   },
+   "page": 58
+  },
+  {
+   "code": "9832209",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Colocasão e Protesão Trabalhador Exterior",
+   "div": [
+    "0080509"
+   ],
+   "indicator": "1) # Mobilizasaun traballador foun no Re-entry ba Australia, Korea, Japaun no Nova Zelandia 2) # Vizita Traballu ba Traballadores iha Australia, Korea, Japaun no Nova Zelandia 3) # Treinamentu Sistema In-country Recruiment Database (IRD) ba Funsionarius iha Munisipiu. 4) # Kapasitasaun sistema Sending Public Agency System ( SPAS) ba Funsionarius 5) # Rejistu Exame Unit Basic Test - Employment Permit System (UBT-EPS) Topik Lian Korea ba kandidatura traballador korea no distribuisaun kartaun Exame Unit Basic Test - Employment Permit System (UBT-EPS) Topik ba kandidatura traballador korea iha munisipiu. 6) # Parttisipa loron SUSOK no Anual Meeting ho Presidenti HRD Korea 7)# Desiminasaun programa mobilidade laboral ba kandidatura Traballador Australia, Korea, Japaun iha Munisipiu 8) # Partisipa Konferensia Horticultura 9) # Adidu traballu Japaun alokadu iha pais selebra akordo hodi kontrata sidadaun Timorense 10) # Asegura Validade Dokumenuts Traballadores Iha Japaun 11) # Mediasaun no Konsiliasaun ba Traballadores Timorense iha Japaun 12) # Vizita no monitorizasaun adidu traballau Japaun ba Traballadores Timorense 13)",
+   "baseline": "1) 5000 Mobilizasaun traballador ba Australia, Korea, Japaun no Nova Zelandia 2) Foun 3) Foun 4) Foun 5) Foun 6) Foun 7) Foun 8) Foun 9) Foun 10) Foun 11) Foun 12) Foun 13) Foun",
+   "target": "1) 2000 Mobilizasaun traballador foun no 4000 Re- Entry ba Australia, Korea, Japaun no Nova Zelandia 2) 16 Vizita Traballu ba Traballadores iha Australia, Korea, Japaun no Nova Zelandia 3) Treinamentu Sistema In-country Recruiment Database (IRD) ba Funsionarius iha Munisipiu 12 4) Kapasitasaun sistema Sending Public Agency System( SPAS) ba Funsionarius 12 5) 6000 Rejistu Exame Unit Basic Test - Employment Permit System (UBT-EPS) Topik Lian Korea ba kandidatura traballador korea no 6000 distribuisaun kartaun Exame Unit Basic Test - Employment Permit System (UBT-EPS) Topik ba kandidatura traballador korea iha munisipiu 12 6) Selebra Loron SUSOK hodi Hametin relasaun traballador Timor oan iha Korea ( Membru Governu no Ekipa 4) 7) 12 Desiminasaun programa mobilidade laboral ba kandidatura Traballador Australia, Korea, Japaun no Korea iha Munisipiu 8) 4 Partisipasaun ba Konferensia Horticultura hodi hametin koperasaun entre Nasaun 11 ba Programa Recognised Seasonal Employer Scheme (RSE) iha Nova Zelandia 9) Adidu traballu Japaun 1 alokadu iha pais selebra akordo hodi kontrata sidadaun",
+   "amounts": {
+    "10": 299412.0,
+    "20": 1292782.0,
+    "30": 68000.0
+   },
+   "page": 59
+  },
+  {
+   "code": "9832210",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Promover e proteger trabalhadores timorenses através dos serviços dos Adidos e Assistentes do Trabalho",
+   "div": [
+    "0080505",
+    "0080506"
+   ],
+   "indicator": "1) # Adidu traballu alokadu iha pais selebra akordu hodi kontrata sidadaun Timorense 2) # Mobilizasaun no Repatriasaun traballadores Timorense iha pais ho seleba akordu para kontrata sidadaun Timorense 3) # Traballadores sira nia dokumentus asegura validus, inklui passaporte 4) # Traballadores Timorense nebe hetan protesaun atraves mediasaun 5) # Visita monitorizasaun Adidu Traballu ba traballadores Timorense iha teritoriu Australia no korea 6) # promosaun traballadores Timorense ba Empresariu no agensia sira",
+   "baseline": "1) Kolakasaun Adidu Traballu 1 no Asistenti Adidu 1 iha Territóriu Australia 2) Apoiu mobilizasaun traballadór, iklui traballadór repatriadu 600 kada tinan 3) Kontinua oferese servisus administrasaun nomos koordenasaun servisu ho Konsuladu Jeral nomos Embaixada hodi apoiu no fasilita karta ekstensaun passaporte hamutuk 50 traballadór nomos traduzaun/verifikasaun karta kondusaun hamutuk 25 traballaór kada tinan 4) Ekipa Adidu halao atendimentu imidiata no registu kazu no Resolve Kazu bein estár Traballadores hamutuk 20-25 ba kestaun kumprisaun/akaptasaun modalidade kontratu servisu nia nomos kazu insidente/asidente husi traballadór 5) Halao Vizita Monitorizasaun Bein Estár ba traballadór hamutuk 100-200 kada tinan nomos realiza reuniaun ho Empregadór aprovadu hamutuk 10 kada tinan ne’ebe iha territóriu",
+   "target": "1) Kolakasaun Adidu Traballu 1 no Asistenti Adidu 1 iha Territóriu Australia 2) Apoiu mobilizasaun traballadór, iklui traballadór repatriadu 600 kada tinan 3) Kontinua oferese servisus administrasaun nomos koordenasaun servisu ho Konsuladu Jeral nomos Embaixada hodi apoiu no fasilita karta ekstensaun passaporte hamutuk 50 traballadór nomos traduzaun/verifikasaun karta kondusaun hamutuk 25 traballaór kada tinan 4) Ekipa Adidu halao atendimentu imidiata no registu kazu no Resolve Kazu bein estár Traballadores hamutuk 20-25 ba kestaun kumprisaun/akaptasaun modalidade kontratu servisu nia nomos kazu insidente/asidente husi traballadór 5) Halao Vizita Monitorizasaun Bein Estár ba traballadór hamutuk 700 kada tinan nomos realiza reuniaun ho Empregadór aprovadu hamutuk 10 kada tinan ne’ebe iha territóriu Australia 6)",
+   "amounts": {
+    "10": 600000.0,
+    "20": 144324.0
+   },
+   "page": 60
+  },
+  {
+   "code": "9832211",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Monitorizar e avaliar os programas no âmbito de formação profissional, emprego e trabalho",
+   "div": [
+    "0080705"
+   ],
+   "indicator": "1) # Monitorizasaun no avaliasaun programa ambitu formasaun profesional, empregu, no traballu 2) % Relatóriu Trimestral, Annual no Relatoriu Rezultadu Monitorizasaun no Avaliasaun",
+   "baseline": "1) 70 Monitoriza no avalia programa iha âmbitu formasaun profissional, empregu no traballu. 2) 100%",
+   "target": "1) 5 Formasaun Reguler, 8 Reforsa Institusional no 580 Estajiu Profisional (Rai laran no Rai liur), 40 Auto Empregu, 31 Empregu Temporáriu 12 Sentru Formasaun no 14 Munisipiu Espozisaun Karreira Profisional no 20 Akonsolamentu Profisional, 14 Semináriu Re-Integrasaun ba familia no traballdór Retornu 700, 6000 ba Kandidatu traballadór husi Korea, Australia, Japaun no Nova Zelandia, 6000 Mobilizasaun traballador foun no Re-Entry, 6 Monitorizasaun no Avaliasaun ba Sensibliza Prosedimentu Mediasaun no Konsiliasaun ba SEFOPE",
+   "amounts": {
+    "10": 74012.0,
+    "20": 50280.0
+   },
+   "page": 61
+  },
+  {
+   "code": "9832216",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Propor, coordenar e implementar os programas de fomento de emprego temporário e de mão-de-obra intensiva, particularmente nas áreas rurais",
+   "div": [
+    "0080508"
+   ],
+   "indicator": "1) # Implementasaun ba programa empregu temporáriu 2) # Akompanamentu Grupu Empregu Temporariu",
+   "baseline": "1) 31 proposta komunidade aprovadu ho ninia benefisiariu hamutuk 784 Feto (327) Mane (457) 2) Foun",
+   "target": "1) 56 proposta komunidade aprovadu ho ninia benefisiariu hamutuk 1288 2) 56 grupu Empregu Temporariu",
+   "amounts": {
+    "20": 69753.0,
+    "30": 312380.0
+   },
+   "page": 62
+  },
+  {
+   "code": "9832218",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Cordenacao da Implementação Programa Atividade Reintegracao dos traballadores beneficiario programa PALM",
+   "div": [
+    "0080509"
+   ],
+   "indicator": "1) # Enkontru Realizada 2) # Estajiu Profissional no Auto Empregu ba traballador retornu",
+   "baseline": "1) Enkontru ho diresaun implementador Nacional no Municipal Realizada 2) 200 Traballador benefisiariu programa PALM - Estajiu profissional no auto empregu",
+   "target": "1) Enkontru ho Diresaun Implementador Realizada 2) 100 Estajiu Profissional traballador retornu no 8 grupu Auto Empregu ba traballador retornu",
+   "amounts": {
+    "20": 39522.0
+   },
+   "page": 62
+  },
+  {
+   "code": "9832219",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Reintegração dos Trabalhadores Retorno",
+   "div": [
+    "0080509"
+   ],
+   "indicator": "1) # Atualizasaun dadus ba Traballador Retornu 2) # Formasaun no palestra ba familia no Traballador Retornu iha Munisipiu 3) # Formasaun Literasia Finanseiru Money Minded no Business Basic husi (ANZ) ba Traballador Retornu ho Familia iha Munisipiu 4) # Fasilita Traballador Retornu (PALM) halo Reklamasaun Superanunsiu 5) Aktualizasaun dadus Profile Traballadores Retornu iha Sistema In- country Recruiment Database (IRD) 6) # Deseminasaun konaba Superanunsiu ba funsionariu sira iha Munisipiu 7) # kapasitasaun konaba Fasilitador, Estratejia, Manejamentu no Lideransa ba Funsionarius",
+   "baseline": "1) Atualizasaun dadus ba Traballador Retornu (Australia, Korea no Japaun) - 2000 2) Formasaun no palestra ba Traballador Retornu ho Familia Australia, Korea, Japaun no Nova Zelandia iha Munisipiu. 3) Formasaun Literasia Finanseiru Money Minded no Business Basic husi (ANZ) ba Traballador ho Familia iha Munisipiu. 4) Fasilita Traballador Retornu (PALM) halo Reklamasaun Superanunsiu 5) 500 Traballador benefisiariu programa PALM atualiza sira nia profile iha sistema IRD 6) Foun 7) foun",
+   "target": "1) Atualizasaun dadus ba Traballador Retornu (Australia, Korea, Japaun no Nova Zelandia) - 2000 2) 700 Formasaun no palestra ba familia 25 Traballador Retornu 25 Australia, Korea, Japaun no Nova Zelandia iha Munisipiu 12 3) Formasaun Literasia Finanseiru Money Minded no Business Basic husi (ANZ) ba Traballador ho Familia iha Munisipiu 100 4) 600 Fasilita Traballador Retornu (PALM) halo Reklamasaun Superanunsiu 5) 500 Traballador benefisiariu programa PALM atualiza sira nia profile iha sistema IRD 6) Treinamentu konaba Superanunsiu ba funsionariu sira iha Munisipiu 7) kapasitasaun konaba Fasilitador, Estratejia, Manejamentu no Lideransa ba Funsionarius 30",
+   "amounts": {
+    "20": 72051.0
+   },
+   "page": 62
+  },
+  {
+   "code": "98322E1",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Budget allocation for the labour attache in New Zealand",
+   "div": [
+    "0080509"
+   ],
+   "indicator": "1) # Adidu traballu Nova Zelandia lokadu iha pais selebra akordo hodi kontrata sidadaun Timorense 2) # Asegura Validade Dokumentus Traballadores Iha Nova Zelandia 3) # Mediasaun no Konsiliasaun ba Traballadores Timorense iha Nova Zelandia 4) # Vizita no monitorizasaun adidu traballau Nova Zelandia ba Traballadores Timorense 5) # Promosaun traballadores Timorense ba empregadores",
+   "baseline": "1) 35 Mobilizasaun traballador ba Nova Zelandia 2) Asegura ona Validade Dokumenuts ba 35 Traballadores Iha Nova Zelandia 3) Foun 4) Foun 5) Foun",
+   "target": "1) Adidu traballu Nova Zelandia 1 alokadu iha pais selebra akordo hodi kontrata sidadaun Timorense 2) 35 Asegura Validade Dokumenuts Traballadores Iha Nova Zelandia 3) 5 Mediasaun no Konsiliasaun ba Traballadores Timorense iha Nova Zelandia 4) 4 Vizita no monitorizasaun adidu traballau Nova Zelandia ba Traballadores Timorense 5) 2 Promosaun traballadores Timorense ba empregadores",
+   "amounts": {
+    "10": 96000.0
+   },
+   "page": 63
+  },
+  {
+   "code": "98322E2",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "Employment placements and worker-employer matching events",
+   "div": [
+    "0080508"
+   ],
+   "indicator": "1) # Traballador ne'ebe refere ba vaga empregu 2) #% Traballador ne'ebe hetan kolokasaun empregu 3) #% Traballadore ne'ebe hetan empregu tuir kompetensia kualifikasaun 4) # eventu ne'ebe realiza 5) # empregadores ne'ebe partisipa 6) # traballadores ne'ebe pastisipa 7) # entrevista taballador no empregador 8) # vaga empregu ne'ebe indentifika 9) % empregador satisfeitu ho kandidatura sira 10) # Traballadores ne'ebe aumenta oportunidade ba empregu hafoin enventu",
+   "baseline": "1) Foun 2) Foun 3) Foun 4) Foun 5) Foun 6) Foun 7) Foun 8) Foun 9) Foun 10) Foun",
+   "target": "1) 200 Traballadores 2) 25 % husi 200 vaga husi traballadores refere 3) 50% husi 200 traballadores ne'ebe hetan empregu tuir kompetensia kualifikasaun 4) 14 eventu ne'ebe realiza iha Munisipiu 5) 50 empregadores ne'ebe partisipa 6) 280 traballadores ne'ebe pastisipa 7) 500 entrevista taballador no empregador 8) 500 vaga empregu ne'ebe indentifika 9) 100% empregador satisfeitu ho kandidatura sira 10) 280 Traballadores ne'ebe aumenta oportunidade ba empregu hafoin eventu",
+   "amounts": {
+    "30": 500000.0
+   },
+   "page": 63
+  },
+  {
+   "code": "98322E3",
+   "programme": "983",
+   "subprogramme": "98322",
+   "subprogramme_name": "Criar oportunidades de emprego",
+   "name": "PALM, EPS, TIT and RSE schemes - reintegration and pre-departure support",
+   "div": [
+    "0080509"
+   ],
+   "indicator": "1) # Kadidatu traballadores husi PALM, EPS, TIT no RSE ne'ebe simu orientasaun antes partida 2) % Partisipasaun ne'ebe iha konnesementu diak konaba prosedementu imigrasaun 3) % Traballdores ne'ebe hatene nia dever no direitu tuir nia responabilidade 4) # traballadores ne'ebe iha planu ba reintegrasaun",
+   "baseline": "1) foun 2) foun 3) foun 4) foun 5) foun",
+   "target": "1) 6000 Mobilizasaun traballador foun no Re-Entry ba Australia, Korea, Japaun no Nova Zelandia. 2) 50 % partisipasaun konaba prosedementu imigrasaun PALM, EPS, TIT no RSE. 3) 100% ba traballadores sira ne'ebe hatene nia dever no direitu tuir nia responabilidade. 4) 100 traballadores ne'ebe iha",
+   "amounts": {
+    "30": 750000.0
+   },
+   "page": 63
+  },
+  {
+   "code": "9832302",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Formação profissional",
+   "div": [
+    "0080502"
+   ],
+   "indicator": "1) # Área formasaun 2) # Husi Formandu Nebe Graduadu nebe Integra iha Merkadu Traballu 3) # Formasaun kona ba importansia husi formasaun profissional Realizadu 4) # Sentru formasaun Akreditadu no Rejistradu nebe Submete Proposta hodi realiza formasaun movel iha Munisipiu inklui RAEOA 5) # Rejistrasaun Sentru Formasaun 6) # Implementa atividade formasaun lian Ingles iha Municipiu 7) # Implemetasaun Atividade Formasaun Aged Care",
+   "baseline": "1) Formandus ne'ebe graduadus ona husi sentru formasaun akreditadus, desagragadus tuir sexu no area formasaun (Feto 1000 no Mane 1000) 2) Graduadus husi sentru formasaun akreditadu 600 ne'ebe hetan rejistradu 600 no komunitariu inklui ema ho difisiente 600 3) 200 partisipante Formasaun kona ba importansia husi formasaun profissional ne'ebe Realizadu 4) Sentru formasaun akreditadu no Rejistradu 10 ba Munisipiu 6 ho total 250 benifisiarius 5) Rezistra ona 100 Sentru Formasuan iha Municipiu 14 6) Implementa ona atividade formasaun lian Ingles iha 14 Municipiu 7) Foun",
+   "target": "1) Formandus nebe asesu ba Sentru formasaun Akreditadu, agregadu tuir seksu no area formasaun (feto 1000, mane 1000). 2) 600 graduadu husi Sentru formasaun asesu servisu inklui Ema ho Difisiente no LGBTQ. 3) 200 partisipante formasaun kona ba importansia husi formasaun profissional Realizadu. 4) 5 Sentru formasaun akreditadu ba munisipiu. 5) 100 husi Sentru formasaun, Fundasaun no Asosiasaun iha munisipiu 14. 6) Implementa atividade formasaun lian Ingles regular iha munisipiu 14 ho total benefisiarius 1050. 7) Benefisiariu 25 asesu ba formasaun Aged Care.",
+   "amounts": {
+    "10": 255048.0,
+    "20": 104124.0,
+    "30": 70000.0
+   },
+   "page": 64
+  },
+  {
+   "code": "9832305",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Implementar um programa nacional de estágio por via de centros de formação profissional",
+   "div": [
+    "0080502"
+   ],
+   "indicator": "1) # Rejistrasaun ba Kandidatu estajiariu 2) # Estajiariu Partisipa konklui Estajiu Profissional Nasional no Internasional, inklui 5% ba ema ho defisiensia no Vulneravel 3) # Identifikasaun ba entidades promotores Publiku no privadu, hodi halo konsultasaun atu bele admite estajiarius 4) # Estudu Buka Tuir Benefisiario/Estajiadu nebe Hetan Servisu iha 13 Munisipiu Inklui RAEOA Oe- Cusse 5) # Realizasaun ba Seminariu Forum Konsultasaun Industria",
+   "baseline": "1) Rejista ona 1000 Benefisiariu iha baze dadus 2) 500 Benefisiariu ne'ebe partisipa iha estajiu nasional no Rai liur inkliu ema ho difisiente LGBT asesu Estajiu nasional no esatajiu Enternacionais 3) Entidades promotora 50 ne'ebe mak indentifikadu iha setor publiku no privadu 4) Benifisiariu 430 ne'ebe hetan asesu ona ba iha programa estajiu profisional hahu husi periode 2021-2025 5) 50 entidades promotora ho Sentru Formasaun Tekniku",
+   "target": "1) 2000 Benefisiariu 2) 600 Benefisiariu partisipa iha estajiu nasional kompostu huism Rai Laran 550 no Rai liur 20, 10 benefisiarius ema ho difisiente, 10 LGBTQ no 10 Vulneravel 3) 80 Entidades promotora mak indentifikadu iha setor publiku no privadu 4) Benifisiariu nebe asesu ba programa estajiu profisional no hetan servisu 5) 25 entidades promotora no 25 Sentru Formasaun",
+   "amounts": {
+    "20": 490110.0
+   },
+   "page": 65
+  },
+  {
+   "code": "9832308",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Fortalecimento institucional de centros de treinamento",
+   "div": [
+    "0080502"
+   ],
+   "indicator": "1) # Sentru Formasaun ne'ebe hetan Apoiu Husi SEFOPE no Tipu Apoiu 2) # Formadores Graduadu ba Sertifikadu III Treinamentu Asesmentu no Avaliasaun (TAA) no Serfikadu IV Edukasaun Formasaun no Avaliasaun (EFA)",
+   "baseline": "1) 30 Sentru formasaun, 10 Sentru formasaun akreditadu, 10 Sentru formasaun rejistradu no 10 Sentru formasaun komunitariu 2) Tuir ona 50 Formasaun iha Serbisu fatin Cert. IV Aged Care Formasaun RAA (Rekunhesementu Abilidade Anterior) 3) 40 Formadores Graduadus ne'ebe hetan ona kapasitasaun",
+   "target": "1) 30 Sentru formasaun, 10 Sentru formasaun akreditadu, 10 Sentru formasaun Rejistradu no 10 Sentru formasaun komunitariu 2) 40 formadores hetan kapasitasaun Pedagojika Sertifikadu III-IV",
+   "amounts": {
+    "20": 21755.0,
+    "30": 319280.0
+   },
+   "page": 65
+  },
+  {
+   "code": "9832315",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Apoio Implementação os planos Technical Vocational Education And Training (TVET)",
+   "div": [
+    "0080502"
+   ],
+   "indicator": "1) # Sentru Formasaun Akreditadu Monitorizadu e Avaliadu. 2) # Kapasitasaun teknika espesializada iha area TVET 3) # Partisipa konferensia TVET Internasional 4) # Promosaun planu TVET 2011-2030",
+   "baseline": "1) Monitoriza ba 51 sentrus formasaun nebe hetan registradu no akreditadu. 2) 2 Kapasitasaun teknika espesializada iha area TVET 3) Atende 2 konferensia hodi share esperensia no inovasaun iha setor TVET 4) Foun",
+   "target": "1) 65 Sentru formasaun monitorizadu, Avaliadu no Re- identifikadu 40 Monitorizasaun no Avaliasaun no 25 Re- identifikasaun 2) 6 partisipantes partisipa konferensia no Konselho TVET ASEAN. 3) 120 partisipantes partisipa promosaun planu TVET 4) 8 partisipantes halao estudu vizita kona ba mekanizmu implementasaun programa hasae abilidade (up-skilling) no",
+   "amounts": {
+    "20": 55835.0
+   },
+   "page": 65
+  },
+  {
+   "code": "9832316",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Implementação de Estágio Profissional para Trabalhadores Beneficiários do Programa PALM",
+   "div": [
+    "0080502"
+   ],
+   "indicator": "# Estajiu Profissional ba Trabalhadores Retornu",
+   "baseline": "100 Trabahaldores Benefisiariu Programa PALM tuir ona Estajiu Profissional",
+   "target": "Estajiu Profissional ba Traballadores Retornu 100",
+   "amounts": {
+    "20": 114476.0
+   },
+   "page": 66
+  },
+  {
+   "code": "98323E1",
+   "programme": "983",
+   "subprogramme": "98323",
+   "subprogramme_name": "Certificação de instituição (centro de formação)",
+   "name": "Cobe House, training centres in Ainaro, Atauro and Manufahi, and perimeter wall",
+   "div": [
+    "0080502"
+   ],
+   "indicator": "Prepara Dezenho no BOQ ba Konstrusaun ba Edifisiu SEFOPE Autoridade Atauro no Sentru Formasaun, Cobe House,Centru formasaun Ainaro no Manufahi",
+   "baseline": "Foun",
+   "target": "1) Melhorar Infrastrutura ne'ebe dignu ba Nesesidade servisu Baziku (Edukasaun Dezenvolvimentu Kapasitasaun no Dezentralizasaun Administrativu Konstrusaun Edifisiu ne'e sei lori Estadu no Governu besik liu tan ba Povu hodi fasilita Komunidade sira nia Asesu ba Servisu Publiku Administrativu no Atividade Formasaun Konstrusaun ba Edifisiu SEFOPE Municipal Atauro no Sentru sira ne'e loke dalan ba Oportunidade Ekonomika Foun iha Nivel Municipal Atauro Manufahi no Ainaro 2) Reapropriasaun (OnGoin) no Konstrusaun Edifisiu Foun Hanesan Verba ba Projetu Konstrusaun Edifisiu SEFOPE Nasional no Munisipiu nian nu'udar pasu Estratejiku ida hodi garante Servisu atendementu Publiku ne'ebe ho Kualidade diak",
+   "amounts": {
+    "50": 800000.0
+   },
+   "page": 66
+  },
+  {
+   "code": "9834800",
+   "programme": "983",
+   "subprogramme": "98348",
+   "subprogramme_name": "Infraestruturas e facilidades para a formação profissional e o emprego, incluindo edifícios públicos",
+   "name": "Construção do Edifício Nacional SEFOPE",
+   "div": [
+    "0080703"
+   ],
+   "indicator": "Prepara Dezenho no BOQ Konstrusaun ba Edifisiu Foun SEFOPE Nacional (Cobe House)",
+   "baseline": "Melhorar Infrastrutura ne'ebe dignu hodi asegura servisu Administrasaun Iha Nacional • Reapropiasaun ba",
+   "target": "Reapropriasaun (OnGoin) no Konstrusaun Edifisiu Foun Hanesan Verba ba Projetu Konstrusaun Edifisiu",
+   "amounts": {
+    "50": 93759.0
+   },
+   "page": 66
+  },
+  {
+   "code": "9834801",
+   "programme": "983",
+   "subprogramme": "98348",
+   "subprogramme_name": "Infraestruturas e facilidades para a formação profissional e o emprego, incluindo edifícios públicos",
+   "name": "Konstrusaun Sentru Formasaun iha Lakonak, Suai, Covalima",
+   "div": [
+    "0080405"
+   ],
+   "indicator": "Prepara Dezenho no BOQ ba Konstrusaun ba sentru formasaun Iha Municipio Covalima",
+   "baseline": "Konstrusaun Foun ba Sentru Formasaun",
+   "target": "Melhorar Infrastrutura ne'ebe dignu hodi asegura servisu Munisipal Iha Area Formasaun",
+   "amounts": {
+    "50": 16924.0
+   },
+   "page": 67
+  },
+  {
+   "code": "9834803",
+   "programme": "983",
+   "subprogramme": "98348",
+   "subprogramme_name": "Infraestruturas e facilidades para a formação profissional e o emprego, incluindo edifícios públicos",
+   "name": "Konstrusaun ba Edifisiu SEFOPE iha Lautem",
+   "div": [
+    "0080410"
+   ],
+   "indicator": "Prepara Dezenha no BOQ ba Konstrusaun ba Moru Edifisiu Iha Municipiu Lautem",
+   "baseline": "New Construction of SEFOPE Lautem Building",
+   "target": "Melhorar Infrastrutura ne'ebe dignu hodi asegura servisu Administrasaun Munisipal Lautem",
+   "amounts": {
+    "50": 17867.0
+   },
+   "page": 67
+  },
+  {
+   "code": "9834804",
+   "programme": "983",
+   "subprogramme": "98348",
+   "subprogramme_name": "Infraestruturas e facilidades para a formação profissional e o emprego, incluindo edifícios públicos",
+   "name": "Construção do Edifício SEFOPE em Bobonaro e do Centro de Treinamento SEFOPE em Atabae Bobonaro",
+   "div": [
+    "0080403"
+   ],
+   "indicator": "Prepara Dezenho no BOQ ba Konstrusaun ba Edifisiu SEFOPE Municipal Bobonaro no Sentru Formasaun SEFOPE Bobonaro Atabae",
+   "baseline": "Konstrusaun ba Edifisiu SEFOPE Municipio Bobonaro Sentru Formasaun SEFOPE iha Atabae Muncipio Bobonaro",
+   "target": "Melhorar Infrastrutura ne'ebe dignu hodi asegura servisu Munisipal",
+   "amounts": {
+    "50": 17867.0
+   },
+   "page": 67
+  },
+  {
+   "code": "9834805",
+   "programme": "983",
+   "subprogramme": "98348",
+   "subprogramme_name": "Infraestruturas e facilidades para a formação profissional e o emprego, incluindo edifícios públicos",
+   "name": "Construção do Muro do Edifício Municipal de Aileu",
+   "div": [
+    "0080407"
+   ],
+   "indicator": "Prepara Dezenho no BOQ ba Konstrusaun ba Moru Edifisiu Iha Municipio Aileu",
+   "baseline": "Konstrusaun Foun ba Moru Edifisiu Iha Municipio Aileu",
+   "target": "Melhorar Infrastrutura ne'ebe dignu hodi asegura servisu Munisipal Aileu",
+   "amounts": {
+    "50": 16740.0
+   },
+   "page": 67
+  },
+  {
+   "code": "9830500",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Promove Serviços de Relações Industriais",
+   "div": [
+    "0080504"
+   ],
+   "indicator": "1) # Rejista no Sertifika Organizasaun Sindikatu Traballadores no Assosiasaun Emprezarial 2) # Akompanhamentu ba aktividades Organizasaun Sindikatus Traballadores no Assosiasaun Emprejarial 3) # Sensibilizasaun knar DROSE,no prosedementu",
+   "baseline": "1) Rejista ona 3 Organizasaun Sindikatus Traballadores no Asossiasaun Emprejarial 2) Halo akompanhamentu ona ba 15 Organizasaun Sindikatus Traballadores no Assosiasaun Emprejarial Akompanhadu 3) Sosializa ba 50 Empregadores no 500 Traballladores",
+   "target": "1) 3 Organizasaun Sindikatus Traballadores no Asossiasaun Emprejarial Registradu no 2 hetan sertifikasaun 2) Akompanhamentu ba 15 Organizasaun Sindikatus Traballadores no Assosiasaun Emprejarial nomos membru traballador afiliadu ba munisipiu 4 inklui Nasional 3)",
+   "amounts": {
+    "20": 67584.0
+   },
+   "page": 67
+  },
+  {
+   "code": "9830503",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Comemorações oficiais - Dia Mundial do Trabalhador",
+   "div": [
+    "0080504"
+   ],
+   "indicator": "# Partisipasaun ba eventu Selebrasaun Loron Traballador Mundial",
+   "baseline": "300 Pessoas Nebe Paritisipa iha Komemorasaun Loron Traballador Munidial ( Sosiedade Sivil, Empreza, Seitor Publiku no Traballador)",
+   "target": "Realizasaun loron 5, ho total 300 Pessoas Nebe Paritisipa iha Komemorasaun Loron Traballador Mundial ( Sosiedade Sivil, Empreza, Seitor Publiku no Traballadores",
+   "amounts": {
+    "20": 9900.0
+   },
+   "page": 68
+  },
+  {
+   "code": "9830505",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Promover diálogo social e a concertação entre os parceiros sociais e resolver conflitos de trabalho submetidos por via do Conselho de Arbitragem do Trabalho",
+   "div": [
+    "0080104"
+   ],
+   "indicator": "1) # Realiza dialogu sosial reuniaun liu husi tripartida. 2) # Rezolve kazu konflitus laboral husi tripartida. 3) # Palestra/ Seminariu liu husi tripartida atu desimina funsaun ka knar CNT-CAT liu husi Lei traballu nu. 4/2012, artigo 100 e 101,iha 13 Munisipius inklui RAEOA Oe-Cusse 4) # Peskiza nesesidade vida minimu liu husi tripartida, iha 13 Munisipius inklui RAEOA- Oe-Cusse.",
+   "baseline": "1) Halao dialogu sosial liu husi tripartida 24 reuniaun 2) Rezolve 36 kazu konflitus laboral nivel arbitragem liu husi tripartida iha nasional nomos Munisipius. 3) Realiza palestra ka Seminariu liu husi tripartida habelar knar ka funsaun CNT-CAT tuir Lei traballu nu. 4/2024, artigu 100 no 101, iha 2 Munisipius 4) Foun",
+   "target": "1). Realiza 24 Reuniaun Dialogo sosial liu husi Tripartida 2). Rezolve 36 kazu konflitu laboral 3). Palestra / Seminariu iha 13 Munisipiu inklui RAEOA-OE- Cusse . 4). Peskija Nesesidade vida minimu trabalhadores iha 13 Munisipiu inklui RAEOA- Oe-Cusse no Administrativo Atauro",
+   "amounts": {
+    "10": 50700.0,
+    "20": 28850.0
+   },
+   "page": 68
+  },
+  {
+   "code": "9830506",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Mediação e Conciliação de Conflitos Disputas Laborais",
+   "div": [
+    "0080504"
+   ],
+   "indicator": "1) #% Rejistu no Rezolve Disputa Laborais 2) # Sensibilizasaun Prosedimentu Mediasaun no Konsiliasaun ba SEFOPE Munisipal 3) # Formasaun ba Kapasitasaun Funsionariu kona-ba Mediasaun no Konsiliasaun",
+   "baseline": "1) 225 Rejistu no Rezolve Disputa Laborais 2) Sensibliza Prosedimentu Mediasaun no Konsiliasaun ba SEFOPE Munisipal 6 3) Foun",
+   "target": "1) 225 Rejistu no Rezolve Disputa Laborais 80 % (180) 2) Sensibiliza Prosedimentu Mediasaun no Konsiliasaun ba SEFOPE Munisipal 6, durante loron 2 kada munsipiu 3) Kapasitasaun ba Funsionariu nain 10 iha area mediasaun no konsiliasaun",
+   "amounts": {
+    "20": 6120.0
+   },
+   "page": 68
+  },
+  {
+   "code": "9830507",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Estabelece Fornecimento Sistema Base de Dados Relativamente às Relações de Trabalho",
+   "div": [
+    "0080504"
+   ],
+   "indicator": "1) # Verifika no sertifika kontratu servisu 2) # Levantamentu dadus Empregador no Traballador 3) # Ratifikasaun no Sosializasaun Konvesaun Internasional 4) # Partisipa Konferensia Internasional ILO (Tripartida) ba Asuntu Traballu iha Nasaun Suisa 5) #",
+   "baseline": "1) 400 Emprezas, 2500 Trabalhadores 2) 1500 Kompanhia no Trabalhador 3) Ratifikasaun 1 no sosializasaun 4) Foun 5) Foun",
+   "target": "1) 2500 Verifika no sertifika kontratu servisu ba Traballador 2) Munisipiu 8 no Nasional, 400 Emprezas no 4000 Traballador no kapasitasaun sistema Baze dadus iha munisipiu 6 3) Ratifikasaun Konvensaun 1, Sosialisazaun ba Munisipiu 6, partisipante kada munisipiu 50 no total",
+   "amounts": {
+    "20": 4580.0
+   },
+   "page": 68
+  },
+  {
+   "code": "9830508",
+   "programme": "983",
+   "subprogramme": "98305",
+   "subprogramme_name": "Relações de trabalho",
+   "name": "Prevenção Conflitos Laborais Entre Trabalhadores e Empregadores",
+   "div": [
+    "0080504"
+   ],
+   "indicator": "1) # Desiminasaun Lei Traballu no Lei Komplementar 2) # Dialogu Sosial 3) # Konsultasaun Lei Traballu",
+   "baseline": "1) 13 Deziminasaun Lei Traballu ba Kompania Lokal no Estranjeiru 2) 12 Dialogu Sosial 3) Foun",
+   "target": "1) Dezeminasaun Lei Traballu munisipiu iha 6 no Socializasaun Lei komplementar iha munisipiu 13 inklui Raeoa 2)12 Dialogu Sosial 3) 90 Emprezas no 200 Traballadores",
+   "amounts": {
+    "10": 187488.0,
+    "20": 8359.0
+   },
+   "page": 69
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "028.0.5",
+   "statement": "O sector privado será a principal fonte de crescimento do rendimento e emprego nas zonas rurais de Timor-Leste",
+   "indicator": "% Kontribuisaun Seitor Privadu ba Kresimentu Empregu Iha Area Rural",
+   "baseline": "25%",
+   "target": "30%",
+   "page": 50
+  },
+  {
+   "kind": "output",
+   "code": "02802.0.0",
+   "statement": "Os serviços na área da formação profissional, emprego e trabalho respondem eficaz e eficientemente",
+   "indicator": "1) # Husi traballadór nasionál ne’ebé aloka ba merkadu estranjeiru 2) # Traballadór ne’ebé emprega husi setór privadu iha munisípiu 3) % Servisu operasionál SEFOPE Munisípiu Estabelesidu",
+   "baseline": "1) Traballadór nasionál 500 nebe maka aloka ba merkadu estranjeiru 2) Empregu 500 Nebe Emprega Husi Seitor Privadu Iha Municipiu 3) 100%",
+   "target": "1) Traballadór nasionál 1000 nebe sei aloka ba merkadu estrnajeiru 2) Empregu 750 Nebe Sei Emprega Husi Seitor Privadu Iha Municipiu 3) 100%",
+   "page": 50
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % Objetivu Médiu prazu husi indikadór dezempeñu (rezultadu/OutComes) no Kurtu-Prazu (rezultadu/outcomes) ne'ebé atinji ona 2) % Rezultadu dezempeñu ne’ebé publika iha website Governu nian 3) % Relatóriu anuál husi entidade ne'ebé publika ona",
+   "baseline": "1) 100% Objetivu Médiu prazu husi indikadór dezempeñu (rezultadu/OutComes) no Kurtu-Prazu (rezultadu/outcomes) ne'ebé atinji tuir Programa SubPrograma no atividade 2) 100% Rezultadu dezempeñu ne’ebé publika iha website Governu nian 3) 100% Relatóriu anuál husi entidade ne'ebé publika ona",
+   "target": "1) 100% Objetivu Médiu prazu husi indikadór dezempeñu (rezultadu/OutComes) no Kurtu-Prazu (rezultadu/outcomes) ne'ebé sei atinji tuir Programa SubPrograma no atividade 2) 100% Rezultadu dezempeñu ne’ebé publika iha website Governu nian 3) 100% Relatóriu anuál husi entidade ne'ebé sei publika",
+   "page": 51
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) % husi relatóriu dezempeñu trimestrál no anuál ne'ebé hatama tuir tempu 2) % husi Planu Anuál ne’ebé implementa ona 3) % Planu Estratéjiku/Médiu Prazu ne'ebé Aprova ona 4) % husi funsionáriu sira ne'ebé hatene no envolve iha dezenvolvimentu planu estratéjiku/médiu prazu nian",
+   "baseline": "1) 100% husi relatóriu dezempeñu trimestrál no anuál ne'ebé ajusta ona tuir tempu 2) 100% husi Planu Anuál ne’ebé implementa ona 3) 100% Planu Estratéjiku/Médiu Prazu ne'ebé Aprova ona 4) 75% husi funsionáriu sira ne'ebé hatene no envolve iha dezenvolvimentu planu estratéjiku/médiu prazu nian",
+   "target": "1) 100% husi relatóriu dezempeñu trimestrál no anuál ne'ebé ajusta sei tuir tempu 2) 100% husi Planu Anuál ne’ebé implementa ona 3) 100% Planu Estratéjiku/Médiu Prazu ne'ebé Aprova ona 4) 100% husi funsionáriu sira ne'ebé hatene no envolve iha dezenvolvimentu planu estratéjiku/médiu prazu nian",
+   "page": 51
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "%Kontrolo ba Orsamentu tuir Prosedementu Planu Annual, Rejistu ba Patrimoniu Estadu no Kriasaun ba Sistema Arquivamentu",
+   "baseline": "100%Divulgasaun Lei Ezekusaun Orsamentál, kontrolu ba ezekusaun no relatóriu orsamentu, rejistu no seguransa patrimóniu no ekipamentu Estadu nian",
+   "target": "100%Divulgasaun Lei Ezekusaun Orsamentál, kontrolu ba ezekusaun no relatóriu orsamentu, rejistu no seguransa patrimóniu no ekipamentu Estadu nianpatrimóniu no ekipamentu Estadu nian",
+   "page": 53
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "% Kooperasaun entre Parseria nasionais no Internasionais",
+   "baseline": "100% Kooperasaun entre Parseria nasionais no Internasionais",
+   "target": "100% Kooperasaun entre Parseria nasionais no Internasionais",
+   "page": 55
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "% Apoiu ba vitima sira ne'ebe hetan asistensia husi (MSSI, Rede Feto, ka VPU) ne'ebe partisipa ona formasaun, ba feto ho defisiensia no feto ba xefi familia no LGBTIQ, ba Grupu Feto Auto Empregu liu-liu ba ema ho defisiensia vulneravel",
+   "baseline": "35% Koordenasaun ho asossiasaun Feto no halo Seminariu konaba oinsa Feto nomos ema ho defisiensai bele partisipa masimu iha Grupu ka tuir Formasaun Ruma",
+   "target": "50% Feto nomos Ema ho Defisiensia sei asesu ba Empregu, Formasuan nomos Traballu (Grupu Auto Empregu)",
+   "page": 55
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "% Hamenus violénsia bazeia ba jéneru no hadi’a prestasaun servisu",
+   "baseline": "25% Hamenus violénsia bazeia ba jéneru no hadi’a prestasaun servisu",
+   "target": "35% Hamenus violénsia bazeia ba jéneru no hadi’a prestasaun servisu",
+   "page": 55
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.0",
+   "statement": "Aumentar o número de trabalhadores qualificados",
+   "indicator": "1) % kontribuisaun investimentu iha setór formasaun profisionál ba PIB 2) % taxa dezempregudu",
+   "baseline": "1) 50% 2) 45%",
+   "target": "1) 75% 2) 50%",
+   "page": 56
+  },
+  {
+   "kind": "output",
+   "code": "98319.0.0",
+   "statement": "Minimiza de desemprego",
+   "indicator": "1) # identifikasaun ba projeitus hodi fo oportunidade ba servisu ba traballador sira, tantu iha rai laran nomos iha rai liur 2) # Traballador ho abilidade ne'ebe tama iha merkadu traballu",
+   "baseline": "1) 4278 nebe iha oportunidades ne'ebe servisu iha rai laran nomos rai liur 2) 1819 Traballador ho abilidades ne'ebe merkadu traballu presija",
+   "target": "1) 4560 nebe iha oportunidades ne'ebe servisu iha rai laran nomos rai liur 2) 2000 Traballador ho abilidades ne'ebe merkadu traballu presija",
+   "page": 56
+  },
+  {
+   "kind": "output",
+   "code": "98321.0.0",
+   "statement": "Garantia de confiabilidade de todos os dados fornecidos pelo banco de dados do sistema de informações do mercado de trabalho",
+   "indicator": "1) # peskiza, projesaun ka planeamentu kona-ba merkadu traballu nasionál 2)# informasaun estatístika no análize sira kona-ba merkadu traballu nasionál ne’ebé dezenvolve ona",
+   "baseline": "1) 3971 Projesaun planeamentu ba peskija konaba merkadu traballu 2) $ 51,647,671.00 estatístika no análize sira kona-ba merkadu traballu nasionál ne’ebé dezenvolve",
+   "target": "1) 4650 Projesaun planeamentu ba peskija konaba merkadu traballu 2) $ 103,295,342.00 estatístika no análize sira kona-ba merkadu traballu nasionál ne’ebé dezenvolve",
+   "page": 57
+  },
+  {
+   "kind": "output",
+   "code": "98322.0.0",
+   "statement": "Emprego criado",
+   "indicator": "% Kriasaun oportunidade servisu, estabelese kursu formasaun profisionál no kria Grupu auto- empregu",
+   "baseline": "45% Traballador Ne'ebe ba Servisu Ona Iha Australia, Korea no Japaun",
+   "target": "50% Traballador Ne'ebe Sei ba Servisu Iha Australia, Korea no Japaun",
+   "page": 58
+  },
+  {
+   "kind": "output",
+   "code": "98323.0.0",
+   "statement": "Garantir que os centros de treinamento sejam credenciados e atendidos pelos padrões nacionais",
+   "indicator": "1 # Sentru Formasaun nebe Hetan Akreditasaun Husi INDMO 2# Husi Sentru Formasaun AKreditadu nebe Kumpri Rekejistus Regukadir Nacional ( INDMO) 3# Avaliasaun ba Sentru Formasaun hodi Asegura Kumprimentu ba Padraun Nacional",
+   "baseline": "1) Sentru Formasaun 83 nebe Hetan ona Akrteditasaun Husi INDMO 2) Sentru Formasaun 21 nebe Kumpri Rekijitus 3) 21 Sentru Formasaun nebe Kumpri Padraun Nacional",
+   "target": "1) Sentru Formasaun 90 nebe Sei Hetan ona Akrteditasaun Husi INDMO 2) Sentru Formasaun 25 nebe Kumpri Rekijitus 3) 25 Sentru Formasaun nebe Kumpri Padraun Nacional",
+   "page": 64
+  },
+  {
+   "kind": "output",
+   "code": "98348.0.0",
+   "statement": "Assegurar que as infra-estruturas do centro de formação e as instalações públicas satisfazem as necessidades da comunidade de uma forma eficaz e sustentável",
+   "indicator": "1) % husi progresu konstrusaun 2) # edifisiu administrativu no sentru formasaun ne'ebe konstrui ona",
+   "baseline": "1) 75% 2) 2 Edifisiu administrativa no 2 sentru formasaun",
+   "target": "1) 100% 2) 3 Edifisiu administrativa no 5 sentru formasaun",
+   "page": 66
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.f: Promover condições dignas para os trabalhadores e assegurar a harmonização das relações de trabalho",
+   "indicator": "% Garantia Dever no Direitu ba Traballador no empregador tuir lei Traballao NU4/2012 no kodigu Laboral",
+   "baseline": "50% Traballador no empregador Kumpri ona lei Traballao NU4/2012 no kodigu Laboral",
+   "target": "75% Traballador no empregador Kumpri ona lei Traballao NU4/2012 no kodigu Laboral",
+   "page": 67
+  },
+  {
+   "kind": "output",
+   "code": "98305.0.0",
+   "statement": "Deveres e direitos dos empregadores e trabalhadores garantidos",
+   "indicator": "% Sensibilizasaun Lei no. 4/2012,Kódigu Laborál ba Traballador no Empregador",
+   "baseline": "100 % Sensibilizasaun ona Lei no. 4/2012,Kódigu Laborál ba Traballador no Empregador hodi Prevene kazu disputa Laboral",
+   "target": "100 % Sensibilizasaun Lei no. 4/2012,Kódigu Laborál ba Traballador no Empregador hodi Prevene kazu disputa Laboral",
+   "page": 67
+  }
+ ]
+}

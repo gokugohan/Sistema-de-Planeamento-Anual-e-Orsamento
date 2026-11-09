@@ -1,0 +1,182 @@
+{
+ "year": 2027,
+ "code": "085",
+ "name": "Imprensa Nacional de Timor Leste, I.P.",
+ "abbr": "INTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   923,
+   925
+  ]
+ },
+ "units": [
+  {
+   "code": "INTL",
+   "div": "0850101",
+   "name": "Imprensa Nacional de Timor-Leste,IP",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0850101"
+   ],
+   "indicator": "Assegurar a prestação de assisténcia técnica e jurídica para a INTL e a produção de coletâneas jurídicas e tradução das legislações timorenses para promover a literacia jurídica e cidadania ativa perante a sociedade e a administração pública.",
+   "baseline": "Os pareceres são emitidos e as coletáneas e traduções produzidas para o público",
+   "target": "100% da execução da atividade implementado",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 923
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0850101"
+   ],
+   "indicator": "Visa a garantir o funcionamento eficiênte, transparente e responsável da INTL no cumprimento das normas legais e regulamento aplicáveis para o apoio administrativo.",
+   "baseline": "A gestão finceira e administrativa encontram se em bom funcionamento",
+   "target": "90% de melhoria de execução orçamental",
+   "amounts": {
+    "10": 287477.0,
+    "20": 190238.0
+   },
+   "page": 923
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0850101"
+   ],
+   "indicator": "Para Capacitar os profissionais da INTL, a obterem de competencias gerenéricas e específicas comforme as atribuições legalmente vinculadas.",
+   "baseline": "Garantir as competências dos funcionários da INTL",
+   "target": "80% de garantir das competências dos funcionários",
+   "amounts": {
+    "20": 55000.0
+   },
+   "page": 924
+  },
+  {
+   "code": "5102601",
+   "programme": "510",
+   "subprogramme": "51026",
+   "subprogramme_name": "Comunicação estratégica do Governo e promoção da cidadania",
+   "name": "Participação em eventos de alto nível",
+   "div": [
+    "0850101"
+   ],
+   "indicator": "Reforçar os conhecimentos dos funcionários sobre tecnologias modernas de impressão e gestão editorial através da participação em eventos internacionais.",
+   "baseline": "participação do forum internacional entre as imprensas oficiais dos paises da língua portuguesa",
+   "target": "70% dos funcionários da INTL.",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 924
+  },
+  {
+   "code": "5105702",
+   "programme": "510",
+   "subprogramme": "51057",
+   "subprogramme_name": "Serviço Imprensa",
+   "name": "Servisu Produsaun",
+   "div": [
+    "0850101"
+   ],
+   "indicator": "Assegurar os serviços de produção de documentos",
+   "baseline": "Os documentos solicitados",
+   "target": "100% da conclusão dentro do prazo",
+   "amounts": {
+    "20": 67627.0,
+    "50": 138667.0
+   },
+   "page": 924
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Para assegurar o desenvolvimento da institutição da Imprensa Nacional de Timor-Leste como uma Instituiçao moderna, de referência Nacional, prestadora de servico gráficos e editoriais com qualidade, eficâcia e eficiência.",
+   "baseline": "concretização os programas implentados",
+   "target": "100% da execução",
+   "page": 923
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Desempenhar todas as atividadades de modo a concretizar os programas Institucional com rigor e profissionalismo para atingir com a responsabilidae, qualidade e melhor eficiência e eficâcia.",
+   "baseline": "Assegurar os serviçcos prestados baseando os programas implementados",
+   "target": "90% de Garantir a eficiencia e na eficacia da sua execucao",
+   "page": 923
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Reforçar a capacidade Instituicional e capacidade técnica especializada, desenvolver o sistema de digitalização e dos documentos dos atos normativos",
+   "baseline": "Todas as atividades desmpenhados de forma adequados",
+   "target": "80% da ações planeados implementados",
+   "page": 923
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.8",
+   "statement": "A sociedade civil e o público são informados sobre as atividades e decisões do governo.",
+   "indicator": "Reforçcar a capacidade institucuinal da Imprensa Nacional de Timor-leste através da melhoria do subrograma e atividade estabelecido.",
+   "baseline": "Impelentação das atividades planeados.",
+   "target": "80 % da execução do seu programa.",
+   "page": 924
+  },
+  {
+   "kind": "output",
+   "code": "51026.0.0",
+   "statement": "Programas audiovisuais que promovem a cidadania e atividades econômicas são desenvolvidos e transmitidos.",
+   "indicator": "Fortalecimeto das relações instituições tanto no nivel nacional ou internacional por participação dos inventos realizados, possuindo a transfrência dos conhecimentos visa a assegurar a qualidade, eficácia e eficiência dos despenhos dos funcionários da INTL, I.P e a promoão da sua vizibilidade.",
+   "baseline": "Participação das atividades realizadas",
+   "target": "80 % da execução do seu programa.",
+   "page": 924
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "510.0.g: tbd",
+   "indicator": "Melhoria a qualidade, eficiência e eficâcia de serviços de impressão dos documentos solitados e pubilcação da Jornal da República .",
+   "baseline": "Efetuar os serviços baseando os documentos solicitados",
+   "target": "% 90 dos serviços da efeuados",
+   "page": 924
+  },
+  {
+   "kind": "output",
+   "code": "51057.0.0",
+   "statement": "tbd",
+   "indicator": "Assegurar a impressão de docujmentos oficiais dos interessados com qualidade, segurança e dentro dos prazos estabelcidos",
+   "baseline": "Os documentos solicitados",
+   "target": "100% da conclusão dentro do prazo",
+   "page": 924
+  }
+ ]
+}

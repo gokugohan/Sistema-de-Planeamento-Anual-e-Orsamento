@@ -1,0 +1,348 @@
+{
+ "year": 2027,
+ "code": "066",
+ "name": "Autoridade Nacional de Comunicações",
+ "abbr": "ANC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   735,
+   736
+  ]
+ },
+ "units": [
+  {
+   "code": "ANC",
+   "div": "0660101",
+   "name": "Autoridade Nacional de Comunicações",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A08": "Tecnologia de informação e comunicação"
+ },
+ "activities": [
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "ANC officers (women and men) have training on gender issue",
+   "baseline": "0",
+   "target": "15",
+   "amounts": {
+    "20": 7500.0
+   },
+   "page": 735
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "80% of payments processed within 30 days",
+   "baseline": "80%",
+   "target": "80%",
+   "amounts": {
+    "20": 63810.0
+   },
+   "page": 735
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "Monthly payroll information delivered to MF on time",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 164140.0,
+    "20": 18250.0
+   },
+   "page": 735
+  },
+  {
+   "code": "A080901",
+   "programme": "A08",
+   "subprogramme": "A0809",
+   "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+   "name": "Regulação do sector das comunicações",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "Regulations and guidelines approved",
+   "baseline": "25",
+   "target": "35",
+   "amounts": {
+    "10": 189153.0,
+    "20": 18500.0
+   },
+   "page": 735
+  },
+  {
+   "code": "A080902",
+   "programme": "A08",
+   "subprogramme": "A0809",
+   "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+   "name": "Licenciar e supervisionar os provedores de serviços",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "A Framework in place for the registration/licencing of Internet Service Providers (ISPs)",
+   "baseline": "35%",
+   "target": "35%",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 735
+  },
+  {
+   "code": "A080903",
+   "programme": "A08",
+   "subprogramme": "A0809",
+   "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+   "name": "Gerir um Mercado de Telecomunicações Competitivos",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "2 semestral surveys completed on markets competition indicators",
+   "baseline": "25%",
+   "target": "25%",
+   "amounts": {
+    "10": 20042.0,
+    "20": 12500.0
+   },
+   "page": 735
+  },
+  {
+   "code": "A080904",
+   "programme": "A08",
+   "subprogramme": "A0809",
+   "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+   "name": "Gerir Proteção dos Consumidores de Serviços Telecomunicações",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "A Framework in place for handling consumer complaints",
+   "baseline": "50%",
+   "target": "100%",
+   "amounts": {
+    "10": 16042.0,
+    "20": 11544.0
+   },
+   "page": 735
+  },
+  {
+   "code": "A080905",
+   "programme": "A08",
+   "subprogramme": "A0809",
+   "subprogramme_name": "Regular e gerir com eficiência e eficácia os quadros e serviços de telecomunicações",
+   "name": "Gerenciar recursos de telecomunicações",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "A numbering plan for IoTs prepared; Increased .TL domain name by 5000; Grow IP numbers by 2048",
+   "baseline": "25%",
+   "target": "100%",
+   "amounts": {
+    "20": 93379.0
+   },
+   "page": 736
+  },
+  {
+   "code": "A081001",
+   "programme": "A08",
+   "subprogramme": "A0810",
+   "subprogramme_name": "Gerir o Setor de Comunicações para Melhorar a Economia Digital e Melhorar os Avanços e Mudanças Tecnológicas no Cenário do Mercado",
+   "name": "Modernização do quadro normativo do seitor de Comunicações considerando a convergência de tecnologias",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "A draft proposal of Decree Law on the impact of technological convergence on the telecom sector completed",
+   "baseline": "25%",
+   "target": "100%",
+   "amounts": {
+    "10": 70864.0
+   },
+   "page": 736
+  },
+  {
+   "code": "A081101",
+   "programme": "A08",
+   "subprogramme": "A0811",
+   "subprogramme_name": "Acceso Universal",
+   "name": "Assegurar uma Cobertura de Telemóvel Fiável, Segura e Acessível a todos os Timorenses, Incluindo nas Áreas rurais",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "2 semestral driving tests completed on mobile services coverage",
+   "baseline": "25%",
+   "target": "100%",
+   "amounts": {
+    "10": 93710.0,
+    "20": 43303.0
+   },
+   "page": 736
+  },
+  {
+   "code": "A081201",
+   "programme": "A08",
+   "subprogramme": "A0812",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Implementar o Plano Nacional de Segurança Sibernética",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "Milestone for year 2019 of the relevant plan implemented",
+   "baseline": "25%",
+   "target": "100%",
+   "amounts": {
+    "10": 215792.0
+   },
+   "page": 736
+  },
+  {
+   "code": "A081202",
+   "programme": "A08",
+   "subprogramme": "A0812",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Gerenciar o domínio de topo de código de país .TL ccTLD",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "Established a secure DNS service for .TL ccTLD",
+   "baseline": "5%",
+   "target": "25%",
+   "amounts": {
+    "20": 23340.0
+   },
+   "page": 736
+  },
+  {
+   "code": "A081203",
+   "programme": "A08",
+   "subprogramme": "A0812",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Fortalecer a Capacidade de Equipas de Resposta a Incendentes de Segurança em Computadores (TL-CSIRT) para Garantir o Acesso a uma garantir o Acesso a uma Internet Segura, Acessível em todo o Território Nacional",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "A TL-CSIRT incident handling service started and two cyber security training for government agencies conducted",
+   "baseline": "25%",
+   "target": "100%",
+   "amounts": {
+    "20": 6000.0
+   },
+   "page": 736
+  },
+  {
+   "code": "A081205",
+   "programme": "A08",
+   "subprogramme": "A0812",
+   "subprogramme_name": "Segurança Cibernética",
+   "name": "Promover o desenvolvimento de uma instalação neutra de Ponto de Troca de Tráfego na Internet (IXP)",
+   "div": [
+    "0660101"
+   ],
+   "indicator": "Um Ponto de Troca de Tráfego Internet (IXP) neutro para o operador estabelecido",
+   "baseline": "Ponto de Intercâmbio de Tráfego Internet (IXP)",
+   "target": "Ponto de Intercâmbio de Tráfego Internet (IXP)",
+   "amounts": {
+    "20": 10200.0
+   },
+   "page": 736
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "",
+   "target": "",
+   "page": 735
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de Metas no Plano Anual alcançadas",
+   "baseline": "70%",
+   "target": "100",
+   "page": 735
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Relatórios Trimestrais de implementação do Plano Anual",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 735
+  },
+  {
+   "kind": "outcome",
+   "code": "A08.0.3",
+   "statement": "Todo o território nacional terá acesso à internet de alta velocidade confiável, segura e acessível até 2030",
+   "indicator": "A população de Timor-Leste estará conectada entre si e com outros países até 2030",
+   "baseline": "96%",
+   "target": "100%",
+   "page": 735
+  },
+  {
+   "kind": "output",
+   "code": "A0809.0.0",
+   "statement": "Um mercado competitivo que fornece serviços de telecomunicações de qualidade",
+   "indicator": "% da população com acesso à Internet confiável, acessível e de alta velocidade (Meta 2022)",
+   "baseline": "50%",
+   "target": "90",
+   "page": 735
+  },
+  {
+   "kind": "output",
+   "code": "A0810.0.0",
+   "statement": "Uma moderna regulamentação, infra-estrutura e mercado de TIC que promove o crescimento da economia digital",
+   "indicator": "Um ambiente regulatório convergente e uma rede nacional de banda larga para permitir o crescimento da economia digital (plano de 5 anos)",
+   "baseline": "20%",
+   "target": "25%",
+   "page": 736
+  },
+  {
+   "kind": "output",
+   "code": "A0811.0.0",
+   "statement": "Redes de comunicação e serviços para áreas prioritárias",
+   "indicator": "% da população com cobertura da rede de telefonia móvel e uma banda larga estabelecida",
+   "baseline": "20%",
+   "target": "≥96",
+   "page": 736
+  },
+  {
+   "kind": "output",
+   "code": "A0812.0.0",
+   "statement": "Capacidade nacional para proteger infra-estrutura de informação crítica",
+   "indicator": "Métodos e sistemas para proteger o Estado, as empresas e os cidadãos de ataques cibernéticos criados e consciencializados",
+   "baseline": "20%",
+   "target": "100%",
+   "page": 736
+  }
+ ]
+}

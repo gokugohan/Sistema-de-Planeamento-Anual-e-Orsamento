@@ -1,0 +1,301 @@
+{
+ "year": 2027,
+ "code": "076",
+ "name": "Comissão Nacional de Eleições",
+ "abbr": "CNE",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   790,
+   793
+  ]
+ },
+ "units": [
+  {
+   "code": "CNE",
+   "div": "0760101",
+   "name": "Comissão Nacional de Eleições",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A44": "Integridade, administração e supervisão eleitorais"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "1. % da Execução do orçamento anual 2. Quantidade de Plataformas de Gestão Patrimonial",
+   "baseline": "1. Em 2024 a execução foi de 98% 2. Uma Plataforma",
+   "target": "1.100 % executado 2. Quatro Plataformas",
+   "amounts": {
+    "20": 541486.0
+   },
+   "page": 790
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "1. Número de funcionários avaliados com desempenho excelente 2.% Membros da CNE, Funcionarios e Assessores",
+   "baseline": "1.7% 2.100%",
+   "target": "1. 30% 2. 100%",
+   "amounts": {
+    "10": 1234988.0
+   },
+   "page": 790
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "% de funcionários recebendo treinamento",
+   "baseline": "2019 : Realização do número de formações nomeadamente: Formação e Capacitação Nacional e Internacional; Curso de Informática, Contabilidade, Gestão, Correspondência, Gestão de Arquivo, Protocolo, Formação aos novos funcionários",
+   "target": "Ambiente de serviço resulta motivação nos funcionários em termos de capacitação",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 790
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "1) Plano de aprovisionamento aprovado; 2) % de contratos que são objeto de acompanhamento, fiscalizados e controlo sistemático durante a sua execução",
+   "baseline": "Plano de Aprovisionamento e Contratos Em 2025 foram celebrados 18 contratos",
+   "target": "Em 2026: 20 Contratos a celebrar",
+   "amounts": {
+    "20": 307576.0
+   },
+   "page": 790
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "Promoção de conhecimentos comparativos sobre procedimentos e sistemas eleitorais com outros países no estrangeiro",
+   "baseline": "2018/2019: Participação máxima de todos os timorenses no processo eleitoral",
+   "target": "Encontros/workshops, partilha de ideias com os parceiros",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 791
+  },
+  {
+   "code": "5100446",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Kontrusaun Centro Edukasaun Demokrasi",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 92641.0
+   },
+   "page": 791
+  },
+  {
+   "code": "A440000",
+   "programme": "A44",
+   "subprogramme": "A4400",
+   "subprogramme_name": "Educação e informação dos eleitores",
+   "name": "Realização de Eventos de Educação Eleitoral (Seminários, Workshops, Debates, Talk Shows e Conferências)",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "1) # de eventos de educação eleitoral realizados (por tipo: seminário, workshop, debate, talk show, conferência) que incluem grupos-alvo (jovens, mulheres, pessoas com deficiência) 2) % de participantes no evento que afirmam ter melhorado a sua compreensão dos processos eleitorais (feedback pré/pós evento)",
+   "baseline": "1) 148 Vezes (2024) 2) 65% (2024)",
+   "target": "1) Aumento 5% 2) 70%",
+   "amounts": {
+    "20": 181696.0
+   },
+   "page": 792
+  },
+  {
+   "code": "A440001",
+   "programme": "A44",
+   "subprogramme": "A4400",
+   "subprogramme_name": "Educação e informação dos eleitores",
+   "name": "Disseminação de informação eleitoral através de plataformas multimédia",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 792
+  },
+  {
+   "code": "A4401E1",
+   "programme": "A44",
+   "subprogramme": "A4401",
+   "subprogramme_name": "Parcerias eleitorais e intercâmbio de conhecimentos",
+   "name": "Subsidies for political parties holding parliamentary seats",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 6000000.0
+   },
+   "page": 792
+  },
+  {
+   "code": "A440100",
+   "programme": "A44",
+   "subprogramme": "A4401",
+   "subprogramme_name": "Parcerias eleitorais e intercâmbio de conhecimentos",
+   "name": "Facilitação de iniciativas de intercâmbio de conhecimentos (workshops, visitas de estudo, conferências e reuniões bilaterais)",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 17000.0
+   },
+   "page": 792
+  },
+  {
+   "code": "A440202",
+   "programme": "A44",
+   "subprogramme": "A4402",
+   "subprogramme_name": "Supervisão eleitoral, resolução de litígios e auditoria",
+   "name": "Supervisão do RE-ABD e da Eleição",
+   "div": [
+    "0760101"
+   ],
+   "indicator": "1. Número de supervisões realizadas no município 2. Plataforma digital para supervisão",
+   "baseline": "1. Supervisão realizada em 2024, 192 Vezes 2. 0%",
+   "target": "1. Supervisão em 13 municípios 200 Vezes 2. Plataforma digital 100%",
+   "amounts": {
+    "20": 24000.0
+   },
+   "page": 793
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Alto percentual de sucesso ao nível do funcionamento institucional",
+   "baseline": "Nível de execução do plano de actividades da CNE de 2024",
+   "target": "Assegurar 100% de execução das actividades de desenvolvimento institucional para o sucesso dos processos eleitorais",
+   "page": 790
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "",
+   "target": "",
+   "page": 790
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Número de reuniões intersetoriais",
+   "baseline": "",
+   "target": "",
+   "page": 790
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 791
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "new el21018: Melhoria da confiança pública e _ da conformidade legal nos processos eleitorais de Timor-Leste através de uma supervisão reforçada, resolução atempada de disputas e envolvimento cívico em todos os municípios",
+   "indicator": "1) % de intervenientes eleitorais (partidos, eleitores) que consideram o processo de resolução de litígios justo e atempado 2) Taxa de satisfação dos cidadãos com a transparência dos processos eleitorais (%) 3) Número de relatórios internacionais de observação eleitoral que avaliam positivamente o desempenho da administração eleitoral de Timor-Leste",
+   "baseline": "1) 80% (2023) 2) 10 Queixa (2023) 3) 5 relatórios",
+   "target": "1) 95% 2) menos 20% 3) Pelo menos 10 em 2027",
+   "page": 791
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21015: Os _ cidadãos são informados sobre os processos eleitorais, os direitos de voto e os mecanismos de resolução de litígios",
+   "indicator": "1) % de comunidades-alvo (jovens, mulheres, zonas rurais, pessoas com deficiência) abrangidas por actividades de educação eleitoral 2) % de aumento dos conhecimentos dos cidadãos sobre os processos eleitorais e os direitos de voto (inquéritos de sensibilização pré/pós) 3) % de redução dos votos nulos e crime eleitoral eleições",
+   "baseline": "",
+   "target": "",
+   "page": 791
+  },
+  {
+   "kind": "output",
+   "code": "A4401.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 792
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21016: _ Melhoria da capacidade institucional através do intercâmbio de conhecimentos e de parcerias em matéria de processos eleitorais",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 792
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21017: Os _ processos eleitorais são monitorizados, auditados e os litígios são resolvidos de forma atempada e legal",
+   "indicator": "1) % de litígios eleitorais resolvidos dentro dos prazos legalmente definidos 2) # de processos eleitorais auditados e divulgados publicamente 3) % de relatórios de observadores que citam avaliações positivas da supervisão e cumprimento da CNE",
+   "baseline": "",
+   "target": "",
+   "page": 792
+  }
+ ]
+}

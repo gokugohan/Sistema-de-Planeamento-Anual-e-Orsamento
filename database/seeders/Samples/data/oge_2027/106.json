@@ -1,0 +1,261 @@
+{
+ "year": 2027,
+ "code": "106",
+ "name": "Instituto Nacional de Segurança Social",
+ "abbr": "INSS",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   989,
+   992
+  ]
+ },
+ "units": [
+  {
+   "code": "INSS",
+   "div": "1060101",
+   "name": "Instituto Nacional de Segurança Social",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "A04": "Regime contributivo de repartição",
+  "A05": "Regime não contributivo",
+  "A06": "Administração da segurança social"
+ },
+ "activities": [
+  {
+   "code": "A040101",
+   "programme": "A04",
+   "subprogramme": "A0401",
+   "subprogramme_name": "Regime transitório de segurança social",
+   "name": "Pagamento de prestações sociais de direito - regime transitório de segurança social",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Pagamento de prestações sociais de direito - regime transitório de segurança social# # Prestações sociais do RTSS pagas",
+   "baseline": "4 800 prestações sociais RTSS pagas",
+   "target": "5 500 prestações sociais RTSS pagas",
+   "amounts": {
+    "30": 15421924.0
+   },
+   "page": 989
+  },
+  {
+   "code": "A040201",
+   "programme": "A04",
+   "subprogramme": "A0402",
+   "subprogramme_name": "Regime geral de segurança social",
+   "name": "Pagamento de prestações sociais de direito - regime geral de segurança social",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Pagamento de prestações sociais de direito - regime geral de segurança social # Prestações sociais do RGSS pagas",
+   "baseline": "3 000 prestações sociais do RGSS pagas",
+   "target": "3.300 prestações sociais do RGSS pagas",
+   "amounts": {
+    "30": 9228069.0
+   },
+   "page": 989
+  },
+  {
+   "code": "A040202",
+   "programme": "A04",
+   "subprogramme": "A0402",
+   "subprogramme_name": "Regime geral de segurança social",
+   "name": "Contribuições para o Regime de Capitalização",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Contribuições para o Regime de Capitalização# Valor a transferir para o Fundo de Reserva",
+   "baseline": "53,3 Milhões USD",
+   "target": "53,3 Milhões USD",
+   "amounts": {
+    "30": 53186931.0
+   },
+   "page": 989
+  },
+  {
+   "code": "A050101",
+   "programme": "A05",
+   "subprogramme": "A0501",
+   "subprogramme_name": "Proteção Social de Cidadania",
+   "name": "Pagamento de pensões sociais",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Pagamento de prestações sociais não contributivas de direito# # Beneficiários recebem pensão social; # Beneficiários recebem complementos sociais",
+   "baseline": "103 368 Beneficiários recebem pensão social; 733 Beneficiários recebem complementos sociais",
+   "target": "114 200 Beneficiários recebem pensão social; 1 200 Beneficiários recebem complementos sociais",
+   "amounts": {
+    "30": 104488400.0
+   },
+   "page": 990
+  },
+  {
+   "code": "A060101",
+   "programme": "A06",
+   "subprogramme": "A0601",
+   "subprogramme_name": "Coordenação, gestão e funcionamento do INSS",
+   "name": "Coordenação, gestão e funcionamento de todos os serviços (operacionais e técnicos) do INSS",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Coordenação, gestão e funcionamento de todos os serviços (operacionais e técnicos) do INSS # Documentos operacionais de funcionamento elaborados; Regime de Carreira Implementado; # Documentos de Planeamento e Orçamento; # Documentos de Prestação de contas elaborados; % Plano e Orçamento anual executados",
+   "baseline": "3 Documentos operacionais de funcionamento elaborados; 190 ações inspeção realizadas; 1 Documento de Planeamento e orçamento elaborado (ano 2027); 1 documento de prestação de contas (ano 2025) elaborado; 90% Plano e Orçamento 2026 executados",
+   "target": "3 Documentos operacionais de funcionamento elaborados; regime carreira aprovado; 200 ações inspeção realizadas; SVI implementado; 1 Documento de Planeamento e orçamento elaborado (ano 2028); 1 documento de prestação de contas (ano 2026) elaborado; 90% Plano e Orçamento 2027 executados",
+   "amounts": {
+    "10": 2022633.0,
+    "20": 1249197.0,
+    "30": 348807.0
+   },
+   "page": 991
+  },
+  {
+   "code": "A060102",
+   "programme": "A06",
+   "subprogramme": "A0601",
+   "subprogramme_name": "Coordenação, gestão e funcionamento do INSS",
+   "name": "Formação em exercício dos Recursos Humanos do INSS",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Formação em exercício dos Recursos Humanos do INSS # módulos/cursos de formação realizados (a partir de 2025 integrados na Academia da Segurança Social)",
+   "baseline": "6 módulos/ações de formação realizados; 2 cursos intermédios",
+   "target": "10 módulos de formação realizados; 1 curso básico e 4 cursos intermédios realizados",
+   "amounts": {
+    "20": 113335.0
+   },
+   "page": 991
+  },
+  {
+   "code": "A060103",
+   "programme": "A06",
+   "subprogramme": "A0601",
+   "subprogramme_name": "Coordenação, gestão e funcionamento do INSS",
+   "name": "Elaboração de estudos e propostas técnicas visando a melhoria, alargamento, eficácia e sustentabilidade do sistema de segurança social",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Elaboração de estudos e propostas técnicas visando a melhoria, alargamento, eficácia e sustentabilidade do sistema de segurança social# Estudo atuarial elaborado; Estudo Pensão Social realizado; # Reuniões/eventos AISS; # Convenções internacionais de SS aprovadas; #Propostas tecnico-legislativas elaboradas",
+   "baseline": "N.A. em 2026",
+   "target": "Conclusão elaboração/revisão estudo atuarial; Estudo Pensão Social realizado; Participação em 1 evento AISS; Início de negociação de 3 novas Convenções; 1 Proposta técnico-legislativa elaborada",
+   "amounts": {
+    "20": 45000.0
+   },
+   "page": 991
+  },
+  {
+   "code": "A060104",
+   "programme": "A06",
+   "subprogramme": "A0601",
+   "subprogramme_name": "Coordenação, gestão e funcionamento do INSS",
+   "name": "Extensão da cobertura do sistema de segurança social",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "Extensão da cobertura do sistema de segurança social # trabalhadores do setor formal registados; # ações socialização realizadas; # campanhas realizadas",
+   "baseline": "199 mil trabalhadores registados; 60 ações socialização realizadas; 1 campanha realizada em todo o país",
+   "target": "200 mil trabalhadores registados; 60 ações socialização realizadas; 1 campanha realizada em todo o país",
+   "amounts": {
+    "20": 80127.0
+   },
+   "page": 991
+  },
+  {
+   "code": "A060202",
+   "programme": "A06",
+   "subprogramme": "A0602",
+   "subprogramme_name": "Coordenação, gestão e funcionamento do FRSS",
+   "name": "Formação em exercício dos Recursos Humanos do FRSS",
+   "div": [
+    "1060101"
+   ],
+   "indicator": "# Ações de formação realizadas",
+   "baseline": "1 curso formação /estagio realizado",
+   "target": "1 curcos formação realizados",
+   "amounts": {
+    "40": 21000.0
+   },
+   "page": 992
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "A04.0.0",
+   "statement": "Todos os trabalhadores e respetivas famílias beneficiam de proteção social adequada ao longo da vida",
+   "indicator": "Todos os trabalhadores e respetivas famílias beneficiam de proteção social adequada ao longo da vida #Taxa cobertura regime contributivo; Norma Mínima de Proteção Social alcançada",
+   "baseline": "75%",
+   "target": "80%; Convenção 102 OIT ratificada",
+   "page": 989
+  },
+  {
+   "kind": "output",
+   "code": "A0401.0.0",
+   "statement": "Os trabalhadores do Estado abrangidos pelo regime transitório têm proteção nas eventualidades velhice, invalidez e morte",
+   "indicator": "Os trabalhadores do Estado abrangidos pelo regime transitório têm proteção nas eventualidades velhice, invalidez e morte# Taxa cobertura dos trabalhadores do Estado; # eventualidades protegidas",
+   "baseline": "\"100%; 3",
+   "target": "100%; 3",
+   "page": 989
+  },
+  {
+   "kind": "output",
+   "code": "A0402.0.0",
+   "statement": "Os trabalhadores dos setores formal e informal que contribuem para o regime geral beneficiam de proteção social ao longo da vida ativa, na reforma e na morte",
+   "indicator": "Os trabalhadores dos setores formal e informal que contribuem para o regime geral beneficiam de proteção social ao longo da vida ativa, na reforma e na morte# Taxa cobertura do setor formal privado; # eventualidades protegidas",
+   "baseline": "70%; 4",
+   "target": "75%; 4",
+   "page": 989
+  },
+  {
+   "kind": "outcome",
+   "code": "A05.0.0",
+   "statement": "O regime não contributivo de Segurança Social funciona de forma eficaz e garante proteção social adequada a todos os cidadãos não abrangidos pelo regime contributivo",
+   "indicator": "O regime não contributivo de Segurança Social funciona de forma eficaz e garante proteção social adequada a todos os cidadãos não abrangidos pelo regime contributivo# Taxa cobertura regime não contributivo",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 990
+  },
+  {
+   "kind": "output",
+   "code": "A0501.0.0",
+   "statement": "Os cidadãos não abrangidos pelo regime contributivo beneficiam de proteção social nas eventualidades velhice, invalidez e morte",
+   "indicator": "Os cidadãos não abrangidos pelo regime contributivo beneficiam de proteção social nas eventualidades velhice, invalidez e morte# # Prestações Sociais pagas a beneficários do regime não contributivo",
+   "baseline": "104 100 Beneficiários",
+   "target": "115. 400 Beneficiários",
+   "page": 990
+  },
+  {
+   "kind": "outcome",
+   "code": "A06.0.0",
+   "statement": "As Instituições da Segurança Social funcionam de forma eficaz, em todas as suas funções",
+   "indicator": "O INSS funciona de forma eficaz, em todas as suas funções# # Municípios cobertos com serviços do INSS; 100% Serviços centrais a funcionar de forma eficaz; Inquérito de satisfação implementado; Relatório e Conta da SS divulgado",
+   "baseline": "10Municipios; Relatório e Conta da SS 2025 divulgado",
+   "target": "14 Municipios; 60% serviços centrais a funcionar de forma eficaz; Inquérito implementado; Relatório e Conta da SS 2026 divulgado",
+   "page": 990
+  },
+  {
+   "kind": "output",
+   "code": "A0601.0.0",
+   "statement": "Todos os serviços do INSS estão implementados e em funcionamento regular",
+   "indicator": "Todos os serviços do INSS estão implementados e em funcionamento regular# % Serviços centrais implementados; % quadro pessoal preenchido; Plano e orçamento anual executados",
+   "baseline": "80% serviços em pleno funcionamento; 37% quadro pessoal preenchido",
+   "target": "85% serviços em pleno funcionamento; 50% quadro pessoal preenchido",
+   "page": 991
+  },
+  {
+   "kind": "output",
+   "code": "A0602.0.0",
+   "statement": "Todos os serviços do FRSS estão implementados e em funcionamento regular",
+   "indicator": "% Serviços implementados; % quadro pessoal preenchido; Plano e orçamento anual executados",
+   "baseline": "30% serviços em pleno funcionamento; 14% quadro pessoal preenchido",
+   "target": "60% serviços em pleno funcionamento; 14% quadro pessoal preenchido",
+   "page": 992
+  }
+ ]
+}

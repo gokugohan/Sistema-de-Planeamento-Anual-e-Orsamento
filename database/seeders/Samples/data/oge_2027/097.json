@@ -1,0 +1,295 @@
+{
+ "year": 2027,
+ "code": "097",
+ "name": "Instituto Para a Qualidade de Timor-Leste, I.P.",
+ "abbr": "IQTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   954,
+   956
+  ]
+ },
+ "units": [
+  {
+   "code": "IQTLI",
+   "div": "0970101",
+   "name": "Instituto Para a Qualidade de Timor-Leste, IQTL, I.P",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "a) # numero funcionari recrutado para apoio auditorias internas b) # numero auditoria realiza",
+   "baseline": "3",
+   "target": "a) 2 pessoas recrutado b) 1 Auditoria",
+   "amounts": {
+    "20": 11200.0
+   },
+   "page": 954
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "a) # numero de firma juridico contratado. b) # DL no Lei produzido",
+   "baseline": "5",
+   "target": "a) 1 Firma contratu b) 4 DL no Lei",
+   "amounts": {
+    "20": 14995.0
+   },
+   "page": 954
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "% do orçamento executado (Obrigações+Real)",
+   "baseline": "100%",
+   "target": "100% das atividades implementadas",
+   "amounts": {
+    "20": 110920.0
+   },
+   "page": 954
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "\"a) 100% Número de funcionários recebeu avaliação de desempenho b) Atualização dadus Forca Trabalho IQTL, IP \"",
+   "baseline": "75%",
+   "target": "1",
+   "amounts": {
+    "10": 376313.0
+   },
+   "page": 954
+  },
+  {
+   "code": "51002EB",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Construction of the new IQTL building, TUM site and LNC Bebora laboratory works",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "Construcao de tanque de petroleo",
+   "baseline": "novo",
+   "target": "1",
+   "amounts": {
+    "50": 30000.0
+   },
+   "page": 955
+  },
+  {
+   "code": "9834401",
+   "programme": "983",
+   "subprogramme": "98344",
+   "subprogramme_name": "Regulamentação, Padronização de Controlo no Monitorização.",
+   "name": "Kriasaun Politika Nasional Kualidade no kuantidade",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "# Politika Nasional Kualidade produzido",
+   "baseline": "N/a",
+   "target": "2",
+   "amounts": {
+    "20": 14074.0
+   },
+   "page": 955
+  },
+  {
+   "code": "98344E1",
+   "programme": "983",
+   "subprogramme": "98344",
+   "subprogramme_name": "Regulamentação, Padronização de Controlo no Monitorização.",
+   "name": "Dissemination of the Standardisation and Conformity Assessment Decree-Laws",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "Divulgação do Decreto-Lei de Normalização e do Decreto-Lei de Avaliação da Conformidade, ACCSQ, OMC/TBT, GPA e ISO/IEC, juntamente com outras atividades necessárias.",
+   "baseline": "Continuação",
+   "target": "3",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 955
+  },
+  {
+   "code": "9834501",
+   "programme": "983",
+   "subprogramme": "98345",
+   "subprogramme_name": "Controlo Metrologia",
+   "name": "Controlu no regularize qualidade produtu",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "# Atividade Controlu Efetuada",
+   "baseline": "17",
+   "target": "4",
+   "amounts": {
+    "10": 29666.0,
+    "20": 17105.0
+   },
+   "page": 955
+  },
+  {
+   "code": "9834502",
+   "programme": "983",
+   "subprogramme": "98345",
+   "subprogramme_name": "Controlo Metrologia",
+   "name": "Kriasaun Komisaun sektoriais ba elaborasaun Padraun Nasional",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "\"# Komisaun Padraun Nasional estabelesido # Enkontru Komisaun relizada\"",
+   "baseline": "N/a",
+   "target": "2",
+   "amounts": {
+    "10": 29237.0,
+    "20": 8500.0
+   },
+   "page": 955
+  },
+  {
+   "code": "9834503",
+   "programme": "983",
+   "subprogramme": "98345",
+   "subprogramme_name": "Controlo Metrologia",
+   "name": "Kordensaun inter-sectoral iha area kontrolu kualidade",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "# Kordensaun inter-sectoral realizada",
+   "baseline": "3",
+   "target": "3",
+   "amounts": {
+    "20": 13954.0
+   },
+   "page": 955
+  },
+  {
+   "code": "9834504",
+   "programme": "983",
+   "subprogramme": "98345",
+   "subprogramme_name": "Controlo Metrologia",
+   "name": "Dezemvolve Laboratoriu Nasional Metrologia",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "\"# laboratório Manutensaun no equipada. \"",
+   "baseline": "1",
+   "target": "2",
+   "amounts": {
+    "10": 43447.0,
+    "20": 30600.0,
+    "50": 33333.0
+   },
+   "page": 955
+  },
+  {
+   "code": "9834505",
+   "programme": "983",
+   "subprogramme": "98345",
+   "subprogramme_name": "Controlo Metrologia",
+   "name": "Kontrolu no regulariza kuantidade instrumentu medisaun",
+   "div": [
+    "0970101"
+   ],
+   "indicator": "# Kontrolu ekipamentu medisaun realizada.",
+   "baseline": "17",
+   "target": "4",
+   "amounts": {
+    "20": 17100.0
+   },
+   "page": 955
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) % de Resultados de desempenho publicados no website do Governo 3) % de Relatório anual da entidade publicado",
+   "baseline": "1).100%. 2).100%.3).100%.",
+   "target": "1).100%. 2).100%.3).100%.",
+   "page": 954
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "1) % dos relatórios trimestrais e anuais de desempenho submetidos dentro do prazo 2) % do Plano Anual implementado 3) % de Plano Estratégico/Médio Prazo Aprovado",
+   "baseline": "1).100%. 2).100%.3).100%.",
+   "target": "1).100%. 2).100%.3).100%.",
+   "page": 954
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": ") % Execução do orçamento 2) % de Procedimentos operacionais/orientações padrão para arquivamento e arquivamento desenvolvidos, divulgados e implementados por todo o pessoal da administração 3) % de Criação de um sistema de arquivo electrónico",
+   "baseline": "1).100%. 2).100%.3).100%.",
+   "target": "1).100%. 2).100%.3).100%.",
+   "page": 954
+  },
+  {
+   "kind": "outcome",
+   "code": "983.0.0",
+   "statement": "Aumentar o número de trabalhadores qualificados",
+   "indicator": "Dos Produtos que serao acreditar/certificar",
+   "baseline": "100%",
+   "target": "40 Produtos alimentares e nao alimentares serao acreditar/ certificar",
+   "page": 955
+  },
+  {
+   "kind": "output",
+   "code": "98344.0.0",
+   "statement": "As atividades de negocios sao bem regulamentadas , controladas e monitorizadas",
+   "indicator": "1)%d os relatorios trimestrais e anuais de Desempenho submitidos dentro do prazo, 2) % do Planu annual implementado, 3) % de plano estrategico/medio prazo aprovado",
+   "baseline": "\"1)100% 2)100% 3100%\"",
+   "target": "\"1)100% 2)100% 3100%\"",
+   "page": 955
+  },
+  {
+   "kind": "output",
+   "code": "98345.0.0",
+   "statement": "As atividades de negocios bem conhecer os padrao de metorologias",
+   "indicator": "1)%d os relatorios trimestrais e anuais de Desempenho submitidos dentro do prazo, 2) % do Planu annual implementado, 3) % de plano estrategico/medio prazo aprovado",
+   "baseline": "\"1)100% 2)100% 3100%\"",
+   "target": "\"1)100% 2)100% 3100%\"",
+   "page": 955
+  }
+ ]
+}

@@ -1,0 +1,502 @@
+{
+ "year": 2027,
+ "code": "126",
+ "name": "Instituto Nacional de Farmácia e Produtos Médicos",
+ "abbr": "INFPM",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1214,
+   1219
+  ]
+ },
+ "units": [
+  {
+   "code": "DAPFRH",
+   "div": "1260101",
+   "name": "A Direção de Administração, Planeamento, Finanças e Recursos Humanos",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DC",
+   "div": "1260104",
+   "name": "A Direção de Compras",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DA",
+   "div": "1260105",
+   "name": "A Direção de Armazenamento",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DD",
+   "div": "1260106",
+   "name": "A Direção de Distribuição",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GGCQ",
+   "div": "1260107",
+   "name": "O Gabinete de Garantia e Controlo de Qualidade",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GADE",
+   "div": "1260108",
+   "name": "O Gabinete de Apoio ao Diretor Executivo",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "528": "Cuidado de saúde primários",
+  "529": "Cuidados de saúde secundários e terciários"
+ },
+ "activities": [
+  {
+   "code": "5100111",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Abordagem integrada do género",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Numeru Pessoal do INFPM Homens / Mulheres partisipa na formacao em gestão",
+   "baseline": "40Pessoas formados em area gestao de Medicamento e Equipamentos da Saúde (2026)",
+   "target": "50",
+   "amounts": {
+    "10": 872236.0,
+    "20": 279529.0
+   },
+   "page": 1214
+  },
+  {
+   "code": "510011E",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão das Tecnologias de Informação e Comunicação",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Aumenta asesu internet ba unidade sira, garante sistema informasaun operasionál INFPM no atualizadu, aumenta staff espesiál iha área ICT, fornece formasaun regular ba utilizadór sistema, mantein equipamento ITC iha kondisaun di'ak, asegura sistema (backup, firewall, antivirus), hadiak satisfasaun utilizadór ba servisu ITC, atualiza software no sistema regular.",
+   "baseline": "Unidade INFPM balun deit mak asesu ba internet, Staff ICT menus ho kapasidade técnica ne’ebe limitado, la iha formasaun regular ba staff kona-ba ICT, koleta no submissão dadus saúde eletróniku la konsistente, medidu seguransa ICT (backup, firewall, antivirus seidauk estabelesidu), ekipamentus ICT lahetan manutensaun regular.",
+   "target": "100% unidade INFPM iha asesu ba internet, aumenta staff ICT ho kapasidade tékniku ne’ebe adekuadu, realiza formasaun ICT ba funsionáriu minímo fulan 3 kada tinan, 90% husi unidade sira hatama no haruka dadus saúde nian ho dijitál & ekipamentu ICT iha kondisaun diak no funsiona ho optimal, 100% husi sistema ICT sira implementa mekanizmu seguransa kompletu (backup regulár, firewall, antivirus atulizadu).",
+   "amounts": {
+    "20": 16000.0
+   },
+   "page": 1214
+  },
+  {
+   "code": "510012P",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão de Fornecimento de apoio Executivo",
+   "div": [
+    "1260108"
+   ],
+   "indicator": "Enkontru organiza tuir planu Jestor nia satisfasaun ho apoiu servisu administrativu Kumpri prazu Administrativu/Operasionál sira Efetividade komunikasaun internu",
+   "baseline": "50% enkontru tuir planu Nivel Intermédiu 60% kumpre Irregulár",
+   "target": "100% enkontru tuir planu Nivel Aas 100% Kumpri Organizadu & klaru",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 1214
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Execução Orçamentária, Alocação por pessoa",
+   "baseline": "96 % do orçamento executado (Janeiro-Decembro de 2019), >US$13.42/person/year",
+   "target": "100% Execução",
+   "amounts": {
+    "20": 899648.0
+   },
+   "page": 1215
+  },
+  {
+   "code": "5100222",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Administração e Arquivamento",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Nível organizasaun dokumentu arkivu Aksesibilidade ba dokumentu arkivu",
+   "baseline": "Dokumentu arkiva manual, la sistematizadu Asesu la efisiente, hetan dokumentu demora",
+   "target": "100% organizadu ho sistema (manual/digital) Asesu fasil no rapida",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1215
+  },
+  {
+   "code": "5100223",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão do património e logística",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Inventáriu patrimóniu atualizadu Sistematizasaun movimentu patrimóniu Efisiénsia distribisaun materiál logístiku Kondisaun no utilizasaun patrimóniu",
+   "baseline": "Inventáriu parcial, seidauk atualizadu Registu manual, la sistemátiku Atrasu no deskoordenasaun Parte patrimóniu la utilisavel",
+   "target": "100% inventáriu atualizadu Sistema registu digital implementadu Distribuisaun ho tempu no planeamentu 90– 100% iha kondisaun utilisável",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1215
+  },
+  {
+   "code": "510022E",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Inventáriu patrimóniu atualizadu Sistematizasaun movimentu patrimóniu Sistematizasaun movimentu patrimóniu",
+   "baseline": "Inventáriu seidauk kompletu, la atualizadu regularmente Registu manual, la sistematizadu Kumprimentu parcial",
+   "target": "100% inventáriu atualizadu ho regularidade Sistema digital implementadu 100% tuir norma no manual",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1215
+  },
+  {
+   "code": "51002EI",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Salaries and allowances for permanent and contracted staff",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 12240.0
+   },
+   "page": 1215
+  },
+  {
+   "code": "5281502",
+   "programme": "528",
+   "subprogramme": "52815",
+   "subprogramme_name": "Gestão da Cadeia de Fornecimento de Farmácia e Produtos Médicos kuidadu saude primario",
+   "name": "servisu de aquizacao medicamentos suprimento medico e outros bens consumo",
+   "div": [
+    "1260104"
+   ],
+   "indicator": "Prosesu aquizisaun tuir prazu Porzentajen stock-out (medikamentu/suprimentu) Sistema rejistu no monitorizasaun stock Nível kumprimentu prosedimentu aquizisaun Tempo entrega fó- fornesimentu",
+   "baseline": "Atrasu regular iha prosesu ≥ 30% fasilidade saude hetan stock-out Manual, la konsistente Parcial > 15 loron depois requisisaun",
+   "target": "100% aquizisaun tuir kalendáriu < 5% fasilidade saude hetan stock-out Sistema digital funsionál (ex: mSupply) 100% tuir lei no regulamentu ≤ 7 loron entrega komplet",
+   "amounts": {
+    "20": 12656664.0
+   },
+   "page": 1216
+  },
+  {
+   "code": "5281801",
+   "programme": "528",
+   "subprogramme": "52818",
+   "subprogramme_name": "Desenvolvimento de Infraestruturas e Instalações para Farmácias e Produtos Médicos",
+   "name": "Servisu de Manutensaun reparasaun e construsaun de Infraestutura",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Taxa edifísiu ho manutensaun regular Kumprimentu plano konstrusaun/rehabilitasaun Porzentajen infrastrutura iha kondisaun di'ak Disponibilidade orzamentu manutensaun Kapasidade ekipa técnica manutensaun",
+   "baseline": "40% edifísiu halo manutensaun La regular, atrazu 50–60% Limitadu / irregulár Staff limitadu, seidauk forma",
+   "target": "≥ 90% edifísiu iha manutensaun regular 100% tuir planu annual ≥ 90% Orsamentu regular iha no suficienti Staff iha formasaun teknik regular",
+   "amounts": {
+    "20": 51000.0
+   },
+   "page": 1216
+  },
+  {
+   "code": "5292002",
+   "programme": "529",
+   "subprogramme": "52920",
+   "subprogramme_name": "Gestão da Cadeia de Fornecimento de Farmácia e Produtos Médicos kuidadu saude primario",
+   "name": "servisu de aquizacao medicamentos suprimento medico e outros bens consumo",
+   "div": [
+    "1260104"
+   ],
+   "indicator": "Existénsia plano aquizisaun annual Kumprimentu prazu prosesu aquizisaun Prosedimentu aquizisaun tuir regulamentu Efisiénsia koordinasaun entre unidade relevante Formasaun ba staff sira ne'ebé iha envolvimentu direta Sistematizasaun dokumentasaun prosesu aquizisaun Transparénsia iha prosesu seleksaun fornezedór Numeru atraso entrega produtos hosi fornezedór",
+   "baseline": "Plano seidauk existe ka implementasaun fraku Atrasu regular iha prosesu Parcialmente kumpri Deskonekta no komunikasaun fraku Sei limitadu Dokumentu la arkiva no la sistematizadu La evidente / dokumentasaun la kompletu Atrasu 30–60% entrega",
+   "target": "Plano existete no implementadu ho regularidade 100% kumpri prazu iha prosesu tomak 100% tuir lei no prosedimentu Koordenasaun regular ativu no klaru ≥ 2 formasaun/tinan Arkivu dokumentasaun kompletu no organizadu Prosesu transparente no dokumentadu < 10% atraso",
+   "amounts": {
+    "30": 1700500.0
+   },
+   "page": 1217
+  },
+  {
+   "code": "5292003",
+   "programme": "529",
+   "subprogramme": "52920",
+   "subprogramme_name": "Gestão da Cadeia de Fornecimento de Farmácia e Produtos Médicos kuidadu saude primario",
+   "name": "Serviço de Desalfandegamento",
+   "div": [
+    "1260104"
+   ],
+   "indicator": "Tempo médiu prosesu desalfandegamentu Kumprimentu dokumentasaun obrigatóriu Porzentajen karga preende/atrasadu tan dokumentu Efisiénsia koordinasaun ho agen alfândega / ministériu relevante Existénsia plano prévio desalfandegamentu Sistematizasaun arkivu dokumentu alfândega Numeru kazu multa / penalizasaun alfândega Disponibilidade orzamentu ba taxa desalfandegamentu",
+   "baseline": "10–15 loron Inkompletu / atrasa ≥ 20% kazu La regular Seidauk iha Dokumentu la arkiva ka la organizadu ≥ 3 kazu/tinan Orsamentu limitadu / imprevisível",
+   "target": "≤ 5 loron 100% dokumentu kompletu no prontu < 5% kazu Koordenasaun regular no dokumentadu Plano existe no implementadu Arkivu fisiku/digital no organizadu Zero kazu multa Orsamentu disponivel ho klaridade",
+   "amounts": {
+    "30": 690600.0,
+    "50": 166667.0
+   },
+   "page": 1217
+  },
+  {
+   "code": "52920E1",
+   "programme": "529",
+   "subprogramme": "52920",
+   "subprogramme_name": "Gestão da Cadeia de Fornecimento de Farmácia e Produtos Médicos kuidadu saude primario",
+   "name": "Purchase of essential, vital and necessary medicines",
+   "div": [
+    "1260104"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 2400000.0
+   },
+   "page": 1217
+  },
+  {
+   "code": "52920E2",
+   "programme": "529",
+   "subprogramme": "52920",
+   "subprogramme_name": "Gestão da Cadeia de Fornecimento de Farmácia e Produtos Médicos kuidadu saude primario",
+   "name": "Purchase of laboratory reagents and consumables",
+   "div": [
+    "1260104"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 3000000.0
+   },
+   "page": 1217
+  },
+  {
+   "code": "5292102",
+   "programme": "529",
+   "subprogramme": "52921",
+   "subprogramme_name": "Gestão de Armazenamento de Medicamentos, Suprimentos Médicos e Equipamentos Médicos",
+   "name": "Disponibilidade de Medicamentos Rastreados/Marcadores no Armazém",
+   "div": [
+    "1260105"
+   ],
+   "indicator": "Porzentajen disponibilidade medicamentos iha armazém Frekuénsia stock-out (ex: Esensial, nesesariu, vital no vacina) Tempo resposta ba reposisaun stock crítico Kumprimentu sistema monitorizasaun stock (digital Existénsia lista “medikamentu essenciais rastreados” Percentajen produto expira iha stock rastreadu Kapasidade staf ba monitorizasaun no reabastecimento Efisiénsia komunikasaun entre armazém no unidade utilizadora",
+   "baseline": "60–70% disponível regularmente ≥ 3 stock- out/tinan > 10 loron Sistematizasaun parcial Parcial / la atualizadu ≥ 5% Staff limitadu, sei forma Inregular",
+   "target": "≥ 95% disponível kontinuu Zero stock-out ≤ 3–5 loron Sistema mSupply ka SIGA funsiona ho kompletu Lista aprovadu no atualizadu < 1% Staff kompletu ho formasaun regular Regular ho feed-back mekanizmu",
+   "amounts": {
+    "20": 72000.0
+   },
+   "page": 1218
+  },
+  {
+   "code": "52921E1",
+   "programme": "529",
+   "subprogramme": "52921",
+   "subprogramme_name": "Gestão de Armazenamento de Medicamentos, Suprimentos Médicos e Equipamentos Médicos",
+   "name": "Health warehouse and oxygen plant in Manatuto",
+   "div": [
+    "1260105"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 150000.0
+   },
+   "page": 1218
+  },
+  {
+   "code": "5292204",
+   "programme": "529",
+   "subprogramme": "52922",
+   "subprogramme_name": "Garantia Controlo Qualidade",
+   "name": "Quarentena e destruição de produtos não-conformes",
+   "div": [
+    "1260107"
+   ],
+   "indicator": "Existénsia área/espasu quarentena iha armazém Sistematizasaun identifikasaun produtos não-conformes Porzentajen produtos não- conformes retiradu hosi stock geral Frequénsia destruição produtos expiradu Dokumentasaun ba prosesu",
+   "baseline": "Seidauk define / la adequada Irregular / informal Inregular 1x/tinan ka la regular Dokumentasaun seidauk kompletu Parcial / informal",
+   "target": "Área quarentena identifikadu no sinalizadu Sistema klaru ho rotulasaun no registu 100% produtos não-konformes separadu ≥ 2x/tinan ho prosesu legal Dokumentu kompletu no assina husi parte relevante 100% tuir norma seguransa",
+   "amounts": {
+    "20": 73930.0
+   },
+   "page": 1218
+  },
+  {
+   "code": "5292301",
+   "programme": "529",
+   "subprogramme": "52923",
+   "subprogramme_name": "Gestão da Distribuição de Medicamentos, Suprimentos Médicos e Equipamentos Médicos",
+   "name": "Desenvolvimento de POPs para o distribuição dos medicamentos e dos produtos de saúde",
+   "div": [
+    "1260106"
+   ],
+   "indicator": "Existénsia POPs ba distribuisaun Klaridade funsaun no responsabilidade iha POPs Alinhamentu POPs ho norma nasional/internasional Formasaun ba staf kona-ba implementasaun POPs Disponibilidade POPs iha unidade implementadora Monitorizasaun implementasaun POPs",
+   "baseline": "Seidauk iha POPs formál Funsaun la define klaru La alinadu / obsoleto Seidauk implementa POPs la distribui Seidauk monitoriza",
+   "target": "POPs elabora no aprovadu Funsaun ho responsabilidade define klaru ba kada nivel POPs alinadu ho norma aktuál ≥ 80% staf relevante iha formasaun POPs distribui no aksesível (físiku/digital) Monitorizasaun regular ho feedback",
+   "amounts": {
+    "20": 96250.0
+   },
+   "page": 1219
+  },
+  {
+   "code": "5293100",
+   "programme": "529",
+   "subprogramme": "52931",
+   "subprogramme_name": "Desenvolvimento de Infraestruturas e Instalações para Farmácias e Produtos Médicos",
+   "name": "Serviço de Manutenção reparação e construção de Infraestruturas",
+   "div": [
+    "1260101"
+   ],
+   "indicator": "Taxa edifísiu ho manutensaun regular Kumprimentu plano konstrusaun/rehabilitasaun Porzentajen infrastrutura iha kondisaun di'ak Disponibilidade orzamentu manutensaun Kapasidade ekipa técnica manutensaun",
+   "baseline": "< 40% edifísiu halo manutensaun La regular, atrazu 50–60% Limitadu / irregulár Staff limitadu, seidauk forma",
+   "target": "≥ 90% edifísiu iha manutensaun regular 100% tuir planu annual ≥ 90% Orsamentu regular iha no suficienti Staff iha formasaun teknik regular",
+   "amounts": {
+    "50": 33333.0
+   },
+   "page": 1219
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico Aprovado, incluindo plano de médio prazo",
+   "baseline": "Plano quinqenal Aprovado Five Years Plan Approved",
+   "target": "100% Plano existete no implementadu no regularidade kumprimenta prazu no todos prosesu",
+   "page": 1214
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Relatórios Trimestrais de Implementação do Plano Anual",
+   "baseline": "40Relatorios Trimestrais",
+   "target": "4",
+   "page": 1214
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Inplementasaun do plano anual alcançados",
+   "baseline": "100% metas do plano anual alcançados",
+   "target": "100%",
+   "page": 1215
+  },
+  {
+   "kind": "outcome",
+   "code": "528.0.0",
+   "statement": "Maior acesso, equidade e qualidade dos cuidados de saúde primários (CSP) integrados, em conformidade com o Pacote Nacional de Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "indicator": "Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "baseline": "CSP 2026",
+   "target": "100% Realisa no tempo",
+   "page": 1215
+  },
+  {
+   "kind": "output",
+   "code": "52815.0.0",
+   "statement": "Gestão eficiente e fiável da cadeia de aprovisionamento, garantindo a disponibilidade e a qualidade de medicamentos, suprimentos médicos e equipamentos médicos em todas as facilidades de saúde em Timor- Leste.Aimoruk asesivel tuir tempo ho kualidade",
+   "indicator": "Serviços de CSP, garantindo cuidados essenciais para todos, incluindo áreas remotas",
+   "baseline": "CSP 2026",
+   "target": "100% Realisa no tempo",
+   "page": 1216
+  },
+  {
+   "kind": "output",
+   "code": "52818.0.0",
+   "statement": "Garantir infrastrutur, aplikasaun teknologia no novas produsaun farmaciutika",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1216
+  },
+  {
+   "kind": "outcome",
+   "code": "529.0.0",
+   "statement": "São prestados cuidados hospitalares secundários e terciários seguros, eficazes e de alta qualidade, com um sistema de encaminhamento que funciona bem, a fim de reduzir a mortalidade evitável e melhorar a satisfação dos pacientes",
+   "indicator": "garantindo a disponibilidade e a qualidade de medicamentos, suprimentos médicos e equipamentos médicos em todas as facilidades de saúde em Timor-Leste. Aimoruk asesivel tuir tempo ho kualidade",
+   "baseline": "",
+   "target": "",
+   "page": 1216
+  },
+  {
+   "kind": "output",
+   "code": "52920.0.0",
+   "statement": "Gestão eficiente e fiável da cadeia de aprovisionamento,",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1216
+  },
+  {
+   "kind": "output",
+   "code": "52921.0.0",
+   "statement": "Utilização eficiente e gestão do espaço de armazenamento para medicamentos, suprimentos e equipamentos, com rastreamento preciso e controle dos níveis de inventário para evitar escassez ou desperdício.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1218
+  },
+  {
+   "kind": "output",
+   "code": "52922.0.0",
+   "statement": "Garantia kontrolo seguransa, efikasia no komprimentu tuir normas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1218
+  },
+  {
+   "kind": "output",
+   "code": "52923.0.0",
+   "statement": "Asegurar Distribuição dos produtos farmaciatico e equipamentos medicos rápida e seguro de medicamentos, suprimentos e equipamentos aos utilizadores finais e bem organizada garantindo cobertura e acessibilidade.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1219
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el3124: _ Garantir infrastrutur, aplikasaun teknologia no novas produsaun farmaciutika",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1219
+  }
+ ]
+}

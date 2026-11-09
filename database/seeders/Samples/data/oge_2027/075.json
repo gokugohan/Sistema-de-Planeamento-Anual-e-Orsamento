@@ -1,0 +1,777 @@
+{
+ "year": 2027,
+ "code": "075",
+ "name": "Comissão da Função Pública",
+ "abbr": "CFP",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   779,
+   788
+  ]
+ },
+ "units": [
+  {
+   "code": "CFP",
+   "div": "0750101",
+   "name": "Comissão da Função Pública",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A45": "Reforma da gestão de recursos humanos na administração pública"
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de auditorias realizadas; número de ações de inspeção e fiscalização, incluindo visitas sem aviso prévio; # de autoridades municipais abrangidas; % de recomendações implementadas; # de reuniões de coordenação dos inspetores realizadas.",
+   "baseline": "Em 2026, foram realizadas 4 auditorias, 4 ações de inspeção ou fiscalização e 4 reuniões de coordenação dos inspetores, tendo sido implementadas 80% das recomendações.",
+   "target": "4 auditorias; ≥12 açoẽ s de inspeção ou fiscalização; ≥4 autoridades municipais abrangidas; ≥85% das recomendações implementadas dentro do prazo; e 4 reuniões anuais de coordenação dos inspetores",
+   "amounts": {
+    "20": 6000.0
+   },
+   "page": 779
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de execução orçamental; # de relatórios apresentados;# desenho tecnico/BoQ elaborado no validado; % obra acompanhado e relatado pelo Enjenheiro; % de bens inventariados e verificados; .",
+   "baseline": "Execução de 51% no II trimestre de 2026; Engenheiro contratado e acompanha construção E-Recruitment; Lista património CFP registado e inventário atualizado.",
+   "target": "Execuca̧ ̃o anual ≥90%; 4 relatórios trimestrais e 1 anual; 100% obra acompanhado, verificado e relata mensalmente; 100% dezenho e BoQ revisto.”100% do inventário atualizado e verificado.",
+   "amounts": {
+    "10": 24000.0,
+    "20": 455820.0,
+    "50": 40459.0
+   },
+   "page": 779
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de prioridades do PAA alinhadas com os Programas Prioritários do IX Governo Constitucional, o Plano Estratégico da CFP e os planos de trabalho relevantes da ASEAN; # de relatórios de desempenho produzidos; # de",
+   "baseline": "PE CFP 2015–2030, Plano Reforma Gestão de Recursos Humanos da Administração Pública 2023-2028; PAA 2025- 2026 existentes; ações de monitorização e balanço realizadas, mas sem percentagem consolidada de alinhamento",
+   "target": "alinhamento de 100% das prioridades do PAA; produzir 4 relatórios trimestrais e 1 relatório anual de desempenho; e concluir 2 avaliações semestrais dentro do prazo",
+   "amounts": {
+    "20": 16800.0
+   },
+   "page": 779
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# e % de funcionários e dirigentes do SCFP que participam e concluem ações de formação ou capacitação; taxa de conclusão; # de participações em workshops nacionais, regionais e internacionais, desagregado por sexo e área de competência.",
+   "baseline": "101 participações registadas: 86 em gestão da Administração (39 M; 47 H) e 15 em cibersegurança (15 H). O número de participantes únicos e a taxa de conclusão ainda deverão ser consolidados",
+   "target": "Assegurar que pelo menos 25% dos funcionários e dirigentes do SCFP concluam ações prioritárias de formação ou capacitação; alcançar uma taxa de conclusão ≥90%; e promover uma participação equilibrada entre mulheres e homens, sempre que possível",
+   "amounts": {
+    "20": 68570.0
+   },
+   "page": 780
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# e % de eventos institucionais previstos no PAA realizados; % de eventos realizados dentro do prazo estabelecido; # de reuniao regular",
+   "baseline": "CFP participou e organizou eventos em 2025–2026; # de eventos realizados a confirmar através dos relatórios anuais e registos institucionai",
+   "target": "Realizar 100% dos eventos previstos no PAA 2027, dos quais pelo menos 90% dentro do prazo estabelecido",
+   "amounts": {
+    "20": 12000.0
+   },
+   "page": 780
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% do valor das aquisições por processo competitivo; % de contratos monitorizados; % do plano executado no prazo.",
+   "baseline": "24 contratos celebrados com 23 empresas; anúncios publicados no Portal do Aprovisionamento.",
+   "target": "≥95% do valor elegível por processo competitivo; 100% dos contratos registados e monitorizados; ≥90% do plano executado no prazo.",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 780
+  },
+  {
+   "code": "5104102",
+   "programme": "510",
+   "subprogramme": "51041",
+   "subprogramme_name": "Políticas, Legislação e Regulamentos",
+   "name": "Elaboração de politicas, pesquisa e desenvolvimento",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 36000.0
+   },
+   "page": 780
+  },
+  {
+   "code": "5104305",
+   "programme": "510",
+   "subprogramme": "51043",
+   "subprogramme_name": "Revitalizar a cultura de trabalho",
+   "name": "Média comunicacao e Documentacao",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de atividades prioritárias divulgadas; # de boletins, brochuras e programas de rádio/TV produzidos; # de socialização produzida atraves de PODCAST CFP",
+   "baseline": "Canais oficiais (website, Facebook e órgãos de comunicação social) em utilização; produção quantitativa de 2026 a consolidar.",
+   "target": "100% das atividades prioritárias divulgadas; 4 boletins publicadas, 2 brochuras e 4 programas de rádio/TV/PODCAST produzidos.",
+   "amounts": {
+    "20": 19800.0
+   },
+   "page": 780
+  },
+  {
+   "code": "A450000",
+   "programme": "A45",
+   "subprogramme": "A4500",
+   "subprogramme_name": "Reforma da Gestão de Recursos Humanos",
+   "name": "Desenvolvimento de propostas legislativas e regulamentação",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de propostas legislativas ou regulamentares prioritárias elaboradas/revistas e submetidas; percentagem acompanhada de análise jurídica, técnica e de mérito e, quando aplicável, de análise de género, inclusão e boa governação; percentagem de processos acompanhados até à deliberação.",
+   "baseline": "Em 2025, 3 propostas foram apresentadas: 2 aprovadas e 1 permaneceu em discussão; em 2026 + de 3 propostas apreciadas, aprovadas com alguns ajustamento e publicadas",
+   "target": "Até dezembro de 2027, ter pelo menos 3 propostas legislativas ou regulamentares prioritárias tecnicamente concluídas e submetidas às entidades competentes, sendo 100% acompanhadas das análises aplicáveis.",
+   "amounts": {
+    "10": 1746752.0
+   },
+   "page": 781
+  },
+  {
+   "code": "A450001",
+   "programme": "A45",
+   "subprogramme": "A4500",
+   "subprogramme_name": "Reforma da Gestão de Recursos Humanos",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de pedidos de apoio jurídico respondidos dentro do prazo aplicável; # de decisões, deliberações, despachos e pareceres jurídicos elaborados ou processados; % de atos jurídicos finais registados no SIGAP-FOUN.",
+   "baseline": "No período de referência, foram registadas 609 decisões, 31 deliberações, 1.859 despachos e 207 pareceres.",
+   "target": "Até dezembro de 2027, responder a ≥90% dos pedidos de apoio jurídico dentro do prazo aplicável e registar 100% dos atos jurídicos finais no SIGAP-FOUN.",
+   "amounts": {
+    "10": 6000.0
+   },
+   "page": 781
+  },
+  {
+   "code": "A450002",
+   "programme": "A45",
+   "subprogramme": "A4500",
+   "subprogramme_name": "Reforma da Gestão de Recursos Humanos",
+   "name": "Elaboração de politicas, pesquisa e desenvolvimento",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de estudos ou levantamentos concluídos; # de consultas institucionais realizadas; # de recomendações de política baseadas nos resultados da investigação, monitorização e",
+   "baseline": "Monitorização feita ao 12 Municipios e 24 PA sobre Serviço de Gestão RH;1 pesquisas (as areas remotas, muitas remotas, e Extremamente Remotas iniciadas; 2 consultas",
+   "target": "Concluir 1 estudo prioritário sobre o bem-estar dos funcionários públicos; realizar pelo menos 2 consultas institucionais; e elaborar e submeter pelo menos 3",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 781
+  },
+  {
+   "code": "A450100",
+   "programme": "A45",
+   "subprogramme": "A4501",
+   "subprogramme_name": "Planeamento Estratégico da Força de Trabalho e Sistema base de Dados de RH",
+   "name": "Desenvolvimento do quadro jurídico para o planeamento da força de trabalho ideal na função pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "Estado de revisão, consulta e submissão da proposta de quadro jurídico; número de consultas técnicas realizadas; estado de preparação do plano de divulgação e implementação.",
+   "baseline": "Proposta submetida anteriormente ao Conselho de Ministros, sem discussão/conclusão.",
+   "target": "Atualizar 1 proposta de quadro jurídico, realizar a respetiva consulta técnica, submetê-la novamente ao Conselho de Ministros e acompanhar o processo até à deliberação; preparar o respetivo plano de divulgação e implementação",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 782
+  },
+  {
+   "code": "A450101",
+   "programme": "A45",
+   "subprogramme": "A4501",
+   "subprogramme_name": "Planeamento Estratégico da Força de Trabalho e Sistema base de Dados de RH",
+   "name": "Diagnóstico das necessidades de recursos humanos por setor, por instituição e autoridade municipal",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de instituições e autoridades municipais com diagnóstico das necessidades de RH atualizado; % de mapas da força de trabalho atualizados e validados no SIGAP-FOUN; estado de acompanhamento da proposta sobre a dimensão adequada da força de trabalho.",
+   "baseline": "Breve diagnostica feita aos 7 instituições do Estado e 6 Municipios",
+   "target": "Diagnóstico realizado em 80% das instituiçõesdo Estado e 50% das autoridades municipais",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 782
+  },
+  {
+   "code": "A450102",
+   "programme": "A45",
+   "subprogramme": "A4501",
+   "subprogramme_name": "Planeamento Estratégico da Força de Trabalho e Sistema base de Dados de RH",
+   "name": "Integração do planeamento da força de trabalho no SIGAP-FOUN e GRP-FMIS",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de setores com integração funcional do planeamento da força de trabalho entre o SIGAP-FOUN e o GRP/FMIS; % de mapas de pessoal recebidos, verificados e validados e processados",
+   "baseline": "Mapas de pessoal de 2026 compilados, verificados e atualizados no SIGAP-FOUN e remetidos ao Ministério das Finanças; integração funcional com o GRP/FMIS ainda não operacional.",
+   "target": "Integração-piloto operacional em pelo menos 5 setores, com projeções da despesa com pessoal testadas e documentadas; e 100% dos mapas de pessoal recebidos verificados e validados",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 782
+  },
+  {
+   "code": "A450200",
+   "programme": "A45",
+   "subprogramme": "A4502",
+   "subprogramme_name": "Modernização dos Processos de Recrutamento, Promoção e Progressão da carreira na Administração Publica com base no merito",
+   "name": "Revisão e modernização dos procedimentos de recrutamento, promoção e progressão na Administração Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de procedimentos prioritários da Carreira Única revistos, aprovados e publicados; % de processos sob responsabilidade da CFP que aplicam os novos procedimentos; # de processos de recrutamento realizados através do modelo centralizado",
+   "baseline": "\"100% dos principais procedimentos revistos, aprovados e publicados até final de 2026 (mínimo de 3 instrumentos principais: concurso publico, promoção interna e progressão na carreira)\"",
+   "target": "Todos os principais procedimentos revistos e 100% aprovados e publicados (mínimo 3 instrumentos regulatórios principais)",
+   "amounts": {
+    "10": 36000.0,
+    "20": 500.0
+   },
+   "page": 783
+  },
+  {
+   "code": "A450201",
+   "programme": "A45",
+   "subprogramme": "A4502",
+   "subprogramme_name": "Modernização dos Processos de Recrutamento, Promoção e Progressão da carreira na Administração Publica com base no merito",
+   "name": "Implementação de testes eletrónicos e online a nível nacional, regional e municipal",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de concursos elegíveis, incluindo os realizados no âmbito da Carreira Única, que utilizam testes eletrónicos; # de autoridades municipais e entidades abrangidas.",
+   "baseline": "Testes eletrónicos em utilização; projeto-piloto de promoção realizado na RAEOA e em 2 autoridades municipais.",
+   "target": "Utilizar testes eletrónicos em ≥90% dos concursos elegíveis e expandir a sua aplicação a, pelo menos, 6 autoridades municipais ou entidades públicas.",
+   "amounts": {
+    "20": 17500.0
+   },
+   "page": 783
+  },
+  {
+   "code": "A450202",
+   "programme": "A45",
+   "subprogramme": "A4502",
+   "subprogramme_name": "Modernização dos Processos de Recrutamento, Promoção e Progressão da carreira na Administração Publica com base no merito",
+   "name": "Revisão e elaboração de perguntas por setor para recrutamento de pessoal, seleção por mérito e promoção na carreira na Função Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de conjuntos padronizados de perguntas desenvolvidos e validados por setor ou categoria; estado da cooperação técnica entre a CFP, o INCT e o BKN da Indonésia.",
+   "baseline": "Banco de perguntas disponível no sistema para as áreas de Administração, Técnica e Económico-Social; cooperação técnica com o INCT e o BKN da Indonésia ainda por formalizar.",
+   "target": "Pelo menos 10 conjuntos de perguntas desenvolvidos, validados e disponíveis no sistema, com mecanismos de segurança e atualização; e cooperação técnica estabelecida com o INCT e o BKN da Indonésia.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 783
+  },
+  {
+   "code": "A450203",
+   "programme": "A45",
+   "subprogramme": "A4502",
+   "subprogramme_name": "Modernização dos Processos de Recrutamento, Promoção e Progressão da carreira na Administração Publica com base no merito",
+   "name": "Criação de mecanismos de reclamação e auditoria para garantir decisões justas e transparentes",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de reclamações registadas, analisadas e decididas dentro do prazo; estado de operacionalização do mecanismo nacional de reclamação e auditoria; # de ações de auditoria realizadas; percentagem de recomendações acompanhadas.",
+   "baseline": "Reclamações apresentadas predominantemente por carta; inexistência de um sistema integrado de registo e acompanhamento; dados sobre reclamações e auditorias ainda por consolidar.",
+   "target": "1 sistema nacional de reclamação e auditoria criado e funcional",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 783
+  },
+  {
+   "code": "A450300",
+   "programme": "A45",
+   "subprogramme": "A4503",
+   "subprogramme_name": "Desenvolvimento profissional e liderança",
+   "name": "Elaboração do Quadro de Competências de Liderança e Gestão",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "1. % de elaboração, consulta, validação e submissão à aprovação do Quadro Nacional de Competências de Liderança e Gestão concluídos; 2. # de instrumentos de seleção, avaliação e desenvolvimento profissional que incorporam os critérios de competência definidos no Quadro; 3. # de instituições abrangidas pela aplicação-piloto; 4. % de recomendações resultantes da aplicação-piloto incorporadas ou justificadas tecnicamente.",
+   "baseline": "Quadro Nacional de Competências de Liderança e Gestão em preparação; critérios ainda não integrados nos instrumentos de RH e aplicação- piloto ainda não realizada",
+   "target": "Concluir, validar e submeter à aprovação 1 Quadro Nacional de Competências; incorporar os critérios em ≥5 instrumentos; realizar a aplicação-piloto em ≥3 instituições; e incorporar ou justificar 100% das recomendações validadas",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 784
+  },
+  {
+   "code": "A450301",
+   "programme": "A45",
+   "subprogramme": "A4503",
+   "subprogramme_name": "Desenvolvimento profissional e liderança",
+   "name": "Implementação de Programas de Formação em Liderança estrategica e Gestão Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 3500.0
+   },
+   "page": 784
+  },
+  {
+   "code": "A450302",
+   "programme": "A45",
+   "subprogramme": "A4503",
+   "subprogramme_name": "Desenvolvimento profissional e liderança",
+   "name": "Desenvolvimento de um quadro de formação para a profissionalização da Função Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "1. % de marcos de elaboração, validação, submissão à aprovação e implementação do Quadro Nacional de Formação concluídos; 2. # de procedimentos operacionais e instrumentos de formação elaborados e validados; 3. # e % de instituições públicas que apresentam o Plano de Formação Profissional da Administração Pública — FPAO — dentro do prazo estabelecido; 4. % de planos FPAO recebidos, analisados e validados; 5. % de formandos registados no SIGAP-FOUN, desagregado por sexo, instituição e área de formação; 6. % de certificados emitidos e registados no SIGAP- FOUN",
+   "baseline": "Inexistência de procedimentos de formação obrigatórios e padronizados; planos FPAO de 44 instituições consolidados; 4.058 formandos registados, embora os dados desagregados por sexo totalizem 4.057; e 2.163 certificados emitidos, encontrando-se por confirmar o respetivo registo no SIGAP- FOUN.",
+   "target": "Até dezembro de 2027, concluir e iniciar a implementação do Quadro Nacional de Formação e dos respetivos procedimentos operacionais; validar 100% dos planos FPAO recebidos; e registar no SIGAP-FOUN pelo menos 90% dos formandos e dos certificados emitidos em 202",
+   "amounts": {
+    "20": 2500.0
+   },
+   "page": 784
+  },
+  {
+   "code": "A450303",
+   "programme": "A45",
+   "subprogramme": "A4503",
+   "subprogramme_name": "Desenvolvimento profissional e liderança",
+   "name": "Coordenar e organizar o programa de Gestores Profissionais de Recursos Humanos (JPRU) da Administração Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de encontros e workshops realizados; % de gestores e técnicos de RH capacitados; % de autoridades municipais com",
+   "baseline": "7 workshops realizados: 5 nacionais e 2 municipais. Gestores e técnicos de RH capacitados e pontos focais",
+   "target": "7 workshops realizados: 5 nacionais e 2 municipais. Gestores e técnicos de RH capacitados e pontos focais",
+   "amounts": {
+    "20": 1500.0
+   },
+   "page": 784
+  },
+  {
+   "code": "A450400",
+   "programme": "A45",
+   "subprogramme": "A4504",
+   "subprogramme_name": "Gestão da Reforma e Pensão Obrigatória na Administração Pública",
+   "name": "Formação para a preparação para a reforma na Administração Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de sessões de formação realizadas; # e % de servidores elegíveis que participam nas sessões, desagregado por sexo e instituição.",
+   "baseline": "1985 reformados em 2026 processadas; Programa de preparação para a reforma em fase de planeamento conjunto entre a CFP e o INSS; sessões e participantes ainda não registados.",
+   "target": "Realizar pelo menos 10 sessões de preparação para a reforma e capacitar ≥70% dos servidores elegíveis para a reforma em 2027",
+   "amounts": {
+    "20": 14920.0
+   },
+   "page": 785
+  },
+  {
+   "code": "A450401",
+   "programme": "A45",
+   "subprogramme": "A4504",
+   "subprogramme_name": "Gestão da Reforma e Pensão Obrigatória na Administração Pública",
+   "name": "Identificação contínua e elaboração do calendário previsional de reformas por setor/instituição",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de instituições com calendário de reformas validado; # de percentagem de servidores elegíveis identificados; % de processos de reforma e pensão encaminhados; % de certificados entregues; # e % de casos de possível invalidez identificados e encaminhados para avaliação.",
+   "baseline": "482 servidores elegíveis identificados para 2026; calendário previsional elaborado; mais de 1.000 certificados entregues em três autoridades municipais, sujeitos a confirmação; inexistência de mecanismo consolidado para acompanhamento de casos de doença prolongada e possível invalidez",
+   "target": "100% das instituições com calendário validado; 100% dos elegíveis identificados até ao III trimestre; 100% dos processos completos encaminhados; 100% dos certificados emitidos entregues; e 100% dos casos comunicados de possível invalidez encaminhados para avaliação competente",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 785
+  },
+  {
+   "code": "A450402",
+   "programme": "A45",
+   "subprogramme": "A4504",
+   "subprogramme_name": "Gestão da Reforma e Pensão Obrigatória na Administração Pública",
+   "name": "Integração do módulo de gestão da reforma no sistema SIGAP-FOUN e ligação funcional com o INSS",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "% de marcos de operacionalização do módulo concluídos; % de servidores elegíveis registados; taxa de sucesso dos testes de intercâmbio de dados com o INSS; % de atividades anuais do MoU executadas",
+   "baseline": "Módulo em desenvolvimento; transmissão de dados ao INSS iniciada, mas integração funcional ainda não validada; MoU assinado; registo dos elegíveis ainda por consolidar",
+   "target": "Concluir 100% dos marcos previstos para a operacionalização do módulo em 2027; registar ≥90% dos servidores elegíveis; testar e validar a ligação funcional com o INSS, com ≥95% de sucesso nos testes de intercâmbio de dados; e executar 100% das atividades do MoU previstas para 2027",
+   "amounts": {
+    "10": 36000.0,
+    "20": 500.0
+   },
+   "page": 785
+  },
+  {
+   "code": "A450500",
+   "programme": "A45",
+   "subprogramme": "A4505",
+   "subprogramme_name": "Revitalizar a cultura de trabalho",
+   "name": "Monitorizar o cumprimento do quadro legal e ético da administração pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "\"1) # de funcionarios beneficiados (50% mulheres) das atividades feita a nivel Autoridade Municipal (6) e Postos incluindo RAEOA 2) 100% dos participantes recebem Certificados de formação; 3) 50% dos funcionarios a nivel municipal tem acesso as informações publicadas pela CFP, 4) as decisões tomadas pela CFP são cumprimentadas e implementadas pelos funcionarios \"",
+   "baseline": "\"Disseminação feita 4 Autoridades Municipais e a nivel nacional atendendo os convites das instituições do Estado; \"",
+   "target": "\"1) 75% dos funcionarios das 7 PA beneficiados de informação 2) 100% 3) 3) Partisipantes 572 (H:386 M:186) \"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 786
+  },
+  {
+   "code": "A450501",
+   "programme": "A45",
+   "subprogramme": "A4505",
+   "subprogramme_name": "Revitalizar a cultura de trabalho",
+   "name": "Realizar processos disciplinares e aplicar as respetivas penas",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "\"\"\"1) 100% das quiexas e casos registados no SIGAP FOUN CFP e 50% dos Processos disciplinares instaurados e penas aplicadas; 2) 100% Ferramenta ChatBot Rosa funciona / utilizada na Função Pública \"\" \"",
+   "baseline": "\"\"\"77% dos casos disciplinares (150 Casos acumulado de anos (2022 e 2023) concluido 91 casos em 2023. \"\" \"",
+   "target": "\"1)100 % ; 2) 50 %; 3) 100% \"",
+   "amounts": {
+    "10": 24000.0,
+    "20": 15000.0
+   },
+   "page": 786
+  },
+  {
+   "code": "A450502",
+   "programme": "A45",
+   "subprogramme": "A4505",
+   "subprogramme_name": "Revitalizar a cultura de trabalho",
+   "name": "Servicos de Representacão Funcão Publica Regional Timor Leste",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "4 representação de serviço da FP estabelecida em Baucau, Manufahi, Bobonaro e RAEOA",
+   "baseline": "em 2024, a CFP destacou 1 FP para RAEOA a fim de assumir função como Diretor da Função Pública em RAEOA",
+   "target": "100%",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 786
+  },
+  {
+   "code": "A450600",
+   "programme": "A45",
+   "subprogramme": "A4506",
+   "subprogramme_name": "Inserção Regional e Global da Função Pública",
+   "name": "Participação ativa nos mecanismos e reuniões técnicas da ACCSM (ASEAN Conference on Civil Service Matters), ACCSM+3 e Seminarios/Workshops",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de reuniões técnicas da ACCSM e ACCSM+3 com participação efetiva da CFP de Timor-Leste (Presencial e virtual); # de contribuições técnicas/documentos submetidos ou apresentados nas reuniões e Seminarios/Workshops .",
+   "baseline": "Relatorio da CFP e Noticia publicacada nas medias sociais",
+   "target": "Participação em pelo menos 4 reuniões técnicas da ACCSM/ACCSM+3 durante o ano; Submissão de pelo menos 2 documentos técnicos ou partilhas de boas práticas por parte da CFP.",
+   "amounts": {
+    "20": 80991.0
+   },
+   "page": 787
+  },
+  {
+   "code": "A450601",
+   "programme": "A45",
+   "subprogramme": "A4506",
+   "subprogramme_name": "Inserção Regional e Global da Função Pública",
+   "name": "Participação e partilha de experiências nas reuniões da Rede de Administração Pública da CPLP, CEPA, EROPA",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "\"# de eventos/reuniões da Rede da CPLP com participação da CFP. # de boas práticas ou experiências partilhadas nas reuniões\"",
+   "baseline": "Relatorio da CFP e Noticia publicacada nas medias sociais",
+   "target": "\"Participação em pelo menos 2 reuniões oficiais da Rede da Administração Pública da CPLP, EROPA, CEPA. Apresentação de pelo menos 1 experiência nacional relevante ou iniciativa de reforma em fórum da CPLP EROPA, CEPA.\"",
+   "amounts": {
+    "20": 49490.0
+   },
+   "page": 787
+  },
+  {
+   "code": "A450602",
+   "programme": "A45",
+   "subprogramme": "A4506",
+   "subprogramme_name": "Inserção Regional e Global da Função Pública",
+   "name": "Serviços de Parcerias, Apoio e Cooperação para o Desenvolvimento da Função Pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "\"% de funcionários públicos beneficiários de programas de capacitação promovidos por parceiros de cooperação; #de bolsas de estudo atribuídas através de acordos de cooperação internacional; # de parcerias ativas e memorandos de entendimento (MoU) implementados com sucesso; % de execução das atividades previstas nos planos de cooperação anual.\"",
+   "baseline": "\" DFAT-Prosivo, JDS, COICA, UNDP, Banco Mundial, União Europeia \"",
+   "target": "\"≥ 50% dos funcionários-chave informados e capacitados através de programas de parceria; ≥ 20 bolsas de estudo internacionais atribuídas no período 2024– 2026; ≥ 5 parcerias estratégicas formalizadas com execução contínua; 100% de execução das atividades de cooperação previstas nos planos anuais\"",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 787
+  },
+  {
+   "code": "A450700",
+   "programme": "A45",
+   "subprogramme": "A4507",
+   "subprogramme_name": "Inovação Tecnologica e Integração de Sistemas",
+   "name": "Assegurar o desenvolvimento dos sistemas informatizados da Função Pública e manutenção do SIGAP",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "\"#de módulos desenvolvidos com tecnologia de código-fonte aberto e implementados; % de módulos com manutenção corretiva realizada com sucesso; % de utilizadores capacitados no uso do SIGAP-FOUN; % de dados dos funcionários atualizados e validados no SIGAP-FOUN e publicados em tempo real na plataforma FP- Online.\"",
+   "baseline": "\"36 de 48 módulos desenvolvidos com tecnologia de código-fonte aberto; 28 de 48 módulos com manutenção corretiva concluída; 186 de 245 utilizadores capacitados; Dados de funcionários atualizados de forma contínua e publicados em real-time na plataforma FP- Online\"",
+   "target": "\"100% (48 módulos) desenvolvidos e implementados até o final de 2026; ≥ 75% dos módulos com manutenção corretiva contínua garantida; ≥ 75% dos utilizadores-chave capacitados em SIGAP-FOUN até o III Trimestre de 2026; 100% dos dados dos funcionários atualizados e disponíveis em tempo real no dashboard da FP-Online \"",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 788
+  },
+  {
+   "code": "A450701",
+   "programme": "A45",
+   "subprogramme": "A4507",
+   "subprogramme_name": "Inovação Tecnologica e Integração de Sistemas",
+   "name": "Integração de sistemas de informação com o SIGAP",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de integrações funcionais desenvolvidas; # de módulos do SIGAP-FOUN tecnicamente preparados para interoperabilidade; # de protocolos técnicos de interoperabilidade definidos com outras entidades públicas; Taxa de sucesso dos testes de integração e intercâmbio de dados.",
+   "baseline": "26 módulos encontram-se preparados para interligação com o sistema MF; até 2026, ainda não se encontra confirmada qualquer integração funcional em ambiente de produção.",
+   "target": "Até dezembro de 2027, implementar e testar pelo menos 1 integração funcional entre o SIGAP-FOUN e o GRP/FMIS, em ambiente de produção ou em piloto controlado; definir pelo menos 1 protocolo técnico de interoperabilidade com o INSS ou a EMIS; e alcançar uma taxa de sucesso igual ou superior a 95% nos testes de integração",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 788
+  },
+  {
+   "code": "A450800",
+   "programme": "A45",
+   "subprogramme": "A4508",
+   "subprogramme_name": "Promoção da Igualdade de Género e Inclusão Social na Gestão de Recursos Humanos da Administração Pública (GEDSI)",
+   "name": "Revisão dos regulamentos e Manuais com incorporação de princípios de igualdade de género e inclusão social",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 788
+  },
+  {
+   "code": "A450801",
+   "programme": "A45",
+   "subprogramme": "A4508",
+   "subprogramme_name": "Promoção da Igualdade de Género e Inclusão Social na Gestão de Recursos Humanos da Administração Pública (GEDSI)",
+   "name": "Realização de ações de sensibilização e formação para técnicos de RH sobre igualdade de género e inclusão social na função pública",
+   "div": [
+    "0750101"
+   ],
+   "indicator": "# de técnicos de RH sensibilizados/formados; % de mulheres participantes nas ações de formação; # de instituições públicas representadas;",
+   "baseline": "foram registradas 245 participantes (115 M; 130 H) registados em formação de liderança; baseline específica de técnicos de RH a consolidado.",
+   "target": "Realizar pelo menos 4 ações; formar ou sensibilizar pelo menos 100 técnicos de RH, com participação mínima de 40% de mulheres; abranger pelo menos 25 instituições públicas; e alcançar uma taxa de conclusão ≥90%",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 788
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "% de prioridades do Plano Estratégico/Plano de Médio Prazo refletidas no PAA e monitorizadas.",
+   "baseline": "PE CFP 2015–2030 em vigor; PAA anteriores implementados, mas sem matriz consolidada de alinhamento e desempenho.",
+   "target": "100% das prioridades do PAA 2027 alinhadas e pelo menos 80% das metas anuais alcançadas.",
+   "page": 779
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% de recomendações de controlo implementadas e reportadas.",
+   "baseline": "Em 2026 foram realizadas 4 auditorias, 4 ações de inspeção/fiscalização e implementadas 80% das recomendações.",
+   "target": "Pelo menos 85% das recomendações implementadas e verificadas em 2027.",
+   "page": 779
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% de metas do PAA executadas e reportadas dentro do prazo.",
+   "baseline": "PAA e relatórios produzidos; taxa consolidada de cumprimento de metas de 2026 a apurar no relatório anual.",
+   "target": "≥80% das metas do PAA alcançadas e 100% dos relatórios obrigatórios entregues no prazo.",
+   "page": 779
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.4",
+   "statement": "Continuação da implementação do PE CFP 2015-2030 (I Medio Termo 2015-2020)",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 780
+  },
+  {
+   "kind": "output",
+   "code": "51041.0.0",
+   "statement": "Novas Políticas e Legislação apresentadas, aprovadas em implementadas e sensível ao género",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 780
+  },
+  {
+   "kind": "output",
+   "code": "51043.0.0",
+   "statement": "Os funcionários e agentes da Administração melhoram o desempenho profissional e abordam a integração de gênero",
+   "indicator": "% de instituições abrangidas por iniciativas de ética, identidade e cultura de serviço público.",
+   "baseline": "Ações de disseminação realizadas a nível nacional e municipal; cobertura consolidada de 2026 a validar.",
+   "target": "Pelo menos 60% das instituições abrangidas por iniciativas de ética, identidade e cultura de serviço público.",
+   "page": 780
+  },
+  {
+   "kind": "outcome",
+   "code": "A45.0.0",
+   "statement": "tbd",
+   "indicator": "% de instituições que aplicam práticas padronizadas e digitais de gestão de recursos humanos.",
+   "baseline": "Práticas e módulos já implementados de forma parcial; baseline institucional consolidada a apurar no fecho de 2026.",
+   "target": "Pelo menos 70% das instituições aplicam componentes prioritárias padronizadas de gestão de RH em 2027.",
+   "page": 781
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21020: Até _ 2028, garantir que 100% das organizações da Administração Pública de Timor-Leste implementem e operem sistemas de gestão de recursos humanos baseados em mérito, incluindo processos claros e transparentes de recrutamento, seleção, avaliação de desempenho, progressão de carreira e remuneração, assegurando uma capacitação contínua dos servidores e uma estrutura organizacional eficiente",
+   "indicator": "\"PAA 2024, 2025 e 2026\", % de instituições que aplicam instrumentos de mérito, desempenho, carreira, formação e gestão digital de RH.",
+   "baseline": "Instrumentos legais e digitais parcialmente implementados; cobertura consolidada de 2026 ainda em validação.",
+   "target": "≥70% das instituições aplicam pelo menos quatro componentes prioritárias padronizadas e reportam resultados à CFP.",
+   "page": 781
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21021: Até _ 2028, garantir que pelo menos 80% das instituições da Administração Pública disponham de planos estratégicos da força de trabalho baseados em diagnósticos setoriais e suportados por um sistema digital integrado de dados de RH, permitindo decisões informadas e eficazes de gestão de pessoal",
+   "indicator": "% de instituições com diagnóstico/plano de força de trabalho; # de integrações-piloto SIGAP- FOUN–GRP/FMIS.",
+   "baseline": "Diagnóstico breve em 7 instituições e 6 municípios; mapas de pessoal compilados anualmente; integração funcional ainda não confirmada.",
+   "target": "≥40% das instituições com diagnóstico/plano em elaboração e integração-piloto concluída em 3 setores prioritários.",
+   "page": 782
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21022: Até _ 2028, assegurar que 100% das instituições da Administração Pública implementem procedimentos padronizados, digitalizados e baseados no mérito para",
+   "indicator": "% de instituições que utilizam procedimentos padronizados/digitais de recrutamento, promoção e progressão; % de concursos com teste eletrónico.",
+   "baseline": "TCExam e bolsa de candidatos em uso; testes de promoção realizados em regime piloto, incluindo RAEOA e municípios.",
+   "target": "≥70% das instituições utilizam procedimentos padronizados aplicáveis e ≥70% dos concursos elegíveis usam testes eletrónicos.",
+   "page": 782
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21024: Até _ 2028, promover o desenvolvimento profissional e de liderança na Administração Pública, através da implementação de um quadro nacional de competências, da realização anual de programas de formação em liderança estratégica e gestão pública, e da profissionalização dos gestores de recursos humanos, garantindo a seleção e preparação de dirigentes com base em critérios técnicos e objetivos",
+   "indicator": "% de instituições que aplicam o Quadro Nacional de Competências; # de dirigentes e potenciais líderes certificados; taxa de conclusão; % de participantes com melhoria profissional confirmada; # e % de gestores de RH profissionalizados.",
+   "baseline": "245 participantes em formação de liderança (115 M; 130 H), incluindo formação obrigatória e técnica; sistema nacional ainda não padronizado.",
+   "target": "100 dirigentes/potenciais líderes formados; ≥90% concluem; ≥75% das chefias confirmam melhoria após 3 meses.",
+   "page": 783
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21027: Até _ 2028, assegurar uma gestão eficiente, digitalizada e transparente do processo de transição para a reforma dos funcionários públicos, através da implementação de um módulo funcional no SIGAP-FOUN interligado com o INSS, da identificação contínua dos servidores elegíveis e da realização anual de formações de preparação para a reforma, garantindo previsibilidade e pleno acesso ao direito à pensão",
+   "indicator": "% de servidores elegíveis com processo iniciado no prazo e registo completo no SIGAP-FOUN; módulo de reforma operacional.",
+   "baseline": "482 servidores elegíveis identificados para 2026; processamento e cálculo ainda parcialmente manuais.",
+   "target": "100% dos elegíveis identificados; ≥90% dos processos iniciados no prazo; módulo de reforma testado em piloto e protocolo com INSS definido.",
+   "page": 785
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21031: Até _ 2028, garantir que 100% das instituições da Administração Pública de Timor-Leste implementem mecanismos de monitorização do cumprimento do quadro legal e ético, com registo anual de pelo menos 90% dos processos disciplinares tratados de forma célere e justa, e com apoio contínuo das representações da Função Pública nas regiões",
+   "indicator": "% de instituições públicas que implementam programas de ética, pontualidade e conduta profissional no local de trabalho; Funcionários aumentam o sentido de pertença e competitividade.",
+   "baseline": "\"funcionarios distinguidos em 2017; 6 comemorações feitas; disseminação alargada (Nivel Nacional, Autoridades Municipais até aos níveis Postos Administrativos) \"",
+   "target": "60% das instituições públicas com programas funcionais e relatórios de monitorização até dezembro de 2026.",
+   "page": 786
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21036: Até _ 2028, fortalecer a inserção regional e global da Função Pública de Timor-Leste, assegurando a participação ativa em pelo menos 100% das reuniões e fóruns importantes da CPLP, CEPA e EROPA, e estabelecendo pelo menos 10 parcerias técnicas com serviços públicos de outros países, para",
+   "indicator": "% de participação efetiva da Função Pública de Timor-Leste em fóruns regionais e internacionais relevantes (ASEAN, CPLP, CEPA, EROPA e outros), com produção ou",
+   "baseline": "Partipam ativamente em foruns regionais (ASEAN) meeting a partir do ano 2022 e CEPA, EROPA em 2024 e 2025",
+   "target": "80% das oportunidades de participação em eventos regionais e internacionais participadas, com 3 iniciativas/documentos adaptados ou adotados em conformidade com boas práticas regionais (ex. Carta da",
+   "page": 786
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21042: Até _ 2028, modernizar e integrar os sistemas de informação da Comissão da Função Pública, assegurando que 100% dos processos de gestão de recursos humanos sejam digitalizados e operem de forma integrada no SIGAP, com atualizações tecnológicas regulares e intergrada com sistemas relevantes do setor público (GRP-FMIS, INSS, EMIS)",
+   "indicator": "Sistemas Interligados , todas as instituições têm acesso e utilizam informação do SIGAP",
+   "baseline": "\"Portal SIGAP é acessivel as instituições que utilizam a linha do Governo; SIGAPNet é acessivel a partir de qualquer linha de internet \"",
+   "target": "100%",
+   "page": 787
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el21882: _ Fazeadamente ate 2028, Integrar práticas de igualdade de género, valorização da diversidade e inclusão social nos processos de gestão de recursos humanos da Administração Pública",
+   "indicator": "% de instrumentos de RH revistos com critérios de género e inclusão; % de ações com dados desagregados por sexo/deficiência.",
+   "baseline": "Orientações CFP n.º 30/2022 e n.º 20/2018 constituem referência; aplicação sistemática ainda não consolidada.",
+   "target": "100% dos instrumentos prioritários revistos incorporam critérios GEDSI e 100% das ações reportam dados desagregados disponíveis.",
+   "page": 788
+  }
+ ]
+}

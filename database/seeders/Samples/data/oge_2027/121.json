@@ -1,0 +1,602 @@
+{
+ "year": 2027,
+ "code": "121",
+ "name": "Secretaria de Estado da Comunicação Social",
+ "abbr": "SECS",
+ "kind": "secretariat",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1197,
+   1204
+  ]
+ },
+ "units": [
+  {
+   "code": "GSECS",
+   "div": "1210101",
+   "name": "Gabinete da Secretaria de Estado da Comunicação Social",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGCS",
+   "div": "1210201",
+   "name": "Gabinete Direção-Geral para a Comunicação Social",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNDI",
+   "div": "1210202",
+   "name": "Direção Nacional de Disseminação de Informação",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "1210205",
+   "name": "Direção Nacional Administração Finanças",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAL",
+   "div": "1210206",
+   "name": "Direção Nacional Aprovisionamento e Logistica",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNDM",
+   "div": "1210207",
+   "name": "Direção Nacional de Desenvolvimento dos Média",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNFTC",
+   "div": "1210208",
+   "name": "Direção Nacional de Formação Técnica em Comunicação",
+   "type": "National Directorate",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A33": "Desenvovimento do setor da comunicação social",
+  "A37": "Desenvolver um sistema de comunicação instituicional"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1210205"
+   ],
+   "indicator": "1). % do orçamento executado sob os princípios legais da administração pública 2) % Modernizar a digitalização dos serviços da Administração com eficiência e eficácia",
+   "baseline": "93,5% do OGE executado sob os princípios de rigor e eficácia;",
+   "target": "Mínimo 80% do OGE executado executado",
+   "amounts": {
+    "20": 104377.0
+   },
+   "page": 1197
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1210206"
+   ],
+   "indicator": "N.º de edifícios e instalações e/ou equipamentos reabilitados e conservados com manutenções periódico;",
+   "baseline": "75%",
+   "target": "Pelo menos 95% do bens móveis e imóveis em cada ano são sujeitos a revisão anualmente;",
+   "amounts": {
+    "20": 22696.0
+   },
+   "page": 1197
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "1210205"
+   ],
+   "indicator": "1. N.º de relatórios trimestrais e anuais de M&A elaborados; 2.N.º de relatórios trimestrais de desempenho atempadamente apresentados ao Ministérios das Finanças",
+   "baseline": "3 relatórios trimestrais e 1 relatório anual de desempenho produzidos e submetidos ao Ministério das Finanças; OGE 2027 elaborado e aprovado, 1 Relatório de 120 dias de governação publicado",
+   "target": "1). 3 relatórios trimestrais e 1 relatório annual elaborado e submetido ao Ministério das Finanças;",
+   "amounts": {
+    "20": 6800.0
+   },
+   "page": 1197
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1210205"
+   ],
+   "indicator": "1. N.º de Expediente entrada e saida 2. Nº- de contratados recrutados; 3. Nº. de funcionários avaliados;",
+   "baseline": "147 cartas recebidas, 2,032 cartas expedidas, 4 relatórios mensais direção.",
+   "target": "1. Processamento atempado de todo expediente entrada e saida; 2.Todos os funcionários obtêm a sua avaliação de desempenho regularmente",
+   "amounts": {
+    "10": 751701.0
+   },
+   "page": 1197
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1210205"
+   ],
+   "indicator": "Nº. de funcionários capacitados nas respetivas áreas de trabalho",
+   "baseline": "84 funcionários da SECOMS capacitados nas respetivas áreas de trabalho",
+   "target": "Todos os funcionários recebem formação abrangente, de acordo com área de profissão",
+   "amounts": {
+    "20": 37080.0
+   },
+   "page": 1197
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1210206"
+   ],
+   "indicator": "1.Quantidade dos concurso abertos pela instituicao são concluidos e celebrados dentro do ano (nacionais/internacionais) 2. N.º contratos celebrados (por ajuste direto/por cotações solicitadas; 3. N.º de contratos elaborados e assinados",
+   "baseline": "80%",
+   "target": "100% Implementado",
+   "amounts": {
+    "20": 4195.0
+   },
+   "page": 1198
+  },
+  {
+   "code": "510023A",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Promover a Cooperação",
+   "div": [
+    "1210201"
+   ],
+   "indicator": "# Existe mais parcerias de cooperação para promover e proteger a liberdade expressão e de imprensa: # Realizar avaliação do Projeto Consultor Língua para Jornalista, cooperação entre SECOMS e Instituições Camões. # Participar ativamente nas atividades da ASEAN para promover e proteger a liberdade de expressão e de imprensa",
+   "baseline": "10",
+   "target": "100% Implementado",
+   "amounts": {
+    "20": 22500.0
+   },
+   "page": 1198
+  },
+  {
+   "code": "A330101",
+   "programme": "A33",
+   "subprogramme": "A3301",
+   "subprogramme_name": "Desenvolver o Mecanismo de Legislação, Regulamentação e Regulação",
+   "name": "Desenvolver o Enquadramento Legal e Regulação",
+   "div": [
+    "1210101"
+   ],
+   "indicator": "# Enquadramento e/ou mecanismo adequado e",
+   "baseline": "\"a) Lei Comunicação Social; b) Estatuto Conselho de",
+   "target": "3",
+   "amounts": {
+    "10": 294172.0,
+    "20": 34441.0
+   },
+   "page": 1198
+  },
+  {
+   "code": "A330102",
+   "programme": "A33",
+   "subprogramme": "A3301",
+   "subprogramme_name": "Desenvolver o Mecanismo de Legislação, Regulamentação e Regulação",
+   "name": "Socialização da Legislação na Area da Comunicação Social",
+   "div": [
+    "1210202"
+   ],
+   "indicator": "# Ações de socialização e divulgação dos enquadramentos legais junto do público e dos meios de comunicação social;",
+   "baseline": "250",
+   "target": "Mínimo de 500 pessoas socializadas no público com participação Mulheres 30%",
+   "amounts": {
+    "20": 7380.0
+   },
+   "page": 1199
+  },
+  {
+   "code": "A330201",
+   "programme": "A33",
+   "subprogramme": "A3302",
+   "subprogramme_name": "Diversificar e Fortalecer os meios de Comunicação Social",
+   "name": "Estimular e fortalecer os meios de comunicação social",
+   "div": [
+    "1210202",
+    "1210207"
+   ],
+   "indicator": "% Estimular e fortalecer dos Meios de Comunicação Social e garantir a sua sustentabilidade; % Assegurar a preservação dos produtos de comunicação social através da criação de um arquivo documental; % Apoio aos meios de comunicação social privados por forma a contribuir para o desenvolvimento do setor da comunicação social. % Os Meios de Comunicação Social não têm interferencia do poder politíco e do poder economíco;",
+   "baseline": "43",
+   "target": "100% realizada",
+   "amounts": {
+    "30": 389000.0,
+    "20": 8960.0,
+    "40": 225950.0
+   },
+   "page": 1199
+  },
+  {
+   "code": "A330202",
+   "programme": "A33",
+   "subprogramme": "A3302",
+   "subprogramme_name": "Diversificar e Fortalecer os meios de Comunicação Social",
+   "name": "Apoiar as radios comunitarias",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "# Manter o apoio às Rádios Comunitárias e Novas Estações, para satisfazer o direito do público ao acesso à informação;",
+   "baseline": "21",
+   "target": "7",
+   "amounts": {
+    "20": 10140.0,
+    "30": 222440.0
+   },
+   "page": 1199
+  },
+  {
+   "code": "A330203",
+   "programme": "A33",
+   "subprogramme": "A3302",
+   "subprogramme_name": "Diversificar e Fortalecer os meios de Comunicação Social",
+   "name": "Estabelecer uma Rede de Centros de Informação ao nivel dos Sucos",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "# Continuar a estabelecer Centros de Informação do Suco, como centros de informação comunitários para acesso à informação;",
+   "baseline": "32 Centros Informação Sucos",
+   "target": "45",
+   "amounts": {
+    "20": 2440.0,
+    "30": 30000.0
+   },
+   "page": 1200
+  },
+  {
+   "code": "A330204",
+   "programme": "A33",
+   "subprogramme": "A3302",
+   "subprogramme_name": "Diversificar e Fortalecer os meios de Comunicação Social",
+   "name": "Instalar uma rede de televisao digital terrestre",
+   "div": [
+    "1210101"
+   ],
+   "indicator": "# Continuar a instalar a Rede de Televisão Digital Terrestre, realizar estudos de alternativas, definir a sua gestão e facilitar o acesso rápido à informação para a população de Timor-Leste;",
+   "baseline": "5",
+   "target": "2",
+   "amounts": {
+    "10": 37200.0,
+    "50": 225000.0
+   },
+   "page": 1200
+  },
+  {
+   "code": "A330301",
+   "programme": "A33",
+   "subprogramme": "A3303",
+   "subprogramme_name": "Capacitação dos Jornalistas e Fortalecimento da Coesão Social",
+   "name": "Assegurar a Formação continua especializada de jornalistas",
+   "div": [
+    "1210208"
+   ],
+   "indicator": "1) # Profissionais da comunicação social capacitados através de ações de formação contínua especializada; 2) # Órgãos de comunicação social que beneficiam regularmente de apoio técnico e de revisão na língua portuguesa. 3) # Conteúdos ou publicações jornalísticas revistas pelo Revisor Nacional de Língua Portuguesa.",
+   "baseline": "1) 250 Pessoas Formadas; 2) 5 3) 720",
+   "target": "1) Mínimo de 100 pessoas 2) 5 3) Mínimo 500 conteúdos ou publicações jornalísticas",
+   "amounts": {
+    "10": 109065.0,
+    "20": 40207.0
+   },
+   "page": 1200
+  },
+  {
+   "code": "A330302",
+   "programme": "A33",
+   "subprogramme": "A3303",
+   "subprogramme_name": "Capacitação dos Jornalistas e Fortalecimento da Coesão Social",
+   "name": "Apoiar Iniciativas que contribuam para o desenvolvimento do setor da comunicação social",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "% Apoiar as atividades das associações de jornalistas para promover a liberdade de expressão e de imprensa; % Existe investigação e estudos publicados na area de comunicação social % Existe Produção Audiovisual Independente e produção estrangeira nos meios de",
+   "baseline": "100%",
+   "target": "100% Implementado",
+   "amounts": {
+    "20": 960.0,
+    "30": 30000.0
+   },
+   "page": 1200
+  },
+  {
+   "code": "A330303",
+   "programme": "A33",
+   "subprogramme": "A3303",
+   "subprogramme_name": "Capacitação dos Jornalistas e Fortalecimento da Coesão Social",
+   "name": "Promover a literacia mediatica",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "# Promover a Literacia Mediática como educação cívica para os cidadãos distinguirem entre informações falsas e verdadeiras;",
+   "baseline": "786",
+   "target": "Mínimo de 1.000 pessoas com participação Mulheres 30%",
+   "amounts": {
+    "20": 23748.0
+   },
+   "page": 1201
+  },
+  {
+   "code": "A330304",
+   "programme": "A33",
+   "subprogramme": "A3303",
+   "subprogramme_name": "Capacitação dos Jornalistas e Fortalecimento da Coesão Social",
+   "name": "Assegurar estagios profissionais e intercambios para os jornalistas nacionais",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "% Os estudantes e jornalistas realizam estágio e intercâmbio para desenvolvimento do conhecimento",
+   "baseline": "100%",
+   "target": "100% Implementado, Mínimo Participação Mulheres 30%",
+   "amounts": {
+    "20": 7020.0,
+    "30": 30000.0
+   },
+   "page": 1201
+  },
+  {
+   "code": "A330305",
+   "programme": "A33",
+   "subprogramme": "A3303",
+   "subprogramme_name": "Capacitação dos Jornalistas e Fortalecimento da Coesão Social",
+   "name": "Promover a inclusão no setor da comunicação social",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "% O setor da comunicação social e inclusivo para todos os cidadãos e garante a participação de todos sem discriminação;",
+   "baseline": "100%",
+   "target": "100% Implementado, Mínimo Participação Mulheres 30%",
+   "amounts": {
+    "20": 1740.0
+   },
+   "page": 1201
+  },
+  {
+   "code": "A330401",
+   "programme": "A33",
+   "subprogramme": "A3304",
+   "subprogramme_name": "Superintendência e Tutela dos Orgãos de Comunicação Social do Estado",
+   "name": "Garantir o serviço Radio Metro FM e Supervisionar o serviço da RTTL.EP e TATOLI.IP",
+   "div": [
+    "1210207"
+   ],
+   "indicator": "\"% A Radio Metro FM funciona como laboratório para as Radios de Comunidade; % A RTTL.EP e TATOLI.IP garantem um serviço público",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 22329.0,
+    "30": 2550000.0
+   },
+   "page": 1201
+  },
+  {
+   "code": "A330402",
+   "programme": "A33",
+   "subprogramme": "A3304",
+   "subprogramme_name": "Superintendência e Tutela dos Orgãos de Comunicação Social do Estado",
+   "name": "Mobilização de recursos de apoio aos meios de comunicação social publicos",
+   "div": [
+    "1210101"
+   ],
+   "indicator": "% Serviço de mobilização de recursos através do estabelecimento de cooperação com agencias de desenvolvimento com interesse para promover a liberdade de expressão e liberdade de imprensa;",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 196956.0
+   },
+   "page": 1202
+  },
+  {
+   "code": "A370101",
+   "programme": "A37",
+   "subprogramme": "A3701",
+   "subprogramme_name": "Disseminação de Informação ao publico",
+   "name": "Desenvolver, socializar e supervisionar a politica de comunicação do Governo",
+   "div": [
+    "1210202"
+   ],
+   "indicator": "% Existe uma politica de comunicação institucional conhecida e compreendida por todos e um manual de procedimentos da comunicação do governo",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 3000.0
+   },
+   "page": 1202
+  },
+  {
+   "code": "A370102",
+   "programme": "A37",
+   "subprogramme": "A3701",
+   "subprogramme_name": "Disseminação de Informação ao publico",
+   "name": "Disseminar informação aos meios de comunicação social",
+   "div": [
+    "1210202"
+   ],
+   "indicator": "% O Publico está devidamente informado sobre a politíca e Programa do Governo % Desenvolver um plano de disseminação da promoção de Timor-Leste através das plataformas digitais.",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 17867.0
+   },
+   "page": 1202
+  },
+  {
+   "code": "A370103",
+   "programme": "A37",
+   "subprogramme": "A3701",
+   "subprogramme_name": "Disseminação de Informação ao publico",
+   "name": "Produzir Iniciativas de informação do Governo",
+   "div": [
+    "1210202"
+   ],
+   "indicator": "% Realizar a atividade \"Meet the Press\" para manter comunicação regular com os Meios de Comunicação Social, Associações de Jornalistas e Jornalistas, para discutir questões pertinentes; % Garantir a produção do programa \"Governo Rona'' como espaço de divulgação da ação governativa ao público; % Promover Diálogos Comunitários com a população, como espaço de democratização e participação ativa dos cidadãos na construção do Estado; % São produzidos regularmente suportes de comunicação para divulgar e promover a ação governativa; # Media Tours para promover setores produtivos estratégicos (\"O Meu Turismo, A Minha Riqueza\")",
+   "baseline": "100%",
+   "target": "100% realizada",
+   "amounts": {
+    "20": 147238.0
+   },
+   "page": 1203
+  },
+  {
+   "code": "A370104",
+   "programme": "A37",
+   "subprogramme": "A3701",
+   "subprogramme_name": "Disseminação de Informação ao publico",
+   "name": "Coordenar o Serviço dos oficiais de media",
+   "div": [
+    "1210202"
+   ],
+   "indicator": "% Existe um serviço de disseminação de informação integrado, entre as entidades do governo para fornecer informação ao publico; % Realizar programa de formação profissional para capacitar os “media officers” das linhas ministeriais e dos Municípios para aumentar a eficácia da comunicação oficial de cada instituição",
+   "baseline": "100%",
+   "target": "100% Implementado",
+   "amounts": {
+    "20": 1680.0
+   },
+   "page": 1203
+  },
+  {
+   "code": "A370402",
+   "programme": "A37",
+   "subprogramme": "A3704",
+   "subprogramme_name": "Desenvolver Um Sistema de Comunicação Interna do Governo",
+   "name": "Promover a Sensibilizção da Politica de Comunicação Interna e Externa",
+   "div": [
+    "1210202"
+   ],
+   "indicator": "% Os funcionários do estado estão sensibilizados sobre a política de comunicação interna e externa do governo",
+   "baseline": "100%",
+   "target": "100% Promovido",
+   "amounts": {
+    "20": 9502.0
+   },
+   "page": 1204
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Os serviços da administração pública são assegurados de forma célere, eficiente e eficaz",
+   "baseline": "Os serviços da administração pública são assegurados",
+   "target": "Uma administração pública célere, eficiente e eficaz",
+   "page": 1197
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "81% do OGE executado pelos serviços responsáveis",
+   "target": "Pelo menos 80% do OGE executado pelos serviços responsáveis",
+   "page": 1197
+  },
+  {
+   "kind": "outcome",
+   "code": "A33.0.0",
+   "statement": "Reforçar a Legislação da Comunicação Social para fortalacer o setor dos media",
+   "indicator": "1) % 75 Maior acesso a informação pela população através dos meios de comunicação social; 2) # As normas legais são aplicadas para garantir a atividade dos meios de comunicação social de forma livre e independente",
+   "baseline": "1) 65% Acesso Informação através dos meios de comunicação social 2) 5",
+   "target": "1) % Meio comunicação social forma livre e independente, sem interferencia do poder politico ou economico 2) % Enquadramento Legal e Regulação aplicável;",
+   "page": 1198
+  },
+  {
+   "kind": "output",
+   "code": "A3301.0.0",
+   "statement": "Legislação, Regulamentação e Regulação Aplicável",
+   "indicator": "# Existe Legislação suficiente para garantir que a atividade dos meios de comunicação social funciona de forma efetiva para garantir informação transparante",
+   "baseline": "5 quadros legais Concluído",
+   "target": "# Enquadramento Legal e Regulação Concluído",
+   "page": 1198
+  },
+  {
+   "kind": "output",
+   "code": "A3302.0.0",
+   "statement": "Desenvolver e Estimular os Meios de Comunicação Social",
+   "indicator": "% Meios de comunicação que funcionam de forma livre e independente, sem interferência do poder político e económico",
+   "baseline": "#Index Liberdade Imprensa Timor-Leste ocupa posição 30 nível Global e posição 1 nível ASEAN",
+   "target": "% Atividade do meio de comunicação social forma livre e independente, sem interferencia do poder politico ou economico",
+   "page": 1199
+  },
+  {
+   "kind": "output",
+   "code": "A3303.0.0",
+   "statement": "Desenvolver as Competencias Profissionais dos Jornalistas",
+   "indicator": "% Os jornalistas apresentam capacidade profissional para a sua atividade",
+   "baseline": "1) Cerca de 250 profissionais (jornalistas e profissionais do Governo) com competências em língua portuguesa e reforçadas; 2) 57 Pessoas Formandas",
+   "target": "100% Competências Profissionais dos Jornalistas Desenvolvidas",
+   "page": 1200
+  },
+  {
+   "kind": "output",
+   "code": "A3304.0.0",
+   "statement": "Supervisionar os Meios do Estado para garantir, a divulgação de informação ao público",
+   "indicator": "% Os meios de comunicação estatal garantem a divulgação de informação ao público de forma transparente",
+   "baseline": "100%",
+   "target": "100% Meio Comunicação Social Estatal garantir a divulgação de informação ao público",
+   "page": 1201
+  },
+  {
+   "kind": "outcome",
+   "code": "A37.0.0",
+   "statement": "Comunicação Instituicional do Governo Forte e Profisional",
+   "indicator": "% Existe um mecanismo de comunicação institucional do Governo para divulgar a ação governativa",
+   "baseline": "100% Público informado sobre as políticas e o Programa do Governo, e que participa ativamente no desenvolvimento nacional",
+   "target": "% Comunicação Institucional Governo Forte e Transparente",
+   "page": 1202
+  },
+  {
+   "kind": "output",
+   "code": "A3701.0.0",
+   "statement": "Desenvolver um Mecanismo de Comunicação Instituicional do Governo",
+   "indicator": "Aumento da % dos técnicos de comunicação social capacitados profissionalmente para divulgar a ação governativa ao público, disponibilizar informações ao meios de comunicação social e estabelecer uma boa comunicação com os jornalistas e os meios de comunicação social",
+   "baseline": "100%",
+   "target": "% Comunicação Institucional Governo eficaz e eficiente",
+   "page": 1202
+  },
+  {
+   "kind": "output",
+   "code": "A3704.0.0",
+   "statement": "Desevolver um Sistema de Comunicação Interna do Governo",
+   "indicator": "% O Público está informado sobre a Politica e Programa do Governo",
+   "baseline": "100% Promover a sensibilidade política da comunicação interna e externa, para garantir que o público tenha acesso à informação",
+   "target": "100% Sistema de Comunicação Interna do Governo Estabelecido",
+   "page": 1204
+  }
+ ]
+}

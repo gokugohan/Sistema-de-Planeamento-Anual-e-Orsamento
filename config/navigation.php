@@ -86,7 +86,7 @@ return [
             'items' => [
                 ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart',
                     'hint' => 'Executed and delivered against the plan, by quarter and programme'],
-                ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_all_paa',
+                ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_reports',
                     'hint' => 'Reports and the final plan report'],
             ],
         ],

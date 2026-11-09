@@ -1,0 +1,297 @@
+{
+ "year": 2027,
+ "code": "060",
+ "name": "Agência Nacional para Avaliação e Acreditação Académica",
+ "abbr": "ANAAA",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   712,
+   714
+  ]
+ },
+ "units": [
+  {
+   "code": "ANAAA",
+   "div": "0600101",
+   "name": "Agência Nacional para Avaliação e Acreditação Académica",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "524": "Ensino superior",
+  "979": "Educação e formação"
+ },
+ "activities": [
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Asegurar as atividades da ANAAA para alinhar com as Leis em vigor em Timor-Leste",
+   "baseline": "1preparação e publicação dos resultados de avaliação e acreditação, regimento interno e outras documentos legais",
+   "target": "100% de preparação e publicação dos resultados de avaliação e acreditação em Journal da Republica",
+   "amounts": {
+    "10": 10800.0
+   },
+   "page": 712
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Garante o funcionamento do serviços administrativos e supporta execução do orsamento geral do estado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 69899.0,
+    "20": 58746.0,
+    "40": 33333.0
+   },
+   "page": 712
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Ministério abrangidos pela avaliação de desempenho",
+   "baseline": "Um (1) Funcionário",
+   "target": "Um (1) Funcionário",
+   "amounts": {
+    "10": 5032.0
+   },
+   "page": 712
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Acordos implementados de Cooperação e Parceria com os outros agencias reguladores. e Avaliaçāo externas e reconhesimento internasional",
+   "baseline": "3",
+   "target": "3",
+   "amounts": {
+    "20": 51400.0
+   },
+   "page": 712
+  },
+  {
+   "code": "5241501",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Criação de plataforma informática no âmbito de atualização e partilha de dados",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Criação sistema Plataforma das 19 Instituçoês Ensisnu Superior Acreditados",
+   "baseline": "149 Siclo estudos das 19 Instituçoês das Instituçoês Ensisnu Superior Acreditados",
+   "target": "100%",
+   "amounts": {
+    "10": 23283.0,
+    "20": 8475.0
+   },
+   "page": 713
+  },
+  {
+   "code": "5241502",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Processo de acreditação programática",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Garantia Qualidade Educação atraves do Avaliação e Acareditação regular do Siclo estudo das 19 instituçoês dos Ensinu Superior",
+   "baseline": "149 Siclo estudos das 19 Instituçoês das Instituçoês Ensisnu Superior Acreditados",
+   "target": "20",
+   "amounts": {
+    "10": 106577.0,
+    "20": 119620.0
+   },
+   "page": 713
+  },
+  {
+   "code": "5241503",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Avaliação do progresso anual das instituições de ensino superior acreditadas",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Garantia Qualidade Educação atraves do Avaliação e Acareditação regular das 19 instituçoês dos Ensinu Superior",
+   "baseline": "149 Siclo estudos e 19 Instituçoês das Instituçoês Ensisnu Superior ACcreditados",
+   "target": "90",
+   "amounts": {
+    "20": 22500.0
+   },
+   "page": 713
+  },
+  {
+   "code": "5241504",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Fortalecimento institucional e técnico das IESA",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Formação e seminario para garanatia qualiadade do serviço Internal Quality Assuarance das 19 Instituçoês do Ensisnu Superior Acreditados",
+   "baseline": "Formação e seminario para garanatia qualiadade do serviço Internal Quality Assuarance dos 60 Diretores do IQA e chefe deparatamentos Instituçoês do Ensisnu Superior Acreditado",
+   "target": "5",
+   "amounts": {
+    "20": 22175.0
+   },
+   "page": 713
+  },
+  {
+   "code": "5241505",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Avaliação e acreditação Institucional",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "Garantia Qualidade Educação atraves do Avaliação e Acareditação regular das 19 instituçoês dos Ensinu Superior Acreditados",
+   "baseline": "19 Instituçoês das Instituçoês Ensisnu Superior Acreditados",
+   "target": "7",
+   "amounts": {
+    "20": 11000.0
+   },
+   "page": 713
+  },
+  {
+   "code": "5241506",
+   "programme": "524",
+   "subprogramme": "52415",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Pesquisa Sobre a Empregabilidade dos Graduados de Ensino Superior",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "A taxa de empregabilidade dos graduados de ensino superior estabelecida",
+   "baseline": "Dezanove (19) das Instituçoês Ensisnu Superior Acreditados",
+   "target": "5",
+   "amounts": {
+    "20": 12000.0
+   },
+   "page": 713
+  },
+  {
+   "code": "9792306",
+   "programme": "979",
+   "subprogramme": "97923",
+   "subprogramme_name": "Sistema de garantia de qualidade do ensino superior",
+   "name": "Pesquisa Sobre a Empregabilidade dos Graduados de Ensino Superior",
+   "div": [
+    "0600101"
+   ],
+   "indicator": "A taxa de empregabilidade dos graduados de ensino superior estabelecida",
+   "baseline": "Dezoito (18) Instituições",
+   "target": "5 Instituições",
+   "amounts": {
+    "20": 990.0
+   },
+   "page": 714
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Estratégico aprovado, incluindo o plano de médio prazo",
+   "baseline": "100%",
+   "target": "Aprovado",
+   "page": 712
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Estratégico aprovado, incluindo o plano de médio prazo 100% Aprovado Relatorio Anual",
+   "baseline": "100%",
+   "target": "Aprovado",
+   "page": 712
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Incluindo o plano de médio prazo",
+   "baseline": "80%",
+   "target": "Aprovado Estratégico",
+   "page": 712
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "O Plano Anual inclui atividades do governo e dos parceiros implementadas",
+   "baseline": "3",
+   "target": "3",
+   "page": 712
+  },
+  {
+   "kind": "outcome",
+   "code": "524.0.0",
+   "statement": "Até 2028, o acesso, a qualidade e a relevância do ensino superior para o mercado de trabalho",
+   "indicator": "Garantia Qualidade Educação atraves do Avaliação e acareditação",
+   "baseline": "149 Siclo estudos das Instituçoês Ensisnu Superior Acreditados",
+   "target": "26",
+   "page": 712
+  },
+  {
+   "kind": "output",
+   "code": "52415.0.1",
+   "statement": "Implementou um Quadro Nacional de Qualificações",
+   "indicator": "Garantia Qualidade Educação atraves do Avaliação e acareditação regular das 19 institucoes dos Ensinu Superior",
+   "baseline": "149 Siclo estudos das Instituçoês Ensisnu Superior Acreditados",
+   "target": "26",
+   "page": 713
+  },
+  {
+   "kind": "outcome",
+   "code": "979.0.4",
+   "statement": "Sistema de ensino superior de qualidade, abrangente e integrado, para instituições",
+   "indicator": "Instituições do Ensino Superior avaliadas e acreditadas segundo os padrões da ANAAA",
+   "baseline": "80% das instituições acreditadas (18 IES)",
+   "target": "100%",
+   "page": 713
+  },
+  {
+   "kind": "output",
+   "code": "97923.0.0",
+   "statement": "Implementou um Quadro Nacional de Qualificações",
+   "indicator": "Enquadramento nacional de qualificação existe",
+   "baseline": "Nacional de qualificação existe",
+   "target": "100%",
+   "page": 714
+  }
+ ]
+}

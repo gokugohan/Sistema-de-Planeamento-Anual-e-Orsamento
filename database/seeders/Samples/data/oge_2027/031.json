@@ -1,0 +1,629 @@
+{
+ "year": 2027,
+ "code": "031",
+ "name": "Policia Nacional Timor-Leste",
+ "abbr": "PNTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   334,
+   343
+  ]
+ },
+ "units": [
+  {
+   "code": "DNAF",
+   "div": "0310101",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "UEP",
+   "div": "0310201",
+   "name": "Unidade Especial da Polícia",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UPF",
+   "div": "0310301",
+   "name": "Unidade de Patrulhamento da Fronteira",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "UM",
+   "div": "0310401",
+   "name": "Unidade Marítima",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CON",
+   "div": "0310501",
+   "name": "Comando Operacional Nacional",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CTP",
+   "div": "0310601",
+   "name": "Centro de Treinamento Policial",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RI",
+   "div": "0310701",
+   "name": "Region I",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RI-01",
+   "div": "0310801",
+   "name": "Regon II",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RI-012",
+   "div": "0310901",
+   "name": "Region III",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "RO",
+   "div": "0311001",
+   "name": "Região de Oecusse",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CPF",
+   "div": "0311101",
+   "name": "Comando do Pessoal e Formasaun",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "366": "Segurança nacional",
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "3660101",
+   "programme": "366",
+   "subprogramme": "36601",
+   "subprogramme_name": "Operação de segurança interna",
+   "name": "Cooperação de segurança técnica, militar e civis",
+   "div": [
+    "0310501",
+    "0311101"
+   ],
+   "indicator": "Númeru kooperasaun konjunta sira ne'ebé hala'o entre forsa seguransa (polísia, militar no sivil)",
+   "baseline": "38 kooperasaun konjunta sira ne'ebé hala'o entre forsa seguransa (polísia, militar no sivil)",
+   "target": "45 kooperasaun konjunta sira ne'ebé hala'o entre forsa seguransa (polísia, militar no sivil)",
+   "amounts": {
+    "10": 999286.0,
+    "20": 341001.0
+   },
+   "page": 335
+  },
+  {
+   "code": "3660102",
+   "programme": "366",
+   "subprogramme": "36601",
+   "subprogramme_name": "Operação de segurança interna",
+   "name": "Operações da PNTL",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "1) Numeru Operasaun da PNTL Realiza (numeru operasaun rutina: numeru operasaaun periodika no numeru operasaun eventual realizadas); 2) Persentajen populasaun sinte seguru iha sira nia komunidade 3) Número total de crimes registados por 1,000 Inhabitantes 4) Tempo médio de resposta a chamadas ou incidentes de emergência.",
+   "baseline": "1)5072 Operasaun da PNTL Realiza (5040 operasaun rutina: 12 operasaaun periodika 20 operasaun eventual realizadas); 2) 82% husi populasaun sinte seguru iha sira nia komunidade; 3) Número total de crimes registados por 1,000 Inhabitantes: 4571/1,38Milliaun Pop x 1000 habitante= 3,31 4) (Soma de todos os tempos de resposta a incidentes de emergência 60 minutos ÷ Número total de incidentes de emergência respondidos 5292) x 100 = 1,13 horas;",
+   "target": "1) 5100 Operasaun da PNTL Realiza (5051) operasaun rutina: 24 operasaaun periodika 25 operasaun eventual realizadas); 2) 100% husi populasaun sinte seguru iha sira nia komunidade; 3) Número total de crimes registados por 1,000 Inhabitantes",
+   "amounts": {
+    "20": 69000.0
+   },
+   "page": 335
+  },
+  {
+   "code": "3660403",
+   "programme": "366",
+   "subprogramme": "36604",
+   "subprogramme_name": "Gestão de Equipamentos e Infraestrutura",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0310101"
+   ],
+   "indicator": "% disponibilidade do sistema PNTL operasionaliza; % kobertura da komunikasaun",
+   "baseline": "80% disponibilidade do sistema PNTL operasionaliza; 80% kobertura da komunikasaun",
+   "target": "85% disponibilidade do sistema PNTL operasionaliza; 85% kobertura da komunikasaun",
+   "amounts": {
+    "20": 171000.0
+   },
+   "page": 335
+  },
+  {
+   "code": "3660405",
+   "programme": "366",
+   "subprogramme": "36604",
+   "subprogramme_name": "Gestão de Equipamentos e Infraestrutura",
+   "name": "Manutensaun no reparasaun edifisiu PNTL iha 13 Municipios, Atauro, Nacional no Unidade",
+   "div": [
+    "0310101"
+   ],
+   "indicator": "1) Numeru Edifisio PNTL Konstrui no Manutensaun; 2) % Edifisiu nebe operasionaliza no funsionaliza tuir standarizasaun",
+   "baseline": "1) 41 Edifisio PNTL Konstrui no Manutensaun; 2)100 % Edifisiu nebe operasionaliza no funsionaliza tuir standarizasaun",
+   "target": "1) 56 Edifisio PNTL Konstrui no Manutensaun; 2) 100% Edifisiu nebe operasionaliza no funsionaliza tuir standarizasaun",
+   "amounts": {
+    "20": 71400.0
+   },
+   "page": 335
+  },
+  {
+   "code": "36604X1",
+   "programme": "366",
+   "subprogramme": "36604",
+   "subprogramme_name": "Gestão de Equipamentos e Infraestrutura",
+   "name": "Security, vehicle, IT and communications equipment - PNTL",
+   "div": [
+    "0310101"
+   ],
+   "indicator": "% equipamentus seguransa, vekula no IT e Komunikasaun nebe Kompras",
+   "baseline": "TBC",
+   "target": "100% equipamentus seguransa, vekula no IT e Komunikasaun nebe Kompras",
+   "amounts": {
+    "40": 2000000.0
+   },
+   "page": 336
+  },
+  {
+   "code": "3660702",
+   "programme": "366",
+   "subprogramme": "36607",
+   "subprogramme_name": "Gestão de Segurança Terrestre e Costeira de Timor-Leste",
+   "name": "Prevenção de negócios ilegais no mar e na fronteira terrestre",
+   "div": [
+    "0310301",
+    "0310401"
+   ],
+   "indicator": "1) Numeru Operasaun fiskalizasaun nebe halao no apreensaun ba sasan ilegais sira; 2) Numeru operasaun konjunta; 3) Numeru illegal border incidents nebe deteta no prevende",
+   "baseline": "1) 244 Operasaun fiskalizasaun nebe halao no apreensaun ba sasan ilegais sira; 2) 44 operasaun konjunta; ) 192 illegal border incidents nebe deteta no prevende",
+   "target": "1) 100 Operasaun fiskalizasaun nebe halao no apreensaun ba sasan ilegais sira; 2) 20 operasaun konjunta; 3) Numeru illegal border incidents nebe deteta no prevende",
+   "amounts": {
+    "20": 352700.0
+   },
+   "page": 336
+  },
+  {
+   "code": "3663001",
+   "programme": "366",
+   "subprogramme": "36630",
+   "subprogramme_name": "Vigilância e Prevenção de Crimes Marítimos",
+   "name": "Vijilansia no Patrulla tasi- ibun",
+   "div": [
+    "0310401"
+   ],
+   "indicator": "1) Númeru patrulha tasi ibun no fornteira realiazadas ; 2) Numeru Sensibilizasaun prevensaun negosiu ilegal realizadas ; 3) Numeru koopersaun konjunta ho F-FDTL no ajensia relevante sira 4) Numeru illegal border",
+   "baseline": "1)150 patrulha ne'ebé hala'o kada fulan iha tasi ibun teritóriu; 2) 20 Sensibilizasaun prevensaun negosiu ilegal, proteza ambiente tasi nian ba komunidade sira nebe hela iha tasi ibun; 3) 2 koopersaun konjunta ho F- FDTL no ajensia relevante sira",
+   "target": "1) 1000 patrulha ne'ebé hala'o kada fulan iha tasi ibun teritóriu; 2) 200 Sensibilizasaun prevensaun negosiu ilegal, proteza ambiente tasi nian ba komunidade sira nebe hela iha tasi ibun; 3) 5 koopersaun konjunta ho F-FDTL no",
+   "amounts": {
+    "20": 324600.0
+   },
+   "page": 336
+  },
+  {
+   "code": "3663100",
+   "programme": "366",
+   "subprogramme": "36631",
+   "subprogramme_name": "Unidade Especial de Polícia",
+   "name": "Fortalesimentu ba Kapasidade Operasionál Unidade Espesiál de Polícia (UEP)",
+   "div": [
+    "0310201"
+   ],
+   "indicator": "1) Númeru insidente krítiku sira ne'ebé rezolve ho susesu. 2 ) Persentajen husi insidente emerjénsia sira hatán/ resposta tuir tempu",
+   "baseline": "1) 58 insidente krítiku sira ne'ebé rezolve ho susesu. 2) 100% hosi insidente emerjénsia sira ne'ebé responde tuir tempu",
+   "target": "1) Númeru insidente krítiku sira ne'ebé hetan ka rezolve ho susesu. 2) 100% husi insidente emerjénsia sira nebe responde tuir tempu",
+   "amounts": {
+    "20": 43000.0,
+    "30": 10000.0
+   },
+   "page": 337
+  },
+  {
+   "code": "3660301",
+   "programme": "366",
+   "subprogramme": "36603",
+   "subprogramme_name": "Formação e Desenvolvimento de Recursos Humanos da PNTL",
+   "name": "Formação acadêmica e técnico policial",
+   "div": [
+    "0311101"
+   ],
+   "indicator": "1) Numeru membru Polisia nebe konklui ona kursu formasaun akadémika no tékniku ; 2) Persentajem ofisiál sira ne'ebé kompleta dezenvolvimentu profisionál ka formasaun atualizasaun tinan-tinan 3) Númeru totál insidente uza forsa nian kada tinan 4) Persentajem kazu dixiplinár hasoru ofisiál sira konklui ho asaun\"",
+   "baseline": "1) 1582 membru Polisia nebe konklui ona kursu formasaun akadémika no tékniku ; 2) 41% ofisiál sira ne'ebé kompleta dezenvolvimentu profisionál ka formasaun atualizasaun tinan-tinan 3) 11 totál insidente uza forsa nian kada tinan 4) 92% kazu dixiplinár hasoru ofisiál sira konklui ho asaun\"",
+   "target": "1)992 membru Polisia nebe sei konklui ona kursu formasaun akadémika no tékniku ; 2) 100% ofisiál sira ne'ebé kompleta dezenvolvimentu profisionál ka formasaun atualizasaun tinan-tinan 3) totál insidente uza forsa nian kada tinan 4)100% kazu dixiplinár hasoru ofisiál sira konklui ho asaun\"",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 338
+  },
+  {
+   "code": "3660305",
+   "programme": "366",
+   "subprogramme": "36603",
+   "subprogramme_name": "Formação e Desenvolvimento de Recursos Humanos da PNTL",
+   "name": "Gestão de recursos humanos da PNTL",
+   "div": [
+    "0311101"
+   ],
+   "indicator": "1) Numeru Rekrutamentu ; 2) Persentajem ofisiál sira ne'ebé maka prienxe padraun dezempeñu anuál sira;",
+   "baseline": "1) 400 Rekrutamentu Polisia foun ; 2) 74% Ofisiál sira ne'ebé maka prienxe padraun dezempeñu anuál sira",
+   "target": "1) 400 Rekrutamentu Polisia foun ; 2) 100% Ofisiál sira ne'ebé maka prienxe padraun dezempeñu anuál sira",
+   "amounts": {
+    "10": 42695833.0
+   },
+   "page": 338
+  },
+  {
+   "code": "36603E1",
+   "programme": "366",
+   "subprogramme": "36603",
+   "subprogramme_name": "Formação e Desenvolvimento de Recursos Humanos da PNTL",
+   "name": "Re-pointing of PNTL salaries for new recruitment",
+   "div": [
+    "0311101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 1000000.0
+   },
+   "page": 338
+  },
+  {
+   "code": "3661703",
+   "programme": "366",
+   "subprogramme": "36617",
+   "subprogramme_name": "Segurança rodoviária",
+   "name": "Orientar o trânsito em áereas de tráfego elevado",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "1) Numeru asidente nebe registu iha IMS; 2) Númeru kampaña sensibilizasaun seguransa rodoviária ne’ebé hala’o tinan- tinan 3) Númeru sidadaun ne’ebé hetan informasaun liuhosi kampaña sensibilizasaun tránzitu",
+   "baseline": "1)2052 asidente nebe registu iha IMS ho total vitima2869 ( Kanek todan 377, kanek kman 2395 no mate 97); 2) 104 kampaña sensibilizasaun seguransa rodoviária ne’ebé hala’o tinan- tinan 3) 13,063 sidadaun ne’ebé hetan informasaun liuhosi kampaña sensibilizasaun tránzitu",
+   "target": "1) Numeru asidente nebe registu iha IMS; 2) 150 kampaña sensibilizasaun seguransa rodoviária ne’ebé hala’o tinan- tinan; 3) 6000 sidadaun ne’ebé hetan informasaun liuhosi kampaña sensibilizasaun tránzitu",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 339
+  },
+  {
+   "code": "3661807",
+   "programme": "366",
+   "subprogramme": "36618",
+   "subprogramme_name": "Polícia Comunitária",
+   "name": "Disseminar e divulgar informação sobre prevenção de crimes",
+   "div": [
+    "0310501",
+    "0310601",
+    "0310701",
+    "0310801",
+    "0310901",
+    "0311001"
+   ],
+   "indicator": "1) Númeru munisípiu ne’ebé implementa modelu",
+   "baseline": "1)13 husi Munisípiu inklui Illa Atauro Implementa Modelu",
+   "target": "1) 13 husi Munisípiu inklui Illa Atauro Implementa",
+   "amounts": {
+    "20": 741599.0
+   },
+   "page": 339
+  },
+  {
+   "code": "3661904",
+   "programme": "366",
+   "subprogramme": "36619",
+   "subprogramme_name": "Prevenção Criminal, Serviços de Investigação e Informação",
+   "name": "Intervir em situações de violência complexa e infiltração de crimes organizados",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "1) Numeru krime ordinariu no Organizadu rejistu iha sistema IMS nebe submete ba MP;",
+   "baseline": "1) 4922 krime ordinariu no Organizadu rejistu iha sistema IMS no submete ba MP;",
+   "target": "1) Numeru krime ordinariu no Organizadu rejistu iha sistema IMS nebe submete ba MP;",
+   "amounts": {
+    "20": 70000.0
+   },
+   "page": 340
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "# Auditorias internas ne'ebe implementa ona",
+   "baseline": "25 Auditorias internas ne'ebe implementa ona",
+   "target": "40 Auditorias internas ne'ebe implementa ona",
+   "amounts": {
+    "20": 2500.0
+   },
+   "page": 341
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0310101",
+    "0310201",
+    "0310301",
+    "0310401",
+    "0310501",
+    "0310601",
+    "0310701",
+    "0310801",
+    "0310901",
+    "0311001",
+    "0311101"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "98% orsamentu Ezekutado",
+   "target": "100% executado",
+   "amounts": {
+    "20": 2963820.0,
+    "30": 120000.0
+   },
+   "page": 342
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "Numeru Planu Annual no relatorio Trimestral produz",
+   "baseline": "2 Planu Anual no 4 relatórius trimestrais ne'ebe publika tuir tempu",
+   "target": "2 Planu Anual no 4 relatórius trimestrais n'ebe publika tuir tempu",
+   "amounts": {
+    "20": 2500.0
+   },
+   "page": 342
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0310101",
+    "0310201",
+    "0310301",
+    "0310401",
+    "0310501"
+   ],
+   "indicator": "Numeru eventus realiza iha nasional no municipios)",
+   "baseline": "5 eventus realiza ona iha nasional no municipios",
+   "target": "5 eventus realiza ona iha nasional no municipios",
+   "amounts": {
+    "20": 92000.0
+   },
+   "page": 342
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "% kontratu de Kompras produz",
+   "baseline": "95% kompras ne'ebe kompetetivu",
+   "target": "100% kompras ne'ebe kompetetivu",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 342
+  },
+  {
+   "code": "9802916",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Divulgação de informações práticas sobre a prevenção de crimes relacionados à violência doméstica e GBV a Autoridade local e líderes comunitários",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "1) Numeru vitima sobre viventes de VBG aprezenta keisa nebe rejistadu; 2) Númeru kampanha sensibilizasaun realizadas;",
+   "baseline": "1) 238 vitima sobre viventes de VBG aprezenta keisa nebe rejistadu; 2) 16 kampanha sensibilizasaun realizadas;",
+   "target": "1) Numeru kasu de VBG hetan akompanhamentu Unidade de Pessoas Vulneráveis PNTL tuir tempu ; 2) 20 kampanha sensibilizasaun realizadas;",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 343
+  },
+  {
+   "code": "9802929",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Dezenvolvimentu habilidade no rendimentu ekonomiku ba Familia PNTL",
+   "div": [
+    "0310501"
+   ],
+   "indicator": "Númuru membru familia sira ne’ebé simu formasaun atividade jeral konaba hasae rendimentu ekonomia",
+   "baseline": "0",
+   "target": "100 membru familia sira ne’ebé simu formasaun atividade jeral konaba hasae rendimentu ekonomia",
+   "amounts": {
+    "20": 5057.0
+   },
+   "page": 343
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "366.0.1",
+   "statement": "Melhoria da segurança e da confiança pública através de uma força policial profissional, responsável e de aproximação orientada a comunidade",
+   "indicator": "1. Número total de crimes registados por 1.000 habitantes 2. Fatalidades relacionadas com conflitos por 100.000 habitantes 3. Número de vítimas de tráfico de humano por 100.000 habitantes 4. Percentagem da população que se sente segura na sua comunidade",
+   "baseline": "1. Número total de crimes registados por 1,000 Inhabitantes: 4571/1,38Milliao Pop x 1000 habitante= 3,31 2. (Total de fatalidaes anuais relacionados com conflitos 7 ÷ População total) 1,38 milhões de habitantes × 100.000 = 0,5; 3. (Total anuais número de vitimas de trafico humano 5÷ Total população nacional)1,38million pp × 100,000 = 0.4; 4.Muito elevado – Mais de 90% dos timorenses sentem-se seguros nas suas comunidades. Por exemplo, as pesquisas revelaram que todos os grupos se sentem seguros localmente e 92% acredita que as suas propriedades são seguras.",
+   "target": "1. Progressivamente alcançar reduções anuais significativas nos crimes registados por 1.000 habitantes até 2030; 2.Progressivamente alcançar reduções anuais significativos em fatalidades relacionados com conflitos por 100,000 habitantes até 2030; 3.Progressivamente reduzir o número anual de vítimas de tráfico humano por 100.000 habitantes, visando uma redução significativa até 2030; 4. Porgressivamente alcançar aumentos anuais significativos nas perceções de segurança da comunidade, com metas alinhadas as normas internacionais de segurança até 2030",
+   "page": 334
+  },
+  {
+   "kind": "output",
+   "code": "36601.0.0",
+   "statement": "Melhorar a segurança e proteção dos cidadãos contra formas de crimes e violência",
+   "indicator": "1) Purcentagem da população que se sente segura na sua comunidade; 2) Número total de crimes registados por 1.000 habitantes 3) Tempo médio de resposta a chamadas ou incidentes de emergência.",
+   "baseline": "1) (Número de indivíduos inquiridos que referiram sentir-se seguros 431 ÷ Número total de indivíduos inquiridos) 526 × 100 = 82% 2) Número total de crimes registados por 1,000 Inhabitantes: 4571/1,38Milliao Pop x 1000 habitante= 3,31 3) (Soma de todos os tempos de resposta a incidentes de emergência 60 minutos ÷ Número total de incidentes de",
+   "target": "Progressivamente alcançar aumentos anuais significativos nas perceções de segurança da comunidade, com metas alinhadas as normas internacionais de segurança até 2030",
+   "page": 334
+  },
+  {
+   "kind": "output",
+   "code": "36604.0.0",
+   "statement": "capacidade operational da PNTL fortalecida atravez de infraestrutura e equipamento aprimorados",
+   "indicator": "1. Número de esquadras construídas ou reabilitadas 2. Percentagem de esquadras que cumprem os padrões de funcionalidade operacional\"",
+   "baseline": "1) 41 esquadras construídas ou reabilitadas 2.) 100% Percentagem de esquadras que cumprem os padrões de funcionalidade operacional \"",
+   "target": "1) 56 esquadras construídas ou reabilitadas 2) 100% Percentagem de esquadras que cumprem os padrões de funcionalidade operacional \"",
+   "page": 335
+  },
+  {
+   "kind": "output",
+   "code": "36607.0.0",
+   "statement": "Proteção garantida das fronteiras terrestres contra atividades ilícitas",
+   "indicator": "1.Número de incidentes ilegais fronteiriços detetados e prevenidos 2.Número de operações coordenadas com as F-FDTL e outras agências 3.Redução percentual dos casos de crimes transfronteiriços (ano a ano)\"",
+   "baseline": "1)192 incidentes ilegais fronteiriços detetados e prevenidos 2) 44 operações coordenadas com as F-FDTL e outras agências; 3) Redução percentual dos casos de crimes transfronteiriços (ano a ano)\" Total krime 2024 = 229 total krime 2025= 192 ( 229-192= 37 ) (37/229*100= 16% redusaun krime iha fronteira",
+   "target": "1) Numeru de incidentes ilegais na fronteira detetatdos e prevenidos 2) 10 das operações coordenadas com as F-FDTL e outras agências 3) Redução percentual dos casos de crimes transfronteiriços (ano a ano) \"",
+   "page": 336
+  },
+  {
+   "kind": "output",
+   "code": "36630.0.0",
+   "statement": "Proteção garantida das fronteiras costeiras contra atividades ilícitas",
+   "indicator": "1.Número de incidentes marítimos ilegais fronteiriços detetados e prevenidos 2.Número de operações coordenadas com as F-FDTL e outras agências. 3.Redução percentual dos casos de crimes transfronteiriços (anp a ano).\"",
+   "baseline": "1) 16 incidentes marítimos ilegais de fronteira detectados e prevenidos; 2)2 operações coordenadas com as F-FDTL e outras agências",
+   "target": "1) Numeru de incidentes ilegais na fronteira detetados e prevenidos 2) 10 nas operações coordenadas com as F-FDTL e outras agências. 3) Redução percentual dos casos de crimes transfronteiriços (ano a ano). \"",
+   "page": 336
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el20703: _ Capacidade aprimorada para resposta rapida e gestao de crises",
+   "indicator": "1. Número de incidentes críticos contidos ou resolvidos com sucesso. 2. Percentagem de incidentes de emergência respondidos dentro do tempo de resposta padrão.\"",
+   "baseline": "1) 58 de incidentes críticos contidos ou resolvidos com sucesso. 2) 100% de incidentes de emergência respondidos dentro do tempo de resposta padrão.\"",
+   "target": "Progressivamente alcançar reduções significativas nos tempos médios de resposta a emergências, em direção aos padrões internacionais até 2030",
+   "page": 337
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.2",
+   "statement": "Comunidade são seguras e protegidas",
+   "indicator": "1. Número total de crimes registados por 1.000 habitantes 2. Fatalidades relacionadas com conflitos por 100.000 habitantes 3. Número de vítimas de tráfico de humano por 100.000 habitantes 4. Percentagem da população que se sente segura na sua comunidade",
+   "baseline": "1. (Total annual crimes officially reported 4571÷ Total national population) 1,38million pop × 1,000 = 3,31 2. (Total de fatalidaes anuais relacionados com conflitos 7 ÷ População total) 1,38 milhões de habitantes × 100.000 = 0,5; 3. (Total anuais número de vitimas de trafico humano 5÷ Total população nacional)1,38million pp × 100,000 = 0.4; 4. Muito elevado – Mais de 90% dos timorenses sentem-se seguros nas suas comunidades. Por exemplo, as pesquisas revelaram que todos os grupos se sentem seguros localmente e 92% acredita que as suas propriedades são seguras.",
+   "target": "1. Progressivamente alcançar reduções anuais significativas nos crimes registados por 1.000 habitantes até 2030; 2.Progressivamente alcançar reduções anuais significativos em fatalidades relacionados com conflitos por 100,000 habitantes até 2030; 3.Progressivamente reduzir o número anual de vítimas de tráfico humano por 100.000 habitantes, visando uma redução significativa até 2030; 4. Porgressivamente alcançar aumentos anuais significativos nas perceções de segurança da comunidade, com metas alinhadas as normas internacionais de segurança até 2030",
+   "page": 337
+  },
+  {
+   "kind": "output",
+   "code": "36603.0.0",
+   "statement": "Os policiais têm as habilidades apropriadas para desempenhar suas funções.",
+   "indicator": "1. Proporção de polícias no ativo por 1.000 habitantes 2. Purcentagem de polícias mulheres 3. Percentagem de polícias que concluem anualmente formação de desenvolvimento profissional ou reciclagem 4. Percentagem de polícias que cumprem os padrões anuais de desempenho 5. Número total de incidentes de uso da força por ano 6. Percentagem de processos disciplinares contra polícias concluídos com ação\"",
+   "baseline": "1. (Número total de polícias no ativo 3948 ÷ População nacional total) 1,38 milhões de habitantes × 1.000 = 2,9; 2. (Número de polícias no ativo por patente/função 595 ÷ Número total de polícias no ativo na patente/função correspondente) 3948 × 100 = 15,07%; 3. Contagem total: Contagem oficial dos incidentes de uso da força registados anualmente. - Taxa: (Número de incidentes de uso da força 45 ÷ Número total de interações entre a polícia e o público) 3948 × 1.000 = 11; 4 (Número de processos disciplinares concluídos com medidas disciplinares 147 ÷ Número total de processos disciplinares concluídos) 151 × 100 = 97%\"",
+   "target": "1. Atingir progressivamente as proporções de polícias por população recomendadas internacionalmente até 2030; 2. Aumentar progressivamente a representação feminina em todas as patentes e funções da força policial, visando uma participação equilibrada de género até 2030; 3. Progressivamente alcançar reduções anuais nos incidentes de uso da força e nas taxas por 1.000 interações, visando incidentes mínimos e justificados até 2030; 4.Aumentar progressivamente a percentagem de processos disciplinares concluídos com acção formal anualmente, visando uma responsabilização abrangente até 2030.",
+   "page": 338
+  },
+  {
+   "kind": "output",
+   "code": "36617.0.0",
+   "statement": "Melhoria da segurança e mobilidade do utente da estrada",
+   "indicator": "1. Variação percentual anual dos acidentes e fatalidades no trânsito 2. Número de campanhas de sensibilização para a segurança rodoviária realizadas anualmente 3. Número de cidadãos impactados através de campanhas de sensibilização no trânsito",
+   "baseline": "1) (Número de acidentes ou fatalidades no ano corrente 97– Número de acidentes ou fatalidades no ano anterior) 117 ÷ Número no ano anterior) 2218× 100= 0,9% redusaun acidentes fatalidades",
+   "target": "Progressivamente alcançar uma redução anual consistente dos acidentes e das fatalidades no trânsito até 2030",
+   "page": 339
+  },
+  {
+   "kind": "output",
+   "code": "36618.0.0",
+   "statement": "Policiamento comunitSubprograma 36618: Polícia Comunitário aprimorado e envolvimento do cidadăo para melhorar a segurança local",
+   "indicator": "1. Percentagem da população que se sente segura na sua comunidade 2. Número de municípios que implementam o modelo de policiamento comunitário 3. Percentagem de membros da comunidade satisfeitos com os serviços policiais locais 4. Percentagem de queixas públicas contra a polícia resolvidas 5. Número de atividades de extensão e sensibilização comunitária realizadas anualmente\"",
+   "baseline": "1) Muito elevado – Mais de 90% dos timorenses sentem-se seguros nas suas comunidades. Por exemplo, as pesquisas verificaram que todas as faixas etárias se sentem seguras localmente e 92% acredita que as suas propriedades são seguras; 2) 13 dos municípios, incluindo a Ilha de Ataúro, estão a implementar o modelo de policiamento comunitário; 3) Número de queixas públicas resolvidas contra a polícia (116 ÷ Número total de queixas públicas oficialmente registadas): 118 × 100 = 98%; \"",
+   "target": "1. Progressivamente alcançar progressivamente aumentos anuais significativos nas perceções de segurança da comunidade, com metas alinhadas as normas internacionais de segurança até 2030; 2. Progressivamente aumentar o número de municípios que implementam ativamente o modelo de policiamento comunitário anualmente, visando a cobertura nacional até 2030; 3.Progressivamente alcançar aumentos anuais na percentagem de reclamações públicas resolvidas, visando uma resolução quase total (100%) até 2030",
+   "page": 339
+  },
+  {
+   "kind": "output",
+   "code": "36619.0.0",
+   "statement": "Sistemas de inteligência aprimorados e cooperação internacional",
+   "indicator": "1. Percentagem de crimes detectados proactivamente pela polícia 2. % de Ameaças previstas com precisão (Internas/Externas) em relação ao total identificado; 3.Número de relatórios de inteligência acionáveis partilhados anualmente com parceiros nacionais e internacionais; 4. Número de operações conjuntas de informações conduzidas; 5.Número de acordos formais de cooperação ou mecanismos de partilha de informações estabelecidos;",
+   "baseline": "1) Número de crimes detectados proactivamente pela polícia 4597 ÷ Número total de crimes registados) 5292 × 100 = 87% 2) Número de ameaças previstas com precisão 22 ÷ Número total de ameaças identificadas previstas) 66 × 100 = 33%; 3) Total de 19 relatórios de inteligência acionáveis oficialmente documentados e divulgados pelo NIS a outras agências de segurança; 4) Total de 20 operações conjuntas de informações conduzidas e oficialmente documentadas; 5) Total de 11 acordos de partilha de informações e operações conjuntas conduzidas com contrapartes estrangeiras e oficialmente documentados",
+   "target": "1. Aumentar progressivamente a proporção de crimes detectados proactivamente pela polícia, visando uma melhoria consistente até 2030 2. Progressivamente aumentar a taxa de precisão das previsões de ameaças anualmente, alcançando uma elevada fiabilidade preditiva até 2030; 3. Progressivamente aumentar o número de relatórios de inteligência acionáveis partilhados anualmente, melhorando a eficácia da coordenação entre as agências de segurança até 2030; 4. Progressivamente aumentar o número de operações conjuntas baseadas em informações anualmente, aumentando a eficácia da coordenação da segurança até 2030; 5. Progressivamente aumentar os acordos anuais de partilha de informações e as operações conjuntas com contrapartes estrangeiras, melhorando a cooperação global em matéria de segurança até 2030.",
+   "page": 340
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico PNTL aprovado incluindo plano de médio prazo",
+   "baseline": "75% Plano Estratégico implemented incluindo plano de médio prazo",
+   "target": "85% Plano Estratégico implemented incluindo plano de médio prazo",
+   "page": 341
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "75% Objetivos do Plano Anual Alcançados",
+   "target": "80%Objetivos do Plano Anual Alcançados",
+   "page": 341
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Planu Anual implementa ona",
+   "baseline": "75% Planu Anual implementa ona",
+   "target": "80%Planu Anual implementa ona",
+   "page": 341
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "% de participação plena e efetiva das mulheres e grupos marginalizados e",
+   "baseline": "10 % partisipasaun plena no efetiva husi feto no grupus marginalizados no",
+   "target": "100% husi PNTL Femenina hetan oportunidade lidera hodi foti dezisaun",
+   "page": 342
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "1) % Kazu de VBG hetan akompanhamentu Unidade de Pessoas Vulneráveis PNTL 2) % Redusaun krime de Violensia Basea ba Generu",
+   "baseline": "1)100% kasu de VBG hetan akompanhamentu hosi Unidade de Pessoas Vulneráveis PNTL",
+   "target": "1) % Kazu de VBG hetan akompanhamentu Unidade de Pessoas Vulneráveis PNTL 2) % Redusaun krime de Violensia Basea ba Generu",
+   "page": 343
+  }
+ ]
+}

@@ -1,0 +1,1664 @@
+{
+ "year": 2027,
+ "code": "021",
+ "name": "Ministério da Solidariedade Social e da Inclusão",
+ "abbr": "MSSI",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   196,
+   222
+  ]
+ },
+ "units": [
+  {
+   "code": "GMSSI",
+   "div": "0210101",
+   "name": "Gabinete da Ministra de Solidariedade Social e da Inclusão",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GVM",
+   "div": "0210102",
+   "name": "Gabinete do Vice-Ministro",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0210104",
+   "name": "Gabinete da Inspeção e Auditoria (GIA)",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGPS",
+   "div": "0210401",
+   "name": "Gabinete de Direção-Geral da Proteção Social",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAS",
+   "div": "0210402",
+   "name": "Direção Nacional de Assistência Social",
+   "type": "National Directorate",
+   "parent": "GDGPS"
+  },
+  {
+   "code": "DNRC",
+   "div": "0210403",
+   "name": "Direção Nacional de Reinserção Comunitária",
+   "type": "National Directorate",
+   "parent": "GDGPS"
+  },
+  {
+   "code": "DNPPD",
+   "div": "0210404",
+   "name": "Direção Nacional de Pessoas Portadoras de Deficiência",
+   "type": "National Directorate",
+   "parent": "GDGPS"
+  },
+  {
+   "code": "DNCP",
+   "div": "0210405",
+   "name": "Direção Nacional de Cooperação e Parceria",
+   "type": "National Directorate",
+   "parent": "GDGPS"
+  },
+  {
+   "code": "GDGSC",
+   "div": "0210501",
+   "name": "Gabinete de Direção-Geral dos Serviços Corporativos",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPFO",
+   "div": "0210502",
+   "name": "Direção Nacional de Planeamento, Finanças e Orçamento (DNPFO)",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNARHP",
+   "div": "0210503",
+   "name": "Direção Nacional Administração, Recursos Humanos e Património (DNARHP)",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNA",
+   "div": "0210504",
+   "name": "Direção Nacional de Aprovisionamento (DNA)",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  },
+  {
+   "code": "DNPCRP",
+   "div": "0210505",
+   "name": "Direção Nacional de Protocolo, Comunicação e Relações-Públicas (DNPCRP)",
+   "type": "National Directorate",
+   "parent": "GDGSC"
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "5100107",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar proteção social e Inclusão",
+   "div": [
+    "0210401"
+   ],
+   "indicator": "1) # de Reuniões dos assuntos trabalhos e proteção social no país as reuniões foram realizadas, 2) # de Reuniões dos assuntos trabalhos e proteção social no estrangeiro as reuniões foram realizadas",
+   "baseline": "1) 80, 2) 5",
+   "target": "1) 80, 2) 5",
+   "amounts": {
+    "20": 15864.0
+   },
+   "page": 196
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0210101",
+    "0210102"
+   ],
+   "indicator": "Orientação política / despacho e regras legais produzidas",
+   "baseline": "11 Enquadramento legal aprovado",
+   "target": "10",
+   "amounts": {
+    "20": 506371.0
+   },
+   "page": 196
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0210104"
+   ],
+   "indicator": "1) # de Património de estado foi inspecionado, 2) # de investigação para os casos internais; 3) # de desempenho da auditoria rutina; 4) # de Monitorização e fisalização foram realizadas",
+   "baseline": "1) 8. 2)10. 3) 35. 4) 4",
+   "target": "1) 8,. 2) 2 Investigações, 3) 30. 4) 10",
+   "amounts": {
+    "20": 15800.0
+   },
+   "page": 196
+  },
+  {
+   "code": "510011T",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Desenvolver a capacidade do auditor e reforçar Desempenho de Programas e Orçamento",
+   "div": [
+    "0210104"
+   ],
+   "indicator": "1) # de formação actulizada; 2 ) # de desseminação as Leis, Regras e Procedimentos as Direções e Instituição Solidariedade Social (ISS);",
+   "baseline": "1) 8 2)1",
+   "target": "1) 9 funcionários. 2) 3 Desseminações e elevar a capacidade dos funscionários",
+   "amounts": {
+    "20": 44200.0
+   },
+   "page": 196
+  },
+  {
+   "code": "510011U",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão de Orçamento, Acontabilidade e Tezouro",
+   "div": [
+    "0210501",
+    "0210502"
+   ],
+   "indicator": "1) % de desempenho a implementação de financeiros",
+   "baseline": "1) 87%, 2) 4, 3) 0, 4) 0, 5) 14, 6)0",
+   "target": "",
+   "amounts": {
+    "20": 1607603.0
+   },
+   "page": 196
+  },
+  {
+   "code": "510011V",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Eventos protocolares",
+   "div": [
+    "0210505"
+   ],
+   "indicator": "1) # de serviços protocolares no país, 2) # de serviços protocolares no estrangeiro (diáspora). 3) # de receções aos eventos oficiais no país rforam realizadas",
+   "baseline": "1)300, 2)10, 3)50, 4)6",
+   "target": "1)300, 2)10, 3)50",
+   "amounts": {
+    "20": 42913.0
+   },
+   "page": 197
+  },
+  {
+   "code": "510011W",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Aprovisionamento, planificão e aquisação",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "1) % de biding Documentos foram Uniformizados. 2) % de projetos de construções foram qualificadas",
+   "baseline": "1)100%, 2)100%",
+   "target": "1) 100%. 2) 100%",
+   "amounts": {
+    "20": 23029.0
+   },
+   "page": 197
+  },
+  {
+   "code": "510011X",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão de Património e Armazenamento",
+   "div": [
+    "0210503"
+   ],
+   "indicator": "1) % de bens e Patrimónios foram inventarizados. 2) % de logística foram Recebida, preservada e Distribuída",
+   "baseline": "1) 100%, 2) 100%",
+   "target": "1) 100%. 2) 100%",
+   "amounts": {
+    "20": 506319.0
+   },
+   "page": 197
+  },
+  {
+   "code": "510014D",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Gestão da Administração",
+   "div": [
+    "0210503"
+   ],
+   "indicator": "1) % de documentos foram registrados, Distribuidos e Arquivados manual e electrónico; 2) # de sosialização o SOP Correspondênscia e Arquivo na DN nos 13 CSSIM 3) # de procedimentos e",
+   "baseline": "1) 100%. 2) 0. 3) 2, 4) 0, 5) 0",
+   "target": "1) 100 %. 2) 14, 3) 4, 4)1, 5)14",
+   "amounts": {
+    "20": 9320.0
+   },
+   "page": 197
+  },
+  {
+   "code": "510014W",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Controlo de Qualidade",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "1) # de as aquisição ou locação de bens foram Inspecionadas e fiscalisadas 2) % de execução de Obras foram monitorizadas e fiscalisadas 3) % de prestação de serviços foram monitorisados e fiscalisadas 4) # de levantamentos de dados de novas edificações, manutenção de edificações, armazenamento e outras manutenções foram identificadas 5) # de serviços de preparação de desempenho e preparação de Bill of Quantity (BOQ) foram finalizados 6) # de Monitorização e avaliação dos serviços de Aprovisionamento foram realizadas",
+   "baseline": "1) 4 2) 100% 3) 100% 4) 5 5) 6 6) 20",
+   "target": "1) 4 2) 100% 3) 100% 4) 5 5) 6 6) 20",
+   "amounts": {
+    "20": 24320.0
+   },
+   "page": 198
+  },
+  {
+   "code": "510014X",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "implementação de políticas e leis para a Instituição de Solidariedade Social",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "1) # de funcionários de CSSM municipais têm optidos o conhecimento sobre a implementação o Decreto Lei de Financiamento; 2) % de Dereto Lei de Licenciamento à ISS e tipo de resposta social; 3) # de proposta foram avaliadas e aprovadas afim de",
+   "baseline": "1). 0; 2). 0; 3). 4; 4). 0; 5). 0;",
+   "target": "1). 12 CSSM, Ataúro e RAEOA; 2). 100%; 3). 7; 4). 12 municípios, Ataúro, RAEOA e 38 ISS; 5). 2",
+   "amounts": {
+    "20": 8101.0
+   },
+   "page": 198
+  },
+  {
+   "code": "510014Y",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Levantamento de dados dos beneficiários, acompanhar e fiscalizar",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "1) % de Estabelecimento de base de dados e os beneficiários de ISS foram registadoas, 2) # de ISS foram monitorizadas, avaliadas e fiscalizadas, 3) %de desenvolvimento de formato de monitorização, avaliação e fiscalização.",
+   "baseline": "1). 0; 2). 38 ISS; 3). 0",
+   "target": "1). 100 % de sistema de base de dados estabelecido. 2). 45 ISS foi monitorizado, avaliado e fiscalizado; 3). 100 % finalizado.",
+   "amounts": {
+    "20": 6160.0
+   },
+   "page": 199
+  },
+  {
+   "code": "5100157",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Reforçar atividade Desconcentração Administrativa CSSM (DGSI)",
+   "div": [
+    "0210401"
+   ],
+   "indicator": "% de Solidariedade Social e da Inclusão nos Municípios ezecutado o orçamento e o programa",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 820351.0
+   },
+   "page": 199
+  },
+  {
+   "code": "510017B",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Desenvolver o sistema base de dados, Levantamento dados de ISS e dos beneficiários, monitorizar e avali",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 9066.0
+   },
+   "page": 199
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0210502"
+   ],
+   "indicator": "1) # de dessiminação PAA - OGE Ano fiscal 2027 e elaboração PAA 2027 do CSSIM foi realizada 2) # de atividades de cada direções foi monitorizado e avaliado; 3) # de consultação a",
+   "baseline": "1) 13, 2) 2, 3) 4, 4) 13, 5)0, 6)0, 7) 13",
+   "target": "1) 13, 2) 5, 3) 4, 4) 13, 5)100%, 6)100%, 7) 13",
+   "amounts": {
+    "20": 176034.0
+   },
+   "page": 199
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0210503"
+   ],
+   "indicator": "1) # de Funsionário Permanente, Ajente Administração Pública e Casuais foram avaliado o seu desempenho; 2) # ajentes administracao Publica e Casuais Que foram Extender os seus Contrato de Trabalho; 3) # de funcionários foram recrutados e colocados; 4) # de funcionários foram promovidos ao grau; 5) # de funcionários foram progressão ao escalão, 6) # Garantir os comprimentos das leis e regularmentu e disciplinar,",
+   "baseline": "1) 375 funcionários permanentes e 57 funcionários Agentes, contratados 465 Ps, 2) 57 funcionários Agentes e 465 contratados, 3) 57 funcionários Agentes. 4) 101 foram promovidos, 5) 89, 6) 10",
+   "target": "1) 897 pessoas. 2). 376 agentes/casuais. 3). 30 funcioanrio Permanente. 4). 45 pessoas. 5)100, 6) 10",
+   "amounts": {
+    "10": 4303740.0,
+    "20": 20225.0
+   },
+   "page": 200
+  },
+  {
+   "code": "5100208",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Comunicações e divulgação corporativa",
+   "div": [
+    "0210505"
+   ],
+   "indicator": "1) # de Publicação de Informação Noticiária , 2) # Pacote através de TV (30 minutos); 3) # de produção e pacote de Informação Noticiária (Pacote através website MSSI/media social)",
+   "baseline": "1) 0. 2)0. 3)0",
+   "target": "1)1000, 2)4, 3)100",
+   "amounts": {
+    "20": 33800.0
+   },
+   "page": 200
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "1) # dos contratos de acquisição ou locação de bens são assinados 2) # dos",
+   "baseline": "1) 0, 2)0, 3)0",
+   "target": "1) 4, 2)6, 3)15",
+   "amounts": {
+    "20": 6040.0
+   },
+   "page": 200
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0210505"
+   ],
+   "indicator": "1) % de funcionamento dos serviços de comunicação de rede infra-estrutura da Informação Tecnologia ( IT) do CSSIM foram funcionados; 2) % de Serviço de linha da comunicação foi assegurado; 3) % de funcionamento do erviços de cominucacão de rede insfrastrutura da informação tecnologia (IT) do CSSIM foram funcionados, 4) % de tipo problemas sociais digitaligados no sistema de gestão proteção social, 5) % de serviços linha de Comunicaçã foi assegurada, 6) % sistema integrados Implementado, 7) Portal Internet Funcionada, 8) % de funcionários usam o Email Institucional, 9) # de Integração Email-Calendário, 10) % de AS-PA com Rede foi Estabilicida. 11) # de manutenção para sistema da linha de silidariedade foi reparada ou realizada 12) # de equipamentos para apoiar ao sistema de server da linha de solidariedade foi comprado e apoiado",
+   "baseline": "1) 100%. 2) 100%. 3)100%, 4) 100%, 5) 100%, 6)30%, 7) 100%, 8)60%, 9)0 10)0, 11) 0, 12) 0",
+   "target": "1) 100%. 2) 100%, 3)100%, 4) 100%, 5) 100%, 6)50%, 7) 100%, 8)100%, 9)100%, 10)100% 11) 2, 12) 1",
+   "amounts": {
+    "20": 260399.0
+   },
+   "page": 201
+  },
+  {
+   "code": "510023J",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Capasitação e Desenvolvimento recursos humanos",
+   "div": [
+    "0210503"
+   ],
+   "indicator": "1) # de funcionário foram formados na formação específica nomeadamente na área de Serviço Social; 2) #",
+   "baseline": "1) 100. 2) 0. 3) 20. 4) 0. 5) 0, 6)10 7) 43",
+   "target": "1) 200. 2) 150. 3) 30. 4) (70) 5) 100. 6) 50, 7) 43",
+   "amounts": {
+    "20": 101874.0
+   },
+   "page": 201
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "1) # selebra acordo de cooperação e nota de entendimento com ISS e outros entidades; 2) # de Encontros, reuniões da CPLP e Bilaterais com outros países; 3) # Certificação de Utilidade Social; 4) # de acompanhamento e monitorização aos projetos de cooperação, entre MSSI e os parceiros de desenvolvimento aos programas de bem-estar social, 5) # Funcionarios MSSI tem conhecimento sobre o sistema gestao base de dados digital, gestao documento e arquivo electronica.",
+   "baseline": "1). 38 ISS e 11 entidades; 2). 3; 3). 3; 4). 2, 5)0",
+   "target": "1).38 ISS e 15 entidades; 2). 4; 3).4 ; 4). 8; 5) 10",
+   "amounts": {
+    "20": 146463.0
+   },
+   "page": 202
+  },
+  {
+   "code": "5100344",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Gestão da Secretaria Assuntos Socioculturais",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "1) # de organização e facilitação aos encontros sobre assunto de ASEAN em Timor-Leste; 2) # de funcionários têm obtidas a capaciatação na área de língua inglesa, mecanismo e procedimento de protocolar, ‘’ position paper, note taker and report writing, drafting and chairing;’’ 3) # de participação à publica papel SOCA e ASCC as linhas sectorais SOCA-ASCC nos 12 Municípios, Ataúro e RAEOA; 4) # de organização e facilitação de encontro nas linhas de sectorais; 5) # de participação no Fórum de ASEAN. 6). % de Asegurar o Funcionamento a Missão do Diplomata Oficial.",
+   "baseline": "1). 0; 2). 3; 3). 0; 4). 4; 5). 10; 6). 0",
+   "target": "1). 10; 2). 10; 3). 15 linhas sectorais, 12 Municípios, incluindo Ataúro e RAEOA; 4). 10; 5). 30; 6) 100%",
+   "amounts": {
+    "20": 150157.0
+   },
+   "page": 203
+  },
+  {
+   "code": "5100350",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Acompanhamento implementacao desemzenvolvimento Bems estar social (ligação ao assunto ASEAN ‘’Senior Official Meeting on Social Walfare and Development – SOMSWD’’)",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "1) # de funcionários MSSI- CSSM e autoridade local obtidos conhecimentos sobre assunto ‘’Senior Official on Social Walfare and Development – SOMSWD, 2) # de encontro/ Workshop para harmonisação plano estrategico ASCC e Plano Ação annual. 3) # de monitorização da implementação declaração e programa de SOMSWD a nível nacional e CSSM 4) # de divulgação sobre assunto de SOMSWD atravez de média imprimir e eletrónico.",
+   "baseline": "1) 9 2). 0; 3). 6; 4) 0",
+   "target": "1) 14, 2). 14 3). 14 4). 2 publisidades;",
+   "amounts": {
+    "20": 18130.0
+   },
+   "page": 203
+  },
+  {
+   "code": "5100351",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Gestão dos servicos Senior Official on Social Walfare and Development (Indireta]",
+   "div": [
+    "0210405"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 94647.0
+   },
+   "page": 203
+  },
+  {
+   "code": "5100434",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Konstrusaun Edificio MSS iha Postu Administrativo Fatumea",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "% de construção de edificio MSSI no posto administrativo de Fatumea foi construída",
+   "baseline": "90%",
+   "target": "10%",
+   "amounts": {
+    "50": 9247.0
+   },
+   "page": 204
+  },
+  {
+   "code": "5100435",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Konstrusaun Edificio MSS iha Postu Administrativo Atauro",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "% de construção de edificio MSSI no posto administrativo de Atauro foi construída",
+   "baseline": "90%",
+   "target": "10%",
+   "amounts": {
+    "50": 9426.0
+   },
+   "page": 204
+  },
+  {
+   "code": "5100441",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "CSSM-Bobonaro (Edifisiu Foun + Armagem)",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "% de construção de edificio CSSM Bobonaro foi construída",
+   "baseline": "90%",
+   "target": "10%",
+   "amounts": {
+    "50": 60000.0
+   },
+   "page": 204
+  },
+  {
+   "code": "5100474",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Construção edifício no Posto Administrativo de Uatucarbau - Viqueque",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "% de construção de edifício MSSI no posto administrativo de Uatucarbau-Viqueque foi construída",
+   "baseline": "30%",
+   "target": "70%",
+   "amounts": {
+    "50": 59313.0
+   },
+   "page": 204
+  },
+  {
+   "code": "5100476",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Construção edifício no Posto Administrativo de Fohoren-Vila",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "% de construção de edifício MSSI no posto administrativo de Fohoren-Vila foi construída",
+   "baseline": "90%",
+   "target": "10%",
+   "amounts": {
+    "50": 9444.0
+   },
+   "page": 204
+  },
+  {
+   "code": "5100477",
+   "programme": "510",
+   "subprogramme": "51004",
+   "subprogramme_name": "Infraestruturas Edifícios administrativos",
+   "name": "Construção edifício no Posto Administrativo de Baguia-Baucau",
+   "div": [
+    "0210504"
+   ],
+   "indicator": "% de construção de edifício MSSI no posto administrativo de Baguia-Baucau foi construída",
+   "baseline": "30%",
+   "target": "70%",
+   "amounts": {
+    "50": 61727.0
+   },
+   "page": 204
+  },
+  {
+   "code": "9801304",
+   "programme": "980",
+   "subprogramme": "98013",
+   "subprogramme_name": "Proteção, Solidariedade Social e Inclusão",
+   "name": "Implementação da Estratégia Nacional de Proteção Social",
+   "div": [
+    "0210401"
+   ],
+   "indicator": "1) % de O decreto lei para Criação de comição interministerial e secretáriado Estrategia nacional Proteção Social, 2) # de Socialização o progresso de implemtação ENPS",
+   "baseline": "1) 75%, 2) 0",
+   "target": "1) 100%, 2) 14",
+   "amounts": {
+    "20": 35732.0
+   },
+   "page": 205
+  },
+  {
+   "code": "9801200",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Apoio Pontual à deficiência vulnerável",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). # de as pessoa pordoras deficiència vulneráveis foram apoiados imediata, 2). # de Monitorização ''EhD'' acesso ao apoio pontual 3). # de avaliação ao sucesso e boa pratica de utilização do Apoio pontual e Negócio Auto-sustentável para EhD e a Família cuidadora foi avaliado",
+   "baseline": "1). 194, 2) 19. 3). 0",
+   "target": "1). 150 2). 50 3). 4",
+   "amounts": {
+    "20": 90980.0
+   },
+   "page": 206
+  },
+  {
+   "code": "9801201",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Promovera os direitos das pessoas portadora da dificiencia intelectual",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). # de alunos foram socializados sobre possoas com deficiência inteletual; 2). # de pessoas com deficiência Inteletual na família, comunidade e Instituições foram monitorizadas",
+   "baseline": "1). 325 2). 0",
+   "target": "1). 280 2). 35",
+   "amounts": {
+    "20": 11405.0
+   },
+   "page": 206
+  },
+  {
+   "code": "9801202",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Monitorização da implementação do PAN para pessoas com deficiência",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). # Monitorização e avaliação de Instituição do Governo e Municípios implementam PAN EhD; 2). # de monitorização e avaliação às Direções técnicas, CSSM e Instituições Públicas (IP) tutelado a MSSI foram implementados o PAN EhD (responde PAN a EhD); 3). # de Monitorização e Avaliazação a EhD ao Subsídio SAII foram atendidos (responde a PAN",
+   "baseline": "1). 13 2). 14 3) .23 4) 4 . 5). 3 6). 0 7). 57 8). 23",
+   "target": "1). 13 2). 14 3). 20 4). 5 5). 4 6). 4 7). 60 8). 15",
+   "amounts": {
+    "20": 21460.0
+   },
+   "page": 206
+  },
+  {
+   "code": "9801203",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Promoção Direitos das Pessoas com Deficiência",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). % de progresso de Implementaão Convenção das Nações Unidas sobre os Direitos das Pessoas com Deficiência; 2). # Autoridade Local, comunitária no alunos e comunidade foram socializados sobre o PAN EhD e Convenção das Nações Unidas sobre os Direitos das Pessoas com Deficiência; 3). # de EhD participa na celebração do dia Mundial e Dia Nacional da Pessoas com Deficiência foram celebrados; 4) # Funcionario na Centru da Solidariedade Social e",
+   "baseline": "1). 75%, 2). 881, 3). 5483, 4)0",
+   "target": "11). 80% , 2), 300, 3). 4000, 4) 200",
+   "amounts": {
+    "20": 239390.0
+   },
+   "page": 207
+  },
+  {
+   "code": "9801209",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Estabelecimento o sistema de empoderamento Sócio-Económico a pessoa com deficiência",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). % de progresso de Instrumento legal criado; 2) # beneficiariu EhD e familia capacitado sobre negócio, foi facilitado pelo IADE, 3). # de beneficários com deficência foram acompanhados e monitorizados; 4) # de beneficiários com deficiência foram avaliados de inpacto sócio-económico positivo;",
+   "baseline": "1). 100% 2). 0 3). 4 4). 44",
+   "target": "1). 100% 2). 44 3). 20 4). 36",
+   "amounts": {
+    "20": 17660.0
+   },
+   "page": 208
+  },
+  {
+   "code": "9801210",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Gestão e Estabelecimento Conselho Nacional a pessoa com deficiência",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1) % Progresso estabilecimento Conselho Nacional a pessoas com deficiência baseado ao Decreto Lei CNPD; 2) % do progresso estabelecimento Secretariado CNPD;",
+   "baseline": "1) 0 2) 0",
+   "target": "1) 100%. 2) 100%. .",
+   "amounts": {
+    "20": 110786.0
+   },
+   "page": 208
+  },
+  {
+   "code": "9801216",
+   "programme": "980",
+   "subprogramme": "98012",
+   "subprogramme_name": "Proteção e promoção dos direitos das pessoas com deficiência",
+   "name": "Novo Atividade Comite dirativa nacional para assuntos deficientes",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 500.0
+   },
+   "page": 208
+  },
+  {
+   "code": "9804201",
+   "programme": "980",
+   "subprogramme": "98042",
+   "subprogramme_name": "Reabilitação e Reintegração de pessoas com problemas de saúde mental e Deficiência",
+   "name": "Apoio e resgate para as pessoas com deficiência mental na rua e confinamento em casa",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). # de EhD mental foi identificado básico e referido aos ISS e Facilidade saúde incluindo pessoas com deficiências mentais na rua e em confinamento em casa são transportadas para instalações de saúde mental; 2). # de",
+   "baseline": "1). 14 2). 84 3). 429 4). 526 5). 135",
+   "target": "1). 15 2). 80 3). 300 4). 450 5). 100",
+   "amounts": {
+    "20": 69810.0
+   },
+   "page": 208
+  },
+  {
+   "code": "9804204",
+   "programme": "980",
+   "subprogramme": "98042",
+   "subprogramme_name": "Reabilitação e Reintegração de pessoas com problemas de saúde mental e Deficiência",
+   "name": "Rehabilitação e Reintegração todos tipos de Deficiência",
+   "div": [
+    "0210404"
+   ],
+   "indicator": "1). # de Pessoas portadoras da deficiências referidas, reahabilitadas e reintegradas a familia, comunidade e Parceiros chaves; 2). # de famílias e comunidades foram sensibilizados acerca de atendimento básico a EhD na família e comunidade; 3). # de monitorização à EhD mental tratamento à reabilitação na Institução da Solidariedade Social na comunidade foi reabilitado.",
+   "baseline": "1). 96 2). 283 3). 0",
+   "target": "1). 80 2). 200 3) 25",
+   "amounts": {
+    "20": 5880.0
+   },
+   "page": 209
+  },
+  {
+   "code": "9803901",
+   "programme": "980",
+   "subprogramme": "98039",
+   "subprogramme_name": "Serviço de carros funerários e caixões",
+   "name": "Apoio a famílias enlutadas",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "1) # de Caixões apoiados para apoiar as famílias enlutadas. 2) % de Diploma procedimento de apoio carro funerário a família vulnerável, 3) # de Apoio de carro funerário a família vulnerável foram apoiados",
+   "baseline": "1) 1224. 2) 25%, 3)1224",
+   "target": "1)1,500 2)100%, 3)1,700",
+   "amounts": {
+    "20": 221000.0
+   },
+   "page": 210
+  },
+  {
+   "code": "9803902",
+   "programme": "980",
+   "subprogramme": "98039",
+   "subprogramme_name": "Serviço de carros funerários e caixões",
+   "name": "trasladacão falecida do exterior",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "# trasladação falecida do exterior",
+   "baseline": "5",
+   "target": "5",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 210
+  },
+  {
+   "code": "98039E1",
+   "programme": "980",
+   "subprogramme": "98039",
+   "subprogramme_name": "Serviço de carros funerários e caixões",
+   "name": "Solidarity housing for vulnerable families - phase 1 (15 houses)",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 90000.0
+   },
+   "page": 210
+  },
+  {
+   "code": "9804001",
+   "programme": "980",
+   "subprogramme": "98040",
+   "subprogramme_name": "Bolsa da Mãe",
+   "name": "Bolsa da Mãe (subsídio de apoio condicional)",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "1) # de Crianças na família foram atribuidos o subsídio Bolsa da Mae, 2) # de benefíciário BdM Condicional foi monitorizado",
+   "baseline": "1) 103,166, 2) 0",
+   "target": "1) 75248, 2) 100%",
+   "amounts": {
+    "20": 54400.0,
+    "30": 10251672.0
+   },
+   "page": 211
+  },
+  {
+   "code": "9804002",
+   "programme": "980",
+   "subprogramme": "98040",
+   "subprogramme_name": "Bolsa da Mãe",
+   "name": "Dados de registro e verificação da Bolsa de MAE",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "1) # de Novo do beneficiário foram registrado e reajustado, 2) # de Reajustamento e atulização a nível escolar aos beneficiários Bolsa da Mãe",
+   "baseline": "1) 103,166, 2) 5000",
+   "target": "1) 5000, 2) 5000",
+   "amounts": {
+    "20": 38000.0
+   },
+   "page": 211
+  },
+  {
+   "code": "9804004",
+   "programme": "980",
+   "subprogramme": "98040",
+   "subprogramme_name": "Bolsa da Mãe",
+   "name": "Subsídio condisional saúde- nutrição a mulheres grávidas e crianças",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "1) % de ''Uma Kain'' Vulneraveldade foram identificadas (survey) nos 10 municípios; 2) # de Beneficiários foram apoiados de alimentos nutritivos; 3) # de Subsídio condicional saúde-nutrição a mulheres grávidas foram atribuidos,",
+   "baseline": "1) 100%. 2) 10,000. 3) 10,000",
+   "target": "1) 100%, 2) 10,000, 3) 10,000",
+   "amounts": {
+    "20": 26000.0,
+    "30": 500000.0
+   },
+   "page": 211
+  },
+  {
+   "code": "98040E1",
+   "programme": "980",
+   "subprogramme": "98040",
+   "subprogramme_name": "Bolsa da Mãe",
+   "name": "SANUTRIO beneficiary distribution and monitoring - fintech fees",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 211
+  },
+  {
+   "code": "98040E2",
+   "programme": "980",
+   "subprogramme": "98040",
+   "subprogramme_name": "Bolsa da Mãe",
+   "name": "Conditional Bolsa da Mae SANUTRIO - maternal and child nutrition supplements",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 500000.0
+   },
+   "page": 211
+  },
+  {
+   "code": "9804101",
+   "programme": "980",
+   "subprogramme": "98041",
+   "subprogramme_name": "Assistência Social/humanitário",
+   "name": "Ajuda humanitária (imediata e atempada)",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "1) # Família vulnerável (individual / grupo) com suporte para mantimentos/comestíveis. 2 )# Instituição de Solidariedade Social apoiada com mantimentos/comestíveis. 3) # de pacientes vulneráveis foram apoiodos de alimentos nutritivos nos hospitais e centros de saúde 4) % de diploma procidemento de apoio assistência humanitária;, 5) # de Família afetada de desastre naturais foi apoiada, 6) # outras instituições/grupos receberam apoio humanitária 7) # de apoio de orçamento mão de obra para a construção da casa solidariedade familia vulnerabilidade/carencida foram distribuidos",
+   "baseline": "1) 85000 2) 35 ISS. 3)15. 4)0, 5),0, 6)0, 7) 9",
+   "target": "1) 8,000 2) 24 3) 5,000 4) 100% 5) 5,000 6) 100 7) 15",
+   "amounts": {
+    "20": 1601600.0
+   },
+   "page": 212
+  },
+  {
+   "code": "9804102",
+   "programme": "980",
+   "subprogramme": "98041",
+   "subprogramme_name": "Assistência Social/humanitário",
+   "name": "Apoio de emergência para comunidade afetada de desastre",
+   "div": [
+    "0210402"
+   ],
+   "indicator": "# de Famílias afetadas de desastres (calmidade) foram evacuadas e apoiadas",
+   "baseline": "5000",
+   "target": "2000",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 212
+  },
+  {
+   "code": "9802500",
+   "programme": "980",
+   "subprogramme": "98025",
+   "subprogramme_name": "Inclusão Social",
+   "name": "Gestão e estabelecimento da Instituição Solidariedade Social",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) % de estabelecimento do Regulamentos complementares de DL n. 25/2017; 2) # de ISS estabelecido baseado nos regulamentos aplicáveis foi estabelicido; 3) % de base de dados para ISS; 4) # de projetos de construção equipamento social/ISS",
+   "baseline": "1) 0 2) 0 3) 0 4) 0",
+   "target": "1) 50% 2) 20 ISS 3) 50% 4) 2 projetos",
+   "amounts": {
+    "20": 2741.0
+   },
+   "page": 213
+  },
+  {
+   "code": "9802501",
+   "programme": "980",
+   "subprogramme": "98025",
+   "subprogramme_name": "Inclusão Social",
+   "name": "Parcerias com Instituição Solidariedade Social (ISS) para proteção, reintegração de comunidade e inclusão social",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de Parceiros da Instituição Solidariedade Social (ISS); 2) # de beneficiarios acesso ISS 3) # de participantes no encontro de coordenção sobre as regras e procedimentos de execução orçamento e relatório de ISS;",
+   "baseline": "1) 38 2) 5,276 3) 100",
+   "target": "1) 50 2) 8,000 3) 150",
+   "amounts": {
+    "20": 10195.0,
+    "30": 1000000.0
+   },
+   "page": 213
+  },
+  {
+   "code": "9802506",
+   "programme": "980",
+   "subprogramme": "98025",
+   "subprogramme_name": "Inclusão Social",
+   "name": "Monitorização e fiscalização à Instituição Solidariedade Social",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de Instituição Solidariedade Social (ISS) foi monitorizada 2) # de ISS foi fiscalizada 3) % de resultado de monitorização e fiscalização foram sensebilizada à ISS",
+   "baseline": "1) 38 2) 0 3) 0",
+   "target": "1) 50 2) 38 3) 50 %",
+   "amounts": {
+    "20": 15900.0
+   },
+   "page": 214
+  },
+  {
+   "code": "9802508",
+   "programme": "980",
+   "subprogramme": "98025",
+   "subprogramme_name": "Inclusão Social",
+   "name": "Estabelecimento e operacionalização do apoio aos idosos",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 4800.0
+   },
+   "page": 214
+  },
+  {
+   "code": "9802509",
+   "programme": "980",
+   "subprogramme": "98025",
+   "subprogramme_name": "Inclusão Social",
+   "name": "Divulgacao Politica dos dereitos dos idosos, promove, cuida específico na família e comunidade",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 214
+  },
+  {
+   "code": "9802600",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "Reinserção comunitária como reclusos e ex-reclusos.",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de ex-presidiários reintegrados à familia e comunidade 2) # de beneficiários de apoio pontual dos reclosos foram reintegrdos na família e comunidade 3) # de Presidiários contente com família",
+   "baseline": "1) 6 2) 107 3) 1200",
+   "target": "1) 50 2) 200 3) 1350",
+   "amounts": {
+    "20": 50435.0
+   },
+   "page": 214
+  },
+  {
+   "code": "9802601",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "Reinserção comunitária as crianças em conflito com a lei, reclusos e ex reclusos.",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de crianças em conflito e número de presidiários e ex- presidiários; 2) # crianças acompanhadas em processo judicial, reabilitação e reinserção social; 3) # de criancas em conflito com a lei",
+   "baseline": "1) 50 2) 25 3)10 4) 200",
+   "target": "1) 75 2) 35 3) 20 4) 250",
+   "amounts": {
+    "20": 5760.0
+   },
+   "page": 214
+  },
+  {
+   "code": "9802606",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "Desenvolver um programa de serviços sociais e de bem-estar social",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de divulgação e reuniões sobre o Decreto Lei, as políticas, os diplomas ministeriais e os programas relacionados com as competências do DNRC 2) # de participantes divulgação e formação sobre o Decreto Lei, as políticas, os diplomas ministeriais e os programas relacionados com as competências do DNRC",
+   "baseline": "1) 8 2) 4 3) 0 4) 4 5) 0 6) 0",
+   "target": "1) 13 2) 9 3) 377 4) 15 5) 13 6) 10%",
+   "amounts": {
+    "20": 33756.0
+   },
+   "page": 215
+  },
+  {
+   "code": "9802607",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "Reforça Apoio Reinserção Social para Idosos Vulneráveis e Outros Grupo Vulneráveis",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de beneficiários de apoio pontual das LGBTIQ+ 2) # de beneficiários de apoio pontual das idosos vulnerável 3) # de beneficiários de apoio pontual das pessoas com HIV-SIDA 4) # de beneficiários de apoio pontual das pessoas com Toxidependente 5) # de beneficiários de apoio pontual das pessoas ou familia em circunstâncias social 6) # de beneficiários de apoio pontual das pacientes vulnerável 7) # de Coordenção Rede Serviços em Nacional/Municipal sobre doenças toxicodependentes 8) % de Política Nacional à doença Toxidependente",
+   "baseline": "1) 25ps 2) 150ps 3) 25ps 4) 15ps 5) 120ps 6) 40ps 7) 2 encontros 8) 0",
+   "target": "1) 25ps 2) 150ps 3) 25ps 4) 15ps 5) 120ps 6) 50ps 7) 5 encontros 8) 75%",
+   "amounts": {
+    "20": 88000.0
+   },
+   "page": 215
+  },
+  {
+   "code": "98026E1",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "Establishment of the national 116 helpline centre",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 50000.0
+   },
+   "page": 215
+  },
+  {
+   "code": "98026E2",
+   "programme": "980",
+   "subprogramme": "98026",
+   "subprogramme_name": "Reintegração Comunitária",
+   "name": "National 116 helpline centre - equipment",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 50000.0
+   },
+   "page": 215
+  },
+  {
+   "code": "9802805",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Implementação da Recomendação Chega relacionada com a paz e a coesão social",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "# de Pessoas foram apoiadas",
+   "baseline": "40",
+   "target": "50",
+   "amounts": {
+    "20": 28780.0
+   },
+   "page": 216
+  },
+  {
+   "code": "9802819",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Realização de acções ou reuniões para a implementação de políticas de igualdade de género",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de treinamento à resolução de conflito para as Mulheres 2) # de avaliação ao mecanismo de ''ba Harii Paz no Hametin Koezaun Sosiál 3). # de Encontro de coordenação com Pontos Focais de Serviços apoio aos Grupos Vulneráveis",
+   "baseline": "1) 2 2) 6, 3) 0",
+   "target": "1) 2 2) 6 3) 4",
+   "amounts": {
+    "20": 6300.0
+   },
+   "page": 216
+  },
+  {
+   "code": "9802821",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "Organiza a monitorização ao&amp;#13;&amp;#10;desenvolvimento de infraestruturas&amp;#13;&amp;#10;básica será beneficiária&amp;#13;&amp;#10;comunidade nominadamente as mulheres",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) % de população especialmente as mulheres, relatados acesso a Instalação infraestrutura básica relativamente a saúde, o saneamento e a água potável.",
+   "baseline": "1) 0 2) 8 3) 1200",
+   "target": "1) 1% 2) 8 3) 1200",
+   "amounts": {
+    "20": 3800.0
+   },
+   "page": 216
+  },
+  {
+   "code": "9802822",
+   "programme": "980",
+   "subprogramme": "98028",
+   "subprogramme_name": "Implementação do NAP - Resolução 1325 (2000) da ONU sobre WPS",
+   "name": "ODesenvolva as campanhas públicas para encorajar e garantir que as mulheres participem nos vários aspetos sobrevivo na comunidade promoverá a oportunidade e recursos relacionados com resolução de conflitos",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) % de casos foram relatado ao DNPKK por ano e resolvido e a mediação pela as mulheres; 2) # de campaha através de forum teátro 3) # de campanha através de média eletrónica",
+   "baseline": "1) 0 2) 2 3) 1",
+   "target": "1) 2% 2) 6 3) 2",
+   "amounts": {
+    "20": 19180.0
+   },
+   "page": 217
+  },
+  {
+   "code": "9802913",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Monitoriza implementasaun SOP para todos os &quot;UMA MAHON&quot;, incluindo protocolo e critérios padronizados sobre lidar com vítimas de violência doméstica e VBG",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de beneficiários em ''uma mahon'' e casa transitória; 2) # de ''UMA MAHON' foi monitorizada e executada de acordo com o manual procedimento; 3) % de revisão ao estudo de custo à VBG",
+   "baseline": "1) 1500pss 2) 11 3) 0",
+   "target": "1) 1500 2) 13 3)100%",
+   "amounts": {
+    "20": 16640.0
+   },
+   "page": 217
+  },
+  {
+   "code": "9802925",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Empoderamento atarvés formação Gestão Financeira, gestão de Produção e Mercadoria a Vítima VBG, VD e mulheres como Cehe da família.",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) % de acordo (MoU) formação entre IADE) foi celebrado; 2) # de beneficiários de programa empoderamento a mulhere (desagregado: o grupo de idade, caraterístico vulnerável",
+   "baseline": "1) 25% 2) 0 3) 0 4) 0 5) 0",
+   "target": "1) 100%. 2) 100 3) 100% 4) 5 grupos e 150 pss individual 5) 200",
+   "amounts": {
+    "20": 5820.0
+   },
+   "page": 217
+  },
+  {
+   "code": "9802927",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Desenvolvimento, estabelecimento e funcionamento a linha telefonica HotLine 24/7 vitimas de VD/VBG",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) % de Política Linha solidaria 116, 24/7 2) # de atividade outreach às mulheres e crianças acesso a informação sobre serviços de atendimento. 3) % de mulheres cumpriendidos sobre a rede de referal foram apoiados via telefónica ‘’Hotline’’ 24h/semana (desagregado: segundo o grupo de idade) 4) # de caso violência baseiado de Gênero(VBG) relatado atravez de linha telefônica 24horas/semana. (disagregado: segundo o grupo de idade, município e suco).",
+   "baseline": "1) 50% 2) 6 3) 0 4) 91",
+   "target": "1) 100% 2) 13 3) 5% 4) 1500",
+   "amounts": {
+    "20": 4995.0
+   },
+   "page": 218
+  },
+  {
+   "code": "9802928",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Estabelecimento e funcionamento a casa transitória às vÍtimas de VD/VBG",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de beneficiários acesso da casa transitória; 2) % de Alocção de recuros humanos e orçamento adecuado ao ''Fatin Hakmatek Foun'' 3) # de monitorização da casa transitória foi monitorizado",
+   "baseline": "1) 0 2) 0 3) 0",
+   "target": "1) 20 2) 25 % 3) 1",
+   "amounts": {
+    "20": 4360.0
+   },
+   "page": 218
+  },
+  {
+   "code": "9802930",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Fortalecer funcionamento da Rede Referal às vitimas VD/VBG",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de participantes no encontro a nível nacional e a nível municipal 2) # de",
+   "baseline": "1) 253 2) 33 3) 21% 4) 25 %",
+   "target": "1) 1,500 2) 50 3) 75 % 4) 75%",
+   "amounts": {
+    "20": 4440.0
+   },
+   "page": 218
+  },
+  {
+   "code": "9802931",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Apoio Pontual às vítimas de VD/VBG",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de beneficiários de apoio pontual das vitimas VD/VBG apoiado 2) # de beneficiarios foi monitorizado",
+   "baseline": "1) 295ps 2) 0",
+   "target": "1) 300ps 2) 100ps",
+   "amounts": {
+    "20": 71715.0
+   },
+   "page": 219
+  },
+  {
+   "code": "9802932",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Fortalecer Gestão de caso à vitíma VD/VBG",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de vítimas VD/VBG foi acompanhadas 2) # de caso VD/VBG foi concluido 3) # de participantes na socialização de PPO incluindo protocolo e critérios padronizados sobre lidar com vítimas de violência doméstica e VBG;",
+   "baseline": "1) 185 2) 14 3) 75",
+   "target": "1) 300 2) 56 3) 250",
+   "amounts": {
+    "20": 15300.0
+   },
+   "page": 219
+  },
+  {
+   "code": "9802933",
+   "programme": "980",
+   "subprogramme": "98029",
+   "subprogramme_name": "Implementação do NAP-GBV",
+   "name": "Reforçar a implementação o funcionamento de sistema base de dados SIGAS à Violência Doméstica e Violência Baseiando de Género (VD/VBG)",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de vítima ou seja sobreviventes acesso ao serviços ecenciais e registado na base de dados online e atualizado periodicamente. ( desagregado: de acordo com o tipo de atendimento; o grupo de idade, Município, estatuto civil, deficiência e o tipo de caso) 2) % de monitorização implementação sistema de SIGAS",
+   "baseline": "1) 100 2) 50%",
+   "target": "1) 300 2) 100%",
+   "amounts": {
+    "20": 5290.0
+   },
+   "page": 219
+  },
+  {
+   "code": "9800700",
+   "programme": "980",
+   "subprogramme": "98007",
+   "subprogramme_name": "Proteção de crianças em risco e perigo",
+   "name": "Subsidiu de apoio pontual às crianças, jovens em risco e perigo",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de beneficiários de apoio pontual das crianças em risco e perigo em reinserção social o pagamento foi realizado; 2) # de beneficiários de apoio pontual das menores grávida em reinserção Socialo pagamento foi realizado; 3) # de beneficiários de apoio pontual das crianças e jovens conflito com lei em reinserção Social o pagamento foi realizado; 4) # de beneficiários de apoio pontual das crianças vítimas de tráfico humano em reinserção Social o pagamento foi realizado; 5) # de Apoio pontual às crianças nas estradas o pagamento foi realizado \"",
+   "baseline": "1) 200 2) 25 3) 37 4)15 5) 25 \"",
+   "target": "1) 500 2) 50 3) 50 4) 30 5) 50",
+   "amounts": {
+    "20": 75772.0
+   },
+   "page": 220
+  },
+  {
+   "code": "9800702",
+   "programme": "980",
+   "subprogramme": "98007",
+   "subprogramme_name": "Proteção de crianças em risco e perigo",
+   "name": "Implementar política bem- estar social para crianças e família",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de entidades relevantes (comunidade, líderes locais e outros parceiros ineteressados na área assuntos de crianças foram formados como Serviço Social Profissional para promover, prevenir e responder a situação das crianças na comunidade; 2) # de Família resilentes pomover através de formação empoderamento família baseia a política de bem-estar a crianças e família; 3) # de facilitador no suco a",
+   "baseline": "1) 125 2) 12500 3) 375",
+   "target": "1) 250 2) 13000 3) 400",
+   "amounts": {
+    "20": 45403.0
+   },
+   "page": 220
+  },
+  {
+   "code": "9800703",
+   "programme": "980",
+   "subprogramme": "98007",
+   "subprogramme_name": "Proteção de crianças em risco e perigo",
+   "name": "Implementação a Lei Proteção das Crianças e Jovens em Perigo através de Sosializasção e preparação de Medidas Alternativas",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # de Postos Administrativos e entidades foram Socializada a Lei de Proteção das Crianças e Jovens em Perigo; 2) Estabelecer o ‘’Stering commite’’ para denzenvolver o Plano Nacional à implementação a Lei de Proteção ‘’ Labarik no Joven iha Perigu’’. 3) # município e entidades foram socializadas a PAN Proteção das Crianças e jovens em perigo; 4) # de Centro de Acolhamentos (Orfanato e colégio) foi reavaliado; 5). # de as crinças baseiado do resulltado reavalição; 6) % de estratégia de reintegração (de instituicionalização) os orfonatos a família/comunidade; 7) # de Formação (construir a capacidade) para os utilizadores o sistema de gestão de caso a Informação na gestão de digital- PRIMERO; 8) % de Plano Ação Nacional à Reforma de Cuidado Alternativo: 9) % de Plano Ação Nacional ao atendimento as crainças em emergência 10) % de manual ou padrão Mínimo para apoiar às Vítimas de crianças afetadas inpacto de Desastres.",
+   "baseline": "1) 20 Posto Administrativos e entidades relevantes (2600 pss). 2) 50% 3) 0 4) 15 centros 5) 100 6) 25 % 7) 100% 8) 100% 9) 100% 10)3",
+   "target": "1) 30 Posto administrativos e entidades relevantes (3000pss). 2) 100% 3) 25 % 4) 25 centros 5) 100 6) 35% 7) 6 8) 100% 9) 100% 10) 100%",
+   "amounts": {
+    "20": 15955.0
+   },
+   "page": 221
+  },
+  {
+   "code": "9800705",
+   "programme": "980",
+   "subprogramme": "98007",
+   "subprogramme_name": "Proteção de crianças em risco e perigo",
+   "name": "Referal caso e reintegração para família e comunidade",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # Criancas vitimas em risco e perigo foi acompanhadas, do processo referal caso e reintegracao",
+   "baseline": "1) 300 2) 33 3) 25%",
+   "target": "1) 600 2) 135 3) 100%",
+   "amounts": {
+    "20": 17280.0
+   },
+   "page": 221
+  },
+  {
+   "code": "9800706",
+   "programme": "980",
+   "subprogramme": "98007",
+   "subprogramme_name": "Proteção de crianças em risco e perigo",
+   "name": "A implementação Lei Adoção da Criança e Regulamentação Poder Paternal",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) % de SOP Lei adoacao da Crianca Desenvolvido, 2) # de formadores à formação a implementação da Lei foram formados; 3) # de Identidades foram socializadas; 4) # de Relatório Social foi produzido e submetido ao Tribunal; 5) # de monitorização das crianças conforme a decisão do Tribunal para juntar com a família. 6) # de coordenação com o MJ e as entidades relevantes sobre a lei adoção da criança e regulamentação poder paternal e outras medidas de alternativas a proteção das criança",
+   "baseline": "1) 25 % 2) 0 3) 0 4) 25 Relatórios 5) 3 6) 4 Encontros",
+   "target": "1) 100% 2) 15 3) 550 4) 35 Relatórios 5) 8 6) 4 Encontros",
+   "amounts": {
+    "20": 7200.0
+   },
+   "page": 222
+  },
+  {
+   "code": "9800707",
+   "programme": "980",
+   "subprogramme": "98007",
+   "subprogramme_name": "Proteção de crianças em risco e perigo",
+   "name": "Funcionamento da Rede Prortecao das Criancas",
+   "div": [
+    "0210403"
+   ],
+   "indicator": "1) # Encontro rede proteção das crianças a nível nacional, 2) # de monitorização do encontro Rede Proteção das Crianças em Município e Posto Administrativo 3) % de TdR a Rede Proteção ''Labarik no Joven iha Perigu'' 4) % de Diploma Ministerial para regularizar a Rede Proteção de Crianças, incluindo a coordenação a proteção de crianças na rede de Referal (VBG)",
+   "baseline": "1) 4 2) 6 3) 25 % 4)25 %",
+   "target": "1) 284 enkontros 2) 26 3) 100% 4) 100%",
+   "amounts": {
+    "20": 19150.0
+   },
+   "page": 222
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Recurso Humano qualificado, qualidade de atendimento ao publico e satisfação publico/Número de metas alcançadas",
+   "baseline": "50%",
+   "target": "75%",
+   "page": 196
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Relatórios Trimestrais de Implementação do Plano Anual",
+   "baseline": "4",
+   "target": "4",
+   "page": 196
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% dos Metas do Plano Anual Alcançados",
+   "baseline": "Plano Anual 100% Realizado",
+   "target": "100%",
+   "page": 199
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "# de acordo cooperação e parcerias asinadas",
+   "baseline": "40 acordos de Cooperação e parcerias foram assinados e implementados (Em 2016 até 2018)",
+   "target": "50 acordos de cooperação nacional, regionais, bilaterais e multilaterais assinados em 2019-2020 e de 35 por ano",
+   "page": 202
+  },
+  {
+   "kind": "output",
+   "code": "51004.0.0",
+   "statement": "Instalações administrativas construídas e concluídas com boa qualidade",
+   "indicator": "% Instalações físicas de construção para serviços sociais construídos",
+   "baseline": "12 edificios de administrativos de servicos sociais foram cosntruidos",
+   "target": "100%",
+   "page": 204
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.0",
+   "statement": "Sistema de proteção social integral e universal integrado para alcançar a Proteção Social Nacional e reduzir a pobreza",
+   "indicator": "1) % (Percentage) of eligible vulnerable households receiving at least one social protection benefit or service during the fiscal year. 2) % (Percentage) of social assistance beneficiaries whose total support received meets or exceeds the nationally defined",
+   "baseline": "1) 25% 2) 50% 3) 6613",
+   "target": "1) 35% 2) 75% 3) 9029",
+   "page": 204
+  },
+  {
+   "kind": "output",
+   "code": "98013.0.0",
+   "statement": "Todas as cidadão, nomeadamente as crianças, jovens (rapaz e raparigas) idade produtiva, idosos e deficientes irão recebera a proteção social através de sistema proteção social integrado.",
+   "indicator": "1) # of core social protection policy and regulatory instruments approved and operational during the fiscal year. 2) % of Social Solidarity Centres (CSS) meeting minimum national functionality standards. 3) # of national social protection coordination meetings held with approved minutes and action plans, and percentage of agreed actions implemented within the year.",
+   "baseline": "O esboço da Estratégica Nacional à proteção social foi elaborado. Em 2015 as reuniões dos ministros dos assuntos trabalhos e de proteção social da CPLP foram realizadas em TL",
+   "target": "100%",
+   "page": 205
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.1",
+   "statement": "Cidadãos com deficiência têm o mesmo direito e são protegidos como outro cidadão",
+   "indicator": "% de pessoas com deficiência recebendo proteção e inclusão social",
+   "baseline": "30%",
+   "target": "75%",
+   "page": 205
+  },
+  {
+   "kind": "output",
+   "code": "98012.0.0",
+   "statement": "Pessoas com deficiência são protegidas pela política e legislação",
+   "indicator": "1) # of disability rights/inclusion instruments implemented (policy/SOP/guidelines), with evidence of application in service delivery. 2) # of unique persons with disabilities receiving case management services (assessment +",
+   "baseline": "1. 2797 2. 397 3. 179 4. 50 % 5. 45% 6. 46",
+   "target": "1. 6993 2. 980 3. 445 4. 75 % 5. 95 % 6. 150",
+   "page": 205
+  },
+  {
+   "kind": "output",
+   "code": "98042.0.0",
+   "statement": "pessoas com deficiência e saúde mental recuperadas e reintegradas às famílias",
+   "indicator": "1) # of unique persons completing a rehabilitation/reintegration plan (defined package). 2) % of reintegrated cases receiving follow- up within 90 days",
+   "baseline": "1) 46 2.) 36",
+   "target": "1) 115 2) 95",
+   "page": 208
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.3",
+   "statement": "1) Os sobreviventes e as vítimas de guerra e todas os cidadãos que se encontra na situação de vulnerabilidade têm acesso aos serviços e oportunidades básicos e recebem apoio de assistência social, direitos econômicos e direito à vida, não passam fome e um padrão de vida adequado para que possam gozar dos seus direitos fundamentais e realizar o seu potencial em condições de igualdade com os outros cidadãos de Timor-Leste. 2)",
+   "indicator": "Populações em situação de vulnerabilidade foram recebidos o apoio de assintência social",
+   "baseline": "17,416",
+   "target": "181,091",
+   "page": 209
+  },
+  {
+   "kind": "output",
+   "code": "98039.0.0",
+   "statement": "Garantir o acesso a carros funerários, caixões e transporte para as famílias vulneráveis",
+   "indicator": "1) # of eligible vulnerable bereaved households receiving funeral support 2)# familia enlutada vulneravel hetan apoiu kaisaun 3) % of funeral support cases approved and delivered according to SOP (eligibility verified + documentation complete). 4) # transladasaun mate isin husi estrajeiro",
+   "baseline": "1) 1,569 2) 1,015 3) 0% 4) 5",
+   "target": "1) 1,500 2) 1,000 3) 50% 4) 5",
+   "page": 210
+  },
+  {
+   "kind": "output",
+   "code": "98040.0.0",
+   "statement": "Todas as crianças de famílias vulneráveis receberam subsídio do Bolsa da Mãe",
+   "indicator": "1) # of eligible children receiving Bolsa da Mãe transfers at least once in the year 2) % of scheduled payments delivered on time (within the quarter/month). 3) # benifisiariu ne'ebe hetan apoiu",
+   "baseline": "1) 74,648 2) 6,000 3) 6,000 4) 0%",
+   "target": "1) 74,000 2) 6,000 3) 6,000 4) 50%",
+   "page": 210
+  },
+  {
+   "kind": "output",
+   "code": "98041.0.0",
+   "statement": "População em situação vulnerabilidade e afetado de desastre naturais irão recebera o apoio de assistência humanitária",
+   "indicator": "1) # of vulnerable and disaster- affected households receiving humanitarian assistance. 2) % of disaster-affected households receiving emergency assistance within 72 hours/7 days. 3) % of assistance cases compliant with humanitarian SOP (eligibility + documentation). 4) # de pacientes vulneráveis foram apoiodos de alimentos nutritivos no HNGV",
+   "baseline": "1) 54,000 2) 1049 3) 0% 4) 15",
+   "target": "1) 50,000 2) 1,000 3) 50% 4) 20",
+   "page": 211
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.4",
+   "statement": "Pessoas vulneráveis e pessoas em risco de violência e outros riscos sociais são protegidos",
+   "indicator": "Grupo alvo foram reintegrado na família e comunidade",
+   "baseline": "1,295",
+   "target": "2,726",
+   "page": 212
+  },
+  {
+   "kind": "output",
+   "code": "98025.0.0",
+   "statement": "Ex- prisioneiros, Crianças, mulheres, LGBT, pessoas afetadas por drogas, pessoas separadas de conflitos / crimes no passado, tráfico de pessoas, família vulnerável livre de discriminação e participação na comunidade social",
+   "indicator": "1) # of ISS meeting minimum functionality standards (open, staffed, service register in use, quarterly report submitted). 2) # of unique vulnerable persons receiving at least one ISS service or activity during the year (disaggregated: ex-prisoners, women/GBV survivors, children,",
+   "baseline": "1) 38 2) 5,276 3) 8% 4) 0",
+   "target": "1) 38 2) 5,735 3) 10% 4) 25%",
+   "page": 212
+  },
+  {
+   "kind": "output",
+   "code": "98026.0.0",
+   "statement": "Os cidadãos em risco são apoiados pelo Estado",
+   "indicator": "1) # of unique at-risk individuals receiving reintegration case management services. 2) % of reintegration cases completing the minimum reintegration package (assessment + reintegration plan + referral + follow-up within 90 days). 3) % of reintegration cases with confirmed coordination with key partners (prisons, courts, police, health, CSS/ISS,autoridade lokal).",
+   "baseline": "1) 337 2) 30% 3) 75%",
+   "target": "1) 690 2) 50% 3) 100%",
+   "page": 214
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.9",
+   "statement": "A desigualdade de gênero é reduzida",
+   "indicator": "Homens e mulheres têm acesso e oportunidade iguais em termos de compartilhamento de poder, controle de recursos, tomada de decisões, status socioeconômico, status político e acesso à justiça e segurança.",
+   "baseline": "1,883",
+   "target": "2,268",
+   "page": 216
+  },
+  {
+   "kind": "output",
+   "code": "98028.0.0",
+   "statement": "A participação das mulheres no processo de desenvolvimento e provisão de segurança é aumentada",
+   "indicator": "1) # of WPS coordination/dialogue events conducted with approved minutes and action points. 2) # of unique women participating in WPS community dialogues/training (disaggregated by municipality/suco). 3) % of agreed WPS action points implemented within 6 months. 4) % sobrevivente vitma konflitu pasadu(relatorio CHEGA!) hetan apoiu",
+   "baseline": "1) 8 2) 775 3) 45% 4) 33",
+   "target": "1) 8 2) 800 3) 65% 4) 39",
+   "page": 216
+  },
+  {
+   "kind": "output",
+   "code": "98029.0.0",
+   "statement": "Violência Baseada em Gênero é reduzida",
+   "indicator": "1) # of unique GBV survivors receiving at least one essential service (case management, psychosocial, shelter, referral, emergency support). 2) % of GBV cases with safety plan + referral completed within 30 days. 3) % of UMA MAHON / shelters meeting minimum service standards (staffing, SOP use, registers, reporting). 4) # keisa VBJ/VD liu husi linha Solidaria 24/7, ne'ebe hetan atendementu, akompanhamentu no referal.",
+   "baseline": "1) 4,569 2) 10% 3) 60% 4) 0",
+   "target": "1) 6,835 2) 25% 3) 80% 4) 100",
+   "page": 217
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.c: Toda a População tem conhecimento sobre dos direitos das",
+   "indicator": "Violação contra dos direitos das crianças serão reduzidos",
+   "baseline": "50%",
+   "target": "100%",
+   "page": 219
+  },
+  {
+   "kind": "output",
+   "code": "98007.0.0",
+   "statement": "Crianças em risco e perigo são protegidas",
+   "indicator": "Crianças em vitima risco e perigo apoiadas",
+   "baseline": "562",
+   "target": "850",
+   "page": 220
+  }
+ ]
+}

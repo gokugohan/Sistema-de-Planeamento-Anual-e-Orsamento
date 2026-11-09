@@ -1,0 +1,632 @@
+{
+ "year": 2027,
+ "code": "004",
+ "name": "Presidência do Conselho de Ministros",
+ "abbr": "PCM",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   25,
+   34
+  ]
+ },
+ "units": [
+  {
+   "code": "GMPCM",
+   "div": "0040101",
+   "name": "Gabinete do Ministro da Presidência do Conselho de Ministros",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GPVG",
+   "div": "0040102",
+   "name": "Gabinete do Porta-Voz do Governo",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GEP",
+   "div": "0040104",
+   "name": "Gabinete de Estudos e Planeamento",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GAJ",
+   "div": "0040105",
+   "name": "Gabinete de Apoio Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GT",
+   "div": "0040106",
+   "name": "Gabinete de Tradução",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDGA",
+   "div": "0040201",
+   "name": "Gabinete do Director-Geral de Administração",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNRH",
+   "div": "0040202",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "GDGA"
+  },
+  {
+   "code": "DNAFP",
+   "div": "0040203",
+   "name": "Direção Nacional de Administração, Finanças e Património",
+   "type": "National Directorate",
+   "parent": "GDGA"
+  },
+  {
+   "code": "GAP",
+   "div": "0040301",
+   "name": "Gabinete para os Assuntos Parlamentares",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GVMAP",
+   "div": "0040302",
+   "name": "Gabinete do vice Ministro dos Assuntos Parlamentares",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GDPPE",
+   "div": "0040701",
+   "name": "Gabinete para o Desenvolvimento de Políticas Públicas Estratégicas",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "A29": "Politica estratégica nacional"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0040203"
+   ],
+   "indicator": "1). % do orçamento executado sob os princípios legais da administração pública; 2). Volume de Corespondência recebidas e expedidas;",
+   "baseline": "87 % do OGE executado sob os princípios de rigor e eficácia e 100% cumprindo e obedecendo os parametros legais da sua execuçao,",
+   "target": "100% do OGE executado",
+   "amounts": {
+    "20": 464693.0
+   },
+   "page": 25
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0040201"
+   ],
+   "indicator": "N.º de edifícios e instalações e/ou equipamentos rehabilitados e conservados com manutenções períodicas;",
+   "baseline": "922 Relatórios de Recepção e Inspeção (RIR): 52 serviços de limpeza, 13 senhas de combustível, 135 fornecimento de material de escritório, 473 de fornecimento alimentar, 24 manuntençao de edifício, 79 manutençao de viaturas,7 Manutenção de ar condicionado; 106 equipamentos de comunicação e fotocópias, 17 manutenção do equipamento informatico, 53 Apoio logístico ao CdM, consumido 26, 869 litros de combustível; Usd $ 41,920 de dinheiro sobre aquisiçao de combustível, 18 horas de utilização de geradores; 14 vezes utilização do salão de auditório da PCM, 145 outros serviços realizados no âmbito de gestão do Palácio do Governo.",
+   "target": "pelo menos 50% do patrimonio movel e imovel em cada ano são sujeitos a revisao anualmente ;",
+   "amounts": {
+    "10": 11882.0,
+    "20": 721638.0
+   },
+   "page": 25
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0040104"
+   ],
+   "indicator": "1. N.º de relatórios trimestrais e anuais de M&A elaborados; 2.N.º de relatórios trimestrais de desempenho atempadamente apresentados ao Ministérios das Finanças",
+   "baseline": "4 relatórios de desempenho do primeiro (1.º), segundo (2.º), 3.º Trimestre (terceiro) e do 4.º (Quarto) Trimestre de 2024 da PCM produzidos e submetidos ao Ministérios das Finanças atempadamente; o PAA de 2025 elaborado e atualizado, o OGE de 2025 elaborado e 1 livrinho sobre o OGE de 2025 produzido.",
+   "target": "1. 3 relatórios trimestrais e 1 relatório annual elaborado e submetido ao Ministérios das Finanças;",
+   "amounts": {
+    "10": 70000.0
+   },
+   "page": 25
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0040202"
+   ],
+   "indicator": "1. N.º de Expediente entrada e saida 2. Nº- de contratados",
+   "baseline": "777 cartas recebidas, 518 cartas expedidas, 11 monitorizações de assiduidade e",
+   "target": "1. Processamento atempado de todo expediente entrada e",
+   "amounts": {
+    "10": 468333.0
+   },
+   "page": 25
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0040202"
+   ],
+   "indicator": "Nº. de funcionários capacitados nas respetivas áreas de trabalho",
+   "baseline": "10 funcionários da PCM frequentaram 1 formaçao realizada em Bali-Indónesia, ministrada pelo Landi Institute na área de ‘’ Habilidade, inovação e produtividade no local de trabalho ’’; 11 funcionários da PCM frequentaram a formação em língua inglesa no nível 2 ministrada pelo SOLS, 13 funcionários da PCM frequentaram curso de",
+   "target": "Todos os funcionários recebem formação abrangente, de acordo com área de profissão",
+   "amounts": {
+    "20": 53350.0
+   },
+   "page": 26
+  },
+  {
+   "code": "510022Z",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Apoio tecnico e administrativo aos Titulares e Ex Titulares",
+   "div": [
+    "0040203"
+   ],
+   "indicator": "1. N.º de pedidos de pagamento recebidos, seu processamento e sua introdução na base de dados sobre regalias de Titulares e eis titulares; 2. Registo e verificação do direito dos membros do Governo que gozam do direito de licença anual para efeito de pagamento; 3. Emissão de certidão de certificação da função;",
+   "baseline": "O pagamento no valor de $ Usd 1,016,547.60 sobre o subsidio de Habitacao de janeiro a dezembro de 2024 aos 47 MG e pagamento do Subsidio de Medical Checkup efetuada aos 47 MG no período de dezembro de 2024",
+   "target": "1. 100% de pagamento de regalias a que titulares e ex- titulares tem como direito;",
+   "amounts": {
+    "10": 1028900.0
+   },
+   "page": 27
+  },
+  {
+   "code": "51002EM",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "International travel for the Minister, Vice-Minister and public servants",
+   "div": [
+    "0040203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 250000.0
+   },
+   "page": 27
+  },
+  {
+   "code": "A290101",
+   "programme": "A29",
+   "subprogramme": "A2901",
+   "subprogramme_name": "Apoio ao Primeiro-Ministro na Coordenação do Governo e na Presidência do Conselho de Ministros",
+   "name": "Apoio ao Primeiro-Ministro na Coordenação do Governo",
+   "div": [
+    "0040101"
+   ],
+   "indicator": "1. Nº de reuniões do CM em que os membros do Governo participantes recebem apoio jurídico, administrativo e protocolare; 2. Nº de encontros regulares de coordenação entre o MPCM com o PM 3. N.º de agendas e documentos enviados e",
+   "baseline": "49 reuniões do CdM; 2. 37 encontros entre PM e MPCM 4. 184 reuniões com visitantes 5. 33 agendas enviadas aos membros do IX governo sobre a reunião do CdM, 123 documentos relacionados a CdM enviados e 126 documentos enviados por via WhatsApp Group dos Membros do IX Governo Constitucional 5. 7 agendas enviadas aos Chefes de Gabinetes dos membros do IX",
+   "target": "1. 60 reuniões do CM; 2. 135 encontros regulares entre o MPCM e PM; 3. 60 agendas enviadas e 80 documentos enviados aos membros do Conselho de Ministros por via WhatsApp Group sobre a reunião do CdM",
+   "amounts": {
+    "10": 49000.0
+   },
+   "page": 27
+  },
+  {
+   "code": "A290103",
+   "programme": "A29",
+   "subprogramme": "A2901",
+   "subprogramme_name": "Apoio ao Primeiro-Ministro na Coordenação do Governo e na Presidência do Conselho de Ministros",
+   "name": "Coordenação da Presidencia do Conselho de Ministros",
+   "div": [
+    "0040101"
+   ],
+   "indicator": "1. Nº de encontros realizados; 2. Nº documentos produzidos",
+   "baseline": "1. 2,521 Cartas enviadas 2. 1,772 Despachos emitidos 3, 11 Discursos elaborados 4. 17 Reuniões realizadas (com Chefe de Gabinete) 5. 137 Reuniões participadas (MPCM) 6. 5 convites participados 7. 2 eventos organizados 9. 4 vezes ausências do país 9. 1 reunião com PR",
+   "target": "1. 80 encontros / reuniões realizados 2. 120 cartas enviadas, 50 pareceres jurídicos, informações, memorandos, despachos e discursos produzidos",
+   "amounts": {
+    "10": 61000.0
+   },
+   "page": 28
+  },
+  {
+   "code": "A290201",
+   "programme": "A29",
+   "subprogramme": "A2902",
+   "subprogramme_name": "Governação Legal do Conselho de Ministros",
+   "name": "Coordenação do Apoio e consulta jurídica do Conselho de Ministros",
+   "div": [
+    "0040105"
+   ],
+   "indicator": "1. Nº de informações técnico- jurídicas produzidas ; 2. Nº de reuniões técnico-jurídicas realizadas",
+   "baseline": "56 informações técnicas produzidas; 49 reuniões técnicas realizadas; 41 oficios produzidos",
+   "target": "1. Em média 200 informações técnico-jurídicas produzidas; 2. Em média 150 reuniões técnico-jurídicas realizadas",
+   "amounts": {
+    "10": 132000.0
+   },
+   "page": 28
+  },
+  {
+   "code": "A290202",
+   "programme": "A29",
+   "subprogramme": "A2902",
+   "subprogramme_name": "Governação Legal do Conselho de Ministros",
+   "name": "Coordenação do procedimento legislativo e regulamentar do Governo",
+   "div": [
+    "0040105"
+   ],
+   "indicator": "N.º de projetos legislativos e regulamentares apresentados por membros do Governo à PCM objeto de Parecer/Informação técnica.",
+   "baseline": "41 informações técnicas produzidas; 43 reuniões técnicas realizadas; 49 relatórios de procedimento legislativo produzidos; 67 textos revistos para agendamento; 75 textos finais produzidos; 72 ofícios de apreciação preliminar produzidos; 65 ofícios de circulação produzidos; 106 ofícios de recolha de assinaturas produzidos; 161 ofícios para publicação produzidos",
+   "target": "Em média 50 informações técnicas",
+   "amounts": {
+    "10": 120000.0
+   },
+   "page": 28
+  },
+  {
+   "code": "A290204",
+   "programme": "A29",
+   "subprogramme": "A2902",
+   "subprogramme_name": "Governação Legal do Conselho de Ministros",
+   "name": "Garantia dos serviços de contencioso da Presidência do Conselho de MInistros",
+   "div": [
+    "0040105"
+   ],
+   "indicator": "1. Nº de informações técnicas produzidas; 2. Nº de peças processuais produzidas; 3. Nº de respostas a processos de fiscalização da constitucionalidade e da legalidade produzidas",
+   "baseline": "36 informações técnicas produzidas; 13 peças processuais produzidas; 9 respostas a processos de fiscalização da constitucionalidade e da legalidade produzidas; 21 reuniões técnicas realizadas",
+   "target": "1. Emissão de informações técnicas sobre a totalidade dos processos de contencioso entrados na PCM; 2. 10 peças processuais 3.N.A",
+   "amounts": {
+    "10": 165742.0
+   },
+   "page": 28
+  },
+  {
+   "code": "A290207",
+   "programme": "A29",
+   "subprogramme": "A2902",
+   "subprogramme_name": "Governação Legal do Conselho de Ministros",
+   "name": "Preparação da agenda e redação das atas das reuniões do Conselho de Ministros Execução da política do Governo em matéria de reforma legislativa",
+   "div": [
+    "0040105"
+   ],
+   "indicator": "1. Nº de agendas e de atas das reuniões do CM produzidas, 2. Nº de Certidões de Atas produzidas",
+   "baseline": "56 agendas produzidas; 0 Atas em Minuta Sintética produzidas; 0 oficios produzidos; 56 Atas completas produzidas; 44 Certidões de Atas produzidas; 42 textos finais produzidos; 41 oficios produzidos",
+   "target": "1. Espera-se uma média de 50 agendas, 2. Espera-se uma média de 40 certidoes de atas 3. Em média 50 atas finais das",
+   "amounts": {
+    "10": 60568.0
+   },
+   "page": 28
+  },
+  {
+   "code": "A290301",
+   "programme": "A29",
+   "subprogramme": "A2903",
+   "subprogramme_name": "Prestação de serviços de tradução",
+   "name": "Prestação de serviços de tradução;",
+   "div": [
+    "0040106"
+   ],
+   "indicator": "1. N.º médio de documentos traduzidos e revistos; 2. N.º médio de palavras traduzidas",
+   "baseline": "738 documentos traduzidos; 342373 n.º de palavras traduzidas",
+   "target": "1) 700 documentos traduzidos; 2) 800.000 palavras traduzidas",
+   "amounts": {
+    "10": 8918.0
+   },
+   "page": 29
+  },
+  {
+   "code": "A290302",
+   "programme": "A29",
+   "subprogramme": "A2903",
+   "subprogramme_name": "Prestação de serviços de tradução",
+   "name": "Tradução oficial dos atos do Governo",
+   "div": [
+    "0040106"
+   ],
+   "indicator": "1. Nº de atas do governo traduzidos; 2. N.º médio de palavras traduzidas",
+   "baseline": "6 diplomas legais traduzidos; 16849 n.º de palavras traduzidas",
+   "target": "1) 30 diplomas legais traduzidos; 2) 150.000 palavras traduzidas",
+   "amounts": {
+    "10": 72000.0
+   },
+   "page": 29
+  },
+  {
+   "code": "A290303",
+   "programme": "A29",
+   "subprogramme": "A2903",
+   "subprogramme_name": "Prestação de serviços de tradução",
+   "name": "Tradução e Interpretação simultânea das reuniões do Conselho de Ministros",
+   "div": [
+    "0040106"
+   ],
+   "indicator": "1. N.º de documentos traduzidos; 2. Quantidade de palavras traduzidas\"",
+   "baseline": "94 documentos traduzidos e 86244 palavras traduzidas",
+   "target": "\"1) 10 documentos traduzidos; 2) 120.000 palavras traduzidas\"",
+   "amounts": {
+    "10": 24742.0
+   },
+   "page": 29
+  },
+  {
+   "code": "A290304",
+   "programme": "A29",
+   "subprogramme": "A2903",
+   "subprogramme_name": "Prestação de serviços de tradução",
+   "name": "Tradução de outros documentos a dar conhecimento à sociedade civil.",
+   "div": [
+    "0040106"
+   ],
+   "indicator": "1. N.º de documentos traduzidos; 2. Quantidade de palavras traduzidas\"",
+   "baseline": "110 outros documentos traduzidos; 139218 palavras traduzidas",
+   "target": "\"1) 10 documentos traduzidos; 2) 120.000 palavras traduzidas\"",
+   "amounts": {
+    "10": 29159.0
+   },
+   "page": 29
+  },
+  {
+   "code": "A290403",
+   "programme": "A29",
+   "subprogramme": "A2904",
+   "subprogramme_name": "Políticas Públicas",
+   "name": "Realizar estudos técnicos para a conceção e reforma de políticas, colaborar com peritos na elaboração de relatórios sobre questões nacionais fundamentais",
+   "div": [
+    "0040701"
+   ],
+   "indicator": "1) Nº Estudos Técnicos Elaborados 2) Nº Políticas Novas e/ou Reformuladas",
+   "baseline": "Uma (1ª) reuniao realizada",
+   "target": "Doc (s) de políticas pública elaboradas",
+   "amounts": {
+    "10": 49000.0
+   },
+   "page": 29
+  },
+  {
+   "code": "A290701",
+   "programme": "A29",
+   "subprogramme": "A2907",
+   "subprogramme_name": "Comunicação estratégica do Governo e promoção da cidadania",
+   "name": "Prestar informação ao público sobre as reuniões do Conselho de Ministros e as demais atividades do Governo e do Conselho de Ministros",
+   "div": [
+    "0040102"
+   ],
+   "indicator": "\"1. n. º comunicados de imprensa, documentos informativos, noticias, fotos e vídeos e agendas de toda a estrutura do Governo, IP e EP. produzidos; 2. n. º de Ações de Formação de media officers de todo o Governo para reforço da coordenação",
+   "baseline": "191 eventos, 2,509 fotografias capturadas e 203 Layouts e publicaçoes produzidas e publicadas",
+   "target": "Em média 450 atividades de disseminação realizadas (conferências de imprensa, noticias, comunicados de imprensa, agendas, publicações, vídeos e fotografias);",
+   "amounts": {
+    "10": 79800.0
+   },
+   "page": 29
+  },
+  {
+   "code": "A290702",
+   "programme": "A29",
+   "subprogramme": "A2907",
+   "subprogramme_name": "Comunicação estratégica do Governo e promoção da cidadania",
+   "name": "Recolher e tratar a informação difundida pelos órgãos de comunicação social com interesse para a PCM",
+   "div": [
+    "0040102"
+   ],
+   "indicator": "1.º n.º de órgãos de comunicação monitorização; 2.º n.º de noticias monitorizadas.",
+   "baseline": "139 notícias monitorizadas",
+   "target": "1. média 15 órgãos de comunicação pesquisados; 2. 9.000 notícias monitorizadas.",
+   "amounts": {
+    "10": 49000.0
+   },
+   "page": 30
+  },
+  {
+   "code": "A290703",
+   "programme": "A29",
+   "subprogramme": "A2907",
+   "subprogramme_name": "Comunicação estratégica do Governo e promoção da cidadania",
+   "name": "Gerir os instrumentos de comunicação do Porta-Voz do Governo e da PCM, designadamente de social media, e o Portal do Governo",
+   "div": [
+    "0040102"
+   ],
+   "indicator": "1. nº de visitas ao Portal do Governo; 2. n.º países com acessos ao Portal do Governo; 3. n.º de publicações no Portal do Governo; 4. n.º de posts nas redes sociais; 5. n. º acessos e interações nas redes sociais.",
+   "baseline": "1. 2,374 conteúdos publicados no Portal do Governo; 2 – 183168 visitas ao Portal; 3 – 194 países visitaram o portal",
+   "target": "1. 500.000 visitas ao Portal do Governo; 2. 200 países e territórios; 3. 750 publicações no Portal do Governo;",
+   "amounts": {
+    "20": 31250.0
+   },
+   "page": 30
+  },
+  {
+   "code": "A290704",
+   "programme": "A29",
+   "subprogramme": "A2907",
+   "subprogramme_name": "Comunicação estratégica do Governo e promoção da cidadania",
+   "name": "Produzir e distribuir materiais informativos, nomeadamente, brochuras, panfletos, livros, relatórios e conteúdos audiovisuais",
+   "div": [
+    "0040102"
+   ],
+   "indicator": "\"1. n.º de publicações (livros, relatórios, panfletos, brochuras e outros documentos)produzidas sobre atividades do Governo ou sobre eventos/programas específicos; 2. n.º de conteúdos audiovisuais produzidos. \"",
+   "baseline": "2,056 publicações no Portal do Governo, na página do facebook Portal do Governo e 8 publicações nos jornais nacionais",
+   "target": "\"1. 50 publicações; 2. 5 conteúdos audiovisuais produzidos. \"",
+   "amounts": {
+    "10": 10000.0
+   },
+   "page": 30
+  },
+  {
+   "code": "A290705",
+   "programme": "A29",
+   "subprogramme": "A2907",
+   "subprogramme_name": "Comunicação estratégica do Governo e promoção da cidadania",
+   "name": "Participação em eventos de alto nível",
+   "div": [
+    "0040102"
+   ],
+   "indicator": "1. N.º de eventos participados",
+   "baseline": "31 encontros, 137 Reuniões/eventos participadas/participados",
+   "target": "Representação do PM e do CdM ao mais alto nível",
+   "amounts": {
+    "20": 119995.0
+   },
+   "page": 30
+  },
+  {
+   "code": "A290801",
+   "programme": "A29",
+   "subprogramme": "A2908",
+   "subprogramme_name": "Assuntos Parlamentares",
+   "name": "Coordenação Assuntos Parlamentares",
+   "div": [
+    "0040301",
+    "0040302"
+   ],
+   "indicator": "Atividades do Assuntos Parlamentares - conforme agenda Parlamento Nacional. - N.º de reuniões de lideres bancadas realizadas - (1x por semana) - N.º de reuniões de sessões plenária Ordinária realizadas - (2x por semana) - N.º de sessões plenária extraordinária (conforme o pedido com caracter de urgência) - N.º de sessões plenária na generalidade (conforme o pedido / cada iniciativa) legislativa 3 dias consecutivas) - N.º reuniões de Comissões Especializadas permanente realizadas - 2x por semana - N.º reuniões de",
+   "baseline": "Acompanhamento das atividades parlamentares em 2024 (12 meses) - 32 reuniões de lideres bancadas realizadas - 72 reuniões de sessões plenárias realizadas (inclui) - https://www.parlamento.tl/node/405: - 7 sessão plenária extraordinária (conforme o pedido com caracter de urgência) - 1 sessão plenária na generalidade (conforme o pedido / cada iniciativa legislativa - 3 dias consecutivas) - 2 sessão de Comissão permanente (julho 2024) - 70 reuniões de Comissões Especializadas permanentes realizadas - 1 reunião de Comissões Eventuais realizadas - (conforme necessidade urgência do PN) - 19 dias de Audiências públicas PPL, PJL, PPR, OGE, OR, CGE e iniciativa Legislativas - 33 atividades de acompanhamento das fiscalização realizadas;",
+   "target": "\"A ser realizadas em 2026, - 50 reuniões de lideres bancadas realizadas; - 100 reuniões de sessões plenária realizadas; - 7 sessões plenárias extraordinária (conforme o pedido com caracter de urgência); - 4 sessões plenárias na generalidade (conforme o pedido / cada iniciativa legislativa - 3 dias consecutivas); - 100 reuniões das Comissões Especializadas permanentes realizadas; - 1 reunião de Comissão Eventual realizada - (conforme necessidade urgência do PN); - 30 dias de Audiências públicas PPL, PJL, PPR, OGE, OR,",
+   "amounts": {
+    "10": 565875.0,
+    "20": 138699.0
+   },
+   "page": 31
+  },
+  {
+   "code": "A290802",
+   "programme": "A29",
+   "subprogramme": "A2908",
+   "subprogramme_name": "Assuntos Parlamentares",
+   "name": "Relacoes publicas e Documentação",
+   "div": [
+    "0040301",
+    "0040302"
+   ],
+   "indicator": "'-Nº de melhoramento do plataforma digital dos assuntos parlamentares. - Nº de divulgação dos produtos informativos (sumario) PPL, PJL, PPR e petição através de plataforma digital, impressão e discussão, ou audiência aberto com os universitários ou públicos sobre novo esboço de legislação. - Nº produtos de informações divulgadas sobre",
+   "baseline": "Realizadas em 2024 - Estabelecimento e melhoramento do plataforma digital do meio de comunicação social i.e. website e Facebook do Vice-Ministro dos Assuntos Parlamentares. Publicações produzidas e divulgadas durante 1º, 2º, 3º & 4º trimestres: 1. Facebook - 175 publicações/posting, 5 vídeos e 23 shares sobre as atividades de Sua Ex.cia Vice-Ministros dos Assuntos Parlamentares em relação com os assuntos parlamentares. 2. Website - Já foi feito, começamos a postar o Perfil do VMAP e o",
+   "target": "Em 2025 VMAP e GAP: - Tipo de Plataforma digital (comunicação/media social) criados e Estabelecidas. i.e. website, Facebook, etc. Podcast? - Números do Produção de Brochuras - 3x por ano (10,000 cópias aos 13 Municípios) - Boletim - 1x por ano (1,000 cópias) - Discussão Aberta: 2x por ano (Dissipação e sensibilização) atravez de _",
+   "amounts": {
+    "20": 6030.0,
+    "10": 52384.0
+   },
+   "page": 32
+  },
+  {
+   "code": "A290803",
+   "programme": "A29",
+   "subprogramme": "A2908",
+   "subprogramme_name": "Assuntos Parlamentares",
+   "name": "Diplomacia Parlamentar",
+   "div": [
+    "0040301",
+    "0040302"
+   ],
+   "indicator": "' - Nº de Acompanhamento nas Assembleias Parlamentares Internacionais - Nº de contactos/laços de amizade/rede/grupo parlamentares Ref: -APCPLP - 2x por ano -UIP - 2x por ano -APA - 1x por ano -AIPA - 1x por ano -SAARA - 1x por ano -G7+ - 2x por ano -APHR - 1x por ano - Cooperação Bilateral i.e Cabo Verde, Portugal. - Contactos com os Homólogos / Grupo Amizadde Parlamentares, i.e Portugal, Japan etc. - Atende os Convites – eventos internacionais – conforme as",
+   "baseline": "Atividades em 2024: - 1 - Encontro entre Governo e Parlamentos estrageiros realizadas. participação de Acompanhamento na Assembleias Parlamentares Internacionais - participa no 6th ASEAN Parliamentarians for Human Rights (APHR) Members’ Forum and Parliamentary Forum on Human Rights and Democracy in Southeast Asia in Bali, from 6 to 8 December 2024 (APHR ) em Bali/Indonésia, 6-8 Dezembro 2024. https://aseanmp.org/publications/post/defe nding-democracy-and-advancing-human- rights-in-southeast-asia/ - 1 - contactos/laços de amizade entre o Governo e Parlamentos estrageiros (Cabo-Verde) - 1 - atende convite do VPM conjunto com MAF, participar e contribuir no conferencia FAO \"water and soil management\" em",
+   "target": "'A ser realizadas 2026 VMAP e GAP-PCM: - Irá Acompanhar Assembleia Gerais, reuniões com Grupos Parlamentares. - Cooperação com paises amigos sobre os assuntos parlamentares. i.e Portugal e Cabo-Verde Etc. - Nº de atendimentos de convites dos eventos internacionais Ref: APCPLP - 2x por ano UIP - 2x por ano APA - 1x por ano AIPA - 1x por ano SAARA - 1x por ano G7+ - 2x por ano - Cooperação Bilateral i.e Cabo Verde, Portugal. -Contactos com os Homólogos / Grupo Amizadde Parlamentares, i.e",
+   "amounts": {
+    "20": 88295.0
+   },
+   "page": 33
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Desenhar, aprovar e Implementar o plano estratégico da PCM",
+   "baseline": "NA",
+   "target": "Desenho do plano estrategico concluido",
+   "page": 25
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Variância da execução orçamentária por programa",
+   "baseline": "Pelo menos 90% do OGE executado pelos serviços responsáveis",
+   "target": "100% do OGE executado",
+   "page": 25
+  },
+  {
+   "kind": "outcome",
+   "code": "A29.0.0",
+   "statement": "Apoiar o Chefe do Governo na coordenação deste órgão de soberania, assumindo as funções de porta-voz do Governo e do Conselho de Ministros na conceção, execução, coordenação e avaliação da política, definida e aprovada pelo Conselho de Ministros",
+   "indicator": "Chefe do Governo apoiado, funções do Porta-Voz asseguradas e Diplomas aprovados pelo Conselho de Ministros",
+   "baseline": "Programa do IX Governo Constitucional",
+   "target": "25 % do Programa Política Estratégica Nacional concretizado",
+   "page": 27
+  },
+  {
+   "kind": "output",
+   "code": "A2901.0.0",
+   "statement": "Promover a coordenação interministeriál do Governo a fim de conseguir uma Governação eficiente, eficaz e transparante",
+   "indicator": "100% Metas do plano anual atingida",
+   "baseline": "50% do Plano Anual implementado",
+   "target": "100% do Plano Anual implementado",
+   "page": 27
+  },
+  {
+   "kind": "output",
+   "code": "A2902.0.0",
+   "statement": "Membros do Governo apoiados juridicamente com eficacia.",
+   "indicator": "Todos os membros do governo recebem apoio juridico necessario nas suas áreas de competências",
+   "baseline": "Todos os membros do governo recebem apoio juridico",
+   "target": "Todos os membros do governo recebem apoio juridico",
+   "page": 28
+  },
+  {
+   "kind": "output",
+   "code": "A2903.0.0",
+   "statement": "Todos os documentos legais e oficiais estão disponíveis em dois idiomas oficiais",
+   "indicator": "% dos documentos legais e oficiais disponíveis nas duas línguas oficiais e em inglês",
+   "baseline": "20 % dos documentos legais e oficiais disponíveis nas duas línguas oficiais e em inglês",
+   "target": "Espera-se uma média 50 % dos documentos legais e oficiais disponíveis nas duas línguas oficiais e em inglês",
+   "page": 29
+  },
+  {
+   "kind": "output",
+   "code": "A2904.0.0",
+   "statement": "Mecanismo de coordenação e implementação de politicas publicas",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "Novo Sub-programa",
+   "target": "25%",
+   "page": 29
+  },
+  {
+   "kind": "output",
+   "code": "A2907.0.0",
+   "statement": "Desenvolvido e implementado programa de informação à população e de promoção da cidadania",
+   "indicator": "As informações inseridas no Portal são acessiveis ao público",
+   "baseline": "Os conteúdos inseridos no portal do governo são acessíveis",
+   "target": "As informações publicadas são atualizadas e acessíveis ao público",
+   "page": 29
+  },
+  {
+   "kind": "output",
+   "code": "A2908.0.0",
+   "statement": "Assegurar coordenação de serviços em reprezentação do governo no parlamento nacional e accompanhar os processos legislativos.",
+   "indicator": "Os indicadores de desempenho para a coordenação de serviços em representação do governo no parlamento nacional e acompanhamento dos processos legislativos podem incluir: 1. Eficiência na Coordenação: - Tempo médio de resposta às solicitações do parlamento. - Percentual de solicitações atendidas dentro do prazo estabelecido. 2. Eficácia na",
+   "baseline": "“Assegurar com eficiência, eficácia e transparência a coordenação e execução de gestão dos assuntos parlamentares entre Governo e Parlamento Nacional (PN), e a divulgação informações aos públicos”;",
+   "target": "“Assegurados a eficiência na coordenação e eficácia na representação, qualidade no acompanhamento os processos legislativos, fiscalização e decisões politicas e transparência de comunicação dos assuntos parlamentares entre o Governo e o Parlamento Nacional (PN) e aos públicos”",
+   "page": 30
+  }
+ ]
+}

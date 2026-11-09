@@ -1,0 +1,2095 @@
+{
+ "year": 2027,
+ "code": "112",
+ "name": "Ministério da Educação",
+ "abbr": "ME",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1077,
+   1100
+  ]
+ },
+ "units": [
+  {
+   "code": "GME",
+   "div": "1120101",
+   "name": "Gabinete do Ministro da Educação",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "CNU",
+   "div": "1120102",
+   "name": "Comissão Nacional da UNESCO",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GSEESET",
+   "div": "1120201",
+   "name": "Gabinete do Secretário de Estado do Ensino Secundário e Escolas Técnicas",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GJ",
+   "div": "1120204",
+   "name": "Gabinete Jurídico",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIG",
+   "div": "1120301",
+   "name": "Gabinete do Inspetor Geral",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "INFORDOPE",
+   "div": "1120302",
+   "name": "Instituto Nacional de Formação de Docentes e Professionais da Educação (INFORDOPE)",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DGAF",
+   "div": "1120601",
+   "name": "Direção Geral de Administração e Finanças",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "1120602",
+   "name": "Direção Nacional de Administração e Finanças",
+   "type": "National Directorate",
+   "parent": "DGAF"
+  },
+  {
+   "code": "DNA",
+   "div": "1120604",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": "DGAF"
+  },
+  {
+   "code": "DNRH",
+   "div": "1120605",
+   "name": "Direção Nacional de Recursos Humanos",
+   "type": "National Directorate",
+   "parent": "DGAF"
+  },
+  {
+   "code": "DNPL",
+   "div": "1120608",
+   "name": "Direção Nacional do Património e Logística",
+   "type": "National Directorate",
+   "parent": "DGAF"
+  },
+  {
+   "code": "GDGPPII",
+   "div": "1120701",
+   "name": "Gabinete de Direção-Geral do Plano, Políticas, Inclusão e Informática",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPOE",
+   "div": "1120702",
+   "name": "Direção Nacional do Plano, Orçamento e Estatísticas",
+   "type": "National Directorate",
+   "parent": "GDGPPII"
+  },
+  {
+   "code": "DNEIASE",
+   "div": "1120703",
+   "name": "Direção Nacional de Educação Inclusiva e Ação Social Escolar",
+   "type": "National Directorate",
+   "parent": "GDGPPII"
+  },
+  {
+   "code": "DNIE",
+   "div": "1120704",
+   "name": "Direção Nacional de Infraestruturas Educativas",
+   "type": "National Directorate",
+   "parent": "GDGPPII"
+  },
+  {
+   "code": "DNSIT",
+   "div": "1120705",
+   "name": "Direção Nacional do Sistema Informático e Tecnologias",
+   "type": "National Directorate",
+   "parent": "GDGPPII"
+  },
+  {
+   "code": "GDGEPEEBER",
+   "div": "1120801",
+   "name": "Gabinete de Direção-Geral da Educação Pré-Escolar, Ensino Básico e Ensino Recorrente",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNEPE",
+   "div": "1120802",
+   "name": "Direção Nacional da Educação Pré-Escolar",
+   "type": "National Directorate",
+   "parent": "GDGEPEEBER"
+  },
+  {
+   "code": "DNEB",
+   "div": "1120803",
+   "name": "Direção Nacional do Ensino Básico",
+   "type": "National Directorate",
+   "parent": "GDGEPEEBER"
+  },
+  {
+   "code": "DNER",
+   "div": "1120804",
+   "name": "Direção Nacional do Ensino Recorrente",
+   "type": "National Directorate",
+   "parent": "GDGEPEEBER"
+  },
+  {
+   "code": "GDGES",
+   "div": "1120901",
+   "name": "Gabinete de Direção-Geral do Ensino Secundário",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNESG",
+   "div": "1120902",
+   "name": "Direção Nacional do Ensino Secundário Geral",
+   "type": "National Directorate",
+   "parent": "GDGES"
+  },
+  {
+   "code": "DNESTV",
+   "div": "1120903",
+   "name": "Direção Nacional de Ensino Secundário Técnico Vocacional",
+   "type": "National Directorate",
+   "parent": "GDGES"
+  },
+  {
+   "code": "GADCRP",
+   "div": "1121001",
+   "name": "Gabinete de Avaliação e Desenvolvimento Curricular e Recursos Pedagógicos",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GALA",
+   "div": "1121101",
+   "name": "Gabinete de Avaliação, Licenciamento e Acreditação",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GRPP",
+   "div": "1121301",
+   "name": "Gabinete de Relações Públicas e Protocolo",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GPC",
+   "div": "1121401",
+   "name": "Gabinete de Parceria e Cooperação",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GNI",
+   "div": "1121501",
+   "name": "Gabinete Nacional de Impressão",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "520": "Educação pré-escolar",
+  "521": "Ensino básico",
+  "522": "Ensino secundário geral e tecnico vocacional",
+  "523": "Ensino recorrente"
+ },
+ "activities": [
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "1120101",
+    "1120201",
+    "1120701"
+   ],
+   "indicator": "\"1). Currículo do Ensino Secundário será avaliado; 2). Currículo de equivalência ao nível do Ensino Secundário aprovado. 3). Plano Estratégico Educação 2026- 2030 aprovado. \"",
+   "baseline": "\"1). Currículo do Ensino Secundário ainda não avaliado. 2). Elaboração do currículo de equivalência ao nível do Ensino Secundário em curso.\"\" 3). Avaliação Plano Estratégico Educação 2020-2025 finalisado. \"",
+   "target": "\"1). Currículo do Ensino Secundário será avaliado; 2).Currículo de equivalência ao nível do Ensino Secundário aprovado. 3). Plano Estratégico Educação 2026-2030 aprovado. \"",
+   "amounts": {
+    "20": 161768.0,
+    "10": 20332.0
+   },
+   "page": 1077
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "1120301"
+   ],
+   "indicator": "\"1). Taxa de absentismo docente; 2). Taxa de absentismo dos alunos; 3). As entidades responsáveis pela inspeção da educação, incluindo os inspetores escolares e auditores, irão receber formação sobre o papel e os serviços da inspeção. 4). Númeru de auditória realisada; 5). % de observação salas de aula realisada pelo inspetores escolares; 6). Número de vistoria realisada; 7). Número",
+   "baseline": "\"1). Pelo menos 80% de presenças de professores e alunos serão monitorizadas regularmente. 2).Pelo menos 80% das escolas receberão visitas dos inspetores escolares. 3). 6 4). As entidades de inspeção da educação, incluindo inspetores escolares e auditores, receberão formação sobre o papel e os serviços de inspeção. 5). xxx 6). xxx 7). xxx \"",
+   "target": "\"1). Pelo menos 80% de presenças de professores e alunos serão monitorizadas regularmente. 2).Pelo menos 80% das escolas receberão visitas dos inspetores escolares. 3). 10 4). As entidades de inspeção da educação, incluindo inspetores escolares e auditores, receberão formação sobre o papel e os serviços de inspeção. 5). xxx 6). xxx 7). xxx\"",
+   "amounts": {
+    "20": 256418.0
+   },
+   "page": 1077
+  },
+  {
+   "code": "5100110",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir serviços corporativos",
+   "div": [
+    "1120601"
+   ],
+   "indicator": "Reuniões regulares irão realizadas",
+   "baseline": "12",
+   "target": "12",
+   "amounts": {
+    "10": 21255.0,
+    "20": 10195.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "1120204"
+   ],
+   "indicator": "Novas leis, incluindo o Regulamento para controlar a presença dos alunos e o Código de Conduta dos Alunos",
+   "baseline": "5 leis aprovadas e estão em funcionamento",
+   "target": "Aprovação de pelo menos três legislações: Estatuto do INFORDEPE, Estatuto dos Formadores e Decreto-Lei do Currículo Nacional de Equivalência ao nível do Ensino Básico.",
+   "amounts": {
+    "20": 63100.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "5100117",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Coordenar e gerir programas da educação pré-escolar, ensino básico e ensino recorrente",
+   "div": [
+    "1120801"
+   ],
+   "indicator": "Visitas de monitorização realizadas",
+   "baseline": "12",
+   "target": "12",
+   "amounts": {
+    "20": 21160.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "510013L",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Monitorização e avaliação dos programas do Ministério da Educação",
+   "div": [
+    "1120702"
+   ],
+   "indicator": "\"Numero de moniotorização realisada.",
+   "baseline": "\"Falta monitoramento e avaliacao aos atividades e programas implementados \"",
+   "target": "\"4 monitorização realizadas \"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "5100141",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Fortaleciemnto das evidências co base no planeamento",
+   "div": [
+    "1120702"
+   ],
+   "indicator": "\"1). Os dados de EMIS produzidos. 2). Novo portal de EMIS desenvolvido; 3). Numero de estudos/avaliação realisada.\"",
+   "baseline": "\"1). Dados EMIS 2025 ainda não finalisado. 2). O portal EMIS atual está desatualizado; 3). Foram realizados 2 testes (teste de crescimento para 1o ano e SEA-PLM para 5o). \"",
+   "target": "\"1). Os dados de EMIS 2026 produzidos. 2). Novo portal de EMIS desenvolvido; 3). 2 testes/estudos (teste de EGRA e out of school) realisadas. \"",
+   "amounts": {
+    "20": 40000.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1120602"
+   ],
+   "indicator": "Orçamento executado",
+   "baseline": "96% do orçamento de ME foram executados",
+   "target": "100%",
+   "amounts": {
+    "10": 1211728.0,
+    "20": 1589320.0,
+    "30": 250000.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "1120608"
+   ],
+   "indicator": "\"1.A manutenção das viaturas do Ministério da Educação foi realizada. 2.Materiais didáticos e mobiliário foram distribuídos.",
+   "baseline": "\"1). O serviço de manutenção das viaturas do Ministério da Educação foi assegurado pelo Património do Estado. 2). 192 títulos de livros foram distribuídos às",
+   "target": "\"1). A manutenção das viaturas e do Fort Clift -81 será realizada. 2). Os livros, equipamentos e mobiliários serão distribuídos. 3). O Serviço de Educação",
+   "amounts": {
+    "20": 640001.0
+   },
+   "page": 1078
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "1120605"
+   ],
+   "indicator": "\"1). Número de professores que serão aposentados. 2). Novos professores foram colocados nas respetivas escolas. 3). Foi desenvolvido o sistema digital do Mapa de Pessoal. 4). Número de funcionários (não docentes) do ME recebiam salários mensais regularmente \"",
+   "baseline": "\"1). 187 2). 1827 professores já colocados a todos os níveis de ensino 3). O sistema digital de mapa pessoal não existe. 4). 2524 \"",
+   "target": "\"1). 1400 professores. 2). 2545 (1450 de ES e 1095 de EB) 3). O sistema digital do mapa pessoal será desenvolvido. 4). Todos os funcionários (não docentes) do ME recebiam salários mensais regularmente\"",
+   "amounts": {
+    "10": 3968881.0,
+    "20": 50000.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "1120604"
+   ],
+   "indicator": "Plano Aprovisionamento Implantado",
+   "baseline": "96%",
+   "target": "98%",
+   "amounts": {
+    "10": 30900.0,
+    "20": 51600.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "510021P",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Coordenar e gerir progamas da educação ensino secundário geral e técnical vocacional",
+   "div": [
+    "1120901"
+   ],
+   "indicator": "Visita de monitorização realizada",
+   "baseline": "4",
+   "target": "12",
+   "amounts": {
+    "20": 15300.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "510021Q",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Parcerias Regionais ( SEAMEO, CPLP e GPE)",
+   "div": [
+    "1121401"
+   ],
+   "indicator": "\"1). Número de acordo de cooperação finalisado e aprovado; 2). Número de reuniões da SEAMEO e da ASEAN em que participou.; 3). Cota SEAMEO contribuiu 4). e intercâmbio de estudantes e professores para as nações membros da SEAMEO e CPLP \"",
+   "baseline": "5",
+   "target": "6",
+   "amounts": {
+    "20": 95000.0,
+    "30": 92000.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "510021R",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Divulgação de informação dos serviços do ME",
+   "div": [
+    "1121301"
+   ],
+   "indicator": "Informação ao público sobre os serviços do ME através de boletins - realizada",
+   "baseline": "Foi produzido e distribuído 1500 exemplares de boletins",
+   "target": "6000 exemplares de boletins produzidos e distribuídos",
+   "amounts": {
+    "20": 54800.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "510021Y",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Matriculação dos alunos do Centro de Aprendizagem e formação escolar CAFE",
+   "div": [
+    "1120602"
+   ],
+   "indicator": "\"Número de Matrícula dos alunos do Centro de Aprendizagem e formação escolar CAFE \"",
+   "baseline": "11.732 Estudantes",
+   "target": "12.500 Estudantes",
+   "amounts": {
+    "10": 1031410.0,
+    "20": 3089438.0,
+    "30": 1514174.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "510022T",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Implementar a Política Nacional de Educação Inclusiva",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "Alunos do ensino médio com necessidades especiais",
+   "baseline": "0",
+   "target": "100",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 1079
+  },
+  {
+   "code": "510022V",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Elaboração de reforma institucional do INFERDEPE de forma a oferecer formação e desenvolvimento profissional progressivo e de qualidade aos recursos humanos na educação, assegurando uma formação mais efetiva para os gestores e professores",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "1).Negocicao de protocolo de cooperacao billateral entre INFORDEPE e CAMOES, institutu da cooperacao e da lingua I.P para dar continuidade a implementacao do Projeito Pro - Portugues (Fase II).",
+   "baseline": "1) Nivel A2 - 2894 Professores 2) Nivel B1 - 1592 Professores 3) Nivel B2 - 1185 Professores.",
+   "target": "1. Protocolo de cooperacao billateral entre INFORDEPE e CAMOES, institutu de cooperacao e da lingua I.P concluido, aprovado e assinado Projeito Pro - Portugues (Fase II). 2) selecao e recrutamento de um coordenador adjunto cientifico pedagogico (CAMOES I.P) 3. TOT de 240 oras de formacao para 70 formadores de Timorense 4) Preparacao dos curcos de formacao de lingua portuguesa para professores de todos os niveis de ensino - Niveis A2, B1 e B2 (Para implementacao em 2027)",
+   "amounts": {
+    "20": 312117.0,
+    "30": 165000.0
+   },
+   "page": 1080
+  },
+  {
+   "code": "5100231",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Fortalecido o Centro de Impressão",
+   "div": [
+    "1121501"
+   ],
+   "indicator": "Manutenção regular do equipamento de impressão realizada.",
+   "baseline": "Realizadas no mínimo 2 manutenções aos equipamentos de impressão.",
+   "target": "2 vezes de manutenção realizada",
+   "amounts": {
+    "10": 117150.0,
+    "20": 154440.0
+   },
+   "page": 1080
+  },
+  {
+   "code": "510021Z",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Construção de novos edifícios do Ministério da Educação",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "\"1). Construcção de ddifiçio de Centro Impressão finalisado. 2). Desenho de edificio do ME. 3). Desenho arquitetonico de edificio do INFORDEPE no polo Same iniçiada. \"",
+   "baseline": "\" 1). Construção de ddifíçio de Centro Impressão iniciada. 2). Desenho ainda não finalisado. 3). Desenho arquitetanico de edificio do INFORDEPE polo SAME finalisado.\"",
+   "target": "\"1). Edifíçio de Centro Impressão finalisado. 2). Desenho de edificio do ME finalisado. 3). Desenho arquitetonico de edificio do INFORDEPE no polo Same iniçiada.\"",
+   "amounts": {
+    "20": 193428.0,
+    "50": 84309.0
+   },
+   "page": 1080
+  },
+  {
+   "code": "5200901",
+   "programme": "520",
+   "subprogramme": "52009",
+   "subprogramme_name": "Garantir a qualidade dos educadores pré-escolares",
+   "name": "Efetuar a identificação e diagnose sobre o uso da Língua Portugesa na sala de aula pelos Professores do ESG",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\"Número de Análise das necessidades identificada referente ao desenvolvimento profissional dos educadores do pré-escolar \"",
+   "baseline": "2 estudos (Qualificação dos professores de CAP e pré- escolar de acordo com os relatórios do Banco Mundial)",
+   "target": "\"1 estudo empíricos para o desempenho de professores com base nas formações atribuídas \"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1081
+  },
+  {
+   "code": "5200904",
+   "programme": "520",
+   "subprogramme": "52009",
+   "subprogramme_name": "Garantir a qualidade dos educadores pré-escolares",
+   "name": "Formação especializada para novos dirigentes da EPE na área do conhecimento, gestão, administração e currículo no sistema educativo",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "Numero líderes de pré-escola receberam treinamento combinado sobre gestão e administração de pré-escola.",
+   "baseline": "287 pré-escolas e",
+   "target": "287 novos diregentes de pré- escola receberam treinamento combinado de aprendizagem e sala de aula do Google.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1081
+  },
+  {
+   "code": "5201102",
+   "programme": "520",
+   "subprogramme": "52011",
+   "subprogramme_name": "Assegurar a construção, reabilitação e fornecimento de facilidades dos estabelecimentos pré-eskolares",
+   "name": "Assegurar o acesso de facilidades de água e saneamento nas pré- escolas",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "Número de pré-escolares recebem instalações de água",
+   "baseline": "28% de pré-escolas não têm instalações de água",
+   "target": "12 pré-escolas recebem instalações de água",
+   "amounts": {
+    "50": 11943.0
+   },
+   "page": 1082
+  },
+  {
+   "code": "5201301",
+   "programme": "520",
+   "subprogramme": "52013",
+   "subprogramme_name": "Comunidades Educativas - Participação das partes interessadas na aprendizagem dos alunos",
+   "name": "Entrega de formação aos pais e cuidadores sobre a estimulação inicial, proteção de crianças, nutrição e aprendizagem em casa",
+   "div": [
+    "1120802"
+   ],
+   "indicator": "\"1). Foram desenvolvidos conteúdos do material do IEC sobre o papel dos pais no apoio à aprendizagem pré-escolar das crianças. 2). Número de pais que receberam informação sobre o papel dos pais na educação pré-escolar. \"",
+   "baseline": "\"1). 0 2) 870 pais \"",
+   "target": "\"1). IEC material contents about the role of parents supporting children preschool learning developed. 2). 100 países receberão informação sobre o papel dos pais na educação pré-escolar. \"",
+   "amounts": {
+    "20": 9360.0
+   },
+   "page": 1082
+  },
+  {
+   "code": "5201403",
+   "programme": "520",
+   "subprogramme": "52014",
+   "subprogramme_name": "A Implementação efetiva do Currículo Nacional de Base da Educação Pré-escolar",
+   "name": "Edição, desenho e impressão utilizando material curricular pré- escolar",
+   "div": [
+    "1121501"
+   ],
+   "indicator": "\"1). Material curricular do ensino pré-escolar produzido. 2). Material for preschool teachers produced and distributed. \"",
+   "baseline": "\"1). 495,650 exemplares produced. 2). 700 examplares for preschool teachers produced. \"",
+   "target": "\"1). 682,575 exemplares produzidos; 2). 800 exemplares produzidos. \"",
+   "amounts": {
+    "20": 112000.0
+   },
+   "page": 1082
+  },
+  {
+   "code": "5201405",
+   "programme": "520",
+   "subprogramme": "52014",
+   "subprogramme_name": "A Implementação efetiva do Currículo Nacional de Base da Educação Pré-escolar",
+   "name": "Implementasaun biblioteca e laboratório movél",
+   "div": [
+    "1121001"
+   ],
+   "indicator": "\"1). Numero visitas biblioteca movel; 2). Numeru visitas laboratorio movel; \"",
+   "baseline": "\"1). 105 visitas biblioteca movel realisada; 2). 1 visita laboratorio movel realisada; \"",
+   "target": "\"1). 50 visitas realisada. 2). 50 visitas realisada. \"",
+   "amounts": {
+    "20": 9723.0
+   },
+   "page": 1083
+  },
+  {
+   "code": "5201805",
+   "programme": "520",
+   "subprogramme": "52018",
+   "subprogramme_name": "Infraestrutura e Facilidade Pre-escolar",
+   "name": "Construir instalações pré- escolares",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "1). Número de pré-escolas construídas 2). Número de salas de aula construídas",
+   "baseline": "\"1). 50 edifícios pré-escolares encontram-se com más condições; 2). 72 salas de aula construídas;\"",
+   "target": "\"12 novo edifícios pré- escolares construidos; 24 salas de aula construidas\"",
+   "amounts": {
+    "50": 278667.0
+   },
+   "page": 1083
+  },
+  {
+   "code": "5201901",
+   "programme": "520",
+   "subprogramme": "52019",
+   "subprogramme_name": "Gestão e Políticas da Educação Pré-Escolar",
+   "name": "Implementação do Programa intensivo prontidão para a escola (school readiness)",
+   "div": [
+    "1120802"
+   ],
+   "indicator": "\"1). # Centro de aprendizagem para prontidão para a escola estabelecido; 2). # crianças dos 5 anos de idade participam no programa intensivo prontidão escolar. \"",
+   "baseline": "\"1). 183 centros foram estabelecidos em 6 municípios: Baucau, Bobonaro, Covalima, Ermera, Viqueque e Ainaro. 2). 5.490 children aged 5 years old participated in preparation in programa intensivo de prontidão escolar. \"",
+   "target": "\"1). 60 centros do Programa Intensivo serão estabelecidos nos 10 municípios; 2). 3.000 crianças de 5 anos de idade participam no Programa Intensivo de Prontidão Escolar. \"",
+   "amounts": {
+    "20": 53727.0
+   },
+   "page": 1083
+  },
+  {
+   "code": "5201902",
+   "programme": "520",
+   "subprogramme": "52019",
+   "subprogramme_name": "Gestão e Políticas da Educação Pré-Escolar",
+   "name": "Gestao programa &amp;#34;hafurak&amp;#34; escolar no ensino Pre-eskolar",
+   "div": [
+    "1120802"
+   ],
+   "indicator": "Número de escolas com acesso ao programa de\"Hafurak\" da escola",
+   "baseline": "5 escolas",
+   "target": "\"6 pre escolares embelezadas \"",
+   "amounts": {
+    "20": 3240.0,
+    "30": 9000.0
+   },
+   "page": 1084
+  },
+  {
+   "code": "5201903",
+   "programme": "520",
+   "subprogramme": "52019",
+   "subprogramme_name": "Gestão e Políticas da Educação Pré-Escolar",
+   "name": "Prestação de serviços profissionais ao Ensino Pré-escolar",
+   "div": [
+    "1120802"
+   ],
+   "indicator": "\"\"\"1). Número de educadores pré-escolar. 2). % taxa de execução.\"\" \"",
+   "baseline": "\"1). 679 2). 100% taxa de execução \"",
+   "target": "\"1). 732 2). 100% taxa de execução \"",
+   "amounts": {
+    "10": 4354273.0
+   },
+   "page": 1084
+  },
+  {
+   "code": "5201905",
+   "programme": "520",
+   "subprogramme": "52019",
+   "subprogramme_name": "Gestão e Políticas da Educação Pré-Escolar",
+   "name": "Implementação do padrão de licenciamento das escolas EP",
+   "div": [
+    "1121101"
+   ],
+   "indicator": "\"1).Número aplicantes de licenciamento pre-escolár recieved. 2).Número de escolas com licença de Operacional admitido. 3). Esbozu padrãoes e criterios acreditação elaborado.\"",
+   "baseline": "\"1). 3 aplicantes de licenciamento pre-escolar aprovados. 2).79 pre-escolar licenciados. 3). Padrões e criterios acreditação ainda não elaborado. \"",
+   "target": "\"1). 5 aplicantes de licenciamento pre-escolar finalizado. 2) 5 escolas atribuidos de licenca operasional; 3). Padrões e criterios acreditação ainda não elaborado. \"",
+   "amounts": {
+    "20": 4640.0
+   },
+   "page": 1084
+  },
+  {
+   "code": "5211006",
+   "programme": "521",
+   "subprogramme": "52110",
+   "subprogramme_name": "Garantir a qualidade de professores do Ensino Básico",
+   "name": "Garantir que os alunos do ensino básico têm competências e conhecimentos através da utilização das TIC e recebem conteúdos curriculares de aprendizagem de reforço",
+   "div": [
+    "1120705"
+   ],
+   "indicator": "\"1). Número professores obtiviram acesso de uso laboratórios TIC. 2). Números professores ponto vocais de laboratórios TIC participaram na formação sobre uso de laboratórios de TIC. 3). Número professores de EB utilizam google for education platform for professional development; 4). Número professores de EB obtiviram formação sobre blended learning.\"",
+   "baseline": "\"1). 50 professores e alunos tem acesso de uso laboratórios TIC; 2). 20 professores ponto vocais de laboratórios TIC participaram formação sobre uso de laboratórios TIC. 3). 20 4). 120\"",
+   "target": "\"1). 50 professores e alunos tem acesso de uso laboratórios de TIC; 2). 20 Professores têm acesso ao uso do laboratório para aprendizagem; 3). 100 professores de EB; 4). 50 professores de EB;\"",
+   "amounts": {
+    "20": 32984.0
+   },
+   "page": 1085
+  },
+  {
+   "code": "52110X1",
+   "programme": "521",
+   "subprogramme": "52110",
+   "subprogramme_name": "Garantir a qualidade de professores do Ensino Básico",
+   "name": "National School Connectivity Programme",
+   "div": [
+    "1120705"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 131360.0
+   },
+   "page": 1085
+  },
+  {
+   "code": "52110X2",
+   "programme": "521",
+   "subprogramme": "52110",
+   "subprogramme_name": "Garantir a qualidade de professores do Ensino Básico",
+   "name": "National Student Device Access Programme",
+   "div": [
+    "1120705"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 323700.0
+   },
+   "page": 1085
+  },
+  {
+   "code": "5211104",
+   "programme": "521",
+   "subprogramme": "52111",
+   "subprogramme_name": "Reforçar a Coesão Social através do Ensino Básico",
+   "name": "Implementação do Programa EMULI nas escolas alvo",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "\"1) Crianças que beneficiam do EMULI ou de outros programas escolares inclusivos. 2) Professores formados em apoio à aprendizagem em sala de aula e práticas inclusivas. 3) Escolas que implementam um programa estruturado de apoio à aprendizagem (recuperação/transição).\"",
+   "baseline": "\"1) 3145 2) Preparação ainda não iniciada; 3). 50\"",
+   "target": "\"\"\"1). 6000 2). Preparação para a extensão para o novo área de linguistico iniciada; 3). 60 \"",
+   "amounts": {
+    "20": 136716.0
+   },
+   "page": 1085
+  },
+  {
+   "code": "5211102",
+   "programme": "521",
+   "subprogramme": "52111",
+   "subprogramme_name": "Reforçar a Coesão Social através do Ensino Básico",
+   "name": "Desenvolver sistemas de rastreio (buka-hatene) de visão e audição dos alunos das escolas básicas",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "\"1). Coordenação eficaz com o Ministério da Saúde realizada; 2). Número de alunos com necessidades físicas (ouvidos e oftalmológicos) que recebem tratamento por parte de médicos especialistas. 3). Número de professores recebem orientação regular sobre a monitorização na escola. 4). Número das escolas reportam os dados de monitorização ao Departamento de Inclusão.\"",
+   "baseline": "\"1). Coordenação eficaz com o Ministério da Saúde iniciada; 2). 50; 3). 100 4). 0\"",
+   "target": "\"1). Reuniões regulares de coordenação entre as entidades técnicas relevantes do Ministério da Educação e do Ministério da Saúde; 2). Todos os alunos com necessidades especiais identificadas (ouvidos e oftalmológicos) recebem tratamento por parte de médicos especialistas. 3). Todos os diretores escolares e os professores recebem notificações regulares do Departamento Nacional de Inclusão sobre a monitorização nas escolas. 4). As escolas reportam os dados de monitorização ao Departamento de Inclusão.\"",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 1086
+  },
+  {
+   "code": "5211202",
+   "programme": "521",
+   "subprogramme": "52112",
+   "subprogramme_name": "Assegurar a construção, reabilitação ou fornecimento de facilidades dos estabelecimentos do Ensino Básico",
+   "name": "Reabilitação ou construção de estabelecimentos EB",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "Número de salas de aula contruídas",
+   "baseline": "300 novos salas de aula",
+   "target": "\" 62 de salas de aula construídas \"",
+   "amounts": {
+    "50": 1382040.0
+   },
+   "page": 1086
+  },
+  {
+   "code": "5211402",
+   "programme": "521",
+   "subprogramme": "52114",
+   "subprogramme_name": "Revisão e implementação de Curriculo Nacional de Base Ensino Básico",
+   "name": "Implementação do programa de intercambio entre escolas de forma a partilhar boas práticas",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "\"Número de alunos do 3 ciclo EB participam em atividades de intercambio \"",
+   "baseline": "\"150 alunos \"",
+   "target": "\"150 alunos do 3º ciclo participam na atividade de intercambio em cada Município \"",
+   "amounts": {
+    "20": 45540.0
+   },
+   "page": 1087
+  },
+  {
+   "code": "5211403",
+   "programme": "521",
+   "subprogramme": "52114",
+   "subprogramme_name": "Revisão e implementação de Curriculo Nacional de Base Ensino Básico",
+   "name": "Impressao materiais curriculares de todas nivel da escolaridades",
+   "div": [
+    "1121501"
+   ],
+   "indicator": "\"Número de exemplares de exames nacionais, cadernetas, livros de pontuação, lista de presenças e planos de lição dos todos niveis. \"",
+   "baseline": "\"450,000 exemplares \"",
+   "target": "\"750,000 exemplares impressos \"",
+   "amounts": {
+    "20": 95042.0
+   },
+   "page": 1087
+  },
+  {
+   "code": "52114X1",
+   "programme": "521",
+   "subprogramme": "52114",
+   "subprogramme_name": "Revisão e implementação de Curriculo Nacional de Base Ensino Básico",
+   "name": "Youth employability - English learning for Cycle 2 students",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 1087
+  },
+  {
+   "code": "5211502",
+   "programme": "521",
+   "subprogramme": "52115",
+   "subprogramme_name": "Sistema de Gestão e administração do Ensino Básico",
+   "name": "Implementação do regulamento sobre a disciplina do professor e do aluno",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "\"1). Percentagem de alunos que assinam o código de conduta disciplinar dos alunos. 2). Os alunos têm acesso a informação sobre a disciplina dos alunos através de vídeos, folhetos e panfletos. 3). Número de Conselhos de Segurança estabelecidos e reuniões trimestrais regulares.\"",
+   "baseline": "\"1). Deve existir um código de conduta em todas as escolas públicas. 2). Os regulamentos disciplinares dos alunos já se baseiam no Diploma Ministerial. 3). Não existe conselho de segurança. \"",
+   "target": "\"1). Kada alunu asina kodigu konduta dixiplina alunu. 2). Sensibilizasaun konsensia públiku kona-ba disiplina alunus ho meus digital (video) no brochures no pamphlets . 3). Konsellu seguransa enkontru regular kada trimestre realizada no relatóriu submete ba SEM no DNEB; \"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1088
+  },
+  {
+   "code": "5211506",
+   "programme": "521",
+   "subprogramme": "52115",
+   "subprogramme_name": "Sistema de Gestão e administração do Ensino Básico",
+   "name": "Prestação de serviços profissionais ao Ensino Básico",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "\"1). % Taxa de execução de orçamento salarial 2). Número de professores Ensino Básico. \"",
+   "baseline": "\"1). Plano execução orcamento implementado; 2). 12,567 \"",
+   "target": "\"1). 100% taxa de execução; 2). 13,662 \"",
+   "amounts": {
+    "10": 65818358.0
+   },
+   "page": 1088
+  },
+  {
+   "code": "5211703",
+   "programme": "521",
+   "subprogramme": "52117",
+   "subprogramme_name": "Merenda Escolar",
+   "name": "Monitorização e avaliação regular do programa de merenda escolar",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "\"1). Diretrizes para alimentação escolar aprovada, socializada e implementada. 2). Número de relatório de avaliação merenda ecolar produzido 3). Número de alunos do Ensino Básico com acesso ao programa de merenda escolares.\"",
+   "baseline": "1). Decreto do Governo nº 03/2025 sobre as normas de implementação da alimentação escolar. 2). Elaboração do manual de implementação do programa de refeições escolares finalizada e aprovada. 3). 287495 de alunos de EB accesso merenda escolar. \"\" \"",
+   "target": "\"1). Diretrizes para alimentação escolar aprovada, socializada e implementada. 2). 4 relatório de avaliação merenda ecolar produzido 3. Divulgar os resultados da avaliação da implementação.\"",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1088
+  },
+  {
+   "code": "5211801",
+   "programme": "521",
+   "subprogramme": "52118",
+   "subprogramme_name": "Revitalização educação ensino basico",
+   "name": "Atividades de desporto escolar",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "\"1) # escolas implementarão o programa de Desporto Escolar no ensino básico. 2) # participantes em atividades desportivas escolares 3) # professores de educação física participam desporto escolar.\"",
+   "baseline": "\"1). 16 escolas irão implementar o programa de Desporto Escolar ao nível do Ensino Básico em RAEOA 2). 384 participantes de atividades de desporto escolar; 3). 100\"",
+   "target": "\"1). 26 escolas em Municipio de Ainaro. 2). 240 participantes de atividades de desporto escolar. 3). 50 professores de educação fisica participam desporto escolar.\"",
+   "amounts": {
+    "20": 13000.0
+   },
+   "page": 1089
+  },
+  {
+   "code": "5211803",
+   "programme": "521",
+   "subprogramme": "52118",
+   "subprogramme_name": "Revitalização educação ensino basico",
+   "name": "Programa de Emergência Escolar",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "\"1. # escolas afetadas que obtêm rapidamente assitência em caso de emergência 2. Material emergencia distribuindos\"",
+   "baseline": "\"1). 12 eskolas afetadas obeem rapidamente assisténcia emergencia. 2). Material emergéncia foram distribuidos para todos escola afetadas.\"",
+   "target": "\"1). Materiál emergéncia disponivel ba eskola hamutuk-34 sira ne'ebe afeta 2). Material emergéncia foram distribuidos. \"",
+   "amounts": {
+    "20": 47574.0
+   },
+   "page": 1089
+  },
+  {
+   "code": "5211804",
+   "programme": "521",
+   "subprogramme": "52118",
+   "subprogramme_name": "Revitalização educação ensino basico",
+   "name": "Plano de saúde escolar",
+   "div": [
+    "1120703"
+   ],
+   "indicator": "\"1). Número Comitês de Saúde estabelecidos em cada Município 2). # escolas obteim acesso ao atendimento saude nas escolas. 3). Número de econtros coordenação regular entre Ministério Saúde e Ministério Educação realizada.\"",
+   "baseline": "\"1). 12Comitês de Saúde estabelecidos em cada Município. 2). 67 escolas de EB obteim acesso ao atendimento saude nas escolas. 3). 3\"",
+   "target": "\"1). Todos Comitês de Saúde estabelecidos em cada Município funcionado. 2). Todos escolas de EB obteim acesso ao informação sobre saude publicas. 3). 4 econtros regular\"",
+   "amounts": {
+    "20": 3500.0
+   },
+   "page": 1089
+  },
+  {
+   "code": "5211902",
+   "programme": "521",
+   "subprogramme": "52119",
+   "subprogramme_name": "Formação dos educadores do Ensino Basico",
+   "name": "Formação contínua para Professores do Ensino Básico (EB) sobre conteúdos curriculares",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\" N. º de professores do 3.º Ciclo do EB recebem",
+   "baseline": "3000",
+   "target": "\"3.702 professores do ensino básico ciclo 3o receberam",
+   "amounts": {
+    "20": 326992.0,
+    "30": 174600.0
+   },
+   "page": 1089
+  },
+  {
+   "code": "5211905",
+   "programme": "521",
+   "subprogramme": "52119",
+   "subprogramme_name": "Formação dos educadores do Ensino Basico",
+   "name": "Efetuar a identificação e diagnose dos Professores do EB",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\"1). Número de Análise das necessidades identificada referente ao desenvolvimento profissional dos educadores do pré-escolar; 2). Análise nesesidades formasaun profesór bazeia ba dadús teste cresimento, SEA-PLM e EGRA; \"",
+   "baseline": "\"1). 2 estudos (Qualificação dos professores de CAP e pré-escolar de acordo com os relatórios do Banco Mundial); 2). 0 \"",
+   "target": "\"1). 1 estudo empíricos para o desempenho de professores com base nas formações atribuídas; 2). Análise nesesidades formasaun profesór baseia ba dadús teste cresimento, SEA- PLM e EGRA finalisado.\"",
+   "amounts": {
+    "20": 10000.0
+   },
+   "page": 1090
+  },
+  {
+   "code": "5211907",
+   "programme": "521",
+   "subprogramme": "52119",
+   "subprogramme_name": "Formação dos educadores do Ensino Basico",
+   "name": "Promove a utlização de novas pedagogias no ensino da Ciência e Matemática nas escolas",
+   "div": [
+    "1120102"
+   ],
+   "indicator": "# Aplicar o uso da nova pedagogia no ensino das Ciências e da Matemática nas escolas",
+   "baseline": "1. 331 professores tanto de EBC e ESG formando na utilização dos equipamentos de lab",
+   "target": "\"30 Professores formandos na utilização dos equipamentos de laboratorio; \"",
+   "amounts": {
+    "10": 34332.0,
+    "20": 5199.0
+   },
+   "page": 1090
+  },
+  {
+   "code": "5212001",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Assegurar o acesso a faciliades de água e sanemaneto nas escolas básicas",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "1.Numero das escolas que obtem acesso a facilidades de agua e saneamento 2. Numero das escolas basicas com acesso a facilidades salas de aulas.",
+   "baseline": "28% de escolas básicas não têm instalações de água",
+   "target": "\"1). 12 escolas recebem acesso a facilidades de água e saneamento 2). 12 escolas obtem acesso a 42 salas de aulas. \"",
+   "amounts": {
+    "50": 83485.0
+   },
+   "page": 1090
+  },
+  {
+   "code": "52120E1",
+   "programme": "521",
+   "subprogramme": "52120",
+   "subprogramme_name": "Infraestrutura e Fasilidade do Ensino Básico",
+   "name": "Financing of ongoing construction projects 2024-2026",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "50": 4120682.0
+   },
+   "page": 1090
+  },
+  {
+   "code": "5212202",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Promover os estudantes de EB no concurso académico a nível nacional ou internacional",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "\"1). Olimpíada académica júnior de nível nacional realizada. 2). Número de alunos participantes nas Olimpíadas Internacionais do Prémio Criatividade e Inovação. 3). Número de alunos participaram na competição da IJSO.\"",
+   "baseline": "\"1). Participaram no concurso 193 EBC (a EBC Diligencia Manufahi foi a vencedora) 2). O Prémio Internacional de Criatividade e Inovação das Mini Olimpíadas foi realizado a nível nacional. 3). 4 alunos\"",
+   "target": "\"1). Olimpíada académica nacional júnior realizada. 2). 5 alunos participaram no concurso do Prémio Internacional de Criatividade e Inovação. 3). 6 alunos participaram na competição da IJSO.\"",
+   "amounts": {
+    "20": 62027.0
+   },
+   "page": 1091
+  },
+  {
+   "code": "5212203",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Realização do Exame Nacional do Ensino Basico",
+   "div": [
+    "1121001"
+   ],
+   "indicator": "\"1). Numero de alunos do EB, que participaram no Exame Nacional; 2). Taxa conclusão exame nacional de 9.o ano; 3). Taxa de transição alunos 9.o ano para o ensino secundário;\"",
+   "baseline": "\"1). 26.746 (GADCRP, 2025); 2). 0; 3). 0\"",
+   "target": "\"1). Todos os alunos finalistas do 3º ciclo do EB, participaram no exame nacional; 2). 95%; 3). 80%\"",
+   "amounts": {
+    "10": 16800.0,
+    "20": 503455.0
+   },
+   "page": 1091
+  },
+  {
+   "code": "5212207",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Reforma Curricular do 3o ciclo",
+   "div": [
+    "1121001"
+   ],
+   "indicator": "\"1). Conteúdo curricular do 8.º e 9.º anos finalizado. 2). Livros do 8.º e 9.º anos impressos e distribuídos. 3). Todos os professores do 8.º e 9.º anos participaram na orientação curricular.\"\" \"",
+   "baseline": "\"1). Foi concluída a avaliação do Currículo do EB 3o ciclo. 2). Currículo do EB 3º ciclo aprovado. 3). 3000;\"",
+   "target": "\"1). Conteudo curricular do 8o e 9o ano do EB finalizado. 2). Professores dos 8o e 9o ano implementa conteudo curricular do 8o e 9o ano. 3). 3,072 professores \"",
+   "amounts": {
+    "10": 73800.0,
+    "20": 685296.0
+   },
+   "page": 1091
+  },
+  {
+   "code": "5212210",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Promoção de valores culturais de Timor-Leste",
+   "div": [
+    "1120102"
+   ],
+   "indicator": "1). Informações sobre o patrimonio cultural desseminadas. 2). Dados de casa sagrados (Uma Lulik) em 4 municipios (Bobonaro, RAEOA, Leutem & Viqueque) recolhados.",
+   "baseline": "1). Integração dos Tais no Currículo Nacional do Ensino Básico . 2) Recolha de dados de casas sagradas (Uma lulik) em 4 municípios (Bobonaro, RAEOA, Lautem e Viqueque). 3) Vídeo de Tais & Uma Lulik e 14 elementos do património cultural prodizidos e dessminadas.",
+   "target": "1). Os conteudos de TAIS integrado e curriculo Nacional 2). Seminário sobre Memória do Mundo (Memory of the World of UNESCO) para 2 escolas aos 200 estudantes 3). Coleção dados de casa sagrados (Uma lulik) em 4 municipios (Bobonaro, RAEOA, Lautem & Viqueque).",
+   "amounts": {
+    "10": 50400.0,
+    "20": 36922.0
+   },
+   "page": 1091
+  },
+  {
+   "code": "52122X1",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Standardised curriculum- based learning assessment, Grades 2 and 9",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 86000.0
+   },
+   "page": 1091
+  },
+  {
+   "code": "52122X3",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Learning assessment - IT equipment",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 800200.0
+   },
+   "page": 1091
+  },
+  {
+   "code": "52122X4",
+   "programme": "521",
+   "subprogramme": "52122",
+   "subprogramme_name": "Currículo Nacional do Ensino Básico",
+   "name": "Standardised curriculum- based learning assessment Grade 2 and 9 - second component",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 63000.0
+   },
+   "page": 1092
+  },
+  {
+   "code": "5212402",
+   "programme": "521",
+   "subprogramme": "52124",
+   "subprogramme_name": "Comunidades educativos dos educação ensino Basico",
+   "name": "Implementacao sobre funcionamento do GTP e GTL na agrupamentos EIEB",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "\"1). Manual GTP/GTL desenvolvido e aprovado. 2). Percentagem de professores do ensino básico que participaram no GTP/GTL.\"",
+   "baseline": "\"1). Manual GTP/GTL elaborado 2). 50% de professores do ensino primário implementaram o GTP/GTL na escola com o apoio dos programas ALMA e HATUTAN. \"",
+   "target": "\"1). Manual GTP/GTL aporvado com Despacho Ministerial. 2). 40% de professores ensino básico participam em GTL/GTL.\"",
+   "amounts": {
+    "20": 11000.0
+   },
+   "page": 1092
+  },
+  {
+   "code": "5212405",
+   "programme": "521",
+   "subprogramme": "52124",
+   "subprogramme_name": "Comunidades educativos dos educação ensino Basico",
+   "name": "Estabelesimentu asembleia eskolár iha básika",
+   "div": [
+    "1120803"
+   ],
+   "indicator": "\"1). Número de assembleias escolares estabelecidas. 2). Manual de assembleias escolares elaborado e aprovado. 3). Manuais e",
+   "baseline": "\"1). 13 2). Elaboração do rascunho do manual da assembleia escolar; 3). Manual e informação sobre a",
+   "target": "\"1). 14 assembleias escolares estabelecidas. 2). Manual estabelesimentu asembleia eskola elaboradu no aprovadu. 3). Manuais e",
+   "amounts": {
+    "20": 7825.0
+   },
+   "page": 1092
+  },
+  {
+   "code": "5220603",
+   "programme": "522",
+   "subprogramme": "52206",
+   "subprogramme_name": "Garante a qualidade dos professores do ensino secundário",
+   "name": "Conduzir formação contínua a professores do ESG e ESTV sobre Lingua Portugesa (apriprionamento) [I: Específico]",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\"1. Númeru professores ESG no ESTV hetan formasaun aprimoriamento lingua Portuguesa. 2. Númeru professores ESTV hetan formasaun aprimoriamento lingua Portuguese.\"",
+   "baseline": "\"1. 0 2. 411 professores husi total 918 professores ESTV hetan ona formasaun. aprimoriamento lingua Portuguesa;\"",
+   "target": "\"1. Professores ESG nain 250 hetan formasaun kona- ba lingua Portuguesa 2.507 professores ESTV kompleta formasaun aprimoriamento lingua Portuguese.\"",
+   "amounts": {
+    "20": 27638.0
+   },
+   "page": 1093
+  },
+  {
+   "code": "5220604",
+   "programme": "522",
+   "subprogramme": "52206",
+   "subprogramme_name": "Garante a qualidade dos professores do ensino secundário",
+   "name": "Formação de indução para novos professores",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "Numeru de novos Professores ESG e ESTV, recebem Formação de indução",
+   "baseline": "1532",
+   "target": "500 professores",
+   "amounts": {
+    "20": 29888.0
+   },
+   "page": 1093
+  },
+  {
+   "code": "5220605",
+   "programme": "522",
+   "subprogramme": "52206",
+   "subprogramme_name": "Garante a qualidade dos professores do ensino secundário",
+   "name": "formação preparatória para os novos docentes de ESG e ESTV que não possuam habilitações académicas na área da educação",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\"Número de professores que participam na formação indução \"",
+   "baseline": "0",
+   "target": "\" 1.450. Professores ESG e ESTV, recebem Formação de indução\"",
+   "amounts": {
+    "20": 36540.0
+   },
+   "page": 1093
+  },
+  {
+   "code": "5220606",
+   "programme": "522",
+   "subprogramme": "52206",
+   "subprogramme_name": "Garante a qualidade dos professores do ensino secundário",
+   "name": "Acompanhar e avaliar cursos de formação para professores",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\" 1). Número de docentes de ESG e ESTV participantes no diagnóstico das necessidades de formação; 2) Número de professores ESG",
+   "baseline": "\"1). Referensia hodi avalia ba evolusaun no susesu ba inisiativa 2). 0\"",
+   "target": "\"1). Professores ESG no ESTV hotu partisipa iha análise nesesidades formasaun (918 professores ESTV iha quadro pessoal no",
+   "amounts": {
+    "20": 35120.0
+   },
+   "page": 1093
+  },
+  {
+   "code": "5221402",
+   "programme": "522",
+   "subprogramme": "52208",
+   "subprogramme_name": "Uso das Tecnologias de Informação e Comunicação (TIC) para a educação e aprendizagem",
+   "name": "Fortalecer de mentoria, blended no online learning, bem como outos métodos efetivos",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "Número de professor recebem formação através do blended learning",
+   "baseline": "100",
+   "target": "\"50 professores \"",
+   "amounts": {
+    "20": 50596.0
+   },
+   "page": 1094
+  },
+  {
+   "code": "5220907",
+   "programme": "522",
+   "subprogramme": "52209",
+   "subprogramme_name": "Sistema de Gestão e administração do Ensino Secundário",
+   "name": "Realização de estudo de viabilidade sobre estabelecer escolas de excelências para o ensino secundário geral",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "Numeru da Escola do estudo viabilidade finalizado",
+   "baseline": "0",
+   "target": "3 escolas do Estudo viabilidade sobre escolas modelo finalizado",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1094
+  },
+  {
+   "code": "5221103",
+   "programme": "522",
+   "subprogramme": "52211",
+   "subprogramme_name": "Revisão e implementação do currículo nacionál de base do ensino secundário Geral",
+   "name": "Implementação do programa de aconselhamento profissional",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "Aconselhamento para alunos nas escolas realizado",
+   "baseline": "0",
+   "target": "10 Centros realizam aconselhamento nas escolas",
+   "amounts": {
+    "20": 9000.0
+   },
+   "page": 1094
+  },
+  {
+   "code": "5221109",
+   "programme": "522",
+   "subprogramme": "52211",
+   "subprogramme_name": "Revisão e implementação do currículo nacionál de base do ensino secundário Geral",
+   "name": "Fortalecer o sistema de avaliação do resultado a aprendizagem e ensino secunadrio ESTV o qual reflete o Século XXI",
+   "div": [
+    "1121001"
+   ],
+   "indicator": "Número de alunos finalistas do ESTV recebem dupla certificação",
+   "baseline": "5000 alunos",
+   "target": "4800 alunos finalistas do ESTV recebem certificado de PAF",
+   "amounts": {
+    "20": 19200.0
+   },
+   "page": 1095
+  },
+  {
+   "code": "5221110",
+   "programme": "522",
+   "subprogramme": "52211",
+   "subprogramme_name": "Revisão e implementação do currículo nacionál de base do ensino secundário Geral",
+   "name": "Implementação do programa de excelência do ensino secundário geral",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "Mapeamento e plano de criação de escolas secundárias gerais finalizados.",
+   "baseline": "Não existe mapeamento e plano para a criação de escolas secundárias gerais.",
+   "target": "Mapeamento e plano de criação de escolas secundárias gerais finalizados.",
+   "amounts": {
+    "20": 2000.0
+   },
+   "page": 1095
+  },
+  {
+   "code": "5221201",
+   "programme": "522",
+   "subprogramme": "52212",
+   "subprogramme_name": "Formação dos educadores Ensino secundario",
+   "name": "Formação sobre a educação para a cidadania global",
+   "div": [
+    "1120102"
+   ],
+   "indicator": "Número de professores e alunos que adquirem conhecimento sobre cidadania global",
+   "baseline": "100 professores e 100 alunos receberam conhecimento sobre cidadania global",
+   "target": "20 professores e 20 alunos recebem conhecimento sobre cidadania global",
+   "amounts": {
+    "10": 34800.0,
+    "20": 3524.0
+   },
+   "page": 1095
+  },
+  {
+   "code": "5221203",
+   "programme": "522",
+   "subprogramme": "52212",
+   "subprogramme_name": "Formação dos educadores Ensino secundario",
+   "name": "Formação continua para Professores do Ensino Secundário Técnico Vocacional (ESTV)",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "\"1). Número de professores do ESTV recebem formação sobre conteúdo curricular, módulos dos programas produtivos; 2). Número de dirigentes dos ESG/ESTV",
+   "baseline": "\"1). 517 professores; 2). 24 \"",
+   "target": "\"1). 100 professores do ESTV recebem formação sobre o conteúdo curricular de módulos dos programas produtivos; 2). 24 dirigentes de escolas ESG-ESTV; \"",
+   "amounts": {
+    "30": 10000.0
+   },
+   "page": 1095
+  },
+  {
+   "code": "52212X1",
+   "programme": "522",
+   "subprogramme": "52212",
+   "subprogramme_name": "Formação dos educadores Ensino secundario",
+   "name": "Teacher Competency Framework with NIE Singapore",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 150000.0
+   },
+   "page": 1096
+  },
+  {
+   "code": "5221301",
+   "programme": "522",
+   "subprogramme": "52213",
+   "subprogramme_name": "Infraestrutura e Facilidade Ensino Secundário Geral e Tecnico Vocacional",
+   "name": "Assegurar o acesso a facilidades de água nas escolas secundárias",
+   "div": [
+    "1120704"
+   ],
+   "indicator": "\"1). Número de novas salas de aula construídas para as escolas secundárias; 2). Numeru das escolas secundarias com acesso a facilidades bibliotéca, laboratório e internet \"",
+   "baseline": "\"1). Xx novas salas de aula construídas. 2). 24 escolas secundário com internet\"",
+   "target": "\"1). 12 salas de aula construídas. 2). 24 escolas ensino secundário com internet\"",
+   "amounts": {
+    "50": 510756.0
+   },
+   "page": 1096
+  },
+  {
+   "code": "52214X1",
+   "programme": "522",
+   "subprogramme": "52214",
+   "subprogramme_name": "Tecnologias de Informação e Comunicação (TIC) para a educação e aprendizagem na ESG e ESTV",
+   "name": "Digital Pedagogy Programme - online certification",
+   "div": [
+    "1120302"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 123480.0
+   },
+   "page": 1096
+  },
+  {
+   "code": "5221505",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Desenvolver padrões e critérios de acreditação para o ensino ESG",
+   "div": [
+    "1121101"
+   ],
+   "indicator": "\"Padrão e criterios de acreditação para o ensino ESG elaborado. \"",
+   "baseline": "\"1). 0 2) Padrão e critrios de acreditação para o ensino ESG ainda não eizste; \"",
+   "target": "Padrão e criterios de acreditação para o ensino ESG elaborado.",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221507",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Fortalecimento do Sistema EMIS com novo padrão de forma a garantir a sua utilização efetiva e eficaz",
+   "div": [
+    "1120702"
+   ],
+   "indicator": "\"1). Foi desenvolvido um novo sistema digital do EMIS. 2). Os pontos focais do EMIS dos 14 municípios, incluindo a RAEOA, receberam formação. 3). Os membros do GAT de todos os níveis irão receber formação sobre o novo sistema EMIS. 4). Os dados do EMIS de 2026 foram inseridos e finalizados. 5). A análise dos dados da educação foi concluída.\"\" \"",
+   "baseline": "\"1). Sistema digital do EMIS ainda não desenvolvido; 2) 14 pontos focais do EMIS receberam formação sobre recolhamento dados EMIS; 3). Os membros do GAT ainda não receberam formação sobre EMIS; 4). Dados do EMIS 2025 forma inseraos e ainda não finalizado; 5). 0 \"",
+   "target": "\"1). Um novo sistema digital do EMIS foi desenvolvido. 2).Os pontos focais do EMIS dos 14 municípios, incluindo a RAEOA, receberam formação. 3). 440 membros dos GAT, de todos os níveis, receberão formação sobre o novo sistema EMIS. 4). Os dados do EMIS de 2026 foram inseridos e finalizados. 5). A análise dos dados da educação foi concluída.\"\" \"",
+   "amounts": {
+    "20": 53400.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221508",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Conceções escolares ESG",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "\"1). Número de alunos das escolas públicas recebem conceções escolares; 2). Número de alunos das escolas privadas recebem conceções escolares; \"",
+   "baseline": "\"1) 47,896 alunos de escolas públicas; 2) 5,927 alunos de escolas privadas receberam concessões \"",
+   "target": "\"1) 50,500 Alunos de escolas públicas; 2) 6000 Alunos de escolas privadas \"",
+   "amounts": {
+    "20": 9000.0,
+    "30": 1194270.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221509",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Conceções escolares do ESTV",
+   "div": [
+    "1120903"
+   ],
+   "indicator": "Número de alunos das escolas públicas ESTV recebem conceções escolares",
+   "baseline": "10000 alunos",
+   "target": "12,500 alunos",
+   "amounts": {
+    "30": 1341636.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221510",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Prestação de serviços Técnicos Profissionais Secundários",
+   "div": [
+    "1120903"
+   ],
+   "indicator": "\"1). % de Taxa de execução orçamental do salários; 2). Número de professores que receberam salários mensais; \"",
+   "baseline": "\"1). 100% execução 2). 2099 \"",
+   "target": "\"1). 100% execução 2). 3549 \"",
+   "amounts": {
+    "10": 6827378.0,
+    "20": 95045.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221511",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Prestação de serviços profissionais ao Ensino Secundário Geral",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "\"1). % de Taxa de execução orçamental do salários; 2). Número de professores que receberam salários mensais; \"",
+   "baseline": "\"1). 100% execução 2). 2099 \"",
+   "target": "\"1). 100% execução 2). 3549 \"",
+   "amounts": {
+    "10": 9829980.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221513",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Identificação e avaliação dos estabelecimentos de ensino secundário (ESG e ESTV) de acordo com as normas de licenciamento e acreditação",
+   "div": [
+    "1121101"
+   ],
+   "indicator": "\"1). Número de escolas ESG/ESTV avaliadas. 2). Número de escolas ESG/ESTV licenciadas/accreditadas; \" \"",
+   "baseline": "\"1). 50 as escolas internacionais recebem informação sobre os critérios de licenciamento. 2). 0 \"",
+   "target": "\"1). 100 escolas (ESG e ESTV) avaliadas; 2). 5\"",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 1097
+  },
+  {
+   "code": "5221514",
+   "programme": "522",
+   "subprogramme": "52215",
+   "subprogramme_name": "Gestao e Politicas do Ensino Secundario Geral e Ensino Secundario Tecnico Vocacional",
+   "name": "Mapeamento da criação de Escolas Secundárias Gerais",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "\" Mapeamento e plano de criação de escolas secundárias gerais finalizados; \"",
+   "baseline": "Não existe mapeamento e plano para a criação de escolas secundárias gerais",
+   "target": "Mapeamento e plano de criação de escolas secundárias gerais finalizados",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 1098
+  },
+  {
+   "code": "5221601",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Realização do Exame Nacional do Ensino Secundário Geral e Técnico-Vocacional",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "\"1). Alunos do ESG e ESTV fazem Exame Nacional; 2). Taxa conclusão 9.o ano e 12.o anno (ESG/ESTV) \"",
+   "baseline": "\"1). 59000; 2). 95% \"",
+   "target": "\"1). 55000; 2). 98% \"",
+   "amounts": {
+    "20": 5000.0
+   },
+   "page": 1098
+  },
+  {
+   "code": "5221605",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Abertura de oportunidade e apoio aos estudantes na participação de concursos académicos nacionais e internacionais",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "\"1). Número de alunos do ESG participam em atividades certâmen; 2). Número de alunos do ensino secundário participaram em atividades academicos internacional; \"",
+   "baseline": "\"1). 220; 2). 50\"",
+   "target": "\"1). 240 alunos do ESG participam em certamen; 2). 10 \"",
+   "amounts": {
+    "20": 65000.0
+   },
+   "page": 1098
+  },
+  {
+   "code": "5221606",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Implementação de atividades extracurriculares do Ensino Secundário Geral",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "Número de alunos participantes nas atividades de conselho estudantil",
+   "baseline": "120 alunos e 9 professores",
+   "target": "\"100 alunos participam em atividades de conselho estudantil elevando a habilidade de liderança do Século XXI \"",
+   "amounts": {
+    "20": 54281.0
+   },
+   "page": 1098
+  },
+  {
+   "code": "52216X1",
+   "programme": "522",
+   "subprogramme": "52216",
+   "subprogramme_name": "Curículo Nacional Ensino Secundário Geral e Ensino Secundário Técnico Vocacional",
+   "name": "Modernising the secondary curriculum - ESG and ESTV reform",
+   "div": [
+    "1120902"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1400000.0
+   },
+   "page": 1098
+  },
+  {
+   "code": "5230702",
+   "programme": "523",
+   "subprogramme": "52307",
+   "subprogramme_name": "Ensino Nasional Equivalência ao Nível de Ensino Básico",
+   "name": "Implementação do programa nacional de equivalência ao ensino básico",
+   "div": [
+    "1120804"
+   ],
+   "indicator": "\"1). Número de alunos da fase V (equivalência de 9 anos) após o exame nacional de equivalência; 2). Manual da fase IV-V revisado. 3). Materiais didáticos equivalentes produzidos para professores e alunos. \"",
+   "baseline": "\"1). Total de 1491 alunos formados na Fase V (equivalente a 9 anos). 2). Manual das fases IV - V do programa de equivalência, de acordo com o antigo currículo da educação básica.\"",
+   "target": "\"1). 550 alunos da Fase V (equivalência de 9 anos) seguem o exame nacional de equivalência no SKA. 2). Revisão manual de equivalência das fases IV e V concluída. 3). 2.000 manual do aluno, alinhado com o novo currículo, produzido e distribuído. \"",
+   "amounts": {
+    "10": 172588.0
+   },
+   "page": 1099
+  },
+  {
+   "code": "5230704",
+   "programme": "523",
+   "subprogramme": "52307",
+   "subprogramme_name": "Ensino Nasional Equivalência ao Nível de Ensino Básico",
+   "name": "Desenvolver um sistema de avaliação de educação com equivalência ao ensino secundário",
+   "div": [
+    "1120804"
+   ],
+   "indicator": "Currículo do Ensino Secundário Geral para o nível de equivalência desenvolvido",
+   "baseline": "Currículo do Ensino Secundário Geral de nível de equivalência desenvolvido",
+   "target": "\"Currículo do Ensino Secundário Geral de nível de equivalência aprovado \"",
+   "amounts": {
+    "20": 70376.0
+   },
+   "page": 1099
+  },
+  {
+   "code": "5230800",
+   "programme": "523",
+   "subprogramme": "52308",
+   "subprogramme_name": "Fortalecimento dos Centros de Aprendizagem Comunitários",
+   "name": "Formação para os membros do comité executivo do SKA.",
+   "div": [
+    "1120804"
+   ],
+   "indicator": "\"1). Novos membros do comitê executivo receberam treinamento em gestão do SKA. 2). Membros mais antigos do comitê executivo receberam treinamento de atualização em gestão do SKA.\"\" \"",
+   "baseline": "198 membros do SKA receberam treinamento de gestão do SKA.",
+   "target": "\"1). 226 novos membros do comitê executivo e do conselho do SKA receberam treinamento em gestão do SKA; 2). 180 antigos membros da estrutura atual do SKA receberam treinamento de atualização em gestão do SKA;\"\" \"",
+   "amounts": {
+    "30": 76000.0
+   },
+   "page": 1100
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "\"1). Plano Estratégico Educação 2026-2030 aprovado; 2). Enquadramento legais aprovados. 3) Número de professores aposentados aprovados\"",
+   "baseline": "\"1). Avaliação de Plano Estratégico Educação 2020-2025 finalisado. 2). 96 documentos legais 3). 187\"",
+   "target": "\"1). Plano Estratégico Educação 2026-2030 aprovado; 2). 150 dumentos legais 3). 1400\"",
+   "page": 1077
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "\"1) Número de auditória escolar realisada. 2). % de salas de aula do EB observadas. 3). Número de leis aprovado. \"",
+   "baseline": "\"1). 10 auditória escolar foram realisada. 2. 60% das salas de aula do EB observadas 3) 4 decreto lei aprovado\"",
+   "target": "\"1). 20 auditória escolar foram realisada. 2). Pelo menos 80% das escolas receberão visitas dos inspetores escolares. 3). 10 decreto lei aprovado.\"",
+   "page": 1077
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "\"1) Metas do plano anual alcançadas 2) Número de novos professores colocados nas escolas. 3) Número de professores aposentados aprovados 4) Número de Bolsa de Candidatos recrutados para substituir professores aposentados\"",
+   "baseline": "\"1) 85% no plano anual alcançado 2) 1827 3) 187 4) 3895\"",
+   "target": "\"1). 90% 2). 2842 3). 1400 4). 400\"",
+   "page": 1078
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.6",
+   "statement": "Nova construção do edifício do Ministério da Educação realizado",
+   "indicator": "\"1). Construcção de ddifiçio de Centro Impressão finalisado. 2). Desenho de edificio do ME. 3). Desenho arquitetonico de edificio do INFORDEPE no polo Same iniçiada. \"",
+   "baseline": "\" 1). Construção de ddifíçio de Centro Impressão iniciada. 2). Desenho ainda não finalisado. 3). Desenho arquitetanico de edificio do INFORDEPE polo SAME finalisado.\"",
+   "target": "\"1). Edifíçio de Centro Impressão finalisado. 2). Desenho de edificio do ME finalisado. 3). Desenho arquitetonico de edificio do INFORDEPE no polo Same iniçiada. \"",
+   "page": 1080
+  },
+  {
+   "kind": "outcome",
+   "code": "520.0.0",
+   "statement": "Aumentar o acesso, a participação e a prontidão escolar das crianças dos 3",
+   "indicator": "\"1). Taxa líquida de matrícula (NER) na pré- escola (idades entre 3 e 5",
+   "baseline": "\"1). 33.501 2) 35% (DNEPE, 2024) 3). 0 4). 75",
+   "target": "\"\"\"1). 34.500 2). 40% 3). 80% 4). 22\"\" \"",
+   "page": 1080
+  },
+  {
+   "kind": "output",
+   "code": "52009.0.0",
+   "statement": "Os professores de educação pré-escolar e os gestores escolares cumprem os padrões mínimos de qualificação e competência através de formação acreditada e desenvolvimento profissional contínuo.",
+   "indicator": "\"1) % profesór (edukadór) pré- eskolár ne’ebé prienxe kualifikasaun akadémika mínimu (Lisensiatura- Bacheralato) 2) # husi profesór pré-eskolár sira ne'ebé kompleta ona formasaun sertifikadu iha literasia inisiál no numerasaun. 3) # husi dirijente eskola pré-eskolár ne’ebé remata formasaun iha jestaun no administrasaun eskola\"",
+   "baseline": "\"\"\"1) % profesór (edukadór) pré- eskolár ne’ebé prienxe kualifikasaun akadémika mínimu (Lisensiatura- Bacheralato) 2) # husi profesór pré-eskolár sira ne'ebé kompleta ona formasaun sertifikadu iha literasia inisiál no numerasaun. 3) # husi dirijente eskola pré-eskolár ne’ebé remata formasaun iha jestaun no administrasaun eskola\"",
+   "target": "\"1). 72% 2) 1,489 3) 50\"",
+   "page": 1081
+  },
+  {
+   "kind": "output",
+   "code": "52011.0.0",
+   "statement": "Novos centros pré-escolares públicos são construídos e",
+   "indicator": "\"1). Número de edifícios de pré- escolar em mau estado de",
+   "baseline": "\"1) 100 edifícios de pré-escolar em mau estado de conservação; 2). 36",
+   "target": "\"1). Número de edifícios de pré- escolar em mau estado de",
+   "page": 1081
+  },
+  {
+   "kind": "output",
+   "code": "52013.0.0",
+   "statement": "Os pais e as comunidades apoiam ativamente a aprendizagem pré-escolar através de atividades do conselho escolar ou da associação de pais e de atividades regulares de IEC (Informação, Educação e Comunicação) sobre a importância da educação pré- escolar e da preparação para a escola.",
+   "indicator": "\"1) Número de pré-escolas com APP/AIAP a funcionar de acordo com as diretrizes 2) Materiais IEC sobre a importância da ECE desenvolvidos e divulgados (sim/não; número de títulos) 3) Número de pais a participar em sessões informativas sobre ECE\"",
+   "baseline": "\"\"\"1). 674 2). Conteudo materiais do IEC ainda não desenvolvido. 3). 870 país participam em formação ao país. \"\" \"",
+   "target": "\"\"\"1) . 674 APP/AIAP em funcionamento 2) Conteúdo dos materiais do IEC sobre a importância da ECE produzidos; 3). 970 país\"\" \"",
+   "page": 1082
+  },
+  {
+   "kind": "output",
+   "code": "52014.0.0",
+   "statement": "O Currículo Nacional da Educação Pré-escolar é implementado em todas as escolas de educação pré- escolar públicas e acreditadas, com o apoio de materiais de aprendizagem adequados à idade e de ferramentas de avaliação precoce que promovem a literacia, o raciocínio numérico e o desenvolvimento socioemocional.",
+   "indicator": "\"1) # de cópias do currículo pré- escolar e do material didático produzidas e distribuídas 2) % de pré-escolas públicas e credenciadas que implementam o Currículo Nacional Pré-escolar 3) # de professores de pré-escola treinados no uso do currículo e das ferramentas de avaliação precoce\"",
+   "baseline": "\"1). # de cópias do currículo pré- escolar e do material didático produzidas e distribuídas 2). % de pré-escolas públicas e credenciadas que implementam o Currículo Nacional Pré-escolar1). 495,650 exemplares material curricular do pré-escolar; 2). 100%\"",
+   "target": "\" 1). 682,575 exemplares produzidos. 2). Todos pré-escolas públicas e credenciadas que implementam o Currículo Nacional Pré-escolar \"",
+   "page": 1082
+  },
+  {
+   "kind": "output",
+   "code": "52018.0.0",
+   "statement": "As escolas de educação pré-escolar públicas existentes foram renovadas e modernizadas, incluindo salas de aula, instalações sanitárias, áreas de recreio e mobiliário básico, para cumprir os padrões nacionais de ambientes de aprendizagem inclusivos e adequados às crianças.",
+   "indicator": "\"1). Número de edifícios de pré- escolar em mau estado de conservação diminui; 2). Número de pré-escolas construídas 3). Número de salas de aula construídas\"",
+   "baseline": "\"1) 100 edifícios de pré-escolar em máo estado de conservação; 2). 36 de novos pré-escolares construidas; 3). 72 novos salas de aula construidas;\"",
+   "target": "\"1). Número de edifícios de pré- escolar em mau estado de conservação diminui (50); 2).46 de novos pré-escolares construidas; 3). 96 novos salas de aula construidas;\"",
+   "page": 1083
+  },
+  {
+   "kind": "output",
+   "code": "52019.0.0",
+   "statement": "A gestão e a garantia de qualidade do ensino pré-escolar são reforçadas através de agrupamentos operacionais de pré-escolas (agrupamentos), normas de acreditação aprovadas, pagamento regular dos professores do ensino pré-escolar e expansão das pré-escolas oficialmente reconhecidas/acreditadas.&amp;#13;&amp;#10;",
+   "indicator": "\"1). Plano rede pré-escolar elaborado e aprovado; 2). Número de agrupamentos pré- escolares estabelecidos e aprovados 3). # de crianças de 5 anos que participam no Programa Intensivo; 4). Padraões e critrios de acreditação pré-escolar finalizadas e aprovadas; 5). Quadro Pessoal dos educadores pré-escolar atualisado; 6). Número de pré- escolar embelezadas. \"",
+   "baseline": "\"1). Agrupamento pré-escolares finalizado. 2). 5,490 3). Padrão e criterios acreditação escolar ainda não ezistente. 4). 679 5). 5 pré- escolas 6).11 pré-escolas\"",
+   "target": "\"1). Plano rede pré-escolar elaborado e aprovado 2). 0 aAgrupamento pré-escolares implementado; 3). 8000 4) Padrão e critérios acreditação escolar finalizado. 5). 732 6). 11 pré-escolas \"",
+   "page": 1083
+  },
+  {
+   "kind": "outcome",
+   "code": "521.0.0",
+   "statement": "Até 2028, o acesso, a participação, a permanência (continuidade) e a conclusão do ensino básico (do 1º ao 9º ano) aumentarão, incluindo a literacia e a literacia matemática básica para os alunos.",
+   "indicator": "\"1). Número de alunos matriculados no Ensino Básico (desagregadas por género); 1) Taxa líquida de matrícula (NER) no ensino primário (1.º ao 6.º ano) 2) Taxa de conclusão do ensino básico (1.º ao 9.º ano) 3) Taxa de abandono escolar no ensino básico (1.º ao 9.º ano) 4) Taxa de participação no ensino básico\"",
+   "baseline": "\"1). 87,16% (EMSI 2023); 2). 98,22% (EMIS 2023) 3). X% 4). 4,12% (EMIS 2023)\"",
+   "target": "\"1). 90%; 2). 111,13%; 3). 90%; 4). 3% \"\" \"",
+   "page": 1084
+  },
+  {
+   "kind": "output",
+   "code": "52110.0.0",
+   "statement": "Professores ensinu báziku nian kumpre padraun kualifikasaun nasionál no hetan kompeténsia profisionál sira aas liuhosi formasaun inisiál no formasaun kontínua nomos dezenvolvimentu profesionál.",
+   "indicator": "\"1). % de professores ensino básico obtiviram qualificação academica minimo bacherelato. 1)% de professores do ensino básico que cumprem os padrões mínimos de qualificação (diploma/credencial). 2) # de professores que concluem formação em serviço em literacia e numeracia nas séries iniciais (por ano). 3) # de professores formados em educação inclusiva e especialização em sala de aula.\"",
+   "baseline": "\"1). 45,24% (CFP, 2025) 2). 8000 (INFORDEPE,2024) 3). 5000 (ALMA 2025) \"",
+   "target": "\"1). 100% 2). 10,000 3). 6000\"",
+   "page": 1084
+  },
+  {
+   "kind": "output",
+   "code": "52111.0.0",
+   "statement": "Reforçar a educação inclusiva para que os alunos desfavorecidos, incluindo aqueles com dificuldades de aprendizagem, deficiências e barreiras socioeconómicas, recebam o apoio adequado para aprender e permanecer na escola.",
+   "indicator": "\"1) Crianças que beneficiam do EMULI ou de outros programas escolares inclusivos. 2) Professores formados em apoio à aprendizagem em sala de aula e práticas inclusivas. 3) Escolas que implementam um programa estruturado de apoio à aprendizagem (recuperação/transição). \"",
+   "baseline": "\"1) 3145 2) Preparação ainda não iniciada; 3). 50\"",
+   "target": "\"1). 6000 2). Preparação para a extensão para o novo área de linguistico iniciada; 3). 60 \"",
+   "page": 1085
+  },
+  {
+   "kind": "output",
+   "code": "",
+   "statement": "new el2643: _ Reforçar a educação inclusiva para que os alunos desfavorecidos, incluindo aqueles com dificuldades de aprendizagem, deficiências e barreiras socioeconómicas, recebam o apoio adequado para aprender e permanecer na escola.",
+   "indicator": "\"1.Número de professores que receberam formação sobre o programa de assistência à aprendizagem em salas de aula. 2.Número de professores capacitados para fornecer assistência específica ao processo de aprendizagem dos alunos. \"",
+   "baseline": "\"1) 2054 2) 2054 \"",
+   "target": "\"1). 2500 2) 2500\"",
+   "page": 1086
+  },
+  {
+   "kind": "output",
+   "code": "52112.0.0",
+   "statement": "Escolas primárias construídas, renovadas e equipadas para cumprir os padrões mínimos nacionais relativos a um ambiente de aprendizagem seguro, inclusivo e adequado às crianças.",
+   "indicator": "\"1) novas salas de aula de ensino básico construídas de acordo com as normas. 2) salas de aula reabilitadas de «más condições» para as normas. 3) % de escolas com água, saneamento e higiene (WASH), iluminação e mobiliário básico adequados\"",
+   "baseline": "\"1). 1050 salas de aula com más condições; 2). 600 nova salas de aula construídas;\"",
+   "target": "\"11). 850. 2). 62 novas salas de aula construídas; \"",
+   "page": 1086
+  },
+  {
+   "kind": "output",
+   "code": "52114.0.0",
+   "statement": "O Currículo Nacional para o Ensino Básico (do 1º ao 9º ano) está totalmente implementado, com o TAIS e outros conteúdos nacionais integrados, e são fornecidos materiais didáticos de qualidade suficiente a todas as escolas.",
+   "indicator": "\"\"\"1) Estado de implementação do currículo para cada ciclo (1.º, 2.º, 3.º), % de escolas que utilizam o novo currículo. 2) de manuais escolares/materiais didáticos para o 1.º ao 9.º ano impressos e distribuídos (por disciplina e ano). 3) % de alunos do 1.º e 2.º ano que não conseguem ler um texto simples é reduzida (este é agora um resultado do programa/indicador de aprendizagem, não um indicador de resultados, mas' continua a ser acompanhado).\"",
+   "baseline": "\"1). 96% alunos Ensino Báico aprovados. 2) Livros de 8o e 9o ano de 3o ciclo de EB ainda não finalisado; 3) 70% (Relatóriu EGRA 2009) \"",
+   "target": "\"1). Todas as escolas implementam Currículo Ensino Básico ciclo 1.º,2.º e 3.º. 2). Livros de 8.º e 9.º de 3o ciclo de EB finalisado e produzido. 3). Redução mínima de 5 pontos (65%)\"",
+   "page": 1087
+  },
+  {
+   "kind": "output",
+   "code": "52115.0.0",
+   "statement": "Os sistemas de gestão e governação escolar garantem que as escolas primárias são bem geridas, recebem apoio financeiro e são responsáveis pela aprendizagem.",
+   "indicator": "\"1). Escolas com conselhos escolares/APP em funcionamento. 2). % de alunos ensino básico que assinam o código de conduta disciplinar dos alunos. 3) % de professores do ensino básico que recebem os seus salários pontualmente todos os meses. 4). Escolas que recebem subsídios escolares Hafurak Eskola ou similares e os utilizam de acordo com as diretrizes. 5. Escolas que realizam assembleias escolares",
+   "baseline": "\"1). 193 2) 0 3). 100% 4). 270 5) 193\"",
+   "target": "\"1). 1082 2). 100% 3). 100% 4). 292 5). 1082\"",
+   "page": 1087
+  },
+  {
+   "kind": "output",
+   "code": "52117.0.1",
+   "statement": "Os alunos do ensino básico recebem refeições escolares regulares e nutritivas que contribuem para a participação/frequência, concentração e aprendizagem.",
+   "indicator": "\"\"\"1) escolas de ensino básico que implementam o programa de alimentação escolar. 2) alunos que recebem refeições diárias no âmbito do programa.\"",
+   "baseline": "\"\"\"1). 1294 escolas Básica implementam programas merenda escolar. 2). 287,495 alunos de EB recebem refeições nutritivas de programas merenda escolar. \"\" \"",
+   "target": "\"\"\"1). Todos escolas Básicas implementam programas merenda escolar. 2). 290,000 alunos de EB. \"\" \"",
+   "page": 1088
+  },
+  {
+   "kind": "output",
+   "code": "52118.0.0",
+   "statement": "Escolas primárias construídas, renovadas e equipadas para cumprir os padrões mínimos nacionais relativos a um ambiente de aprendizagem seguro, inclusivo e adequado às crianças.",
+   "indicator": "\"\"\"1) novas salas de aula de ensino básico construídas de acordo com as normas. 2) salas de aula reabilitadas de «más condições» para as normas. 3) % de escolas com água, saneamento e higiene (WASH), iluminação e mobiliário básico adequados\"",
+   "baseline": "\"\"\"1). 26 escolas implementa desporto escolar; 2) 10\"\"\"\" 3). 193; 4). 384 alunos\"\" \"",
+   "target": "\"\"\"1). 10 escolas 2) 15 escolas afetadas 3). 1081 4). 624 alunos \"\" \"",
+   "page": 1088
+  },
+  {
+   "kind": "output",
+   "code": "52119.0.0",
+   "statement": "Os professores do ensino primário cumprem as qualificações nacionais e os padrões profissionais através de preparação inicial e formação contínua em literacia, matemática, educação inclusiva e pedagogia centrada na criança",
+   "indicator": "\"1). % de professores do ensino básico que cumprem os padrões mínimos de qualificação academica (diploma/credencial). 2). # de professores que concluem formação contínua em diversas áreas relacionadas com o currículo e a pedagogia. 3). # de professores e os líderes escolares receberam o apoio adequado para o desenvolvimento profissional através do programa de mentoria escolar. \"",
+   "baseline": "\"1). 45,24% (CFP, 2025) 2). 8000 (INFORDEPE,2024) 3). 5000 (ALMA 2025) \"",
+   "target": "\"1). 100% 2). 10,000 3). 6000\"",
+   "page": 1089
+  },
+  {
+   "kind": "output",
+   "code": "52120.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1090
+  },
+  {
+   "kind": "output",
+   "code": "52122.0.0",
+   "statement": "O Currículo Nacional para o Ensino Básico (do 1º ao 9º ano) está totalmente implementado, com o TAIS e outros conteúdos nacionais integrados, e são fornecidos materiais didáticos de qualidade suficiente a todas as escolas.",
+   "indicator": "\"\"\"1) Estado de implementação do currículo para cada ciclo (1.º, 2.º, 3.º), % de escolas que utilizam o novo currículo. 2) de manuais escolares/materiais didáticos para o 1.º ao 9.º ano impressos e distribuídos (por disciplina e ano). 3) % de alunos do 1.º e 2.º ano que não conseguem ler um texto simples é reduzida (este é agora um resultado do programa/indicador de aprendizagem, não um indicador",
+   "baseline": "",
+   "target": "",
+   "page": 1090
+  },
+  {
+   "kind": "output",
+   "code": "52123.0.0",
+   "statement": "Os sistemas de gestão e governação escolar garantem que as escolas primárias são bem geridas, recebem apoio financeiro e são responsáveis pela aprendizagem.",
+   "indicator": "\"\"\"1) Escolas com conselhos escolares/APP em funcionamento. 2) % de professores do ensino básico que recebem os seus salários pontualmente todos os meses. 3) Escolas que recebem subsídios escolares Hafurak Eskola ou similares e os utilizam de acordo com as diretrizes. 4) Escolas que realizam assembleias escolares regulares ou fóruns de alunos sobre aprendizagem e comportamento.\"",
+   "baseline": "\"1) 100% 2). 270 3) 193 \"",
+   "target": "\"1) 100% 2). 292 3) 1080 \"",
+   "page": 1092
+  },
+  {
+   "kind": "output",
+   "code": "52124.0.0",
+   "statement": "Os pais e as comunidades apoiam ativamente a aprendizagem e a permanência das crianças no ensino básico através de uma estrutura funcional entre a comunidade e a escola e de atividades regulares de informação, educação e comunicação (IEC).",
+   "indicator": "\"\"\"1) Escolas de ensino básico com associações de pais e professores ou conselhos escolares funcionais. 2) Pais que participam em reuniões escolares, workshops de aprendizagem ou sessões de IEC (por ano). 3) Índice de satisfação dos pais com a qualidade da escola (se for possível realizar um inquérito)\"",
+   "baseline": "",
+   "target": "",
+   "page": 1092
+  },
+  {
+   "kind": "outcome",
+   "code": "522.0.0",
+   "statement": "Até 2028, o acesso, a participação, a permanência e a conclusão do ensino secundário geral melhoraram, com resultados de aprendizagem mais sólidos que preparam os alunos para estudos futuros e para a aprendizagem ao longo da vida.",
+   "indicator": "\"1) Taxa bruta de matrícula no ensino secundário geral (10.º ao 12.º ano) 2) Taxa de conclusão do ensino secundário geral (12.º ano) 3) Taxa de participação no ensino secundário geral\"",
+   "baseline": "\"1). 51,21% (EMIS 2023); 2). 83.13% (EMIS 2023) 3). 68% (Census 2022) 4). 4,03% 5). 0%\"",
+   "target": "\"1). 65%; 2).85%; 3). 75%; 4). 3% 5). 90% \"",
+   "page": 1093
+  },
+  {
+   "kind": "output",
+   "code": "52206.0.0",
+   "statement": "Os professores do ensino secundário geral cumprem as normas nacionais de qualificação e recebem formação profissional contínua em conteúdos da disciplina, pedagogia e avaliação)",
+   "indicator": "1). Numeru de novo professores (representa %) de professores de ES que obtiveram qualificação e competências mínimas exigidas por lei; 2). # professores do ensino secundário participaram formação continua.",
+   "baseline": "1). 0 2). 1028 professores ensino secundário participa formação continua.",
+   "target": "1). 1450 Professores 2). 1028 professores",
+   "page": 1093
+  },
+  {
+   "kind": "output",
+   "code": "52208.0.0",
+   "statement": "As escolas secundárias de ensino técnico e profissional utilizam as TIC e as ferramentas digitais para apoiar a aprendizagem técnica, o empreendedorismo e as competências ligadas às plataformas digitais.",
+   "indicator": "\"1) # de escolas secundárias com laboratórios multimédia ou informáticos funcionais. 2) # de professores de ensino secundária que utilizam regularmente plataformas digitais (por exemplo, ferramentas Google, conteúdos de e-learning) no ensino e no desenvolvimento profissional.\"",
+   "baseline": "\"1).24 2). 48\"",
+   "target": "\"1). 50; 2). 150 \"",
+   "page": 1094
+  },
+  {
+   "kind": "output",
+   "code": "52209.0.0",
+   "statement": "As escolas secundárias gerais possuem uma gestão eficaz e condições adequadas para o ensino e a aprendizagem, incluindo pessoal suficiente e conformidade com as normas de licenciamento operacional.",
+   "indicator": "\"1). % de escolas secundárias gerais com licença operacional aprovada 2). Relação aluno- professor nas escolas secundárias gerais 3). % de escolas secundárias gerais com planos de desenvolvimento escolar e conselho escolar em funcionamento\"",
+   "baseline": "\"1). 80% 2). 2099 3). 9\"\"\"",
+   "target": "\"1). 90% 2).3549 3). 15\"",
+   "page": 1094
+  },
+  {
+   "kind": "output",
+   "code": "52211.0.0",
+   "statement": "O Currículo Nacional Geral do Ensino Secundário foi revisto, atualizado e totalmente implementado, com avaliações, materiais de aprendizagem e programas de enriquecimento alinhados com o desenvolvimento de competências do século XXI e a preparação dos alunos para o ensino superior.",
+   "indicator": "\"1). Status da revisão e aprovação do currículo do ensino secundário geral 2). % de escolas secundárias gerais que implementam o currículo revisto em todas as séries 3). # de escolas secundárias gerais que participam de programas de enriquecimento académico (por exemplo, olimpíadas, debates, feiras de ciências)\"\"\"",
+   "baseline": "\"1). Avaliação parcial do currículo do Secundário finalizado; 2). Revisão curriculo nacional Ensino Secundário Técnico Professional - agricula e pescas iniciada. 3). 220\"",
+   "target": "\"1). Avaliação abrangente do currículo do ensino secundário concluída; 2). Revisão do currículo nacional para o TECVOC - Agricultura e Pescas concluída. 3). 460 alunos participaram em atividades extracurriculares;\"",
+   "page": 1094
+  },
+  {
+   "kind": "outcome",
+   "code": "522.0.1",
+   "statement": "Até 2028, o acesso, a participação, a conclusão e a empregabilidade dos alunos do ensino técnico e profissional de nível secundário serão melhorados através de programas acreditados e alinhados com o mercado de trabalho, que reforcem as competências práticas e a preparação para o mercado de trabalho.",
+   "indicator": "\"\"\"1) Taxa bruta de matrícula no ensino secundário técnico e profissional (ESTV) 2) Taxa de conclusão do ensino secundário técnico e profissional (12.º ano/nível de qualificação) 3) Taxa de emprego ou formação contínua dos diplomados do ensino técnico e profissional nos 6 a 12 meses após a conclusão do curso \"",
+   "baseline": "\"\"\"1) 83.13% 2) 93,6% (Census 2022) 3) 83,13% (EMIS 2023) 4). 58,791 5). 138 Salas de aula completed (122 salas de aula aat, EMIS 2023); \"\" \"",
+   "target": "\"\"\"1) 85% 2) 95% 3) 60,000 4). 28,000 5). 33 salas de aulas ESG e ESTV \"",
+   "page": 1095
+  },
+  {
+   "kind": "output",
+   "code": "52212.0.0",
+   "statement": "Profesór no formadór sira ensino secundário profissional e técnico nian iha kualifikasaun profisionál no relevante ba setor industrial ne&amp;#39;ebé maka presiza no simu formasaun téknika no pedagójika kontínua.",
+   "indicator": "\"\"\"1) % de professores do ensino secundário profissional e técnico que cumprem os padrões mínimos de qualificação e experiência no setor. 2) # de professores do ensino profissional e técnico que concluem anualmente a formação contínua em formação e avaliação baseadas em competências.\"",
+   "baseline": "\"1). 41.2% professores com qualificação academica licensiatura. 2). 300 3). 50\"",
+   "target": "\"1). 41.2% professores com qualificação academica licensiatura. 2). 300 3). 50\"",
+   "page": 1095
+  },
+  {
+   "kind": "output",
+   "code": "52213.0.0",
+   "statement": "As escolas secundárias de ensino técnico e profissional (TVET, na sigla em inglês) estão equipadas com oficinas, ferramentas, laboratórios e espaços de aprendizagem adequados que cumprem as normas de segurança e qualidade para a formação prática.",
+   "indicator": "\"\"\"1) # de escolas de TVET com oficinas/laboratórios funcionais para áreas prioritárias (agricultura, construção, eletrónica, etc.). 2) % de escolas de TVET que cumprem os padrões mínimos de infraestrutura e segurança (conforme definido nas normas de TVET). 3) # de salas de aula/oficinas de TVET novas ou reabilitadas concluídas por ano.\"",
+   "baseline": "",
+   "target": "",
+   "page": 1096
+  },
+  {
+   "kind": "output",
+   "code": "52214.0.0",
+   "statement": "tbd",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 1096
+  },
+  {
+   "kind": "output",
+   "code": "52215.0.0",
+   "statement": "Eskola sekundária TVET sira jere ho efetivu no mantein parseria ativu ho empregadór sira no komunidade sira hodi apoia aprendizajen iha servisu fatin no empregabilidade ba graduadu sira.",
+   "indicator": "\"\"\"1) # de escolas de TVET com conselhos de gestão escolar em funcionamento, incluindo representantes dos empregadores. 2) # de acordos de parceria formais (MoUs) entre escolas de TVET e empresas/associações industriais. 3) % de programas de TVET que incluem componentes estruturados de aprendizagem no",
+   "baseline": "1). 80% 2). 2099 3). 9\"",
+   "target": "1). 90% 2).3549 3). 15",
+   "page": 1096
+  },
+  {
+   "kind": "output",
+   "code": "52216.0.0",
+   "statement": "Os currículos do ensino secundário profissional e técnico são baseados em competências, alinhados com o Quadro Nacional de Qualificações e com as necessidades do mercado de trabalho, sendo que os programas são acreditados e têm a qualidade assegurada.",
+   "indicator": "\"\"\"1) # de programas do ensino secundário profissional revistos para currículos baseados em competências e aprovados. 2) # de programas do ensino secundário profissional acreditados (por área/nível de qualificação). 3) Taxa de emprego dos graduados de programas profissionais acreditados dentro de 6 a 12 meses após a conclusão.\"",
+   "baseline": "",
+   "target": "",
+   "page": 1098
+  },
+  {
+   "kind": "outcome",
+   "code": "523.0.1",
+   "statement": "Até 2028, o acesso, a participação e a conclusão de programas de educação para jovens e adultos aumentarão,",
+   "indicator": "\"1). # de adultos e jovens fora da escola matriculados em programas de educação",
+   "baseline": "\"1). 1620 2). 92% 3). 0%\"",
+   "target": "\"1). 2160; 2).95%; 3). 48%\"",
+   "page": 1098
+  },
+  {
+   "kind": "output",
+   "code": "52307.0.0",
+   "statement": "Os jovens e adultos que não concluíram o ensino básico recebem uma segunda oportunidade através de programas de equivalência acreditados que permitem a obtenção de uma certificação reconhecida.",
+   "indicator": "\"1). # alunos matriculados em programas básicos de equivalência 2). # alunos que concluíram e receberam certificação de equivalência (NOVO — crítico)\"",
+   "baseline": "\"1). 1620 2). 1491 \"",
+   "target": "\"1). 2160 2). 2031\"",
+   "page": 1099
+  },
+  {
+   "kind": "output",
+   "code": "52308.0.0",
+   "statement": "Os Centros de Aprendizagem Comunitária (CLCs) são funcionais, bem geridos e oferecem programas acessíveis de alfabetização, equivalência e desenvolvimento de competências para a vida para jovens e adultos.",
+   "indicator": "Centros Comunitários de Aprendizagem (CCA) maka funsionál, jere ho di'ak no fornese programa sira alfabetizasaun, ekivalénsia no abilidade moris nian ne'ebé asesivel ba foin-sa'e no adultu sira.",
+   "baseline": "\"1). % de Centros Comunitários de Aprendizagem (CCA) totalmente funcionais de acordo com os padrões nacionais 2). # de CCA que oferecem programas de alfabetização, habilidades para a vida e equivalência 3) # de adultos/jovens que participam de programas de aprendizagem baseados em SKAs\"",
+   "target": "\"1). 85%; 2). 19 3). 1500\"",
+   "page": 1099
+  }
+ ]
+}

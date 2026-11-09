@@ -3,6 +3,8 @@
     $money = fn ($v) => number_format((float) $v, 2);
     $title = __('Annual Activity Plan Report (PAA)').' — '.$report['year'];
     $warn = $report['warning'] ?? null;
+    $unit = $report['unit'] ?? null;
+    $u = $unit?->id;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -39,15 +41,32 @@
         .toolbar a, .toolbar button { background: #2152C4; color: #fff; border: 0; border-radius: 4px; padding: 7px 12px; text-decoration: none; cursor: pointer; font-size: 13px; }
         .toolbar a.secondary { background: transparent; border: 1px solid #475569; }
         .sheet { max-width: 297mm; margin: 12px auto; background: #fff; padding: 8mm; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
-        @media print { .toolbar { display: none; } body { background: #fff; } .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; } thead { display: table-header-group; } tr { page-break-inside: avoid; } }
+        /* Printing from the browser gives the same document as the PDF: the colours as shown (browsers drop backgrounds
+           unless told otherwise) and the reference and page number at the bottom of every page. dompdf never reads this. */
+        @media print {
+            .toolbar { display: none; }
+            body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; }
+            thead { display: table-header-group; }
+            tr { page-break-inside: avoid; }
+            @page {
+                @bottom-left { content: "{{ $report['reference'] }}"; font-family: Arial, sans-serif; font-size: 7pt; color: #475569; }
+                @bottom-right { content: "{{ __('Page') }} " counter(page) " / " counter(pages); font-family: Arial, sans-serif; font-size: 7pt; color: #475569; }
+            }
+        }
     </style>
 </head>
 <body>
 @unless($pdf)
 <div class="toolbar">
-    <a class="secondary" href="{{ route('reports.paa', ['year' => $report['year']]) }}">← {{ __('Reporting') }}</a>
+    <a class="secondary" href="{{ route('reports.paa', array_filter(['year' => $report['year'], 'unit' => $u])) }}">← {{ __('Reporting') }}</a>
+    <form method="GET" action="{{ route('reports.annual-plan') }}" style="margin:0">
+        <input type="hidden" name="year" value="{{ $report['year'] }}">
+        <x-report-unit-select :choices="$unitChoices ?? collect()" :scope="\App\Support\ReportScope::for(auth()->user(), $u)" class="" style="padding:6px;border-radius:4px;max-width:22rem" />
+    </form>
     <span style="margin-left:auto"></span>
-    <a data-warn="{{ $warn ? $warn.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.annual-plan.pdf', ['year' => $report['year']]) }}">{{ __('Download PDF') }}</a>
+    <a data-warn="{{ $warn ? $warn.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.annual-plan.pdf', array_filter(['year' => $report['year'], 'unit' => $u])) }}">{{ __('Download PDF') }}</a>
+    <a data-warn="{{ $warn ? $warn.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.annual-plan.xlsx', array_filter(['year' => $report['year'], 'unit' => $u])) }}">{{ __('Download Excel') }}</a>
 </div>
 <div class="sheet">
 @endunless
@@ -60,6 +79,7 @@
     @if($logoUri = \App\Support\Branding::logoDataUri())<div style="text-align:center"><img src="{{ $logoUri }}" alt="" style="height:46px;margin-bottom:4px"></div>@endif
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
+    @if($unit)<div class="title">{{ $unit->code }} — {{ $unit->name }}</div>@endif
     <div class="title">{{ $title }}</div>
 </div>
 
@@ -76,7 +96,7 @@
     @empty
         <tr><td colspan="4" class="muted">{{ __('Nothing to report yet') }}</td></tr>
     @endforelse
-        <tr class="tot"><td>{{ __('Consolidated Institutional Totals') }}</td><td class="r">$ {{ $money($report['totals']['planned']) }}</td><td class="r">$ {{ $money($report['totals']['approved']) }}</td><td class="r">{{ number_format($report['totals']['usage'], 1) }}%</td></tr>
+        <tr class="tot"><td>{{ $unit ? __('Total') : __('Consolidated Institutional Totals') }}</td><td class="r">$ {{ $money($report['totals']['planned']) }}</td><td class="r">$ {{ $money($report['totals']['approved']) }}</td><td class="r">{{ number_format($report['totals']['usage'], 1) }}%</td></tr>
     </tbody>
 </table>
 
@@ -110,7 +130,7 @@
 <table class="sign">
     <tr>
         <td><div class="line">{{ __('Prepared by') }}<br><b>{{ $report['generated_by'] }}</b></div></td>
-        <td><div class="line">{{ __('Verified By') }}<br>&nbsp;</div></td>
+        <td><div class="line">{{ $unit ? __('Approved by (head of the unit)') : __('Verified By') }}<br>&nbsp;</div></td>
     </tr>
 </table>
 

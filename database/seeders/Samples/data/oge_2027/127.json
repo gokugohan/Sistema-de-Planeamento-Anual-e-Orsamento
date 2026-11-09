@@ -1,0 +1,181 @@
+{
+ "year": 2027,
+ "code": "127",
+ "name": "Instituto de Gestão de Equipamento e Apoio ao Desenvolvimento de Infraestrutura",
+ "abbr": "IGEADI",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   1220,
+   1221
+  ]
+ },
+ "units": [
+  {
+   "code": "IGEADI",
+   "div": "1270101",
+   "name": "Instituto de Gestão de Equipamento e Apoio ao Desenvolvimento de Infraestrutura",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "026": "Estradas e pontes",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "0260605",
+   "programme": "026",
+   "subprogramme": "02606",
+   "subprogramme_name": "Gestão e instalação de equipamentos",
+   "name": "Manutenção de equipamentos pesados",
+   "div": [
+    "1270101"
+   ],
+   "indicator": "% Implementacao routina de plano da manutencao",
+   "baseline": "1) Em curso, 100 % para a manutenção rotina como a manutenção de A, B, C e D; 41 Unidades 2) Em curso,",
+   "target": "100%",
+   "amounts": {
+    "20": 217270.0
+   },
+   "page": 1220
+  },
+  {
+   "code": "0260607",
+   "programme": "026",
+   "subprogramme": "02606",
+   "subprogramme_name": "Gestão e instalação de equipamentos",
+   "name": "Gestão de bases de dados de equipamentos pesados",
+   "div": [
+    "1270101"
+   ],
+   "indicator": "% Base de dados desenvolvido",
+   "baseline": "1) Em curso,85% de base de dados como spare part, armagém, oficina e equipamentos e de acordo com as necessidades; 2) Em curso, 95 % da elaboração da ba",
+   "target": "100%",
+   "amounts": {
+    "20": 81600.0
+   },
+   "page": 1220
+  },
+  {
+   "code": "02606X1",
+   "programme": "026",
+   "subprogramme": "02606",
+   "subprogramme_name": "Gestão e instalação de equipamentos",
+   "name": "Heavy equipment operator certification - IGEADI",
+   "div": [
+    "1270101"
+   ],
+   "indicator": "Numero do pessoal",
+   "baseline": "Em Curso, 25%",
+   "target": "75%",
+   "amounts": {
+    "20": 2000000.0
+   },
+   "page": 1220
+  },
+  {
+   "code": "510011S",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Construção de Cazerna",
+   "div": [
+    "1270101"
+   ],
+   "indicator": "Emcurso. 25% Cazernas, Paragem e Officina Construido",
+   "baseline": "100% Cazernas, Paragem e Officina Implementado",
+   "target": "100%",
+   "amounts": {
+    "50": 446485.0
+   },
+   "page": 1220
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "1270101"
+   ],
+   "indicator": "% execução orçamento",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 1332856.0,
+    "20": 1220227.0
+   },
+   "page": 1221
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "1270101"
+   ],
+   "indicator": "%de melhoramento de gestao dos recursos humanos",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 75060.0
+   },
+   "page": 1221
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "026.0.1",
+   "statement": "Gestão e manutenção de equipamentos pesados, veículos operacionais do Estado",
+   "indicator": "% dos equipamentos bem funcionado e operado",
+   "baseline": "85",
+   "target": "100",
+   "page": 1220
+  },
+  {
+   "kind": "output",
+   "code": "02606.0.0",
+   "statement": "Todas as máquinas funcionam",
+   "indicator": "% de máquinas, equipamentos e veículos pesados bem operados",
+   "baseline": "85%",
+   "target": "100%",
+   "page": 1220
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico Aprovado, incluindo plano de médio prazo",
+   "baseline": "0",
+   "target": "100%",
+   "page": 1220
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Metas no plano anual alcançado",
+   "baseline": "90%",
+   "target": "100%",
+   "page": 1220
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% Metas no plano anual alcançado",
+   "baseline": "90",
+   "target": "100",
+   "page": 1220
+  }
+ ]
+}

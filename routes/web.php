@@ -135,9 +135,11 @@ Route::get('planning/adjustment', function () {
     return view('planning.adjustment-round');
 })->middleware(['auth', 'verified', 'permission:view_paa'])->name('planning.adjustment');
 
+// The reports of the plan: the whole institution for whoever sees the whole plan, one unit (with those below it) for
+// everyone else (App\Support\ReportScope decides which, and refuses a unit the user may not see).
 Route::get('reports/paa', function () {
     return view('reports.paa');
-})->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa');
+})->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.paa');
 
 // The institution's logo and browser icon (public: the sign-in page shows them)
 Route::get('brand/logo', [BrandController::class, 'logo'])->name('brand.logo');
@@ -145,19 +147,23 @@ Route::get('brand/favicon', [BrandController::class, 'favicon'])->name('brand.fa
 
 // The annual report of the plan as a printable document and as a PDF
 Route::get('reports/annual-plan', [AnnualPlanReportController::class, 'show'])
-    ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.annual-plan');
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.annual-plan');
 Route::get('reports/annual-plan/pdf', [AnnualPlanReportController::class, 'pdf'])
-    ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.annual-plan.pdf');
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.annual-plan.pdf');
+Route::get('reports/annual-plan/xlsx', [AnnualPlanReportController::class, 'excel'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.annual-plan.xlsx');
 
 // The activities of one programme and category, fetched when that row is expanded.
 Route::get('reports/paa/activities', [PlanBreakdownController::class, 'activities'])
-    ->middleware(['auth', 'verified', 'permission:view_all_paa'])->name('reports.paa.activities');
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.paa.activities');
 
 // The implementation plan of a unit in the ministry's form
 Route::get('reports/implementation-plan', [ImplementationPlanController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan');
 Route::get('reports/implementation-plan/pdf', [ImplementationPlanController::class, 'pdf'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan.pdf');
+Route::get('reports/implementation-plan/xlsx', [ImplementationPlanController::class, 'excel'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan.xlsx');
 
 // Monthly / quarterly performance report: each reader gets the units they may see
 Route::get('reports/performance', [PerformanceReportController::class, 'show'])
@@ -165,9 +171,10 @@ Route::get('reports/performance', [PerformanceReportController::class, 'show'])
 Route::get('reports/performance/pdf', [PerformanceReportController::class, 'pdf'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance.pdf');
 
-Route::middleware(['auth', 'verified', 'permission:view_reports', 'permission:view_all_paa'])->group(function () {
+Route::middleware(['auth', 'verified', 'permission:view_reports'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');
     Route::get('reports/approved-plan/pdf', [ApprovedPlanReportController::class, 'pdf'])->name('reports.approved-plan.pdf');
+    Route::get('reports/approved-plan/xlsx', [ApprovedPlanReportController::class, 'excel'])->name('reports.approved-plan.xlsx');
     Route::post('reports/approved-plan/baseline', [ApprovedPlanReportController::class, 'recordBaseline'])->name('reports.approved-plan.baseline');
 });
 

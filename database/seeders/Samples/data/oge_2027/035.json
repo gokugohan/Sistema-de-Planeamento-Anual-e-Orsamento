@@ -1,0 +1,546 @@
+{
+ "year": 2027,
+ "code": "035",
+ "name": "Provedoria dos Direitos Humanos e Justiça",
+ "abbr": "PDHJ",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   362,
+   367
+  ]
+ },
+ "units": [
+  {
+   "code": "PDHJ",
+   "div": "0350101",
+   "name": "Provedoria dos Direitos Humanos e Justiça",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DDHBG",
+   "div": "0350201",
+   "name": "Direções Direitos Humanos e Boa Governação",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "GRPCI",
+   "div": "0350301",
+   "name": "Gabinete Relação Pública e Coordenação Institucional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DTB",
+   "div": "0350302",
+   "name": "Delegação Territorial de Baucau",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DTM",
+   "div": "0350303",
+   "name": "Delegação Territorial de Maliana",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DTS",
+   "div": "0350304",
+   "name": "Delegação Territorial de Same",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DTO",
+   "div": "0350305",
+   "name": "Delegação Territorial de Oecusse",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DIAP",
+   "div": "0350306",
+   "name": "Direçoes de Investigação e Assistência Pública",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "157": "Direitos humanos e boa governação",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "1570901",
+   "programme": "157",
+   "subprogramme": "15709",
+   "subprogramme_name": "Serviços de advocacia em legislação e políticas públicas",
+   "name": "Advocacia, Estudos e Pesquisas",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "# relatório do survey concluido",
+   "baseline": "2",
+   "target": "2",
+   "amounts": {
+    "20": 19200.0
+   },
+   "page": 362
+  },
+  {
+   "code": "1571001",
+   "programme": "157",
+   "subprogramme": "15710",
+   "subprogramme_name": "Promover os Direitos Humanos e Boa Governação",
+   "name": "Media e talk show “O Nia Direitu, Hau Nia Dever”",
+   "div": [
+    "0350301"
+   ],
+   "indicator": "(1) # Informações publicados na página de facebook do PDHJ; (2) #Informações publicados no website do PDHJ; (3) # Públicos acesso aos informações na plantaforma digital do PDHJ aumentado; (4) # Meet the press realizado (5)# Programa talk show realizado; (6) # Programa televisivo produzido e publicado (7) % Tradução de língua gestual publicado",
+   "baseline": "a) 10,938 ; b) 452 c) 325 ; d) 3",
+   "target": "(1) 240 (2) 96 (3) 2,000; (4) 4; (5) 2; (6) 4; (7) 100%",
+   "amounts": {
+    "20": 5200.0
+   },
+   "page": 362
+  },
+  {
+   "code": "1571002",
+   "programme": "157",
+   "subprogramme": "15710",
+   "subprogramme_name": "Promover os Direitos Humanos e Boa Governação",
+   "name": "Formação de direitos humanos e boa governação",
+   "div": [
+    "0350201"
+   ],
+   "indicator": "(1) # Membros PNTL que participam na formação de direitos humanos e boa governação; (2) # Membros FALINTIL-FDTL que participam na formação de direitos humanos e boa",
+   "baseline": "(1) 708; (2) 429; (3) 121; (4) 336; (5) ; (6) 135;",
+   "target": "(1) 100; (2) 100; (3) 25; (4)120; (5) 30; (6) 100; (7) 142",
+   "amounts": {
+    "20": 41450.0
+   },
+   "page": 362
+  },
+  {
+   "code": "1571003",
+   "programme": "157",
+   "subprogramme": "15710",
+   "subprogramme_name": "Promover os Direitos Humanos e Boa Governação",
+   "name": "Disseminação de Informação aos públicos",
+   "div": [
+    "0350201",
+    "0350302",
+    "0350303",
+    "0350304",
+    "0350305"
+   ],
+   "indicator": "(1) # Comunidades que participam na disseminação sobre direitos humanos e boa governação; (2) # Estudantes que participam na disseminação sobre direitos humanos e boa governação; (3) # Universitarios que participam na disseminação sobre direitos humanos e boa governação; (4) # Grupos vulneráveis que participam na formação sobre direitos humanos e boa governação;",
+   "baseline": "(1)2272; (2) 2247; (3) 211",
+   "target": "(1) 875; (2)950; (3) 275; (4) 175;",
+   "amounts": {
+    "20": 33523.0
+   },
+   "page": 363
+  },
+  {
+   "code": "1571004",
+   "programme": "157",
+   "subprogramme": "15710",
+   "subprogramme_name": "Promover os Direitos Humanos e Boa Governação",
+   "name": "Participação e realização evento nacional e internacional",
+   "div": [
+    "0350201",
+    "0350301"
+   ],
+   "indicator": "(1) # evento nacional participado; (2) # evento internacional participado; (3) # evento nacional realizado;",
+   "baseline": "(1) 27, (2) 21, (3) 2",
+   "target": "(1) 12; (2) 5; (3) 2",
+   "amounts": {
+    "20": 112087.0
+   },
+   "page": 363
+  },
+  {
+   "code": "1571101",
+   "programme": "157",
+   "subprogramme": "15711",
+   "subprogramme_name": "Prevenção de violações dos direitos humanos e boa governação",
+   "name": "Monitorização assuntos urgentes",
+   "div": [
+    "0350201",
+    "0350302",
+    "0350303",
+    "0350304",
+    "0350305"
+   ],
+   "indicator": "% Assuntos urgentes (IP) monitorizados",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 10880.0
+   },
+   "page": 363
+  },
+  {
+   "code": "1571102",
+   "programme": "157",
+   "subprogramme": "15711",
+   "subprogramme_name": "Prevenção de violações dos direitos humanos e boa governação",
+   "name": "Gestão de monitorização",
+   "div": [
+    "0350201",
+    "0350302",
+    "0350303",
+    "0350304",
+    "0350305"
+   ],
+   "indicator": "(1) # Celas de detenção monitorizados; (2) # Prisão monitorizados; (3) # Centro de proteção social monitorizados; (4)# Hospitais e Centros de Saúde monitorizados",
+   "baseline": "a) 61; b) 3; c) 4; d) 13",
+   "target": "(1)13; (2) 3; (3) 4; (4)17",
+   "amounts": {
+    "20": 25920.0
+   },
+   "page": 364
+  },
+  {
+   "code": "1571201",
+   "programme": "157",
+   "subprogramme": "15712",
+   "subprogramme_name": "Resolução de conflitos por violações dos direitos humanos e boa governação",
+   "name": "Gestão de Queixas",
+   "div": [
+    "0350302",
+    "0350303",
+    "0350304",
+    "0350305",
+    "0350306"
+   ],
+   "indicator": "(1) % Quexas registados; (2) % Cartas de notificações I distribuidos; (3) Cartas de notificações II distribuidos",
+   "baseline": "90%",
+   "target": "(1) 100%, (2) 90%, (3) 80%",
+   "amounts": {
+    "20": 11980.0
+   },
+   "page": 364
+  },
+  {
+   "code": "1571202",
+   "programme": "157",
+   "subprogramme": "15712",
+   "subprogramme_name": "Resolução de conflitos por violações dos direitos humanos e boa governação",
+   "name": "Gestão de casos e investigação",
+   "div": [
+    "0350302",
+    "0350303",
+    "0350304",
+    "0350305",
+    "0350306"
+   ],
+   "indicator": "(1) % Casos registados dentro períodos investigados; (2) % Casos pendentes investigados; (3) % Relatório de investigação concluidos\"",
+   "baseline": "(1) 78%; (2) 100%",
+   "target": "(1) 75%; (2) 100%; (3) 100%",
+   "amounts": {
+    "20": 26770.0
+   },
+   "page": 364
+  },
+  {
+   "code": "1571203",
+   "programme": "157",
+   "subprogramme": "15712",
+   "subprogramme_name": "Resolução de conflitos por violações dos direitos humanos e boa governação",
+   "name": "Mediação e conciliação aos casos específicos",
+   "div": [
+    "0350306"
+   ],
+   "indicator": "(1) % Pre-mediacao realizados; (2) % Mediação e conciliação finalizados",
+   "baseline": "72%",
+   "target": "(1) 100%; (2) 90%",
+   "amounts": {
+    "20": 4400.0
+   },
+   "page": 365
+  },
+  {
+   "code": "1571204",
+   "programme": "157",
+   "subprogramme": "15712",
+   "subprogramme_name": "Resolução de conflitos por violações dos direitos humanos e boa governação",
+   "name": "Monitorização/ Acompanhamento de implementação da recomendação",
+   "div": [
+    "0350306"
+   ],
+   "indicator": "% Recomendações dirigidas a entidades respondentes monitorizados",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "20": 4060.0
+   },
+   "page": 365
+  },
+  {
+   "code": "5100108",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Planeamento, desenvolvimento estratégico e orientação política",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "(1) # Deliberação ou minutas produzidos através dos reuniões dos conscelhos consultivo; (2) # Deliberação ou minutas produzidos através dos reuniões dos conscelhos de direitivos; (3) # Deliberação ou minutas produzidos através dos reuniões dos reuniões gerais",
+   "baseline": "17",
+   "target": "(1); (2) 6; (3) 1",
+   "amounts": {
+    "20": 7680.0
+   },
+   "page": 365
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "(1) % Resultado serviços de auditoria produzidos e submetidos aos entidades competentes (2) % Unidade auditável na PDHJ assistido pelo Gabinete de Inspeção (3) % Riscos identificados (4) % Encontros regulares dos inspetores das linhas ministeriais participados",
+   "baseline": "1",
+   "target": "(1) 100%; (2) 100%; (3) 100%; (4) 100%",
+   "amounts": {
+    "20": 9020.0
+   },
+   "page": 365
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "1)% Pareceres jurídicos sobre serviços de promoção de boa governação e proteção de direitos humanos emitidos; 2) # Petição de verificação inconstituicionalidade por omissão para Tribunal de",
+   "baseline": "(1) 100%; (2); 4; (3) 6; (4) 100%;",
+   "target": "(1) 100%; (2); 2; (3) 2; (4) 100%; (5) 100%; (6) 100%",
+   "amounts": {
+    "20": 12800.0
+   },
+   "page": 365
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0350101",
+    "0350302",
+    "0350303",
+    "0350304",
+    "0350305"
+   ],
+   "indicator": "(1) %Orçamento do PDHJ executado com efetivo, efeciente, e responsaveis; (2) Bens, facilidades, e espaços garantido o funscionamento instituicional e atendimento público adequado",
+   "baseline": "94%",
+   "target": "(1) 90%; (2) 100%",
+   "amounts": {
+    "20": 117518.0
+   },
+   "page": 366
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "(1) % Plano de acção annual do PDHJ aprovado; (2) % Relatório de atividade e financeria submetido de acordo com prazo; (3) % Programas e atividades monitorizados e avaliados; (4) % Calendario e processo implementação PAA organizados",
+   "baseline": "(1) 100%, (2) 100%, (3) 100%, (4) 100%",
+   "target": "(1) 100%, (2) 100%, (3) 100%, (4) 100%",
+   "amounts": {
+    "20": 26000.0
+   },
+   "page": 366
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "(1) % Avaliação de desempenho e gestão de contratos aos funcionários concluidos; (2) % Reuniões sobre gestão de recursos humanos participados; (3 ) % Regulamentos gestão de recursos humanos disseminados; (4) # Pontos vogais estabelecidos",
+   "baseline": "a) 100% b)4",
+   "target": "(1) 100%; ; (2) 100%; (3) 100%; (4) 3",
+   "amounts": {
+    "10": 1274806.0,
+    "20": 3040.0
+   },
+   "page": 366
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "% Funcionários do PDHJ participaram na formação apropriada na melhora de prestação serviços",
+   "baseline": "20%",
+   "target": "3%-5%",
+   "amounts": {
+    "20": 12670.0
+   },
+   "page": 367
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "% qualidade e quantidade de bens e serviços de acordo com o tempo e especificação",
+   "baseline": "90%",
+   "target": "100%",
+   "amounts": {
+    "20": 411233.0
+   },
+   "page": 367
+  },
+  {
+   "code": "5100212",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de sistemas de informação e de comunicação",
+   "div": [
+    "0350101"
+   ],
+   "indicator": "% sistema tecnologia informação funcionado com seguro, realivel e responsivo",
+   "baseline": "85%",
+   "target": "90%",
+   "amounts": {
+    "20": 7000.0
+   },
+   "page": 367
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0350301"
+   ],
+   "indicator": "# Parceiro Local, Nacional, e internacional estabelecido e desenvolvido",
+   "baseline": "27",
+   "target": "2",
+   "amounts": {
+    "20": 480.0
+   },
+   "page": 367
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "157.0.0",
+   "statement": "1) Poder publiku sensivel ba direitu no liberdade fundamental; (2) Sosiedade sensivel ba direitos humanos no Boa Governasaun",
+   "indicator": "(1) % Os casos de violações de direitos humanos cometidos pelos poderes públicos dimuinuido (2) Os casos de violações do princípio de boa governação nas entidades públicas diminuido",
+   "baseline": "",
+   "target": "a) 5% b) 5%",
+   "page": 362
+  },
+  {
+   "kind": "output",
+   "code": "15709.0.0",
+   "statement": "Os serviços de defesa de legislação e políticas públicas sensíveis aos direitos humanos são eficazes e têm um efeito positivo",
+   "indicator": "% legislação e política pública que produzidos pelos poderes públicos sensível aos direitos humanos e boa governação",
+   "baseline": "",
+   "target": "80%",
+   "page": 362
+  },
+  {
+   "kind": "output",
+   "code": "15710.0.0",
+   "statement": "Direitos Humanos no boa governasaun promovidu",
+   "indicator": "% Participantes na formação e sensibilização implementados e aplicam as materias aprendidos",
+   "baseline": "",
+   "target": "80%",
+   "page": 362
+  },
+  {
+   "kind": "output",
+   "code": "15711.0.0",
+   "statement": "Os serviços de controlo e prevenção são eficazes e garantem a satisfação",
+   "indicator": "% recomendações dirigidas a entidades públicos considerados e implementados",
+   "baseline": "",
+   "target": "80%",
+   "page": 363
+  },
+  {
+   "kind": "output",
+   "code": "15712.0.0",
+   "statement": "Violações dos direitos humanos e casos de boa governação resolvidos",
+   "indicator": "% Resultados resolução dos casos garantir satisfação dos queixosos e parte envolvidas",
+   "baseline": "",
+   "target": "80%",
+   "page": 364
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Capacidade Institucional do PDHJ forte e prática principio de boa governação",
+   "baseline": "",
+   "target": "100%",
+   "page": 365
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "% Sistema controle interna do PDHJ bem funcionado",
+   "baseline": "",
+   "target": "100%",
+   "page": 365
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% Programa/ atividades e orçamentos implementado e executado de acordo com os planos defenidos e atinguir os objetivos com efetivos",
+   "baseline": "",
+   "target": "90%",
+   "page": 366
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "% Nota do entendimento implementado com efetivo e satisfazer o efeito positivo para PDHJ e sociedades",
+   "baseline": "",
+   "target": "100%",
+   "page": 367
+  }
+ ]
+}

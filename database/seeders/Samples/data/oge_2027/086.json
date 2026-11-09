@@ -1,0 +1,223 @@
+{
+ "year": 2027,
+ "code": "086",
+ "name": "Instituto de Apoio ao Desenvolvimento Empresarial",
+ "abbr": "IADE",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   926,
+   928
+  ]
+ },
+ "units": [
+  {
+   "code": "IADE",
+   "div": "0860101",
+   "name": "Instituto de Apoio ao Desenvolvimento Empresarial",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "983": "Investimento e diversificação económica"
+ },
+ "activities": [
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "100% do orçamento dos salarios dos funcionarios IADE executado",
+   "baseline": "Em 2025, já foram realizados os pagamentos aos funcionários permanentes e aos agentes administrativos do IADE.",
+   "target": "100%",
+   "amounts": {
+    "10": 572763.0,
+    "20": 194283.0
+   },
+   "page": 926
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "vezes viagem para dar monitorizacao e avaliação aos atividades que implementa pelos IADE e CDE nos municípios",
+   "baseline": "Em 2025 Já foi realizada esta atividade monitorização pelos IADE e CDE no 12 municípios",
+   "target": "4 vezes de vizitas de monitorizacao.",
+   "amounts": {
+    "20": 26700.0
+   },
+   "page": 926
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "Funcionários obtém dos programa formação",
+   "baseline": "Em 2025, foi implementada formação e coaching para formadores do IADE, cerca de 60 (28% Mulheres) participaram no IADE e no CDE em 12 municípios",
+   "target": "30 Funcionarios",
+   "amounts": {
+    "20": 92853.0
+   },
+   "page": 926
+  },
+  {
+   "code": "51002EA",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Replacement equipment, furniture, computers and vehicles",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "Substituição.de Equipamentos, móveis, computadores e veículos.",
+   "baseline": "Em 2025 Já foi comprar laptops 5 unidades e UPS: 40 unidades",
+   "target": "Subsituicao dos seguintas equipamentos: Viaturas Toyota Hilux 4WD 1 Unidade. Motocicleta Versa 4 Unidades. Motocicleta Beat 2 unidades . Computador Dell 10 unidades. Laptop 4 unidades. UPS 100 unidades. Camera Canon 1 unidade. Mesas cabinet 10 unidades. Mesas para formacao 10 unidades. Impresora 1 unidade.",
+   "amounts": {
+    "40": 88825.0
+   },
+   "page": 926
+  },
+  {
+   "code": "9832601",
+   "programme": "983",
+   "subprogramme": "98326",
+   "subprogramme_name": "Apoio ao Desenvolvimento de Negócios (IADE)",
+   "name": "Formação e Assistência de Consultoria aos empresários",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "beneficiários formados receberao assistência de consultoria providenciada aos empreendedores",
+   "baseline": "Em 2025, foram realizadas formações empresariais para empreendedores de startups e empresas existentes, com um total de 930 participantes (54% mulheres).",
+   "target": "600 clientes empresarios",
+   "amounts": {
+    "20": 52000.0
+   },
+   "page": 927
+  },
+  {
+   "code": "9832602",
+   "programme": "983",
+   "subprogramme": "98326",
+   "subprogramme_name": "Apoio ao Desenvolvimento de Negócios (IADE)",
+   "name": "Realização de um estudo de mercado",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "Relatórios de estudo produtos potencial no municipios produzido",
+   "baseline": "Em 2025,O IADE vai ser realizar pesquisa para 2 produtos potencial",
+   "target": "2 Produtu pontencial",
+   "amounts": {
+    "20": 3300.0
+   },
+   "page": 927
+  },
+  {
+   "code": "9832604",
+   "programme": "983",
+   "subprogramme": "98326",
+   "subprogramme_name": "Apoio ao Desenvolvimento de Negócios (IADE)",
+   "name": "Apoio de Incubação de Empresas",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "beneficiarios acesso do programa FIN (Facilita Incubação de Negocio)",
+   "baseline": "Em 2025 Já Realizou-se o apoio financeiros do programa facilidade incuvacao negosio para emprezarios 20 pessoas em Timor Lesta.",
+   "target": "24 Clientes Empresarios",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 927
+  },
+  {
+   "code": "9832605",
+   "programme": "983",
+   "subprogramme": "98326",
+   "subprogramme_name": "Apoio ao Desenvolvimento de Negócios (IADE)",
+   "name": "Promover a relação de negócios (Business Matchmaking)",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "Continuar fazer promocao sobre programa do IADE e atividade emprezas dos clientes IADE para 2026",
+   "baseline": "Em 2025, já realizadas atividades de promoção do programa do IADE, envolvendo um total de 355 participantes, dos quais 38% eram mulheres, principalmente empresários interessados em aceder à Competição do Plano de Negócio Inovativo (CPNI) e às atividades de Facilitação de Incubação de Negócios (FIN). Estas atividades foram implementadas com o objetivo",
+   "target": "400 Participantes",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 927
+  },
+  {
+   "code": "98326E1",
+   "programme": "983",
+   "subprogramme": "98326",
+   "subprogramme_name": "Apoio ao Desenvolvimento de Negócios (IADE)",
+   "name": "KPNI youth business programme and rehabilitation of the IADE building in Aileu",
+   "div": [
+    "0860101"
+   ],
+   "indicator": "beneficiarios acesso do programa CPNI e reabilitação do edifício do IADE em Aileu.",
+   "baseline": "Em 2025,O IADE vai ser facilitar apoio do programa CPNI para 10 clientes potenciais ( 3 vencedores e 7 meus dez finais).",
+   "target": "10 Candidatos Empresarios e reabilitação do edifício do IADE em Aileu.",
+   "amounts": {
+    "20": 148000.0
+   },
+   "page": 928
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "O sector público em Timor- Leste será fundamental para o fortalecimento da confiança no Governo.",
+   "baseline": "Plano",
+   "target": "Relatório Anual de Desempenho",
+   "page": 926
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Anual 100% Realizado",
+   "baseline": "100 % Execução do orçamento Ja asegurar Gestão Finançeira, Administração e Logística no I trimestre ate ao final do ano de 2025",
+   "target": "Plano",
+   "page": 926
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "983.0.a: O IADE visa promover, formar, coordenar e desenvolver, através do Centro para o Desenvolvimento das Empresas (CDEs), o Sector Privado e Cooperativo, contribuindo para a promoção e fortalecimento das atividades económicas do país e para o desenvolvimento económico de Timor-Leste.",
+   "indicator": "Aumentar o numero pequenas e médias empresas Nasionais",
+   "baseline": "Desde 2021 a 2025 o IADE ofereceu treinamento em empreendedorismo a 4090 (55.99% mulheres) empreendedores em toda a região.",
+   "target": "600 empresários que receberam treinamento em empreendedorismo até 2027.",
+   "page": 927
+  },
+  {
+   "kind": "output",
+   "code": "98326.0.0",
+   "statement": "Aumentar a pequena e média empresa",
+   "indicator": "Número de SMEs são treinadas",
+   "baseline": "Durante no periodo 2025 IADE ja criar 29 pessoas novos empresarios do programa apoio desenvolvimento de negosio atraves do apoio incubacao de negocio e competicao do plano negocio inovativo.",
+   "target": "30 empresarios",
+   "page": 927
+  }
+ ]
+}

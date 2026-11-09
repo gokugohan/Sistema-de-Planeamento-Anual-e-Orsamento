@@ -1,0 +1,201 @@
+{
+ "year": 2027,
+ "code": "081",
+ "name": "Fundo de Desenvolvimento do Capital Humano",
+ "abbr": "FDCH",
+ "kind": "fund",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   912,
+   913
+  ]
+ },
+ "units": [
+  {
+   "code": "FDCHF",
+   "div": "0810101",
+   "name": "Fundo Desenvolvimento Capital Humano - FDCH",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "SFDCHF",
+   "div": "0810102",
+   "name": "Secretariadu Fundo Desenvolvimento Capital Humano – FDCH",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "314": "Bolsas de estudo",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "3143901",
+   "programme": "314",
+   "subprogramme": "31439",
+   "subprogramme_name": "Desenvolvimento Capacidade Recurso Humano",
+   "name": "Bolsas Estudos para aréa estratégico desenvolvimento",
+   "div": [
+    "0810101",
+    "0810102"
+   ],
+   "indicator": "# alunos receberam bolsa de estudos",
+   "baseline": "7734 (F 3759 M 3975)",
+   "target": "3538 (F:2009 M:1529)",
+   "amounts": {
+    "30": 18371122.0,
+    "20": 400600.0
+   },
+   "page": 912
+  },
+  {
+   "code": "31439E1",
+   "programme": "314",
+   "subprogramme": "31439",
+   "subprogramme_name": "Desenvolvimento Capacidade Recurso Humano",
+   "name": "Air tickets for human capital development beneficiaries",
+   "div": [
+    "0810101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 1025400.0
+   },
+   "page": 912
+  },
+  {
+   "code": "31439E2",
+   "programme": "314",
+   "subprogramme": "31439",
+   "subprogramme_name": "Desenvolvimento Capacidade Recurso Humano",
+   "name": "Scholarship support - tuition fees and living costs",
+   "div": [
+    "0810101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "30": 4399670.0
+   },
+   "page": 912
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0810101",
+    "0810102"
+   ],
+   "indicator": "% de gestão financeira, administração e logística",
+   "baseline": "93 (F 44 M (49)",
+   "target": "93 (F 44 M (49)",
+   "amounts": {
+    "20": 354183.0,
+    "10": 1036236.0
+   },
+   "page": 912
+  },
+  {
+   "code": "5100205",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, monitorização e estatísticas",
+   "div": [
+    "0810101",
+    "0810102"
+   ],
+   "indicator": "1). % de Plano Ação Anual (PAA) produzido e aprovado. 2) % Relatório Trimestral e Annual produzido e aprovado.",
+   "baseline": "93 (F 44 M (49)",
+   "target": "93 (F 44 M (49)",
+   "amounts": {
+    "20": 453919.0
+   },
+   "page": 913
+  },
+  {
+   "code": "51002E8",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Vehicle, furniture and IT equipment for FDCH",
+   "div": [
+    "0810101",
+    "0810102"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 328727.0
+   },
+   "page": 913
+  },
+  {
+   "code": "51002E9",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Vehicle, furniture and IT equipment for FDCH - minor capital",
+   "div": [
+    "0810102"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 59000.0
+   },
+   "page": 913
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "314.0.0",
+   "statement": "Recursos Humanos com conhecimentos e habilitações necessárias para participar no desenvolvimento económico e social do pais",
+   "indicator": "Aumentar capacidade Recursos Humanos com conhecimentos e habilitações necessárias para participar no desenvolvimento económico e social do pais",
+   "baseline": "2590",
+   "target": "6683",
+   "page": 912
+  },
+  {
+   "kind": "output",
+   "code": "31439.0.0",
+   "statement": "Atribuição de bolsas de estudo nos setores chaves",
+   "indicator": "# de alunos receberam bolsa de estudos",
+   "baseline": "ND",
+   "target": "1120 (F:548, M:572)",
+   "page": 912
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "1) % de indicadores de desempenho do Objetivo de Médio (outcomes) e Curto Prazo (outputs) alcançados 2) # de Resultados de desempenho publicados no website do Governo 3) % de Relatório anual da entidade publicado",
+   "baseline": "1) 100%. 2) 100%. 3) 100%",
+   "target": "1) 100%. 2) 100%. 3) 100%",
+   "page": 912
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "% de execução orçamento por programa executado",
+   "baseline": "100%",
+   "target": "100%",
+   "page": 912
+  }
+ ]
+}

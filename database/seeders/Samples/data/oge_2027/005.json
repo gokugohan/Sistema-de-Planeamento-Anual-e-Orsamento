@@ -1,0 +1,702 @@
+{
+ "year": 2027,
+ "code": "005",
+ "name": "Secretaria de Estado para a Igualdade e Inclusão",
+ "abbr": "SEII",
+ "kind": "secretariat",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   36,
+   43
+  ]
+ },
+ "units": [
+  {
+   "code": "GSE",
+   "div": "0050101",
+   "name": "Gabinete do Secretaria de Estado",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DG",
+   "div": "0050201",
+   "name": "Direção-Geral",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNAF",
+   "div": "0050202",
+   "name": "Direção Nacional da Administração e Finanças",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNGPE",
+   "div": "0050203",
+   "name": "Direção Nacional de Gestão do Plano e Estratégia",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNDG",
+   "div": "0050204",
+   "name": "Direção Nacional de Desenvolvimento de Gênero",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNPGI",
+   "div": "0050205",
+   "name": "Direção Nacional Política Gênero e Inclusão",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNDIG",
+   "div": "0050206",
+   "name": "Direção Nacional de Desenvolvimento da Igualdade de Género",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNPIG",
+   "div": "0050207",
+   "name": "Direção Nacional de Política da Igualdade de Género",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "DNRPM",
+   "div": "0050208",
+   "name": "Direção Nacional de Relações-Públicas e Média",
+   "type": "National Directorate",
+   "parent": "DG"
+  },
+  {
+   "code": "GIA",
+   "div": "0050301",
+   "name": "Gabinete de Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0050301"
+   ],
+   "indicator": "# de Plano de Inspeção, Fiscalização e Auditoria implementado",
+   "baseline": "4 Relatório Semestral e 1 Relatório Anual",
+   "target": "4 Relatórios (Relatório de Inspeção Fiscalização Auditoria, Ações de Formação sobre a transparência na gestão do Fundo de Transferência Públicas (FTP) e fiscalização sobre o desempenho e os serviços centrais dos Ponto Focais da SEI nos Muncípios)",
+   "amounts": {
+    "10": 27582.0,
+    "20": 17000.0
+   },
+   "page": 36
+  },
+  {
+   "code": "510012U",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Disseminação e Socialização das novas Leis e Decreito de Leis para os funcionàrios da SEI",
+   "div": [
+    "0050301"
+   ],
+   "indicator": "# de Disseminação e Socialização das novas Leis e Decreto de Leis para os funcionários da SEI",
+   "baseline": "Realiza Desiminasaun Socialização das novas Leis e Decreto de Leis dala 1 ba iha Funsionarius SEI. Partisipante hamutuk ema na'in 70 (Feto 39; Mane: 31)",
+   "target": "2 Disseminações e Socializações das novas Leis e Decreto de Leis para os funcionários da SEI realizado",
+   "amounts": {
+    "20": 1000.0
+   },
+   "page": 36
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0050101",
+    "0050201",
+    "0050202"
+   ],
+   "indicator": "% Orçamento para finanças, administração, aprovisionamento e logística executadas",
+   "baseline": "85.52% do orçamento para finanças, administração, aprovisionamento e logística executado",
+   "target": "100%",
+   "amounts": {
+    "10": 370263.0,
+    "20": 206708.0
+   },
+   "page": 36
+  },
+  {
+   "code": "51002EN",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Lease of the SEI building, 2027-2029",
+   "div": [
+    "0050202"
+   ],
+   "indicator": "# Aluga Edifisiu SEI",
+   "baseline": "0",
+   "target": "1 (Aluga Edifisiu ida)",
+   "amounts": {
+    "20": 192000.0
+   },
+   "page": 36
+  },
+  {
+   "code": "5100301",
+   "programme": "510",
+   "subprogramme": "51003",
+   "subprogramme_name": "Parcerias",
+   "name": "Cooperação e parcerias",
+   "div": [
+    "0050208"
+   ],
+   "indicator": "# de Programas de Cooperação e Parceria com Parceiros de Desenvolvimento e Acordos Bilaterais assinados; # de cooperação coordenar com outros instituições do Governo para implementar atividades de igualdade género e inclusão",
+   "baseline": "10 Acordos Bilaterais e Programas de Cooperação e Parceria com Parceiros de Desenvolvimento (2 UN WOMEN, UNFPA, DFAT, OXFAM, PITL, NABILAN,TIC TIMOR, CIG - Comissão para a Cidadania e a Igualdade de Género de Portugal) implementados, e RAEOA",
+   "target": "10 Acordos Bilaterais e Programas de Cooperação e Parceria com Parceiros de Desenvolvimento (2 UN WOMEN, UNFPA, DFAT, OXFAM, PITL, NABILAN,TIC TIMOR, CIG - Comissão para a Cidadania e a Igualdade de Género de Portugal) implementados, e RAEOA",
+   "amounts": {
+    "10": 78287.0,
+    "20": 29924.0
+   },
+   "page": 37
+  },
+  {
+   "code": "9800601",
+   "programme": "980",
+   "subprogramme": "98006",
+   "subprogramme_name": "A integração dos Compromissos de Género e inclução social em Programas, Leis e Orçamento de estado e comunidade em geral",
+   "name": "Promover a consciencialização sobre igualdade de género e inclusão social",
+   "div": [
+    "0050205",
+    "0050207"
+   ],
+   "indicator": "# de Ações de Formação, #Ações de Sensibilização sobre Igualdade de Género e Inclusão Social realizados, #de encontro internaçional e regional sobre igualdade e inclusão social",
+   "baseline": "PAA 98 instituções estadu, ajénsia autonomo e 13 Munisipiu e RAEOA analisados, Participou da Comissão sobre o Status da Mulher (CSW) de 2022 em Nova York o",
+   "target": "PAA 98 state institutions, autonomous ajénsia and 13 Munisipiu and RAEOA analyzed, Participated in the 2022 Commission on the Status of PAA 98 instituções estadu, ajénsia autonomo e 13 Munisipiu e RAEOA analisados, Participou da Comissão sobre o Status da Mulher (CSW) de 2022 em Nova York",
+   "amounts": {
+    "20": 7656.0,
+    "10": 135020.0
+   },
+   "page": 38
+  },
+  {
+   "code": "9800603",
+   "programme": "980",
+   "subprogramme": "98006",
+   "subprogramme_name": "A integração dos Compromissos de Género e inclução social em Programas, Leis e Orçamento de estado e comunidade em geral",
+   "name": "Assistência a Instituições e Agências do Estado",
+   "div": [
+    "0050205",
+    "0050207"
+   ],
+   "indicator": "# de Linhas Ministeriais e Agências Autónomas receberam ações de formação e # de Planos de Ação Anual analisados",
+   "baseline": "12 Linhas Ministeriais receberam Ações de Formação sobre lógica e programa de Igualdade de Género e Inclusão Social",
+   "target": "Planos de Ação Anual de 80 Linhas Ministeriais/Agências Autónomas e 12 Municípios e RAEOA são analisados, 4 formção para os GTG das linhas ministériais sobre Abordagem Integrada Género e Orsamento Sensíveis ao Género e inclusão social",
+   "amounts": {
+    "20": 34320.0
+   },
+   "page": 38
+  },
+  {
+   "code": "9800604",
+   "programme": "980",
+   "subprogramme": "98006",
+   "subprogramme_name": "A integração dos Compromissos de Género e inclução social em Programas, Leis e Orçamento de estado e comunidade em geral",
+   "name": "Apoiar os ponto focais da SEII nos 12 municipios + RAEOA",
+   "div": [
+    "0050205"
+   ],
+   "indicator": "# de atividades implementadas pelos Pontos Focais da SEI, Centros de Empoderamento para a Igualdade e Inclusão Social (CEIIS) e Grupos de Trabalho de Género (GTG) em cada Trimestre , # Ações de Formação para Pontos Focais",
+   "baseline": "12 Municípios e RAEOA receberam apoio financeiro em cada trimestre",
+   "target": "4 encontros dos Grupos de Trabalho de Género (GTG) a nível Municipal, 4 reuniões com SEIIS, 3 reuniões com Associações de Mulheres com Potencialidades nos 12 Municípios, monitorização e mentoria para os Grupos Beneficiários do FTP, 12 Ações de Formação nos 12 Municípios sobre Igualdade Género e Inclusão Social, liderança transformativa, contabilidade, prevenção da violência baseada no género e organização de eventos relacionados à igualdade de género e inclusão social",
+   "amounts": {
+    "20": 24500.0
+   },
+   "page": 38
+  },
+  {
+   "code": "98006X1",
+   "programme": "980",
+   "subprogramme": "98006",
+   "subprogramme_name": "A integração dos Compromissos de Género e inclução social em Programas, Leis e Orçamento de estado e comunidade em geral",
+   "name": "Governance, institutional review, standards and reform oversight",
+   "div": [
+    "0050205"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 32860.0
+   },
+   "page": 38
+  },
+  {
+   "code": "98006X2",
+   "programme": "980",
+   "subprogramme": "98006",
+   "subprogramme_name": "A integração dos Compromissos de Género e inclução social em Programas, Leis e Orçamento de estado e comunidade em geral",
+   "name": "Social inclusion expenditure review and budget recommendations",
+   "div": [
+    "0050205"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 25000.0
+   },
+   "page": 38
+  },
+  {
+   "code": "98006X3",
+   "programme": "980",
+   "subprogramme": "98006",
+   "subprogramme_name": "A integração dos Compromissos de Género e inclução social em Programas, Leis e Orçamento de estado e comunidade em geral",
+   "name": "Financial-assistance targeting, safeguards and compliance",
+   "div": [
+    "0050205"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 13000.0
+   },
+   "page": 39
+  },
+  {
+   "code": "9800900",
+   "programme": "980",
+   "subprogramme": "98009",
+   "subprogramme_name": "Empoderamento Económico das Mulheres e outros componentes mais vulneráveis",
+   "name": "Apoio a grupos da sociedade civil, associações municipais de mulheres (AFM), pessoas com deficiência e pessoas vulneráveis em competências económicas",
+   "div": [
+    "0050204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 12535.0
+   },
+   "page": 39
+  },
+  {
+   "code": "9800902",
+   "programme": "980",
+   "subprogramme": "98009",
+   "subprogramme_name": "Empoderamento Económico das Mulheres e outros componentes mais vulneráveis",
+   "name": "Garantir a implementação da Declaração de Maubesi para a terceira fase",
+   "div": [
+    "0050204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 700.0
+   },
+   "page": 39
+  },
+  {
+   "code": "9800903",
+   "programme": "980",
+   "subprogramme": "98009",
+   "subprogramme_name": "Empoderamento Económico das Mulheres e outros componentes mais vulneráveis",
+   "name": "Prestar assistência a grupos de mulheres, sociedade civil, associações municipais de transporte e pessoas vulneráveis com competências económicas",
+   "div": [
+    "0050204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 868.0
+   },
+   "page": 39
+  },
+  {
+   "code": "9803201",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "Monitorização e avaliação (M &amp; A) da implementação dos compromissos de género e inclusão social",
+   "div": [
+    "0050203"
+   ],
+   "indicator": "# de Relatórios Anuais de Monitorização e Avaliação produzidos",
+   "baseline": "10 Relatórios (Relatório Anual do Governo sobre desempenho de género, Relatório do PAN- VBG, Relatório da Declaração de Maubisse) produzidos",
+   "target": "6 Relatórios (Relatório Anual, PAN-VBG, Declaração de Maubisse, Fundo de Transferências Públicas, Inspeção e Auditoria, Relatório sobre a Plataforma de Ação de Pequim)",
+   "amounts": {
+    "10": 86586.0,
+    "20": 17887.0
+   },
+   "page": 39
+  },
+  {
+   "code": "9803202",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "Pesquisa sobre igualdade do género e Inclusão Social",
+   "div": [
+    "0050203"
+   ],
+   "indicator": "# de Relatório sobre casos de infanticídio e feminicídio em Timor-Leste",
+   "baseline": "1 Relatório sobre casos de infanticídio e feminicídio em Timor-Leste",
+   "target": "1 Avaliação de Gênero do País",
+   "amounts": {
+    "20": 8253.0
+   },
+   "page": 40
+  },
+  {
+   "code": "98032X1",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "Integrated GEDSI and Children database, MIS and MERL system",
+   "div": [
+    "0050203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 120000.0
+   },
+   "page": 40
+  },
+  {
+   "code": "98032X2",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "Data-sharing and technical cooperation partnerships",
+   "div": [
+    "0050203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 28000.0
+   },
+   "page": 40
+  },
+  {
+   "code": "98032X3",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "Social inclusion MERL, reporting and evidence-to-budget",
+   "div": [
+    "0050203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 24000.0
+   },
+   "page": 40
+  },
+  {
+   "code": "98032X4",
+   "programme": "980",
+   "subprogramme": "98032",
+   "subprogramme_name": "Planeamento, Monitorização , e Avaliação ( P,M &amp; A )",
+   "name": "GEDSI and Children database - IT equipment",
+   "div": [
+    "0050203"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 35000.0
+   },
+   "page": 40
+  },
+  {
+   "code": "9806501",
+   "programme": "980",
+   "subprogramme": "98065",
+   "subprogramme_name": "Relações Públicas e Média",
+   "name": "Estratégia de advocacia sobre Igualdade de Género e Inclusão Social",
+   "div": [
+    "0050208"
+   ],
+   "indicator": "# de coordenações sobre as publicações sensíveis de género , # de Buletim publicados, #de Builboard, Banner e #de publicações sobre Igualdade de Género na página do facebook da SEI e # enconto com Média Cobertura atividade SEI no munisipios",
+   "baseline": "4 bulitim trimestral, 8 Builboard e 12 Banner publicados sobre Igualdade de Género na página do facebook da SEI",
+   "target": "Publicações da SEI: Buletins Lian da Igualdade em 4 trimestrais,300 notícias na pàgina oficial do facebook da SEI, 100 notícias no Website da SEI e 2 Vídeos, 2 5 banners, 8 billboards e 800 convites em 2024.",
+   "amounts": {
+    "20": 3600.0
+   },
+   "page": 40
+  },
+  {
+   "code": "9806502",
+   "programme": "980",
+   "subprogramme": "98065",
+   "subprogramme_name": "Relações Públicas e Média",
+   "name": "Instalar de Sistema Informático e Servidor de Internet",
+   "div": [
+    "0050208"
+   ],
+   "indicator": "# de Instalação do Sistema Informático e Servidor de Internet",
+   "baseline": "10 vezes a instalação da Internet no computadores mais recentes e nos computadores antigos que não têm acesso a Internet",
+   "target": "Sistema de informação instalado e a capaciadade de internet aumentou para 10 MB",
+   "amounts": {
+    "20": 10800.0
+   },
+   "page": 40
+  },
+  {
+   "code": "9800500",
+   "programme": "980",
+   "subprogramme": "98005",
+   "subprogramme_name": "Acabar com a violência contra as mulheres, raparigas e outros componentes mais vulneráveis",
+   "name": "Realizar advocacia para assegurar a implementação dos direitos da criança",
+   "div": [
+    "0050207"
+   ],
+   "indicator": "# de advocacia para assegurar a implementação dos direitos da criança, a fim de garantir que as crianças possam finalizar o ensino básico",
+   "baseline": "Realiza Advokasia dala 1 ho INDICCA atu asegura implementasaun direitu labarik nian liuliu atu finaliza sira-nia estudu iha nivel ensinu báziku.",
+   "target": "Realizar advocacia para assegurar a implementação dos direitos da criança, a fim de garantir que as crianças possam finalizar o ensino básico",
+   "amounts": {
+    "20": 1400.0
+   },
+   "page": 41
+  },
+  {
+   "code": "9800501",
+   "programme": "980",
+   "subprogramme": "98005",
+   "subprogramme_name": "Acabar com a violência contra as mulheres, raparigas e outros componentes mais vulneráveis",
+   "name": "Advocacia para asegurar acceco da vitima/sobrevivente VBG para justiça formal",
+   "div": [
+    "0050205",
+    "0050207"
+   ],
+   "indicator": "# de ações de formação para autor/a judiciário e policial para fornecer atendimento às vítimas de VBG, # de encontros de advocacia para melhoria do sistema de atendimento às vítimas de VBG",
+   "baseline": "6 encontros realizados sobre advocacia à VBG, 21 advogados privados aumentaram o seu conhecimento sobre VBG",
+   "target": "4 Ações de formação para autoridades judiciárias, realização de 4 encontros regulares para advocacia sobre VBG e advocacia para revisar artigos relevantes a VBG no código penal",
+   "amounts": {
+    "20": 12460.0
+   },
+   "page": 41
+  },
+  {
+   "code": "9800502",
+   "programme": "980",
+   "subprogramme": "98005",
+   "subprogramme_name": "Acabar com a violência contra as mulheres, raparigas e outros componentes mais vulneráveis",
+   "name": "Conscientização sobre a prevenção da VBG",
+   "div": [
+    "0050205",
+    "0050207"
+   ],
+   "indicator": "# de mulheres, homens aumentaram os seus conhecimentos sobre a Lei Contra a Violência Doméstica, o Controle da Raiva e o PAN- VBG",
+   "baseline": "Ações de Formação para 200 estudantes (106 mulheres e 94 homens) nos Municípios de Ermera, Bobonaro, Ações de Formação para Autoridades e para a Comunidade em geral para 59 participantes (35 mulheres e 24 homens) no Município de Bobonaro",
+   "target": "500 participantes, Mulheres e Homens, Pessoas Portadores /as de Deficiência e membros da comunidade LGBTQI e Estudantes participam em ações de campanha de 16 Dias de Ativismo pelo Fim da Violência contra as Mulheres, VBG e ações de formação para prisioneiros nos Estabelecimentos Prisionais de Becora , Gleno, Díli, e formação a autores de crime com pena suspensão",
+   "amounts": {
+    "20": 7410.0
+   },
+   "page": 41
+  },
+  {
+   "code": "9800504",
+   "programme": "980",
+   "subprogramme": "98005",
+   "subprogramme_name": "Acabar com a violência contra as mulheres, raparigas e outros componentes mais vulneráveis",
+   "name": "Organizar Campanhas Nacionais para o Combate da Violência Doméstica",
+   "div": [
+    "0050207"
+   ],
+   "indicator": "# de Campanhas Nacionais para o Combate da Violência Doméstica",
+   "baseline": "Hala'o Sosializasaun dala 1 kona- ba VBJ ba komunidade no Estudante Universitaria, Sekundaria iha Munisipiu Manufahi Postu Alas, Suku Dotik. Total partisipante ema na'in 219.",
+   "target": "3 Diálogos sobre Prevenção da VBG e Rezolução 1325 mulheres em Paz e Segurança na fronteira de Oe-cusse e Bobonaro (Oesilo e Mota Ain) realisados.",
+   "amounts": {
+    "20": 15984.0
+   },
+   "page": 41
+  },
+  {
+   "code": "9803100",
+   "programme": "980",
+   "subprogramme": "98031",
+   "subprogramme_name": "Participação das Mulheres na Política e no Nível de Tomada de Decisão",
+   "name": "Promover a participação na política e na tomada de decisões a nível nacional e local",
+   "div": [
+    "0050204"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 6890.0
+   },
+   "page": 42
+  },
+  {
+   "code": "9803101",
+   "programme": "980",
+   "subprogramme": "98031",
+   "subprogramme_name": "Participação das Mulheres na Política e no Nível de Tomada de Decisão",
+   "name": "Capacitar Mulheres, Pessoas Portadores/as de Deficiência, membros da comunidade LGBTQI para o desempenho de funções de natureza política a nível local e nacional",
+   "div": [
+    "0050204",
+    "0050206"
+   ],
+   "indicator": "# de Mulheres, Pessoas Portadores/as de Deficiência, membros da Comunidade LGBTQI em 12 Municípios + RAEOA receberam ações de formação. # de Mulheres, Pessoas Portadores/as de Deficiência e membros da Comunidade LGBTQI participaram em estudos comparativos",
+   "baseline": "100 mulheres com potencialidades (partidos políticos, conselho de aldeias e associações de mulheres, associações de Pessoas Portadoras de Deficiência e Associações, membros da comunidade LGBTQI) aumentaram os seus conhecimentos e habilidades em liderança e gestão. 10 Estudos Comparativos em Municípios de Timor-Leste",
+   "target": "650 de Mulheres, Portadores/as de Deficiência, membros da comunidade LGBTQI, Mulheres com Potencialidades (Mulheres em Partidos Políticos, Chefes de Aldeia, Chefes de Suco, Associações de Mulheres, Associações de Pessoas Portadoras de Deficiência e Associações de membros da comunidade LGBTQI participaram em ações de formaçåo sobre gestão de liderança e falar em público, 6 debates entre liderança de mulheres nos partidos políticos em televisão, educação cívica para novos eleitores, 1 talk show sobre a participação de pessoas portadores/as de deficiência e membros da comunidade",
+   "amounts": {
+    "20": 39094.0,
+    "10": 65342.0
+   },
+   "page": 42
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Melhorar transparência do sistema e responsabilização da administração da SEI",
+   "baseline": "30%",
+   "target": "100%",
+   "page": 36
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Melhar transparência do sistema e responsabilização da administração da SEI",
+   "baseline": "30%",
+   "target": "100%",
+   "page": 36
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Gestão Institucional Financeira e Administrativa é melhorada e os funcionários da SEII são qualificados e bem coordenados",
+   "baseline": "50%",
+   "target": "100%",
+   "page": 36
+  },
+  {
+   "kind": "output",
+   "code": "51003.0.0",
+   "statement": "Estabelecer uma abordagem sectorial para coordenar a implementação dos Planos de Atividades",
+   "indicator": "Implementação de Programas e Atividades dos Acordos Bilaterais e Multilaterais (MoU's) com Parceiros de Desenvolvimento são bem coordenados e implementados",
+   "baseline": "75%",
+   "target": "100%",
+   "page": 37
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.i: Aumento na taxa de matrícula e alfabetização de todas as crianças, incluindo crianças com deficiência, crianças economicamente desfavorecidas e mães adolescentes, igualdade de acesso e oportunidades de aprendizagem em todos os níveis das escolas, melhoria acessibilidade nas instalações escolares e salas de aula incluindo acesso a materiais e estruturas pedagógicas e a redução na taxa de abandono, violência baseada ao género incluindo bullying and corporal punishment em todos os níveis das escolas, bem como gravidez na adolescência.",
+   "indicator": "# de Linhas Ministeriais, Agências Autónomas chave e 13 Municípios e RAEOA integraram perspetivas de género em políticas, leis, programas, planeamento e orçamentação; # de Leis e Políticas que consideram a Perspetiva de Género e Inclusão Social",
+   "baseline": "51 (52%) dos Ministérios sectoriais consideraram a Perspetiva de Género e Inclusão Social no Plano de Ação Anual (PAA) e no Orçamento. 7 Municípios e RAEOA (57%) consideraram a perspetiva de Género e inclusão social no Plano de Ação Anual (PAA)",
+   "target": "52%",
+   "page": 37
+  },
+  {
+   "kind": "output",
+   "code": "98006.0.0",
+   "statement": "A perspetiva de igualdade de género e inclusão social é incorporada nas políticas, leis, programas, planeamento e orçamento em todas as instituições governamentais, e a comunidade em geral aumentou os seus conhecimentos sobre igualdade de género",
+   "indicator": "# de Linhas Ministeriais, Agências Autónomas chave e 12 Municípios e RAEOA integraram perspetivas de género em políticas, leis, programas, planeamento e orçamentação; # de Leis e Políticas que consideram a Perspetiva de Género e Inclusão Social",
+   "baseline": "37 (40%) dos Ministérios sectoriais consideraram a Perspetiva de Género e Inclusão Social no Plano de Ação Anual (PAA) e no Orçamento. 5 Municípios (38%) consideraram a perspetiva de Género e inclusão social no Plano de Ação Anual (PAA)",
+   "target": "Planos de Ação Annual da 80 linhas Ministeriais/ Agências Autonómas, 12 Municípios e RAEOA, são Sensíveis ao Género e Inclusão Social",
+   "page": 37
+  },
+  {
+   "kind": "output",
+   "code": "98009.0.0",
+   "statement": "Aumento da geração de renda das Mulheres e outros componentes mais vulneráveis para sustentar a si mesmas e suas famílias e contribuir para o desenvolvimento económico",
+   "indicator": "# de Mulheres, pessoas portadores/as deficiência e membros do Grupo LGBTQI com geração de renda própria; # de negócios dirigidos por mulheres, portadores/as de deficiência e membros da comunidade LGBTQI, # de Mulheres pessoas portadores/as de deficiência e membros do Grupo LGBTQI que trabalham por conta própria",
+   "baseline": "26 de Grupos Beneficiários receberam apoio do Fundo de Transferências Públicas (FTP)",
+   "target": "100 a 150 do Grupos Beneficiários em 100 sucos receberam apoio do FTP",
+   "page": 39
+  },
+  {
+   "kind": "output",
+   "code": "98032.0.0",
+   "statement": "garantir que todos os programas baseados em gênero implementados pelos Ministérios e órgãos autônomos",
+   "indicator": "# de Linhas Ministerias e Agências Autónomas implementaram recomendações sobre Políticas de Igualdade de Género e Inclusão Social",
+   "baseline": "Realizada 1 ação de Monitorização e Avaliação para as Linhas Ministeriais e Agências Autónomas sobre implementação de Políticas de Igualdade de Género e Inclusão Social, Encontros com os Grupos de Trabalho de Género a nível Municipal e Nacional, foram produzidos 10 Relatórios (Nacional e Internacional)",
+   "target": "9 Relatórios (Relatório Anual, PAN- VBG, Declaração de Maubisse, Fundo de Transferências Públicas, Inspeção e Auditoria, Relatório de Pesquisa sobre Casos de Infanticídio e Feminicídio e relatorio sobre o desempenho dos ponto focais da SEII)",
+   "page": 39
+  },
+  {
+   "kind": "output",
+   "code": "98065.0.0",
+   "statement": "Estabelecer uma coordenações sobre as publicações sensíveis de género abordagem sectorial para coordenar a implementação dos Planos",
+   "indicator": "# de coordenações sobre as publicações sensíveis de género , # de Buletim publicados, #de Builboard, Banner e #de publicações sobre Igualdade de Género na página do facebook da SEI e # enconto com Média Cobertura atividade SEI no munisipios",
+   "baseline": "4 bulitim trimestral, 8 Builboard e 12 Banner publicados sobre Igualdade de Género na página do facebook da SEI",
+   "target": "Publicações da SEI: Buletins Lian da Igualdade em 4 trimestrais,300 notícias na pàgina oficial do facebook da SEI, 100 notícias no Website da SEI e 2 Vídeos, 2 5 banners, 8 billboards e 800 convites em 2024.",
+   "page": 40
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.j: Eliminar todas as formas de violência contra todas as mulheres e meninas nas esferas pública e privada, incluindo tráfico e exploração sexual e outros tipos de exploração",
+   "indicator": "Proporção de mulheres e meninas com 15 anos de idade e mais velhas que já tiveram parceiros e sofreram violência física, sexual ou psicológica por um parceiro íntimo atual ou anterior nos últimos 12 meses, por forma de violência e por idade",
+   "baseline": "30%",
+   "target": "50%",
+   "page": 40
+  },
+  {
+   "kind": "output",
+   "code": "98005.0.0",
+   "statement": "Melhorar conhecimento e consciência pública sobre violência baseada no género (VBG), bem como o seu papel ativo na notificação e encaminhamento de casos de VBG",
+   "indicator": "% de mulheres, homens, Pessoas Portadoras de Deficiência, membros da comunidade LGBTQI não aceitam a violência baseada no género",
+   "baseline": "20% em 2016 de acordo com o Relatório do Inquérito Demográfico e de Saúde (IDS)",
+   "target": "15%",
+   "page": 41
+  },
+  {
+   "kind": "outcome",
+   "code": "",
+   "statement": "980.0.k: Garantir às mulheres e outros componentes mais vulneráveis direitos iguais de acesso aos",
+   "indicator": "1) # Grupos Beneficiários do Fundo de Transferências Públicas 2) Proporção de",
+   "baseline": "110 Grupos Beneficiários receberam recursos financeiros e económicos e",
+   "target": "100 a 150 grupos (de 100 a 150 Grupos / 100 Sucos há 1 ou 2 Grupos) 500 a 750 de",
+   "page": 41
+  },
+  {
+   "kind": "output",
+   "code": "98031.0.1",
+   "statement": "Melhorar os conhecimentos e habilidades das mulheres e outros componentes mais vulnerávei na área de liderança e gestão",
+   "indicator": "% de mulheres, portadores de Deficiência, membros da comunidade LGBTQI aumentam conhecimentos e habilidades na área de liderança e gestão, % de função/administração püblica e outors cargos püblicos e setor privado",
+   "baseline": "38% de mulheres no Parlamento Nacional; 5% de mulheres Chefes de Suco; 4% mulheres Chefes de Aldeia; 27% de mulheres no Serviço Público; 11% de mulheres como Membros do VIII Governo",
+   "target": "650 de mulheres potenciais, e pessoas portadores/as de Deficiência, membros da comunidade LGBTQI, (partidos políticos, conselho de aldeias e associações de mulheres) aumentaram os seus conhecimentos sobre a importância dos votos das mulheres",
+   "page": 42
+  }
+ ]
+}

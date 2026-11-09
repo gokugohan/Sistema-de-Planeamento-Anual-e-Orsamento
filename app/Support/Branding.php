@@ -73,18 +73,35 @@ final class Branding
     public static function logoDataUri(): ?string
     {
         return StructureCache::remember('logo-data-uri', 3600, function () {
-            $logo = SystemSetting::get('organization_logo');
-            if (! $logo || str_starts_with((string) $logo, 'http')) {
-                return null;
-            }
-            $path = $logo === self::LOGO ? self::file('logo') : public_path(ltrim((string) $logo, '/'));
-            if (! $path || ! is_file($path)) {
+            $path = self::logoPath();
+            if ($path === null) {
                 return null;
             }
             $mime = mime_content_type($path) ?: 'image/png';
 
             return 'data:'.$mime.';base64,'.base64_encode((string) file_get_contents($path));
         });
+    }
+
+    /**
+     * The file of the institution's own logo, for documents (the PDF reports, the Excel workbooks). Null when there is none,
+     * or when it is only an address on another site; outside public/ and the logo store, nothing is read.
+     */
+    public static function logoPath(): ?string
+    {
+        $logo = (string) SystemSetting::get('organization_logo');
+        if ($logo === '' || str_starts_with($logo, 'http')) {
+            return null;
+        }
+        $path = $logo === self::LOGO ? self::file('logo') : realpath(public_path(ltrim($logo, '/')));
+        if (! $path || ! is_file($path)) {
+            return null;
+        }
+        if ($logo !== self::LOGO && ! str_starts_with($path, realpath(public_path()).DIRECTORY_SEPARATOR)) {
+            return null; // a setting such as "../.env" never reaches a document
+        }
+
+        return $path;
     }
 
     public static function version(): string

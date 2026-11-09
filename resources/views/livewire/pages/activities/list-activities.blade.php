@@ -124,10 +124,36 @@ new class extends Component {
     public function export()
     {
         abort_unless(auth()->user()->can('view_paa'), 403);
-        $query = $this->filtered();
-        $name = "paa-{$this->year()}.csv";
+        $filters = $this->filterWords();
+        $book = app(ActivityExporter::class)->workbook($this->filtered(), $this->year(), $filters);
 
-        return response()->streamDownload(fn () => app(ActivityExporter::class)->write(fopen('php://output', 'w'), $query), $name, ['Content-Type' => 'text/csv; charset=UTF-8']);
+        return \App\Support\SpreadsheetKit::download($book, "paa-{$this->year()}-activities.xlsx");
+    }
+
+    /** What the list is narrowed to, in words (the chips under the heading, and the unit). @return array<string, string> */
+    private function filterWords(): array
+    {
+        $words = [];
+        if ($this->unit !== '' && $u = Directorate::find((int) $this->unit)) {
+            $words['unit'] = __('Unit').' '.$u->code;
+        }
+        if ($this->program !== '' && $p = Program::find((int) $this->program)) {
+            $words['program'] = __('Programme').' '.$p->oge_code;
+        }
+        if ($this->subprogram !== '' && $sp = Subprogram::find((int) $this->subprogram)) {
+            $words['subprogram'] = __('Subprogram').' '.$sp->code;
+        }
+        if ($this->location !== '') {
+            $words['location'] = $this->location === 'Nationwide' ? __('Nationwide') : $this->location;
+        }
+        if (isset(Activity::ORIGINS[$this->origin])) {
+            $words['origin'] = Activity::originWord($this->origin);
+        }
+        if ($this->search !== '') {
+            $words['search'] = '“'.$this->search.'”';
+        }
+
+        return $words;
     }
 
     public function rollForward(): void
@@ -255,22 +281,7 @@ new class extends Component {
         }
 
         // every other filter shows as a chip, so a shared link says what it shows
-        $chips = [];
-        if ($this->program !== '' && $p = Program::find((int) $this->program)) {
-            $chips['program'] = __('Programme').' '.$p->oge_code;
-        }
-        if ($this->subprogram !== '' && $s = Subprogram::find((int) $this->subprogram)) {
-            $chips['subprogram'] = __('Subprogram').' '.$s->code;
-        }
-        if ($this->location !== '') {
-            $chips['location'] = $this->location === 'Nationwide' ? __('Nationwide') : $this->location;
-        }
-        if (isset(Activity::ORIGINS[$this->origin])) {
-            $chips['origin'] = Activity::originWord($this->origin);
-        }
-        if ($this->search !== '') {
-            $chips['search'] = '“'.$this->search.'”';
-        }
+        $chips = array_diff_key($this->filterWords(), ['unit' => true]);
 
         return [
             'year' => $year,
@@ -328,7 +339,7 @@ new class extends Component {
         @if($unitInfo)
             <x-ui.button variant="secondary" wire:click="clearFilter('unit')">← {{ __('All units') }}</x-ui.button>
         @endif
-        <x-ui.button variant="secondary" wire:click="export">{{ __('Export CSV') }}</x-ui.button>
+        <x-ui.button variant="secondary" wire:click="export">{{ __('Export Excel') }}</x-ui.button>
         @if($canRoll && ! $locked)
             <x-ui.button variant="secondary" wire:click="rollForward"
                 wire:confirm="{{ __('Copy the :from plan into :to as drafts?', ['from' => $year - 1, 'to' => $year]) }}">{{ __('Copy from :year', ['year' => $year - 1]) }}</x-ui.button>

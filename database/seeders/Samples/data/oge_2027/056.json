@@ -1,0 +1,214 @@
+{
+ "year": 2027,
+ "code": "056",
+ "name": "Administração dos Portos de Timor-Leste",
+ "abbr": "APTL",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_2_Elementos_Informativos_PAA_Volume_IIB_PT_978a9e46d1.pdf",
+  "pages": [
+   692,
+   693
+  ]
+ },
+ "units": [
+  {
+   "code": "APTL",
+   "div": "0560101",
+   "name": "Autoridade Portuária de Timor Leste",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "OBN",
+   "div": "0560201",
+   "name": "Operações do Berlin - Nakroma",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "502": "Transportes",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5020701",
+   "programme": "502",
+   "subprogramme": "50207",
+   "subprogramme_name": "Operação dos Navios de Passageiros e de Cargas",
+   "name": "Combústivel para os navios de passageiros",
+   "div": [
+    "0560201"
+   ],
+   "indicator": "Volume de combustivel consumido pelos 2 dois navios de passageiros",
+   "baseline": "Em 2026 garante combustivel sufisiente para fasilitar os operacoes de navios de Berlin Ramelau e Berlin Nakroma durante 1 ano",
+   "target": "100% Garantir de forma sustentável o estoque de combustivel para as operações de transportes de passageiros domésticos e cargas",
+   "amounts": {
+    "20": 30000.0
+   },
+   "page": 692
+  },
+  {
+   "code": "5020702",
+   "programme": "502",
+   "subprogramme": "50207",
+   "subprogramme_name": "Operação dos Navios de Passageiros e de Cargas",
+   "name": "Operar os navios de passageiros",
+   "div": [
+    "0560201"
+   ],
+   "indicator": "Tripulação do Navio Berlin- Nakroma e do Berlin Ramelau, Reficoes, Material Limpeza, Bilhete passageiro BN&BR e manutensaun utina e annual durante 1 ano.",
+   "baseline": "35 tripulantes para operar o navio Berlin-Nakroma e do berlin ramelau navio Berlin-Nakroma.",
+   "target": "Em 2026 os navios de Berlin Nakroma e de Berlin Ramelau sao operados por 35 tripulantes em boas kondicoes dos 2 dois navios atraves de manutensaun rutina e annual",
+   "amounts": {
+    "10": 433303.0,
+    "20": 2364519.0
+   },
+   "page": 692
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0560101"
+   ],
+   "indicator": "Execução de Orçamento",
+   "baseline": "Com o orsamento planeado para apoiar a gestao administrativa no ano findo todos as atividades administrativa foram realizado/implementadas execusaun 90%",
+   "target": "Como alokacao de osamento para as atividades administrativa produsem resultadus satisfacao no desempenho das atividades e para que as atividades administrativas resultem",
+   "amounts": {
+    "20": 712052.0
+   },
+   "page": 692
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0560101"
+   ],
+   "indicator": "Participarão em formações de capacitação incluindo tripulantes do Berlin Nakroma e Direto salario para todos funsionario em Aportil",
+   "baseline": "22 Funcionarios (H:8 e M:13) participaram em formações e capacitação sobre Em 2026 funsionario 24 Funcionarios participaram na formaçao e capacitação teknika/BST, e Salario para todos os trabalhadores da Aportil no total de 393 pessoas foram pagos",
+   "target": "Em 2026 havera formasaun de BST e continuasaun de pagamento de salario para todos funsionario",
+   "amounts": {
+    "10": 1147086.0,
+    "20": 37500.0
+   },
+   "page": 693
+  },
+  {
+   "code": "51002EO",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Maintenance of hydrographic tide gauge equipment",
+   "div": [
+    "0560101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 230000.0
+   },
+   "page": 693
+  },
+  {
+   "code": "51002EP",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Maintenance of the Dili quay and jetty platform",
+   "div": [
+    "0560101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 300000.0
+   },
+   "page": 693
+  },
+  {
+   "code": "51002EQ",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Maintenance of the Oecusse quay fenders",
+   "div": [
+    "0560101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 300000.0
+   },
+   "page": 693
+  },
+  {
+   "code": "51002ER",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Training on IMO conventions, STCW and the ISPS Code",
+   "div": [
+    "0560101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 100000.0
+   },
+   "page": 693
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "502.0.3",
+   "statement": "Instalações marítimas eficientes e seguras para passageiros e cargas",
+   "indicator": "% Aumento o número de embarcações que utilizam portos nacionais",
+   "baseline": "Facilidades para as embarcações minimas",
+   "target": "Melhoramento das facilidades; garantia de boa segurança e modernização de sistemas uzando as tecnologias de informação",
+   "page": 692
+  },
+  {
+   "kind": "output",
+   "code": "50207.0.0",
+   "statement": "Rede bem conectada de portos nacionais, facilitando a economia de tráfego de passageiros e cargas.",
+   "indicator": "1. número de passageiros. 2. tonelagem de carga",
+   "baseline": "144 circuitos, 34.397 passageiros, 1388 veiculos",
+   "target": "Operação e gestão do navio Nakroma melhorada e aumento de de número de viagens, número de passageiros e cargas, aumentando receitas",
+   "page": 692
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Um Plano Estratégico Aprovado, incluindo plano de médio prazo",
+   "baseline": "Em 2026 garante o bem estar do Plano Estratégico",
+   "target": "100% Executa plano",
+   "page": 692
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Um Plano Estratégico Aprovado, incluindo plano de médio prazo",
+   "baseline": "Em 2026 garante o bem estar do Plano Estratégico",
+   "target": "100% Executa plano",
+   "page": 692
+  }
+ ]
+}

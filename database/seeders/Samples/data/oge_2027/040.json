@@ -1,0 +1,183 @@
+{
+ "year": 2027,
+ "code": "040",
+ "name": "Serviço Nacional de Inteligência",
+ "abbr": "SNI",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   389,
+   390
+  ]
+ },
+ "units": [
+  {
+   "code": "SNI",
+   "div": "0400101",
+   "name": "Serviço Nacional da Intelligência",
+   "type": "Unit",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "366": "Segurança nacional",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "3660601",
+   "programme": "366",
+   "subprogramme": "36606",
+   "subprogramme_name": "Serviços de Inteligência",
+   "name": "Realizar as atividades de Inteligência",
+   "div": [
+    "0400101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 796023.0,
+    "20": 722350.0
+   },
+   "page": 389
+  },
+  {
+   "code": "36606X1",
+   "programme": "366",
+   "subprogramme": "36606",
+   "subprogramme_name": "Serviços de Inteligência",
+   "name": "Allowances and special technical salaries - intelligence service",
+   "div": [
+    "0400101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 150000.0
+   },
+   "page": 389
+  },
+  {
+   "code": "36606X2",
+   "programme": "366",
+   "subprogramme": "36606",
+   "subprogramme_name": "Serviços de Inteligência",
+   "name": "Operating costs, software and hardware, equipment maintenance and communications",
+   "div": [
+    "0400101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "20": 350000.0
+   },
+   "page": 389
+  },
+  {
+   "code": "36606X3",
+   "programme": "366",
+   "subprogramme": "36606",
+   "subprogramme_name": "Serviços de Inteligência",
+   "name": "Security equipment - data centre, cameras, drones and CCTV",
+   "div": [
+    "0400101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 250000.0
+   },
+   "page": 389
+  },
+  {
+   "code": "5100112",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Apoio Jurídico",
+   "div": [
+    "0400101"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 72000.0,
+    "20": 20000.0
+   },
+   "page": 389
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0400101"
+   ],
+   "indicator": "Variância e execução do orçamento por programa implementado",
+   "baseline": "100%",
+   "target": "100% implementar o plano, executar o orçamento anual e submeter os relatórios",
+   "amounts": {
+    "10": 365830.0,
+    "20": 538037.0
+   },
+   "page": 389
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "366.0.1",
+   "statement": "Melhoria da segurança e da confiança pública através de uma força policial profissional, responsável e de aproximação orientada a comunidade",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 389
+  },
+  {
+   "kind": "output",
+   "code": "36606.0.0",
+   "statement": "Realizar os Serviços de Inteligência",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 389
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico aprovado incluindo plano de médio prazo",
+   "baseline": "0",
+   "target": "",
+   "page": 389
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 389
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 389
+  }
+ ]
+}

@@ -1,0 +1,369 @@
+{
+ "year": 2027,
+ "code": "022",
+ "name": "Ministério para os Assuntos dos Combatentes da Libertação Nacional",
+ "abbr": "MACLN",
+ "kind": "ministry",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   224,
+   226
+  ]
+ },
+ "units": [
+  {
+   "code": "GMACLN",
+   "div": "0220101",
+   "name": "Gabinete do Ministro para os Assuntos dos Combatentes da Libertação Nacional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GSEACLN",
+   "div": "0220102",
+   "name": "Gabinete de Secretario do Estado para os Assuntos de Combatentes da Libertação Nacional",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0220103",
+   "name": "Gabinete de Inspeção e de Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DNAGRH",
+   "div": "0220202",
+   "name": "Direção Nacional de Administração e Gestão de Recursos Humano",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNA",
+   "div": "0220205",
+   "name": "Direção Nacional de Aprovisionamento",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DGACLN",
+   "div": "0220301",
+   "name": "Direção-Geral para os Assuntos dos Combatentes da Libertação Nacional",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPS",
+   "div": "0220303",
+   "name": "Direção Nacional de Pensões e Subvenções",
+   "type": "National Directorate",
+   "parent": "DGACLN"
+  },
+  {
+   "code": "DNGPHP",
+   "div": "0220304",
+   "name": "Direção Nacional de Gestão do Património, História e Programas",
+   "type": "National Directorate",
+   "parent": "DGACLN"
+  },
+  {
+   "code": "GDGAF",
+   "div": "0220401",
+   "name": "Gabinete de Direção-Geral de Administração e Finanças",
+   "type": "General Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNPFL",
+   "div": "0220402",
+   "name": "Direção Nacional do Plano, Finanças e Logistica",
+   "type": "National Directorate",
+   "parent": "GDGAF"
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional",
+  "980": "Inclusão social."
+ },
+ "activities": [
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0220103"
+   ],
+   "indicator": "Nº de Auditorías Internas implementadas",
+   "baseline": "0",
+   "target": "150",
+   "amounts": {
+    "10": 86868.0,
+    "20": 72490.0
+   },
+   "page": 224
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0220402"
+   ],
+   "indicator": "% Orçamento Executado",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "10": 150391.0,
+    "20": 152564.0
+   },
+   "page": 224
+  },
+  {
+   "code": "5100204",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Património",
+   "div": [
+    "0220402"
+   ],
+   "indicator": "% do Ativos registados",
+   "baseline": "0%",
+   "target": "100%",
+   "amounts": {
+    "20": 293246.0
+   },
+   "page": 224
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0220202"
+   ],
+   "indicator": "Nº de Funcionários que receberam avaliação de desempenho",
+   "baseline": "0 dos funcionários Ministérios abrangidos pela avaliação de desempenho",
+   "target": "65",
+   "amounts": {
+    "10": 386556.0,
+    "20": 27600.0
+   },
+   "page": 224
+  },
+  {
+   "code": "5100209",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Organização e gestão de eventos",
+   "div": [
+    "0220101",
+    "0220102",
+    "0220401"
+   ],
+   "indicator": "Nº Ceremonias Realizadas",
+   "baseline": "0 Ceremonias planeadas",
+   "target": "5 Ceremonias planeadas",
+   "amounts": {
+    "10": 459687.0,
+    "20": 2055835.0
+   },
+   "page": 224
+  },
+  {
+   "code": "5100211",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Aprovisionamento e gestão de contratos",
+   "div": [
+    "0220205"
+   ],
+   "indicator": "% Plano de aprovisionamento implementado",
+   "baseline": "100%",
+   "target": "100%",
+   "amounts": {
+    "10": 72012.0,
+    "20": 31500.0
+   },
+   "page": 224
+  },
+  {
+   "code": "9800305",
+   "programme": "980",
+   "subprogramme": "98003",
+   "subprogramme_name": "Reconhecimento e Valorização da Luta da Libertação Nacional",
+   "name": "Funcionamento das actividade do Conselho de Combatentes da Libertação Nacional",
+   "div": [
+    "0220301"
+   ],
+   "indicator": "Nº CLN reclamados resolvidos; Nº CLN condecorados",
+   "baseline": "39 Postos Administrativos que já receberam a socialização sobre lei do fundo de investimento; 0 CLN reclamados resolvidos; 0 CLN condecorados",
+   "target": "65 Postos Administrativos que já receberam a socialização sobre lei do fundo de investimento; 500 CLN reclamados resolvidos; 0 CLN condecorados",
+   "amounts": {
+    "30": 3687380.0
+   },
+   "page": 225
+  },
+  {
+   "code": "9800306",
+   "programme": "980",
+   "subprogramme": "98003",
+   "subprogramme_name": "Reconhecimento e Valorização da Luta da Libertação Nacional",
+   "name": "Reconhecimento e valorização dos veteranos, combatentes e mártires da libertação nacional",
+   "div": [
+    "0220301",
+    "0220303"
+   ],
+   "indicator": "Nº Pensões pagas; (out of 32.422); Nº Prestações Pecuniárias Únicas pagas (PPU) (out of 25.914); Nº CLN validados do registo de 2009;",
+   "baseline": "32.008 Pensões pagas; (out of 32.422); 19.845 Prestações Pecuniárias Únicas pagas (PPU) (out of 25.914); 14.298 CLN validados do registo de 2009;",
+   "target": "33.000 Pensões pagas; (out of 32.422); 20.000 Prestações Pecuniárias Únicas pagas (PPU) (out of 25.914); 124.690 CLN validados do registo de 2009;",
+   "amounts": {
+    "10": 222348.0,
+    "20": 1155321.0,
+    "30": 151178943.0
+   },
+   "page": 225
+  },
+  {
+   "code": "9801101",
+   "programme": "980",
+   "subprogramme": "98011",
+   "subprogramme_name": "Proteção Social aos Combatentes",
+   "name": "Assegurar a protecção social aos Combatentes",
+   "div": [
+    "0220303",
+    "0220304"
+   ],
+   "indicator": "Nº de combatentes que receberam apoio médico (dentro e fora de Timor- Leste); Nº de caixões fornecidos; Nº restos mortais coletados; Nº restos mortais sepultados em cerimônias funerárias; Nº CLN sepultados em cemitérios especiais; Nº apoios para finalização de estudos aos filhos dos CLN; N. de outras contribuições diverças.",
+   "baseline": "1054 combatentes que receberam apoio médico (727 dentro TL + 327 fora de TL); 823 caixões fornecidos; 366 restos mortais coletados; 0 restos mortais sepultados em cerimônias funerárias; 20 CLN sepultados em cemitérios especiais; 473 apoios para finalização de estudos aos filhos dos CLN; 90 de outras contribuições diverças.\"",
+   "target": "1,454 combatentes que receberam apoio médico (300 dentro TL + 100 fora de TL); 1,123 caixões fornecidos; 375 restos mortais coletados; 0 restos mortais sepultados em cerimônias funerárias; 30 CLN sepultados em cemitérios especiais; 533 apoios para finalização de estudos aos filhos dos CLN; 90 de outras contribuições diverças.\"",
+   "amounts": {
+    "30": 6200276.0,
+    "10": 206496.0,
+    "20": 2612340.0
+   },
+   "page": 225
+  },
+  {
+   "code": "9804902",
+   "programme": "980",
+   "subprogramme": "98049",
+   "subprogramme_name": "Infraestrutura",
+   "name": "Construção de monumentos e cemitérios especiais para Veteranos, Combatentes e Mártires da Libertação Nacional",
+   "div": [
+    "0220304"
+   ],
+   "indicator": "Nº e % de construção dos cemitérios especiais para CLN (Jardim dos Heróis); Nº monumentos realizados.",
+   "baseline": "10 e 0% de construção dos cemitérios especiais para CLN (Jardim dos Heróis); 0 monumentos realizados.",
+   "target": "10 e 25% de construção dos cemitérios especiais para CLN (Jardim dos Heróis); 0 monumentos realizados.",
+   "amounts": {
+    "20": 1241746.0,
+    "50": 990601.0
+   },
+   "page": 225
+  },
+  {
+   "code": "9805001",
+   "programme": "980",
+   "subprogramme": "98050",
+   "subprogramme_name": "Bolsa de estudos",
+   "name": "Atribuição de bolsas de estudo aos filhos dos Combatentes da Libertação Nacional",
+   "div": [
+    "0220303"
+   ],
+   "indicator": "Nº Vagas atribuidas; Nº de bolsas atribuidas.",
+   "baseline": "3619 Vagas atribuidas; 2279 bolsas atribuidas.",
+   "target": "4919 Vagas atribuidas e 3579 bolsas atribuidas.",
+   "amounts": {
+    "30": 1127750.0
+   },
+   "page": 226
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Plano Estratégico Aprovado",
+   "baseline": "Plano estratégico nacional0",
+   "target": "Plano",
+   "page": 224
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Relatório trimestral de implementação do Plano Anual",
+   "baseline": "4 Relatório trimestral",
+   "target": "4 Relatório trimestral",
+   "page": 224
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Objetivos do Plano Anual Alcançados",
+   "baseline": "75% no plano anual alcançado",
+   "target": "85%",
+   "page": 224
+  },
+  {
+   "kind": "outcome",
+   "code": "980.0.2",
+   "statement": "Os combatentes e respetivas famílias são valorizadas e apoiadas",
+   "indicator": "os CLN são homenageados pelo Estado",
+   "baseline": "28,123",
+   "target": "51,173",
+   "page": 224
+  },
+  {
+   "kind": "output",
+   "code": "98003.0.0",
+   "statement": "Os combatentes e respetivas famílias são valorizadas e apoiadas",
+   "indicator": "CLNs que se beneficiam de programas de suporte",
+   "baseline": "0",
+   "target": "0",
+   "page": 225
+  },
+  {
+   "kind": "output",
+   "code": "98011.0.0",
+   "statement": "Todos os veteranos são protegidos",
+   "indicator": "Beneficiários que recebem assistência social",
+   "baseline": "1054",
+   "target": "1454",
+   "page": 225
+  },
+  {
+   "kind": "output",
+   "code": "98049.0.0",
+   "statement": "instalações concluídas e em boa qualidade",
+   "indicator": "Construção de jardins e monumentos memoráveis",
+   "baseline": "0",
+   "target": "13",
+   "page": 225
+  },
+  {
+   "kind": "output",
+   "code": "98050.0.0",
+   "statement": "Garantiu a todos os veteranos que recebiam bolsas de estudo",
+   "indicator": "Receber bolsa de estudo",
+   "baseline": "480",
+   "target": "600",
+   "page": 226
+  }
+ ]
+}

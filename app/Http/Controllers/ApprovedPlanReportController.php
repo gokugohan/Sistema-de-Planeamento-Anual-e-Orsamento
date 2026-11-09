@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\AuditLog;
 use App\Models\PlanBaseline;
 use App\Services\ApprovedPlanReport;
+use App\Services\ApprovedPlanWorkbook;
 use App\Services\PlanBaselines;
 use App\Support\PlanOptions;
+use App\Support\ReportScope;
+use App\Support\SpreadsheetKit;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -18,10 +21,12 @@ class ApprovedPlanReportController extends Controller
     public function show(Request $request)
     {
         $year = $this->year($request);
-        $report = $this->reports->build($year, $this->baseline($request, $year));
+        $scope = ReportScope::for($request->user(), $request->query('unit'));
+        $report = $this->reports->build($year, $this->baseline($request, $year), $scope);
 
         return view('reports.approved-plan', [
-            'report' => $report, 'pdf' => false, 'mode' => $this->mode($request),
+            'report' => $report, 'pdf' => false, 'mode' => $this->mode($request), 'scope' => $scope,
+            'unitChoices' => ReportScope::choices($request->user()),
             'baselines' => PlanOptions::current()->baselines ? PlanBaseline::where('fiscal_year', $year)->orderByDesc('recorded_at')->get(['id', 'recorded_at', 'note']) : null,
         ]);
     }
@@ -56,27 +61,13 @@ class ApprovedPlanReportController extends Controller
     public function pdf(Request $request)
     {
         $year = $this->year($request);
-        $report = $this->reports->build($year, $this->baseline($request, $year));
+        $scope = ReportScope::for($request->user(), $request->query('unit'));
+        $report = $this->reports->build($year, $this->baseline($request, $year), $scope);
         $mode = $this->mode($request);
 
-        AuditLog::create([
-            'action' => 'report.approved_plan_pdf',
-            'user_id' => auth()->id(),
-            'description' => "Final plan report {$report['year']} ({$mode}) exported as PDF ({$report['reference']})",
-            'metadata' => [
-                'fiscal_year' => $report['year'],
-                'mode' => $mode,
-                'reference' => $report['reference'],
-                'fingerprint' => $report['fingerprint'],
-                'activities' => $report['totals']['count'],
-                'total' => $report['totals']['total'],
-                'baseline' => $report['baseline']['id'] ?? null,
-            ],
-            'ip_address' => $request->ip(),
-            'user_agent' => mb_substr((string) $request->userAgent(), 0, 255),
-        ]);
+        $this->logExport($request, $report, $mode, 'pdf', 'PDF');
 
-        $pdf = Pdf::loadView('reports.approved-plan', ['report' => $report, 'pdf' => true, 'mode' => $mode, 'baselines' => null])
+        $pdf = Pdf::loadView('reports.approved-plan', ['report' => $report, 'pdf' => true, 'mode' => $mode, 'baselines' => null, 'scope' => $scope])
             ->setPaper('a4', 'landscape');
 
         // "Page X / Y" on every page (CSS page counters are not supported by dompdf).
@@ -93,6 +84,40 @@ class ApprovedPlanReportController extends Controller
         );
 
         return $pdf->download("{$report['reference']}-{$mode}.pdf");
+    }
+
+    /** The same report as an Excel workbook: cover, the plan (complete report) and the summaries. */
+    public function excel(Request $request, ApprovedPlanWorkbook $workbook)
+    {
+        $year = $this->year($request);
+        $scope = ReportScope::for($request->user(), $request->query('unit'));
+        $report = $this->reports->build($year, $this->baseline($request, $year), $scope);
+        $mode = $this->mode($request);
+        $this->logExport($request, $report, $mode, 'xlsx', 'Excel');
+
+        return SpreadsheetKit::download($workbook->build($report, $mode), "{$report['reference']}-{$mode}.xlsx");
+    }
+
+    /** Every export is kept in the audit trail with the fingerprint of the plan it came from. */
+    private function logExport(Request $request, array $report, string $mode, string $format, string $label): void
+    {
+        AuditLog::create([
+            'action' => "report.approved_plan_{$format}",
+            'user_id' => auth()->id(),
+            'description' => "Final plan report {$report['year']} ({$mode}) exported as {$label} ({$report['reference']})",
+            'metadata' => [
+                'fiscal_year' => $report['year'],
+                'mode' => $mode,
+                'reference' => $report['reference'],
+                'fingerprint' => $report['fingerprint'],
+                'activities' => $report['totals']['count'],
+                'total' => $report['totals']['total'],
+                'baseline' => $report['baseline']['id'] ?? null,
+                'unit' => $report['unit']?->code,
+            ],
+            'ip_address' => $request->ip(),
+            'user_agent' => mb_substr((string) $request->userAgent(), 0, 255),
+        ]);
     }
 
     /** 'complete' (the plan table and the summaries) or 'summary' (the summaries only). */

@@ -1,0 +1,601 @@
+{
+ "year": 2027,
+ "code": "038",
+ "name": "Autoridade de Proteção Civil",
+ "abbr": "APC",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   373,
+   378
+  ]
+ },
+ "units": [
+  {
+   "code": "GPAPC",
+   "div": "0380101",
+   "name": "Gabinete do Presidente da Autoridade de Proteção Civil",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GPEA",
+   "div": "0380102",
+   "name": "Gabinete de Planeamento Estratégico e Acessoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GIA",
+   "div": "0380103",
+   "name": "Gabinete da Inspeção e Auditoria",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "GREC",
+   "div": "0380104",
+   "name": "Gabinete de Relaçoes Externas e Comunicação",
+   "type": "Cabinet",
+   "parent": null
+  },
+  {
+   "code": "DEA",
+   "div": "0380105",
+   "name": "Diretor Executivo da APC",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CNOPC",
+   "div": "0380201",
+   "name": "Comando Nacional de Operação de Proteção Civil",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DNB",
+   "div": "0380202",
+   "name": "Direção Nacional de Bombeiros (DNB)",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGRDN",
+   "div": "0380203",
+   "name": "Direção Nacional de Gestão de Riscos de Desastres Naturais (DNGRDN)",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNGR",
+   "div": "0380206",
+   "name": "Direção Nacional Gestão de Recurso",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "UEPC",
+   "div": "0380207",
+   "name": "Unidade Especial de proteção Civil",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "CFPC",
+   "div": "0380208",
+   "name": "Centro de Formação Proteção Civil",
+   "type": "Unit",
+   "parent": null
+  },
+  {
+   "code": "DNPM",
+   "div": "0380209",
+   "name": "Direção Nacional de Prevenção e Mitigação",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNER",
+   "div": "0380210",
+   "name": "Direção Nacional de Emergência e Resposta",
+   "type": "National Directorate",
+   "parent": null
+  },
+  {
+   "code": "DNR",
+   "div": "0380211",
+   "name": "Direção Nacional de Recuperação",
+   "type": "National Directorate",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "366": "Segurança nacional",
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "3662202",
+   "programme": "366",
+   "subprogramme": "36622",
+   "subprogramme_name": "Recursos Humanos afetos a Prestação de Serviços",
+   "name": "Gestao de Recursos Humanos afetos a prestacao de servicos",
+   "div": [
+    "0380206"
+   ],
+   "indicator": "Pagamentos da retribuição mensual aos 1.123 funcionais de APC incluindo funcionários casuais. .",
+   "baseline": "100% do pagamento",
+   "target": "100% do pagamento",
+   "amounts": {
+    "10": 4088246.0
+   },
+   "page": 373
+  },
+  {
+   "code": "3662407",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Prevenção, preparação e mitigação de riscos de desastres",
+   "div": [
+    "0380209"
+   ],
+   "indicator": "# Participantes Autoridade Local e Comunidade (F/M) e Estudantes e Professores",
+   "baseline": "387 funcionários compostos por autoridades locais, comunidades, estudantes e professores dos municípios de Viqueque e Covalima já possuem conhecimento e informações sobre Gestão de Risco de Desastres",
+   "target": "4.325 estudantes, professores e autoridades ja tem a capacidade e as habilidades para reduzir o risco de desastres.",
+   "amounts": {
+    "20": 80000.0
+   },
+   "page": 373
+  },
+  {
+   "code": "3662408",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Apoio de emergência durante desastre",
+   "div": [
+    "0380202",
+    "0380210"
+   ],
+   "indicator": "Mobilização e Operações dos Bombeiros para Apoio de Emergência durante Desastres Numeru vitima dezastre (C/F)",
+   "baseline": "Operações dos serviços dos Bombeiros nos 13 Municípios, incluindo a RAEOA, num total de 3.066 intervenções, compostas pelos tipos de serviços de Incêndios, Acidentes, Emergências e Apoios. Apoio de materiais de emergência às famílias afetadas por desastres a nível nacional e",
+   "target": "100% das equipas dos Bombeiros encontram-se prontas para mobilização a nível nacional e municipal. 100% das equipas de resposta encontram-se em prontidão operacional.",
+   "amounts": {
+    "20": 555011.0
+   },
+   "page": 373
+  },
+  {
+   "code": "3662409",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Apoio à recuperação pós- desastre",
+   "div": [
+    "0380211"
+   ],
+   "indicator": "#Levantamento de Dados # nstalação do sistema de base de dados (SIGAS – Sistema Integrado de Gestão de Assistência Social) # Implementação do Programa de Reabilitação",
+   "baseline": "1076 beneficiários",
+   "target": "1.000 beneficiarios validados 581 Familias com casas rebilitadas (50%)",
+   "amounts": {
+    "20": 426403.0,
+    "30": 765000.0
+   },
+   "page": 374
+  },
+  {
+   "code": "3662418",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Implementação politica Redução Risco Desastre",
+   "div": [
+    "0380203"
+   ],
+   "indicator": "% de implementação da Política Nacional de RRD",
+   "baseline": "25 % da Politika Implementada",
+   "target": "100% da política implementada",
+   "amounts": {
+    "20": 26600.0
+   },
+   "page": 374
+  },
+  {
+   "code": "36624X1",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Additional salaries - firefighters special regime and disaster focal-point staff",
+   "div": [
+    "0380202"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "10": 408261.0
+   },
+   "page": 374
+  },
+  {
+   "code": "36624X2",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Acquisition of 7 medium tanker vehicles",
+   "div": [
+    "0380202"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 130000.0
+   },
+   "page": 374
+  },
+  {
+   "code": "36624X3",
+   "programme": "366",
+   "subprogramme": "36624",
+   "subprogramme_name": "Gestão de riscos de desastres",
+   "name": "Rescue, maritime rescue and extrication vehicles",
+   "div": [
+    "0380210"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 300000.0
+   },
+   "page": 374
+  },
+  {
+   "code": "3662601",
+   "programme": "366",
+   "subprogramme": "36626",
+   "subprogramme_name": "Comando Nacional Operacional de Proteção Civil",
+   "name": "Plano Nacional Civil Emergencia em Municipios Civil Emergencia",
+   "div": [
+    "0380201"
+   ],
+   "indicator": "#Identificação dos Municípios vulneráveis e das áreas de risco para a realização de formação sobre o Sistema de Alerta Precoce (SAS), bem como a realização de sensibilização sobre perigos naturais hidrometeorológicos e geo- riscos junto das Comissões Municipais e Suku de Gestão de Riscos de Desastres.",
+   "baseline": "1. Formação sobre o Projeto Piloto de Ação Antecipatória para o Risco de Inundação nos Municípios de Covalima (Suai Loro), Liquiça (Leutela), Manatuto e Viqueque (Bibileo), com um total de 90 participantes, sendo M=58 e F=32. A atividade foi realizada em colaboração com o parceiro FAO. 2. Sensibilização sobre Gestão de Riscos de Desastres nas áreas costeiras do Município de Bobonaro, Postos Administrativos de Cailaco e Atabae, com um total",
+   "target": "100% dos participantes demonstraram ter adquirido conhecimentos após a formação.",
+   "amounts": {
+    "20": 21249.0
+   },
+   "page": 374
+  },
+  {
+   "code": "36626X1",
+   "programme": "366",
+   "subprogramme": "36626",
+   "subprogramme_name": "Comando Nacional Operacional de Proteção Civil",
+   "name": "Acquisition of 7 command vehicles for 7 posts",
+   "div": [
+    "0380201"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 90000.0
+   },
+   "page": 375
+  },
+  {
+   "code": "3662701",
+   "programme": "366",
+   "subprogramme": "36627",
+   "subprogramme_name": "Unidade Especial da Autoridade de Proteção Civil",
+   "name": "Servico prevencao e resposta rapidas a situacao emergencia e resigates e de recoperacao da normalidade vida",
+   "div": [
+    "0380207"
+   ],
+   "indicator": "#Implementação de operações de busca e salvamento, mobilização das equipas de resposta rápida",
+   "baseline": "Incêndios Urbanos: Total de 19 ocorrências. Ocorrências relacionadas com Circuitos Elétricos: Total de 9 intervenções. Desobstrução de Vias: Total de 23 intervenções. Fornecimento de Água: Total de 35 operações. Inundações e Lavagem de Detritos: Total de 8 operações. Reboque de Veículos: Total de 2 intervenções.",
+   "target": "500 apoios prestados às comunidades em situação de necessidade",
+   "amounts": {
+    "20": 87940.0
+   },
+   "page": 375
+  },
+  {
+   "code": "3662901",
+   "programme": "366",
+   "subprogramme": "36629",
+   "subprogramme_name": "Servço de Proteção Civil",
+   "name": "Coordenar e Organizar a reunião de Conselho Nacional da Proteção Civil",
+   "div": [
+    "0380101"
+   ],
+   "indicator": "1) Realizar reuniões de coordenação com as instituições relevantes para preparar a criação do conselho nacional do PC; 2) Garantir a criação do conselho nacional; 3) Garantir a primeira reunião do conselho nacional do APC",
+   "baseline": "Coordenação de serviços e preparação de instrumentos legais para a criação do Conselho Nacional de Protecção Civil",
+   "target": "Estabeleceu um conselho nacional de protecção civil para apoiar os serviços de protecção civil",
+   "amounts": {
+    "20": 7800.0
+   },
+   "page": 375
+  },
+  {
+   "code": "3662902",
+   "programme": "366",
+   "subprogramme": "36629",
+   "subprogramme_name": "Servço de Proteção Civil",
+   "name": "Sistema Alerta Anticipada para acidentes graves e catástrofes Proteção Civil",
+   "div": [
+    "0380201"
+   ],
+   "indicator": "# Manutensaun equipamentos sirene de tsunami",
+   "baseline": "1 Manutenção da sirene de tsunami no Largo do Lecidere",
+   "target": "100%",
+   "amounts": {
+    "20": 34700.0
+   },
+   "page": 375
+  },
+  {
+   "code": "3661392",
+   "programme": "366",
+   "subprogramme": "36613",
+   "subprogramme_name": "Segurança",
+   "name": "Organizar, Supervisionar, Inspecionar e Coordenar a Implementasaun da Autordidade Protecao Civil",
+   "div": [
+    "0380101"
+   ],
+   "indicator": "1) Monitorizar, avaliar os serviços de APC e os serviços de gestão de recursos 2) Reuniões regulares avaliam os serviços 3) Garantir o funcionamento dos serviços de APC",
+   "baseline": "Realizar quatro reuniões anuais de avaliação dos serviços da APC, a nível nacional e municipal",
+   "target": "100% implementado",
+   "amounts": {
+    "20": 42040.0
+   },
+   "page": 376
+  },
+  {
+   "code": "3662801",
+   "programme": "366",
+   "subprogramme": "36628",
+   "subprogramme_name": "Centro Formação da Autoridade de Proteção Civil",
+   "name": "Formacao e Capacitacao de profissionais do servico de APC",
+   "div": [
+    "0380208"
+   ],
+   "indicator": "# Participação dos funcionários em ações de formação e realização de ações de formação para empresas privadas nas áreas de proteção civil, prevenção e resposta a emergências",
+   "baseline": "1.705 funcionários capacitados em Gestão do Risco de Desastres, Primeira Intervenção no Combate a Incêndios e Primeiros Socorros Básicos para profissionais da APC e empresas privadas, a nível nacional e municipal.",
+   "target": "2.500 pessoas capacitadas em Gestão do Risco de Desastres, Primeira Intervenção no Combate a Incêndios e Primeiros Socorros Básicos.",
+   "amounts": {
+    "20": 71000.0
+   },
+   "page": 376
+  },
+  {
+   "code": "5100109",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Inspeção, fiscalização e auditoria",
+   "div": [
+    "0380103"
+   ],
+   "indicator": "Realização de Inspeções, Auditorias e Ações de Fiscalização Interna da APC",
+   "baseline": "Realização de inspeção ao processo de recuperação no Município de Liquiçá, com o objetivo de assegurar que os apoios prestados foram corretamente atribuídos aos beneficiários. Realização de inspeção no Município de",
+   "target": "A instituição APC funciona de acordo com normas e procedimentos",
+   "amounts": {
+    "20": 35840.0
+   },
+   "page": 376
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0380206"
+   ],
+   "indicator": "% do orçamento executado",
+   "baseline": "100 % plano financeiro executado",
+   "target": "100 % do orçamento executado",
+   "amounts": {
+    "20": 1125564.0
+   },
+   "page": 377
+  },
+  {
+   "code": "510021A",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Planeamento, Monitorização e Assesoria",
+   "div": [
+    "0380102",
+    "0380201"
+   ],
+   "indicator": "# Monitorização e avaliação regulares da implementação dos serviços da Autoridade de Proteção Civil (APC), através da recolha, verificação e análise de dados",
+   "baseline": "Relatórios submetidos pontualmente, de acordo com os prazos previamente estabelecidos",
+   "target": "100%",
+   "amounts": {
+    "20": 62540.0
+   },
+   "page": 378
+  },
+  {
+   "code": "510021B",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Servico Relacao Publica e Cooperacao",
+   "div": [
+    "0380104"
+   ],
+   "indicator": "# Participantes nos Municipio e Sucos # Enkontro de Coperação bilateral enter Nacao ASEAN,CPLP e Asia Pasifiku",
+   "baseline": "400 pessoas possuem conhecimentos sobre a Lei de Bases da Proteção Civil",
+   "target": "1.000 Partispantes Lei Base Protecao Civil Atingido 2. 100%",
+   "amounts": {
+    "20": 40880.0
+   },
+   "page": 378
+  },
+  {
+   "code": "510023G",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Implementação e Avaliação de Serviços gestão de Recurso e Recoperação",
+   "div": [
+    "0380105"
+   ],
+   "indicator": "#Supervisão e Monitorização do Desempenho servisus de Direção Nacional de Recoperação e Direção Nacional Gestão Recurso",
+   "baseline": "Realização de uma reunião de avaliação",
+   "target": "100 % atingido",
+   "amounts": {
+    "20": 20000.0
+   },
+   "page": 378
+  },
+  {
+   "code": "51002X4",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "IT equipment for server backup",
+   "div": [
+    "0380105"
+   ],
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "amounts": {
+    "40": 45000.0
+   },
+   "page": 378
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "366.0.0",
+   "statement": "Diminuição da criminalidade geral, profissionalização das forças e serviços de segurança bem como a proteção e alívio da população",
+   "indicator": "1. Reduzir o impacto dos desastres naturais que ocorrem 2. Capacidade para enfrentar os desastres naturais . 3 evacua as vitimas dos desastres no local",
+   "baseline": "chefe da familia",
+   "target": "Implementação sistema prevenção, Mitigação, resposta emergencia e Recuperação para apoia população",
+   "page": 373
+  },
+  {
+   "kind": "output",
+   "code": "36622.0.0",
+   "statement": "Funcionarios receberam salários de acordo com a lei",
+   "indicator": "100%",
+   "baseline": "",
+   "target": "Pagamentos Funsionarios da APC",
+   "page": 373
+  },
+  {
+   "kind": "output",
+   "code": "36624.0.0",
+   "statement": "Os sistemas de prevenção e gestão de desastres naturais respondem de forma eficiente e atempada às necessidades das populações mais afetadas",
+   "indicator": "Numero Chefe da Familia",
+   "baseline": "",
+   "target": "Proteger as comunidades de ameacas que ocorrem",
+   "page": 373
+  },
+  {
+   "kind": "output",
+   "code": "36626.0.0",
+   "statement": "Comunicação e Coordenação Agentes de Proteção Civil em Coordenadas Nacionais, Municipais e RAEOA",
+   "indicator": "Numero Agentes de Comunicação e Coordenação de PC em Coordenadas Nacionais, Municipais e RAEOA",
+   "baseline": "Novo Actividade",
+   "target": "13 Municipio inclui RAEOA",
+   "page": 374
+  },
+  {
+   "kind": "output",
+   "code": "36627.0.0",
+   "statement": "Servicos Autoridade De Proteção Civil E Ambito Alto Risco Reforcado",
+   "indicator": "Numero Servicos APC no ambito alto risco reforcado",
+   "baseline": "Novo Actividade",
+   "target": "13 Municipio inclui RAEOA",
+   "page": 375
+  },
+  {
+   "kind": "output",
+   "code": "36629.0.0",
+   "statement": "Garantir serviços de Proteção Civil durante o Ciclo de Desastre perante acidente graves e catástrofes em Timor- Leste",
+   "indicator": "Avisa antes desastre para as comunidades que vivem perto de areas de risco",
+   "baseline": "",
+   "target": "Comunidade asegurada contra ameasas de catastrofes",
+   "page": 375
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.1",
+   "statement": "Melhoria da segurança e da confiança pública através de uma força policial profissional, responsável e de aproximação orientada a comunidade",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 375
+  },
+  {
+   "kind": "output",
+   "code": "36613.0.0",
+   "statement": "TBD",
+   "indicator": "organizar servicos na area Relacao Publico e Internacionais, Planeamento Estrategico e Fiscalizacao de Auditoria",
+   "baseline": "",
+   "target": "Sistema birocrasia eficiencia e eficacia",
+   "page": 376
+  },
+  {
+   "kind": "outcome",
+   "code": "366.0.2",
+   "statement": "Comunidade são seguras e protegidas",
+   "indicator": "",
+   "baseline": "",
+   "target": "",
+   "page": 376
+  },
+  {
+   "kind": "output",
+   "code": "36628.0.0",
+   "statement": "Funcionarios Da Autoridade De Proteção Civil Bem Formado E Capacitado",
+   "indicator": "Number of Civil Protection Authority Employees well trained and trained",
+   "baseline": "Novo Actividade",
+   "target": "300 Members",
+   "page": 376
+  },
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "O plano Estrategico Autoridade Protecao Civil Aprovado",
+   "baseline": "",
+   "target": "Aprovado",
+   "page": 376
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Gestão de auditoria e inspecionar",
+   "baseline": "",
+   "target": "melhorar o sistema auditoria para o atendimento publico",
+   "page": 376
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Execução orçamental de acordo com programas e atividades",
+   "baseline": "",
+   "target": "Acompanhar os programas e atividades na APC Nacional e Municipal",
+   "page": 377
+  }
+ ]
+}

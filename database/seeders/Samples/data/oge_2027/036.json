@@ -1,0 +1,161 @@
+{
+ "year": 2027,
+ "code": "036",
+ "name": "Inspeção-Geral do Estado",
+ "abbr": "IGE",
+ "kind": "body",
+ "check": "ok",
+ "source": {
+  "book": "Orçamento Geral do Estado 2027 (proposta), Elementos Informativos, Volume II-A/II-B: Plano de Ação Anual (Anexo K)",
+  "volume": "02_1_Elementos_Informativos_PAA_Volume_IIA_PT_c08807881c.pdf",
+  "pages": [
+   368,
+   370
+  ]
+ },
+ "units": [
+  {
+   "code": "GIG",
+   "div": "0360101",
+   "name": "Gabinete de Inspeção Geral",
+   "type": "Cabinet",
+   "parent": null
+  }
+ ],
+ "programmes": {
+  "510": "Funcionamento e desenvolvimento institucional"
+ },
+ "activities": [
+  {
+   "code": "5100163",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Realizar inspeções e investigações",
+   "div": [
+    "0360101"
+   ],
+   "indicator": "Efetividade iha realizasaun inspesaun ba atividades Governu nian no investigasaun ba kazu/alegasaun sira ne'ebé identifika iha administrasaun públika.",
+   "baseline": "Realiza ona inspesaun ba infraestrutura fízika hamutuk unidade 100 iha munisípiu haat (Lautém, Manatuto, Viqueque, no Baucau)ba tinan 2026.",
+   "target": "1. Realizasaun inspesaun ba implementasaun projetu be'e-mos 10 ne'ebé implementa iha Teritorio Nasional. 2. Realizasaun inspesaun ba implementasaun projetu Revitalizasaun Komunitaria hamutuk 10 ne'ebé implementa iha Teritorio Nasional. 3. \"Realizasaun inspesaun ba implementasaun projetu husi fundu infraestrutura hamutuk 100 ne'ebé implementa iha Teritorio Nasional.\". 4. \"Realiza atividade inspesaun konjunta ho karater surpresa ba instituisaun públika nasionál 6 no iha munisípiu sira.\" 5. \"Realizasaun atividade investigasaun no averiguasaun administrativa ba alegasaun sira hamutuk 8 (Depende ba alegasaun ka pedidu husi superior/entidade públika)\".",
+   "amounts": {
+    "20": 24720.0
+   },
+   "page": 368
+  },
+  {
+   "code": "5100164",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Disseminação papel da Instituição e Controlo Interno",
+   "div": [
+    "0360101"
+   ],
+   "indicator": "Konsolidasaun konesimentu kona-ba papél inspesaun no",
+   "baseline": "Totál Involvimentu: partisipasaun husi ema na'in 305 (mane 257 no feto 48) bazeia ba akordu servisu",
+   "target": "Realiza atividade disseminasaun ba Instituisaun Públika Nasionál, Munisípiu no RAEOA ho target",
+   "amounts": {
+    "20": 4000.0
+   },
+   "page": 368
+  },
+  {
+   "code": "5100189",
+   "programme": "510",
+   "subprogramme": "51001",
+   "subprogramme_name": "Funcionamento Institucional",
+   "name": "Realizar auditoria de instituições públicos",
+   "div": [
+    "0360101"
+   ],
+   "indicator": "Efisiénsia no efetividade iha realizasaun auditoria finanseira, konformidade no dezempeñu institusionál iha setór públiku.",
+   "baseline": "Auditoria konformidade ba jestaun patrimóniu bens imóveis estadu (2022-2024) iha Servisu Terras Munisípiu Ainaro no Auditoria konformidade ba jestaun adiantamentu ba kaixa (2024) iha Autoridade Munisípiu Ainaro. tinan 2026",
+   "target": "1. \"Realiza auditoria ba despezas entidades Publikas nian iha Teritorio Nasional hamutuk 5.\" 2. \"Realiza auditoria reseitas ba entidades Publikas nian iha Teritorio Nasional hamutuk 9.\" 3. \"Realiza auditoria estraordinária ba Ministériu sira ka entidade sira hamutuk 4.\"",
+   "amounts": {
+    "20": 22200.0
+   },
+   "page": 369
+  },
+  {
+   "code": "5100202",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão Financeira, Administração e Logística",
+   "div": [
+    "0360101"
+   ],
+   "indicator": "1. Índise efisiénsia finanseira: Garante transparénsia iha ezekusaun orsamentu tuir kalendáriu ne'ebé definidu. 2. Optimizasaun jestaun: Reforsa jestaun administrativa, lojístika, no patrimóniu hodi apoiu efikásia servisu operasionál sira.",
+   "baseline": "85% (Dadus ezekusaun orsamentu tinan 2026) 1 (Referénsia relatóriu finanseira anual 2025)",
+   "target": "1. Atinge 95% husi índise efisiénsia finanseira iha ezekusaun orsamentu tuir kalendáriu definidu. 2. Relatóriu Finanseiru Anual 2026. 3. Relatóriu Anual IGE 2026. 4. Atinge 100% husi índise kualidade atendimentu Administrativu ba servisu operasionál 5. Atinge 100% husi índise kualidade atendimentu ba jestaun lojistika no Patrimonio.",
+   "amounts": {
+    "20": 139847.0
+   },
+   "page": 369
+  },
+  {
+   "code": "5100206",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Gestão de recursos humanos",
+   "div": [
+    "0360101"
+   ],
+   "indicator": "Optimizasaun jestaun rekursu umanu, liu husi rekrutamentu, promosaun, progresaun, disiplina administrativa no dezempeñu profesionál ne'ebé efetivu.",
+   "baseline": "1. 100% (Realizasaun avaliasaun dezempeñu 2026) 2. Funsionárius, kargu Diresaun Xefia, kazuál no asesor sira (hamutuk 86 Atual)",
+   "target": "1. Dezempeñu: Atinge 100% avaliasaun dezempeñu ba funsionáriu, kargu diresaun xefia, kazuál, no asesor sira (hamutuk 86). 2. Rekrutamentu: Kompleta kuadru pesoál liuhusi rekrutamentu ba funsionáriu foun 21 (totál 107). 3. Implementa programa indusaun ka formasaun inisiál ba funsionáriu foun sira iha fulan 3 dahuluk.",
+   "amounts": {
+    "10": 563869.0
+   },
+   "page": 369
+  },
+  {
+   "code": "5100207",
+   "programme": "510",
+   "subprogramme": "51002",
+   "subprogramme_name": "Desenvolvimento Institucional",
+   "name": "Formação e capacitação de recursos humanos",
+   "div": [
+    "0360101"
+   ],
+   "indicator": "Fortalese kompeténsia téknika liuhusi programa formasaun kontinuada ba funsionáriu sira.",
+   "baseline": "Funsionárius nain 30 (kapasitadu iha tinan 2026)",
+   "target": "1. Formasaun QIA: Realizasaun formasaun ba funsionáriu na'in 20 kona-ba Sertifikadu Qualified Internal Auditor (QIA) Nivel Intermediu (Tingkat Lanjutan). 2. Formasaun QGIA: Realizasaun formasaun ba funsionáriu na'in 9 kona-ba Sertifikadu Qualified Government Internal Auditor (QGIA) Nivel Manajerial. 3. Semináriu no Konferénsia: Partisipasaun funsionáriu na'in 12 iha semináriu no konferénsia (nasionál/internasionál) iha área Auditoria Interna. 4. Formasaun ba Áreas Seluk: Realizasaun formasaun ba funsionáriu na'in 18 iha área Administrasaun no Jestaun Finansas Públikas.",
+   "amounts": {
+    "20": 107411.0
+   },
+   "page": 370
+  }
+ ],
+ "results": [
+  {
+   "kind": "outcome",
+   "code": "510.0.0",
+   "statement": "Construir confiança no governo",
+   "indicator": "Fortalesimentu integridade, transparénsia, no dezempeñu institusionál liuhusi asaun inspesaun, auditoria, efisiénsia ezekusaun orsamentu, no kapasitasaun rekursu umanu.",
+   "baseline": "80% ba aspetu funsionamentu, ho efisiénsia finanseira 85%, avaliasaun dezempeñu 100%, no funsionáriu 30 kapasitadu.",
+   "target": "Atinge 90% husi meta iha área inspesaun, auditoria, efisiénsia ezekusaun orsamentu, no kualidade atendimentu.",
+   "page": 368
+  },
+  {
+   "kind": "output",
+   "code": "51001.0.0",
+   "statement": "Melhorar os índices de transparência e responsabilização no funcionamento da administração pública.",
+   "indicator": "Fortalesementu integridade no transparénsia institusionál liuhusi asaun inspesaun, investigasaun, no kontrolu internu (Auditoria) ne'ebé efetivu.",
+   "baseline": "80% (Rezultadu 2026)",
+   "target": "\"Atinge 90% husi meta planu inspesaun no auditoria anuál, bazeia ba kumprimentu kualidade relatóriu no promove boa governasaun.\"",
+   "page": 368
+  },
+  {
+   "kind": "output",
+   "code": "51002.0.0",
+   "statement": "Possui as competências e conhecimentos necessários para exercer as suas funções de forma profissional.",
+   "indicator": "Índise dezempeñu institusionál ba ezekusaun orsamentu, kualidade apoiu no atendimentu, dezenvolvimentu rekursu umanu.",
+   "baseline": "\"Dadus bazeia ba realizasaun tinan 2026: Efisiénsia finanseira 85%; Relatóriu Finanseiru Anual 2025 (Referénsia 1); Avaliasaun dezempeñu funsionáriu 100%; Funsionáriu 30 kapasitadu.\"",
+   "target": "Atinge 90% husi índise dezempeñu institusionál bazeia ba efisiénsia ezekusaun orsamentu, kualidade atendimentu, no kapasitasaun téknika.",
+   "page": 369
+  }
+ ]
+}
