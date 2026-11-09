@@ -47,7 +47,8 @@ class ImplementationPlanReport
         $unitIds = $unit ? Directorate::find($unit->id)->getSelfAndDescendantIds() : [];
 
         $activities = Activity::where('fiscal_year', $year)->whereIn('directorate_id', $unitIds ?: [0])
-            ->when($approvedOnly, fn ($q) => $q->where('status', Activity::STATUS_APPROVED), fn ($q) => $q->where('status', '!=', Activity::STATUS_DRAFT))
+            // approved only, or every activity of the unit whatever its stage (drafts too: the document then says it is a draft)
+            ->when($approvedOnly, fn ($q) => $q->where('status', Activity::STATUS_APPROVED))
             ->with(['directorate:id,code,name', 'indicators.actions', 'lineItems:id,activity_id,indicator_id,estimated_amount'])
             ->orderBy('directorate_id')->orderBy('id')->get();
 
@@ -85,6 +86,8 @@ class ImplementationPlanReport
 
         return [
             'year' => $year, 'unit' => $unit, 'approved_only' => $approvedOnly, 'tree' => $tree,
+            // what the choice leaves out, so an empty plan can say why
+            'left_out' => $approvedOnly ? Activity::where('fiscal_year', $year)->whereIn('directorate_id', $unitIds ?: [0])->where('status', '!=', Activity::STATUS_APPROVED)->count() : 0,
             'total' => (float) $rows->sum('total'), 'activities' => $rows->count(),
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
             'prepared_by' => $names(ApproverAssignment::PREPARE), 'approved_by' => $names(ApproverAssignment::APPROVE),

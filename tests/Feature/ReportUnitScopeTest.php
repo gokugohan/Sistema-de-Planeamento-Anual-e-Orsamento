@@ -116,4 +116,19 @@ class ReportUnitScopeTest extends TestCase
         $this->get(route('reports.implementation-plan.xlsx', ['year' => 2027]))->assertOk()->assertDownload();
         $this->assertSame(1, AuditLog::where('action', 'report.implementation_plan_xlsx')->count());
     }
+
+    public function test_the_implementation_plan_of_a_unit_with_only_drafts_says_so_and_shows_them_on_request(): void
+    {
+        $roadsDraft = $this->activity($this->roads, 'Bridge study', 50000);
+        Activity::whereIn('directorate_id', [$this->roads->id])->update(['status' => Activity::STATUS_DRAFT]);
+        $this->actingAs($this->user('Minister'));
+
+        $this->get(route('reports.implementation-plan', ['year' => 2027, 'unit' => $this->roads->id]))->assertOk()
+            ->assertSee('No activities to show for this unit and year.')
+            ->assertSee('2 activities of this unit are not approved yet')
+            ->assertDontSee($roadsDraft->description);
+
+        $this->get(route('reports.implementation-plan', ['year' => 2027, 'unit' => $this->roads->id, 'status' => 'all']))->assertOk()
+            ->assertSee('Bridge study')->assertSee('Road maintenance')->assertSee('Draft state');
+    }
 }

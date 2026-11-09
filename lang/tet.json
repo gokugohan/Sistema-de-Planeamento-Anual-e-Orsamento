@@ -2976,5 +2976,6 @@
     "Export Excel": "Esporta Excel",
     "Approved by (head of the unit)": "Aprova husi (xefe unidade nian)",
     "with the units below it": "ho unidade sira iha okos",
-    ":pct% of $ :t in the whole plan": ":pct% husi $ :t iha planu tomak"
+    ":pct% of $ :t in the whole plan": ":pct% husi $ :t iha planu tomak",
+    ":n activity of this unit is not approved yet: tick “Include activities not yet approved” to see it.|:n activities of this unit are not approved yet: tick “Include activities not yet approved” to see them.": "Atividade :n husi unidade ne'e seidauk aprova: hili “Inklui atividade sira ne'ebé seidauk aprova” atu haree.|Atividade :n husi unidade ne'e seidauk aprova: hili “Inklui atividade sira ne'ebé seidauk aprova” atu haree."
 }

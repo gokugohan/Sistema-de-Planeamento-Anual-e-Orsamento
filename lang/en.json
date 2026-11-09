@@ -2733,5 +2733,6 @@
     "Export Excel": "Export Excel",
     "Approved by (head of the unit)": "Approved by (head of the unit)",
     "with the units below it": "with the units below it",
-    ":pct% of $ :t in the whole plan": ":pct% of $ :t in the whole plan"
+    ":pct% of $ :t in the whole plan": ":pct% of $ :t in the whole plan",
+    ":n activity of this unit is not approved yet: tick “Include activities not yet approved” to see it.|:n activities of this unit are not approved yet: tick “Include activities not yet approved” to see them.": ":n activity of this unit is not approved yet: tick “Include activities not yet approved” to see it.|:n activities of this unit are not approved yet: tick “Include activities not yet approved” to see them."
 }

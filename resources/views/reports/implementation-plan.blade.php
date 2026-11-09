@@ -121,7 +121,12 @@
             @include('reports.partials.implementation-activity', ['r' => $r])
         @endforeach
     @empty
-        <tr><td colspan="16" class="c muted">{{ __('No activities to show for this unit and year.') }}</td></tr>
+        <tr><td colspan="16" class="c muted">
+            {{ __('No activities to show for this unit and year.') }}
+            @if($report['left_out'] > 0)
+                {{ trans_choice(':n activity of this unit is not approved yet: tick “Include activities not yet approved” to see it.|:n activities of this unit are not approved yet: tick “Include activities not yet approved” to see them.', $report['left_out'], ['n' => $report['left_out']]) }}
+            @endif
+        </td></tr>
     @endforelse
         <tr class="hd">
             <td colspan="15" class="c">{{ __('TOTAL') }}</td>
