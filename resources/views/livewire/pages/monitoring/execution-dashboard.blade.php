@@ -13,6 +13,10 @@ use Livewire\Volt\Component;
 new class extends Component {
     public $activeYear;
 
+    /** The unit the figures cover, with those below it ('' = the whole institution, for whoever sees it) */
+    #[\Livewire\Attributes\Url(as: 'unit')]
+    public $unit = '';
+
     public function mount(): void
     {
         $this->activeYear = \App\Support\FiscalYear::current();
@@ -24,10 +28,12 @@ new class extends Component {
             return ['has' => false];
         }
 
+        // whoever cannot see the whole plan sees their own unit (and those below it) only, like the reports
+        $scope = \App\Support\ReportScope::for(auth()->user(), $this->unit);
         $report = app(ExecutionReport::class);
-        $data = $report->load((int) $this->activeYear);
+        $data = $report->load((int) $this->activeYear, $scope->ids);
         $summary = $report->summary($data);
-        $physical = app(\App\Services\DeliveryReport::class)->byProgramme((int) $this->activeYear);
+        $physical = app(\App\Services\DeliveryReport::class)->byProgramme((int) $this->activeYear, $scope->ids);
         $programmes = Program::whereIn('id', array_keys($report->grouped($data, 'program_id')))->get(['id', 'name', 'oge_code'])->keyBy('id');
 
         $rows = [];
@@ -44,7 +50,8 @@ new class extends Component {
 
         $physicalAll = $physical ? array_sum($physical) / count($physical) : null;
 
-        return ['has' => true, 'summary' => $summary, 'rows' => $rows, 'physical' => $physicalAll];
+        return ['has' => true, 'summary' => $summary, 'rows' => $rows, 'physical' => $physicalAll,
+            'scope' => $scope, 'unitChoices' => \App\Support\ReportScope::choices(auth()->user())];
     }
 }; ?>
 
@@ -52,6 +59,16 @@ new class extends Component {
     <x-ui.page-header :title="__('Execution Monitoring')"
         :subtitle="__('Executed amount against the approved plan amount, and delivery of targets').($activeYear ? ' · '.$activeYear : '')">
         @if($activeYear)
+            @if($has)
+                <label for="perf-unit" class="sr-only">{{ __('Unit') }}</label>
+                <select id="perf-unit" wire:model.live="unit" class="flux-input !w-auto !py-1.5 !pr-9 max-w-xs">
+                    @unless($scope->fixed)<option value="">{{ __('All units') }}</option>@endunless
+                    @foreach($unitChoices as $c)
+                        <option value="{{ $c['unit']->id }}">{{ str_repeat('— ', $c['depth']) }}{{ $c['unit']->code }} — {{ \Illuminate\Support\Str::limit($c['unit']->name, 60) }}</option>
+                    @endforeach
+                </select>
+                <x-ui.button variant="secondary" href="{{ route('reports.performance', array_filter(['year' => $activeYear, 'unit' => $scope->param()])) }}">{{ __('Performance report') }}</x-ui.button>
+            @endif
             <x-ui.button variant="primary" href="{{ route('monitoring.report') }}" wire:navigate>{{ __('Report execution') }}</x-ui.button>
         @endif
     </x-ui.page-header>

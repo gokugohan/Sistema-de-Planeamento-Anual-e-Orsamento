@@ -7,10 +7,15 @@ use App\Models\ActivityReport;
 use App\Models\AuditLog;
 use App\Models\Directorate;
 use App\Models\User;
+use App\Services\ExecutionReport;
 use App\Services\PerformanceReport;
+use App\Support\FiscalYear;
+use App\Support\ReportScope;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Volt\Volt;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
 
@@ -26,7 +31,7 @@ class PerformanceReportTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        \App\Support\FiscalYear::pin(2026);
+        FiscalYear::pin(2026);
     }
 
     protected function tearDown(): void
@@ -94,5 +99,52 @@ class PerformanceReportTest extends TestCase
         $nobody = User::factory()->create();
         $this->actingAs($nobody)->get(route('reports.performance'))->assertForbidden();
         $this->actingAs($nobody)->get(route('reports.performance.pdf'))->assertForbidden();
+    }
+
+    public function test_a_unit_can_be_chosen_and_the_excel_has_the_same_totals(): void
+    {
+        $admin = User::factory()->create();
+        $admin->assignRole('Admin');
+        $this->actingAs($admin);
+        $udig = Directorate::where('code', 'UDIG')->firstOrFail();
+
+        $whole = app(PerformanceReport::class)->build(2026, 'quarter', 3, $admin);
+        $unit = app(PerformanceReport::class)->build(2026, 'quarter', 3, $admin, ReportScope::for($admin, $udig->id));
+        $this->assertGreaterThan(0, $unit['totals']['executed']);
+        $this->assertLessThan($whole['totals']['approved'], $unit['totals']['approved'], 'one unit is part of the whole');
+        $this->assertSame('PERF-2026-Q03-UDIG', $unit['reference']);
+
+        $this->get(route('reports.performance', ['year' => 2026, 'type' => 'quarter', 'period' => 3, 'unit' => $udig->id]))
+            ->assertOk()->assertSee('UDIG — '.$udig->name)->assertSee('Download Excel')->assertSee('All units');
+
+        $response = $this->get(route('reports.performance.xlsx', ['year' => 2026, 'type' => 'quarter', 'period' => 3, 'unit' => $udig->id]));
+        $response->assertOk()->assertDownload('PERF-2026-Q03-UDIG.xlsx');
+        $file = tempnam(sys_get_temp_dir(), 'perf').'.xlsx';
+        file_put_contents($file, $response->streamedContent());
+        $rows = collect(IOFactory::load($file)->getActiveSheet()->toArray(null, true, false, false));
+        @unlink($file);
+        $total = $rows->first(fn ($r) => ($r[0] ?? null) === 'TOTAL EXECUTION');
+        $this->assertEqualsWithDelta($unit['totals']['approved'], $total[9], 0.05, 'approved: a formula over the activities');
+        $this->assertEqualsWithDelta($unit['totals']['executed'], $total[10], 0.05, 'executed in the quarter');
+        $this->assertSame('UDIG', AuditLog::where('action', 'report.performance_xlsx')->first()->metadata['unit']);
+    }
+
+    public function test_a_unit_director_cannot_choose_another_unit_and_the_performance_page_is_theirs_only(): void
+    {
+        $director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
+        $usc = Directorate::where('code', 'USC')->firstOrFail();
+        $this->actingAs($director);
+
+        $this->get(route('reports.performance', ['year' => 2026, 'unit' => $usc->id]))->assertForbidden();
+        $this->get(route('reports.performance.xlsx', ['year' => 2026, 'unit' => $usc->id]))->assertForbidden();
+
+        // the Performance page shows their unit's execution, not the institution's
+        $own = app(ExecutionReport::class);
+        $mine = $own->summary($own->load(2026, Directorate::find($director->directorate_id)->getSelfAndDescendantIds()));
+        $all = $own->summary($own->load(2026));
+        $this->assertNotEquals($all['approved'], $mine['approved']);
+        Volt::test('pages.monitoring.execution-dashboard')
+            ->assertDontSee('All units')
+            ->assertViewHas('summary', fn ($s) => abs($s['approved'] - $mine['approved']) < 0.01);
     }
 }

@@ -54,9 +54,11 @@ class DeliveryReport
     }
 
     /** Average achievement of each programme's indicators for a year. @return array<int, float> keyed by programme id */
-    public function byProgramme(int $year): array
+    /** @param  array<int, int>|null  $unitIds  only these units' activities (ReportScope), null for every unit */
+    public function byProgramme(int $year, ?array $unitIds = null): array
     {
-        $ids = DB::table('activities')->where('fiscal_year', $year)->select('id');
+        $ids = DB::table('activities')->where('fiscal_year', $year)
+            ->when($unitIds !== null, fn ($q) => $q->whereIn('directorate_id', $unitIds ?: [0]))->select('id');
 
         return DB::query()->fromSub($this->perIndicator($ids), 't')->groupBy('program_id')
             ->selectRaw('program_id, '.$this->averages())

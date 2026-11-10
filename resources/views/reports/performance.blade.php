@@ -5,6 +5,8 @@
     $kind = $report['type'] === 'quarter' ? __('Quarter') : __('Month');
     $periodText = $report['type'] === 'quarter' ? $report['period'] . 'º ' . __('Quarter') . ' ' . $report['year'] : $report['label'] . ' ' . $report['year'];
     $title = ($report['type'] === 'quarter' ? __('Quarterly performance report') : __('Monthly performance report')) . ' — ' . $periodText;
+    $unit = $report['unit'] ?? null;
+    $links = array_filter(['year' => $report['year'], 'type' => $report['type'], 'period' => $report['period'], 'unit' => $unit?->id]);
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -44,7 +46,11 @@
         .sheet table.rep { min-width: 1000px; }
         .fine { margin-top: 6px; font-size: 6pt; color: #475569; }
         @media print {
-            .toolbar { display: none; } body { background: #fff; }
+            .toolbar { display: none; } body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            @page {
+                @bottom-left { content: "{{ $report['reference'] }}"; font-family: Arial, sans-serif; font-size: 7pt; color: #475569; }
+                @bottom-right { content: "{{ __('Page') }} " counter(page) " / " counter(pages); font-family: Arial, sans-serif; font-size: 7pt; color: #475569; }
+            }
             .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; overflow: visible; }
             .sheet table.rep { min-width: 0; }
             table.rep td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -53,7 +59,7 @@
     </style>
 </head>
 <body>
-@php $stateWarning = app(\App\Services\PlanStatus::class)->reportWarning(auth()->user(), $report['year'], null); @endphp
+@php $stateWarning = app(\App\Services\PlanStatus::class)->reportWarning(auth()->user(), $report['year'], $unit?->id); @endphp
 @unless($pdf)
 <div class="toolbar">
     <a class="secondary" href="{{ route('monitoring.report') }}">← {{ __('Report execution') }}</a>
@@ -70,10 +76,12 @@
                 <option value="{{ $p }}" @selected($p === $report['period'])>{{ $report['type'] === 'quarter' ? 'Q'.$p : \Carbon\Carbon::create($report['year'], $p, 1)->translatedFormat('F') }}</option>
             @endforeach
         </select>
+        <x-report-unit-select :choices="$unitChoices ?? collect()" :scope="\App\Support\ReportScope::for(auth()->user(), $unit?->id)" class="" style="padding:6px;border-radius:4px;max-width:22rem" />
     </form>
     <span style="margin-left:auto"></span>
     <button type="button" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Print anyway?') : '' }}" onclick="if (this.dataset.warn && ! confirm(this.dataset.warn)) return; window.print()">{{ __('Print') }}</button>
-    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.performance.pdf', ['year' => $report['year'], 'type' => $report['type'], 'period' => $report['period']]) }}">{{ __('Download PDF') }}</a>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.performance.pdf', $links) }}">{{ __('Download PDF') }}</a>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.performance.xlsx', $links) }}">{{ __('Download Excel') }}</a>
 </div>
 <div class="sheet">
 @endunless
@@ -85,6 +93,7 @@
     @if($logoUri = \App\Support\Branding::logoDataUri())<div style="text-align:center"><img src="{{ $logoUri }}" alt="" style="height:46px;margin-bottom:4px"></div>@endif
     <div class="state">República Democrática de Timor-Leste</div>
     <div class="org">{{ $report['organization'] }}</div>
+    @if($unit)<div class="title">{{ $unit->code }} — {{ $unit->name }}</div>@endif
     <div class="title">{{ $title }}</div>
 </div>
 

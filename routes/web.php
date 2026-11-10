@@ -170,6 +170,8 @@ Route::get('reports/performance', [PerformanceReportController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance');
 Route::get('reports/performance/pdf', [PerformanceReportController::class, 'pdf'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance.pdf');
+Route::get('reports/performance/xlsx', [PerformanceReportController::class, 'excel'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance.xlsx');
 
 Route::middleware(['auth', 'verified', 'permission:view_reports'])->group(function () {
     Route::get('reports/approved-plan', [ApprovedPlanReportController::class, 'show'])->name('reports.approved-plan');

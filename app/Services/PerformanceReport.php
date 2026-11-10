@@ -10,6 +10,7 @@ use App\Models\Program;
 use App\Models\Subprogram;
 use App\Models\SystemSetting;
 use App\Models\User;
+use App\Support\ReportScope;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -22,7 +23,8 @@ use Illuminate\Support\Collection;
 class PerformanceReport
 {
     /** @return array<string, mixed> */
-    public function build(int $year, string $type, int $period, User $user): array
+    /** With a scope (ReportScope), one unit with those below it; without, the units the reader may see. */
+    public function build(int $year, string $type, int $period, User $user, ?ReportScope $scope = null): array
     {
         $type = $type === 'quarter' ? 'quarter' : 'month';
         $period = max(1, min($period, $type === 'quarter' ? 4 : 12));
@@ -30,9 +32,9 @@ class PerformanceReport
         $lastMonth = max($months);
         $quarter = $type === 'quarter' ? $period : (int) ceil($period / 3);
 
-        $unitIds = ($user->can('view_all_paa') || $user->isAdministrator())
+        $unitIds = $scope !== null ? $scope->ids : (($user->can('view_all_paa') || $user->isAdministrator())
             ? null
-            : (Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? []);
+            : (Directorate::find($user->directorate_id)?->getSelfAndDescendantIds() ?? []));
 
         $money = app(ExecutionReport::class)->load($year, $unitIds)['activities'];
 
@@ -120,9 +122,10 @@ class PerformanceReport
             'year' => $year, 'type' => $type, 'period' => $period, 'quarter' => $quarter,
             'label' => $type === 'quarter' ? 'Q'.$period : Carbon::create($year, $period, 1)->translatedFormat('F'),
             'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
+            'unit' => $scope?->unit,
             'tree' => $tree,
             'totals' => $all + ['activities' => $rows->count()],
-            'reference' => sprintf('PERF-%d-%s%02d', $year, $type === 'quarter' ? 'Q' : 'M', $period),
+            'reference' => sprintf('PERF-%d-%s%02d', $year, $type === 'quarter' ? 'Q' : 'M', $period).($scope?->suffix() ?? ''),
             'generated_at' => now(), 'generated_by' => $user->name,
         ];
     }
