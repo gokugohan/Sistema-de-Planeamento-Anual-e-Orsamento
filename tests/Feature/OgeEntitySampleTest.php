@@ -103,8 +103,10 @@ class OgeEntitySampleTest extends TestCase
         $this->admin();
         app()->setLocale('en');
         Volt::test('pages.management.sample-data')
-            ->assertDontSee('Ministério da Saúde')
-            ->set('scope', 'entity')->assertSee('Ministério da Saúde')->assertSee('Municipal and regional authorities')
+            ->assertSet('scope', 'entity')->assertSee('Ministério da Saúde') // a public entity is the first choice
+            ->assertSee('Ministério da Saúde becomes the institution shown')   // what it contains follows the choice
+            ->assertSee('510 Funcionamento e desenvolvimento institucional')
+            ->assertDontSee('Decreto-Lei 75/2023')->assertSee('Municipal and regional authorities')
             ->assertSee('27 units · 85 activities · $ 81,063,097 planned for 2027')
             ->set('entity', '062')->set('fromYear', 2027)->set('toYear', 2027)
             ->call('load')->assertHasNoErrors();

@@ -12,8 +12,8 @@ use Livewire\Volt\Component;
 new class extends Component {
     public ?array $report = null;
 
-    /** 'office' (one directorate/office of MTC, the default), 'ministry' (the whole MTC) or 'entity' (any entity of the State Budget 2027) */
-    public string $scope = 'office';
+    /** 'entity' (any entity of the State Budget 2027, the default), 'office' (one directorate/office of MTC) or 'ministry' (the whole MTC) */
+    public string $scope = 'entity';
 
     public string $office = MtcOfficeSampleDataSeeder::DEFAULT_OFFICE;
 
@@ -103,6 +103,9 @@ new class extends Component {
             'offices' => MtcDirectorateSeeder::offices(),
             'entities' => OgeCatalog::grouped(),
             'chosen' => OgeCatalog::index()[$this->entity] ?? null,
+            'chosenProgrammes' => $this->scope === 'entity' && OgeCatalog::has($this->entity)
+                ? collect(OgeCatalog::entity($this->entity)['programmes'])->only(collect(OgeCatalog::entity($this->entity)['activities'])->pluck('programme')->map(fn ($c) => (string) $c)->unique()->all())->all()
+                : [],
         ];
     }
 }; ?>
@@ -111,7 +114,7 @@ new class extends Component {
     <div>
         <h1 class="page-title">{{ __('Sample Data') }}</h1>
         <p class="page-subtitle">
-            {{ __('An optional demo dataset: the Ministry of Transport and Communications (MTC) of Timor-Leste, whole or one of its offices, or any other entity of the State Budget 2027 with its own units and annual plan. The application itself works for any institution; load this only to explore or train, and purge it before going live.') }}
+            {{ __('Optional demo data taken from the published State Budget: any public entity of Timor-Leste, with its own units and annual plan, as if it were your institution. The application itself works for any institution; load demo data only to explore or train, and purge it before going live.') }}
         </p>
     </div>
 
@@ -156,31 +159,9 @@ new class extends Component {
             <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
                 <legend class="text-sm font-medium text-zinc-900">{{ __('What to load') }}</legend>
                 <label class="flex items-start gap-3 text-sm text-zinc-700">
-                    <input type="radio" wire:model.live="scope" value="office" class="mt-1">
-                    <span>
-                        <span class="font-medium text-zinc-900">{{ __('One directorate or office') }}</span>
-                        <span class="block text-xs text-zinc-500">{{ __('Only that unit and the units under it, with their own plans, accounts and envelope.') }}</span>
-                    </span>
-                </label>
-                @if($scope === 'office')
-                    <select wire:model="office" aria-label="{{ __('Directorate or office') }}"
-                        class="ml-7 w-full max-w-md rounded-md border-zinc-300 text-sm">
-                        @foreach($offices as $code => $name)
-                            <option value="{{ $code }}">{{ $code }} — {{ $name }}</option>
-                        @endforeach
-                    </select>
-                @endif
-                <label class="flex items-start gap-3 text-sm text-zinc-700">
-                    <input type="radio" wire:model.live="scope" value="ministry" class="mt-1">
-                    <span>
-                        <span class="font-medium text-zinc-900">{{ __('The whole ministry (MTC)') }}</span>
-                        <span class="block text-xs text-zinc-500">{{ __('Every unit and autonomous body, with the full annual plans.') }}</span>
-                    </span>
-                </label>
-                <label class="flex items-start gap-3 text-sm text-zinc-700">
                     <input type="radio" wire:model.live="scope" value="entity" class="mt-1">
                     <span>
-                        <span class="font-medium text-zinc-900">{{ __('Another public entity (State Budget 2027)') }}</span>
+                        <span class="font-medium text-zinc-900">{{ __('A public entity (State Budget 2027)') }}</span>
                         <span class="block text-xs text-zinc-500">{{ __('Any ministry, secretariat of state, municipal authority, institute or fund, with the units and the annual plan the State Budget 2027 prints for it.') }}</span>
                     </span>
                 </label>
@@ -199,6 +180,29 @@ new class extends Component {
                             <p class="text-xs text-zinc-500">{{ __(':units units · :n activities · $ :total planned for 2027', ['units' => $chosen['units'], 'n' => $chosen['activities'], 'total' => number_format($chosen['total'])]) }}</p>
                         @endif
                     </div>
+                @endif
+                <p class="pt-2 text-xs font-medium text-zinc-500">{{ __('The most complete example: the Ministry of Transport and Communications (MTC), with its organic law and its plans of 2025, 2026 and 2027') }}</p>
+                <label class="flex items-start gap-3 text-sm text-zinc-700">
+                    <input type="radio" wire:model.live="scope" value="ministry" class="mt-1">
+                    <span>
+                        <span class="font-medium text-zinc-900">{{ __('The whole ministry (MTC)') }}</span>
+                        <span class="block text-xs text-zinc-500">{{ __('Every unit and autonomous body, with the full annual plans.') }}</span>
+                    </span>
+                </label>
+                <label class="flex items-start gap-3 text-sm text-zinc-700">
+                    <input type="radio" wire:model.live="scope" value="office" class="mt-1">
+                    <span>
+                        <span class="font-medium text-zinc-900">{{ __('One directorate or office of MTC') }}</span>
+                        <span class="block text-xs text-zinc-500">{{ __('Only that unit and the units under it, with their own plans and accounts, as an institution of its own.') }}</span>
+                    </span>
+                </label>
+                @if($scope === 'office')
+                    <select wire:model="office" aria-label="{{ __('Directorate or office') }}"
+                        class="ml-7 w-full max-w-md rounded-md border-zinc-300 text-sm">
+                        @foreach($offices as $code => $name)
+                            <option value="{{ $code }}">{{ $code }} — {{ $name }}</option>
+                        @endforeach
+                    </select>
                 @endif
             </fieldset>
 
@@ -222,8 +226,8 @@ new class extends Component {
             </fieldset>
 
             <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
-                <legend class="text-sm font-medium text-zinc-900">{{ __('How far the plans of :current and :next have gone', ['current' => now()->year, 'next' => now()->year + 1]) }}</legend>
-                <p class="text-xs text-zinc-500">{{ __('Earlier years are always loaded approved, with their spending and progress reported, so that there is a finished year to read.') }}</p>
+                <legend class="text-sm font-medium text-zinc-900">{{ __('Stage of the demo plans for :current and :next', ['current' => now()->year, 'next' => now()->year + 1]) }}</legend>
+                <p class="text-xs text-zinc-500">{{ __('Only the demo data is affected. Earlier years are always loaded approved, with their spending and progress reported, so that there is a finished year to read.') }}</p>
                 @foreach([
                     'draft' => [__('Everything to do: all drafts'), __('Practise the whole cycle: units complete and submit, directors certify, heads approve and finalize, then the units report and others verify.')],
                     'halfway' => [__('Halfway through approval'), __('Each directorate at one stage, in turn: still drafting, submitted (one activity returned with a reason), certified and waiting for the final approval, approved. Every role finds work to do.')],
@@ -288,20 +292,36 @@ new class extends Component {
     <x-ui.card>
         <h2 class="text-sm font-semibold text-zinc-900 mb-2">{{ __('What it contains') }}</h2>
         <ul class="list-disc pl-5 text-sm text-zinc-600 space-y-1">
-            <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document).') }}</li>
-            <li>{{ __('For the whole ministry: the MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
-            <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
-            <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
-            <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
-            <li>{{ __('For another public entity: its divisions as the State Budget 2027 prints them (each under its general directorate where the budget codes show one), its programs, demo accounts (a Minister only for a ministry) and its 2027 annual plan, with indicators, outcomes and outputs.') }}</li>
-            <li>{{ __('Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
+            @if($loaded)
+                <li>{{ __('The institution shown in the application (its name), its units, programs, demo accounts and the plans of the years that were loaded.') }}</li>
+            @elseif($scope === 'entity' && $chosen)
+                <li>{{ __(':name becomes the institution shown in the application (its name; its logo stays yours to set in Settings).', ['name' => $chosen['name']]) }}</li>
+                <li>{{ trans_choice(':n unit: the division the State Budget 2027 prints for it.|:n units: the divisions the State Budget 2027 prints for it, each under its general directorate where the budget codes show one (a reading of the codes, not of its organic law).', $chosen['units'], ['n' => $chosen['units']]) }}</li>
+                <li>{{ __('Its programs, with their official State Budget codes:') }} {{ collect($chosenProgrammes)->map(fn ($name, $code) => $code.' '.$name)->implode('; ') }}.</li>
+                <li>{{ __('Its 2027 annual plan as printed: :n activities with their official codes, indicators, starting points and targets, and amounts by economic category ($ :total), with the outcomes and outputs of its programs.', ['n' => $chosen['activities'], 'total' => number_format($chosen['total'])]) }}</li>
+                <li>{{ $chosen['kind'] === 'ministry'
+                    ? __('Demo accounts (…@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.')
+                    : __('Demo accounts (…@gdsc.tl, password "password"): a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
+            @elseif($scope === 'ministry')
+                <li>{{ __('For the whole ministry: the MTC entities from Decreto-Lei 75/2023 as amended by 12/2026, the five autonomous bodies of its indirect administration, and the divisions the State Budget itself prints (municipal directorates, AACTL directorates).') }}</li>
+                <li>{{ __('The six programmes of the State Budget used by the ministry, with their official OGE codes (502, 510, 558, 980, A08, A38), registered for each year of the sample.') }}</li>
+                <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
+                <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
+            @else
+                <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document).') }}</li>
+                <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
+                <li>{{ __('Demo accounts (…@gdsc.tl, password "password"): a head of the office, a Technical Officer and a Director per unit.') }}</li>
+            @endif
+            @unless($loaded)
+                <li>{{ __('Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
+            @endunless
         </ul>
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>
     <x-confirm-dialog name="confirm-load" :title="__('Load sample data')" :confirm="__('Load sample data')" wire:click="load"
         :message="match ($scope) {
             'ministry' => __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.'),
-            'entity' => __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $chosen['name'] ?? $entity]),
+            'entity' => __('Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.', ['name' => $chosen['name'] ?? $entity]),
             default => __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office]),
         }" />
 

@@ -123,7 +123,8 @@ class OfficeSampleDataTest extends TestCase
         $this->actingAs($admin);
 
         Volt::test('pages.management.sample-data')
-            ->assertSet('scope', 'office')
+            ->assertSet('scope', 'entity') // a public entity is offered first; an MTC office is chosen on purpose
+            ->set('scope', 'office')
             ->assertSet('office', 'GDSC')
             ->set('office', 'GPPC')
             ->call('load');
