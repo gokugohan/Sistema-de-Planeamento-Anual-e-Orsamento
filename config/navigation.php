@@ -125,6 +125,7 @@ return [
         'management.optional-rules' => ['management.settings', 'Optional rules'],
         'management.reporting-windows' => ['management.settings', 'Calendar'],
         'units.show' => ['units.index', 'Unit workspace'],
+        'units.chart' => ['units.index', 'Organization chart'],
         'activities.create' => ['activities.index', 'New activity'],
         'activities.edit' => ['activities.index', 'Edit activity'],
         'activities.show' => ['activities.index', 'Activity details'],

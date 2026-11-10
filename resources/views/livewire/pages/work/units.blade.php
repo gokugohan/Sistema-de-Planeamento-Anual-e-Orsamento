@@ -48,7 +48,9 @@ new class extends Component {
 @endphp
 
 <div class="space-y-6">
-    <x-ui.page-header :title="__('Units')" :subtitle="__('The action plan of every directorate, department and unit for :year. Open one to see its plan, what waits for whom and how the reporting is going.', ['year' => $year])" />
+    <x-ui.page-header :title="__('Units')" :subtitle="__('The action plan of every directorate, department and unit for :year. Open one to see its plan, what waits for whom and how the reporting is going.', ['year' => $year])">
+        <x-ui.button variant="secondary" href="{{ route('units.chart', ['year' => $year]) }}" wire:navigate>{{ __('Organization chart') }}</x-ui.button>
+    </x-ui.page-header>
 
     <x-ui.card padding="p-4">
         <div class="flex flex-wrap items-end gap-3">

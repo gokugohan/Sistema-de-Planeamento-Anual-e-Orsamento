@@ -2993,5 +2993,11 @@
     "Demo accounts (…@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Contas de demonstração (…@gdsc.tl, palavra-passe \"password\"): um Ministro, um Técnico e um Diretor por unidade, e um oficial de Finanças por direção.",
     "Demo accounts (…@gdsc.tl, password \"password\"): a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Contas de demonstração (…@gdsc.tl, palavra-passe \"password\"): um Técnico e um Diretor por unidade, e um oficial de Finanças por direção.",
     "Demo accounts (…@gdsc.tl, password \"password\"): a head of the office, a Technical Officer and a Director per unit.": "Contas de demonstração (…@gdsc.tl, palavra-passe \"password\"): um responsável do gabinete, um Técnico e um Diretor por unidade.",
-    "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.": "Carregar os dados de demonstração de :name? Passa a ser a instituição mostrada, com as suas unidades, programas, contas de demonstração e atividades."
+    "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.": "Carregar os dados de demonstração de :name? Passa a ser a instituição mostrada, com as suas unidades, programas, contas de demonstração e atividades.",
+    "Organization chart": "Organograma",
+    ":n unit of the institution, with its head.|:n units of the institution, each with its head.": ":n unidade da instituição, com o seu responsável.|:n unidades da instituição, cada uma com o seu responsável.",
+    "Show the plan of :year": "Mostrar o plano de :year",
+    "Services of the institution": "Serviços da instituição",
+    "No units yet": "Ainda não há unidades",
+    "The units of the institution are set in Management.": "As unidades da instituição definem-se em Gestão."
 }

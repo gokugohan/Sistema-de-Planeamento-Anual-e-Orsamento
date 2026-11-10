@@ -2993,5 +2993,11 @@
     "Demo accounts (…@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Konta demonstrasaun (…@gdsc.tl, liafuan-pase \"password\"): Ministru ida, Téknika ida no Diretór ida kada unidade, no ofisiál Finansas ida kada diresaun.",
     "Demo accounts (…@gdsc.tl, password \"password\"): a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Konta demonstrasaun (…@gdsc.tl, liafuan-pase \"password\"): Téknika ida no Diretór ida kada unidade, no ofisiál Finansas ida kada diresaun.",
     "Demo accounts (…@gdsc.tl, password \"password\"): a head of the office, a Technical Officer and a Director per unit.": "Konta demonstrasaun (…@gdsc.tl, liafuan-pase \"password\"): xefe gabinete ida, Téknika ida no Diretór ida kada unidade.",
-    "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.": "Karrega dadus demonstrasaun husi :name? Sai instituisaun ne'ebé hatudu, ho ninia unidade, programa, konta demonstrasaun no atividade sira."
+    "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.": "Karrega dadus demonstrasaun husi :name? Sai instituisaun ne'ebé hatudu, ho ninia unidade, programa, konta demonstrasaun no atividade sira.",
+    "Organization chart": "Organigrama",
+    ":n unit of the institution, with its head.|:n units of the institution, each with its head.": "Unidade :n husi instituisaun, ho ninia xefe.|Unidade :n husi instituisaun, ida-idak ho ninia xefe.",
+    "Show the plan of :year": "Hatudu planu :year",
+    "Services of the institution": "Servisu sira husi instituisaun",
+    "No units yet": "Seidauk iha unidade",
+    "The units of the institution are set in Management.": "Unidade sira husi instituisaun hatuur iha Jestaun."
 }

@@ -39,6 +39,9 @@ Route::get('my-work', function () {
 
 Route::get('units', fn () => view('work.units'))->middleware(['auth', 'verified'])->name('units.index');
 
+// The organization chart (an extra view of the structure); before units/{directorate}, which would take "chart" for a unit
+Route::get('units/chart', fn () => view('work.unit-chart'))->middleware(['auth', 'verified'])->name('units.chart');
+
 Route::get('units/{directorate}', fn (Directorate $directorate) => view('work.unit', ['directorate' => $directorate]))
     ->middleware(['auth', 'verified'])->name('units.show');
 

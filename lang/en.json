@@ -2750,5 +2750,11 @@
     "Demo accounts (…@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Demo accounts (…@gdsc.tl, password \"password\"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.",
     "Demo accounts (…@gdsc.tl, password \"password\"): a Technical Officer and a Director per unit, and a Finance officer per directorate.": "Demo accounts (…@gdsc.tl, password \"password\"): a Technical Officer and a Director per unit, and a Finance officer per directorate.",
     "Demo accounts (…@gdsc.tl, password \"password\"): a head of the office, a Technical Officer and a Director per unit.": "Demo accounts (…@gdsc.tl, password \"password\"): a head of the office, a Technical Officer and a Director per unit.",
-    "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.": "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities."
+    "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.": "Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.",
+    "Organization chart": "Organization chart",
+    ":n unit of the institution, with its head.|:n units of the institution, each with its head.": ":n unit of the institution, with its head.|:n units of the institution, each with its head.",
+    "Show the plan of :year": "Show the plan of :year",
+    "Services of the institution": "Services of the institution",
+    "No units yet": "No units yet",
+    "The units of the institution are set in Management.": "The units of the institution are set in Management."
 }
