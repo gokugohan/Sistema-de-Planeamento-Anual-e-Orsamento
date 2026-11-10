@@ -115,4 +115,20 @@ class OgeEntitySampleTest extends TestCase
 
         Volt::test('pages.management.sample-data')->set('entity', '999')->set('scope', 'entity')->call('load')->assertStatus(422);
     }
+
+    public function test_settings_show_the_name_and_abbreviation_of_the_entity_loaded(): void
+    {
+        $this->admin();
+        app(OgeEntitySampleSeeder::class)->setContainer(app())->run('112', 'draft', [2027]);
+
+        $name = OgeCatalog::entity('112')['name'];
+        $abbr = OgeCatalog::entity('112')['abbr'];
+        foreach (['tet', 'pt', 'en'] as $locale) {
+            Volt::test('pages.management.settings')
+                ->assertSet("appTexts.org_name.{$locale}", $name)
+                ->assertSet("appTexts.org_abbr.{$locale}", $abbr);
+        }
+        $this->assertSame($name, SystemSetting::get('organization_name_full'));
+        $this->assertSame($abbr, SystemSetting::get('organization_name_short'));
+    }
 }
