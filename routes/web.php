@@ -41,6 +41,12 @@ Route::get('units', fn () => view('work.units'))->middleware(['auth', 'verified'
 
 // The organization chart (an extra view of the structure); before units/{directorate}, which would take "chart" for a unit
 Route::get('units/chart', fn () => view('work.unit-chart'))->middleware(['auth', 'verified'])->name('units.chart');
+Route::get('units/chart/print', function (\Illuminate\Http\Request $request) {
+    abort_unless(\App\Services\OrgChart::allowed($request->user()), 403);
+
+    return view('work.unit-chart-print', app(\App\Services\OrgChart::class)->build($request->user(), \App\Support\FiscalYear::current())
+        + ['withPlan' => $request->boolean('plan')]);
+})->middleware(['auth', 'verified'])->name('units.chart.print');
 
 Route::get('units/{directorate}', fn (Directorate $directorate) => view('work.unit', ['directorate' => $directorate]))
     ->middleware(['auth', 'verified'])->name('units.show');

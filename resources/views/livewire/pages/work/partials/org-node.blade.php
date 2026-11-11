@@ -1,11 +1,12 @@
 {{-- One box of the organization chart, then the units below it. The first level hangs from the row bar; deeper levels
-     hang in a column under their parent. A branch with children can be folded. --}}
+     hang in a column under their parent. On the page a branch with children can be folded; in print every branch is open. --}}
 @php
     $kids = $children->get($n['id'], collect());
     [$tone, $word] = $light[$n['light']] ?? $light['none'];
+    $print = $print ?? false;
 @endphp
-<div class="flex flex-col items-start" x-data="{ open: {{ ($startOpen ?? true) ? 'true' : 'false' }} }" @if($kids->isNotEmpty()) data-oc-branch x-on:oc-set="open = $event.detail" @endif>
-    <a href="{{ route('units.show', $n['id']) }}" wire:navigate
+<div class="flex flex-col items-start" @unless($print) x-data="{ open: {{ ($startOpen ?? true) ? 'true' : 'false' }} }" @if($kids->isNotEmpty()) data-oc-branch x-on:oc-set="open = $event.detail" @endif @endunless>
+    <a href="{{ route('units.show', $n['id']) }}" @unless($print) wire:navigate @endunless
         data-find="{{ mb_strtolower($n['code'].' '.$n['name'].' '.$n['head']) }}"
         class="oc-box {{ $accent($n) }} {{ $n['autonomous'] ? 'oc-dashed' : '' }} block px-3 pb-2.5 pt-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
         <div class="flex items-center justify-between gap-2">
@@ -28,13 +29,15 @@
         @endif
     </a>
     @if($kids->isNotEmpty())
-        <button type="button" x-on:click="open = ! open" :aria-expanded="open"
-            class="oc-toggle ml-[1.1rem] mt-1 inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[10px] font-medium text-zinc-600 shadow-sm hover:bg-zinc-50">
-            <span x-text="open ? '−' : '+'"></span>{{ trans_choice(':n unit|:n units', $kids->count(), ['n' => $kids->count()]) }}
-        </button>
-        <ul class="oc-col" x-show="open" x-cloak>
+        @unless($print)
+            <button type="button" x-on:click="open = ! open" :aria-expanded="open"
+                class="oc-toggle ml-[1.1rem] mt-1 inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-white px-2 py-0.5 text-[10px] font-medium text-zinc-600 shadow-sm hover:bg-zinc-50">
+                <span x-text="open ? '−' : '+'"></span>{{ trans_choice(':n unit|:n units', $kids->count(), ['n' => $kids->count()]) }}
+            </button>
+        @endunless
+        <ul class="oc-col" @unless($print) x-show="open" x-cloak @endunless>
             @foreach($kids as $kid)
-                <li>@include('livewire.pages.work.partials.org-node', ['n' => $kid, 'level' => $level + 1])</li>
+                <li>@include('livewire.pages.work.partials.org-node', ['n' => $kid, 'level' => $level + 1, 'startOpen' => $print ? true : ($startOpen ?? true)])</li>
             @endforeach
         </ul>
     @endif

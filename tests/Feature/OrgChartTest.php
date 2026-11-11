@@ -90,4 +90,21 @@ class OrgChartTest extends TestCase
         $this->get('/units/chart')->assertOk()->assertSee('Organization chart');
         $this->get(route('units.show', $this->dg))->assertOk();
     }
+
+    public function test_the_chart_prints_on_a_page_of_its_own_with_every_branch_open(): void
+    {
+        $this->actingAs($this->user('Admin'));
+
+        $this->get(route('units.chart'))->assertSee(route('units.chart.print'), false);
+        $html = $this->get(route('units.chart.print', ['preview' => 1]))->assertOk()
+            ->assertSee('Ministry of Health')->assertSee('Pharmacy and medicines')->assertSee('Ana Pharmacist')
+            ->assertSee(__('On one page'))
+            ->getContent();
+        $this->assertStringNotContainsString('x-cloak', $html, 'every branch is open on paper');
+        $this->assertStringNotContainsString('livewire:navigate', $html);
+        $this->assertStringNotContainsString('class="oc-toggle', $html, 'no fold buttons on paper');
+
+        $this->actingAs($this->user('Planning', $this->dn));
+        $this->get(route('units.chart.print'))->assertForbidden();
+    }
 }
