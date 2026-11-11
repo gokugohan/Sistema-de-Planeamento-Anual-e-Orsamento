@@ -36,14 +36,14 @@
     .oc ul.oc-col ul.oc-col { margin-left: 18px; }
 
     /* the staff block on the trunk: the line runs through it from the institution to the row of directorates */
-    .oc-staff { position: relative; margin-top: 28px; padding: 26px 18px 14px; border: 1px dashed var(--c-neutral-300, #D0D5DD); border-radius: .9rem; }
+    .oc-staff { position: relative; margin-top: 28px; padding: 26px 18px 14px; border: 1px dashed rgb(var(--c-neutral-300, 208 213 221)); border-radius: .9rem; }
     .oc-staff::before { content: ""; position: absolute; left: 50%; top: -28px; height: 28px; border-left: 2px solid var(--oc-line); }
     .oc-staff::after { content: ""; position: absolute; left: 50%; bottom: -28px; height: 28px; border-left: 2px solid var(--oc-line); }
     .oc-staff-label { position: absolute; top: 6px; left: 0; right: 0; text-align: center; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #667085; }
     .oc-staff-grid { display: grid; grid-template-columns: repeat(var(--oc-cols, 4), 15.5rem); gap: 12px 16px; justify-content: center; }
 
     .oc-top { min-width: 18rem; max-width: 24rem; padding: 1rem 1.5rem; border-radius: .75rem; background: #161950; text-align: center; box-shadow: 0 10px 25px -10px rgba(22, 25, 80, .55); }
-    .oc-box { width: 15.5rem; text-align: left; border-radius: .6rem; border: 1px solid var(--c-neutral-200, #E4E7EC); border-top: 4px solid var(--oc-edge); background: var(--surface, #fff); box-shadow: 0 1px 2px rgba(16, 24, 40, .06); transition: box-shadow .15s, transform .15s; }
+    .oc-box { width: 15.5rem; text-align: left; border-radius: .6rem; border: 1px solid rgb(var(--c-neutral-200, 228 231 236)); border-top: 4px solid var(--oc-edge); background: rgb(var(--surface, 255 255 255)); box-shadow: 0 1px 2px rgba(16, 24, 40, .06); transition: box-shadow .15s, transform .15s; }
     .oc-box:hover { box-shadow: 0 8px 20px -8px rgba(16, 24, 40, .25); transform: translateY(-1px); }
     .oc-box.oc-dashed { border-style: dashed; border-top-style: solid; }
     .oc-box.oc-hit { outline: 3px solid #FDB022; outline-offset: 2px; }

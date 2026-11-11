@@ -14,6 +14,7 @@
         .sheet { padding: 6mm; }
         .oc-print-frame { display: flex; justify-content: center; }
         .oc-box:hover { transform: none; box-shadow: none; }
+        .oc-box, .oc-top { break-inside: avoid; }
         @media screen { .sheet { max-width: 297mm; margin: 0 auto; } }
         @media print { .no-print { display: none !important; } .sheet { padding: 0; } }
     </style>
@@ -42,21 +43,40 @@
         @include('livewire.pages.work.partials.org-legend', ['bodies' => $bodies])
         <div class="oc-print-frame mt-4">
             <div id="oc-print-scale">
-                @include('livewire.pages.work.partials.org-tree', ['print' => true])
+                <div id="oc-print-inner" style="transform-origin: 0 0; width: max-content">
+                    @include('livewire.pages.work.partials.org-tree', ['print' => true])
+                </div>
             </div>
         </div>
     </div>
     @include('livewire.pages.work.partials.org-styles')
     <script>
-        // the chart on one A4 landscape sheet (less the margins and the heading, at 96 dpi), or on its width over several
-        // sheets; never enlarged
+        // On one page: the chart scaled onto one A4 landscape sheet (less the margins and the heading, at 96 dpi), never
+        // enlarged; a true scale (transform), not zoom, which in print thickens the thin lines and clips the small labels.
+        // Larger: the chart at its own size on sheets as wide as it is (in the A4 landscape proportion), which the PDF or
+        // the printer fits to the paper; a scaled drawing cannot be split across pages, so it is not scaled.
         (function () {
-            var chart = document.getElementById('org-chart'), box = document.getElementById('oc-print-scale'), pick = document.getElementById('oc-fit');
-            if (!chart || !box) return;
+            var chart = document.getElementById('org-chart'), box = document.getElementById('oc-print-scale'),
+                inner = document.getElementById('oc-print-inner'), pick = document.getElementById('oc-fit');
+            if (!chart || !box || !inner) return;
+            var page = document.createElement('style');
+            document.head.appendChild(page);
             var fit = function () {
-                box.style.zoom = 1;
-                var w = 1040 / (chart.scrollWidth + 10), h = 610 / (chart.scrollHeight + 10);
-                box.style.zoom = Math.min(1, pick && pick.value === 'width' ? w : Math.min(w, h));
+                inner.style.transform = 'none';
+                box.style.width = box.style.height = '';
+                box.style.overflow = 'visible';
+                var cw = inner.scrollWidth, ch = inner.scrollHeight;
+                if (pick && pick.value === 'width') {
+                    var mm = Math.max(297, Math.ceil((cw + 100) * 25.4 / 96));
+                    page.textContent = '@page { size: ' + mm + 'mm ' + Math.ceil(mm * 210 / 297) + 'mm; margin: 8mm; }';
+                    return;
+                }
+                page.textContent = '@page { size: A4 landscape; margin: 8mm; }';
+                var s = Math.min(1, 1040 / (cw + 10), 610 / (ch + 10));
+                inner.style.transform = 'scale(' + s + ')';
+                box.style.overflow = 'hidden';
+                box.style.width = Math.ceil(cw * s) + 'px';
+                box.style.height = Math.ceil(ch * s) + 'px';
             };
             if (pick) pick.addEventListener('change', fit);
             fit();
