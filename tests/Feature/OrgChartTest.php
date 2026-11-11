@@ -51,10 +51,10 @@ class OrgChartTest extends TestCase
 
         $this->get(route('units.index'))->assertOk()->assertSee(route('units.chart', ['year' => FiscalYear::current()]), false);
         $this->get(route('units.chart'))->assertOk()
-            ->assertSeeInOrder(['Ministry of Health', 'Hospital services', 'Pharmacy and medicines'])
-            ->assertSee('National Director:')->assertSee('Ana Pharmacist')
-            ->assertSee('Legal office')
-            ->assertSeeInOrder(['Autonomous bodies', 'Pharmacy institute'])->assertSee('Autonomous body (I.P.)')
+            // the institution, then the support units on the trunk, then the directorates with the units below them
+            ->assertSeeInOrder(['Ministry of Health', __('Advisory and support units'), 'Legal office', 'Hospital services', 'Pharmacy and medicines'])
+            ->assertSee(__('National Director'))->assertSee('Ana Pharmacist')
+            ->assertSee('Pharmacy institute')->assertSee(__('Autonomous body').' · I.P.')->assertSee(__('Autonomous body (supervised)'))
             ->assertSee(route('units.show', $this->dn), false);
     }
 

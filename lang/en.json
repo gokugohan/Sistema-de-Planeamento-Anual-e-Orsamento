@@ -2756,5 +2756,13 @@
     "Show the plan of :year": "Show the plan of :year",
     "Services of the institution": "Services of the institution",
     "No units yet": "No units yet",
-    "The units of the institution are set in Management.": "The units of the institution are set in Management."
+    "The units of the institution are set in Management.": "The units of the institution are set in Management.",
+    "Not assigned": "Not assigned",
+    "Zoom": "Zoom",
+    "Zoom out": "Zoom out",
+    "Zoom in": "Zoom in",
+    "Fit to screen": "Fit to screen",
+    "Autonomous body (supervised)": "Autonomous body (supervised)",
+    "Drag to move; open a box to see the unit.": "Drag to move; open a box to see the unit.",
+    "Advisory and support units": "Advisory and support units"
 }

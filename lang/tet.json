@@ -2999,5 +2999,13 @@
     "Show the plan of :year": "Hatudu planu :year",
     "Services of the institution": "Servisu sira husi instituisaun",
     "No units yet": "Seidauk iha unidade",
-    "The units of the institution are set in Management.": "Unidade sira husi instituisaun hatuur iha Jestaun."
+    "The units of the institution are set in Management.": "Unidade sira husi instituisaun hatuur iha Jestaun.",
+    "Not assigned": "Seidauk iha",
+    "Zoom": "Zoom",
+    "Zoom out": "Hamenus",
+    "Zoom in": "Haboot",
+    "Fit to screen": "Tuir ekran",
+    "Autonomous body (supervised)": "Órgaun autónomu (iha tutela okos)",
+    "Drag to move; open a box to see the unit.": "Dada atu muda; loke kaixa ida atu haree unidade.",
+    "Advisory and support units": "Unidade asesoria no apoiu sira"
 }

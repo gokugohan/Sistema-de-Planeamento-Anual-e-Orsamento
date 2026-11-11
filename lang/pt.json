@@ -2999,5 +2999,13 @@
     "Show the plan of :year": "Mostrar o plano de :year",
     "Services of the institution": "Serviços da instituição",
     "No units yet": "Ainda não há unidades",
-    "The units of the institution are set in Management.": "As unidades da instituição definem-se em Gestão."
+    "The units of the institution are set in Management.": "As unidades da instituição definem-se em Gestão.",
+    "Not assigned": "Não atribuído",
+    "Zoom": "Zoom",
+    "Zoom out": "Reduzir",
+    "Zoom in": "Ampliar",
+    "Fit to screen": "Ajustar ao ecrã",
+    "Autonomous body (supervised)": "Organismo autónomo (sob tutela)",
+    "Drag to move; open a box to see the unit.": "Arraste para mover; abra uma caixa para ver a unidade.",
+    "Advisory and support units": "Unidades de assessoria e apoio"
 }
