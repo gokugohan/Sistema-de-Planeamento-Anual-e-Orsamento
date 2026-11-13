@@ -2,6 +2,12 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.0.2] — 2026-11-13
+
+Fixes the CapRover build, which timed out before it started.
+
+- Docker: no syntax directive, so CapRover builds no longer time out resolving the base images
+
 ## [1.0.1] — 2026-11-13
 
 Fixes the first changelog entry and documents versioning, night mode and the collapsible sidebar in the README.
