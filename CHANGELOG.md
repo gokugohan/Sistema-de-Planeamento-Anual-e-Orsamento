@@ -2,6 +2,12 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.0.3] — 2026-11-13
+
+Adds the business-process improvement brief to the repository.
+
+- The business-process improvement brief that the docs/improvement programme follows
+
 ## [1.0.2] — 2026-11-13
 
 Fixes the CapRover build, which timed out before it started.
