@@ -145,7 +145,11 @@
             <footer class="px-6 sm:px-10 py-6">
                 <div class="mx-auto w-full max-w-[26rem] text-xs text-zinc-400 flex flex-wrap items-center justify-between gap-2">
                     <span>{{ __('Authorised users only. Activity on this system is logged.') }}</span>
-                    <span class="lg:hidden">&copy; {{ date('Y') }} {{ $owner ?: $org }}</span>
+                    <span class="flex items-center gap-2">
+                        <span class="lg:hidden">&copy; {{ date('Y') }} {{ $owner ?: $org }} ·</span>
+                        {{-- public page: the release only; the build and commit are shown to signed-in users --}}
+                        <span class="tabular-nums">{{ __('Version') }} {{ \App\Support\AppVersion::release() }}</span>
+                    </span>
                 </div>
             </footer>
         </div>

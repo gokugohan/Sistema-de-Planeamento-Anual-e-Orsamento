@@ -47,6 +47,16 @@ class AppVersionTest extends TestCase
         $this->assertSame(AppVersion::build(), $log->fresh()->app_version);
     }
 
+    public function test_the_login_page_shows_the_release_but_not_the_commit(): void
+    {
+        $info = AppVersion::info();
+        $page = $this->get(route('login'))->assertOk()->assertSee(__('Version').' '.$info['release'], false);
+
+        if ($info['commit']) {
+            $page->assertDontSee($info['commit']);
+        }
+    }
+
     public function test_the_version_shows_in_the_sidebar_and_settings(): void
     {
         $this->seed(RolesAndPermissionsSeeder::class);
