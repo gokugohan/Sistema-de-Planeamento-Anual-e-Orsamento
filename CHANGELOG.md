@@ -2,6 +2,15 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.1.0] — 2026-11-14
+
+PAA by program in the ministry's form, sample data only from the State Budget books, the version on the sign-in page, and Timor-Leste time.
+
+- Application timezone: Asia/Dili
+- PAA by program: the plan in the ministry's form for the whole institution, each program on its own page
+- Sample data only from the State Budget books: GDSC loaded alone has the same amounts as in the whole ministry
+- Sign-in page shows the release number (not the build or commit, which stay for signed-in users)
+
 ## [1.0.3] — 2026-11-13
 
 Adds the business-process improvement brief to the repository.
