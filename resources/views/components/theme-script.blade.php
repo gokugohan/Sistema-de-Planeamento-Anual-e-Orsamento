@@ -21,4 +21,20 @@
         document.addEventListener('livewire:navigated', apply);
         media.addEventListener('change', apply);
     })();
+
+    // The sidebar on a wide screen: full, or folded to a rail of icons (per browser, before the page paints).
+    (function () {
+        var key = 'paa-sidebar';
+        function folded() { try { return localStorage.getItem(key) === 'collapsed'; } catch (e) { return false; } }
+        function apply() { document.documentElement.classList.toggle('sidebar-collapsed', folded()); }
+        window.sidebarCollapsed = folded;
+        window.toggleSidebar = function () {
+            var f = !folded();
+            try { localStorage.setItem(key, f ? 'collapsed' : 'open'); } catch (e) {}
+            document.documentElement.classList.toggle('sidebar-collapsed', f);
+            window.dispatchEvent(new CustomEvent('sidebar-changed', { detail: f }));
+        };
+        apply();
+        document.addEventListener('livewire:navigated', apply);
+    })();
 </script>

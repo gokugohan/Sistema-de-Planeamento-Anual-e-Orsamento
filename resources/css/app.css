@@ -66,6 +66,24 @@
         @apply text-nav-text hover:bg-nav-hover hover:text-zinc-900;
     }
 
+    /* ─── Folded sidebar (wide screens): a rail of icons ──────
+       html.sidebar-collapsed is set by <x-theme-script> before paint. The rail opens over the page
+       while the pointer is on it or the keyboard is in it, so every label and sub-menu stays reachable. */
+    .app-sidebar { transition-property: transform, width, box-shadow; overflow-x: hidden; }
+    .app-main { transition: margin-left 300ms ease; }
+    @media (min-width: 768px) {
+        html.sidebar-collapsed .app-main { margin-left: 5rem; }
+        html.sidebar-collapsed .app-sidebar:is(:hover, :has(:focus-visible)) { @apply shadow-default; }
+        html.sidebar-collapsed .app-sidebar:not(:hover):not(:has(:focus-visible)) { width: 5rem; }
+        html.sidebar-collapsed .app-sidebar:not(:hover):not(:has(:focus-visible)) :is(.sb-label, .nav-item > span, .nav-item > svg:last-child:not(:first-child), [data-sb-children]) {
+            display: none !important;
+        }
+        html.sidebar-collapsed .app-sidebar:not(:hover):not(:has(:focus-visible)) .nav-item { justify-content: center; }
+        html.sidebar-collapsed .app-sidebar:not(:hover):not(:has(:focus-visible)) .sb-brand { justify-content: center; padding-left: 0; padding-right: 0; }
+        html.sidebar-collapsed .app-sidebar:not(:hover):not(:has(:focus-visible)) .sb-nav { padding-left: 0.75rem; padding-right: 0.75rem; }
+        html.sidebar-collapsed .app-sidebar:not(:hover):not(:has(:focus-visible)) .sb-group + .sb-group { border-top: 1px solid rgb(var(--c-neutral-200)); padding-top: 1rem; }
+    }
+
     /* ─── Page header (one style for every page) ───────────── */
     .page-title {
         @apply text-[1.625rem] font-semibold not-italic tracking-tight text-zinc-900 leading-tight;

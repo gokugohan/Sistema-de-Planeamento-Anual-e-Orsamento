@@ -33,7 +33,7 @@ new class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col h-screen w-64 bg-white border-r border-zinc-200 fixed left-0 top-0 overflow-y-auto z-50 transition-transform duration-300 md:translate-x-0"
+<div class="app-sidebar flex flex-col h-screen w-64 bg-white border-r border-zinc-200 fixed left-0 top-0 overflow-y-auto z-50 duration-300 md:translate-x-0"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
     <!-- Mobile Close -->
@@ -55,23 +55,23 @@ new class extends Component {
         $logoUrl = \App\Support\Branding::logoUrl();
     @endphp
     <a href="{{ route('dashboard') }}" wire:navigate title="{{ $orgName }}"
-        class="flex items-center gap-3 px-5 py-4 shrink-0 border-b border-zinc-200 hover:bg-zinc-50 transition-colors">
+        class="sb-brand flex items-center gap-3 px-5 py-4 shrink-0 border-b border-zinc-200 hover:bg-zinc-50 transition-colors">
         @if($logoUrl)
             <img src="{{ $logoUrl }}" alt="" class="h-11 w-auto max-w-[3rem] shrink-0 object-contain rounded-lg" aria-hidden="true">
         @else
             <span class="flex h-10 min-w-10 items-center justify-center rounded-lg bg-indigo-500 px-1.5 text-[11px] font-bold tracking-wide text-white" aria-hidden="true">{{ \Illuminate\Support\Str::limit($orgAbbr, 5, '') }}</span>
         @endif
-        <span class="min-w-0">
+        <span class="sb-label min-w-0">
             <span class="block text-[13px] font-semibold leading-snug text-zinc-900 line-clamp-3">{{ $orgName }}</span>
         </span>
     </a>
 
     <!-- Navigation -->
-    <nav class="flex-1 px-4 py-5 space-y-6 overflow-y-auto" aria-label="{{ __('Main navigation') }}">
+    <nav class="sb-nav flex-1 px-4 py-5 space-y-6 overflow-y-auto" aria-label="{{ __('Main navigation') }}">
         @foreach(\App\Support\Navigation::groups(auth()->user()) as $group)
-            <div>
+            <div class="sb-group">
                 {{-- the four steps of the year are numbered, in the order they are done --}}
-                <p class="nav-section-label flex items-center gap-2 {{ $group['label'] === 'Testing Zone' ? '!text-amber-700' : '' }}">
+                <p class="sb-label nav-section-label flex items-center gap-2 {{ $group['label'] === 'Testing Zone' ? '!text-amber-700' : '' }}">
                     @if($group['step'])
                         <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-[10px] font-bold leading-none text-indigo-600" aria-hidden="true">{{ $group['step'] }}</span>
                         <span class="sr-only">{{ __('Step :n:', ['n' => $group['step']]) }}</span>
@@ -83,7 +83,7 @@ new class extends Component {
                         @if(isset($item['children']))
                             @php $open = \App\Support\Navigation::isActive($item); @endphp
                             <div x-data="{ open: {{ $open ? 'true' : 'false' }} }">
-                                <button type="button" @click="open = !open" :aria-expanded="open.toString()"
+                                <button type="button" @click="open = !open" :aria-expanded="open.toString()" title="{{ __($item['label']) }}"
                                     class="nav-item w-full {{ $open ? 'nav-item-active' : 'nav-item-inactive' }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -98,7 +98,7 @@ new class extends Component {
                                         <path d="m6 9 6 6 6-6" />
                                     </svg>
                                 </button>
-                                <div x-show="open" x-collapse class="mt-0.5 ml-3 pl-4 border-l border-zinc-200 space-y-0.5">
+                                <div x-show="open" x-collapse data-sb-children class="mt-0.5 ml-3 pl-4 border-l border-zinc-200 space-y-0.5">
                                     @foreach($item['children'] as $child)
                                         <x-sidebar-link :href="route($child['route'])" :active="\App\Support\Navigation::isActive($child)"
                                             :icon="$child['icon'] ?? 'circle'">{{ __($child['label']) }}</x-sidebar-link>
@@ -116,7 +116,7 @@ new class extends Component {
     </nav>
 
     <!-- Bottom Widgets -->
-    <div class="px-4 py-4 border-t border-zinc-200 space-y-3">
+    <div class="sb-label px-4 py-4 border-t border-zinc-200 space-y-3">
 
         <!-- Working year and how much of its plan is approved -->
         @if($activityCount > 0)
@@ -139,7 +139,7 @@ new class extends Component {
         $sOwner  = \App\Models\SystemSetting::get('system_owner', '');
         $sImplBy = \App\Models\SystemSetting::get('implemented_by', '');
     @endphp
-    <div class="px-5 pb-4 pt-3 border-t border-zinc-200 text-[11px] leading-relaxed text-nav-muted">
+    <div class="sb-label px-5 pb-4 pt-3 border-t border-zinc-200 text-[11px] leading-relaxed text-nav-muted">
         <p>&copy; {{ date('Y') }} {{ $sOwner }}</p>
         <p>{{ __('Implemented by') }} {{ $sImplBy ?: \App\Support\Branding::IMPLEMENTER }}</p>
     </div>

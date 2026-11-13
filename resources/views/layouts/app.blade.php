@@ -7,7 +7,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ \App\Support\Branding::faviconUrl() }}">
 
-    <title>@if(!empty($title)){{ $title }} &mdash; @endif{{ \App\Models\SystemSetting::getLocalized('app_name', config('app.name')) }} &mdash; {{ \App\Models\SystemSetting::getLocalized('app_tagline', '') }}</title>
+    {{-- page — app name — tagline, leaving out whatever is blank (no dangling dashes) --}}
+    <title>{{ collect([
+        $title ?? '',
+        \App\Models\SystemSetting::getLocalized('app_name', '') ?: \App\Models\SystemSetting::getLocalized('app_name', '', 'en') ?: config('app.name'),
+        \App\Models\SystemSetting::getLocalized('app_tagline', ''),
+    ])->map(fn ($part) => trim(strip_tags((string) $part)))->filter()->implode(' — ') }}</title>
 
     <!-- Fonts -->
 
@@ -88,7 +93,7 @@
         ></div>
 
         <!-- Main Workspace -->
-        <div class="flex-1 flex flex-col md:ml-64 min-w-0">
+        <div class="app-main flex-1 flex flex-col md:ml-64 min-w-0">
 
             <!-- Top Bar -->
             <livewire:layout.topbar />

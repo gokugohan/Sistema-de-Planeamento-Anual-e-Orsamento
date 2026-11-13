@@ -23,6 +23,19 @@ new class extends Component {
         </svg>
     </button>
 
+    <!-- Fold / unfold the sidebar (wide screens) -->
+    <button type="button" x-data="{ folded: window.sidebarCollapsed ? sidebarCollapsed() : false }"
+        @sidebar-changed.window="folded = $event.detail" @click="toggleSidebar()"
+        :aria-pressed="folded.toString()" :title="folded ? @js(__('Expand the menu')) : @js(__('Collapse the menu'))"
+        aria-label="{{ __('Collapse the menu') }}"
+        class="hidden md:inline-flex -ml-2 p-2 text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100 rounded-lg transition-colors flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="18" height="18" x="3" y="3" rx="2" /><path d="M9 3v18" />
+            <path x-show="!folded" d="m16 15-3-3 3-3" /><path x-show="folded" x-cloak d="m14 9 3 3-3 3" />
+        </svg>
+    </button>
+
     {{-- Breadcrumbs: where am I? --}}
     @php $crumbs = \App\Support\Navigation::breadcrumbs(auth()->user()); @endphp
     <nav aria-label="{{ __('Breadcrumb') }}" class="hidden md:block min-w-0 flex-1">
@@ -92,6 +105,25 @@ new class extends Component {
     <!-- Right Side -->
     <div class="ml-auto flex items-center gap-1 md:shrink-0">
 
+        <!-- Day / night in one click (System and the rest are under Appearance in the user menu) -->
+        <button type="button"
+            x-data="{ dark: document.documentElement.classList.contains('dark') }"
+            @theme-changed.window="dark = document.documentElement.classList.contains('dark')"
+            @click="setTheme(dark ? 'light' : 'dark')"
+            :aria-pressed="dark.toString()" :title="dark ? @js(__('Day mode')) : @js(__('Night mode'))"
+            aria-label="{{ __('Night mode') }}"
+            class="p-2 text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100 rounded-lg transition-colors">
+            {{-- moon by day, sun by night --}}
+            <svg x-show="!dark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+            <svg x-show="dark" x-cloak xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" />
+                <path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+        </button>
 
         <!-- Notification Bell -->
         <livewire:layout.notification-bell />
