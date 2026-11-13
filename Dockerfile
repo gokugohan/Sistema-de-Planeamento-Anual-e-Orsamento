@@ -1,4 +1,6 @@
-# syntax=docker/dockerfile:1.7
+# No `# syntax=` line: it makes BuildKit fetch an external frontend that resolves the base images over a client
+# session, which CapRover's API builds do not open ("no active session ... context deadline exceeded"). The
+# built-in frontend reads everything in this file.
 #
 # Production image of the Plano de Ação Anual (PAA).
 # Targets: `production` (PHP-FPM: web requests, queue worker and scheduler all run from it) and `web` (nginx that serves public/).
