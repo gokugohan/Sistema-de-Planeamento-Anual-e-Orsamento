@@ -174,6 +174,14 @@ Route::get('reports/implementation-plan/pdf', [ImplementationPlanController::cla
 Route::get('reports/implementation-plan/xlsx', [ImplementationPlanController::class, 'excel'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.implementation-plan.xlsx');
 
+// The same form for the whole plan, organised by programme (all programmes, or one), across the units the reader may see
+Route::get('reports/plan-by-program', [ImplementationPlanController::class, 'show'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.plan-by-program');
+Route::get('reports/plan-by-program/pdf', [ImplementationPlanController::class, 'pdf'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.plan-by-program.pdf');
+Route::get('reports/plan-by-program/xlsx', [ImplementationPlanController::class, 'excel'])
+    ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.plan-by-program.xlsx');
+
 // Monthly / quarterly performance report: each reader gets the units they may see
 Route::get('reports/performance', [PerformanceReportController::class, 'show'])
     ->middleware(['auth', 'verified', 'permission:view_reports'])->name('reports.performance');

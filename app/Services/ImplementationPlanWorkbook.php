@@ -22,10 +22,17 @@ class ImplementationPlanWorkbook
 
     private const MONTH_PLANNED = 'C7DDFF';
 
+    /** The plan by programme mixes units: each activity then names its unit. */
+    private bool $showUnit = false;
+
     public function build(array $report): Spreadsheet
     {
         $unit = $report['unit'] ?? null;
-        $title = __('Implementation plan of activities by quarter').' — '.$report['year'];
+        $byProgram = $report['by_program'] ?? false;
+        $program = $report['program'] ?? null;
+        $title = __('Implementation plan of activities by quarter').' — '.$report['year']
+            .($byProgram ? ' · '.__('PAA by program').' · '.($program ? __('Programme').' '.$program->oge_code.': '.$program->name : __('All programs')) : '');
+        $this->showUnit = $byProgram;
         $book = Kit::book($report['reference'].' — '.$title, $report['generated_by'] ?? null, (string) $report['organization']);
         $s = $book->getActiveSheet();
         $s->setTitle(Kit::sheetTitle(__('Implementation plan').' '.$report['year']));
@@ -103,7 +110,7 @@ class ImplementationPlanWorkbook
     private function activity(Worksheet $s, int $row, array $r): int
     {
         $a = $r['activity'];
-        Kit::text($s, "A{$row}", trim($a->code.' '.$a->description));
+        Kit::text($s, "A{$row}", __('Activity').' '.trim($a->code.': '.$a->description).($this->showUnit && $a->directorate ? ' ('.$a->directorate->code.')' : ''));
         $blocks = collect($r['indicators']);
         foreach ($blocks->values() as $n => $b) {
             $ind = $b['indicator'];

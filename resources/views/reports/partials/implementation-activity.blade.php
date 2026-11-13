@@ -21,7 +21,7 @@
         <tr>
             @if($first)
                 @php $first = false; @endphp
-                <td rowspan="{{ $total }}"><b>{{ $a->code }}</b> {{ $a->description }}</td>
+                <td rowspan="{{ $total }}">{{ __('Activity') }} <b>{{ $a->code }}</b>: {{ $a->description }}@if($showUnit ?? false)<br><span class="muted">{{ $a->directorate?->code }} — {{ $a->directorate?->name }}</span>@endif</td>
             @endif
             @if($k === 0)
                 <td rowspan="{{ $b['rows'] }}">{{ $loop->parent->iteration }}) {{ $ind->name }}@if($ind->target_text || $ind->annual_target > 0) <span class="muted">— {{ $ind->target_text ?: rtrim(rtrim(number_format((float) $ind->annual_target, 2), '0'), '.').' '.$ind->unit }}</span>@endif</td>
@@ -37,7 +37,7 @@
 @if($r['whole'] > 0 || $blocks->isEmpty())
     <tr>
         @if($first)
-            <td rowspan="{{ $total }}"><b>{{ $a->code }}</b> {{ $a->description }}</td>
+            <td rowspan="{{ $total }}">{{ __('Activity') }} <b>{{ $a->code }}</b>: {{ $a->description }}@if($showUnit ?? false)<br><span class="muted">{{ $a->directorate?->code }} — {{ $a->directorate?->name }}</span>@endif</td>
         @endif
         <td class="muted"><i>{{ __('Whole activity') }}</i></td>
         <td></td>

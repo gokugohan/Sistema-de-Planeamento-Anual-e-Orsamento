@@ -39,6 +39,9 @@
             <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', array_filter(['year' => $selectedYear, 'unit' => $u])) }}">
                 {{ __('Final plan report') }}
             </x-ui.button>
+            {{-- the plan in the ministry's form: by programme for the whole plan, or one unit's --}}
+            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.plan-by-program', ['year' => $selectedYear]) }}">{{ __('PAA by program') }}</x-ui.button>
+            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.implementation-plan', array_filter(['year' => $selectedYear, 'unit' => $u])) }}">{{ __('Implementation plan') }}</x-ui.button>
             <x-ui.button variant="primary" size="md" href="{{ route('reports.annual-plan.pdf', array_filter(['year' => $selectedYear, 'unit' => $u])) }}" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)">{{ __('Print Report') }}</x-ui.button>
         </x-ui.page-header>
 

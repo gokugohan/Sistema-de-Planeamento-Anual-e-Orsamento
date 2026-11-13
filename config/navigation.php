@@ -132,6 +132,7 @@ return [
         'activities.indicators' => ['activities.index', 'Indicators'],
         'activities.budget' => ['activities.index', 'Budget lines'],
         'reports.approved-plan' => ['reports.paa', 'Final plan report'],
+        'reports.plan-by-program' => ['reports.paa', 'PAA by program'],
         'planning.paa-approval' => ['approvals.index', 'Activities to decide'],
         'monitoring.approval' => ['approvals.index', 'Verify progress'],
         'notifications.index' => [null, 'Notifications', 'Overview'],

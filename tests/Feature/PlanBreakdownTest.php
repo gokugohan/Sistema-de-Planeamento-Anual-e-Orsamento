@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Activity;
 use App\Models\AdjustedBudget;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
@@ -68,10 +69,10 @@ class PlanBreakdownTest extends TestCase
         $this->assertSame(0.0, app(PlanBreakdown::class)->approvedTotal(2019));
     }
 
-    private function adminWithSample(): User
+    private function adminWithSample(string $office = 'GDSC'): User
     {
-        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
-        $admin = User::where('email', 'chefe.gdsc@gdsc.tl')->firstOrFail();
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run($office);
+        $admin = User::where('email', 'chefe.'.strtolower($office).'@gdsc.tl')->firstOrFail();
         $admin->assignRole('Admin');
         $this->actingAs($admin);
 
@@ -80,8 +81,8 @@ class PlanBreakdownTest extends TestCase
 
     public function test_the_report_only_prints_activities_when_asked_to(): void
     {
-        $this->adminWithSample();
-        $name = 'Plataforma única de serviços digitais do Governo';
+        $this->adminWithSample('DGC'); // a real plan with several programmes
+        $name = Activity::where('fiscal_year', 2026)->whereHas('program', fn ($q) => $q->where('oge_code', 'A08'))->firstOrFail()->description;
 
         $this->get('/reports/paa?year=2026')->assertOk()->assertDontSee($name)->assertSee('data-activities-url', false);
         $this->get('/reports/paa?year=2026&full=1')->assertOk()->assertSee($name);
@@ -89,13 +90,15 @@ class PlanBreakdownTest extends TestCase
 
     public function test_the_activities_of_a_category_load_on_demand(): void
     {
-        $this->adminWithSample();
+        $this->adminWithSample('DGC');
         $program = Program::forYear(2026)->where('oge_code', 'A08')->firstOrFail();
         $class = EconomicClassification::where('code', '20')->firstOrFail();
+        $name = Activity::where('fiscal_year', 2026)->where('program_id', $program->id)
+            ->whereHas('lineItems', fn ($q) => $q->where('economic_classification_id', $class->id))->firstOrFail()->description;
 
         $this->get('/reports/paa/activities?'.http_build_query(['year' => 2026, 'program' => $program->id, 'class' => $class->id, 'parent' => 'prog-1-class-1']))
             ->assertOk()
-            ->assertSee('Plataforma única de serviços digitais do Governo')
+            ->assertSee($name)
             ->assertSee('data-parent="prog-1-class-1"', false);
 
         $this->get('/reports/paa/activities?year=2026&program=1&class=1&parent='.urlencode('"><script>'))->assertSessionHasErrors('parent');

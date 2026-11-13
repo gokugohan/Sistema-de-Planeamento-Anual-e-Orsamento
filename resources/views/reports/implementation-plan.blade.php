@@ -4,7 +4,15 @@
     $money = fn ($v) => number_format((float) $v, 2);
     $months = collect(range(1, 12))->map(fn ($m) => \Carbon\Carbon::create($report['year'], $m, 1)->translatedFormat('M'));
     $quarterNames = ['I', 'II', 'III', 'IV'];
+    // the plan of one unit, or the plan of the institution by programme (each programme on a page of its own)
+    $byProgram = $report['by_program'] ?? false;
+    $program = $report['program'] ?? null;
+    // the ministry's own title in both modes; the plan by programme says so on the line below it
     $title = __('Implementation plan of activities by quarter').' — '.$report['year'];
+    $route = $byProgram ? 'reports.plan-by-program' : 'reports.implementation-plan';
+    $params = array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'program' => $program?->id, 'status' => $report['approved_only'] ? null : 'all']);
+    // one page per programme in that mode; one page with every programme of the unit otherwise
+    $pages = $byProgram && $report['tree']->isNotEmpty() ? $report['tree']->map(fn ($p) => collect([$p])) : collect([$report['tree']]);
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -40,6 +48,7 @@
         .sign td { text-align: center; width: 50%; font-size: 7pt; padding-top: 4px; }
         .sign .name { margin-top: 28px; font-weight: bold; text-decoration: underline; min-height: 12px; }
         .fine { margin-top: 6px; font-size: 6pt; color: #475569; }
+        .newpage { page-break-before: always; margin-top: 14px; }
         @media print {
             .toolbar { display: none; } body { background: #fff; }
             .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; overflow: visible; }
@@ -53,20 +62,27 @@
 @php $stateWarning = app(\App\Services\PlanStatus::class)->reportWarning(auth()->user(), $report['year'], $unit?->id); @endphp
 @unless($pdf)
 <div class="toolbar">
-    <a class="secondary" href="{{ route('planning.cycle') }}">← {{ __('Plan cycle') }}</a>
-    <form method="GET" action="{{ route('reports.implementation-plan') }}" style="margin:0;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <a class="secondary" href="{{ route('reports.paa', ['year' => $report['year']]) }}">← {{ __('Reporting') }}</a>
+    <form method="GET" action="{{ route($route) }}" style="margin:0;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <select name="year" onchange="this.form.submit()" aria-label="{{ __('Fiscal year') }}">
             @foreach(range((int) date('Y') + 2, 2024) as $y)<option value="{{ $y }}" @selected($y === $report['year'])>{{ $y }}</option>@endforeach
         </select>
-        <select name="unit" onchange="this.form.submit()" aria-label="{{ __('Unit') }}">
-            @foreach($units as $u)<option value="{{ $u->id }}" @selected($unit && $u->id === $unit->id)>{{ $u->code }} — {{ \Illuminate\Support\Str::limit($u->name, 40) }}</option>@endforeach
-        </select>
+        @if($byProgram)
+            <select name="program" onchange="this.form.submit()" aria-label="{{ __('Program') }}">
+                <option value="">{{ __('All programs') }}</option>
+                @foreach($programs ?? [] as $pr)<option value="{{ $pr->id }}" @selected($program && $pr->id === $program->id)>{{ $pr->oge_code }} — {{ \Illuminate\Support\Str::limit($pr->name, 40) }}</option>@endforeach
+            </select>
+        @else
+            <select name="unit" onchange="this.form.submit()" aria-label="{{ __('Unit') }}">
+                @foreach($units as $u)<option value="{{ $u->id }}" @selected($unit && $u->id === $unit->id)>{{ $u->code }} — {{ \Illuminate\Support\Str::limit($u->name, 40) }}</option>@endforeach
+            </select>
+        @endif
         <label><input type="checkbox" name="status" value="all" onchange="this.form.submit()" @checked(! $report['approved_only'])> {{ __('Include activities not yet approved') }}</label>
     </form>
     <span style="margin-left:auto"></span>
     <button type="button" data-warn="{{ $stateWarning ? $stateWarning.' '.__('Print anyway?') : '' }}" onclick="if (this.dataset.warn && ! confirm(this.dataset.warn)) return; window.print()">{{ __('Print') }}</button>
-    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.implementation-plan.pdf', array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'status' => $report['approved_only'] ? null : 'all'])) }}">{{ __('Download PDF') }}</a>
-    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route('reports.implementation-plan.xlsx', array_filter(['year' => $report['year'], 'unit' => $unit?->id, 'status' => $report['approved_only'] ? null : 'all'])) }}">{{ __('Download Excel') }}</a>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route($route.'.pdf', $params) }}">{{ __('Download PDF') }}</a>
+    <a data-warn="{{ $stateWarning ? $stateWarning.' '.__('Download anyway?') : '' }}" onclick="return ! this.dataset.warn || confirm(this.dataset.warn)" href="{{ route($route.'.xlsx', $params) }}">{{ __('Download Excel') }}</a>
 </div>
 <div class="sheet">
 @endunless
@@ -78,9 +94,11 @@
     @if($logoUri = \App\Support\Branding::logoDataUri())<div style="text-align:center"><img src="{{ $logoUri }}" alt="" style="height:46px;margin-bottom:4px"></div>@endif
     <div class="unit">{{ $unit ? $unit->code.' : '.$unit->name : $report['organization'] }}</div>
     <div class="title">{{ $title }}</div>
+    @if($byProgram)<div class="title" style="font-weight:normal">{{ __('PAA by program') }} · {{ $program ? __('Programme').' '.$program->oge_code.': '.$program->name : __('All programs') }}</div>@endif
 </div>
 
-<table class="rep">
+@foreach($pages as $pageTree)
+<table class="rep{{ $loop->first ? '' : ' newpage' }}">
     <thead>
         <tr class="w">
             <td style="width:13%"></td><td style="width:19%"></td><td style="width:22%"></td>
@@ -103,7 +121,7 @@
         </tr>
     </thead>
     <tbody>
-    @forelse($report['tree'] as $p)
+    @forelse($pageTree as $p)
         <tr class="prog">
             <td colspan="15">{{ __('Programme') }} <b>{{ $p['program']->oge_code }}</b>: {{ $p['program']->name }}</td>
             <td class="r">{{ $money($p['total']) }}</td>
@@ -113,27 +131,33 @@
                 <td colspan="15">{{ __('Subprogramme') }} <b>{{ $s['subprogram']->code }}</b>: {{ $s['subprogram']->name }}</td>
                 <td class="r">{{ $money($s['total']) }}</td>
             </tr>
+            <tr class="hd"><td colspan="3"></td>@foreach($months as $mn)<td class="c" style="font-size:5pt;padding:1px">{{ $mn }}</td>@endforeach<td></td></tr>
             @foreach($s['rows'] as $r)
-                @include('reports.partials.implementation-activity', ['r' => $r])
+                @include('reports.partials.implementation-activity', ['r' => $r, 'showUnit' => $byProgram])
             @endforeach
         @endforeach
         @foreach($p['loose'] as $r)
-            @include('reports.partials.implementation-activity', ['r' => $r])
+            @include('reports.partials.implementation-activity', ['r' => $r, 'showUnit' => $byProgram])
         @endforeach
     @empty
         <tr><td colspan="16" class="c muted">
-            {{ __('No activities to show for this unit and year.') }}
+            {{ $byProgram ? __('No activities to show for this year.') : __('No activities to show for this unit and year.') }}
             @if($report['left_out'] > 0)
-                {{ trans_choice(':n activity of this unit is not approved yet: tick “Include activities not yet approved” to see it.|:n activities of this unit are not approved yet: tick “Include activities not yet approved” to see them.', $report['left_out'], ['n' => $report['left_out']]) }}
+                {{ $byProgram
+                    ? trans_choice(':n activity is not approved yet: tick “Include activities not yet approved” to see it.|:n activities are not approved yet: tick “Include activities not yet approved” to see them.', $report['left_out'], ['n' => $report['left_out']])
+                    : trans_choice(':n activity of this unit is not approved yet: tick “Include activities not yet approved” to see it.|:n activities of this unit are not approved yet: tick “Include activities not yet approved” to see them.', $report['left_out'], ['n' => $report['left_out']]) }}
             @endif
         </td></tr>
     @endforelse
-        <tr class="hd">
-            <td colspan="15" class="c">{{ __('TOTAL') }}</td>
-            <td class="r">{{ $money($report['total']) }}</td>
-        </tr>
+        @if($loop->last)
+            <tr class="hd">
+                <td colspan="15" class="c">{{ $byProgram && $pages->count() > 1 ? __('TOTAL OF ALL PROGRAMS') : __('TOTAL') }}</td>
+                <td class="r">{{ $money($report['total']) }}</td>
+            </tr>
+        @endif
     </tbody>
 </table>
+@endforeach
 
 <p style="margin-top:8px;font-size:7pt">{{ __('Dili') }}, ____ {{ \Carbon\Carbon::now()->translatedFormat('F Y') }}</p>
 <table class="sign">
