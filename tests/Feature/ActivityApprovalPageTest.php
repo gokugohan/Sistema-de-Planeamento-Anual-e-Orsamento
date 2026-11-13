@@ -7,6 +7,7 @@ use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Program;
 use App\Models\User;
+use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +24,8 @@ class ActivityApprovalPageTest extends TestCase
     private function validated(): Activity
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
-        // about the page, not the order of the year (the office's illustrative drafts would hold the approval back)
-        (new \App\Support\PlanOptions(completeBeforeApproval: false))->save();
+        // about the page, not the order of the year (the office's other drafts would hold the approval back)
+        (new PlanOptions(completeBeforeApproval: false))->save();
         $a = Activity::create([
             'fiscal_year' => 2027, 'program_id' => Program::firstOrFail()->id, 'directorate_id' => Directorate::where('code', 'UDIG')->value('id'),
             'description' => 'Page test activity', 'quarter' => 1, 'priority' => 'Alta', 'planned_start' => '2027-01-01', 'planned_end' => '2027-12-31',

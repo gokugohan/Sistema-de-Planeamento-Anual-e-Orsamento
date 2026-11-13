@@ -191,23 +191,23 @@ class ProgramYearsTest extends TestCase
     public function test_the_dashboard_shows_the_programmes_of_the_year_and_can_be_filtered_by_one(): void
     {
         Carbon::setTestNow('2026-10-14 10:00:00');
-        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run('DGC'); // its real 2026 plan uses four programmes
         $this->admin();
-        \App\Support\FiscalYear::pin(2026);
+        FiscalYear::pin(2026);
 
         $page = Volt::test('pages.dashboard.summary')
             ->assertSee('Funcionamento e Desenvolvimento Institucional')
             ->assertSee('Tecnologia de Informação e Comunicação');
         $codes = fn ($p) => collect($p->viewData('progRows'))->pluck('code')->sort()->values()->all();
-        $this->assertSame(['510', 'A08'], $codes($page));
+        $this->assertSame(['510', '558', 'A08', 'A38'], $codes($page));
 
         $id = Program::forYear(2026)->where('oge_code', '510')->value('id');
         $page->set('program', (string) $id);
         $this->assertSame(['510'], $codes($page), 'only the chosen programme is left');
-        $this->assertEqualsWithDelta(821702, collect($page->viewData('progRows'))->first()['plan'], 1);
+        $this->assertEqualsWithDelta(60669, collect($page->viewData('progRows'))->first()['plan'], 1); // DGC's programme 510 in the 2026 book
 
         $page->call('clearFilters')->assertSet('program', '');
-        $this->assertSame(['510', 'A08'], $codes($page));
+        $this->assertSame(['510', '558', 'A08', 'A38'], $codes($page));
         Carbon::setTestNow();
     }
 }

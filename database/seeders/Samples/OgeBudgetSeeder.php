@@ -15,15 +15,15 @@ class OgeBudgetSeeder extends MtcBudgetSeeder
     private string $entity = '';
 
     /** @param  array<int, int|string>|null  $years  the years to load (null: the plan's own year) */
-    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false, string $state = 'approved', ?array $years = null, string $entity = ''): void
+    public function run(SampleRegistry $registry, ?array $units = null, string $state = 'approved', ?array $years = null, string $entity = ''): void
     {
         $this->entity = $entity;
         OgeCatalog::entity($entity); // fails early for an unknown entity
 
-        parent::run($registry, null, false, $state, $years);
+        parent::run($registry, null, $state, $years);
     }
 
-    protected function planFor(int $year, ?array $years, ?array $units, bool $illustrative): array
+    protected function planFor(int $year, ?array $years, ?array $units): array
     {
         return ['year' => OgeCatalog::YEAR, 'entities' => [$this->entity => OgeCatalog::entity($this->entity)], 'amendments' => []];
     }

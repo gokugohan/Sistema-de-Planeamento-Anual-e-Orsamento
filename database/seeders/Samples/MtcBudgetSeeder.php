@@ -79,15 +79,14 @@ class MtcBudgetSeeder extends Seeder
 
     /**
      * @param  array<int, string>|null  $units  unit codes: load only the activities these units own (one office), null for the whole ministry
-     * @param  bool  $illustrative  also load the illustrative plan of the Gabinete de Digitalização e Segurança Cibernética
      * @param  string  $state  how far the plans of the current year and the next have gone (see STATES)
      * @param  array<int, int|string>|null  $years  the years of the sample to load (null: all of them)
      */
-    public function run(SampleRegistry $registry, ?array $units = null, bool $illustrative = false, string $state = 'approved', ?array $years = null): void
+    public function run(SampleRegistry $registry, ?array $units = null, string $state = 'approved', ?array $years = null): void
     {
         $this->state = in_array($state, self::STATES, true) ? $state : 'approved';
         foreach ($this->yearsToLoad($years) as $year) {
-            $data = $this->planFor($year, $years, $units, $illustrative);
+            $data = $this->planFor($year, $years, $units);
 
             if ($units !== null && ! $data['entities']) {
                 continue; // the office has no activities this year
@@ -105,7 +104,7 @@ class MtcBudgetSeeder extends Seeder
                 }
                 $this->approveVersions($year);
                 // a plan still in the cycle can be submitted: its submission dates run around today
-                if ($this->stateOf($year) !== 'approved' && \App\Services\PlanningWindow::yearAllowed($year)) {
+                if ($this->stateOf($year) !== 'approved' && PlanningWindow::yearAllowed($year)) {
                     MtcCalendarSeeder::seedSubmission($year, $registry);
                 }
                 // Spending and progress up to today (none for a year that has not started), for the years whose plan
@@ -126,9 +125,9 @@ class MtcBudgetSeeder extends Seeder
      * sample's own years (no choice made) load only what the budget books hold. Another dataset (OgeBudgetSeeder)
      * gives its own plans through this and the hooks below.
      */
-    protected function planFor(int $year, ?array $years, ?array $units, bool $illustrative): array
+    protected function planFor(int $year, ?array $years, ?array $units): array
     {
-        return self::data($years === null ? $year : self::sourceYear($year, $units, $illustrative), $units, $illustrative);
+        return self::data($years === null ? $year : self::sourceYear($year, $units), $units);
     }
 
     /** @return array<int, int> */
@@ -156,17 +155,13 @@ class MtcBudgetSeeder extends Seeder
     }
 
     /**
-     * The year's plan, narrowed to the activities owned by $units when given. Illustrative activities
-     * (data/gdsc_illustrative.json) are written in the same shape and are marked "illustrative".
+     * The year's plan as the State Budget books print it, narrowed to the activities owned by $units when given.
+     * Nothing is added to the books: one office gets exactly the activities and amounts it has in the whole
+     * ministry's plan, so the figures are the same whichever way the sample is loaded.
      */
-    public static function data(int $year, ?array $units = null, bool $illustrative = false): array
+    public static function data(int $year, ?array $units = null): array
     {
         $data = json_decode(file_get_contents(__DIR__."/data/mtc_oge_{$year}.json"), true, 512, JSON_THROW_ON_ERROR);
-
-        if ($illustrative) {
-            $extra = json_decode(file_get_contents(__DIR__.'/data/gdsc_illustrative.json'), true, 512, JSON_THROW_ON_ERROR)[(string) $year] ?? [];
-            $data['entities']['025']['activities'] = array_merge($data['entities']['025']['activities'], $extra);
-        }
 
         if ($units !== null) {
             foreach ($data['entities'] as $entity => $e) {
@@ -183,11 +178,11 @@ class MtcBudgetSeeder extends Seeder
     }
 
     /** OGE codes of the programmes the given units' activities use. */
-    public static function programmeCodes(array $units, bool $illustrative = false): array
+    public static function programmeCodes(array $units): array
     {
         $codes = [];
         foreach (self::YEARS as $year) {
-            foreach (self::data($year, $units, $illustrative)['entities'] as $e) {
+            foreach (self::data($year, $units)['entities'] as $e) {
                 foreach ($e['activities'] as $a) {
                     $codes[$a['programme']] = true;
                 }
@@ -264,6 +259,7 @@ class MtcBudgetSeeder extends Seeder
         $subprogrammes = [];
         $units = Directorate::pluck('id', 'code');
         $totals = [];
+        $stateBudget = null;
 
         foreach ($data['entities'] as $entity => $e) {
             foreach ($e['activities'] as $a) {
@@ -293,9 +289,7 @@ class MtcBudgetSeeder extends Seeder
                         'program_id' => $programs[$a['programme']],
                         'subprogram_id' => $subprogramId,
                         'description' => Str::limit($a['name'], 990, ''),
-                        'objective' => ($a['illustrative'] ?? false)
-                            ? 'Atividade ilustrativa do exemplo; os valores não provêm de nenhum plano ou lei orçamental publicados.'
-                            : ($a['subprogramme_name'] ? Str::limit("Subprograma {$a['subprogramme']}: {$a['subprogramme_name']}", 1900, '') : null),
+                        'objective' => $a['subprogramme_name'] ? Str::limit("Subprograma {$a['subprogramme']}: {$a['subprogramme_name']}", 1900, '') : null,
                         'priority' => 'Média',
                         'quarter' => 1,
                         'execution_quarters' => [1, 2, 3, 4],
@@ -320,7 +314,7 @@ class MtcBudgetSeeder extends Seeder
                         'activity_id' => $activity->id,
                         'code' => $a['code'].'-'.$category,
                         'economic_classification_id' => $classes[$category],
-                        'funding_source_id' => $this->fundingSourceId($a['funding'] ?? null),
+                        'funding_source_id' => $stateBudget ??= FundingSource::defaultId(), // the books are the State Budget
                         'account_code' => $category,
                         'estimated_amount' => $amount,
                         'is_test_data' => false,
@@ -387,9 +381,9 @@ class MtcBudgetSeeder extends Seeder
      * The sample year whose plan a year takes: its own when the sample has one (for these units), otherwise the
      * nearest sample year that has a plan for them (an office the budget books list only from 2026 borrows 2026).
      */
-    public static function sourceYear(int $year, ?array $units = null, bool $illustrative = false): int
+    public static function sourceYear(int $year, ?array $units = null): int
     {
-        $withPlan = array_values(array_filter(self::YEARS, fn ($y) => $units === null || self::data($y, $units, $illustrative)['entities']));
+        $withPlan = array_values(array_filter(self::YEARS, fn ($y) => $units === null || self::data($y, $units)['entities']));
         if ($withPlan === []) {
             return max(min(self::YEARS), min(max(self::YEARS), $year));
         }
@@ -479,8 +473,8 @@ class MtcBudgetSeeder extends Seeder
     }
 
     /**
-     * An illustrative implementation plan for the sample indicator: three numbered actions with their months, inside the
-     * quarters it is reported in. Not taken from any plan: it shows how the form reads.
+     * The implementation steps of a sample indicator: three generic actions (prepare, carry out, report) with their months,
+     * inside the quarters it is reported in. The books print no implementation steps, so these name no task or amount.
      */
     private function planImplementation(Indicator $indicator, array $quarters): void
     {
@@ -493,14 +487,5 @@ class MtcBudgetSeeder extends Seeder
         foreach ($actions as $n => [$text, $m]) {
             $indicator->actions()->create(['position' => $n + 1, 'text' => $text, 'months' => $m]);
         }
-    }
-
-    /** The funding source a sample line takes from the wording of the illustrative data. */
-    private function fundingSourceId(?string $text): ?int
-    {
-        $text = mb_strtolower((string) $text);
-        $code = str_contains($text, 'parceiro') || str_contains($text, 'partner') ? 'PARTNER' : (str_contains($text, 'própri') ? 'OWN' : null);
-
-        return ($code ? FundingSource::where('code', $code)->value('id') : null) ?? FundingSource::defaultId();
     }
 }

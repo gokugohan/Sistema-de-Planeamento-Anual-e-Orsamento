@@ -9,6 +9,7 @@ use App\Models\IndicatorProgress;
 use App\Models\User;
 use App\Services\ApprovalInbox;
 use App\Services\PlanningWindow;
+use App\Support\FiscalYear;
 use App\View\Components\NextActions;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -28,8 +29,14 @@ class ApprovalInboxTest extends TestCase
         parent::setUp();
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+        // the three real activities of 2027 (one per unit) at different steps: one waits for the head's final
+        // approval, one was submitted, one is still a draft
+        foreach (['UDIG' => Activity::STATUS_VALIDATED, 'USC' => Activity::STATUS_SUBMITTED, 'GDSC' => Activity::STATUS_DRAFT] as $unit => $status) {
+            DB::table('activities')->where('fiscal_year', 2027)->where('directorate_id', Directorate::where('code', $unit)->value('id'))
+                ->update(['status' => $status, 'version' => 0, 'approved_at' => null]);
+        }
         app()->setLocale('en');
-        \App\Support\FiscalYear::pin(2027);
+        FiscalYear::pin(2027);
         session(['locale' => 'en']);
     }
 
@@ -53,7 +60,7 @@ class ApprovalInboxTest extends TestCase
     {
         $g = $this->counts($this->user('chefe.gdsc@gdsc.tl'));
 
-        $this->assertGreaterThan(0, $g['decide'], 'the 2027 sample has activities at every step of the workflow');
+        $this->assertGreaterThan(0, $g['decide'], 'the UDIG activity waits for the final approval');
     }
 
     public function test_execution_figures_to_verify_never_include_your_own_reports(): void

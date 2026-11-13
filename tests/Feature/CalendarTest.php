@@ -12,6 +12,7 @@ use App\Services\CalendarAlerts;
 use App\Services\PlanningWindow;
 use App\Services\PlanStatus;
 use App\Services\ReportingWindows;
+use App\Support\FiscalYear;
 use App\Support\PlanOptions;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -39,7 +40,7 @@ class CalendarTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        \App\Support\FiscalYear::pin(2026);
+        FiscalYear::pin(2026);
 
         $this->director = User::where('email', 'director.udig@gdsc.tl')->firstOrFail();
         $this->admin = User::factory()->create();
@@ -134,8 +135,8 @@ class CalendarTest extends TestCase
     public function test_the_plan_must_be_complete_before_approval_where_the_institution_asks_for_it(): void
     {
         $activity = $this->submitted2027();
-        Activity::where('fiscal_year', 2027)->whereKeyNot($activity->id)->where('directorate_id', $activity->directorate_id)->firstOrFail()
-            ->forceFill(['status' => Activity::STATUS_DRAFT, 'version' => 0])->save();
+        // a second activity of the same unit, still a draft (the books give UDIG one activity a year)
+        $activity->replicate()->forceFill(['code' => $activity->code.'-B', 'status' => Activity::STATUS_DRAFT, 'version' => 0, 'submitted_at' => null])->save();
         $workflow = app(ActivityWorkflow::class);
 
         // on by default: a draft of the directorate holds back the final approval, not the certification

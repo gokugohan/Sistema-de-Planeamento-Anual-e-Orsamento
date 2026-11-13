@@ -308,7 +308,7 @@ new class extends Component {
                 <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
                 <li>{{ __('Demo accounts (@gdsc.tl, password "password"): a Minister, a Technical Officer and a Director per unit, and a Finance officer per directorate.') }}</li>
             @else
-                <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it. The Gabinete de Digitalização e Segurança Cibernética, which the books cover with one activity per unit, also gets an illustrative plan (not from any published document).') }}</li>
+                <li>{{ __('For one office: only that unit, its sub-units and the activities the State Budget plans for it, with the same amounts as in the whole ministry.') }}</li>
                 <li>{{ __('The real annual plans of 2025, 2026 and 2027 from the State Budget books (about 90 activities a year, with their official codes, indicators and amounts by economic category), for the years you choose: any other year takes the plan of the nearest of these.') }}</li>
                 <li>{{ __('Demo accounts (…@gdsc.tl, password "password"): a head of the office, a Technical Officer and a Director per unit.') }}</li>
             @endif
@@ -316,11 +316,26 @@ new class extends Component {
                 <li>{{ __('Years before the current one are approved, with monthly executed amounts and quarterly progress reported. The current year and the next are loaded as you choose above: as drafts, halfway through approval, or approved (the current year then with its spending reported up to today). Approved activities are version 1 of the plan.') }}</li>
             @endunless
         </ul>
+
+        {{-- where the figures come from: the published State Budget books, nothing made up --}}
+        <div class="mt-4 rounded-md border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm text-zinc-700">
+            <p class="font-semibold text-zinc-900">{{ __('Where the figures come from') }}</p>
+            <p class="mt-1">
+                @if(!$loaded && $scope === 'entity')
+                    {{ __('The State Budget 2027 books published by the Ministry of Finance: the annual plans of Elementos Informativos PAA, Volumes II-A and II-B (Annex K), and the new Government Policy Priorities (PPG) of Volume X.') }}
+                @else
+                    {{ __('The State Budget books published by the Ministry of Finance: the annual plans of Elementos Informativos PAA (Annex K: Volume II for 2025, Volumes II-A and II-B for 2026 and 2027), and the new Government Policy Priorities (PPG) of Volume X, which mark the activities funded as a new policy.') }}
+                @endif
+            </p>
+            <p class="mt-1">{{ __('Activities, codes, indicators, starting points, targets and amounts are as printed; nothing is made up. A unit or office loaded alone has the same amounts as in the whole ministry.') }}</p>
+            <p class="mt-1 text-xs text-zinc-500">{{ __('The books do not print monthly spending or the steps of each activity, so the sample simulates those: the spending reported for past months and three generic steps per indicator (prepare, carry out, report).') }}</p>
+        </div>
+
         <p class="text-xs text-zinc-500 mt-3">{{ __('Purging deletes only what the sample created, and keeps any sample unit or programme that real data already uses.') }}</p>
     </x-ui.card>
     <x-confirm-dialog name="confirm-load" :title="__('Load sample data')" :confirm="__('Load sample data')" wire:click="load"
         :message="match ($scope) {
-            'ministry' => __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and illustrative activities.'),
+            'ministry' => __('Load the MTC sample data? It adds organisational units, programmes, demo accounts and the activities of the State Budget books.'),
             'entity' => __('Load the demo data of :name? It becomes the institution shown, with its units, programmes, demo accounts and activities.', ['name' => $chosen['name'] ?? $entity]),
             default => __('Load the sample data for :office? It adds that office, its units, programmes, demo accounts and activities.', ['office' => $office]),
         }" />

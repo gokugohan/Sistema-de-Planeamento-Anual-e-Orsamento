@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\DB;
  *
  * Only that office's units, programmes, demo accounts and the activities the State Budget plans for
  * it are created; its envelope is the sum of its own plans. The default office is the Gabinete de
- * Digitalização e Segurança Cibernética (GDSC) with its two units, UDIG and USC. The budget books
- * give it only one activity per unit, so for GDSC an ILLUSTRATIVE plan (data/gdsc_illustrative.json,
- * not taken from any published document) is added, with 2027 activities at every step of the workflow.
+ * Digitalização e Segurança Cibernética (GDSC) with its two units, UDIG and USC. The activities and amounts
+ * are those of the State Budget books only, the same as the office has in the whole-ministry sample
+ * (for GDSC, one activity per unit); nothing is made up.
  *
  *     php artisan db:seed --class="Database\Seeders\Samples\MtcOfficeSampleDataSeeder"
  *
@@ -50,16 +50,15 @@ class MtcOfficeSampleDataSeeder extends Seeder
         if (! $units) {
             throw new \InvalidArgumentException("Unknown office '{$office}'.");
         }
-        $illustrative = $office === self::DEFAULT_OFFICE;
 
         // All or nothing: a failure part-way must not leave units and accounts without their plans.
-        DB::transaction(function () use ($office, $units, $illustrative, $state, $years) {
+        DB::transaction(function () use ($office, $units, $state, $years) {
             $this->call([RolesAndPermissionsSeeder::class, EconomicClassificationSeeder::class]);
             $this->call(MtcDirectorateSeeder::class, true, ['office' => $office]);
-            $this->call(MtcProgramSeeder::class, true, ['only' => MtcBudgetSeeder::programmeCodes($units, $illustrative), 'years' => $years]);
+            $this->call(MtcProgramSeeder::class, true, ['only' => MtcBudgetSeeder::programmeCodes($units), 'years' => $years]);
             $this->branding($office);
             $this->call(MtcDemoUsersSeeder::class, true, ['office' => $office]);
-            $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'illustrative' => $illustrative, 'state' => $state, 'years' => $years]);
+            $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'state' => $state, 'years' => $years]);
         });
     }
 

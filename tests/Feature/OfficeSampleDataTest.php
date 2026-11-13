@@ -5,10 +5,14 @@ namespace Tests\Feature;
 use App\Models\Activity;
 use App\Models\AdjustedBudget;
 use App\Models\Directorate;
+use App\Models\LineItem;
 use App\Models\SystemSetting;
 use App\Models\User;
 use App\Services\SampleRegistry;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\Samples\MtcBudgetSeeder;
+use Database\Seeders\Samples\MtcCostCentres;
+use Database\Seeders\Samples\MtcDirectorateSeeder;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt;
@@ -39,24 +43,39 @@ class OfficeSampleDataTest extends TestCase
         $this->assertSame(7, User::count()); // a Planner and a Director for each of the three units (the head of the office is the Director of the top unit), and a Finance officer for the office
     }
 
-    public function test_the_gabinete_gets_a_real_and_an_illustrative_plan_for_2026_and_2027(): void
+    public function test_the_gabinete_gets_only_the_plan_of_the_budget_books(): void
     {
         $this->loadOffice();
 
-        // The budget books give each of the three units one activity; the illustrative plan adds ten.
-        $this->assertSame(13, Activity::where('fiscal_year', 2026)->count());
-        $this->assertSame(13, Activity::where('fiscal_year', 2027)->count());
+        // The books give each of the three units one activity (2026 and 2027); the Gabinete did not exist in 2025.
+        $this->assertEqualsCanonicalizing(['510014M', '510014N', '510014O'], Activity::where('fiscal_year', 2026)->pluck('code')->all());
+        $this->assertEqualsCanonicalizing(['510014M', '510014N', '510014O'], Activity::where('fiscal_year', 2027)->pluck('code')->all());
         $this->assertSame(0, Activity::where('fiscal_year', 2025)->count());
 
-        // 2026 is fully approved (version 1 of the plan, in force); 2027 sits at every step of the workflow.
-        $this->assertSame(13, Activity::where('fiscal_year', 2026)->where('status', Activity::STATUS_APPROVED)->count());
-        $statuses2027 = Activity::where('fiscal_year', 2027)->pluck('status')->unique()->all();
-        foreach ([Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL, Activity::STATUS_APPROVED] as $status) {
-            $this->assertContains($status, $statuses2027);
-        }
+        // the amounts printed in the books, nothing added
+        $total = fn (int $year) => (float) LineItem::whereIn('activity_id', Activity::where('fiscal_year', $year)->pluck('id'))->sum('estimated_amount');
+        $this->assertEqualsWithDelta(713702, $total(2026), 0.01);
+        $this->assertEqualsWithDelta(762646, $total(2027), 0.01);
 
+        $this->assertSame(3, Activity::where('fiscal_year', 2026)->where('status', Activity::STATUS_APPROVED)->count());
         $this->assertSame(0, Activity::where('fiscal_year', 2026)->where('version', '!=', 1)->count(), 'every approved activity is version 1');
         $this->assertGreaterThan(0, AdjustedBudget::count());
+    }
+
+    public function test_an_office_loaded_alone_has_the_same_amounts_as_in_the_whole_ministry(): void
+    {
+        $sum = fn (array $entities, ?array $units) => collect($entities)->flatMap(fn ($e, $entity) => collect($e['activities'])
+            ->filter(fn ($a) => $units === null || in_array(MtcCostCentres::ownerUnit((string) $entity, $a['div']), $units, true)))
+            ->sum(fn ($a) => array_sum($a['amounts']));
+
+        foreach (array_keys(MtcDirectorateSeeder::offices()) as $office) {
+            $units = MtcDirectorateSeeder::subtree($office);
+            foreach (MtcBudgetSeeder::YEARS as $year) {
+                $inMinistry = $sum(MtcBudgetSeeder::data($year)['entities'], $units);
+                $alone = $sum(MtcBudgetSeeder::data($year, $units)['entities'], null);
+                $this->assertEqualsWithDelta($inMinistry, $alone, 0.01, "{$office} {$year}: loaded alone it must have the amounts it has in the whole ministry");
+            }
+        }
     }
 
     public function test_the_institution_shown_is_the_office(): void
@@ -82,7 +101,6 @@ class OfficeSampleDataTest extends TestCase
         $this->assertSame(0, $outside);
         $this->assertGreaterThan(0, Activity::count());
         $this->assertFalse(Activity::where('description', 'like', 'Atividade%')->exists());
-        $this->assertSame(0, Activity::where('code', 'like', 'DEMO-%')->count(), 'the illustrative plan belongs to the Gabinete only');
     }
 
     public function test_an_unknown_office_is_refused(): void
@@ -113,6 +131,19 @@ class OfficeSampleDataTest extends TestCase
         $this->assertSame(0, Activity::count());
         $this->assertSame(0, User::count());
         $this->assertSame('ORG', SystemSetting::getLocalized('org_abbr', '', 'en'));
+    }
+
+    public function test_the_page_names_the_budget_books_the_figures_come_from(): void
+    {
+        $this->seed(RolesAndPermissionsSeeder::class);
+        $admin = User::factory()->create();
+        $admin->assignRole('Admin');
+        $this->actingAs($admin);
+
+        Volt::test('pages.management.sample-data')
+            ->assertSee(__('Where the figures come from'))
+            ->set('scope', 'office')
+            ->assertSee(__('Activities, codes, indicators, starting points, targets and amounts are as printed; nothing is made up. A unit or office loaded alone has the same amounts as in the whole ministry.'));
     }
 
     public function test_the_page_loads_the_chosen_office(): void
