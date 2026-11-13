@@ -32,7 +32,9 @@ RUN composer dump-autoload --optimize --classmap-authoritative --no-dev --no-int
 
 # ── 4. the image that runs the application
 FROM base AS production
-ENV APP_ENV=production APP_DEBUG=false
+# the commit being built, shown with the version (the image has no .git): docker build --build-arg APP_COMMIT=$(git rev-parse --short HEAD)
+ARG APP_COMMIT=""
+ENV APP_ENV=production APP_DEBUG=false APP_COMMIT=${APP_COMMIT}
 COPY --from=vendor /var/www/html /var/www/html
 COPY --from=assets /app/public/build /var/www/html/public/build
 # the mysql client (schema baseline) and mysqldump (backup) talk to the database over the private compose network: no TLS there

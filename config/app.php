@@ -16,6 +16,12 @@ return [
     'name' => env('APP_NAME', 'Plano de Ação Anual (PAA)'),
 
     /*
+    | The commit this copy was built from, where the server has no .git (a Docker image, Railway).
+    | The release number itself is in the VERSION file; see App\Support\AppVersion.
+    */
+    'commit' => env('APP_COMMIT', env('RAILWAY_GIT_COMMIT_SHA', env('SOURCE_COMMIT'))),
+
+    /*
     |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------

@@ -3012,5 +3012,13 @@
     "On one page": "Iha pájina ida de'it",
     "Larger, over several pages": "Boot liu, iha pájina balu",
     "Collapse the menu": "Taka menu",
-    "Expand the menu": "Loke menu"
+    "Expand the menu": "Loke menu",
+    "Version": "Versaun",
+    "Release": "Lansamentu",
+    "Build": "Kompilasaun",
+    "Commit": "Commit",
+    "commit": "commit",
+    "Changes since the release": "Mudansa husi lansamentu",
+    "Which copy of the application is running. Quote the build when you report a problem.": "Kópia aplikasaun nian ne’ebé daudaun la’o. Temi kompilasaun bainhira ita relata problema ida.",
+    "The release reads MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. The build adds the changes made since the release and the commit, for example 1.4.0+3.e54f2f1. Every change recorded in the audit trail keeps the build that made it.": "Lansamentu lee hanesan MAIOR.MENOR.KORESAUN: KORESAUN ba korreksaun sira, MENOR ba funsionalidade foun, MAIOR ba mudansa iha dadus ka iha maneira servisu. Kompilasaun aumenta mudansa sira ne’ebé halo husi lansamentu no commit, ezemplu 1.4.0+3.e54f2f1. Mudansa ida-idak ne’ebé rejista iha auditoria rai kompilasaun ne’ebé halo nia."
 }

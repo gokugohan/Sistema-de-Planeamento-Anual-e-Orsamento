@@ -2769,5 +2769,13 @@
     "On one page": "On one page",
     "Larger, over several pages": "Larger, over several pages",
     "Collapse the menu": "Collapse the menu",
-    "Expand the menu": "Expand the menu"
+    "Expand the menu": "Expand the menu",
+    "Version": "Version",
+    "Release": "Release",
+    "Build": "Build",
+    "Commit": "Commit",
+    "commit": "commit",
+    "Changes since the release": "Changes since the release",
+    "Which copy of the application is running. Quote the build when you report a problem.": "Which copy of the application is running. Quote the build when you report a problem.",
+    "The release reads MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. The build adds the changes made since the release and the commit, for example 1.4.0+3.e54f2f1. Every change recorded in the audit trail keeps the build that made it.": "The release reads MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. The build adds the changes made since the release and the commit, for example 1.4.0+3.e54f2f1. Every change recorded in the audit trail keeps the build that made it."
 }

@@ -3012,5 +3012,13 @@
     "On one page": "Numa só página",
     "Larger, over several pages": "Maior, em várias páginas",
     "Collapse the menu": "Recolher o menu",
-    "Expand the menu": "Expandir o menu"
+    "Expand the menu": "Expandir o menu",
+    "Version": "Versão",
+    "Release": "Lançamento",
+    "Build": "Compilação",
+    "Commit": "Commit",
+    "commit": "commit",
+    "Changes since the release": "Alterações desde o lançamento",
+    "Which copy of the application is running. Quote the build when you report a problem.": "Que cópia da aplicação está a funcionar. Indique a compilação quando comunicar um problema.",
+    "The release reads MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. The build adds the changes made since the release and the commit, for example 1.4.0+3.e54f2f1. Every change recorded in the audit trail keeps the build that made it.": "O lançamento lê-se MAIOR.MENOR.CORREÇÃO: CORREÇÃO para correções, MENOR para novas funcionalidades, MAIOR para mudanças nos dados ou na forma de trabalhar. A compilação acrescenta as alterações feitas desde o lançamento e o commit, por exemplo 1.4.0+3.e54f2f1. Cada alteração registada no registo de auditoria guarda a compilação que a fez."
 }

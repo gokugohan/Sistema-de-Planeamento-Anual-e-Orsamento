@@ -185,10 +185,10 @@ new class extends Component {
     </div>
 
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-[13rem_minmax(0,1fr)]">
-        {{-- the four parts of this page --}}
+        {{-- the parts of this page --}}
         <nav aria-label="{{ __('On this page') }}" class="lg:sticky lg:top-24 lg:self-start">
             <ol class="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
-                @foreach([['identity', __('Institution and texts')], ['logo', __('Logo and browser icon')], ['approval', __('Level and approval')], ['notifications', __('Notifications and testing')]] as $i => [$anchor, $label])
+                @foreach([['identity', __('Institution and texts')], ['logo', __('Logo and browser icon')], ['approval', __('Level and approval')], ['notifications', __('Notifications and testing')], ['version', __('Version')]] as $i => [$anchor, $label])
                     <li><a href="#{{ $anchor }}" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900">
                         <span class="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-100 text-[11px] font-semibold text-zinc-600" aria-hidden="true">{{ $i + 1 }}</span>{{ $label }}</a></li>
                 @endforeach
@@ -508,6 +508,34 @@ new class extends Component {
                     </div>
                 </div>
 
+            </x-ui.card>
+            </section>
+
+            {{-- which copy of the application this is: read-only --}}
+            <section id="version" class="scroll-mt-6">
+            <x-ui.card padding="p-8">
+                @php $v = \App\Support\AppVersion::info(); @endphp
+                <h2 class="text-lg font-semibold text-zinc-900">{{ __('Version') }}</h2>
+                <p class="mt-1 text-sm text-zinc-500">{{ __('Which copy of the application is running. Quote the build when you report a problem.') }}</p>
+                <dl class="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+                    <div>
+                        <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">{{ __('Release') }}</dt>
+                        <dd class="mt-1 text-2xl font-semibold text-zinc-900 tabular-nums">{{ $v['release'] }}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">{{ __('Build') }}</dt>
+                        <dd class="mt-1 font-mono text-sm text-zinc-900">{{ $v['build'] }}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">{{ __('Commit') }}</dt>
+                        <dd class="mt-1 font-mono text-sm text-zinc-900">{{ $v['commit'] ?? '—' }}@if($v['date']) <span class="font-sans text-zinc-500">· {{ $v['date'] }}</span>@endif</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500">{{ __('Changes since the release') }}</dt>
+                        <dd class="mt-1 text-sm text-zinc-900 tabular-nums">{{ $v['commits_since'] ?? '—' }}</dd>
+                    </div>
+                </dl>
+                <p class="mt-6 text-xs leading-relaxed text-zinc-500">{{ __('The release reads MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. The build adds the changes made since the release and the commit, for example 1.4.0+3.e54f2f1. Every change recorded in the audit trail keeps the build that made it.') }}</p>
             </x-ui.card>
             </section>
         </div>

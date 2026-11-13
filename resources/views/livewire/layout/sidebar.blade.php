@@ -142,5 +142,7 @@ new class extends Component {
     <div class="sb-label px-5 pb-4 pt-3 border-t border-zinc-200 text-[11px] leading-relaxed text-nav-muted">
         <p>&copy; {{ date('Y') }} {{ $sOwner }}</p>
         <p>{{ __('Implemented by') }} {{ $sImplBy ?: \App\Support\Branding::IMPLEMENTER }}</p>
+        @php $appVersion = \App\Support\AppVersion::info(); @endphp
+        <p class="tabular-nums" title="{{ __('Release') }} {{ $appVersion['release'] }}@if($appVersion['commit']) · {{ __('commit') }} {{ $appVersion['commit'] }}@endif @if($appVersion['date']) · {{ $appVersion['date'] }}@endif">{{ __('Version') }} {{ $appVersion['build'] }}</p>
     </div>
 </div>

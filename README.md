@@ -347,6 +347,22 @@ php artisan up
 
 **Back up the database first** (see below). Never run `migrate:fresh` on a live system, and never load sample data on one.
 
+### Versions and releases
+
+Every copy of the application has a version, shown at the foot of the sidebar and under **Settings > Version**, and kept with every row of the audit trail.
+
+- **Release**: `MAJOR.MINOR.PATCH` in the `VERSION` file. PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. Each release is a git tag (`v1.4.0`) with an entry in `CHANGELOG.md`.
+- **Build**: worked out automatically for every commit: `1.4.0+3.e54f2f1` is 3 commits after v1.4.0, at commit `e54f2f1`. At the release itself it is just `1.4.0`.
+
+```bash
+php artisan paa:version                                   # what is running here
+php artisan paa:release minor --notes="..." --dry-run     # preview the next release
+php artisan paa:release minor --notes="..."               # VERSION + CHANGELOG.md, commit, tag v1.5.0
+git push --follow-tags                                    # publish it
+```
+
+`paa:release` takes `patch`, `minor`, `major` or an exact number; it commits only `VERSION` and `CHANGELOG.md` and never pushes. Where the server has git the build is read from it. A Docker image or a Railway service has no git history: pass the commit with `docker build --build-arg APP_COMMIT=$(git rev-parse --short HEAD)` (Railway sets `RAILWAY_GIT_COMMIT_SHA` itself), or set `APP_COMMIT`.
+
 ### Security checklist
 
 - `APP_DEBUG=false`, `APP_ENV=production`, HTTPS only (the app forces `https` URLs in production).
