@@ -6,6 +6,8 @@ It is designed around the Timor-Leste State Budget (OGE) process, but it is **no
 
 Built with Laravel 12, Livewire 3 (Volt), Tailwind CSS 3, Alpine.js and MySQL. Interface languages: English, Português, Tetun.
 
+**Version.** The current release is in [`VERSION`](VERSION) and what changed in each release is in [`CHANGELOG.md`](CHANGELOG.md). The running copy shows its version at the foot of the sidebar and under *Settings → Version*. See [Versions and releases](#versions-and-releases).
+
 ---
 
 **Documentation.** Two manuals, as Word documents to edit and send (the application does not show them): the user manual ([docs/MANUAL-USER.docx](docs/MANUAL-USER.docx)), for everyone who plans, approves, reports and reads, with a step-by-step tutorial for a whole year; and the administrator manual ([docs/MANUAL-ADMIN.docx](docs/MANUAL-ADMIN.docx)), for setting up and running the system. They are made from the Markdown beside them by `python docs/manual/build.py` (needs `pip install markdown python-docx`), which replaces the Word files. The presentation deck is `docs/Sistema-PAA-apresentacao-v5.pptx` (older versions are kept beside it).
@@ -19,7 +21,8 @@ Built with Laravel 12, Livewire 3 (Volt), Tailwind CSS 3, Alpine.js and MySQL. I
 5. [Deployment (production)](#deployment-production)
 6. [Operations](#operations)
 7. [Development](#development)
-8. [Known limitations](#known-limitations)
+8. [Versions and releases](#versions-and-releases)
+9. [Known limitations](#known-limitations)
 
 ---
 
@@ -94,6 +97,8 @@ Visibility follows the unit tree. **Department users** (Director, Technical offi
 - **Sign-in screen:** two panes. The left pane says who and what: the institution (name and optional logo from *Settings*), the product tagline and description, the five-step annual cycle, and an "Implemented by" credit (it shows `public/logo.png` if the file exists). The right pane is the task: email, password with show/hide and a Caps Lock warning, remember-me, forgot-password, and a note to contact the administrator. It is institution-neutral and takes everything it displays from *System → Settings*.
 - **Review pages.** *Activities to decide* (Admin, directors, named approvers) works through submitted activities in queues (To review → Ready for approval → Approved, plus Returned) with the amounts at stake in each. Both follow the year of the page (the planning year unless another is asked for).
 - **One visual language.** All screens use the same design system (sentence-case headings, indigo primary actions, the shared card, table, badge and KPI components); the legacy "black button" style is gone.
+- **Day and night mode.** The sun/moon button in the top bar switches between them; *Appearance* in the user menu also offers *System* (follow the device). Every color is a theme variable, so pages need no night-specific styles. The choice is kept per browser.
+- **Collapsible sidebar.** On a wide screen the button at the left of the top bar folds the sidebar to a rail of icons; pointing at the rail (or moving into it with the keyboard) opens it over the page. The choice is kept per browser and applied before the page appears.
 - Keyboard and screen-reader support: skip links, labeled landmarks, the current page marked in the menu and breadcrumb, visible focus.
 
 **The menu follows the annual cycle:** *Plan* (cycle, activities), *Approvals*, *Execute* (executed amount and progress), *Insights* (performance, reports) and *Administration*. **Approvals → Waiting for you** is a plain server-rendered page (`App\Services\ApprovalInbox`) with only decisions and checks: activities to decide (each line opens its own queue), execution figures to verify (never your own), and the directorates ready to be finalized as one line. Drafts and reporting due are in *My work*. The dashboard's "Needs your attention" is the same list.
@@ -343,25 +348,10 @@ php artisan migrate --force
 php artisan optimize:clear && php artisan optimize
 php artisan queue:restart
 php artisan up
+php artisan paa:version          # confirm the version now running
 ```
 
 **Back up the database first** (see below). Never run `migrate:fresh` on a live system, and never load sample data on one.
-
-### Versions and releases
-
-Every copy of the application has a version, shown at the foot of the sidebar and under **Settings > Version**, and kept with every row of the audit trail.
-
-- **Release**: `MAJOR.MINOR.PATCH` in the `VERSION` file. PATCH for fixes, MINOR for new features, MAJOR for changes to data or to how people work. Each release is a git tag (`v1.4.0`) with an entry in `CHANGELOG.md`.
-- **Build**: worked out automatically for every commit: `1.4.0+3.e54f2f1` is 3 commits after v1.4.0, at commit `e54f2f1`. At the release itself it is just `1.4.0`.
-
-```bash
-php artisan paa:version                                   # what is running here
-php artisan paa:release minor --notes="..." --dry-run     # preview the next release
-php artisan paa:release minor --notes="..."               # VERSION + CHANGELOG.md, commit, tag v1.5.0
-git push --follow-tags                                    # publish it
-```
-
-`paa:release` takes `patch`, `minor`, `major` or an exact number; it commits only `VERSION` and `CHANGELOG.md` and never pushes. Where the server has git the build is read from it. A Docker image or a Railway service has no git history: pass the commit with `docker build --build-arg APP_COMMIT=$(git rev-parse --short HEAD)` (Railway sets `RAILWAY_GIT_COMMIT_SHA` itself), or set `APP_COMMIT`.
 
 ### Security checklist
 
@@ -442,11 +432,46 @@ Conventions: business rules live in `app/Services`, not in Livewire components; 
 
 ---
 
+## Versions and releases
+
+Every copy of the application has a version. It shows at the foot of the sidebar and under *Settings → Version*, `php artisan paa:version` prints it, and every row of the audit trail keeps the version that wrote it, so any change can be traced to the code that made it. (This is the version of the **application**. The versions of an **activity**, made each time it is approved, are described in [Versions and revisions](#versions-and-revisions).)
+
+A version has two parts:
+
+| | Example | Where it comes from | When it changes |
+|---|---|---|---|
+| **Release** | `1.4.0` | the `VERSION` file, and a git tag `v1.4.0` | only when a release is made |
+| **Build** | `1.4.0+3.e54f2f1` | worked out automatically: 3 commits after v1.4.0, at commit `e54f2f1` | with every commit |
+
+At the release itself the build is just the release (`1.4.0`). The release number reads `MAJOR.MINOR.PATCH`:
+
+- **PATCH** (1.4.**1**): fixes only; nothing new to learn.
+- **MINOR** (1.**5**.0): new features; nothing that already exists changes.
+- **MAJOR** (**2**.0.0): changes to the data or to how people work, which need a note to users or a data step on upgrade.
+
+### Making a release
+
+```bash
+php artisan paa:release minor --notes="One sentence that sums up the release" --dry-run   # preview
+php artisan paa:release minor --notes="One sentence that sums up the release"             # make it
+git push --follow-tags                                                                      # publish it
+```
+
+`paa:release` takes `patch`, `minor`, `major` or an exact number such as `2.0.0`. It writes the new number into `VERSION`, adds an entry to `CHANGELOG.md` listing the commit subjects since the last release (so write commit messages that read well there), commits only those two files as "Release vX.Y.Z" and tags that commit `vX.Y.Z`. It never pushes. It refuses when nothing was committed since the last release, when the tag already exists, or when `VERSION` or `CHANGELOG.md` has uncommitted edits.
+
+### The version on a server
+
+- **With git** (a server updated with `git pull`): the build is read from git and kept in `bootstrap/cache/version.json`; it is worked out again by itself whenever a commit or a tag changes. Check it after an update with `php artisan paa:version` (`--refresh` works it out again).
+- **Without git** (a Docker image, Railway): only the release is in the files, so the commit comes from the environment. Build the image with `docker build --build-arg APP_COMMIT=$(git rev-parse --short HEAD) ...`; Railway sets `RAILWAY_GIT_COMMIT_SHA` itself; anywhere else, set `APP_COMMIT`. The build then reads `1.4.0+e54f2f1`.
+
+Quote the build when reporting a problem: it says exactly which code was running.
+
+---
+
 ## Known limitations
 
 - **The executed amount is reported, not booked.** Units report the amount each budget line executed in the month (one figure, as in the earlier Django PAA), and someone else verifies it; the application does not connect to the Ministry of Finance's financial system. A test fails the build if any view contains random or simulated figures.
 - **No link to the Ministry of Finance's budget system.** Program and activity codes are entered by hand.
-- **No dark mode.**
 - The Tetun translations were written without a native review and should be checked before official use.
 - Major framework upgrades (Laravel 13, Livewire 4) are available and have not been applied.
 
