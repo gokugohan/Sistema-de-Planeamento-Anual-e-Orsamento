@@ -95,7 +95,7 @@ class MakeRelease extends Command
             $lines[] = $notes;
             $lines[] = '';
         }
-        if ($first && ! $changes) {
+        if ($first && ! $changes && $notes === '') {
             $lines[] = '- First numbered release.';
         }
         foreach ($changes as $subject) {
