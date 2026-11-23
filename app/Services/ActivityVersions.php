@@ -44,7 +44,7 @@ class ActivityVersions
         // lines the revision removed leave the plan with it, and their amounts in force go with them
         $activity->lineItems()->onlyTrashed()->get()->each->forceDelete();
 
-        $activity->forceFill(['version' => $number, 'revision_reason' => null])->saveQuietly();
+        $activity->forceFill(['version' => $number, 'revision_reason' => null, 'revision_effect' => null])->saveQuietly();
 
         return $version;
     }
@@ -66,6 +66,8 @@ class ActivityVersions
                 'period_type' => $activity->period_type, 'quarter' => $activity->quarter,
                 'external_approval_reference' => $activity->external_approval_reference,
                 'origin' => $activity->origin, 'policy_ref' => $activity->policy_ref,
+                // what a revision that moved money said it does to the targets (a budget change, art. 35.9)
+                'revision_effect' => $activity->revision_effect,
             ],
             'indicators' => $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'annual_target' => (float) $i->annual_target,

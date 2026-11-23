@@ -9,6 +9,7 @@ use App\Models\SystemSetting;
 use App\Models\User;
 use App\Policies\ActivityPolicy;
 use App\Services\ActivityWorkflow;
+use App\Support\ApprovalRules;
 use App\Support\PlanOptions;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -70,7 +71,7 @@ class OptionalRulesTest extends TestCase
 
         $this->assertTrue(PlanOptions::current()->correctiveActions);
         $this->assertSame(['objective'], PlanOptions::current()->requiredFields);
-        $this->assertSame('flag', \App\Support\ApprovalRules::current()->segregation, 'the approval rules are saved here too');
+        $this->assertSame('flag', ApprovalRules::current()->segregation, 'the approval rules are saved here too');
 
         // the guidance for preparing the plan is set with the planning dates, in the Calendar
         Volt::actingAs($this->admin())->test('pages.management.reporting-windows')->set('guidance', 'Submit by 30 June.')->call('saveGuidance')->assertHasNoErrors();
@@ -120,5 +121,25 @@ class OptionalRulesTest extends TestCase
 
         $this->actingAs(User::where('email', 'tecnico.udig@gdsc.tl')->firstOrFail());
         Volt::test('pages.activities.activity-form', ['activity' => $this->activity->fresh()])->assertSee('Use the codes of the 2027 budget book.');
+    }
+
+    public function test_the_budget_envelope_is_one_choice_and_its_yearly_accounts_are_not_a_setting(): void
+    {
+        $page = Volt::actingAs($this->admin())->test('pages.management.optional-rules')->assertSet('envelope', 'off');
+
+        $page->set('envelope', 'record')->call('save')->assertHasNoErrors();
+        $this->assertTrue(PlanOptions::current()->budgetDecisions);
+        $this->assertFalse(PlanOptions::current()->budgetDistribution);
+
+        $page->set('envelope', 'share')->call('save')->assertHasErrors('budgetUnitId');
+        $unit = Directorate::whereNull('parent_id')->firstOrFail();
+        $page->set('budgetUnitId', (string) $unit->id)->call('save')->assertHasNoErrors();
+        $this->assertSame('share', PlanOptions::current()->envelopeUse());
+        $this->assertSame($unit->id, PlanOptions::current()->budgetUnitId);
+
+        // the accounts a revision may not increase change with each year's execution decree
+        PlanOptions::setNoIncreaseCodes(2026, '2101, 2102 ,2101');
+        $this->assertSame(['2101', '2102'], PlanOptions::noIncreaseCodesFor(2026));
+        $this->assertSame([], PlanOptions::noIncreaseCodesFor(2027));
     }
 }

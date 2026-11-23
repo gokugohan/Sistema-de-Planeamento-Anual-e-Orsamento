@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\BudgetDecision;
+use App\Models\BudgetExecution;
 use App\Models\EconomicClassification;
+use App\Models\LineItem;
 use App\Models\PlanBaseline;
 use App\Models\User;
 use App\Services\ActivityVersions;
@@ -13,6 +15,8 @@ use App\Services\ApprovedPlanReport;
 use App\Services\BudgetDecisions;
 use App\Services\PlanBreakdown;
 use App\Services\PlanningWindow;
+use App\Services\ReportingWindows;
+use App\Support\FiscalYear;
 use App\Support\Navigation;
 use App\Support\PlanOptions;
 use Carbon\Carbon;
@@ -44,7 +48,7 @@ class BudgetDecisionsTest extends TestCase
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Admin');
         PlanningWindow::forgetTree();
-        \App\Support\FiscalYear::pin(2027);
+        FiscalYear::pin(2027);
     }
 
     protected function tearDown(): void
@@ -86,7 +90,7 @@ class BudgetDecisionsTest extends TestCase
         $before = app(PlanBreakdown::class)->classTotals(2027);
         $amounts = $this->planWithCut(5000);
 
-        $decision = app(BudgetDecisions::class)->record($this->admin, 2027, 'committee', '2026-10-10', $amounts, 'Minutes 12/2026');
+        $decision = app(BudgetDecisions::class)->record($this->admin, 2027, 'ceiling', '2026-07-18', $amounts, 'Circular 1/2026');
 
         $this->assertEqualsWithDelta(array_sum($amounts), (float) $decision->total, 0.01);
         $this->assertEqualsWithDelta(array_sum(array_column($before, 'in_force')), (float) $decision->plan_total, 0.01);
@@ -104,7 +108,7 @@ class BudgetDecisionsTest extends TestCase
     {
         (new PlanOptions(budgetDecisions: true))->save();
         $decisions = app(BudgetDecisions::class);
-        $decisions->record($this->admin, 2027, 'committee', '2026-10-10', $this->planWithCut(1000));
+        $decisions->record($this->admin, 2027, 'ceiling', '2026-07-18', $this->planWithCut(1000));
         $decisions->record($this->admin, 2027, 'law', '2026-12-15', $this->planWithCut(3000), 'Law 1/2027');
         $this->assertSame('law', $decisions->latest(2027)->stage);
         $this->assertEqualsWithDelta(3000, $decisions->gap(2027)['difference'], 0.01);
@@ -163,5 +167,119 @@ class BudgetDecisionsTest extends TestCase
         $this->get(route('reports.approved-plan', ['year' => 2027, 'baseline' => $decision->plan_baseline_id]))->assertOk()->assertSee('Baseline:');
         $this->assertSame(1, PlanBaseline::count());
         $this->assertEquals((new ApprovedPlanReport)->build(2027)['totals']['total'], (float) $decision->plan_total);
+    }
+
+    public function test_a_decision_follows_the_stages_of_the_year(): void
+    {
+        (new PlanOptions(budgetDecisions: true))->save();
+        $decisions = app(BudgetDecisions::class);
+        $class = EconomicClassification::orderBy('code')->value('id');
+
+        $this->assertSame(['ceiling', 'law'], $decisions->nextStages(2027), 'the ceiling, or straight the law');
+        Volt::actingAs($this->admin)->test('pages.planning.budget-decisions')->call('openForm')->assertSet('stage', 'ceiling');
+
+        $decisions->record($this->admin, 2027, 'ceiling', '2026-07-18', [$class => 1000], 'Circular 1/2026', null, null, null, '2026-08-15');
+        $this->assertSame('2026-08-15', $decisions->latest(2027)->plans_due_on->toDateString(), 'the date for the corrected plans');
+        $this->assertSame(['law'], $decisions->nextStages(2027), 'a stage passed is not offered again');
+        $decisions->record($this->admin, 2027, 'law', '2026-12-15', [$class => 900], 'Law 1/2027');
+        $this->assertSame(['supplementary'], $decisions->nextStages(2027), 'after the law: only a supplementary budget');
+        Volt::actingAs($this->admin)->test('pages.planning.budget-decisions')->call('openForm')->assertSet('stage', 'supplementary');
+
+        foreach ([
+            fn () => $decisions->record($this->admin, 2027, 'ceiling', '2027-01-10', [$class => 900]),
+            fn () => $decisions->record($this->admin, 2027, 'supplementary', '2026-12-01', [$class => 900]),
+            fn () => $decisions->record($this->admin, 2027, 'proposal', '2027-01-10', [$class => 900]),
+        ] as $wrong) {
+            try {
+                $wrong();
+                $this->fail('a stage passed, a date before the latest decision, or a stage no longer recorded is refused');
+            } catch (DomainException) {
+            }
+        }
+
+        $decisions->record($this->admin, 2027, 'supplementary', '2027-06-08', [$class => 800], 'Law 8/2027');
+        $second = $decisions->record($this->admin, 2027, 'supplementary', '2027-09-01', [$class => 850], 'Law 12/2027');
+        $this->assertSame('Supplementary budget 2', $second->stageLabel());
+        $this->assertEqualsWithDelta(50, $decisions->change(2027)['difference'], 0.01);
+    }
+
+    public function test_after_a_supplementary_budget_the_page_says_what_to_do(): void
+    {
+        (new PlanOptions(budgetDecisions: true))->save();
+        $decisions = app(BudgetDecisions::class);
+        $decisions->record($this->admin, 2027, 'law', '2026-12-15', $this->planWithCut(0), 'Law 1/2027');
+        $this->assertSame('none', $decisions->nextSteps(2027)['steps']['adjust']['status'], 'the plan fits the law');
+
+        $cut = $this->planWithCut(2000);
+        $decisions->record($this->admin, 2027, 'supplementary', '2027-06-08', $cut, 'Law 8/2027');
+        $steps = $decisions->nextSteps(2027);
+        $this->assertEqualsWithDelta(-2000, $steps['change']['difference'], 0.01);
+        $this->assertSame('todo', $steps['steps']['adjust']['status']);
+        $this->assertSame('done', $steps['steps']['spent']['status']);
+
+        // what was already spent in a category is more than the retificativo leaves in it
+        $first = array_key_first($cut);
+        $line = LineItem::where('economic_classification_id', $first)
+            ->whereHas('activity', fn ($q) => $q->where('fiscal_year', 2027)->where('status', Activity::STATUS_APPROVED))->firstOrFail();
+        BudgetExecution::create(['line_item_id' => $line->id, 'month' => 1, 'executed' => $cut[$first] + 10, 'status' => 'Verified']);
+        $this->assertSame('problem', $decisions->nextSteps(2027)['steps']['spent']['status']);
+
+        $this->actingAs($this->admin)->get(route('planning.budget-decisions'))->assertOk()
+            ->assertSee('After the supplementary budget')->assertSee('Bring the plan to the new amount')->assertSee('already spent');
+    }
+
+    public function test_the_form_shows_the_plan_and_fills_the_amounts_from_it(): void
+    {
+        (new PlanOptions(budgetDecisions: true))->save();
+        $plan = array_filter(array_map(fn ($c) => round($c['in_force'] + $c['preparing'], 2), app(BudgetDecisions::class)->planByClass(2027)), fn ($v) => $v > 0);
+        $this->assertNotEmpty($plan);
+
+        $page = Volt::actingAs($this->admin)->test('pages.planning.budget-decisions')
+            ->call('openForm')
+            ->assertSee('Whole plan')->assertSee('$ '.number_format(array_sum($plan), 0))
+            ->call('copyPlan');
+        $this->assertEqualsWithDelta(array_sum($plan), array_sum(array_map('floatval', $page->get('amounts'))), 0.01);
+
+        // a total shared by the plan's percentages adds up to the total
+        $page->set('spread', '1000000')->call('spreadTotal')->assertHasNoErrors();
+        $amounts = array_map('floatval', $page->get('amounts'));
+        $this->assertEqualsWithDelta(1000000, array_sum($amounts), 0.001);
+        $first = array_key_first($plan);
+        $this->assertEqualsWithDelta(1000000 * $plan[$first] / array_sum($plan), $amounts[$first], 1.01);
+        $page->set('spread', '')->call('spreadTotal')->assertHasErrors('spread');
+    }
+
+    public function test_the_calendar_shows_the_stages_and_the_final_envelope(): void
+    {
+        (new PlanOptions(budgetDecisions: true))->save();
+        $decisions = app(BudgetDecisions::class);
+        $class = EconomicClassification::orderBy('code')->value('id');
+
+        // the legal dates, filled in on the calendar page: the plans in May and June, the circular by 20 July, the law
+        // from the proposal (1 October) to 1 January
+        Volt::actingAs($this->admin)->test('pages.management.reporting-windows')->call('fillBudget')->assertHasNoErrors();
+        $this->assertSame('2026-07-20', $decisions->window(2027, 'ceiling')->closes_on->toDateString());
+        $this->assertSame('2026-10-01', $decisions->window(2027, 'law')->opens_on->toDateString());
+        $this->assertSame('2026-12-31', $decisions->window(2027, 'law')->closes_on->toDateString());
+        $plan = app(ReportingWindows::class)->find(2027, 'plan', 1);
+        $this->assertSame(['2026-05-01', '2026-06-30'], [$plan->opens_on->toDateString(), $plan->closes_on->toDateString()]);
+
+        $decisions->record($this->admin, 2027, 'ceiling', '2026-07-18', [$class => 1000], 'Circular 1/2026');
+        $calendar = collect($decisions->calendar(2027)['rows'])->keyBy('key');
+        $this->assertSame('recorded', $calendar['ceiling']['status']);
+        $this->assertSame('open', $calendar['law']['status'], 'on 14 October 2026 the proposal is before Parliament: the law is expected now');
+        $this->assertNull($decisions->finalEnvelope(2027), 'a ceiling is provisional');
+        $this->get(route('planning.budget-decisions'))->assertOk()->assertSee('No final envelope yet.')->assertSee('Calendar of the 2027 budget');
+
+        Carbon::setTestNow('2027-01-10 10:00:00');
+        $this->assertSame('late', collect($decisions->calendar(2027)['rows'])->keyBy('key')['law']['status']);
+        $this->assertTrue($decisions->calendar(2027)['extended'], 'no law on 1 January: the law of the year before is extended');
+        $this->get(route('planning.budget-decisions'))->assertOk()->assertSee('one twelfth a month');
+
+        $law = $decisions->record($this->admin, 2027, 'law', '2026-12-20', [$class => 900], 'Law 1/2027');
+        $this->assertTrue($law->isFinal());
+        $this->assertSame($law->id, $decisions->finalEnvelope(2027)?->id);
+        $this->assertFalse($decisions->calendar(2027)['extended']);
+        $this->get(route('planning.budget-decisions'))->assertOk()->assertSee('Final envelope');
     }
 }

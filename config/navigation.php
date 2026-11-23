@@ -50,7 +50,7 @@ return [
                 ['label' => 'Plan cycle', 'route' => 'planning.cycle', 'icon' => 'arrow-left-right', 'permission' => 'view_paa', 'audience' => 'wide',
                     'hint' => 'Submission windows, approval and reporting of the annual plan'],
                 ['label' => 'Budget decisions', 'route' => 'planning.budget-decisions', 'icon' => 'banknote', 'audience' => 'wide', 'feature' => 'budget_decisions',
-                    'hint' => 'What the budget committee and the budget law decided, by category, against the plan'],
+                    'hint' => 'What the budget ceiling, the budget committee and the budget law decided, by category, against the plan, and how it is shared among the units'],
                 ['label' => 'Adjustment round', 'route' => 'planning.adjustment', 'icon' => 'arrow-left-right', 'permission' => 'view_paa', 'feature' => 'budget_decisions',
                     'hint' => 'Revise the activities your directorate chooses so that the plan follows the budget decision'],
             ],

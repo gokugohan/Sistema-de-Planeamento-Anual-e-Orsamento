@@ -354,6 +354,7 @@ class PlanningWindow
                 default => __('There is no certified activity to approve.'),
             });
         }
+        $this->checkShare($year, $rootId, $remark);
 
         $workflow = app(ActivityWorkflow::class);
         $approved = 0;
@@ -382,6 +383,31 @@ class PlanningWindow
         $this->finalize($user, $year, $remark, $rootId);
 
         return ['approved' => $approved, 'skipped' => [], 'finalized' => true];
+    }
+
+    /**
+     * Where the budget is distributed among the units (an optional rule), a plan above the directorate's share in any
+     * category is approved only with a remark that says why (warn, the default), or not at all (block).
+     */
+    private function checkShare(int $year, int $rootId, ?string $remark): void
+    {
+        $options = PlanOptions::current();
+        if (! $options->budgetDistribution || $options->ceilingMode === PlanOptions::CEILING_OFF) {
+            return;
+        }
+        $over = app(BudgetDistributions::class)->overruns($year, [$rootId])[$rootId] ?? [];
+        if (! $over) {
+            return;
+        }
+        $what = BudgetDistributions::describe($over);
+        // a provisional amount (before the law) still changes: it warns, and only the final envelope can stop an approval
+        $final = (bool) app(BudgetDistributions::class)->inForce($year)?->decision?->isFinal();
+        if ($options->ceilingMode === PlanOptions::CEILING_BLOCK && $final) {
+            throw new DomainException(__("The plan is above the directorate's share of the budget (:what). Reduce it before approving.", ['what' => $what]));
+        }
+        if (mb_strlen(trim((string) $remark)) < 3) {
+            throw new DomainException(__("The plan is above the directorate's share of the budget (:what). Give a remark to approve it anyway.", ['what' => $what]));
+        }
     }
 
     /** Activities of the units right under the directorate, certified and waiting for the validation of its head. */

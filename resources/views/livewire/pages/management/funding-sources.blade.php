@@ -8,6 +8,8 @@ new class extends Component {
     public string $code = '';
     public string $name = '';
     public string $kind = 'Partner';
+    /** Its money belongs to the institution's own budget title (compared with the budget decisions and their distribution). */
+    public bool $countsInTitle = false;
     public ?int $editId = null;
 
     public function mount(): void
@@ -23,8 +25,9 @@ new class extends Component {
             'code' => ['required', 'string', 'max:20', 'alpha_dash', $unique],
             'name' => 'required|string|max:100',
             'kind' => 'required|in:'.implode(',', FundingSource::KINDS),
+            'countsInTitle' => 'boolean',
         ]);
-        $data = ['code' => strtoupper(trim($this->code)), 'name' => trim($this->name), 'kind' => $this->kind];
+        $data = ['code' => strtoupper(trim($this->code)), 'name' => trim($this->name), 'kind' => $this->kind, 'counts_in_title' => $this->countsInTitle];
         $this->editId ? FundingSource::findOrFail($this->editId)->update($data) : FundingSource::create($data);
         $this->cancel();
         $this->dispatch('toast', message: __('Funding source saved.'), type: 'success');
@@ -38,11 +41,12 @@ new class extends Component {
         $this->code = $s->code;
         $this->name = $s->name;
         $this->kind = $s->kind;
+        $this->countsInTitle = (bool) $s->counts_in_title;
     }
 
     public function cancel(): void
     {
-        $this->reset('code', 'name', 'editId');
+        $this->reset('code', 'name', 'editId', 'countsInTitle');
         $this->kind = 'Partner';
         $this->resetValidation();
     }
@@ -81,7 +85,11 @@ new class extends Component {
 
     public function with(): array
     {
-        return ['sources' => FundingSource::withCount('lineItems')->orderByDesc('is_default')->orderBy('name')->get()];
+        return [
+            'sources' => FundingSource::withCount('lineItems')->orderByDesc('is_default')->orderBy('name')->get(),
+            // which sources make up the institution's own budget title matters only where the plan is compared with the budget
+            'titleRule' => \App\Support\PlanOptions::current()->budgetDecisions,
+        ];
     }
 }; ?>
 
@@ -108,6 +116,12 @@ new class extends Component {
                     <option value="Other">{{ __('Other') }}</option>
                 </select>
             </div>
+            @if($titleRule)
+                <label class="flex items-center gap-2 text-sm text-zinc-700 md:col-span-12">
+                    <input type="checkbox" wire:model="countsInTitle" class="rounded border-zinc-300 text-indigo-600">
+                    {{ __("Part of the institution's own budget title (compared with the budget decisions and their distribution)") }}
+                </label>
+            @endif
             <div class="flex items-end gap-2 md:col-span-2">
                 <x-ui.button type="submit">{{ __('Save') }}</x-ui.button>
                 @if($editId)<x-ui.button type="button" variant="secondary" shadow="none" wire:click="cancel">{{ __('Cancel') }}</x-ui.button>@endif
@@ -116,12 +130,13 @@ new class extends Component {
     </x-ui.card>
 
     <x-ui.card padding="p-0">
-        <x-ui.table :headers="[__('Code'), __('Name'), __('Kind'), __('Budget lines'), __('Status'), '']" :right="[3]" class="text-sm">
+        <x-ui.table :headers="$titleRule ? [__('Code'), __('Name'), __('Kind'), __('In the budget title'), __('Budget lines'), __('Status'), ''] : [__('Code'), __('Name'), __('Kind'), __('Budget lines'), __('Status'), '']" :right="[$titleRule ? 4 : 3]" class="text-sm">
             @foreach($sources as $s)
                 <tr wire:key="fs-{{ $s->id }}">
                     <td class="px-5 py-3 font-medium tabular-nums text-zinc-900">{{ $s->code }}</td>
                     <td class="px-5 py-3">{{ __($s->name) }}@if($s->is_default) <span class="ml-1 rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-800">{{ __('Default') }}</span>@endif</td>
                     <td class="px-5 py-3 text-zinc-600">{{ __($s->kind === 'Partner' ? 'Development partner' : $s->kind) }}</td>
+                    @if($titleRule)<td class="px-5 py-3 text-zinc-600">{{ $s->counts_in_title ? __('Yes') : __('No') }}</td>@endif
                     <td class="px-5 py-3 num">{{ $s->line_items_count }}</td>
                     <td class="px-5 py-3"><span class="inline-flex rounded-full px-2.5 py-1 text-xs font-medium {{ $s->active ? 'bg-emerald-50 text-emerald-800' : 'bg-zinc-100 text-zinc-700' }}">{{ $s->active ? __('Active') : __('Switched off') }}</span></td>
                     <td class="px-5 py-3 text-right">

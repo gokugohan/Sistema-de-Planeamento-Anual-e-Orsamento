@@ -17,6 +17,7 @@ use App\Services\BudgetDecisions;
 use App\Services\PlanBreakdown;
 use App\Services\PlanningWindow;
 use App\Services\ReportingWindows;
+use App\Support\FiscalYear;
 use App\Support\PlanOptions;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -49,7 +50,7 @@ class AdjustmentRoundTest extends TestCase
         $this->admin = User::factory()->create();
         $this->admin->assignRole('Admin');
         PlanningWindow::forgetTree();
-        \App\Support\FiscalYear::pin(2027);
+        FiscalYear::pin(2027);
         (new PlanOptions(budgetDecisions: true))->save();
     }
 
@@ -206,7 +207,7 @@ class AdjustmentRoundTest extends TestCase
         $this->assertNotNull($calendar->planClosedReason($this->head, 2027, $unit->id), 'and submission is closed');
 
         // a round that does not take new activities changes nothing
-        $plain = $this->openRound(0);
+        $plain = $this->openRound(100);
         $this->assertFalse($window->isOpenFor(2027, $unit->id));
         app(AdjustmentRounds::class)->close($this->admin, $plain);
 

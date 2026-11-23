@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\WindowExtension;
 use App\Notifications\SystemNotification;
 use App\Notifications\SystemNotificationEmail;
+use App\Services\BudgetDistributions;
 use App\Services\SampleRegistry;
 use App\Support\EmailNotifications;
 use App\Support\MailSettings;
@@ -38,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // One instance per request so every sample seeder shares adopt mode and the skipped list.
         $this->app->singleton(SampleRegistry::class);
+        // what the distribution of the budget reads (the one in force, the plan by unit) is kept for the rest of the request
+        $this->app->scoped(BudgetDistributions::class);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\BudgetDistribution;
 use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\Indicator;
@@ -109,6 +110,21 @@ class ApprovalInbox
                 ? __('The plan of :unit for :year is ready for your approval.', ['unit' => $ready[0], 'year' => $year])
                 : __(':n directorates have their plan for :year ready for your approval: :units.', ['n' => count($ready), 'year' => $year, 'units' => implode(', ', $ready)]),
                 route('approvals.index').'#plan', 'emerald');
+        }
+
+        // ── the distribution of the budget among the units (an optional rule): waiting for its approver, or returned to
+        //    the budget unit that prepares it; an administrator is asked only when nobody holds the approver's role
+        if (BudgetDistributions::on()) {
+            $distributions = app(BudgetDistributions::class);
+            $open = $distributions->openFor($year);
+            $url = route('planning.budget-decisions', ['year' => $year, 'tab' => 'distribution']);
+            if ($open?->status === BudgetDistribution::SUBMITTED && $distributions->canApprove($user, $open)
+                && ($distributions->isApprover($user) || $distributions->approvers()->isEmpty())) {
+                $add('plan', 1, __('The distribution of the budget of :year among the units is waiting for your approval.', ['year' => $year]), $url, 'emerald');
+            }
+            if ($open?->status === BudgetDistribution::DRAFT && $open->return_note && $distributions->canPrepare($user)) {
+                $add('mine', 1, __('The distribution of the budget of :year was returned: see why and send it again.', ['year' => $year]), $url, 'rose');
+            }
         }
 
         // ── reporting due: the units' monthly duty, in the running year

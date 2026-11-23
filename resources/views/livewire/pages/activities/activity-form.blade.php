@@ -370,6 +370,53 @@ new class extends Component {
         return $this->redirect(route('activities.show', $activity), navigate: true);
     }
 
+    /**
+     * Where the budget is shared among the units (an optional rule): the room the directorate's share leaves in each
+     * category this activity uses, once the amounts typed here replace what the activity already counts in the plan.
+     * Only money of the institution's own budget title counts. Information only: nothing is stopped here.
+     *
+     * @return array{unit: ?string, rows: array<int, array{code: string, name: string, room: float}>}|null
+     */
+    private function shareRoom(): ?array
+    {
+        if (! \App\Services\BudgetDistributions::on() || $this->directorate_id === '') {
+            return null;
+        }
+        $service = app(\App\Services\BudgetDistributions::class);
+        $root = app(\App\Services\PlanningWindow::class)->rootOf((int) $this->directorate_id);
+        if (! $position = $service->position((int) $this->year, $root)) {
+            return null;
+        }
+        $inTitle = \App\Models\FundingSource::inTitle();
+        $default = \App\Models\FundingSource::defaultId();
+        $counted = [];
+        if ($this->activity) {
+            $revised = (int) $this->activity->version > 0;
+            $draft = (int) $this->activity->version === 0 && $this->activity->status !== \App\Models\Activity::STATUS_REJECTED;
+            foreach ($this->activity->lineItems()->with('adjustedBudget')->get() as $l) {
+                if (in_array((int) $l->funding_source_id, $inTitle, true)) {
+                    $amount = $revised ? (float) ($l->adjustedBudget?->approved_amount ?? 0) : ($draft ? (float) $l->estimated_amount : 0.0);
+                    $counted[(int) $l->economic_classification_id] = ($counted[(int) $l->economic_classification_id] ?? 0) + $amount;
+                }
+            }
+        }
+        $typed = [];
+        foreach ($this->lines as $l) {
+            $source = (int) (($l['source_id'] ?? '') ?: $default);
+            if (($l['class_id'] ?? '') !== '' && is_numeric($l['amount'] ?? null) && in_array($source, $inTitle, true)) {
+                $typed[(int) $l['class_id']] = ($typed[(int) $l['class_id']] ?? 0) + (float) $l['amount'];
+            }
+        }
+        $rows = [];
+        foreach ($position['rows'] as $r) {
+            if (isset($typed[$r['id']]) || isset($counted[$r['id']])) {
+                $rows[] = ['code' => $r['code'], 'name' => $r['name'], 'room' => $r['room'] + ($counted[$r['id']] ?? 0) - ($typed[$r['id']] ?? 0)];
+            }
+        }
+
+        return $rows ? ['unit' => $service->units()->firstWhere('id', $root)?->code, 'rows' => $rows] : null;
+    }
+
     public function with(): array
     {
         $total = collect($this->lines)->sum(fn ($l) => is_numeric($l['amount'] ?? null) ? (float) $l['amount'] : 0);
@@ -387,6 +434,7 @@ new class extends Component {
             'windowReason' => $this->windowClosedReason(),
             'guidance' => \App\Support\PlanOptions::guidance((int) $this->year),
             'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : \App\Support\FiscalYear::nextPlanningYear(),
+            'shareRoom' => $this->shareRoom(),
         ];
     }
 }; ?>
@@ -587,6 +635,14 @@ new class extends Component {
             </div>
             <x-ui.button type="button" variant="secondary" size="sm" class="mt-3" wire:click="addLine">+ {{ __('Add category') }}</x-ui.button>
             @error('lines')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+            @if($shareRoom)
+                <p class="mt-3 rounded-md bg-zinc-50 px-3 py-2 text-xs text-zinc-700">
+                    <span class="font-medium">{{ __('Left in the share of :unit with these amounts', ['unit' => $shareRoom['unit']]) }}:</span>
+                    @foreach($shareRoom['rows'] as $r)
+                        <span @class(['whitespace-nowrap', 'font-medium text-rose-700' => $r['room'] < -0.5])>{{ $r['code'] }} {{ $r['name'] }} {{ $r['room'] < -0.5 ? '−$ '.number_format(-$r['room'], 0) : '$ '.number_format($r['room'], 0) }}</span>@if(! $loop->last) · @endif
+                    @endforeach
+                </p>
+            @endif
         </x-ui.card>
 
         {{-- 4. Indicators --}}

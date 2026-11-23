@@ -8,11 +8,17 @@ use App\Http\Controllers\ImplementationPlanController;
 use App\Http\Controllers\PerformanceReportController;
 use App\Http\Controllers\PlanBreakdownController;
 use App\Models\Activity;
+use App\Models\BudgetDistribution;
 use App\Models\Directorate;
 use App\Models\SystemSetting;
 use App\Services\ActivityCsvImporter;
+use App\Services\BudgetChangeRules;
+use App\Services\BudgetDistributions;
+use App\Services\OrgChart;
 use App\Services\UnitWorkspace;
 use App\Support\FiscalYear;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
@@ -41,10 +47,10 @@ Route::get('units', fn () => view('work.units'))->middleware(['auth', 'verified'
 
 // The organization chart (an extra view of the structure); before units/{directorate}, which would take "chart" for a unit
 Route::get('units/chart', fn () => view('work.unit-chart'))->middleware(['auth', 'verified'])->name('units.chart');
-Route::get('units/chart/print', function (\Illuminate\Http\Request $request) {
-    abort_unless(\App\Services\OrgChart::allowed($request->user()), 403);
+Route::get('units/chart/print', function (Request $request) {
+    abort_unless(OrgChart::allowed($request->user()), 403);
 
-    return view('work.unit-chart-print', app(\App\Services\OrgChart::class)->build($request->user(), \App\Support\FiscalYear::current())
+    return view('work.unit-chart-print', app(OrgChart::class)->build($request->user(), FiscalYear::current())
         + ['withPlan' => $request->boolean('plan')]);
 })->middleware(['auth', 'verified'])->name('units.chart.print');
 
@@ -73,6 +79,19 @@ Route::get('activities/{activity}/budget', fn (Activity $activity) => redirect()
 Route::get('activities/{activity}', function (Activity $activity) {
     return view('activities.show', ['activity' => $activity]);
 })->middleware(['auth', 'verified'])->name('activities.show');
+
+// The budget change a revision makes (an optional rule), printed for the request to the Ministry of Finance
+Route::get('activities/{activity}/budget-change', function (Activity $activity) {
+    abort_unless(Gate::allows('view', $activity), 403);
+    $check = app(BudgetChangeRules::class)->check($activity);
+    abort_unless($check !== null, 404);
+
+    return view('activities.budget-change-print', [
+        'activity' => $activity->load('directorate:id,code,name', 'program:id,oge_code,name'),
+        'check' => $check,
+        'organization' => SystemSetting::getLocalized('org_name', config('app.name')),
+    ]);
+})->middleware(['auth', 'verified'])->name('activities.budget-change');
 
 // The plan is the centre: there is no fiscal envelope to register or distribute. Old addresses go to the plan cycle.
 Route::redirect('budget/envelope/current', '/planning/cycle', 301);
@@ -138,6 +157,14 @@ Route::get('planning/programmes', function () {
 Route::get('planning/budget-decisions', function () {
     return view('planning.budget-decisions');
 })->middleware(['auth', 'verified'])->name('planning.budget-decisions');
+
+// A distribution of the budget among the units, printed as the annex of the act that approves it
+Route::get('planning/budget-distribution/{distribution}/print', function (BudgetDistribution $distribution) {
+    $service = app(BudgetDistributions::class);
+    abort_unless($service->canSeeAll(request()->user()), 403);
+
+    return view('planning.budget-distribution-print', $service->printable($distribution));
+})->middleware(['auth', 'verified'])->name('planning.budget-distribution.print');
 
 // The adjustment round of the year: the directorates revise the activities they choose to follow a budget decision.
 Route::get('planning/adjustment', function () {
@@ -252,7 +279,6 @@ Route::view('profile', 'profile')
 
 // Monitoring endpoint: database, cache, storage, queue, disk and backup status (no secrets).
 Route::get('health', HealthController::class)->middleware('throttle:60,1')->name('health');
-
 
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'pt', 'tet'])) {

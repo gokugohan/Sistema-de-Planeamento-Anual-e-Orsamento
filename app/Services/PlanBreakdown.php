@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Indicator;
@@ -24,6 +25,77 @@ class PlanBreakdown
 {
     /** @var array<int, int>|null the units the figures cover (ReportScope), null for every unit */
     private ?array $units = null;
+
+    /** @var array<int, int>|null the funding sources the figures cover (the institution's own budget title), null for every source */
+    private ?array $sources = null;
+
+    /** The same figures for the budget lines paid from these funding sources only; null for every source. */
+    public function forSources(?array $ids): static
+    {
+        $copy = clone $this;
+        $copy->sources = $ids;
+
+        return $copy;
+    }
+
+    /**
+     * By top-level unit (everything below it added in) and economic category: the amount in force and the amount still
+     * being prepared for the first time, as classTotals, in one grouped query.
+     *
+     * @return array<int, array<int, array{in_force: float, preparing: float}>> top-level unit id => classification id => amounts
+     */
+    public function rootClassTotals(int $year): array
+    {
+        $rows = $this->amounts($year)
+            ->groupBy('a.directorate_id', 'li.economic_classification_id')
+            ->selectRaw('a.directorate_id AS unit, li.economic_classification_id AS class_id, COALESCE(SUM(ab.approved_amount), 0) AS in_force, '
+                .'SUM(CASE WHEN a.version = 0 AND a.status <> ? AND li.deleted_at IS NULL THEN li.estimated_amount ELSE 0 END) AS preparing', [Activity::STATUS_REJECTED])
+            ->get();
+        $window = app(PlanningWindow::class);
+        $totals = [];
+        foreach ($rows as $r) {
+            if ($r->unit === null) {
+                continue;
+            }
+            $root = $window->rootOf((int) $r->unit);
+            $cell = &$totals[$root][(int) $r->class_id];
+            $cell['in_force'] = ($cell['in_force'] ?? 0.0) + (float) $r->in_force;
+            $cell['preparing'] = ($cell['preparing'] ?? 0.0) + (float) $r->preparing;
+            unset($cell);
+        }
+
+        return $totals;
+    }
+
+    /**
+     * What has been reported as executed (not rejected) by top-level unit and economic category: the floor a share or a
+     * budget line cannot go below.
+     *
+     * @return array<int, array<int, float>> top-level unit id => classification id => executed
+     */
+    public function rootClassExecuted(int $year): array
+    {
+        $rows = DB::table('budget_executions as be')
+            ->join('line_items as li', fn ($j) => $j->on('li.id', '=', 'be.line_item_id')->where('li.is_test_data', false))
+            ->join('activities as a', 'a.id', '=', 'li.activity_id')
+            ->where('a.fiscal_year', $year)->where('a.is_test_data', false)
+            ->where('be.status', '!=', BudgetExecution::REJECTED)
+            ->when($this->units !== null, fn ($q) => $q->whereIn('a.directorate_id', $this->units ?: [0]))
+            ->when($this->sources !== null, fn ($q) => $q->whereIn('li.funding_source_id', $this->sources ?: [0]))
+            ->groupBy('a.directorate_id', 'li.economic_classification_id')
+            ->selectRaw('a.directorate_id AS unit, li.economic_classification_id AS class_id, COALESCE(SUM(be.executed), 0) AS executed')
+            ->get();
+        $window = app(PlanningWindow::class);
+        $totals = [];
+        foreach ($rows as $r) {
+            if ($r->unit !== null && (float) $r->executed > 0) {
+                $root = $window->rootOf((int) $r->unit);
+                $totals[$root][(int) $r->class_id] = ($totals[$root][(int) $r->class_id] ?? 0.0) + (float) $r->executed;
+            }
+        }
+
+        return $totals;
+    }
 
     /** The same figures for these units only (a unit with those below it); null for every unit. */
     public function forUnits(?array $ids): static
@@ -195,6 +267,7 @@ class PlanBreakdown
             ->leftJoin('adjusted_budgets as ab', 'ab.line_item_id', '=', 'li.id')
             ->where('a.fiscal_year', $year)
             ->where('a.is_test_data', false)
-            ->when($this->units !== null, fn ($q) => $q->whereIn('a.directorate_id', $this->units ?: [0]));
+            ->when($this->units !== null, fn ($q) => $q->whereIn('a.directorate_id', $this->units ?: [0]))
+            ->when($this->sources !== null, fn ($q) => $q->whereIn('li.funding_source_id', $this->sources ?: [0]));
     }
 }

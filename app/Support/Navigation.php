@@ -4,6 +4,7 @@ namespace App\Support;
 
 use App\Models\SystemSetting;
 use App\Models\User;
+use App\Services\BudgetDistributions;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -171,8 +172,11 @@ class Navigation
         if (isset($node['permission']) && ! $user->can($node['permission'])) {
             return false;
         }
-        // 'wide': those who see every plan (administrators, the Minister); 'unit': everyone who works from a unit
-        if (isset($node['audience']) && (($node['audience'] === 'wide') !== ($user->isAdministrator() || $user->can('view_all_paa')))) {
+        // 'wide': those who see every plan (administrators, the Minister); 'unit': everyone who works from a unit. The budget
+        // page is also for the budget unit that prepares the distribution and for whoever approves it.
+        $wide = $user->isAdministrator() || $user->can('view_all_paa')
+            || (($node['feature'] ?? null) === 'budget_decisions' && BudgetDistributions::on() && app(BudgetDistributions::class)->canSeeAll($user));
+        if (isset($node['audience']) && (($node['audience'] === 'wide') !== $wide)) {
             return false;
         }
         if (($node['feature'] ?? null) === 'testing' && ! SystemSetting::get('enable_paa_testing_mode', false)) {

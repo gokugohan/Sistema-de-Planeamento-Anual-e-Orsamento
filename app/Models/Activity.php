@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Auditable;
 use App\Models\Scopes\ProductionScope;
+use App\Services\AdjustmentRounds;
 use App\Support\FiscalYear;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,7 +25,7 @@ class Activity extends Model
         static::deleted(fn () => FiscalYear::forget());
 
         // an activity created because an adjustment round reopened its finalized directorate belongs to that round
-        static::created(fn (Activity $a) => app(\App\Services\AdjustmentRounds::class)->recordNew($a));
+        static::created(fn (Activity $a) => app(AdjustmentRounds::class)->recordNew($a));
 
         static::updating(function ($activity) {
             if ($activity->isLocked()) {
@@ -96,7 +97,6 @@ class Activity extends Model
 
     public const ORIGIN_POLICY = 'policy';
 
-
     public const ORIGINS = [
         self::ORIGIN_BASELINE => 'Existing service (baseline)',
         self::ORIGIN_POLICY => 'New policy priority',
@@ -141,6 +141,7 @@ class Activity extends Model
         'status',
         'version',
         'revision_reason',
+        'revision_effect',
         'external_approval_required',
         'external_approval_reference',
         'procurement_required',

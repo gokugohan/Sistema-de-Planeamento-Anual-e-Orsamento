@@ -63,13 +63,26 @@ class AdjustmentRounds
     // ── opening
 
     /**
-     * A target for each directorate: the difference between the plan and the latest decision, shared out in proportion
+     * A target for each directorate: where the latest decision is distributed, what its approved plan has above its share
+     * in each category; otherwise the difference between the plan and the latest decision, shared out in proportion
      * to each directorate's approved plan, in whole dollars. Zero for everyone when the plan is not above the decision.
      *
      * @return array<int, float> directorate id => amount to reduce
      */
     public function suggestedTargets(int $year): array
     {
+        // where the latest decision has been distributed among the units, each one reduces what its plan has above its new share
+        $distributions = app(BudgetDistributions::class);
+        if (BudgetDistributions::on() && $distributions->isCurrent($year)) {
+            $targets = [];
+            foreach (array_keys($this->planByDirectorate($year)) as $id) {
+                $position = $distributions->position($year, $id);
+                $targets[$id] = $position ? round(array_sum(array_map(fn ($r) => max(0.0, $r['in_force'] - $r['share']), $position['rows']))) : 0.0;
+            }
+
+            return $targets;
+        }
+
         $gap = app(BudgetDecisions::class)->gap($year);
         $over = max(0.0, (float) ($gap['difference'] ?? 0));
         $plans = $this->planByDirectorate($year);
@@ -105,7 +118,16 @@ class AdjustmentRounds
                 'allows_new_activities' => $allowsNewActivities, 'opened_by' => $user->id,
             ]);
             foreach ($plans as $directorateId => $plan) {
-                $round->units()->create(['directorate_id' => $directorateId, 'target' => round((float) ($targets[$directorateId] ?? 0), 2), 'plan_at_start' => $plan]);
+                $target = round((float) ($targets[$directorateId] ?? 0), 2);
+                // the plan reopens only for the units concerned: those with something to reduce, or all when new money
+                // lets them add activities
+                if ($target <= 0 && ! $allowsNewActivities) {
+                    continue;
+                }
+                $round->units()->create(['directorate_id' => $directorateId, 'target' => $target, 'plan_at_start' => $plan]);
+            }
+            if (! $round->units()->exists()) {
+                throw new DomainException(__('No directorate has anything to adjust: give a target to the directorates concerned, or let the round take new activities.'));
             }
 
             return $round;
@@ -171,7 +193,7 @@ class AdjustmentRounds
             ));
         }
         $remark = trim((string) $remark);
-        if ($row && $row['reduced'] + 0.5 < (float) $unit->target && mb_strlen($remark) < 3) {
+        if ($row && (float) $unit->target > $row['reduced'] + 0.5 && mb_strlen($remark) < 3) {
             throw new DomainException(__('The target is not reached: say why in the remark.'));
         }
 
@@ -182,6 +204,18 @@ class AdjustmentRounds
     {
         abort_unless($this->canOpen($user) && $round->isOpen(), 403);
         $round->update(['closed_at' => now(), 'closed_by' => $user->id, 'closing_note' => filled($note) ? mb_substr(trim($note), 0, 2000) : null]);
+
+        // the PAA as the round leaves it is kept, to print later: after the law, it is the final PAA
+        $stage = $round->decision?->stage;
+        try {
+            app(PlanBaselines::class)->capture($user, (int) $round->fiscal_year, match ($stage) {
+                'law' => __('Final PAA, aligned to the State Budget law'),
+                'supplementary' => __('PAA aligned to the supplementary budget'),
+                default => __('PAA corrected to the :stage', ['stage' => $round->decision?->stageLabel() ?? '—']),
+            });
+        } catch (DomainException) {
+            // nothing approved to keep
+        }
     }
 
     // ── where the round stands

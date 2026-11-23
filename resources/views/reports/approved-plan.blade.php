@@ -313,6 +313,30 @@
     </p>
 @endif
 
+@if(! empty($report['shares']['rows']))
+    <h2>{{ ++$n }}. {{ __('Approved plan against the share of the budget') }}</h2>
+    <table>
+        <thead><tr><th>{{ __('Organic unit') }}</th><th class="num">{{ __('Share') }}</th><th class="num">{{ __('Approved plan') }}</th><th class="num">{{ __('Difference') }}</th></tr></thead>
+        <tbody>
+        @foreach($report['shares']['rows'] as $r)
+            <tr>
+                <td>{{ $r['code'] }} — {{ $r['name'] }}</td>
+                <td class="num">{{ number_format($r['share'], 2) }}</td>
+                <td class="num">{{ number_format($r['approved'], 2) }}</td>
+                <td class="num">{{ ($r['approved'] - $r['share'] > 0.005 ? '+' : '').number_format($r['approved'] - $r['share'], 2) }}</td>
+            </tr>
+        @endforeach
+        <tr class="total">
+            <td>{{ __('Total') }}</td>
+            <td class="num">{{ number_format(array_sum(array_column($report['shares']['rows'], 'share')), 2) }}</td>
+            <td class="num">{{ number_format(array_sum(array_column($report['shares']['rows'], 'approved')), 2) }}</td>
+            <td class="num">{{ number_format(array_sum(array_column($report['shares']['rows'], 'approved')) - array_sum(array_column($report['shares']['rows'], 'share')), 2) }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="small muted" style="margin-top:6px">{{ __('Shares as distributed among the units:') }} {{ $report['shares']['act'] ?? '—' }}. {{ __("Only the categories shared among the units and the institution's own budget title are compared; a positive difference is above the share.") }}</p>
+@endif
+
 @endif
 
 <div class="avoid-break">

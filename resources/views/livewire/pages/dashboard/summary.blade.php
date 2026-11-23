@@ -311,6 +311,8 @@ new class extends Component {
     <x-calendar-alerts :year="$year" />
     <x-budget-gap :year="$year" />
     <x-adjustment-round-alert :year="$year" />
+    {{-- people of one directorate see its share of the budget; those who see every plan have the distribution page --}}
+    @unless($wide)<x-budget-share :year="$year" />@endunless
 
     {{-- Where the year stands, in plain sentences, with the way to act --}}
     <x-year-at-a-glance :year="$year" :items="$attention" />

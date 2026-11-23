@@ -64,7 +64,8 @@ new class extends Component {
     /** @return array<int, string> */
     private function keys(): array
     {
-        return [...self::STEPS, ...array_map(fn ($m) => "month_$m", range(1, 12)), ...array_map(fn ($q) => "quarter_$q", range(1, 4))];
+        return [...self::STEPS, ...array_map(fn ($p) => "budget_$p", array_values(\App\Models\BudgetDecision::PERIODS)),
+            ...array_map(fn ($m) => "month_$m", range(1, 12)), ...array_map(fn ($q) => "quarter_$q", range(1, 4))];
     }
 
     /** Save the dates of one step, or remove them when both are empty. */
@@ -119,6 +120,24 @@ new class extends Component {
         }
         $this->load();
         $this->dispatch('toast', message: __('The reporting dates of :year are filled in.', ['year' => $this->year]), type: 'success');
+    }
+
+    /**
+     * The legal dates of the year's plan and budget envelope (prepared the year before): the annual plans in May and June,
+     * the ceiling by 20 July, the law from the proposal (1 October) to the start of the year, a supplementary budget
+     * during the year. The submission of the plan gets its legal dates too.
+     */
+    public function fillBudget(): void
+    {
+        abort_unless(auth()->user()?->isAdministrator(), 403);
+        $legal = \App\Services\BudgetDecisions::legalDates($this->year);
+        foreach (\App\Models\BudgetDecision::ORDER as $stage) {
+            [$opens, $closes] = $legal[$stage];
+            $this->write('budget', \App\Services\BudgetDecisions::calendarPeriod($stage), $opens, $closes);
+        }
+        $this->write('plan', 1, $legal['plan'][0], $legal['plan'][1]);
+        $this->load();
+        $this->dispatch('toast', message: __('The legal dates of :year are filled in.', ['year' => $this->year]), type: 'success');
     }
 
     public function clearReports(): void
@@ -180,6 +199,9 @@ new class extends Component {
         return [
             'state' => $state,
             'reportsNeedDates' => app(ReportingWindows::class)->reportingNeedsDates(),
+            'budgetOn' => PlanOptions::current()->budgetDecisions,
+            'budgetStages' => \App\Models\BudgetDecision::ORDER,
+            'hasBudget' => $saved->keys()->contains(fn ($k) => str_starts_with($k, 'budget_')),
             'hasReports' => $saved->keys()->contains(fn ($k) => str_starts_with($k, 'month_') || str_starts_with($k, 'quarter_')),
             'late' => app(ReportingWindows::class)->overdue($this->year),
             'reopened' => WindowExtension::where('fiscal_year', $this->year)->whereDate('closes_on', '>=', now()->toDateString())->with('directorate:id,name')->orderBy('closes_on')->get(),
@@ -250,7 +272,7 @@ new class extends Component {
                 <p class="text-xs text-zinc-500">{{ __('The units can prepare their activities at any time; they submit them only between these dates.') }}</p>
             </div>
         </div>
-        @include('livewire.pages.management.partials.calendar-row', ['key' => 'plan_1', 'label' => __('Submission of the plan'), 'hint' => __('Required: without dates nobody can submit.'), 'required' => true])
+        @include('livewire.pages.management.partials.calendar-row', ['key' => 'plan_1', 'label' => __('Submission of the plan'), 'hint' => __('Required: without dates nobody can submit. By law in May and June of the year before (Decreto-Lei n.º 42/2025, art. 15.7); after them the plan is closed, and an adjustment round reopens it only for the units concerned.'), 'required' => true])
         <div class="border-t border-zinc-200 px-5 py-4">
             <label for="guidance" class="field-label">{{ __('Guidance for preparing the plan') }}</label>
             <textarea id="guidance" rows="3" wire:model="guidance" class="flux-input" placeholder="{{ __('Shown to those who prepare activities for this year, for example the deadlines and instructions of the planning circular.') }}"></textarea>
@@ -259,10 +281,36 @@ new class extends Component {
         </div>
     </x-ui.card>
 
-    {{-- 2 Approval and revisions --}}
+    {{-- 2 The State Budget: its stages, prepared the year before --}}
+    @if($budgetOn)
+        <x-ui.card padding="p-0">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200 px-5 py-4">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">2</span>
+                    <div>
+                        <h2 class="section-title">{{ __('Budget envelope for :year', ['year' => $year]) }}</h2>
+                        <p class="text-xs text-zinc-500">{{ __('When the institution expects its budget envelope for :year, prepared in :before: the ceiling from the budget circular, then the State Budget law, and any supplementary budget during :year.', ['year' => $year, 'before' => $year - 1]) }}</p>
+                    </div>
+                </div>
+                @if($hasBudget)
+                    <x-ui.button type="button" variant="secondary" shadow="none" wire:click="fillBudget" wire:confirm="{{ __('Replace the dates of the plan submission and of the budget envelope with the legal ones?') }}">{{ __('Fill in the legal dates') }}</x-ui.button>
+                @else
+                    <x-ui.button type="button" variant="secondary" shadow="none" wire:click="fillBudget">{{ __('Fill in the legal dates') }}</x-ui.button>
+                @endif
+            </div>
+            @foreach($budgetStages as $stage)
+                @include('livewire.pages.management.partials.calendar-row', ['key' => 'budget_'.\App\Services\BudgetDecisions::calendarPeriod($stage),
+                    'label' => __(\App\Models\BudgetDecision::STAGES[$stage]), 'hint' => __(\App\Models\BudgetDecision::HINTS[$stage]),
+                    'required' => false, 'undated' => __('No dates'), 'final' => in_array($stage, \App\Models\BudgetDecision::FINAL, true)])
+            @endforeach
+            <p class="border-t border-zinc-200 bg-zinc-50 px-5 py-3 text-xs text-zinc-600">{{ __('The legal dates: annual plans in May and June (Decreto-Lei n.º 42/2025, art. 15.7), the budget circular with the ceiling by 20 July (art. 19.1), the proposal of the State Budget law to Parliament by 1 October (Lei n.º 3/2025, art. 30.1), in force from 1 January (art. 35). The circular gives the dates for correcting the plans to the ceiling.') }}</p>
+        </x-ui.card>
+    @endif
+
+    {{-- 3 Approval and revisions --}}
     <x-ui.card padding="p-0">
         <div class="flex items-center gap-3 border-b border-zinc-200 px-5 py-4">
-            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">2</span>
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">{{ $budgetOn ? 3 : 2 }}</span>
             <div>
                 <h2 class="section-title">{{ __('Approval') }}</h2>
                 <p class="text-xs text-zinc-500">{{ __('Optional. Leave the dates empty and these steps are always open.') }}</p>
@@ -275,7 +323,7 @@ new class extends Component {
     {{-- 3 Reporting --}}
     <x-ui.card padding="p-0">
         <div class="flex items-center gap-3 border-b border-zinc-200 px-5 py-4">
-            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">3</span>
+            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">{{ $budgetOn ? 4 : 3 }}</span>
             <div>
                 <h2 class="section-title">{{ __('Reporting') }}</h2>
                 <p class="text-xs text-zinc-500">{{ __('Each month and quarter can be reported from its first day until its due date; without dates it stays closed.') }}</p>

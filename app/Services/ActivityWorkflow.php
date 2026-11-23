@@ -70,6 +70,10 @@ class ActivityWorkflow
         if ($activity->planned_start && $activity->planned_end && $activity->planned_end < $activity->planned_start) {
             $problems[] = __('The end date is before the start date.');
         }
+        // a revision that moves money is a budget change, which says what it does to the targets (an optional rule; art. 35.9)
+        if (BudgetChangeRules::on() && app(BudgetChangeRules::class)->needsEffect($activity)) {
+            $problems[] = __('This revision moves money: say what it does to the targets.');
+        }
 
         return $problems;
     }
@@ -649,7 +653,7 @@ class ActivityWorkflow
         }
 
         $activity->auditMetadata = $this->trailMeta($user, $reason) + ['revision' => (int) $activity->version + 1];
-        $activity->update(['status' => Activity::STATUS_DRAFT, 'revision_reason' => mb_substr($reason, 0, 2000), 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null, 'external_approval_required' => false, 'external_approval_reference' => null]);
+        $activity->update(['status' => Activity::STATUS_DRAFT, 'revision_reason' => mb_substr($reason, 0, 2000), 'revision_effect' => null, 'approved_at' => null, 'approved_by' => null, 'submitted_at' => null, 'external_approval_required' => false, 'external_approval_reference' => null]);
         ActivitySignature::close($activity->id, ActivitySignature::VOIDED, $user->id, $reason);
     }
 

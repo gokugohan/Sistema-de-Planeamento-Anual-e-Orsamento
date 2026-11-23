@@ -192,6 +192,8 @@ class ApprovedPlanReport
             'indicator_count' => $activities->sum(fn ($a) => $a->indicators->count()),
             'pending' => $pending,
             'revising' => $baseline ? 0 : count($inForce),
+            // where the budget is shared among the units (an optional rule): each unit's approved plan against its share
+            'shares' => ! $scope?->unit && ! $baseline ? self::shares($year) : null,
             'baseline' => $baseline ? ['id' => $baseline->id, 'recorded_at' => $baseline->recorded_at, 'note' => $baseline->note, 'by' => $baseline->recorder?->name] : null,
             'generated_at' => now('Asia/Dili'), // Timor-Leste time (TLT, UTC+9)
             'generated_by' => auth()->user()?->name,
@@ -210,6 +212,31 @@ class ApprovedPlanReport
     }
 
     /** Show the activity as the version in force says it is (in memory only: nothing is saved). */
+    /**
+     * The approved plan of each unit of the distribution in force against its share, in the categories that are shared.
+     *
+     * @return array{act: ?string, rows: array<int, array{code: string, name: string, share: float, approved: float}>}|null
+     */
+    private static function shares(int $year): ?array
+    {
+        if (! BudgetDistributions::on()) {
+            return null;
+        }
+        $service = app(BudgetDistributions::class);
+        if (! $distribution = $service->inForce($year)) {
+            return null;
+        }
+        $rows = [];
+        foreach ($service->units() as $u) {
+            $position = $service->position($year, $u->id);
+            if ($position && ($position['share'] > 0 || $position['rows'])) {
+                $rows[] = ['code' => (string) $u->code, 'name' => $u->name, 'share' => $position['share'], 'approved' => array_sum(array_column($position['rows'], 'in_force'))];
+            }
+        }
+
+        return ['act' => trim(($distribution->act_reference ?? '').($distribution->act_date ? ', '.$distribution->act_date->format('d/m/Y') : '')) ?: null, 'rows' => $rows];
+    }
+
     private function asApproved(Activity $activity, ActivityVersion $version): void
     {
         $snap = $version->snapshot;

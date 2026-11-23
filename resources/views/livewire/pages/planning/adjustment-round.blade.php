@@ -42,8 +42,12 @@ new class extends Component {
     {
         abort_unless(PlanOptions::current()->budgetDecisions, 404);
         abort_unless(auth()->user()->can('view_paa'), 403);
-        $this->closesOn = now()->addWeeks(2)->toDateString();
+        // the round closes when the budget circular (or the Ministry of Finance) wants the corrected plans
+        $due = app(\App\Services\BudgetDecisions::class)->latest(FiscalYear::current())?->plans_due_on;
+        $this->closesOn = $due && $due->gte(now()->startOfDay()) ? $due->toDateString() : now()->addWeeks(2)->toDateString();
         $this->targets = array_map(fn ($v) => (string) $v, app(AdjustmentRounds::class)->suggestedTargets(FiscalYear::current()));
+        // new money (a supplementary budget that raises the envelope, for example) usually calls for new activities
+        $this->allowsNewActivities = (app(\App\Services\BudgetDecisions::class)->change(FiscalYear::current())['difference'] ?? 0) > 0.5;
     }
 
     public function updatedSearch(): void

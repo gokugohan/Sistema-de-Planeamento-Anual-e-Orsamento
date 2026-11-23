@@ -18,6 +18,10 @@
                 'when' => __('After each decision.'), 'where' => __('Plan → Budget decisions'), 'url' => route('planning.budget-decisions')] : null,
         ]] : null,
         [__('Plan'), [
+            $options->budgetDistribution ? ['who' => ['Finance', 'Planning', 'Director'], 'whoText' => __('The budget unit (finance and administration)'), 'what' => __('Share the budget among the directorates'), 'how' => __('Record the ceiling of the budget circular, share it among the directorates by category, and submit the shares for approval.'),
+                'when' => __('When the budget circular arrives (by 20 July), and after each new budget decision.'), 'where' => __('Plan → Budget decisions → Distribution among the units'), 'url' => route('planning.budget-decisions', ['tab' => 'distribution'])] : null,
+            $options->budgetDistribution ? ['who' => ['Minister'], 'whoText' => __('The head of the institution'), 'what' => __('Approve the distribution'), 'how' => __('Check the shares and approve them with the reference of the despacho, or return them with a reason. Each directorate then plans within its share.'),
+                'when' => __('When the distribution is submitted.'), 'where' => __('Approvals → Waiting for you'), 'url' => route('approvals.index')] : null,
             ['who' => ['Planning'], 'whoText' => __('Technical Officer of the unit'), 'what' => __('Prepare the activities'), 'short' => __('Prepare'), 'how' => __('Describe each activity with its indicators and targets, its actions and its budget lines.'),
                 'when' => __('For the current year or the next, while planning is open: until your directorate finalizes its plan, and within the dates an administrator may have set.'), 'where' => __('Plan → My plan → New activity'), 'url' => route('activities.index')],
             ['who' => ['Planning'], 'whoText' => __('Technical Officer (or whoever the unit\'s approval list names to prepare)'), 'what' => __('Submit the activity'), 'short' => __('Submit'), 'how' => __('Send the complete activity up for certification. The page says what is missing if it is not ready.'),

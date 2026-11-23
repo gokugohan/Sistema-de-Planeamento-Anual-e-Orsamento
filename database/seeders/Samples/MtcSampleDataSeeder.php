@@ -48,6 +48,8 @@ class MtcSampleDataSeeder extends Seeder
             $this->call(MtcProgramSeeder::class, false, ['years' => $years]);
             $this->call(MtcDemoUsersSeeder::class);
             $this->call(MtcBudgetSeeder::class, false, ['state' => $state, 'years' => $years]);
+            // the budget decisions of the books and their distribution among the units (shown where those rules are on)
+            $this->call(MtcBudgetDecisionSeeder::class, false, ['years' => $years]);
         });
     }
 }

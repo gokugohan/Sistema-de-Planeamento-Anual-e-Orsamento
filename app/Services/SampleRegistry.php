@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Activity;
 use App\Models\AuditLog;
+use App\Models\BudgetDecision;
 use App\Models\Directorate;
 use App\Models\Program;
 use App\Models\ReportingWindow;
@@ -193,6 +194,9 @@ class SampleRegistry
 
             // 4b. The outcome and output indicators the sample set (also on a real programme or subprogramme it used).
             ResultIndicator::whereIn('id', $ids(ResultIndicator::class))->delete();
+
+            // 4d. The sample's budget decisions (their distributions go with them).
+            BudgetDecision::whereIn('id', $ids(BudgetDecision::class))->get()->each->delete();
 
             // 4c. The sample's reporting calendar.
             ReportingWindow::whereIn('id', $ids(ReportingWindow::class))->delete();

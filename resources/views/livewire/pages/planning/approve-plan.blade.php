@@ -45,7 +45,12 @@ new class extends Component {
             ->sortBy([fn ($a, $b) => $b['ready'] <=> $a['ready'], fn ($a, $b) => strcmp($a['unit']->code, $b['unit']->code)])
             ->values();
 
-        return ['plans' => $plans];
+        // where the budget is shared among the units (an optional rule): the categories in which a plan is above its share
+        $options = \App\Support\PlanOptions::current();
+        $over = $options->budgetDistribution && $options->ceilingMode !== \App\Support\PlanOptions::CEILING_OFF
+            ? app(\App\Services\BudgetDistributions::class)->overruns($this->year, $plans->pluck('id')->all()) : [];
+
+        return ['plans' => $plans, 'over' => $over, 'blocks' => $options->ceilingMode === \App\Support\PlanOptions::CEILING_BLOCK];
     }
 }; ?>
 
@@ -69,10 +74,16 @@ new class extends Component {
                                     @if($p['with_units'] > 0) {{ trans_choice(':n activity is still with the units (draft or returned).|:n activities are still with the units (drafts or returned).', $p['with_units'], ['n' => $p['with_units']]) }} @endif
                                 @endif
                             </p>
+                            @if($o = $over[$p['id']] ?? null)
+                                <p @class(['mt-1 text-sm font-medium', 'text-rose-700' => $blocks, 'text-amber-800' => ! $blocks])>
+                                    {{ __('Above its share of the budget: :what.', ['what' => \App\Services\BudgetDistributions::describe($o)]) }}
+                                    {{ $blocks ? __('Reduce the plan before approving it.') : __('A remark is needed to approve it anyway.') }}
+                                </p>
+                            @endif
                         </div>
-                        @if($p['ready'])
+                        @if($p['ready'] && ! (($over[$p['id']] ?? null) && $blocks))
                             <div class="flex w-full flex-col gap-2 sm:flex-row lg:w-auto">
-                                <input type="text" wire:model="remark.{{ $p['id'] }}" class="flux-input sm:w-72" placeholder="{{ __('Remark for the record (optional)') }}" aria-label="{{ __('Remark for the record (optional)') }}">
+                                <input type="text" wire:model="remark.{{ $p['id'] }}" class="flux-input sm:w-72" placeholder="{{ ($over[$p['id']] ?? null) ? __('Why approve above the share? (required)') : __('Remark for the record (optional)') }}" aria-label="{{ ($over[$p['id']] ?? null) ? __('Why approve above the share? (required)') : __('Remark for the record (optional)') }}">
                                 <x-ui.button size="md" wire:click="approve({{ $p['id'] }})" wire:loading.attr="disabled"
                                     wire:confirm="{{ $p['certified'] > 0
                                         ? trans_choice('Approve the plan of :unit? :n certified activity is approved and the plan is finalized: it takes no new activities afterwards. Approved activities can still be revised.|Approve the plan of :unit? :n certified activities are approved and the plan is finalized: it takes no new activities afterwards. Approved activities can still be revised.', $p['certified'], ['unit' => $p['unit']->code, 'n' => $p['certified']])

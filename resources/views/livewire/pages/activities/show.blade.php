@@ -28,6 +28,9 @@ new class extends Component {
     public string $reason = '';
     public string $externalReference = '';
 
+    /** What a revision that moves money does to the targets (a budget change, an optional rule). */
+    public string $revisionEffect = '';
+
     public function with(): array
     {
         $workflow = app(\App\Services\ActivityWorkflow::class);
@@ -64,6 +67,9 @@ new class extends Component {
             'mayMarkExternal'         => $user->isAdministrator() || $user->can('update', $this->activity),
             'mayRecordExternal'       => $user->isAdministrator() || $workflow->isFinalApprover($user, $this->activity),
             'externalMissing'         => $workflow->externalApprovalMissing($this->activity),
+            // an optional rule: a revision that moves money is a budget change, checked against Decreto-Lei n.º 42/2025, art. 35
+            'budgetChange'            => app(\App\Services\BudgetChangeRules::class)->check($this->activity),
+            'mayEditEffect'           => $user->isAdministrator() || $user->can('update', $this->activity),
         ];
     }
 
@@ -231,6 +237,18 @@ new class extends Component {
         $this->reset('moveUnitId', 'moveRemark');
         $this->refresh();
         $this->dispatch('toast', message: __('Activity moved to :unit.', ['unit' => $to->name]), type: 'success');
+    }
+
+    /** Say what a revision that moves money does to the targets (Decreto-Lei n.º 42/2025, art. 35.9; an optional rule). */
+    public function saveEffect(): void
+    {
+        abort_unless(\App\Services\BudgetChangeRules::on() && \App\Services\ActivityVersions::revising($this->activity), 403);
+        abort_unless(auth()->user()->isAdministrator() || auth()->user()->can('update', $this->activity), 403);
+        $this->validate(['revisionEffect' => 'required|string|min:3|max:2000']);
+        $this->activity->update(['revision_effect' => trim($this->revisionEffect)]);
+        $this->reset('revisionEffect');
+        $this->refresh();
+        $this->dispatch('toast', message: __('Effect on the targets saved.'), type: 'success');
     }
 
     /** Mark the revision as needing an approval outside the institution, or not (an optional rule). */
@@ -893,6 +911,28 @@ new class extends Component {
                         </ul>
                     @else
                         <p class="mt-2 text-xs text-amber-900">{{ __('Nothing has been changed yet.') }}</p>
+                    @endif
+                    @if($budgetChange && $budgetChange['moves_money'])
+                        <div class="mt-3 border-t border-amber-200 pt-3 text-xs text-zinc-800">
+                            <p class="font-semibold text-amber-900">{{ __('Budget change: $ :amount moves', ['amount' => number_format($budgetChange['moved'], 0)]) }}@if($budgetChange['program']) · {{ __('from :from to :to', $budgetChange['program']) }}@endif</p>
+                            @if($budgetChange['warnings'])
+                                <ul class="mt-1 list-disc space-y-0.5 pl-4 text-rose-800">@foreach($budgetChange['warnings'] as $w)<li>{{ $w }}</li>@endforeach</ul>
+                            @else
+                                <p class="mt-1 text-emerald-800">{{ __('Within the rules on budget changes.') }}</p>
+                            @endif
+                            <p class="mt-2 font-medium">{{ __('Effect on the targets') }}</p>
+                            @if($activity->revision_effect)<p class="mt-0.5 rounded-md bg-white/70 px-3 py-2">{{ $activity->revision_effect }}</p>@endif
+                            @if($mayEditEffect)
+                                <div class="mt-2 flex flex-col gap-2 sm:flex-row">
+                                    <textarea wire:model="revisionEffect" rows="2" class="flux-input text-sm" placeholder="{{ __('What does moving this money do to the targets of the plan?') }}" aria-label="{{ __('Effect on the targets') }}"></textarea>
+                                    <x-ui.button type="button" size="sm" variant="secondary" wire:click="saveEffect">{{ $activity->revision_effect ? __('Change') : __('Save') }}</x-ui.button>
+                                </div>
+                                @error('revisionEffect')<p class="field-error">{{ $message }}</p>@enderror
+                            @elseif(! $activity->revision_effect)
+                                <p class="mt-0.5 text-amber-900">{{ __('Not stated yet.') }}</p>
+                            @endif
+                            <a href="{{ route('activities.budget-change', $activity) }}" target="_blank" class="mt-2 inline-block font-medium text-indigo-700 hover:underline">{{ __('Print the budget change') }}</a>
+                        </div>
                     @endif
                     @if($externalRule)
                         <div class="mt-3 border-t border-amber-200 pt-3 text-xs text-zinc-800">
