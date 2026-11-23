@@ -2,6 +2,12 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.2.0] — 2026-11-24
+
+The budget envelope: the ceiling, the State Budget law and the retificativo on the legal calendar, optionally shared among the directorates.
+
+- Budget envelope: the ceiling, the State Budget law and the retificativo, shared among the directorates, on the legal calendar
+
 ## [1.1.0] — 2026-11-14
 
 PAA by program in the ministry's form, sample data only from the State Budget books, the version on the sign-in page, and Timor-Leste time.
