@@ -135,6 +135,9 @@
         </div>
     </div>
 
+    {{-- the app's own confirmation for every wire:confirm --}}
+    <x-app-confirm />
+
     <!-- Toast Notifications -->
     <div
         x-data="{
