@@ -2,6 +2,15 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.3.0] — 2026-11-24
+
+Demo data on the legal calendar, clearer approval steps in the activity list, the app's own confirmation dialog, and unit links on the approval pages.
+
+- Approval pages link each directorate and department to its unit page
+- The app's own confirmation dialog in place of the browser's alert, for every confirmation
+- Activities list: one button per step (submit, certify, validate) instead of Move on, select all and clear selection; the final approval is never given in bulk
+- Sample data on the legal calendar: choose whether the coming year's plan is submitted or approved; the current year is approved and carried out
+
 ## [1.2.0] — 2026-11-24
 
 The budget envelope: the ceiling, the State Budget law and the retificativo on the legal calendar, optionally shared among the directorates.
