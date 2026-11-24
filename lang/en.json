@@ -3112,5 +3112,9 @@
     "Validate the selected activities?": "Validate the selected activities?",
     "They then go to the head of the directorate, who approves them with the plan.": "They then go to the head of the directorate, who approves them with the plan.",
     "The final approval is given with the plan of the directorate.": "The final approval is given with the plan of the directorate.",
-    "Select all on this page": "Select all on this page"
+    "Select all on this page": "Select all on this page",
+    "Planning for :year is closed": "Planning for :year is closed",
+    "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.": "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.",
+    "and :n more|and :n more": "and :n more|and :n more",
+    "and :n more unit|and :n more units": "and :n more unit|and :n more units"
 }

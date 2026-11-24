@@ -11,6 +11,7 @@ use App\Models\LineItem;
 use App\Models\Program;
 use App\Models\ResultIndicator;
 use App\Models\Subprogram;
+use App\Models\UnitPlanning;
 use App\Models\User;
 use App\Services\ActivityVersions;
 use App\Services\PlanningWindow;
@@ -116,6 +117,10 @@ class MtcBudgetSeeder extends Seeder
                     $this->advanceHalfway($year);
                 }
                 $this->approveVersions($year);
+                if (self::$legalCalendar && $this->stateOf($year) === 'approved') {
+                    // an approved plan on the legal calendar is also finalized, by each directorate, before its year starts
+                    $this->finalize($registry, $year);
+                }
                 if (self::$legalCalendar) {
                     // the plan follows the legal calendar: submitted in May and June of the year before, the ceiling
                     // by 20 July, the law by the end of the year
@@ -380,6 +385,20 @@ class MtcBudgetSeeder extends Seeder
         foreach ($activities as $activity) {
             $by = $activity->approved_by ? User::find($activity->approved_by) : null;
             $versions->approved($activity, $by ?? $fallback);
+        }
+    }
+
+    /** Each directorate of the year's sample plan has finalized it (approved after the ceiling, before the year starts). */
+    private function finalize(SampleRegistry $registry, int $year): void
+    {
+        $window = app(PlanningWindow::class);
+        PlanningWindow::forgetTree();
+        $by = User::role('Admin')->first() ?? User::first();
+        $at = min(($year - 1).'-12-20 09:00:00', now()->toDateTimeString());
+        $roots = Activity::withoutGlobalScopes()->whereIn('id', $this->planted[$year] ?? [])->pluck('directorate_id')
+            ->map(fn ($id) => $window->rootOf((int) $id))->unique();
+        foreach ($roots as $root) {
+            $registry->upsert('mtc', UnitPlanning::class, ['fiscal_year' => $year, 'directorate_id' => $root], ['planning_by' => $by?->id, 'planning_at' => $at]);
         }
     }
 

@@ -45,7 +45,7 @@ class FiscalYear
     {
         $name = self::pageRoute() ?? '';
 
-        return $name !== '' && ! \Illuminate\Support\Str::is(self::NO_YEAR, $name);
+        return $name !== '' && ! Str::is(self::NO_YEAR, $name);
     }
 
     /** @var array<int, int>|null */
@@ -192,7 +192,7 @@ class FiscalYear
             }
 
             // next year once this year's plan is approved, or once its activities are already being prepared
-        return self::hasApproved($now) || Activity::query()->where('fiscal_year', $now + 1)->exists() ? $now + 1 : $now;
+            return self::hasApproved($now) || Activity::query()->where('fiscal_year', $now + 1)->exists() ? $now + 1 : $now;
         });
     }
 
@@ -266,17 +266,34 @@ class FiscalYear
             ->map(fn ($y) => (int) $y)->unique()->sortDesc()->values()->all();
     }
 
-    /** Can new activities still be planned for this year (for this unit, through its directorate)? */
+    /**
+     * Can new activities still be planned for this year (for this unit, through its directorate)? Not when its plan is
+     * finalized, and not once its planning dates have passed (PlanningWindow::calendarClosed).
+     */
     public static function planningOpen(int $year, ?int $unitId = null): bool
     {
         $window = app(PlanningWindow::class);
 
-        return $unitId === null ? $window->isOpen($year) : $window->isOpenFor($year, $unitId);
+        return ($unitId === null ? $window->isOpen($year) : $window->isOpenFor($year, $unitId)) && ! $window->calendarClosed($year, $unitId);
+    }
+
+    /** The year whose plan takes new activities now, the current one first, for this unit; null when neither is open. */
+    public static function openPlanningYear(?int $unitId = null): ?int
+    {
+        $current = (int) now()->year;
+        foreach ([$current, $current + 1] as $year) {
+            if (self::planningEndedBy($year, $unitId) === null) {
+                return $year;
+            }
+        }
+
+        return null;
     }
 
     /**
      * Why the year takes no new activities: 'Year' when it is neither the current year nor the next one (and testing
-     * mode is off), 'Finalized' when planning has ended for the year (or the unit's directorate); null while it is open.
+     * mode is off), 'Finalized' when planning has ended for the year (or the unit's directorate), 'Closed' when its
+     * planning dates have passed; null while it is open.
      */
     public static function planningEndedBy(int $year, ?int $unitId = null): ?string
     {
@@ -284,8 +301,12 @@ class FiscalYear
             return 'Year';
         }
         $window = app(PlanningWindow::class);
+        $ended = $unitId === null ? $window->endedBy($year) : $window->unitEndedBy($year, $unitId);
+        if ($ended === null && $window->calendarClosed($year, $unitId)) {
+            return 'Closed';
+        }
 
-        return $unitId === null ? $window->endedBy($year) : $window->unitEndedBy($year, $unitId);
+        return $ended;
     }
 
     /** The first year from this one on whose plan is still open: where new activities go. */

@@ -3354,5 +3354,9 @@
     "Validate the selected activities?": "Validar as atividades selecionadas?",
     "They then go to the head of the directorate, who approves them with the plan.": "Seguem depois para o dirigente da direção, que as aprova com o plano.",
     "The final approval is given with the plan of the directorate.": "A aprovação final é dada com o plano da direção.",
-    "Select all on this page": "Selecionar todas desta página"
+    "Select all on this page": "Selecionar todas desta página",
+    "Planning for :year is closed": "O planeamento de :year está fechado",
+    "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.": "Os planos de :year foram preparados e submetidos de :from a :to (Decreto-Lei n.º 42/2025, art. 15.7). Só entram novas atividades quando uma ronda de ajustamento reabre o plano de uma direção (depois do teto, da lei do Orçamento do Estado ou de um orçamento retificativo), ou quando um administrador reabre as datas para uma unidade. Uma atividade aprovada pode ainda ser revista.",
+    "and :n more|and :n more": "e mais :n|e mais :n",
+    "and :n more unit|and :n more units": "e mais :n unidade|e mais :n unidades"
 }

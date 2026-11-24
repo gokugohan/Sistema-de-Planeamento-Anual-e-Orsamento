@@ -138,6 +138,25 @@ class PlanningWindow
         return $year === $now || $year === $now + 1 || (bool) SystemSetting::get('enable_paa_testing_mode', false);
     }
 
+    /**
+     * Have the planning dates of the year passed (Decreto-Lei n.º 42/2025, art. 15.7: the plans are prepared in May and June
+     * of the year before)? Then the plan takes no new activity, for everybody, unless an administrator reopened the dates
+     * for the unit or an adjustment round lets its directorate add activities. Not in testing mode, and not without dates.
+     */
+    public function calendarClosed(int $year, ?int $unitId = null): bool
+    {
+        if (SystemSetting::get('enable_paa_testing_mode', false)) {
+            return false;
+        }
+        $window = app(ReportingWindows::class)->find($year, ReportingWindows::PLAN, 1);
+        if (! $window || now()->startOfDay()->lte($window->closes_on)) {
+            return false;
+        }
+
+        return ! ($unitId && (app(ReportingWindows::class)->reopenedFor($year, ReportingWindows::PLAN, 1, $unitId)
+            || AdjustmentRound::takesNewActivities($year, $this->rootOf($unitId))));
+    }
+
     /** Can the unit add new activities to the plan of the year: its directorate has not finalized, or an adjustment round lets it. */
     public function isOpenFor(int $year, int $unitId): bool
     {

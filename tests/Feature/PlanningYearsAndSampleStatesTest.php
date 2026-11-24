@@ -178,6 +178,13 @@ class PlanningYearsAndSampleStatesTest extends TestCase
         $this->assertSame(['2026-05-01', '2026-06-30'], [$plan->opens_on->toDateString(), $plan->closes_on->toDateString()]);
         $this->assertSame('2026-07-20', app(BudgetDecisions::class)->window(2027, 'ceiling')->closes_on->toDateString());
 
+        // the current year is finalized; the coming year's planning dates have passed: neither takes new activities
+        $this->assertSame('Finalized', FiscalYear::planningEndedBy(2026));
+        $this->assertSame('Closed', FiscalYear::planningEndedBy(2027));
+        $this->assertNull(FiscalYear::openPlanningYear());
+        $this->get(route('activities.create', ['year' => 2027]))->assertOk()->assertSee('Planning for 2027 is closed')->assertDontSee('Plan for 2026');
+        $this->get(route('activities.create', ['year' => 2026]))->assertOk()->assertSee('Planning for 2026 has ended');
+
         // approved instead: the coming year waits for the law
         Volt::test('pages.management.sample-data')->call('purge');
         Volt::test('pages.management.sample-data')->set('state', 'approved')

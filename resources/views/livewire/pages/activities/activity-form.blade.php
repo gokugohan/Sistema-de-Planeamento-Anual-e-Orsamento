@@ -433,7 +433,8 @@ new class extends Component {
             'endedBy' => $this->activity ? null : \App\Support\FiscalYear::planningEndedBy($this->year, $this->directorate_id !== '' ? (int) $this->directorate_id : null),
             'windowReason' => $this->windowClosedReason(),
             'guidance' => \App\Support\PlanOptions::guidance((int) $this->year),
-            'nextYear' => $this->directorate_id !== '' ? app(\App\Services\PlanningWindow::class)->nextOpenYearFor((int) $this->directorate_id) : \App\Support\FiscalYear::nextPlanningYear(),
+            'nextYear' => \App\Support\FiscalYear::openPlanningYear($this->directorate_id !== '' ? (int) $this->directorate_id : null),
+            'planDates' => app(\App\Services\ReportingWindows::class)->find($this->year, \App\Services\ReportingWindows::PLAN, 1),
             'shareRoom' => $this->shareRoom(),
         ];
     }
@@ -456,6 +457,11 @@ new class extends Component {
                     <p class="max-w-2xl text-sm text-zinc-600">
                         {{ __('New activities go into the plan of the current year or the next one: :current or :next. An approved activity of another year can still be revised. For practice with other years, an administrator can switch on testing mode in Settings.', ['current' => now()->year, 'next' => now()->year + 1]) }}
                     </p>
+                @elseif($endedBy === 'Closed')
+                    <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year is closed', ['year' => $year]) }}</h2>
+                    <p class="max-w-2xl text-sm text-zinc-600">
+                        {{ __('The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.', ['year' => $year, 'from' => $planDates?->opens_on?->format('d/m/Y'), 'to' => $planDates?->closes_on?->format('d/m/Y')]) }}
+                    </p>
                 @else
                     <h2 class="text-base font-semibold text-zinc-900">{{ __('Planning for :year has ended', ['year' => $year]) }}</h2>
                     <p class="max-w-2xl text-sm text-zinc-600">
@@ -463,7 +469,9 @@ new class extends Component {
                     </p>
                 @endif
                 <div class="flex flex-wrap gap-2">
-                    <x-ui.button href="{{ route('activities.create', ['year' => $nextYear]) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>
+                    @if($nextYear && $nextYear !== $year)
+                        <x-ui.button href="{{ route('activities.create', ['year' => $nextYear]) }}">{{ __('Plan for :year', ['year' => $nextYear]) }}</x-ui.button>
+                    @endif
                     <x-ui.button variant="secondary" shadow="none" href="{{ route('activities.index') }}" wire:navigate>{{ __('Back to activities') }}</x-ui.button>
                 </div>
             </div>

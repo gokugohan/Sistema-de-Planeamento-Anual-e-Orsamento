@@ -3354,5 +3354,9 @@
     "Validate the selected activities?": "Valida atividade sira ne'ebé hili?",
     "They then go to the head of the directorate, who approves them with the plan.": "Depois sira ba xefe diresaun nian, ne'ebé aprova sira ho planu.",
     "The final approval is given with the plan of the directorate.": "Aprovasaun finál fó ho planu diresaun nian.",
-    "Select all on this page": "Hili hotu iha pájina ne'e"
+    "Select all on this page": "Hili hotu iha pájina ne'e",
+    "Planning for :year is closed": "Planeamentu ba :year taka ona",
+    "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.": "Planu sira ba :year prepara no submete husi :from to'o :to (Dekretu-Lei n.º 42/2025, art. 15.7). Atividade foun tama de'it bainhira ronda ajustamentu ida loke fali planu diresaun ida nian (depois tetu, lei Orsamentu Estadu ka orsamentu retifikativu), ka bainhira administradór loke fali data ba unidade ida. Atividade ne'ebé aprova ona sei bele revee.",
+    "and :n more|and :n more": "no :n tan|no :n tan",
+    "and :n more unit|and :n more units": "no unidade :n tan|no unidade :n tan"
 }
