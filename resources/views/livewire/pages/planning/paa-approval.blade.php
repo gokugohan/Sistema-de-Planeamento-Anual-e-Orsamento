@@ -231,7 +231,11 @@ new class extends Component {
 
         $money = fn (array $s) => (float) LineItem::whereIn('activity_id', $this->scope()->whereIn('status', $s)->select('id'))->sum('estimated_amount');
 
+        // the units this user may open, to link them (null: every unit)
+        $openable = app(\App\Services\UnitWorkspace::class)->visibleUnitIds(auth()->user());
+
         return [
+            'canOpenUnit' => fn ($d) => $d && ($openable === null || in_array($d->id, $openable, true)),
             'year' => $year,
             'activities' => $activities,
             'queueCounts' => $queueCounts,
@@ -344,7 +348,8 @@ new class extends Component {
                     <td class="px-6 py-4 min-w-[22rem]">
                         <a href="{{ route('activities.show', $a->id) }}" wire:navigate class="text-sm font-semibold text-zinc-900 hover:text-indigo-600">{{ $a->description }}</a>
                         <p class="mt-1 text-xs text-zinc-500">
-                            {{ $a->directorate->parent?->code ? $a->directorate->parent->code . ' › ' : '' }}{{ $a->directorate->code }}
+                            {{-- the unit and the one above it, each opening its page --}}
+                            @if($a->directorate->parent){!! $canOpenUnit($a->directorate->parent) ? '<a href="'.e(route('units.show', $a->directorate->parent)).'" wire:navigate class="font-medium text-zinc-600 hover:text-indigo-700 hover:underline" title="'.e($a->directorate->parent->name).'">'.e($a->directorate->parent->code).'</a>' : e($a->directorate->parent->code) !!} › @endif{!! $canOpenUnit($a->directorate) ? '<a href="'.e(route('units.show', $a->directorate)).'" wire:navigate class="font-medium text-zinc-600 hover:text-indigo-700 hover:underline" title="'.e($a->directorate->name).'">'.e($a->directorate->code).'</a>' : e($a->directorate->code) !!}
                             · {{ $a->program->oge_code ?? '—' }} · {{ __('Quarter') }} {{ $a->quarter }}
                         </p>
                     </td>

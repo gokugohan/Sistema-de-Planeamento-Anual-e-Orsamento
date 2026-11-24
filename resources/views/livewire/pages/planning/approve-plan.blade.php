@@ -50,7 +50,9 @@ new class extends Component {
         $over = $options->budgetDistribution && $options->ceilingMode !== \App\Support\PlanOptions::CEILING_OFF
             ? app(\App\Services\BudgetDistributions::class)->overruns($this->year, $plans->pluck('id')->all()) : [];
 
-        return ['plans' => $plans, 'over' => $over, 'blocks' => $options->ceilingMode === \App\Support\PlanOptions::CEILING_BLOCK];
+        $openable = app(\App\Services\UnitWorkspace::class)->visibleUnitIds(auth()->user());
+
+        return ['plans' => $plans, 'over' => $over, 'canOpenUnit' => fn ($d) => $openable === null || in_array($d->id, $openable, true), 'blocks' => $options->ceilingMode === \App\Support\PlanOptions::CEILING_BLOCK];
     }
 }; ?>
 
@@ -61,7 +63,13 @@ new class extends Component {
                 @foreach($plans as $p)
                     <li wire:key="plan-{{ $p['id'] }}" class="flex flex-col gap-3 px-5 py-4 lg:flex-row lg:items-center">
                         <div class="min-w-0 flex-1">
-                            <p class="text-sm font-semibold text-zinc-900">{{ $p['unit']->code }} <span class="font-normal text-zinc-600">{{ $p['unit']->name }}</span></p>
+                            <p class="text-sm font-semibold text-zinc-900">
+                                @if($canOpenUnit($p['unit']))
+                                    <a href="{{ route('units.show', $p['unit']) }}" wire:navigate class="hover:text-indigo-700 hover:underline">{{ $p['unit']->code }} <span class="font-normal text-zinc-600">{{ $p['unit']->name }}</span></a>
+                                @else
+                                    {{ $p['unit']->code }} <span class="font-normal text-zinc-600">{{ $p['unit']->name }}</span>
+                                @endif
+                            </p>
                             <p class="mt-0.5 text-sm text-zinc-600">
                                 @if($p['ready'])
                                     {{ $p['certified'] > 0
