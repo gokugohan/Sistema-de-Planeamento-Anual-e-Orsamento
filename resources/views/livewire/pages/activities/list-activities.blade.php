@@ -181,17 +181,39 @@ new class extends Component {
         $this->dispatch('toast', message: __('Activity deleted.'), type: 'success');
     }
 
-    /** Move every ticked activity one step along the chain, as far as the user's turn allows. */
-    public function advanceSelected(): void
+    /**
+     * The step one click of this user takes an activity to, in the words of the buttons: submit (for certification),
+     * certify, validate, or approve (the final approval, never given in bulk). Null when it is not the user's turn.
+     */
+    public static function stepOf(?string $next, string $status): ?string
     {
+        return match (true) {
+            $next === null => null,
+            $next === Activity::STATUS_SUBMITTED => 'submit',
+            $next === Activity::STATUS_APPROVED => 'approve',
+            $status === Activity::STATUS_REVIEWED => 'validate',
+            default => 'certify',
+        };
+    }
+
+    /**
+     * Take the ticked activities whose next step is $step (submit, certify or validate) one step along the chain, as
+     * on each activity's page. The final approval is not given here: the head gives it with the plan.
+     */
+    public function advanceSelected(string $step): void
+    {
+        abort_unless(in_array($step, ['submit', 'certify', 'validate'], true), 422);
         $workflow = app(ActivityWorkflow::class);
         $user = auth()->user();
         $done = 0;
         $notReady = 0;
 
         foreach ($this->visible()->with('directorate')->whereIn('id', $this->selected)->get() as $activity) {
+            if (self::stepOf($workflow->next($user, $activity), $activity->status) !== $step) {
+                continue; // another step: it has its own button
+            }
             try {
-                $workflow->advance($user, $activity);
+                $workflow->advance($user, $activity, null, true);
                 $done++;
             } catch (\DomainException) {
                 $notReady++;
@@ -199,8 +221,13 @@ new class extends Component {
         }
         $this->selected = [];
 
+        $doneMessage = match ($step) {
+            'submit' => trans_choice(':n activity submitted for certification.|:n activities submitted for certification.', $done, ['n' => $done]),
+            'certify' => trans_choice(':n activity certified.|:n activities certified.', $done, ['n' => $done]),
+            default => trans_choice(':n activity validated.|:n activities validated.', $done, ['n' => $done]),
+        };
         $this->dispatch('toast',
-            message: $done ? trans_choice(':n activity moved on.|:n activities moved on.', $done, ['n' => $done]).($notReady ? ' '.__(':n could not be moved (not your turn or not complete).', ['n' => $notReady]) : '')
+            message: $done ? $doneMessage.($notReady ? ' '.__(':n could not be moved (not your turn or not complete).', ['n' => $notReady]) : '')
                 : __('None of the selected activities can be moved by you right now.'),
             type: $done ? 'success' : 'error');
     }
@@ -243,7 +270,7 @@ new class extends Component {
             'edit' => $policy->update($user, $a),
             'delete' => $policy->delete($user, $a),
             'next' => $workflow->next($user, $a),
-        ]]);
+        ]])->map(fn ($f, $id) => $f + ['step' => self::stepOf($f['next'], $activities->getCollection()->firstWhere('id', $id)->status)]);
 
         // the money follows the filters, like the counts; the whole plan's total is shown beside it once a filter is on
         $money = fn ($q) => (float) \App\Models\LineItem::whereIn('activity_id', $q->select('id'))->sum('estimated_amount');
@@ -320,10 +347,8 @@ new class extends Component {
         default => 'gray',
     };
     $priority = fn ($p) => match ($p) { 'Alta', 'High' => __('High'), 'Baixa', 'Low' => __('Low'), default => __('Medium') };
-    $actionLabel = fn ($to) => match ($to) {
-        Activity::STATUS_SUBMITTED => __('Submit'), Activity::STATUS_REVIEWED => __('Review'),
-        Activity::STATUS_VALIDATED => __('Validate'), default => __('Send up'),
-    };
+    // the same words as the buttons of the activity page and of the bulk action
+    $stepWords = ['submit' => __('Submit for certification'), 'certify' => __('Certify'), 'validate' => __('Validate'), 'approve' => __('Approve')];
     $lastGroup = null;
 @endphp
 
@@ -447,14 +472,32 @@ new class extends Component {
                 @endif
             </button>
         @endforeach
-        <div class="ml-auto pb-1.5 flex items-center gap-2" x-show="selected.length" x-cloak>
+        {{-- the step each ticked activity is at, read from its box: one button per step, in the words of the activity page --}}
+        <div class="ml-auto flex flex-wrap items-center justify-end gap-2 pb-1.5" x-show="selected.length" x-cloak
+             x-data="{ count(step) { return selected.filter(id => document.querySelector('input[data-step][value=\'' + id + '\']')?.dataset.step === step).length } }">
             <span class="text-xs text-zinc-500" x-text="@js(__(':n selected')).replace(':n', selected.length)"></span>
-            <x-ui.button size="sm" wire:click="advanceSelected" wire:confirm="{{ __('Move the selected activities on to the next step?') }}">{{ __('Move on') }}</x-ui.button>
+            <button type="button" x-on:click="selected = []" class="text-xs font-medium text-zinc-600 hover:text-zinc-900 hover:underline">{{ __('Clear selection') }}</button>
+            @foreach(['submit', 'certify', 'validate'] as $step)
+                <x-ui.button size="sm" x-show="count('{{ $step }}')" x-cloak x-on:click="$dispatch('open-modal', 'bulk-{{ $step }}')">
+                    {{ $stepWords[$step] }} (<span x-text="count('{{ $step }}')"></span>)
+                </x-ui.button>
+            @endforeach
+            <span x-show="count('approve')" x-cloak class="text-xs text-zinc-600">
+                <span x-text="@js(__(':n ready for the final approval, which the head gives with the plan:')).replace(':n', count('approve'))"></span>
+                <a href="{{ route('approvals.index') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Approve the plan') }}</a>
+            </span>
         </div>
     </div>
 
     <x-ui.card padding="p-0">
-        <x-ui.table :headers="['', __('Activity'), __('Budget'), __('Status'), __('Actions')]" :right="[2]">
+        @php
+            // ticks or clears every activity of this page the user can act on (those with a box); partly ticked when some are
+            $selectAll = new \Illuminate\Support\HtmlString('<input type="checkbox" class="rounded border-zinc-300 text-indigo-600" aria-label="'.e(__('Select all on this page')).'" title="'.e(__('Select all on this page')).'"'
+                .' x-data="{ ids() { return [...document.querySelectorAll(`input[data-step]`)].map(b => b.value) } }"'
+                .' x-effect="const all = ids(); $el.disabled = ! all.length; $el.checked = all.length > 0 && all.every(i => selected.includes(i)); $el.indeterminate = ! $el.checked && all.some(i => selected.includes(i))"'
+                .' x-on:change="const all = ids(); selected = $el.checked ? [...new Set([...selected, ...all])] : selected.filter(i => ! all.includes(i))">');
+        @endphp
+        <x-ui.table :headers="[$selectAll, __('Activity'), __('Budget'), __('Status'), __('Actions')]" :right="[2]">
             @forelse($activities as $a)
                 @php $f = $flags[$a->id]; $key = $group === 'program' ? $a->program_id : ($group === 'unit' ? $a->directorate_id : null); @endphp
                 @if($group && $key !== $lastGroup)
@@ -468,7 +511,7 @@ new class extends Component {
                 <tr wire:key="act-{{ $a->id }}" class="hover:bg-zinc-50/60">
                     <td class="pl-5 pr-0 py-3 w-8 align-top">
                         @if($f['next'])
-                            <input type="checkbox" value="{{ $a->id }}" x-model="selected" class="mt-0.5 rounded border-zinc-300 text-indigo-600" aria-label="{{ __('Select') }}">
+                            <input type="checkbox" value="{{ $a->id }}" x-model="selected" data-step="{{ $f['step'] }}" class="mt-0.5 rounded border-zinc-300 text-indigo-600" aria-label="{{ __('Select') }}">
                         @endif
                     </td>
                     <td class="px-5 py-3 min-w-[24rem] max-w-xl">
@@ -492,7 +535,7 @@ new class extends Component {
                     <td class="px-5 py-3 whitespace-nowrap text-right align-top">
                         <div class="inline-flex items-center gap-3 text-sm">
                             @if($f['next'])
-                                <a href="{{ route('activities.show', $a) }}" wire:navigate class="font-medium text-indigo-600 hover:text-indigo-700">{{ $actionLabel($f['next']) }}</a>
+                                <a href="{{ route('activities.show', $a) }}" wire:navigate class="font-medium text-indigo-600 hover:text-indigo-700">{{ $stepWords[$f['step']] }}</a>
                             @endif
                             @if($f['edit'])
                                 <a href="{{ route('activities.edit', $a) }}" wire:navigate class="font-medium text-zinc-600 hover:text-zinc-900">{{ __('Edit') }}</a>
@@ -520,4 +563,15 @@ new class extends Component {
             <div class="px-6 py-4 border-t border-zinc-200">{{ $activities->links() }}</div>
         @endif
     </x-ui.card>
+
+    {{-- the bulk steps, confirmed in the same words as on each activity's page --}}
+    <x-confirm-dialog name="bulk-submit" :title="__('Submit the selected activities for certification?')"
+        :message="__('They can no longer be edited unless they are returned. Only those ready to submit are submitted.')"
+        :confirm="__('Submit for certification')" wire:click="advanceSelected('submit')" />
+    <x-confirm-dialog name="bulk-certify" :title="__('Certify the selected activities?')"
+        :message="__('They then go to the next person in the chain. The final approval is given by the head with the plan.')"
+        :confirm="__('Certify')" wire:click="advanceSelected('certify')" />
+    <x-confirm-dialog name="bulk-validate" :title="__('Validate the selected activities?')"
+        :message="__('They then go to the head of the directorate, who approves them with the plan.')"
+        :confirm="__('Validate')" wire:click="advanceSelected('validate')" />
 </div>

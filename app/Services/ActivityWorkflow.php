@@ -320,17 +320,24 @@ class ActivityWorkflow
     /** The most activities one bulk approval may include. */
     public const BULK_LIMIT = 200;
 
-    /** Move the activity one step up the chain on behalf of $user, with an optional note for the trail. */
-    public function advance(User $user, Activity $activity, ?string $note = null): string
+    /**
+     * Move the activity one step up the chain on behalf of $user, with an optional note for the trail. With
+     * $stopBeforeApproval (a bulk action of the list) the final approval is never given: it is the head's, with the
+     * plan of the directorate (PlanningWindow::approvePlan) or on the activity's own page with a note.
+     */
+    public function advance(User $user, Activity $activity, ?string $note = null, bool $stopBeforeApproval = false): string
     {
         // the check, the new status and the version are one unit of work, on the row as it is now
         $signed = false;
-        $to = DB::transaction(function () use ($user, $activity, $note, &$signed) {
+        $to = DB::transaction(function () use ($user, $activity, $note, &$signed, $stopBeforeApproval) {
             $this->lock($activity);
 
             $to = $this->next($user, $activity);
             if (! $to) {
                 throw new DomainException(__('It is not your turn to submit this activity or you lack permission.'));
+            }
+            if ($stopBeforeApproval && $to === Activity::STATUS_APPROVED) {
+                throw new DomainException(__('The final approval is given with the plan of the directorate.'));
             }
             if ($to === Activity::STATUS_SUBMITTED && ($problems = $this->problems($activity))) {
                 throw new DomainException(__('This activity is not ready to submit: ').implode(' ', $problems));
@@ -361,8 +368,9 @@ class ActivityWorkflow
         }
         // one person, one click: the step that follows is this person's too, so it is taken now (and only its
         // outcome is announced); each step is still recorded on its own
-        if ($this->continues($user, $activity->fresh())) {
-            return $this->advance($user, $activity->fresh(), $note);
+        $fresh = $activity->fresh();
+        if ($this->continues($user, $fresh) && ! ($stopBeforeApproval && $this->next($user, $fresh) === Activity::STATUS_APPROVED)) {
+            return $this->advance($user, $fresh, $note, $stopBeforeApproval);
         }
 
         [$title, $message, $roles, $unitId] = match ($to) {

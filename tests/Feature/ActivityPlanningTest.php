@@ -225,10 +225,29 @@ class ActivityPlanningTest extends TestCase
         $notReady = $this->activity($this->dn, complete: false);
         $this->as('Planning', $this->dn);
 
-        Volt::test('pages.activities.list-activities')->set('selected', [(string) $ready->id, (string) $notReady->id])->call('advanceSelected');
+        Volt::test('pages.activities.list-activities')->assertSee('Submit for certification')
+            ->set('selected', [(string) $ready->id, (string) $notReady->id])->call('advanceSelected', 'submit')
+            ->assertDispatched('toast');
 
         $this->assertSame(Activity::STATUS_SUBMITTED, $ready->fresh()->status);
         $this->assertSame(Activity::STATUS_DRAFT, $notReady->fresh()->status);
+    }
+
+    public function test_the_final_approval_is_never_given_in_bulk(): void
+    {
+        $this->as('Planning', $this->dn);
+        Volt::test('pages.activities.list-activities')->call('advanceSelected', 'approve')->assertStatus(422);
+
+        // a step that would end in the final approval stops before it
+        $activity = $this->activity($this->dn, Activity::STATUS_VALIDATED);
+        $admin = User::factory()->create();
+        $admin->assignRole('Admin');
+        try {
+            app(ActivityWorkflow::class)->advance($admin, $activity, null, true);
+            $this->fail('the final approval is given with the plan');
+        } catch (\DomainException) {
+        }
+        $this->assertSame(Activity::STATUS_VALIDATED, $activity->fresh()->status);
     }
 
     public function test_roll_forward_copies_once_as_drafts(): void
