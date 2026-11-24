@@ -163,4 +163,25 @@ class ApprovalInboxTest extends TestCase
             collect((new NextActions)->items)->pluck('text')->all(),
         );
     }
+
+    public function test_the_approvals_page_says_what_is_waiting_unit_by_unit(): void
+    {
+        $head = $this->user('chefe.gdsc@gdsc.tl');
+        $inbox = app(ApprovalInbox::class);
+
+        // waiting for the final approval: the UDIG activity, under its unit
+        $approval = $inbox->details($head, 'approval', 2027);
+        $this->assertCount(1, $approval);
+        $this->assertSame('UDIG', $approval[0]['unit']->code);
+        $this->assertSame(1, $approval[0]['count']);
+        $activity = $approval[0]['activities'][0];
+
+        // waiting to be certified: the USC activity
+        $this->assertSame(['USC'], collect($inbox->details($head, 'review', 2027))->map(fn ($d) => $d['unit']->code)->all());
+        $this->assertSame([], $inbox->details($head, 'unknown', 2027));
+
+        // the page shows them without opening the queue
+        $this->actingAs($head)->get(route('approvals.index'))->assertOk()
+            ->assertSee('UDIG')->assertSee($activity->description)->assertSee(route('activities.show', $activity), false);
+    }
 }

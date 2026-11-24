@@ -38,9 +38,9 @@ class ApprovalInbox
         $years = array_values(array_unique([$planYear, $reportYear]));
         $year = $planYear;
         $items = [];
-        $add = function (string $group, int $count, string $text, string $url, string $tone) use (&$items) {
+        $add = function (string $group, int $count, string $text, string $url, string $tone, ?string $key = null) use (&$items) {
             if ($count > 0) {
-                $items[] = compact('group', 'count', 'text', 'url', 'tone');
+                $items[] = compact('group', 'count', 'text', 'url', 'tone', 'key');
             }
         };
 
@@ -58,9 +58,9 @@ class ApprovalInbox
         // ── activities to decide: first to be certified, then to be given the final approval; each opens its own queue
         if ($approver || $user->isDirector()) {
             $review = $activities()->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED])->count();
-            $add('decide', $review, trans_choice(':n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified', $review, ['n' => $review]), route('planning.paa-approval', ['queue' => 'review']), 'amber');
+            $add('decide', $review, trans_choice(':n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified', $review, ['n' => $review]), route('planning.paa-approval', ['queue' => 'review']), 'amber', 'review');
             $approval = $activities()->whereIn('status', [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])->count();
-            $add('decide', $approval, trans_choice(':n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval', $approval, ['n' => $approval]), route('planning.paa-approval', ['queue' => 'approval']), 'indigo');
+            $add('decide', $approval, trans_choice(':n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval', $approval, ['n' => $approval]), route('planning.paa-approval', ['queue' => 'approval']), 'indigo', 'approval');
         }
 
         // ── finance: submitted activities whose budget is waiting for confirmation (where the institution asks for it)
@@ -68,7 +68,7 @@ class ApprovalInbox
             $policy = app(ActivityPolicy::class);
             $n = Activity::whereIn('fiscal_year', $years)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')
                 ->limit(300)->get(['id', 'directorate_id'])->filter(fn ($a) => $policy->inScope($user, $a->directorate_id))->count();
-            $add('decide', $n, trans_choice(':n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed', $n, ['n' => $n]), route('approvals.budget'), 'amber');
+            $add('decide', $n, trans_choice(':n activity waiting for its budget to be confirmed|:n activities waiting for their budget to be confirmed', $n, ['n' => $n]), route('approvals.budget'), 'amber', 'budget');
         }
 
         // ── named in an approval list: what is waiting at the step they were named for
@@ -80,7 +80,7 @@ class ApprovalInbox
                     ->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])
                     ->with('directorate.parent')->limit(300)->get()
                     ->filter(fn (Activity $a) => $workflow->next($user, $a) !== null || $workflow->canApprove($user, $a))->count();
-                $add('decide', $waiting, trans_choice(':n activity waiting for your decision|:n activities waiting for your decision', $waiting, ['n' => $waiting]), route('activities.index'), 'indigo');
+                $add('decide', $waiting, trans_choice(':n activity waiting for your decision|:n activities waiting for your decision', $waiting, ['n' => $waiting]), route('activities.index'), 'indigo', 'listed');
             }
         }
 
@@ -90,13 +90,13 @@ class ApprovalInbox
             $activityIds = $reported()->select('id');
             $money = BudgetExecution::where('status', BudgetExecution::SUBMITTED)->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('line_item_id', LineItem::whereIn('activity_id', $activityIds)->select('id'))->count();
-            $add('verify', $money, trans_choice(':n executed amount to verify|:n executed amounts to verify', $money, ['n' => $money]), route('monitoring.report'), 'indigo');
+            $add('verify', $money, trans_choice(':n executed amount to verify|:n executed amounts to verify', $money, ['n' => $money]), route('monitoring.report'), 'indigo', 'money');
         }
         if ($mayVerifyProgress) {
             $progress = IndicatorProgress::where('status', 'Submitted')->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('indicator_id', Indicator::whereIn('activity_id', $reported()->select('id'))->select('id'))->count();
             $add('verify', $progress, trans_choice(':n progress report to verify|:n progress reports to verify', $progress, ['n' => $progress]),
-                $user->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report'), 'indigo');
+                $user->can('approve_progress_report') ? route('monitoring.approval') : route('monitoring.report'), 'indigo', 'progress');
         }
 
         // ── the plan: each directorate whose plan is ready for its head's approval (approve the plan: approve and finalize)
@@ -168,5 +168,58 @@ class ApprovalInbox
         }
 
         return $items;
+    }
+
+    /**
+     * What is behind one item of the inbox (its key): the activities waiting, unit by unit, with the first few of each,
+     * so that the page says what is waiting without opening it. Only for the Approvals page (one query an item); the
+     * dashboard keeps the counts.
+     *
+     * @return array<int, array{unit: Directorate, parent: ?Directorate, count: int, activities: array<int, Activity>}>
+     */
+    public function details(User $user, string $key, ?int $year = null, int $perUnit = 3): array
+    {
+        if ($year !== null || FiscalYear::pinned() !== null) {
+            $planYear = $reportYear = $year ?? FiscalYear::current();
+        } else {
+            [$planYear, $reportYear] = [FiscalYear::planning(), FiscalYear::execution()];
+        }
+        $years = array_values(array_unique([$planYear, $reportYear]));
+        $scope = null;
+        if (! $user->isAdministrator() && ! $user->can('view_all_paa')) {
+            $unit = $user->directorate_id ? Directorate::find($user->directorate_id) : null;
+            $scope = $unit ? $unit->getSelfAndDescendantIds() : [0];
+        }
+        $notMine = fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id);
+
+        $query = match ($key) {
+            'review' => Activity::whereIn('fiscal_year', $years)->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]),
+            'approval' => Activity::whereIn('fiscal_year', $years)->whereIn('status', [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL]),
+            'budget' => Activity::whereIn('fiscal_year', $years)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at'),
+            'listed' => Activity::whereIn('fiscal_year', $years)->whereIn('directorate_id', app(ApproverLists::class)->unitIdsOf($user) ?: [0])
+                ->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED, Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL]),
+            'money' => Activity::where('fiscal_year', $reportYear)->whereHas('lineItems.executions', fn ($q) => $q->where('status', BudgetExecution::SUBMITTED)->where($notMine)),
+            'progress' => Activity::where('fiscal_year', $reportYear)->whereHas('indicators.progress', fn ($q) => $q->where('status', 'Submitted')->where($notMine)),
+            default => null,
+        };
+        if (! $query) {
+            return [];
+        }
+        $activities = $query->when($scope !== null && $key !== 'listed', fn ($q) => $q->whereIn('directorate_id', $scope))
+            ->with('directorate:id,code,name,parent_id', 'directorate.parent:id,code,name')
+            ->orderBy('directorate_id')->orderBy('code')->limit(300)->get(['id', 'code', 'description', 'directorate_id', 'status', 'fiscal_year']);
+        if ($key === 'budget') {
+            $policy = app(ActivityPolicy::class);
+            $activities = $activities->filter(fn ($a) => $policy->inScope($user, $a->directorate_id));
+        }
+
+        return $activities->groupBy('directorate_id')
+            ->map(fn ($group) => [
+                'unit' => $group->first()->directorate,
+                'parent' => $group->first()->directorate?->parent,
+                'count' => $group->count(),
+                'activities' => $group->take($perUnit)->all(),
+            ])
+            ->sortByDesc('count')->values()->all();
     }
 }

@@ -1,7 +1,10 @@
 @php
     $user = auth()->user();
     $year = \App\Support\FiscalYear::current();
-    $items = collect(app(\App\Services\ApprovalInbox::class)->items($user, \App\Support\FiscalYear::isUnusual() ? $year : null))->groupBy('group');
+    $inbox = app(\App\Services\ApprovalInbox::class);
+    // the units this user may open, to link them (null: every unit)
+    $openable = app(\App\Services\UnitWorkspace::class)->visibleUnitIds($user);
+    $items = collect($inbox->items($user, \App\Support\FiscalYear::isUnusual() ? $year : null))->groupBy('group');
     // only decisions and verifications belong here; drafts and reporting due are in My work
     $groups = [
         'decide' => [__('To decide'), __('Activities waiting for you: first certified by the unit, then given the final approval.'), __('Decide')],
@@ -44,12 +47,44 @@
             <x-ui.card :title="$title" :description="$text" padding="p-0">
                 <ul class="divide-y divide-zinc-200">
                     @foreach($items[$key] as $item)
+                        @php $details = $item['key'] ? $inbox->details($user, $item['key'], \App\Support\FiscalYear::isUnusual() ? $year : null) : []; @endphp
                         <li>
                             <a href="{{ $item['url'] }}" class="group flex items-center gap-4 px-5 py-3 hover:bg-zinc-50">
                                 <span class="flex h-9 min-w-[2.25rem] items-center justify-center rounded-md px-2 text-sm font-semibold {{ $tones[$item['tone']] ?? $tones['indigo'] }}">{{ $item['count'] }}</span>
-                                <span class="flex-1 text-sm text-zinc-700">{{ $item['text'] }}</span>
+                                <span class="flex-1 text-sm font-medium text-zinc-800">{{ $item['text'] }}</span>
                                 <span class="text-xs font-medium text-indigo-700 group-hover:underline">{{ $verb }} →</span>
                             </a>
+                            {{-- what is waiting, unit by unit, without opening it --}}
+                            @if($details)
+                                <ul class="space-y-2 px-5 pb-4 pl-[4.25rem]">
+                                    @foreach(array_slice($details, 0, 6) as $d)
+                                        <li class="text-sm">
+                                            <p class="text-zinc-800">
+                                                @if($d['parent'])<span class="text-zinc-500">{{ $d['parent']->code }} ›</span>@endif
+                                                @if($d['unit'] && ($openable === null || in_array($d['unit']->id, $openable, true)))
+                                                    <a href="{{ route('units.show', $d['unit']) }}" wire:navigate class="hover:text-indigo-700 hover:underline"><span class="font-medium">{{ $d['unit']->code }}</span>
+                                                        <span class="text-zinc-500">{{ \Illuminate\Support\Str::limit($d['unit']->name, 60) }}</span></a>
+                                                @else
+                                                    <span class="font-medium">{{ $d['unit']?->code }}</span>
+                                                    <span class="text-zinc-500">{{ \Illuminate\Support\Str::limit($d['unit']?->name, 60) }}</span>
+                                                @endif
+                                                <span class="ml-1 rounded-full bg-zinc-100 px-1.5 py-0.5 text-xs tabular-nums text-zinc-700">{{ $d['count'] }}</span>
+                                            </p>
+                                            <ul class="mt-0.5 space-y-0.5">
+                                                @foreach($d['activities'] as $a)
+                                                    <li class="truncate text-xs"><a href="{{ route('activities.show', $a) }}" wire:navigate class="text-zinc-600 hover:text-indigo-700 hover:underline"><span class="font-medium text-zinc-700">{{ $a->code }}</span> {{ $a->description }}</a></li>
+                                                @endforeach
+                                                @if($d['count'] > count($d['activities']))
+                                                    <li class="text-xs text-zinc-500">{{ trans_choice('and :n more|and :n more', $d['count'] - count($d['activities']), ['n' => $d['count'] - count($d['activities'])]) }}</li>
+                                                @endif
+                                            </ul>
+                                        </li>
+                                    @endforeach
+                                    @if(count($details) > 6)
+                                        <li class="text-xs text-zinc-500">{{ trans_choice('and :n more unit|and :n more units', count($details) - 6, ['n' => count($details) - 6]) }} — <a href="{{ $item['url'] }}" class="font-medium text-indigo-700 hover:underline">{{ $verb }} →</a></li>
+                                    @endif
+                                </ul>
+                            @endif
                         </li>
                     @endforeach
                 </ul>
