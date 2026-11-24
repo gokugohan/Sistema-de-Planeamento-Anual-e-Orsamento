@@ -3,16 +3,22 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\Program;
 use App\Models\SystemSetting;
 use App\Models\User;
+use App\Services\BudgetDecisions;
 use App\Services\PlanningWindow;
+use App\Services\ReportingWindows;
 use App\Services\YearAtAGlance;
 use App\Support\FiscalYear;
 use Carbon\Carbon;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Database\Seeders\Samples\MtcBudgetSeeder;
+use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Database\Seeders\Samples\MtcSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use Livewire\Volt\Volt;
 use Tests\TestCase;
 
 /**
@@ -95,7 +101,7 @@ class PlanningYearsAndSampleStatesTest extends TestCase
         // 2025 has a plan, so it can be chosen, but it takes no new activities; testing mode lifts that and says so
         $admin = User::factory()->create();
         $admin->assignRole('Admin');
-        \App\Support\FiscalYear::pin(2025);
+        FiscalYear::pin(2025);
         $this->actingAs($admin);
         $this->get(route('activities.create'))->assertOk()->assertSee('2025 cannot be planned')->assertSee('2026 or 2027');
         SystemSetting::set('enable_paa_testing_mode', true, 'boolean');
@@ -124,15 +130,15 @@ class PlanningYearsAndSampleStatesTest extends TestCase
 
     public function test_only_the_chosen_years_of_the_sample_are_loaded(): void
     {
-        app(\Database\Seeders\Samples\MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', [2027]);
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', [2027]);
 
         $this->assertSame([2027], Activity::distinct()->pluck('fiscal_year')->map(fn ($y) => (int) $y)->all());
-        $this->assertSame([2027], \App\Models\Program::distinct()->pluck('fiscal_year')->map(fn ($y) => (int) $y)->all(), 'programs follow the years');
+        $this->assertSame([2027], Program::distinct()->pluck('fiscal_year')->map(fn ($y) => (int) $y)->all(), 'programs follow the years');
     }
 
     public function test_a_year_outside_the_sample_takes_the_plan_of_the_nearest_sample_year(): void
     {
-        app(\Database\Seeders\Samples\MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', range(2027, 2028));
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', range(2027, 2028));
 
         $count = fn (int $year) => Activity::where('fiscal_year', $year)->count();
         $this->assertGreaterThan(0, $count(2028));
@@ -142,7 +148,7 @@ class PlanningYearsAndSampleStatesTest extends TestCase
 
     public function test_an_office_borrows_the_nearest_year_that_has_a_plan_for_it_and_every_year_can_be_chosen(): void
     {
-        app(\Database\Seeders\Samples\MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', range(2024, 2026));
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft', range(2024, 2026));
 
         $count = fn (int $year) => Activity::where('fiscal_year', $year)->count();
         $this->assertGreaterThan(0, $count(2026));
@@ -151,5 +157,35 @@ class PlanningYearsAndSampleStatesTest extends TestCase
         foreach ([2024, 2025, 2026] as $year) {
             $this->assertContains($year, FiscalYear::available());
         }
+    }
+
+    public function test_the_sample_data_page_loads_the_plans_on_the_legal_calendar(): void
+    {
+        app()->setLocale('en');
+        $this->actingAs($this->admin());
+
+        // the coming year submitted in May and June, the current year approved and being carried out
+        Volt::test('pages.management.sample-data')->assertSet('state', 'submitted')
+            ->set('scope', 'office')->set('office', 'GPPC')->set('fromYear', 2026)->set('toYear', 2027)->call('load')->assertHasNoErrors();
+        $this->assertFalse(MtcBudgetSeeder::$legalCalendar, 'the flag does not outlive the load');
+        $status = fn (int $year) => Activity::withoutGlobalScopes()->where('fiscal_year', $year)->distinct()->pluck('status')->all();
+        $this->assertSame([Activity::STATUS_SUBMITTED], $status(2027));
+        $this->assertSame([Activity::STATUS_APPROVED], $status(2026));
+        $this->assertStringStartsWith('2026-06-20', (string) Activity::withoutGlobalScopes()->where('fiscal_year', 2027)->value('submitted_at'));
+
+        $windows = app(ReportingWindows::class);
+        $plan = $windows->find(2027, 'plan', 1);
+        $this->assertSame(['2026-05-01', '2026-06-30'], [$plan->opens_on->toDateString(), $plan->closes_on->toDateString()]);
+        $this->assertSame('2026-07-20', app(BudgetDecisions::class)->window(2027, 'ceiling')->closes_on->toDateString());
+
+        // approved instead: the coming year waits for the law
+        Volt::test('pages.management.sample-data')->call('purge');
+        Volt::test('pages.management.sample-data')->set('state', 'approved')
+            ->set('scope', 'office')->set('office', 'GPPC')->set('fromYear', 2027)->set('toYear', 2027)->call('load')->assertHasNoErrors();
+        $this->assertSame([Activity::STATUS_APPROVED], $status(2027));
+        $this->assertGreaterThan(0, Activity::withoutGlobalScopes()->where('fiscal_year', 2027)->where('version', '>', 0)->count(), 'approved with its version');
+
+        // the old practice states are not offered on the page
+        Volt::test('pages.management.sample-data')->set('state', 'draft')->call('load')->assertDispatched('toast', type: 'error');
     }
 }

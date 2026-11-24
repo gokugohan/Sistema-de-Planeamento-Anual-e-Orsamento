@@ -47,14 +47,27 @@ class MtcBudgetSeeder extends Seeder
     public const YEARS = [2025, 2026, 2027];
 
     /**
-     * How far the plans of the current year and the next have gone when they are loaded (earlier years are always
-     * approved and reported, so that there is a finished year to read):
-     *   approved  every activity approved, the current year with its spending reported up to today;
-     *   halfway   each directorate at one stage of the approval chain, in turn: still drafting, submitted (one
-     *             activity returned with a reason), certified and waiting for the final approval, approved;
-     *   draft     every activity a draft: the whole cycle, from planning to reporting, is still to be done.
+     * How far the plans have gone when they are loaded. On the legal calendar (Decreto-Lei n.º 42/2025: the plans in May
+     * and June of the year before, the ceiling by 20 July, the law by the end of the year), the plan of the current year
+     * is approved and being carried out, and only the plan of a coming year takes the state chosen:
+     *   approved   every activity approved (corrected to the ceiling, waiting for the law);
+     *   submitted  every activity submitted in May and June, waiting for the heads to certify and approve.
+     * For practice outside the calendar (and the automated tests), the current year and the next can also be loaded:
+     *   halfway    each directorate at one stage of the approval chain, in turn: still drafting, submitted (one
+     *              activity returned with a reason), certified and waiting for the final approval, approved;
+     *   draft      every activity a draft: the whole cycle, from planning to reporting, is still to be done.
+     * A plan on the legal calendar gets the legal dates; a plan for practice gets submission dates around today.
      */
-    public const STATES = ['approved', 'halfway', 'draft'];
+    public const STATES = ['approved', 'submitted', 'halfway', 'draft'];
+
+    /** The states that follow the legal calendar (the ones offered on the Sample Data page). */
+    public const LEGAL_STATES = ['submitted', 'approved'];
+
+    /**
+     * Load on the legal calendar (the Sample Data page does): the current year approved, the chosen state for the years to
+     * come, the legal dates. Off by default, so that a seeder run by hand or by a test keeps its plain behaviour.
+     */
+    public static bool $legalCalendar = false;
 
     /**
      * The activities of a year funded by a new policy priority, by code prefix. The plan prints them with an "X" in the
@@ -103,8 +116,12 @@ class MtcBudgetSeeder extends Seeder
                     $this->advanceHalfway($year);
                 }
                 $this->approveVersions($year);
-                // a plan still in the cycle can be submitted: its submission dates run around today
-                if ($this->stateOf($year) !== 'approved' && PlanningWindow::yearAllowed($year)) {
+                if (self::$legalCalendar) {
+                    // the plan follows the legal calendar: submitted in May and June of the year before, the ceiling
+                    // by 20 July, the law by the end of the year
+                    MtcCalendarSeeder::seedLegal($year, $registry);
+                } elseif ($this->stateOf($year) !== 'approved' && PlanningWindow::yearAllowed($year)) {
+                    // a plan for practice can be submitted: its submission dates run around today
                     MtcCalendarSeeder::seedSubmission($year, $registry);
                 }
                 // Spending and progress up to today (none for a year that has not started), for the years whose plan
@@ -299,9 +316,13 @@ class MtcBudgetSeeder extends Seeder
                         'procurement_required' => false,
                         'gender_responsive' => false,
                         ...$this->originFor($year, $a['code']),
-                        'status' => $this->stateOf($year) === 'approved' ? ($a['status'] ?? Activity::STATUS_APPROVED) : Activity::STATUS_DRAFT,
+                        'status' => $this->initialStatus($year, $a['status'] ?? null),
                         'is_test_data' => false,
-                    ] + $this->workflowDates($year, $this->stateOf($year) === 'approved' ? ($a['status'] ?? null) : Activity::STATUS_DRAFT));
+                    ] + $this->workflowDates($year, match ($this->stateOf($year)) {
+                        'approved' => $a['status'] ?? null,
+                        'submitted' => Activity::STATUS_SUBMITTED,
+                        default => Activity::STATUS_DRAFT,
+                    }));
 
                 if (! $registry->isRegistered($activity)) {
                     continue; // a real activity with this code already exists: leave it alone
@@ -392,10 +413,26 @@ class MtcBudgetSeeder extends Seeder
         return $withPlan[0];
     }
 
-    /** The state a year is loaded in: the chosen one for the current year and the next, approved for earlier years. */
+    /**
+     * The state a year is loaded in. On the legal calendar the current year is approved (its plan is in force since
+     * 1 January) and the chosen state is for the years to come; for practice it is the current year and the next.
+     */
     private function stateOf(int $year): string
     {
+        if (self::$legalCalendar) {
+            return $year > (int) now()->year ? $this->state : 'approved';
+        }
+
         return $year >= (int) now()->year ? $this->state : 'approved';
+    }
+
+    private function initialStatus(int $year, ?string $fromData): string
+    {
+        return match ($this->stateOf($year)) {
+            'approved' => $fromData ?? Activity::STATUS_APPROVED,
+            'submitted' => Activity::STATUS_SUBMITTED,
+            default => Activity::STATUS_DRAFT,
+        };
     }
 
     /**
@@ -439,6 +476,18 @@ class MtcBudgetSeeder extends Seeder
     {
         if ($status === null) {
             return [];
+        }
+        // a plan of a coming year on the legal calendar: submitted in June, certified once the ceiling is known, approved
+        // once corrected to it (never later than now)
+        if (self::$legalCalendar && $year > (int) now()->year) {
+            $before = $year - 1;
+            $at = fn (string $date) => min("{$before}-{$date} 09:00:00", now()->setTime(9, 0)->toDateTimeString());
+
+            return [
+                'submitted_at' => $status === Activity::STATUS_DRAFT ? null : $at('06-20'),
+                'reviewed_at' => in_array($status, [Activity::STATUS_DRAFT, Activity::STATUS_SUBMITTED], true) ? null : $at('08-20'),
+                'approved_at' => $status === Activity::STATUS_APPROVED ? $at('09-15') : null,
+            ];
         }
         $recent = $this->stateOf($year) !== 'approved';
         $at = fn (string $fixed, int $daysAgo) => $recent ? now()->subDays($daysAgo)->setTime(9, 0)->toDateTimeString() : "{$year}-{$fixed} 09:00:00";

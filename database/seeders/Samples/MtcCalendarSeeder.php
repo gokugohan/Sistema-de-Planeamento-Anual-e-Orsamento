@@ -2,7 +2,9 @@
 
 namespace Database\Seeders\Samples;
 
+use App\Models\BudgetDecision;
 use App\Models\ReportingWindow;
+use App\Services\BudgetDecisions;
 use App\Services\SampleRegistry;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -13,8 +15,9 @@ use Illuminate\Support\Facades\DB;
  * its first day to the 10th of the month after, and every quarter's indicators from the quarter's first day to the 15th of
  * the month after it. Without dates the Report execution calendar would show every month as "no dates: open" next to
  * figures that were reported month by month. The dates are registered with the sample, so purging the sample removes them.
- * A plan loaded as drafts or halfway gets submission dates around today (submitting needs them); approval and finalizing are
- * left unset on purpose, so the demo accounts can decide freely.
+ * A plan on the legal calendar (submitted or approved) gets the legal dates: the plans in May and June of the year before,
+ * the ceiling, the law. A plan loaded for practice (drafts or halfway) gets submission dates around today instead.
+ * Approval and finalizing are left unset on purpose, so the demo accounts can decide freely.
  *
  * Run alone (`php artisan db:seed --class="Database\Seeders\Samples\MtcCalendarSeeder"`) it adds the dates for every year
  * that already has reported amounts.
@@ -41,7 +44,21 @@ class MtcCalendarSeeder extends Seeder
         }
     }
 
-    /** The submission dates of a plan still in the cycle: from a month ago to two months ahead. */
+    /**
+     * The legal calendar of a year's plan and budget envelope: the plans submitted in May and June of the year before,
+     * the ceiling by 20 July, the State Budget law from the proposal (1 October) to the end of the year, a supplementary
+     * budget during the year (App\Services\BudgetDecisions::legalDates).
+     */
+    public static function seedLegal(int $year, SampleRegistry $registry): void
+    {
+        $legal = BudgetDecisions::legalDates($year);
+        self::window($registry, $year, 'plan', 1, Carbon::parse($legal['plan'][0]), Carbon::parse($legal['plan'][1]));
+        foreach (BudgetDecision::ORDER as $stage) {
+            self::window($registry, $year, 'budget', BudgetDecisions::calendarPeriod($stage), Carbon::parse($legal[$stage][0]), Carbon::parse($legal[$stage][1]));
+        }
+    }
+
+    /** The submission dates of a plan loaded for practice: from a month ago to two months ahead. */
     public static function seedSubmission(int $year, SampleRegistry $registry): void
     {
         self::window($registry, $year, 'plan', 1, now()->subMonth()->startOfDay(), now()->addMonths(2)->startOfDay());

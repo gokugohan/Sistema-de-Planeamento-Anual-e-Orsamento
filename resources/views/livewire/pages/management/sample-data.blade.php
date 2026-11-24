@@ -23,8 +23,8 @@ new class extends Component {
     /** On purging, keep the sample's units as the institution's own structure */
     public bool $keepUnits = false;
 
-    /** How far the plans of the current year and the next have gone (MtcBudgetSeeder::STATES) */
-    public string $state = 'draft';
+    /** How far the plan of the coming year has gone (MtcBudgetSeeder::LEGAL_STATES); the current year is approved */
+    public string $state = 'submitted';
 
     /** The years to load, from and to (a year outside the sample takes the plan of the nearest sample year) */
     public int $fromYear = 0;
@@ -50,13 +50,15 @@ new class extends Component {
 
         try {
             // Seeders need the container to inject the registry into their run() methods.
-            abort_unless(in_array($this->state, MtcBudgetSeeder::STATES, true), 422);
+            abort_unless(in_array($this->state, MtcBudgetSeeder::LEGAL_STATES, true), 422);
             if ($this->fromYear < 2000 || $this->toYear > (int) now()->year + 5 || $this->fromYear > $this->toYear || $this->toYear - $this->fromYear > 9) {
                 $this->dispatch('toast', message: __('Choose a range of at most ten years, from 2000 to :max, with the first year not after the last.', ['max' => (int) now()->year + 5]), type: 'error');
 
                 return;
             }
             $years = range($this->fromYear, $this->toYear);
+            // the demo follows the legal calendar of the plan and the budget envelope
+            MtcBudgetSeeder::$legalCalendar = true;
             if ($this->scope === 'ministry') {
                 app(MtcSampleDataSeeder::class)->setContainer(app())->run($this->state, $years);
             } elseif ($this->scope === 'entity') {
@@ -69,6 +71,8 @@ new class extends Component {
             report($e);
             $this->dispatch('toast', message: __('Loading the sample data failed: :m', ['m' => $e->getMessage()]), type: 'error');
             return;
+        } finally {
+            MtcBudgetSeeder::$legalCalendar = false;
         }
 
         $registry = app(SampleRegistry::class);
@@ -226,12 +230,11 @@ new class extends Component {
             </fieldset>
 
             <fieldset class="mt-6 space-y-3 border-t border-zinc-100 pt-5">
-                <legend class="text-sm font-medium text-zinc-900">{{ __('Stage of the demo plans for :current and :next', ['current' => now()->year, 'next' => now()->year + 1]) }}</legend>
-                <p class="text-xs text-zinc-500">{{ __('Only the demo data is affected. Earlier years are always loaded approved, with their spending and progress reported, so that there is a finished year to read.') }}</p>
+                <legend class="text-sm font-medium text-zinc-900">{{ __('Stage of the demo plan for :next', ['next' => now()->year + 1]) }}</legend>
+                <p class="text-xs text-zinc-500">{{ __('The demo follows the legal calendar: the plan of :next was submitted in May and June :current (Decreto-Lei n.º 42/2025, art. 15.7), the ceiling came by 20 July, the State Budget law comes by the end of the year. The plan of :current is approved and being carried out, with its spending and progress reported up to today; earlier years are finished.', ['current' => now()->year, 'next' => now()->year + 1]) }}</p>
                 @foreach([
-                    'draft' => [__('Everything to do: all drafts'), __('Practise the whole cycle: units complete and submit, directors certify, heads approve and finalize, then the units report and others verify.')],
-                    'halfway' => [__('Halfway through approval'), __('Each directorate at one stage, in turn: still drafting, submitted (one activity returned with a reason), certified and waiting for the final approval, approved. Every role finds work to do.')],
-                    'approved' => [__('Approved and being carried out'), __('Every activity approved; the current year with its spending and progress reported up to today.')],
+                    'submitted' => [__('Submitted, waiting for approval'), __('Every activity was submitted in May and June: the heads of the units certify, the heads of the directorates approve the plans. Practice the approval, then the adjustment to the ceiling and the law.')],
+                    'approved' => [__('Approved, waiting for the State Budget law'), __('Every activity approved after the ceiling: practice the budget envelope, its distribution and the adjustment once the law is recorded.')],
                 ] as $value => [$label, $hint])
                     <label class="flex items-start gap-3 text-sm text-zinc-700">
                         <input type="radio" wire:model.live="state" value="{{ $value }}" class="mt-1">
