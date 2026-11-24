@@ -2,6 +2,13 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.4.0] — 2026-11-24
+
+Planning follows its dates, and the approvals page says what is waiting.
+
+- Waiting for you shows what is waiting, unit by unit, with the first activities of each
+- Planning closes when its dates have passed: no new activity outside the plan window unless an adjustment round or the administrator reopens it; the demo records approved years as finalized
+
 ## [1.3.0] — 2026-11-24
 
 Demo data on the legal calendar, clearer approval steps in the activity list, the app's own confirmation dialog, and unit links on the approval pages.
