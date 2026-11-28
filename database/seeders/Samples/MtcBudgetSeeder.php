@@ -224,10 +224,12 @@ class MtcBudgetSeeder extends Seeder
     private function loadResults(SampleRegistry $registry, int $year, array $data): void
     {
         $programs = Program::forYear($year)->pluck('id', 'oge_code');
+        $units = Directorate::pluck('id', 'code');
 
         foreach ($data['entities'] as $entity => $e) {
             $used = collect($e['activities'])->filter(fn ($a) => $a['amounts'])
                 ->map(fn ($a) => ['programme' => (string) $a['programme'], 'subprogramme' => (string) ($a['subprogramme'] ?? '')]);
+            $outcomeOf = []; // the outcome of each programme the books print last: the outputs below it serve it
 
             foreach ($e['results'] ?? [] as $r) {
                 $code = strtok($r['code'], '.'); // 502.0.3 -> programme 502; 50202.0.0 -> subprogramme 50202
@@ -248,17 +250,57 @@ class MtcBudgetSeeder extends Seeder
                     }
                 }
 
-                $label = $this->entityLabel($entity);
-                $registry->upsert('mtc', ResultIndicator::class, [
+                // the outcome or output as the books print it: its code and statement, then its indicator
+                $programme = $r['kind'] === 'outcome' ? $code : ($used->firstWhere('subprogramme', $code)['programme'] ?? null);
+                $statement = $r['statement'] !== '' && $r['statement'] !== 'tbd' ? Str::limit($r['statement'], 1990, '') : null;
+                $result = $registry->upsert('mtc', ResultIndicator::class, [
                     'indicatable_type' => $owner->getMorphClass(),
                     'indicatable_id' => $owner->id,
-                    'name' => Str::limit("{$label} {$r['code']}: ".($r['indicator'] !== '' ? $r['indicator'] : $r['statement']), 495, '…'),
+                    'code' => $r['code'],
+                    'name' => Str::limit($r['indicator'] !== '' ? $r['indicator'] : ($r['statement'] ?: $r['code']), 495, '…'),
                 ], [
+                    'statement' => $statement,
+                    'outcome_id' => $r['kind'] === 'output' ? ($outcomeOf[$programme] ?? null) : null,
                     'baseline' => $r['baseline'] !== '' ? Str::limit($r['baseline'], 250, '…') : null,
                     'target' => $r['target'] !== '' ? Str::limit($r['target'], 250, '…') : null,
                 ]);
+                if ($r['kind'] === 'outcome') {
+                    $outcomeOf[$code] = $result->id;
+
+                    continue;
+                }
+
+                // each activity of the entity filed under this subprogramme serves its output
+                foreach ($e['activities'] as $a) {
+                    if (! $a['amounts'] || (string) ($a['subprogramme'] ?? '') !== $code) {
+                        continue;
+                    }
+                    $unitId = $units[$this->ownerUnit($entity, $a['div'])] ?? null;
+                    Activity::whereIn('id', $this->planted[$year] ?? [0])->where('code', $a['code'])->where('directorate_id', $unitId)
+                        ->where('subprogram_id', $owner->id)->update(['output_id' => $result->id]);
+                }
             }
         }
+
+        // the division code the budget gives each unit (Div), on the sample's own units
+        foreach ($units as $unitCode => $id) {
+            $div = MtcCostCentres::divisionOf((string) $unitCode);
+            $unit = $div ? Directorate::find($id) : null;
+            if ($unit && blank($unit->budget_code) && $registry->isRegistered($unit)) {
+                $unit->update(['budget_code' => $div]);
+            }
+        }
+    }
+
+    /** "24 (M = 18 e F = 6)": the men and women the books print in a baseline or target, [men, women] or nulls. */
+    private static function bySex(string $text): array
+    {
+        if (! preg_match('/\bM\s*=\s*([\d.,]+)\s*(?:e|,|;|and)?\s*F\s*=\s*([\d.,]+)/iu', $text, $m)) {
+            return [null, null];
+        }
+        $n = fn ($v) => (float) str_replace(',', '', rtrim($v, '.,'));
+
+        return [$n($m[1]), $n($m[2])];
     }
 
     /** @return array{origin: string, policy_ref: ?string} where the money of an official activity comes from (see POLICY_PRIORITIES) */
@@ -362,6 +404,9 @@ class MtcBudgetSeeder extends Seeder
                         'annual_target' => $this->number($a['target']),
                         'baseline' => $a['baseline'] !== '' ? Str::limit($a['baseline'], 495, '') : null,
                         'target_text' => $a['target'] !== '' ? Str::limit($a['target'], 995, '') : null,
+                        // the men and women where the books print them, e.g. "24 (M = 18 e F = 6)"
+                        ...array_combine(['baseline_men', 'baseline_women'], self::bySex($a['baseline'])),
+                        ...array_combine(['target_men', 'target_women'], self::bySex($a['target'])),
                     ]);
                     $this->planImplementation($indicator, $a['quarters'] ?? [1, 2, 3, 4]);
                     $activity->lineItems()->update(['indicator_id' => $indicator->id]); // the one indicator carries the whole budget

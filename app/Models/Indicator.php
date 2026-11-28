@@ -25,6 +25,10 @@ class Indicator extends Model
         'unit',
         'measure',
         'annual_target',
+        'baseline_men',
+        'baseline_women',
+        'target_men',
+        'target_women',
         'baseline',
         'target_text',
         'means_of_verification',
@@ -32,7 +36,20 @@ class Indicator extends Model
         'due_quarters',
     ];
 
-    protected $casts = ['due_quarters' => 'array'];
+    protected $casts = ['due_quarters' => 'array', 'baseline_men' => 'float', 'baseline_women' => 'float', 'target_men' => 'float', 'target_women' => 'float'];
+
+    /** "M = 18, F = 6" for the baseline or the target, as the budget books print it; empty when neither is given. */
+    public function bySex(string $which): string
+    {
+        $men = $this->getAttribute($which.'_men');
+        $women = $this->getAttribute($which.'_women');
+        if ($men === null && $women === null) {
+            return '';
+        }
+        $n = fn ($v) => $v === null ? '–' : rtrim(rtrim(number_format((float) $v, 2, '.', ''), '0'), '.');
+
+        return __('M = :men, F = :women', ['men' => $n($men), 'women' => $n($women)]);
+    }
 
     protected static function booted(): void
     {

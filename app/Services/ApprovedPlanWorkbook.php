@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Activity;
+use App\Models\ResultIndicator;
 use App\Support\SpreadsheetKit as Kit;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -103,7 +104,7 @@ class ApprovedPlanWorkbook
     {
         $s->setTitle(Kit::sheetTitle(__('Plan of approved activities')));
         $classes = $report['classes'];
-        $heads = [__('Code'), __('Activity'), __('Programme'), __('Subprogramme'), __('Unit'), __('Performance indicators'), __('Baseline'), __('Target'), __('Means of verification'), __('FF'), '1T', '2T', '3T', '4T'];
+        $heads = [__('Code'), __('Activity'), __('Programme'), __('Subprogramme'), __('Unit (Div)'), __('Performance indicators'), __('Baseline'), __('Target'), __('Means of verification'), __('FF'), '1T', '2T', '3T', '4T'];
         $firstCat = count($heads) + 1;
         foreach ($classes as $c) {
             $heads[] = $c->code.' '.$c->name;
@@ -130,19 +131,40 @@ class ApprovedPlanWorkbook
             Kit::band($s, $pRow, $last, Kit::FILL['prog'], true);
             $start = $row;
 
-            foreach ($p['subprograms'] as $sp) {
-                $sRow = $row++;
-                Kit::text($s, "A{$sRow}", (string) $sp['subprogram']->code);
-                Kit::text($s, "B{$sRow}", __('Subprogramme').' '.$sp['subprogram']->code.': '.$sp['subprogram']->name);
-                Kit::band($s, $sRow, $last, Kit::FILL['sub'], true);
-                $sStart = $row;
-                foreach ($sp['rows'] as $r) {
-                    $this->activity($s, $row++, $r, $p['program'], $sp['subprogram'], $classes, $firstCat, $last);
+            // the results chain of the State Budget (Anexo K) where the activities name their outputs
+            foreach ($p['linked'] ? $p['outcomes'] : [['outcome' => null, 'subprograms' => $p['subprograms'], 'loose' => $p['loose']]] as $o) {
+                $oRow = $o['outcome'] ? $row++ : null;
+                if ($oRow) {
+                    $this->result($s, $oRow, __('Medium-term objective (outcome)'), $o['outcome'], $last, Kit::FILL['head']);
                 }
-                $this->subtotals($s, $sRow, $sStart, $row - 1, $catCols, $last);
-            }
-            foreach ($p['loose'] as $r) {
-                $this->activity($s, $row++, $r, $p['program'], null, $classes, $firstCat, $last);
+                $oStart = $row;
+                foreach ($o['subprograms'] as $sp) {
+                    $sRow = $row++;
+                    Kit::text($s, "A{$sRow}", (string) $sp['subprogram']->code);
+                    Kit::text($s, "B{$sRow}", __('Subprogramme').' '.$sp['subprogram']->code.': '.$sp['subprogram']->name);
+                    Kit::band($s, $sRow, $last, Kit::FILL['sub'], true);
+                    $sStart = $row;
+                    foreach ($p['linked'] ? $sp['outputs'] : [['output' => null, 'rows' => $sp['rows']]] as $out) {
+                        $uRow = $out['output'] ? $row++ : null;
+                        if ($uRow) {
+                            $this->result($s, $uRow, __('Short-term result (output)'), $out['output'], $last, Kit::FILL['subp']);
+                        }
+                        $uStart = $row;
+                        foreach ($out['rows'] as $r) {
+                            $this->activity($s, $row++, $r, $p['program'], $sp['subprogram'], $classes, $firstCat, $last);
+                        }
+                        if ($uRow) {
+                            $this->subtotals($s, $uRow, $uStart, $row - 1, $catCols, $last);
+                        }
+                    }
+                    $this->subtotals($s, $sRow, $sStart, $row - 1, $catCols, $last);
+                }
+                foreach ($o['loose'] as $r) {
+                    $this->activity($s, $row++, $r, $p['program'], null, $classes, $firstCat, $last);
+                }
+                if ($oRow) {
+                    $this->subtotals($s, $oRow, $oStart, $row - 1, $catCols, $last);
+                }
             }
             $this->subtotals($s, $pRow, $start, $row - 1, $catCols, $last);
         }
@@ -170,6 +192,19 @@ class ApprovedPlanWorkbook
         $s->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(1, 1);
     }
 
+    /** An outcome or output row: its code and statement, its indicator, starting point and target (the subtotal is set by the caller). */
+    private function result(Worksheet $s, int $row, string $kind, ResultIndicator $result, int $last, string $fill): void
+    {
+        Kit::text($s, "A{$row}", (string) $result->code);
+        Kit::text($s, "B{$row}", $kind.($result->code ? ' '.$result->code : '').': '.($result->statement ?: $result->name));
+        Kit::text($s, "F{$row}", $result->statement ? (string) $result->name : '');
+        Kit::text($s, "G{$row}", (string) $result->baseline);
+        Kit::text($s, "H{$row}", (string) $result->target);
+        Kit::text($s, "I{$row}", (string) $result->means_of_verification);
+        Kit::band($s, $row, $last, $fill, false);
+        $s->getStyle("A{$row}:I{$row}")->getFont()->setItalic(true);
+    }
+
     private function activity(Worksheet $s, int $row, array $r, $program, $subprogram, $classes, int $firstCat, int $last): void
     {
         /** @var Activity $a */
@@ -183,11 +218,12 @@ class ApprovedPlanWorkbook
             (string) $a->description,
             (string) ($program->oge_code ?? ''),
             (string) ($subprogram->code ?? ''),
-            (string) ($a->directorate?->name ?? ''),
+            trim(($a->directorate?->budget_code ? $a->directorate->budget_code.' ' : '').($a->directorate?->name ?? '')),
             $inds->map(fn ($i, $n) => ($n + 1).') '.$i->name)->implode("\n"),
-            $inds->map(fn ($i, $n) => $inds->count() > 1 ? ($n + 1).') '.$i->baseline : (string) $i->baseline)->implode("\n"),
+            $inds->map(fn ($i, $n) => ($inds->count() > 1 ? ($n + 1).') ' : '').$i->baseline.($i->bySex('baseline') !== '' ? ' ('.$i->bySex('baseline').')' : ''))->implode("\n"),
             $inds->map(function ($i, $n) use ($inds) {
-                $t = $i->target_text ?: rtrim(rtrim(number_format((float) $i->annual_target, 2), '0'), '.').' '.$i->unit;
+                $t = ($i->target_text ?: rtrim(rtrim(number_format((float) $i->annual_target, 2), '0'), '.').' '.$i->unit)
+                    .($i->bySex('target') !== '' ? ' ('.$i->bySex('target').')' : '');
 
                 return $inds->count() > 1 ? ($n + 1).') '.$t : $t;
             })->implode("\n"),

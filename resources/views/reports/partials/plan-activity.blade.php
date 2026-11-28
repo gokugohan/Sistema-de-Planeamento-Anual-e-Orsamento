@@ -13,14 +13,14 @@
         @endif
         @if($i)
             <td>{{ $loop->iteration }}). {{ $i->name }}@if($i->actions->isNotEmpty())<div style="font-style:italic">{{ $i->implementationText() }}@if($i->hasMonthPlan()) ({{ collect($i->plannedMonths())->map(fn ($m) => \Carbon\Carbon::create(2000, $m, 1)->translatedFormat('M'))->implode(', ') }})@endif</div>@endif</td>
-            <td>{{ $i->baseline }}</td>
-            <td>{{ $i->target_text ?: rtrim(rtrim(number_format((float) $i->annual_target, 2), '0'), '.').' '.$i->unit }}</td>
+            <td>{{ $i->baseline }}@if($i->bySex('baseline') !== '') ({{ $i->bySex('baseline') }})@endif</td>
+            <td>{{ $i->target_text ?: rtrim(rtrim(number_format((float) $i->annual_target, 2), '0'), '.').' '.$i->unit }}@if($i->bySex('target') !== '') ({{ $i->bySex('target') }})@endif</td>
         @else
             <td></td><td></td><td></td>
         @endif
         @if($loop->first)
             <td rowspan="{{ $n }}">{{ $means }}</td>
-            <td rowspan="{{ $n }}">{{ $a->directorate?->name }}</td>
+            <td rowspan="{{ $n }}">@if($a->directorate?->budget_code)<b>{{ $a->directorate->budget_code }}</b> @endif{{ $a->directorate?->name }}</td>
             <td rowspan="{{ $n }}">@foreach($funding as $f){{ $f }}@if(! $loop->last)<br>@endif @endforeach</td>
             @foreach([1, 2, 3, 4] as $q)<td rowspan="{{ $n }}" @class(['q' => in_array($q, $quarters, true)])></td>@endforeach
             @foreach($classes as $c)<td rowspan="{{ $n }}" class="r">{{ ($r['by_class'][$c->id] ?? 0) > 0 ? $num($r['by_class'][$c->id]) : '' }}</td>@endforeach

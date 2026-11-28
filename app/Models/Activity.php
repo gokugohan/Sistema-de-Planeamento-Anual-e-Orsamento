@@ -123,6 +123,7 @@ class Activity extends Model
     protected $fillable = [
         'program_id',
         'subprogram_id',
+        'output_id',
         'code',
         'directorate_id',
         'description',
@@ -179,6 +180,12 @@ class Activity extends Model
     public function subprogram()
     {
         return $this->belongsTo(Subprogram::class);
+    }
+
+    /** The output (Resultado de Curto Prazo) of the subprogramme this activity serves: a result indicator of the subprogramme. */
+    public function output()
+    {
+        return $this->belongsTo(ResultIndicator::class, 'output_id');
     }
 
     public function directorate()

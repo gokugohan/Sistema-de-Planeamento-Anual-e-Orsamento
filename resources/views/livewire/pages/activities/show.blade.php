@@ -77,7 +77,7 @@ new class extends Component {
     public function hydrate(): void
     {
         $this->activity->loadMissing([
-            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators.actions',
+            'program.alignments', 'subprogram.alignments', 'output.outcome', 'directorate', 'indicators.actions',
             'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -88,7 +88,7 @@ new class extends Component {
         $this->authorize('view', $activity);
 
         $this->activity = $activity->load([
-            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators.actions',
+            'program.alignments', 'subprogram.alignments', 'output.outcome', 'directorate', 'indicators.actions',
             'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -292,7 +292,7 @@ new class extends Component {
     private function refresh(): void
     {
         $this->activity = $this->activity->fresh([
-            'program.alignments', 'subprogram.alignments', 'directorate', 'indicators.actions',
+            'program.alignments', 'subprogram.alignments', 'output.outcome', 'directorate', 'indicators.actions',
             'lineItems.economicClassification', 'lineItems.fundingSource', 'lineItems.adjustedBudget',
             'approvedBy', 'reviewedBy',
         ]);
@@ -649,6 +649,13 @@ new class extends Component {
                                                         @if($indicator->baseline){{ __('Starting point') }}: {{ $indicator->baseline }}@endif
                                                         @if($indicator->baseline && $indicator->target_text) · @endif
                                                         @if($indicator->target_text){{ __('Target') }}: {{ $indicator->target_text }}@endif
+                                                    </p>
+                                                @endif
+                                                @if($indicator->bySex('baseline') !== '' || $indicator->bySex('target') !== '')
+                                                    <p class="mt-1 text-xs font-normal text-zinc-500">
+                                                        @if($indicator->bySex('baseline') !== ''){{ __('Starting point') }}: {{ $indicator->bySex('baseline') }}@endif
+                                                        @if($indicator->bySex('baseline') !== '' && $indicator->bySex('target') !== '') · @endif
+                                                        @if($indicator->bySex('target') !== ''){{ __('Target') }}: {{ $indicator->bySex('target') }}@endif
                                                     </p>
                                                 @endif
                                                 <p class="mt-1 text-xs font-normal text-zinc-500">
@@ -1064,6 +1071,11 @@ new class extends Component {
                             <p class="text-xs font-semibold text-indigo-200">{{ __('OGE Program') }}</p>
                             <p class="text-sm font-semibold text-white mt-0.5 leading-snug">{{ $activity->program->name }}</p>
                             @if($activity->subprogram)<p class="text-xs text-indigo-200 mt-1">{{ __('Subprogram') }} {{ $activity->subprogram->code }} · {{ $activity->subprogram->name }}</p>@endif
+                            @if($activity->output)
+                                <p class="mt-2 text-xs font-semibold text-indigo-300">{{ __('Output it serves') }}</p>
+                                <p class="text-xs text-indigo-100 mt-0.5">{{ $activity->output->label() }}</p>
+                                @if($activity->output->outcome)<p class="text-xs text-indigo-200 mt-1">{{ __('Outcome') }}: {{ $activity->output->outcome->label() }}</p>@endif
+                            @endif
                             @php $aligned = $activity->program->alignments->concat($activity->subprogram?->alignments ?? collect()); @endphp
                             @if($aligned->isNotEmpty())
                                 <p class="mt-2 text-xs font-semibold text-indigo-300">{{ __('Contributes to') }}</p>

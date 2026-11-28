@@ -20,6 +20,7 @@ new class extends Component {
     public $directorateId = null;
     public $name = '';
     public $code = '';
+    public $budget_code = '';
     public $parent_id = null;
     public $type = 'General Directorate';
     public $description = '';
@@ -215,6 +216,7 @@ new class extends Component {
             $d = Directorate::findOrFail($id);
             $this->name = $d->name;
             $this->code = $d->code;
+            $this->budget_code = (string) $d->budget_code;
             $this->parent_id = $d->parent_id;
             $this->type = $d->type;
             $this->description = $d->description;
@@ -227,7 +229,7 @@ new class extends Component {
         } else {
             $this->isEditing = false;
             $this->directorateId = null;
-            $this->reset(['name', 'code', 'parent_id', 'type', 'description', 'director_name', 'director_email', 'active', 'administration', 'legal_form', 'legal_basis']);
+            $this->reset(['name', 'code', 'budget_code', 'parent_id', 'type', 'description', 'director_name', 'director_email', 'active', 'administration', 'legal_form', 'legal_basis']);
         }
         $this->modalOpen = true;
     }
@@ -237,6 +239,8 @@ new class extends Component {
         $rules = [
             'name' => 'required|string|max:255',
             'code' => 'required|string|max:50|unique:directorates,code,' . $this->directorateId,
+            // the division code the State Budget gives the unit (Div), e.g. 0250202
+            'budget_code' => 'nullable|string|max:20',
             'type' => 'required|string',
             'parent_id' => 'nullable|exists:directorates,id',
             'director_name' => 'nullable|string|max:255',
@@ -251,6 +255,7 @@ new class extends Component {
         $data = [
             'name' => $this->name,
             'code' => $this->code,
+            'budget_code' => trim((string) $this->budget_code) ?: null,
             'parent_id' => $this->parent_id ?: null,
             'type' => $this->type,
             'description' => $this->description,

@@ -18,6 +18,7 @@ final class PlanOptions
         'objective' => 'Objective of the activity',
         'manager_name' => 'Person responsible',
         'location' => 'Location',
+        'output_id' => 'Output it serves',
         'indicator_baseline' => 'Baseline of every indicator',
         'indicator_means' => 'Means of verification of every indicator',
     ];

@@ -22,6 +22,7 @@ new class extends Component {
     public $directorate_id = '';
     public $program_id = '';
     public $subprogram_id = '';
+    public $output_id = '';
     public string $description = '';
     public string $objective = '';
     public string $manager_name = '';
@@ -52,6 +53,7 @@ new class extends Component {
             $this->directorate_id = (string) $activity->directorate_id;
             $this->program_id = (string) $activity->program_id;
             $this->subprogram_id = (string) ($activity->subprogram_id ?? '');
+            $this->output_id = (string) ($activity->output_id ?? '');
             $this->description = $activity->description;
             $this->objective = (string) $activity->objective;
             $this->manager_name = (string) $activity->manager_name;
@@ -72,6 +74,8 @@ new class extends Component {
             $this->indicators = $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'measure' => $i->measure, 'target' => (string) (float) $i->annual_target,
                 'baseline' => (string) $i->baseline, 'means' => (string) $i->means_of_verification,
+                'baseline_men' => self::num($i->baseline_men), 'baseline_women' => self::num($i->baseline_women),
+                'target_men' => self::num($i->target_men), 'target_women' => self::num($i->target_women),
                 'quarters' => array_map('strval', $i->dueQuarters()),
                 'actions' => $i->actions->map(fn ($a) => ['text' => $a->text, 'months' => array_map('strval', $a->monthList())])->all(),
             ])->all();
@@ -106,10 +110,31 @@ new class extends Component {
     public function updatedProgramId(): void
     {
         $this->subprogram_id = '';
+        $this->output_id = '';
         $this->resetErrorBag('subprogram_id');
     }
 
     /** A percentage is a level, not something that adds up over the quarters. */
+    /** A subprogramme with a single output: the activity serves it, so it is chosen at once. */
+    public function updatedSubprogramId(): void
+    {
+        $outputs = $this->outputsOf($this->subprogram_id);
+        $this->output_id = $outputs->count() === 1 ? (string) $outputs->first()->id : '';
+        $this->resetErrorBag('output_id');
+    }
+
+    /** The outputs (Resultado de Curto Prazo) of a subprogramme: its result indicators. */
+    private function outputsOf($subprogramId)
+    {
+        return $subprogramId ? \App\Models\ResultIndicator::where('indicatable_type', (new Subprogram)->getMorphClass())
+            ->where('indicatable_id', (int) $subprogramId)->orderBy('code')->orderBy('id')->get(['id', 'code', 'statement', 'name']) : collect();
+    }
+
+    private static function num($v): string
+    {
+        return $v === null ? '' : (string) (float) $v;
+    }
+
     public function updatedIndicators($value, $key): void
     {
         [$i, $field] = array_pad(explode('.', (string) $key, 2), 2, null);
@@ -121,7 +146,7 @@ new class extends Component {
     /** An empty indicator row: reported every quarter until said otherwise. */
     private function blankIndicator(): array
     {
-        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4'], 'actions' => []];
+        return ['id' => null, 'name' => '', 'type' => 'Output', 'unit' => '', 'measure' => 'cumulative', 'target' => '', 'baseline' => '', 'baseline_men' => '', 'baseline_women' => '', 'target_men' => '', 'target_women' => '', 'means' => '', 'quarters' => ['1', '2', '3', '4'], 'actions' => []];
     }
 
     public function addIndicator(): void { $this->indicators[] = $this->blankIndicator(); }
@@ -169,6 +194,8 @@ new class extends Component {
             'program_id' => ['required', 'exists:programs,id,fiscal_year,'.$this->year],
             // the subprogramme must belong to the chosen programme
             'subprogram_id' => ['nullable', \Illuminate\Validation\Rule::exists('subprograms', 'id')->where('program_id', (int) $this->program_id)],
+            // the output must be one of the chosen subprogramme's
+            'output_id' => ['nullable', \Illuminate\Validation\Rule::exists('result_indicators', 'id')->where('indicatable_type', (new Subprogram)->getMorphClass())->where('indicatable_id', (int) $this->subprogram_id)],
             'description' => ['required', 'string', 'min:5', 'max:1000'],
             'objective' => ['nullable', 'string', 'max:2000'],
             'manager_name' => ['nullable', 'string', 'max:255'],
@@ -193,6 +220,10 @@ new class extends Component {
             'indicators.*.measure' => ['nullable', 'in:cumulative,level'],
             'indicators.*.target' => ['required', 'numeric', 'min:0'],
             'indicators.*.baseline' => ['nullable', 'string', 'max:500'],
+            'indicators.*.baseline_men' => ['nullable', 'numeric', 'min:0', 'max:999999999999'],
+            'indicators.*.baseline_women' => ['nullable', 'numeric', 'min:0', 'max:999999999999'],
+            'indicators.*.target_men' => ['nullable', 'numeric', 'min:0', 'max:999999999999'],
+            'indicators.*.target_women' => ['nullable', 'numeric', 'min:0', 'max:999999999999'],
             'indicators.*.means' => ['nullable', 'string', 'max:1000'],
             'indicators.*.actions' => ['nullable', 'array', 'max:20'],
             'indicators.*.actions.*.text' => ['required', 'string', 'max:1000'],
@@ -284,6 +315,7 @@ new class extends Component {
         $data = [
             'program_id' => $this->program_id,
             'subprogram_id' => $this->subprogram_id ?: null,
+            'output_id' => ($this->subprogram_id && $this->output_id) ? (int) $this->output_id : null,
             'directorate_id' => $unit->id,
             'description' => trim($this->description),
             'objective' => trim($this->objective) ?: null,
@@ -323,6 +355,8 @@ new class extends Component {
                     $attrs = [
                         'name' => trim($i['name']), 'type' => $i['type'], 'unit' => trim($i['unit']), 'measure' => $i['measure'] ?? Indicator::defaultMeasure($i['unit']),
                         'annual_target' => $i['target'], 'baseline' => trim((string) ($i['baseline'] ?? '')) ?: null,
+                        // the men and women in it, where the indicator counts people (as the budget books print them)
+                        ...collect(['baseline_men', 'baseline_women', 'target_men', 'target_women'])->mapWithKeys(fn ($f) => [$f => is_numeric($i[$f] ?? null) ? (float) $i[$f] : null])->all(),
                         'means_of_verification' => trim((string) ($i['means'] ?? '')) ?: null,
                         // every quarter is the default: store nothing for it
                         'due_quarters' => ($quarters && $quarters !== [1, 2, 3, 4]) ? $quarters : null,
@@ -425,6 +459,7 @@ new class extends Component {
             'units' => $this->units(),
             'programs' => Program::forYear($this->year)->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'subprograms' => $this->program_id ? Subprogram::where('program_id', (int) $this->program_id)->orderBy('code')->get(['id', 'code', 'name']) : collect(),
+            'outputs' => $this->outputsOf($this->subprogram_id),
             'classes' => EconomicClassification::orderBy('code')->get(['id', 'code', 'name']),
             'sources' => \App\Models\FundingSource::where('active', true)->orWhereIn('id', collect($this->lines)->pluck('source_id')->filter())->orderByDesc('is_default')->orderBy('name')->get(['id', 'name']),
             'total' => $total,
@@ -511,11 +546,20 @@ new class extends Component {
                     @error('program_id')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                     @if($subprograms->isNotEmpty())
                         <label for="subprogram_id" class="mt-3 block text-sm font-medium text-zinc-700 mb-1">{{ __('Subprogram') }}</label>
-                        <select id="subprogram_id" wire:model="subprogram_id" class="flux-input">
+                        <select id="subprogram_id" wire:model.live="subprogram_id" class="flux-input">
                             <option value="">{{ __('Select a subprogram') }}</option>
                             @foreach($subprograms as $s)<option value="{{ $s->id }}">{{ $s->code }} — {{ $s->name }}</option>@endforeach
                         </select>
                         @error('subprogram_id')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
+                    @endif
+                    @if($outputs->isNotEmpty())
+                        <label for="output_id" class="mt-3 block text-sm font-medium text-zinc-700 mb-1">{{ __('Output it serves') }}</label>
+                        <select id="output_id" wire:model="output_id" class="flux-input" aria-describedby="output_id-hint">
+                            <option value="">{{ __('Select an output') }}</option>
+                            @foreach($outputs as $o)<option value="{{ $o->id }}">{{ \Illuminate\Support\Str::limit($o->label(), 140) }}</option>@endforeach
+                        </select>
+                        <p id="output_id-hint" class="mt-1 text-xs text-zinc-500">{{ __('The short-term result of the subprogram this activity delivers. The final plan report lists the activity under it.') }}</p>
+                        @error('output_id')<p class="mt-1 text-xs text-rose-600">{{ $message }}</p>@enderror
                     @endif
                 </div>
                 <div class="sm:col-span-2">
@@ -693,6 +737,19 @@ new class extends Component {
                                     <input id="ind-{{ $i }}-baseline" type="text" wire:model="indicators.{{ $i }}.baseline" class="flux-input" placeholder="{{ __('Where it stands today, e.g. 4 or 0%') }}">
                                     @error("indicators.$i.baseline")<p class="field-error">{{ $message }}</p>@enderror
                                 </div>
+                                <fieldset class="sm:col-span-2">
+                                    <legend class="field-label">{{ __('Men and women') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></legend>
+                                    <p class="field-hint">{{ __('Only where the indicator counts people, e.g. trainees: how many men and women are in the baseline and in the target.') }}</p>
+                                    <div class="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                                        @foreach(['baseline_men' => __('Baseline, men'), 'baseline_women' => __('Baseline, women'), 'target_men' => __('Target, men'), 'target_women' => __('Target, women')] as $field => $label)
+                                            <div>
+                                                <label for="ind-{{ $i }}-{{ $field }}" class="text-xs text-zinc-600">{{ $label }}</label>
+                                                <input id="ind-{{ $i }}-{{ $field }}" type="number" step="any" min="0" wire:model="indicators.{{ $i }}.{{ $field }}" class="flux-input text-right">
+                                                @error("indicators.$i.$field")<p class="field-error">{{ $message }}</p>@enderror
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </fieldset>
                                 <div class="sm:col-span-2">
                                     <label for="ind-{{ $i }}-means" class="field-label">{{ __('Means of verification') }}</label>
                                     <textarea id="ind-{{ $i }}-means" rows="2" wire:model="indicators.{{ $i }}.means" class="flux-input" placeholder="{{ __('What proves it, e.g. signed reports, system logs') }}"></textarea>

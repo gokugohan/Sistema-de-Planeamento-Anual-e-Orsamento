@@ -15,6 +15,7 @@ class Directorate extends Model
     protected $fillable = [
         'name',
         'code',
+        'budget_code',
         'parent_id',
         'type',
         'administration',

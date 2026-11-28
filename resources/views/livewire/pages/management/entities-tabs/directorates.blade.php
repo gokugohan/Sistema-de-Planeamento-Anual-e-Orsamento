@@ -162,6 +162,12 @@
                         <x-input-error :messages="$errors->get('code')" />
                     </div>
                     <div>
+                        <label class="field-label" for="f-budget-code">{{ __('State Budget division code (Div)') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                        <input id="f-budget-code" type="text" wire:model="budget_code" class="flux-input" placeholder="{{ __('e.g. 0250202') }}" aria-describedby="f-budget-code-hint">
+                        <p id="f-budget-code-hint" class="field-hint">{{ __('The code the annual plans of the State Budget give this unit. The final plan report prints it beside the unit.') }}</p>
+                        <x-input-error :messages="$errors->get('budget_code')" />
+                    </div>
+                    <div>
                         <label class="field-label" for="f-name">{{ __('Unit Name') }}</label>
 <input id="f-name" type="text" wire:model="name"
                             class="flux-input"

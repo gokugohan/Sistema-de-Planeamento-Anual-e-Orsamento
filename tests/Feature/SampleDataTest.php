@@ -4,12 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\Activity;
 use App\Models\Directorate;
+use App\Models\Indicator;
 use App\Models\Program;
 use App\Models\ReportingWindow;
 use App\Models\ResultIndicator;
 use App\Models\SampleRecord;
 use App\Models\Subprogram;
 use App\Models\SystemSetting;
+use App\Models\UnitPlanning;
 use App\Models\User;
 use App\Services\SampleRegistry;
 use Database\Seeders\EconomicClassificationSeeder;
@@ -72,25 +74,38 @@ class SampleDataTest extends TestCase
     {
         $this->load();
 
-        // each entity sets its own outcome for a programme they share: one indicator each, named after the entity
+        // each entity sets its own outcome for a programme they share: its code and statement, then its indicator
         $p502 = Program::forYear(2027)->where('oge_code', '502')->firstOrFail();
-        $outcomes = $p502->resultIndicators->keyBy(fn ($r) => strtok($r->name, ':'));
-        $this->assertEqualsCanonicalizing(['MTC 502.0.0', 'MTC 502.0.1', 'AACTL 502.0.2', 'APORTIL 502.0.3'], $outcomes->keys()->all());
-        $this->assertSame('MTC 502.0.0: Reduzir o tempo de viagem para o usuário, o serviço mais rápido e ou reduzir custos', $outcomes['MTC 502.0.0']->name);
-        $this->assertSame(['894', '900'], [$outcomes['MTC 502.0.1']->baseline, $outcomes['MTC 502.0.1']->target]);
+        $outcomes = $p502->resultIndicators->keyBy('code');
+        $this->assertEqualsCanonicalizing(['502.0.0', '502.0.1', '502.0.2', '502.0.3'], $outcomes->keys()->all());
+        $this->assertSame('Reduzir o tempo de viagem para o usuário, o serviço mais rápido e ou reduzir custos', $outcomes['502.0.0']->name);
+        $this->assertStringStartsWith('Sistema de transporte terrestre em bom funcionamento', $outcomes['502.0.0']->statement);
+        $this->assertSame(['894', '900'], [$outcomes['502.0.1']->baseline, $outcomes['502.0.1']->target]);
 
         // an output belongs to its subprogramme, which takes the output's statement as its objective
         $sub = Subprogram::where('program_id', $p502->id)->where('code', '50202')->firstOrFail();
         $this->assertSame('Estrutura integrada de transportes terrestres desenvolvida e implementada', $sub->objective);
         $output = $sub->resultIndicators->sole();
-        $this->assertSame(['MTC 50202.0.0: % de redução em acidentes rodoviários', '10', '8'], [$output->name, $output->baseline, $output->target]);
+        $this->assertSame(['50202.0.0', '% de redução em acidentes rodoviários', '10', '8'], [$output->code, $output->name, $output->baseline, $output->target]);
+
+        // the chain of the book: the output serves the outcome printed above it, and each activity of the subprogramme its output
+        $this->assertSame($outcomes['502.0.0']->id, $output->outcome_id);
+        $this->assertSame($outcomes['502.0.1']->id, Subprogram::where('program_id', $p502->id)->where('code', '50204')->firstOrFail()->resultIndicators->sole()->outcome_id);
+        $activities = Activity::where('fiscal_year', 2027)->where('subprogram_id', $sub->id)->get();
+        $this->assertNotEmpty($activities);
+        $this->assertTrue($activities->every(fn ($a) => $a->output_id === $output->id));
+
+        // the division code of the budget beside each unit, and the men and women the book prints in a baseline
+        $this->assertSame('0250202', Directorate::where('code', 'DNTM')->value('budget_code'));
+        $trained = Indicator::whereHas('activity', fn ($q) => $q->where('fiscal_year', 2027)->where('code', '5020401'))->firstOrFail();
+        $this->assertSame([18.0, 6.0], [$trained->baseline_men, $trained->baseline_women]);
 
         // long texts are cut to what the columns hold
         $this->assertTrue(ResultIndicator::all()->every(fn ($r) => mb_strlen($r->name) <= 500 && mb_strlen((string) $r->baseline) <= 255 && mb_strlen((string) $r->target) <= 255));
 
         // only the 2027 book has been read for them
         $this->assertSame(0, Program::forYear(2026)->withCount('resultIndicators')->get()->sum('result_indicators_count'));
-        $this->assertSame(43, ResultIndicator::count(), 'every outcome and output whose programme or subprogramme has a funded activity (one TIC output has none)');
+        $this->assertSame(41, ResultIndicator::count(), 'every outcome and output whose programme or subprogramme has a funded activity (one TIC output has none); two entities print two identical ones, kept once');
     }
 
     public function test_purge_removes_all_sample_data_and_resets_branding(): void
@@ -114,14 +129,14 @@ class SampleDataTest extends TestCase
     {
         $this->load();
         $unit = Directorate::whereNull('parent_id')->orderBy('code')->firstOrFail();
-        \App\Models\UnitPlanning::create(['fiscal_year' => 2027, 'directorate_id' => $unit->id, 'planning_at' => now()]); // finalized while practising
+        UnitPlanning::create(['fiscal_year' => 2027, 'directorate_id' => $unit->id, 'planning_at' => now()]); // finalized while practising
 
         $report = app(SampleRegistry::class)->purge('mtc', keepUnits: true);
 
         $this->assertSame(49, Directorate::count(), 'every unit stays, with its hierarchy');
         $this->assertSame(0, $report['deleted']['directorates']);
         $this->assertSame(0, Activity::count() + Program::count() + User::count() + ReportingWindow::count(), 'the rest of the sample goes, demo accounts included');
-        $this->assertSame(0, \App\Models\UnitPlanning::count(), 'the real year starts open');
+        $this->assertSame(0, UnitPlanning::count(), 'the real year starts open');
         $this->assertSame(0, SampleRecord::count(), 'the units are ordinary records now: a later purge leaves them');
         $this->assertSame('MTC', SystemSetting::getLocalized('org_abbr', '', 'en'), 'the institution keeps its name');
         $this->assertFalse((bool) SystemSetting::get(SampleRegistry::FLAG));

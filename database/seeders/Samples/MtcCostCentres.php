@@ -52,6 +52,22 @@ final class MtcCostCentres
         return $map[$div] ?? null;
     }
 
+    /** The division code of a unit (the reverse of unitCode): the budget's Div code printed beside it in the final plan report. */
+    public static function divisionOf(string $unitCode): ?string
+    {
+        static $codes = null;
+        if ($codes === null) {
+            $codes = [];
+            foreach (['0250101', '0250103', '0250104', '0250105', '0250106', '0250201', '0250202', '0250203', '0250204', '0250205', '0250206',
+                '0250301', '0250302', '0250303', '0250304', '0250305', '0250401', '0250500', '0250600', '0250700', '0250701', '0250702',
+                '0560101', '0560201', '0590101', '0660101', ...array_keys(self::MUNICIPAL), ...array_keys(self::AACTL)] as $div) {
+                $codes[self::unitCode($div)] ??= $div;
+            }
+        }
+
+        return $codes[$unitCode] ?? null;
+    }
+
     /** The unit that stands for a whole entity when a line names no (or no known) division. */
     public const ENTITY_UNIT = ['025' => 'GPPC', '056' => 'APORTIL', '059' => 'TICTIMOR', '063' => 'AACTL', '066' => 'ANC'];
 

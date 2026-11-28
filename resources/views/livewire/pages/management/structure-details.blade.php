@@ -16,6 +16,9 @@ new class extends Component {
     public int $targetId;
 
     public ?int $indicatorId = null;
+    public string $indCode = '';
+    public string $indStatement = '';
+    public $indOutcome = '';
     public string $indName = '';
     public string $indBaseline = '';
     public string $indTarget = '';
@@ -46,6 +49,9 @@ new class extends Component {
     {
         $i = $this->target()->resultIndicators()->findOrFail($id);
         $this->indicatorId = $i->id;
+        $this->indCode = (string) $i->code;
+        $this->indStatement = (string) $i->statement;
+        $this->indOutcome = (string) ($i->outcome_id ?? '');
         $this->indName = $i->name;
         $this->indBaseline = (string) $i->baseline;
         $this->indTarget = (string) $i->target;
@@ -56,13 +62,19 @@ new class extends Component {
     {
         $target = $this->target();
         $this->validate([
+            'indCode' => ['nullable', 'string', 'max:40'],
+            'indStatement' => ['nullable', 'string', 'max:2000'],
+            // an output serves one outcome of its own programme
+            'indOutcome' => ['nullable', \Illuminate\Validation\Rule::in($this->outcomes()->pluck('id')->map(fn ($id) => (string) $id)->all())],
             'indName' => ['required', 'string', 'max:500'],
             'indBaseline' => ['nullable', 'string', 'max:255'],
             'indTarget' => ['nullable', 'string', 'max:255'],
             'indMeans' => ['nullable', 'string', 'max:1000'],
         ], [], ['indName' => __('indicator'), 'indBaseline' => __('baseline'), 'indTarget' => __('target'), 'indMeans' => __('means of verification')]);
 
-        $data = ['name' => trim($this->indName), 'baseline' => trim($this->indBaseline) ?: null, 'target' => trim($this->indTarget) ?: null, 'means_of_verification' => trim($this->indMeans) ?: null];
+        $data = ['code' => trim($this->indCode) ?: null, 'statement' => trim($this->indStatement) ?: null,
+            'outcome_id' => $this->type === 'subprogram' && $this->indOutcome !== '' ? (int) $this->indOutcome : null,
+            'name' => trim($this->indName), 'baseline' => trim($this->indBaseline) ?: null, 'target' => trim($this->indTarget) ?: null, 'means_of_verification' => trim($this->indMeans) ?: null];
         $this->indicatorId ? $target->resultIndicators()->findOrFail($this->indicatorId)->update($data) : $target->resultIndicators()->create($data);
 
         $this->resetIndicatorForm();
@@ -76,8 +88,16 @@ new class extends Component {
 
     public function resetIndicatorForm(): void
     {
-        $this->reset(['indicatorId', 'indName', 'indBaseline', 'indTarget', 'indMeans']);
+        $this->reset(['indicatorId', 'indCode', 'indStatement', 'indOutcome', 'indName', 'indBaseline', 'indTarget', 'indMeans']);
         $this->resetValidation();
+    }
+
+    /** For a subprogramme: the outcomes of its programme, one of which each of its outputs serves. */
+    private function outcomes()
+    {
+        return $this->type === 'subprogram'
+            ? ResultIndicator::where('indicatable_type', (new Program)->getMorphClass())->where('indicatable_id', $this->target()->program_id)->orderBy('code')->orderBy('id')->get()
+            : collect();
     }
 
     // ── alignments
@@ -106,7 +126,8 @@ new class extends Component {
         $target = $this->target();
 
         return [
-            'indicators' => $target->resultIndicators()->orderBy('id')->get(),
+            'indicators' => $target->resultIndicators()->with('outcome')->orderBy('code')->orderBy('id')->get(),
+            'outcomes' => $this->outcomes(),
             'alignments' => $target->alignments()->orderBy('framework')->orderBy('reference')->get(),
         ];
     }
@@ -157,14 +178,17 @@ new class extends Component {
 
     {{-- Result indicators --}}
     <section aria-labelledby="ri-title">
-        <h3 id="ri-title" class="text-sm font-semibold text-zinc-900">{{ __('Result indicators') }}</h3>
-        <p class="mt-0.5 text-xs text-zinc-500">{{ __('The change this is meant to bring, with where it stands and where it should get to. Described here; the activities report their own indicators every quarter.') }}</p>
+        <h3 id="ri-title" class="text-sm font-semibold text-zinc-900">{{ $type === 'subprogram' ? __('Outputs (short-term results)') : __('Outcomes (medium-term objectives)') }}</h3>
+        <p class="mt-0.5 text-xs text-zinc-500">{{ __('The change this is meant to bring, with where it stands and where it should get to. Described here; the activities report their own indicators every quarter.') }}
+            {{ $type === 'subprogram' ? __('Each output serves an outcome of the program, and each activity of the subprogram names the output it delivers.') : __('The outputs of the subprograms say which outcome they serve.') }}</p>
 
         <ul class="mt-3 divide-y divide-zinc-100 rounded-md border border-zinc-200">
             @forelse($indicators as $ri)
                 <li class="flex items-start justify-between gap-3 px-4 py-2.5 text-sm">
                     <div class="min-w-0">
-                        <p class="font-medium text-zinc-900">{{ $ri->name }}</p>
+                        @if($ri->code || $ri->statement)<p class="font-medium text-zinc-900">@if($ri->code)<span class="tabular-nums">{{ $ri->code }}</span>: @endif{{ $ri->statement }}</p>@endif
+                        <p @class(['text-zinc-900' => ! ($ri->code || $ri->statement), 'font-medium' => ! ($ri->code || $ri->statement), 'mt-0.5 text-xs text-zinc-700' => $ri->code || $ri->statement])>@if($ri->code || $ri->statement){{ __('Indicator') }}: @endif{{ $ri->name }}</p>
+                        @if($ri->outcome)<p class="mt-0.5 text-xs text-zinc-500">{{ __('Serves') }}: {{ \Illuminate\Support\Str::limit($ri->outcome->label(), 120) }}</p>@endif
                         <p class="mt-0.5 text-xs text-zinc-600">
                             @if($ri->baseline){{ __('Baseline') }}: {{ $ri->baseline }}@endif
                             @if($ri->baseline && $ri->target) · @endif
@@ -183,8 +207,29 @@ new class extends Component {
         </ul>
 
         <form wire:submit="saveIndicator" class="mt-3 grid gap-3 sm:grid-cols-2">
+            <p class="sm:col-span-2 text-sm font-medium text-zinc-900">{{ $indicatorId ? __('Edit result') : __('New result') }}</p>
+            <div>
+                <label for="ri-code" class="field-label">{{ __('Code') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                <input id="ri-code" type="text" wire:model="indCode" class="flux-input" placeholder="{{ $type === 'subprogram' ? __('e.g. 50204.0.0') : __('e.g. 502.0.1') }}">
+                @error('indCode')<p class="field-error">{{ $message }}</p>@enderror
+            </div>
+            @if($type === 'subprogram')
+                <div>
+                    <label for="ri-outcome" class="field-label">{{ __('Outcome it serves') }}</label>
+                    <select id="ri-outcome" wire:model="indOutcome" class="flux-input">
+                        <option value="">{{ $outcomes->isEmpty() ? __('The program has no outcomes yet') : __('Select an outcome') }}</option>
+                        @foreach($outcomes as $oc)<option value="{{ $oc->id }}">{{ \Illuminate\Support\Str::limit($oc->label(), 110) }}</option>@endforeach
+                    </select>
+                    @error('indOutcome')<p class="field-error">{{ $message }}</p>@enderror
+                </div>
+            @endif
             <div class="sm:col-span-2">
-                <label for="ri-name" class="field-label">{{ $indicatorId ? __('Edit indicator') : __('New indicator') }}</label>
+                <label for="ri-statement" class="field-label">{{ $type === 'subprogram' ? __('Output (the short-term result)') : __('Outcome (the medium-term objective)') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                <textarea id="ri-statement" rows="2" wire:model="indStatement" class="flux-input" placeholder="{{ __('As the State Budget states it, e.g. Maritime transport facilities working well') }}"></textarea>
+                @error('indStatement')<p class="field-error">{{ $message }}</p>@enderror
+            </div>
+            <div class="sm:col-span-2">
+                <label for="ri-name" class="field-label">{{ __('Indicator') }}</label>
                 <input id="ri-name" type="text" wire:model="indName" class="flux-input" placeholder="{{ __('e.g. % of public institutions with secure connectivity') }}">
                 @error('indName')<p class="field-error">{{ $message }}</p>@enderror
             </div>

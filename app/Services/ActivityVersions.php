@@ -59,7 +59,7 @@ class ActivityVersions
             'unit_path' => $this->unitPath($activity->directorate_id),
             'activity' => [
                 'code' => $activity->code, 'description' => $activity->description, 'objective' => $activity->objective,
-                'directorate_id' => $activity->directorate_id, 'program_id' => $activity->program_id, 'subprogram_id' => $activity->subprogram_id,
+                'directorate_id' => $activity->directorate_id, 'program_id' => $activity->program_id, 'subprogram_id' => $activity->subprogram_id, 'output_id' => $activity->output_id,
                 'priority' => $activity->priority, 'planned_start' => $activity->planned_start?->toDateString(), 'planned_end' => $activity->planned_end?->toDateString(),
                 'execution_quarters' => $activity->execution_quarters, 'manager_name' => $activity->manager_name,
                 'location' => $activity->location, 'procurement_required' => $activity->procurement_required, 'gender_responsive' => $activity->gender_responsive,
@@ -72,6 +72,7 @@ class ActivityVersions
             'indicators' => $activity->indicators->map(fn ($i) => [
                 'id' => $i->id, 'name' => $i->name, 'type' => $i->type, 'unit' => $i->unit, 'annual_target' => (float) $i->annual_target,
                 'baseline' => $i->baseline, 'means_of_verification' => $i->means_of_verification, 'due_quarters' => $i->due_quarters,
+                'baseline_men' => $i->baseline_men, 'baseline_women' => $i->baseline_women, 'target_men' => $i->target_men, 'target_women' => $i->target_women,
                 'measure' => $i->measure, 'target_text' => $i->target_text, 'funding_source' => $i->funding_source,
                 'actions' => $i->actions->map(fn ($a) => ['position' => $a->position, 'text' => $a->text, 'months' => $a->months])->values()->all(),
             ])->values()->all(),

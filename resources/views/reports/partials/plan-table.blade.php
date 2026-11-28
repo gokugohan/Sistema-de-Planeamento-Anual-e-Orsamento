@@ -1,5 +1,7 @@
-{{-- The annual plan in the ministry's template: programme and subprogramme bands, each activity with its
-     indicators, the quarters it runs in and the budget by economic category. --}}
+{{-- The annual plan in the State Budget's template (Anexo K): programme, its outcome, the subprogramme and its output,
+     each with its indicator and subtotal, then each activity with its indicators, the quarters it runs in and the
+     budget by economic category. Where no activity names its output, the programme and subprogramme results are
+     listed as before. --}}
 @php
     $nCat = $classes->count();
     $cols = 12 + $nCat; // activity, indicator, baseline, target, means, unit, funding, 4 quarters, categories, total
@@ -42,7 +44,7 @@
             <td rowspan="2">{{ __('Baseline') }}</td>
             <td rowspan="2">{{ __('Target') }}</td>
             <td rowspan="2">{{ __('Means of verification') }}</td>
-            <td rowspan="2">{{ __('Unit') }}</td>
+            <td rowspan="2">{{ __('Unit (Div)') }}</td>
             <td rowspan="2">{{ __('FF') }}</td>
             <td colspan="4" class="c">{{ __('Implementation schedule') }}</td>
             <td colspan="{{ $nCat }}" class="c">{{ __('Budget category') }}</td>
@@ -63,27 +65,54 @@
             @foreach($classes as $c)<td class="r">{{ $num($p['by_class'][$c->id] ?? 0) }}</td>@endforeach
             <td class="r">{{ $num($p['total']) }}</td>
         </tr>
-        @foreach($p['program']->resultIndicators as $ri)
-            <tr class="prog-i"><td>{{ $loop->first ? ($p['program']->objective ?? '') : '' }}</td><td>{{ $ri->name }}</td><td>{{ $ri->baseline }}</td><td>{{ $ri->target }}</td><td>{{ $ri->means_of_verification }}</td><td colspan="{{ $cols - 5 }}"></td></tr>
-        @endforeach
-
-        @foreach($p['subprograms'] as $s)
-            <tr class="sub">
-                <td colspan="{{ 7 + 4 }}">{{ __('Subprogramme') }} <b>{{ $s['subprogram']->code }}</b>: {{ $s['subprogram']->name }}</td>
-                @foreach($classes as $c)<td class="r">{{ $num($s['by_class'][$c->id] ?? 0) }}</td>@endforeach
-                <td class="r">{{ $num($s['total']) }}</td>
-            </tr>
-            @foreach($s['subprogram']->resultIndicators as $ri)
-                <tr class="sub-i"><td>{{ $loop->first ? ($s['subprogram']->objective ?? '') : '' }}</td><td>{{ $ri->name }}</td><td>{{ $ri->baseline }}</td><td>{{ $ri->target }}</td><td>{{ $ri->means_of_verification }}</td><td colspan="{{ $cols - 5 }}"></td></tr>
+        @if($p['linked'])
+            {{-- the results chain of the State Budget (Anexo K): outcome, subprogramme, output, activity, each with its subtotal --}}
+            @foreach($p['outcomes'] as $o)
+                @if($o['outcome'])
+                    @include('reports.partials.plan-result', ['class' => 'prog-i', 'kind' => __('Medium-term objective (outcome)'), 'result' => $o['outcome'], 'sums' => $o])
+                @endif
+                @foreach($o['subprograms'] as $s)
+                    <tr class="sub">
+                        <td colspan="{{ 7 + 4 }}">{{ __('Subprogramme') }} <b>{{ $s['subprogram']->code }}</b>: {{ $s['subprogram']->name }}</td>
+                        @foreach($classes as $c)<td class="r">{{ $num($s['by_class'][$c->id] ?? 0) }}</td>@endforeach
+                        <td class="r">{{ $num($s['total']) }}</td>
+                    </tr>
+                    @foreach($s['outputs'] as $out)
+                        @if($out['output'])
+                            @include('reports.partials.plan-result', ['class' => 'sub-i', 'kind' => __('Short-term result (output)'), 'result' => $out['output'], 'sums' => $out])
+                        @endif
+                        @foreach($out['rows'] as $r)
+                            @include('reports.partials.plan-activity', ['r' => $r, 'classes' => $classes, 'num' => $num])
+                        @endforeach
+                    @endforeach
+                @endforeach
+                @foreach($o['loose'] as $r)
+                    @include('reports.partials.plan-activity', ['r' => $r, 'classes' => $classes, 'num' => $num])
+                @endforeach
             @endforeach
-            @foreach($s['rows'] as $r)
+        @else
+            @foreach($p['program']->resultIndicators as $ri)
+                <tr class="prog-i"><td>{{ $loop->first ? ($p['program']->objective ?? '') : '' }}</td><td>{{ $ri->name }}</td><td>{{ $ri->baseline }}</td><td>{{ $ri->target }}</td><td>{{ $ri->means_of_verification }}</td><td colspan="{{ $cols - 5 }}"></td></tr>
+            @endforeach
+
+            @foreach($p['subprograms'] as $s)
+                <tr class="sub">
+                    <td colspan="{{ 7 + 4 }}">{{ __('Subprogramme') }} <b>{{ $s['subprogram']->code }}</b>: {{ $s['subprogram']->name }}</td>
+                    @foreach($classes as $c)<td class="r">{{ $num($s['by_class'][$c->id] ?? 0) }}</td>@endforeach
+                    <td class="r">{{ $num($s['total']) }}</td>
+                </tr>
+                @foreach($s['subprogram']->resultIndicators as $ri)
+                    <tr class="sub-i"><td>{{ $loop->first ? ($s['subprogram']->objective ?? '') : '' }}</td><td>{{ $ri->name }}</td><td>{{ $ri->baseline }}</td><td>{{ $ri->target }}</td><td>{{ $ri->means_of_verification }}</td><td colspan="{{ $cols - 5 }}"></td></tr>
+                @endforeach
+                @foreach($s['rows'] as $r)
+                    @include('reports.partials.plan-activity', ['r' => $r, 'classes' => $classes, 'num' => $num])
+                @endforeach
+            @endforeach
+
+            @foreach($p['loose'] as $r)
                 @include('reports.partials.plan-activity', ['r' => $r, 'classes' => $classes, 'num' => $num])
             @endforeach
-        @endforeach
-
-        @foreach($p['loose'] as $r)
-            @include('reports.partials.plan-activity', ['r' => $r, 'classes' => $classes, 'num' => $num])
-        @endforeach
+        @endif
     @endforeach
         <tr class="tot">
             <td colspan="{{ 7 + 4 }}" class="c">{{ __('TOTAL') }}</td>

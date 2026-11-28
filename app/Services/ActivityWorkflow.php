@@ -8,6 +8,8 @@ use App\Models\ApprovalDelegation;
 use App\Models\ApproverAssignment;
 use App\Models\AuditLog;
 use App\Models\Directorate;
+use App\Models\ResultIndicator;
+use App\Models\Subprogram;
 use App\Models\User;
 use App\Notifications\SystemNotification;
 use App\Policies\ActivityPolicy;
@@ -58,6 +60,9 @@ class ActivityWorkflow
             $empty = match ($field) {
                 'indicator_baseline' => $activity->indicators->contains(fn ($i) => blank($i->baseline)),
                 'indicator_means' => $activity->indicators->contains(fn ($i) => blank($i->means_of_verification)),
+                // only where the subprogramme has outputs to choose from
+                'output_id' => blank($activity->output_id) && $activity->subprogram_id
+                    && ResultIndicator::where('indicatable_type', (new Subprogram)->getMorphClass())->where('indicatable_id', $activity->subprogram_id)->exists(),
                 default => blank($activity->getAttribute($field)),
             };
             if ($empty) {

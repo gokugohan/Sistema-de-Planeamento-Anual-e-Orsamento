@@ -11,6 +11,7 @@ use App\Models\Indicator;
 use App\Models\IndicatorAction;
 use App\Models\LineItem;
 use App\Models\PlanBaseline;
+use App\Models\ResultIndicator;
 use App\Models\SystemSetting;
 use App\Support\PlanOptions;
 use App\Support\ReportScope;
@@ -42,13 +43,13 @@ class ApprovedPlanReport
             ->when($baseline, fn ($q) => $q->whereIn('id', array_map('intval', array_keys($baseline->versions))))
             ->unless($baseline, fn ($q) => $q->where(fn ($w) => $w->where('status', Activity::STATUS_APPROVED)->orWhere('version', '>', 0)))
             ->with([
-                'directorate:id,code,name,type,parent_id,administration,legal_form',
+                'directorate:id,code,budget_code,name,type,parent_id,administration,legal_form',
                 'directorate.parent:id,code,name',
                 'program:id,oge_code,name,objective',
                 'program.alignments', 'program.resultIndicators',
                 'subprogram:id,program_id,code,name,objective',
                 'subprogram.alignments', 'subprogram.resultIndicators',
-                'indicators:id,activity_id,name,type,unit,annual_target,baseline,target_text,means_of_verification,due_quarters',
+                'indicators:id,activity_id,name,type,unit,annual_target,baseline,baseline_men,baseline_women,target_men,target_women,target_text,means_of_verification,due_quarters',
                 'indicators.actions',
                 'lineItems:id,activity_id,economic_classification_id,funding_source_id,estimated_amount',
                 'lineItems.fundingSource:id,name',
@@ -148,14 +149,34 @@ class ApprovedPlanReport
             ->sortBy('code')
             ->values();
 
-        // The ministry's template: programme, then subprogramme, then each activity with its indicators.
-        $tree = $rows->groupBy(fn ($r) => $r['activity']->program_id)->map(function ($g) use ($sum) {
+        // The State Budget's template (Anexo K): programme, its outcome, the subprogramme, its output, then each activity
+        // with its indicators. The outcome and the output are the ones the activities serve; an activity linked to no
+        // output is listed under its subprogramme (or programme) as before.
+        $results = ResultIndicator::whereIn('id', $activities->pluck('output_id')->filter()->unique())->get()->keyBy('id');
+        $results = $results->union(ResultIndicator::whereIn('id', $results->pluck('outcome_id')->filter()->unique())->get()->keyBy('id'));
+        $tree = $rows->groupBy(fn ($r) => $r['activity']->program_id)->map(function ($g) use ($sum, $results) {
             $program = $g->first()['activity']->program;
-            $subs = $g->filter(fn ($r) => $r['activity']->subprogram_id)->groupBy(fn ($r) => $r['activity']->subprogram_id)
-                ->map(fn ($s) => ['subprogram' => $s->first()['activity']->subprogram, 'rows' => $s->values()] + $sum($s))
+            $outcomeOf = fn ($r) => $results->get($results->get((int) $r['activity']->output_id)?->outcome_id);
+            $subprograms = fn (Collection $rows) => $rows->filter(fn ($r) => $r['activity']->subprogram_id)->groupBy(fn ($r) => $r['activity']->subprogram_id)
+                ->map(fn ($s) => [
+                    'subprogram' => $s->first()['activity']->subprogram,
+                    'outputs' => $s->groupBy(fn ($r) => (int) $r['activity']->output_id)
+                        ->map(fn ($o, $id) => ['output' => $results->get($id), 'rows' => $o->values()] + $sum($o))
+                        ->sortBy(fn ($o) => [$o['output'] ? 0 : 1, (string) $o['output']?->code])->values(),
+                    'rows' => $s->values(),
+                ] + $sum($s))
                 ->sortBy(fn ($s) => $s['subprogram']->code)->values();
+            $outcomes = $g->groupBy(fn ($r) => (int) $outcomeOf($r)?->id)
+                ->map(fn ($o, $id) => ['outcome' => $results->get($id), 'subprograms' => $subprograms($o), 'loose' => $o->filter(fn ($r) => ! $r['activity']->subprogram_id)->values()] + $sum($o))
+                ->sortBy(fn ($o) => [$o['outcome'] ? 0 : 1, (string) $o['outcome']?->code])->values();
 
-            return ['program' => $program, 'subprograms' => $subs, 'loose' => $g->filter(fn ($r) => ! $r['activity']->subprogram_id)->values()] + $sum($g);
+            return [
+                'program' => $program, 'outcomes' => $outcomes,
+                // the same plan without the outcome level, for the summaries that do not show it
+                'subprograms' => $subprograms($g), 'loose' => $g->filter(fn ($r) => ! $r['activity']->subprogram_id)->values(),
+                // linked: at least one activity names its output, so the results chain is printed from the links
+                'linked' => $g->contains(fn ($r) => $r['activity']->output_id),
+            ] + $sum($g);
         })->sortBy(fn ($p) => $p['program']->oge_code)->values();
 
         $pending = $baseline ? [] : Activity::query()
@@ -241,7 +262,7 @@ class ApprovedPlanReport
     {
         $snap = $version->snapshot;
         $a = $snap['activity'] ?? [];
-        foreach (['code', 'description', 'objective', 'priority', 'planned_start', 'planned_end', 'execution_quarters', 'manager_name', 'location', 'quarter', 'origin', 'policy_ref'] as $field) {
+        foreach (['code', 'description', 'objective', 'priority', 'planned_start', 'planned_end', 'execution_quarters', 'manager_name', 'location', 'quarter', 'origin', 'policy_ref', 'output_id'] as $field) {
             if (array_key_exists($field, $a)) {
                 $activity->setAttribute($field, $a[$field]);
             }
@@ -263,6 +284,7 @@ class ApprovedPlanReport
                 'id' => $i['id'] ?? null, 'activity_id' => $activity->id, 'name' => $i['name'] ?? '', 'type' => $i['type'] ?? null, 'unit' => $i['unit'] ?? null,
                 'annual_target' => $i['annual_target'] ?? 0, 'baseline' => $i['baseline'] ?? null, 'target_text' => $i['target_text'] ?? null,
                 'means_of_verification' => $i['means_of_verification'] ?? null, 'due_quarters' => $i['due_quarters'] ?? null,
+                'baseline_men' => $i['baseline_men'] ?? null, 'baseline_women' => $i['baseline_women'] ?? null, 'target_men' => $i['target_men'] ?? null, 'target_women' => $i['target_women'] ?? null,
             ]);
             $indicator->setRelation('actions', collect($i['actions'] ?? [])->map(
                 fn ($x) => (new IndicatorAction)->forceFill(['position' => $x['position'] ?? 0, 'text' => $x['text'] ?? '', 'months' => $x['months'] ?? []])
