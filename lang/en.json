@@ -1232,7 +1232,7 @@
     "Ended": "Ended",
     "Revoke this appointment?": "Revoke this appointment?",
     "Revoke": "Revoke",
-    "auth.password": "auth.password",
+    "auth.password": "The provided password is incorrect.",
     "This is a secure area of the application. Please confirm your password before continuing.": "This is a secure area of the application. Please confirm your password before continuing.",
     "Confirm": "Confirm",
     "Email Password Reset Link": "Email Password Reset Link",

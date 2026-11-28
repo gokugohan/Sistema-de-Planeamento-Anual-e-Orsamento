@@ -1,0 +1,96 @@
+<?php
+
+// Validation messages in Tetum. A rule that is not here is shown from lang/pt/validation.php (the fallback language).
+return [
+    'accepted' => 'Tenke aseita :attribute.',
+    'after' => ':attribute tenke data depois :date.',
+    'after_or_equal' => ':attribute tenke data hanesan ka depois :date.',
+    'array' => ':attribute tenke lista ida.',
+    'before' => ':attribute tenke data antes :date.',
+    'before_or_equal' => ':attribute tenke data hanesan ka antes :date.',
+    'between' => [
+        'array' => ':attribute tenke iha elementu entre :min no :max.',
+        'file' => ':attribute tenke iha entre :min no :max kilobytes.',
+        'numeric' => ':attribute tenke entre :min no :max.',
+        'string' => ':attribute tenke iha karakter entre :min no :max.',
+    ],
+    'boolean' => ':attribute tenke loos ka sala.',
+    'confirmed' => 'Konfirmasaun :attribute la hanesan.',
+    'current_password' => "Password ne'ebé fó la loos.",
+    'date' => ':attribute tenke data ida ne\'ebé loos.',
+    'date_format' => ':attribute tenke tuir formatu :format.',
+    'different' => ':attribute no :other tenke diferente.',
+    'digits' => ':attribute tenke iha díjitu :digits.',
+    'email' => ':attribute tenke enderesu e-mail ida ne\'ebé loos.',
+    'exists' => ':attribute ne\'ebé hili la loos.',
+    'file' => ':attribute tenke arkivu ida.',
+    'gt' => [
+        'numeric' => ':attribute tenke boot liu :value.',
+        'string' => ':attribute tenke iha karakter liu :value.',
+    ],
+    'gte' => [
+        'numeric' => ':attribute tenke :value ka liu.',
+        'string' => ':attribute tenke iha karakter :value ka liu.',
+    ],
+    'image' => ':attribute tenke imajen ida.',
+    'in' => ':attribute ne\'ebé hili la loos.',
+    'integer' => ':attribute tenke númeru tomak.',
+    'lt' => [
+        'numeric' => ':attribute tenke ki\'ik liu :value.',
+        'string' => ':attribute tenke iha karakter menus husi :value.',
+    ],
+    'lte' => [
+        'numeric' => ':attribute tenke :value ka menus.',
+        'string' => ':attribute tenke iha karakter :value ka menus.',
+    ],
+    'max' => [
+        'array' => ':attribute la bele iha elementu liu :max.',
+        'file' => ':attribute la bele boot liu :max kilobytes.',
+        'numeric' => ':attribute la bele boot liu :max.',
+        'string' => ':attribute la bele iha karakter liu :max.',
+    ],
+    'mimes' => ':attribute tenke arkivu tipu: :values.',
+    'min' => [
+        'array' => ':attribute tenke iha pelumenus elementu :min.',
+        'file' => ':attribute tenke iha pelumenus :min kilobytes.',
+        'numeric' => ':attribute tenke pelumenus :min.',
+        'string' => ':attribute tenke iha pelumenus karakter :min.',
+    ],
+    'not_in' => ':attribute ne\'ebé hili la loos.',
+    'numeric' => ':attribute tenke númeru.',
+    'password' => [
+        'letters' => ':attribute tenke iha pelumenus letra ida.',
+        'mixed' => ':attribute tenke iha pelumenus letra boot ida no letra ki\'ik ida.',
+        'numbers' => ':attribute tenke iha pelumenus númeru ida.',
+        'symbols' => ':attribute tenke iha pelumenus símbolu ida.',
+        'uncompromised' => ':attribute ne\'ebé fó mosu ona iha dadus ne\'ebé lakon. Favor hili seluk.',
+    ],
+    'regex' => 'Formatu :attribute la loos.',
+    'required' => 'Tenke prenxe :attribute.',
+    'required_if' => 'Tenke prenxe :attribute bainhira :other mak :value.',
+    'required_with' => 'Tenke prenxe :attribute bainhira iha :values.',
+    'required_without' => 'Tenke prenxe :attribute bainhira la iha :values.',
+    'same' => ':attribute no :other tenke hanesan.',
+    'size' => [
+        'numeric' => ':attribute tenke :size.',
+        'string' => ':attribute tenke iha karakter :size.',
+    ],
+    'string' => ':attribute tenke testu.',
+    'unique' => ':attribute ne\'e iha uza ona.',
+    'uploaded' => 'La konsege karrega :attribute.',
+    'url' => ':attribute tenke URL ida ne\'ebé loos.',
+
+    'custom' => [],
+
+    // Names shown in place of :attribute. Livewire forms name their fields form.<field>.
+    'attributes' => [
+        'email' => 'E-mail',
+        'form.email' => 'E-mail',
+        'password' => 'Password',
+        'form.password' => 'Password',
+        'password_confirmation' => 'Konfirmasaun password',
+        'current_password' => 'Password atuál',
+        'name' => 'Naran',
+        'form.name' => 'Naran',
+    ],
+];
