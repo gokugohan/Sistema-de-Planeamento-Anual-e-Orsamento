@@ -28,6 +28,9 @@ new class extends Component {
     public function with(): array
     {
         $year = \App\Support\FiscalYear::current();
+        // the add-on modules: execution adds the reporting reminders, performance the executed and delivered figures
+        $execution = \App\Support\Modules::on(\App\Support\Modules::EXECUTION);
+        $performance = \App\Support\Modules::on(\App\Support\Modules::PERFORMANCE);
         $attention = app(\App\Services\ApprovalInbox::class)->items(auth()->user(), \App\Support\FiscalYear::isUnusual() ? $year : null); // asked once, used by two panels
         $dirs = Directorate::get(['id', 'code', 'name', 'type', 'administration', 'parent_id'])->keyBy('id');
         $rootOf = function ($id) use ($dirs) { // the top-level unit, however deep the unit sits
@@ -218,10 +221,10 @@ new class extends Component {
             $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n approved activity has no budget lines|:n approved activities have no budget lines', $noLines, ['n' => $noLines]), 'url' => route('activities.index')];
         }
         // indicators that should have been reported this quarter and have no verified figure yet (current year only)
-        if ($year === (int) date('Y') && $exec['quarter'] >= 1 && $exec['quarter'] <= 4) {
+        if ($execution && $year === (int) date('Y') && $exec['quarter'] >= 1 && $exec['quarter'] <= 4) {
             $due = app(\App\Services\DeliveryReport::class)->dueWithoutFigure($base()->select('activities.id')->toBase(), $exec['quarter']);
             if ($due > 0) {
-                $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n indicator is due in Q:q with no verified figure yet|:n indicators are due in Q:q with no verified figure yet', $due, ['n' => $due, 'q' => $exec['quarter']]), 'url' => route('monitoring.index')];
+                $watch[] = ['tone' => 'amber', 'text' => trans_choice(':n indicator is due in Q:q with no verified figure yet|:n indicators are due in Q:q with no verified figure yet', $due, ['n' => $due, 'q' => $exec['quarter']]), 'url' => route($performance ? 'monitoring.index' : 'monitoring.report')];
             }
         }
         if ($this->unit === '' && $totalActivities > 0) {
@@ -257,7 +260,7 @@ new class extends Component {
             'attention' => $attention,
             'plan' => $plan, 'planAll' => $planAll, 'allocated' => $allocated,
             'byStatus' => $byStatus, 'statusOrder' => $statusOrder, 'totalActivities' => $totalActivities,
-            'achievement' => $achievement, 'indicatorCount' => $delivery['n'],
+            'achievement' => $achievement, 'indicatorCount' => $delivery['n'], 'performance' => $performance,
             'units' => $units, 'watch' => $watch, 'charts' => $charts, 'exec' => $exec, 'behind' => $behind, 'programs' => $programs, 'progRows' => $progRows,
             'rootUnits' => $dirs->filter(fn ($d) => !$d->parent_id)->sortBy('name'),
             'classes' => $classes,
@@ -388,24 +391,28 @@ new class extends Component {
         $approvedPct = $planAll > 0 ? min(100, $allocated / $planAll * 100) : null;
         $approvedShare = $totalActivities > 0 ? ($byStatus[\App\Models\Activity::STATUS_APPROVED] / $totalActivities * 100) : 0;
     @endphp
-    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div class="grid gap-4 sm:grid-cols-2 {{ $performance ? 'xl:grid-cols-4' : '' }}">
         {{-- the whole plan first (every activity, whatever its stage), then how much of it is approved --}}
         <x-ui.kpi :label="__('Planned budget')" :value="'$ ' . number_format($planAll)"
             :sub="$planAll > 0 ? __('Approved: $ :approved (:pct%) · :n activities', ['approved' => number_format($allocated), 'pct' => number_format($approvedPct, 0), 'n' => $totalActivities]) : __('Nothing planned yet')"
             :progress="$approvedPct" tone="indigo" href="{{ route('activities.index') }}" />
+        @if($performance)
         <x-ui.kpi :label="__('Executed')" :value="'$ ' . number_format((float) ($exec['executed'] ?? 0))"
             :sub="($allocated > 0 ? number_format(min(100, (float) ($exec['executed'] ?? 0) / $allocated * 100), 1) . '% ' . __('of the approved plan.') . ' ' : '') . __('Entered monthly by the units, counted once verified.')"
             :progress="$allocated > 0 ? min(100, (float) ($exec['executed'] ?? 0) / $allocated * 100) : null" tone="emerald" href="{{ route('monitoring.index') }}" />
+        @endif
         <x-ui.kpi :label="__('Activities approved')" :value="$byStatus[\App\Models\Activity::STATUS_APPROVED] . ' / ' . $totalActivities"
             :sub="number_format($approvedShare, 0) . '% ' . __('of the plan')" :progress="$approvedShare" tone="indigo"
             href="{{ route('planning.paa-approval') }}" />
+        @if($performance)
         <x-ui.kpi :label="__('Delivery against targets')" :value="$achievement !== null ? number_format($achievement, 1) . '%' : '—'"
             :sub="$achievement !== null ? trans_choice(':n indicator with a target|:n indicators with targets', $indicatorCount, ['n' => $indicatorCount]) : __('No verified progress yet')"
             :progress="$achievement" tone="amber" href="{{ route('monitoring.index') }}" />
+        @endif
     </div>
 
     {{-- Budget execution: what has been executed, read against how much of the year has passed --}}
-    @if($exec['has_data'])
+    @if($performance && $exec['has_data'])
         @php
             $gap = $exec['executed_rate'] !== null && $exec['planned_rate'] !== null ? $exec['executed_rate'] - $exec['planned_rate'] : null;
             [$paceLabel, $paceTone] = match (true) {
@@ -601,7 +608,7 @@ new class extends Component {
         <a href="{{ route('planning.programmes') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Programmes') }}</a>.</p>
 
     {{-- Delivery over the year --}}
-    @if($achievement !== null)
+    @if($performance && $achievement !== null)
         <x-ui.card padding="p-0">
             <x-slot name="header"><h2 class="text-sm font-semibold text-zinc-900">{{ __('Cumulative progress against annual targets') }}</h2></x-slot>
             <div class="p-5">

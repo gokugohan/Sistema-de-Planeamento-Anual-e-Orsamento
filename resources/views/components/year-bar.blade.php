@@ -29,11 +29,14 @@
             @endforeach
         </select>
         @if($context === FiscalYear::OVERVIEW)
-            {{-- the two plans alive now, one click each --}}
+            {{-- the two plans alive now, one click each (reporting only with the execution module) --}}
+            @php $reporting = \App\Support\Modules::on(\App\Support\Modules::EXECUTION); @endphp
+            @if($reporting)
             <a href="{{ route('monitoring.report') }}" wire:navigate class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium text-emerald-800 ring-1 ring-emerald-200 hover:bg-emerald-50">
                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>{{ __('Report :year', ['year' => $execution]) }} &rarr;
             </a>
-            @if($planning !== $execution)
+            @endif
+            @if($planning !== $execution || ! $reporting)
                 <a href="{{ route('activities.index') }}" wire:navigate class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium text-indigo-800 ring-1 ring-indigo-200 hover:bg-indigo-50">
                     <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>{{ __('Plan :year', ['year' => $planning]) }} &rarr;
                 </a>

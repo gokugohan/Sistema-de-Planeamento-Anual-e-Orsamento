@@ -14,7 +14,8 @@
  *   hint        one line shown in the quick-jump
  *   roles       user must hold ANY of these roles
  *   permission  user must hold this permission
- *   feature     'testing' = only when the PAA simulator is switched on in Settings
+ *   feature     'testing' = only when the PAA simulator is switched on in Settings; 'execution', 'performance' =
+ *               only when that module is on (App\Support\Modules); 'budget_decisions', 'approval_lists' = their rule
  *   children    sub-items (one level)
  *
  * `pages` lists routes that are not menu entries (detail and create screens)
@@ -74,9 +75,9 @@ return [
             'label' => 'Execute',
             'step' => 3,
             'items' => [
-                ['label' => 'Report execution', 'route' => 'monitoring.report', 'icon' => 'banknote', 'permission' => 'view_monitoring',
+                ['label' => 'Report execution', 'route' => 'monitoring.report', 'icon' => 'banknote', 'permission' => 'view_monitoring', 'feature' => 'execution',
                     'hint' => 'Report what an activity spent and achieved in a quarter'],
-                ['label' => 'Compile the quarter', 'route' => 'reports.compile', 'icon' => 'file-bar-chart', 'roles' => ['Admin', 'Director'],
+                ['label' => 'Compile the quarter', 'route' => 'reports.compile', 'icon' => 'file-bar-chart', 'roles' => ['Admin', 'Director'], 'feature' => 'execution',
                     'hint' => 'Turn the units\' monthly and quarterly reports into the text of the ministry report'],
             ],
         ],
@@ -84,7 +85,7 @@ return [
             'label' => 'Insights',
             'step' => 4,
             'items' => [
-                ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart',
+                ['label' => 'Performance', 'route' => 'monitoring.index', 'icon' => 'file-bar-chart', 'feature' => 'performance',
                     'hint' => 'Executed and delivered against the plan, by quarter and programme'],
                 ['label' => 'Reporting', 'route' => 'reports.paa', 'match' => ['reports.*'], 'icon' => 'file-bar-chart', 'permission' => 'view_reports',
                     'hint' => 'Reports and the final plan report'],
@@ -103,8 +104,8 @@ return [
             'label' => 'System',
             'roles' => ['Admin'],
             'items' => [
-                ['label' => 'Settings', 'route' => 'management.settings', 'match' => ['management.settings', 'management.optional-rules', 'management.reporting-windows'], 'icon' => 'settings',
-                    'hint' => 'Identity and logo, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area'],
+                ['label' => 'Settings', 'route' => 'management.settings', 'match' => ['management.settings', 'management.modules', 'management.optional-rules', 'management.reporting-windows'], 'icon' => 'settings',
+                    'hint' => 'Identity and logo, modules, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
                 ['label' => 'Sample Data', 'route' => 'management.sample-data', 'icon' => 'flask-conical', 'hint' => 'Load or purge the demo dataset'],
@@ -122,6 +123,7 @@ return [
 
     // Screens that are not menu entries: route => [parent route, breadcrumb label]
     'pages' => [
+        'management.modules' => ['management.settings', 'Modules'],
         'management.optional-rules' => ['management.settings', 'Optional rules'],
         'management.reporting-windows' => ['management.settings', 'Calendar'],
         'units.show' => ['units.index', 'Unit workspace'],

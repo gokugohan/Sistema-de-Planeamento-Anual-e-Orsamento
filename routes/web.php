@@ -260,6 +260,11 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
         return view('management.optional-rules');
     })->name('optional-rules');
 
+    // the add-on modules: execution reporting, performance, the budget envelope
+    Route::get('/modules', function () {
+        return view('management.modules');
+    })->name('modules');
+
     Route::get('/import', function () {
         return view('management.import');
     })->name('import');

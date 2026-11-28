@@ -1,7 +1,8 @@
 @php
-    // The administrator's setup area: three pages that read as one. The menu has a single entry for them.
+    // The administrator's setup area: four pages that read as one. The menu has a single entry for them.
     $tabs = [
         ['management.settings', __('Settings'), __('Identity, logo, approval rules, e-mail and testing')],
+        ['management.modules', __('Modules'), __('The parts of the system your institution uses besides the plan')],
         ['management.optional-rules', __('Optional rules'), __('Rules of the planning cycle to switch on')],
         ['management.reporting-windows', __('Calendar'), __('Dates for each step, and more time for a late unit')],
     ];

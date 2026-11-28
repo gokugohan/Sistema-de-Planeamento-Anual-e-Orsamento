@@ -8,6 +8,7 @@ use App\Models\BudgetExecution;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
+use App\Support\Modules;
 use App\Support\PlanOptions;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,8 @@ class PlanCycle
         $planned = $lite ? 0.0 : (float) DB::table('line_items as li')->join('activities as a', 'a.id', '=', 'li.activity_id')->whereNull('li.deleted_at')
             ->where('a.fiscal_year', $year)->when($scope !== null, fn ($q) => $q->whereIn('a.directorate_id', $scope ?: [0]))->sum('li.estimated_amount');
 
-        $reporting = $lite ? null : $this->reporting($year, $scope);
+        // reporting is the execution module: without it the cycle ends with the finalized plan
+        $reporting = $lite || Modules::off(Modules::EXECUTION) ? null : $this->reporting($year, $scope);
 
         $steps = $this->steps([
             'planWindow' => $planWindow, 'ended' => $state['ended'], 'planning' => $state, 'pending' => $pending, 'drafts' => $drafts, 'total' => $total, 'approved' => $approved,
@@ -99,6 +101,9 @@ class PlanCycle
             'finalized' => __('Plan finalized'),
             'reporting' => __('Reporting'),
         ];
+        if (Modules::off(Modules::EXECUTION)) {
+            unset($labels['reporting']);
+        }
         $steps = [];
         $currentFound = false;
         foreach ($labels as $key => $label) {

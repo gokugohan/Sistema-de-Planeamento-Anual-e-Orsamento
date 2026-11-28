@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Policies\ActivityPolicy;
 use App\Support\FiscalYear;
+use App\Support\Modules;
 use Carbon\Carbon;
 
 /**
@@ -108,6 +109,10 @@ class YearAtAGlance
             ['key' => 'finalize', 'label' => __('Finalizing'), 'state' => $ended ? 'done' : ($ready > 0 ? 'now' : 'soon'), 'text' => $finalizeText, 'cta' => $finalizeCta],
             ['key' => 'reporting', 'label' => __('Reporting'), 'state' => $reportingState, 'text' => $reportingText, 'cta' => $reportingCta],
         ];
+        // reporting is the execution module: without it the year ends with the finalized plan
+        if (Modules::off(Modules::EXECUTION)) {
+            $phases = array_values(array_filter($phases, fn ($p) => $p['key'] !== 'reporting'));
+        }
 
         return ['year' => $year, 'phases' => $phases, 'now' => array_values(array_map(fn ($p) => $p['label'], array_filter($phases, fn ($p) => $p['state'] === 'now')))];
     }

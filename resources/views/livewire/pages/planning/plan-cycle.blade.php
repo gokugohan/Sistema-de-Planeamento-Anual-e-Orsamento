@@ -49,7 +49,7 @@ new class extends Component {
     <x-ui.page-header :title="__('Plan cycle')" :subtitle="__('Where the annual action plan stands: when it may be submitted, how far the approval has got, whether it is finalized and the reporting that follows.')" />
 
     {{-- the steps --}}
-    <ol class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="{{ __('Steps of the plan') }}">
+    <ol class="grid gap-3 sm:grid-cols-2 {{ count($cycle['steps']) === 3 ? 'xl:grid-cols-3' : 'xl:grid-cols-4' }}" aria-label="{{ __('Steps of the plan') }}">
         @foreach($cycle['steps'] as $i => $s)
             <li class="rounded-lg p-4 ring-1 {{ $stateTone[$s['state']] }}">
                 <div class="flex items-center justify-between gap-2">
@@ -129,7 +129,9 @@ new class extends Component {
         </dl>
     </x-ui.card>
 
-    {{-- reporting --}}
+    {{-- reporting (the execution module) --}}
+    @php $executionOn = \App\Support\Modules::on(\App\Support\Modules::EXECUTION); @endphp
+    @if($executionOn)
     <x-ui.card :title="__('Reporting')" :description="__('The executed amount is reported every month and indicators every quarter, inside the windows set for them.')" padding="p-0">
         @php $r = $cycle['reporting']; @endphp
         <x-ui.table :headers="[__('Month'), __('Window'), __('Activities with a verified executed amount'), __('Waiting for verification')]" :right="[2, 3]" class="text-sm">
@@ -155,16 +157,17 @@ new class extends Component {
             @endforeach
         </div>
     </x-ui.card>
+    @endif
 
     {{-- where each step is done --}}
     <x-ui.card :title="__('Where things are done')" padding="p-5">
         <div class="flex flex-wrap gap-3">
-            <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('monitoring.report') }}" wire:navigate>{{ __('Report execution') }}</x-ui.button>
+            @if($executionOn)<x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('monitoring.report') }}" wire:navigate>{{ __('Report execution') }}</x-ui.button>@endif
             @can('view_reports')
-                <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.compile') }}" wire:navigate>{{ __('Compile the quarter') }}</x-ui.button>
+                @if($executionOn)<x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.compile') }}" wire:navigate>{{ __('Compile the quarter') }}</x-ui.button>@endif
                 <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.implementation-plan', ['year' => $year]) }}">{{ __('Implementation plan') }}</x-ui.button>
                 <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.plan-by-program', ['year' => $year]) }}">{{ __('PAA by program') }}</x-ui.button>
-                <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.performance', ['year' => $year]) }}">{{ __('Performance report') }}</x-ui.button>
+                @if(\App\Support\Modules::on(\App\Support\Modules::PERFORMANCE))<x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.performance', ['year' => $year]) }}">{{ __('Performance report') }}</x-ui.button>@endif
                 @can('view_all_paa')
                     <x-ui.button variant="secondary" size="md" shadow="none" href="{{ route('reports.approved-plan', ['year' => $year]) }}">{{ __('Final plan report') }}</x-ui.button>
                 @endcan

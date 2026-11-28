@@ -22,6 +22,7 @@ class Navigation
         }
 
         $groups = [];
+        $step = 0; // the steps of the year are numbered as shown: with Execute switched off, Insights is step 3
         foreach (config('navigation.groups') as $group) {
             if (! self::allowed($user, $group)) {
                 continue;
@@ -42,7 +43,7 @@ class Navigation
             }
 
             if ($items) {
-                $groups[] = ['label' => $group['label'], 'step' => $group['step'] ?? null, 'items' => $items];
+                $groups[] = ['label' => $group['label'], 'step' => isset($group['step']) ? ++$step : null, 'items' => $items];
             }
         }
 
@@ -177,6 +178,9 @@ class Navigation
         $wide = $user->isAdministrator() || $user->can('view_all_paa')
             || (($node['feature'] ?? null) === 'budget_decisions' && BudgetDistributions::on() && app(BudgetDistributions::class)->canSeeAll($user));
         if (isset($node['audience']) && (($node['audience'] === 'wide') !== $wide)) {
+            return false;
+        }
+        if (in_array($node['feature'] ?? null, Modules::ALL, true) && Modules::off($node['feature'])) {
             return false;
         }
         if (($node['feature'] ?? null) === 'testing' && ! SystemSetting::get('enable_paa_testing_mode', false)) {

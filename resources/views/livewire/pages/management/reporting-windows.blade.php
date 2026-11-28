@@ -107,6 +107,7 @@ new class extends Component {
     /** Every month and quarter of the year: open from its first day, due so many days after it ends. */
     public function fillReports(): void
     {
+        abort_if(\App\Support\Modules::off(\App\Support\Modules::EXECUTION), 404);
         abort_unless(auth()->user()?->isAdministrator(), 403);
         $this->validate(['monthDays' => 'required|integer|min:0|max:60', 'quarterDays' => 'required|integer|min:0|max:90']);
 
@@ -142,6 +143,7 @@ new class extends Component {
 
     public function clearReports(): void
     {
+        abort_if(\App\Support\Modules::off(\App\Support\Modules::EXECUTION), 404);
         abort_unless(auth()->user()?->isAdministrator(), 403);
         ReportingWindow::where('fiscal_year', $this->year)->whereIn('period_type', ['month', 'quarter'])->get()->each->delete();
         $this->load();
@@ -200,6 +202,8 @@ new class extends Component {
             'state' => $state,
             'reportsNeedDates' => app(ReportingWindows::class)->reportingNeedsDates(),
             'budgetOn' => PlanOptions::current()->budgetDecisions,
+            // the reporting dates belong to the execution module: kept, but not shown while it is off
+            'executionOn' => \App\Support\Modules::on(\App\Support\Modules::EXECUTION),
             'budgetStages' => \App\Models\BudgetDecision::ORDER,
             'hasBudget' => $saved->keys()->contains(fn ($k) => str_starts_with($k, 'budget_')),
             'hasReports' => $saved->keys()->contains(fn ($k) => str_starts_with($k, 'month_') || str_starts_with($k, 'quarter_')),
@@ -320,7 +324,8 @@ new class extends Component {
         @include('livewire.pages.management.partials.calendar-row', ['key' => 'revision_1', 'label' => __('Revisions of approved activities'), 'hint' => __('When a unit may start a revision of an approved activity.'), 'required' => false])
     </x-ui.card>
 
-    {{-- 3 Reporting --}}
+    {{-- 3 Reporting (the execution module) --}}
+    @if($executionOn)
     <x-ui.card padding="p-0">
         <div class="flex items-center gap-3 border-b border-zinc-200 px-5 py-4">
             <span class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-50 text-xs font-bold text-indigo-600" aria-hidden="true">{{ $budgetOn ? 4 : 3 }}</span>
@@ -357,4 +362,5 @@ new class extends Component {
             @endforeach
         </details>
     </x-ui.card>
+    @endif
 </div>

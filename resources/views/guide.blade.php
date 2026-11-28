@@ -3,6 +3,7 @@
     $admin = $user->isAdministrator();
     $rules = \App\Support\ApprovalRules::current();
     $options = \App\Support\PlanOptions::current();
+    $execution = \App\Support\Modules::on(\App\Support\Modules::EXECUTION); // reporting is the execution module
     $monitorUrl = $user->can('view_monitoring') ? route('monitoring.report') : route('approvals.index');
     // who each step belongs to: role names of the application ('Admin' marks the administrator's own steps; an
     // administrator may also act at every other step). 'short' puts a step on the path of an activity at the top.
@@ -37,7 +38,7 @@
             ['who' => ['Director'], 'whoText' => __('The head of the directorate (or the people on its approval list)'), 'what' => __('Approve the plan'), 'short' => __('Approve the plan'), 'how' => __('One step: every certified activity of the directorate is approved and its plan is finalized, so it takes no new activities. Return or approve single activities first if needed. Approved activities change only through a revision; the plan can be reopened with a reason.'),
                 'when' => __('When every activity of the directorate is certified.'), 'where' => __('Approvals → Waiting for you → Approve the plan'), 'url' => route('approvals.index').'#plan'],
         ]],
-        [__('Monitor'), [
+        $execution ? [__('Monitor'), [
             ['who' => ['Director'], 'whoText' => __('The Director of the unit'), 'what' => __('Report the executed amount'), 'short' => __('Report'), 'how' => __('For each budget line, enter the amount executed in the month. This is where "Executed" comes from.'),
                 'when' => __('Every month, once the month has started and inside its reporting window if one is set.'), 'where' => __('Execute → Report execution'), 'url' => $monitorUrl],
             ['who' => ['Director'], 'whoText' => __('The Director of the unit'), 'what' => __('Update the indicators'), 'how' => __('Enter what each indicator has achieved. The quarter follows the month you chose: October to December is Q4.'),
@@ -48,7 +49,7 @@
                 'when' => __('After a figure is submitted.'), 'where' => __('Approvals → Waiting for you → To verify'), 'url' => route('approvals.index')],
             ['who' => ['Director'], 'whoText' => __('Directors'), 'what' => __('Compile the quarter'), 'how' => __('Turn the units\' reports into the text of the ministry report.'),
                 'when' => __('After the quarter ends.'), 'where' => __('Execute → Compile the quarter'), 'url' => $user->hasAnyRole(['Admin', 'Director']) ? route('reports.compile') : route('approvals.index')],
-        ]],
+        ]] : null,
         [__('Change'), [
             ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer, Director or the head'), 'what' => __('Revise an approved activity'), 'how' => __('Say why, change what is needed and send it through approval again. The approved version stays in force, and the executed amount is reported against it, until the revision is approved.'),
                 'when' => __('Whenever an approved activity has to change.'), 'where' => __('The activity page → Revise'), 'url' => route('activities.index')],
@@ -89,10 +90,12 @@
             <p class="mt-3 text-xs text-zinc-500">{{ __('The steps in blue are yours. Where the same person holds two steps in a row, one click takes both. Approving the plan also finalizes it: the directorate takes no new activities afterwards.') }}</p>
         </x-ui.card>
 
+        @if($execution)
         <x-ui.card padding="p-5">
             <p class="text-sm text-zinc-700"><span class="font-semibold text-zinc-900">{{ __('Where does "Executed" come from?') }}</span>
                 {{ __('It is not imported from another system. The unit enters the amount each budget line executed, every month, in Report execution. Someone else then verifies it, and only verified figures count in every total, chart and report.') }}</p>
         </x-ui.card>
+        @endif
 
         @foreach($groups as [$title, $steps])
             <x-ui.card :title="$title" padding="p-0">

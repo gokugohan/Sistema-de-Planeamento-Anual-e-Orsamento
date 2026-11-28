@@ -5,6 +5,7 @@ namespace Database\Seeders\Samples;
 use App\Models\Directorate;
 use App\Models\SystemSetting;
 use App\Support\Institution;
+use App\Support\Modules;
 use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
@@ -60,6 +61,8 @@ class MtcOfficeSampleDataSeeder extends Seeder
             $this->call(MtcDemoUsersSeeder::class, true, ['office' => $office]);
             $this->call(MtcBudgetSeeder::class, true, ['units' => $units, 'state' => $state, 'years' => $years]);
         });
+        // the demo shows execution reporting and performance (this sample records no budget decisions)
+        Modules::save(true, true, Modules::on(Modules::BUDGET));
     }
 
     /** Shows the office, not the ministry, as the institution. */

@@ -279,7 +279,7 @@ new class extends Component {
             <div>
                 <p class="font-semibold">{{ __('PAA Cycle Finalized') }}</p>
                 <p class="text-xs font-normal mt-1">{{ __('The PAA for :year is officially approved and the planning cycle is locked.', ['year' => $year]) }}
-                    <a href="{{ route('monitoring.index') }}" class="underline font-medium">{{ __('View Monitoring') }}</a></p>
+                    @if(\App\Support\Modules::on(\App\Support\Modules::PERFORMANCE))<a href="{{ route('monitoring.index') }}" class="underline font-medium">{{ __('View Monitoring') }}</a>@endif</p>
             </div>
         </div>
     @endif

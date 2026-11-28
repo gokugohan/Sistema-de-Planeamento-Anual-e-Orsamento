@@ -7,6 +7,7 @@ use App\Models\Program;
 use App\Models\SystemSetting;
 use App\Services\SampleRegistry;
 use App\Support\Institution;
+use App\Support\Modules;
 use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
@@ -50,6 +51,8 @@ class OgeEntitySampleSeeder extends Seeder
             ]);
             $this->call(OgeBudgetSeeder::class, true, ['entity' => $entity, 'state' => $state, 'years' => $years]);
         });
+        // the demo shows execution reporting and performance (this sample records no budget decisions)
+        Modules::save(true, true, Modules::on(Modules::BUDGET));
     }
 
     /** The entity's divisions as printed in the book, each under its general directorate when the code group has one. */

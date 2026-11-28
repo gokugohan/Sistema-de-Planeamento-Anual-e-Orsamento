@@ -3116,5 +3116,22 @@
     "Planning for :year is closed": "Planning for :year is closed",
     "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.": "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.",
     "and :n more|and :n more": "and :n more|and :n more",
-    "and :n more unit|and :n more units": "and :n more unit|and :n more units"
+    "and :n more unit|and :n more units": "and :n more unit|and :n more units",
+    "Modules": "Modules",
+    "The parts of the system your institution uses besides the plan": "The parts of the system your institution uses besides the plan",
+    "Modules saved.": "Modules saved.",
+    "Execution reporting": "Execution reporting",
+    "Units report what each approved activity spent and achieved, by month and quarter; someone else verifies it; the quarter is compiled into the text of the institution's report.": "Units report what each approved activity spent and achieved, by month and quarter; someone else verifies it; the quarter is compiled into the text of the institution's report.",
+    "Adds Report execution and Compile the quarter to the menu, the figures to verify to Waiting for you, the reporting dates to the Calendar, and the execution of each activity to its page.": "Adds Report execution and Compile the quarter to the menu, the figures to verify to Waiting for you, the reporting dates to the Calendar, and the execution of each activity to its page.",
+    "Performance insights": "Performance insights",
+    "Executed and delivered against the plan, by quarter, program and unit, with the monthly and quarterly performance report.": "Executed and delivered against the plan, by quarter, program and unit, with the monthly and quarterly performance report.",
+    "Adds Performance to the menu and its figures to the dashboard. It reads the execution reports, so it needs Execution reporting.": "Adds Performance to the menu and its figures to the dashboard. It reads the execution reports, so it needs Execution reporting.",
+    "Record what the budget ceiling, the budget committee and the budget law decided, by category, against the plan, and run an adjustment round so the plan follows the decision.": "Record what the budget ceiling, the budget committee and the budget law decided, by category, against the plan, and run an adjustment round so the plan follows the decision.",
+    "Adds Budget decisions and Adjustment round to the menu. Whether the decisions are also shared among the units is chosen in Optional rules.": "Adds Budget decisions and Adjustment round to the menu. Whether the decisions are also shared among the units is chosen in Optional rules.",
+    "What it adds": "What it adds",
+    "Switch on Execution reporting first.": "Switch on Execution reporting first.",
+    "Planning and approving the annual plan is always there. Switch on the parts your institution also uses. A module that is switched off is hidden from everyone; what was recorded in it is kept and comes back when it is switched on again.": "Planning and approving the annual plan is always there. Switch on the parts your institution also uses. A module that is switched off is hidden from everyone; what was recorded in it is kept and comes back when it is switched on again.",
+    "Save modules": "Save modules",
+    "Identity and logo, modules, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area": "Identity and logo, modules, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area",
+    "Annual plan report": "Annual plan report"
 }

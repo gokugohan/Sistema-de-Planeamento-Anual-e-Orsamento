@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Samples;
 
+use App\Support\Modules;
 use Database\Seeders\EconomicClassificationSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Database\Seeder;
@@ -51,5 +52,7 @@ class MtcSampleDataSeeder extends Seeder
             // the budget decisions of the books and their distribution among the units (shown where those rules are on)
             $this->call(MtcBudgetDecisionSeeder::class, false, ['years' => $years]);
         });
+        // the demo shows the whole system: execution reporting, performance and the budget decisions it records
+        Modules::save(true, true, true);
     }
 }

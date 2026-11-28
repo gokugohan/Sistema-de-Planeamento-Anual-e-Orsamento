@@ -181,6 +181,18 @@ final class PlanOptions
         return $this->budgetDistribution ? 'share' : ($this->budgetDecisions ? 'record' : 'off');
     }
 
+    /** The same options with another envelope use: off, record or share (Settings > Modules switches it). */
+    public function withEnvelope(string $use): self
+    {
+        return new self(
+            obligations: $this->obligations, financeInstitutionWide: $this->financeInstitutionWide, requiredFields: $this->requiredFields,
+            externalReference: $this->externalReference, correctiveActions: $this->correctiveActions, baselines: $this->baselines,
+            structureAtApproval: $this->structureAtApproval, completeBeforeApproval: $this->completeBeforeApproval,
+            budgetDecisions: $use !== 'off', budgetDistribution: $use === 'share', ceilingMode: $this->ceilingMode,
+            budgetUnitId: $this->budgetUnitId, distributionApprover: $this->distributionApprover, budgetChangeChecks: $this->budgetChangeChecks,
+        );
+    }
+
     public static function guidance(int $year): ?string
     {
         $all = SystemSetting::get('planning_guidance');

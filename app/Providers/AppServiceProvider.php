@@ -16,6 +16,7 @@ use App\Services\BudgetDistributions;
 use App\Services\SampleRegistry;
 use App\Support\EmailNotifications;
 use App\Support\MailSettings;
+use App\Support\Modules;
 use App\Support\StructureCache;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Auth\Events\Login;
@@ -48,6 +49,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // A component of a module that is switched off is not found: when it first renders and on every action after
+        // (the pages are refused by the RequireModule middleware; Livewire's own requests reach the components here).
+        $moduleGuard = function ($component) {
+            $module = Modules::forComponent($component->getName());
+            abort_if($module !== null && Modules::off($module), 404);
+        };
+        \Livewire\on('mount', $moduleGuard);
+        \Livewire\on('hydrate', $moduleGuard);
+
         // production is served over https; a trial run of the production stack over plain http (an APP_URL that starts with http://) is left alone
         if ($this->app->environment('production') && ! str_starts_with((string) config('app.url'), 'http://')) {
             URL::forceScheme('https');

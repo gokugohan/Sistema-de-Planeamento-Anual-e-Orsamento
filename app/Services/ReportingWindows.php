@@ -6,9 +6,11 @@ use App\Models\Activity;
 use App\Models\AdjustmentRound;
 use App\Models\Directorate;
 use App\Models\ReportingWindow;
+use App\Models\SystemSetting;
 use App\Models\User;
 use App\Models\WindowExtension;
 use App\Notifications\SystemNotification;
+use App\Support\Modules;
 use App\Support\StructureCache;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -157,14 +159,14 @@ class ReportingWindows
     /** Do the months and quarters stay closed until they have dates? */
     public function reportingNeedsDates(): bool
     {
-        return config('paa.reporting_needs_dates', true) && ! \App\Models\SystemSetting::get('enable_paa_testing_mode', false);
+        return config('paa.reporting_needs_dates', true) && ! SystemSetting::get('enable_paa_testing_mode', false);
     }
 
     /** Does the year still wait for its submission dates (which submitting needs)? */
     public function submissionUndated(int $year): bool
     {
         return config('paa.submission_needs_dates', true)
-            && ! \App\Models\SystemSetting::get('enable_paa_testing_mode', false)
+            && ! SystemSetting::get('enable_paa_testing_mode', false)
             && ! $this->find($year, self::PLAN, 1);
     }
 
@@ -248,7 +250,10 @@ class ReportingWindows
      */
     public function overdue(int $year): array
     {
-        $windows = ReportingWindow::where('fiscal_year', $year)->whereDate('closes_on', '<', now()->toDateString())->orderBy('closes_on')->get();
+        $windows = ReportingWindow::where('fiscal_year', $year)->whereDate('closes_on', '<', now()->toDateString())
+            // the monthly and quarterly reporting belong to the execution module: not late while it is switched off
+            ->when(Modules::off(Modules::EXECUTION), fn ($q) => $q->whereNotIn('period_type', ['month', 'quarter']))
+            ->orderBy('closes_on')->get();
         if ($windows->isEmpty()) {
             return [];
         }

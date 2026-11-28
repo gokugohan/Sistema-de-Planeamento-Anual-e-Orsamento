@@ -25,7 +25,7 @@
 
 <x-app-layout title="{{ __('Reporting') }}">
     <div class="space-y-6">
-        <x-ui.page-header :title="__('Annual Performance Report')" :subtitle="__('Analytical Audit for').' '.$selectedYear" class="print:hidden">
+        <x-ui.page-header :title="__('Annual plan report')" :subtitle="__('Analytical Audit for').' '.$selectedYear" class="print:hidden">
             <form method="GET" action="{{ route('reports.paa') }}" class="flex items-center gap-2">
                 <label for="report-year" class="sr-only">{{ __('Fiscal year') }}</label>
                 <select id="report-year" name="year" onchange="this.form.submit()" class="flux-input !w-auto !py-1.5 !pr-9">

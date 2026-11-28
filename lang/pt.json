@@ -3358,5 +3358,22 @@
     "Planning for :year is closed": "O planeamento de :year está fechado",
     "The plans of :year were prepared and submitted from :from to :to (Decreto-Lei n.º 42/2025, art. 15.7). New activities come in only when an adjustment round reopens the plan of a directorate (after the ceiling, the State Budget law or a supplementary budget), or when an administrator reopens the dates for a unit. An approved activity can still be revised.": "Os planos de :year foram preparados e submetidos de :from a :to (Decreto-Lei n.º 42/2025, art. 15.7). Só entram novas atividades quando uma ronda de ajustamento reabre o plano de uma direção (depois do teto, da lei do Orçamento do Estado ou de um orçamento retificativo), ou quando um administrador reabre as datas para uma unidade. Uma atividade aprovada pode ainda ser revista.",
     "and :n more|and :n more": "e mais :n|e mais :n",
-    "and :n more unit|and :n more units": "e mais :n unidade|e mais :n unidades"
+    "and :n more unit|and :n more units": "e mais :n unidade|e mais :n unidades",
+    "Modules": "Módulos",
+    "The parts of the system your institution uses besides the plan": "As partes do sistema que a sua instituição usa além do plano",
+    "Modules saved.": "Módulos guardados.",
+    "Execution reporting": "Relato da execução",
+    "Units report what each approved activity spent and achieved, by month and quarter; someone else verifies it; the quarter is compiled into the text of the institution's report.": "As unidades reportam o que cada atividade aprovada gastou e alcançou, por mês e por trimestre; outra pessoa verifica; o trimestre é compilado no texto do relatório da instituição.",
+    "Adds Report execution and Compile the quarter to the menu, the figures to verify to Waiting for you, the reporting dates to the Calendar, and the execution of each activity to its page.": "Acrescenta Reportar execução e Compilar o trimestre ao menu, os valores a verificar a À sua espera, as datas de relato ao Calendário e a execução de cada atividade à sua página.",
+    "Performance insights": "Análise do desempenho",
+    "Executed and delivered against the plan, by quarter, program and unit, with the monthly and quarterly performance report.": "O executado e o entregue face ao plano, por trimestre, programa e unidade, com o relatório de desempenho mensal e trimestral.",
+    "Adds Performance to the menu and its figures to the dashboard. It reads the execution reports, so it needs Execution reporting.": "Acrescenta Desempenho ao menu e os seus valores ao painel. Lê os relatos da execução, por isso precisa do Relato da execução.",
+    "Record what the budget ceiling, the budget committee and the budget law decided, by category, against the plan, and run an adjustment round so the plan follows the decision.": "Registe o que o teto orçamental, a comissão de orçamento e a lei do orçamento decidiram, por categoria, face ao plano, e abra uma ronda de ajustamento para que o plano siga a decisão.",
+    "Adds Budget decisions and Adjustment round to the menu. Whether the decisions are also shared among the units is chosen in Optional rules.": "Acrescenta Decisões orçamentais e Ronda de ajustamento ao menu. Se as decisões também são repartidas pelas unidades escolhe-se em Regras opcionais.",
+    "What it adds": "O que acrescenta",
+    "Switch on Execution reporting first.": "Ative primeiro o Relato da execução.",
+    "Planning and approving the annual plan is always there. Switch on the parts your institution also uses. A module that is switched off is hidden from everyone; what was recorded in it is kept and comes back when it is switched on again.": "Planear e aprovar o plano anual está sempre disponível. Ative as partes que a sua instituição também usa. Um módulo desativado fica escondido para todos; o que nele foi registado é guardado e volta quando for ativado de novo.",
+    "Save modules": "Guardar módulos",
+    "Identity and logo, modules, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area": "Identidade e logótipo, módulos, regras de aprovação, regras opcionais, calendário, e-mail e testes: separadores de uma só área",
+    "Annual plan report": "Relatório anual do plano"
 }

@@ -4,6 +4,7 @@ use App\Http\Middleware\EnforceTwoFactor;
 use App\Http\Middleware\EnsureAccountActive;
 use App\Http\Middleware\ForcePasswordChange;
 use App\Http\Middleware\LogSlowRequests;
+use App\Http\Middleware\RequireModule;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
@@ -26,6 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
             EnforceTwoFactor::class,
             SecurityHeaders::class,
             LogSlowRequests::class,
+            RequireModule::class,
         ]);
         // behind a reverse proxy (Caddy, a load balancer): trust its X-Forwarded-* headers so that links and cookies use https
         if ($proxies = env('TRUSTED_PROXIES')) {

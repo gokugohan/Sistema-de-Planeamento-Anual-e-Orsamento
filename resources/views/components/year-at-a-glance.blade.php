@@ -7,7 +7,7 @@
                 <a href="{{ route('planning.cycle') }}" wire:navigate class="text-indigo-700 hover:underline">{{ __('Plan cycle') }} →</a>
             </span>
         </div>
-        <ol class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <ol class="grid gap-4 sm:grid-cols-2 {{ count($glance['phases']) === 3 ? 'xl:grid-cols-3' : 'xl:grid-cols-4' }}">
             @foreach($glance['phases'] as $p)
                 @php $done = $p['state'] === 'done'; $now = $p['state'] === 'now'; @endphp
                 <li class="flex flex-col">

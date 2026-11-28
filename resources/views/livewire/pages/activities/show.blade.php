@@ -57,7 +57,7 @@ new class extends Component {
             'budgetRule'              => \App\Support\ApprovalRules::current()->budgetConfirmation,
             'budgetBy'                => $this->activity->budget_confirmed_by ? \App\Models\User::whereKey($this->activity->budget_confirmed_by)->value('name') : null,
             // once approved, how the activity is doing: verified spending, indicators, the latest words
-            'execution'               => (int) $this->activity->version > 0 ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
+            'execution'               => (int) $this->activity->version > 0 && \App\Support\Modules::on(\App\Support\Modules::EXECUTION) ? app(\App\Services\ActivityExecutionSummary::class)->for($this->activity) : null,
             // the approved versions, and what a revision in progress changes against the version in force
             'versions'                => app(\App\Services\ActivityVersions::class)->of($this->activity),
             'revising'                => \App\Services\ActivityVersions::revising($this->activity),

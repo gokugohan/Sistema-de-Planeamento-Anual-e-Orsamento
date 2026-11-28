@@ -9,6 +9,7 @@ use App\Models\Directorate;
 use App\Models\ReportingWindow;
 use App\Models\User;
 use App\Support\ApprovalRules;
+use App\Support\Modules;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -233,7 +234,8 @@ class UnitWorkspace
         $executed = (float) $lineIds()->join('budget_executions as be', 'be.line_item_id', '=', 'li.id')->where('be.status', BudgetExecution::VERIFIED)->sum('be.executed');
 
         // ── the month's reporting (the running year only)
-        $reporting = $this->reporting($activities, $year);
+        $execution = Modules::on(Modules::EXECUTION); // reporting and verifying belong to the execution module
+        $reporting = $execution ? $this->reporting($activities, $year) : null;
 
         // ── people and places
         $unitsBelow = [];
@@ -285,17 +287,18 @@ class UnitWorkspace
     private function verifications(User $user, \Closure $activities, int $year): array
     {
         $out = ['confirm' => 0, 'spending' => 0, 'progress' => 0];
+        $execution = Modules::on(Modules::EXECUTION);
         $admin = $user->isAdministrator();
 
         if (ApprovalRules::current()->budgetConfirmation && ($admin || $user->can('confirm_budget'))) {
             $out['confirm'] = $activities()->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at')->count();
         }
-        if ($admin || $user->can('verify_spending') || $user->isDirector()) {
+        if ($execution && ($admin || $user->can('verify_spending') || $user->isDirector())) {
             $out['spending'] = (int) DB::table('budget_executions as be')->join('line_items as li', 'li.id', '=', 'be.line_item_id')
                 ->whereIn('li.activity_id', $activities()->select('id'))->where('be.status', BudgetExecution::SUBMITTED)
                 ->where(fn ($q) => $q->whereNull('be.submitted_by')->orWhere('be.submitted_by', '!=', $user->id))->count();
         }
-        if ($admin || $user->can('approve_progress_report') || $user->isDirector()) {
+        if ($execution && ($admin || $user->can('approve_progress_report') || $user->isDirector())) {
             $out['progress'] = (int) DB::table('indicator_progress as ip')->join('indicators as i', 'i.id', '=', 'ip.indicator_id')
                 ->whereIn('i.activity_id', $activities()->select('id'))->where('ip.status', 'Submitted')
                 ->where(fn ($q) => $q->whereNull('ip.submitted_by')->orWhere('ip.submitted_by', '!=', $user->id))->count();
@@ -371,7 +374,8 @@ class UnitWorkspace
     {
         $out = [];
         $today = now()->startOfDay();
-        foreach (ReportingWindow::where('fiscal_year', $year)->whereDate('closes_on', '>=', $today)->whereDate('closes_on', '<=', $today->copy()->addDays(45))->orderBy('closes_on')->get() as $w) {
+        foreach (ReportingWindow::where('fiscal_year', $year)->whereDate('closes_on', '>=', $today)->whereDate('closes_on', '<=', $today->copy()->addDays(45))
+            ->when(Modules::off(Modules::EXECUTION), fn ($q) => $q->whereNotIn('period_type', ['month', 'quarter']))->orderBy('closes_on')->get() as $w) {
             $label = match ($w->period_type) {
                 'plan' => __('Plan submission closes'),
                 'month' => __('Report for :m closes', ['m' => Carbon::create($year, (int) $w->period, 1)->translatedFormat('F')]),

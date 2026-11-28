@@ -50,6 +50,7 @@ new class extends Component {
     $dot = ['none' => 'bg-zinc-300', 'ok' => 'bg-emerald-500', 'work' => 'bg-amber-500', 'alert' => 'bg-rose-500'];
     $listUrl = fn (array $q = []) => route('activities.index', ['unit' => $unit->id] + $q);
     $cards = [];
+    $executionOn = \App\Support\Modules::on(\App\Support\Modules::EXECUTION); // the execution reporting module
     if ($canPlan && $c['returned'] > 0) { $cards[] = ['rose', trans_choice(':n activity returned to correct|:n activities returned to correct', $c['returned'], ['n' => $c['returned']]), $listUrl(['tab' => 'draft'])]; }
     if ($canPlan && $c['draft'] > 0) { $cards[] = ['amber', trans_choice(':n draft to finish|:n drafts to finish', $c['draft'], ['n' => $c['draft']]), $listUrl(['tab' => 'draft'])]; }
     if ($decide['certify'] > 0) { $cards[] = ['indigo', trans_choice(':n activity to certify (your turn)|:n activities to certify (your turn)', $decide['certify'], ['n' => $decide['certify']]), $listUrl(['tab' => 'review'])]; }
@@ -151,8 +152,9 @@ new class extends Component {
             <dl class="space-y-3 text-sm">
                 <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Planned by all activities') }}</dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['planned']) }}</dd></div>
                 <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Approved plan in force') }}</dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['in_force']) }}</dd></div>
-                <div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Executed') }} <span class="text-xs text-zinc-400">({{ __('verified') }})</span></dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['executed']) }}</dd></div>
+                @if($executionOn)<div class="flex items-baseline justify-between gap-2"><dt class="text-zinc-600">{{ __('Executed') }} <span class="text-xs text-zinc-400">({{ __('verified') }})</span></dt><dd class="tabular-nums text-base font-semibold text-zinc-900">$ {{ number_format($money['executed']) }}</dd></div>@endif
             </dl>
+            @if($executionOn)
             <p class="mt-4 text-xs text-zinc-500">{{ __('The executed amount is entered every month in Report execution and counts once someone else has verified it.') }}
                 @if(auth()->user()->can('update_indicator_progress'))
                     <a href="{{ route('monitoring.report') }}" wire:navigate class="font-medium text-indigo-700 hover:underline">{{ __('Report execution') }} →</a>
@@ -162,6 +164,7 @@ new class extends Component {
             </p>
             @if($money['in_force'] > 0)
                 <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-zinc-100" role="img" aria-label="{{ __(':p% of the approved plan executed', ['p' => number_format(min(100, $money['executed'] / $money['in_force'] * 100), 1)]) }}"><div class="h-full bg-emerald-500" style="width: {{ min(100, $money['executed'] / $money['in_force'] * 100) }}%"></div></div>
+            @endif
             @endif
         </x-ui.card>
     </div>

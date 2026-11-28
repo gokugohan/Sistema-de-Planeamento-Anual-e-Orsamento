@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\ReportingWindow;
 use App\Models\User;
 use App\Models\WindowExtension;
+use App\Support\FiscalYear;
+use App\Support\Modules;
 
 /**
  * What the calendar means for one person today: steps that close soon, steps that open soon, steps they have been given
@@ -23,7 +25,7 @@ class CalendarAlerts
         $service = app(ReportingWindows::class);
 
         // submitting the plan needs its dates: the administrator is asked to set them, the units are told to prepare meanwhile
-        if ($year === \App\Support\FiscalYear::planning() && app(PlanningWindow::class)->isOpen($year) && $service->submissionUndated($year)) { // only for the plan being prepared
+        if ($year === FiscalYear::planning() && app(PlanningWindow::class)->isOpen($year) && $service->submissionUndated($year)) { // only for the plan being prepared
             if ($user->isAdministrator()) {
                 $alerts[] = ['tone' => 'amber', 'text' => __('Submission of the :year plan has no dates yet, so nobody can submit: the activities stay drafts. Set the dates in the Calendar.', ['year' => $year]), 'url' => route('management.reporting-windows'), 'when' => 0];
             } elseif ($user->can('create_activities') || $user->can('submit_paa')) { // those who prepare
@@ -31,7 +33,7 @@ class CalendarAlerts
             }
         }
         // so does reporting: a year being carried out with no reporting dates at all cannot be reported
-        if ($year === \App\Support\FiscalYear::execution() && $service->reportingNeedsDates() && ! $windows->contains(fn ($w) => in_array($w->period_type, ['month', 'quarter'], true))) {
+        if ($year === FiscalYear::execution() && Modules::on(Modules::EXECUTION) && $service->reportingNeedsDates() && ! $windows->contains(fn ($w) => in_array($w->period_type, ['month', 'quarter'], true))) {
             if ($user->isAdministrator()) {
                 $alerts[] = ['tone' => 'amber', 'text' => __('Reporting for :year has no dates yet, so the units cannot report. Fill in the dates in the Calendar.', ['year' => $year]), 'url' => route('management.reporting-windows'), 'when' => 0];
             } elseif ($this->concerns($user, 'month')) {
@@ -97,6 +99,10 @@ class CalendarAlerts
 
     private function concerns(User $user, string $type): bool
     {
+        // monthly and quarterly reporting belong to the execution module
+        if (in_array($type, ['month', 'quarter'], true) && Modules::off(Modules::EXECUTION)) {
+            return false;
+        }
         if ($user->isAdministrator()) {
             return true;
         }

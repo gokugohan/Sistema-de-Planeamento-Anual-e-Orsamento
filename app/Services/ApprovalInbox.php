@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Policies\ActivityPolicy;
 use App\Support\ApprovalRules;
 use App\Support\FiscalYear;
+use App\Support\Modules;
 use Carbon\Carbon;
 
 /**
@@ -85,8 +86,9 @@ class ApprovalInbox
         }
 
         // ── execution figures to verify (never your own reports)
-        $mayVerifyProgress = $user->can('approve_progress_report') || $user->isDirector();
-        if ($mayVerifyProgress || $user->can('verify_spending')) {
+        $execution = Modules::on(Modules::EXECUTION); // the execution reporting module: without it nothing is reported
+        $mayVerifyProgress = $execution && ($user->can('approve_progress_report') || $user->isDirector());
+        if ($mayVerifyProgress || ($execution && $user->can('verify_spending'))) {
             $activityIds = $reported()->select('id');
             $money = BudgetExecution::where('status', BudgetExecution::SUBMITTED)->where(fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id))
                 ->whereIn('line_item_id', LineItem::whereIn('activity_id', $activityIds)->select('id'))->count();
@@ -128,7 +130,7 @@ class ApprovalInbox
         }
 
         // ── reporting due: the units' monthly duty, in the running year
-        if ($reportYear === (int) now()->year && $user->can('update_indicator_progress')) {
+        if ($execution && $reportYear === (int) now()->year && $user->can('update_indicator_progress')) {
             $month = (int) now()->month;
             $last = $month - 1; // the month that has just ended is the one to have reported
             if ($last >= 1) {
@@ -144,7 +146,7 @@ class ApprovalInbox
         }
 
         // ── directors: the quarter that has just ended is theirs to compile
-        if ($reportYear === (int) now()->year && ($user->isAdministrator() || $user->isDirector())) {
+        if ($execution && $reportYear === (int) now()->year && ($user->isAdministrator() || $user->isDirector())) {
             $ended = (int) ceil(now()->month / 3) - 1;
             if ($ended >= 1) {
                 $todo = app(QuarterCompilation::class)->activities($user, $reportYear)
