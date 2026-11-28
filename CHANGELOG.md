@@ -2,6 +2,10 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.9.0] — 2026-11-29
+
+- Backups downloaded and restore-tested from System > Backups, errors kept and listed in System > Errors, admin pages restyled, and a unit with no head certified by the nearest head above
+
 ## [1.8.0] — 2026-11-28
 
 - Structure page redesigned: one program structure tree (program, outcome, subprogram, output) with what is missing for the final plan report, side panels instead of dialogs, and plainer tables for units and economic categories
