@@ -236,11 +236,26 @@ class ApprovalInbox
             return $query->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]);
         }
         $seats = $user->seats()->pluck('id')->all() ?: [0];
-        $below = Directorate::whereIn('parent_id', $seats)->pluck('id')->all() ?: [0];
+        // a unit with no head of its own is directed by the nearest head above it: its certifications are theirs
+        $units = Directorate::get(['id', 'parent_id'])->keyBy('id');
+        $headed = ActivityWorkflow::headedUnits();
+        $standIn = function (?int $id) use ($units, $headed) {
+            for ($guard = 0; $id && $guard < 20; $guard++) {
+                if (isset($headed[$id])) {
+                    return $id;
+                }
+                $id = $units[$id]->parent_id ?? null;
+            }
+
+            return null;
+        };
+        $mine = fn (?int $id) => in_array($standIn($id), $seats, true);
+        $ownSeats = $units->keys()->filter(fn ($id) => $mine($id))->values()->all() ?: [0];
+        $below = $units->filter(fn ($u) => $u->parent_id && $mine($u->parent_id))->keys()->values()->all() ?: [0];
         $under = array_values(array_diff($user->directedUnitIds(), $seats)) ?: [0];
         $heads = User::role('Director')->select('id');
 
-        return $query->where(fn ($q) => $q->where('status', Activity::STATUS_SUBMITTED)->whereIn('directorate_id', $seats))
+        return $query->where(fn ($q) => $q->where('status', Activity::STATUS_SUBMITTED)->whereIn('directorate_id', $ownSeats))
             ->orWhere(fn ($q) => $q->where('status', Activity::STATUS_REVIEWED)->whereIn('directorate_id', $below))
             // prepared by the head of a unit below: someone above certifies it in their place
             ->orWhere(fn ($q) => $q->where('status', Activity::STATUS_SUBMITTED)->whereIn('directorate_id', $under)

@@ -94,7 +94,8 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <x-ui.page-header :title="__('Funding sources')" :subtitle="__('Where the money of a budget line comes from. Each budget line picks one; the reports show them. New lines start with the default.')" />
+    <x-ui.page-header :title="__('Structure')" :subtitle="__('Where the money of a budget line comes from. Each budget line picks one; the reports show them. New lines start with the default.')" />
+    <x-structure-tabs current="funding" />
 
     <x-ui.card :title="$editId ? __('Edit funding source') : __('Add a funding source')" padding="p-5">
         <form wire:submit="save" class="grid gap-4 md:grid-cols-12">

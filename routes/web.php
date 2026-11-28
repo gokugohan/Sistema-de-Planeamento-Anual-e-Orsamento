@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnualPlanReportController;
 use App\Http\Controllers\ApprovedPlanReportController;
+use App\Http\Controllers\BackupDownloadController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ImplementationPlanController;
@@ -243,6 +244,13 @@ Route::group(['prefix' => 'management', 'as' => 'management.', 'middleware' => [
     Route::get('/audit', function () {
         return view('management.audit');
     })->name('audit');
+
+    // the database backups: download one to keep it off the server, test that one restores
+    Route::view('/backups', 'management.backups')->name('backups');
+    Route::get('/backups/{name}/download', BackupDownloadController::class)->where('name', '[A-Za-z0-9_.]+')->name('backups.download');
+
+    // the errors the application met, grouped, for the administrator to follow up
+    Route::view('/errors', 'management.errors')->name('errors');
 
     Route::get('/sample-data', function () {
         return view('management.sample-data');

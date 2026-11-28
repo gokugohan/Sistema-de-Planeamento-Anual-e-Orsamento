@@ -108,6 +108,8 @@ return [
                     'hint' => 'Identity and logo, modules, approval rules, optional rules, the calendar, e-mail and testing: tabs of one area'],
                 ['label' => 'Import Activities', 'route' => 'management.import', 'icon' => 'download', 'hint' => 'Load activities from a CSV file'],
                 ['label' => 'Audit Log', 'route' => 'management.audit', 'icon' => 'shield-check', 'hint' => 'Who changed what, and when'],
+                ['label' => 'Backups', 'route' => 'management.backups', 'icon' => 'database', 'hint' => 'The nightly copies of the database: download one, test a restore'],
+                ['label' => 'Errors', 'route' => 'management.errors', 'icon' => 'activity', 'hint' => 'What went wrong in the application, grouped, to follow up'],
                 ['label' => 'Sample Data', 'route' => 'management.sample-data', 'icon' => 'flask-conical', 'hint' => 'Load or purge the demo dataset'],
             ],
         ],

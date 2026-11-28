@@ -395,11 +395,16 @@ It runs `paa:backup` at 02:00 and prunes failed jobs and expired password-reset 
 - Backups older than `BACKUP_KEEP_DAYS` (default 30) are deleted after each successful run (`--prune-only` just prunes). Every backup is recorded in the audit log.
 - If `mysqldump` is not on `PATH`, set `BACKUP_MYSQLDUMP` to its full path.
 - **Copy the files off the server**: set `BACKUP_COPY_PATH` to another disk or a mounted network share and every verified backup is copied there too (and pruned the same way); otherwise copy them by other means. A backup on the same disk is not a backup. Restore with `gunzip -c file.sql.gz | mysql -u<user> -p paa_orcamento`, and test a restore periodically.
+- **System > Backups** (administrators): the backups on the server, **Back up now**, **Download** (each download is audited) and **Test restore**, which loads a backup into a temporary database beside the live one (`<database>_restore_check`, dropped afterwards), counts the rows of every table and records the result. The page warns when the newest backup has not been downloaded for `BACKUP_DOWNLOAD_EVERY_DAYS` (default 7): with no `BACKUP_COPY_PATH`, downloading is how a copy leaves the server. The restore test needs the `mysql` client (`BACKUP_MYSQL`) and a database user allowed to create a database; where only the MariaDB names are installed, `mariadb-dump` and `mariadb` are used.
+
+### Errors
+
+Every error Laravel reports is kept in the application's own database (`error_reports`), one row per kind (the same exception at the same file and line), with how often it happened, the last page (without its query string), user, version and trace. **System > Errors** lists them; an administrator marks one resolved once it is fixed, and it comes back if it happens again. The administrators are notified of a new kind of error, and of one that comes back, at most once an hour per kind (in the application, and by e-mail where e-mail is switched on). Nothing is sent to an outside service.
 
 ### Health check
 
 - `GET /up` returns 200 when the application boots (Laravel's own check).
-- `GET /health` returns JSON with the status of the **database, cache, storage, queue, disk space and latest backup**, and no secrets. HTTP 200 with `"status": "ok"`; `"degraded"` when something needs attention (failed or stuck queue jobs, under 10% free disk, no backup within `BACKUP_MAX_AGE_HOURS`); HTTP **503** with `"down"` when the database or storage fails. Point your uptime monitor at it and alert on anything but `ok`.
+- `GET /health` returns JSON with the status of the **database, cache, storage, queue, disk space and latest backup**, and no secrets. HTTP 200 with `"status": "ok"`; `"degraded"` when something needs attention (failed or stuck queue jobs, under 10% free disk, no backup within `BACKUP_MAX_AGE_HOURS`); HTTP **503** with `"down"` when the database or storage fails. Point your uptime monitor at it and alert on anything but `ok`. The monitor must run **outside** the server (a monitor on the same server goes down with it): for example a free external uptime service, or a small monitor on another machine, checking every 5 minutes.
 
 ### Common tasks
 

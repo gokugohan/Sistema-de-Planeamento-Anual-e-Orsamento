@@ -24,5 +24,11 @@ return [
     // Full path to mysqldump if it is not on PATH (e.g. C:\laragon\bin\mysql\...\bin\mysqldump.exe).
     'mysqldump' => env('BACKUP_MYSQLDUMP', 'mysqldump'),
 
+    // The mysql client, used to test that a backup restores (into a temporary database, never the live one).
+    'mysql' => env('BACKUP_MYSQL', 'mysql'),
+
+    // The newest backup should be downloaded (kept off the server) at least this often; the Backups page warns otherwise.
+    'download_every_days' => (int) env('BACKUP_DOWNLOAD_EVERY_DAYS', 7),
+
     'timeout' => (int) env('BACKUP_TIMEOUT', 900),
 ];

@@ -15,6 +15,8 @@ new class extends Component {
     use WithPagination;
 
     public $search = '';
+    /** directorates | programs | classifications; in the address (?tab=) so a link opens the right one */
+    #[\Livewire\Attributes\Url(as: 'tab')]
     public $activeTab = 'directorates';
 
     // Directorate Form State
@@ -720,11 +722,6 @@ new class extends Component {
 
 <div class="space-y-6">
     @php
-        $tabs = [
-            'directorates' => [__('Organization'), __('Units and who heads them')],
-            'programs' => [__('Program structure'), __('Programs, outcomes, subprograms and outputs')],
-            'classifications' => [__('Economic categories'), __('The categories of a budget line')],
-        ];
         $current = $activeTab === 'subprograms' ? 'programs' : $activeTab;
         [$addLabel, $addAction] = match ($current) {
             'programs' => [__('New program'), 'openProgramModal()'],
@@ -740,14 +737,7 @@ new class extends Component {
         </x-ui.button>
     </x-ui.page-header>
 
-    <nav aria-label="{{ __('Structure') }}" class="-mx-4 flex gap-1 overflow-x-auto whitespace-nowrap border-b border-zinc-200 px-4 sm:mx-0 sm:px-0">
-        @foreach($tabs as $key => [$label, $hint])
-            <button type="button" wire:click="switchTab('{{ $key }}')" title="{{ $hint }}" @if($current === $key) aria-current="page" @endif
-                class="-mb-px border-b-2 px-4 py-2.5 text-sm font-medium {{ $current === $key ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-zinc-600 hover:border-zinc-300 hover:text-zinc-900' }}">{{ $label }}</button>
-        @endforeach
-        <a href="{{ route('management.funding-sources') }}" wire:navigate title="{{ __('Where the money of a budget line comes from') }}"
-            class="-mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-medium text-zinc-600 hover:border-zinc-300 hover:text-zinc-900">{{ __('Funding sources') }}</a>
-    </nav>
+    <x-structure-tabs :current="$current" />
 
     @if($current === 'directorates')
         @include('livewire.pages.management.entities-tabs.directorates')

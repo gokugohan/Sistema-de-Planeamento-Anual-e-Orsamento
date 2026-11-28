@@ -15,6 +15,7 @@ use App\Notifications\SystemNotification;
 use App\Policies\ActivityPolicy;
 use App\Support\ApprovalRules;
 use App\Support\PlanOptions;
+use App\Support\StructureCache;
 use DomainException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -265,9 +266,10 @@ class ActivityWorkflow
                     return null;
                 }
                 // each level certifies its own: the head of this unit (or their interim), not a head further up, so
-                // the unit above cannot skip the unit's check. Only when the head of the unit prepared the activity
-                // themself (and so may not check it) does a head above certify in their place.
-                if ($listed !== true && ! $this->headsUnit($user, $unit)
+                // the unit above cannot skip the unit's check. A head above certifies in its place only when the unit
+                // has no head of its own (a vacant post: the nearest head above directs it), or when the head of the
+                // unit prepared the activity themself (and so may not check it).
+                if ($listed !== true && ! $this->headsUnit($user, $this->standIn($unit))
                     && ! ($this->directsUnit($user, $unit) && $this->preparedByHeadOf($activity, $unit))) {
                     return null;
                 }
@@ -282,7 +284,7 @@ class ActivityWorkflow
                     return ($admin || $above) ? Activity::STATUS_VALIDATED : null;
                 }
 
-                return $this->headsUnit($user, $unit?->parent) ? Activity::STATUS_VALIDATED : null;
+                return $this->headsUnit($user, $this->standIn($unit?->parent)) ? Activity::STATUS_VALIDATED : null;
 
             case Activity::STATUS_VALIDATED:
                 // the final approval is the head of the directorate's (or whoever its list of approvers names)
@@ -627,8 +629,8 @@ class ActivityWorkflow
 
         return match ($activity->status) {
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => __('The unit to complete and submit it'),
-            Activity::STATUS_SUBMITTED => __(':leader to certify it', ['leader' => $leader($unit)]),
-            Activity::STATUS_REVIEWED => __(':leader to certify it', ['leader' => $leader($above)]),
+            Activity::STATUS_SUBMITTED => __(':leader to certify it', ['leader' => $leader($this->standIn($unit))]),
+            Activity::STATUS_REVIEWED => __(':leader to certify it', ['leader' => $leader($this->standIn($above))]),
             Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => __(':leader to approve the plan', ['leader' => $leader($root)]),
             default => null,
         };
@@ -704,6 +706,43 @@ class ActivityWorkflow
     }
 
     /** Did the head of this unit (or their interim) prepare the activity? Then someone above certifies it. */
+    /**
+     * The units that have a head of their own: an active user with the Director role in it, or an interim in force.
+     * Kept in the structure cache, which is renewed whenever a unit, a user, a role or an interim appointment changes
+     * (and each day, as appointments start and end by date).
+     *
+     * @return array<int, true>
+     */
+    public static function headedUnits(): array
+    {
+        return StructureCache::remember('headed-units:'.now()->toDateString(), 300, fn () => array_fill_keys(array_map('intval', array_merge(
+            User::role('Director')->whereNotNull('directorate_id')->whereNull('deactivated_at')->pluck('directorate_id')->all(),
+            ApprovalDelegation::active()->pluck('directorate_id')->all(),
+        )), true));
+    }
+
+    /** Does the unit have a head of its own? */
+    public function hasHead(?Directorate $unit): bool
+    {
+        return $unit !== null && isset(self::headedUnits()[$unit->id]);
+    }
+
+    /**
+     * The unit whose head acts for this one: the unit itself when it has a head, otherwise the nearest unit above
+     * that has one (a vacant post is directed from above, as the Structure page shows). Null when nobody does.
+     */
+    public function standIn(?Directorate $unit): ?Directorate
+    {
+        for ($guard = 0; $unit && $guard < 20; $guard++) {
+            if ($this->hasHead($unit)) {
+                return $unit;
+            }
+            $unit = $unit->parent_id ? Directorate::find($unit->parent_id) : null;
+        }
+
+        return null;
+    }
+
     private function preparedByHeadOf(Activity $activity, ?Directorate $unit): bool
     {
         $preparer = $activity->submitted_by ? User::find($activity->submitted_by) : null;

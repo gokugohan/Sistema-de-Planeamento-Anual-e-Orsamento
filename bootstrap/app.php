@@ -7,6 +7,7 @@ use App\Http\Middleware\LogSlowRequests;
 use App\Http\Middleware\RequireModule;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SetLocale;
+use App\Services\ErrorReports;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -39,5 +40,6 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        // error tracking inside the application (Management > Errors): kept on the server, the administrators told
+        $exceptions->report(fn (Throwable $e) => ErrorReports::record($e));
     })->create();

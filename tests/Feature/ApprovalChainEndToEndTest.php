@@ -106,6 +106,31 @@ class ApprovalChainEndToEndTest extends TestCase
         $this->assertSame(Activity::STATUS_APPROVED, $this->workflow->reach($head, $activity));
     }
 
+    public function test_a_unit_with_no_head_is_certified_by_the_head_above_until_it_has_one(): void
+    {
+        app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
+        $chefe = $this->user('chefe.gdsc@gdsc.tl');
+        $headOfUsc = $this->user('director.usc@gdsc.tl');
+        $activity = $this->step($this->user('tecnico.usc@gdsc.tl'), $this->draftIn('USC'), Activity::STATUS_SUBMITTED);
+
+        // USC has its head: the chefe of the gabinete waits for them
+        $this->assertNull($this->workflow->next($chefe, $activity));
+
+        // the post falls vacant: the unit is directed from the gabinete, which certifies in its place
+        $headOfUsc->forceFill(['deactivated_at' => now()])->save();
+        $workflow = app(ActivityWorkflow::class);
+        $this->assertSame(Activity::STATUS_APPROVED, $workflow->reach($chefe, $activity), 'certifies for the unit, for the level above, and approves');
+        $this->assertStringContainsString('(GDSC) to certify it', $workflow->awaiting($activity));
+        $this->assertSame(['USC'], collect(app(ApprovalInbox::class)->details($chefe, 'review'))->map(fn ($d) => $d['unit']->code)->all());
+
+        // an interim for the unit fills the post: the gabinete waits for them again
+        $interim = User::factory()->create();
+        $interim->assignRole('Director');
+        ApprovalDelegation::create(['user_id' => $interim->id, 'directorate_id' => $activity->directorate_id, 'starts_on' => now()->subDay(), 'ends_on' => now()->addMonth(), 'reason' => 'Vacant post', 'created_by' => $chefe->id]);
+        $this->assertNull(app(ActivityWorkflow::class)->next($chefe, $activity));
+        $this->assertSame(Activity::STATUS_REVIEWED, app(ActivityWorkflow::class)->next($interim, $activity));
+    }
+
     public function test_a_single_office_is_approved_by_its_head(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(); // the Gabinete de Digitalização e Segurança Cibernética

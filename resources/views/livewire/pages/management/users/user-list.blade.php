@@ -1,55 +1,7 @@
+@php
+    $act = 'inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600';
+@endphp
 <div class="space-y-4">
-    <!-- Filters & Search -->
-    <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-        <div class="relative w-full md:w-96 group">
-            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                </svg>
-            </span>
-            <input type="text" wire:model.live.debounce.300ms="search"
-                placeholder="{{ __('Search users by name or email...') }}"
-                class="block w-full pl-11 pr-4 h-11 bg-gray-50/50 border-transparent rounded-xl text-sm focus:ring-1 focus:ring-black focus:border-black focus:bg-white transition-all">
-        </div>
-
-        <div class="flex w-full flex-col gap-3 sm:flex-row sm:items-center md:w-auto">
-            <div>
-                <label for="uf-unit" class="sr-only">{{ __('Unit') }}</label>
-                <select id="uf-unit" wire:model.live="unitFilter" class="flux-input !w-auto min-w-[14rem]">
-                    <option value="">{{ __('All units') }}</option>
-                    <option value="none">{{ __('No unit') }}</option>
-                    @foreach($unitTree as $u)
-                        <option value="{{ $u['id'] }}">{{ str_repeat('— ', $u['depth']) }}{{ $u['label'] }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <label for="uf-role" class="sr-only">{{ __('Security Role') }}</label>
-                <select id="uf-role" wire:model.live="roleFilter" class="flux-input !w-auto">
-                    <option value="">{{ __('All roles') }}</option>
-                    @foreach($roleOptions as $r)
-                        <option value="{{ $r->name }}">{{ __($r->display_name ?: $r->name) }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <label for="uf-status" class="sr-only">{{ __('Status') }}</label>
-                <select id="uf-status" wire:model.live="statusFilter" class="flux-input !w-auto">
-                    <option value="">{{ __('Every status') }}</option>
-                    <option value="active">{{ __('Active') }}</option>
-                    <option value="deactivated">{{ __('Deactivated') }}</option>
-                </select>
-            </div>
-            <span class="whitespace-nowrap text-xs font-semibold text-gray-400">{{ $users->total() }} {{ __('Registered Users') }}</span>
-            @if($search !== '' || $unitFilter !== '' || $roleFilter !== '' || $statusFilter !== '')
-                <button type="button" wire:click="clearFilters" class="whitespace-nowrap text-xs font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
-            @endif
-        </div>
-    </div>
-
     @if($noUnit > 0 && $unitFilter !== 'none')
         <div role="status" class="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
             <span>{{ trans_choice(':n director or officer has no unit and cannot see any activity.|:n directors or officers have no unit and cannot see any activity.', $noUnit, ['n' => $noUnit]) }}</span>
@@ -57,154 +9,124 @@
         </div>
     @endif
 
-    <!-- Users Table -->
-    <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-        <table class="w-full text-left border-collapse">
-            <thead>
-                <tr class="bg-gray-50/50">
-                    <th
-                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
-                        {{ __('Name & Identity') }}
-                    </th>
-                    <th
-                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
-                        {{ __('Security Role') }}
-                    </th>
-                    <th
-                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
-                        {{ __('Unit') }}
-                    </th>
-                    <th
-                        class="px-8 py-5 text-xs font-semibold text-gray-400 border-b border-gray-50">
-                        {{ __('Status') }}
-                    </th>
-                    <th class="px-8 py-5 text-right border-b border-gray-50"></th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-50">
-                @forelse($users as $user)
-                    <tr class="group hover:bg-gray-50/30 transition-colors">
-                        <td class="px-8 py-6">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-semibold text-xs shadow-sm shadow-black/10">
-                                    {{ substr($user->name, 0, 2) }}
+    <x-ui.card padding="p-0">
+        {{-- search and filters --}}
+        <div class="flex flex-col gap-3 border-b border-zinc-200 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
+            <x-ui.search wire:model.live.debounce.300ms="search" :placeholder="__('Search users by name or email...')" />
+            <div class="flex flex-wrap items-center gap-2">
+                <label for="uf-unit" class="sr-only">{{ __('Unit') }}</label>
+                <select id="uf-unit" wire:model.live="unitFilter" class="flux-input !w-auto min-w-[12rem]">
+                    <option value="">{{ __('All units') }}</option>
+                    <option value="none">{{ __('No unit') }}</option>
+                    @foreach($unitTree as $u)
+                        <option value="{{ $u['id'] }}">{{ str_repeat('— ', $u['depth']) }}{{ $u['label'] }}</option>
+                    @endforeach
+                </select>
+                <label for="uf-role" class="sr-only">{{ __('Security Role') }}</label>
+                <select id="uf-role" wire:model.live="roleFilter" class="flux-input !w-auto">
+                    <option value="">{{ __('All roles') }}</option>
+                    @foreach($roleOptions as $r)
+                        <option value="{{ $r->name }}">{{ __($r->display_name ?: $r->name) }}</option>
+                    @endforeach
+                </select>
+                <label for="uf-status" class="sr-only">{{ __('Status') }}</label>
+                <select id="uf-status" wire:model.live="statusFilter" class="flux-input !w-auto">
+                    <option value="">{{ __('Every status') }}</option>
+                    <option value="active">{{ __('Active') }}</option>
+                    <option value="deactivated">{{ __('Deactivated') }}</option>
+                </select>
+                <span class="whitespace-nowrap text-xs text-zinc-500">{{ $users->total() }} {{ __('Registered Users') }}</span>
+                @if($search !== '' || $unitFilter !== '' || $roleFilter !== '' || $statusFilter !== '')
+                    <button type="button" wire:click="clearFilters" class="whitespace-nowrap text-xs font-medium text-indigo-700 hover:underline">{{ __('Clear filters') }}</button>
+                @endif
+            </div>
+        </div>
+
+        <div class="overflow-x-auto" tabindex="0">
+            <table class="min-w-full text-sm">
+                <thead class="bg-zinc-50 text-left text-xs font-medium text-zinc-500">
+                    <tr>
+                        <th scope="col" class="px-5 py-3">{{ __('Name & Identity') }}</th>
+                        <th scope="col" class="px-5 py-3">{{ __('Security Role') }}</th>
+                        <th scope="col" class="px-5 py-3">{{ __('Unit') }}</th>
+                        <th scope="col" class="px-5 py-3">{{ __('Status') }}</th>
+                        <th scope="col" class="px-5 py-3"><span class="sr-only">{{ __('Actions') }}</span></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-100">
+                    @forelse($users as $user)
+                        @php $role = $user->roles->first(); @endphp
+                        <tr class="hover:bg-zinc-50/60" wire:key="user-{{ $user->id }}">
+                            <td class="px-5 py-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-xs font-semibold uppercase text-indigo-700" aria-hidden="true">{{ mb_substr($user->name, 0, 2) }}</span>
+                                    <div class="min-w-0">
+                                        <p class="font-medium text-zinc-900">{{ $user->name }}</p>
+                                        <p class="text-xs text-zinc-500">{{ $user->email }}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="text-sm font-semibold text-gray-900 leading-tight">{{ $user->name }}</h4>
-                                    <p class="text-xs text-gray-400 mt-0.5">{{ $user->email }}</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-8 py-6">
-                            @php $role = $user->roles->first(); @endphp
-                            <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 transparent text-xs font-semibold border border-gray-200 rounded-lg text-gray-600">
-                                <span class="w-1 h-1 bg-indigo-500 rounded-full"></span>
+                            </td>
+                            <td class="px-5 py-3">
                                 {{-- a head shows the title of the level they lead; the role underneath --}}
-                                {{ $role ? $user->roleTitle() : __('No Role') }}
-                            </span>
-                            @if($role?->name === 'Director' && $user->directorate)
-                                <span class="mt-1 block text-xs text-gray-500">{{ __('Head') }}</span>
-                            @endif
-                        </td>
-                        <td class="px-8 py-6 text-sm">
-                            @if($user->directorate)
-                                <a href="{{ route('units.show', $user->directorate->id) }}" wire:navigate title="{{ __('Open the unit') }}" class="font-semibold text-indigo-700 hover:underline">{{ $user->directorate->code }}</a>
-                                <span class="block max-w-[16rem] truncate text-xs text-gray-500">{{ $user->directorate->name }}</span>
-                            @else
-                                <span class="text-xs text-gray-500">{{ __('No unit') }}</span>
-                            @endif
-                        </td>
-                        <td class="px-8 py-6">
-                            @if($user->isActive())
-                                <span
-                                    class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-lg border border-green-100">
-                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                                    {{ __('Active') }}
-                                </span>
-                            @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-100 text-zinc-600 text-xs font-semibold rounded-lg border border-zinc-200">
-                                    <span class="w-1.5 h-1.5 bg-zinc-400 rounded-full"></span>
-                                    {{ __('Deactivated') }}
-                                </span>
-                                <span class="mt-1 block text-xs text-gray-500">{{ __('since :date', ['date' => $user->deactivated_at->format('d/m/Y')]) }}</span>
-                            @endif
-                        </td>
-                        <td class="px-8 py-6 text-right">
-                            <div class="flex justify-end items-center gap-2">
-                                <button wire:click="openModal({{ $user->id }})" title="{{ __('Edit') }}" aria-label="{{ __('Edit') }}"
-                                    class="p-2 text-gray-400 hover:text-black hover:bg-gray-100 rounded-xl transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                                        <path d="m15 5 4 4" />
-                                    </svg>
-                                </button>
+                                <span class="text-zinc-900">{{ $role ? $user->roleTitle() : __('No Role') }}</span>
+                                @if($role?->name === 'Director' && $user->directorate)
+                                    <span class="block text-xs text-zinc-500">{{ __('Head') }}</span>
+                                @endif
+                            </td>
+                            <td class="px-5 py-3">
+                                @if($user->directorate)
+                                    <a href="{{ route('units.show', $user->directorate->id) }}" wire:navigate title="{{ __('Open the unit') }}" class="font-medium text-indigo-700 hover:underline">{{ $user->directorate->code }}</a>
+                                    <span class="block max-w-[16rem] truncate text-xs text-zinc-500">{{ $user->directorate->name }}</span>
+                                @else
+                                    <span class="text-xs text-zinc-500">{{ __('No unit') }}</span>
+                                @endif
+                            </td>
+                            <td class="px-5 py-3">
+                                @if($user->isActive())
+                                    <x-ui.badge variant="emerald">{{ __('Active') }}</x-ui.badge>
+                                @else
+                                    <x-ui.badge variant="gray">{{ __('Deactivated') }}</x-ui.badge>
+                                    <span class="mt-1 block text-xs text-zinc-500">{{ __('since :date', ['date' => $user->deactivated_at->format('d/m/Y')]) }}</span>
+                                @endif
+                            </td>
+                            <td class="whitespace-nowrap px-5 py-3 text-right">
+                                <x-ui.icon-action icon="edit" :label="__('Edit').' '.$user->name" wire:click="openModal({{ $user->id }})" />
                                 @if(auth()->user()->isAdministrator())
-                                    <a href="{{ route('management.audit', ['userId' => $user->id]) }}" wire:navigate title="{{ __('Activity of this person') }}" aria-label="{{ __('Activity of this person') }}"
-                                        class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+                                    <a href="{{ route('management.audit', ['userId' => $user->id]) }}" wire:navigate title="{{ __('Activity of this person') }}" aria-label="{{ __('Activity of this person') }}" class="{{ $act }} hover:bg-indigo-50 hover:text-indigo-700">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
                                     </a>
                                 @endif
                                 @if($user->id !== auth()->id() && auth()->user()->isAdministrator())
                                     @if($user->two_factor_confirmed_at)
-                                        <button wire:click="resetTwoFactor({{ $user->id }})"
-                                            wire:confirm="{{ __('Reset two-factor authentication for this user? Use this when they lost their phone.') }}"
-                                            class="p-2 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
-                                            title="{{ __('Reset two-factor') }}" aria-label="{{ __('Reset two-factor') }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M9.5 9.5 14.5 14.5"/><path d="m14.5 9.5-5 5"/></svg>
+                                        <button type="button" wire:click="resetTwoFactor({{ $user->id }})" wire:confirm="{{ __('Reset two-factor authentication for this user? Use this when they lost their phone.') }}"
+                                            class="{{ $act }} hover:bg-amber-50 hover:text-amber-700" title="{{ __('Reset two-factor') }}" aria-label="{{ __('Reset two-factor') }}">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="M9.5 9.5 14.5 14.5"/><path d="m14.5 9.5-5 5"/></svg>
                                         </button>
                                     @endif
                                     @if($user->isActive())
-                                        <button wire:click="toggleActive({{ $user->id }})"
-                                            wire:confirm="{{ __('Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.') }}"
-                                            class="p-2 text-gray-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all"
-                                            title="{{ __('Deactivate') }}" aria-label="{{ __('Deactivate') }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+                                        <button type="button" wire:click="toggleActive({{ $user->id }})" wire:confirm="{{ __('Deactivate this account? The person can no longer sign in; their history stays. You can reactivate it at any time.') }}"
+                                            class="{{ $act }} hover:bg-amber-50 hover:text-amber-700" title="{{ __('Deactivate') }}" aria-label="{{ __('Deactivate') }}">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
                                         </button>
                                     @else
-                                        <button wire:click="toggleActive({{ $user->id }})"
-                                            class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-xl transition-all"
-                                            title="{{ __('Reactivate') }}" aria-label="{{ __('Reactivate') }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+                                        <button type="button" wire:click="toggleActive({{ $user->id }})" class="{{ $act }} hover:bg-emerald-50 hover:text-emerald-700" title="{{ __('Reactivate') }}" aria-label="{{ __('Reactivate') }}">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
                                         </button>
                                     @endif
-                                    <button wire:click="resetPassword({{ $user->id }})"
-                                        wire:confirm="{{ __('Issue a new temporary password for this user? Their current password stops working.') }}"
-                                        class="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
-                                        title="{{ __('Reset password') }}" aria-label="{{ __('Reset password') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+                                    <button type="button" wire:click="resetPassword({{ $user->id }})" wire:confirm="{{ __('Issue a new temporary password for this user? Their current password stops working.') }}"
+                                        class="{{ $act }} hover:bg-indigo-50 hover:text-indigo-700" title="{{ __('Reset password') }}" aria-label="{{ __('Reset password') }}">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
                                     </button>
-                                    <button wire:click="deleteUser({{ $user->id }})" title="{{ __('Delete') }}" aria-label="{{ __('Delete') }}"
-                                        wire:confirm="{{ __('Delete this account for good? To keep their history, deactivate it instead.') }}"
-                                        class="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path d="M3 6h18" />
-                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                            <line x1="10" x2="10" y1="11" y2="17" />
-                                            <line x1="14" x2="14" y1="11" y2="17" />
-                                        </svg>
-                                    </button>
+                                    <x-ui.icon-action icon="delete" :label="__('Delete').' '.$user->name" wire:click="deleteUser({{ $user->id }})" :confirm="__('Delete this account for good? To keep their history, deactivate it instead.')" />
                                 @endif
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5"><x-ui.empty-state :title="__('No users found matching your criteria.')" /></td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-
-        <!-- Pagination -->
-        <div class="px-8 py-4 bg-gray-50/30 border-t border-gray-50">
-            {{ $users->links() }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="5"><x-ui.empty-state :title="__('No users found matching your criteria.')" /></td></tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-    </div>
+        <div class="border-t border-zinc-200 px-5 py-3">{{ $users->links() }}</div>
+    </x-ui.card>
 </div>

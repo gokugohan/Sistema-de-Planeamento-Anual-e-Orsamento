@@ -75,13 +75,9 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-            <h1 class="page-title">{{ __('Audit Log') }}</h1>
-            <p class="page-subtitle">{{ __('Who changed what, and when. Records cannot be edited from the application.') }}</p>
-        </div>
+    <x-ui.page-header :title="__('Audit Log')" :subtitle="__('Who changed what, and when. Records cannot be edited from the application.')">
         <span class="text-sm text-zinc-500">{{ number_format($logs->total()) }} {{ __('records') }}</span>
-    </div>
+    </x-ui.page-header>
 
     <x-ui.card padding="p-4">
         <div class="grid gap-3 md:grid-cols-6">

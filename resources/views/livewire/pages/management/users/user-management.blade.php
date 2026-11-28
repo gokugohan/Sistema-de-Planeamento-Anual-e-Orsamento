@@ -317,55 +317,23 @@ new class extends Component {
         </div>
     @endif
 
-    <!-- Header with Breadcrumbs & Action -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-            <h1 class="page-title">{{ __('Access Governance') }}</h1>
-            <p class="page-subtitle">
-                {{ __('Manage system access, roles, and security permissions') }}
-            </p>
-        </div>
+    <x-ui.page-header :title="__('System Users')" :subtitle="__('Who can sign in, the unit each person works in, and what their role lets them do.')">
+        @if($tab === 'users')
+            <x-ui.button type="button" wire:click="openModal()" class="whitespace-nowrap">
+                <svg class="-ml-0.5 mr-1.5 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+                {{ __('New user') }}
+            </x-ui.button>
+        @endif
+    </x-ui.page-header>
 
-        <div class="flex items-center gap-3">
-            @if($tab === 'users')
-                <x-ui.button wire:click="openModal()" variant="primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <line x1="19" x2="19" y1="8" y2="14" />
-                        <line x1="16" x2="22" y1="11" y2="11" />
-                    </svg>
-                    {{ __('Onboard User') }}
-                </x-ui.button>
-            @endif
-        </div>
-    </div>
+    <nav aria-label="{{ __('System Users') }}" class="-mx-4 flex gap-1 overflow-x-auto whitespace-nowrap border-b border-zinc-200 px-4 sm:mx-0 sm:px-0">
+        @foreach(['users' => __('People'), 'roles' => __('Roles and permissions')] as $key => $label)
+            <button type="button" wire:click="setTab('{{ $key }}')" @if($tab === $key) aria-current="page" @endif
+                class="-mb-px border-b-2 px-4 py-2.5 text-sm font-medium {{ $tab === $key ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-zinc-600 hover:border-zinc-300 hover:text-zinc-900' }}">{{ $label }}</button>
+        @endforeach
+    </nav>
 
-    <!-- Navigation Hub (Floating Pill Style) -->
-    <div class="flex items-center gap-2 p-1.5 bg-zinc-100/50 border border-zinc-200 rounded-xl shadow-sm w-fit">
-        <x-ui.button wire:click="setTab('users')"
-            variant="{{ $tab === 'users' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-xs">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-            </svg>
-            {{ __('Personnel') }}
-        </x-ui.button>
-        <x-ui.button wire:click="setTab('roles')"
-            variant="{{ $tab === 'roles' ? 'secondary' : 'ghost' }}" size="sm" class="!rounded-xl !text-xs">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                <path d="m9 12 2 2 4-4" />
-            </svg>
-            {{ __('Roles and permissions') }}
-        </x-ui.button>
-    </div>
-
-    <!-- Main View Content -->
-    <div class="animate-in fade-in slide-in-from-bottom-2 duration-500">
+    <div>
         @if($tab === 'users')
             @include('livewire.pages.management.users.user-list')
         @elseif($tab === 'roles')
@@ -373,81 +341,62 @@ new class extends Component {
         @endif
     </div>
 
-    <!-- User Form Modal -->
+    {{-- User panel --}}
     @if($modalOpen)
-        <x-dialog max-width="lg" close="$set('modalOpen', false)">
-<x-slot:title>{{ $isEditing ? __('Edit User') : __('Create New User') }}</x-slot:title>
-<x-slot:subtitle>{{ __('User Profile & Access') }}</x-slot:subtitle>
+        <x-slide-over close="$set('modalOpen', false)" width="lg">
+            <x-slot:eyebrow>{{ __('System Users') }}</x-slot:eyebrow>
+            <x-slot:title>{{ $isEditing ? __('Edit user') : __('New user') }}</x-slot:title>
 
-                <form wire:submit="saveUser" class="p-6 space-y-5">
-                    <div class="space-y-4">
-                        <div class="space-y-2">
-                            <x-input-label for="modal_name" :value="__('Full Name')"
-                                class="text-xs font-semibold text-gray-400 ml-1" />
-                            <x-text-input id="modal_name" wire:model="name"
-                                class="w-full !rounded-xl !bg-gray-50/50 !border-gray-100 focus:!ring-black"
-                                placeholder="John Doe" />
-                            <x-input-error :messages="$errors->get('name')" />
-                        </div>
-
-                        <div class="space-y-2">
-                            <x-input-label for="modal_email" :value="__('Email Address')"
-                                class="text-xs font-semibold text-gray-400 ml-1" />
-                            <x-text-input id="modal_email" type="email" wire:model="email"
-                                class="w-full !rounded-xl !bg-gray-50/50 !border-gray-100 focus:!ring-black"
-                                placeholder="john@msa.gov.tl" />
-                            <x-input-error :messages="$errors->get('email')" />
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="space-y-2">
-                                <x-input-label for="modal_role" :value="__('Security Role')"
-                                    class="text-xs font-semibold text-gray-400 ml-1" />
-                                <select id="modal_role" wire:model.live="selectedRole"
-                                    class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
-                                    <option value="">{{ __('Select Role') }}</option>
-                                    @foreach($roleOptions as $role)
-                                        <option value="{{ $role->name }}">{{ __($role->display_name ?: $role->name) }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('selectedRole')" />
-                            </div>
-
-                            <div class="space-y-2">
-                                <x-input-label for="modal_directorate" :value="__('Directorate')"
-                                    class="text-xs font-semibold text-gray-400 ml-1" />
-                                <select id="modal_directorate" wire:model.live="directorate_id"
-                                    class="w-full h-11 px-4 rounded-xl bg-gray-50/50 border-gray-100 text-sm focus:ring-1 focus:ring-black focus:border-black transition-all">
-                                    <option value="">{{ __('National (All)') }}</option>
-                                    @foreach($unitTree as $u)
-                                        <option value="{{ $u['id'] }}">{{ str_repeat('— ', $u['depth']) }}{{ $u['label'] }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('directorate_id')" />
-                            </div>
-                        </div>
-                        @if($selectedRole === 'Director')
-                            {{-- one role for every head: the level of the unit gives the title and the step --}}
-                            @php $headOf = $directorate_id ? \App\Models\Directorate::find($directorate_id) : null; @endphp
-                            <p class="text-xs text-zinc-500">
-                                @if($headOf)
-                                    {{ __('As head of :unit this person is the :title.', ['unit' => $headOf->code, 'title' => $headOf->leaderTitle()]) }}
-                                @else
-                                    {{ __('Choose the unit this person heads: its level gives their title and their approval step.') }}
-                                @endif
-                            </p>
+            <form id="user-form" wire:submit="saveUser" class="space-y-5 p-6">
+                <div>
+                    <label class="field-label" for="modal_name">{{ __('Full Name') }}</label>
+                    <input id="modal_name" type="text" wire:model="name" class="flux-input" autocomplete="off">
+                    <x-input-error :messages="$errors->get('name')" />
+                </div>
+                <div>
+                    <label class="field-label" for="modal_email">{{ __('Email Address') }}</label>
+                    <input id="modal_email" type="email" wire:model="email" class="flux-input" autocomplete="off">
+                    <x-input-error :messages="$errors->get('email')" />
+                </div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                        <label class="field-label" for="modal_role">{{ __('Security Role') }}</label>
+                        <select id="modal_role" wire:model.live="selectedRole" class="flux-input">
+                            <option value="">{{ __('Select Role') }}</option>
+                            @foreach($roleOptions as $role)
+                                <option value="{{ $role->name }}">{{ __($role->display_name ?: $role->name) }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('selectedRole')" />
+                    </div>
+                    <div>
+                        <label class="field-label" for="modal_directorate">{{ __('Unit') }}</label>
+                        <select id="modal_directorate" wire:model.live="directorate_id" class="flux-input">
+                            <option value="">{{ __('National (All)') }}</option>
+                            @foreach($unitTree as $u)
+                                <option value="{{ $u['id'] }}">{{ str_repeat('— ', $u['depth']) }}{{ $u['label'] }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('directorate_id')" />
+                    </div>
+                </div>
+                @if($selectedRole === 'Director')
+                    {{-- one role for every head: the level of the unit gives the title and the step --}}
+                    @php $headOf = $directorate_id ? \App\Models\Directorate::find($directorate_id) : null; @endphp
+                    <p class="rounded-md bg-zinc-50 px-3 py-2 text-xs text-zinc-600">
+                        @if($headOf)
+                            {{ __('As head of :unit this person is the :title.', ['unit' => $headOf->code, 'title' => $headOf->leaderTitle()]) }}
+                        @else
+                            {{ __('Choose the unit this person heads: its level gives their title and their approval step.') }}
                         @endif
-                    </div>
+                    </p>
+                @endif
+            </form>
 
-                    <div class="flex items-center justify-end gap-3 pt-4">
-                        <x-ui.button type="button" wire:click="$set('modalOpen', false)" variant="ghost">
-                            {{ __('Cancel') }}
-                        </x-ui.button>
-                        <x-ui.button type="submit" variant="primary">
-                            {{ $isEditing ? __('Confirm Changes') : __('Onboard Personnel') }}
-                        </x-ui.button>
-                    </div>
-                </form>
-</x-dialog>
-@endif
+            <x-slot:footer>
+                <x-ui.button type="button" variant="secondary" shadow="none" wire:click="$set('modalOpen', false)">{{ __('Cancel') }}</x-ui.button>
+                <x-ui.button type="submit" form="user-form">{{ $isEditing ? __('Save user') : __('Add user') }}</x-ui.button>
+            </x-slot:footer>
+        </x-slide-over>
+    @endif
 </div>
