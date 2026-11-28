@@ -1,0 +1,52 @@
+# Uptime monitor, run by GitHub (outside the PAA server, so it still reports when the server is down).
+# Every 15 minutes it opens /health; the run fails, and GitHub e-mails the repository's owner, when the site does not
+# answer, answers "down" (HTTP 503: database or storage unavailable) or "degraded" (works, but needs attention: failed
+# jobs, low disk space, no recent backup). Run it by hand from the Actions tab with "Run workflow".
+# GitHub may start a scheduled run a few minutes late, and pauses the schedule after 60 days without a commit.
+name: Uptime
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      HEALTH_URL: https://paa.gdsc.mtk.gov.tl/health
+    steps:
+      - name: Check /health
+        run: |
+          # three tries, 20 s apart, so one dropped connection does not raise an alarm
+          for try in 1 2 3; do
+            code=$(curl -s -o body.json -w '%{http_code}' --max-time 20 "$HEALTH_URL" || echo 000)
+            status=$(jq -r '.status // "unreadable"' body.json 2>/dev/null || echo unreadable)
+            [ "$code" = 200 ] && [ "$status" = ok ] && break
+            [ "$try" -lt 3 ] && sleep 20
+          done
+
+          echo "HTTP $code, status: $status"
+          [ -s body.json ] && jq . body.json 2>/dev/null || true
+
+          if [ "$code" = 200 ] && [ "$status" = ok ]; then
+            echo "### PAA is up" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          if [ "$code" = 200 ] && [ "$status" = degraded ]; then
+            failing=$(jq -r '.checks | to_entries[] | select(.value.status != "ok") | .key' body.json | paste -sd, -)
+            echo "::error title=PAA needs attention::status degraded; checks not ok: ${failing}"
+            echo "### PAA works but needs attention: ${failing}" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::error title=PAA is down::HTTP ${code}, status ${status}"
+            echo "### PAA is down: HTTP ${code}, status ${status}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit 1

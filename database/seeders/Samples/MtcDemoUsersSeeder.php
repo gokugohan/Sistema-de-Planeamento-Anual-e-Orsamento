@@ -48,9 +48,14 @@ class MtcDemoUsersSeeder extends Seeder
             $this->assignRole($registry, $head, $office === null ? 'Minister' : 'Director');
         }
 
+        // A single office gets demo accounts in every one of its units, also when the units are real (the office's
+        // structure is often entered before the sample is loaded): without them nobody prepares a plan there and the
+        // demo stops. The accounts are registered as sample data, so purging the sample removes them again.
+        $officeUnits = $office === null ? [] : $this->officeUnits(Directorate::where('code', $office)->value('id'));
+
         foreach (Directorate::all() as $dir) {
-            if (! $registry->isRegistered($dir)) {
-                continue; // only sample units get demo accounts
+            if (! $registry->isRegistered($dir) && ! in_array($dir->id, $officeUnits, true)) {
+                continue; // otherwise only sample units get demo accounts
             }
             $code = strtolower($dir->code);
 
@@ -76,6 +81,21 @@ class MtcDemoUsersSeeder extends Seeder
                 $this->assignRole($registry, $user, 'Finance');
             }
         }
+    }
+
+    /**
+     * The office and every unit below it, at any depth.
+     *
+     * @return array<int, int>
+     */
+    private function officeUnits(?int $officeId): array
+    {
+        $ids = $officeId ? [$officeId] : [];
+        for ($level = $ids; $level !== []; $ids = array_merge($ids, $level)) {
+            $level = Directorate::whereIn('parent_id', $level)->whereNotIn('id', $ids)->pluck('id')->map(fn ($id) => (int) $id)->all();
+        }
+
+        return $ids;
     }
 
     /** Roles are only set on accounts that belong to the sample; a real user is never re-roled. */
