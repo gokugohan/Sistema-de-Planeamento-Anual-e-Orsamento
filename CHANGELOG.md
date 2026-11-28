@@ -2,6 +2,10 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.4.1] — 2026-11-28
+
+- Docker: the image brings the MySQL 8 login plugin, so the database schema loads on CapRover's MySQL 8.4
+
 ## [1.4.0] — 2026-11-24
 
 Planning follows its dates, and the approvals page says what is waiting.
