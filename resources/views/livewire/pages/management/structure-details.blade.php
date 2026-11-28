@@ -28,8 +28,12 @@ new class extends Component {
     public string $reference = '';
     public string $description = '';
 
-    public function mount(string $type, int $id): void
+    /** false: only the national objectives (the outcomes and outputs are edited in the programme structure itself). */
+    public bool $results = true;
+
+    public function mount(string $type, int $id, bool $results = true): void
     {
+        $this->results = $results;
         abort_unless(auth()->user()?->isAdministrator(), 403);
         $this->type = $type === 'subprogram' ? 'subprogram' : 'program';
         $this->targetId = $id;
@@ -177,6 +181,7 @@ new class extends Component {
     </section>
 
     {{-- Result indicators --}}
+    @if($results)
     <section aria-labelledby="ri-title">
         <h3 id="ri-title" class="text-sm font-semibold text-zinc-900">{{ $type === 'subprogram' ? __('Outputs (short-term results)') : __('Outcomes (medium-term objectives)') }}</h3>
         <p class="mt-0.5 text-xs text-zinc-500">{{ __('The change this is meant to bring, with where it stands and where it should get to. Described here; the activities report their own indicators every quarter.') }}
@@ -251,4 +256,5 @@ new class extends Component {
             </div>
         </form>
     </section>
+    @endif
 </div>

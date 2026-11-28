@@ -6,6 +6,7 @@ use App\Models\Program;
 use App\Models\Subprogram;
 use App\Models\EconomicClassification;
 use App\Models\Activity;
+use App\Models\ResultIndicator;
 use App\Services\ProgramYears;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
@@ -59,6 +60,18 @@ new class extends Component {
     public $subprogramFilter = '';
     public $subprogramModalOpen = false;
     public $isSubprogramEditing = false;
+
+    /** The outcome (of a programme) or output (of a subprogramme) open in the side panel. */
+    public ?string $resultKind = null;
+    public ?int $resultOwnerId = null;
+    public ?int $resultId = null;
+    public string $rCode = '';
+    public string $rStatement = '';
+    public $rOutcome = '';
+    public string $rName = '';
+    public string $rBaseline = '';
+    public string $rTarget = '';
+    public string $rMeans = '';
 
     // Economic Classification Form State
     public $classificationId = null;
@@ -170,23 +183,13 @@ new class extends Component {
                 })
                 ->orderByRaw('COALESCE(parent_id, id), parent_id IS NOT NULL, name')
                 ->paginate(15),
-            'programs' => Program::forYear($year)->withCount(['alignments', 'resultIndicators'])->when($this->search, function ($q) {
-                $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")
-                    ->orWhere('oge_code', 'like', "%{$this->search}%"));
-            })
-                ->orderBy('oge_code')
-                ->paginate(10),
+            'structure' => in_array($this->activeTab, ['programs', 'subprograms'], true) ? $this->structure($year) : null,
+            'resultOutcomes' => $this->resultKind === 'output' ? $this->outcomesFor($this->resultOwnerId) : collect(),
+            'resultOwner' => $this->resultKind ? $this->resultOwner() : null,
             // Auto-complete while registering: programmes of other years that this year does not have yet.
             'programSuggestions' => ($this->programModalOpen && ! $this->isProgramEditing && ! $this->suggestionsHidden)
                 ? app(ProgramYears::class)->suggestions($year, trim((string) $this->ogeCode) !== '' ? (string) $this->ogeCode : (string) $this->programName)
                 : collect(),
-            'subprograms' => Subprogram::query()
-                ->with('program:id,oge_code,name,fiscal_year')->withCount(['activities', 'alignments', 'resultIndicators'])
-                ->whereHas('program', fn ($q) => $q->where('fiscal_year', $year))
-                ->when($this->subprogramFilter !== '', fn ($q) => $q->where('program_id', (int) $this->subprogramFilter))
-                ->when($this->search, fn ($q) => $q->where(fn ($w) => $w->where('name', 'like', "%{$this->search}%")->orWhere('code', 'like', "%{$this->search}%")))
-                ->orderBy(Program::select('oge_code')->whereColumn('programs.id', 'subprograms.program_id'))->orderBy('code')
-                ->paginate(10),
             'yearPrograms' => Program::forYear($year)->orderBy('oge_code')->get(['id', 'oge_code', 'name']),
             'copySources' => app(ProgramYears::class)->years()->reject(fn ($y) => $y === $year)->values(),
             'economicCategories' => EconomicClassification::when($this->search, function ($q) {
@@ -202,7 +205,8 @@ new class extends Component {
 
     public function switchTab($tab)
     {
-        $this->activeTab = $tab;
+        // programmes and subprogrammes are one tree now: the old subprogram tab opens it
+        $this->activeTab = $tab === 'subprograms' ? 'programs' : $tab;
         $this->search = '';
         $this->resetPage();
     }
@@ -449,7 +453,8 @@ new class extends Component {
 
     // ========== SUBPROGRAM CRUD METHODS ==========
 
-    public function openSubprogramModal($id = null)
+    /** $programId: a new subprogramme added from its programme in the tree starts under it. */
+    public function openSubprogramModal($id = null, $programId = null)
     {
         $this->guardPrograms();
         $this->resetValidation();
@@ -465,7 +470,7 @@ new class extends Component {
             $this->isSubprogramEditing = false;
             $this->subprogramId = null;
             $this->reset(['subCode', 'subName', 'subObjective']);
-            $this->subProgramId = (string) $this->subprogramFilter;
+            $this->subProgramId = (string) ($programId ?: $this->subprogramFilter);
         }
         $this->subprogramModalOpen = true;
     }
@@ -515,6 +520,136 @@ new class extends Component {
     public function updatedSubprogramFilter(): void
     {
         $this->resetPage();
+    }
+
+    // ========== OUTCOMES AND OUTPUTS (the results chain of the State Budget) ==========
+
+    /** The programme (for an outcome) or subprogramme (for an output) a result belongs to. */
+    private function resultOwner(): Program|Subprogram
+    {
+        return $this->resultKind === 'output' ? Subprogram::findOrFail($this->resultOwnerId) : Program::findOrFail($this->resultOwnerId);
+    }
+
+    /** For an output: the outcomes of its programme, one of which it serves. */
+    private function outcomesFor(?int $subprogramId)
+    {
+        $programId = $subprogramId ? Subprogram::whereKey($subprogramId)->value('program_id') : null;
+
+        return $programId ? ResultIndicator::where('indicatable_type', (new Program)->getMorphClass())->where('indicatable_id', $programId)->orderBy('code')->orderBy('id')->get() : collect();
+    }
+
+    public function openResult(string $kind, int $ownerId, ?int $id = null): void
+    {
+        $this->guardPrograms();
+        $this->resetValidation();
+        $this->resultKind = $kind === 'output' ? 'output' : 'outcome';
+        $this->resultOwnerId = $ownerId;
+        $owner = $this->resultOwner();
+        $r = $id ? $owner->resultIndicators()->findOrFail($id) : null;
+        $this->resultId = $r?->id;
+        $this->rCode = (string) $r?->code;
+        $this->rStatement = (string) $r?->statement;
+        $this->rName = (string) $r?->name;
+        $this->rBaseline = (string) $r?->baseline;
+        $this->rTarget = (string) $r?->target;
+        $this->rMeans = (string) $r?->means_of_verification;
+        // a new output serves the programme's outcome when there is only one
+        $outcomes = $this->resultKind === 'output' ? $this->outcomesFor($ownerId) : collect();
+        $this->rOutcome = (string) ($r?->outcome_id ?? ($outcomes->count() === 1 ? $outcomes->first()->id : ''));
+    }
+
+    public function saveResult(): void
+    {
+        $this->guardPrograms();
+        $owner = $this->resultOwner();
+        $outcomes = $this->resultKind === 'output' ? $this->outcomesFor($owner->id) : collect();
+        $this->validate([
+            'rCode' => ['nullable', 'string', 'max:40'],
+            'rStatement' => ['nullable', 'string', 'max:2000'],
+            'rOutcome' => ['nullable', Rule::in($outcomes->pluck('id')->map(fn ($id) => (string) $id)->all())],
+            'rName' => ['required', 'string', 'max:500'],
+            'rBaseline' => ['nullable', 'string', 'max:255'],
+            'rTarget' => ['nullable', 'string', 'max:255'],
+            'rMeans' => ['nullable', 'string', 'max:1000'],
+        ], [], ['rName' => __('indicator'), 'rOutcome' => __('outcome'), 'rCode' => __('code')]);
+
+        $data = [
+            'code' => trim($this->rCode) ?: null, 'statement' => trim($this->rStatement) ?: null,
+            'outcome_id' => $this->resultKind === 'output' && $this->rOutcome !== '' ? (int) $this->rOutcome : null,
+            'name' => trim($this->rName), 'baseline' => trim($this->rBaseline) ?: null, 'target' => trim($this->rTarget) ?: null,
+            'means_of_verification' => trim($this->rMeans) ?: null,
+        ];
+        $this->resultId ? $owner->resultIndicators()->findOrFail($this->resultId)->update($data) : $owner->resultIndicators()->create($data);
+
+        $this->dispatch('toast', message: $this->resultKind === 'output' ? __('Output saved.') : __('Outcome saved.'), type: 'success');
+        $this->closeResult();
+    }
+
+    public function deleteResult(string $kind, int $ownerId, int $id): void
+    {
+        $this->guardPrograms();
+        $this->resultKind = $kind === 'output' ? 'output' : 'outcome';
+        $this->resultOwnerId = $ownerId;
+        // the activities serving an output, and the outputs serving an outcome, keep going: they lose the link only
+        $this->resultOwner()->resultIndicators()->findOrFail($id)->delete();
+        $this->dispatch('toast', message: $this->resultKind === 'output' ? __('Output removed.') : __('Outcome removed.'), type: 'success');
+        $this->closeResult();
+    }
+
+    public function closeResult(): void
+    {
+        $this->reset(['resultKind', 'resultOwnerId', 'resultId', 'rCode', 'rStatement', 'rOutcome', 'rName', 'rBaseline', 'rTarget', 'rMeans']);
+        $this->resetValidation();
+    }
+
+    /**
+     * The programme structure of the year as the State Budget prints it: each programme with its outcomes, its
+     * subprogrammes and their outputs, and what is still missing for the final plan report to show the whole chain.
+     */
+    private function structure(int $year): array
+    {
+        $programType = (new Program)->getMorphClass();
+        $subType = (new Subprogram)->getMorphClass();
+        $search = trim((string) $this->search);
+
+        $programs = Program::forYear($year)->withCount('alignments')
+            ->with([
+                'resultIndicators' => fn ($q) => $q->orderBy('code')->orderBy('id'),
+                'subprograms' => fn ($q) => $q->withCount(['activities', 'alignments'])->orderBy('code'),
+                'subprograms.resultIndicators' => fn ($q) => $q->orderBy('code')->orderBy('id'),
+            ])
+            ->when($search !== '', fn ($q) => $q->where(fn ($w) => $w->where('name', 'like', "%{$search}%")->orWhere('oge_code', 'like', "%{$search}%")
+                ->orWhereHas('subprograms', fn ($s) => $s->where('code', 'like', "%{$search}%")->orWhere('name', 'like', "%{$search}%"))))
+            ->orderBy('oge_code')
+            ->paginate(10);
+
+        // the whole year, for the totals and what is missing
+        $programIds = Program::forYear($year)->pluck('oge_code', 'id');
+        $subs = Subprogram::whereIn('program_id', $programIds->keys())->get(['id', 'program_id', 'code']);
+        $outcomes = ResultIndicator::where('indicatable_type', $programType)->whereIn('indicatable_id', $programIds->keys())->get(['id', 'indicatable_id']);
+        $outputs = ResultIndicator::where('indicatable_type', $subType)->whereIn('indicatable_id', $subs->pluck('id'))->get(['id', 'indicatable_id', 'outcome_id', 'code']);
+        $unlinked = Activity::where('fiscal_year', $year)->whereNotNull('subprogram_id')->whereNull('output_id')
+            ->groupBy('subprogram_id')->selectRaw('subprogram_id, COUNT(*) AS n')->pluck('n', 'subprogram_id')->map(fn ($n) => (int) $n);
+
+        $withOutcomes = $outcomes->pluck('indicatable_id')->unique();
+        $withOutputs = $outputs->pluck('indicatable_id')->unique();
+        $programOf = $subs->pluck('program_id', 'id');
+        $subCode = $subs->pluck('code', 'id');
+
+        return [
+            'programs' => $programs,
+            'unlinked' => $unlinked,
+            'totals' => ['programs' => $programIds->count(), 'subprograms' => $subs->count(), 'outcomes' => $outcomes->count(), 'outputs' => $outputs->count()],
+            'gaps' => array_filter([
+                'no_outcome' => $programIds->except($withOutcomes->all())->values()->all(),
+                'no_output' => $subs->whereNotIn('id', $withOutputs->all())->pluck('code')->all(),
+                // an output whose programme has outcomes but that names none of them
+                'loose_output' => $outputs->filter(fn ($o) => ! $o->outcome_id && $withOutcomes->contains($programOf[$o->indicatable_id] ?? null))
+                    ->map(fn ($o) => $o->code ?: $subCode[$o->indicatable_id] ?? '')->values()->all(),
+                // activities of a subprogramme that has outputs, but that name none
+                'unlinked' => $unlinked->filter(fn ($n, $sub) => $withOutputs->contains($sub))->sum(),
+            ]),
+        ];
     }
 
     // ========== ECONOMIC CLASSIFICATION CRUD METHODS ==========
@@ -584,101 +719,41 @@ new class extends Component {
 }; ?>
 
 <div class="space-y-6">
-    <!-- Header -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-            <h1 class="page-title">
-                {{ __('Entities') }}
-            </h1>
-            <p class="page-subtitle">
-                {{ __('Units, programmes, subprogrammes and economic categories, with their funding for the selected fiscal year') }}
-            </p>
-        </div>
-        <div class="flex gap-3">
-            @if($activeTab === 'directorates')
-                <x-ui.button wire:click="openModal()" variant="black" shadow="lg" class="!rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                    {{ __('Add New Unit') }}
-                </x-ui.button>
-            @elseif($activeTab === 'programs')
-                <x-ui.button wire:click="openProgramModal()" variant="black" shadow="lg" class="!rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                    {{ __('Add New Program') }}
-                </x-ui.button>
-            @elseif($activeTab === 'subprograms')
-                <x-ui.button wire:click="openSubprogramModal()" variant="black" shadow="lg" class="!rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                    {{ __('Add New Subprogram') }}
-                </x-ui.button>
-            @elseif($activeTab === 'classifications')
-                <x-ui.button wire:click="openClassificationModal()" variant="black" shadow="lg" class="!rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                    {{ __('Add New Classification') }}
-                </x-ui.button>
-            @endif
-        </div>
-    </div>
+    @php
+        $tabs = [
+            'directorates' => [__('Organization'), __('Units and who heads them')],
+            'programs' => [__('Program structure'), __('Programs, outcomes, subprograms and outputs')],
+            'classifications' => [__('Economic categories'), __('The categories of a budget line')],
+        ];
+        $current = $activeTab === 'subprograms' ? 'programs' : $activeTab;
+        [$addLabel, $addAction] = match ($current) {
+            'programs' => [__('New program'), 'openProgramModal()'],
+            'classifications' => [__('New category'), 'openClassificationModal()'],
+            default => [__('New unit'), 'openModal()'],
+        };
+    @endphp
 
-    <!-- Tab Navigation -->
-    <div class="flex items-center gap-2 p-1.5 bg-slate-100/80 w-fit rounded-2xl border border-slate-200/50">
-        <button wire:click="switchTab('directorates')"
-            class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'directorates' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
-            {{ __('Directorates') }}
-        </button>
-        <button wire:click="switchTab('programs')"
-            class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'programs' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
-            {{ __('Programs') }}
-        </button>
-        <button wire:click="switchTab('subprograms')"
-            class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'subprograms' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
-            {{ __('Subprograms') }}
-        </button>
-        <button wire:click="switchTab('classifications')"
-            class="px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all {{ $activeTab === 'classifications' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-400 hover:text-slate-600' }}">
-            {{ __('Economic Classifications') }}
-        </button>
-    </div>
+    <x-ui.page-header :title="__('Structure')" :subtitle="__('How the institution is organized and what its plan is built on: its units, its programs as the State Budget lists them, and the economic categories of the budget.')">
+        <x-ui.button type="button" wire:click="{{ $addAction }}" class="whitespace-nowrap">
+            <svg class="-ml-0.5 mr-1.5 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+            {{ $addLabel }}
+        </x-ui.button>
+    </x-ui.page-header>
 
-    <!-- Directorates Tab Content -->
-    @if($activeTab === 'directorates')
+    <nav aria-label="{{ __('Structure') }}" class="-mx-4 flex gap-1 overflow-x-auto whitespace-nowrap border-b border-zinc-200 px-4 sm:mx-0 sm:px-0">
+        @foreach($tabs as $key => [$label, $hint])
+            <button type="button" wire:click="switchTab('{{ $key }}')" title="{{ $hint }}" @if($current === $key) aria-current="page" @endif
+                class="-mb-px border-b-2 px-4 py-2.5 text-sm font-medium {{ $current === $key ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-zinc-600 hover:border-zinc-300 hover:text-zinc-900' }}">{{ $label }}</button>
+        @endforeach
+        <a href="{{ route('management.funding-sources') }}" wire:navigate title="{{ __('Where the money of a budget line comes from') }}"
+            class="-mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-medium text-zinc-600 hover:border-zinc-300 hover:text-zinc-900">{{ __('Funding sources') }}</a>
+    </nav>
+
+    @if($current === 'directorates')
         @include('livewire.pages.management.entities-tabs.directorates')
-    @endif
-
-    {{-- Programs Tab Content --}}
-    @if($activeTab === 'subprograms')
-        @include('livewire.pages.management.entities-tabs.subprograms')
-    @endif
-
-    @if($activeTab === 'programs')
-        @include('livewire.pages.management.entities-tabs.programs')
-    @endif
-
-    {{-- Economic Classifications Tab Content --}}
-    @if($activeTab === 'classifications')
+    @elseif($current === 'programs')
+        @include('livewire.pages.management.entities-tabs.program-structure')
+    @elseif($current === 'classifications')
         @include('livewire.pages.management.entities-tabs.classifications')
-    @endif
-
-    @if($detailsFor)
-        <x-dialog max-width="3xl" close="closeDetails()">
-            <x-slot:title>{{ $detailsFor['title'] }}</x-slot:title>
-            <x-slot:subtitle>{{ __('Objectives and result indicators') }}</x-slot:subtitle>
-            <livewire:pages.management.structure-details :type="$detailsFor['type']" :id="$detailsFor['id']" :key="'details-'.$detailsFor['type'].'-'.$detailsFor['id']" />
-        </x-dialog>
     @endif
 </div>

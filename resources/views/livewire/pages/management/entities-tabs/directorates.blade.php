@@ -1,186 +1,150 @@
-<x-ui.card padding="p-0">
-    <x-slot name="header">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <h2 class="text-sm font-semibold text-zinc-900 ">
-                    {{ __('Organisational units') }}
-                </h2>
-                <p class="text-xs text-zinc-400 font-bold mt-1">
-                    {{ __('Directorates, offices and units') }}
-                </p>
-            </div>
-            <div class="relative group">
-                <span
-                    class="absolute inset-y-0 left-0 pl-4 flex items-center text-zinc-300 group-focus-within:text-indigo-500 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="m21 21-4.3-4.3" />
-                    </svg>
-                </span>
-                <input type="text" wire:model.live.debounce.300ms="search"
-                    placeholder="{{ __('Search by code or name...') }}"
-                    class="pl-12 h-11 w-72 bg-zinc-50 border-zinc-100 rounded-xl text-xs font-bold text-zinc-600 focus:ring-4 focus:ring-indigo-500/5 focus:border-indigo-500 focus:bg-white transition-all placeholder:text-zinc-300">
-            </div>
-        </div>
-    </x-slot>
+{{-- The organization: every unit under the one above it, who heads it, who works in it, and its approved plan. --}}
+@if(count($nobodyDirects))
+    <div role="status" class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+        {{ trans_choice(':n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes', count($nobodyDirects), ['n' => count($nobodyDirects), 'codes' => implode(', ', $nobodyDirects)]) }}
+        <span class="ml-1 text-xs text-amber-800">{{ __('Give a user the Director role in the unit, in System Users.') }}</span>
+    </div>
+@endif
 
-    @if(count($nobodyDirects))
-        <div role="status" class="border-b border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900">
-            {{ trans_choice(':n unit has nobody to direct it, so nobody can give the final approval of its activities: :codes|:n units have nobody to direct them, so nobody can give the final approval of their activities: :codes', count($nobodyDirects), ['n' => count($nobodyDirects), 'codes' => implode(', ', array_slice($nobodyDirects, 0, 6)).(count($nobodyDirects) > 6 ? ' …' : '')]) }}
-            <span class="ml-1 text-xs text-amber-800">{{ __('Give a user the Director role in the unit, in System Users.') }}</span>
+<x-ui.card padding="p-0">
+    <div class="flex flex-col gap-3 border-b border-zinc-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h2 class="text-sm font-semibold text-zinc-900">{{ __('Organizational units') }}</h2>
+            <p class="mt-0.5 text-xs text-zinc-500">{{ __('Each unit under the one above it, with its head, its people and its approved plan for :year.', ['year' => $fundingYear]) }}</p>
         </div>
-    @endif
+        <x-ui.search wire:model.live.debounce.300ms="search" :placeholder="__('Search a unit by code or name')" />
+    </div>
 
     <div class="overflow-x-auto" tabindex="0">
-        <x-ui.table :headers="[__('Unit Code'), __('Identity & Hierarchy'), __('Type'), __('Director'), __('People'), __('Approved plan') . ' ' . $fundingYear, __('Funded'), __('Status'), __('Actions')]">
-            @forelse($directorates as $d)
-                <tr class="hover:bg-gray-50/50 transition-colors group text-sm">
-                    <td class="px-5 py-5 text-gray-900 font-semibold font-mono">{{ $d->code }}
-                    </td>
-                    <td class="px-5 py-5 min-w-[18rem]">
-                        <div class="font-bold text-gray-900 {{ $d->parent ? 'pl-4 border-l-2 border-zinc-200' : '' }}">{{ $d->name }}</div>
-                        @if($d->parent)
-                            <div class="flex items-center gap-1.5 mt-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-indigo-400 rotate-90">
-                                    <path d="M16 13L21 18L16 23" />
-                                    <path d="M3 6V15C3 16.6569 4.34315 18 6 18H21" />
-                                </svg>
-                                <span
-                                    class="text-xs text-indigo-400 font-semibold ">{{ $d->parent->code }}</span>
-                            </div>
-                        @endif
-                    </td>
-                    <td class="px-5 py-5">
-                        <x-ui.badge variant="gray" class="!text-xs ">{{ __($d->type) }}</x-ui.badge>
-                        @if($d->isAutonomous())
-                            <x-ui.badge variant="indigo" class="!text-xs mt-1" title="{{ $d->legal_basis }}">{{ __('Autonomous') }}{{ $d->legal_form ? ' · '.$d->legal_form : '' }}</x-ui.badge>
-                        @endif
-                    </td>
-                    <td class="px-5 py-5">
-                        @if(isset($directorsByUnit[$d->id]))
-                            <div class="text-xs font-bold leading-snug text-gray-900">{{ implode(', ', $directorsByUnit[$d->id]) }}</div>
-                        @elseif(isset($directedFrom[$d->id]))
-                            <div class="text-xs text-zinc-500">{{ __('Directed from :unit', ['unit' => $directedFrom[$d->id]]) }}</div>
-                        @elseif($d->active)
-                            <x-ui.badge variant="amber" class="!text-xs">{{ __('No Director') }}</x-ui.badge>
-                        @else
-                            <span class="text-zinc-400">—</span>
-                        @endif
-                        @if($d->director_name && ! isset($directorsByUnit[$d->id]))<div class="mt-1 text-xs text-gray-400">{{ $d->director_name }}</div>@endif
-                    </td>
-                    <td class="px-5 py-5 text-sm tabular-nums">
-                        @if(($peopleByUnit[$d->id] ?? 0) > 0)
-                            <a href="{{ route('management.users', ['unit' => $d->id]) }}" wire:navigate class="font-semibold text-indigo-700 hover:underline" title="{{ __('See them in System Users') }}">{{ $peopleByUnit[$d->id] }}</a>
-                        @else
-                            <a href="{{ route('management.users', ['unit' => $d->id, 'new' => 1]) }}" wire:navigate class="text-xs font-medium text-zinc-500 hover:text-indigo-700 hover:underline" title="{{ __('Add a person to this unit') }}">+ {{ __('Add') }}</a>
-                        @endif
-                    </td>
-                    @php $f = $dirFunding[$d->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
-                    <td class="px-5 py-5 text-sm tabular-nums">
-                        @if($f['plan'] > 0)
-                            <div class="font-semibold text-zinc-900">$ {{ number_format($f['plan']) }}</div>
-                            <div class="text-xs text-zinc-500">{{ trans_choice(':n activity|:n activities', $f['n'], ['n' => $f['n']]) }}</div>
-                        @else
-                            <span class="text-zinc-400">—</span>
-                        @endif
-                    </td>
-                    <td class="px-5 py-5 w-40">
-                        @if($pct !== null)
-                            <div class="flex items-center gap-2">
-                                <div class="h-1.5 flex-1 rounded-full bg-zinc-100 overflow-hidden"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
-                                <span class="w-10 text-right text-xs tabular-nums text-zinc-600">{{ number_format($pct, 0) }}%</span>
-                            </div>
-                        @else
-                            <span class="text-zinc-400">—</span>
-                        @endif
-                    </td>
-                    <td class="px-5 py-5">
-                        @if($d->active)
-                            <x-ui.badge variant="emerald" pulse="true">{{ __('Operational') }}</x-ui.badge>
-                        @else
-                            <x-ui.badge variant="red">{{ __('Inactive') }}</x-ui.badge>
-                        @endif
-                    </td>
-                    <td class="px-5 py-5 text-right">
-                        <div class="flex justify-end items-center gap-2">
-                            <button wire:click="openModal({{ $d->id }})"
-                                class="p-2 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
-                                title="{{ __('Edit') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                                    <path d="m15 5 4 4" />
-                                </svg>
-                            </button>
-                            <button wire:click="deleteDirectorate({{ $d->id }})"
-                                wire:confirm="{{ __('Confirm deletion? This will remove the node permanently.') }}"
-                                class="p-2 text-zinc-300 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"
-                                title="{{ __('Delete') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M3 6h18" />
-                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                    <line x1="10" x2="10" y1="11" y2="17" />
-                                    <line x1="14" x2="14" y1="11" y2="17" />
-                                </svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            @empty
+        <table class="min-w-full text-sm">
+            <thead class="bg-zinc-50 text-left text-xs font-medium text-zinc-500">
                 <tr>
-                    <td colspan="9"><x-ui.empty-state :title="__('No directorates found.')" /></td>
+                    <th scope="col" class="px-5 py-3">{{ __('Unit') }}</th>
+                    <th scope="col" class="px-5 py-3">{{ __('Type') }}</th>
+                    <th scope="col" class="px-5 py-3">{{ __('Director') }}</th>
+                    <th scope="col" class="px-5 py-3 text-right">{{ __('People') }}</th>
+                    <th scope="col" class="px-5 py-3 text-right">{{ __('Approved plan') }} {{ $fundingYear }}</th>
+                    <th scope="col" class="px-5 py-3">{{ __('Funded') }}</th>
+                    <th scope="col" class="px-5 py-3">{{ __('Status') }}</th>
+                    <th scope="col" class="px-5 py-3"><span class="sr-only">{{ __('Actions') }}</span></th>
                 </tr>
-            @endforelse
-        </x-ui.table>
+            </thead>
+            <tbody class="divide-y divide-zinc-100">
+                @forelse($directorates as $d)
+                    @php $f = $dirFunding[$d->id] ?? ['n' => 0, 'plan' => 0, 'alloc' => 0]; $pct = $f['plan'] > 0 ? min(100, $f['alloc'] / $f['plan'] * 100) : null; @endphp
+                    <tr class="hover:bg-zinc-50/60" wire:key="unit-{{ $d->id }}">
+                        <td class="px-5 py-3">
+                            <div class="flex items-start gap-3 {{ $d->parent ? 'pl-6' : '' }}">
+                                @if($d->parent)<span class="mt-1 h-3 w-3 shrink-0 rounded-bl border-b-2 border-l-2 border-zinc-300" aria-hidden="true"></span>@endif
+                                <div class="min-w-0">
+                                    <p class="font-medium text-zinc-900">{{ $d->name }}</p>
+                                    <p class="mt-0.5 text-xs text-zinc-500">
+                                        <span class="font-mono">{{ $d->code }}</span>
+                                        @if($d->budget_code) · {{ __('Div') }} <span class="font-mono">{{ $d->budget_code }}</span>@endif
+                                        @if($d->parent) · {{ __('under :unit', ['unit' => $d->parent->code]) }}@endif
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-5 py-3">
+                            <span class="text-zinc-700">{{ __($d->type) }}</span>
+                            @if($d->isAutonomous())
+                                <x-ui.badge variant="indigo" class="ml-1" title="{{ $d->legal_basis }}">{{ __('Autonomous') }}{{ $d->legal_form ? ' · '.$d->legal_form : '' }}</x-ui.badge>
+                            @endif
+                        </td>
+                        <td class="px-5 py-3">
+                            @if(isset($directorsByUnit[$d->id]))
+                                <span class="text-zinc-900">{{ implode(', ', $directorsByUnit[$d->id]) }}</span>
+                            @elseif(isset($directedFrom[$d->id]))
+                                <span class="text-xs text-zinc-500">{{ __('Directed from :unit', ['unit' => $directedFrom[$d->id]]) }}</span>
+                            @elseif($d->active)
+                                <x-ui.badge variant="amber">{{ __('No Director') }}</x-ui.badge>
+                            @else
+                                <span class="text-zinc-400">—</span>
+                            @endif
+                            @if($d->director_name && ! isset($directorsByUnit[$d->id]))<p class="mt-0.5 text-xs text-zinc-500">{{ $d->director_name }}</p>@endif
+                        </td>
+                        <td class="px-5 py-3 text-right tabular-nums">
+                            @if(($peopleByUnit[$d->id] ?? 0) > 0)
+                                <a href="{{ route('management.users', ['unit' => $d->id]) }}" wire:navigate class="font-medium text-indigo-700 hover:underline" title="{{ __('See them in System Users') }}">{{ $peopleByUnit[$d->id] }}</a>
+                            @else
+                                <a href="{{ route('management.users', ['unit' => $d->id, 'new' => 1]) }}" wire:navigate class="text-xs font-medium text-zinc-500 hover:text-indigo-700 hover:underline" title="{{ __('Add a person to this unit') }}">+ {{ __('Add') }}</a>
+                            @endif
+                        </td>
+                        <td class="px-5 py-3 text-right tabular-nums">
+                            @if($f['plan'] > 0)
+                                <p class="font-medium text-zinc-900">$ {{ number_format($f['plan']) }}</p>
+                                <p class="text-xs text-zinc-500">{{ trans_choice(':n activity|:n activities', $f['n'], ['n' => $f['n']]) }}</p>
+                            @else
+                                <span class="text-zinc-400">—</span>
+                            @endif
+                        </td>
+                        <td class="w-40 px-5 py-3">
+                            @if($pct !== null)
+                                <div class="flex items-center gap-2">
+                                    <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-zinc-100"><div class="h-full rounded-full {{ $pct >= 99.5 ? 'bg-emerald-500' : 'bg-amber-500' }}" style="width: {{ $pct }}%"></div></div>
+                                    <span class="w-10 text-right text-xs tabular-nums text-zinc-600">{{ number_format($pct, 0) }}%</span>
+                                </div>
+                            @else
+                                <span class="text-zinc-400">—</span>
+                            @endif
+                        </td>
+                        <td class="px-5 py-3">
+                            @if($d->active)
+                                <x-ui.badge variant="emerald">{{ __('Active') }}</x-ui.badge>
+                            @else
+                                <x-ui.badge variant="gray">{{ __('Inactive') }}</x-ui.badge>
+                            @endif
+                        </td>
+                        <td class="whitespace-nowrap px-5 py-3 text-right">
+                            <x-ui.icon-action icon="edit" :label="__('Edit').' '.$d->code" wire:click="openModal({{ $d->id }})" />
+                            <x-ui.icon-action icon="delete" :label="__('Delete').' '.$d->code" wire:click="deleteDirectorate({{ $d->id }})" :confirm="__('Delete this unit? This cannot be undone.')" />
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="8"><x-ui.empty-state :title="__('No units found.')" /></td></tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </x-ui.card>
+<div>{{ $directorates->links() }}</div>
 
-<div class="px-8">
-    {{ $directorates->links() }}
-</div>
-
-<!-- CRUD Modal -->
+{{-- Unit panel --}}
 @if($modalOpen)
-    <x-dialog max-width="2xl" close="$set('modalOpen', false)">
-<x-slot:title>{{ $isEditing ? __('Update Structural Unit') : __('Create Structural Unit') }}</x-slot:title>
-<x-slot:subtitle>{{ __('Core Infrastructure Node Definition') }}</x-slot:subtitle>
+    <x-slide-over close="$set('modalOpen', false)">
+        <x-slot:eyebrow>{{ __('Organization') }}</x-slot:eyebrow>
+        <x-slot:title>{{ $isEditing ? __('Edit unit') : __('New unit') }}</x-slot:title>
 
-            <form wire:submit="saveDirectorate" class="p-6 space-y-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form id="unit-form" wire:submit="saveDirectorate" class="space-y-6 p-6">
+            <fieldset class="space-y-4">
+                <legend class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Identity') }}</legend>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-[9rem_1fr]">
                     <div>
-                        <label class="field-label" for="f-code">{{ __('Unit Code') }}</label>
-<input id="f-code" type="text" wire:model="code"
-                            class="flux-input"
-                            placeholder="e.g. DGPL">
+                        <label class="field-label" for="f-code">{{ __('Code') }}</label>
+                        <input id="f-code" type="text" wire:model="code" class="flux-input font-mono" placeholder="{{ __('e.g. DNTT') }}">
                         <x-input-error :messages="$errors->get('code')" />
                     </div>
                     <div>
-                        <label class="field-label" for="f-budget-code">{{ __('State Budget division code (Div)') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
-                        <input id="f-budget-code" type="text" wire:model="budget_code" class="flux-input" placeholder="{{ __('e.g. 0250202') }}" aria-describedby="f-budget-code-hint">
-                        <p id="f-budget-code-hint" class="field-hint">{{ __('The code the annual plans of the State Budget give this unit. The final plan report prints it beside the unit.') }}</p>
-                        <x-input-error :messages="$errors->get('budget_code')" />
-                    </div>
-                    <div>
-                        <label class="field-label" for="f-name">{{ __('Unit Name') }}</label>
-<input id="f-name" type="text" wire:model="name"
-                            class="flux-input"
-                            placeholder="e.g. Planning Directorate">
+                        <label class="field-label" for="f-name">{{ __('Name') }}</label>
+                        <input id="f-name" type="text" wire:model="name" class="flux-input">
                         <x-input-error :messages="$errors->get('name')" />
                     </div>
                 </div>
+                <div>
+                    <label class="field-label" for="f-budget-code">{{ __('State Budget division code (Div)') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                    <input id="f-budget-code" type="text" wire:model="budget_code" class="flux-input font-mono sm:w-48" placeholder="{{ __('e.g. 0250202') }}" aria-describedby="f-budget-code-hint">
+                    <p id="f-budget-code-hint" class="field-hint">{{ __('The code the annual plans of the State Budget give this unit. The final plan report prints it beside the unit.') }}</p>
+                    <x-input-error :messages="$errors->get('budget_code')" />
+                </div>
+            </fieldset>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <fieldset class="space-y-4">
+                <legend class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Place in the structure') }}</legend>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                        <label class="field-label" for="f-type">{{ __('Classification') }}</label>
-<select id="f-type" wire:model.live="type"
-                            class="flux-input">
+                        <label class="field-label" for="f-type">{{ __('Type') }}</label>
+                        <select id="f-type" wire:model.live="type" class="flux-input">
                             <option value="Directorate General">{{ __('Directorate General') }}</option>
                             <option value="National Directorate">{{ __('National Directorate') }}</option>
                             <option value="Department">{{ __('Department') }}</option>
@@ -192,28 +156,22 @@
                         <x-input-error :messages="$errors->get('type')" />
                     </div>
                     <div>
-                        <label class="field-label" for="f-parent_id">{{ __('Parent Authority') }}
-                            @if($type === 'National Directorate') (DG Only)
-                            @elseif($type === 'Department') (ND/DG Only)
-                            @endif</label>
-<select id="f-parent_id" wire:model="parent_id"
-                            class="flux-input">
-                            <option value="">{{ __('Top Level (Independent)') }}</option>
+                        <label class="field-label" for="f-parent_id">{{ __('Unit above') }}</label>
+                        <select id="f-parent_id" wire:model="parent_id" class="flux-input">
+                            <option value="">{{ __('None: a top-level unit') }}</option>
                             @foreach($filteredParents as $parent)
                                 @if($parent->id != $directorateId)
-                                    <option value="{{ $parent->id }}">{{ $parent->code }} - {{ $parent->name }}
-                                        ({{ __($parent->type) }})</option>
+                                    <option value="{{ $parent->id }}">{{ $parent->code }} — {{ $parent->name }}</option>
                                 @endif
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('parent_id')" />
                     </div>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <div class="{{ $administration === 'indirect' ? '' : 'sm:col-span-3' }}">
                         <label class="field-label" for="f-administration">{{ __('Administration') }}</label>
-<select id="f-administration" wire:model.live="administration" class="flux-input">
+                        <select id="f-administration" wire:model.live="administration" class="flux-input">
                             <option value="direct">{{ __('Direct (service of the ministry)') }}</option>
                             <option value="indirect">{{ __('Indirect (autonomous public body)') }}</option>
                         </select>
@@ -221,54 +179,51 @@
                     @if($administration === 'indirect')
                         <div>
                             <label class="field-label" for="f-legal_form">{{ __('Legal form') }}</label>
-<input id="f-legal_form" type="text" wire:model="legal_form" placeholder="I.P. / E.P." class="flux-input">
+                            <input id="f-legal_form" type="text" wire:model="legal_form" placeholder="I.P. / E.P." class="flux-input">
                         </div>
                         <div>
                             <label class="field-label" for="f-legal_basis">{{ __('Legal basis') }}</label>
-<input id="f-legal_basis" type="text" wire:model="legal_basis" placeholder="{{ __('Decree-law and article') }}" class="flux-input">
+                            <input id="f-legal_basis" type="text" wire:model="legal_basis" placeholder="{{ __('Decree-law and article') }}" class="flux-input">
                         </div>
                     @endif
                 </div>
+            </fieldset>
 
+            <fieldset class="space-y-4">
+                <legend class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Details') }}</legend>
                 <div>
-                    <label class="field-label" for="f-description">{{ __('Function Description') }}</label>
-<textarea id="f-description" wire:model="description" rows="3"
-                        class="flux-input"
-                        placeholder="Primary role and responsibilities of this node..."></textarea>
+                    <label class="field-label" for="f-description">{{ __('What the unit does') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                    <textarea id="f-description" wire:model="description" rows="3" class="flux-input"></textarea>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                        <label class="field-label" for="f-director_name">{{ __('Manager / Director') }}</label>
-<input id="f-director_name" type="text" wire:model="director_name"
-                            class="flux-input"
-                            placeholder="Full name">
+                        <label class="field-label" for="f-director_name">{{ __('Head of the unit') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                        <input id="f-director_name" type="text" wire:model="director_name" class="flux-input">
                     </div>
                     <div>
-                        <label class="field-label" for="f-director_email">{{ __('Officer Email') }}</label>
-<input id="f-director_email" type="email" wire:model="director_email"
-                            class="flux-input"
-                            placeholder="e.g. officer@msa.gov.tl">
+                        <label class="field-label" for="f-director_email">{{ __('Head\'s email') }} <span class="font-normal text-zinc-500">({{ __('optional') }})</span></label>
+                        <input id="f-director_email" type="email" wire:model="director_email" class="flux-input">
+                        <x-input-error :messages="$errors->get('director_email')" />
                     </div>
                 </div>
+                <p class="text-xs text-zinc-500">{{ __('Who approves is the user with the Director role in the unit, set in System Users; these two fields are for reference.') }}</p>
+                <label class="flex items-center justify-between gap-4 rounded-md border border-zinc-200 px-4 py-3">
+                    <span>
+                        <span class="block text-sm font-medium text-zinc-900">{{ __('Active') }}</span>
+                        <span class="block text-xs text-zinc-500">{{ __('An inactive unit takes no new activities; its history is kept.') }}</span>
+                    </span>
+                    <span class="relative inline-flex shrink-0 items-center">
+                        <input type="checkbox" wire:model.live="active" class="peer sr-only" role="switch">
+                        <span class="h-6 w-11 rounded-full bg-zinc-300 transition-colors peer-checked:bg-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-600 peer-focus-visible:ring-offset-2"></span>
+                        <span class="pointer-events-none absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-[#fff] shadow transition-transform peer-checked:translate-x-5"></span>
+                    </span>
+                </label>
+            </fieldset>
+        </form>
 
-                <div class="flex items-center justify-between">
-                    <label class="text-xs font-semibold text-zinc-400 ">
-                        {{ __('Operational Status') }}
-                    </label>
-                    <button type="button" wire:click="$toggle('active')"
-                        class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none {{ $active ? 'bg-emerald-500' : 'bg-zinc-200' }}">
-                        <span
-                            class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {{ $active ? 'translate-x-6' : 'translate-x-1' }}"></span>
-                    </button>
-                </div>
-
-                <div class="flex items-center gap-4 pt-4">
-                    <x-ui.button type="button" wire:click="$set('modalOpen', false)" variant="secondary"
-                        class="flex-1">{{ __('Go Back') }}</x-ui.button>
-                    <x-ui.button type="submit" variant="primary"
-                        class="flex-1">{{ $isEditing ? __('Sync Changes') : __('Deploy Unit') }}</x-ui.button>
-                </div>
-            </form>
-</x-dialog>
+        <x-slot:footer>
+            <x-ui.button type="button" variant="secondary" shadow="none" wire:click="$set('modalOpen', false)">{{ __('Cancel') }}</x-ui.button>
+            <x-ui.button type="submit" form="unit-form">{{ $isEditing ? __('Save unit') : __('Add unit') }}</x-ui.button>
+        </x-slot:footer>
+    </x-slide-over>
 @endif

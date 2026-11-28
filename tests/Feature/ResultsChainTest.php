@@ -184,4 +184,45 @@ class ResultsChainTest extends TestCase
         $this->get(route('reports.approved-plan', ['year' => $this->year]))->assertOk()
             ->assertDontSee('Medium-term objective (outcome)')->assertSee('National and international cargo');
     }
+
+    public function test_the_program_structure_tree_edits_outcomes_and_outputs_and_says_what_is_missing(): void
+    {
+        $this->as('Admin');
+        $bare = Subprogram::create(['program_id' => $this->program->id, 'code' => '50299', 'name' => 'Ports']);
+        $this->activity(['output_id' => null]);
+
+        $page = Volt::test('pages.management.entities')->call('switchTab', 'subprograms')->assertSet('activeTab', 'programs')
+            ->assertSeeInOrder(['502', '502.0.1', 'Maritime transport working for growth', '50204', '50204.0.0', 'Maritime facilities working well'])
+            ->assertSee('1 subprogram has no output: 50299')
+            ->assertSee('1 activity names no output although its subprogram has one');
+
+        // a new output of a subprogramme serves its programme's only outcome at once
+        $page->call('openResult', 'output', $bare->id)->assertSet('rOutcome', (string) $this->outcome->id)
+            ->set('rCode', '50299.0.0')->set('rStatement', 'Ports working well')->set('rName', 'Ships served')->set('rTarget', '250')
+            ->call('saveResult')->assertHasNoErrors()->assertSet('resultKind', null);
+        $out = $bare->resultIndicators()->sole();
+        $this->assertSame(['50299.0.0', 'Ports working well', $this->outcome->id], [$out->code, $out->statement, $out->outcome_id]);
+        $page->assertDontSee('subprogram has no output');
+
+        // an outcome of another programme is refused
+        $other = Program::create(['name' => 'Other', 'oge_code' => '510'])->resultIndicators()->create(['name' => 'Elsewhere']);
+        $page->call('openResult', 'output', $bare->id, $out->id)->set('rOutcome', (string) $other->id)->call('saveResult')->assertHasErrors('rOutcome');
+
+        // a new outcome of the programme, then removed: the output that served it keeps going
+        $page->call('closeResult')->call('openResult', 'outcome', $this->program->id)->set('rCode', '502.0.9')->set('rName', 'Second outcome')->call('saveResult')->assertHasNoErrors();
+        $second = $this->program->resultIndicators()->where('code', '502.0.9')->sole();
+        $out->update(['outcome_id' => $second->id]);
+        $page->call('deleteResult', 'outcome', $this->program->id, $second->id);
+        $this->assertNull($out->fresh()->outcome_id);
+        $this->assertModelMissing($second);
+
+        // a subprogramme added from its programme starts under it
+        $page->call('openSubprogramModal', null, $this->program->id)->assertSet('subProgramId', (string) $this->program->id);
+    }
+
+    public function test_only_the_administrator_edits_the_results_chain(): void
+    {
+        $this->as('Director');
+        Volt::test('pages.management.entities')->call('openResult', 'outcome', $this->program->id)->assertForbidden();
+    }
 }
