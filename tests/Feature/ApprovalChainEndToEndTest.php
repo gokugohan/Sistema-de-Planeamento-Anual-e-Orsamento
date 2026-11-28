@@ -3,11 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\Activity;
+use App\Models\ApprovalDelegation;
 use App\Models\Directorate;
 use App\Models\EconomicClassification;
 use App\Models\Program;
 use App\Models\User;
 use App\Services\ActivityWorkflow;
+use App\Services\ApprovalInbox;
+use App\Services\PlanStatus;
 use App\Support\Institution;
 use App\Support\PlanOptions;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
@@ -82,6 +85,27 @@ class ApprovalChainEndToEndTest extends TestCase
         $this->assertSame($head->id, $activity->approved_by);
     }
 
+    public function test_each_level_certifies_its_own_and_a_head_further_up_cannot_skip_it(): void
+    {
+        $this->seed(MtcSampleDataSeeder::class);
+        $head = $this->user('director.dgt@gdsc.tl');
+        $national = $this->user('director.dntt@gdsc.tl');
+
+        $activity = $this->step($this->user('tecnico.dntt@gdsc.tl'), $this->draftIn('DNTT'), Activity::STATUS_SUBMITTED);
+        $this->assertNull($this->workflow->next($head, $activity), 'the head of the directorate-general does not certify in place of the national director');
+        $this->assertSame([], app(ApprovalInbox::class)->details($head, 'review'), 'so it is not waiting for them');
+
+        // standing in for the national director by an interim appointment is how someone else takes the step
+        $interim = User::factory()->create(); // a head from elsewhere, appointed for the national directorate
+        $interim->assignRole('Director');
+        ApprovalDelegation::create(['user_id' => $interim->id, 'directorate_id' => $activity->directorate_id, 'starts_on' => now()->subDay(), 'ends_on' => now()->addDay(), 'reason' => 'Leave', 'created_by' => $head->id]);
+        $this->assertSame(Activity::STATUS_REVIEWED, $this->workflow->next($interim, $activity));
+
+        $activity = $this->step($national, $activity, Activity::STATUS_REVIEWED);
+        $this->assertNull($this->workflow->next($national, $activity), 'the national director certifies once, not again at the level above');
+        $this->assertSame(Activity::STATUS_APPROVED, $this->workflow->reach($head, $activity));
+    }
+
     public function test_a_single_office_is_approved_by_its_head(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(); // the Gabinete de Digitalização e Segurança Cibernética
@@ -117,13 +141,13 @@ class ApprovalChainEndToEndTest extends TestCase
     public function test_a_unit_director_certifies_while_other_units_still_plan_and_only_the_final_approval_waits(): void
     {
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run(null, 'draft'); // every other activity of the office is a draft
-        (new \App\Support\PlanOptions(completeBeforeApproval: true))->save(); // the rule this test is about (off in this class)
+        (new PlanOptions(completeBeforeApproval: true))->save(); // the rule this test is about (off in this class)
         $activity = $this->step($this->user('tecnico.udig@gdsc.tl'), $this->draftIn('UDIG'), Activity::STATUS_SUBMITTED);
 
         $activity = $this->step($this->user('director.udig@gdsc.tl'), $activity, Activity::STATUS_REVIEWED); // certified at once
         $chefe = $this->user('chefe.gdsc@gdsc.tl');
         $activity = $this->step($chefe, $activity, Activity::STATUS_VALIDATED); // validated; the approval waits for the plan
         $this->assertFalse($this->workflow->canApprove($chefe, $activity), 'the final approval waits until the whole plan is submitted');
-        $this->assertNotNull(app(\App\Services\PlanStatus::class)->holdBack($activity));
+        $this->assertNotNull(app(PlanStatus::class)->holdBack($activity));
     }
 }

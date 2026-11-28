@@ -58,7 +58,7 @@ class ApprovalInbox
 
         // ── activities to decide: first to be certified, then to be given the final approval; each opens its own queue
         if ($approver || $user->isDirector()) {
-            $review = $activities()->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED])->count();
+            $review = $activities()->where(fn ($q) => $this->toCertify($q, $scope === null ? null : $user))->count();
             $add('decide', $review, trans_choice(':n activity prepared, waiting to be certified|:n activities prepared, waiting to be certified', $review, ['n' => $review]), route('planning.paa-approval', ['queue' => 'review']), 'amber', 'review');
             $approval = $activities()->whereIn('status', [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL])->count();
             $add('decide', $approval, trans_choice(':n activity certified, waiting for the final approval|:n activities certified, waiting for the final approval', $approval, ['n' => $approval]), route('planning.paa-approval', ['queue' => 'approval']), 'indigo', 'approval');
@@ -195,7 +195,7 @@ class ApprovalInbox
         $notMine = fn ($q) => $q->whereNull('submitted_by')->orWhere('submitted_by', '!=', $user->id);
 
         $query = match ($key) {
-            'review' => Activity::whereIn('fiscal_year', $years)->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]),
+            'review' => Activity::whereIn('fiscal_year', $years)->where(fn ($q) => $this->toCertify($q, $scope === null ? null : $user)),
             'approval' => Activity::whereIn('fiscal_year', $years)->whereIn('status', [Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL]),
             'budget' => Activity::whereIn('fiscal_year', $years)->where('status', Activity::STATUS_SUBMITTED)->whereNull('budget_confirmed_at'),
             'listed' => Activity::whereIn('fiscal_year', $years)->whereIn('directorate_id', app(ApproverLists::class)->unitIdsOf($user) ?: [0])
@@ -223,5 +223,28 @@ class ApprovalInbox
                 'activities' => $group->take($perUnit)->all(),
             ])
             ->sortByDesc('count')->values()->all();
+    }
+
+    /**
+     * The activities waiting to be certified, and for a head, only those whose certification is theirs: prepared
+     * activities of the units they head, and activities their units below have certified. A head further up waits
+     * for the levels below (see ActivityWorkflow::next). $user null: every one (administrators, wide viewers).
+     */
+    private function toCertify($query, ?User $user)
+    {
+        if (! $user) {
+            return $query->whereIn('status', [Activity::STATUS_SUBMITTED, Activity::STATUS_REVIEWED]);
+        }
+        $seats = $user->seats()->pluck('id')->all() ?: [0];
+        $below = Directorate::whereIn('parent_id', $seats)->pluck('id')->all() ?: [0];
+        $under = array_values(array_diff($user->directedUnitIds(), $seats)) ?: [0];
+        $heads = User::role('Director')->select('id');
+
+        return $query->where(fn ($q) => $q->where('status', Activity::STATUS_SUBMITTED)->whereIn('directorate_id', $seats))
+            ->orWhere(fn ($q) => $q->where('status', Activity::STATUS_REVIEWED)->whereIn('directorate_id', $below))
+            // prepared by the head of a unit below: someone above certifies it in their place
+            ->orWhere(fn ($q) => $q->where('status', Activity::STATUS_SUBMITTED)->whereIn('directorate_id', $under)
+                ->whereExists(fn ($e) => $e->from('users')->whereColumn('users.id', 'activities.submitted_by')
+                    ->whereColumn('users.directorate_id', 'activities.directorate_id')->whereIn('users.id', $heads)));
     }
 }

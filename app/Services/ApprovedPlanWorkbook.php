@@ -69,7 +69,7 @@ class ApprovedPlanWorkbook
         $pending = array_sum($report['pending']);
         if ($pending > 0) {
             $notes[] = __('Plan not complete:').' '.__(':n activities for this year are still in the internal approval workflow and are NOT included:', ['n' => $pending]).' '
-                .collect($report['pending'])->map(fn ($n, $status) => __(['Submitted' => 'Prepared', 'Reviewed' => 'Verified', 'Validated' => 'Certified'][$status] ?? $status).' ('.$n.')')->implode(', ').'.';
+                .collect($report['pending'])->map(fn ($n, $status) => Activity::statusWord($status).' ('.$n.')')->implode(', ').'.';
         }
         foreach ($notes as $note) {
             Kit::note($s, ++$row, 2, $note);

@@ -158,7 +158,7 @@ new class extends Component {
         @php
             $steps = [
                 'prepare' => [__('Prepare'), __('Prepare the activity and submit it. Without a list, anyone who may submit does.')],
-                'certify' => [__('Certify'), __('Review it and validate it. Without a list, the director of the unit, then of the unit above, does.')],
+                'certify' => [__('Certify'), __('Read it and certify it. Without a list, the director of the unit, then of the unit above, does.')],
                 'approve' => [__('Approve'), __('Give the final approval. Without a list, the head of the directorate (the top-level unit) does.')],
             ];
         @endphp

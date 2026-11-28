@@ -3382,5 +3382,20 @@
     "System → Settings → Modules": "Sistema → Konfigurasaun → Módulu sira",
     "The submission dates of the plan (the units submit only between them), and if you wish the dates for approving it. A unit that is late can be given more time.": "Data submisaun planu nian (unidade sira submete de'it entre data sira ne'e), no se ita hakarak data atu aprova. Unidade ne'ebé tarde bele hetan tempu tan.",
     "Say why, change what is needed and send it through approval again. The approved version stays in force until the revision is approved.": "Hatete tanba saida, muda saida mak presiza no haruka fali ba aprovasaun. Versaun aprova nian kontinua vigór to'o revizaun hetan aprovasaun.",
-    "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.": "Ita lee planu no relatóriu: uza Programa, Unidade no Relatóriu. Ita la prepara no la aprova."
+    "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.": "Ita lee planu no relatóriu: uza Programa, Unidade no Relatóriu. Ita la prepara no la aprova.",
+    "Certified by the unit": "Unidade sertifika ona",
+    "Certify at the level above": "Sertifika iha nivel leten",
+    "Certify above": "Sertifika iha leten",
+    "Only where the unit sits under a national directorate: check what its units certified and certify it too, so that each level checks once. Where the unit sits right under the directorate, this step is part of the approval of the plan.": "Só iha fatin ne'ebé unidade iha diresaun nasionál nia okos: haree saida mak nia unidade sira sertifika no sertifika mós, atu nivel ida-idak haree dala ida. Iha fatin ne'ebé unidade iha diresaun nia okos kedas, pasu ida-ne'e parte husi aprovasaun planu.",
+    "Certified by the head of the unit; waiting for the head of the unit above to certify it too.": "Xefia unidade nian sertifika ona; hein xefia unidade leten nian atu sertifika mós.",
+    "Certified at every level below the head; waiting for the approval of the plan.": "Nivel hotu iha xefe nia okos sertifika ona; hein aprovasaun planu.",
+    "Read it and certify it. Without a list, the director of the unit, then of the unit above, does.": "Lee no sertifika. Se la iha lista, diretór unidade nian, depois diretór unidade leten nian, halo.",
+    "PAA Certified by the unit": "PAA unidade sertifika ona",
+    "Director :name certified an activity of :dir. It waits for your certification.": "Diretór :name sertifika atividade ida husi :dir. Hein ita-nia sertifikasaun.",
+    "PAA Certified": "PAA sertifika ona",
+    "An activity of :dir was certified by :name.": "Atividade ida husi :dir sertifika ona husi :name.",
+    "Does the head of the unit above also certify before the final approval?": "Xefia unidade leten nian mós sertifika molok aprovasaun finál?",
+    "After the head of a unit certifies an activity, the head of the unit above it (for example the national director) certifies it too before the head of the directorate approves the plan. Where the same person would act twice in a row, one click covers both.": "Hafoin xefia unidade nian sertifika atividade ida, xefia unidade leten nian (ezemplu diretór nasionál) mós sertifika molok xefia diresaun nian aprova planu. Bainhira ema hanesan sei halo dala rua tuir malu, klike ida kobre rua hotu.",
+    "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying goes on as the activities arrive; the approval waits, and the directorate sees why.": "Xefe aprova planu diresaun ida nian (no nune'e finaliza) só depois atividade hotu diresaun nian submete ona. Sertifikasaun la'o bainhira atividade sira to'o; aprovasaun hein, no diresaun haree tanba saida.",
+    "Certifying and approving the plan": "Sertifika no aprova planu"
 }

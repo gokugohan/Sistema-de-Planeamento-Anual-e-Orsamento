@@ -259,22 +259,25 @@ class ActivityWorkflow
                 if ($listed === false && ! $admin) {
                     return null;
                 }
-                if ($listed !== true && ! $this->directsUnit($user, $unit)) {
+                // each level certifies its own: the head of this unit (or their interim), not a head further up, so
+                // the unit above cannot skip the unit's check. Only when the head of the unit prepared the activity
+                // themself (and so may not check it) does a head above certify in their place.
+                if ($listed !== true && ! $this->headsUnit($user, $unit)
+                    && ! ($this->directsUnit($user, $unit) && $this->preparedByHeadOf($activity, $unit))) {
                     return null;
                 }
-                $parent = ($admin || $listed) ? $unit?->parent : $user->seatFor($unit)?->parent;
 
-                return ($parent && ApprovalRules::current()->parentValidation) ? Activity::STATUS_REVIEWED : Activity::STATUS_VALIDATED;
+                return ($unit?->parent && ApprovalRules::current()->parentValidation) ? Activity::STATUS_REVIEWED : Activity::STATUS_VALIDATED;
 
             case Activity::STATUS_REVIEWED:
-                // the unit above validates: its own list of certifiers if it has one, otherwise its director
+                // the unit directly above certifies too: its own list of certifiers if it has one, otherwise its head
+                // (or their interim); a head further up does not take its place
                 $above = $lists->designatedAbove($user, $activity->directorate_id, ApproverAssignment::CERTIFY);
                 if ($above !== null) {
                     return ($admin || $above) ? Activity::STATUS_VALIDATED : null;
                 }
 
-                return ($admin || ($user->isDirector() && ($seat = $user->seatFor($unit)) && $seat->id !== $unit?->id))
-                    ? Activity::STATUS_VALIDATED : null;
+                return $this->headsUnit($user, $unit?->parent) ? Activity::STATUS_VALIDATED : null;
 
             case Activity::STATUS_VALIDATED:
                 // the final approval is the head of the directorate's (or whoever its list of approvers names)
@@ -375,10 +378,10 @@ class ActivityWorkflow
 
         [$title, $message, $roles, $unitId] = match ($to) {
             Activity::STATUS_SUBMITTED => [__('PAA Submitted for Review'), __('Activities of :dir were submitted by :name for review.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Director'], $activity->directorate_id],
-            Activity::STATUS_REVIEWED => [__('PAA Pending Review'), __('Director :name has reviewed an activity of :dir. Pending your validation.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Director'], $activity->directorate->parent_id],
+            Activity::STATUS_REVIEWED => [__('PAA Certified by the unit'), __('Director :name certified an activity of :dir. It waits for your certification.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Director'], $activity->directorate->parent_id],
             Activity::STATUS_APPROVED => [__('PAA Activity Approved'), __('Activity ":desc" has been approved.', ['desc' => str($activity->description)->limit(30)]), ['Director', 'Planning'], $activity->directorate_id],
-            Activity::STATUS_VALIDATED => [__('PAA Validated'), __('An activity of :dir was validated by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
-            default => [__('PAA Validated'), __('An activity of :dir was validated by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
+            Activity::STATUS_VALIDATED => [__('PAA Certified'), __('An activity of :dir was certified by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
+            default => [__('PAA Certified'), __('An activity of :dir was certified by :name.', ['name' => $user->name, 'dir' => $activity->directorate->name]), ['Planning'], $activity->directorate_id],
         };
         $notification = new SystemNotification($title, $message, route('activities.show', ['activity' => $activity->id], false));
         $notified = $this->notify($roles, $unitId, $notification);
@@ -610,7 +613,7 @@ class ActivityWorkflow
             return __('Named in the approval list: :names', ['names' => $who]);
         }
 
-        // the leader by the title of their level: the Head of Unit certifies, the National Director validates, the
+        // the leader by the title of their level: the Head of Unit certifies, the National Director certifies too, the
         // Director-General (or the Head of Office of a gabinete) approves the plan
         $unit = $activity->relationLoaded('directorate') ? $activity->directorate : Directorate::find($activity->directorate_id);
         $above = $unit?->parent_id ? Directorate::find($unit->parent_id) : null;
@@ -620,7 +623,7 @@ class ActivityWorkflow
         return match ($activity->status) {
             Activity::STATUS_DRAFT, Activity::STATUS_REJECTED => __('The unit to complete and submit it'),
             Activity::STATUS_SUBMITTED => __(':leader to certify it', ['leader' => $leader($unit)]),
-            Activity::STATUS_REVIEWED => __(':leader to validate it', ['leader' => $leader($above)]),
+            Activity::STATUS_REVIEWED => __(':leader to certify it', ['leader' => $leader($above)]),
             Activity::STATUS_VALIDATED, Activity::STATUS_WAITING_APPROVAL => __(':leader to approve the plan', ['leader' => $leader($root)]),
             default => null,
         };
@@ -693,6 +696,24 @@ class ActivityWorkflow
         }
 
         return in_array($unit->id, $user->directedUnitIds(), true);
+    }
+
+    /** Did the head of this unit (or their interim) prepare the activity? Then someone above certifies it. */
+    private function preparedByHeadOf(Activity $activity, ?Directorate $unit): bool
+    {
+        $preparer = $activity->submitted_by ? User::find($activity->submitted_by) : null;
+
+        return $preparer !== null && $unit !== null && $preparer->seats()->contains('id', $unit->id);
+    }
+
+    /** Does the user head this very unit (their own seat or an interim appointment for it)? Admins head every unit. */
+    private function headsUnit(User $user, ?Directorate $unit): bool
+    {
+        if ($user->isAdministrator()) {
+            return true;
+        }
+
+        return $unit !== null && $user->seats()->contains('id', $unit->id);
     }
 
     /** @return array<int, int> the ids of the users told */

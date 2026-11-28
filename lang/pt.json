@@ -3382,5 +3382,20 @@
     "System → Settings → Modules": "Sistema → Configurações → Módulos",
     "The submission dates of the plan (the units submit only between them), and if you wish the dates for approving it. A unit that is late can be given more time.": "As datas de submissão do plano (as unidades só submetem entre elas) e, se quiser, as datas para o aprovar. Uma unidade atrasada pode receber mais tempo.",
     "Say why, change what is needed and send it through approval again. The approved version stays in force until the revision is approved.": "Diga porquê, altere o necessário e envie-a de novo para aprovação. A versão aprovada continua em vigor até a revisão ser aprovada.",
-    "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.": "Lê planos e relatórios: use Programas, Unidades e Relatórios. Não prepara nem aprova."
+    "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.": "Lê planos e relatórios: use Programas, Unidades e Relatórios. Não prepara nem aprova.",
+    "Certified by the unit": "Certificada pela unidade",
+    "Certify at the level above": "Certificar no nível acima",
+    "Certify above": "Certificar acima",
+    "Only where the unit sits under a national directorate: check what its units certified and certify it too, so that each level checks once. Where the unit sits right under the directorate, this step is part of the approval of the plan.": "Só onde a unidade está sob uma direção nacional: verificar o que as suas unidades certificaram e certificar também, para que cada nível verifique uma vez. Onde a unidade está logo abaixo da direção, este passo faz parte da aprovação do plano.",
+    "Certified by the head of the unit; waiting for the head of the unit above to certify it too.": "Certificada pela chefia da unidade; à espera de que a chefia da unidade acima também a certifique.",
+    "Certified at every level below the head; waiting for the approval of the plan.": "Certificada por todos os níveis abaixo do chefe; à espera da aprovação do plano.",
+    "Read it and certify it. Without a list, the director of the unit, then of the unit above, does.": "Ler e certificar. Sem lista, fá-lo o diretor da unidade e depois o da unidade acima.",
+    "PAA Certified by the unit": "PAA certificado pela unidade",
+    "Director :name certified an activity of :dir. It waits for your certification.": "O diretor :name certificou uma atividade de :dir. Aguarda a sua certificação.",
+    "PAA Certified": "PAA certificado",
+    "An activity of :dir was certified by :name.": "Uma atividade de :dir foi certificada por :name.",
+    "Does the head of the unit above also certify before the final approval?": "A chefia da unidade acima também certifica antes da aprovação final?",
+    "After the head of a unit certifies an activity, the head of the unit above it (for example the national director) certifies it too before the head of the directorate approves the plan. Where the same person would act twice in a row, one click covers both.": "Depois de a chefia de uma unidade certificar uma atividade, a chefia da unidade acima (por exemplo o diretor nacional) também a certifica antes de a chefia da direção aprovar o plano. Quando a mesma pessoa agiria duas vezes seguidas, um clique cobre ambos os passos.",
+    "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying goes on as the activities arrive; the approval waits, and the directorate sees why.": "O chefe aprova o plano de uma direção (e assim finaliza-o) só depois de todas as atividades da direção terem sido submetidas. A certificação segue à medida que as atividades chegam; a aprovação espera, e a direção vê porquê.",
+    "Certifying and approving the plan": "Certificar e aprovar o plano"
 }

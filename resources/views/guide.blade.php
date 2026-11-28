@@ -37,7 +37,7 @@
                 'when' => __('Before certification.'), 'where' => __('Approvals → Budget review'), 'url' => $user->can('confirm_budget') ? route('approvals.budget') : route('approvals.index')] : null,
             ['who' => ['Director'], 'whoText' => __('The Director of the unit (or the people on its approval list)'), 'what' => __('Certify'), 'short' => __('Certify'), 'how' => __('Read the activity and certify it, or return it with a reason the unit will read.'),
                 'when' => __('As soon as an activity is prepared.'), 'where' => __('Approvals → Waiting for you → Activities to decide'), 'url' => route('approvals.index')],
-            $rules->parentValidation ? ['who' => ['Director'], 'whoText' => __('The Director of the national directorate above the unit'), 'what' => __('Validate'), 'short' => __('Validate'), 'how' => __('Only where the unit sits under a national directorate: check what its units certified, so that each level checks once. Where the unit sits right under the directorate, this step is part of the approval of the plan.'),
+            $rules->parentValidation ? ['who' => ['Director'], 'whoText' => __('The Director of the national directorate above the unit'), 'what' => __('Certify at the level above'), 'short' => __('Certify above'), 'how' => __('Only where the unit sits under a national directorate: check what its units certified and certify it too, so that each level checks once. Where the unit sits right under the directorate, this step is part of the approval of the plan.'),
                 'when' => __('After the unit certifies.'), 'where' => __('Approvals → Waiting for you → Activities to decide'), 'url' => route('approvals.index')] : null,
             ['who' => ['Director'], 'whoText' => __('The head of the directorate (or the people on its approval list)'), 'what' => __('Approve the plan'), 'short' => __('Approve the plan'), 'how' => __('One step: every certified activity of the directorate is approved and its plan is finalized, so it takes no new activities. Return or approve single activities first if needed. Approved activities change only through a revision; the plan can be reopened with a reason.'),
                 'when' => __('When every activity of the directorate is certified.'), 'where' => __('Approvals → Waiting for you → Approve the plan'), 'url' => route('approvals.index').'#plan'],
@@ -74,7 +74,7 @@
         [__('Returned'), __('Sent back with a reason; the unit corrects it.')],
         [__('Prepared'), __('Submitted by the unit; waiting to be certified.')],
         [__('Verified'), __('Certified by the unit\'s director; waiting for the national directorate above it.')],
-        [__('Certified'), __('Checked by every level below the head; waiting for the approval of the plan.')],
+        [__('Certified'), __('Certified at every level below the head; waiting for the approval of the plan.')],
         [__('Approved'), __('Given the final approval. It changes only through a revision.')],
     ];
 @endphp

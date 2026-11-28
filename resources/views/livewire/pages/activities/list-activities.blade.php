@@ -183,7 +183,7 @@ new class extends Component {
 
     /**
      * The step one click of this user takes an activity to, in the words of the buttons: submit (for certification),
-     * certify, validate, or approve (the final approval, never given in bulk). Null when it is not the user's turn.
+     * certify (at the unit or the unit above), or approve (the final approval, never given in bulk). Null when it is not the user's turn.
      */
     public static function stepOf(?string $next, string $status): ?string
     {
@@ -191,18 +191,17 @@ new class extends Component {
             $next === null => null,
             $next === Activity::STATUS_SUBMITTED => 'submit',
             $next === Activity::STATUS_APPROVED => 'approve',
-            $status === Activity::STATUS_REVIEWED => 'validate',
             default => 'certify',
         };
     }
 
     /**
-     * Take the ticked activities whose next step is $step (submit, certify or validate) one step along the chain, as
+     * Take the ticked activities whose next step is $step (submit or certify) one step along the chain, as
      * on each activity's page. The final approval is not given here: the head gives it with the plan.
      */
     public function advanceSelected(string $step): void
     {
-        abort_unless(in_array($step, ['submit', 'certify', 'validate'], true), 422);
+        abort_unless(in_array($step, ['submit', 'certify'], true), 422);
         $workflow = app(ActivityWorkflow::class);
         $user = auth()->user();
         $done = 0;
@@ -223,8 +222,7 @@ new class extends Component {
 
         $doneMessage = match ($step) {
             'submit' => trans_choice(':n activity submitted for certification.|:n activities submitted for certification.', $done, ['n' => $done]),
-            'certify' => trans_choice(':n activity certified.|:n activities certified.', $done, ['n' => $done]),
-            default => trans_choice(':n activity validated.|:n activities validated.', $done, ['n' => $done]),
+            default => trans_choice(':n activity certified.|:n activities certified.', $done, ['n' => $done]),
         };
         $this->dispatch('toast',
             message: $done ? $doneMessage.($notReady ? ' '.__(':n could not be moved (not your turn or not complete).', ['n' => $notReady]) : '')
@@ -348,7 +346,7 @@ new class extends Component {
     };
     $priority = fn ($p) => match ($p) { 'Alta', 'High' => __('High'), 'Baixa', 'Low' => __('Low'), default => __('Medium') };
     // the same words as the buttons of the activity page and of the bulk action
-    $stepWords = ['submit' => __('Submit for certification'), 'certify' => __('Certify'), 'validate' => __('Validate'), 'approve' => __('Approve')];
+    $stepWords = ['submit' => __('Submit for certification'), 'certify' => __('Certify'), 'approve' => __('Approve')];
     $lastGroup = null;
 @endphp
 
@@ -477,7 +475,7 @@ new class extends Component {
              x-data="{ count(step) { return selected.filter(id => document.querySelector('input[data-step][value=\'' + id + '\']')?.dataset.step === step).length } }">
             <span class="text-xs text-zinc-500" x-text="@js(__(':n selected')).replace(':n', selected.length)"></span>
             <button type="button" x-on:click="selected = []" class="text-xs font-medium text-zinc-600 hover:text-zinc-900 hover:underline">{{ __('Clear selection') }}</button>
-            @foreach(['submit', 'certify', 'validate'] as $step)
+            @foreach(['submit', 'certify'] as $step)
                 <x-ui.button size="sm" x-show="count('{{ $step }}')" x-cloak x-on:click="$dispatch('open-modal', 'bulk-{{ $step }}')">
                     {{ $stepWords[$step] }} (<span x-text="count('{{ $step }}')"></span>)
                 </x-ui.button>
@@ -571,7 +569,4 @@ new class extends Component {
     <x-confirm-dialog name="bulk-certify" :title="__('Certify the selected activities?')"
         :message="__('They then go to the next person in the chain. The final approval is given by the head with the plan.')"
         :confirm="__('Certify')" wire:click="advanceSelected('certify')" />
-    <x-confirm-dialog name="bulk-validate" :title="__('Validate the selected activities?')"
-        :message="__('They then go to the head of the directorate, who approves them with the plan.')"
-        :confirm="__('Validate')" wire:click="advanceSelected('validate')" />
 </div>

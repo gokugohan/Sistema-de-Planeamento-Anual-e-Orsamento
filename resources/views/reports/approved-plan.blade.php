@@ -166,7 +166,7 @@
     <div class="note">
         <strong>{{ __('Plan not complete:') }}</strong>
         {{ __(':n activities for this year are still in the internal approval workflow and are NOT included:', ['n' => $pendingTotal]) }}
-        {{ collect($report['pending'])->map(fn ($n, $status) => __(['Submitted' => 'Prepared', 'Reviewed' => 'Verified', 'Validated' => 'Certified'][$status] ?? $status) . ' (' . $n . ')')->implode(', ') }}.
+        {{ collect($report['pending'])->map(fn ($n, $status) => \App\Models\Activity::statusWord($status) . ' (' . $n . ')')->implode(', ') }}.
     </div>
 @endif
 

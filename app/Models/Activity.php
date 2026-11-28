@@ -76,13 +76,13 @@ class Activity extends Model
     const STATUS_REJECTED = 'Rejected';
 
     /**
-     * The word people see for a status, the same on every page: the stages of Prepare, Certify (verify, validate)
-     * and Approve. The stored values stay as they are, because queries and reports depend on them.
+     * The word people see for a status, the same on every page: the stages of Prepare, Certify (at one or two levels)
+     * and Approve. "Verified" is kept for execution figures. The stored values stay as they are, because queries and reports depend on them.
      */
     public const STATUS_WORDS = [
         self::STATUS_DRAFT => 'Draft',
         self::STATUS_SUBMITTED => 'Prepared',
-        self::STATUS_REVIEWED => 'Verified',
+        self::STATUS_REVIEWED => 'Certified by the unit', // certified at the unit; the unit above certifies it too
         self::STATUS_VALIDATED => 'Certified',
         self::STATUS_WAITING_APPROVAL => 'Certified', // no longer reached; read as waiting for the final approval
         self::STATUS_APPROVED => 'Approved',

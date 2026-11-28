@@ -3140,5 +3140,20 @@
     "System → Settings → Modules": "System → Settings → Modules",
     "The submission dates of the plan (the units submit only between them), and if you wish the dates for approving it. A unit that is late can be given more time.": "The submission dates of the plan (the units submit only between them), and if you wish the dates for approving it. A unit that is late can be given more time.",
     "Say why, change what is needed and send it through approval again. The approved version stays in force until the revision is approved.": "Say why, change what is needed and send it through approval again. The approved version stays in force until the revision is approved.",
-    "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.": "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve."
+    "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.": "You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.",
+    "Certified by the unit": "Certified by the unit",
+    "Certify at the level above": "Certify at the level above",
+    "Certify above": "Certify above",
+    "Only where the unit sits under a national directorate: check what its units certified and certify it too, so that each level checks once. Where the unit sits right under the directorate, this step is part of the approval of the plan.": "Only where the unit sits under a national directorate: check what its units certified and certify it too, so that each level checks once. Where the unit sits right under the directorate, this step is part of the approval of the plan.",
+    "Certified by the head of the unit; waiting for the head of the unit above to certify it too.": "Certified by the head of the unit; waiting for the head of the unit above to certify it too.",
+    "Certified at every level below the head; waiting for the approval of the plan.": "Certified at every level below the head; waiting for the approval of the plan.",
+    "Read it and certify it. Without a list, the director of the unit, then of the unit above, does.": "Read it and certify it. Without a list, the director of the unit, then of the unit above, does.",
+    "PAA Certified by the unit": "PAA Certified by the unit",
+    "Director :name certified an activity of :dir. It waits for your certification.": "Director :name certified an activity of :dir. It waits for your certification.",
+    "PAA Certified": "PAA Certified",
+    "An activity of :dir was certified by :name.": "An activity of :dir was certified by :name.",
+    "Does the head of the unit above also certify before the final approval?": "Does the head of the unit above also certify before the final approval?",
+    "After the head of a unit certifies an activity, the head of the unit above it (for example the national director) certifies it too before the head of the directorate approves the plan. Where the same person would act twice in a row, one click covers both.": "After the head of a unit certifies an activity, the head of the unit above it (for example the national director) certifies it too before the head of the directorate approves the plan. Where the same person would act twice in a row, one click covers both.",
+    "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying goes on as the activities arrive; the approval waits, and the directorate sees why.": "The head approves a directorate's plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying goes on as the activities arrive; the approval waits, and the directorate sees why.",
+    "Certifying and approving the plan": "Certifying and approving the plan"
 }

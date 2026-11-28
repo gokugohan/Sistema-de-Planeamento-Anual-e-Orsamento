@@ -168,8 +168,8 @@ new class extends Component {
                 </button>
                 <div x-show="open" x-cloak class="border-t border-zinc-100">
                     @include('livewire.pages.management.partials.rule-switch', ['prop' => 'parentValidation',
-                        'question' => __('Does the head of the unit above validate before the final approval?'),
-                        'details' => __('After the head of a unit certifies an activity, the head of the unit above it (for example the national director) validates it before the head of the directorate approves the plan. Where the same person would act twice in a row, one click covers both.')])
+                        'question' => __('Does the head of the unit above also certify before the final approval?'),
+                        'details' => __('After the head of a unit certifies an activity, the head of the unit above it (for example the national director) certifies it too before the head of the directorate approves the plan. Where the same person would act twice in a row, one click covers both.')])
                     @include('livewire.pages.management.partials.rule-switch', ['prop' => 'budgetConfirmation',
                         'question' => __('Does a finance officer confirm the budget before an activity is certified?'),
                         'details' => __('A submitted activity can be certified only once a finance officer has confirmed its budget lines.')])
@@ -189,7 +189,7 @@ new class extends Component {
                     </div>
                     @include('livewire.pages.management.partials.rule-switch', ['prop' => 'completeBeforeApproval',
                         'question' => __('Must every activity of a directorate be submitted before its plan is approved?'),
-                        'details' => __('The head approves a directorate\'s plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying and validating go on as the activities arrive; the approval waits, and the directorate sees why.')])
+                        'details' => __('The head approves a directorate\'s plan (and so finalizes it) only once every activity of the directorate has been submitted. Certifying goes on as the activities arrive; the approval waits, and the directorate sees why.')])
                     @include('livewire.pages.management.partials.rule-switch', ['prop' => 'approvalLists',
                         'question' => __('Do some units name who prepares, certifies or approves, instead of the usual heads?'),
                         'details' => __('Opens the Approval lists page. Use it only where a step is done by someone other than the head, or where several people sign in order. Without it, the technical officer prepares, the head of the unit certifies and the head of the directorate approves. It stays on while any unit has a list.')])

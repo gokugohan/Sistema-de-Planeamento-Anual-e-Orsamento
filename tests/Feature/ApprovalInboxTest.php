@@ -176,8 +176,9 @@ class ApprovalInboxTest extends TestCase
         $this->assertSame(1, $approval[0]['count']);
         $activity = $approval[0]['activities'][0];
 
-        // waiting to be certified: the USC activity
-        $this->assertSame(['USC'], collect($inbox->details($head, 'review', 2027))->map(fn ($d) => $d['unit']->code)->all());
+        // waiting to be certified: the USC activity, by the head of USC first, not by the head above
+        $this->assertSame([], $inbox->details($head, 'review', 2027));
+        $this->assertSame(['USC'], collect($inbox->details($this->user('director.usc@gdsc.tl'), 'review', 2027))->map(fn ($d) => $d['unit']->code)->all());
         $this->assertSame([], $inbox->details($head, 'unknown', 2027));
 
         // the page shows them without opening the queue

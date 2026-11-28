@@ -1001,7 +1001,7 @@ new class extends Component {
                         @else
                             @php
                                 // the same words as the status chips; one click may take several steps that are all this person's
-                                $checking = $activity->status === App\Models\Activity::STATUS_REVIEWED ? __('Validate') : __('Certify');
+                                $checking = __('Certify'); // at the unit and at the unit above alike
                                 [$label, $question] = match (true) {
                                     $nextStatus === App\Models\Activity::STATUS_SUBMITTED => [__('Submit for certification'), __('Submit this activity for certification? It can no longer be edited unless it is returned.')],
                                     $reach === App\Models\Activity::STATUS_APPROVED => [__(':step and approve', ['step' => $checking]), __('You also give the final approval of this activity, so both steps are taken now and each is recorded in the history. Continue?')],

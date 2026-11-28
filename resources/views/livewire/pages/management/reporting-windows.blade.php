@@ -320,7 +320,7 @@ new class extends Component {
                 <p class="text-xs text-zinc-500">{{ __('Optional. Leave the dates empty and these steps are always open.') }}</p>
             </div>
         </div>
-        @include('livewire.pages.management.partials.calendar-row', ['key' => 'approval_1', 'label' => __('Certifying, validating and approving the plan'), 'hint' => __('Approving the plan of a directorate finalizes it.'), 'required' => false])
+        @include('livewire.pages.management.partials.calendar-row', ['key' => 'approval_1', 'label' => __('Certifying and approving the plan'), 'hint' => __('Approving the plan of a directorate finalizes it.'), 'required' => false])
         @include('livewire.pages.management.partials.calendar-row', ['key' => 'revision_1', 'label' => __('Revisions of approved activities'), 'hint' => __('When a unit may start a revision of an approved activity.'), 'required' => false])
     </x-ui.card>
 

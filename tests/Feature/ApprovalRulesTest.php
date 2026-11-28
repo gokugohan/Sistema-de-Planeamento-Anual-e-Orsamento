@@ -112,7 +112,7 @@ class ApprovalRulesTest extends TestCase
             ->assertSee('The final approval is given by the head of the directorate')
             ->assertSee('The approval rules are in Optional rules.');
         Volt::test('pages.management.optional-rules')
-            ->assertSee('Does the head of the unit above validate before the final approval?')
+            ->assertSee('Does the head of the unit above also certify before the final approval?')
             ->set('parentValidation', false)
             ->call('save')
             ->assertHasNoErrors();
