@@ -20,7 +20,8 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions \
     && install-php-extensions pdo_mysql bcmath gd intl zip pcntl exif \
     # the mysql client builds a new database from the schema baseline and mysqldump makes the nightly backup
-    && apk add --no-cache mariadb-client su-exec tzdata \
+    # mariadb-connector-c brings the caching_sha2_password plugin, without which the client cannot log in to MySQL 8.4
+    && apk add --no-cache mariadb-client mariadb-connector-c su-exec tzdata \
     && ln -sf /usr/share/zoneinfo/Asia/Dili /etc/localtime
 WORKDIR /var/www/html
 
