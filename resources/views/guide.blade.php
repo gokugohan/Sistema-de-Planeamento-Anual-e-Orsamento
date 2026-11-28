@@ -9,11 +9,15 @@
     // administrator may also act at every other step). 'short' puts a step on the path of an activity at the top.
     $groups = [
         $admin ? [__('Set up the year (administrators)'), [
+            ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Choose the modules'), 'how' => __('Planning and approving the plan is always there. Switch on Execution reporting, Performance insights and the Budget envelope if your institution also uses them; what is switched off is hidden from everyone.'),
+                'when' => __('Before planning starts; you can change it at any time.'), 'where' => __('System → Settings → Modules'), 'url' => route('management.modules')],
             ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Keep the structure and the programs'), 'how' => __('The units as the law defines them, and the programs and subprograms of the year.'),
                 'when' => __('Before planning starts.'), 'where' => __('Administration → Structure'), 'url' => route('management.entities')],
             ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Give every unit its people'), 'how' => __('A technical officer who prepares and a director who certifies. A unit that nobody directs cannot get its activities approved.'),
                 'when' => __('Before planning starts, and whenever people change.'), 'where' => __('Administration → System Users'), 'url' => route('management.users')],
-            ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Set the calendar'), 'how' => __('The submission dates of the plan (the units submit only between them), and if you wish the dates for approving and for reporting each month and quarter. A unit that is late can be given more time.'),
+            ['who' => ['Admin'], 'whoText' => __('Administrator'), 'what' => __('Set the calendar'), 'how' => $execution
+                ? __('The submission dates of the plan (the units submit only between them), and if you wish the dates for approving and for reporting each month and quarter. A unit that is late can be given more time.')
+                : __('The submission dates of the plan (the units submit only between them), and if you wish the dates for approving it. A unit that is late can be given more time.'),
                 'when' => __('Before each step opens.'), 'where' => __('System → Calendar'), 'url' => route('management.reporting-windows')],
             $options->budgetDecisions ? ['who' => ['Admin'], 'whoText' => __('Administrator (the planning office)'), 'what' => __('Record the budget decisions'), 'how' => __('What the budget review committee, the State Budget law or a supplementary budget decided, by category; then open an adjustment round if the plan has to follow.'),
                 'when' => __('After each decision.'), 'where' => __('Plan → Budget decisions'), 'url' => route('planning.budget-decisions')] : null,
@@ -51,7 +55,9 @@
                 'when' => __('After the quarter ends.'), 'where' => __('Execute → Compile the quarter'), 'url' => $user->hasAnyRole(['Admin', 'Director']) ? route('reports.compile') : route('approvals.index')],
         ]] : null,
         [__('Change'), [
-            ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer, Director or the head'), 'what' => __('Revise an approved activity'), 'how' => __('Say why, change what is needed and send it through approval again. The approved version stays in force, and the executed amount is reported against it, until the revision is approved.'),
+            ['who' => ['Planning', 'Director'], 'whoText' => __('Technical Officer, Director or the head'), 'what' => __('Revise an approved activity'), 'how' => $execution
+                ? __('Say why, change what is needed and send it through approval again. The approved version stays in force, and the executed amount is reported against it, until the revision is approved.')
+                : __('Say why, change what is needed and send it through approval again. The approved version stays in force until the revision is approved.'),
                 'when' => __('Whenever an approved activity has to change.'), 'where' => __('The activity page → Revise'), 'url' => route('activities.index')],
             $options->budgetDecisions ? ['who' => ['Planning', 'Director'], 'whoText' => __('Each directorate; its head confirms'), 'what' => __('Adjust to the budget decision'), 'how' => __('In an adjustment round, revise the activities your directorate chooses (and add new ones where the round allows it), then the head confirms the adjustment.'),
                 'when' => __('While an adjustment round is open.'), 'where' => __('Plan → Adjustment round'), 'url' => route('planning.adjustment')] : null,
@@ -130,7 +136,9 @@
                 <p class="mt-4 text-sm text-zinc-600">{{ __('As an administrator you may act at every step; the people named above do them day to day.') }}</p>
             @endif
             @if($user->hasAnyRole(['Minister', 'Viewer']))
-                <p class="mt-4 text-sm text-zinc-600">{{ __('You read plans and reports: use Programmes, Units and Performance. You do not prepare, approve or report.') }}</p>
+                <p class="mt-4 text-sm text-zinc-600">{{ \App\Support\Modules::on(\App\Support\Modules::PERFORMANCE)
+                    ? __('You read plans and reports: use Programmes, Units and Performance. You do not prepare, approve or report.')
+                    : __('You read plans and reports: use Programmes, Units and Reporting. You do not prepare or approve.') }}</p>
             @endif
         </x-ui.card>
     </div>

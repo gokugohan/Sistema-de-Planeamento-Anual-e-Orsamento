@@ -156,6 +156,18 @@ class ModulesTest extends TestCase
         $this->followingRedirects()->get(route('work.home'))->assertOk()->assertDontSee('Report execution');
     }
 
+    public function test_the_guide_follows_the_modules(): void
+    {
+        $this->as('Admin');
+        $this->get(route('guide'))->assertOk()->assertSee('Choose the modules')
+            ->assertSee('for reporting each month and quarter')->assertSee('Report the executed amount');
+
+        $this->off();
+        $this->get(route('guide'))->assertOk()->assertSee('Choose the modules')
+            ->assertDontSee('for reporting each month and quarter')->assertDontSee('Report the executed amount')
+            ->assertDontSee('the executed amount is reported against it');
+    }
+
     public function test_switching_a_module_off_keeps_what_was_recorded(): void
     {
         $this->seed(MtcSampleDataSeeder::class);
