@@ -2,6 +2,10 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.8.0] — 2026-11-28
+
+- Structure page redesigned: one program structure tree (program, outcome, subprogram, output) with what is missing for the final plan report, side panels instead of dialogs, and plainer tables for units and economic categories
+
 ## [1.7.0] — 2026-11-28
 
 - Final plan report in the State Budget's layout (Anexo K): each programme's outcome, the subprogramme's output and the activities serving it, with subtotals, the unit's division code (Div), and the men and women in an indicator's baseline and target
