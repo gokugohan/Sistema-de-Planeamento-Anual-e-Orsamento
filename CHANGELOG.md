@@ -2,6 +2,11 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.6.0] — 2026-11-28
+
+- Report execution: "send everything" ends with one message saying what each part sent, or why nothing went
+- Certify at both levels, and each level certifies its own: the head of the unit certifies, the head of the unit directly above certifies too, and a head further up stands in only when the unit's head prepared the activity
+
 ## [1.5.1] — 2026-11-28
 
 - How the year works follows the modules: the administrator is told to choose them, and the calendar and revision steps leave out reporting when execution is off
