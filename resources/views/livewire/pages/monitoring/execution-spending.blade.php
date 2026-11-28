@@ -111,7 +111,7 @@ new class extends Component {
         }
     }
 
-    public function save(bool $submit = false): void
+    public function save(bool $submit = false, bool $quiet = false): int
     {
         $activity = $this->activity;
         abort_unless($activity && $this->mayReport($activity), 403);
@@ -149,10 +149,14 @@ new class extends Component {
         if ($errors) {
             $this->dispatch('toast', message: __('Some lines were not saved: check the amounts.'), type: 'error');
         } elseif ($saved) {
-            $this->dispatch('toast', message: $submit ? __('Submitted for verification.') : __('Saved as a draft.'), type: 'success');
+            if (! $quiet) {
+                $this->dispatch('toast', message: $submit ? __('Submitted for verification.') : __('Saved as a draft.'), type: 'success');
+            }
             $this->dispatch('execution-changed');
         }
         $this->fillForm();
+
+        return $errors ? 0 : $saved;
     }
 
     /** Nothing was spent this month: every line that can still be changed gets 0, so that "nothing" is reported and not forgotten. */
@@ -269,9 +273,21 @@ new class extends Component {
     public function submitEverything(): void
     {
         $activity = $this->activity;
-        if ($activity && $this->mayReport($activity)) {
-            $this->save(true);
+        if (! $activity || ! $this->mayReport($activity)) {
+            $this->dispatch('execution-submitted', part: 'spending', sent: 0, state: 'closed');
+
+            return;
         }
+        $sent = $this->save(true, true);
+        // nothing sent: say why (already waiting, already verified, or nothing filled in)
+        $states = collect($this->lines)->map(fn ($l) => $l->entry?->status)->filter();
+        $this->dispatch('execution-submitted', part: 'spending', sent: $sent, state: match (true) {
+            $sent > 0 => 'sent',
+            $this->getErrorBag()->isNotEmpty() => 'errors',
+            $states->contains(BudgetExecution::SUBMITTED) => 'waiting',
+            $states->isNotEmpty() && $states->every(fn ($s) => $s === BudgetExecution::VERIFIED) => 'verified',
+            default => 'empty',
+        });
     }
 
     public function with(): array

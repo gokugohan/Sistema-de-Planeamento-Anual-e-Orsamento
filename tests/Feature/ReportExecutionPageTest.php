@@ -9,6 +9,7 @@ use App\Models\Indicator;
 use App\Models\IndicatorProgress;
 use App\Models\LineItem;
 use App\Models\User;
+use App\Support\FiscalYear;
 use Carbon\Carbon;
 use Database\Seeders\Samples\MtcOfficeSampleDataSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -30,7 +31,7 @@ class ReportExecutionPageTest extends TestCase
         Carbon::setTestNow('2026-10-14 10:00:00');
         app(MtcOfficeSampleDataSeeder::class)->setContainer(app())->run();
         app()->setLocale('en');
-        \App\Support\FiscalYear::pin(2026);
+        FiscalYear::pin(2026);
         session(['locale' => 'en']);
 
         // an activity of the unit director's unit, with a distributed line and an indicator, cleared for the quarter
@@ -99,12 +100,24 @@ class ReportExecutionPageTest extends TestCase
         $progress = Volt::actingAs($director)->test('pages.monitoring.execution-progress', ['activityId' => $this->activity->id, 'quarter' => 4]);
         $progress->call('saveProgress', $indicator->id, 5);
 
-        // what each panel does when it hears the page's button
-        $spending->call('submitEverything');
-        $progress->call('submitEverything');
+        // what each panel does when it hears the page's button: it sends, and says back what it sent
+        $spending->call('submitEverything')->assertDispatched('execution-submitted', part: 'spending', sent: 1, state: 'sent');
+        $progress->call('submitEverything')->assertDispatched('execution-submitted', part: 'progress', sent: 1, state: 'sent');
 
         $this->assertSame(BudgetExecution::SUBMITTED, BudgetExecution::where('line_item_id', $line->id)->where('month', 10)->value('status'));
         $this->assertSame('Submitted', IndicatorProgress::where('indicator_id', $indicator->id)->where('quarter', 4)->value('status'));
+
+        // pressed again: nothing new, and the panel says why instead of staying silent
+        $spending->call('submitEverything')->assertDispatched('execution-submitted', part: 'spending', sent: 0, state: 'waiting');
+
+        // the page puts the three answers into one message
+        $page = Volt::actingAs($director)->test('pages.monitoring.report-execution')->set('month', 10)->set('activityId', $this->activity->id);
+        $page->call('collectSent', 'spending', 1, 'sent')->assertNotDispatched('toast');
+        $page->call('collectSent', 'progress', 0, 'waiting')->call('collectSent', 'narrative', 0, 'empty')
+            ->assertDispatched('toast', fn ($name, $params) => str_contains($params['message'], 'Sent for verification: 1 executed amount of October')
+                && str_contains($params['message'], 'already waiting for verification') && $params['type'] === 'success');
+        $page->call('collectSent', 'spending', 0, 'waiting')->call('collectSent', 'progress', 0, 'empty')->call('collectSent', 'narrative', 0, 'empty')
+            ->assertDispatched('toast', fn ($name, $params) => str_starts_with($params['message'], 'Nothing new to send.') && $params['type'] === 'info');
     }
 
     public function test_a_quarter_that_has_not_started_cannot_be_chosen(): void

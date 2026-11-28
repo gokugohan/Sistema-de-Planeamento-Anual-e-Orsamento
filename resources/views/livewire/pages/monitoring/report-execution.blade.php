@@ -151,10 +151,50 @@ new class extends Component {
     }
 
     /** The one action that concerns both panels. Each panel checks who may report, on its own. */
+    /** @var array<string, array{sent: int, state: string}> what each panel sent for the last "send everything" */
+    public array $sent = [];
+
     public function submitAll(): void
     {
         abort_unless($this->activity, 404);
+        $this->sent = [];
         $this->dispatch('submit-execution');
+    }
+
+    /**
+     * Each panel says what it sent (or why nothing); once the executed amounts, the indicators and the narrative have
+     * answered, one message says it all, so the button never seems to do nothing.
+     */
+    #[On('execution-submitted')]
+    public function collectSent(string $part, int $sent, string $state): void
+    {
+        $this->sent[$part] = ['sent' => $sent, 'state' => $state];
+        if (count(array_intersect_key($this->sent, array_flip(['spending', 'progress', 'narrative']))) < 3) {
+            return;
+        }
+        $month = \Carbon\Carbon::create($this->year, $this->month, 1)->translatedFormat('F');
+        $s = $this->sent['spending'];
+        $p = $this->sent['progress'];
+        $parts = array_filter([
+            $s['sent'] ? trans_choice(':n executed amount of :month|:n executed amounts of :month', $s['sent'], ['n' => $s['sent'], 'month' => $month]) : null,
+            $p['sent'] ? trans_choice(':n indicator figure of Q:q|:n indicator figures of Q:q', $p['sent'], ['n' => $p['sent'], 'q' => $this->quarter]) : null,
+            $this->sent['narrative']['sent'] ? __('the narrative') : null,
+        ]);
+        $why = fn (array $x, string $what) => match ($x['state']) {
+            'waiting' => __(':what: already waiting for verification.', ['what' => $what]),
+            'verified' => __(':what: already verified.', ['what' => $what]),
+            'closed' => __(':what: reporting is closed for this period.', ['what' => $what]),
+            'errors' => __(':what: not sent, check the amounts marked in red.', ['what' => $what]),
+            default => __(':what: nothing filled in yet.', ['what' => $what]),
+        };
+        $notes = array_filter([
+            $s['sent'] ? null : $why($s, __('Executed amounts of :month', ['month' => $month])),
+            $p['sent'] ? null : $why($p, __('Indicators of Q:q', ['q' => $this->quarter])),
+        ]);
+        $this->dispatch('toast',
+            message: ($parts ? __('Sent for verification: :what.', ['what' => implode(', ', $parts)]) : __('Nothing new to send.')).($notes ? ' '.implode(' ', $notes) : ''),
+            type: $parts ? 'success' : ($s['state'] === 'errors' ? 'error' : 'info'));
+        $this->sent = [];
     }
 
     /** A panel changed something: show the new counts. */

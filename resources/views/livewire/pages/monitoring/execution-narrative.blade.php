@@ -110,7 +110,7 @@ new class extends Component {
         $this->dispatch('execution-changed');
     }
 
-    public function submit(): void
+    public function submit(bool $quiet = false): int
     {
         abort_unless($this->mayReport(), 403);
         $n = 0;
@@ -125,16 +125,21 @@ new class extends Component {
                 ->count();
         }
         if ($n) {
-            $this->dispatch('toast', message: __('Submitted for verification.'), type: 'success');
+            if (! $quiet) {
+                $this->dispatch('toast', message: __('Submitted for verification.'), type: 'success');
+            }
             $this->dispatch('execution-changed');
         }
+
+        return $n;
     }
 
-    /** The page's "submit everything" button. */
+    /** The page's "submit everything" button: the narrative goes too when it may, and it says back what it sent. */
     #[On('submit-execution')]
     public function submitEverything(): void
     {
-        $this->submit();
+        $sent = $this->mayReport() ? $this->submit(true) : 0;
+        $this->dispatch('execution-submitted', part: 'narrative', sent: $sent, state: $sent ? 'sent' : 'empty');
     }
 
     public function decide(string $type, bool $approve): void

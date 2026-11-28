@@ -105,7 +105,7 @@ new class extends Component {
         $this->dispatch('execution-changed');
     }
 
-    public function submitProgress(): void
+    public function submitProgress(bool $quiet = false): int
     {
         $ids = $this->indicators->pluck('id')->filter(fn ($id) => $this->mayReport($id));
 
@@ -116,16 +116,28 @@ new class extends Component {
             ->count());
 
         if ($n) {
-            $this->dispatch('toast', message: __('Progress submitted for verification.'), type: 'success');
+            if (! $quiet) {
+                $this->dispatch('toast', message: __('Progress submitted for verification.'), type: 'success');
+            }
             $this->dispatch('execution-changed');
         }
+
+        return $n;
     }
 
-    /** The page's "submit everything" button: this panel's drafts go for verification too. */
+    /** The page's "submit everything" button: this panel's drafts go for verification too, and it says back what it sent. */
     #[On('submit-execution')]
     public function submitEverything(): void
     {
-        $this->submitProgress();
+        $sent = $this->submitProgress(true);
+        $states = IndicatorProgress::whereIn('indicator_id', $this->indicators->pluck('id'))->where('quarter', $this->quarter)->pluck('status');
+        $this->dispatch('execution-submitted', part: 'progress', sent: $sent, state: match (true) {
+            $sent > 0 => 'sent',
+            $this->indicators->isNotEmpty() && $this->indicators->every(fn ($i) => ! $this->mayReport($i->id)) => 'closed',
+            $states->contains('Submitted') => 'waiting',
+            $states->isNotEmpty() && $states->every(fn ($s) => $s === 'Verified') => 'verified',
+            default => 'empty',
+        });
     }
 
     public function verifyProgress($indicatorId): void
