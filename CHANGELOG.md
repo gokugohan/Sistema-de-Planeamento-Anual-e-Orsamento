@@ -2,6 +2,10 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.9.1] — 2026-11-29
+
+- Office sample gives demo accounts to every unit of the office, also units entered before it, and an outside uptime monitor checks /health every 15 minutes from GitHub
+
 ## [1.9.0] — 2026-11-29
 
 - Backups downloaded and restore-tested from System > Backups, errors kept and listed in System > Errors, admin pages restyled, and a unit with no head certified by the nearest head above
