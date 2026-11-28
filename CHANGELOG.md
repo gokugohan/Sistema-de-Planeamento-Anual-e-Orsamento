@@ -2,6 +2,10 @@
 
 Every release of the application, newest first. Numbers follow MAJOR.MINOR.PATCH: PATCH for fixes, MINOR for new features, MAJOR for changes that break data or how people work.
 
+## [1.5.1] — 2026-11-28
+
+- How the year works follows the modules: the administrator is told to choose them, and the calendar and revision steps leave out reporting when execution is off
+
 ## [1.5.0] — 2026-11-28
 
 - Modules: execution reporting, performance and the budget envelope are add-ons the administrator switches on in Settings > Modules; off, they leave the menu and every page and their addresses are not found, while their data stays
